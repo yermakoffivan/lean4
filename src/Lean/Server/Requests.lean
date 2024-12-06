@@ -259,7 +259,7 @@ partial def findInfoTreeAtPos
   findCmdParsedSnap doc (isMatchingSnapshot ·) |>.bind (sync := true) fun
     | some cmdParsed => toSnapshotTree cmdParsed |>.findInfoTreeAtPos pos |>.bind (sync := true) fun
       | some infoTree => .pure <| some infoTree
-      | none          => cmdParsed.finishedSnap.task.map (sync := true) fun s =>
+      | none          => cmdParsed.cmdStateSnap.task.map (sync := true) fun s =>
         -- the parser returns exactly one command per snapshot, and the elaborator creates exactly one node per command
         assert! s.cmdState.infoState.trees.size == 1
         some s.cmdState.infoState.trees[0]!
@@ -281,7 +281,7 @@ def findCmdDataAtPos
   findCmdParsedSnap doc (isMatchingSnapshot ·) |>.bind (sync := true) fun
     | some cmdParsed => toSnapshotTree cmdParsed |>.findInfoTreeAtPos pos |>.bind (sync := true) fun
       | some infoTree => .pure <| some (cmdParsed.stx, infoTree)
-      | none          => cmdParsed.finishedSnap.task.map (sync := true) fun s =>
+      | none          => cmdParsed.cmdStateSnap.task.map (sync := true) fun s =>
         -- the parser returns exactly one command per snapshot, and the elaborator creates exactly one node per command
         assert! s.cmdState.infoState.trees.size == 1
         some (cmdParsed.stx, s.cmdState.infoState.trees[0]!)

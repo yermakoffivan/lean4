@@ -75,10 +75,13 @@ structure SnapshotTask (α : Type) where
   Range that is marked as being processed by the server while the task is running. If `none`,
   the range of the outer task if some or else the entire file is reported.
   -/
-  range? : Option String.Range
+  range? : Option String.Range := none
   /-- Underlying task producing the snapshot. -/
   task : Task α
 deriving Nonempty, Inhabited
+
+instance : Coe (Task α) (SnapshotTask α) where
+  coe t := { task := t }
 
 /-- Creates a snapshot task from a reporting range and a `BaseIO` action. -/
 def SnapshotTask.ofIO (range? : Option String.Range) (act : BaseIO α) : BaseIO (SnapshotTask α) := do
@@ -90,7 +93,6 @@ def SnapshotTask.ofIO (range? : Option String.Range) (act : BaseIO α) : BaseIO 
 /-- Creates a finished snapshot task. -/
 def SnapshotTask.pure (a : α) : SnapshotTask α where
   -- irrelevant when already finished
-  range? := none
   task := .pure a
 
 /--

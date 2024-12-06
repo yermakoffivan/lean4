@@ -359,7 +359,7 @@ def runLintersAsync (stx : Syntax) : CommandElabM Unit := do
   -- We only start one task for all linters for now as most linters are fast and we simply want
   -- to unblock elaboration of the next command
   let lintAct ← wrapAsyncAsSnapshot fun _ => runLinters stx
-  logSnapshotTask { range? := none, task := (← BaseIO.asTask lintAct) }
+  logSnapshotTask (← BaseIO.asTask lintAct)
 
 protected def getCurrMacroScope : CommandElabM Nat  := do pure (← read).currMacroScope
 protected def getMainModule     : CommandElabM Name := do pure (← getEnv).mainModule

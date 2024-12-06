@@ -25,12 +25,12 @@ private def pushOpt (a? : Option α) (as : Array α) : Array α :=
 
 /-! The hierarchy of Lean snapshot types -/
 
-/-- Snapshot after elaboration of the entire command. -/
-structure CommandFinishedSnapshot extends Language.Snapshot where
+/-- Snapshot after synchronous part of command elaboration has finished. -/
+structure CommandStateSnapshot extends Language.Snapshot where
   /-- Resulting elaboration state. -/
   cmdState : Command.State
 deriving Nonempty
-instance : ToSnapshotTree CommandFinishedSnapshot where
+instance : ToSnapshotTree CommandStateSnapshot where
   toSnapshotTree s := ⟨s.toSnapshot, #[]⟩
 
 /-- State after a command has been parsed. -/
@@ -44,8 +44,8 @@ structure CommandParsedSnapshot extends Snapshot where
   elaborator.
    -/
   elabSnap : SnapshotTask DynamicSnapshot
-  /-- State after processing is finished. -/
-  finishedSnap : SnapshotTask CommandFinishedSnapshot
+  /-- State after synchronous processing is finished. -/
+  cmdStateSnap : SnapshotTask CommandStateSnapshot
   /-- Additional, untyped snapshots used for reporting, not reuse. -/
   reportSnap : SnapshotTask SnapshotTree
   /-- Cache for `save`; to be replaced with incrementality. -/
@@ -57,7 +57,7 @@ partial instance : ToSnapshotTree CommandParsedSnapshot where
   toSnapshotTree := go where
     go s := ⟨s.toSnapshot,
       #[s.elabSnap.map (sync := true) toSnapshotTree,
-        s.finishedSnap.map (sync := true) toSnapshotTree,
+        s.cmdStateSnap.map (sync := true) toSnapshotTree,
         s.reportSnap] |>
         pushOpt (s.nextCmdSnap?.map (·.map (sync := true) go))⟩
 

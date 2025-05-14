@@ -122,7 +122,6 @@ if(USE_MIMALLOC)
     mimalloc
     PREFIX mimalloc
     GIT_REPOSITORY https://github.com/microsoft/mimalloc
-    GIT_BRANCH dev3
     GIT_TAG bc18e94
     # just download, we compile it as part of each stage as it is small
     CONFIGURE_COMMAND ""

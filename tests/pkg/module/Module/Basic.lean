@@ -11,7 +11,7 @@ public axiom testSorry : α
 public def f := 1
 
 /--
-info: def f : Nat :=
+info: public def f : Nat :=
 1
 -/
 #guard_msgs in
@@ -21,7 +21,7 @@ info: def f : Nat :=
 @[expose] public def fexp := 1
 
 /--
-info: @[expose] def fexp : Nat :=
+info: @[expose] public def fexp : Nat :=
 1
 -/
 #guard_msgs in
@@ -31,7 +31,7 @@ info: @[expose] def fexp : Nat :=
 public abbrev fabbrev := 1
 
 /--
-info: @[reducible, expose] def fabbrev : Nat :=
+info: @[reducible, expose] public def fabbrev : Nat :=
 1
 -/
 #guard_msgs in
@@ -233,10 +233,10 @@ public def fexp.eq_def := 1
 /-- info: @[defeq] private theorem f.eq_unfold : f = 1 -/
 #guard_msgs in #print sig f.eq_unfold
 
-/-- info: @[defeq] theorem fexp.eq_def : fexp = 1 -/
+/-- info: @[defeq] public theorem fexp.eq_def : fexp = 1 -/
 #guard_msgs in #print sig fexp.eq_def
 
-/-- info: @[defeq] theorem fexp.eq_unfold : fexp = 1 -/
+/-- info: @[defeq] public theorem fexp.eq_unfold : fexp = 1 -/
 #guard_msgs in #print sig fexp.eq_unfold
 
 /-- info: @[defeq] private theorem f_struct.eq_1 : f_struct 0 = 0 -/
@@ -279,11 +279,11 @@ info: private theorem f_wfrec.eq_unfold : f_wfrec = fun x x_1 =>
 -/
 #guard_msgs in #print sig f_wfrec.eq_unfold
 
-/-- info: theorem f_exp_wfrec.eq_1 : ∀ (x : Nat), f_exp_wfrec 0 x = x -/
+/-- info: public theorem f_exp_wfrec.eq_1 : ∀ (x : Nat), f_exp_wfrec 0 x = x -/
 #guard_msgs in #print sig f_exp_wfrec.eq_1
 
 /--
-info: theorem f_exp_wfrec.eq_def : ∀ (x x_1 : Nat),
+info: public theorem f_exp_wfrec.eq_def : ∀ (x x_1 : Nat),
   f_exp_wfrec x x_1 =
     match x, x_1 with
     | 0, acc => acc
@@ -292,7 +292,7 @@ info: theorem f_exp_wfrec.eq_def : ∀ (x x_1 : Nat),
 #guard_msgs in #print sig f_exp_wfrec.eq_def
 
 /--
-info: theorem f_exp_wfrec.eq_unfold : f_exp_wfrec = fun x x_1 =>
+info: public theorem f_exp_wfrec.eq_unfold : f_exp_wfrec = fun x x_1 =>
   match x, x_1 with
   | 0, acc => acc
   | n.succ, acc => f_exp_wfrec n (acc + 1)
@@ -307,7 +307,7 @@ public structure StructWithPrivateField where
   private x : Priv
 
 /--
-info: structure StructWithPrivateField : Type
+info: public structure StructWithPrivateField : Type
 number of parameters: 0
 fields:
   private StructWithPrivateField.x : Priv
@@ -346,7 +346,7 @@ public structure StructWithPrivateCtor where private mk ::
   x : Nat
 
 /--
-info: structure StructWithPrivateCtor : Type
+info: public structure StructWithPrivateCtor : Type
 number of parameters: 0
 fields:
   StructWithPrivateCtor.x : Nat
@@ -389,7 +389,7 @@ public structure OptParamStruct where
   auto : Nat := by exact 0
 
 /--
-info: structure OptParamStruct : Type
+info: public structure OptParamStruct : Type
 number of parameters: 0
 fields:
   private OptParamStruct.pauto : Nat := by
@@ -411,7 +411,7 @@ Lean.Syntax.node Lean.SourceInfo.none `Lean.Parser.Tactic.tacticSeq [...]
 #guard_msgs in
 #print OptParamStruct.pauto._autoParam
 /--
-info: @[expose] meta def OptParamStruct.auto._autoParam : Lean.Syntax :=
+info: @[expose] public meta def OptParamStruct.auto._autoParam : Lean.Syntax :=
 Lean.Syntax.node Lean.SourceInfo.none `Lean.Parser.Tactic.tacticSeq [...]
 -/
 #guard_msgs in
@@ -455,7 +455,7 @@ public meta def msec := 1
 end
 
 /--
-info: meta def msec : Nat :=
+info: public meta def msec : Nat :=
 <not imported>
 -/
 #guard_msgs in
@@ -463,7 +463,7 @@ info: meta def msec : Nat :=
 #print msec
 
 /--
-info: @[expose] meta def msecexp : Nat :=
+info: @[expose] public meta def msecexp : Nat :=
 1
 -/
 #guard_msgs in

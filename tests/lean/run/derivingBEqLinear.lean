@@ -58,11 +58,11 @@ inductive L' (α : Type u) : Type u
 
 end InNamespace
 /--
-info: @[expose] def InNamespace.instBEqL'.{u_1} : {α : Type u_1} → [BEq α] → BEq (InNamespace.L' α)
+info: @[expose] public def InNamespace.instBEqL'.{u_1} : {α : Type u_1} → [BEq α] → BEq (InNamespace.L' α)
 -/
 #guard_msgs in #print sig InNamespace.instBEqL'
 /--
-info: theorem InNamespace.instBEqL'.beq_spec.{u_1} : ∀ {α : Type u_1} [inst : BEq α] (x x_1 : InNamespace.L' α),
+info: public theorem InNamespace.instBEqL'.beq_spec.{u_1} : ∀ {α : Type u_1} [inst : BEq α] (x x_1 : InNamespace.L' α),
   (x == x_1) =
     match decEq x.ctorIdx x_1.ctorIdx with
     | isTrue h =>

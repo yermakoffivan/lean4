@@ -7,7 +7,7 @@ import Lean.DocString
 /-! Definitions should be exported without their bodies by default -/
 
 /--
-info: def f : Nat :=
+info: public def f : Nat :=
 <not imported>
 -/
 #guard_msgs in
@@ -30,14 +30,14 @@ example : f = 1 := rfl
 /-! Theorems should be exported without their bodies -/
 
 /--
-info: theorem t : f = 1 :=
+info: public theorem t : f = 1 :=
 <not imported>
 -/
 #guard_msgs in
 #print t
 
 /--
-info: theorem trfl : f = 1 :=
+info: public theorem trfl : f = 1 :=
 <not imported>
 -/
 #guard_msgs in

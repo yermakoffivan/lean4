@@ -55,6 +55,8 @@ private def mkHeader (kind : String) (id : Name) (levelParams : List Name) (type
       m := m ++ "private "
       pure id'
     | none =>
+      if (← getEnv).header.isModule then
+        m := m ++ "public "
       pure id
 
   if isProtected (← getEnv) id then

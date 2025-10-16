@@ -66,9 +66,9 @@ end A
 namespace B
 public inductive L where | nil  : L | cons : Nat → L → L deriving BEq
 -- NB: Instance is public and exposed, op and theorem are private
-/-- info: @[expose] def B.instBEqL : BEq L -/
+/-- info: @[expose] public def B.instBEqL : BEq L -/
 #guard_msgs in #print sig instBEqL
-/-- info: def B.instBEqL.beq : L → L → Bool -/
+/-- info: public def B.instBEqL.beq : L → L → Bool -/
 #guard_msgs in #print sig instBEqL.beq
 -- NB: Private theorem
 /-- info: private theorem B.instBEqL.beq_spec_1 : (L.nil == L.nil) = true -/
@@ -79,11 +79,11 @@ end B
 namespace C
 public inductive L where | nil  : L | cons : Nat → L → L deriving @[expose] BEq
 -- NB: Public exposed instances, implementation and public theorem
-/-- info: @[expose] def C.instBEqL : BEq L -/
+/-- info: @[expose] public def C.instBEqL : BEq L -/
 #guard_msgs in #print sig instBEqL
-/-- info: @[expose] def C.instBEqL.beq : L → L → Bool -/
+/-- info: @[expose] public def C.instBEqL.beq : L → L → Bool -/
 #guard_msgs in #print sig instBEqL.beq
-/-- info: theorem C.instBEqL.beq_spec_1 : (L.nil == L.nil) = true -/
+/-- info: public theorem C.instBEqL.beq_spec_1 : (L.nil == L.nil) = true -/
 #guard_msgs(pass trace, all) in #print sig instBEqL.beq_spec_1
 example : (L.cons n (L.nil : L) == L.cons m (L.nil : L)) ↔ n = m := by simp [reduceBEq]
 end C

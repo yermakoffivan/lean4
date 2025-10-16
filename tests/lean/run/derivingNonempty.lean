@@ -57,7 +57,7 @@ public structure PrivField where
 deriving Nonempty
 
 /--
-info: theorem instNonemptyPrivField : Nonempty PrivField :=
+info: public theorem instNonemptyPrivField : Nonempty PrivField :=
 <not imported>
 -/
 #guard_msgs in

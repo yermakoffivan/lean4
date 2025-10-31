@@ -38,8 +38,8 @@ public def main (args : List String) : IO UInt32 := do
   let env ← withImporting do
     let imports := #[{ module := mod, importAll := true, isMeta := true }]
     let (_, s) ← importModulesCore (isExported := true) (globalLevel := .private) /-(arts := setup.importArts)-/ imports |>.run
-    let s := { s with moduleNameMap := s.moduleNameMap.modify mod fun m => if m.module == mod then { m with irPhases := .runtime } else { m with irPhases := .all } }
-    finalizeImport (leakEnv := true) (loadExts := true /-TODO?-/) (level := .exported)
+    let s := { s with moduleNameMap := s.moduleNameMap.fold (fun map _ m => map.insert m.module (if m.module == mod then { m with irPhases := .runtime } else { m with irPhases := .all })) {} }
+    finalizeImport (leakEnv := true) (loadExts := false) (level := .exported)
       s imports setup.options.toOptions
   let some modIdx := env.getModuleIdx? mod
     | throw <| IO.userError s!"module '{mod}' not found"

@@ -1864,7 +1864,7 @@ private def ensureExtensionsArraySize (env : Environment) : IO Environment := do
   let exts ← EnvExtension.ensureExtensionsArraySize env.base.private.extensions
   return env.modifyCheckedAsync ({ · with extensions := exts })
 
-private partial def finalizePersistentExtensions (env : Environment) (mods : Array ModuleData) (opts : Options) : IO Environment := do
+private partial def finalizePersistentExtensions (env : Environment) (mods : Array ModuleData) (opts : Options) (loadExts : Bool) : IO Environment := do
   loop 0 env
 where
   loop (i : Nat) (env : Environment) : IO Environment := do
@@ -1877,7 +1877,7 @@ where
       let s := extDescr.toEnvExtension.getState (asyncMode := .sync) env
       let prevSize := (← persistentEnvExtensionsRef.get).size
       let prevAttrSize ← getNumBuiltinAttributes
-      let newState ← extDescr.addImportedFn s.importedEntries { env := env, opts := opts }
+      let newState ← extDescr.addImportedFn (if loadExts then s.importedEntries else s.importedEntries.map fun _ => #[]) { env := env, opts := opts }
       let mut env := extDescr.toEnvExtension.setState (asyncMode := .sync) env { s with state := newState }
       if extDescr.name == `Lean.regularInitAttr then
         -- Run `[init]` attributes now. We do this after `setState` so `runInitAttrs` can access
@@ -2263,15 +2263,14 @@ def finalizeImport (s : ImportState) (imports : Array Import) (opts : Options) (
 
        Safety: There are no concurrent accesses to `env` at this point. -/
     env ← unsafe Runtime.markPersistent env
-  if loadExts then
-    env ← finalizePersistentExtensions env moduleData opts
-    if leakEnv then
-      /- Ensure the final environment including environment extension states is
-        marked persistent as documented.
+  env ← finalizePersistentExtensions env moduleData opts loadExts
+  if leakEnv then
+    /- Ensure the final environment including environment extension states is
+      marked persistent as documented.
 
-        Safety: There are no concurrent accesses to `env` at this point, assuming
-        extensions' `addImportFn`s did not spawn any unbound tasks. -/
-      env ← unsafe Runtime.markPersistent env
+      Safety: There are no concurrent accesses to `env` at this point, assuming
+      extensions' `addImportFn`s did not spawn any unbound tasks. -/
+    env ← unsafe Runtime.markPersistent env
   return { env with importRealizationCtx? := some {
     -- safety: `RealizationContext` is private
     env := unsafe unsafeCast env

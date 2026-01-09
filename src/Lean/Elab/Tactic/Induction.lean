@@ -360,7 +360,7 @@ where
         let finished ← IO.Promise.new
         let altPromises ← altStxs.mapM fun _ => IO.Promise.new
         let cancelTk? := (← readThe Core.Context).cancelTk?
-        tacSnap.new.resolve {
+        tacSnap.new.resolve ⟨{ transform := {}, inner := {
           -- save all relevant syntax here for comparison with next document version
           stx := mkNullNode altStxs
           diagnostics := .empty
@@ -374,13 +374,13 @@ where
           next := Array.zipWith
             (fun stx prom => { stx? := some stx, task := prom.resultD default, cancelTk? })
             altStxs altPromises
-        }
+        }}⟩
         let toAdmit ← goWithIncremental <| altPromises.mapIdx fun i prom => {
           old? := do
             let old ← tacSnap.old?
             -- waiting is fine here: this is the old version of the snapshot resolved above
             -- immediately at the beginning of the tactic
-            let old := old.val.get
+            let old := old.val.get.transformed.inner
             -- use old version of `mkNullNode altsSyntax` as guard, will be compared with new
             -- version and picked apart in `applyAltStx`
             return ⟨old.stx, (← old.next[i]?)⟩

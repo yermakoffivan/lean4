@@ -262,7 +262,7 @@ where
                     let old ← snap.old?
                     -- If the kind is equal, we can assume the old version was a macro as well
                     guard <| old.stx.isOfKind stx.getKind
-                    let state ← old.val.get.finished.get.state?
+                    let state ← old.val.get.transformed.inner.finished.get.state?
                     guard <| state.term.meta.core.nextMacroScope == nextMacroScope
                     -- check absence of traces; see Note [Incremental Macros]
                     guard <| state.term.meta.core.traceState.traces.size == 0
@@ -273,23 +273,26 @@ where
                   let promise ← IO.Promise.new
                   -- Store new unfolding in the snapshot tree
                   let cancelTk? := (← readThe Core.Context).cancelTk?
-                  snap.new.resolve {
-                    stx := stx'
-                    diagnostics := .empty
-                    inner? := none
-                    finished := .finished stx' {
+                  snap.new.resolve { transformed := {
+                    transform := default
+                    inner := {
+                      stx := stx'
                       diagnostics := .empty
-                      state? := (← Tactic.saveState)
-                      moreSnaps := #[]
+                      inner? := none
+                      finished := .finished stx' {
+                        diagnostics := .empty
+                        state? := (← Tactic.saveState)
+                        moreSnaps := #[]
+                      }
+                      next := #[{ stx? := stx', task := promise.resultD default, cancelTk? }]
                     }
-                    next := #[{ stx? := stx', task := promise.resultD default, cancelTk? }]
-                  }
+                  }}
                   -- Update `tacSnap?` to old unfolding
                   withTheReader Term.Context ({ · with tacSnap? := some {
                     new := promise
                     old? := do
                       let old ← old?
-                      return ⟨old.stx, (← old.next[0]?)⟩
+                      return ⟨old.transformed.inner.stx, (← old.transformed.inner.next[0]?)⟩
                   } }) do
                     evalTactic stx'
                   return

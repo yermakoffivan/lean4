@@ -39,7 +39,8 @@ where
   goEven stx := do
     if stx.getNumArgs == 0 then
       return
-    let tac := stx[0]
+    let untrimmedTac := stx[0]
+    let tac := untrimmedTac.unsetTrailing
     /-
     Each `goEven` step creates three promises under incrementality and reuses their older versions
     where possible:
@@ -59,16 +60,16 @@ where
     if let some snap := (← readThe Term.Context).tacSnap? then
       if let some old := snap.old? then
         let oldParsed := old.val.get
-        oldInner? := oldParsed.inner? |>.map (⟨oldParsed.stx, ·⟩)
-    -- compare `stx[0]` for `finished`/`next` reuse, focus on remainder of script
-    Term.withNarrowedTacticReuse (stx := stx) (fun stx => (stx[0], mkNullNode stx.getArgs[1...*])) fun stxs => do
+        oldInner? := oldParsed.transformed.inner.inner? |>.map (⟨oldParsed.transformed.inner.stx, ·⟩)
+    -- compare `tac` for `finished`/`next` reuse, focus on remainder of script
+    Term.withNarrowedTacticReuse (stx := stx) (fun stx => (stx[0].unsetTrailing, mkNullNode stx.getArgs[1...*])) fun stxs => do
       let some snap := (← readThe Term.Context).tacSnap?
         | do evalTactic tac; goOdd stxs
       let mut reusableResult? := none
       let mut oldNext? := none
       if let some old := snap.old? then
         -- `tac` must be unchanged given the narrow above; let's reuse `finished`'s state!
-        let oldParsed := old.val.get
+        let oldParsed := old.val.get.transformed.inner
         if let some state := oldParsed.finished.get.state? then
           reusableResult? := some ((), state)
           -- only allow `next` reuse in this case
@@ -78,7 +79,7 @@ where
       let finished ← IO.Promise.new
       let inner ← IO.Promise.new
       let cancelTk? := (← readThe Core.Context).cancelTk?
-      snap.new.resolve {
+      snap.new.resolve ⟨{ transform := { addTrailing := untrimmedTac.getTrailing?.getD default }, inner := {
         desc := tac.getKind.toString
         diagnostics := .empty
         stx := tac
@@ -97,7 +98,7 @@ where
           reportingRange :=
             if stxs.getNumArgs == 0 then .skip else SnapshotTask.defaultReportingRange stxs
         }]
-      }
+      }}⟩
       -- Run `tac` in a fresh info tree state and store resulting state in snapshot for
       -- incremental reporting, then add back saved trees. Here we rely on `evalTactic`
       -- producing at most one info tree as otherwise `getInfoTreeWithContext?` would panic.

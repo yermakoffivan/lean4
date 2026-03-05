@@ -375,6 +375,18 @@ def weekYear (date : PlainDate) (firstDay : Weekday := .monday) : Year.Offset :=
   else if w.val > y.weeks.val then y + 1
   else y
 
+/--
+Returns the week-based year for a given `PlainDate`.
+-/
+def weekBasedYear (date : PlainDate) : Year.Offset :=
+  let week := date.weekOfYear
+  if date.month.val = 1 ∧ week.val ≥ 52 then
+    date.year - 1
+  else if date.month.val = 12 ∧ week.val = 1 then
+    date.year + 1
+  else
+    date.year
+
 instance : HAdd PlainDate Day.Offset PlainDate where
   hAdd := addDays
 

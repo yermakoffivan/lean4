@@ -510,6 +510,12 @@ def weekOfMonth (date : PlainDateTime) : Bounded.LE 1 5 :=
   date.date.weekOfMonth
 
 /--
+Returns the week-based year for a given `PlainDateTime`.
+-/
+def weekBasedYear (date : PlainDateTime) : Year.Offset :=
+  date.date.weekBasedYear
+
+/--
 Determines the week of the month for the given `PlainDateTime`, using `firstDay` as the start of the week.
 -/
 @[inline]

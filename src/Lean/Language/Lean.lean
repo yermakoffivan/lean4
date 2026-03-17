@@ -625,7 +625,7 @@ where
         elabSnap := {
           diagnostics := .empty
           elabSnap := default
-          resultSnap := .finished none { diagnostics := .empty, cmdState }
+          resultSnap := .finished none { diagnostics := .empty, cmdState, moreSnaps := #[] }
           infoTreeSnap := .finished none { diagnostics := .empty }
           reportSnap := default
         }
@@ -686,6 +686,7 @@ where
         diagnostics := (← Snapshot.Diagnostics.ofMessageLog cmdState.messages)
         traces := cmdState.traceState
         cmdState := reportedCmdState
+        moreSnaps := cmdState.snapshotTasks
       }
 
       -- report info tree when relevant tasks are finished
@@ -715,8 +716,7 @@ where
           let snaps := #[
             { stx? := stx', task := elabPromise.result!.map (sync := true) toSnapshotTree, cancelTk? := none },
             { stx? := stx', task := resultPromise.result!.map (sync := true) toSnapshotTree, cancelTk? := none },
-            { stx? := stx', task := finishedPromise.result!.map (sync := true) toSnapshotTree, cancelTk? := none }] ++
-            cmdState.snapshotTasks
+            { stx? := stx', task := finishedPromise.result!.map (sync := true) toSnapshotTree, cancelTk? := none }]
           let tree := SnapshotTree.mk { diagnostics := .empty } snaps
           BaseIO.bindTask (← tree.waitAll) fun _ => do
             let .ok (_, s) ← EIO.toBaseIO <| tree.trace |>.run

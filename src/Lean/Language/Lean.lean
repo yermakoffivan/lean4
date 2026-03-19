@@ -733,14 +733,12 @@ where
             return .pure <| .mk { diagnostics := (← Snapshot.Diagnostics.ofMessageLog msgLog) } #[]
         else
           pure <| .pure <| .mk { diagnostics := .empty } #[]
-      reportPromise.resolve <|
-        .mk { diagnostics := .empty } <|
-          cmdState.snapshotTasks.push {
-            stx? := none
-            reportingRange := initRange?
-            task := traceTask
-            cancelTk? := none
-          }
+      reportPromise.resolve <| .mk { diagnostics := .empty } #[{
+        stx? := none
+        reportingRange := initRange?
+        task := traceTask
+        cancelTk? := none
+      }]
       if let some next := next? then
         -- We're definitely off the fast-forwarding path now
         parseCmd none parserState cmdState next (sync := false) elabCmdCancelTk ctx

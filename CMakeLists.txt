@@ -122,7 +122,7 @@ if(USE_MIMALLOC)
     mimalloc
     PREFIX mimalloc
     GIT_REPOSITORY https://github.com/microsoft/mimalloc
-    GIT_TAG v3.1.5
+    GIT_TAG v3.2.8
     # just download, we compile it as part of each stage as it is small
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""

@@ -55,8 +55,8 @@ namespace Session
 /--
 Queue a request and await its response.
 -/
-def send [Transport α] {β : Type} [Body.Reader β] [Body.Writer β]
-    (session : Session α) (request : Request β) : Async (Response Body.Incoming) := do
+def send [Transport α] {β : Type} [Body β]
+    (session : Session α) (request : Request β) : Async (Response Body.Stream) := do
   let responsePromise ← IO.Promise.new
 
   let task ← session.requestChannel.send {

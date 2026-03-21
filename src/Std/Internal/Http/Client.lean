@@ -28,7 +28,7 @@ let client ← Client.builder
   |>.proxy! "http://proxy.example.com:8080"
   |>.build
 
-let res ← client.get "https://api.example.com/data"
+let res ← client.get (URI.parse! "https://api.example.com/data")
   |>.header! "Accept" "application/json"
   |>.send
 ```
@@ -196,8 +196,8 @@ Adds a query parameter to the request URI.
 -/
 def queryParam (rb : RequestBuilder) (key : String) (value : String) : RequestBuilder :=
   let newTarget := match rb.builder.line.uri with
-    | .originForm o =>
-        .originForm { o with query := some ((o.query.getD URI.Query.empty).insert key value) }
+    | .originForm path query =>
+        .originForm path (some ((query.getD URI.Query.empty).insert key value))
     | .absoluteForm af =>
         .absoluteForm { af with query := af.query.insert key value }
     | other => other
@@ -206,35 +206,35 @@ def queryParam (rb : RequestBuilder) (key : String) (value : String) : RequestBu
 /--
 Sends the request with an empty body.
 -/
-def send (rb : RequestBuilder) : Async (Response Body.Incoming) := do
+def send (rb : RequestBuilder) : Async (Response Body.Stream) := do
   let rb := rb.withHostHeader
-  rb.client.send rb.host rb.port (← rb.builder.blank)
+  rb.client.send rb.host rb.port (← rb.builder.empty)
 
 /--
 Sends the request with a plain-text body. Sets `Content-Type: text/plain; charset=utf-8`.
 -/
-def text (rb : RequestBuilder) (content : String) : Async (Response Body.Incoming) := do
+def text (rb : RequestBuilder) (content : String) : Async (Response Body.Stream) := do
   let rb := rb.withHostHeader
   rb.client.send rb.host rb.port (← rb.builder.text content)
 
 /--
 Sends the request with a JSON body. Sets `Content-Type: application/json`.
 -/
-def json (rb : RequestBuilder) (content : String) : Async (Response Body.Incoming) := do
+def json (rb : RequestBuilder) (content : String) : Async (Response Body.Stream) := do
   let rb := rb.withHostHeader
   rb.client.send rb.host rb.port (← rb.builder.json content)
 
 /--
 Sends the request with a raw binary body. Sets `Content-Type: application/octet-stream`.
 -/
-def bytes (rb : RequestBuilder) (content : ByteArray) : Async (Response Body.Incoming) := do
+def bytes (rb : RequestBuilder) (content : ByteArray) : Async (Response Body.Stream) := do
   let rb := rb.withHostHeader
   rb.client.send rb.host rb.port (← rb.builder.bytes content)
 
 /--
 Sends the request with a streaming body produced by `gen`.
 -/
-def sendStream (rb : RequestBuilder) (gen : Body.Outgoing → Async Unit) : Async (Response Body.Incoming) := do
+def stream (rb : RequestBuilder) (gen : Body.Stream → Async Unit) : Async (Response Body.Stream) := do
   let rb := rb.withHostHeader
   rb.client.send rb.host rb.port (← rb.builder.stream gen)
 
@@ -246,57 +246,61 @@ Returns a `Client.Builder` with default configuration.
 def new : Client.Builder := {}
 
 /--
-Parses `url` into `(host, port, origin-form target)`.
-Returns `none` if the URL is invalid or has no authority component.
+Builds a `RequestBuilder` from a parsed `URI`, extracting host, port, and origin-form target.
 -/
 private def mkRequest
     (method : Request.Builder → Request.Builder)
-    (client : Client) (url : URI.AuthorityForm) : Client.RequestBuilder :=
+    (client : Client) (url : URI) : Client.RequestBuilder :=
   let target : RequestTarget :=
-    .originForm (RequestTarget.PathAndQuery.mk url.path (if url.query.isEmpty then none else some url.query))
-  { client, host := url.host, port := url.port,
-    builder := method (Request.new |>.uri target) }
+    .originForm url.path (if url.query.isEmpty then none else some url.query)
+  let host := (url.authority.map (·.host)).getD default
+  let port : UInt16 := match url.authority with
+    | some auth => match auth.port with
+      | .value p => p
+      | _ => URI.Scheme.defaultPort url.scheme
+    | none => URI.Scheme.defaultPort url.scheme
+  { client, host, port, builder := method (Request.new |>.uri target) }
 
 /--
 Creates a GET request builder for `url`.
 -/
-def get (client : Client) (url : URI.AuthorityForm) : Client.RequestBuilder :=
+def get (client : Client) (url : URI) : Client.RequestBuilder :=
   mkRequest (·.method .get) client url
 
 /--
 Creates a POST request builder for `url`.
 -/
-def post (client : Client) (url : URI.AuthorityForm) : Client.RequestBuilder :=
+def post (client : Client) (url : URI) : Client.RequestBuilder :=
   mkRequest (·.method .post) client url
 
 /--
 Creates a PUT request builder for `url`.
 -/
-def put (client : Client) (url : URI.AuthorityForm) : Client.RequestBuilder :=
+def put (client : Client) (url : URI) : Client.RequestBuilder :=
   mkRequest (·.method .put) client url
 
 /--
 Creates a DELETE request builder for `url`.
 -/
-def delete (client : Client) (url : URI.AuthorityForm) : Client.RequestBuilder :=
+def delete (client : Client) (url : URI) : Client.RequestBuilder :=
   mkRequest (·.method .delete) client url
 
 /--
 Creates a PATCH request builder for `url`.
 -/
-def patch (client : Client) (url : URI.AuthorityForm) : Client.RequestBuilder :=
+def patch (client : Client) (url : URI) : Client.RequestBuilder :=
   mkRequest (·.method .patch) client url
 
 /--
 Creates a HEAD request builder for `url`.
 -/
-def head (client : Client) (url : URI.AuthorityForm) : Client.RequestBuilder :=
+def head (client : Client) (url : URI) : Client.RequestBuilder :=
   mkRequest (·.method .head) client url
 
 /--
 Creates an OPTIONS request builder for `url`.
 -/
-def options (client : Client) (url : URI.AuthorityForm) : Client.RequestBuilder :=
+def options (client : Client) (url : URI) : Client.RequestBuilder :=
   mkRequest (·.method .options) client url
 
 end Client

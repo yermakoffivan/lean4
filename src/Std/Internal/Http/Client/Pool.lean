@@ -36,7 +36,7 @@ let pool ← Agent.Pool.new (maxPerHost := 4)
 
 -- requests are distributed across up to 4 connections per host
 let r1 ← pool.send "api.example.com" 80
-  (Request.get (.originForm! "/a") |>.header! "Host" "api.example.com" |>.blank)
+  (Request.get (.originForm! "/a") |>.header! "Host" "api.example.com" |>.empty)
 ```
 -/
 
@@ -101,7 +101,7 @@ public structure Agent.Pool where
   /--
   Response interceptors applied (in order) after every response from any session in the pool.
   -/
-  interceptors : Array (Response Body.Incoming → Async (Response Body.Incoming)) := #[]
+  interceptors : Array (Response Body.Stream → Async (Response Body.Stream)) := #[]
 
 namespace Agent.Pool
 
@@ -168,9 +168,9 @@ shared jar, applying response interceptors, storing any `Set-Cookie` responses, 
 redirects up to `config.maxRedirects` hops, and evicting dead sessions on connection
 failure (retrying up to `config.maxRetries` times).
 -/
-def send {β : Type} [Coe β Body.AnyBody]
+def send {β : Type} [Coe β Body.Any]
     (pool : Agent.Pool) (host : URI.Host) (port : UInt16)
-    (request : Request β) : Async (Response Body.Incoming) := do
+    (request : Request β) : Async (Response Body.Stream) := do
   let session ← pool.getOrCreateSession host port
 
   Agent.send {

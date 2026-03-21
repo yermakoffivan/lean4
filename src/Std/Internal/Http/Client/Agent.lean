@@ -78,7 +78,7 @@ public structure Agent (α : Type) where
   modified) response.  Interceptors run before cookie processing and redirect evaluation
   so they can, e.g., unwrap envelopes or transparently decompress bodies.
   -/
-  interceptors : Array (Response Body.Incoming → Async (Response Body.Incoming)) := #[]
+  interceptors : Array (Response Body.Stream → Async (Response Body.Stream)) := #[]
 
   /--
   Optional factory for opening a new session to `(host, port)`. Used for:
@@ -116,16 +116,17 @@ Rewrites an origin-form request target to absolute-form for proxy forwarding.
 No-op for targets that are already in absolute-form or do not carry a path.
 -/
 def toAbsoluteFormRequest
-    (request : Request Body.AnyBody)
-    (scheme : URI.Scheme) (host : URI.Host) (port : UInt16) : Request Body.AnyBody :=
+    (request : Request Body.Any)
+    (scheme : URI.Scheme) (host : URI.Host) (port : UInt16) : Request Body.Any :=
   match request.line.uri with
-  | .originForm o =>
+  | .originForm path query =>
     { request with
         line := { request.line with uri := .absoluteForm {
           scheme,
-          path := o.path,
-          query := o.query.getD .empty,
+          path,
+          query := query.getD URI.Query.empty,
           authority := some { host, port := .value port }
+          fragment := none
         }
       }
     }
@@ -150,13 +151,13 @@ Injects matching cookies from `cookieJar` into the request headers for `host`.
 Does nothing if the jar contains no matching cookies.
 -/
 def injectCookies (cookieJar : Cookie.Jar) (host : URI.Host) (scheme : URI.Scheme)
-    (request : Request Body.AnyBody) : Async (Request Body.AnyBody) := do
+    (request : Request Body.Any) : Async (Request Body.Any) := do
 
   -- Respect an explicit Cookie header set by the caller.
   if request.line.headers.contains .cookie then return request
 
   let path := match request.line.uri with
-    | .originForm o => o.path
+    | .originForm path _ => path
     | .absoluteForm af => af.path
     | _ => URI.Path.parseOrRoot "/"
 
@@ -179,8 +180,8 @@ def processCookies (cookieJar : Cookie.Jar) (host : URI.Host)
 Applies all response interceptors to `response` in order, returning the final result.
 -/
 def applyInterceptors
-    (interceptors : Array (Response Body.Incoming → Async (Response Body.Incoming)))
-    (response : Response Body.Incoming) : Async (Response Body.Incoming) :=
+    (interceptors : Array (Response Body.Stream → Async (Response Body.Stream)))
+    (response : Response Body.Stream) : Async (Response Body.Stream) :=
   interceptors.foldlM (init := response) (fun r f => f r)
 
 /--
@@ -195,7 +196,7 @@ inductive RedirectDecision where
   /--
   Follow a redirect to `(host, port, scheme)` with `request`, updating `history`.
   -/
-  | follow (host : URI.Host) (port : UInt16) (scheme : URI.Scheme) (request : Request Body.AnyBody)
+  | follow (host : URI.Host) (port : UInt16) (scheme : URI.Scheme) (request : Request Body.Any)
 
 /--
 Inspects `response` and decides whether to follow a redirect.
@@ -214,7 +215,7 @@ the connection is left to recover or time out.
 def decideRedirect
     (remaining : Nat)
     (currentHost : URI.Host) (currentPort : UInt16) (currentScheme : URI.Scheme)
-    (request : Request Body.AnyBody) (response : Response Body.Incoming)
+    (request : Request Body.Any) (response : Response Body.Stream)
     (drainLimit : Nat)
     : Async RedirectDecision := do
 
@@ -241,13 +242,6 @@ def decideRedirect
     | .movedPermanently | .found =>
         if request.line.method == .post then .get else request.line.method
     | _ => request.line.method
-
-  let bodyIsStreaming := match request.body with | .outgoing _ => true | _ => false
-
-  let newBody : Body.AnyBody :=
-    if newMethod == .get || newMethod == .head || newMethod != request.line.method then .empty {}
-    else if bodyIsStreaming then .empty {}
-    else request.body
 
   let (newHost, newPort, newScheme) := match target with
     | .absoluteForm af =>
@@ -276,15 +270,29 @@ def decideRedirect
         |>.erase Header.Name.cookie
     else request.line.headers
 
+  -- For method-changing redirects (301/302 POST→GET, 303) drop the body.
+  -- For method-preserving redirects (307/308) reuse the body only if it is re-readable
+  -- (Body.Full has a known fixed size and is re-readable). A Body.Stream is a live producer
+  -- whose bytes have already been sent and cannot be replayed; stop following the redirect
+  -- and return the 307/308 response as-is, matching reqwest's behavior.
+  let newBody : Body.Any ←
+    if newMethod == .get || newMethod == .head || newMethod != request.line.method then
+      pure (Body.Any.ofBody Body.Empty.mk)
+    else if request.body.isReplayable then do
+      request.body.resetInPlace
+      pure request.body
+    else
+      return .done  -- Body.Stream: bytes already sent, cannot replay
+
   return .follow newHost newPort newScheme
     { line := { request.line with uri := target, method := newMethod, headers := newHeaders }
       body := newBody
       extensions := request.extensions }
 
 private partial def sendWithRedirects [Transport α]
-    (agent : Agent α) (request : Request Body.AnyBody)
+    (agent : Agent α) (request : Request Body.Any)
     (remaining : Nat) (retriesLeft : Nat)
-    (history : Array (URI.Host × UInt16 × String) := #[]) : Async (Response Body.Incoming) := do
+    (history : Array (URI.Host × UInt16 × String) := #[]) : Async (Response Body.Stream) := do
 
   -- Record the current URL in the history and detect redirect cycles.
   let currentKey := (agent.host, agent.port, toString request.line.uri)
@@ -303,9 +311,7 @@ private partial def sendWithRedirects [Transport α]
     catch err => do
       agent.onBrokenSession agent.session agent.host agent.port
 
-      let bodyIsReplayable := match request.body with | .outgoing _ => false | _ => true
-
-      if retriesLeft > 0 && isIdempotentMethod request.line.method && bodyIsReplayable then
+      if retriesLeft > 0 && isIdempotentMethod request.line.method then
         if let some factory := agent.connectTo then
           sleep agent.session.config.retryDelay
           let newSession ← factory agent.host agent.port
@@ -361,10 +367,10 @@ For cross-host redirects the agent reconnects using its `connectTo` factory (if 
 Cookies are automatically injected from the jar and `Set-Cookie` responses are stored.
 Response interceptors are applied after every response.
 -/
-def send {β : Type} [Coe β Body.AnyBody] [Transport α] (agent : Agent α) (request : Request β) : Async (Response Body.Incoming) :=
+def send {β : Type} [Coe β Body.Any] [Transport α] (agent : Agent α) (request : Request β) : Async (Response Body.Stream) :=
   sendWithRedirects
     agent
-    { line := request.line, body := (request.body : Body.AnyBody), extensions := request.extensions }
+    { line := request.line, body := (request.body : Body.Any), extensions := request.extensions }
     agent.session.config.maxRedirects
     agent.session.config.maxRetries
 
@@ -422,7 +428,7 @@ Prepares the builder by injecting the `Host` header, then calls `f` to build and
 request. Cookie injection is handled by `Agent.injectCookies` inside `sendWithRedirects`.
 -/
 private def prepare [Transport α] (rb : Agent.RequestBuilder α)
-    (f : Agent.RequestBuilder α → Async (Response Body.Incoming)) : Async (Response Body.Incoming) :=
+    (f : Agent.RequestBuilder α → Async (Response Body.Stream)) : Async (Response Body.Stream) :=
   f rb.withHostHeader
 
 /--
@@ -456,8 +462,8 @@ Works for both origin-form (e.g. set by `agent.get "/path"`) and absolute-form t
 -/
 def queryParam [Transport α] (rb : Agent.RequestBuilder α) (key : String) (value : String) : Agent.RequestBuilder α :=
   let newTarget := match rb.builder.line.uri with
-    | .originForm o =>
-        .originForm { o with query := some ((o.query.getD URI.Query.empty).insert key value) }
+    | .originForm path query =>
+        .originForm path (some ((query.getD URI.Query.empty).insert key value))
     | .absoluteForm af =>
         .absoluteForm { af with query := af.query.insert key value }
     | other => other
@@ -466,28 +472,28 @@ def queryParam [Transport α] (rb : Agent.RequestBuilder α) (key : String) (val
 /--
 Sends the request with an empty body.
 -/
-def send [Transport α] (rb : Agent.RequestBuilder α) : Async (Response Body.Incoming) :=
-  rb.prepare fun rb => do rb.agent.send (← rb.builder.blank)
+def send [Transport α] (rb : Agent.RequestBuilder α) : Async (Response Body.Stream) :=
+  rb.prepare fun rb => do rb.agent.send (← rb.builder.empty)
 
 /--
 Sends the request with a plain-text body.
 Sets `Content-Type: text/plain; charset=utf-8`.
 -/
-def text [Transport α] (rb : Agent.RequestBuilder α) (content : String) : Async (Response Body.Incoming) :=
+def text [Transport α] (rb : Agent.RequestBuilder α) (content : String) : Async (Response Body.Stream) :=
   rb.prepare fun rb => do rb.agent.send (← rb.builder.text content)
 
 /--
 Sends the request with a JSON body.
 Sets `Content-Type: application/json`.
 -/
-def json [Transport α] (rb : Agent.RequestBuilder α) (content : String) : Async (Response Body.Incoming) :=
+def json [Transport α] (rb : Agent.RequestBuilder α) (content : String) : Async (Response Body.Stream) :=
   rb.prepare fun rb => do rb.agent.send (← rb.builder.json content)
 
 /--
 Sends the request with a raw binary body.
 Sets `Content-Type: application/octet-stream`.
 -/
-def bytes [Transport α] (rb : Agent.RequestBuilder α) (content : ByteArray) : Async (Response Body.Incoming) :=
+def bytes [Transport α] (rb : Agent.RequestBuilder α) (content : ByteArray) : Async (Response Body.Stream) :=
   rb.prepare fun rb => do rb.agent.send (← rb.builder.bytes content)
 
 /--
@@ -495,7 +501,7 @@ Sends the request with a streaming body produced by `gen`.
 -/
 def sendStream [Transport α]
     (rb : Agent.RequestBuilder α)
-    (gen : Body.Outgoing → Async Unit) : Async (Response Body.Incoming) :=
+    (gen : Body.Stream → Async Unit) : Async (Response Body.Stream) :=
   rb.prepare fun rb => do rb.agent.send (← rb.builder.stream gen)
 
 end Agent.RequestBuilder

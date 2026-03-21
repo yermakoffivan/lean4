@@ -630,6 +630,8 @@ def stream
     (gen : Body.Stream → Async Unit) :
     Async (Request Body.Stream) := do
   let s ← Body.stream gen
+  s.setKnownSize (some .chunked)
+
   return Request.Builder.body builder s
 
 end Request.Builder

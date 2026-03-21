@@ -49,13 +49,13 @@ structure Body.Operations where
 namespace Body.Operations
 
 /--
-Creates a `Body.Operations` from any type with `Body.Reader` and `Body.Writer` instances.
+Creates a `Body.Operations` from any type with a `Body` instance.
 -/
-def of [Body.Reader β] [Body.Writer β] (body : β) : Body.Operations where
-  recvSelector := Body.Reader.recvSelector body
-  isClosed := Body.Reader.isClosed body
-  close := Body.Reader.close body
-  getKnownSize := Body.Writer.getKnownSize body
+def of [Body β] (body : β) : Body.Operations where
+  recvSelector := Body.recvSelector body
+  isClosed := Body.isClosed body
+  close := Body.close body
+  getKnownSize := Body.getKnownSize body
 
 end Body.Operations
 
@@ -80,7 +80,7 @@ structure RequestPacket where
   /--
   Promise resolved with the eventual response.
   -/
-  responsePromise : IO.Promise (Except Error (Response Body.Incoming))
+  responsePromise : IO.Promise (Except Error (Response Body.Stream))
 
   /--
   Watch channel updated with the cumulative number of request-body bytes sent.
@@ -105,7 +105,7 @@ def onError (packet : RequestPacket) (error : Error) : BaseIO Unit :=
 /--
 Resolve the packet with a response.
 -/
-def onResponse (packet : RequestPacket) (response : Response Body.Incoming) : BaseIO Unit :=
+def onResponse (packet : RequestPacket) (response : Response Body.Stream) : BaseIO Unit :=
   discard <| packet.responsePromise.resolve (.ok response)
 
 end RequestPacket
@@ -134,7 +134,7 @@ private structure PollSources (α : Type) where
   expect : Option Nat
   requestBody : Option Body.Operations
   requestChannel : Option (Std.CloseableChannel RequestPacket)
-  responseBody : Option Body.Outgoing
+  responseBody : Option Body.Stream
   timeout : Millisecond.Offset
   keepAliveTimeout : Option Millisecond.Offset
   connectionContext : CancellationContext
@@ -149,8 +149,7 @@ private structure ConnectionState where
   keepAliveTimeout : Option Millisecond.Offset
   currentRequest : Option RequestPacket
   requestBody : Option Body.Operations
-  responseOutgoing : Option Body.Outgoing
-  responseIncoming : Option Body.Incoming
+  responseStream : Option Body.Stream
   requiresData : Bool
   expectData : Option Nat
   waitingForRequest : Bool
@@ -209,7 +208,7 @@ private def pollNextEvent
     selectables := selectables.push (.case requestChannel.recvSelector (Recv.packet · |> pure))
 
   if let some responseBody := sources.responseBody then
-    selectables := selectables.push (.case (Body.Writer.interestSelector responseBody) (Recv.bodyInterest · |> pure))
+    selectables := selectables.push (.case (responseBody.interestSelector) (Recv.bodyInterest · |> pure))
 
   try Selectable.one selectables catch _ => pure .close
 
@@ -266,20 +265,20 @@ private def processH1Events
             if !(← body.isClosed) then body.close
           st := { st with pendingRequestBody := none, waitingForContinue := false }
 
-        if let some body := st.responseOutgoing then
+        if let some body := st.responseStream then
           if let some length := head.getSize true then
-            Body.Writer.setKnownSize body (some length)
+            Body.setKnownSize body (some length)
 
         if let some packet := st.currentRequest then
-          if let some incoming := st.responseIncoming then
+          if let some incoming := st.responseStream then
             packet.onResponse { line := head, body := incoming }
 
     | .closeBody =>
       -- Skip closing for informational (1xx) responses; the channel stays
       -- open for the real response body that follows.
       if !st.isInformationalResponse then
-        if let some body := st.responseOutgoing then
-          if ¬(← Body.Writer.isClosed body) then Body.Writer.close body
+        if let some body := st.responseStream then
+          if ¬(← Body.isClosed body) then Body.close body
 
     | .next =>
       -- Reset all per-request state for the next pipelined request.
@@ -289,8 +288,8 @@ private def processH1Events
       if let some body := st.pendingRequestBody then
         if ¬(← body.isClosed) then body.close
 
-      if let some body := st.responseOutgoing then
-        if ¬(← Body.Writer.isClosed body) then Body.Writer.close body
+      if let some body := st.responseStream then
+        if ¬(← Body.isClosed body) then Body.close body
 
       if let some w := st.uploadProgress then Watch.close w
       if let some w := st.downloadProgress then Watch.close w
@@ -299,8 +298,7 @@ private def processH1Events
         requestBody := none
         pendingRequestBody := none
         waitingForContinue := false
-        responseOutgoing := none
-        responseIncoming := none
+        responseStream := none
         currentRequest := none
         isInformationalResponse := false
         waitingForRequest := true
@@ -333,16 +331,16 @@ private def buildPollSources
     (socket : α) (requestChannel : Std.CloseableChannel RequestPacket)
     (connectionContext : CancellationContext) (state : ConnectionState)
     : Async (PollSources α) := do
-  let requestBodySource ←
-    if let some body := state.requestBody then
-      if ¬(← body.isClosed) then pure (some body) else pure none
-    else
-      pure none
+  -- Always include an active request body, even if already closed.
+  -- A closed body's recvSelector resolves immediately with `none`, which
+  -- triggers `userClosedBody` so the H1 machine can finalize chunked encoding.
+  let requestBodySource :=
+    state.requestBody
 
   let responseBodySource ←
     if state.machine.canPullBodyNow then
-      if let some body := state.responseOutgoing then
-        if ¬(← Body.Writer.isClosed body) then pure (some body) else pure none
+      if let some body := state.responseStream then
+        if ¬(← Body.isClosed body) then pure (some body) else pure none
       else
         pure none
     else
@@ -409,26 +407,26 @@ private def handleRecvEvent
           if newBodyBytes > maxSize.toUInt64 then
             if let some packet := st.currentRequest then
               packet.onError (.userError "response body exceeds maximum allowed size")
-            if let some body := st.responseOutgoing then
-              if ¬(← Body.Writer.isClosed body) then Body.Writer.close body
+            if let some body := st.responseStream then
+              if ¬(← Body.isClosed body) then Body.close body
             if let some w := st.downloadProgress then Watch.close w
             return ({ st with
               machine := st.machine.closeWriter.closeReader.noMoreInput
               currentRequest := none
-              responseOutgoing := none
+              responseStream := none
               downloadProgress := none
             }, false)
 
-        if let some body := st.responseOutgoing then
+        if let some body := st.responseStream then
           -- If the caller has dropped/closed the incoming side, the write fails.
           -- Silently swallowing the error is correct: the loop must continue pulling
           -- wire bytes to keep the connection in a valid state for reuse.
-          try Body.Writer.send body pulled.chunk pulled.incomplete
+          try body.send pulled.chunk pulled.incomplete
           catch _ => pure ()
 
           if pulled.final then
-            if ¬(← Body.Writer.isClosed body) then Body.Writer.close body
-            st := { st with responseOutgoing := none }
+            if ¬(← Body.isClosed body) then Body.close body
+            st := { st with responseStream := none }
 
       return (st, false)
     else
@@ -453,7 +451,7 @@ private def handleRecvEvent
         machine := machine.setKnownSize size
       requestBody := some packet.request.body
 
-    let (responseOutgoing, responseIncoming) ← Body.mkChannel
+    let responseStream ← Body.mkStream
 
     return ({ state with
       machine := machine
@@ -464,8 +462,7 @@ private def handleRecvEvent
       requestBody := requestBody
       pendingRequestBody := pendingRequestBody
       waitingForContinue := waitingForContinue
-      responseOutgoing := some responseOutgoing
-      responseIncoming := some responseIncoming
+      responseStream := some responseStream
       uploadProgress := packet.uploadProgress
       uploadBytes := 0
       downloadProgress := packet.downloadProgress
@@ -479,14 +476,14 @@ private def handleRecvEvent
   | .timeout =>
     if let some packet := state.currentRequest then
       packet.onError (.userError "request timeout")
-    if let some body := state.responseOutgoing then
-      if ¬(← Body.Writer.isClosed body) then Body.Writer.close body
+    if let some body := state.responseStream then
+      if ¬(← Body.isClosed body) then Body.close body
     if let some w := state.uploadProgress then Watch.close w
     if let some w := state.downloadProgress then Watch.close w
     return ({ state with
       machine := state.machine.closeWriter.closeReader.noMoreInput
       currentRequest := none
-      responseOutgoing := none
+      responseStream := none
       uploadProgress := none
       downloadProgress := none
     }, false)
@@ -494,14 +491,14 @@ private def handleRecvEvent
   | .shutdown =>
     if let some packet := state.currentRequest then
       packet.onError (.userError "connection shutdown")
-    if let some body := state.responseOutgoing then
-      if ¬(← Body.Writer.isClosed body) then Body.Writer.close body
+    if let some body := state.responseStream then
+      if ¬(← Body.isClosed body) then Body.close body
     if let some w := state.uploadProgress then Watch.close w
     if let some w := state.downloadProgress then Watch.close w
     return ({ state with
       machine := state.machine.closeWriter.closeReader.noMoreInput
       currentRequest := none
-      responseOutgoing := none
+      responseStream := none
       uploadProgress := none
       downloadProgress := none
     }, false)
@@ -525,8 +522,7 @@ protected def handle
     keepAliveTimeout := some config.keepAliveTimeout.val
     currentRequest := none
     requestBody := none
-    responseOutgoing := none
-    responseIncoming := none
+    responseStream := none
     requiresData := false
     expectData := none
     waitingForRequest := true
@@ -551,12 +547,12 @@ protected def handle
       catch _ =>
         if let some packet := state.currentRequest then
           packet.onError (.userError "connection write failed")
-        if let some body := state.responseOutgoing then
-          if ¬(← Body.Writer.isClosed body) then Body.Writer.close body
+        if let some body := state.responseStream then
+          if ¬(← Body.isClosed body) then Body.close body
         state := { state with
           machine := state.machine.closeWriter.closeReader.noMoreInput
           currentRequest := none
-          responseOutgoing := none
+          responseStream := none
         }
         break
 
@@ -584,8 +580,8 @@ protected def handle
   if let some w := state.downloadProgress then
     Watch.close w
 
-  if let some body := state.responseOutgoing then
-    if ¬(← Body.Writer.isClosed body) then Body.Writer.close body
+  if let some body := state.responseStream then
+    if ¬(← Body.isClosed body) then Body.close body
 
   if let some body := state.requestBody then
     if ¬(← body.isClosed) then body.close

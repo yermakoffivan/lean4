@@ -72,11 +72,11 @@ private def rawResp
     |>.uri! "/"
     |>.header! "Host" "example.com:443"
     |>.header! "Authorization" "Bearer secret-token"
-    |>.blank
+    |>.empty
 
-  let resultPromise : IO.Promise (Except String (Response Body.Incoming)) ← IO.Promise.new
+  let resultPromise : IO.Promise (Except String (Response Body.Stream)) ← IO.Promise.new
   background do
-    let result : Except String (Response Body.Incoming) ← try
+    let result : Except String (Response Body.Stream) ← try
         let resp ← Client.Agent.send agent request
         pure (Except.ok resp)
       catch e => pure (Except.error (toString e))
@@ -133,11 +133,11 @@ private def rawResp
     |>.uri! "/"
     |>.header! "Host" "example.com"
     |>.header! "Authorization" "Bearer secret-token"
-    |>.blank
+    |>.empty
 
-  let resultPromise : IO.Promise (Except String (Response Body.Incoming)) ← IO.Promise.new
+  let resultPromise : IO.Promise (Except String (Response Body.Stream)) ← IO.Promise.new
   background do
-    let result : Except String (Response Body.Incoming) ← try
+    let result : Except String (Response Body.Stream) ← try
         let resp ← Client.Agent.send agent request
         pure (Except.ok resp)
       catch e => pure (Except.error (toString e))
@@ -167,32 +167,25 @@ private def rawResp
          Authorization header was stripped on same-origin redirect\n{redirectText.quote}"
 
 -- ============================================================
--- Body replay classification
+-- Body.Any construction
 -- ============================================================
--- Verifies that only `.outgoing` (channel-backed streaming) bodies are classified as
--- non-replayable, while `.full` (fixed bytes) and `.empty` bodies are safe to retry.
--- This mirrors the `bodyIsReplayable` check added to the retry guard in Agent.lean.
+-- Verifies that Body.Any can be constructed from any Body implementation.
+-- The behavioral property that streaming bodies are consumed on first recv
+-- (and thus cannot be replayed) is exercised end-to-end by the 307 redirect test below.
 -- ============================================================
 
 #eval show IO _ from Async.block do
-  -- .outgoing: channel is consumed on first send, must not be retried.
-  let (out, _) ← Body.mkChannel
-  let streamBody : Body.AnyBody := .outgoing out
-  let replayable := match streamBody with | .outgoing _ => false | _ => true
-  if replayable then
-    throw <| IO.userError "Test 'outgoing body is not replayable' FAILED"
+  -- Body.Stream: a zero-buffer rendezvous channel.
+  let stream ← Body.mkStream
+  stream.close
+  let _ : Body.Any := Body.Any.ofBody stream
 
-  -- .full: fixed ByteArray, safe to send again.
-  let fullBody : Body.AnyBody := .full (← Body.Full.ofByteArray "hello".toUTF8)
-  let replayable2 := match fullBody with | .outgoing _ => false | _ => true
-  unless replayable2 do
-    throw <| IO.userError "Test 'full body is replayable' FAILED"
+  -- Body.Full: consumed on first recv.
+  let full ← Body.Full.ofByteArray "hello".toUTF8
+  let _ : Body.Any := Body.Any.ofBody full
 
-  -- .empty: trivially safe.
-  let emptyBody : Body.AnyBody := .empty {}
-  let replayable3 := match emptyBody with | .outgoing _ => false | _ => true
-  unless replayable3 do
-    throw <| IO.userError "Test 'empty body is replayable' FAILED"
+  -- Body.Empty: trivially closed.
+  let _ : Body.Any := Body.Any.ofBody Body.Empty.mk
 
 -- ============================================================
 -- Redirect: non-HTTP/HTTPS scheme in Location is not followed
@@ -223,9 +216,9 @@ private def rawResp
     |>.method .get
     |>.uri! "/"
     |>.header! "Host" "example.com"
-    |>.blank
+    |>.empty
 
-  let resultPromise : IO.Promise (Except String (Response Body.Incoming)) ← IO.Promise.new
+  let resultPromise : IO.Promise (Except String (Response Body.Stream)) ← IO.Promise.new
   background do
     let result ← try
         let resp ← Client.Agent.send agent request
@@ -266,9 +259,9 @@ private def rawResp
     |>.method .get
     |>.uri! "/"
     |>.header! "Host" "example.com"
-    |>.blank
+    |>.empty
 
-  let resultPromise : IO.Promise (Except String (Response Body.Incoming)) ← IO.Promise.new
+  let resultPromise : IO.Promise (Except String (Response Body.Stream)) ← IO.Promise.new
   background do
     let result ← try
         let resp ← Client.Agent.send agent request
@@ -316,9 +309,9 @@ private def rawResp
     |>.method .get
     |>.uri! "/"
     |>.header! "Host" "example.com"
-    |>.blank
+    |>.empty
 
-  let resultPromise : IO.Promise (Except String (Response Body.Incoming)) ← IO.Promise.new
+  let resultPromise : IO.Promise (Except String (Response Body.Stream)) ← IO.Promise.new
   background do
     let result ← try
         let resp ← Client.Agent.send agent request
@@ -384,10 +377,10 @@ private def rawResp
     |>.uri! "/upload"
     |>.header! "Host" "example.com"
     |>.stream (fun out => do
-        Body.Writer.send out { data := "payload".toUTF8 } false
-        Body.Writer.close out)
+        out.send (Chunk.ofByteArray "payload".toUTF8)
+        out.close)
 
-  let resultPromise : IO.Promise (Except String (Response Body.Incoming)) ← IO.Promise.new
+  let resultPromise : IO.Promise (Except String (Response Body.Stream)) ← IO.Promise.new
 
   background do
     let result ← try
@@ -397,14 +390,17 @@ private def rawResp
     discard <| resultPromise.resolve result
 
   -- First request: drain it completely before replying with 307.
-  -- The body is Transfer-Encoding: chunked; loop until the terminating 0\r\n\r\n
-  -- chunk arrives so the second recv? captures only the redirect request.
+  -- The body may be Transfer-Encoding: chunked (ends with "0\r\n\r\n") or
+  -- Content-Length (ends with the body bytes) depending on whether the body
+  -- stream was already closed when the H1 machine flushed the headers.
+  -- Accept either encoding to avoid a scheduling-dependent flake.
   let mut firstBytes := ByteArray.empty
   repeat
     let some chunk ← mockClient.recv?
       | throw (IO.userError "Test failed: connection closed before first request")
     firstBytes := firstBytes ++ chunk
-    if (String.fromUTF8! firstBytes).endsWith "0\r\n\r\n" then break
+    let t := String.fromUTF8! firstBytes
+    if t.endsWith "0\r\n\r\n" || t.endsWith "payload" then break
   mockClient.send (rawResp "307 Temporary Redirect"
     #[("Location", "/new-upload"),
       ("Content-Length", "0")] "")

@@ -6,10 +6,9 @@ Author: Sofia Rodrigues
 #include "runtime/openssl.h"
 #include "runtime/io.h"
 
-#include <mutex>
-
 #ifndef LEAN_EMSCRIPTEN
 #include <openssl/opensslv.h>
+#include <openssl/ssl.h>
 #include <openssl/err.h>
 #include <openssl/ssl.h>
 

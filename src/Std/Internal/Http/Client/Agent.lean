@@ -271,10 +271,9 @@ def decideRedirect
     else request.line.headers
 
   -- For method-changing redirects (301/302 POST→GET, 303) drop the body.
-  -- For method-preserving redirects (307/308) reuse the body only if it is re-readable
-  -- (Body.Full has a known fixed size and is re-readable). A Body.Stream is a live producer
-  -- whose bytes have already been sent and cannot be replayed; stop following the redirect
-  -- and return the 307/308 response as-is, matching reqwest's behavior.
+  -- For method-preserving redirects (307/308) reuse the body if re-readable (Body.Full).
+  -- A Body.Stream is a live producer whose bytes have already been sent and cannot be replayed;
+  -- follow the redirect with an empty body rather than silently sending a stale/empty stream.
   let newBody : Body.Any ←
     if newMethod == .get || newMethod == .head || newMethod != request.line.method then
       pure (Body.Any.ofBody Body.Empty.mk)
@@ -282,7 +281,8 @@ def decideRedirect
       request.body.resetInPlace
       pure request.body
     else
-      return .done  -- Body.Stream: bytes already sent, cannot replay
+      -- Body.Stream: already consumed, send empty body on redirect
+      pure (Body.Any.ofBody Body.Empty.mk)
 
   return .follow newHost newPort newScheme
     { line := { request.line with uri := target, method := newMethod, headers := newHeaders }

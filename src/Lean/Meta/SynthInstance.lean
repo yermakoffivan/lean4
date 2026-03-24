@@ -10,6 +10,7 @@ prelude
 public import Init.Data.Array.InsertionSort
 public import Lean.Meta.Instances
 public import Lean.Meta.AbstractMVars
+import Lean.Meta.Closure
 public import Lean.Meta.Check
 import Init.While
 
@@ -922,7 +923,14 @@ def synthInstanceCore? (type : Expr) (maxResultSize? : Option Nat := none) : Met
       return result?
 
 def synthInstance? (type : Expr) (maxResultSize? : Option Nat := none) : MetaM (Option Expr) := do profileitM Exception "typeclass inference" (← getOptions) (decl := type.getAppFn.constName?.getD .anonymous) do
-  synthInstanceCore? type maxResultSize?
+  let some result ← synthInstanceCore? type maxResultSize? | return none
+  if result.approxDepth ≥ 4 then
+    let type ← inferType result
+    let lifted ← mkAuxDefinitionCached type result (kind? := `_inst)
+    setReducibilityStatus lifted.getAppFn.constName! .implicitReducible
+    return some lifted
+  else
+    return some result
 
 /--
   Return `LOption.some r` if succeeded, `LOption.none` if it failed, and `LOption.undef` if

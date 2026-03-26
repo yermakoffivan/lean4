@@ -89,6 +89,9 @@ def ImportArtifacts.oleanServer? (arts : ImportArtifacts) :=
 def ImportArtifacts.oleanPrivate? (arts : ImportArtifacts) :=
   arts.toArray[3]?
 
+def ImportArtifacts.lcnf? (arts : ImportArtifacts) :=
+  arts.toArray[4]?
+
 def ImportArtifacts.oleanParts (inServer : Bool) (arts : ImportArtifacts) : Array System.FilePath := Id.run do
   let mut fnames := #[]
   if let some mFile := arts.olean? then

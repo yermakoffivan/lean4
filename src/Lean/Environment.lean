@@ -2052,7 +2052,8 @@ private def findOLeanParts (mod : Name) : IO (Array System.FilePath) := do
 
 partial def importModulesCore
     (imports : Array Import) (globalLevel : OLeanLevel := .private)
-    (arts : NameMap ImportArtifacts := {}) (isExported : Bool := globalLevel < .private) :
+    (arts : NameMap ImportArtifacts := {}) (isExported : Bool := globalLevel < .private)
+    (preferLCNF : Bool := false) :
     ImportStateM Unit := do
   go imports (importAll := true) (isExported := isExported) (needsData := true) (needsIRTrans := false)
   if globalLevel < .private then
@@ -2148,7 +2149,7 @@ where
         let needsIR := needsIRTrans || importAll
         let irPhases := if irPhases == mod.irPhases then irPhases else .all
         let parts ← if needsData && mod.parts.isEmpty then loadData i else pure mod.parts
-        let irData? ← if needsIR && mod.irData?.isNone then loadIR? i else pure mod.irData?
+        let irData? ← if needsIR && mod.irData?.isNone then loadIR? i importAll else pure mod.irData?
         if importAll != mod.importAll || isExported != mod.isExported ||
             needsIRTrans != mod.needsIRTrans || needsData != mod.needsData || irPhases != mod.irPhases then
           modify fun s => { s with moduleNameMap := s.moduleNameMap.insert i.module { mod with
@@ -2159,7 +2160,7 @@ where
 
       -- newly discovered module
       let parts ← if needsData then loadData i else pure #[]
-      let irData? ← if needsIR then loadIR? i else pure none
+      let irData? ← if needsIR then loadIR? i importAll else pure none
       let mod := { i with importAll, isExported, irPhases, parts, irData?, needsIRTrans, needsData }
       goRec mod
       modify fun s => { s with
@@ -2174,12 +2175,24 @@ where
     else
       findOLeanParts i.module
     readModuleDataParts fnames
-  loadIR? i := do
+  loadIR? i importAll := do
+    -- Use `.lcnf` when `preferLCNF` is set, but upgrade to `.ir` for `import all`
+    -- modules which need private LCNF signatures
+    let useLCNF := preferLCNF && !importAll
     let irFile? ← if let some arts := arts.find? i.module then
-      pure arts.ir?
+      pure (if useLCNF then arts.lcnf? <|> arts.ir? else arts.ir?)
     else
-      let irFile := (← findOLean i.module).withExtension "ir"
-      pure (guard (← irFile.pathExists) *> irFile)
+      let base ← findOLean i.module
+      if useLCNF then
+        let lcnfFile := base.withExtension "lcnf"
+        if (← lcnfFile.pathExists) then
+          pure (some lcnfFile)
+        else
+          let irFile := base.withExtension "ir"
+          pure (guard (← irFile.pathExists) *> irFile)
+      else
+        let irFile := base.withExtension "ir"
+        pure (guard (← irFile.pathExists) *> irFile)
     irFile?.mapM (readModuleData ·)
 
 /--

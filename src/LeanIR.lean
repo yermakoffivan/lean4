@@ -40,6 +40,14 @@ def mkIRData (env : Environment) : IO ModuleData := do
     extraConstNames := getIRExtraConstNames env .private (includeDecls := true)
   }
 
+/-- Leaner alternative to `.ir` for non-`import all` modules. Contains all data at `.exported`
+level; `import all` consumers use the full `.ir` instead. -/
+def mkLCNFData (env : Environment) : IO ModuleData := do
+  let data ← mkModuleData env .exported
+  return { data with
+    extraConstNames := getIRExtraConstNames env .private (includeDecls := true)
+  }
+
 def setConfigOption (opts : Options) (arg : String) : IO Options := do
   if !arg.startsWith "-D" then
     throw <| .userError s!"invalid trailing argument `{arg}`, expected argument of the form `-Dopt=val`"
@@ -77,11 +85,17 @@ public def main (args : List String) : IO UInt32 := do
   initSearchPath (← getBuildDir)
   -- Provide access to private scope of target module but no others; provide all IR
   let env ← profileitIO "import" opts <| withImporting do
-    let imports := #[{ module := modName, importAll := true, isMeta := true }]
-    -- `private` because inlining may make ext data from private imports transitively required
-    -- no `arts` yet because they are for `exported`
-    let (_, s) ← importModulesCore (globalLevel := .private) /-(arts := setup.importArts)-/ imports |>.run
-    let s := { s with moduleNameMap := s.moduleNameMap.modify modName fun m => if m.module == modName then { m with irPhases := .runtime } else { m with irPhases := .all } }
+    -- Read the target module's olean to discover its direct imports
+    let targetParts ← readModuleDataParts (← findOLeanParts modName)
+    let some (targetData, _) := targetParts[0]? | throw <| IO.userError "failed to read target module"
+    let directImports := targetData.imports
+    -- Import target module privately (`importAll`), its direct imports privately too (for kernel
+    -- constants like constructors), and everything else at `exported` level.
+    -- `isMeta` ensures `.lcnf` is loaded transitively for all dependencies.
+    let imports := directImports.map (fun i => { i with importAll := true })
+      |>.push { module := modName, importAll := true, isMeta := true }
+    let (_, s) ← importModulesCore (globalLevel := .exported) (preferLCNF := true) imports |>.run
+    let s := { s with moduleNameMap := s.moduleNameMap.modify modName fun m => { m with irPhases := .runtime } }
     -- level exported because otherwise we would try to load the current module's `.ir`
     finalizeImport (leakEnv := true) (loadExts := false) (level := .exported) s imports opts
   let env := env.setMainModule modName
@@ -142,7 +156,7 @@ public def main (args : List String) : IO UInt32 := do
       logError e.toMessageData
 
   let .ok (_, s) := res? | unreachable!
-  let env := s.env
+  let mut env := s.env
 
   for msg in s.messages.unreported do
     IO.eprintln (← msg.toString)
@@ -152,6 +166,9 @@ public def main (args : List String) : IO UInt32 := do
 
   -- Make sure to change the module name so we derive a different base address
   saveModuleData irFile (env.mainModule ++ `ir) (← mkIRData env)
+  -- Write a leaner `.lcnf` file containing only LCNF-relevant extensions for import
+  let lcnfFile := (irFile : System.FilePath).withExtension "lcnf"
+  saveModuleData lcnfFile (env.mainModule ++ `lcnf) (← mkLCNFData env)
 
   let .ok out ← IO.FS.Handle.mk c .write |>.toBaseIO
     | IO.eprintln s!"failed to create '{c}'"

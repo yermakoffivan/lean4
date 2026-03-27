@@ -2127,13 +2127,13 @@ where
       -- `B ≥ public`?
       let isExported := isExported && i.isExported
       let needsIRTrans := needsIRTrans || needsData && i.isMeta
-      let needsIR := needsIRTrans || importAll || globalLevel > .exported
+      let needsIR := needsIRTrans || importAll || globalLevel > .exported || preferLCNF
       if !needsData && !needsIR then
         continue
 
       let irPhases :=
         if importAll then .all
-        else if needsIRTrans then .comptime  -- `globalLevel` should *not* be considered here
+        else if needsIRTrans || preferLCNF then .comptime
         else .runtime
 
       let goRec mod := do
@@ -2146,7 +2146,7 @@ where
         let isExported := isExported || mod.isExported
         let needsData := needsData || mod.needsData
         let needsIRTrans := needsIRTrans || mod.needsIRTrans
-        let needsIR := needsIRTrans || importAll
+        let needsIR := needsIRTrans || importAll || preferLCNF
         let irPhases := if irPhases == mod.irPhases then irPhases else .all
         let parts ← if needsData && mod.parts.isEmpty then loadData i else pure mod.parts
         let irData? ← if needsIR && mod.irData?.isNone then loadIR? i importAll else pure mod.irData?

@@ -1973,6 +1973,8 @@ private structure ImportedModule extends EffectiveImport where
   parts     : Array (ModuleData × CompactedRegion)
   /-- `.ir` data, if loaded. -/
   irData?   : Option (ModuleData × CompactedRegion)
+  /-- `.lcnf` data (leaner alternative to `.ir`), if loaded. -/
+  lcnfData? : Option (ModuleData × CompactedRegion) := none
   /-- If true, `.olean*` data should be imported. -/
   needsData : Bool
   /-- If true, IR is loaded transitively. -/
@@ -2010,7 +2012,11 @@ private def ImportedModule.interpData? (self : ImportedModule) (level : OLeanLev
   if (level < .server && self.irPhases == .runtime) || !self.mainModule?.any (·.isModule) then
     self.mainModule?
   else
-    self.irData?.map (·.1)
+    -- For `import all` modules, use `.ir` (full private data); otherwise prefer `.lcnf` (leaner)
+    if self.importAll then
+      self.irData?.map (·.1)
+    else
+      (self.lcnfData? <|> self.irData?).map (·.1)
 
 structure ImportState where
   private moduleNameMap : Std.HashMap Name ImportedModule := {}
@@ -2149,19 +2155,21 @@ where
         let needsIR := needsIRTrans || importAll || preferLCNF
         let irPhases := if irPhases == mod.irPhases then irPhases else .all
         let parts ← if needsData && mod.parts.isEmpty then loadData i else pure mod.parts
-        let irData? ← if needsIR && mod.irData?.isNone then loadIR? i importAll else pure mod.irData?
+        let irData? ← if needsIR && mod.irData?.isNone then loadIR? i else pure mod.irData?
+        let lcnfData? ← if needsIR && mod.lcnfData?.isNone then loadLCNF? i else pure mod.lcnfData?
         if importAll != mod.importAll || isExported != mod.isExported ||
             needsIRTrans != mod.needsIRTrans || needsData != mod.needsData || irPhases != mod.irPhases then
           modify fun s => { s with moduleNameMap := s.moduleNameMap.insert i.module { mod with
-            importAll, isExported, irPhases, parts, irData?, needsData, needsIRTrans }}
+            importAll, isExported, irPhases, parts, irData?, lcnfData?, needsData, needsIRTrans }}
           -- bump entire closure
           goRec mod
         continue
 
       -- newly discovered module
       let parts ← if needsData then loadData i else pure #[]
-      let irData? ← if needsIR then loadIR? i importAll else pure none
-      let mod := { i with importAll, isExported, irPhases, parts, irData?, needsIRTrans, needsData }
+      let irData? ← if needsIR then loadIR? i else pure none
+      let lcnfData? ← if needsIR then loadLCNF? i else pure none
+      let mod := { i with importAll, isExported, irPhases, parts, irData?, lcnfData?, needsIRTrans, needsData }
       goRec mod
       modify fun s => { s with
         moduleNameMap := s.moduleNameMap.insert i.module mod
@@ -2175,25 +2183,25 @@ where
     else
       findOLeanParts i.module
     readModuleDataParts fnames
-  loadIR? i importAll := do
-    -- Use `.lcnf` when `preferLCNF` is set, but upgrade to `.ir` for `import all`
-    -- modules which need private LCNF signatures
-    let useLCNF := preferLCNF && !importAll
+  loadIR? i := do
     let irFile? ← if let some arts := arts.find? i.module then
-      pure (if useLCNF then arts.lcnf? <|> arts.ir? else arts.ir?)
+      pure arts.ir?
+    else
+      let irFile := (← findOLean i.module).withExtension "ir"
+      pure (guard (← irFile.pathExists) *> irFile)
+    irFile?.mapM (readModuleData ·)
+  loadLCNF? (i : Import) := do
+    if !preferLCNF then return none
+    let lcnfFile? ← if let some arts := arts.find? i.module then
+      pure (arts.lcnf? <|> arts.ir?)
     else
       let base ← findOLean i.module
-      if useLCNF then
-        let lcnfFile := base.withExtension "lcnf"
-        if (← lcnfFile.pathExists) then
-          pure (some lcnfFile)
-        else
-          let irFile := base.withExtension "ir"
-          pure (guard (← irFile.pathExists) *> irFile)
+      let lcnfFile := base.withExtension "lcnf"
+      if (← lcnfFile.pathExists) then pure (some lcnfFile)
       else
         let irFile := base.withExtension "ir"
         pure (guard (← irFile.pathExists) *> irFile)
-    irFile?.mapM (readModuleData ·)
+    lcnfFile?.mapM (readModuleData ·)
 
 /--
 Returns `true` if `cinfo₁` and `cinfo₂` represent the same theorem/axiom, with `cinfo₁` potentially
@@ -2316,7 +2324,7 @@ def finalizeImport (s : ImportState) (imports : Array Import) (opts : Options) (
     header     := {
       trustLevel, imports, moduleData, isModule
       modules      := modules.map (·.toEffectiveImport)
-      regions      := modules.flatMap (·.parts.map (·.2)) ++ modules.filterMap (·.irData?.map (·.2))
+      regions      := modules.flatMap (·.parts.map (·.2)) ++ modules.filterMap (·.irData?.map (·.2)) ++ modules.filterMap (·.lcnfData?.map (·.2))
     }
   }
   let publicConstants : ConstMap := SMap.fromHashMap publicConstantMap false

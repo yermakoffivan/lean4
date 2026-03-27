@@ -92,7 +92,7 @@ public def main (args : List String) : IO UInt32 := do
     -- Import target module privately (`importAll`), its direct imports privately too (for kernel
     -- constants like constructors), and everything else at `exported` level.
     -- `isMeta` ensures `.lcnf` is loaded transitively for all dependencies.
-    let imports := directImports.map (fun i => { i with importAll := true })
+    let imports := directImports.map (fun i => { i with isMeta := i.isMeta || i.importAll })
       |>.push { module := modName, importAll := true, isMeta := true }
     let (_, s) ← importModulesCore (globalLevel := .exported) (preferLCNF := true) imports |>.run
     let s := { s with moduleNameMap := s.moduleNameMap.modify modName fun m => { m with irPhases := .runtime } }

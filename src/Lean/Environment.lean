@@ -2230,9 +2230,10 @@ where
   -- .ir.sig + .ir (optional)
   loadIR i := do
     let fnames ← if let some arts := arts.find? i.module then
-      -- Opportunistically load all available parts.
-      -- Producer (e.g., Lake) should limit parts to the proper import level.
-      pure arts.irParts
+      let irParts := arts.irParts
+      -- Fall back to disk when arts are known but don't include IR paths
+      -- (e.g., `exportInfo` provides only `.olean*` for regular imports).
+      if irParts.isEmpty then findIRParts i.module else pure irParts
     else
       findIRParts i.module
     readModuleDataParts fnames

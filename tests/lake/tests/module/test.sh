@@ -131,10 +131,14 @@ test_run build
 
 # Tests a meta edit of an import
 echo "# TEST: meta edit"
+# Ensure IR is built for Module so we can track its hash
+test_run build Test.Generated.Module:ir
 test_cmd sed_i 's/baz/ipsum/' Test/Generated/Module.lean
 old_hash=$(cat .lake/build/lib/lean/Test/Generated/Module.ir.hash)
 old_pub_hash=$(cat .lake/build/lib/lean/Test/Generated/Module.olean.hash)
 test_out "Built Test.Generated.Module" build Test.Generated.Module -v
+# Trigger IR rebuild after the meta edit (split model: elab doesn't produce IR)
+test_run build Test.Generated.Module:ir
 new_pub_hash=$(cat .lake/build/lib/lean/Test/Generated/Module.olean.hash)
 new_hash=$(cat .lake/build/lib/lean/Test/Generated/Module.ir.hash)
 test_exp $old_pub_hash == $new_pub_hash

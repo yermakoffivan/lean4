@@ -25,6 +25,8 @@ public import Lean.Meta.Sym.Simp
 public import Lean.Meta.Sym.Util
 public import Lean.Meta.Sym.Eta
 public import Lean.Meta.Sym.Canon
+public import Lean.Meta.Sym.Arith.Types
+public import Lean.Meta.Sym.Arith.EvalNum
 public import Lean.Meta.Sym.Grind
 public import Lean.Meta.Sym.SynthInstance
 

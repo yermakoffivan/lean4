@@ -2155,8 +2155,11 @@ where
         let needsIR := needsIRTrans || importAll || preferLCNF
         let irPhases := if irPhases == mod.irPhases then irPhases else .all
         let parts ← if needsData && mod.parts.isEmpty then loadData i else pure mod.parts
-        let irData? ← if needsIR && mod.irData?.isNone then loadIR? i else pure mod.irData?
-        let lcnfData? ← if needsIR && mod.lcnfData?.isNone then loadLCNF? i else pure mod.lcnfData?
+        let (irData?, lcnfData?) ← if needsIR && mod.irData?.isNone then do
+            let p ← loadIRParts i
+            pure (p.back?, if p.size > 1 then p[0]? else none)
+          else pure (mod.irData?, mod.lcnfData?)
+        let lcnfData? ← if lcnfData?.isNone then loadLCNF? i else pure lcnfData?
         if importAll != mod.importAll || isExported != mod.isExported ||
             needsIRTrans != mod.needsIRTrans || needsData != mod.needsData || irPhases != mod.irPhases then
           modify fun s => { s with moduleNameMap := s.moduleNameMap.insert i.module { mod with
@@ -2167,8 +2170,11 @@ where
 
       -- newly discovered module
       let parts ← if needsData then loadData i else pure #[]
-      let irData? ← if needsIR then loadIR? i else pure none
-      let lcnfData? ← if needsIR then loadLCNF? i else pure none
+      let (irData?, lcnfData?) ← if needsIR then do
+          let p ← loadIRParts i
+          pure (p.back?, if p.size > 1 then p[0]? else none)
+        else pure (none, none)
+      let lcnfData? ← if lcnfData?.isNone then loadLCNF? i else pure lcnfData?
       let mod := { i with importAll, isExported, irPhases, parts, irData?, lcnfData?, needsIRTrans, needsData }
       goRec mod
       modify fun s => { s with
@@ -2183,13 +2189,24 @@ where
     else
       findOLeanParts i.module
     readModuleDataParts fnames
-  loadIR? i := do
+  -- Returns all loaded parts: when .lcnf exists alongside .ir, loads both as multi-part
+  -- (.ir references .lcnf's compacted objects). Last element is the .ir data.
+  loadIRParts (i : Import) : ImportStateM (Array (ModuleData × CompactedRegion)) := do
     let irFile? ← if let some arts := arts.find? i.module then
-      pure arts.ir?
+      match arts.ir? with
+      | some f => pure (guard (← f.pathExists) *> (f : System.FilePath))
+      | none => pure none
     else
-      let irFile := (← findOLean i.module).withExtension "ir"
+      let irFile : System.FilePath := (← findOLean i.module).withExtension "ir"
       pure (guard (← irFile.pathExists) *> irFile)
-    irFile?.mapM (readModuleData ·)
+    match irFile? with
+    | some irFile =>
+      let lcnfFile : System.FilePath := irFile.withExtension "lcnf"
+      if (← lcnfFile.pathExists) then
+        readModuleDataParts #[lcnfFile, irFile]
+      else
+        return #[← readModuleData irFile]
+    | none => return #[]
   loadLCNF? (i : Import) := do
     if !preferLCNF then return none
     let lcnfFile? ← if let some arts := arts.find? i.module then

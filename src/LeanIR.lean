@@ -165,10 +165,15 @@ public def main (args : List String) : IO UInt32 := do
    return 1
 
   -- Make sure to change the module name so we derive a different base address
-  saveModuleData irFile (env.mainModule ++ `ir) (← mkIRData env)
-  -- Write a leaner `.lcnf` file containing only LCNF-relevant extensions for import
+  -- Write .lcnf (part[0]) and .ir (part[1]) as parts of the same compaction.
+  -- .lcnf is self-contained; .ir reuses .lcnf's compacted objects, reducing total size.
+  -- Non-`import all` consumers load .lcnf only; `import all` loads both via readModuleDataParts.
   let lcnfFile := (irFile : System.FilePath).withExtension "lcnf"
-  saveModuleData lcnfFile (env.mainModule ++ `lcnf) (← mkLCNFData env)
+  let lcnfData ← mkLCNFData env
+  let irData ← mkIRData env
+  saveModuleDataParts (env.mainModule ++ `ir) #[
+    (lcnfFile, lcnfData),
+    (irFile, irData)]
 
   let .ok out ← IO.FS.Handle.mk c .write |>.toBaseIO
     | IO.eprintln s!"failed to create '{c}'"

@@ -11,7 +11,7 @@ public import Init.Data.Ord.Basic
 public import Init.Data.Iterators.Combinators.FilterMap
 public import Init.Data.String.ToSlice
 public import Init.Data.String.Subslice
-public import Init.Data.String.Iter
+public import Init.Data.String.Iter.Basic
 public import Init.Data.String.Iterate
 import Init.Data.Iterators.Consumers.Collect
 import Init.Data.Iterators.Consumers.Loop
@@ -84,10 +84,11 @@ instance : ToString String.Slice where
 theorem toStringToString_eq : ToString.toString = String.Slice.copy := (rfl)
 
 @[extern "lean_slice_hash"]
-opaque hash (s : @& Slice) : UInt64
+protected def hash (s : @& Slice) : UInt64 :=
+  String.hash s.copy
 
 instance : Hashable Slice where
-  hash := hash
+  hash := Slice.hash
 
 instance : LT Slice where
   lt x y := x.copy < y.copy
@@ -1150,6 +1151,19 @@ def intercalate (s : Slice) : List Slice → String
 where go (acc : String) (s : Slice) : List Slice → String
   | a :: as => go (acc ++ s ++ a) s as
   | []      => acc
+
+/--
+Appends all the slices in a list of slices, in order.
+
+Use {name}`String.Slice.intercalate` to place a separator string between the strings in a list.
+
+Examples:
+ * {lean}`String.Slice.join ["gr", "ee", "n"] = "green"`
+ * {lean}`String.Slice.join ["b", "", "l", "", "ue"] = "blue"`
+ * {lean}`String.Slice.join [] = ""`
+-/
+def join (l : List String.Slice) : String :=
+  l.foldl (fun (r : String) (s : String.Slice) => r ++ s) ""
 
 /--
 Converts a string to the Lean compiler's representation of names. The resulting name is

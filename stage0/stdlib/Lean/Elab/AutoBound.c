@@ -16,12 +16,12 @@ extern "C" {
 lean_object* lean_register_option(lean_object*, lean_object*);
 lean_object* l_Lean_instInhabitedPersistentArray_default(lean_object*);
 extern lean_object* l_String_instInhabitedSlice;
-lean_object* lean_panic_fn(lean_object*, lean_object*);
+lean_object* lean_panic_fn_borrowed(lean_object*, lean_object*);
 lean_object* l_Lean_Name_mkStr1(lean_object*);
 lean_object* lean_nat_add(lean_object*, lean_object*);
 lean_object* lean_string_utf8_next_fast(lean_object*, lean_object*);
 lean_object* lean_nat_sub(lean_object*, lean_object*);
-uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
+uint8_t l_String_instDecidableLtRaw___aux__1(lean_object*, lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 uint32_t lean_string_utf8_get_fast(lean_object*, lean_object*);
 uint8_t l_Lean_isSubScriptAlnum(uint32_t);
@@ -34,6 +34,7 @@ lean_object* l_Substring_Raw_nextn(lean_object*, lean_object*, lean_object*);
 uint8_t lean_string_is_valid_pos(lean_object*, lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
 lean_object* lean_string_length(lean_object*);
+uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
 lean_object* l_String_Slice_Pos_get_x3f(lean_object*, lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* l_Lean_stringToMessageData(lean_object*);
@@ -161,13 +162,12 @@ lean_object* v___x_10_; uint8_t v___x_11_; lean_object* v___x_12_; lean_object* 
 v___x_10_ = lean_alloc_ctor(1, 0, 1);
 v___x_11_ = lean_unbox(v_defValue_5_);
 lean_ctor_set_uint8(v___x_10_, 0, v___x_11_);
-lean_inc(v_name_1_);
+lean_inc_n(v_name_1_, 2);
 v___x_12_ = lean_alloc_ctor(0, 4, 0);
 lean_ctor_set(v___x_12_, 0, v_name_1_);
 lean_ctor_set(v___x_12_, 1, v_ref_3_);
 lean_ctor_set(v___x_12_, 2, v___x_10_);
 lean_ctor_set(v___x_12_, 3, v_descr_6_);
-lean_inc(v_name_1_);
 v___x_13_ = lean_register_option(v_name_1_, v___x_12_);
 if (lean_obj_tag(v___x_13_) == 0)
 {
@@ -330,7 +330,7 @@ _start:
 {
 lean_object* v___x_80_; lean_object* v___x_81_; 
 v___x_80_ = l_String_instInhabitedSlice;
-v___x_81_ = lean_panic_fn(v___x_80_, v_msg_79_);
+v___x_81_ = lean_panic_fn_borrowed(v___x_80_, v_msg_79_);
 return v___x_81_;
 }
 }
@@ -415,7 +415,7 @@ v___x_90_ = lean_nat_sub(v___x_89_, v___x_87_);
 lean_dec(v___x_87_);
 v___x_91_ = lean_nat_add(v_pos_83_, v___x_90_);
 lean_dec(v___x_90_);
-v___x_92_ = lean_nat_dec_lt(v_pos_83_, v___x_91_);
+v___x_92_ = l_String_instDecidableLtRaw___aux__1(v_pos_83_, v___x_91_);
 if (v___x_92_ == 0)
 {
 lean_dec(v___x_91_);

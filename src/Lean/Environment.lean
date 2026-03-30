@@ -1747,14 +1747,14 @@ def Compactor := CompactorSpec.type
     `prev`: compactor from a prior save for same-process deduplication.
     Returns updated `Compactor` for chaining. -/
 @[extern "lean_save_module_data_incr"]
-opaque saveModuleDataIncr (fname : System.FilePath) (mod : @& Name) (data : @& ModuleData)
-    (depRegions : @& Array CompactedRegion := #[]) (prev : Option Compactor := none) : IO Compactor
+opaque saveModuleDataIncr (fname : @& System.FilePath) (mod : @& Name) (data : @& ModuleData)
+    (depRegions : @& Array CompactedRegion) (prev : Option Compactor) : IO Compactor
 
 /-- Read a single module from disk with incremental sharing.
     `depRegions` are existing compacted regions whose address ranges are needed for pointer fixup. -/
 @[extern "lean_read_module_data_incr"]
 opaque readModuleDataIncr (fname : @& System.FilePath)
-    (depRegions : @& Array CompactedRegion := #[]) : IO (ModuleData × CompactedRegion)
+    (depRegions : @& Array CompactedRegion) : IO (ModuleData × CompactedRegion)
 
 /--
 Stores each given module data in the respective file name. Objects shared with prior parts are not
@@ -1782,10 +1782,10 @@ def readModuleDataParts (fnames : Array System.FilePath) : IO (Array (ModuleData
   return result
 
 def saveModuleData (fname : System.FilePath) (mod : Name) (data : ModuleData) : IO Unit := do
-  let _ ← saveModuleDataIncr fname mod data
+  let _ ← saveModuleDataIncr fname mod data #[] none
 
 def readModuleData (fname : System.FilePath) : IO (ModuleData × CompactedRegion) :=
-  readModuleDataIncr fname
+  readModuleDataIncr fname #[]
 
 /--
   Free compacted regions of imports. No live references to imported objects may exist at the time of invocation; in

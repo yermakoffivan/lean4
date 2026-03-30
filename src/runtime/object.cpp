@@ -781,10 +781,12 @@ class task_manager {
                     if (m_shutting_down) {
                         break;
                     }
-                    // Wait for new tasks, with a timeout so idle threads can exit
-                    m_queue_cv.wait_for(lock, chrono::milliseconds(WORKER_IDLE_TIMEOUT_MS));
-                    if (m_queues_size == 0 && !m_shutting_down) {
-                        // Still no work after timeout, exit this thread
+                    // Wait for new tasks, with a timeout so idle threads can exit.
+                    // Only exit on actual timeout, not on spurious wakeups or notifications
+                    // (e.g. from another thread's exit notify_all).
+                    if (m_queue_cv.wait_for(lock, chrono::milliseconds(WORKER_IDLE_TIMEOUT_MS))
+                        == std::cv_status::timeout
+                        && m_queues_size == 0 && !m_shutting_down) {
                         break;
                     }
                     continue;

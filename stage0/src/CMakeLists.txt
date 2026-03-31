@@ -614,6 +614,38 @@ else()
       OUTPUT_VARIABLE GIT_SHA1
       OUTPUT_STRIP_TRAILING_WHITESPACE
     )
+    # Fallback for jj workspaces where git cannot find .git directly.
+    # Use `jj git root` to find the backing git repo, then `jj log` to
+    # resolve the current workspace's commit (git HEAD points to the root
+    # workspace, not the current one).
+    if("${GIT_SHA1}" STREQUAL "")
+      find_program(JJ_EXECUTABLE jj)
+      if(JJ_EXECUTABLE)
+        execute_process(
+          COMMAND "${JJ_EXECUTABLE}" git root
+          WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+          OUTPUT_VARIABLE _jj_git_dir
+          OUTPUT_STRIP_TRAILING_WHITESPACE
+          ERROR_QUIET
+          RESULT_VARIABLE _jj_git_root_result
+        )
+        execute_process(
+          COMMAND "${JJ_EXECUTABLE}" log -r @ --no-graph -T "commit_id"
+          WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+          OUTPUT_VARIABLE _jj_commit
+          OUTPUT_STRIP_TRAILING_WHITESPACE
+          ERROR_QUIET
+          RESULT_VARIABLE _jj_rev_result
+        )
+        if(_jj_git_root_result EQUAL 0 AND _jj_rev_result EQUAL 0)
+          execute_process(
+            COMMAND git --git-dir "${_jj_git_dir}" ls-tree "${_jj_commit}" stage0 --object-only
+            OUTPUT_VARIABLE GIT_SHA1
+            OUTPUT_STRIP_TRAILING_WHITESPACE
+          )
+        endif()
+      endif()
+    endif()
     message(STATUS "stage0 sha1: ${GIT_SHA1}")
     # Now that we've prepared the information for the next stage, we can forget that we will use
     # Lake in the future as we won't use it in this stage
@@ -762,7 +794,7 @@ if(STAGE GREATER 0 AND CADICAL AND INSTALL_CADICAL)
   add_dependencies(leancpp copy-cadical)
 endif()
 
-if(STAGE GREATER 0 AND LEANTAR AND INSTALL_LEANTAR)
+if(LEANTAR AND INSTALL_LEANTAR)
   add_custom_target(
     copy-leantar
     COMMAND cmake -E copy_if_different "${LEANTAR}" "${CMAKE_BINARY_DIR}/bin/leantar${CMAKE_EXECUTABLE_SUFFIX}"
@@ -797,7 +829,14 @@ if(LLVM AND STAGE GREATER 0)
   set(EXTRA_LEANMAKE_OPTS "LLVM=1")
 endif()
 
-set(STDLIBS Init Std Lean Leanc)
+set(
+  STDLIBS
+  Init
+  Std
+  Lean
+  Leanc
+  LeanIR
+)
 if(NOT CMAKE_SYSTEM_NAME MATCHES "Emscripten")
   list(APPEND STDLIBS Lake LeanChecker)
 endif()
@@ -904,9 +943,13 @@ if(PREV_STAGE)
   add_custom_target(update-stage0-commit COMMAND git commit -m "chore: update stage0" DEPENDS update-stage0)
 endif()
 
+if(NOT CMAKE_SYSTEM_NAME MATCHES "Emscripten")
+  add_custom_target(leanir ALL DEPENDS leanshared COMMAND $(MAKE) -f ${CMAKE_BINARY_DIR}/stdlib.make leanir VERBATIM)
+endif()
+
 # use Bash version for building, use Lean version in bin/ for tests & distribution
 configure_file("${LEAN_SOURCE_DIR}/bin/leanc.in" "${CMAKE_BINARY_DIR}/leanc.sh" @ONLY)
-if(STAGE GREATER 0 AND EXISTS "${LEAN_SOURCE_DIR}/Leanc.lean" AND NOT CMAKE_SYSTEM_NAME MATCHES "Emscripten")
+if(STAGE GREATER 0 AND NOT CMAKE_SYSTEM_NAME MATCHES "Emscripten")
   configure_file("${LEAN_SOURCE_DIR}/Leanc.lean" "${CMAKE_BINARY_DIR}/leanc/Leanc.lean" @ONLY)
   add_custom_target(
     leanc
@@ -926,7 +969,7 @@ if(STAGE GREATER 0 AND CADICAL AND INSTALL_CADICAL)
   install(PROGRAMS "${CADICAL}" DESTINATION bin)
 endif()
 
-if(STAGE GREATER 0 AND LEANTAR AND INSTALL_LEANTAR)
+if(LEANTAR AND INSTALL_LEANTAR)
   install(PROGRAMS "${LEANTAR}" DESTINATION bin)
 endif()
 

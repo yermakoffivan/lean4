@@ -293,34 +293,39 @@ extern "C" LEAN_EXPORT object * lean_read_module_data_incr(b_obj_arg ofname, b_o
         char * base_addr = reinterpret_cast<char *>(header.base_addr);
 
         char * buffer = nullptr;
-        bool is_mmap = false;
         std::function<void()> free_data;
 
+        // If any dep region couldn't be mmap'd at its base address, we need writable memory
+        // for in-place pointer fixups, so don't attempt mmap.
+        bool try_mmap = true;
+        for (compacted_region * dep : dep_regions) {
+            if (dep->begin() != dep->base_addr()) { try_mmap = false; break; }
+        }
+
 #ifdef LEAN_MMAP
-        // Try to mmap at the expected base address
+        if (try_mmap) {
 #ifdef LEAN_WINDOWS
-        HANDLE h_map = CreateFileMapping(h_file, NULL, PAGE_READONLY, 0, 0, NULL);
-        if (h_map != NULL) {
-            buffer = static_cast<char *>(MapViewOfFileEx(h_map, FILE_MAP_READ, 0, 0, 0, base_addr));
-            lean_always_assert(CloseHandle(h_map));
-            if (buffer && buffer == base_addr) {
-                is_mmap = true;
-                free_data = [=]() { lean_always_assert(UnmapViewOfFile(base_addr)); };
-            } else if (buffer) {
-                lean_always_assert(UnmapViewOfFile(buffer));
+            HANDLE h_map = CreateFileMapping(h_file, NULL, PAGE_READONLY, 0, 0, NULL);
+            if (h_map != NULL) {
+                buffer = static_cast<char *>(MapViewOfFileEx(h_map, FILE_MAP_READ, 0, 0, 0, base_addr));
+                lean_always_assert(CloseHandle(h_map));
+                if (buffer && buffer == base_addr) {
+                    free_data = [=]() { lean_always_assert(UnmapViewOfFile(base_addr)); };
+                } else if (buffer) {
+                    lean_always_assert(UnmapViewOfFile(buffer));
+                    buffer = nullptr;
+                }
+            }
+#else
+            buffer = static_cast<char *>(mmap(base_addr, size, PROT_READ, MAP_PRIVATE, fd.get(), 0));
+            if (buffer != MAP_FAILED && buffer == base_addr) {
+                free_data = [=]() { lean_always_assert(munmap(buffer, size) == 0); };
+            } else {
+                if (buffer != MAP_FAILED) munmap(buffer, size);
                 buffer = nullptr;
             }
-        }
-#else
-        buffer = static_cast<char *>(mmap(base_addr, size, PROT_READ, MAP_PRIVATE, fd.get(), 0));
-        if (buffer != MAP_FAILED && buffer == base_addr) {
-            is_mmap = true;
-            free_data = [=]() { lean_always_assert(munmap(buffer, size) == 0); };
-        } else {
-            if (buffer != MAP_FAILED) munmap(buffer, size);
-            buffer = nullptr;
-        }
 #endif
+        }
 #endif
 
         if (!buffer) {
@@ -334,6 +339,7 @@ extern "C" LEAN_EXPORT object * lean_read_module_data_incr(b_obj_arg ofname, b_o
             free_data = [=]() { free_sized(const_cast<char*>(buffer), size); };
         }
 
+        bool is_mmap = (buffer == base_addr);
         compacted_region * region = new compacted_region(
             size - sizeof(olean_header), buffer + sizeof(olean_header),
             base_addr + sizeof(olean_header), is_mmap, free_data, dep_regions);

@@ -37,7 +37,7 @@ class LEAN_EXPORT object_compactor {
     void save_max_sharing(object * o, object * new_o, size_t new_o_sz);
     object_offset to_offset(object * o);
     void insert_terminator(object * o);
-    object * copy_object(object * o);
+    object * copy_object(object * o, size_t sz = 0);
     bool insert_constructor(object * o);
     bool insert_array(object * o);
     void insert_sarray(object * o);

@@ -149,7 +149,7 @@ def runFrontend
     : IO (Option Environment) := do
   let startTime := (← IO.monoNanosNow).toFloat / 1000000000
   let inputCtx := Parser.mkInputContext input fileName
-  let opts := Lean.internal.cmdlineSnapshots.setIfNotSet opts true
+  let opts := Lean.internal.cmdlineSnapshots.setIfNotSet opts (incrFileName?.isNone)
   -- default to async elaboration; see also `Elab.async` docs
   let opts := Elab.async.setIfNotSet opts true
   let ctx := { inputCtx with }

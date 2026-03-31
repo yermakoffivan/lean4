@@ -64,9 +64,16 @@ object_compactor::object_compactor(void * base_addr, std::vector<compacted_regio
     m_begin(malloc(LEAN_COMPACTOR_INIT_SZ)),
     m_end(m_begin),
     m_capacity(static_cast<char*>(m_begin) + LEAN_COMPACTOR_INIT_SZ) {
-    // Sort dep regions by begin address for binary search in `to_offset`
-    std::sort(m_dep_regions.begin(), m_dep_regions.end(),
-              [](compacted_region * a, compacted_region * b) { return a->begin() < b->begin(); });
+    // Sort dep regions by begin address for binary search in `to_offset`.
+    // Extract keys into a flat array to avoid pointer-chasing TLB misses during sort.
+    size_t n = m_dep_regions.size();
+    std::vector<std::pair<void *, compacted_region *>> keyed(n);
+    for (size_t i = 0; i < n; i++)
+        keyed[i] = {m_dep_regions[i]->begin(), m_dep_regions[i]};
+    std::sort(keyed.begin(), keyed.end(),
+              [](auto const & a, auto const & b) { return a.first < b.first; });
+    for (size_t i = 0; i < n; i++)
+        m_dep_regions[i] = keyed[i].second;
 }
 
 object_compactor::~object_compactor() {

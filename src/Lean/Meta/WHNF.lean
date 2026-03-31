@@ -650,7 +650,8 @@ expand let-expressions, expand assigned meta-variables, unfold aux declarations.
 partial def whnfCore (e : Expr) : MetaM Expr :=
   go e
 where
-  go (e : Expr) : MetaM Expr :=
+  go (e : Expr) : MetaM Expr := do
+    checkSystem "whnf"
     whnfEasyCases e fun e => do
       trace[Meta.whnf] e
       match e with

@@ -44,6 +44,9 @@ byStrictIndent.lean:73:0-73:7: error: unexpected identifier; expected command
 byStrictIndent.lean:85:32-85:34: error: unsolved goals
 ⊢ True
 byStrictIndent.lean:86:2-86:9: error: unexpected identifier; expected command
+byStrictIndent.lean:93:2: error: unexpected indented tactic sequence; expected '{' or tactic
 byStrictIndent.lean:92:38-92:40: error: unsolved goals
 ⊢ True
-byStrictIndent.lean:93:2-93:5: error: unexpected token; expected command
+byStrictIndent.lean:97:48-98:6: error: unsolved goals
+⊢ True
+byStrictIndent.lean:99:2-99:5: error: unexpected token; expected command

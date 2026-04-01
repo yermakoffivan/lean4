@@ -86,8 +86,14 @@ section
   trivial -- unsolved goals + unexpected identifier
 end
 
--- The empty-by fallback (`pushNone`) also fires when indented content doesn't
--- match any tactic's leading token, since `tacticParser` fails without consuming
--- input. This gives "unsolved goals" instead of a more specific parse error.
+-- Indented non-tactic content: the `notFollowedBy checkColGt` guard on the
+-- empty-by fallback ensures we get a parse error ("expected '{' or tactic")
+-- pointing at the non-tactic content, in addition to "unsolved goals".
 theorem fallbackOnNonTactic : True := by
-  123 -- unsolved goals + unexpected token (fallback fires because `123` isn't a tactic)
+  123 -- parse error + unsolved goals
+
+-- For comparison: non-tactic on second line (after a valid tactic).
+-- Here `123` falls out of the tactic block and gets a command-level error.
+theorem fallbackOnNonTacticSecondLine : True := by
+  skip
+  123 -- unsolved goals + command error

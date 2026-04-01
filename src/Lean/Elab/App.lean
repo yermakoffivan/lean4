@@ -2095,13 +2095,15 @@ private def elabAtom : TermElab := fun stx expectedType? => do
 
 @[builtin_term_elab explicit] def elabExplicit : TermElab := fun stx expectedType? =>
   match stx with
-  | `(@$_:ident)          => elabAtom stx expectedType?  -- Recall that `elabApp` also has support for `@`
-  | `(@$_:ident.{$_us,*}) => elabAtom stx expectedType?
-  | `(@$(_).$_:fieldIdx)  => elabAtom stx expectedType?
-  | `(@$(_).$_:ident)     => elabAtom stx expectedType?
-  | `(@($t))             => elabTerm t expectedType? (implicitLambda := false)    -- `@` is being used just to disable implicit lambdas
-  | `(@$t)               => elabTerm t expectedType? (implicitLambda := false)   -- `@` is being used just to disable implicit lambdas
-  | _                    => throwUnsupportedSyntax
+  | `(@$_:ident)           => elabAtom stx expectedType?  -- Recall that `elabApp` also has support for `@`
+  | `(@$_:ident.{$_us,*})  => elabAtom stx expectedType?
+  | `(@$(_).$_:fieldIdx)   => elabAtom stx expectedType?
+  | `(@$(_).$_:ident)      => elabAtom stx expectedType?
+  | `(@.$_:ident)          => elabAtom stx expectedType?
+  | `(@.$_:ident.{$_us,*}) => elabAtom stx expectedType?
+  | `(@($t))               => elabTerm t expectedType? (implicitLambda := false)   -- `@` is being used just to disable implicit lambdas
+  | `(@$t)                 => elabTerm t expectedType? (implicitLambda := false)   -- `@` is being used just to disable implicit lambdas
+  | _                      => throwUnsupportedSyntax
 
 @[builtin_term_elab choice] def elabChoice : TermElab := elabAtom
 @[builtin_term_elab proj] def elabProj : TermElab := elabAtom

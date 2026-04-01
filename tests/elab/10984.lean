@@ -12,6 +12,19 @@ Explicit `@`
 #guard_msgs in #check (@.nil Nat : List _)
 
 /-!
+Explicit `@` disables implicit lambda
+-/
+/--
+error: Type mismatch
+  @List.nil
+has type
+  {α : Type _} → List α
+but is expected to have type
+  List ?_
+-/
+#guard_msgs in #check (@.nil : List _)
+
+/-!
 Universe levels.
 -/
 example : List Nat := .nil.{0}
@@ -31,6 +44,20 @@ example : List Nat := .nil.{1}
 /-- error: too many explicit universe levels for `List.nil` -/
 #guard_msgs in
 example : List Nat := .nil.{0,0}
+
+/-!
+Explicit plus universe levels also disables implicit lambda
+-/
+/--
+error: Type mismatch
+  @List.nil
+has type
+  {α : Type} → List α
+of sort `Type 1` but is expected to have type
+  List Nat
+of sort `Type`
+-/
+#guard_msgs in example : List Nat := @.nil.{0}
 
 /-!
 Example of `@` from Floris van Doorn at https://github.com/leanprover/lean4/issues/10984

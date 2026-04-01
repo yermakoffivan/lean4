@@ -509,7 +509,7 @@ protected def quote (u : Level) (prec : Nat := 0) (mvars : Bool := true) (lIndex
   (PP.toResult u) |>.run { mvars, lIndex? } |>.quote prec
 
 instance : Quote Level `level where
-  quote := Level.quote
+  quote := Level.quote (lIndex? := fun _ => none)
 
 end Level
 

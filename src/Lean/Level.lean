@@ -508,9 +508,8 @@ instance : ToString Level where
 protected def quote (u : Level) (prec : Nat := 0) (mvars : Bool := true) (lIndex? : LMVarId → Option Nat) : Syntax.Level :=
   (PP.toResult u) |>.run { mvars, lIndex? } |>.quote prec
 
-/- Instance unimplemented since for proper quoting the level indices are required. -/
--- instance : Quote Level `level where
---   quote := Level.quote
+instance : Quote Level `level where
+  quote := Level.quote
 
 end Level
 

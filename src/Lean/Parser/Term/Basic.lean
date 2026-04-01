@@ -85,13 +85,10 @@ Delimiter-free indentation is determined by the *first* tactic of the sequence. 
 
 /-- Same as [`tacticSeq`] but requires delimiter-free tactic sequence to have strict indentation.
 Falls back to an empty tactic sequence when no appropriately indented content follows, producing
-an elaboration error (unsolved goals) rather than a parse error. The fallback is guarded by
-`notFollowedBy checkColGt` so that indented non-tactic content still produces a parse error
-rather than silently being treated as an empty `by`. -/
+an elaboration error (unsolved goals) rather than a parse error. -/
 @[builtin_doc, run_builtin_parser_attribute_hooks]
 def tacticSeqIndentGt := withAntiquot (mkAntiquot "tacticSeq" ``tacticSeq) <| node ``tacticSeq <|
   tacticSeqBracketed <|> (checkColGt "indented tactic sequence" >> tacticSeq1Indented) <|>
-  notFollowedBy (checkColGt "indented tactic sequence") "indented tactic sequence" >>
   node ``tacticSeq1Indented pushNone
 
 /- Raw sequence for quotation and grouping -/

@@ -86,14 +86,14 @@ section
   trivial -- unsolved goals + unexpected identifier
 end
 
--- Indented non-tactic content: the `notFollowedBy checkColGt` guard on the
--- empty-by fallback ensures we get a parse error ("expected '{' or tactic")
--- pointing at the non-tactic content, in addition to "unsolved goals".
+-- Indented non-tactic content: `123` doesn't parse as a tactic, so the
+-- empty-by fallback fires (unsolved goals) and `123` is tried as a command.
+-- This matches the behavior of non-tactic content on subsequent lines.
 theorem fallbackOnNonTactic : True := by
-  123 -- parse error + unsolved goals
+  123 -- unsolved goals + unexpected token
 
 -- For comparison: non-tactic on second line (after a valid tactic).
--- Here `123` falls out of the tactic block and gets a command-level error.
+-- Same pattern: `123` falls out of the tactic block and gets a command error.
 theorem fallbackOnNonTacticSecondLine : True := by
   skip
-  123 -- unsolved goals + command error
+  123 -- unsolved goals + unexpected token

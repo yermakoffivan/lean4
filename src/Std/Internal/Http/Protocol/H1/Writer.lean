@@ -51,19 +51,9 @@ inductive Writer.State
   | waitingForFlush
 
   /--
-  Reserved; not currently entered by the state machine.
-  -/
-  | writingHeaders
-
-  /--
   Writing the body output (either fixed-length or chunked).
   -/
   | writingBody (mode : Body.Length)
-
-  /--
-  Waiting for all buffered output to drain before transitioning to `complete`.
-  -/
-  | shuttingDown
 
   /--
   Completed writing a single message and ready to begin the next one.
@@ -124,6 +114,12 @@ structure Writer (dir : Direction) where
   -/
   omitBody : Bool := false
 
+  /--
+  Running total of bytes across all `userData` chunks, maintained incrementally
+  to avoid an O(n) fold on every fixed-length write step.
+  -/
+  userDataBytes : Nat := 0
+
 namespace Writer
 
 /--
@@ -183,8 +179,7 @@ def determineTransferMode (writer : Writer dir) : Body.Length :=
   if let some mode := writer.knownSize then
     mode
   else if writer.userClosedBody then
-    let size := writer.userData.foldl (fun x y => x + y.data.size) 0
-    .fixed size
+    .fixed writer.userDataBytes
   else
     .chunked
 
@@ -194,7 +189,8 @@ Adds user data chunks to the writer's buffer if the writer can accept data.
 @[inline]
 def addUserData (data : Array Chunk) (writer : Writer dir) : Writer dir :=
   if writer.canAcceptData then
-    { writer with userData := writer.userData ++ data }
+    let extraBytes := data.foldl (fun acc c => acc + c.data.size) 0
+    { writer with userData := writer.userData ++ data, userDataBytes := writer.userDataBytes + extraBytes }
   else
     writer
 
@@ -223,7 +219,7 @@ def writeFixedBody (writer : Writer dir) (limitSize : Nat) : Writer dir × Nat :
     ) (#[], #[], 0)
     let outputData := writer.outputData.append (ChunkedBuffer.ofArray chunks)
     let remaining := limitSize - totalSize
-    ({ writer with userData := pending, outputData }, remaining)
+    ({ writer with userData := pending, outputData, userDataBytes := writer.userDataBytes - totalSize }, remaining)
 
 /--
 Writes accumulated user data to output using chunked transfer encoding.
@@ -233,7 +229,7 @@ def writeChunkedBody (writer : Writer dir) : Writer dir :=
     writer
   else
     let data := writer.userData
-    { writer with userData := #[], outputData := data.foldl (Encode.encode .v11) writer.outputData }
+    { writer with userData := #[], userDataBytes := 0, outputData := data.foldl (Encode.encode .v11) writer.outputData }
 
 /--
 Writes the final chunk terminator (0\r\n\r\n) and transitions to complete state.

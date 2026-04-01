@@ -255,39 +255,6 @@ private def isValidRequestTargetForMethod (message : Message.Head .receiving) : 
 
 /- Internal host/authority matching helpers. -/
 @[inline]
-private def defaultPortForScheme? (scheme : URI.Scheme) : Option UInt16 :=
-  let scheme : String := scheme
-  if scheme == "http" then
-    some 80
-  else if scheme == "https" then
-    some 443
-  else
-    none
-
-@[inline]
-private def normalizeHostPortForAuthorityMatch
-    (scheme? : Option URI.Scheme)
-    (port : URI.Port) : URI.Port :=
-  match port with
-  | .omitted =>
-    match scheme? with
-    | some scheme =>
-      match defaultPortForScheme? scheme with
-      | some p => .value p
-      | none => .omitted
-    | none => .omitted
-  | p => p
-
-@[inline]
-private def hostAuthorityMatches
-    (scheme? : Option URI.Scheme)
-    (authority : URI.Authority)
-    (hostHeader : Header.Host) : Bool :=
-  let authorityPort := normalizeHostPortForAuthorityMatch scheme? authority.port
-  let hostPort := normalizeHostPortForAuthorityMatch scheme? hostHeader.port
-  authority.host == hostHeader.host && authorityPort == hostPort
-
-@[inline]
 private def isDefaultTunnelPort (port : UInt16) : Bool :=
   port == 80 || port == 443
 
@@ -303,7 +270,12 @@ private def hostAuthorityMatchesConnectAuthority
 
 /--
 Validates the required `Host` header for HTTP/1.1 requests:
-exactly one value, with absolute-form authority taking precedence over Host.
+exactly one value that is either empty or parseable as a valid host.
+
+Note: for absolute-form request targets, `normalizeAbsoluteFormHost` has already
+replaced the Host header with the URI authority before this check runs, so there is
+no need to re-validate the match here (RFC 9112 §3.2.2: the origin server MUST use
+the authority from the request-target and ignore the received Host header).
 
 As defined in RFC 9112 Section 3.2:
 
@@ -323,10 +295,6 @@ private def hasSingleAcceptedHostHeader (message : Message.Head .receiving) : Bo
       match message.uri with
       | .asteriskForm =>
         hostValue.value.isEmpty ∨ parsed.isSome
-      | .absoluteForm { scheme, authority := some authority, .. } =>
-        match parsed with
-        | some hostHeader => hostAuthorityMatches (some scheme) authority hostHeader
-        | none => false
       | .authorityForm authority =>
         match parsed with
         -- RFC 9110 CONNECT examples allow `Host` to omit the default port
@@ -336,6 +304,7 @@ private def hasSingleAcceptedHostHeader (message : Message.Head .receiving) : Bo
       | _ =>
         -- RFC 9110 §7.2: when the target URI has no authority (origin-form, asterisk-form),
         -- a client MUST send Host with an empty field value, so an empty value is valid here.
+        -- For absolute-form, the Host has already been normalized to the URI authority above.
         hostValue.value.isEmpty ∨ parsed.isSome
   | _ => false
 
@@ -354,6 +323,21 @@ private def authorityHostHeaderValue (authority : URI.Authority) : Header.Value 
     | .omitted => s!"{host}"
 
   Header.Value.ofString! value
+
+/--
+For absolute-form request targets, rewrites the `Host` header to match the
+URI authority verbatim.
+
+RFC 9112 §3.2.2: the origin server MUST ignore the received Host header and
+instead use the authority from the request-target.
+-/
+@[inline]
+private def normalizeAbsoluteFormHost (message : Message.Head .receiving) : Message.Head .receiving :=
+  match message.uri with
+  | .absoluteForm { authority := some authority, .. } =>
+    let normalized := authorityHostHeaderValue authority
+    { message with headers := message.headers.erase Header.Name.host |>.insert Header.Name.host normalized }
+  | _ => message
 
 /--
 Validates an incoming request head and selects the body framing mode.
@@ -416,15 +400,21 @@ private def checkMessageHead (message : Message.Head dir) : Except H1.Error Body
 
 /--
 Returns `true` when an `Expect` header includes `100-continue`.
+
+RFC 9110 §15.2: Since HTTP/1.0 did not define any 1xx status codes, a server MUST NOT send a 1xx response
+to an HTTP/1.0 client.
 -/
 @[inline]
 private def hasExpectContinue (message : Message.Head dir) : Bool :=
-  match message.headers.getAll? Header.Name.expect with
-  | some #[value] =>
-      match Header.Expect.parse value with
-      | some res => res.expect
-      | none => false
-  | _ => false
+  if message.version != .v11 then
+    false
+  else
+    match message.headers.getAll? Header.Name.expect with
+    | some #[value] =>
+        match Header.Expect.parse value with
+        | some res => res.expect
+        | none => false
+    | _ => false
 
 /--
 Builds canonical framing headers for a chosen transfer mode.
@@ -450,7 +440,7 @@ private def responseForbidsFramingHeaders (status : Status) : Bool :=
 Returns `true` when body chunks should be drained internally rather than surfaced to the caller.
 -/
 @[inline]
-private def shouldIgnoreBodyPull (machine : Machine dir) : Bool :=
+private def drainBodyInternally (machine : Machine dir) : Bool :=
   match dir with
   | .receiving => machine.writer.sentMessage
   | .sending => machine.reader.messageHead.status.isInformational
@@ -467,7 +457,7 @@ private def mkPulledChunk? (machine : Machine dir)
     (incomplete : Bool)
     (extensions : Array (Chunk.ExtensionName × Option Chunk.ExtensionValue))
     (data : ByteSlice) : Option PulledChunk :=
-  if shouldIgnoreBodyPull machine then
+  if drainBodyInternally machine then
     none
   else
     some {
@@ -569,7 +559,7 @@ Returns `true` when `pullBody` can attempt to produce body data immediately.
 -/
 @[inline]
 def canPullBody (machine : Machine dir) : Bool :=
-  !shouldIgnoreBodyPull machine &&
+  !drainBodyInternally machine &&
   match machine.reader.state with
   | .readBody _ => true
   | _ => false
@@ -638,10 +628,12 @@ private def resetForNextMessage (machine : Machine dir) : Machine dir :=
         input := machine.reader.input,
         messageHead := {},
         messageCount := machine.reader.messageCount + 1,
-        bodyBytesRead := 0
+        bodyBytesRead := 0,
+        noMoreInput := machine.reader.noMoreInput
       },
       writer := {
         userData := .empty,
+        userDataBytes := 0,
         outputData := machine.writer.outputData,
         state := match dir with | .receiving => .pending | .sending => .waitingHeaders,
         knownSize := none,
@@ -703,7 +695,7 @@ private def advanceAfterHeaders (machine : Machine dir) (state : Reader.State di
   let machine := if waitingContinue then machine.addEvent .continue else machine
 
   match dir, nextState, machine with
-  | .receiving,nextState,  machine => machine.setReaderState nextState |>.setWriterState .waitingHeaders |>.addEvent .needAnswer
+  | .receiving, nextState, machine => machine.setReaderState nextState |>.setWriterState .waitingHeaders |>.addEvent .needAnswer
   | .sending, nextState, machine => machine.setReaderState nextState
 
 /--
@@ -718,7 +710,7 @@ private def processHeaders (machine : Machine dir) : Machine dir :=
   let machine := machine.updateKeepAlive machine.reader.messageHead.shouldKeepAlive
 
   let machine : Machine dir := match dir, machine with
-    | .receiving, machine => machine.modifyReader (Reader.setMessageHead machine.reader.messageHead)
+    | .receiving, machine => machine.modifyReader (Reader.setMessageHead (normalizeAbsoluteFormHost machine.reader.messageHead))
     | .sending, machine => machine
 
   match checkMessageHead machine.reader.messageHead with
@@ -784,7 +776,7 @@ private def writeHead (messageHead : Message.Head dir.swap) (machine : Machine d
 
     outputData :=
       match dir, messageHead with
-      | .receiving, messageHead => Encode.encode (v := .v11) writer.outputData { messageHead with headers }
+      | .receiving, messageHead => Encode.encode (v := .v11) writer.outputData { messageHead with headers, version := machine.reader.messageHead.version }
       | .sending, messageHead => Encode.encode (v := .v11) writer.outputData { messageHead with headers },
 
     state
@@ -854,7 +846,7 @@ def suppressOutgoingBody (machine : Machine dir) (forceZero : Bool := false) : M
         some (.fixed 0)
       else
         w.knownSize
-    { w with omitBody := true, userClosedBody := true, knownSize, userData := #[] }
+    { w with omitBody := true, userClosedBody := true, knownSize, userData := #[], userDataBytes := 0 }
 
 /--
 Rejects user-provided framing headers when framing must come from machine state.
@@ -977,7 +969,9 @@ def sendData (machine : Machine dir) (data : Array Chunk) : Machine dir :=
   if data.isEmpty then
     machine
   else
-    machine.modifyWriter (fun writer => { writer with userData := writer.userData ++ data })
+    machine.modifyWriter (fun writer =>
+      let extraBytes := data.foldl (fun acc c => acc + c.data.size) 0
+      { writer with userData := writer.userData ++ data, userDataBytes := writer.userDataBytes + extraBytes })
 
 /--
 Takes and clears all accumulated events, returning the drained array.
@@ -1013,7 +1007,7 @@ Returns total payload bytes currently buffered in `writer.userData`.
 -/
 @[inline]
 private def bufferedUserDataBytes (writer : Writer dir) : Nat :=
-  writer.userData.foldl (fun acc chunk => acc + chunk.data.size) 0
+  writer.userDataBytes
 
 /--
 Handles transitions after a writer message completes.
@@ -1035,6 +1029,7 @@ private def processCompleteStep (machine : Machine dir) : Machine dir :=
     machine
   else
     machine.setWriterState .closed
+    |>.addEvent .close
 
 mutual
 
@@ -1053,7 +1048,7 @@ Completes a message whose body is intentionally omitted from wire output
 -/
 @[inline]
 private partial def completeOmittedBody (machine : Machine dir) : Machine dir :=
-  machine.modifyWriter ({ · with userData := #[] })
+  machine.modifyWriter ({ · with userData := #[], userDataBytes := 0 })
   |> completeWriterMessage
 
 /--
@@ -1107,16 +1102,14 @@ private partial def processFixedBufferedBody (machine : Machine dir) (n : Nat) :
 /--
 Handles fixed-length writer state when no user bytes are currently buffered.
 
-If the producer closed without providing all declared bytes, keep-alive is
-disabled and the connection is closed.
+If the producer closed without providing all declared bytes, closes both
+reader and writer and terminates the connection.
 -/
 @[inline]
 private partial def processFixedIdleBody (machine : Machine dir) : Machine dir :=
   if machine.writer.userClosedBody then
-    machine
-    |>.disableKeepAlive
-    |>.setWriterState .closed
-    |>.addEvent .close
+    -- Producer finished without supplying all declared bytes.
+    closeOnBadMessage machine
   else
     machine
 
@@ -1147,7 +1140,7 @@ private partial def processChunkedBody (machine : Machine dir) : Machine dir :=
   else if machine.writer.userClosedBody then
     machine.modifyWriter Writer.writeFinalChunk
     |> completeWriterMessage
-  else if machine.writer.userData.size > 0 ∨ machine.writer.noMoreUserData then
+  else if machine.writer.userData.size > 0 then
     machine.modifyWriter Writer.writeChunkedBody
     |> processWrite
   else
@@ -1176,19 +1169,10 @@ partial def processWrite (machine : Machine dir) : Machine dir :=
         |> processWrite
       else
         machine
-  | .writingHeaders =>
-      machine.setWriterState (.writingBody (Writer.determineTransferMode machine.writer))
-      |> processWrite
   | .writingBody (.fixed n) =>
       processFixedBody machine n
   | .writingBody .chunked =>
       processChunkedBody machine
-  | .shuttingDown =>
-      if machine.writer.outputData.isEmpty then
-        machine.setWriterState .complete
-        |> processWrite
-      else
-        machine
   | .complete =>
       processCompleteStep machine
   | .closed =>
@@ -1508,7 +1492,7 @@ When upper layers are not pulling body chunks, the machine drains body bytes
 internally to keep parsing/connection progress moving.
 -/
 private partial def processReadBodyState (machine : Machine dir) (bodyState : Reader.BodyState) : Machine dir :=
-  if shouldIgnoreBodyPull machine then
+  if drainBodyInternally machine then
     let (machine, _pulledChunk, shouldContinue) := parseBody machine bodyState
     if shouldContinue then processRead machine else machine
   else
@@ -1524,12 +1508,15 @@ private partial def processReaderCompleteState (machine : Machine dir) : Machine
   | .sending, machine =>
       -- After an informational (1xx) response, loop back to read the real response
       -- without resetting the request/writer state (still in the same exchange).
+
+      -- RFC 9110 §15.2: 1xx responses are not final; they must not count against the
+      -- maxMessages quota (messageCount is not incremented here).
       if machine.reader.messageHead.status.isInformational then
         { machine with reader := {
           state := .needStartLine,
           input := reader.input,
           messageHead := (∅ : Message.Head .sending),
-          messageCount := reader.messageCount + 1,
+          messageCount := reader.messageCount,
           bodyBytesRead := 0,
           headerBytesRead := 0,
           noMoreInput := reader.noMoreInput
@@ -1615,7 +1602,7 @@ It advances body parsing until it either:
 def pullBody (machine : Machine dir) : Machine dir × Option PulledChunk :=
   let (machine, pulledChunk) := pullNextChunk machine
   let readerState := machine.reader.state
-  let ignoreBodyPull := shouldIgnoreBodyPull machine
+  let ignoreBodyPull := drainBodyInternally machine
 
   -- It stalled if it is blocked and cannot produce a new chunk when it needs one.
   let stalled :=

@@ -85,3 +85,9 @@ section
   theorem indentedBad : True := by
   trivial -- unsolved goals + unexpected identifier
 end
+
+-- The empty-by fallback (`pushNone`) also fires when indented content doesn't
+-- match any tactic's leading token, since `tacticParser` fails without consuming
+-- input. This gives "unsolved goals" instead of a more specific parse error.
+theorem fallbackOnNonTactic : True := by
+  123 -- unsolved goals + unexpected token (fallback fires because `123` isn't a tactic)

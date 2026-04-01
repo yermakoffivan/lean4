@@ -1839,6 +1839,8 @@ private partial def resolveDottedIdentFn (idRef : Syntax) (id : Name) (explicitU
   let some expectedType := expectedType?
     | throwNoExpectedType
   addCompletionInfo <| CompletionInfo.dotId idRef id (← getLCtx) expectedType?
+  -- We will check deprecations in `elabAppFnResolutions`.
+  withoutCheckDeprecated do
   withForallBody expectedType fun resultType => do
     go resultType expectedType #[]
 where

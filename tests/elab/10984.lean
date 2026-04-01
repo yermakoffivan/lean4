@@ -60,3 +60,28 @@ of sort `Type 1` but is expected to have type
 of sort `Type`
 -/
 #guard_msgs in #check (.cons.{1} 2 [] : List Nat)
+
+/-!
+Regression test: This used to give a deprecation warning on the first `#check`.
+-/
+def MyNS1.List.nil' : List Nat := []
+@[deprecated MyNS1.List.nil' (since := "forever")] def MyNS2.List.nil' : List Int := []
+
+/-- info: MyNS1.List.nil' : List Nat -/
+#guard_msgs in
+open MyNS1 MyNS2 in #check (.nil' : List Nat)
+
+/--
+warning: `MyNS2.List.nil'` has been deprecated: Use `MyNS1.List.nil'` instead
+
+Note: The updated constant has a different type:
+  List Nat
+instead of
+  List Int
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.nil'` to `MyNS1.List.nil' x`).
+---
+info: MyNS2.List.nil' : List Int
+-/
+#guard_msgs in
+open MyNS1 MyNS2 in #check (.nil' : List Int)

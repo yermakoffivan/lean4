@@ -463,7 +463,7 @@ builtin_initialize auxDefCacheExt : EnvExtension AuxDefCache ←
   closed type. Returns the application of the cached or new definition to the appropriate arguments.
 -/
 def mkAuxDefinitionCached (type : Expr) (value : Expr) (kind? : Option Name := none)
-    (zetaDelta : Bool := false) (compile : Bool := true) : MetaM Expr := do
+    (zetaDelta : Bool := false) (compile : Bool := true) (logCompileErrors : Bool := true) : MetaM Expr := do
   let result ← Closure.mkValueTypeClosure type value zetaDelta
   let env ← getEnv
   let s := auxDefCacheExt.getState env
@@ -476,7 +476,7 @@ def mkAuxDefinitionCached (type : Expr) (value : Expr) (kind? : Option Name := n
     result.type result.value hints)
   addDecl decl
   if compile then
-    compileDecl decl
+    compileDecl decl (logErrors := logCompileErrors)
   modifyEnv fun env => auxDefCacheExt.modifyState env fun ⟨defs⟩ =>
     ⟨defs.insert result.type (name, result.levelParams.toList)⟩
   return mkAppN (mkConst name result.levelArgs.toList) result.exprArgs

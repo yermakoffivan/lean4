@@ -410,11 +410,17 @@ def isNewAnswer (oldAnswers : Array Answer) (answer : Answer) : Bool :=
 
 private def mkAnswer (cNode : ConsumerNode) : MetaM Answer :=
   withMCtx cNode.mctx do
-    let val ← instantiateMVars cNode.mvar
-    trace[Meta.synthInstance.newAnswer] "size: {cNode.size}, val: {val}"
+    let mut val ← instantiateMVars cNode.mvar
+    let mut size := cNode.size + 1
+    trace[Meta.synthInstance.newAnswer] "size: {size}, val: {val}"
+    if size ≥ 64 then
+      let type ← inferType val
+      val ← mkAuxDefinitionCached type val (kind? := `_inst) (logCompileErrors := false)
+      setReducibilityStatus val.getAppFn.constName! .reducible
+      size := 1
     let result ← abstractMVars val -- assignable metavariables become parameters
     let resultType ← inferType result.expr
-    return { result, resultType, size := cNode.size + 1 }
+    return { result, resultType, size }
 
 /--
   Create a new answer after `cNode` resolved all subgoals.
@@ -924,13 +930,7 @@ def synthInstanceCore? (type : Expr) (maxResultSize? : Option Nat := none) : Met
 
 def synthInstance? (type : Expr) (maxResultSize? : Option Nat := none) : MetaM (Option Expr) := do profileitM Exception "typeclass inference" (← getOptions) (decl := type.getAppFn.constName?.getD .anonymous) do
   let some result ← synthInstanceCore? type maxResultSize? | return none
-  if result.approxDepth ≥ 4 then
-    let type ← inferType result
-    let lifted ← mkAuxDefinitionCached type result (kind? := `_inst)
-    setReducibilityStatus lifted.getAppFn.constName! .implicitReducible
-    return some lifted
-  else
-    return some result
+  return some result
 
 /--
   Return `LOption.some r` if succeeded, `LOption.none` if it failed, and `LOption.undef` if

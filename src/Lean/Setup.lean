@@ -89,7 +89,7 @@ def ImportArtifacts.oleanServer? (arts : ImportArtifacts) :=
 def ImportArtifacts.oleanPrivate? (arts : ImportArtifacts) :=
   arts.toArray[3]?
 
-def ImportArtifacts.lcnf? (arts : ImportArtifacts) :=
+def ImportArtifacts.irSig? (arts : ImportArtifacts) :=
   arts.toArray[4]?
 
 def ImportArtifacts.oleanParts (inServer : Bool) (arts : ImportArtifacts) : Array System.FilePath := Id.run do

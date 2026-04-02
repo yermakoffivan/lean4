@@ -21,7 +21,7 @@ public structure ModuleOutputDescrs where
   oleanPrivate? : Option ArtifactDescr := none
   ilean : ArtifactDescr
   ir? : Option ArtifactDescr := none
-  lcnf? : Option ArtifactDescr := none
+  irSig? : Option ArtifactDescr := none
   c : ArtifactDescr
   bc? : Option ArtifactDescr := none
   ltar? : Option ArtifactDescr := none
@@ -41,8 +41,8 @@ public protected def ModuleOutputDescrs.toJson (self : ModuleOutputDescrs) : Jso
   obj := obj.insert "i" self.ilean
   if let some ir := self.ir? then
     obj := obj.insert "r" ir
-  if let some lcnf := self.lcnf? then
-    obj := obj.insert "n" lcnf
+  if let some irPrivate := self.irSig? then
+    obj := obj.insert "rs" irPrivate
   obj := obj.insert "c" self.c
   if let some bc := self.bc? then
     obj := obj.insert "b" bc
@@ -64,7 +64,7 @@ public protected def ModuleOutputDescrs.fromJson? (val : Json) : Except String M
     oleanPrivate? := oleanHashes[2]?
     ilean := ← obj.get "i"
     ir? := ← obj.get? "r"
-    lcnf? := ← obj.get? "n"
+    irSig? := ← obj.get? "rs"
     c := ← obj.get "c"
     bc? := ← obj.get? "b"
     ltar? := ← obj.get? "l"
@@ -80,7 +80,7 @@ public structure ModuleOutputArtifacts where
   oleanPrivate? : Option Artifact := none
   ilean : Artifact
   ir? : Option Artifact := none
-  lcnf? : Option Artifact := none
+  irSig? : Option Artifact := none
   c : Artifact
   bc? : Option Artifact := none
   ltar? : Option Artifact := none
@@ -93,7 +93,7 @@ public def ModuleOutputArtifacts.descrs (arts : ModuleOutputArtifacts) : ModuleO
   oleanPrivate? := arts.oleanPrivate?.map (·.descr)
   ilean := arts.ilean.descr
   ir? := arts.ir?.map (·.descr)
-  lcnf? := arts.lcnf?.map (·.descr)
+  irSig? := arts.irSig?.map (·.descr)
   c := arts.c.descr
   bc? := arts.bc?.map (·.descr)
   ltar? := arts.ltar?.map (·.descr)

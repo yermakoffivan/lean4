@@ -113,8 +113,8 @@ public abbrev pkg (self : Module) : Package :=
 @[inline] public def irFile (self : Module) : FilePath :=
   self.leanLibPath "ir"
 
-@[inline] public def lcnfFile (self : Module) : FilePath :=
-  self.leanLibPath "lcnf"
+@[inline] public def irSigFile (self : Module) : FilePath :=
+  FilePath.addExtension (self.leanLibPath "ir") "sig"
 
 @[inline] public def traceFile (self : Module) : FilePath :=
   self.leanLibPath "trace"

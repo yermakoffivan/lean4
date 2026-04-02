@@ -42,7 +42,7 @@ def mkIRData (env : Environment) : IO ModuleData := do
 
 /-- Leaner alternative to `.ir` for non-`import all` modules. Contains all data at `.exported`
 level; `import all` consumers use the full `.ir` instead. -/
-def mkLCNFData (env : Environment) : IO ModuleData := do
+def mkIRSigData (env : Environment) : IO ModuleData := do
   let data ← mkModuleData env .exported
   return { data with
     extraConstNames := getIRExtraConstNames env .private (includeDecls := true)
@@ -91,10 +91,10 @@ public def main (args : List String) : IO UInt32 := do
     let directImports := targetData.imports
     -- Import target module privately (`importAll`), its direct imports privately too (for kernel
     -- constants like constructors), and everything else at `exported` level.
-    -- `isMeta` ensures `.lcnf` is loaded transitively for all dependencies.
+    -- `isMeta` ensures `.ir` is loaded transitively for all dependencies.
     let imports := directImports.map (fun i => { i with isMeta := i.isMeta || i.importAll })
       |>.push { module := modName, importAll := true, isMeta := true }
-    let (_, s) ← importModulesCore (globalLevel := .exported) (preferLCNF := true) imports |>.run
+    let (_, s) ← importModulesCore (globalLevel := .exported) (preferIRSig := true) imports |>.run
     let s := { s with moduleNameMap := s.moduleNameMap.modify modName fun m => { m with irPhases := .runtime } }
     -- level exported because otherwise we would try to load the current module's `.ir`
     finalizeImport (leakEnv := true) (loadExts := false) (level := .exported) s imports opts
@@ -164,16 +164,12 @@ public def main (args : List String) : IO UInt32 := do
   if s.messages.hasErrors then
    return 1
 
-  -- Make sure to change the module name so we derive a different base address
-  -- Write .lcnf (part[0]) and .ir (part[1]) as parts of the same compaction.
-  -- .lcnf is self-contained; .ir reuses .lcnf's compacted objects, reducing total size.
-  -- Non-`import all` consumers load .lcnf only; `import all` loads both via readModuleDataParts.
-  let lcnfFile := (irFile : System.FilePath).withExtension "lcnf"
-  let lcnfData ← mkLCNFData env
-  let irData ← mkIRData env
+  -- Write .ir.sig (part[0], exported, self-contained) and .ir (part[1], full, references part[0]).
+  -- Non-`import all` consumers load .ir.sig only; `import all` loads both via readModuleDataParts.
+  let irSigFile := (irFile : System.FilePath).addExtension "sig"
   saveModuleDataParts (env.mainModule ++ `ir) #[
-    (lcnfFile, lcnfData),
-    (irFile, irData)]
+    (irSigFile, ← mkIRSigData env),
+    (irFile, ← mkIRData env)]
 
   let .ok out ← IO.FS.Handle.mk c .write |>.toBaseIO
     | IO.eprintln s!"failed to create '{c}'"

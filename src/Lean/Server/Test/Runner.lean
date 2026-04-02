@@ -641,7 +641,7 @@ def processGenericRequest : RunnerM Unit := do
   let params := params.setObjVal! "position" (toJson s.pos)
   logResponse s.method params
 
-def processDirective (ws directive : String) (directiveTargetLineNo : Nat)
+def processDirective (_ws directive : String) (directiveTargetLineNo : Nat)
     (directiveTargetColumn : Nat) : RunnerM Unit := do
   let directive := directive.drop 1
   let colon := directive.find ':'

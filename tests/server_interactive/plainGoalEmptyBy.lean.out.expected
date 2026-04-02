@@ -1,0 +1,9 @@
+{"textDocument": {"uri": "file:///plainGoalEmptyBy.lean"},
+ "position": {"line": 1, "character": 18}}
+{"rendered": "```lean\n⊢ True\n```", "goals": ["⊢ True"]}
+{"textDocument": {"uri": "file:///plainGoalEmptyBy.lean"},
+ "position": {"line": 1, "character": 19}}
+{"rendered": "```lean\n⊢ True\n```", "goals": ["⊢ True"]}
+{"textDocument": {"uri": "file:///plainGoalEmptyBy.lean"},
+ "position": {"line": 8, "character": 2}}
+{"rendered": "```lean\n⊢ True\n```", "goals": ["⊢ True"]}

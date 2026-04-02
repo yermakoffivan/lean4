@@ -3,6 +3,7 @@
 -/
 
 set_option warn.sorry false
+set_option linter.deprecated true
 set_option pp.mvars.anonymous false
 
 /-!

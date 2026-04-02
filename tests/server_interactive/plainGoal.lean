@@ -107,7 +107,7 @@ example : True := by
   have : True := by
     -- type here
   --^ $/lean/plainGoal
--- `this` is not in scope: the inner `by` has an unsolved goal
+-- `this` is in scope: empty `by` is parsed successfully
 --^ $/lean/plainGoal
 
 example : True := by
@@ -116,7 +116,6 @@ example : True := by
   --^ $/lean/plainGoal
   apply this
 --^ $/lean/plainGoal
--- `this` is not in scope: the inner `by` has an unsolved goal
 
 example : False := by
 -- EOF test

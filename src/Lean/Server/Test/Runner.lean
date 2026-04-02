@@ -576,41 +576,16 @@ def processWidgets : RunnerM Unit := do
     logRpcResponse `Lean.Widget.getWidgetSource params
 
 def processCompletion : RunnerM Unit := do
-  let s ← get
   let p : CompletionParams := {
-    textDocument := { uri := s.uri }
-    position := s.pos
+    textDocument := { uri := (← get).uri }
+    position := (← get).pos
   }
-  if s.params == "{}" then
-    -- No assertion: log full response (existing behavior)
-    let r ← requestWithLoggedResponse "textDocument/completion" p CompletionList
-    for i in r.items do
-      if i.data?.isNone then
-        continue
-      IO.eprintln s!"Resolution of {i.label}:"
-      logResponse "completionItem/resolve" i (logParam := false)
-  else
-    -- Assertion mode: check the completion result without logging full JSON
-    let r ← request "textDocument/completion" p CompletionList
-    let assertion := s.params
-    if assertion.startsWith "has " then
-      let needle := assertion.drop 4 |>.trimAscii
-      -- Strip surrounding quotes if present
-      let needle := if needle.front == '"' && needle.back == '"' then
-        needle.drop 1 |>.dropEnd 1 else needle
-      if r.items.any (·.label == needle) then
-        printOutputLn s!"completion has \"{needle}\": ok"
-      else
-        let labels := r.items.map (·.label) |>.toList
-        printOutputLn s!"completion has \"{needle}\": FAILED (got {labels})"
-    else if assertion == "is empty" then
-      if r.items.isEmpty then
-        printOutputLn "completion is empty: ok"
-      else
-        let labels := r.items.map (·.label) |>.toList
-        printOutputLn s!"completion is empty: FAILED (got {labels})"
-    else
-      throw <| IO.userError s!"unknown completion assertion: {assertion}"
+  let r ← requestWithLoggedResponse "textDocument/completion" p CompletionList
+  for i in r.items do
+    if i.data?.isNone then
+      continue
+    IO.eprintln s!"Resolution of {i.label}:"
+    logResponse "completionItem/resolve" i (logParam := false)
 
 def processIncomingCallHierarchy : RunnerM Unit := do
   let s ← get

@@ -21,31 +21,31 @@ syntax (name := skip) "skip" : tactic
 
 -- column 20 on `by` line (end of `by` token, before whitespace)
 example : True := by
-                  --^ completion: is empty
+                  --^ completion
 
 -- column 20 on nested `by` line (end of `by` token, before whitespace)
 example : True := id <|
   have : True := by
-                 --^ completion: is empty
+                 --^ completion
 
 -- ===== Top-level `by`, non-indented content following =====
 
 -- column 21 on line below `by`
 example : True := by
                       -- below by
-                   --^ completion: has "skip"
+                   --^ completion
 sorry
 
 -- column 0 on line below `by`
 example : True := by
    -- below by
---⬑ completion: has "skip"
+--⬑ completion
 sorry
 
 -- column 2 on line below `by`
 example : True := by
    -- below by
---^ completion: has "skip"
+--^ completion
 sorry
 
 -- ===== Top-level `by`, no tactics following =====
@@ -53,17 +53,17 @@ sorry
 -- column 21 on line below `by`
 example : True := by
                       -- below by
-                   --^ completion: has "skip"
+                   --^ completion
 
 -- column 0 on line below `by`
 example : True := by
    -- below by
---⬑ completion: has "skip"
+--⬑ completion
 
 -- column 2 on line below `by`
 example : True := by
    -- below by
---^ completion: has "skip"
+--^ completion
 
 -- ===== Nested `by`, content following =====
 
@@ -71,28 +71,28 @@ example : True := by
 example : True := id <|
   have : True := by
                       -- below by
-                   --^ completion: has "skip"
+                   --^ completion
   sorry
 
 -- column 2 on line below `by` (at column of `have` line)
 example : True := id <|
   have : True := by
      -- below by
-  --^ completion: has "skip"
+  --^ completion
   sorry
 
 -- column 0 on line below `by`
 example : True := id <|
   have : True := by
    -- below by
---⬑ completion: has "skip"
+--⬑ completion
   sorry
 
 -- column 4 on line below `by` (indented past `have` but not past `by`)
 example : True := id <|
   have : True := by
        -- below by
-    --^ completion: has "skip"
+    --^ completion
   sorry
 
 -- ===== Nested `by`, no tactics following =====
@@ -101,22 +101,22 @@ example : True := id <|
 example : True := id <|
   have : True := by
                       -- below by
-                   --^ completion: has "skip"
+                   --^ completion
 
 -- column 2 on line below `by` (at column of `have` line)
 example : True := id <|
   have : True := by
      -- below by
-  --^ completion: has "skip"
+  --^ completion
 
 -- column 0 on line below `by`
 example : True := id <|
   have : True := by
    -- below by
---⬑ completion: has "skip"
+--⬑ completion
 
 -- column 4 on line below `by`
 example : True := id <|
   have : True := by
        -- below by
-    --^ completion: has "skip"
+    --^ completion

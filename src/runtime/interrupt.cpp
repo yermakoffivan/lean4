@@ -111,9 +111,6 @@ void check_heartbeat() {
     inc_heartbeat();
     if (g_max_heartbeat > 0 && g_heartbeat > g_max_heartbeat)
         throw_heartbeat_exception();
-    if (g_heartbeat % 1024 == 0) {
-        check_system("heartbeat");
-    }
 }
 
 LEAN_THREAD_VALUE(lean_object *, g_cancel_tk, nullptr);

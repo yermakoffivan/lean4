@@ -576,16 +576,41 @@ def processWidgets : RunnerM Unit := do
     logRpcResponse `Lean.Widget.getWidgetSource params
 
 def processCompletion : RunnerM Unit := do
+  let s ← get
   let p : CompletionParams := {
-    textDocument := { uri := (← get).uri }
-    position := (← get).pos
+    textDocument := { uri := s.uri }
+    position := s.pos
   }
-  let r ← requestWithLoggedResponse "textDocument/completion" p CompletionList
-  for i in r.items do
-    if i.data?.isNone then
-      continue
-    IO.eprintln s!"Resolution of {i.label}:"
-    logResponse "completionItem/resolve" i (logParam := false)
+  if s.params == "{}" then
+    -- No assertion: log full response (existing behavior)
+    let r ← requestWithLoggedResponse "textDocument/completion" p CompletionList
+    for i in r.items do
+      if i.data?.isNone then
+        continue
+      IO.eprintln s!"Resolution of {i.label}:"
+      logResponse "completionItem/resolve" i (logParam := false)
+  else
+    -- Assertion mode: check the completion result without logging full JSON
+    let r ← request "textDocument/completion" p CompletionList
+    let assertion := s.params
+    if assertion.startsWith "has " then
+      let needle := assertion.drop 4 |>.trimAscii
+      -- Strip surrounding quotes if present
+      let needle := if needle.front == '"' && needle.back == '"' then
+        needle.drop 1 |>.dropEnd 1 else needle
+      if r.items.any (·.label == needle) then
+        printOutputLn s!"completion has \"{needle}\": ok"
+      else
+        let labels := r.items.map (·.label) |>.toList
+        printOutputLn s!"completion has \"{needle}\": FAILED (got {labels})"
+    else if assertion == "is empty" then
+      if r.items.isEmpty then
+        printOutputLn "completion is empty: ok"
+      else
+        let labels := r.items.map (·.label) |>.toList
+        printOutputLn s!"completion is empty: FAILED (got {labels})"
+    else
+      throw <| IO.userError s!"unknown completion assertion: {assertion}"
 
 def processIncomingCallHierarchy : RunnerM Unit := do
   let s ← get
@@ -641,13 +666,13 @@ def processGenericRequest : RunnerM Unit := do
   let params := params.setObjVal! "position" (toJson s.pos)
   logResponse s.method params
 
-def processDirective (ws directive : String) (directiveTargetLineNo : Nat) : RunnerM Unit := do
+def processDirective (_ws directive : String) (directiveTargetLineNo : Nat)
+    (directiveTargetColumn : Nat) : RunnerM Unit := do
   let directive := directive.drop 1
   let colon := directive.find ':'
   let method := directive.sliceTo colon |>.trimAscii |>.copy
   -- TODO: correctly compute in presence of Unicode
-  let directiveTargetColumn := ws.rawEndPos + "--"
-  let pos : Lsp.Position := { line := directiveTargetLineNo, character := directiveTargetColumn.byteIdx }
+  let pos : Lsp.Position := { line := directiveTargetLineNo, character := directiveTargetColumn }
   let params :=
     if h : ¬colon.IsAtEnd then
       directive.sliceFrom (colon.next h) |>.trimAscii.copy
@@ -686,10 +711,15 @@ def processLine (line : String) : RunnerM Unit := do
     match directive.front with
     | 'v' => pure <| (← get).lineNo + 1  -- TODO: support subsequent 'v'... or not
     | '^' => pure <| (← get).lastActualLineNo
+    -- `⬑` is like `^` but targets the column of the `--` marker itself (i.e. column 0 when the
+    -- marker is at the start of the line), rather than the column after `--`.
+    | '⬑' => pure <| (← get).lastActualLineNo
     | _ =>
       skipLineWithoutDirective
       return
-  processDirective ws directive directiveTargetLineNo
+  let directiveTargetColumn :=
+    if directive.front == '⬑' then ws.rawEndPos.byteIdx else (ws.rawEndPos + "--").byteIdx
+  processDirective ws directive directiveTargetLineNo (directiveTargetColumn := directiveTargetColumn)
   skipLineWithDirective
 
 

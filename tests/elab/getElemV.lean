@@ -221,6 +221,7 @@ attribute [- grind] getElem_insert
     | 0 => simp [*]
     | i' + 1 => simp [*, getElemV_def]
 
+set_option warn.sorry false in
 protected theorem minIdxOn_le_of_apply_getElemV_le_apply_minOn {_ : Nonempty α} [LE β]
     [DecidableLE β] [Std.IsLinearPreorder β]
     {f : α → β} {xs : List α} (h : xs ≠ [])
@@ -497,6 +498,7 @@ end Array
 ## Rewrite-in-proof anomaly
 -/
 
+set_option warn.sorry false in
 example (xs : List α) (h : xs.length ≤ i) (hj : xs.length ≤ j) (hk : k < xs.length) :
     haveI : Nonempty α := ⟨(xs.set j xs｢k｣)[k]'(by simpa using hk)⟩
     xs｢i｣ = xs｢j｣ := by

@@ -1875,7 +1875,7 @@ where
           throwError "The private declaration `{.ofConstName declName}` is not accessible in the current context"
         -- Recall that the namespace for private declarations is non-private.
         let fullName := privateToUserName declName ++ id
-        -- Resolve the name without making use of the current namespace, like in `findMethod?`.ee
+        -- Resolve the name without making use of the current namespace, like in `findMethod?`.
         let candidates := ResolveName.resolveGlobalName env (← getOptions) Name.anonymous (← getOpenDecls) fullName
           |>.filter (fun (_, fieldList) => fieldList.isEmpty)
           |>.map Prod.fst

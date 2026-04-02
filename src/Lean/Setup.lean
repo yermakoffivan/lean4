@@ -105,6 +105,14 @@ def ImportArtifacts.oleanParts (inServer : Bool) (arts : ImportArtifacts) : Arra
         fnames := fnames.push pFile
   return fnames
 
+def ImportArtifacts.irParts (arts : ImportArtifacts) : Array System.FilePath := Id.run do
+  let mut fnames := #[]
+  if let some irSigFile := arts.irSig? then
+    fnames := fnames.push irSigFile
+    if let some irFile := arts.ir? then
+      fnames := fnames.push irFile
+  return fnames
+
 /-- Files containing data for a single module. -/
 structure ModuleArtifacts where
   lean? : Option System.FilePath := none

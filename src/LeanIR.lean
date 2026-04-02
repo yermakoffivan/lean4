@@ -91,10 +91,9 @@ public def main (args : List String) : IO UInt32 := do
     let directImports := targetData.imports
     -- Import target module privately (`importAll`), its direct imports privately too (for kernel
     -- constants like constructors), and everything else at `exported` level.
-    -- `isMeta` ensures `.ir` is loaded transitively for all dependencies.
-    let imports := directImports.map (fun i => { i with isMeta := i.isMeta || i.importAll })
-      |>.push { module := modName, importAll := true, isMeta := true }
-    let (_, s) ← importModulesCore (globalLevel := .exported) (preferIRSig := true) imports |>.run
+    let imports := directImports.map (fun i => { i with isMeta := false })
+      |>.push { module := modName, importAll := true }
+    let (_, s) ← importModulesCore (globalLevel := .exported) (loadIRSig := true) imports |>.run
     let s := { s with moduleNameMap := s.moduleNameMap.modify modName fun m => { m with irPhases := .runtime } }
     -- level exported because otherwise we would try to load the current module's `.ir`
     finalizeImport (leakEnv := true) (loadExts := false) (level := .exported) s imports opts

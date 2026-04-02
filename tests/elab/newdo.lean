@@ -79,7 +79,7 @@ example (x : Nat) := Id.run (α := Fin (2 * x + 2)) do
   have y' : Fin (x + 1) := ⟨0, by grind⟩
   let mut y₁ : Fin (x + 1) := ⟨0, by grind⟩
   let y₂ ←
-    match (motive := ∀ x, Fin (x + 1)) x with
+    match (motive := fun x => Fin (x + 1)) x with
     | z + 1 => pure ⟨1, by grind⟩
     | _     => pure ⟨0, by grind⟩
   return ⟨y₁.val + y₂.val, by grind⟩

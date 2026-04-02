@@ -31,17 +31,15 @@ WellFounded.Nat.fix
               Nat)
             fuel
             (fun fuel h a =>
-              (match (motive :=
-                  (x x_1 x_2 : Nat) →
-                    (x_3 : g x x_1 < x_2) →
-                      ((y : (n : Nat) ×' (m : Nat) ×' (fuel : Nat) ×' g n m < fuel) →
-                          InvImage (fun x1 x2 => x1 < x2)
-                              (fun x =>
-                                PSigma.casesOn x fun n m =>
-                                  PSigma.casesOn m fun m fuel => PSigma.casesOn fuel fun fuel h => fuel)
-                              y ⟨x, ⟨x_1, ⟨x_2, x_3⟩⟩⟩ →
-                            Nat) →
-                        Nat)
+              (match (motive := fun x x_1 x_2 x_3 =>
+                  ((y : (n : Nat) ×' (m : Nat) ×' (fuel : Nat) ×' g n m < fuel) →
+                      InvImage (fun x1 x2 => x1 < x2)
+                          (fun x =>
+                            PSigma.casesOn x fun n m =>
+                              PSigma.casesOn m fun m fuel => PSigma.casesOn fuel fun fuel h => fuel)
+                          y ⟨x, ⟨x_1, ⟨x_2, x_3⟩⟩⟩ →
+                        Nat) →
+                    Nat)
                   n, m, fuel, h with
                 | 0, m, x, x_1 => fun x => m + 1
                 | n.succ, 0, f, h => fun x => x ⟨n, ⟨1, ⟨f - 1, sorry⟩⟩⟩ (id ((fun f => sorry) f))

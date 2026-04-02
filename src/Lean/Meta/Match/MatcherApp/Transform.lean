@@ -437,7 +437,7 @@ alternatives.
 
 For example, given
 ```
-(match (motive := Nat → Unit → ?) n with
+(match (motive := fun (n : Nat) => Unit → ?) n with
  0 => 1
  _ => true) ()
 ```

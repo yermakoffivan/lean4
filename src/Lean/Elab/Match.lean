@@ -14,6 +14,7 @@ public import Lean.Elab.Quotation.Precheck
 public import Lean.Elab.SyntheticMVars
 import Lean.Meta.Match.Value
 import Lean.Meta.Match.NamedPatterns
+import Lean.Linter.Basic
 
 public section
 
@@ -54,11 +55,6 @@ def isAtomicDiscr (discr : Syntax) : TermElabM Bool := do
   | `(?$_:ident) => pure true
   | _ => if discr.isMissing then throwAbortTerm else pure false
 
--- See expandNonAtomicDiscrs?
-private def elabAtomicDiscr (discr : Syntax) : TermElabM Expr := do
-  let term := discr[1]
-  elabTerm term none
-
 /-- Creates syntax for a fresh `h : `-notation annotation for a discriminant, copying source
     information from an existing annotation `stx`. -/
 private def mkFreshDiscrIdentFrom (stx : Syntax) : CoreM Ident :=
@@ -86,31 +82,50 @@ private partial def elabMatchTypeAndDiscrs (discrStxs : Array Syntax) (matchOptM
     elabDiscrs 0 #[]
   else
     -- motive := leading_parser atomic ("(" >> nonReservedSymbol "motive" >> " := ") >> termParser >> ")"
-    let matchTypeStx := matchOptMotive[0][3]
-    let matchType ← elabType matchTypeStx
-    let (discrs, isDep) ← elabDiscrsWithMatchType matchType
+    let motiveStx := matchOptMotive[0][3]
+    let motive ← elabTerm motiveStx none
+    let (matchType, discrs, isDep) ← withRef motiveStx <| elabDiscrsWithMotive motive (warn := (motiveStx.getPos? true).isSome)
     return { discrs := discrs, matchType := matchType, isDep := isDep, alts := matchAltViews }
 where
-  /-- Easy case: elaborate discriminant when the match-type has been explicitly provided by the user.  -/
-  elabDiscrsWithMatchType (matchType : Expr) : TermElabM (Array Discr × Bool) := do
-    let mut discrs := #[]
-    let mut i := 0
-    let mut matchType := matchType
+  /-- Easy case: elaborate discriminant when the motive has been explicitly provided by the user.  -/
+  elabDiscrsWithMotive (motive : Expr) (warn : Bool) : TermElabM (Expr × Array Discr × Bool) := do
+    let mut lctx ← getLCtx              -- local context with free variables for `motive`
+    let mut fvars : Array Expr := #[]   -- free variables for discriminants in `motive`
+    let mut discrs : Array Discr := #[] -- elaborated discriminants
+    let mut motive := motive            -- motive with instantiated `fvars`
+    let mut motive' := motive           -- motive with instantiated `discrs`
     let mut isDep := false
-    for discrStx in discrStxs do
-      i := i + 1
-      matchType ← whnf matchType
-      match matchType with
-      | Expr.forallE _ d b _ =>
-        let discr ← fullApproxDefEq <| elabTermEnsuringType discrStx[1] d
-        trace[Elab.match] "discr #{i} {discr} : {d}"
-        if b.hasLooseBVars then
+    let mut warnedForallDeprecated := !warn
+    for discrStx in discrStxs, i in 1...* do
+      let (discrStx, h?) ← expandDiscrStx discrStx
+      unless motive.isBinding do
+        motive ← withLCtx lctx {} do whnf motive
+        motive' ← whnf motive'
+      if motive.isForall then
+        unless warnedForallDeprecated do
+          warnedForallDeprecated := true
+          Linter.logLintIf Linter.linter.deprecated (← getRef) m!"\
+            using function types for `match` motives is deprecated; use function expressions instead"
+      if motive.isBinding && motive'.isBinding then
+        let discr ← fullApproxDefEq <| elabTermEnsuringType discrStx motive'.bindingDomain!
+        trace[Elab.match] "discr #{toString i} {discr} : {motive'.bindingDomain!}"
+        motive ← instantiateMVars motive
+        if motive.bindingDomain!.hasLooseBVars then
           isDep := true
-        matchType := b.instantiate1 discr
-        discrs := discrs.push { expr := discr }
-      | _ =>
-        throwError "Invalid motive provided to match-expression: Function type with arity {discrStxs.size} expected"
-    return (discrs, isDep)
+        let fvarId ← mkFreshFVarId
+        lctx := lctx.mkLocalDecl fvarId motive.bindingName! motive.bindingDomain!
+        let fvar := Expr.fvar fvarId
+        fvars := fvars.push fvar
+        motive := motive.bindingBody!.instantiate1 fvar
+        motive' := motive'.bindingBody!.instantiate1 discr
+        discrs := discrs.push { expr := discr, h? }
+      else
+        throwError "Invalid motive provided to match-expression: Function with arity {discrStxs.size} expected"
+    let matchType ← withLCtx lctx {} do
+      let motive ← ensureType motive
+      -- Using `mkForallFVars` instead of `lctx.mkForall` since `ensureType` may have inserted a coercion.
+      mkForallFVars fvars motive
+    return (matchType, discrs, isDep)
 
   markIsDep (r : ElabMatchTypeAndDiscrsResult) :=
     { r with isDep := true }
@@ -119,19 +134,22 @@ where
     | stx@`(_) => mkFreshDiscrIdentFrom stx
     | stx => return stx
 
+  expandDiscrStx (discrStx : Syntax) : MetaM (Syntax × Option Syntax) := do
+    let h? ←
+      if discrStx[0].isNone then
+        pure none
+      else
+        let h ← expandDiscrIdent discrStx[0][0]
+        pure (some h)
+    return (discrStx[1], h?)
+
   /-- Elaborate discriminants inferring the match-type -/
   elabDiscrs (i : Nat) (discrs : Array Discr) : TermElabM ElabMatchTypeAndDiscrsResult := do
     if h : i < discrStxs.size then
-      let discrStx := discrStxs[i]
-      let discr     ← elabAtomicDiscr discrStx
+      let (discrStx, h?) ← expandDiscrStx discrStxs[i]
+      let discr     ← elabTerm discrStx none  -- Expected to be atomic; see expandNonAtomicDiscrs?
       let discr     ← instantiateMVars discr
       let userName ← mkUserNameFor discr
-      let h? ←
-        if discrStx[0].isNone then
-          pure none
-        else
-          let h ← expandDiscrIdent discrStx[0][0]
-          pure (some h)
       let discrs := discrs.push { expr := discr, h? }
       let mut result ← elabDiscrs (i + 1) discrs
       let matchTypeBody ← kabstract result.matchType discr

@@ -702,7 +702,7 @@ structure AppMatchState where
   /-- The `matcherTy` instantiated with universe levels and the matcher parameters, with a position at the type of
   this application prefix. -/
   matcherTy : SubExpr
-  /-- The motive, with the pi type version delaborated and the original expression version.
+  /-- The motive, both the delaborated syntax and the original expression.
   Once `AppMatchState` is complete, this is not `none`. -/
   motive      : Option (Term × Expr) := none
   /-- Whether `pp.analysis.namedArg` was set for the motive argument. -/
@@ -789,15 +789,10 @@ partial def delabAppMatch : Delab := whenNotPPOption getPPExplicit <| whenPPOpti
         return { info, matcherTy })
       (fun st => do
         if st.motive.isNone then
-          -- A motive for match notation is a type, so need to delaborate the lambda motive as a pi type.
-          let lamMotive ← getExpr
-          let piMotive ← lambdaTelescope lamMotive fun xs body => mkForallFVars xs body
-          -- TODO: pp.analyze has not analyzed `piMotive`, only `lamMotive`
-          -- Thus the binder types won't have any annotations.
-          -- Though, by using the same position we can use the body annotations
-          let piStx ← withTheReader SubExpr (fun cfg => { cfg with expr := piMotive }) delab
+          let motiveStx ← delab
+          let motiveExpr ← getExpr
           let named ← getPPOption getPPAnalysisNamedArg
-          return { st with motive := (piStx, lamMotive), motiveNamed := named }
+          return { st with motive := (motiveStx, motiveExpr), motiveNamed := named }
         else if st.discrs.size < st.info.numDiscrs then
           return { st with discrs := st.discrs.push (← delab) }
         else if st.alts.size < st.info.numAlts then
@@ -844,11 +839,11 @@ partial def delabAppMatch : Delab := whenNotPPOption getPPExplicit <| whenPPOpti
         match hName? with
         | none => `(matchDiscr| $discr:term)
         | some hName => `(matchDiscr| $(mkIdent hName) : $discr)
-      let (piStx, lamMotive) := st.motive.get!
+      let (motiveStx, motiveExpr) := st.motive.get!
       let opts ← getOptions
       -- TODO: disable the match if other implicits are needed?
-      if ← pure st.motiveNamed <||> shouldShowMotive lamMotive opts then
-        `(match (motive := $piStx) $[$discrs:matchDiscr],* with $[| $pats,* => $st.rhss]*)
+      if ← pure st.motiveNamed <||> shouldShowMotive motiveExpr opts then
+        `(match (motive := $motiveStx) $[$discrs:matchDiscr],* with $[| $pats,* => $st.rhss]*)
       else
         `(match $[$discrs:matchDiscr],* with $[| $pats,* => $st.rhss]*)
 where

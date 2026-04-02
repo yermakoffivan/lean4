@@ -80,11 +80,10 @@ info: @[reducible] def fnStructRec._f : (n : Nat) →
     have α : Type := Nat;
     α :=
 fun n f =>
-  (match (motive :=
-      (n : Nat) →
-        Nat.below n →
-          let α : Type := Nat;
-          α)
+  (match (motive := fun n =>
+      Nat.below n →
+        let α : Type := Nat;
+        α)
       n with
     | 0 => fun x => 0
     | n.succ => fun x =>
@@ -168,14 +167,13 @@ info: @[irreducible] def fnWFRec : Nat →
   have α : Type := Nat;
   α :=
 WellFounded.Nat.fix (fun x => x) fun n a =>
-  (match (motive :=
-      (n : Nat) →
-        ((y : Nat) →
-            InvImage (fun x1 x2 => x1 < x2) (fun x => x) y n →
-              let α : Type := Nat;
-              α) →
-          let α : Type := Nat;
-          α)
+  (match (motive := fun n =>
+      ((y : Nat) →
+          InvImage (fun x1 x2 => x1 < x2) (fun x => x) y n →
+            let α : Type := Nat;
+            α) →
+        let α : Type := Nat;
+        α)
       n with
     | 0 => fun x => 0
     | n.succ => fun x =>

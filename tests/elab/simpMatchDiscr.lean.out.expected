@@ -22,7 +22,7 @@ fun {b} h =>
         (congrArg Eq
           (congrArg
             (fun x =>
-              (match (motive := Bool → Nat → Nat) x with
+              (match (motive := fun b => Nat → Nat) x with
                 | true => fun x => x + 1
                 | false => id)
                 10)

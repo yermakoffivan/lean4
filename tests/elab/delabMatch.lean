@@ -87,7 +87,7 @@ Overapplication
 -/
 /--
 info: fun b =>
-  (match (motive := Bool → Bool → Bool) b with
+  (match (motive := fun b => Bool → Bool) b with
     | false => fun x => x
     | true => fun x => !x)
     b : Bool → Bool

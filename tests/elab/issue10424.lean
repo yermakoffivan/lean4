@@ -16,7 +16,7 @@ n : Nat
     | n.succ => Fin.last (n + 1)
 -/
 #guard_msgs(pass trace, all) in
-example (n : Nat) : Fin.last n = match (motive := ∀ n, Fin (n+1)) id n with
+example (n : Nat) : Fin.last n = match (motive := fun n => Fin (n+1)) id n with
   | 0 => Fin.last 0
   | n + 1 => Fin.last (n + 1) := by
   split <;> rfl
@@ -38,7 +38,7 @@ error: (kernel) declaration has metavariables '_example'
 #guard_msgs in
 example (n0 n : Nat) (h : id n0 = n) :
   Fin.last n0 =
-    match (generalizing := false) (motive := ∀ n, Fin (n + 1)) n with
+    match (generalizing := false) (motive := fun n => Fin (n + 1)) n with
     | 0 => Fin.last 0
     | .succ n => Fin.last (n + 1) := sorry
 
@@ -48,7 +48,7 @@ example (n0 n : Nat) (h : id n0 = n) :
 example (n0 n : Nat) (h : id n0 = n) :
   Fin.last n0 =
     h.symm.ndrec (motive := fun n => Fin (n + 1))
-      (match (generalizing := false) (motive := ∀ n, Fin (n + 1)) n with
+      (match (generalizing := false) (motive := fun n => Fin (n + 1)) n with
        | 0 => Fin.last 0
        | .succ n => Fin.last (n + 1)) := by
   split
@@ -58,7 +58,7 @@ example (n0 n : Nat) (h : id n0 = n) :
 
 -- Variant with proof-valued discriminant. This works (and always has):
 
-example (n : Nat) (h : n > 0): Fin.last n = match (motive := ∀ n _, Fin (n+1)) n, h with
+example (n : Nat) (h : n > 0): Fin.last n = match (motive := fun n _ => Fin (n+1)) n, h with
   | 0, h => by contradiction
   | n + 1, _ => Fin.last (n + 1) := by
   split
@@ -69,7 +69,7 @@ example (n : Nat) (h : n > 0): Fin.last n = match (motive := ∀ n _, Fin (n+1))
 -- Succeeds now
 
 #guard_msgs(pass trace, all) in
-example (n : Nat) (hpos : n > 0): Fin.last n = match (motive := ∀ n _, Fin (n+1)) n, id hpos with
+example (n : Nat) (hpos : n > 0): Fin.last n = match (motive := fun n _ => Fin (n+1)) n, id hpos with
   | 0, hpos0 => by contradiction
   | n + 1, _ => Fin.last (n + 1) := by
   split
@@ -78,7 +78,7 @@ example (n : Nat) (hpos : n > 0): Fin.last n = match (motive := ∀ n _, Fin (n+
 
 -- It essentially manually abstracted the discr
 
-example (n : Nat) (h : n > 0): Fin.last n = match (motive := ∀ n _, Fin (n+1)) n, id h with
+example (n : Nat) (h : n > 0): Fin.last n = match (motive := fun n _ => Fin (n+1)) n, id h with
   | 0, h => by contradiction
   | n + 1, _ => Fin.last (n + 1) := by
   generalize (id h) = h'

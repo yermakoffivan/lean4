@@ -271,7 +271,7 @@ info: fun x x_1 =>
 -- overapplied matcher
 /--
 info: fun x =>
-  (match (motive := Nat → Nat → Nat) x with
+  (match (motive := fun x => Nat → Nat) x with
     | 0 => id
     | x.succ => id)
     x : Nat → Nat

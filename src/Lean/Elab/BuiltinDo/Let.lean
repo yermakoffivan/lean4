@@ -101,7 +101,7 @@ partial def elabDoLetOrReassign (letOrReassign : LetOrReassign) (decl : TSyntax 
     let mvar ← Lean.withRef rhs `(?m)
     let term ← `(let_mvar% ?m := $rhs;
                  wait_if_type_mvar% ?m;
-                 match (motive := ∀_, $(← Term.exprToSyntax mγ)) $mvar:term with
+                 match (motive := fun _ => $(← Term.exprToSyntax mγ)) $mvar:term with
                  | $pattern:term => $body)
     Term.withMacroExpansion (← getRef) term do Term.elabTermEnsuringType term (some mγ)
   | `(letDecl| $decl:letIdDecl) =>

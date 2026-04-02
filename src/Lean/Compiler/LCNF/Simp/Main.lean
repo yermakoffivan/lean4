@@ -216,7 +216,6 @@ partial def simpCasesOnCtor? (cases : Cases .pure) : SimpM (Option (Code .pure))
 Simplify `code`
 -/
 partial def simp (code : Code .pure) : SimpM (Code .pure) := withIncRecDepth do
-  checkSystem "LCNF simp"
   incVisited
   if (← get).visited % 512 == 0 then
     checkSystem "LCNF simp"

@@ -2006,7 +2006,7 @@ private def ImportedModule.serverData? (self : ImportedModule) (level : OLeanLev
   -- fall back to `exported` outside the server
   self.getData? (if level ≥ .server then level else .exported)
 
-/-- The module data that should be used for accessing IR for interpretation. -/
+/-- The module data that should be used for accessing IR for interpretation (lean) or compilation (leanir). -/
 private def ImportedModule.interpData? (self : ImportedModule) (level : OLeanLevel) :
     Option ModuleData :=
   if (level < .server && self.irPhases == .runtime) || !self.mainModule?.any (·.isModule) then

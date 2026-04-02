@@ -128,6 +128,7 @@ partial def run (declNames : Array Name) (baseOpts : Options) : CompilerM Unit :
   for declName in declNames do
     if let some fnName := Compiler.getImplementedBy? (← getEnv) declName then
       if (← getEnv).header.isModule && (← compiler.postponeCompile.getM) then
+        -- must postpone here as well so that visibility marking happens in the correct process
         modifyEnv (postponedCompileDeclsExt.addEntry · { declNames := #[declName], options := ← getOptions })
       else
         -- Ensure the impl target is compiled first so `getLocalDeclAt?` succeeds

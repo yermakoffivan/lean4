@@ -111,7 +111,7 @@ void check_heartbeat() {
     inc_heartbeat();
     if (g_max_heartbeat > 0 && g_heartbeat > g_max_heartbeat)
         throw_heartbeat_exception();
-    if (g_heartbeat % 256 == 0) {
+    if (g_heartbeat % 1024 == 0) {
         check_system("heartbeat");
     }
 }

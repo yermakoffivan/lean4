@@ -5,5 +5,5 @@
  "position": {"line": 1, "character": 19}}
 {"rendered": "```lean\n⊢ True\n```", "goals": ["⊢ True"]}
 {"textDocument": {"uri": "file:///plainGoalEmptyBy.lean"},
- "position": {"line": 8, "character": 2}}
+ "position": {"line": 8, "character": 0}}
 {"rendered": "```lean\n⊢ True\n```", "goals": ["⊢ True"]}

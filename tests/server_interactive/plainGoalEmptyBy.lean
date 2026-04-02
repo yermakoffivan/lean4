@@ -7,4 +7,4 @@ sorry
 -- Test: "hanging by" at EOF — hover below `by` at column 0 should still show goals
 example : True := by
 -- hover below
---^ $/lean/plainGoal
+--⬑ $/lean/plainGoal

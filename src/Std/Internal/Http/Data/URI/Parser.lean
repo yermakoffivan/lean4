@@ -52,7 +52,7 @@ private def parseScheme (config : URI.Config) : Parser URI.Scheme := do
   if config.maxSchemeLength = 0 then
     fail "scheme length limit is 0 (no scheme allowed)"
 
-  let first : UInt8 ← satisfy (fun b : UInt8 => Internal.Char.isAlphaByte b)
+  let first : UInt8 ← satisfy isAlphaByte
   let rest ← takeWhileAtMost
     (fun c =>
       isAlphaNum c ∨

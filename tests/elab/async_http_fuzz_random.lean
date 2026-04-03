@@ -76,13 +76,15 @@ def okHandler : TestHandler := fun _ => Response.ok |>.text "ok"
 def assertValidHttpOrEmpty (name : String) (response : ByteArray) : IO Unit := do
   if response.size == 0 then pure ()
   else
-    let pfx := "HTTP/1.1 ".toUTF8
-    if response.size >= pfx.size && response.extract 0 pfx.size == pfx then pure ()
+    let isValidPrefix (pfx : String) :=
+      let b := pfx.toUTF8
+      response.size >= b.size && response.extract 0 b.size == b
+    if isValidPrefix "HTTP/1.1 " || isValidPrefix "HTTP/1.0 " then pure ()
     else
       let display := match String.fromUTF8? (response.extract 0 (Nat.min 200 response.size)) with
         | some s => s.quote | none => "(non-UTF-8 bytes)"
       throw <| IO.userError
-        s!"Test '{name}' failed:\nResponse is neither empty nor valid HTTP/1.1:\n{display}"
+        s!"Test '{name}' failed:\nResponse is neither empty nor a valid HTTP response:\n{display}"
 
 -- Property: any fully-random byte sequence never causes a panic or malformed response.
 -- Direct analogue of hyper's fuzz_h1_req libFuzzer target.

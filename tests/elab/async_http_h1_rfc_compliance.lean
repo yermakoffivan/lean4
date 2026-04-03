@@ -58,15 +58,15 @@ private def withLastStep
   | some step => k t step
 
 /-- Create a new tester for the given direction. -/
-def new (name : String) (config : Config := {}) : MachineTester dir :=
+def new (name : String) (config : Protocol.H1.Config := {}) : MachineTester dir :=
   { name, machine := { config } }
 
 /-- Create a new server-side tester (receives requests, sends responses). -/
-def receiving (name : String) (config : Config := {}) : MachineTester .receiving :=
+def receiving (name : String) (config : Protocol.H1.Config := {}) : MachineTester .receiving :=
   { name, machine := { config } }
 
 /-- Create a new client-side tester (sends requests, receives responses). -/
-def sending (name : String) (config : Config := {}) : MachineTester .sending :=
+def sending (name : String) (config : Protocol.H1.Config := {}) : MachineTester .sending :=
   { name, machine := { config } }
 
 /-- Feed a UTF-8 string to the machine. -/

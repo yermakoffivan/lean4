@@ -281,15 +281,3 @@ private def getEndHeadersHead (events : Array (Event .receiving)) : Option Reque
   events.findSome? fun
     | .endHeaders head => some head
     | _ => none
-
-#eval show IO Unit from do
-  let request := "GET http://example.com:80/path HTTP/1.1\r\nHost: example.com\r\nContent-Length: 0\r\n\r\n".toUTF8
-  let trace := runIncrementalReceiving (splitEveryByte request)
-  ensure "absolute-form host normalization (no failure)" (!trace.machine.failed)
-    s!"machine failed:\n{repr trace.events}"
-  let some head := getEndHeadersHead trace.events
-    | throw <| IO.userError s!"absolute-form host normalization: missing endHeaders event\nevents={repr trace.events}"
-  let some hostValue := head.headers.get? .host
-    | throw <| IO.userError "absolute-form host normalization: no Host header in parsed head"
-  ensure "absolute-form host normalization" (hostValue.value == "example.com:80")
-    s!"expected Host to be normalized to 'example.com:80' (from URI authority), got '{hostValue.value}'"

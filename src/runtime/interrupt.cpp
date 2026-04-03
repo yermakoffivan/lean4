@@ -61,11 +61,11 @@ static void check_system_interval(char const * component_name) {
                     "[check_system] WARNING: %llu ms CPU time since last check_system call "
                     "(component: %s)\n",
                     (unsigned long long)elapsed_ms, component_name);
-                // Reset timer after printing to avoid backtrace overhead cascading
-                g_last_check_system_ns = thread_cpu_time_ns();
                 void * bt_buf[64];
                 int nptrs = backtrace(bt_buf, 64);
                 backtrace_symbols_fd(bt_buf, nptrs, 2); // fd 2 = stderr
+                // Reset timer after printing to avoid backtrace overhead cascading
+                g_last_check_system_ns = thread_cpu_time_ns();
             }
         }
     }

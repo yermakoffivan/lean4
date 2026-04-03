@@ -272,11 +272,6 @@ private def hostAuthorityMatchesConnectAuthority
 Validates the required `Host` header for HTTP/1.1 requests:
 exactly one value that is either empty or parseable as a valid host.
 
-Note: for absolute-form request targets, `normalizeAbsoluteFormHost` has already
-replaced the Host header with the URI authority before this check runs, so there is
-no need to re-validate the match here (RFC 9112 §3.2.2: the origin server MUST use
-the authority from the request-target and ignore the received Host header).
-
 As defined in RFC 9112 Section 3.2:
 
 "A client MUST send a Host header field (Section 7.2 of [HTTP]) in all HTTP/1.1 request messages.
@@ -302,42 +297,11 @@ private def hasSingleAcceptedHostHeader (message : Message.Head .receiving) : Bo
         | some hostHeader => hostAuthorityMatchesConnectAuthority authority hostHeader
         | none => false
       | _ =>
-        -- RFC 9110 §7.2: when the target URI has no authority (origin-form, asterisk-form),
-        -- a client MUST send Host with an empty field value, so an empty value is valid here.
-        -- For absolute-form, the Host has already been normalized to the URI authority above.
+        -- origin-form, absolute-form, etc.: Host must be empty or well-formed.
+        -- RFC 9112 §3.2.2: for absolute-form, the authority is in the URI; the Host
+        -- header is left untouched so handlers can inspect what the client sent.
         hostValue.value.isEmpty ∨ parsed.isSome
   | _ => false
-
-/--
-Computes the effective Host header value from request-target authority.
-
-Reference: https://www.rfc-editor.org/rfc/rfc9110.html#section-7.2
--/
-@[inline]
-private def authorityHostHeaderValue (authority : URI.Authority) : Header.Value :=
-  let host := toString authority.host
-
-  let value := match authority.port with
-    | .value port => s!"{host}:{port}"
-    | .empty => s!"{host}:"
-    | .omitted => s!"{host}"
-
-  Header.Value.ofString! value
-
-/--
-For absolute-form request targets, rewrites the `Host` header to match the
-URI authority verbatim.
-
-RFC 9112 §3.2.2: the origin server MUST ignore the received Host header and
-instead use the authority from the request-target.
--/
-@[inline]
-private def normalizeAbsoluteFormHost (message : Message.Head .receiving) : Message.Head .receiving :=
-  match message.uri with
-  | .absoluteForm { authority := some authority, .. } =>
-    let normalized := authorityHostHeaderValue authority
-    { message with headers := message.headers.erase Header.Name.host |>.insert Header.Name.host normalized }
-  | _ => message
 
 /--
 Validates an incoming request head and selects the body framing mode.
@@ -522,6 +486,16 @@ def isReaderClosed (machine : Machine dir) : Bool :=
   match machine.reader.state with
   | .closed => true
   | _ => false
+
+/--
+Returns `true` when the reader is paused waiting for a `canContinue` decision
+(server-side only; always `false` on the client side).
+-/
+@[inline]
+def isReaderAwaitingContinue (machine : Machine dir) : Bool :=
+  match dir, machine.reader.state with
+  | .receiving, .«continue» _ => true
+  | _, _ => false
 
 /--
 Returns `true` if the machine should flush buffered output.
@@ -709,10 +683,6 @@ private def processHeaders (machine : Machine dir) : Machine dir :=
   let machine := machine.updateKeepAlive (machine.reader.messageCount + 1 < machine.config.maxMessages)
   let machine := machine.updateKeepAlive machine.reader.messageHead.shouldKeepAlive
 
-  let machine : Machine dir := match dir, machine with
-    | .receiving, machine => machine.modifyReader (Reader.setMessageHead (normalizeAbsoluteFormHost machine.reader.messageHead))
-    | .sending, machine => machine
-
   match checkMessageHead machine.reader.messageHead with
   | .error err => machine.setFailure err
   | .ok mode =>
@@ -746,10 +716,14 @@ private def writeHead (messageHead : Message.Head dir.swap) (machine : Machine d
     | .sending, some userAgent => headers.insert Header.Name.userAgent userAgent
     | _, none => headers
 
-  -- Add Connection: close if needed
+  -- Add Connection header based on keep-alive state and protocol version
   let headers :=
     if !machine.keepAlive ∧ !headers.hasEntry Header.Name.connection (.mk "close") then
       headers.insert Header.Name.connection (.mk "close")
+    else if machine.keepAlive ∧ machine.reader.messageHead.version == .v10
+         ∧ !headers.hasEntry Header.Name.connection (.mk "keep-alive") then
+      -- RFC 2616 §19.7.1: HTTP/1.0 keep-alive responses must echo Connection: keep-alive
+      headers.insert Header.Name.connection (.mk "keep-alive")
     else
       headers
 
@@ -898,10 +872,32 @@ private def isWriterClosed (machine : Machine dir) : Bool :=
 
 /--
 Send the head of a message to the machine.
+
+Must only be called when `machine.isWaitingMessage` is true. If called in any
+other state (e.g. called twice), the machine panics.
+
+Informational (1xx) responses are written directly to the output buffer; the writer
+stays in `waitingHeaders` so the application can send additional interim responses or
+the final response. The reader state is not affected — use `canContinue` to resolve
+an `Expect: 100-continue` decision separately.
 -/
 @[inline]
 def send (machine : Machine dir) (message : Message.Head dir.swap) : Machine dir :=
-  if machine.isWaitingMessage then
+  if !machine.isWaitingMessage then
+    machine
+  else
+    -- Informational (1xx) responses: write directly to the output buffer and stay in
+    -- `waitingHeaders`. This is independent of reader state, so the writer can send
+    -- 1xx responses (e.g. 103 Early Hints) at any point before the final response.
+    let isInterim : Bool :=
+      match dir with
+      | .receiving => message.status.isInformational
+      | .sending => false
+    if isInterim then
+      machine.modifyWriter (fun w => {
+        w with outputData := Encode.encode (v := .v11) w.outputData message
+      })
+  else
     let hadFailure := machine.failed
     let machine := machine.modifyWriter ({ · with messageHead := message, sentMessage := true })
     let framingInHeaders := hasFramingHeaders message
@@ -916,8 +912,6 @@ def send (machine : Machine dir) (message : Message.Head dir.swap) : Machine dir
       match dir, machine with
       | .sending, machine => machine.setWriterState .waitingForFlush |>.setReaderState .needStartLine
       | .receiving, machine => machine.setWriterState .waitingForFlush
-  else
-    machine
 
 /--
 Resolves an `Expect: 100-continue` decision.
@@ -1023,6 +1017,13 @@ private def processCompleteStep (machine : Machine dir) : Machine dir :=
       machine.setWriterState .closed
       |>.addEvent .close
   else if machine.isReaderClosed then
+    machine.setWriterState .closed
+    |>.addEvent .close
+  -- The reader is paused waiting for a `canContinue` decision but the writer
+  -- already sent a non-informational response (informational responses stay in
+  -- `waitingHeaders` and never reach `.complete`). The body will never be received,
+  -- so close the connection regardless of `keepAlive`.
+  else if machine.isReaderAwaitingContinue then
     machine.setWriterState .closed
     |>.addEvent .close
   else if machine.keepAlive then
@@ -1161,7 +1162,14 @@ partial def processWrite (machine : Machine dir) : Machine dir :=
       if machine.reader.isClosed then machine.closeWriter else machine
   | .waitingHeaders =>
       match dir with
-      | .receiving => machine
+      | .receiving =>
+          -- Detect misuse: userClosedBody set without ever committing a response via `send`.
+          -- This happens when the application calls `userClosedBody` after a 1xx interim send
+          -- (which keeps `sentMessage = false`) instead of sending the final response.
+          if !machine.writer.sentMessage && machine.writer.userClosedBody then
+            closeOnBadMessage machine
+          else
+            machine
       | .sending => machine.addEvent .needAnswer
   | .waitingForFlush =>
       if machine.shouldFlush then

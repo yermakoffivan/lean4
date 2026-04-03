@@ -1969,6 +1969,7 @@ v___x_768_ = ((lean_object*)(l___private_Lean_Parser_0__Lean_Parser_initFn___clo
 v___x_769_ = ((lean_object*)(l___private_Lean_Parser_0__Lean_Parser_initFn___closed__104_00___x40_Lean_Parser_1428529586____hygCtx___hyg_2_));
 v___x_770_ = ((lean_object*)(l___private_Lean_Parser_0__Lean_Parser_initFn___closed__106_00___x40_Lean_Parser_1428529586____hygCtx___hyg_2_));
 v___x_771_ = ((lean_object*)(l___private_Lean_Parser_0__Lean_Parser_initFn___closed__107_00___x40_Lean_Parser_1428529586____hygCtx___hyg_2_));
+lean_inc(v___y_764_);
 v___x_772_ = lean_alloc_ctor(0, 2, 1);
 lean_ctor_set(v___x_772_, 0, v___x_761_);
 lean_ctor_set(v___x_772_, 1, v___y_764_);
@@ -2010,7 +2011,6 @@ goto v___jp_745_;
 else
 {
 lean_dec_ref(v___y_766_);
-lean_dec(v___y_764_);
 lean_dec_ref(v___y_763_);
 return v___y_767_;
 }
@@ -2069,7 +2069,6 @@ goto v___jp_762_;
 else
 {
 lean_dec_ref(v___y_782_);
-lean_dec(v___y_780_);
 lean_dec_ref(v___y_779_);
 return v___y_783_;
 }
@@ -2128,7 +2127,6 @@ goto v___jp_778_;
 else
 {
 lean_dec_ref(v___y_797_);
-lean_dec(v___y_795_);
 lean_dec_ref(v___y_794_);
 return v___y_798_;
 }
@@ -2187,7 +2185,6 @@ goto v___jp_793_;
 else
 {
 lean_dec_ref(v___y_812_);
-lean_dec(v___y_810_);
 lean_dec_ref(v___y_809_);
 return v___y_813_;
 }
@@ -2246,7 +2243,6 @@ goto v___jp_808_;
 else
 {
 lean_dec_ref(v___y_827_);
-lean_dec(v___y_825_);
 lean_dec_ref(v___y_824_);
 return v___y_828_;
 }
@@ -2306,7 +2302,6 @@ goto v___jp_823_;
 else
 {
 lean_dec_ref(v___y_840_);
-lean_dec(v___y_839_);
 return v___y_841_;
 }
 }
@@ -2357,7 +2352,6 @@ goto v___jp_838_;
 else
 {
 lean_dec_ref(v___y_856_);
-lean_dec(v___y_855_);
 return v___y_857_;
 }
 }
@@ -2408,7 +2402,6 @@ goto v___jp_854_;
 else
 {
 lean_dec_ref(v___y_869_);
-lean_dec(v___y_868_);
 return v___y_870_;
 }
 }
@@ -2459,7 +2452,6 @@ goto v___jp_867_;
 else
 {
 lean_dec_ref(v___y_882_);
-lean_dec(v___y_881_);
 return v___y_883_;
 }
 }
@@ -2510,7 +2502,6 @@ goto v___jp_880_;
 else
 {
 lean_dec_ref(v___y_895_);
-lean_dec(v___y_894_);
 return v___y_896_;
 }
 }
@@ -2561,7 +2552,6 @@ goto v___jp_893_;
 else
 {
 lean_dec_ref(v___y_908_);
-lean_dec(v___y_907_);
 return v___y_909_;
 }
 }
@@ -2613,7 +2603,6 @@ goto v___jp_906_;
 else
 {
 lean_dec_ref(v___y_921_);
-lean_dec(v___y_920_);
 return v___y_922_;
 }
 }
@@ -2665,7 +2654,6 @@ else
 {
 lean_dec_ref(v___y_935_);
 lean_dec(v___y_934_);
-lean_dec(v___y_933_);
 return v___y_936_;
 }
 }
@@ -2720,7 +2708,6 @@ goto v___jp_932_;
 else
 {
 lean_dec_ref(v___y_947_);
-lean_dec(v___y_946_);
 return v___y_948_;
 }
 }
@@ -2772,7 +2759,6 @@ goto v___jp_945_;
 else
 {
 lean_dec_ref(v___y_960_);
-lean_dec(v___y_959_);
 return v___y_961_;
 }
 }
@@ -2824,7 +2810,6 @@ goto v___jp_958_;
 else
 {
 lean_dec_ref(v___y_973_);
-lean_dec(v___y_972_);
 return v___y_974_;
 }
 }
@@ -2876,7 +2861,6 @@ goto v___jp_971_;
 else
 {
 lean_dec_ref(v___y_986_);
-lean_dec(v___y_985_);
 return v___y_987_;
 }
 }
@@ -2928,7 +2912,6 @@ goto v___jp_984_;
 else
 {
 lean_dec_ref(v___y_999_);
-lean_dec(v___y_998_);
 return v___y_1000_;
 }
 }
@@ -3084,6 +3067,10 @@ _start:
 {
 lean_object* v___x_1061_; 
 v___x_1061_ = l_Lean_Parser_mkAntiquot_parenthesizer(v_name_1052_, v_kind_1053_, v_anonymous_1054_, v_isPseudoKind_1055_, v_a_1056_, v_a_1057_, v_a_1058_, v_a_1059_);
+lean_dec(v_a_1059_);
+lean_dec_ref(v_a_1058_);
+lean_dec(v_a_1057_);
+lean_dec_ref(v_a_1056_);
 return v___x_1061_;
 }
 }
@@ -3110,6 +3097,10 @@ _start:
 {
 lean_object* v_res_1085_; 
 v_res_1085_ = l_Lean_PrettyPrinter_Parenthesizer_ident_parenthesizer(v_a_1080_, v_a_1081_, v_a_1082_, v_a_1083_);
+lean_dec(v_a_1083_);
+lean_dec_ref(v_a_1082_);
+lean_dec(v_a_1081_);
+lean_dec_ref(v_a_1080_);
 return v_res_1085_;
 }
 }
@@ -3146,6 +3137,10 @@ _start:
 {
 lean_object* v_res_1115_; 
 v_res_1115_ = l_Lean_PrettyPrinter_Parenthesizer_numLit_parenthesizer(v_a_1110_, v_a_1111_, v_a_1112_, v_a_1113_);
+lean_dec(v_a_1113_);
+lean_dec_ref(v_a_1112_);
+lean_dec(v_a_1111_);
+lean_dec_ref(v_a_1110_);
 return v_res_1115_;
 }
 }
@@ -3182,6 +3177,10 @@ _start:
 {
 lean_object* v_res_1142_; 
 v_res_1142_ = l_Lean_PrettyPrinter_Parenthesizer_scientificLit_parenthesizer(v_a_1137_, v_a_1138_, v_a_1139_, v_a_1140_);
+lean_dec(v_a_1140_);
+lean_dec_ref(v_a_1139_);
+lean_dec(v_a_1138_);
+lean_dec_ref(v_a_1137_);
 return v_res_1142_;
 }
 }
@@ -3218,6 +3217,10 @@ _start:
 {
 lean_object* v_res_1169_; 
 v_res_1169_ = l_Lean_PrettyPrinter_Parenthesizer_charLit_parenthesizer(v_a_1164_, v_a_1165_, v_a_1166_, v_a_1167_);
+lean_dec(v_a_1167_);
+lean_dec_ref(v_a_1166_);
+lean_dec(v_a_1165_);
+lean_dec_ref(v_a_1164_);
 return v_res_1169_;
 }
 }
@@ -3254,6 +3257,10 @@ _start:
 {
 lean_object* v_res_1196_; 
 v_res_1196_ = l_Lean_PrettyPrinter_Parenthesizer_strLit_parenthesizer(v_a_1191_, v_a_1192_, v_a_1193_, v_a_1194_);
+lean_dec(v_a_1194_);
+lean_dec_ref(v_a_1193_);
+lean_dec(v_a_1192_);
+lean_dec_ref(v_a_1191_);
 return v_res_1196_;
 }
 }
@@ -4228,6 +4235,10 @@ _start:
 {
 lean_object* v___x_1432_; 
 v___x_1432_ = l_Lean_Parser_mkAntiquot_formatter(v_name_1423_, v_kind_1424_, v_anonymous_1425_, v_isPseudoKind_1426_, v_a_1427_, v_a_1428_, v_a_1429_, v_a_1430_);
+lean_dec(v_a_1430_);
+lean_dec_ref(v_a_1429_);
+lean_dec(v_a_1428_);
+lean_dec_ref(v_a_1427_);
 return v___x_1432_;
 }
 }
@@ -4254,6 +4265,10 @@ _start:
 {
 lean_object* v_res_1456_; 
 v_res_1456_ = l_Lean_PrettyPrinter_Formatter_ident_formatter(v_a_1451_, v_a_1452_, v_a_1453_, v_a_1454_);
+lean_dec(v_a_1454_);
+lean_dec_ref(v_a_1453_);
+lean_dec(v_a_1452_);
+lean_dec_ref(v_a_1451_);
 return v_res_1456_;
 }
 }
@@ -4290,6 +4305,10 @@ _start:
 {
 lean_object* v_res_1485_; 
 v_res_1485_ = l_Lean_PrettyPrinter_Formatter_numLit_formatter(v_a_1480_, v_a_1481_, v_a_1482_, v_a_1483_);
+lean_dec(v_a_1483_);
+lean_dec_ref(v_a_1482_);
+lean_dec(v_a_1481_);
+lean_dec_ref(v_a_1480_);
 return v_res_1485_;
 }
 }
@@ -4326,6 +4345,10 @@ _start:
 {
 lean_object* v_res_1512_; 
 v_res_1512_ = l_Lean_PrettyPrinter_Formatter_scientificLit_formatter(v_a_1507_, v_a_1508_, v_a_1509_, v_a_1510_);
+lean_dec(v_a_1510_);
+lean_dec_ref(v_a_1509_);
+lean_dec(v_a_1508_);
+lean_dec_ref(v_a_1507_);
 return v_res_1512_;
 }
 }
@@ -4362,6 +4385,10 @@ _start:
 {
 lean_object* v_res_1539_; 
 v_res_1539_ = l_Lean_PrettyPrinter_Formatter_charLit_formatter(v_a_1534_, v_a_1535_, v_a_1536_, v_a_1537_);
+lean_dec(v_a_1537_);
+lean_dec_ref(v_a_1536_);
+lean_dec(v_a_1535_);
+lean_dec_ref(v_a_1534_);
 return v_res_1539_;
 }
 }
@@ -4398,6 +4425,10 @@ _start:
 {
 lean_object* v_res_1566_; 
 v_res_1566_ = l_Lean_PrettyPrinter_Formatter_strLit_formatter(v_a_1561_, v_a_1562_, v_a_1563_, v_a_1564_);
+lean_dec(v_a_1564_);
+lean_dec_ref(v_a_1563_);
+lean_dec(v_a_1562_);
+lean_dec_ref(v_a_1561_);
 return v_res_1566_;
 }
 }
@@ -4434,6 +4465,10 @@ _start:
 {
 lean_object* v_res_1597_; 
 v_res_1597_ = l_Lean_PrettyPrinter_Formatter_interpretParserDescr___lam__0(v___x_1590_, v___x_1591_, v___y_1592_, v___y_1593_, v___y_1594_, v___y_1595_);
+lean_dec(v___y_1595_);
+lean_dec_ref(v___y_1594_);
+lean_dec(v___y_1593_);
+lean_dec_ref(v___y_1592_);
 return v_res_1597_;
 }
 }

@@ -24,8 +24,8 @@ namespace Lean.Meta.Tactic.Cbv
 
 open Lean.Meta.Sym.Simp
 
-public def mkAppNS (f : Expr) (args : Array Expr) : Sym.SymM Expr := do
-  args.foldlM Sym.Internal.mkAppS f
+public def mkAppNS (f : Expr) (args : Array Expr) : Sym.SymM Expr :=
+  Sym.Internal.mkAppNS f args
 
 abbrev isNatValue (e : Expr) : Bool := (Sym.getNatValue? e).isSome
 abbrev isStringValue (e : Expr) : Bool := (Sym.getStringValue? e).isSome

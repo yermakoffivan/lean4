@@ -14,6 +14,7 @@ public import Lean.Elab.Open
 import Init.Data.Nat.Order
 import Init.Data.Order.Lemmas
 import Init.System.Platform
+import Lean.DeprecatedModule
 
 public section
 
@@ -509,7 +510,8 @@ def failIfSucceeds (x : CommandElabM Unit) : CommandElabM Unit := do
     pure ()
 
 @[builtin_command_elab «set_option»] def elabSetOption : CommandElab := fun stx => do
-  let options ← Elab.elabSetOption stx[1] stx[3]
+  let (options, decl) ← Elab.elabSetOption stx[1] stx[3]
+  withRef stx[1] <| Elab.checkDeprecatedOption (stx[1].getId.eraseMacroScopes) decl
   modify fun s => { s with maxRecDepth := maxRecDepth.get options }
   modifyScope fun scope => { scope with opts := options }
 
@@ -715,6 +717,45 @@ where
   fun _ => do
     let env ← getEnv
     IO.eprintln (← env.dbgFormatAsyncState)
+
+/-- Elaborate `deprecated_module`, marking the current module as deprecated. -/
+@[builtin_command_elab Parser.Command.deprecated_module]
+def elabDeprecatedModule : CommandElab
+  | `(Parser.Command.deprecated_module| deprecated_module $[$msg?]? $[(since := $since?)]?) => do
+    let message? := msg?.map TSyntax.getString
+    let since? := since?.map TSyntax.getString
+    if (deprecatedModuleExt.getState (← getEnv)).isSome then
+      logWarning "module is already marked as deprecated"
+    if since?.isNone then
+      logWarning "`deprecated_module` should specify the date or library version \
+        at which the deprecation was introduced, using `(since := \"...\")`"
+    modifyEnv fun env => env.setDeprecatedModule (some { message?, since? })
+  | _ => throwUnsupportedSyntax
+
+/-- Elaborate `#show_deprecated_modules`, displaying all deprecated modules. -/
+@[builtin_command_elab Parser.Command.showDeprecatedModules]
+def elabShowDeprecatedModules : CommandElab := fun _ => do
+  let env ← getEnv
+  let mut parts : Array String := #["Deprecated modules\n"]
+  for h : idx in [:env.header.moduleNames.size] do
+    if let some entry := env.getDeprecatedModuleByIdx? idx then
+      let modName := env.header.moduleNames[idx]
+      let msg := match entry.message? with
+        | some str => s!"message '{str}'"
+        | none => "no message"
+      let replacements := env.header.moduleData[idx]!.imports.filter fun imp =>
+        imp.module != `Init
+      parts := parts.push s!"'{modName}' deprecates to\n{replacements.map (·.module)}\nwith {msg}\n"
+  -- Also show the current module's deprecation if set.
+  if let some entry := deprecatedModuleExt.getState env then
+    let modName := env.mainModule
+    let msg := match entry.message? with
+      | some str => s!"message '{str}'"
+      | none => "no message"
+    let replacements := env.imports.filter fun imp =>
+      imp.module != `Init
+    parts := parts.push s!"'{modName}' deprecates to\n{replacements.map (·.module)}\nwith {msg}\n"
+  logInfo (String.intercalate "\n" parts.toList)
 
 @[builtin_command_elab Parser.Command.deprecatedSyntax] def elabDeprecatedSyntax : CommandElab := fun stx => do
   let id := stx[1]

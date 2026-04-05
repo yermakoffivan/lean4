@@ -8,6 +8,12 @@ Author: Leonardo de Moura
 #include <cstdlib>
 #include <ctime>
 #include <execinfo.h>
+#ifdef __linux__
+#include <unistd.h>
+#include <sys/ioctl.h>
+#include <linux/perf_event.h>
+#include <sys/syscall.h>
+#endif
 #include "runtime/thread.h"
 #include "runtime/interrupt.h"
 #include "runtime/exception.h"
@@ -20,23 +26,72 @@ LEAN_THREAD_VALUE(size_t, g_max_heartbeat, 0);
 LEAN_THREAD_VALUE(size_t, g_heartbeat, 0);
 
 // --- check_system interval monitoring ---
-// When LEAN_CHECK_SYSTEM_INTERVAL_MS is set, warn on stderr if check_system
-// is not called within the given interval (in milliseconds of CPU time) on the
-// current thread. Uses CLOCK_THREAD_CPUTIME_ID so that IO waits (sleep, network,
-// disk) do not count towards the interval.
+//
+// Two modes (mutually exclusive, instruction count takes priority):
+//
+// 1. LEAN_CHECK_SYSTEM_INTERVAL_INSN=N — warn if more than N million retired
+//    instructions elapse between consecutive check_system calls. Uses
+//    perf_event_open (Linux only). Deterministic and load-independent.
+//
+// 2. LEAN_CHECK_SYSTEM_INTERVAL_MS=N — warn if more than N milliseconds of
+//    CPU time elapse. Uses CLOCK_THREAD_CPUTIME_ID. Subject to CPU frequency
+//    scaling and machine load.
 
 // 0 = disabled
-static unsigned g_check_system_interval_ms = 0;
+static uint64_t g_check_system_interval_threshold = 0;
 static bool g_check_system_interval_initialized = false;
+// false = CPU time (ns), true = instructions
+static bool g_check_system_use_insn = false;
 
-static unsigned get_check_system_interval_ms() {
-    if (!g_check_system_interval_initialized) {
-        g_check_system_interval_initialized = true;
-        if (const char * env = std::getenv("LEAN_CHECK_SYSTEM_INTERVAL_MS")) {
-            g_check_system_interval_ms = std::atoi(env);
+#ifdef __linux__
+LEAN_THREAD_VALUE(int, g_perf_fd, -1);
+
+static int perf_open_insn_counter() {
+    struct perf_event_attr pe = {};
+    pe.type = PERF_TYPE_HARDWARE;
+    pe.size = sizeof(pe);
+    pe.config = PERF_COUNT_HW_INSTRUCTIONS;
+    pe.disabled = 0;
+    pe.exclude_kernel = 1;
+    pe.exclude_hv = 1;
+    // pid=0, cpu=-1: count calling thread on any CPU
+    return syscall(SYS_perf_event_open, &pe, 0, -1, -1, 0);
+}
+
+static uint64_t read_insn_counter() {
+    int fd = g_perf_fd;
+    if (fd < 0) {
+        fd = perf_open_insn_counter();
+        g_perf_fd = fd;
+        if (fd < 0) return 0; // perf not available
+    }
+    uint64_t count = 0;
+    if (read(fd, &count, sizeof(count)) != sizeof(count))
+        return 0;
+    return count;
+}
+#else
+static uint64_t read_insn_counter() { return 0; }
+#endif
+
+static void init_check_system_interval() {
+    if (g_check_system_interval_initialized) return;
+    g_check_system_interval_initialized = true;
+    if (const char * env = std::getenv("LEAN_CHECK_SYSTEM_INTERVAL_INSN")) {
+        uint64_t millions = std::atoll(env);
+        if (millions > 0) {
+            g_check_system_interval_threshold = millions * 1000000ULL;
+            g_check_system_use_insn = true;
+            return;
         }
     }
-    return g_check_system_interval_ms;
+    if (const char * env = std::getenv("LEAN_CHECK_SYSTEM_INTERVAL_MS")) {
+        unsigned ms = std::atoi(env);
+        if (ms > 0) {
+            g_check_system_interval_threshold = static_cast<uint64_t>(ms) * 1000000ULL; // ms -> ns
+            g_check_system_use_insn = false;
+        }
+    }
 }
 
 static uint64_t thread_cpu_time_ns() {
@@ -45,27 +100,39 @@ static uint64_t thread_cpu_time_ns() {
     return static_cast<uint64_t>(ts.tv_sec) * 1000000000ULL + static_cast<uint64_t>(ts.tv_nsec);
 }
 
-// Thread-local: last CPU time when check_system was called on this thread.
-LEAN_THREAD_VALUE(uint64_t, g_last_check_system_ns, 0);
+static uint64_t current_counter() {
+    return g_check_system_use_insn ? read_insn_counter() : thread_cpu_time_ns();
+}
+
+// Thread-local: last counter value when check_system was called on this thread.
+LEAN_THREAD_VALUE(uint64_t, g_last_check_system_counter, 0);
 
 static void check_system_interval(char const * component_name) {
-    unsigned interval_ms = get_check_system_interval_ms();
-    if (interval_ms > 0) {
-        uint64_t now_ns = thread_cpu_time_ns();
-        uint64_t last_ns = g_last_check_system_ns;
-        g_last_check_system_ns = now_ns;
-        if (last_ns != 0) {
-            uint64_t elapsed_ms = (now_ns - last_ns) / 1000000;
-            if (elapsed_ms > interval_ms) {
-                fprintf(stderr,
-                    "[check_system] WARNING: %llu ms CPU time since last check_system call "
-                    "(component: %s)\n",
-                    (unsigned long long)elapsed_ms, component_name);
+    init_check_system_interval();
+    uint64_t threshold = g_check_system_interval_threshold;
+    if (threshold > 0) {
+        uint64_t now = current_counter();
+        uint64_t last = g_last_check_system_counter;
+        g_last_check_system_counter = now;
+        if (last != 0 && now > last) {
+            uint64_t elapsed = now - last;
+            if (elapsed > threshold) {
+                if (g_check_system_use_insn) {
+                    fprintf(stderr,
+                        "[check_system] WARNING: %llu M instructions since last check_system call "
+                        "(component: %s)\n",
+                        (unsigned long long)(elapsed / 1000000), component_name);
+                } else {
+                    fprintf(stderr,
+                        "[check_system] WARNING: %llu ms CPU time since last check_system call "
+                        "(component: %s)\n",
+                        (unsigned long long)(elapsed / 1000000), component_name);
+                }
                 void * bt_buf[64];
                 int nptrs = backtrace(bt_buf, 64);
                 backtrace_symbols_fd(bt_buf, nptrs, 2); // fd 2 = stderr
-                // Reset timer after printing to avoid backtrace overhead cascading
-                g_last_check_system_ns = thread_cpu_time_ns();
+                // Reset counter after printing to avoid backtrace overhead cascading
+                g_last_check_system_counter = current_counter();
             }
         }
     }

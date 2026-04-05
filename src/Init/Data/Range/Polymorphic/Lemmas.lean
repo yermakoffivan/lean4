@@ -860,7 +860,8 @@ theorem toArray_eq_if_roo [UpwardEnumerable α] [LT α] [DecidableLT α]
         #[] := by
   rw [Internal.toArray_eq_toArray_iter, Rxo.Iterator.toArray_eq_match]; rfl
 
-theorem toList_eq_if_rco [UpwardEnumerable α] [LT α] [DecidableLT α]
+set_option backward.isDefEq.respectTransparency.types false in
+public theorem toList_eq_if_rco [UpwardEnumerable α] [LT α] [DecidableLT α]
     [LawfulUpwardEnumerable α] [Rxo.IsAlwaysFinite α] [LawfulUpwardEnumerableLT α] :
     r.toList = if r.lower < r.upper then
         match UpwardEnumerable.succ? r.lower with
@@ -877,7 +878,8 @@ theorem toList_eq_if_rco [UpwardEnumerable α] [LT α] [DecidableLT α]
       rfl
   · rfl
 
-theorem toArray_eq_if_rco [UpwardEnumerable α] [LT α] [DecidableLT α]
+set_option backward.isDefEq.respectTransparency.types false in
+public theorem toArray_eq_if_rco [UpwardEnumerable α] [LT α] [DecidableLT α]
     [LawfulUpwardEnumerable α] [Rxo.IsAlwaysFinite α] [LawfulUpwardEnumerableLT α] :
     r.toArray = if r.lower < r.upper then
         match UpwardEnumerable.succ? r.lower with
@@ -1290,7 +1292,8 @@ namespace Roc
 
 variable {r : Roc α}
 
-theorem toList_eq_match [LE α] [DecidableLE α] [UpwardEnumerable α]
+set_option backward.isDefEq.respectTransparency.types false in
+public theorem toList_eq_match [LE α] [DecidableLE α] [UpwardEnumerable α]
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLE α] [Rxc.IsAlwaysFinite α] :
     r.toList = match UpwardEnumerable.succ? r.lower with
       | none => []
@@ -1302,7 +1305,8 @@ theorem toList_eq_match [LE α] [DecidableLE α] [UpwardEnumerable α]
   rw [Internal.toList_eq_toList_iter, Rxc.Iterator.toList_eq_match (it := Internal.iter r)]
   simp [Internal.iter, Internal.toList_eq_toList_iter]
 
-theorem toArray_eq_match [LE α] [DecidableLE α] [UpwardEnumerable α]
+set_option backward.isDefEq.respectTransparency.types false in
+public theorem toArray_eq_match [LE α] [DecidableLE α] [UpwardEnumerable α]
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLE α] [Rxc.IsAlwaysFinite α] :
     r.toArray = match UpwardEnumerable.succ? r.lower with
       | none => #[]
@@ -1558,6 +1562,7 @@ theorem toArray_eq_match [LE α] [LT α] [DecidableLT α] [UpwardEnumerable α]
           #[] := by
   rw [Internal.toArray_eq_toArray_iter, Rxo.Iterator.toArray_eq_match]; rfl
 
+set_option backward.isDefEq.respectTransparency.types false in
 @[cbv_eval]
 theorem toList_eq_match_rco [UpwardEnumerable α] [LT α] [DecidableLT α]
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLT α] [Rxo.IsAlwaysFinite α] :
@@ -1570,7 +1575,8 @@ theorem toList_eq_match_rco [UpwardEnumerable α] [LT α] [DecidableLT α]
   · rfl
   · simp [Rco.toList_eq_if_roo, Roo.toList, Internal.iter]
 
-theorem toArray_eq_match_rco [UpwardEnumerable α] [LT α] [DecidableLT α]
+set_option backward.isDefEq.respectTransparency.types false in
+public theorem toArray_eq_match_rco [UpwardEnumerable α] [LT α] [DecidableLT α]
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLT α] [Rxo.IsAlwaysFinite α] :
     r.toArray = match UpwardEnumerable.succ? r.lower with
       | none => #[]
@@ -2028,6 +2034,7 @@ theorem toList_toArray [Least? α] [LE α] [DecidableLE α] [UpwardEnumerable α
     r.toArray.toList = r.toList := by
   simp [Internal.toList_eq_toList_iter, Internal.toArray_eq_toArray_iter]
 
+set_option backward.isDefEq.respectTransparency.types false in
 @[cbv_eval]
 theorem toList_eq_match_rcc [LE α] [DecidableLE α] [Least? α] [UpwardEnumerable α]
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLE α]
@@ -2304,6 +2311,7 @@ theorem toList_toArray [Least? α] [LT α] [DecidableLT α] [UpwardEnumerable α
     r.toArray.toList = r.toList := by
   simp [Internal.toList_eq_toList_iter, Internal.toArray_eq_toArray_iter]
 
+set_option backward.isDefEq.respectTransparency.types false in
 @[cbv_eval]
 theorem toList_eq_match_rco [LT α] [DecidableLT α] [Least? α] [UpwardEnumerable α]
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLT α]
@@ -2316,7 +2324,8 @@ theorem toList_eq_match_rco [LT α] [DecidableLT α] [Least? α] [UpwardEnumerab
     Rxo.Iterator.toList_eq_match (it := Rco.Internal.iter _)]
   simp [Internal.iter, Rco.Internal.iter]
 
-theorem toArray_eq_match_rco [LT α] [DecidableLT α] [Least? α] [UpwardEnumerable α]
+set_option backward.isDefEq.respectTransparency.types false in
+public theorem toArray_eq_match_rco [LT α] [DecidableLT α] [Least? α] [UpwardEnumerable α]
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLT α]
     [Rxo.IsAlwaysFinite α] :
     r.toArray = match Least?.least? (α := α) with

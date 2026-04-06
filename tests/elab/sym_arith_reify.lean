@@ -134,3 +134,39 @@ info: #[a, b, c]
 run_meta SymM.run do runTestOnInt do
   logInfo m!"{repr (← reifyIntExpr ``e)}"
   logInfo (← get).vars
+
+/-! ## Roundtrip tests: reify then denote -/
+
+/-- Reify an expression, denote it back, and check they're definitionally equal. -/
+def roundtrip (n : Name) : TestM Unit := do
+  let orig ← canonExpr (← getDefValue n)
+  let some re ← reifyRing? orig (skipVar := false) | throwError "reify failed"
+  let vars := (← get).vars
+  let denoted ← denoteRingExpr vars re
+  let denoted ← canonExpr denoted
+  unless (← isDefEq orig denoted) do
+    logInfo m!"MISMATCH for {n}:\n  orig:    {orig}\n  denoted: {denoted}"
+    return
+  logInfo m!"roundtrip OK: {n}: {denoted}"
+
+/--
+info: roundtrip OK: intAdd: 2 + 3
+---
+info: roundtrip OK: intMulAdd: 2 * 3 + 1
+---
+info: roundtrip OK: intNeg: -5
+---
+info: roundtrip OK: intPow: 2 ^ 3
+---
+info: roundtrip OK: intSub: 7 - 2
+---
+info: roundtrip OK: e: a + b * 2 - (c * a + a * (3 * b + c))
+-/
+#guard_msgs in
+run_meta SymM.run do runTestOnInt do
+  roundtrip ``intAdd
+  roundtrip ``intMulAdd
+  roundtrip ``intNeg
+  roundtrip ``intPow
+  roundtrip ``intSub
+  roundtrip ``e

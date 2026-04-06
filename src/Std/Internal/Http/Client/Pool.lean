@@ -69,14 +69,16 @@ private def createTcpSession (host : URI.Host) (port : UInt16) (config : Config)
   throw lastErr
 
 /--
-A connection pool that manages multiple sessions per `(host, port)` pair.
+A connection pool that manages multiple sessions per `(scheme, host, port)` triple.
 Each value in the map is an array of live sessions paired with a round-robin counter.
 -/
 public structure Agent.Pool where
   /--
-  Per-host session lists and round-robin counters, guarded by a mutex.
+  Per-origin session lists and round-robin counters, guarded by a mutex.
+  The key is `(scheme, host, port)` so that `http://example.com:443` and
+  `https://example.com:443` are never mixed in the same pool.
   -/
-  state : Mutex (Std.HashMap (String × UInt16) (Array (Session Socket.Client) × Nat))
+  state : Mutex (Std.HashMap (String × String × UInt16) (Array (Session Socket.Client) × Nat))
 
   /--
   Maximum number of sessions (connections) per host.
@@ -109,24 +111,27 @@ namespace Agent.Pool
 Creates a new, empty connection pool.
 -/
 def new (config : Config := {}) (maxPerHost : Nat := 4) : Async Agent.Pool := do
-  let state ← Mutex.new (∅ : Std.HashMap (String × UInt16) (Array (Session Socket.Client) × Nat))
+  let state ← Mutex.new (∅ : Std.HashMap (String × String × UInt16) (Array (Session Socket.Client) × Nat))
   let cookieJar ← Cookie.Jar.new
   let nextId ← Mutex.new (1 : UInt64)
   pure { state, maxPerHost, config, cookieJar, nextId }
 
 /--
-Returns a session for `(host, port)`, reusing an existing one when available or
+Returns a session for `(scheme, host, port)`, reusing an existing one when available or
 creating a new one when the pool has room.  Uses round-robin scheduling.
+The scheme is part of the key so that `http://example.com:443` and `https://example.com:443`
+never share a pool entry.
 -/
-def getOrCreateSession (pool : Agent.Pool) (host : URI.Host) (port : UInt16) : Async (Session Socket.Client) := do
+def getOrCreateSession (pool : Agent.Pool) (scheme : URI.Scheme) (host : URI.Host) (port : UInt16) : Async (Session Socket.Client) := do
+  let key := (scheme.val, toString host, port)
   -- Fast path: pick an existing session round-robin.
   let maybeSession ← pool.state.atomically do
     let st ← MonadState.get
-    let (sessions, idx) := (st.get? (toString host, port)).getD (#[], 0)
+    let (sessions, idx) := (st.get? key).getD (#[], 0)
     match sessions[idx % sessions.size]? with
     | none => return none
     | some selected =>
-      MonadState.set (st.insert (toString host, port) (sessions, idx + 1))
+      MonadState.set (st.insert key (sessions, idx + 1))
       return some selected
 
   if let some session := maybeSession then
@@ -141,47 +146,48 @@ def getOrCreateSession (pool : Agent.Pool) (host : URI.Host) (port : UInt16) : A
   let session := { session with id := newId }
   pool.state.atomically do
     let st ← MonadState.get
-    let (sessions, idx) := (st.get? (toString host, port)).getD (#[], 0)
+    let (sessions, idx) := (st.get? key).getD (#[], 0)
     -- Respect maxPerHost: only register if we are still under the limit.
     if sessions.size < pool.maxPerHost then
-      MonadState.set (st.insert (toString host, port) (sessions.push session, idx))
+      MonadState.set (st.insert key (sessions.push session, idx))
     -- If over the limit (concurrent creation race), this session is still
     -- returned for the current request but not stored for future reuse.
   return session
 
 /--
 Removes a single broken session from the pool by its unique ID.
-Healthy sibling sessions to the same host are preserved.
+Healthy sibling sessions to the same origin are preserved.
 -/
-private def evictSession (pool : Agent.Pool) (host : URI.Host) (port : UInt16) (sessionId : UInt64) : Async Unit := do
+private def evictSession (pool : Agent.Pool) (scheme : URI.Scheme) (host : URI.Host) (port : UInt16) (sessionId : UInt64) : Async Unit := do
+  let key := (scheme.val, toString host, port)
   pool.state.atomically do
     let st ← MonadState.get
-    match st.get? (toString host, port) with
+    match st.get? key with
     | none => pure ()
     | some (sessions, idx) =>
       let sessions' := sessions.filter (fun s => s.id != sessionId)
-      MonadState.set (st.insert (toString host, port) (sessions', idx))
+      MonadState.set (st.insert key (sessions', idx))
 
 /--
-Sends a request through a pooled session for `(host, port)`, injecting cookies from the
+Sends a request through a pooled session for `(scheme, host, port)`, injecting cookies from the
 shared jar, applying response interceptors, storing any `Set-Cookie` responses, following
 redirects up to `config.maxRedirects` hops, and evicting dead sessions on connection
 failure (retrying up to `config.maxRetries` times).
 -/
 def send {β : Type} [Coe β Body.Any]
-    (pool : Agent.Pool) (host : URI.Host) (port : UInt16)
+    (pool : Agent.Pool) (host : URI.Host) (port : UInt16) (scheme : URI.Scheme)
     (request : Request β) : Async (Response Body.Stream) := do
-  let session ← pool.getOrCreateSession host port
+  let session ← pool.getOrCreateSession scheme host port
 
   Agent.send {
     session
-    scheme := URI.Scheme.ofPort port
+    scheme := scheme
     host := host
     port := port
     cookieJar := pool.cookieJar
     interceptors := pool.interceptors
-    connectTo := some pool.getOrCreateSession
-    onBrokenSession := fun brokenSession h p => pool.evictSession h p brokenSession.id
+    connectTo := some (pool.getOrCreateSession · · ·)
+    onBrokenSession := fun brokenSession s h p => pool.evictSession s h p brokenSession.id
   } request
 
 end Agent.Pool
@@ -199,6 +205,6 @@ def connect (host : URI.Host) (port : UInt16) (config : Config := {}) : Async (A
   let session ← createTcpSession host port config
   let cookieJar ← Cookie.Jar.new
   let scheme := URI.Scheme.ofPort port
-  pure { session, scheme, host, port, cookieJar, connectTo := some (createTcpSession · · config) }
+  pure { session, scheme, host, port, cookieJar, connectTo := some (fun _scheme h p => createTcpSession h p config) }
 
 end Std.Http.Client.Agent

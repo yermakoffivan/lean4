@@ -136,6 +136,12 @@ public structure RequestBuilder where
   client : Client
 
   /--
+  URI scheme for this request (`"http"` or `"https"`).
+  Used as part of the pool key and for the `Host` header.
+  -/
+  scheme : URI.Scheme
+
+  /--
   Resolved hostname for this request.
   -/
   host : URI.Host
@@ -158,9 +164,7 @@ Injects a `Host` header if not already present.
 private def withHostHeader (rb : RequestBuilder) : RequestBuilder :=
   if rb.builder.line.headers.contains Header.Name.host then rb
   else
-    -- Use the scheme derived from the port to pick the correct default.
-    let scheme := URI.Scheme.ofPort rb.port
-    let defaultPort := URI.Scheme.defaultPort scheme
+    let defaultPort := URI.Scheme.defaultPort rb.scheme
     let hostValue :=
       if rb.port == defaultPort then toString rb.host
       else s!"{rb.host}:{rb.port}"
@@ -208,35 +212,35 @@ Sends the request with an empty body.
 -/
 def send (rb : RequestBuilder) : Async (Response Body.Stream) := do
   let rb := rb.withHostHeader
-  rb.client.send rb.host rb.port (← rb.builder.empty)
+  rb.client.send rb.host rb.port rb.scheme (← rb.builder.empty)
 
 /--
 Sends the request with a plain-text body. Sets `Content-Type: text/plain; charset=utf-8`.
 -/
 def text (rb : RequestBuilder) (content : String) : Async (Response Body.Stream) := do
   let rb := rb.withHostHeader
-  rb.client.send rb.host rb.port (← rb.builder.text content)
+  rb.client.send rb.host rb.port rb.scheme (← rb.builder.text content)
 
 /--
 Sends the request with a JSON body. Sets `Content-Type: application/json`.
 -/
 def json (rb : RequestBuilder) (content : String) : Async (Response Body.Stream) := do
   let rb := rb.withHostHeader
-  rb.client.send rb.host rb.port (← rb.builder.json content)
+  rb.client.send rb.host rb.port rb.scheme (← rb.builder.json content)
 
 /--
 Sends the request with a raw binary body. Sets `Content-Type: application/octet-stream`.
 -/
 def bytes (rb : RequestBuilder) (content : ByteArray) : Async (Response Body.Stream) := do
   let rb := rb.withHostHeader
-  rb.client.send rb.host rb.port (← rb.builder.bytes content)
+  rb.client.send rb.host rb.port rb.scheme (← rb.builder.bytes content)
 
 /--
 Sends the request with a streaming body produced by `gen`.
 -/
 def stream (rb : RequestBuilder) (gen : Body.Stream → Async Unit) : Async (Response Body.Stream) := do
   let rb := rb.withHostHeader
-  rb.client.send rb.host rb.port (← rb.builder.stream gen)
+  rb.client.send rb.host rb.port rb.scheme (← rb.builder.stream gen)
 
 end RequestBuilder
 
@@ -254,12 +258,13 @@ private def mkRequest
   let target : RequestTarget :=
     .originForm url.path (if url.query.isEmpty then none else some url.query)
   let host := (url.authority.map (·.host)).getD default
+  let scheme := url.scheme
   let port : UInt16 := match url.authority with
     | some auth => match auth.port with
       | .value p => p
-      | _ => URI.Scheme.defaultPort url.scheme
-    | none => URI.Scheme.defaultPort url.scheme
-  { client, host, port, builder := method (Request.new |>.uri target) }
+      | _ => URI.Scheme.defaultPort scheme
+    | none => URI.Scheme.defaultPort scheme
+  { client, scheme, host, port, builder := method (Request.new |>.uri target) }
 
 /--
 Creates a GET request builder for `url`.

@@ -54,7 +54,7 @@ structure Config where
   /--
   Timeout duration for keep-alive connections.
   -/
-  keepAliveTimeout : { x : Time.Millisecond.Offset // 0 < x } := ⟨60000, by decide⟩
+  keepAliveTimeout : { x : Time.Millisecond.Offset // 0 < x } := ⟨4000, by decide⟩
 
   /--
   Timeout for the request lifecycle (send + receive) per connection.
@@ -95,7 +95,8 @@ structure Config where
   maxRetries : Nat := 3
 
   /--
-  Delay in milliseconds between successive retry attempts.
+  Base delay in milliseconds for exponential backoff between retry attempts.
+  The actual delay for attempt `n` (0-indexed) is `min(retryDelay * 2^n, 32000)`.
   -/
   retryDelay : Time.Millisecond.Offset := 1000
 

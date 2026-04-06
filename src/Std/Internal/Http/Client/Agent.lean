@@ -81,24 +81,25 @@ public structure Agent (α : Type) where
   interceptors : Array (Response Body.Stream → Async (Response Body.Stream)) := #[]
 
   /--
-  Optional factory for opening a new session to `(host, port)`. Used for:
-  * Automatic retry after connection errors (`maxRetries`): reconnects to the same host.
-  * Cross-host redirects: connects to the new host.
+  Optional factory for opening a new session to `(scheme, host, port)`. Used for:
+  * Automatic retry after connection errors (`maxRetries`): reconnects to the same origin.
+  * Cross-host redirects: connects to the new origin.
+  The scheme is included so that http→https redirects open the correct pool entry.
   `none` for agents created via `Agent.ofTransport` without a factory; cross-host redirects
   are not followed and connection errors are not retried automatically for such agents.
   -/
-  connectTo : Option (URI.Host → UInt16 → Async (Session α)) := none
+  connectTo : Option (URI.Scheme → URI.Host → UInt16 → Async (Session α)) := none
 
   /--
   Called when a connection error is confirmed (i.e., `session.send` threw and all retries
   are committed to using a fresh session).  Receives the broken session together with the
-  host and port so the caller can:
-  * For pool agents: evict every session to that host so the next retry gets a fresh one.
+  scheme, host, and port so the caller can:
+  * For pool agents: evict the session from the pool so the next retry gets a fresh one.
   * For standalone agents: close the session's request channel so the background loop exits.
   The default closes the session channel; pool agents set this to an eviction function.
   -/
-  onBrokenSession : Session α → URI.Host → UInt16 → Async Unit :=
-    fun s _ _ => discard <| s.close
+  onBrokenSession : Session α → URI.Scheme → URI.Host → UInt16 → Async Unit :=
+    fun s _ _ _ => discard <| s.close
 
 namespace Agent
 
@@ -139,7 +140,7 @@ following; omit it (or pass `none`) to disable both.
 -/
 def ofTransport [Transport α] (socket : α) (scheme : URI.Scheme)
     (host : URI.Host) (port : UInt16)
-    (connectTo : Option (URI.Host → UInt16 → Async (Session α)) := none)
+    (connectTo : Option (URI.Scheme → URI.Host → UInt16 → Async (Session α)) := none)
     (config : Config := {}) : Async (Agent α) := do
 
   let session ← Session.new socket config
@@ -309,12 +310,14 @@ private partial def sendWithRedirects [Transport α]
 
   let response ← try agent.session.send request
     catch err => do
-      agent.onBrokenSession agent.session agent.host agent.port
+      agent.onBrokenSession agent.session agent.scheme agent.host agent.port
 
       if retriesLeft > 0 && isIdempotentMethod request.line.method then
         if let some factory := agent.connectTo then
-          sleep agent.session.config.retryDelay
-          let newSession ← factory agent.host agent.port
+          let attempt := agent.session.config.maxRetries - retriesLeft
+          let delay : Time.Millisecond.Offset := ⟨min (agent.session.config.retryDelay.val * (2 : Int) ^ attempt) 32000⟩
+          sleep delay
+          let newSession ← factory agent.scheme agent.host agent.port
           return ← sendWithRedirects { agent with session := newSession } request remaining (retriesLeft - 1) history
 
       throw err
@@ -345,7 +348,7 @@ private partial def sendWithRedirects [Transport α]
       let some factory := agent.connectTo
         | return response
 
-      let newSession ← factory newHost newPort
+      let newSession ← factory newScheme newHost newPort
 
       sendWithRedirects
         { session := newSession

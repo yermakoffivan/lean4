@@ -15,3 +15,6 @@ public import Lean.Meta.Sym.Arith.MonadVar
 public import Lean.Meta.Sym.Arith.Functions
 public import Lean.Meta.Sym.Arith.Reify
 public import Lean.Meta.Sym.Arith.DenoteExpr
+public import Lean.Meta.Sym.Arith.ToExpr
+public import Lean.Meta.Sym.Arith.VarRename
+public import Lean.Meta.Sym.Arith.Poly

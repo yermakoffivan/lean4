@@ -12,8 +12,8 @@ import Lean.Data.RArray
 import Lean.Meta.Tactic.Grind.Diseq
 import Lean.Meta.Tactic.Grind.ProofUtil
 import Lean.Meta.Tactic.Grind.Arith.CommRing.DenoteExpr
-import Lean.Meta.Tactic.Grind.Arith.CommRing.ToExpr
-import Lean.Meta.Tactic.Grind.Arith.CommRing.VarRename
+import Lean.Meta.Sym.Arith.ToExpr
+import Lean.Meta.Sym.Arith.VarRename
 import Init.Data.Nat.Order
 import Init.Data.Order.Lemmas
 public section

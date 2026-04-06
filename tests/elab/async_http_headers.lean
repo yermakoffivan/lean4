@@ -348,7 +348,7 @@ open Std.Http.Protocol.H1
 -- Helper: feed all bytes at once and run one step, return the machine state.
 private def runMachine (raw : String) (cfg : Config) : Machine .receiving :=
   let machine : Machine .receiving := { config := cfg }
-  (machine.feed raw.toUTF8).step.fst
+  (machine.feed raw.toUTF8).step.1
 
 -- With a tight limit (35 bytes), two headers whose combined byte count exceeds
 -- the limit should cause the machine to fail.

@@ -22,7 +22,6 @@ def sendRaw
   let res ← client.recv?
   pure <| res.getD .empty
 
-
 def sendRawAndClose
     (client : Mock.Client)
     (server : Mock.Server)
@@ -36,18 +35,15 @@ def sendRawAndClose
   let res ← client.recv?
   pure <| res.getD .empty
 
-
 def assertStatus (name : String) (response : ByteArray) (status : String) : IO Unit := do
   let text := String.fromUTF8! response
   unless text.startsWith status do
     throw <| IO.userError s!"Test '{name}' failed:\nExpected {status}\nGot:\n{text.quote}"
 
-
 def assertContains (name : String) (response : ByteArray) (needle : String) : IO Unit := do
   let text := String.fromUTF8! response
   unless text.contains needle do
     throw <| IO.userError s!"Test '{name}' failed:\nMissing {needle.quote}\nGot:\n{text.quote}"
-
 
 def assertExact (name : String) (response : ByteArray) (expected : String) : IO Unit := do
   let text := String.fromUTF8! response

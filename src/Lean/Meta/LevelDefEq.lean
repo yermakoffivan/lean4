@@ -8,6 +8,7 @@ module
 prelude
 public import Lean.Util.CollectMVars
 public import Lean.Meta.DecLevel
+public import Lean.Meta.HasAssignableMVar
 
 public section
 
@@ -85,6 +86,7 @@ private def isMVarWithGreaterDepth (v : Level) (mvarId : LMVarId) : MetaM Bool :
   | Level.mvar mvarId' => return (← mvarId'.getLevel) > (← mvarId.getLevel)
   | _ => return false
 
+set_option compiler.ignoreBorrowAnnotation true in
 mutual
 
   private partial def solve (u v : Level) : MetaM LBool := do

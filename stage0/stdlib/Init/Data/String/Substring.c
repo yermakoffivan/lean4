@@ -26,7 +26,7 @@ lean_object* lean_string_utf8_next(lean_object*, lean_object*);
 lean_object* lean_string_utf8_prev(lean_object*, lean_object*);
 lean_object* l_mkPanicMessageWithDecl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 extern lean_object* l_String_instInhabitedSlice;
-lean_object* lean_panic_fn(lean_object*, lean_object*);
+lean_object* lean_panic_fn_borrowed(lean_object*, lean_object*);
 uint8_t lean_string_is_valid_pos(lean_object*, lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
 uint8_t lean_uint32_dec_le(uint32_t, uint32_t);
@@ -1786,18 +1786,18 @@ lean_object* v___x_409_;
 v___x_409_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_409_, 0, v___y_408_);
 lean_ctor_set(v___x_409_, 1, v_r_396_);
-lean_inc(v___y_407_);
-v_b_393_ = v___y_407_;
-v_i_394_ = v___y_407_;
-v_j_395_ = v___y_406_;
+lean_inc(v___y_406_);
+v_b_393_ = v___y_406_;
+v_i_394_ = v___y_406_;
+v_j_395_ = v___y_407_;
 v_r_396_ = v___x_409_;
 goto _start;
 }
 v___jp_414_:
 {
 lean_object* v___x_419_; uint8_t v___x_420_; 
-v___x_419_ = lean_nat_add(v_startPos_412_, v___y_415_);
-lean_dec(v___y_415_);
+v___x_419_ = lean_nat_add(v_startPos_412_, v___y_416_);
+lean_dec(v___y_416_);
 v___x_420_ = lean_nat_dec_le(v_stopPos_413_, v___x_419_);
 if (v___x_420_ == 0)
 {
@@ -1807,7 +1807,7 @@ v___x_421_ = lean_alloc_ctor(0, 3, 0);
 lean_ctor_set(v___x_421_, 0, v_str_411_);
 lean_ctor_set(v___x_421_, 1, v___y_418_);
 lean_ctor_set(v___x_421_, 2, v___x_419_);
-v___y_406_ = v___y_416_;
+v___y_406_ = v___y_415_;
 v___y_407_ = v___y_417_;
 v___y_408_ = v___x_421_;
 goto v___jp_405_;
@@ -1822,7 +1822,7 @@ v___x_422_ = lean_alloc_ctor(0, 3, 0);
 lean_ctor_set(v___x_422_, 0, v_str_411_);
 lean_ctor_set(v___x_422_, 1, v___y_418_);
 lean_ctor_set(v___x_422_, 2, v_stopPos_413_);
-v___y_406_ = v___y_416_;
+v___y_406_ = v___y_415_;
 v___y_407_ = v___y_417_;
 v___y_408_ = v___x_422_;
 goto v___jp_405_;
@@ -1855,9 +1855,9 @@ lean_dec(v_b_393_);
 v___x_432_ = lean_nat_dec_le(v_stopPos_413_, v___x_431_);
 if (v___x_432_ == 0)
 {
-v___y_415_ = v___x_429_;
-v___y_416_ = v___x_428_;
-v___y_417_ = v___y_424_;
+v___y_415_ = v___y_424_;
+v___y_416_ = v___x_429_;
+v___y_417_ = v___x_428_;
 v___y_418_ = v___x_431_;
 goto v___jp_414_;
 }
@@ -1865,9 +1865,9 @@ else
 {
 lean_dec(v___x_431_);
 lean_inc(v_stopPos_413_);
-v___y_415_ = v___x_429_;
-v___y_416_ = v___x_428_;
-v___y_417_ = v___y_424_;
+v___y_415_ = v___y_424_;
+v___y_416_ = v___x_429_;
+v___y_417_ = v___x_428_;
 v___y_418_ = v_stopPos_413_;
 goto v___jp_414_;
 }
@@ -1878,8 +1878,8 @@ lean_object* v___x_433_;
 lean_dec(v___x_429_);
 lean_dec(v_b_393_);
 v___x_433_ = ((lean_object*)(l_Substring_Raw_extract___closed__1));
-v___y_406_ = v___x_428_;
-v___y_407_ = v___y_424_;
+v___y_406_ = v___y_424_;
+v___y_407_ = v___x_428_;
 v___y_408_ = v___x_433_;
 goto v___jp_405_;
 }
@@ -2756,7 +2756,7 @@ _start:
 {
 lean_object* v___x_738_; lean_object* v___x_739_; 
 v___x_738_ = l_String_instInhabitedSlice;
-v___x_739_ = lean_panic_fn(v___x_738_, v_msg_737_);
+v___x_739_ = lean_panic_fn_borrowed(v___x_738_, v_msg_737_);
 return v___x_739_;
 }
 }
@@ -5058,10 +5058,9 @@ lean_object* v_str_1398_; lean_object* v_startPos_1399_; lean_object* v_startPos
 v_str_1398_ = lean_ctor_get(v_s_1396_, 0);
 lean_inc_ref(v_str_1398_);
 v_startPos_1399_ = lean_ctor_get(v_s_1396_, 1);
-lean_inc(v_startPos_1399_);
+lean_inc_n(v_startPos_1399_, 2);
 v_startPos_1400_ = lean_ctor_get(v_t_1397_, 1);
 lean_inc(v_startPos_1400_);
-lean_inc(v_startPos_1399_);
 v___x_1401_ = l___private_Init_Data_String_Substring_0__Substring_Raw_commonPrefix_loop(v_s_1396_, v_t_1397_, v_startPos_1399_, v_startPos_1400_);
 lean_dec_ref(v_s_1396_);
 v_isSharedCheck_1408_ = !lean_is_exclusive(v_t_1397_);
@@ -5179,10 +5178,9 @@ lean_object* v_str_1435_; lean_object* v_stopPos_1436_; lean_object* v_stopPos_1
 v_str_1435_ = lean_ctor_get(v_s_1433_, 0);
 lean_inc_ref(v_str_1435_);
 v_stopPos_1436_ = lean_ctor_get(v_s_1433_, 2);
-lean_inc(v_stopPos_1436_);
+lean_inc_n(v_stopPos_1436_, 2);
 v_stopPos_1437_ = lean_ctor_get(v_t_1434_, 2);
 lean_inc(v_stopPos_1437_);
-lean_inc(v_stopPos_1436_);
 v___x_1438_ = l___private_Init_Data_String_Substring_0__Substring_Raw_commonSuffix_loop(v_s_1433_, v_t_1434_, v_stopPos_1436_, v_stopPos_1437_);
 lean_dec_ref(v_s_1433_);
 v_isSharedCheck_1445_ = !lean_is_exclusive(v_t_1434_);

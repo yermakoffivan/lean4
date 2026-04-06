@@ -78,6 +78,18 @@ private def tryNonCommRing? (type : Expr) : SymM (Option Nat) := do
   modifyArithState fun s => { s with ncRings := s.ncRings.push ring }
   return some id
 
+/-- Helper function for `tryCommSemiring? -/
+private def tryCacheAndCommRing? (type : Expr) : SymM (Option Nat) := do
+  if let some result := (← getArithState).typeClassify.find? { expr := type } then
+    let .commRing id := result | return none
+    return id
+  let id? ← tryCommRing? type
+  let result := match id? with
+    | none => .none
+    | some id => .commRing id
+  modifyArithState fun s => { s with typeClassify := s.typeClassify.insert { expr := type } result }
+  return id?
+
 /-- Try to classify `type` as a `CommSemiring`. Creates the `OfSemiring.Q` envelope ring. -/
 private def tryCommSemiring? (type : Expr) : SymM (Option Nat) := do
   let u ← getDecLevel type
@@ -86,7 +98,7 @@ private def tryCommSemiring? (type : Expr) : SymM (Option Nat) := do
   let semiringInst := mkApp2 (mkConst ``Grind.CommSemiring.toSemiring [u]) type commSemiringInst
   let q ← shareCommon (← Sym.canon (mkApp2 (mkConst ``Grind.Ring.OfSemiring.Q [u]) type semiringInst))
   -- The envelope `Q` type must be classifiable as a CommRing.
-  let some ringId ← tryCommRing? q
+  let some ringId ← tryCacheAndCommRing? q
     | reportIssue! "unexpected failure initializing ring{indentExpr q}"; return none
   let id := (← getArithState).semirings.size
   let semiring : CommSemiring := {

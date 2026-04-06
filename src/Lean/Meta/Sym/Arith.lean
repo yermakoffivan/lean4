@@ -13,3 +13,4 @@ public import Lean.Meta.Sym.Arith.MonadRing
 public import Lean.Meta.Sym.Arith.MonadSemiring
 public import Lean.Meta.Sym.Arith.MonadVar
 public import Lean.Meta.Sym.Arith.Functions
+public import Lean.Meta.Sym.Arith.Reify

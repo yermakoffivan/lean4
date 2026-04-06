@@ -10,6 +10,7 @@ public import Lean.Meta.Sym.Arith.MonadVar
 public import Lean.Meta.Sym.LitValues
 public section
 namespace Lean.Meta.Sym.Arith
+open Sym.Arith (MonadCanon)
 
 /-!
 # Reification of arithmetic expressions

@@ -18,6 +18,8 @@ import Init.Data.Nat.Order
 import Init.Data.Order.Lemmas
 public section
 namespace Lean.Meta.Grind.Arith.CommRing
+open Sym.Arith (MonadCanon)
+
 /--
 Returns a context of type `RArray α` containing the variables `vars` where
 `α` is the type of the ring.

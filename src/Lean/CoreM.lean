@@ -446,10 +446,6 @@ Note that the value of `ctx.initHeartbeats` is ignored and replaced with `IO.get
 @[inline] def CoreM.toIO' (x : CoreM α) (ctx : Context) (s : State) : IO α :=
   (·.1) <$> x.toIO ctx s
 
-/-- withIncRecDepth for a monad `m` such that `[MonadControlT CoreM n]`. -/
-protected def withIncRecDepth [Monad m] [MonadControlT CoreM m] (x : m α) : m α :=
-  controlAt CoreM fun runInBase => withIncRecDepth (runInBase x)
-
 /--
 Record a check-in for the `LEAN_CHECK_SYSTEM_INTERVAL_MS` monitoring.
 When that env var is set, warns on stderr if too much CPU time has elapsed since
@@ -472,6 +468,12 @@ heartbeat tracking (e.g. `SynthInstance`).
   if let some tk := (← read).cancelTk? then
     if (← tk.isSet) then
       throwInterruptException
+
+/-- withIncRecDepth for a monad `m` such that `[MonadControlT CoreM n]`.
+Also checks for cancellation, so that recursive elaboration functions
+(inferType, whnf, isDefEq, …) respond promptly to interrupt requests. -/
+protected def withIncRecDepth [Monad m] [MonadControlT CoreM m] (x : m α) : m α :=
+  controlAt CoreM fun runInBase => do checkInterrupted; withIncRecDepth (runInBase x)
 
 register_builtin_option debug.moduleNameAtTimeout : Bool := {
   defValue := true

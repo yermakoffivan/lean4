@@ -87,26 +87,29 @@ structure CommSemiring extends Semiring where
   toQFn?             : Option Expr := none
   deriving Inhabited
 
+/-- Result of classifying a type's algebraic structure. -/
+inductive ClassifyResult where
+  | commRing (id : Nat)
+  | nonCommRing (id : Nat)
+  | commSemiring (id : Nat)
+  | nonCommSemiring (id : Nat)
+  | /-- No algebraic structure found. -/ none
+  deriving Inhabited
+
 /-- Arith type classification state, stored as a `SymExtension`. -/
 structure State where
   /-- Exponent threshold for `HPow` evaluation. -/
   exp            : Nat := 8
   /-- Commutative rings. -/
   rings          : Array CommRing := {}
-  /-- Mapping from types to their "ring id". Caches failures using `none`. -/
-  typeIdOf       : PHashMap ExprPtr (Option Nat) := {}
   /-- Commutative semirings. -/
   semirings      : Array CommSemiring := {}
-  /-- Mapping from types to their "semiring id". Caches failures using `none`. -/
-  stypeIdOf      : PHashMap ExprPtr (Option Nat) := {}
   /-- Non-commutative rings. -/
   ncRings        : Array Ring := {}
-  /-- Mapping from types to their "non-comm ring id". Caches failures using `none`. -/
-  nctypeIdOf     : PHashMap ExprPtr (Option Nat) := {}
   /-- Non-commutative semirings. -/
   ncSemirings    : Array Semiring := {}
-  /-- Mapping from types to their "non-comm semiring id". Caches failures using `none`. -/
-  ncstypeIdOf    : PHashMap ExprPtr (Option Nat) := {}
+  /-- Mapping from types to their classification result. Caches failures as `.none`. -/
+  typeClassify   : PHashMap ExprPtr ClassifyResult := {}
   deriving Inhabited
 
 builtin_initialize arithExt : SymExtension State ← registerSymExtension (return {})

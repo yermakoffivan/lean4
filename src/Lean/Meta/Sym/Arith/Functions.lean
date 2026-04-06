@@ -5,109 +5,22 @@ Authors: Leonardo de Moura
 -/
 module
 prelude
-public import Lean.Meta.Sym.Arith.Classify
-import Lean.Meta.Sym.SynthInstance
-import Lean.Meta.Sym.Canon
+public import Lean.Meta.Sym.Arith.MonadRing
+public import Lean.Meta.Sym.Arith.MonadSemiring
 public section
-
 namespace Lean.Meta.Sym.Arith
 
 /-!
-# Type classes and cached function expressions for arithmetic operators
-
-## Type classes
-
-`MonadCanon`, `MonadRing`, `MonadCommRing`, `MonadSemiring`, `MonadCommSemiring`
-abstract over the monad and the ring/semiring state. This allows `Functions.lean`
-to work in any monad that provides the right instances — both `SymM` (for the arith
-normalizer) and grind's `RingM`/`SemiringM` (once grind is unified).
-
-## Cached functions
+# Cached function expressions for arithmetic operators
 
 Synthesizes and caches the canonical Lean expressions for arithmetic operators
 (`+`, `*`, `-`, `^`, `intCast`, `natCast`, etc.). These cached expressions are used
 during reification to validate instances via pointer equality (`isSameExpr`).
+
+Each getter checks the cache field first. On a miss, it synthesizes the instance,
+verifies it against the expected instance from the ring structure using `isDefEqI`,
+canonicalizes the result via `canonExpr`, and stores it.
 -/
-
-/-! ### MonadCanon -/
-
-class MonadCanon (m : Type → Type) where
-  /-- Canonicalize an expression (types, instances, support arguments). -/
-  canonExpr : Expr → m Expr
-  /-- Synthesize an instance, returning `none` on failure. -/
-  synthInstance? : Expr → m (Option Expr)
-
-export MonadCanon (canonExpr)
-
-@[always_inline]
-instance (m n) [MonadLift m n] [MonadCanon m] : MonadCanon n where
-  canonExpr e := liftM (canonExpr e : m Expr)
-  synthInstance? e := liftM (MonadCanon.synthInstance? e : m (Option Expr))
-
-def MonadCanon.synthInstance [Monad m] [MonadError m] [MonadCanon m] (type : Expr) : m Expr := do
-  let some inst ← synthInstance? type
-    | throwError "failed to find instance{indentExpr type}"
-  return inst
-
-/-! ### MonadRing / MonadCommRing -/
-
-class MonadRing (m : Type → Type) where
-  getRing : m Ring
-  modifyRing : (Ring → Ring) → m Unit
-
-export MonadRing (getRing modifyRing)
-
-@[always_inline]
-instance (m n) [MonadLift m n] [MonadRing m] : MonadRing n where
-  getRing    := liftM (getRing : m Ring)
-  modifyRing f := liftM (modifyRing f : m Unit)
-
-class MonadCommRing (m : Type → Type) where
-  getCommRing : m CommRing
-  modifyCommRing : (CommRing → CommRing) → m Unit
-
-export MonadCommRing (getCommRing modifyCommRing)
-
-@[always_inline]
-instance (m n) [MonadLift m n] [MonadCommRing m] : MonadCommRing n where
-  getCommRing      := liftM (getCommRing : m CommRing)
-  modifyCommRing f := liftM (modifyCommRing f : m Unit)
-
-@[always_inline]
-instance (m) [Monad m] [MonadCommRing m] : MonadRing m where
-  getRing := return (← getCommRing).toRing
-  modifyRing f := modifyCommRing fun s => { s with toRing := f s.toRing }
-
-/-! ### MonadSemiring / MonadCommSemiring -/
-
-class MonadSemiring (m : Type → Type) where
-  getSemiring : m Semiring
-  modifySemiring : (Semiring → Semiring) → m Unit
-
-export MonadSemiring (getSemiring modifySemiring)
-
-@[always_inline]
-instance (m n) [MonadLift m n] [MonadSemiring m] : MonadSemiring n where
-  getSemiring    := liftM (getSemiring : m Semiring)
-  modifySemiring f := liftM (modifySemiring f : m Unit)
-
-class MonadCommSemiring (m : Type → Type) where
-  getCommSemiring : m CommSemiring
-  modifyCommSemiring : (CommSemiring → CommSemiring) → m Unit
-
-export MonadCommSemiring (getCommSemiring modifyCommSemiring)
-
-@[always_inline]
-instance (m n) [MonadLift m n] [MonadCommSemiring m] : MonadCommSemiring n where
-  getCommSemiring      := liftM (getCommSemiring : m CommSemiring)
-  modifyCommSemiring f := liftM (modifyCommSemiring f : m Unit)
-
-@[always_inline]
-instance (m) [Monad m] [MonadCommSemiring m] : MonadSemiring m where
-  getSemiring := return (← getCommSemiring).toSemiring
-  modifySemiring f := modifyCommSemiring fun s => { s with toSemiring := f s.toSemiring }
-
-/-! ### Cached function getters -/
 
 variable [MonadLiftT MetaM m] [MonadError m] [Monad m] [MonadCanon m]
 
@@ -134,6 +47,8 @@ private def mkPowFn (u : Level) (type : Expr) (semiringInst : Expr) : m Expr := 
 private def mkNatCastFn (u : Level) (type : Expr) (semiringInst : Expr) : m Expr := do
   let inst' := mkApp2 (mkConst ``Grind.Semiring.natCast [u]) type semiringInst
   let instType := mkApp (mkConst ``NatCast [u]) type
+  -- Note: `Semiring.natCast` is not a global instance, so `NatCast α` may not be available.
+  -- When present, verify defeq; otherwise fall back to the semiring field.
   let inst ← match (← MonadCanon.synthInstance? instType) with
   | none => pure inst'
   | some inst => checkInst ``NatCast.natCast inst inst'; pure inst
@@ -186,6 +101,7 @@ def getIntCastFn : m Expr := do
   if let some intCastFn := ring.intCastFn? then return intCastFn
   let inst' := mkApp2 (mkConst ``Grind.Ring.intCast [ring.u]) ring.type ring.ringInst
   let instType := mkApp (mkConst ``IntCast [ring.u]) ring.type
+  -- Note: `Ring.intCast` is not a global instance. Same pattern as `mkNatCastFn`.
   let inst ← match (← MonadCanon.synthInstance? instType) with
     | none => pure inst'
     | some inst => checkInst ``Int.cast inst inst'; pure inst

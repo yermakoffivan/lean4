@@ -8,4 +8,8 @@ prelude
 public import Lean.Meta.Sym.Arith.Types
 public import Lean.Meta.Sym.Arith.EvalNum
 public import Lean.Meta.Sym.Arith.Classify
+public import Lean.Meta.Sym.Arith.MonadCanon
+public import Lean.Meta.Sym.Arith.MonadRing
+public import Lean.Meta.Sym.Arith.MonadSemiring
+public import Lean.Meta.Sym.Arith.MonadVar
 public import Lean.Meta.Sym.Arith.Functions

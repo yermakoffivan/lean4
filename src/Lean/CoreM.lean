@@ -452,7 +452,17 @@ When that env var is set, warns on stderr if too much CPU time has elapsed since
 the last check-in from either the C++ `check_system` or this function.
 -/
 @[extern "lean_check_system_interval"]
-opaque checkSystemInterval (componentName : @& String) : BaseIO Unit
+private opaque checkSystemIntervalImpl (componentName : @& String) : BaseIO Unit
+
+@[extern "lean_check_system_interval_is_enabled"]
+private opaque checkSystemIntervalIsEnabled : Unit → Bool
+
+private builtin_initialize checkSystemIntervalEnabled : Bool ←
+  pure (checkSystemIntervalIsEnabled ())
+
+@[inline] def checkSystemInterval (componentName : @& String) : BaseIO Unit := do
+  if checkSystemIntervalEnabled then
+    checkSystemIntervalImpl componentName
 
 /--
 Throws an internal interrupt exception if cancellation has been requested. The exception is not

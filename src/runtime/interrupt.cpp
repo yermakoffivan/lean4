@@ -77,6 +77,10 @@ extern "C" LEAN_EXPORT obj_res lean_check_system_interval(b_lean_obj_arg compone
     return lean_io_result_mk_ok(lean_box(0));
 }
 
+extern "C" LEAN_EXPORT uint8_t lean_check_system_interval_is_enabled(lean_obj_arg /* unit */) {
+    return get_check_system_interval_ms() > 0;
+}
+
 extern "C" LEAN_EXPORT obj_res lean_internal_get_default_max_heartbeat() {
 #ifdef LEAN_DEFAULT_MAX_HEARTBEAT
     return lean_box(LEAN_DEFAULT_MAX_HEARTBEAT);

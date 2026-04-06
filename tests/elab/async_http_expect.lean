@@ -38,7 +38,8 @@ private def checkH {σ : Type} [Std.Http.Server.Handler σ]
   let response ← Async.block do
     client.send raw.toUTF8
     Std.Http.Server.serveConnection server handler config |>.run
-    (← client.recv?).getD .empty
+    return (← client.recv?).getD .empty
+
   try expect response
   catch e => throw (IO.userError s!"[{name}] {e}")
 

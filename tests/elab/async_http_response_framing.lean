@@ -24,8 +24,9 @@ private def ok200Head : String :=
       let (client2, server2) ← Mock.new
       let headResp ← Async.block do
         client2.send "HEAD /frame HTTP/1.1\x0d\nHost: example.com\x0d\nConnection: close\x0d\n\x0d\n".toUTF8
-        Std.Http.Server.serveConnection server2 (fun _ => Response.ok |>.text "hello") defaultConfig |>.run
-        (← client2.recv?).getD .empty
+        Std.Http.Server.serveConnection server2 (show TestHandler from fun _ => Response.ok |>.text "hello") defaultConfig |>.run
+        return (← client2.recv?).getD .empty
+
       let getHeaders := (String.fromUTF8! getResp).splitOn "\x0d\n\x0d\n" |>.headD ""
       let headHeaders := (String.fromUTF8! headResp).splitOn "\x0d\n\x0d\n" |>.headD ""
       unless getHeaders == headHeaders do

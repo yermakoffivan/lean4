@@ -217,7 +217,8 @@ Simplify `code`
 -/
 partial def simp (code : Code .pure) : SimpM (Code .pure) := withIncRecDepth do
   incVisited
-  checkSystem "LCNF simp"
+  if (← get).visited % 128 == 0 then
+    checkSystem "LCNF simp"
   match code with
   | .let decl k =>
     let baseDecl := decl

@@ -60,8 +60,15 @@ elab_rules : tactic
   prom.resolve ()
   Core.checkInterrupted
 
--- can't use a naked promise in `initialize` as marking it persistent would block
-meta initialize unblockedCancelTk : IO.CancelToken ← IO.CancelToken.new
+-- CancelToken is Promise-based, so we can't create one during `initialize`
+-- (task manager not yet ready). Create lazily on first use.
+meta initialize unblockedCancelTkRef : IO.Ref (Option IO.CancelToken) ← IO.mkRef none
+
+private meta def getUnblockedCancelTk : BaseIO IO.CancelToken := do
+  if let some tk := (← unblockedCancelTkRef.get) then return tk
+  let tk ← IO.CancelToken.new
+  unblockedCancelTkRef.set (some tk)
+  return tk
 
 /--
 Waits for `unblock` to be called, which is expected to happen in a subsequent document version that
@@ -86,7 +93,7 @@ elab_rules : tactic
   }
 
   while true do
-    if (← unblockedCancelTk.isSet) then
+    if (← (← getUnblockedCancelTk).isSet) then
       break
     IO.sleep 30
   if (← cancelTk.isSet) then
@@ -104,7 +111,7 @@ elab "wait_for_unblock_async" : tactic => do
     let ctx ← readThe Core.Context
     let some cancelTk := ctx.cancelTk? | unreachable!
     while true do
-      if (← unblockedCancelTk.isSet) then
+      if (← (← getUnblockedCancelTk).isSet) then
         break
       IO.sleep 30
     if (← cancelTk.isSet) then
@@ -118,7 +125,7 @@ elab "wait_for_unblock_async" : tactic => do
 /-- Unblocks a `wait_for_unblock*` task. -/
 scoped elab "unblock" : tactic => do
   dbg_trace "unblocking!"
-  unblockedCancelTk.set
+  (← getUnblockedCancelTk).set
 
 /--
 Like `wait_for_cancel_once` but does the waiting in a separate task and waits for its

@@ -709,6 +709,76 @@ where
       else
         throwError "`attempt_all` failed"
 
+/--
+Registers a snapshot task and a monitoring thread that propagates server cancellation
+to parallel subtasks. The monitor watches both:
+- The snapshot task's cancel token (set by `cancelRec` after the tactic completes)
+- The parent cancel token from `Core.Context` (set immediately by `cancelRec`)
+
+The parent token is needed because `cancelRec` uses `chainTask` which waits for a task
+to complete before walking its children. So during execution, only the parent token is set.
+
+Returns a cleanup action that should be called when the parallel work is done.
+-/
+private def registerParCancelSnapshotTask (cancelAll : BaseIO Unit) : TacticM (BaseIO Unit) := do
+  let cancelTk ← IO.CancelToken.new
+  Core.logSnapshotTask {
+    stx? := none
+    cancelTk? := some cancelTk
+    task := .pure default
+  }
+  let parentCancelTk? := (← readThe Core.Context).cancelTk?
+  discard <| BaseIO.asTask do
+    while !(← cancelTk.isSet) do
+      if let some p := parentCancelTk? then
+        if (← p.isSet) then break
+      IO.sleep 50
+    cancelAll
+  return cancelTk.set
+
+/-- Like `TacticM.parFirst` but registers subtask cancel tokens as snapshot tasks so the server
+can cancel them on re-elaboration. -/
+private def parFirstWithSnapshotCancel {α : Type} (jobs : List (TacticM α)) : TacticM α := do
+  let tasksAndCancels ← jobs.mapM TacticM.asTask
+  let (cancelHooks, tasks) := tasksAndCancels.unzip
+  let cancelAll := cancelHooks.forM id
+  let cleanup ← registerParCancelSnapshotTask cancelAll
+  try
+    -- Wait for tasks in completion order and return first success
+    let mut remaining := tasks
+    while h : remaining.length > 0 do
+      let (result, rest) ← IO.waitAny' remaining h
+      remaining := rest
+      try
+        let value ← result
+        cancelAll
+        return value
+      catch _ => continue
+    throwError "All parallel tasks failed"
+  finally
+    cleanup
+
+/-- Like `TacticM.par` but registers subtask cancel tokens as snapshot tasks so the server
+can cancel them on re-elaboration. -/
+private def parWithSnapshotCancel {α : Type} (jobs : List (TacticM α)) :
+    TacticM (List (Except Exception (α × Tactic.SavedState))) := do
+  let tasksAndCancels ← jobs.mapM TacticM.asTask
+  let (cancelHooks, tasks) := tasksAndCancels.unzip
+  let cancelAll := cancelHooks.forM id
+  let cleanup ← registerParCancelSnapshotTask cancelAll
+  let initialState ← get
+  let mut acc : List (Except Exception (α × Tactic.SavedState)) := []
+  for task in tasks do
+    try
+      let result ← task.get
+      let taskState ← Tactic.saveState
+      acc := Except.ok (result, taskState) :: acc
+    catch e =>
+      acc := Except.error e :: acc
+  set initialState
+  cleanup
+  return acc.reverse
+
 /-- `evalSuggest` for `attempt_all_par` tactic (parallel version). -/
 private partial def evalSuggestAttemptAllPar (tacs : Array (TSyntax ``Parser.Tactic.tacticSeq)) : TryTacticM (TSyntax `tactic) := do
   unless (← read).terminal do
@@ -720,8 +790,8 @@ private partial def evalSuggestAttemptAllPar (tacs : Array (TSyntax ``Parser.Tac
   let jobs : List (TacticM (TSyntax `tactic)) := tacs.toList.map fun tacSeq =>
     withOriginalHeartbeats (evalSuggestTacticSeq tacSeq) ctx
 
-  -- Run all jobs in parallel - par returns (result, SavedState) for each
-  let results ← TacticM.par jobs
+  -- Run all jobs in parallel with snapshot-based cancellation
+  let results ← parWithSnapshotCancel jobs
 
   -- Collect successful results (maintaining order)
   let mut acc : Array (TSyntax `tactic) := #[]
@@ -749,7 +819,7 @@ private partial def evalSuggestFirstPar (tacs : Array (TSyntax ``Parser.Tactic.t
   let ctx ← read
   let jobs : List (TacticM (TSyntax `tactic)) := tacs.toList.map fun tacSeq =>
     withOriginalHeartbeats (evalSuggestTacticSeq tacSeq) ctx
-  TacticM.parFirst jobs
+  parFirstWithSnapshotCancel jobs
 
 private partial def evalSuggestDefault (tac : TSyntax `tactic) : TryTacticM (TSyntax `tactic) := do
   let kind := tac.raw.getKind

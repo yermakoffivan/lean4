@@ -186,29 +186,30 @@ elab_rules : tactic
   dbg_trace "blocked!"
   log "blocked"
 
-/-! ## Helpers for testing `asTask` subtask cancellation -/
+/-! ## Helpers for testing parallel subtask cancellation via snapshot tasks -/
 
-meta initialize parOnceRef : IO.Ref (Option (Task Unit)) ← IO.mkRef none
+meta initialize parCancelOnceRef : IO.Ref (Option (Task Unit)) ← IO.mkRef none
 
 /--
-Like `wait_for_cancel_once`, but spawns a parallel subtask via `TacticM.asTask'` that waits for
-cancellation. This tests whether subtasks spawned via `asTask'` (as used by `TacticM.par` in `try?`)
-inherit their parent's cancellation token.
+Tests that subtasks spawned via `TacticM.asTask` (the same code path used by `first_par` and
+`attempt_all_par` in `try?`) are cancelled on re-elaboration when registered as snapshot tasks.
 
-The subtask gets a fresh cancel token from `asTask'` (via `Core.wrapAsync`), so the parent's
-cancellation token is NOT propagated. The test expects to see "leaked!" if the bug exists,
-or "subtask-cancelled!" if the fix is in place.
+On first invocation:
+1. Sends "blocked" diagnostic and resolves the tactic snapshot
+2. Spawns two parallel subtasks via `TacticM.asTask` that poll their cancel token
+3. Registers a snapshot task that bridges server cancellation to the subtask cancel hooks
+4. Blocks the main thread waiting for the subtasks
+5. Eprints "subtask-cancelled!" if cancellation propagated, "leaked!" otherwise
 -/
-scoped syntax "wait_for_cancel_once_par_subtask" : tactic
+scoped syntax "wait_for_cancel_once_par" : tactic
 @[incremental]
 elab_rules : tactic
-| `(tactic| wait_for_cancel_once_par_subtask) => do
+| `(tactic| wait_for_cancel_once_par) => do
   let prom ← IO.Promise.new
-  if let some t := (← parOnceRef.modifyGet (fun old => (old, old.getD prom.result!))) then
+  if let some t := (← parCancelOnceRef.modifyGet (fun old => (old, old.getD prom.result!))) then
     IO.wait t
     return
 
-  -- Send "blocked" diagnostic (like wait_for_cancel_once)
   dbg_trace "blocked!"
   log "blocked"
   let ctx ← readThe Elab.Term.Context
@@ -219,30 +220,45 @@ elab_rules : tactic
     finished := default
   }
 
-  -- Now spawn a subtask via asTask' (same mechanism used by TacticM.par in try?)
-  -- This subtask gets a FRESH cancel token, disconnected from the server's token
-  let subtask ← Elab.Tactic.TacticM.asTask' do
-    -- Poll for cancellation (checks the FRESH token, not the server's)
-    let mut cancelled := false
-    for _ in List.range 100 do -- 100 * 50ms = 5s max
+  -- Create a blocking job that polls its cancel token
+  let blockingJob : Elab.Tactic.TacticM Unit := do
+    let ctx ← readThe Core.Context
+    let some cancelTk := ctx.cancelTk? | unreachable!
+    for _ in List.range 100 do -- 100 × 50ms = 5s max
+      if (← cancelTk.isSet) then
+        IO.eprintln "subtask-cancelled!"
+        prom.resolve ()
+        Core.checkInterrupted
       IO.sleep 50
-      let ctx ← readThe Core.Context
-      if let some cancelTk := ctx.cancelTk? then
-        if (← cancelTk.isSet) then
-          cancelled := true
-          break
-    if cancelled then
-      IO.eprintln "subtask-cancelled!"
-    else
-      IO.eprintln "leaked!"
+    IO.eprintln "leaked!"
     prom.resolve ()
 
-  -- Block the main thread waiting for the subtask
-  -- The server's cancellation sets the PARENT token, but the main thread is blocked in IO.wait
-  -- and can only check checkInterrupted after the subtask completes
-  discard <| IO.wait subtask
+  -- Spawn subtasks via TacticM.asTask (same code path as parFirst/par in try?)
+  let (cancel1, task1) ← Elab.Tactic.TacticM.asTask blockingJob
+  let (cancel2, task2) ← Elab.Tactic.TacticM.asTask blockingJob
+  let cancelAll : BaseIO Unit := do cancel1; cancel2
 
-  -- If we reach here (subtask didn't throw), resolve and check interrupted
+  -- Register a snapshot task and monitor that bridges server cancellation to subtask cancel
+  -- hooks. The monitor watches the parent cancel token (set immediately by cancelRec) because
+  -- cancelRec uses chainTask which waits for task completion before walking children.
+  let cancelTk ← IO.CancelToken.new
+  Core.logSnapshotTask {
+    stx? := none
+    cancelTk? := some cancelTk
+    task := .pure default
+  }
+  let parentCancelTk := (← readThe Core.Context).cancelTk?
+  discard <| BaseIO.asTask do
+    while !(← cancelTk.isSet) do
+      if let some p := parentCancelTk then
+        if (← p.isSet) then break
+      IO.sleep 50
+    cancelAll
+
+  -- Block the main thread waiting for the first subtask
+  discard <| IO.wait task1
+  discard <| IO.wait task2
+  cancelTk.set -- stop the monitoring thread
   prom.resolve ()
   Core.checkInterrupted
 

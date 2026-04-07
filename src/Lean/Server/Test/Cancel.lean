@@ -209,7 +209,6 @@ elab_rules : tactic
     sig.set
     IO.wait t
     return
-  IO.eprintln s!"{label}: started!"
   try
     while true do
       Core.checkSystem "check_cancel"

@@ -40,7 +40,7 @@ where
   go (table : Array Nat) (ht₀ : 0 < table.size) (ht : table.size ≤ pat.utf8ByteSize) (h : ∀ (i : Nat) hi, table[i]'hi ≤ i) :
       Vector Nat pat.utf8ByteSize :=
     if hs : table.size < pat.utf8ByteSize then
-      let patByte := pat.getUTF8Byte ⟨table.size⟩ hs
+      let patByte := pat.getUTF8Byte ⟨table.size⟩ (by simpa [Pos.Raw.lt_iff])
       let dist := computeDistance patByte table ht h (table[table.size - 1])
         (by have := h (table.size - 1) (by omega); omega)
       go (table.push dist) (by simp) (by simp; omega) (by

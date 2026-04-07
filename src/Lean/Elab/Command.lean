@@ -201,7 +201,7 @@ private def runCore (x : CoreM α) : CommandElabM α := do
     -- do it at the very end
     infoState.lazyAssignment := coreS.infoState.lazyAssignment
     traceState.traces        := coreS.traceState.traces.map fun t => { t with ref := replaceRef t.ref ctx.ref }
-    snapshotTasks            := coreS.snapshotTasks
+    snapshotTasks            := coreS.snapshotTasks ++ coreS.commandSnapshotTasks
     messages                 := s.messages ++ coreS.messages
   }
   return ea

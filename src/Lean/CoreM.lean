@@ -209,6 +209,14 @@ structure State where
   `CommandParsedSnapshot` need to be adjusted.
   -/
   snapshotTasks : Array (Language.SnapshotTask Language.SnapshotTree) := #[]
+  /--
+  Snapshot tasks to be reported at command level rather than tactic level. Unlike `snapshotTasks`,
+  which are consumed by tactic machinery and nested into `TacticFinishedSnapshot.moreSnaps`, these
+  are propagated directly to `Command.State.snapshotTasks` and become siblings in the snapshot tree.
+  This makes their cancel tokens directly reachable by `cancelRec` without waiting for the parent
+  tactic to complete.
+  -/
+  commandSnapshotTasks : Array (Language.SnapshotTask Language.SnapshotTree) := #[]
   deriving Nonempty
 
 /-- Context for the CoreM monad. -/
@@ -326,8 +334,8 @@ instance : Elab.MonadInfoTree CoreM where
   modifyInfoState f := modify fun s => { s with infoState := f s.infoState }
 
 @[inline] def modifyCache (f : Cache → Cache) : CoreM Unit :=
-  modify fun ⟨env, next, ngen, auxDeclNGen, trace, cache, messages, infoState, snaps⟩ =>
-   ⟨env, next, ngen, auxDeclNGen, trace, f cache, messages, infoState, snaps⟩
+  modify fun ⟨env, next, ngen, auxDeclNGen, trace, cache, messages, infoState, snaps, cmdSnaps⟩ =>
+   ⟨env, next, ngen, auxDeclNGen, trace, f cache, messages, infoState, snaps, cmdSnaps⟩
 
 @[inline] def modifyInstLevelTypeCache (f : InstantiateLevelCache → InstantiateLevelCache) : CoreM Unit :=
   modifyCache fun ⟨c₁, c₂⟩ => ⟨f c₁, c₂⟩
@@ -546,6 +554,14 @@ elaboration.
 def logSnapshotTask (task : Language.SnapshotTask Language.SnapshotTree) : CoreM Unit :=
   modify fun s => { s with snapshotTasks := s.snapshotTasks.push task }
 
+/--
+Like `logSnapshotTask` but registers the task at command level. These tasks are propagated directly
+to `Command.State.snapshotTasks` rather than being consumed by tactic machinery, making their cancel
+tokens directly reachable by `cancelRec` without waiting for the parent tactic to complete.
+-/
+def logCommandSnapshotTask (task : Language.SnapshotTask Language.SnapshotTree) : CoreM Unit :=
+  modify fun s => { s with commandSnapshotTasks := s.commandSnapshotTasks.push task }
+
 /-- Wraps the given action for use in `EIO.asTask` etc., discarding its final monadic state. -/
 def wrapAsync {α : Type} (act : α → CoreM β) (cancelTk? : Option IO.CancelToken) :
     CoreM (α → EIO Exception β) := do
@@ -585,13 +601,14 @@ def mkSnapshot? (output : String) (ctx : Context) (st : State)
       pos      := ctx.fileMap.toPosition <| ctx.ref.getPos?.getD 0
       data     := output
     }
-  if !msgs.hasUnreported && st.traceState.traces.isEmpty && st.snapshotTasks.isEmpty then
+  let allSnapshotTasks := st.snapshotTasks ++ st.commandSnapshotTasks
+  if !msgs.hasUnreported && st.traceState.traces.isEmpty && allSnapshotTasks.isEmpty then
     return none
   return some <| .mk {
     desc
     diagnostics := (← Language.Snapshot.Diagnostics.ofMessageLog msgs)
     traces := st.traceState
-  } st.snapshotTasks
+  } allSnapshotTasks
 
 open Language in
 /--
@@ -610,6 +627,7 @@ def wrapAsyncAsSnapshot {α : Type} (act : α → CoreM Unit) (cancelTk? : Optio
         messages := st.messages.markAllReported
         traceState := { tid }
         snapshotTasks := #[]
+        commandSnapshotTasks := #[]
         infoState := {}
       }
       try

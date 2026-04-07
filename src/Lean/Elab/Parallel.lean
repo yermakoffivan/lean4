@@ -139,8 +139,8 @@ the iteration - you can observe all results including which tasks failed.
 The iterator will terminate after all jobs complete (assuming they all do complete).
 -/
 def parIterWithCancel {α : Type} (jobs : List (CoreM α)) := do
-  let (cancels, tasks) := (← jobs.mapM asTask).unzip
-  let combinedCancel := cancels.forM id
+  let (tokens, tasks) := (← jobs.mapM asTask).unzip
+  let combinedCancel := tokens.forM (·.set)
   let iterWithErrors := tasks.iter.mapM fun (task : Task (CoreM α)) => do
     try
       let result ← task.get
@@ -172,8 +172,8 @@ the iteration - you can observe all results including which tasks failed.
 The iterator will terminate after all jobs complete (assuming they all do complete).
 -/
 def parIterGreedyWithCancel {α : Type} (jobs : List (CoreM α)) := do
-  let (cancels, tasks) := (← jobs.mapM asTask).unzip
-  let combinedCancel := cancels.forM id
+  let (tokens, tasks) := (← jobs.mapM asTask).unzip
+  let combinedCancel := tokens.forM (·.set)
   let baseIter := IO.iterTasks tasks
   -- mapM with error handling - execute each task and catch errors
   let iterWithErrors := baseIter.mapM fun taskMonadic => do
@@ -318,8 +318,8 @@ the iteration - you can observe all results including which tasks failed.
 The iterator will terminate after all jobs complete (assuming they all do complete).
 -/
 def parIterWithCancel {α : Type} (jobs : List (MetaM α)) := do
-  let (cancels, tasks) := (← jobs.mapM asTask).unzip
-  let combinedCancel := cancels.forM id
+  let (tokens, tasks) := (← jobs.mapM asTask).unzip
+  let combinedCancel := tokens.forM (·.set)
   -- Create iterator that processes tasks sequentially
   let iterWithErrors := tasks.iter.mapM fun (task : Task (MetaM α)) => do
     try
@@ -352,8 +352,8 @@ the iteration - you can observe all results including which tasks failed.
 The iterator will terminate after all jobs complete (assuming they all do complete).
 -/
 def parIterGreedyWithCancel {α : Type} (jobs : List (MetaM α)) := do
-  let (cancels, tasks) := (← jobs.mapM asTask).unzip
-  let combinedCancel := cancels.forM id
+  let (tokens, tasks) := (← jobs.mapM asTask).unzip
+  let combinedCancel := tokens.forM (·.set)
   let baseIter := IO.iterTasks tasks
   -- mapM with error handling - execute each task and catch errors
   let iterWithErrors := baseIter.mapM fun taskMonadic => do
@@ -408,8 +408,8 @@ the iteration - you can observe all results including which tasks failed.
 The iterator will terminate after all jobs complete (assuming they all do complete).
 -/
 def parIterWithCancel {α : Type} (jobs : List (TermElabM α)) := do
-  let (cancels, tasks) := (← jobs.mapM asTask).unzip
-  let combinedCancel := cancels.forM id
+  let (tokens, tasks) := (← jobs.mapM asTask).unzip
+  let combinedCancel := tokens.forM (·.set)
   -- Create iterator that processes tasks sequentially
   let iterWithErrors := tasks.iter.mapM fun (task : Task (TermElabM α)) => do
     try
@@ -442,8 +442,8 @@ the iteration - you can observe all results including which tasks failed.
 The iterator will terminate after all jobs complete (assuming they all do complete).
 -/
 def parIterGreedyWithCancel {α : Type} (jobs : List (TermElabM α)) := do
-  let (cancels, tasks) := (← jobs.mapM asTask).unzip
-  let combinedCancel := cancels.forM id
+  let (tokens, tasks) := (← jobs.mapM asTask).unzip
+  let combinedCancel := tokens.forM (·.set)
   let baseIter := IO.iterTasks tasks
   -- mapM with error handling - execute each task and catch errors
   let iterWithErrors := baseIter.mapM fun taskMonadic => do
@@ -531,6 +531,18 @@ namespace Lean.Elab.Tactic.TacticM
 open Std.Iterators
 
 /--
+Registers cancel tokens as command-level snapshot tasks so that `cancelRec` can set them directly
+without waiting for the parent tactic to complete.
+-/
+private def registerCancelTokens (tokens : List IO.CancelToken) : TacticM Unit := do
+  for tk in tokens do
+    Core.logCommandSnapshotTask {
+      stx? := none
+      cancelTk? := some tk
+      task := .pure default
+    }
+
+/--
 Runs a list of TacticM computations in parallel and returns:
 * a combined cancellation hook for all tasks, and
 * an iterator that yields results in original order.
@@ -545,8 +557,9 @@ the iteration - you can observe all results including which tasks failed.
 The iterator will terminate after all jobs complete (assuming they all do complete).
 -/
 def parIterWithCancel {α : Type} (jobs : List (TacticM α)) := do
-  let (cancels, tasks) := (← jobs.mapM asTask).unzip
-  let combinedCancel := cancels.forM id
+  let (tokens, tasks) := (← jobs.mapM asTask).unzip
+  registerCancelTokens tokens
+  let combinedCancel := tokens.forM (·.set)
   -- Create iterator that processes tasks sequentially
   let iterWithErrors := tasks.iter.mapM fun (task : Task (TacticM α)) => do
     try
@@ -579,8 +592,9 @@ the iteration - you can observe all results including which tasks failed.
 The iterator will terminate after all jobs complete (assuming they all do complete).
 -/
 def parIterGreedyWithCancel {α : Type} (jobs : List (TacticM α)) := do
-  let (cancels, tasks) := (← jobs.mapM asTask).unzip
-  let combinedCancel := cancels.forM id
+  let (tokens, tasks) := (← jobs.mapM asTask).unzip
+  registerCancelTokens tokens
+  let combinedCancel := tokens.forM (·.set)
   let baseIter := IO.iterTasks tasks
   -- mapM with error handling - execute each task and catch errors
   let iterWithErrors := baseIter.mapM fun taskMonadic => do
@@ -612,7 +626,8 @@ The final TacticM state is restored to the initial state (before tasks ran).
 -/
 def par {α : Type} (jobs : List (TacticM α)) : TacticM (List (Except Exception (α × Tactic.SavedState))) := do
   let initialState ← get
-  let tasks ← jobs.mapM asTask'
+  let (tokens, tasks) := (← jobs.mapM asTask).unzip
+  registerCancelTokens tokens
   let mut results := []
   for task in tasks do
     try
@@ -634,7 +649,8 @@ The final TacticM state is restored to the initial state (before tasks ran).
 -/
 def par' {α : Type} (jobs : List (TacticM α)) : TacticM (List (Except Exception α)) := do
   let initialState ← get
-  let tasks ← jobs.mapM asTask'
+  let (tokens, tasks) := (← jobs.mapM asTask).unzip
+  registerCancelTokens tokens
   let mut results := []
   for task in tasks do
     try

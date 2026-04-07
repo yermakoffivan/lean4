@@ -1,6 +1,6 @@
 blocked!
-subtask-cancelled!
-subtask-cancelled!
+started!
+cancelled!
 {"version": 2,
  "uri": "file:///cancellation_par.lean",
  "diagnostics":
@@ -23,4 +23,12 @@ subtask-cancelled!
    "isSilent": true,
    "fullRange":
    {"start": {"line": 19, "character": 0},
-    "end": {"line": 21, "character": 9}}}]}
+    "end": {"line": 22, "character": 14}}},
+  {"source": "Lean 4",
+   "severity": 3,
+   "range":
+   {"start": {"line": 21, "character": 2}, "end": {"line": 21, "character": 6}},
+   "message": "Try this:\n  [apply] slow_10s",
+   "fullRange":
+   {"start": {"line": 21, "character": 2},
+    "end": {"line": 21, "character": 6}}}]}

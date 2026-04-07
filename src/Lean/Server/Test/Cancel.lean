@@ -186,81 +186,25 @@ elab_rules : tactic
   dbg_trace "blocked!"
   log "blocked"
 
-/-! ## Helpers for testing parallel subtask cancellation via snapshot tasks -/
+/-! ## Helpers for end-to-end testing of parallel subtask cancellation -/
 
-meta initialize parCancelOnceRef : IO.Ref (Option (Task Unit)) ← IO.mkRef none
+meta initialize slowTacRanRef : IO.Ref Bool ← IO.mkRef false
 
 /--
-Tests that subtasks spawned via `TacticM.asTask` (the same code path used by `first_par` and
-`attempt_all_par` in `try?`) are cancelled on re-elaboration when registered as snapshot tasks.
-
-On first invocation:
-1. Sends "blocked" diagnostic and resolves the tactic snapshot
-2. Spawns two parallel subtasks via `TacticM.asTask` that poll their cancel token
-3. Registers a snapshot task that bridges server cancellation to the subtask cancel hooks
-4. Blocks the main thread waiting for the subtasks
-5. Eprints "subtask-cancelled!" if cancellation propagated, "leaked!" otherwise
+A tactic that sleeps for ~10s checking for interrupts. Prints "started!" to stderr when it
+begins and "leaked!" if it completes without being interrupted. On second invocation (detected
+via a global ref), closes the goal directly (for `True` goals) so that `try?` can succeed.
 -/
-scoped syntax "wait_for_cancel_once_par" : tactic
-@[incremental]
-elab_rules : tactic
-| `(tactic| wait_for_cancel_once_par) => do
-  let prom ← IO.Promise.new
-  if let some t := (← parCancelOnceRef.modifyGet (fun old => (old, old.getD prom.result!))) then
-    IO.wait t
+scoped elab "slow_10s" : tactic => do
+  if (← slowTacRanRef.get) then
+    (← Elab.Tactic.getMainGoal).assign (.const ``True.intro [])
     return
-
-  dbg_trace "blocked!"
-  log "blocked"
-  let ctx ← readThe Elab.Term.Context
-  let some tacSnap := ctx.tacSnap? | unreachable!
-  tacSnap.new.resolve {
-    diagnostics := (← Language.Snapshot.Diagnostics.ofMessageLog (← Core.getMessageLog))
-    stx := default
-    finished := default
-  }
-
-  -- Create a blocking job that polls its cancel token
-  let blockingJob : Elab.Tactic.TacticM Unit := do
-    let ctx ← readThe Core.Context
-    let some cancelTk := ctx.cancelTk? | unreachable!
-    for _ in List.range 100 do -- 100 × 50ms = 5s max
-      if (← cancelTk.isSet) then
-        IO.eprintln "subtask-cancelled!"
-        prom.resolve ()
-        Core.checkInterrupted
-      IO.sleep 50
-    IO.eprintln "leaked!"
-    prom.resolve ()
-
-  -- Spawn subtasks via TacticM.asTask (same code path as parFirst/par in try?)
-  let (cancel1, task1) ← Elab.Tactic.TacticM.asTask blockingJob
-  let (cancel2, task2) ← Elab.Tactic.TacticM.asTask blockingJob
-  let cancelAll : BaseIO Unit := do cancel1; cancel2
-
-  -- Register a snapshot task and monitor that bridges server cancellation to subtask cancel
-  -- hooks. The monitor watches the parent cancel token (set immediately by cancelRec) because
-  -- cancelRec uses chainTask which waits for task completion before walking children.
-  let cancelTk ← IO.CancelToken.new
-  Core.logSnapshotTask {
-    stx? := none
-    cancelTk? := some cancelTk
-    task := .pure default
-  }
-  let parentCancelTk := (← readThe Core.Context).cancelTk?
-  discard <| BaseIO.asTask do
-    while !(← cancelTk.isSet) do
-      if let some p := parentCancelTk then
-        if (← p.isSet) then break
-      IO.sleep 50
-    cancelAll
-
-  -- Block the main thread waiting for the first subtask
-  discard <| IO.wait task1
-  discard <| IO.wait task2
-  cancelTk.set -- stop the monitoring thread
-  prom.resolve ()
-  Core.checkInterrupted
+  slowTacRanRef.set true
+  IO.eprintln "started!"
+  for _ in List.range 200 do -- 200 × 50ms = 10s
+    Core.checkInterrupted
+    IO.sleep 50
+  IO.eprintln "leaked!"
 
 meta initialize cmdOnceRef : IO.Ref (Option (Task Unit)) ← IO.mkRef none
 

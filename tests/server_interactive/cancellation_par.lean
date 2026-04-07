@@ -2,13 +2,13 @@ import Lean.Server.Test.Cancel
 open Lean.Server.Test.Cancel
 
 /-!
-Test that parallel subtasks spawned via `TacticM.asTask` (as used by `first_par` and
-`attempt_all_par` in `try?`) are cancelled on re-elaboration via snapshot task registration.
+End-to-end test that parallel subtasks spawned by `try? => attempt_all_par` are cancelled
+on re-elaboration. The `slow_10s` tactic sleeps for 10s checking `Core.checkInterrupted`;
+if the cancellation monitoring in `registerParCancelSnapshotTask` works, the subtask is
+interrupted swiftly and "leaked!" never appears in stderr.
 
-The `wait_for_cancel_once_par` tactic spawns two subtasks via `TacticM.asTask`, registers a
-snapshot task that bridges server cancellation to the subtask cancel hooks, and blocks the
-main thread. When the preceding declaration is edited, the server cancels this command's
-elaboration, and the snapshot task mechanism propagates cancellation to the subtasks.
+`wait_for_cancel_once_async` sends the "blocked" diagnostic and returns immediately,
+then `try?` spawns `slow_10s` as a parallel subtask that blocks until cancelled.
 -/
 
 example : True := by
@@ -18,5 +18,6 @@ example : True := by
        --^ collectDiagnostics
 
 theorem t : True := by
-  wait_for_cancel_once_par
-  trivial
+  wait_for_cancel_once_async
+  try? => attempt_all_par
+    | slow_10s

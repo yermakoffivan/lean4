@@ -57,13 +57,15 @@ LEAN_THREAD_VALUE(lean_object *, g_cancel_tk, nullptr);
 
 LEAN_EXPORT scope_cancel_tk::scope_cancel_tk(lean_object * o):flet<lean_object *>(g_cancel_tk, o) {}
 
-/* CancelToken.isSet : @& IO.CancelToken → BaseIO Bool */
-extern "C" lean_obj_res lean_io_cancel_token_is_set(b_lean_obj_arg cancel_tk);
+/* Check whether a CancelToken (which is a Promise Unit) has been resolved.
+   This mirrors timer_promise_is_finished in uv/timer.cpp. */
+static bool cancel_tk_is_set(lean_object * tk) {
+    return lean_io_get_task_state_core((lean_object *)lean_to_promise(tk)->m_result) == 2;
+}
 
 void check_interrupted() {
     if (g_cancel_tk) {
-        inc_ref(g_cancel_tk);
-        if (lean_io_cancel_token_is_set(g_cancel_tk) &&
+        if (cancel_tk_is_set(g_cancel_tk) &&
             !std::uncaught_exceptions()) {
             throw interrupted();
         }

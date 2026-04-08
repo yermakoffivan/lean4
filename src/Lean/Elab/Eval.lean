@@ -14,11 +14,12 @@ public section
 namespace Lean.Elab.Term
 open Meta
 
-unsafe def evalTerm (α) (type : Expr) (value : Syntax) (safety := DefinitionSafety.safe) : TermElabM α := withoutModifyingEnv do
+unsafe def evalTerm (α) (type : Expr) (value : Syntax) (safety := DefinitionSafety.safe)
+    (checkMeta : Bool := true) : TermElabM α := withoutModifyingEnv do
   let v ← elabTermEnsuringType value type
   synthesizeSyntheticMVarsNoPostponing
   let v ← instantiateMVars v
   if (← logUnassignedUsingErrorInfos (← getMVars v)) then throwAbortTerm
-  evalExpr α type v safety
+  evalExpr α type v safety (checkMeta := checkMeta)
 
 end Lean.Elab.Term

@@ -36,14 +36,16 @@ unsafe def evalExprCore (α) (value : Expr) (checkType : Expr → MetaM Unit)
        value, hints := ReducibilityHints.opaque,
        safety
     }
-    modifyEnv (markMeta · name)
+    if checkMeta then
+      modifyEnv (markMeta · name)
     -- compilation will invariably wait on `checked`
     let _ ← traceBlock "compiler env" (← getEnv).checked
     -- now that we've already waited, async would just introduce (minor) overhead and trigger
     -- `Task.get` blocking debug code
     withOptions (Elab.async.set · false) do
     withOptions (Compiler.compiler.postponeCompile.set · false) do
-    withOptions (Compiler.compiler.relaxedMetaCheck.set · true) do
+    withOptions (fun opts => if checkMeta then Compiler.compiler.relaxedMetaCheck.set opts true
+                             else Compiler.compiler.checkMeta.set opts false) do
       addAndCompile decl
       evalConst (checkMeta := checkMeta) α name
 

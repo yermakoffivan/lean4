@@ -387,7 +387,7 @@ private def mkSilentAnnotationIfHole (e : Expr) : TermElabM Expr := do
   | _ => throwUnsupportedSyntax
 
 private unsafe def evalFilePathUnsafe (stx : Syntax) : TermElabM System.FilePath :=
-  evalTerm System.FilePath (Lean.mkConst ``System.FilePath) stx
+  evalTerm System.FilePath (Lean.mkConst ``System.FilePath) stx (checkMeta := false)
 
 @[implemented_by evalFilePathUnsafe]
 private opaque evalFilePath (stx : Syntax) : TermElabM System.FilePath

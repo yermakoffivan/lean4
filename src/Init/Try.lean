@@ -64,6 +64,7 @@ example : 1 = 1 := by
   try? => first | rfl | simp
 ```
 -/
+@[tactic_alt tryTrace]
 syntax (name := tryTraceWith) "try?" optConfig " => " tacticSeq : tactic
 
 /-- Helper internal tactic for implementing the tactic `try?`. -/

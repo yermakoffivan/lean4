@@ -61,7 +61,7 @@ def mkAuxLemma (levelParams : List Name) (type : Expr) (value : Expr) (kind? : O
         }
     addDecl (forceExpose := forceExpose) decl
     if inferRfl then
-      inferDefEqAttr auxName
+      inferDefEqAttr (onlyAtInstancesTransparency := false) auxName
     modifyEnv fun env => auxLemmasExt.modifyState env fun ⟨lemmas⟩ => ⟨lemmas.insert key (auxName, levelParams)⟩
     return auxName
   if cache then

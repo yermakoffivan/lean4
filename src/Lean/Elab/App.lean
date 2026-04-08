@@ -1937,12 +1937,18 @@ private partial def elabAppFn (f : Syntax) (lvals : List LVal) (namedArgs : Arra
       -- Use (forceTermInfo := true) because we want to record the result of .ident resolution even in patterns
       elabAppFnResolutions f res lvals namedArgs args expectedType? explicit ellipsis overloaded acc (forceTermInfo := true)
     match f with
-    | `($(e).$idx:fieldIdx) => elabFieldIdx e idx []
-    | `($(e).$idx:fieldIdx.{$us,*}) =>
+    | `($(e).$idx:fieldIdx)
+    | `($e |>.$idx:fieldIdx) =>
+      elabFieldIdx e idx []
+    | `($(e).$idx:fieldIdx.{$us,*})
+    | `($e |>.$idx:fieldIdx.{$us,*}) =>
       let us ← elabExplicitUnivs us
       elabFieldIdx e idx us
-    | `($(e).$field:ident) => elabFieldName e field []
-    | `($(e).$field:ident.{$us,*}) =>
+    | `($(e).$field:ident)
+    | `($e |>.$field:ident) =>
+      elabFieldName e field []
+    | `($(e).$field:ident.{$us,*})
+    | `($e |>.$field:ident.{$us,*}) =>
       let us ← elabExplicitUnivs us
       elabFieldName e field us
     | `($_:ident@$_:term) =>
@@ -2097,16 +2103,15 @@ private def elabAtom : TermElab := fun stx expectedType? => do
 @[builtin_term_elab namedPattern] def elabNamedPattern : TermElab := elabAtom
 @[builtin_term_elab dotIdent] def elabDotIdent : TermElab := elabAtom
 @[builtin_term_elab explicitUniv] def elabExplicitUniv : TermElab := elabAtom
-
-@[builtin_macro Lean.Parser.Term.pipeProj] def expandPipeProj : Macro
-  | `($e |>.%$tk$f$[.{$us?,*}]? $args*) => do
-    let mut fn ← `($(e).%$tk$f)
-    if let (some startPos, some stopPos) := (e.raw.getPos?, f.raw.getTailPos?) then
-      fn := ⟨fn.raw.setInfo <| .synthetic (canonical := true) startPos stopPos⟩
-    if let some us := us? then
-      fn ← `($(fn).{$[$us],*})
-    return Syntax.mkApp fn args
-  | _ => Macro.throwUnsupported
+@[builtin_term_elab pipeProj] def elabPipeProj : TermElab
+  | `($e |>.%$tk$f$[.{$us?,*}]? $args*), expectedType? =>
+    universeConstraintsCheckpoint do
+      let (namedArgs, args, ellipsis) ← expandArgs args
+      let mut stx ← `($e |>.%$tk$f$[.{$us?,*}]?)
+      if let (some startPos, some stopPos) := (e.raw.getPos?, f.raw.getTailPos?) then
+        stx := ⟨stx.raw.setInfo <| .synthetic (canonical := true) startPos stopPos⟩
+      elabAppAux stx namedArgs args (ellipsis := ellipsis) expectedType?
+  | _, _ => throwUnsupportedSyntax
 
 @[builtin_term_elab explicit] def elabExplicit : TermElab := fun stx expectedType? =>
   match stx with

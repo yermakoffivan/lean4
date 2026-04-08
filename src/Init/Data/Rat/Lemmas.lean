@@ -1242,10 +1242,14 @@ theorem lt_floor {x : Rat} :
 # ceil
 -/
 
-set_option backward.isDefEq.respectTransparency.types false in
+/-
+PLOG(ceil_eq_neg_floor_neg):
+`-implicitDefEqProofs`
+-/
+
 theorem ceil_eq_neg_floor_neg (a : Rat) : a.ceil = -((-a).floor) := by
   rw [Rat.ceil, Rat.floor]
-  simp only [neg_den, neg_num]
+  simp -implicitDefEqProofs only [neg_den, neg_num]
   split
   · simp
   · rw [Int.neg_ediv, if_neg, Int.sign_eq_one_of_pos, Int.neg_sub, Int.sub_neg, Int.add_comm]

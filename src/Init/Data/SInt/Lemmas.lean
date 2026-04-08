@@ -1162,6 +1162,10 @@ theorem ISize.toInt8_ofIntLE {n} (h₁ h₂) : (ISize.ofIntLE n h₁ h₂).toInt
 @[simp] theorem Int64.toInt8_ofNat {n} : toInt8 (no_index (OfNat.ofNat n)) = OfNat.ofNat n := toInt8_ofNat'
 @[simp] theorem ISize.toInt8_ofNat {n} : toInt8 (no_index (OfNat.ofNat n)) = OfNat.ofNat n := toInt8_ofNat'
 
+set_option allowUnsafeReducibility true
+attribute [implicit_reducible] Int16.toInt Int8.toInt BitVec.toInt BitVec.toNat
+
+set_option trace.Meta.isDefEq true in
 set_option backward.isDefEq.respectTransparency.types false in
 theorem Int16.toInt8_ofIntTruncate {n : Int} (h₁ : -2 ^ 15 ≤ n) (h₂ : n < 2 ^ 15) :
     (Int16.ofIntTruncate n).toInt8 = Int8.ofInt n := by

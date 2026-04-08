@@ -2095,10 +2095,10 @@ def range' : (start len : Nat) → (step : Nat := 1) → List Nat
   | _, 0, _ => []
   | s, n+1, step => s :: range' (s+step) n step
 
-@[simp, grind =] theorem range'_zero : range' s 0 step = [] := rfl
-@[simp, grind =] theorem range'_one {s step : Nat} : range' s 1 step = [s] := rfl
+@[simp, grind =] theorem range'_zero : range' s 0 step = [] := (rfl)
+@[simp, grind =] theorem range'_one {s step : Nat} : range' s 1 step = [s] := (rfl)
 -- The following theorem is intentionally not a simp lemma.
-theorem range'_succ : range' s (n + 1) step = s :: range' (s + step) n step := rfl
+theorem range'_succ : range' s (n + 1) step = s :: range' (s + step) n step := (rfl)
 
 /-! ### zipIdx -/
 

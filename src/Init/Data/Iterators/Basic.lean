@@ -570,6 +570,12 @@ def IterM.Step.toPure {α : Type w} {β : Type w} [Iterator α Id β] {it : Iter
   ⟨step.val.mapIterator IterM.toIter, (by simp [Iter.IsPlausibleStep, step.property])⟩
 
 @[simp]
+theorem IterM.Step.val_toPure {α β : Type w} [Iterator α Id β] {it : IterM (α := α) Id β}
+    {step : it.Step} :
+    step.toPure.val = step.val.mapIterator IterM.toIter :=
+  (rfl)
+
+@[simp]
 theorem IterM.Step.toPure_yield {α β : Type w} [Iterator α Id β] {it : IterM (α := α) Id β}
     {it' out h} : IterM.Step.toPure (⟨.yield it' out, h⟩ : it.Step) = .yield it'.toIter out h :=
   rfl

@@ -198,7 +198,16 @@ theorem mapFinIdx_append {xs ys : Array α} {f : (i : Nat) → α → (h : i < (
   cases ys
   simp [List.mapFinIdx_append, Array.size]
 
-set_option backward.isDefEq.respectTransparency.types false in
+/-
+PLOG(mapFinIdx_push):
+`append_singleton` is a `rfl` lemma. This prevents the `mapFinIdx_congr` lemma from being used.
+I made the lemma non-`rfl` now.
+
+I have so many questions.
+* The (failing) unification of `h` seems pointless. The type is fully determined by the other arguments, so it's known to be defeq, no point checking that again.
+* Should we make `append` or `push` or `singleton` `implicit_reducible` instead?
+-/
+
 @[simp, grind =]
 theorem mapFinIdx_push {xs : Array α} {a : α} {f : (i : Nat) → α → (h : i < (xs.push a).size) → β} :
     mapFinIdx (xs.push a) f =

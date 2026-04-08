@@ -139,12 +139,37 @@ theorem attachWith_congr {xs ys : Vector α n} (w : xs = ys) {P : α → Prop} {
   subst w
   simp
 
-set_option backward.isDefEq.respectTransparency.types false in
+@[congr]
+theorem mk_congr {xs ys : Array α} (h : xs = ys) {h' : xs.size = n} :
+    mk xs h' = mk ys (h ▸ h') := by
+  subst h
+  simp
+
+/-
+TODO: Correctly place the following lemmas
+-/
+
+theorem _root_.List.attachWith_eq_map_attach {xs : List α} {P : α → Prop} {H : ∀ (a : α), a ∈ xs → P a} :
+    xs.attachWith P H = xs.attach.map fun ⟨x, h⟩ => ⟨x, H _ h⟩ := by
+  induction xs <;> simp_all
+
+theorem _root_.Array.attachWith_eq_map_attach {xs : Array α} {P : α → Prop} {H : ∀ (a : α), a ∈ xs → P a} :
+    xs.attachWith P H = xs.attach.map fun ⟨x, h⟩ => ⟨x, H _ h⟩ := by
+  cases xs <;> simp_all [List.attachWith_eq_map_attach]
+
+/-
+PLOG(attach_push):
+This would profit from `attach_congr` but we can't mark it as `congr`.
+There were some lemmas that were really difficult to apply given the type dependencies.
+Solution: Use a different, simpler proof that normalizes `xs.attachWith` to `xs.attach.map`.
+-/
+
 @[simp] theorem attach_push {a : α} {xs : Vector α n} :
     (xs.push a).attach =
       (xs.attach.map (fun ⟨x, h⟩ => ⟨x, mem_push_of_mem a h⟩)).push ⟨a, by simp⟩ := by
   rcases xs with ⟨xs, rfl⟩
-  simp [Array.map_attach_eq_pmap]
+  apply Vector.ext
+  simp [Array.attachWith_eq_map_attach, Array.getElem_push]
 
 @[simp] theorem attachWith_push {a : α} {xs : Vector α n} {P : α → Prop} {H : ∀ x ∈ xs.push a, P x} :
     (xs.push a).attachWith P H =
@@ -355,13 +380,22 @@ theorem pmap_append' {p : α → Prop} {f : ∀ a : α, p a → β} {xs : Vector
       xs.pmap f h₁ ++ ys.pmap f h₂ :=
   pmap_append _
 
-set_option backward.isDefEq.respectTransparency.types false in
+/-
+PLOG(attach_append):
+* Had to use `Vector.ext`.
+* Had to apply `Vector.getElem_append` before the final `simp` because `simp` would introduce problems.
+Overall, proof was very unergonomic.
+-/
+
 @[simp] theorem attach_append {xs : Vector α n} {ys : Vector α m} :
     (xs ++ ys).attach = xs.attach.map (fun ⟨x, h⟩ => (⟨x, mem_append_left ys h⟩ : { x // x ∈ xs ++ ys })) ++
       ys.attach.map (fun ⟨y, h⟩ => (⟨y, mem_append_right xs h⟩ : { y // y ∈ xs ++ ys })) := by
   rcases xs with ⟨xs, rfl⟩
   rcases ys with ⟨ys, rfl⟩
-  simp [Array.map_attach_eq_pmap]; rfl
+  apply Vector.ext
+  intro i hi
+  rw [Vector.getElem_append]
+  simp [Array.attachWith_eq_map_attach, Array.getElem_append]
 
 @[simp] theorem attachWith_append {P : α → Prop} {xs : Vector α n} {ys : Vector α m}
     {H : ∀ (a : α), a ∈ xs ++ ys → P a} :

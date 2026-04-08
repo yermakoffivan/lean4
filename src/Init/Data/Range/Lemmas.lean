@@ -59,7 +59,22 @@ private theorem size_eq (r : Range) (h : i < r.stop) :
       rw [Nat.div_eq_iff] <;> omega
     omega
 
-set_option backward.isDefEq.respectTransparency.types false in
+/-
+PLOG(forIn'_loop_eq_forIn'_range'):
+unrfl'ed `List.range'_succ` and `List.range'_rfl`; for some reason, we'd otherwise need to break
+up the two simps using them into two separate simps. Perhaps related to this congruence problem:
+
+```lean
+example [BEq α] [LawfulBEq α] {xs : List α} {a b : α} (h : i < xs.length) :
+    if b == a then i = 2 else i = 1 := by
+  rw [beq_iff_eq] -- `simp` also fails because it can't synthesize `Decidable (b = a)`.
+
+example [BEq α] [LawfulBEq α] {a b c : α} {P Q : Prop} :
+    if b == a then P else Q := by
+  simp only [beq_iff_eq, show a = c by sorry] -- 'no progress'; works if `beq_iff_eq` is removed
+```
+-/
+
 private theorem forIn'_loop_eq_forIn'_range' [Monad m] (r : Range)
     (init : β) (f : (a : Nat) → a ∈ r → β → m (ForInStep β)) (i) (w₁) (w₂) :
     forIn'.loop r f init i w₁ w₂ =

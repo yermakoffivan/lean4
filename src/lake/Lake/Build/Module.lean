@@ -705,7 +705,7 @@ private def Module.restoreAllArtifacts (mod : Module) (cached : ModuleOutputArti
 where
   @[inline] restoreSome file art? := art?.mapM (restoreArtifact file ·)
 
-public def Module.checkArtifactsExsist (self : Module) (isModule : Bool) : BaseIO Bool := do
+public def Module.checkArtifactsExist (self : Module) (isModule : Bool) : BaseIO Bool := do
   unless (← self.oleanFile.pathExists) do return false
   unless (← self.ileanFile.pathExists) do return false
   unless (← self.cFile.pathExists) do return false
@@ -718,7 +718,7 @@ public def Module.checkArtifactsExsist (self : Module) (isModule : Bool) : BaseI
   return true
 
 public protected def Module.checkExists (self : Module) (isModule : Bool) : BaseIO Bool := do
-  self.ltarFile.pathExists <||> self.checkArtifactsExsist isModule
+  self.ltarFile.pathExists <||> self.checkArtifactsExist isModule
 
 @[deprecated Module.checkExists (since := "2025-03-04")]
 public instance : CheckExists Module := ⟨Module.checkExists (isModule := false)⟩
@@ -788,7 +788,7 @@ instance : ToOutputJson ModuleOutputArtifacts := ⟨(toJson ·.descrs)⟩
 
 def Module.packLtar (self : Module) (arts : ModuleOutputArtifacts) : JobM Artifact := do
   let arts ← id do
-    if (← self.checkArtifactsExsist arts.isModule) then
+    if (← self.checkArtifactsExist arts.isModule) then
       return arts
     else self.restoreAllArtifacts arts
   let args ← id do
@@ -817,7 +817,7 @@ def Module.packLtar (self : Module) (arts : ModuleOutputArtifacts) : JobM Artifa
     return args
   proc (quiet := true) {cmd := (← getLeantar).toString, args}
   if (← self.pkg.isArtifactCacheWritable) then
-    cacheArtifact self.ltarFile "ltar" (← self.pkg.restoreAllArtifacts)
+    cacheArtifact self.ltarFile "ltar" (useLocalFile := ← self.pkg.restoreAllArtifacts)
   else
     computeArtifact self.ltarFile "ltar"
 
@@ -857,7 +857,7 @@ private def Module.buildLean
   let arts := mod.mkArtifacts srcFile setup.isModule
   mod.clearOutputArtifacts
   compileLeanModule srcFile relSrcFile setup mod.setupFile arts args
-    (← getLeanPath) (← getLean)
+    (← getLeanPath) (← getLean) (← getLeanir)
   mod.clearOutputHashes
   mod.computeArtifacts setup.isModule
 
@@ -941,7 +941,7 @@ where
       | .inr savedTrace =>
         let status ← savedTrace.replayIfUpToDate' (oldTrace := srcTrace.mtime) mod depTrace
         if status.isUpToDate then
-          unless (← mod.checkArtifactsExsist setup.isModule) do
+          unless (← mod.checkArtifactsExist setup.isModule) do
             mod.unpackLtar mod.ltarFile
         else
           discard <| mod.buildLean depTrace srcFile setup
@@ -953,7 +953,7 @@ where
           mod.computeArtifacts setup.isModule
     else
       if (← savedTrace.replayIfUpToDate (oldTrace := srcTrace.mtime) mod depTrace) then
-        unless (← mod.checkArtifactsExsist setup.isModule) do
+        unless (← mod.checkArtifactsExist setup.isModule) do
           mod.unpackLtar mod.ltarFile
         mod.computeArtifacts setup.isModule
       else

@@ -12,6 +12,7 @@ public import Lean.Meta.Structure
 public import Lean.PrettyPrinter.Formatter
 public import Lean.PrettyPrinter.Parenthesizer
 meta import Lean.Parser.Command
+meta import Lean.PrettyPrinter.Delaborator.DeclWithSig
 
 public section
 
@@ -90,10 +91,9 @@ def delabSort : Delab := do
   | Level.zero => `(Prop)
   | Level.succ .zero => `(Type)
   | _ =>
-    let mvars ← getPPOption getPPMVarsLevels
     match l.dec with
-    | some l' => `(Type $(Level.quote l' (prec := max_prec) (mvars := mvars)))
-    | none    => `(Sort $(Level.quote l (prec := max_prec) (mvars := mvars)))
+    | some l' => `(Type $(← delabLevel l' (prec := max_prec)))
+    | none    => `(Sort $(← delabLevel l (prec := max_prec)))
 
 /--
 Delaborator for `const` expressions.
@@ -130,8 +130,8 @@ def delabConst : Delab := do
 
   let stx ←
     if !ls.isEmpty && (← getPPOption getPPUniverses) then
-      let mvars ← getPPOption getPPMVarsLevels
-      `($(mkIdent c).{$[$(ls.toArray.map (Level.quote · (prec := 0) (mvars := mvars)))],*})
+      let ls' ← ls.toArray.mapM fun l => delabLevel l (prec := 0)
+      `($(mkIdent c).{$ls',*})
     else
       pure <| mkIdent c
 
@@ -619,8 +619,9 @@ private partial def collectStructFields
             if s'.induct == parentName then
               let (fieldValues, fields) ← collectStructFields structName levels params fields fieldValues s'
               return (i + 1, fieldValues, fields)
-      /- Does this field have a default value? and if so, can we omit the field? -/
-      unless ← getPPOption getPPStructureInstancesDefaults do
+      /- Does this field have a default value? and if so, can we omit the field?
+      We cannot omit fields for patterns, since default values do not apply for them. -/
+      unless ← pure (← read).inPattern <||> getPPOption getPPStructureInstancesDefaults do
         if let some defFn := getEffectiveDefaultFnForField? (← getEnv) structName fieldName then
           -- Use `withNewMCtxDepth` to prevent delaborator from solving metavariables.
           if let some (_, defValue) ← withNewMCtxDepth <| instantiateStructDefaultValueFn? defFn levels params (pure ∘ fieldValues.get?) then
@@ -1546,11 +1547,6 @@ def delabSorry : Delab := whenPPOption getPPNotation <| whenNotPPOption getPPExp
         `(sorry)
   else
     withOverApp 2 `(sorry)
-
-open Parser Command Term in
-@[run_builtin_parser_attribute_hooks]
--- use `termParser` instead of `declId` so we can reuse `delabConst`
-private meta def declSigWithId := leading_parser termParser maxPrec >> declSig
 
 private unsafe def evalSyntaxConstantUnsafe (env : Environment) (opts : Options) (constName : Name) : ExceptT String Id Syntax :=
   env.evalConstCheck Syntax opts ``Syntax constName

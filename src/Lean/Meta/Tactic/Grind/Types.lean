@@ -5,15 +5,16 @@ Authors: Leonardo de Moura
 -/
 module
 prelude
+public import Init.Data.Queue
+public import Init.Grind.Config
 public import Lean.Meta.Sym.SymM
 public import Lean.Meta.Tactic.Grind.Attr
 public import Lean.Meta.Tactic.Grind.CheckResult
-public import Init.Data.Queue
+public import Lean.Meta.Sym.Canon
+meta import Init.Data.String.Basic
 import Lean.Meta.AbstractNestedProofs
 import Lean.Meta.Match.MatchEqsExt
-public import Init.Grind.Config
 import Init.Data.Nat.Linear
-meta import Init.Data.String.Basic
 import Init.Omega
 import Lean.Util.ShareCommon
 public section
@@ -214,11 +215,6 @@ structure State where
   and implement the macro `trace_goal`.
   -/
   lastTag    : Name := .anonymous
-  /--
-  Issues found during the proof search. These issues are reported to
-  users when `grind` fails.
-  -/
-  issues     : List MessageData := []
   /-- Performance counters -/
   counters   : Counters := {}
   /-- Split diagnostic information. This information is only collected when `set_option diagnostics true` -/
@@ -401,35 +397,6 @@ def mkHCongrWithArity (f : Expr) (numArgs : Nat) : GrindM CongrTheorem := do
   modify fun s => { s with congrThms := s.congrThms.insert key result }
   return result
 
-def reportIssue (msg : MessageData) : GrindM Unit := do
-  let msg ← addMessageContext msg
-  modify fun s => { s with issues := .trace { cls := `issue } msg #[] :: s.issues }
-  /-
-  We also add a trace message because we may want to know when
-  an issue happened relative to other trace messages.
-  -/
-  trace[grind.issues] msg
-
-private meta def expandReportIssueMacro (s : Syntax) : MacroM (TSyntax `doElem) := do
-  let msg ← if s.getKind == interpolatedStrKind then `(m! $(⟨s⟩)) else `(($(⟨s⟩) : MessageData))
-  `(doElem| do
-    if (← getConfig).verbose then
-      reportIssue $msg)
-
-macro "reportIssue!" s:(interpolatedStr(term) <|> term) : doElem => do
-  expandReportIssueMacro s.raw
-
-/-- Similar to `expandReportIssueMacro`, but only reports issue if `grind.debug` is set to `true` -/
-meta def expandReportDbgIssueMacro (s : Syntax) : MacroM (TSyntax `doElem) := do
-  let msg ← if s.getKind == interpolatedStrKind then `(m! $(⟨s⟩)) else `(($(⟨s⟩) : MessageData))
-  `(doElem| do
-    if (← getConfig).verbose then
-      if grind.debug.get (← getOptions) then
-        reportIssue $msg)
-
-/-- Similar to `reportIssue!`, but only reports issue if `grind.debug` is set to `true` -/
-macro "reportDbgIssue!" s:(interpolatedStr(term) <|> term) : doElem => do
-  expandReportDbgIssueMacro s.raw
 
 /--
 Each E-node may have "solver terms" attached to them.
@@ -575,6 +542,31 @@ where
     | .app f a => go f (mixHash r (hashRoot enodes a))
     | _ => mixHash r (hashRoot enodes e)
 
+/-!
+**Note**: `congrHash` and `isCongruent` must satisfy the `BEq`/`Hashable` invariant for
+`PHashSet`: if `isCongruent e₁ e₂` returns `true`, then `congrHash e₁ == congrHash e₂`.
+
+When `funCC = true`, `congrHash` hashes only the immediate function and argument:
+`mixHash (hashRoot f) (hashRoot a)`. When `funCC = false`, it recursively decomposes all
+application layers. These produce fundamentally different hash values, so `isCongruent` must
+require matching `funCC` flags. Here is the scenario that leads to a nondeterministic crash
+if mismatched flags are allowed:
+
+1. `e₁` (with `funCC = true`) is inserted into the congruence table.
+2. `e₂` (with `funCC = false`) is inserted. Its hash is computed using the non-`funCC` path.
+3. Because `hashRoot` uses pointer addresses (`ptrAddrUnsafe`), the two different hash
+   computations can accidentally collide, placing `e₂` in the same bucket as `e₁`.
+4. `isCongruent e₁ e₂` is called. If it used only `e₁`'s `funCC` flag (the old behavior),
+   the `funCC` comparison path could declare them congruent even when they have different
+   numbers of top-level arguments.
+5. `addCongrTable` calls `pushEqHEq e₂ e₁ congrPlaceholderProof`, where `e₂` is the new
+   node with `funCC = false`.
+6. During proof reconstruction, `mkCongrProof e₂ e₁` checks `useFunCC e₂ = false`, enters
+   the standard (non-`funCC`) proof path, and hits `assert! rhs.getAppNumArgs == numArgs`
+   because `e₁` and `e₂` have different argument counts.
+
+This was observed as a nondeterministic crash in Mathlib (e.g., at `Analysis/ODE/PicardLindelof.lean`).
+-/
 /-- Returns `true` if `e₁` and `e₂` are congruent modulo the equivalence classes in `enodes`. -/
 private partial def isCongruent (enodes : ENodeMap) (e₁ e₂ : Expr) : Bool :=
   if let .forallE _ d₁ b₁ _ := e₁ then
@@ -600,7 +592,14 @@ private partial def isCongruent (enodes : ENodeMap) (e₁ e₂ : Expr) : Bool :=
       **Note**: We are not in `MetaM` here. Thus, we cannot check whether `f` and `g` have the same type.
       So, we approximate and try to handle this issue when generating the proof term.
       -/
-      hasSameRoot enodes a b && hasSameRoot enodes f g
+      useFunCC' enodes e₂ && hasSameRoot enodes a b && hasSameRoot enodes f g
+    else if useFunCC' enodes e₂ then
+      /-
+      Mismatched `funCC` flags: `e₁` uses first-order congruence, `e₂` uses higher-order.
+      They hash differently (via `congrHash`), so declaring them congruent here would violate
+      the `BEq`/`Hashable` consistency invariant required by `PHashSet`.
+      -/
+      false
     else
       hasSameRoot enodes a b && go f g
 where
@@ -611,6 +610,9 @@ where
   go (a b : Expr) : Bool :=
     if a.isApp && b.isApp then
       hasSameRoot enodes a.appArg! b.appArg! && go a.appFn! b.appFn!
+    else if a.isApp || b.isApp then
+      -- Different number of arguments: not congruent.
+      false
     else
       -- Remark: we do not check whether the types of the functions are equal here
       -- because we are not in the `MetaM` monad.
@@ -713,14 +715,6 @@ structure CanonArgKey where
   i   : Nat
   arg : Expr
   deriving BEq, Hashable
-
-/-- Canonicalizer state. See `Canon.lean` for additional details. -/
-structure Canon.State where
-  argMap     : PHashMap (Expr × Nat) (List (Expr × Expr)) := {}
-  canon      : PHashMap Expr Expr := {}
-  proofCanon : PHashMap Expr Expr := {}
-  canonArg   : PHashMap CanonArgKey Expr := {}
-  deriving Inhabited
 
 /-- Trace information for a case split. -/
 structure CaseTrace where
@@ -921,7 +915,6 @@ accumulated facts.
 structure GoalState where
   /-- Next local declaration index to process. -/
   nextDeclIdx  : Nat := 0
-  canon        : Canon.State := {}
   enodeMap     : ENodeMap := default
   exprs        : PArray Expr := {}
   parents      : ParentMap := {}
@@ -1734,10 +1727,7 @@ def withoutModifyingState (x : GoalM α) : GoalM α := do
   finally
     set saved
 
-set_option compiler.ignoreBorrowAnnotation true in
-/-- Canonicalizes nested types, type formers, and instances in `e`. -/
-@[extern "lean_grind_canon"] -- Forward definition
-opaque canon (e : Expr) : GoalM Expr
+export Sym (canon)
 
 /-!
 `Action` is the *control interface* for `grind`’s search steps. It is defined in
@@ -1909,11 +1899,12 @@ Sequential conjunction: executes both `x` and `y`.
 def Action.andAlso (x y : Action) : Action := fun goal kna kp => do
   x goal (fun goal => y goal kna kp) (fun goal => y goal kp kp)
 
-/-
-Creates an action that tries all solver extensions. It uses the `Action.andAlso`
-to combine them.
+/--
+Combines all solver extensions into a single action using `Action.andAlso`.
+Does not drain `newRawFacts`; use `Solvers.mkAction` (defined in `Intro.lean`) which
+wraps this with `assertAll`.
 -/
-def Solvers.mkAction : IO Action := do
+def Solvers.mkActionCore : IO Action := do
   let exts ← solverExtensionsRef.get
   let rec go (i : Nat) (acc : Action) : Action :=
     if h : i < exts.size then
@@ -1982,7 +1973,7 @@ def SolverExtension.markTerm (ext : SolverExtension σ) (e : Expr) : GoalM Unit 
     | .next id' e' sTerms' =>
       if id == id' then
         -- Skip if `e` and `e'` have different types (e.g., they were merged via `HEq` from `cast`).
-        -- This can happen when we have heterogenous equalities in an equivalence class containing types such as `Fin n` and `Fin m`
+        -- This can happen when we have heterogeneous equalities in an equivalence class containing types such as `Fin n` and `Fin m`
         if (← pure !root.heqProofs <||> hasSameType e e') then
           (← solverExtensionsRef.get)[id]!.newEq e e'
         return sTerms
@@ -2065,7 +2056,7 @@ where
     | .nil => return ()
     | .eq solverId lhs rhs rest =>
       -- Skip if `lhs` and `rhs` have different types (e.g., they were merged via `HEq` from `cast`).
-      -- This can happen when we have heterogenous equalities in an equivalence class containing types such as `Fin n` and `Fin m`
+      -- This can happen when we have heterogeneous equalities in an equivalence class containing types such as `Fin n` and `Fin m`
       let root ← getRootENode lhs
       if (← pure !root.heqProofs <||> hasSameType lhs rhs) then
         (← solverExtensionsRef.get)[solverId]!.newEq lhs rhs

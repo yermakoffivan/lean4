@@ -76,6 +76,10 @@ def evalGrindSeq : GrindTactic := fun stx =>
 @[builtin_grind_tactic skip] def evalSkip : GrindTactic := fun _ =>
   return ()
 
+@[builtin_grind_tactic showGoals] def evalShowGoals : GrindTactic := fun _ => do
+  let goals ← getUnsolvedGoalMVarIds
+  addRawTrace (goalsToMessageData goals)
+
 @[builtin_grind_tactic paren] def evalParen : GrindTactic := fun stx =>
   evalGrindTactic stx[1]
 
@@ -433,7 +437,8 @@ where
   replaceMainGoal [{ goal with mvarId }]
 
 @[builtin_grind_tactic setOption] def elabSetOption : GrindTactic := fun stx => do
-  let options ← Elab.elabSetOption stx[1] stx[3]
+  let (options, decl) ← Elab.elabSetOption stx[1] stx[3]
+  withRef stx[1] <| Elab.checkDeprecatedOption (stx[1].getId.eraseMacroScopes) decl
   withOptions (fun _ => options) do evalGrindTactic stx[5]
 
 @[builtin_grind_tactic setConfig] def elabSetConfig : GrindTactic := fun stx => do

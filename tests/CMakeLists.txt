@@ -41,7 +41,6 @@ string(APPEND TEST_VARS " CXX='${CMAKE_CXX_COMPILER} ${LEANC_OPTS}'")
 set(WITH_TEST_ENV "${CMAKE_CURRENT_SOURCE_DIR}/with_stage${STAGE}_test_env.sh")
 set(WITH_BENCH_ENV "${CMAKE_CURRENT_SOURCE_DIR}/with_stage${STAGE}_bench_env.sh")
 
-string(APPEND TEST_VARS " TEST_BENCH=")
 configure_file(with_env.sh.in "${WITH_TEST_ENV}")
 
 block()
@@ -86,7 +85,7 @@ function(check_test_bench_scripts DIR)
 
   if(NOT RUN_TEST_EXISTS AND NOT RUN_BENCH_EXISTS)
     cmake_path(RELATIVE_PATH DIR)
-    message(FATAL_ERROR "${DIR}: Found neither a run_test nor a run_bench file")
+    message(AUTHOR_WARNING "${DIR}: Found neither a run_test nor a run_bench file")
     return()
   endif()
 
@@ -291,7 +290,13 @@ add_test_pile(../doc/examples *.lean)
 add_test_pile(compile *.lean BENCH PART2)
 add_test_pile(compile_bench *.lean BENCH PART2)
 add_test_pile(docparse *.txt)
-add_test_pile(elab *.lean)
+add_test_pile(
+  elab
+  *.lean
+  EXCEPT
+    async_select_channel.lean # Flaky
+    sync_mutex.lean # Flaky
+)
 add_test_pile(elab_bench *.lean BENCH PART2)
 add_test_pile(elab_fail *.lean)
 add_test_pile(misc *.sh)

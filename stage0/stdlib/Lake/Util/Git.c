@@ -35,7 +35,7 @@ lean_object* lean_nat_add(lean_object*, lean_object*);
 lean_object* l_String_Slice_subslice_x21(lean_object*, lean_object*, lean_object*);
 lean_object* lean_array_to_list(lean_object*);
 lean_object* lean_string_length(lean_object*);
-uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
+uint8_t l_String_instDecidableLtRaw___aux__1(lean_object*, lean_object*);
 uint8_t lean_uint32_dec_le(uint32_t, uint32_t);
 uint8_t l_System_FilePath_isDir(lean_object*);
 lean_object* l_Lake_captureProc_x27(lean_object*, lean_object*);
@@ -57,8 +57,8 @@ static const lean_object* l_Lake_Git_filterUrl_x3f___closed__2 = (const lean_obj
 static lean_once_cell_t l_Lake_Git_filterUrl_x3f___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lake_Git_filterUrl_x3f___closed__3;
 LEAN_EXPORT lean_object* l_Lake_Git_filterUrl_x3f(lean_object*);
-LEAN_EXPORT lean_object* l___private_Init_Data_String_Slice_0__String_Slice_dropWhile_go___at___00Lake_Git_isFullObjectName_spec__0(lean_object*, lean_object*);
-LEAN_EXPORT lean_object* l___private_Init_Data_String_Slice_0__String_Slice_dropWhile_go___at___00Lake_Git_isFullObjectName_spec__0___boxed(lean_object*, lean_object*);
+LEAN_EXPORT lean_object* l_String_Slice_Pos_skipWhile___at___00Lake_Git_isFullObjectName_spec__0(lean_object*, lean_object*);
+LEAN_EXPORT lean_object* l_String_Slice_Pos_skipWhile___at___00Lake_Git_isFullObjectName_spec__0___boxed(lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Lake_Git_isFullObjectName(lean_object*);
 LEAN_EXPORT lean_object* l_Lake_Git_isFullObjectName___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Lake_instCoeFilePathGitRepo___lam__0(lean_object*);
@@ -140,6 +140,14 @@ static lean_once_cell_t l_Lake_GitRepo_checkoutDetach___closed__3_once = LEAN_ON
 static lean_object* l_Lake_GitRepo_checkoutDetach___closed__3;
 LEAN_EXPORT lean_object* l_Lake_GitRepo_checkoutDetach(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_GitRepo_checkoutDetach___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
+static const lean_string_object l_Lake_GitRepo_clean___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "clean"};
+static const lean_object* l_Lake_GitRepo_clean___closed__0 = (const lean_object*)&l_Lake_GitRepo_clean___closed__0_value;
+static const lean_string_object l_Lake_GitRepo_clean___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "-xf"};
+static const lean_object* l_Lake_GitRepo_clean___closed__1 = (const lean_object*)&l_Lake_GitRepo_clean___closed__1_value;
+static const lean_array_object l_Lake_GitRepo_clean___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*2, .m_other = 0, .m_tag = 246}, .m_size = 2, .m_capacity = 2, .m_data = {((lean_object*)&l_Lake_GitRepo_clean___closed__0_value),((lean_object*)&l_Lake_GitRepo_clean___closed__1_value)}};
+static const lean_object* l_Lake_GitRepo_clean___closed__2 = (const lean_object*)&l_Lake_GitRepo_clean___closed__2_value;
+LEAN_EXPORT lean_object* l_Lake_GitRepo_clean(lean_object*, lean_object*);
+LEAN_EXPORT lean_object* l_Lake_GitRepo_clean___boxed(lean_object*, lean_object*, lean_object*);
 static const lean_string_object l_Lake_GitRepo_resolveRevision_x3f___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "--verify"};
 static const lean_object* l_Lake_GitRepo_resolveRevision_x3f___closed__0 = (const lean_object*)&l_Lake_GitRepo_resolveRevision_x3f___closed__0_value;
 static const lean_string_object l_Lake_GitRepo_resolveRevision_x3f___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 17, .m_capacity = 17, .m_length = 16, .m_data = "--end-of-options"};
@@ -345,1242 +353,1254 @@ return v___x_26_;
 }
 }
 }
-LEAN_EXPORT lean_object* l___private_Init_Data_String_Slice_0__String_Slice_dropWhile_go___at___00Lake_Git_isFullObjectName_spec__0(lean_object* v_s_34_, lean_object* v_curr_35_){
+LEAN_EXPORT lean_object* l_String_Slice_Pos_skipWhile___at___00Lake_Git_isFullObjectName_spec__0(lean_object* v_s_34_, lean_object* v_pos_35_){
 _start:
 {
-lean_object* v_str_36_; lean_object* v_startInclusive_37_; lean_object* v_endExclusive_38_; lean_object* v___x_39_; lean_object* v___x_40_; uint8_t v___y_48_; lean_object* v___x_49_; lean_object* v___x_50_; uint8_t v___x_51_; 
+lean_object* v_str_36_; lean_object* v_startInclusive_37_; lean_object* v_endExclusive_38_; lean_object* v___x_39_; uint8_t v___y_47_; lean_object* v___x_48_; lean_object* v___x_49_; uint8_t v___x_50_; 
 v_str_36_ = lean_ctor_get(v_s_34_, 0);
 v_startInclusive_37_ = lean_ctor_get(v_s_34_, 1);
 v_endExclusive_38_ = lean_ctor_get(v_s_34_, 2);
-v___x_39_ = lean_nat_add(v_startInclusive_37_, v_curr_35_);
-lean_inc(v_endExclusive_38_);
-lean_inc(v___x_39_);
-lean_inc_ref(v_str_36_);
-v___x_40_ = lean_alloc_ctor(0, 3, 0);
-lean_ctor_set(v___x_40_, 0, v_str_36_);
-lean_ctor_set(v___x_40_, 1, v___x_39_);
-lean_ctor_set(v___x_40_, 2, v_endExclusive_38_);
-v___x_49_ = lean_unsigned_to_nat(0u);
-v___x_50_ = lean_nat_sub(v_endExclusive_38_, v___x_39_);
-v___x_51_ = lean_nat_dec_eq(v___x_49_, v___x_50_);
-lean_dec(v___x_50_);
-if (v___x_51_ == 0)
+v___x_39_ = lean_nat_add(v_startInclusive_37_, v_pos_35_);
+v___x_48_ = lean_unsigned_to_nat(0u);
+v___x_49_ = lean_nat_sub(v_endExclusive_38_, v___x_39_);
+v___x_50_ = lean_nat_dec_eq(v___x_48_, v___x_49_);
+lean_dec(v___x_49_);
+if (v___x_50_ == 0)
 {
-uint32_t v___x_52_; uint8_t v___y_54_; uint32_t v___x_59_; uint8_t v___x_60_; 
-v___x_52_ = lean_string_utf8_get_fast(v_str_36_, v___x_39_);
-v___x_59_ = 48;
-v___x_60_ = lean_uint32_dec_le(v___x_59_, v___x_52_);
-if (v___x_60_ == 0)
+uint32_t v___x_51_; uint8_t v___y_53_; uint32_t v___x_58_; uint8_t v___x_59_; 
+v___x_51_ = lean_string_utf8_get_fast(v_str_36_, v___x_39_);
+v___x_58_ = 48;
+v___x_59_ = lean_uint32_dec_le(v___x_58_, v___x_51_);
+if (v___x_59_ == 0)
 {
-v___y_54_ = v___x_60_;
-goto v___jp_53_;
+v___y_53_ = v___x_59_;
+goto v___jp_52_;
 }
 else
 {
-uint32_t v___x_61_; uint8_t v___x_62_; 
-v___x_61_ = 57;
-v___x_62_ = lean_uint32_dec_le(v___x_52_, v___x_61_);
-v___y_54_ = v___x_62_;
-goto v___jp_53_;
+uint32_t v___x_60_; uint8_t v___x_61_; 
+v___x_60_ = 57;
+v___x_61_ = lean_uint32_dec_le(v___x_51_, v___x_60_);
+v___y_53_ = v___x_61_;
+goto v___jp_52_;
 }
-v___jp_53_:
+v___jp_52_:
 {
-if (v___y_54_ == 0)
+if (v___y_53_ == 0)
 {
-uint32_t v___x_55_; uint8_t v___x_56_; 
-v___x_55_ = 97;
-v___x_56_ = lean_uint32_dec_le(v___x_55_, v___x_52_);
-if (v___x_56_ == 0)
+uint32_t v___x_54_; uint8_t v___x_55_; 
+v___x_54_ = 97;
+v___x_55_ = lean_uint32_dec_le(v___x_54_, v___x_51_);
+if (v___x_55_ == 0)
 {
-v___y_48_ = v___x_56_;
-goto v___jp_47_;
+v___y_47_ = v___x_55_;
+goto v___jp_46_;
 }
 else
 {
-uint32_t v___x_57_; uint8_t v___x_58_; 
-v___x_57_ = 102;
-v___x_58_ = lean_uint32_dec_le(v___x_52_, v___x_57_);
-v___y_48_ = v___x_58_;
-goto v___jp_47_;
+uint32_t v___x_56_; uint8_t v___x_57_; 
+v___x_56_ = 102;
+v___x_57_ = lean_uint32_dec_le(v___x_51_, v___x_56_);
+v___y_47_ = v___x_57_;
+goto v___jp_46_;
 }
 }
 else
 {
-goto v___jp_41_;
+goto v___jp_40_;
 }
 }
 }
 else
 {
 lean_dec(v___x_39_);
-lean_dec(v_curr_35_);
-return v___x_40_;
+return v_pos_35_;
 }
-v___jp_41_:
+v___jp_40_:
 {
-lean_object* v___x_42_; lean_object* v___x_43_; lean_object* v___x_44_; uint8_t v___x_45_; 
-v___x_42_ = lean_string_utf8_next_fast(v_str_36_, v___x_39_);
-v___x_43_ = lean_nat_sub(v___x_42_, v___x_39_);
+lean_object* v___x_41_; lean_object* v___x_42_; lean_object* v___x_43_; uint8_t v___x_44_; 
+v___x_41_ = lean_string_utf8_next_fast(v_str_36_, v___x_39_);
+v___x_42_ = lean_nat_sub(v___x_41_, v___x_39_);
 lean_dec(v___x_39_);
-v___x_44_ = lean_nat_add(v_curr_35_, v___x_43_);
+v___x_43_ = lean_nat_add(v_pos_35_, v___x_42_);
+lean_dec(v___x_42_);
+v___x_44_ = l_String_instDecidableLtRaw___aux__1(v_pos_35_, v___x_43_);
+if (v___x_44_ == 0)
+{
 lean_dec(v___x_43_);
-v___x_45_ = lean_nat_dec_lt(v_curr_35_, v___x_44_);
-lean_dec(v_curr_35_);
-if (v___x_45_ == 0)
-{
-lean_dec(v___x_44_);
-return v___x_40_;
+return v_pos_35_;
 }
 else
 {
-lean_dec_ref(v___x_40_);
-v_curr_35_ = v___x_44_;
+lean_dec(v_pos_35_);
+v_pos_35_ = v___x_43_;
 goto _start;
 }
 }
-v___jp_47_:
+v___jp_46_:
 {
-if (v___y_48_ == 0)
+if (v___y_47_ == 0)
 {
 lean_dec(v___x_39_);
-lean_dec(v_curr_35_);
-return v___x_40_;
+return v_pos_35_;
 }
 else
 {
-goto v___jp_41_;
+goto v___jp_40_;
 }
 }
 }
 }
-LEAN_EXPORT lean_object* l___private_Init_Data_String_Slice_0__String_Slice_dropWhile_go___at___00Lake_Git_isFullObjectName_spec__0___boxed(lean_object* v_s_63_, lean_object* v_curr_64_){
+LEAN_EXPORT lean_object* l_String_Slice_Pos_skipWhile___at___00Lake_Git_isFullObjectName_spec__0___boxed(lean_object* v_s_62_, lean_object* v_pos_63_){
 _start:
 {
-lean_object* v_res_65_; 
-v_res_65_ = l___private_Init_Data_String_Slice_0__String_Slice_dropWhile_go___at___00Lake_Git_isFullObjectName_spec__0(v_s_63_, v_curr_64_);
-lean_dec_ref(v_s_63_);
-return v_res_65_;
+lean_object* v_res_64_; 
+v_res_64_ = l_String_Slice_Pos_skipWhile___at___00Lake_Git_isFullObjectName_spec__0(v_s_62_, v_pos_63_);
+lean_dec_ref(v_s_62_);
+return v_res_64_;
 }
 }
-LEAN_EXPORT uint8_t l_Lake_Git_isFullObjectName(lean_object* v_rev_66_){
+LEAN_EXPORT uint8_t l_Lake_Git_isFullObjectName(lean_object* v_rev_65_){
 _start:
 {
-lean_object* v___x_67_; lean_object* v___x_68_; uint8_t v___x_69_; 
-v___x_67_ = lean_string_length(v_rev_66_);
-v___x_68_ = lean_unsigned_to_nat(40u);
-v___x_69_ = lean_nat_dec_eq(v___x_67_, v___x_68_);
-if (v___x_69_ == 0)
+lean_object* v___x_66_; lean_object* v___x_67_; uint8_t v___x_68_; 
+v___x_66_ = lean_string_length(v_rev_65_);
+v___x_67_ = lean_unsigned_to_nat(40u);
+v___x_68_ = lean_nat_dec_eq(v___x_66_, v___x_67_);
+if (v___x_68_ == 0)
 {
-lean_dec_ref(v_rev_66_);
-return v___x_69_;
+lean_dec_ref(v_rev_65_);
+return v___x_68_;
 }
 else
 {
-lean_object* v___x_70_; lean_object* v___x_71_; lean_object* v___x_72_; lean_object* v___x_73_; lean_object* v_startInclusive_74_; lean_object* v_endExclusive_75_; lean_object* v___x_76_; uint8_t v___x_77_; 
-v___x_70_ = lean_unsigned_to_nat(0u);
-v___x_71_ = lean_string_utf8_byte_size(v_rev_66_);
-v___x_72_ = lean_alloc_ctor(0, 3, 0);
-lean_ctor_set(v___x_72_, 0, v_rev_66_);
-lean_ctor_set(v___x_72_, 1, v___x_70_);
-lean_ctor_set(v___x_72_, 2, v___x_71_);
-v___x_73_ = l___private_Init_Data_String_Slice_0__String_Slice_dropWhile_go___at___00Lake_Git_isFullObjectName_spec__0(v___x_72_, v___x_70_);
-lean_dec_ref(v___x_72_);
-v_startInclusive_74_ = lean_ctor_get(v___x_73_, 1);
-lean_inc(v_startInclusive_74_);
-v_endExclusive_75_ = lean_ctor_get(v___x_73_, 2);
-lean_inc(v_endExclusive_75_);
-lean_dec_ref(v___x_73_);
-v___x_76_ = lean_nat_sub(v_endExclusive_75_, v_startInclusive_74_);
-lean_dec(v_startInclusive_74_);
-lean_dec(v_endExclusive_75_);
-v___x_77_ = lean_nat_dec_eq(v___x_76_, v___x_70_);
-lean_dec(v___x_76_);
-return v___x_77_;
+lean_object* v___x_69_; lean_object* v___x_70_; lean_object* v___x_71_; lean_object* v___x_72_; uint8_t v___x_73_; 
+v___x_69_ = lean_unsigned_to_nat(0u);
+v___x_70_ = lean_string_utf8_byte_size(v_rev_65_);
+v___x_71_ = lean_alloc_ctor(0, 3, 0);
+lean_ctor_set(v___x_71_, 0, v_rev_65_);
+lean_ctor_set(v___x_71_, 1, v___x_69_);
+lean_ctor_set(v___x_71_, 2, v___x_70_);
+v___x_72_ = l_String_Slice_Pos_skipWhile___at___00Lake_Git_isFullObjectName_spec__0(v___x_71_, v___x_69_);
+lean_dec_ref(v___x_71_);
+v___x_73_ = lean_nat_dec_eq(v___x_72_, v___x_70_);
+lean_dec(v___x_72_);
+return v___x_73_;
 }
 }
 }
-LEAN_EXPORT lean_object* l_Lake_Git_isFullObjectName___boxed(lean_object* v_rev_78_){
+LEAN_EXPORT lean_object* l_Lake_Git_isFullObjectName___boxed(lean_object* v_rev_74_){
 _start:
 {
-uint8_t v_res_79_; lean_object* v_r_80_; 
-v_res_79_ = l_Lake_Git_isFullObjectName(v_rev_78_);
-v_r_80_ = lean_box(v_res_79_);
-return v_r_80_;
+uint8_t v_res_75_; lean_object* v_r_76_; 
+v_res_75_ = l_Lake_Git_isFullObjectName(v_rev_74_);
+v_r_76_ = lean_box(v_res_75_);
+return v_r_76_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_instCoeFilePathGitRepo___lam__0(lean_object* v_x_81_){
+LEAN_EXPORT lean_object* l_Lake_instCoeFilePathGitRepo___lam__0(lean_object* v_x_77_){
 _start:
 {
-lean_inc_ref(v_x_81_);
-return v_x_81_;
+lean_inc_ref(v_x_77_);
+return v_x_77_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_instCoeFilePathGitRepo___lam__0___boxed(lean_object* v_x_82_){
+LEAN_EXPORT lean_object* l_Lake_instCoeFilePathGitRepo___lam__0___boxed(lean_object* v_x_78_){
 _start:
 {
-lean_object* v_res_83_; 
-v_res_83_ = l_Lake_instCoeFilePathGitRepo___lam__0(v_x_82_);
-lean_dec_ref(v_x_82_);
-return v_res_83_;
+lean_object* v_res_79_; 
+v_res_79_ = l_Lake_instCoeFilePathGitRepo___lam__0(v_x_78_);
+lean_dec_ref(v_x_78_);
+return v_res_79_;
 }
 }
-LEAN_EXPORT uint8_t l_Lake_GitRepo_dirExists(lean_object* v_repo_89_){
+LEAN_EXPORT uint8_t l_Lake_GitRepo_dirExists(lean_object* v_repo_85_){
 _start:
 {
-uint8_t v___x_91_; 
-v___x_91_ = l_System_FilePath_isDir(v_repo_89_);
-return v___x_91_;
+uint8_t v___x_87_; 
+v___x_87_ = l_System_FilePath_isDir(v_repo_85_);
+return v___x_87_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_dirExists___boxed(lean_object* v_repo_92_, lean_object* v_a_93_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_dirExists___boxed(lean_object* v_repo_88_, lean_object* v_a_89_){
 _start:
 {
-uint8_t v_res_94_; lean_object* v_r_95_; 
-v_res_94_ = l_Lake_GitRepo_dirExists(v_repo_92_);
-lean_dec_ref(v_repo_92_);
-v_r_95_ = lean_box(v_res_94_);
-return v_r_95_;
+uint8_t v_res_90_; lean_object* v_r_91_; 
+v_res_90_ = l_Lake_GitRepo_dirExists(v_repo_88_);
+lean_dec_ref(v_repo_88_);
+v_r_91_ = lean_box(v_res_90_);
+return v_r_91_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_captureGit(lean_object* v_args_100_, lean_object* v_repo_101_, lean_object* v_a_102_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_captureGit(lean_object* v_args_96_, lean_object* v_repo_97_, lean_object* v_a_98_){
 _start:
 {
-lean_object* v___x_104_; lean_object* v___x_105_; lean_object* v___x_106_; lean_object* v___x_107_; lean_object* v___x_108_; uint8_t v___x_109_; uint8_t v___x_110_; lean_object* v___x_111_; lean_object* v___x_112_; 
-v___x_104_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
-v___x_105_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
-v___x_106_ = lean_alloc_ctor(1, 1, 0);
-lean_ctor_set(v___x_106_, 0, v_repo_101_);
-v___x_107_ = lean_unsigned_to_nat(0u);
-v___x_108_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
-v___x_109_ = 1;
-v___x_110_ = 0;
-v___x_111_ = lean_alloc_ctor(0, 5, 2);
-lean_ctor_set(v___x_111_, 0, v___x_104_);
-lean_ctor_set(v___x_111_, 1, v___x_105_);
-lean_ctor_set(v___x_111_, 2, v_args_100_);
-lean_ctor_set(v___x_111_, 3, v___x_106_);
-lean_ctor_set(v___x_111_, 4, v___x_108_);
-lean_ctor_set_uint8(v___x_111_, sizeof(void*)*5, v___x_109_);
-lean_ctor_set_uint8(v___x_111_, sizeof(void*)*5 + 1, v___x_110_);
-v___x_112_ = l_Lake_captureProc_x27(v___x_111_, v_a_102_);
-if (lean_obj_tag(v___x_112_) == 0)
+lean_object* v___x_100_; lean_object* v___x_101_; lean_object* v___x_102_; lean_object* v___x_103_; lean_object* v___x_104_; uint8_t v___x_105_; uint8_t v___x_106_; lean_object* v___x_107_; lean_object* v___x_108_; 
+v___x_100_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
+v___x_101_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
+v___x_102_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_102_, 0, v_repo_97_);
+v___x_103_ = lean_unsigned_to_nat(0u);
+v___x_104_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
+v___x_105_ = 1;
+v___x_106_ = 0;
+v___x_107_ = lean_alloc_ctor(0, 5, 2);
+lean_ctor_set(v___x_107_, 0, v___x_100_);
+lean_ctor_set(v___x_107_, 1, v___x_101_);
+lean_ctor_set(v___x_107_, 2, v_args_96_);
+lean_ctor_set(v___x_107_, 3, v___x_102_);
+lean_ctor_set(v___x_107_, 4, v___x_104_);
+lean_ctor_set_uint8(v___x_107_, sizeof(void*)*5, v___x_105_);
+lean_ctor_set_uint8(v___x_107_, sizeof(void*)*5 + 1, v___x_106_);
+v___x_108_ = l_Lake_captureProc_x27(v___x_107_, v_a_98_);
+if (lean_obj_tag(v___x_108_) == 0)
 {
-lean_object* v_a_113_; lean_object* v_a_114_; lean_object* v___x_116_; uint8_t v_isShared_117_; uint8_t v_isSharedCheck_129_; 
-v_a_113_ = lean_ctor_get(v___x_112_, 0);
-v_a_114_ = lean_ctor_get(v___x_112_, 1);
-v_isSharedCheck_129_ = !lean_is_exclusive(v___x_112_);
-if (v_isSharedCheck_129_ == 0)
+lean_object* v_a_109_; lean_object* v_a_110_; lean_object* v___x_112_; uint8_t v_isShared_113_; uint8_t v_isSharedCheck_125_; 
+v_a_109_ = lean_ctor_get(v___x_108_, 0);
+v_a_110_ = lean_ctor_get(v___x_108_, 1);
+v_isSharedCheck_125_ = !lean_is_exclusive(v___x_108_);
+if (v_isSharedCheck_125_ == 0)
 {
-v___x_116_ = v___x_112_;
-v_isShared_117_ = v_isSharedCheck_129_;
-goto v_resetjp_115_;
+v___x_112_ = v___x_108_;
+v_isShared_113_ = v_isSharedCheck_125_;
+goto v_resetjp_111_;
 }
 else
 {
-lean_inc(v_a_114_);
-lean_inc(v_a_113_);
-lean_dec(v___x_112_);
-v___x_116_ = lean_box(0);
-v_isShared_117_ = v_isSharedCheck_129_;
-goto v_resetjp_115_;
+lean_inc(v_a_110_);
+lean_inc(v_a_109_);
+lean_dec(v___x_108_);
+v___x_112_ = lean_box(0);
+v_isShared_113_ = v_isSharedCheck_125_;
+goto v_resetjp_111_;
 }
-v_resetjp_115_:
+v_resetjp_111_:
 {
-lean_object* v_stdout_118_; lean_object* v___x_119_; lean_object* v___x_120_; lean_object* v___x_121_; lean_object* v_str_122_; lean_object* v_startInclusive_123_; lean_object* v_endExclusive_124_; lean_object* v___x_125_; lean_object* v___x_127_; 
-v_stdout_118_ = lean_ctor_get(v_a_113_, 0);
-lean_inc_ref(v_stdout_118_);
-lean_dec(v_a_113_);
-v___x_119_ = lean_string_utf8_byte_size(v_stdout_118_);
-v___x_120_ = lean_alloc_ctor(0, 3, 0);
-lean_ctor_set(v___x_120_, 0, v_stdout_118_);
-lean_ctor_set(v___x_120_, 1, v___x_107_);
-lean_ctor_set(v___x_120_, 2, v___x_119_);
-v___x_121_ = l_String_Slice_trimAscii(v___x_120_);
-lean_dec_ref(v___x_120_);
-v_str_122_ = lean_ctor_get(v___x_121_, 0);
-lean_inc_ref(v_str_122_);
-v_startInclusive_123_ = lean_ctor_get(v___x_121_, 1);
-lean_inc(v_startInclusive_123_);
-v_endExclusive_124_ = lean_ctor_get(v___x_121_, 2);
-lean_inc(v_endExclusive_124_);
-lean_dec_ref(v___x_121_);
-v___x_125_ = lean_string_utf8_extract(v_str_122_, v_startInclusive_123_, v_endExclusive_124_);
-lean_dec(v_endExclusive_124_);
-lean_dec(v_startInclusive_123_);
-lean_dec_ref(v_str_122_);
-if (v_isShared_117_ == 0)
+lean_object* v_stdout_114_; lean_object* v___x_115_; lean_object* v___x_116_; lean_object* v___x_117_; lean_object* v_str_118_; lean_object* v_startInclusive_119_; lean_object* v_endExclusive_120_; lean_object* v___x_121_; lean_object* v___x_123_; 
+v_stdout_114_ = lean_ctor_get(v_a_109_, 0);
+lean_inc_ref(v_stdout_114_);
+lean_dec(v_a_109_);
+v___x_115_ = lean_string_utf8_byte_size(v_stdout_114_);
+v___x_116_ = lean_alloc_ctor(0, 3, 0);
+lean_ctor_set(v___x_116_, 0, v_stdout_114_);
+lean_ctor_set(v___x_116_, 1, v___x_103_);
+lean_ctor_set(v___x_116_, 2, v___x_115_);
+v___x_117_ = l_String_Slice_trimAscii(v___x_116_);
+v_str_118_ = lean_ctor_get(v___x_117_, 0);
+lean_inc_ref(v_str_118_);
+v_startInclusive_119_ = lean_ctor_get(v___x_117_, 1);
+lean_inc(v_startInclusive_119_);
+v_endExclusive_120_ = lean_ctor_get(v___x_117_, 2);
+lean_inc(v_endExclusive_120_);
+lean_dec_ref(v___x_117_);
+v___x_121_ = lean_string_utf8_extract(v_str_118_, v_startInclusive_119_, v_endExclusive_120_);
+lean_dec(v_endExclusive_120_);
+lean_dec(v_startInclusive_119_);
+lean_dec_ref(v_str_118_);
+if (v_isShared_113_ == 0)
 {
-lean_ctor_set(v___x_116_, 0, v___x_125_);
-v___x_127_ = v___x_116_;
-goto v_reusejp_126_;
+lean_ctor_set(v___x_112_, 0, v___x_121_);
+v___x_123_ = v___x_112_;
+goto v_reusejp_122_;
 }
 else
 {
-lean_object* v_reuseFailAlloc_128_; 
-v_reuseFailAlloc_128_ = lean_alloc_ctor(0, 2, 0);
-lean_ctor_set(v_reuseFailAlloc_128_, 0, v___x_125_);
-lean_ctor_set(v_reuseFailAlloc_128_, 1, v_a_114_);
-v___x_127_ = v_reuseFailAlloc_128_;
-goto v_reusejp_126_;
+lean_object* v_reuseFailAlloc_124_; 
+v_reuseFailAlloc_124_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v_reuseFailAlloc_124_, 0, v___x_121_);
+lean_ctor_set(v_reuseFailAlloc_124_, 1, v_a_110_);
+v___x_123_ = v_reuseFailAlloc_124_;
+goto v_reusejp_122_;
 }
-v_reusejp_126_:
+v_reusejp_122_:
 {
-return v___x_127_;
+return v___x_123_;
 }
 }
 }
 else
 {
-lean_object* v_a_130_; lean_object* v_a_131_; lean_object* v___x_133_; uint8_t v_isShared_134_; uint8_t v_isSharedCheck_138_; 
-v_a_130_ = lean_ctor_get(v___x_112_, 0);
-v_a_131_ = lean_ctor_get(v___x_112_, 1);
-v_isSharedCheck_138_ = !lean_is_exclusive(v___x_112_);
-if (v_isSharedCheck_138_ == 0)
+lean_object* v_a_126_; lean_object* v_a_127_; lean_object* v___x_129_; uint8_t v_isShared_130_; uint8_t v_isSharedCheck_134_; 
+v_a_126_ = lean_ctor_get(v___x_108_, 0);
+v_a_127_ = lean_ctor_get(v___x_108_, 1);
+v_isSharedCheck_134_ = !lean_is_exclusive(v___x_108_);
+if (v_isSharedCheck_134_ == 0)
 {
-v___x_133_ = v___x_112_;
-v_isShared_134_ = v_isSharedCheck_138_;
-goto v_resetjp_132_;
+v___x_129_ = v___x_108_;
+v_isShared_130_ = v_isSharedCheck_134_;
+goto v_resetjp_128_;
 }
 else
 {
-lean_inc(v_a_131_);
-lean_inc(v_a_130_);
-lean_dec(v___x_112_);
-v___x_133_ = lean_box(0);
-v_isShared_134_ = v_isSharedCheck_138_;
-goto v_resetjp_132_;
+lean_inc(v_a_127_);
+lean_inc(v_a_126_);
+lean_dec(v___x_108_);
+v___x_129_ = lean_box(0);
+v_isShared_130_ = v_isSharedCheck_134_;
+goto v_resetjp_128_;
 }
-v_resetjp_132_:
+v_resetjp_128_:
 {
-lean_object* v___x_136_; 
-if (v_isShared_134_ == 0)
+lean_object* v___x_132_; 
+if (v_isShared_130_ == 0)
 {
-v___x_136_ = v___x_133_;
-goto v_reusejp_135_;
+v___x_132_ = v___x_129_;
+goto v_reusejp_131_;
 }
 else
 {
-lean_object* v_reuseFailAlloc_137_; 
-v_reuseFailAlloc_137_ = lean_alloc_ctor(1, 2, 0);
-lean_ctor_set(v_reuseFailAlloc_137_, 0, v_a_130_);
-lean_ctor_set(v_reuseFailAlloc_137_, 1, v_a_131_);
-v___x_136_ = v_reuseFailAlloc_137_;
-goto v_reusejp_135_;
+lean_object* v_reuseFailAlloc_133_; 
+v_reuseFailAlloc_133_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v_reuseFailAlloc_133_, 0, v_a_126_);
+lean_ctor_set(v_reuseFailAlloc_133_, 1, v_a_127_);
+v___x_132_ = v_reuseFailAlloc_133_;
+goto v_reusejp_131_;
 }
-v_reusejp_135_:
+v_reusejp_131_:
 {
-return v___x_136_;
+return v___x_132_;
 }
 }
 }
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_captureGit___boxed(lean_object* v_args_139_, lean_object* v_repo_140_, lean_object* v_a_141_, lean_object* v_a_142_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_captureGit___boxed(lean_object* v_args_135_, lean_object* v_repo_136_, lean_object* v_a_137_, lean_object* v_a_138_){
 _start:
 {
-lean_object* v_res_143_; 
-v_res_143_ = l_Lake_GitRepo_captureGit(v_args_139_, v_repo_140_, v_a_141_);
-return v_res_143_;
+lean_object* v_res_139_; 
+v_res_139_ = l_Lake_GitRepo_captureGit(v_args_135_, v_repo_136_, v_a_137_);
+return v_res_139_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_captureGit_x3f(lean_object* v_args_144_, lean_object* v_repo_145_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_captureGit_x3f(lean_object* v_args_140_, lean_object* v_repo_141_){
 _start:
 {
-lean_object* v___x_147_; lean_object* v___x_148_; lean_object* v___x_149_; lean_object* v___x_150_; uint8_t v___x_151_; uint8_t v___x_152_; lean_object* v___x_153_; lean_object* v___x_154_; 
-v___x_147_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
-v___x_148_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
-v___x_149_ = lean_alloc_ctor(1, 1, 0);
-lean_ctor_set(v___x_149_, 0, v_repo_145_);
-v___x_150_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
-v___x_151_ = 1;
-v___x_152_ = 0;
-v___x_153_ = lean_alloc_ctor(0, 5, 2);
-lean_ctor_set(v___x_153_, 0, v___x_147_);
-lean_ctor_set(v___x_153_, 1, v___x_148_);
-lean_ctor_set(v___x_153_, 2, v_args_144_);
-lean_ctor_set(v___x_153_, 3, v___x_149_);
-lean_ctor_set(v___x_153_, 4, v___x_150_);
-lean_ctor_set_uint8(v___x_153_, sizeof(void*)*5, v___x_151_);
-lean_ctor_set_uint8(v___x_153_, sizeof(void*)*5 + 1, v___x_152_);
-v___x_154_ = l_Lake_captureProc_x3f(v___x_153_);
-return v___x_154_;
+lean_object* v___x_143_; lean_object* v___x_144_; lean_object* v___x_145_; lean_object* v___x_146_; uint8_t v___x_147_; uint8_t v___x_148_; lean_object* v___x_149_; lean_object* v___x_150_; 
+v___x_143_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
+v___x_144_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
+v___x_145_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_145_, 0, v_repo_141_);
+v___x_146_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
+v___x_147_ = 1;
+v___x_148_ = 0;
+v___x_149_ = lean_alloc_ctor(0, 5, 2);
+lean_ctor_set(v___x_149_, 0, v___x_143_);
+lean_ctor_set(v___x_149_, 1, v___x_144_);
+lean_ctor_set(v___x_149_, 2, v_args_140_);
+lean_ctor_set(v___x_149_, 3, v___x_145_);
+lean_ctor_set(v___x_149_, 4, v___x_146_);
+lean_ctor_set_uint8(v___x_149_, sizeof(void*)*5, v___x_147_);
+lean_ctor_set_uint8(v___x_149_, sizeof(void*)*5 + 1, v___x_148_);
+v___x_150_ = l_Lake_captureProc_x3f(v___x_149_);
+return v___x_150_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_captureGit_x3f___boxed(lean_object* v_args_155_, lean_object* v_repo_156_, lean_object* v_a_157_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_captureGit_x3f___boxed(lean_object* v_args_151_, lean_object* v_repo_152_, lean_object* v_a_153_){
 _start:
 {
-lean_object* v_res_158_; 
-v_res_158_ = l_Lake_GitRepo_captureGit_x3f(v_args_155_, v_repo_156_);
-return v_res_158_;
+lean_object* v_res_154_; 
+v_res_154_ = l_Lake_GitRepo_captureGit_x3f(v_args_151_, v_repo_152_);
+return v_res_154_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_execGit(lean_object* v_args_159_, lean_object* v_repo_160_, lean_object* v_a_161_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_execGit(lean_object* v_args_155_, lean_object* v_repo_156_, lean_object* v_a_157_){
 _start:
 {
-lean_object* v___x_163_; lean_object* v___x_164_; lean_object* v___x_165_; lean_object* v___x_166_; uint8_t v___x_167_; uint8_t v___x_168_; lean_object* v___x_169_; lean_object* v___x_170_; 
-v___x_163_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
-v___x_164_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
-v___x_165_ = lean_alloc_ctor(1, 1, 0);
-lean_ctor_set(v___x_165_, 0, v_repo_160_);
-v___x_166_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
-v___x_167_ = 1;
-v___x_168_ = 0;
-v___x_169_ = lean_alloc_ctor(0, 5, 2);
-lean_ctor_set(v___x_169_, 0, v___x_163_);
-lean_ctor_set(v___x_169_, 1, v___x_164_);
-lean_ctor_set(v___x_169_, 2, v_args_159_);
-lean_ctor_set(v___x_169_, 3, v___x_165_);
-lean_ctor_set(v___x_169_, 4, v___x_166_);
-lean_ctor_set_uint8(v___x_169_, sizeof(void*)*5, v___x_167_);
-lean_ctor_set_uint8(v___x_169_, sizeof(void*)*5 + 1, v___x_168_);
-v___x_170_ = l_Lake_proc(v___x_169_, v___x_167_, v_a_161_);
-return v___x_170_;
+lean_object* v___x_159_; lean_object* v___x_160_; lean_object* v___x_161_; lean_object* v___x_162_; uint8_t v___x_163_; uint8_t v___x_164_; lean_object* v___x_165_; lean_object* v___x_166_; 
+v___x_159_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
+v___x_160_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
+v___x_161_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_161_, 0, v_repo_156_);
+v___x_162_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
+v___x_163_ = 1;
+v___x_164_ = 0;
+v___x_165_ = lean_alloc_ctor(0, 5, 2);
+lean_ctor_set(v___x_165_, 0, v___x_159_);
+lean_ctor_set(v___x_165_, 1, v___x_160_);
+lean_ctor_set(v___x_165_, 2, v_args_155_);
+lean_ctor_set(v___x_165_, 3, v___x_161_);
+lean_ctor_set(v___x_165_, 4, v___x_162_);
+lean_ctor_set_uint8(v___x_165_, sizeof(void*)*5, v___x_163_);
+lean_ctor_set_uint8(v___x_165_, sizeof(void*)*5 + 1, v___x_164_);
+v___x_166_ = l_Lake_proc(v___x_165_, v___x_163_, v_a_157_);
+return v___x_166_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_execGit___boxed(lean_object* v_args_171_, lean_object* v_repo_172_, lean_object* v_a_173_, lean_object* v_a_174_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_execGit___boxed(lean_object* v_args_167_, lean_object* v_repo_168_, lean_object* v_a_169_, lean_object* v_a_170_){
 _start:
 {
-lean_object* v_res_175_; 
-v_res_175_ = l_Lake_GitRepo_execGit(v_args_171_, v_repo_172_, v_a_173_);
-return v_res_175_;
+lean_object* v_res_171_; 
+v_res_171_ = l_Lake_GitRepo_execGit(v_args_167_, v_repo_168_, v_a_169_);
+return v_res_171_;
 }
 }
-LEAN_EXPORT uint8_t l_Lake_GitRepo_testGit(lean_object* v_args_176_, lean_object* v_repo_177_){
+LEAN_EXPORT uint8_t l_Lake_GitRepo_testGit(lean_object* v_args_172_, lean_object* v_repo_173_){
 _start:
 {
-lean_object* v___x_179_; lean_object* v___x_180_; lean_object* v___x_181_; lean_object* v___x_182_; uint8_t v___x_183_; uint8_t v___x_184_; lean_object* v___x_185_; uint8_t v___x_186_; 
-v___x_179_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
-v___x_180_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
-v___x_181_ = lean_alloc_ctor(1, 1, 0);
-lean_ctor_set(v___x_181_, 0, v_repo_177_);
-v___x_182_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
-v___x_183_ = 1;
-v___x_184_ = 0;
-v___x_185_ = lean_alloc_ctor(0, 5, 2);
-lean_ctor_set(v___x_185_, 0, v___x_179_);
-lean_ctor_set(v___x_185_, 1, v___x_180_);
-lean_ctor_set(v___x_185_, 2, v_args_176_);
-lean_ctor_set(v___x_185_, 3, v___x_181_);
-lean_ctor_set(v___x_185_, 4, v___x_182_);
-lean_ctor_set_uint8(v___x_185_, sizeof(void*)*5, v___x_183_);
-lean_ctor_set_uint8(v___x_185_, sizeof(void*)*5 + 1, v___x_184_);
-v___x_186_ = l_Lake_testProc(v___x_185_);
-return v___x_186_;
+lean_object* v___x_175_; lean_object* v___x_176_; lean_object* v___x_177_; lean_object* v___x_178_; uint8_t v___x_179_; uint8_t v___x_180_; lean_object* v___x_181_; uint8_t v___x_182_; 
+v___x_175_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
+v___x_176_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
+v___x_177_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_177_, 0, v_repo_173_);
+v___x_178_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
+v___x_179_ = 1;
+v___x_180_ = 0;
+v___x_181_ = lean_alloc_ctor(0, 5, 2);
+lean_ctor_set(v___x_181_, 0, v___x_175_);
+lean_ctor_set(v___x_181_, 1, v___x_176_);
+lean_ctor_set(v___x_181_, 2, v_args_172_);
+lean_ctor_set(v___x_181_, 3, v___x_177_);
+lean_ctor_set(v___x_181_, 4, v___x_178_);
+lean_ctor_set_uint8(v___x_181_, sizeof(void*)*5, v___x_179_);
+lean_ctor_set_uint8(v___x_181_, sizeof(void*)*5 + 1, v___x_180_);
+v___x_182_ = l_Lake_testProc(v___x_181_);
+return v___x_182_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_testGit___boxed(lean_object* v_args_187_, lean_object* v_repo_188_, lean_object* v_a_189_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_testGit___boxed(lean_object* v_args_183_, lean_object* v_repo_184_, lean_object* v_a_185_){
 _start:
 {
-uint8_t v_res_190_; lean_object* v_r_191_; 
-v_res_190_ = l_Lake_GitRepo_testGit(v_args_187_, v_repo_188_);
-v_r_191_ = lean_box(v_res_190_);
-return v_r_191_;
+uint8_t v_res_186_; lean_object* v_r_187_; 
+v_res_186_ = l_Lake_GitRepo_testGit(v_args_183_, v_repo_184_);
+v_r_187_ = lean_box(v_res_186_);
+return v_r_187_;
 }
 }
 static lean_object* _init_l_Lake_GitRepo_clone___closed__1(void){
 _start:
 {
-lean_object* v___x_193_; lean_object* v___x_194_; lean_object* v___x_195_; lean_object* v___x_196_; 
-v___x_193_ = ((lean_object*)(l_Lake_GitRepo_clone___closed__0));
-v___x_194_ = lean_unsigned_to_nat(3u);
-v___x_195_ = lean_mk_empty_array_with_capacity(v___x_194_);
-v___x_196_ = lean_array_push(v___x_195_, v___x_193_);
-return v___x_196_;
+lean_object* v___x_189_; lean_object* v___x_190_; lean_object* v___x_191_; lean_object* v___x_192_; 
+v___x_189_ = ((lean_object*)(l_Lake_GitRepo_clone___closed__0));
+v___x_190_ = lean_unsigned_to_nat(3u);
+v___x_191_ = lean_mk_empty_array_with_capacity(v___x_190_);
+v___x_192_ = lean_array_push(v___x_191_, v___x_189_);
+return v___x_192_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_clone(lean_object* v_url_197_, lean_object* v_repo_198_, lean_object* v_a_199_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_clone(lean_object* v_url_193_, lean_object* v_repo_194_, lean_object* v_a_195_){
 _start:
 {
-lean_object* v___x_201_; lean_object* v___x_202_; lean_object* v___x_203_; lean_object* v___x_204_; lean_object* v___x_205_; lean_object* v___x_206_; lean_object* v___x_207_; uint8_t v___x_208_; uint8_t v___x_209_; lean_object* v___x_210_; lean_object* v___x_211_; 
-v___x_201_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
-v___x_202_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
-v___x_203_ = lean_obj_once(&l_Lake_GitRepo_clone___closed__1, &l_Lake_GitRepo_clone___closed__1_once, _init_l_Lake_GitRepo_clone___closed__1);
-v___x_204_ = lean_array_push(v___x_203_, v_url_197_);
-v___x_205_ = lean_array_push(v___x_204_, v_repo_198_);
-v___x_206_ = lean_box(0);
-v___x_207_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
-v___x_208_ = 1;
-v___x_209_ = 0;
-v___x_210_ = lean_alloc_ctor(0, 5, 2);
-lean_ctor_set(v___x_210_, 0, v___x_201_);
-lean_ctor_set(v___x_210_, 1, v___x_202_);
-lean_ctor_set(v___x_210_, 2, v___x_205_);
-lean_ctor_set(v___x_210_, 3, v___x_206_);
-lean_ctor_set(v___x_210_, 4, v___x_207_);
-lean_ctor_set_uint8(v___x_210_, sizeof(void*)*5, v___x_208_);
-lean_ctor_set_uint8(v___x_210_, sizeof(void*)*5 + 1, v___x_209_);
-v___x_211_ = l_Lake_proc(v___x_210_, v___x_208_, v_a_199_);
-return v___x_211_;
+lean_object* v___x_197_; lean_object* v___x_198_; lean_object* v___x_199_; lean_object* v___x_200_; lean_object* v___x_201_; lean_object* v___x_202_; lean_object* v___x_203_; uint8_t v___x_204_; uint8_t v___x_205_; lean_object* v___x_206_; lean_object* v___x_207_; 
+v___x_197_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
+v___x_198_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
+v___x_199_ = lean_obj_once(&l_Lake_GitRepo_clone___closed__1, &l_Lake_GitRepo_clone___closed__1_once, _init_l_Lake_GitRepo_clone___closed__1);
+v___x_200_ = lean_array_push(v___x_199_, v_url_193_);
+v___x_201_ = lean_array_push(v___x_200_, v_repo_194_);
+v___x_202_ = lean_box(0);
+v___x_203_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
+v___x_204_ = 1;
+v___x_205_ = 0;
+v___x_206_ = lean_alloc_ctor(0, 5, 2);
+lean_ctor_set(v___x_206_, 0, v___x_197_);
+lean_ctor_set(v___x_206_, 1, v___x_198_);
+lean_ctor_set(v___x_206_, 2, v___x_201_);
+lean_ctor_set(v___x_206_, 3, v___x_202_);
+lean_ctor_set(v___x_206_, 4, v___x_203_);
+lean_ctor_set_uint8(v___x_206_, sizeof(void*)*5, v___x_204_);
+lean_ctor_set_uint8(v___x_206_, sizeof(void*)*5 + 1, v___x_205_);
+v___x_207_ = l_Lake_proc(v___x_206_, v___x_204_, v_a_195_);
+return v___x_207_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_clone___boxed(lean_object* v_url_212_, lean_object* v_repo_213_, lean_object* v_a_214_, lean_object* v_a_215_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_clone___boxed(lean_object* v_url_208_, lean_object* v_repo_209_, lean_object* v_a_210_, lean_object* v_a_211_){
 _start:
 {
-lean_object* v_res_216_; 
-v_res_216_ = l_Lake_GitRepo_clone(v_url_212_, v_repo_213_, v_a_214_);
-return v_res_216_;
+lean_object* v_res_212_; 
+v_res_212_ = l_Lake_GitRepo_clone(v_url_208_, v_repo_209_, v_a_210_);
+return v_res_212_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_quietInit(lean_object* v_repo_225_, lean_object* v_a_226_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_quietInit(lean_object* v_repo_221_, lean_object* v_a_222_){
 _start:
 {
-lean_object* v___x_228_; lean_object* v___x_229_; lean_object* v___x_230_; lean_object* v___x_231_; lean_object* v___x_232_; uint8_t v___x_233_; uint8_t v___x_234_; lean_object* v___x_235_; lean_object* v___x_236_; 
-v___x_228_ = ((lean_object*)(l_Lake_GitRepo_quietInit___closed__2));
-v___x_229_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
-v___x_230_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
-v___x_231_ = lean_alloc_ctor(1, 1, 0);
-lean_ctor_set(v___x_231_, 0, v_repo_225_);
-v___x_232_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
-v___x_233_ = 1;
-v___x_234_ = 0;
-v___x_235_ = lean_alloc_ctor(0, 5, 2);
-lean_ctor_set(v___x_235_, 0, v___x_229_);
-lean_ctor_set(v___x_235_, 1, v___x_230_);
-lean_ctor_set(v___x_235_, 2, v___x_228_);
-lean_ctor_set(v___x_235_, 3, v___x_231_);
-lean_ctor_set(v___x_235_, 4, v___x_232_);
-lean_ctor_set_uint8(v___x_235_, sizeof(void*)*5, v___x_233_);
-lean_ctor_set_uint8(v___x_235_, sizeof(void*)*5 + 1, v___x_234_);
-v___x_236_ = l_Lake_proc(v___x_235_, v___x_233_, v_a_226_);
-return v___x_236_;
+lean_object* v___x_224_; lean_object* v___x_225_; lean_object* v___x_226_; lean_object* v___x_227_; lean_object* v___x_228_; uint8_t v___x_229_; uint8_t v___x_230_; lean_object* v___x_231_; lean_object* v___x_232_; 
+v___x_224_ = ((lean_object*)(l_Lake_GitRepo_quietInit___closed__2));
+v___x_225_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
+v___x_226_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
+v___x_227_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_227_, 0, v_repo_221_);
+v___x_228_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
+v___x_229_ = 1;
+v___x_230_ = 0;
+v___x_231_ = lean_alloc_ctor(0, 5, 2);
+lean_ctor_set(v___x_231_, 0, v___x_225_);
+lean_ctor_set(v___x_231_, 1, v___x_226_);
+lean_ctor_set(v___x_231_, 2, v___x_224_);
+lean_ctor_set(v___x_231_, 3, v___x_227_);
+lean_ctor_set(v___x_231_, 4, v___x_228_);
+lean_ctor_set_uint8(v___x_231_, sizeof(void*)*5, v___x_229_);
+lean_ctor_set_uint8(v___x_231_, sizeof(void*)*5 + 1, v___x_230_);
+v___x_232_ = l_Lake_proc(v___x_231_, v___x_229_, v_a_222_);
+return v___x_232_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_quietInit___boxed(lean_object* v_repo_237_, lean_object* v_a_238_, lean_object* v_a_239_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_quietInit___boxed(lean_object* v_repo_233_, lean_object* v_a_234_, lean_object* v_a_235_){
 _start:
 {
-lean_object* v_res_240_; 
-v_res_240_ = l_Lake_GitRepo_quietInit(v_repo_237_, v_a_238_);
-return v_res_240_;
+lean_object* v_res_236_; 
+v_res_236_ = l_Lake_GitRepo_quietInit(v_repo_233_, v_a_234_);
+return v_res_236_;
 }
 }
-LEAN_EXPORT uint8_t l_Lake_GitRepo_insideWorkTree(lean_object* v_repo_249_){
+LEAN_EXPORT uint8_t l_Lake_GitRepo_insideWorkTree(lean_object* v_repo_245_){
 _start:
 {
-lean_object* v___x_251_; lean_object* v___x_252_; lean_object* v___x_253_; lean_object* v___x_254_; lean_object* v___x_255_; uint8_t v___x_256_; uint8_t v___x_257_; lean_object* v___x_258_; uint8_t v___x_259_; 
-v___x_251_ = ((lean_object*)(l_Lake_GitRepo_insideWorkTree___closed__2));
-v___x_252_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
-v___x_253_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
-v___x_254_ = lean_alloc_ctor(1, 1, 0);
-lean_ctor_set(v___x_254_, 0, v_repo_249_);
-v___x_255_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
-v___x_256_ = 1;
-v___x_257_ = 0;
-v___x_258_ = lean_alloc_ctor(0, 5, 2);
-lean_ctor_set(v___x_258_, 0, v___x_252_);
-lean_ctor_set(v___x_258_, 1, v___x_253_);
-lean_ctor_set(v___x_258_, 2, v___x_251_);
-lean_ctor_set(v___x_258_, 3, v___x_254_);
-lean_ctor_set(v___x_258_, 4, v___x_255_);
-lean_ctor_set_uint8(v___x_258_, sizeof(void*)*5, v___x_256_);
-lean_ctor_set_uint8(v___x_258_, sizeof(void*)*5 + 1, v___x_257_);
-v___x_259_ = l_Lake_testProc(v___x_258_);
-return v___x_259_;
+lean_object* v___x_247_; lean_object* v___x_248_; lean_object* v___x_249_; lean_object* v___x_250_; lean_object* v___x_251_; uint8_t v___x_252_; uint8_t v___x_253_; lean_object* v___x_254_; uint8_t v___x_255_; 
+v___x_247_ = ((lean_object*)(l_Lake_GitRepo_insideWorkTree___closed__2));
+v___x_248_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
+v___x_249_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
+v___x_250_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_250_, 0, v_repo_245_);
+v___x_251_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
+v___x_252_ = 1;
+v___x_253_ = 0;
+v___x_254_ = lean_alloc_ctor(0, 5, 2);
+lean_ctor_set(v___x_254_, 0, v___x_248_);
+lean_ctor_set(v___x_254_, 1, v___x_249_);
+lean_ctor_set(v___x_254_, 2, v___x_247_);
+lean_ctor_set(v___x_254_, 3, v___x_250_);
+lean_ctor_set(v___x_254_, 4, v___x_251_);
+lean_ctor_set_uint8(v___x_254_, sizeof(void*)*5, v___x_252_);
+lean_ctor_set_uint8(v___x_254_, sizeof(void*)*5 + 1, v___x_253_);
+v___x_255_ = l_Lake_testProc(v___x_254_);
+return v___x_255_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_insideWorkTree___boxed(lean_object* v_repo_260_, lean_object* v_a_261_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_insideWorkTree___boxed(lean_object* v_repo_256_, lean_object* v_a_257_){
 _start:
 {
-uint8_t v_res_262_; lean_object* v_r_263_; 
-v_res_262_ = l_Lake_GitRepo_insideWorkTree(v_repo_260_);
-v_r_263_ = lean_box(v_res_262_);
-return v_r_263_;
+uint8_t v_res_258_; lean_object* v_r_259_; 
+v_res_258_ = l_Lake_GitRepo_insideWorkTree(v_repo_256_);
+v_r_259_ = lean_box(v_res_258_);
+return v_r_259_;
 }
 }
 static lean_object* _init_l_Lake_GitRepo_fetch___closed__3(void){
 _start:
 {
-lean_object* v___x_267_; lean_object* v___x_268_; lean_object* v___x_269_; lean_object* v___x_270_; 
-v___x_267_ = ((lean_object*)(l_Lake_GitRepo_fetch___closed__0));
-v___x_268_ = lean_unsigned_to_nat(4u);
-v___x_269_ = lean_mk_empty_array_with_capacity(v___x_268_);
-v___x_270_ = lean_array_push(v___x_269_, v___x_267_);
-return v___x_270_;
+lean_object* v___x_263_; lean_object* v___x_264_; lean_object* v___x_265_; lean_object* v___x_266_; 
+v___x_263_ = ((lean_object*)(l_Lake_GitRepo_fetch___closed__0));
+v___x_264_ = lean_unsigned_to_nat(4u);
+v___x_265_ = lean_mk_empty_array_with_capacity(v___x_264_);
+v___x_266_ = lean_array_push(v___x_265_, v___x_263_);
+return v___x_266_;
 }
 }
 static lean_object* _init_l_Lake_GitRepo_fetch___closed__4(void){
 _start:
 {
-lean_object* v___x_271_; lean_object* v___x_272_; lean_object* v___x_273_; 
-v___x_271_ = ((lean_object*)(l_Lake_GitRepo_fetch___closed__1));
-v___x_272_ = lean_obj_once(&l_Lake_GitRepo_fetch___closed__3, &l_Lake_GitRepo_fetch___closed__3_once, _init_l_Lake_GitRepo_fetch___closed__3);
-v___x_273_ = lean_array_push(v___x_272_, v___x_271_);
-return v___x_273_;
+lean_object* v___x_267_; lean_object* v___x_268_; lean_object* v___x_269_; 
+v___x_267_ = ((lean_object*)(l_Lake_GitRepo_fetch___closed__1));
+v___x_268_ = lean_obj_once(&l_Lake_GitRepo_fetch___closed__3, &l_Lake_GitRepo_fetch___closed__3_once, _init_l_Lake_GitRepo_fetch___closed__3);
+v___x_269_ = lean_array_push(v___x_268_, v___x_267_);
+return v___x_269_;
 }
 }
 static lean_object* _init_l_Lake_GitRepo_fetch___closed__5(void){
 _start:
 {
-lean_object* v___x_274_; lean_object* v___x_275_; lean_object* v___x_276_; 
-v___x_274_ = ((lean_object*)(l_Lake_GitRepo_fetch___closed__2));
-v___x_275_ = lean_obj_once(&l_Lake_GitRepo_fetch___closed__4, &l_Lake_GitRepo_fetch___closed__4_once, _init_l_Lake_GitRepo_fetch___closed__4);
-v___x_276_ = lean_array_push(v___x_275_, v___x_274_);
-return v___x_276_;
+lean_object* v___x_270_; lean_object* v___x_271_; lean_object* v___x_272_; 
+v___x_270_ = ((lean_object*)(l_Lake_GitRepo_fetch___closed__2));
+v___x_271_ = lean_obj_once(&l_Lake_GitRepo_fetch___closed__4, &l_Lake_GitRepo_fetch___closed__4_once, _init_l_Lake_GitRepo_fetch___closed__4);
+v___x_272_ = lean_array_push(v___x_271_, v___x_270_);
+return v___x_272_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_fetch(lean_object* v_repo_277_, lean_object* v_remote_278_, lean_object* v_a_279_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_fetch(lean_object* v_repo_273_, lean_object* v_remote_274_, lean_object* v_a_275_){
 _start:
 {
-lean_object* v___x_281_; lean_object* v___x_282_; lean_object* v___x_283_; lean_object* v___x_284_; lean_object* v___x_285_; lean_object* v___x_286_; uint8_t v___x_287_; uint8_t v___x_288_; lean_object* v___x_289_; lean_object* v___x_290_; 
-v___x_281_ = lean_obj_once(&l_Lake_GitRepo_fetch___closed__5, &l_Lake_GitRepo_fetch___closed__5_once, _init_l_Lake_GitRepo_fetch___closed__5);
-v___x_282_ = lean_array_push(v___x_281_, v_remote_278_);
-v___x_283_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
-v___x_284_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
-v___x_285_ = lean_alloc_ctor(1, 1, 0);
-lean_ctor_set(v___x_285_, 0, v_repo_277_);
-v___x_286_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
-v___x_287_ = 1;
-v___x_288_ = 0;
-v___x_289_ = lean_alloc_ctor(0, 5, 2);
-lean_ctor_set(v___x_289_, 0, v___x_283_);
-lean_ctor_set(v___x_289_, 1, v___x_284_);
-lean_ctor_set(v___x_289_, 2, v___x_282_);
-lean_ctor_set(v___x_289_, 3, v___x_285_);
-lean_ctor_set(v___x_289_, 4, v___x_286_);
-lean_ctor_set_uint8(v___x_289_, sizeof(void*)*5, v___x_287_);
-lean_ctor_set_uint8(v___x_289_, sizeof(void*)*5 + 1, v___x_288_);
-v___x_290_ = l_Lake_proc(v___x_289_, v___x_287_, v_a_279_);
-return v___x_290_;
+lean_object* v___x_277_; lean_object* v___x_278_; lean_object* v___x_279_; lean_object* v___x_280_; lean_object* v___x_281_; lean_object* v___x_282_; uint8_t v___x_283_; uint8_t v___x_284_; lean_object* v___x_285_; lean_object* v___x_286_; 
+v___x_277_ = lean_obj_once(&l_Lake_GitRepo_fetch___closed__5, &l_Lake_GitRepo_fetch___closed__5_once, _init_l_Lake_GitRepo_fetch___closed__5);
+v___x_278_ = lean_array_push(v___x_277_, v_remote_274_);
+v___x_279_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
+v___x_280_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
+v___x_281_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_281_, 0, v_repo_273_);
+v___x_282_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
+v___x_283_ = 1;
+v___x_284_ = 0;
+v___x_285_ = lean_alloc_ctor(0, 5, 2);
+lean_ctor_set(v___x_285_, 0, v___x_279_);
+lean_ctor_set(v___x_285_, 1, v___x_280_);
+lean_ctor_set(v___x_285_, 2, v___x_278_);
+lean_ctor_set(v___x_285_, 3, v___x_281_);
+lean_ctor_set(v___x_285_, 4, v___x_282_);
+lean_ctor_set_uint8(v___x_285_, sizeof(void*)*5, v___x_283_);
+lean_ctor_set_uint8(v___x_285_, sizeof(void*)*5 + 1, v___x_284_);
+v___x_286_ = l_Lake_proc(v___x_285_, v___x_283_, v_a_275_);
+return v___x_286_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_fetch___boxed(lean_object* v_repo_291_, lean_object* v_remote_292_, lean_object* v_a_293_, lean_object* v_a_294_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_fetch___boxed(lean_object* v_repo_287_, lean_object* v_remote_288_, lean_object* v_a_289_, lean_object* v_a_290_){
 _start:
 {
-lean_object* v_res_295_; 
-v_res_295_ = l_Lake_GitRepo_fetch(v_repo_291_, v_remote_292_, v_a_293_);
-return v_res_295_;
+lean_object* v_res_291_; 
+v_res_291_ = l_Lake_GitRepo_fetch(v_repo_287_, v_remote_288_, v_a_289_);
+return v_res_291_;
 }
 }
 static lean_object* _init_l_Lake_GitRepo_checkoutBranch___closed__2(void){
 _start:
 {
-lean_object* v___x_298_; lean_object* v___x_299_; lean_object* v___x_300_; lean_object* v___x_301_; 
-v___x_298_ = ((lean_object*)(l_Lake_GitRepo_checkoutBranch___closed__0));
-v___x_299_ = lean_unsigned_to_nat(3u);
-v___x_300_ = lean_mk_empty_array_with_capacity(v___x_299_);
-v___x_301_ = lean_array_push(v___x_300_, v___x_298_);
-return v___x_301_;
+lean_object* v___x_294_; lean_object* v___x_295_; lean_object* v___x_296_; lean_object* v___x_297_; 
+v___x_294_ = ((lean_object*)(l_Lake_GitRepo_checkoutBranch___closed__0));
+v___x_295_ = lean_unsigned_to_nat(3u);
+v___x_296_ = lean_mk_empty_array_with_capacity(v___x_295_);
+v___x_297_ = lean_array_push(v___x_296_, v___x_294_);
+return v___x_297_;
 }
 }
 static lean_object* _init_l_Lake_GitRepo_checkoutBranch___closed__3(void){
 _start:
 {
-lean_object* v___x_302_; lean_object* v___x_303_; lean_object* v___x_304_; 
-v___x_302_ = ((lean_object*)(l_Lake_GitRepo_checkoutBranch___closed__1));
-v___x_303_ = lean_obj_once(&l_Lake_GitRepo_checkoutBranch___closed__2, &l_Lake_GitRepo_checkoutBranch___closed__2_once, _init_l_Lake_GitRepo_checkoutBranch___closed__2);
-v___x_304_ = lean_array_push(v___x_303_, v___x_302_);
-return v___x_304_;
+lean_object* v___x_298_; lean_object* v___x_299_; lean_object* v___x_300_; 
+v___x_298_ = ((lean_object*)(l_Lake_GitRepo_checkoutBranch___closed__1));
+v___x_299_ = lean_obj_once(&l_Lake_GitRepo_checkoutBranch___closed__2, &l_Lake_GitRepo_checkoutBranch___closed__2_once, _init_l_Lake_GitRepo_checkoutBranch___closed__2);
+v___x_300_ = lean_array_push(v___x_299_, v___x_298_);
+return v___x_300_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_checkoutBranch(lean_object* v_branch_305_, lean_object* v_repo_306_, lean_object* v_a_307_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_checkoutBranch(lean_object* v_branch_301_, lean_object* v_repo_302_, lean_object* v_a_303_){
 _start:
 {
-lean_object* v___x_309_; lean_object* v___x_310_; lean_object* v___x_311_; lean_object* v___x_312_; lean_object* v___x_313_; lean_object* v___x_314_; uint8_t v___x_315_; uint8_t v___x_316_; lean_object* v___x_317_; lean_object* v___x_318_; 
-v___x_309_ = lean_obj_once(&l_Lake_GitRepo_checkoutBranch___closed__3, &l_Lake_GitRepo_checkoutBranch___closed__3_once, _init_l_Lake_GitRepo_checkoutBranch___closed__3);
-v___x_310_ = lean_array_push(v___x_309_, v_branch_305_);
-v___x_311_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
-v___x_312_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
-v___x_313_ = lean_alloc_ctor(1, 1, 0);
-lean_ctor_set(v___x_313_, 0, v_repo_306_);
-v___x_314_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
-v___x_315_ = 1;
-v___x_316_ = 0;
-v___x_317_ = lean_alloc_ctor(0, 5, 2);
-lean_ctor_set(v___x_317_, 0, v___x_311_);
-lean_ctor_set(v___x_317_, 1, v___x_312_);
-lean_ctor_set(v___x_317_, 2, v___x_310_);
-lean_ctor_set(v___x_317_, 3, v___x_313_);
-lean_ctor_set(v___x_317_, 4, v___x_314_);
-lean_ctor_set_uint8(v___x_317_, sizeof(void*)*5, v___x_315_);
-lean_ctor_set_uint8(v___x_317_, sizeof(void*)*5 + 1, v___x_316_);
-v___x_318_ = l_Lake_proc(v___x_317_, v___x_315_, v_a_307_);
-return v___x_318_;
+lean_object* v___x_305_; lean_object* v___x_306_; lean_object* v___x_307_; lean_object* v___x_308_; lean_object* v___x_309_; lean_object* v___x_310_; uint8_t v___x_311_; uint8_t v___x_312_; lean_object* v___x_313_; lean_object* v___x_314_; 
+v___x_305_ = lean_obj_once(&l_Lake_GitRepo_checkoutBranch___closed__3, &l_Lake_GitRepo_checkoutBranch___closed__3_once, _init_l_Lake_GitRepo_checkoutBranch___closed__3);
+v___x_306_ = lean_array_push(v___x_305_, v_branch_301_);
+v___x_307_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
+v___x_308_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
+v___x_309_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_309_, 0, v_repo_302_);
+v___x_310_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
+v___x_311_ = 1;
+v___x_312_ = 0;
+v___x_313_ = lean_alloc_ctor(0, 5, 2);
+lean_ctor_set(v___x_313_, 0, v___x_307_);
+lean_ctor_set(v___x_313_, 1, v___x_308_);
+lean_ctor_set(v___x_313_, 2, v___x_306_);
+lean_ctor_set(v___x_313_, 3, v___x_309_);
+lean_ctor_set(v___x_313_, 4, v___x_310_);
+lean_ctor_set_uint8(v___x_313_, sizeof(void*)*5, v___x_311_);
+lean_ctor_set_uint8(v___x_313_, sizeof(void*)*5 + 1, v___x_312_);
+v___x_314_ = l_Lake_proc(v___x_313_, v___x_311_, v_a_303_);
+return v___x_314_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_checkoutBranch___boxed(lean_object* v_branch_319_, lean_object* v_repo_320_, lean_object* v_a_321_, lean_object* v_a_322_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_checkoutBranch___boxed(lean_object* v_branch_315_, lean_object* v_repo_316_, lean_object* v_a_317_, lean_object* v_a_318_){
 _start:
 {
-lean_object* v_res_323_; 
-v_res_323_ = l_Lake_GitRepo_checkoutBranch(v_branch_319_, v_repo_320_, v_a_321_);
-return v_res_323_;
+lean_object* v_res_319_; 
+v_res_319_ = l_Lake_GitRepo_checkoutBranch(v_branch_315_, v_repo_316_, v_a_317_);
+return v_res_319_;
 }
 }
 static lean_object* _init_l_Lake_GitRepo_checkoutDetach___closed__2(void){
 _start:
 {
-lean_object* v___x_326_; lean_object* v___x_327_; lean_object* v___x_328_; lean_object* v___x_329_; 
-v___x_326_ = ((lean_object*)(l_Lake_GitRepo_checkoutBranch___closed__0));
-v___x_327_ = lean_unsigned_to_nat(4u);
-v___x_328_ = lean_mk_empty_array_with_capacity(v___x_327_);
-v___x_329_ = lean_array_push(v___x_328_, v___x_326_);
-return v___x_329_;
+lean_object* v___x_322_; lean_object* v___x_323_; lean_object* v___x_324_; lean_object* v___x_325_; 
+v___x_322_ = ((lean_object*)(l_Lake_GitRepo_checkoutBranch___closed__0));
+v___x_323_ = lean_unsigned_to_nat(4u);
+v___x_324_ = lean_mk_empty_array_with_capacity(v___x_323_);
+v___x_325_ = lean_array_push(v___x_324_, v___x_322_);
+return v___x_325_;
 }
 }
 static lean_object* _init_l_Lake_GitRepo_checkoutDetach___closed__3(void){
 _start:
 {
-lean_object* v___x_330_; lean_object* v___x_331_; lean_object* v___x_332_; 
-v___x_330_ = ((lean_object*)(l_Lake_GitRepo_checkoutDetach___closed__0));
-v___x_331_ = lean_obj_once(&l_Lake_GitRepo_checkoutDetach___closed__2, &l_Lake_GitRepo_checkoutDetach___closed__2_once, _init_l_Lake_GitRepo_checkoutDetach___closed__2);
-v___x_332_ = lean_array_push(v___x_331_, v___x_330_);
-return v___x_332_;
+lean_object* v___x_326_; lean_object* v___x_327_; lean_object* v___x_328_; 
+v___x_326_ = ((lean_object*)(l_Lake_GitRepo_checkoutDetach___closed__0));
+v___x_327_ = lean_obj_once(&l_Lake_GitRepo_checkoutDetach___closed__2, &l_Lake_GitRepo_checkoutDetach___closed__2_once, _init_l_Lake_GitRepo_checkoutDetach___closed__2);
+v___x_328_ = lean_array_push(v___x_327_, v___x_326_);
+return v___x_328_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_checkoutDetach(lean_object* v_hash_333_, lean_object* v_repo_334_, lean_object* v_a_335_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_checkoutDetach(lean_object* v_hash_329_, lean_object* v_repo_330_, lean_object* v_a_331_){
 _start:
 {
-lean_object* v___x_337_; lean_object* v___x_338_; lean_object* v___x_339_; lean_object* v___x_340_; lean_object* v___x_341_; lean_object* v___x_342_; lean_object* v___x_343_; lean_object* v___x_344_; uint8_t v___x_345_; uint8_t v___x_346_; lean_object* v___x_347_; lean_object* v___x_348_; 
-v___x_337_ = ((lean_object*)(l_Lake_GitRepo_checkoutDetach___closed__1));
-v___x_338_ = lean_obj_once(&l_Lake_GitRepo_checkoutDetach___closed__3, &l_Lake_GitRepo_checkoutDetach___closed__3_once, _init_l_Lake_GitRepo_checkoutDetach___closed__3);
-v___x_339_ = lean_array_push(v___x_338_, v_hash_333_);
-v___x_340_ = lean_array_push(v___x_339_, v___x_337_);
-v___x_341_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
-v___x_342_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
-v___x_343_ = lean_alloc_ctor(1, 1, 0);
-lean_ctor_set(v___x_343_, 0, v_repo_334_);
-v___x_344_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
-v___x_345_ = 1;
-v___x_346_ = 0;
-v___x_347_ = lean_alloc_ctor(0, 5, 2);
-lean_ctor_set(v___x_347_, 0, v___x_341_);
-lean_ctor_set(v___x_347_, 1, v___x_342_);
-lean_ctor_set(v___x_347_, 2, v___x_340_);
-lean_ctor_set(v___x_347_, 3, v___x_343_);
-lean_ctor_set(v___x_347_, 4, v___x_344_);
-lean_ctor_set_uint8(v___x_347_, sizeof(void*)*5, v___x_345_);
-lean_ctor_set_uint8(v___x_347_, sizeof(void*)*5 + 1, v___x_346_);
-v___x_348_ = l_Lake_proc(v___x_347_, v___x_345_, v_a_335_);
-return v___x_348_;
+lean_object* v___x_333_; lean_object* v___x_334_; lean_object* v___x_335_; lean_object* v___x_336_; lean_object* v___x_337_; lean_object* v___x_338_; lean_object* v___x_339_; lean_object* v___x_340_; uint8_t v___x_341_; uint8_t v___x_342_; lean_object* v___x_343_; lean_object* v___x_344_; 
+v___x_333_ = ((lean_object*)(l_Lake_GitRepo_checkoutDetach___closed__1));
+v___x_334_ = lean_obj_once(&l_Lake_GitRepo_checkoutDetach___closed__3, &l_Lake_GitRepo_checkoutDetach___closed__3_once, _init_l_Lake_GitRepo_checkoutDetach___closed__3);
+v___x_335_ = lean_array_push(v___x_334_, v_hash_329_);
+v___x_336_ = lean_array_push(v___x_335_, v___x_333_);
+v___x_337_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
+v___x_338_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
+v___x_339_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_339_, 0, v_repo_330_);
+v___x_340_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
+v___x_341_ = 1;
+v___x_342_ = 0;
+v___x_343_ = lean_alloc_ctor(0, 5, 2);
+lean_ctor_set(v___x_343_, 0, v___x_337_);
+lean_ctor_set(v___x_343_, 1, v___x_338_);
+lean_ctor_set(v___x_343_, 2, v___x_336_);
+lean_ctor_set(v___x_343_, 3, v___x_339_);
+lean_ctor_set(v___x_343_, 4, v___x_340_);
+lean_ctor_set_uint8(v___x_343_, sizeof(void*)*5, v___x_341_);
+lean_ctor_set_uint8(v___x_343_, sizeof(void*)*5 + 1, v___x_342_);
+v___x_344_ = l_Lake_proc(v___x_343_, v___x_341_, v_a_331_);
+return v___x_344_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_checkoutDetach___boxed(lean_object* v_hash_349_, lean_object* v_repo_350_, lean_object* v_a_351_, lean_object* v_a_352_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_checkoutDetach___boxed(lean_object* v_hash_345_, lean_object* v_repo_346_, lean_object* v_a_347_, lean_object* v_a_348_){
 _start:
 {
-lean_object* v_res_353_; 
-v_res_353_ = l_Lake_GitRepo_checkoutDetach(v_hash_349_, v_repo_350_, v_a_351_);
-return v_res_353_;
+lean_object* v_res_349_; 
+v_res_349_ = l_Lake_GitRepo_checkoutDetach(v_hash_345_, v_repo_346_, v_a_347_);
+return v_res_349_;
+}
+}
+LEAN_EXPORT lean_object* l_Lake_GitRepo_clean(lean_object* v_repo_358_, lean_object* v_a_359_){
+_start:
+{
+lean_object* v___x_361_; lean_object* v___x_362_; lean_object* v___x_363_; lean_object* v___x_364_; lean_object* v___x_365_; uint8_t v___x_366_; uint8_t v___x_367_; lean_object* v___x_368_; lean_object* v___x_369_; 
+v___x_361_ = ((lean_object*)(l_Lake_GitRepo_clean___closed__2));
+v___x_362_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
+v___x_363_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
+v___x_364_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_364_, 0, v_repo_358_);
+v___x_365_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
+v___x_366_ = 1;
+v___x_367_ = 0;
+v___x_368_ = lean_alloc_ctor(0, 5, 2);
+lean_ctor_set(v___x_368_, 0, v___x_362_);
+lean_ctor_set(v___x_368_, 1, v___x_363_);
+lean_ctor_set(v___x_368_, 2, v___x_361_);
+lean_ctor_set(v___x_368_, 3, v___x_364_);
+lean_ctor_set(v___x_368_, 4, v___x_365_);
+lean_ctor_set_uint8(v___x_368_, sizeof(void*)*5, v___x_366_);
+lean_ctor_set_uint8(v___x_368_, sizeof(void*)*5 + 1, v___x_367_);
+v___x_369_ = l_Lake_proc(v___x_368_, v___x_366_, v_a_359_);
+return v___x_369_;
+}
+}
+LEAN_EXPORT lean_object* l_Lake_GitRepo_clean___boxed(lean_object* v_repo_370_, lean_object* v_a_371_, lean_object* v_a_372_){
+_start:
+{
+lean_object* v_res_373_; 
+v_res_373_ = l_Lake_GitRepo_clean(v_repo_370_, v_a_371_);
+return v_res_373_;
 }
 }
 static lean_object* _init_l_Lake_GitRepo_resolveRevision_x3f___closed__2(void){
 _start:
 {
-lean_object* v___x_356_; lean_object* v___x_357_; lean_object* v___x_358_; lean_object* v___x_359_; 
-v___x_356_ = ((lean_object*)(l_Lake_GitRepo_insideWorkTree___closed__0));
-v___x_357_ = lean_unsigned_to_nat(4u);
-v___x_358_ = lean_mk_empty_array_with_capacity(v___x_357_);
-v___x_359_ = lean_array_push(v___x_358_, v___x_356_);
-return v___x_359_;
+lean_object* v___x_376_; lean_object* v___x_377_; lean_object* v___x_378_; lean_object* v___x_379_; 
+v___x_376_ = ((lean_object*)(l_Lake_GitRepo_insideWorkTree___closed__0));
+v___x_377_ = lean_unsigned_to_nat(4u);
+v___x_378_ = lean_mk_empty_array_with_capacity(v___x_377_);
+v___x_379_ = lean_array_push(v___x_378_, v___x_376_);
+return v___x_379_;
 }
 }
 static lean_object* _init_l_Lake_GitRepo_resolveRevision_x3f___closed__3(void){
 _start:
 {
-lean_object* v___x_360_; lean_object* v___x_361_; lean_object* v___x_362_; 
-v___x_360_ = ((lean_object*)(l_Lake_GitRepo_resolveRevision_x3f___closed__0));
-v___x_361_ = lean_obj_once(&l_Lake_GitRepo_resolveRevision_x3f___closed__2, &l_Lake_GitRepo_resolveRevision_x3f___closed__2_once, _init_l_Lake_GitRepo_resolveRevision_x3f___closed__2);
-v___x_362_ = lean_array_push(v___x_361_, v___x_360_);
-return v___x_362_;
+lean_object* v___x_380_; lean_object* v___x_381_; lean_object* v___x_382_; 
+v___x_380_ = ((lean_object*)(l_Lake_GitRepo_resolveRevision_x3f___closed__0));
+v___x_381_ = lean_obj_once(&l_Lake_GitRepo_resolveRevision_x3f___closed__2, &l_Lake_GitRepo_resolveRevision_x3f___closed__2_once, _init_l_Lake_GitRepo_resolveRevision_x3f___closed__2);
+v___x_382_ = lean_array_push(v___x_381_, v___x_380_);
+return v___x_382_;
 }
 }
 static lean_object* _init_l_Lake_GitRepo_resolveRevision_x3f___closed__4(void){
 _start:
 {
-lean_object* v___x_363_; lean_object* v___x_364_; lean_object* v___x_365_; 
-v___x_363_ = ((lean_object*)(l_Lake_GitRepo_resolveRevision_x3f___closed__1));
-v___x_364_ = lean_obj_once(&l_Lake_GitRepo_resolveRevision_x3f___closed__3, &l_Lake_GitRepo_resolveRevision_x3f___closed__3_once, _init_l_Lake_GitRepo_resolveRevision_x3f___closed__3);
-v___x_365_ = lean_array_push(v___x_364_, v___x_363_);
-return v___x_365_;
+lean_object* v___x_383_; lean_object* v___x_384_; lean_object* v___x_385_; 
+v___x_383_ = ((lean_object*)(l_Lake_GitRepo_resolveRevision_x3f___closed__1));
+v___x_384_ = lean_obj_once(&l_Lake_GitRepo_resolveRevision_x3f___closed__3, &l_Lake_GitRepo_resolveRevision_x3f___closed__3_once, _init_l_Lake_GitRepo_resolveRevision_x3f___closed__3);
+v___x_385_ = lean_array_push(v___x_384_, v___x_383_);
+return v___x_385_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_resolveRevision_x3f(lean_object* v_rev_366_, lean_object* v_repo_367_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_resolveRevision_x3f(lean_object* v_rev_386_, lean_object* v_repo_387_){
 _start:
 {
-lean_object* v___x_369_; lean_object* v___x_370_; lean_object* v___x_371_; lean_object* v___x_372_; lean_object* v___x_373_; lean_object* v___x_374_; uint8_t v___x_375_; uint8_t v___x_376_; lean_object* v___x_377_; lean_object* v___x_378_; 
-v___x_369_ = lean_obj_once(&l_Lake_GitRepo_resolveRevision_x3f___closed__4, &l_Lake_GitRepo_resolveRevision_x3f___closed__4_once, _init_l_Lake_GitRepo_resolveRevision_x3f___closed__4);
-v___x_370_ = lean_array_push(v___x_369_, v_rev_366_);
-v___x_371_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
-v___x_372_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
-v___x_373_ = lean_alloc_ctor(1, 1, 0);
-lean_ctor_set(v___x_373_, 0, v_repo_367_);
-v___x_374_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
-v___x_375_ = 1;
-v___x_376_ = 0;
-v___x_377_ = lean_alloc_ctor(0, 5, 2);
-lean_ctor_set(v___x_377_, 0, v___x_371_);
-lean_ctor_set(v___x_377_, 1, v___x_372_);
-lean_ctor_set(v___x_377_, 2, v___x_370_);
-lean_ctor_set(v___x_377_, 3, v___x_373_);
-lean_ctor_set(v___x_377_, 4, v___x_374_);
-lean_ctor_set_uint8(v___x_377_, sizeof(void*)*5, v___x_375_);
-lean_ctor_set_uint8(v___x_377_, sizeof(void*)*5 + 1, v___x_376_);
-v___x_378_ = l_Lake_captureProc_x3f(v___x_377_);
-return v___x_378_;
+lean_object* v___x_389_; lean_object* v___x_390_; lean_object* v___x_391_; lean_object* v___x_392_; lean_object* v___x_393_; lean_object* v___x_394_; uint8_t v___x_395_; uint8_t v___x_396_; lean_object* v___x_397_; lean_object* v___x_398_; 
+v___x_389_ = lean_obj_once(&l_Lake_GitRepo_resolveRevision_x3f___closed__4, &l_Lake_GitRepo_resolveRevision_x3f___closed__4_once, _init_l_Lake_GitRepo_resolveRevision_x3f___closed__4);
+v___x_390_ = lean_array_push(v___x_389_, v_rev_386_);
+v___x_391_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
+v___x_392_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
+v___x_393_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_393_, 0, v_repo_387_);
+v___x_394_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
+v___x_395_ = 1;
+v___x_396_ = 0;
+v___x_397_ = lean_alloc_ctor(0, 5, 2);
+lean_ctor_set(v___x_397_, 0, v___x_391_);
+lean_ctor_set(v___x_397_, 1, v___x_392_);
+lean_ctor_set(v___x_397_, 2, v___x_390_);
+lean_ctor_set(v___x_397_, 3, v___x_393_);
+lean_ctor_set(v___x_397_, 4, v___x_394_);
+lean_ctor_set_uint8(v___x_397_, sizeof(void*)*5, v___x_395_);
+lean_ctor_set_uint8(v___x_397_, sizeof(void*)*5 + 1, v___x_396_);
+v___x_398_ = l_Lake_captureProc_x3f(v___x_397_);
+return v___x_398_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_resolveRevision_x3f___boxed(lean_object* v_rev_379_, lean_object* v_repo_380_, lean_object* v_a_381_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_resolveRevision_x3f___boxed(lean_object* v_rev_399_, lean_object* v_repo_400_, lean_object* v_a_401_){
 _start:
 {
-lean_object* v_res_382_; 
-v_res_382_ = l_Lake_GitRepo_resolveRevision_x3f(v_rev_379_, v_repo_380_);
-return v_res_382_;
+lean_object* v_res_402_; 
+v_res_402_ = l_Lake_GitRepo_resolveRevision_x3f(v_rev_399_, v_repo_400_);
+return v_res_402_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_resolveRevision(lean_object* v_rev_385_, lean_object* v_repo_386_, lean_object* v_a_387_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_resolveRevision(lean_object* v_rev_405_, lean_object* v_repo_406_, lean_object* v_a_407_){
 _start:
 {
-uint8_t v___x_389_; 
-lean_inc_ref(v_rev_385_);
-v___x_389_ = l_Lake_Git_isFullObjectName(v_rev_385_);
-if (v___x_389_ == 0)
+uint8_t v___x_409_; 
+lean_inc_ref(v_rev_405_);
+v___x_409_ = l_Lake_Git_isFullObjectName(v_rev_405_);
+if (v___x_409_ == 0)
 {
-lean_object* v___x_390_; 
-lean_inc_ref(v_repo_386_);
-lean_inc_ref(v_rev_385_);
-v___x_390_ = l_Lake_GitRepo_resolveRevision_x3f(v_rev_385_, v_repo_386_);
-if (lean_obj_tag(v___x_390_) == 1)
+lean_object* v___x_410_; 
+lean_inc_ref(v_repo_406_);
+lean_inc_ref(v_rev_405_);
+v___x_410_ = l_Lake_GitRepo_resolveRevision_x3f(v_rev_405_, v_repo_406_);
+if (lean_obj_tag(v___x_410_) == 1)
 {
-lean_object* v_val_391_; lean_object* v___x_392_; 
-lean_dec_ref(v_repo_386_);
-lean_dec_ref(v_rev_385_);
-v_val_391_ = lean_ctor_get(v___x_390_, 0);
-lean_inc(v_val_391_);
-lean_dec_ref(v___x_390_);
-v___x_392_ = lean_alloc_ctor(0, 2, 0);
-lean_ctor_set(v___x_392_, 0, v_val_391_);
-lean_ctor_set(v___x_392_, 1, v_a_387_);
-return v___x_392_;
+lean_object* v_val_411_; lean_object* v___x_412_; 
+lean_dec_ref(v_repo_406_);
+lean_dec_ref(v_rev_405_);
+v_val_411_ = lean_ctor_get(v___x_410_, 0);
+lean_inc(v_val_411_);
+lean_dec_ref(v___x_410_);
+v___x_412_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_412_, 0, v_val_411_);
+lean_ctor_set(v___x_412_, 1, v_a_407_);
+return v___x_412_;
 }
 else
 {
-lean_object* v___x_393_; lean_object* v___x_394_; lean_object* v___x_395_; lean_object* v___x_396_; lean_object* v___x_397_; uint8_t v___x_398_; lean_object* v___x_399_; lean_object* v___x_400_; lean_object* v___x_401_; lean_object* v___x_402_; 
-lean_dec(v___x_390_);
-v___x_393_ = ((lean_object*)(l_Lake_GitRepo_resolveRevision___closed__0));
-v___x_394_ = lean_string_append(v_repo_386_, v___x_393_);
-v___x_395_ = lean_string_append(v___x_394_, v_rev_385_);
-lean_dec_ref(v_rev_385_);
-v___x_396_ = ((lean_object*)(l_Lake_GitRepo_resolveRevision___closed__1));
-v___x_397_ = lean_string_append(v___x_395_, v___x_396_);
-v___x_398_ = 3;
-v___x_399_ = lean_alloc_ctor(0, 1, 1);
-lean_ctor_set(v___x_399_, 0, v___x_397_);
-lean_ctor_set_uint8(v___x_399_, sizeof(void*)*1, v___x_398_);
-v___x_400_ = lean_array_get_size(v_a_387_);
-v___x_401_ = lean_array_push(v_a_387_, v___x_399_);
-v___x_402_ = lean_alloc_ctor(1, 2, 0);
-lean_ctor_set(v___x_402_, 0, v___x_400_);
-lean_ctor_set(v___x_402_, 1, v___x_401_);
-return v___x_402_;
-}
-}
-else
-{
-lean_object* v___x_403_; 
-lean_dec_ref(v_repo_386_);
-v___x_403_ = lean_alloc_ctor(0, 2, 0);
-lean_ctor_set(v___x_403_, 0, v_rev_385_);
-lean_ctor_set(v___x_403_, 1, v_a_387_);
-return v___x_403_;
-}
-}
-}
-LEAN_EXPORT lean_object* l_Lake_GitRepo_resolveRevision___boxed(lean_object* v_rev_404_, lean_object* v_repo_405_, lean_object* v_a_406_, lean_object* v_a_407_){
-_start:
-{
-lean_object* v_res_408_; 
-v_res_408_ = l_Lake_GitRepo_resolveRevision(v_rev_404_, v_repo_405_, v_a_406_);
-return v_res_408_;
-}
-}
-LEAN_EXPORT lean_object* l_Lake_GitRepo_getHeadRevision_x3f(lean_object* v_repo_410_){
-_start:
-{
-lean_object* v___x_412_; lean_object* v___x_413_; 
-v___x_412_ = ((lean_object*)(l_Lake_GitRepo_getHeadRevision_x3f___closed__0));
-v___x_413_ = l_Lake_GitRepo_resolveRevision_x3f(v___x_412_, v_repo_410_);
-return v___x_413_;
-}
-}
-LEAN_EXPORT lean_object* l_Lake_GitRepo_getHeadRevision_x3f___boxed(lean_object* v_repo_414_, lean_object* v_a_415_){
-_start:
-{
-lean_object* v_res_416_; 
-v_res_416_ = l_Lake_GitRepo_getHeadRevision_x3f(v_repo_414_);
-return v_res_416_;
-}
-}
-LEAN_EXPORT lean_object* l_Lake_GitRepo_getHeadRevision(lean_object* v_repo_418_, lean_object* v_a_419_){
-_start:
-{
-lean_object* v___x_421_; lean_object* v___x_422_; 
-v___x_421_ = ((lean_object*)(l_Lake_GitRepo_getHeadRevision_x3f___closed__0));
-lean_inc_ref(v_repo_418_);
-v___x_422_ = l_Lake_GitRepo_resolveRevision_x3f(v___x_421_, v_repo_418_);
-if (lean_obj_tag(v___x_422_) == 1)
-{
-lean_object* v_val_423_; lean_object* v___x_424_; 
-lean_dec_ref(v_repo_418_);
-v_val_423_ = lean_ctor_get(v___x_422_, 0);
-lean_inc(v_val_423_);
-lean_dec_ref(v___x_422_);
-v___x_424_ = lean_alloc_ctor(0, 2, 0);
-lean_ctor_set(v___x_424_, 0, v_val_423_);
-lean_ctor_set(v___x_424_, 1, v_a_419_);
-return v___x_424_;
-}
-else
-{
-lean_object* v___x_425_; lean_object* v___x_426_; uint8_t v___x_427_; lean_object* v___x_428_; lean_object* v___x_429_; lean_object* v___x_430_; lean_object* v___x_431_; 
-lean_dec(v___x_422_);
-v___x_425_ = ((lean_object*)(l_Lake_GitRepo_getHeadRevision___closed__0));
-v___x_426_ = lean_string_append(v_repo_418_, v___x_425_);
-v___x_427_ = 3;
-v___x_428_ = lean_alloc_ctor(0, 1, 1);
-lean_ctor_set(v___x_428_, 0, v___x_426_);
-lean_ctor_set_uint8(v___x_428_, sizeof(void*)*1, v___x_427_);
-v___x_429_ = lean_array_get_size(v_a_419_);
-v___x_430_ = lean_array_push(v_a_419_, v___x_428_);
-v___x_431_ = lean_alloc_ctor(1, 2, 0);
-lean_ctor_set(v___x_431_, 0, v___x_429_);
-lean_ctor_set(v___x_431_, 1, v___x_430_);
-return v___x_431_;
-}
-}
-}
-LEAN_EXPORT lean_object* l_Lake_GitRepo_getHeadRevision___boxed(lean_object* v_repo_432_, lean_object* v_a_433_, lean_object* v_a_434_){
-_start:
-{
-lean_object* v_res_435_; 
-v_res_435_ = l_Lake_GitRepo_getHeadRevision(v_repo_432_, v_a_433_);
-return v_res_435_;
-}
-}
-LEAN_EXPORT lean_object* l_String_Slice_splitToSubslice___at___00Lake_GitRepo_getHeadRevisions_spec__0(lean_object* v_s_438_){
-_start:
-{
-lean_object* v___x_439_; 
-v___x_439_ = ((lean_object*)(l_String_Slice_splitToSubslice___at___00Lake_GitRepo_getHeadRevisions_spec__0___closed__0));
-return v___x_439_;
-}
-}
-LEAN_EXPORT lean_object* l_String_Slice_splitToSubslice___at___00Lake_GitRepo_getHeadRevisions_spec__0___boxed(lean_object* v_s_440_){
-_start:
-{
-lean_object* v_res_441_; 
-v_res_441_ = l_String_Slice_splitToSubslice___at___00Lake_GitRepo_getHeadRevisions_spec__0(v_s_440_);
-lean_dec_ref(v_s_440_);
-return v_res_441_;
-}
-}
-LEAN_EXPORT lean_object* l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_GitRepo_getHeadRevisions_spec__1___redArg(lean_object* v___x_442_, lean_object* v___x_443_, lean_object* v___x_444_, lean_object* v_a_445_, lean_object* v_b_446_){
-_start:
-{
-lean_object* v_it_448_; lean_object* v_startInclusive_449_; lean_object* v_endExclusive_450_; 
-if (lean_obj_tag(v_a_445_) == 0)
-{
-lean_object* v_currPos_455_; lean_object* v_searcher_456_; lean_object* v___x_458_; uint8_t v_isShared_459_; uint8_t v_isSharedCheck_482_; 
-v_currPos_455_ = lean_ctor_get(v_a_445_, 0);
-v_searcher_456_ = lean_ctor_get(v_a_445_, 1);
-v_isSharedCheck_482_ = !lean_is_exclusive(v_a_445_);
-if (v_isSharedCheck_482_ == 0)
-{
-v___x_458_ = v_a_445_;
-v_isShared_459_ = v_isSharedCheck_482_;
-goto v_resetjp_457_;
-}
-else
-{
-lean_inc(v_searcher_456_);
-lean_inc(v_currPos_455_);
-lean_dec(v_a_445_);
-v___x_458_ = lean_box(0);
-v_isShared_459_ = v_isSharedCheck_482_;
-goto v_resetjp_457_;
-}
-v_resetjp_457_:
-{
-lean_object* v_startInclusive_460_; lean_object* v_endExclusive_461_; lean_object* v___x_462_; uint8_t v___x_463_; 
-v_startInclusive_460_ = lean_ctor_get(v___x_443_, 1);
-v_endExclusive_461_ = lean_ctor_get(v___x_443_, 2);
-v___x_462_ = lean_nat_sub(v_endExclusive_461_, v_startInclusive_460_);
-v___x_463_ = lean_nat_dec_eq(v_searcher_456_, v___x_462_);
-lean_dec(v___x_462_);
-if (v___x_463_ == 0)
-{
-uint32_t v___x_464_; uint32_t v___x_465_; uint8_t v___x_466_; 
-v___x_464_ = 10;
-v___x_465_ = lean_string_utf8_get_fast(v___x_442_, v_searcher_456_);
-v___x_466_ = lean_uint32_dec_eq(v___x_465_, v___x_464_);
-if (v___x_466_ == 0)
-{
-lean_object* v___x_467_; lean_object* v___x_469_; 
-v___x_467_ = lean_string_utf8_next_fast(v___x_442_, v_searcher_456_);
-lean_dec(v_searcher_456_);
-if (v_isShared_459_ == 0)
-{
-lean_ctor_set(v___x_458_, 1, v___x_467_);
-v___x_469_ = v___x_458_;
-goto v_reusejp_468_;
-}
-else
-{
-lean_object* v_reuseFailAlloc_471_; 
-v_reuseFailAlloc_471_ = lean_alloc_ctor(0, 2, 0);
-lean_ctor_set(v_reuseFailAlloc_471_, 0, v_currPos_455_);
-lean_ctor_set(v_reuseFailAlloc_471_, 1, v___x_467_);
-v___x_469_ = v_reuseFailAlloc_471_;
-goto v_reusejp_468_;
-}
-v_reusejp_468_:
-{
-v_a_445_ = v___x_469_;
-goto _start;
+lean_object* v___x_413_; lean_object* v___x_414_; lean_object* v___x_415_; lean_object* v___x_416_; lean_object* v___x_417_; uint8_t v___x_418_; lean_object* v___x_419_; lean_object* v___x_420_; lean_object* v___x_421_; lean_object* v___x_422_; 
+lean_dec(v___x_410_);
+v___x_413_ = ((lean_object*)(l_Lake_GitRepo_resolveRevision___closed__0));
+v___x_414_ = lean_string_append(v_repo_406_, v___x_413_);
+v___x_415_ = lean_string_append(v___x_414_, v_rev_405_);
+lean_dec_ref(v_rev_405_);
+v___x_416_ = ((lean_object*)(l_Lake_GitRepo_resolveRevision___closed__1));
+v___x_417_ = lean_string_append(v___x_415_, v___x_416_);
+v___x_418_ = 3;
+v___x_419_ = lean_alloc_ctor(0, 1, 1);
+lean_ctor_set(v___x_419_, 0, v___x_417_);
+lean_ctor_set_uint8(v___x_419_, sizeof(void*)*1, v___x_418_);
+v___x_420_ = lean_array_get_size(v_a_407_);
+v___x_421_ = lean_array_push(v_a_407_, v___x_419_);
+v___x_422_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_422_, 0, v___x_420_);
+lean_ctor_set(v___x_422_, 1, v___x_421_);
+return v___x_422_;
 }
 }
 else
 {
-lean_object* v___x_472_; lean_object* v___x_473_; lean_object* v___x_474_; lean_object* v_slice_475_; lean_object* v_nextIt_477_; 
-v___x_472_ = lean_string_utf8_next_fast(v___x_442_, v_searcher_456_);
-v___x_473_ = lean_nat_sub(v___x_472_, v_searcher_456_);
-v___x_474_ = lean_nat_add(v_searcher_456_, v___x_473_);
-lean_dec(v___x_473_);
-v_slice_475_ = l_String_Slice_subslice_x21(v___x_443_, v_currPos_455_, v_searcher_456_);
-lean_inc(v___x_474_);
-if (v_isShared_459_ == 0)
+lean_object* v___x_423_; 
+lean_dec_ref(v_repo_406_);
+v___x_423_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_423_, 0, v_rev_405_);
+lean_ctor_set(v___x_423_, 1, v_a_407_);
+return v___x_423_;
+}
+}
+}
+LEAN_EXPORT lean_object* l_Lake_GitRepo_resolveRevision___boxed(lean_object* v_rev_424_, lean_object* v_repo_425_, lean_object* v_a_426_, lean_object* v_a_427_){
+_start:
 {
-lean_ctor_set(v___x_458_, 1, v___x_474_);
-lean_ctor_set(v___x_458_, 0, v___x_474_);
-v_nextIt_477_ = v___x_458_;
-goto v_reusejp_476_;
+lean_object* v_res_428_; 
+v_res_428_ = l_Lake_GitRepo_resolveRevision(v_rev_424_, v_repo_425_, v_a_426_);
+return v_res_428_;
 }
-else
+}
+LEAN_EXPORT lean_object* l_Lake_GitRepo_getHeadRevision_x3f(lean_object* v_repo_430_){
+_start:
 {
-lean_object* v_reuseFailAlloc_480_; 
-v_reuseFailAlloc_480_ = lean_alloc_ctor(0, 2, 0);
-lean_ctor_set(v_reuseFailAlloc_480_, 0, v___x_474_);
-lean_ctor_set(v_reuseFailAlloc_480_, 1, v___x_474_);
-v_nextIt_477_ = v_reuseFailAlloc_480_;
-goto v_reusejp_476_;
+lean_object* v___x_432_; lean_object* v___x_433_; 
+v___x_432_ = ((lean_object*)(l_Lake_GitRepo_getHeadRevision_x3f___closed__0));
+v___x_433_ = l_Lake_GitRepo_resolveRevision_x3f(v___x_432_, v_repo_430_);
+return v___x_433_;
 }
-v_reusejp_476_:
+}
+LEAN_EXPORT lean_object* l_Lake_GitRepo_getHeadRevision_x3f___boxed(lean_object* v_repo_434_, lean_object* v_a_435_){
+_start:
 {
-lean_object* v_startInclusive_478_; lean_object* v_endExclusive_479_; 
-v_startInclusive_478_ = lean_ctor_get(v_slice_475_, 0);
-lean_inc(v_startInclusive_478_);
-v_endExclusive_479_ = lean_ctor_get(v_slice_475_, 1);
-lean_inc(v_endExclusive_479_);
-lean_dec_ref(v_slice_475_);
-v_it_448_ = v_nextIt_477_;
-v_startInclusive_449_ = v_startInclusive_478_;
-v_endExclusive_450_ = v_endExclusive_479_;
-goto v___jp_447_;
+lean_object* v_res_436_; 
+v_res_436_ = l_Lake_GitRepo_getHeadRevision_x3f(v_repo_434_);
+return v_res_436_;
 }
 }
-}
-else
+LEAN_EXPORT lean_object* l_Lake_GitRepo_getHeadRevision(lean_object* v_repo_438_, lean_object* v_a_439_){
+_start:
 {
-lean_object* v___x_481_; 
-lean_del_object(v___x_458_);
-lean_dec(v_searcher_456_);
-v___x_481_ = lean_box(1);
-lean_inc(v___x_444_);
-v_it_448_ = v___x_481_;
-v_startInclusive_449_ = v_currPos_455_;
-v_endExclusive_450_ = v___x_444_;
-goto v___jp_447_;
-}
-}
-}
-else
+lean_object* v___x_441_; lean_object* v___x_442_; 
+v___x_441_ = ((lean_object*)(l_Lake_GitRepo_getHeadRevision_x3f___closed__0));
+lean_inc_ref(v_repo_438_);
+v___x_442_ = l_Lake_GitRepo_resolveRevision_x3f(v___x_441_, v_repo_438_);
+if (lean_obj_tag(v___x_442_) == 1)
 {
-lean_dec(v___x_444_);
+lean_object* v_val_443_; lean_object* v___x_444_; 
+lean_dec_ref(v_repo_438_);
+v_val_443_ = lean_ctor_get(v___x_442_, 0);
+lean_inc(v_val_443_);
 lean_dec_ref(v___x_442_);
-return v_b_446_;
+v___x_444_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_444_, 0, v_val_443_);
+lean_ctor_set(v___x_444_, 1, v_a_439_);
+return v___x_444_;
 }
-v___jp_447_:
+else
 {
-lean_object* v___x_451_; lean_object* v___x_452_; lean_object* v___x_453_; 
-lean_inc_ref(v___x_442_);
-v___x_451_ = lean_alloc_ctor(0, 3, 0);
-lean_ctor_set(v___x_451_, 0, v___x_442_);
-lean_ctor_set(v___x_451_, 1, v_startInclusive_449_);
-lean_ctor_set(v___x_451_, 2, v_endExclusive_450_);
-v___x_452_ = l_String_Slice_toString(v___x_451_);
-lean_dec_ref(v___x_451_);
-v___x_453_ = lean_array_push(v_b_446_, v___x_452_);
-v_a_445_ = v_it_448_;
-v_b_446_ = v___x_453_;
+lean_object* v___x_445_; lean_object* v___x_446_; uint8_t v___x_447_; lean_object* v___x_448_; lean_object* v___x_449_; lean_object* v___x_450_; lean_object* v___x_451_; 
+lean_dec(v___x_442_);
+v___x_445_ = ((lean_object*)(l_Lake_GitRepo_getHeadRevision___closed__0));
+v___x_446_ = lean_string_append(v_repo_438_, v___x_445_);
+v___x_447_ = 3;
+v___x_448_ = lean_alloc_ctor(0, 1, 1);
+lean_ctor_set(v___x_448_, 0, v___x_446_);
+lean_ctor_set_uint8(v___x_448_, sizeof(void*)*1, v___x_447_);
+v___x_449_ = lean_array_get_size(v_a_439_);
+v___x_450_ = lean_array_push(v_a_439_, v___x_448_);
+v___x_451_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_451_, 0, v___x_449_);
+lean_ctor_set(v___x_451_, 1, v___x_450_);
+return v___x_451_;
+}
+}
+}
+LEAN_EXPORT lean_object* l_Lake_GitRepo_getHeadRevision___boxed(lean_object* v_repo_452_, lean_object* v_a_453_, lean_object* v_a_454_){
+_start:
+{
+lean_object* v_res_455_; 
+v_res_455_ = l_Lake_GitRepo_getHeadRevision(v_repo_452_, v_a_453_);
+return v_res_455_;
+}
+}
+LEAN_EXPORT lean_object* l_String_Slice_splitToSubslice___at___00Lake_GitRepo_getHeadRevisions_spec__0(lean_object* v_s_458_){
+_start:
+{
+lean_object* v___x_459_; 
+v___x_459_ = ((lean_object*)(l_String_Slice_splitToSubslice___at___00Lake_GitRepo_getHeadRevisions_spec__0___closed__0));
+return v___x_459_;
+}
+}
+LEAN_EXPORT lean_object* l_String_Slice_splitToSubslice___at___00Lake_GitRepo_getHeadRevisions_spec__0___boxed(lean_object* v_s_460_){
+_start:
+{
+lean_object* v_res_461_; 
+v_res_461_ = l_String_Slice_splitToSubslice___at___00Lake_GitRepo_getHeadRevisions_spec__0(v_s_460_);
+lean_dec_ref(v_s_460_);
+return v_res_461_;
+}
+}
+LEAN_EXPORT lean_object* l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_GitRepo_getHeadRevisions_spec__1___redArg(lean_object* v___x_462_, lean_object* v___x_463_, lean_object* v___x_464_, lean_object* v_a_465_, lean_object* v_b_466_){
+_start:
+{
+lean_object* v_it_468_; lean_object* v_startInclusive_469_; lean_object* v_endExclusive_470_; 
+if (lean_obj_tag(v_a_465_) == 0)
+{
+lean_object* v_currPos_475_; lean_object* v_searcher_476_; lean_object* v___x_478_; uint8_t v_isShared_479_; uint8_t v_isSharedCheck_502_; 
+v_currPos_475_ = lean_ctor_get(v_a_465_, 0);
+v_searcher_476_ = lean_ctor_get(v_a_465_, 1);
+v_isSharedCheck_502_ = !lean_is_exclusive(v_a_465_);
+if (v_isSharedCheck_502_ == 0)
+{
+v___x_478_ = v_a_465_;
+v_isShared_479_ = v_isSharedCheck_502_;
+goto v_resetjp_477_;
+}
+else
+{
+lean_inc(v_searcher_476_);
+lean_inc(v_currPos_475_);
+lean_dec(v_a_465_);
+v___x_478_ = lean_box(0);
+v_isShared_479_ = v_isSharedCheck_502_;
+goto v_resetjp_477_;
+}
+v_resetjp_477_:
+{
+lean_object* v_startInclusive_480_; lean_object* v_endExclusive_481_; lean_object* v___x_482_; uint8_t v___x_483_; 
+v_startInclusive_480_ = lean_ctor_get(v___x_463_, 1);
+v_endExclusive_481_ = lean_ctor_get(v___x_463_, 2);
+v___x_482_ = lean_nat_sub(v_endExclusive_481_, v_startInclusive_480_);
+v___x_483_ = lean_nat_dec_eq(v_searcher_476_, v___x_482_);
+lean_dec(v___x_482_);
+if (v___x_483_ == 0)
+{
+uint32_t v___x_484_; uint32_t v___x_485_; uint8_t v___x_486_; 
+v___x_484_ = 10;
+v___x_485_ = lean_string_utf8_get_fast(v___x_462_, v_searcher_476_);
+v___x_486_ = lean_uint32_dec_eq(v___x_485_, v___x_484_);
+if (v___x_486_ == 0)
+{
+lean_object* v___x_487_; lean_object* v___x_489_; 
+v___x_487_ = lean_string_utf8_next_fast(v___x_462_, v_searcher_476_);
+lean_dec(v_searcher_476_);
+if (v_isShared_479_ == 0)
+{
+lean_ctor_set(v___x_478_, 1, v___x_487_);
+v___x_489_ = v___x_478_;
+goto v_reusejp_488_;
+}
+else
+{
+lean_object* v_reuseFailAlloc_491_; 
+v_reuseFailAlloc_491_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v_reuseFailAlloc_491_, 0, v_currPos_475_);
+lean_ctor_set(v_reuseFailAlloc_491_, 1, v___x_487_);
+v___x_489_ = v_reuseFailAlloc_491_;
+goto v_reusejp_488_;
+}
+v_reusejp_488_:
+{
+v_a_465_ = v___x_489_;
+goto _start;
+}
+}
+else
+{
+lean_object* v___x_492_; lean_object* v___x_493_; lean_object* v___x_494_; lean_object* v_slice_495_; lean_object* v_nextIt_497_; 
+v___x_492_ = lean_string_utf8_next_fast(v___x_462_, v_searcher_476_);
+v___x_493_ = lean_nat_sub(v___x_492_, v_searcher_476_);
+v___x_494_ = lean_nat_add(v_searcher_476_, v___x_493_);
+lean_dec(v___x_493_);
+v_slice_495_ = l_String_Slice_subslice_x21(v___x_463_, v_currPos_475_, v_searcher_476_);
+lean_inc(v___x_494_);
+if (v_isShared_479_ == 0)
+{
+lean_ctor_set(v___x_478_, 1, v___x_494_);
+lean_ctor_set(v___x_478_, 0, v___x_494_);
+v_nextIt_497_ = v___x_478_;
+goto v_reusejp_496_;
+}
+else
+{
+lean_object* v_reuseFailAlloc_500_; 
+v_reuseFailAlloc_500_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v_reuseFailAlloc_500_, 0, v___x_494_);
+lean_ctor_set(v_reuseFailAlloc_500_, 1, v___x_494_);
+v_nextIt_497_ = v_reuseFailAlloc_500_;
+goto v_reusejp_496_;
+}
+v_reusejp_496_:
+{
+lean_object* v_startInclusive_498_; lean_object* v_endExclusive_499_; 
+v_startInclusive_498_ = lean_ctor_get(v_slice_495_, 0);
+lean_inc(v_startInclusive_498_);
+v_endExclusive_499_ = lean_ctor_get(v_slice_495_, 1);
+lean_inc(v_endExclusive_499_);
+lean_dec_ref(v_slice_495_);
+v_it_468_ = v_nextIt_497_;
+v_startInclusive_469_ = v_startInclusive_498_;
+v_endExclusive_470_ = v_endExclusive_499_;
+goto v___jp_467_;
+}
+}
+}
+else
+{
+lean_object* v___x_501_; 
+lean_del_object(v___x_478_);
+lean_dec(v_searcher_476_);
+v___x_501_ = lean_box(1);
+lean_inc(v___x_464_);
+v_it_468_ = v___x_501_;
+v_startInclusive_469_ = v_currPos_475_;
+v_endExclusive_470_ = v___x_464_;
+goto v___jp_467_;
+}
+}
+}
+else
+{
+lean_dec(v___x_464_);
+lean_dec_ref(v___x_462_);
+return v_b_466_;
+}
+v___jp_467_:
+{
+lean_object* v___x_471_; lean_object* v___x_472_; lean_object* v___x_473_; 
+lean_inc_ref(v___x_462_);
+v___x_471_ = lean_alloc_ctor(0, 3, 0);
+lean_ctor_set(v___x_471_, 0, v___x_462_);
+lean_ctor_set(v___x_471_, 1, v_startInclusive_469_);
+lean_ctor_set(v___x_471_, 2, v_endExclusive_470_);
+v___x_472_ = l_String_Slice_toString(v___x_471_);
+lean_dec_ref(v___x_471_);
+v___x_473_ = lean_array_push(v_b_466_, v___x_472_);
+v_a_465_ = v_it_468_;
+v_b_466_ = v___x_473_;
 goto _start;
 }
 }
 }
-LEAN_EXPORT lean_object* l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_GitRepo_getHeadRevisions_spec__1___redArg___boxed(lean_object* v___x_483_, lean_object* v___x_484_, lean_object* v___x_485_, lean_object* v_a_486_, lean_object* v_b_487_){
+LEAN_EXPORT lean_object* l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_GitRepo_getHeadRevisions_spec__1___redArg___boxed(lean_object* v___x_503_, lean_object* v___x_504_, lean_object* v___x_505_, lean_object* v_a_506_, lean_object* v_b_507_){
 _start:
 {
-lean_object* v_res_488_; 
-v_res_488_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_GitRepo_getHeadRevisions_spec__1___redArg(v___x_483_, v___x_484_, v___x_485_, v_a_486_, v_b_487_);
-lean_dec_ref(v___x_484_);
-return v_res_488_;
+lean_object* v_res_508_; 
+v_res_508_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_GitRepo_getHeadRevisions_spec__1___redArg(v___x_503_, v___x_504_, v___x_505_, v_a_506_, v_b_507_);
+lean_dec_ref(v___x_504_);
+return v_res_508_;
 }
 }
 static lean_object* _init_l_Lake_GitRepo_getHeadRevisions___closed__3(void){
 _start:
 {
-lean_object* v___x_497_; lean_object* v___x_498_; lean_object* v___x_499_; lean_object* v___x_500_; 
-v___x_497_ = ((lean_object*)(l_Lake_GitRepo_getHeadRevisions___closed__2));
-v___x_498_ = lean_unsigned_to_nat(2u);
-v___x_499_ = lean_mk_empty_array_with_capacity(v___x_498_);
-v___x_500_ = lean_array_push(v___x_499_, v___x_497_);
-return v___x_500_;
+lean_object* v___x_517_; lean_object* v___x_518_; lean_object* v___x_519_; lean_object* v___x_520_; 
+v___x_517_ = ((lean_object*)(l_Lake_GitRepo_getHeadRevisions___closed__2));
+v___x_518_ = lean_unsigned_to_nat(2u);
+v___x_519_ = lean_mk_empty_array_with_capacity(v___x_518_);
+v___x_520_ = lean_array_push(v___x_519_, v___x_517_);
+return v___x_520_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_getHeadRevisions(lean_object* v_repo_501_, lean_object* v_n_502_, lean_object* v_a_503_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_getHeadRevisions(lean_object* v_repo_521_, lean_object* v_n_522_, lean_object* v_a_523_){
 _start:
 {
-lean_object* v___y_506_; lean_object* v_args_552_; lean_object* v___x_553_; uint8_t v___x_554_; 
-v_args_552_ = ((lean_object*)(l_Lake_GitRepo_getHeadRevisions___closed__1));
-v___x_553_ = lean_unsigned_to_nat(0u);
-v___x_554_ = lean_nat_dec_eq(v_n_502_, v___x_553_);
-if (v___x_554_ == 0)
+lean_object* v___y_526_; lean_object* v_args_572_; lean_object* v___x_573_; uint8_t v___x_574_; 
+v_args_572_ = ((lean_object*)(l_Lake_GitRepo_getHeadRevisions___closed__1));
+v___x_573_ = lean_unsigned_to_nat(0u);
+v___x_574_ = lean_nat_dec_eq(v_n_522_, v___x_573_);
+if (v___x_574_ == 0)
 {
-lean_object* v___x_555_; lean_object* v___x_556_; lean_object* v___x_557_; lean_object* v___x_558_; 
-v___x_555_ = l_Nat_reprFast(v_n_502_);
-v___x_556_ = lean_obj_once(&l_Lake_GitRepo_getHeadRevisions___closed__3, &l_Lake_GitRepo_getHeadRevisions___closed__3_once, _init_l_Lake_GitRepo_getHeadRevisions___closed__3);
-v___x_557_ = lean_array_push(v___x_556_, v___x_555_);
-v___x_558_ = l_Array_append___redArg(v_args_552_, v___x_557_);
-lean_dec_ref(v___x_557_);
-v___y_506_ = v___x_558_;
-goto v___jp_505_;
+lean_object* v___x_575_; lean_object* v___x_576_; lean_object* v___x_577_; lean_object* v___x_578_; 
+v___x_575_ = l_Nat_reprFast(v_n_522_);
+v___x_576_ = lean_obj_once(&l_Lake_GitRepo_getHeadRevisions___closed__3, &l_Lake_GitRepo_getHeadRevisions___closed__3_once, _init_l_Lake_GitRepo_getHeadRevisions___closed__3);
+v___x_577_ = lean_array_push(v___x_576_, v___x_575_);
+v___x_578_ = l_Array_append___redArg(v_args_572_, v___x_577_);
+lean_dec_ref(v___x_577_);
+v___y_526_ = v___x_578_;
+goto v___jp_525_;
 }
 else
 {
-lean_dec(v_n_502_);
-v___y_506_ = v_args_552_;
-goto v___jp_505_;
+lean_dec(v_n_522_);
+v___y_526_ = v_args_572_;
+goto v___jp_525_;
 }
-v___jp_505_:
+v___jp_525_:
 {
-lean_object* v___x_507_; lean_object* v___x_508_; lean_object* v___x_509_; lean_object* v___x_510_; lean_object* v___x_511_; uint8_t v___x_512_; uint8_t v___x_513_; lean_object* v___x_514_; lean_object* v___x_515_; 
-v___x_507_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
-v___x_508_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
-v___x_509_ = lean_alloc_ctor(1, 1, 0);
-lean_ctor_set(v___x_509_, 0, v_repo_501_);
-v___x_510_ = lean_unsigned_to_nat(0u);
-v___x_511_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
-v___x_512_ = 1;
-v___x_513_ = 0;
-v___x_514_ = lean_alloc_ctor(0, 5, 2);
-lean_ctor_set(v___x_514_, 0, v___x_507_);
-lean_ctor_set(v___x_514_, 1, v___x_508_);
-lean_ctor_set(v___x_514_, 2, v___y_506_);
-lean_ctor_set(v___x_514_, 3, v___x_509_);
-lean_ctor_set(v___x_514_, 4, v___x_511_);
-lean_ctor_set_uint8(v___x_514_, sizeof(void*)*5, v___x_512_);
-lean_ctor_set_uint8(v___x_514_, sizeof(void*)*5 + 1, v___x_513_);
-v___x_515_ = l_Lake_captureProc_x27(v___x_514_, v_a_503_);
-if (lean_obj_tag(v___x_515_) == 0)
+lean_object* v___x_527_; lean_object* v___x_528_; lean_object* v___x_529_; lean_object* v___x_530_; lean_object* v___x_531_; uint8_t v___x_532_; uint8_t v___x_533_; lean_object* v___x_534_; lean_object* v___x_535_; 
+v___x_527_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
+v___x_528_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
+v___x_529_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_529_, 0, v_repo_521_);
+v___x_530_ = lean_unsigned_to_nat(0u);
+v___x_531_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
+v___x_532_ = 1;
+v___x_533_ = 0;
+v___x_534_ = lean_alloc_ctor(0, 5, 2);
+lean_ctor_set(v___x_534_, 0, v___x_527_);
+lean_ctor_set(v___x_534_, 1, v___x_528_);
+lean_ctor_set(v___x_534_, 2, v___y_526_);
+lean_ctor_set(v___x_534_, 3, v___x_529_);
+lean_ctor_set(v___x_534_, 4, v___x_531_);
+lean_ctor_set_uint8(v___x_534_, sizeof(void*)*5, v___x_532_);
+lean_ctor_set_uint8(v___x_534_, sizeof(void*)*5 + 1, v___x_533_);
+v___x_535_ = l_Lake_captureProc_x27(v___x_534_, v_a_523_);
+if (lean_obj_tag(v___x_535_) == 0)
 {
-lean_object* v_a_516_; lean_object* v_a_517_; lean_object* v___x_519_; uint8_t v_isShared_520_; uint8_t v_isSharedCheck_542_; 
-v_a_516_ = lean_ctor_get(v___x_515_, 0);
-v_a_517_ = lean_ctor_get(v___x_515_, 1);
-v_isSharedCheck_542_ = !lean_is_exclusive(v___x_515_);
-if (v_isSharedCheck_542_ == 0)
+lean_object* v_a_536_; lean_object* v_a_537_; lean_object* v___x_539_; uint8_t v_isShared_540_; uint8_t v_isSharedCheck_562_; 
+v_a_536_ = lean_ctor_get(v___x_535_, 0);
+v_a_537_ = lean_ctor_get(v___x_535_, 1);
+v_isSharedCheck_562_ = !lean_is_exclusive(v___x_535_);
+if (v_isSharedCheck_562_ == 0)
 {
-v___x_519_ = v___x_515_;
-v_isShared_520_ = v_isSharedCheck_542_;
-goto v_resetjp_518_;
+v___x_539_ = v___x_535_;
+v_isShared_540_ = v_isSharedCheck_562_;
+goto v_resetjp_538_;
 }
 else
 {
-lean_inc(v_a_517_);
-lean_inc(v_a_516_);
-lean_dec(v___x_515_);
-v___x_519_ = lean_box(0);
-v_isShared_520_ = v_isSharedCheck_542_;
-goto v_resetjp_518_;
+lean_inc(v_a_537_);
+lean_inc(v_a_536_);
+lean_dec(v___x_535_);
+v___x_539_ = lean_box(0);
+v_isShared_540_ = v_isSharedCheck_562_;
+goto v_resetjp_538_;
 }
-v_resetjp_518_:
+v_resetjp_538_:
 {
-lean_object* v_stdout_521_; lean_object* v___x_522_; lean_object* v___x_523_; lean_object* v___x_524_; lean_object* v_str_525_; lean_object* v_startInclusive_526_; lean_object* v_endExclusive_527_; lean_object* v___x_529_; uint8_t v_isShared_530_; uint8_t v_isSharedCheck_541_; 
-v_stdout_521_ = lean_ctor_get(v_a_516_, 0);
-lean_inc_ref(v_stdout_521_);
-lean_dec(v_a_516_);
-v___x_522_ = lean_string_utf8_byte_size(v_stdout_521_);
-v___x_523_ = lean_alloc_ctor(0, 3, 0);
-lean_ctor_set(v___x_523_, 0, v_stdout_521_);
-lean_ctor_set(v___x_523_, 1, v___x_510_);
-lean_ctor_set(v___x_523_, 2, v___x_522_);
-v___x_524_ = l_String_Slice_trimAscii(v___x_523_);
-lean_dec_ref(v___x_523_);
-v_str_525_ = lean_ctor_get(v___x_524_, 0);
-v_startInclusive_526_ = lean_ctor_get(v___x_524_, 1);
-v_endExclusive_527_ = lean_ctor_get(v___x_524_, 2);
-v_isSharedCheck_541_ = !lean_is_exclusive(v___x_524_);
-if (v_isSharedCheck_541_ == 0)
+lean_object* v_stdout_541_; lean_object* v___x_542_; lean_object* v___x_543_; lean_object* v___x_544_; lean_object* v_str_545_; lean_object* v_startInclusive_546_; lean_object* v_endExclusive_547_; lean_object* v___x_549_; uint8_t v_isShared_550_; uint8_t v_isSharedCheck_561_; 
+v_stdout_541_ = lean_ctor_get(v_a_536_, 0);
+lean_inc_ref(v_stdout_541_);
+lean_dec(v_a_536_);
+v___x_542_ = lean_string_utf8_byte_size(v_stdout_541_);
+v___x_543_ = lean_alloc_ctor(0, 3, 0);
+lean_ctor_set(v___x_543_, 0, v_stdout_541_);
+lean_ctor_set(v___x_543_, 1, v___x_530_);
+lean_ctor_set(v___x_543_, 2, v___x_542_);
+v___x_544_ = l_String_Slice_trimAscii(v___x_543_);
+v_str_545_ = lean_ctor_get(v___x_544_, 0);
+v_startInclusive_546_ = lean_ctor_get(v___x_544_, 1);
+v_endExclusive_547_ = lean_ctor_get(v___x_544_, 2);
+v_isSharedCheck_561_ = !lean_is_exclusive(v___x_544_);
+if (v_isSharedCheck_561_ == 0)
 {
-v___x_529_ = v___x_524_;
-v_isShared_530_ = v_isSharedCheck_541_;
-goto v_resetjp_528_;
+v___x_549_ = v___x_544_;
+v_isShared_550_ = v_isSharedCheck_561_;
+goto v_resetjp_548_;
 }
 else
 {
-lean_inc(v_endExclusive_527_);
-lean_inc(v_startInclusive_526_);
-lean_inc(v_str_525_);
-lean_dec(v___x_524_);
-v___x_529_ = lean_box(0);
-v_isShared_530_ = v_isSharedCheck_541_;
-goto v_resetjp_528_;
+lean_inc(v_endExclusive_547_);
+lean_inc(v_startInclusive_546_);
+lean_inc(v_str_545_);
+lean_dec(v___x_544_);
+v___x_549_ = lean_box(0);
+v_isShared_550_ = v_isSharedCheck_561_;
+goto v_resetjp_548_;
 }
-v_resetjp_528_:
+v_resetjp_548_:
 {
-lean_object* v___x_531_; lean_object* v___x_532_; lean_object* v___x_534_; 
-v___x_531_ = lean_string_utf8_extract(v_str_525_, v_startInclusive_526_, v_endExclusive_527_);
-lean_dec(v_endExclusive_527_);
-lean_dec(v_startInclusive_526_);
-lean_dec_ref(v_str_525_);
-v___x_532_ = lean_string_utf8_byte_size(v___x_531_);
-lean_inc_ref(v___x_531_);
-if (v_isShared_530_ == 0)
+lean_object* v___x_551_; lean_object* v___x_552_; lean_object* v___x_554_; 
+v___x_551_ = lean_string_utf8_extract(v_str_545_, v_startInclusive_546_, v_endExclusive_547_);
+lean_dec(v_endExclusive_547_);
+lean_dec(v_startInclusive_546_);
+lean_dec_ref(v_str_545_);
+v___x_552_ = lean_string_utf8_byte_size(v___x_551_);
+lean_inc_ref(v___x_551_);
+if (v_isShared_550_ == 0)
 {
-lean_ctor_set(v___x_529_, 2, v___x_532_);
-lean_ctor_set(v___x_529_, 1, v___x_510_);
-lean_ctor_set(v___x_529_, 0, v___x_531_);
-v___x_534_ = v___x_529_;
-goto v_reusejp_533_;
+lean_ctor_set(v___x_549_, 2, v___x_552_);
+lean_ctor_set(v___x_549_, 1, v___x_530_);
+lean_ctor_set(v___x_549_, 0, v___x_551_);
+v___x_554_ = v___x_549_;
+goto v_reusejp_553_;
 }
 else
 {
-lean_object* v_reuseFailAlloc_540_; 
-v_reuseFailAlloc_540_ = lean_alloc_ctor(0, 3, 0);
-lean_ctor_set(v_reuseFailAlloc_540_, 0, v___x_531_);
-lean_ctor_set(v_reuseFailAlloc_540_, 1, v___x_510_);
-lean_ctor_set(v_reuseFailAlloc_540_, 2, v___x_532_);
-v___x_534_ = v_reuseFailAlloc_540_;
-goto v_reusejp_533_;
+lean_object* v_reuseFailAlloc_560_; 
+v_reuseFailAlloc_560_ = lean_alloc_ctor(0, 3, 0);
+lean_ctor_set(v_reuseFailAlloc_560_, 0, v___x_551_);
+lean_ctor_set(v_reuseFailAlloc_560_, 1, v___x_530_);
+lean_ctor_set(v_reuseFailAlloc_560_, 2, v___x_552_);
+v___x_554_ = v_reuseFailAlloc_560_;
+goto v_reusejp_553_;
 }
-v_reusejp_533_:
+v_reusejp_553_:
 {
-lean_object* v___x_535_; lean_object* v___x_536_; lean_object* v___x_538_; 
-v___x_535_ = l_String_Slice_splitToSubslice___at___00Lake_GitRepo_getHeadRevisions_spec__0(v___x_534_);
-v___x_536_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_GitRepo_getHeadRevisions_spec__1___redArg(v___x_531_, v___x_534_, v___x_532_, v___x_535_, v___x_511_);
-lean_dec_ref(v___x_534_);
-if (v_isShared_520_ == 0)
+lean_object* v___x_555_; lean_object* v___x_556_; lean_object* v___x_558_; 
+v___x_555_ = l_String_Slice_splitToSubslice___at___00Lake_GitRepo_getHeadRevisions_spec__0(v___x_554_);
+v___x_556_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_GitRepo_getHeadRevisions_spec__1___redArg(v___x_551_, v___x_554_, v___x_552_, v___x_555_, v___x_531_);
+lean_dec_ref(v___x_554_);
+if (v_isShared_540_ == 0)
 {
-lean_ctor_set(v___x_519_, 0, v___x_536_);
-v___x_538_ = v___x_519_;
-goto v_reusejp_537_;
+lean_ctor_set(v___x_539_, 0, v___x_556_);
+v___x_558_ = v___x_539_;
+goto v_reusejp_557_;
 }
 else
 {
-lean_object* v_reuseFailAlloc_539_; 
-v_reuseFailAlloc_539_ = lean_alloc_ctor(0, 2, 0);
-lean_ctor_set(v_reuseFailAlloc_539_, 0, v___x_536_);
-lean_ctor_set(v_reuseFailAlloc_539_, 1, v_a_517_);
-v___x_538_ = v_reuseFailAlloc_539_;
-goto v_reusejp_537_;
+lean_object* v_reuseFailAlloc_559_; 
+v_reuseFailAlloc_559_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v_reuseFailAlloc_559_, 0, v___x_556_);
+lean_ctor_set(v_reuseFailAlloc_559_, 1, v_a_537_);
+v___x_558_ = v_reuseFailAlloc_559_;
+goto v_reusejp_557_;
 }
-v_reusejp_537_:
+v_reusejp_557_:
 {
-return v___x_538_;
+return v___x_558_;
 }
 }
 }
@@ -1588,632 +1608,631 @@ return v___x_538_;
 }
 else
 {
-lean_object* v_a_543_; lean_object* v_a_544_; lean_object* v___x_546_; uint8_t v_isShared_547_; uint8_t v_isSharedCheck_551_; 
-v_a_543_ = lean_ctor_get(v___x_515_, 0);
-v_a_544_ = lean_ctor_get(v___x_515_, 1);
-v_isSharedCheck_551_ = !lean_is_exclusive(v___x_515_);
-if (v_isSharedCheck_551_ == 0)
+lean_object* v_a_563_; lean_object* v_a_564_; lean_object* v___x_566_; uint8_t v_isShared_567_; uint8_t v_isSharedCheck_571_; 
+v_a_563_ = lean_ctor_get(v___x_535_, 0);
+v_a_564_ = lean_ctor_get(v___x_535_, 1);
+v_isSharedCheck_571_ = !lean_is_exclusive(v___x_535_);
+if (v_isSharedCheck_571_ == 0)
 {
-v___x_546_ = v___x_515_;
-v_isShared_547_ = v_isSharedCheck_551_;
-goto v_resetjp_545_;
+v___x_566_ = v___x_535_;
+v_isShared_567_ = v_isSharedCheck_571_;
+goto v_resetjp_565_;
 }
 else
 {
-lean_inc(v_a_544_);
-lean_inc(v_a_543_);
-lean_dec(v___x_515_);
-v___x_546_ = lean_box(0);
-v_isShared_547_ = v_isSharedCheck_551_;
-goto v_resetjp_545_;
+lean_inc(v_a_564_);
+lean_inc(v_a_563_);
+lean_dec(v___x_535_);
+v___x_566_ = lean_box(0);
+v_isShared_567_ = v_isSharedCheck_571_;
+goto v_resetjp_565_;
 }
-v_resetjp_545_:
+v_resetjp_565_:
 {
-lean_object* v___x_549_; 
-if (v_isShared_547_ == 0)
+lean_object* v___x_569_; 
+if (v_isShared_567_ == 0)
 {
-v___x_549_ = v___x_546_;
-goto v_reusejp_548_;
+v___x_569_ = v___x_566_;
+goto v_reusejp_568_;
 }
 else
 {
-lean_object* v_reuseFailAlloc_550_; 
-v_reuseFailAlloc_550_ = lean_alloc_ctor(1, 2, 0);
-lean_ctor_set(v_reuseFailAlloc_550_, 0, v_a_543_);
-lean_ctor_set(v_reuseFailAlloc_550_, 1, v_a_544_);
-v___x_549_ = v_reuseFailAlloc_550_;
-goto v_reusejp_548_;
+lean_object* v_reuseFailAlloc_570_; 
+v_reuseFailAlloc_570_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v_reuseFailAlloc_570_, 0, v_a_563_);
+lean_ctor_set(v_reuseFailAlloc_570_, 1, v_a_564_);
+v___x_569_ = v_reuseFailAlloc_570_;
+goto v_reusejp_568_;
 }
-v_reusejp_548_:
+v_reusejp_568_:
 {
-return v___x_549_;
+return v___x_569_;
 }
 }
 }
 }
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_getHeadRevisions___boxed(lean_object* v_repo_559_, lean_object* v_n_560_, lean_object* v_a_561_, lean_object* v_a_562_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_getHeadRevisions___boxed(lean_object* v_repo_579_, lean_object* v_n_580_, lean_object* v_a_581_, lean_object* v_a_582_){
 _start:
 {
-lean_object* v_res_563_; 
-v_res_563_ = l_Lake_GitRepo_getHeadRevisions(v_repo_559_, v_n_560_, v_a_561_);
-return v_res_563_;
+lean_object* v_res_583_; 
+v_res_583_ = l_Lake_GitRepo_getHeadRevisions(v_repo_579_, v_n_580_, v_a_581_);
+return v_res_583_;
 }
 }
-LEAN_EXPORT lean_object* l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_GitRepo_getHeadRevisions_spec__1(lean_object* v___x_564_, lean_object* v___x_565_, lean_object* v___x_566_, lean_object* v_inst_567_, lean_object* v_R_568_, lean_object* v_a_569_, lean_object* v_b_570_){
+LEAN_EXPORT lean_object* l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_GitRepo_getHeadRevisions_spec__1(lean_object* v___x_584_, lean_object* v___x_585_, lean_object* v___x_586_, lean_object* v_inst_587_, lean_object* v_R_588_, lean_object* v_a_589_, lean_object* v_b_590_){
 _start:
 {
-lean_object* v___x_571_; 
-v___x_571_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_GitRepo_getHeadRevisions_spec__1___redArg(v___x_564_, v___x_565_, v___x_566_, v_a_569_, v_b_570_);
-return v___x_571_;
+lean_object* v___x_591_; 
+v___x_591_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_GitRepo_getHeadRevisions_spec__1___redArg(v___x_584_, v___x_585_, v___x_586_, v_a_589_, v_b_590_);
+return v___x_591_;
 }
 }
-LEAN_EXPORT lean_object* l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_GitRepo_getHeadRevisions_spec__1___boxed(lean_object* v___x_572_, lean_object* v___x_573_, lean_object* v___x_574_, lean_object* v_inst_575_, lean_object* v_R_576_, lean_object* v_a_577_, lean_object* v_b_578_){
+LEAN_EXPORT lean_object* l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_GitRepo_getHeadRevisions_spec__1___boxed(lean_object* v___x_592_, lean_object* v___x_593_, lean_object* v___x_594_, lean_object* v_inst_595_, lean_object* v_R_596_, lean_object* v_a_597_, lean_object* v_b_598_){
 _start:
 {
-lean_object* v_res_579_; 
-v_res_579_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_GitRepo_getHeadRevisions_spec__1(v___x_572_, v___x_573_, v___x_574_, v_inst_575_, v_R_576_, v_a_577_, v_b_578_);
-lean_dec_ref(v___x_573_);
-return v_res_579_;
-}
-}
-LEAN_EXPORT lean_object* l_Lake_GitRepo_resolveRemoteRevision(lean_object* v_rev_581_, lean_object* v_remote_582_, lean_object* v_repo_583_, lean_object* v_a_584_){
-_start:
-{
-uint8_t v___x_586_; 
-lean_inc_ref(v_rev_581_);
-v___x_586_ = l_Lake_Git_isFullObjectName(v_rev_581_);
-if (v___x_586_ == 0)
-{
-lean_object* v___x_587_; lean_object* v___x_588_; lean_object* v___x_589_; lean_object* v___x_590_; 
-v___x_587_ = ((lean_object*)(l_Lake_GitRepo_resolveRemoteRevision___closed__0));
-v___x_588_ = lean_string_append(v_remote_582_, v___x_587_);
-v___x_589_ = lean_string_append(v___x_588_, v_rev_581_);
-lean_inc_ref(v_repo_583_);
-v___x_590_ = l_Lake_GitRepo_resolveRevision_x3f(v___x_589_, v_repo_583_);
-if (lean_obj_tag(v___x_590_) == 1)
-{
-lean_object* v_val_591_; lean_object* v___x_592_; 
-lean_dec_ref(v_repo_583_);
-lean_dec_ref(v_rev_581_);
-v_val_591_ = lean_ctor_get(v___x_590_, 0);
-lean_inc(v_val_591_);
-lean_dec_ref(v___x_590_);
-v___x_592_ = lean_alloc_ctor(0, 2, 0);
-lean_ctor_set(v___x_592_, 0, v_val_591_);
-lean_ctor_set(v___x_592_, 1, v_a_584_);
-return v___x_592_;
-}
-else
-{
-lean_object* v___x_593_; 
-lean_dec(v___x_590_);
-lean_inc_ref(v_repo_583_);
-lean_inc_ref(v_rev_581_);
-v___x_593_ = l_Lake_GitRepo_resolveRevision_x3f(v_rev_581_, v_repo_583_);
-if (lean_obj_tag(v___x_593_) == 1)
-{
-lean_object* v_val_594_; lean_object* v___x_595_; 
-lean_dec_ref(v_repo_583_);
-lean_dec_ref(v_rev_581_);
-v_val_594_ = lean_ctor_get(v___x_593_, 0);
-lean_inc(v_val_594_);
+lean_object* v_res_599_; 
+v_res_599_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_GitRepo_getHeadRevisions_spec__1(v___x_592_, v___x_593_, v___x_594_, v_inst_595_, v_R_596_, v_a_597_, v_b_598_);
 lean_dec_ref(v___x_593_);
-v___x_595_ = lean_alloc_ctor(0, 2, 0);
-lean_ctor_set(v___x_595_, 0, v_val_594_);
-lean_ctor_set(v___x_595_, 1, v_a_584_);
-return v___x_595_;
-}
-else
-{
-lean_object* v___x_596_; lean_object* v___x_597_; lean_object* v___x_598_; lean_object* v___x_599_; lean_object* v___x_600_; uint8_t v___x_601_; lean_object* v___x_602_; lean_object* v___x_603_; lean_object* v___x_604_; lean_object* v___x_605_; 
-lean_dec(v___x_593_);
-v___x_596_ = ((lean_object*)(l_Lake_GitRepo_resolveRevision___closed__0));
-v___x_597_ = lean_string_append(v_repo_583_, v___x_596_);
-v___x_598_ = lean_string_append(v___x_597_, v_rev_581_);
-lean_dec_ref(v_rev_581_);
-v___x_599_ = ((lean_object*)(l_Lake_GitRepo_resolveRevision___closed__1));
-v___x_600_ = lean_string_append(v___x_598_, v___x_599_);
-v___x_601_ = 3;
-v___x_602_ = lean_alloc_ctor(0, 1, 1);
-lean_ctor_set(v___x_602_, 0, v___x_600_);
-lean_ctor_set_uint8(v___x_602_, sizeof(void*)*1, v___x_601_);
-v___x_603_ = lean_array_get_size(v_a_584_);
-v___x_604_ = lean_array_push(v_a_584_, v___x_602_);
-v___x_605_ = lean_alloc_ctor(1, 2, 0);
-lean_ctor_set(v___x_605_, 0, v___x_603_);
-lean_ctor_set(v___x_605_, 1, v___x_604_);
-return v___x_605_;
+return v_res_599_;
 }
 }
-}
-else
-{
-lean_object* v___x_606_; 
-lean_dec_ref(v_repo_583_);
-lean_dec_ref(v_remote_582_);
-v___x_606_ = lean_alloc_ctor(0, 2, 0);
-lean_ctor_set(v___x_606_, 0, v_rev_581_);
-lean_ctor_set(v___x_606_, 1, v_a_584_);
-return v___x_606_;
-}
-}
-}
-LEAN_EXPORT lean_object* l_Lake_GitRepo_resolveRemoteRevision___boxed(lean_object* v_rev_607_, lean_object* v_remote_608_, lean_object* v_repo_609_, lean_object* v_a_610_, lean_object* v_a_611_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_resolveRemoteRevision(lean_object* v_rev_601_, lean_object* v_remote_602_, lean_object* v_repo_603_, lean_object* v_a_604_){
 _start:
 {
-lean_object* v_res_612_; 
-v_res_612_ = l_Lake_GitRepo_resolveRemoteRevision(v_rev_607_, v_remote_608_, v_repo_609_, v_a_610_);
-return v_res_612_;
+uint8_t v___x_606_; 
+lean_inc_ref(v_rev_601_);
+v___x_606_ = l_Lake_Git_isFullObjectName(v_rev_601_);
+if (v___x_606_ == 0)
+{
+lean_object* v___x_607_; lean_object* v___x_608_; lean_object* v___x_609_; lean_object* v___x_610_; 
+v___x_607_ = ((lean_object*)(l_Lake_GitRepo_resolveRemoteRevision___closed__0));
+v___x_608_ = lean_string_append(v_remote_602_, v___x_607_);
+v___x_609_ = lean_string_append(v___x_608_, v_rev_601_);
+lean_inc_ref(v_repo_603_);
+v___x_610_ = l_Lake_GitRepo_resolveRevision_x3f(v___x_609_, v_repo_603_);
+if (lean_obj_tag(v___x_610_) == 1)
+{
+lean_object* v_val_611_; lean_object* v___x_612_; 
+lean_dec_ref(v_repo_603_);
+lean_dec_ref(v_rev_601_);
+v_val_611_ = lean_ctor_get(v___x_610_, 0);
+lean_inc(v_val_611_);
+lean_dec_ref(v___x_610_);
+v___x_612_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_612_, 0, v_val_611_);
+lean_ctor_set(v___x_612_, 1, v_a_604_);
+return v___x_612_;
+}
+else
+{
+lean_object* v___x_613_; 
+lean_dec(v___x_610_);
+lean_inc_ref(v_repo_603_);
+lean_inc_ref(v_rev_601_);
+v___x_613_ = l_Lake_GitRepo_resolveRevision_x3f(v_rev_601_, v_repo_603_);
+if (lean_obj_tag(v___x_613_) == 1)
+{
+lean_object* v_val_614_; lean_object* v___x_615_; 
+lean_dec_ref(v_repo_603_);
+lean_dec_ref(v_rev_601_);
+v_val_614_ = lean_ctor_get(v___x_613_, 0);
+lean_inc(v_val_614_);
+lean_dec_ref(v___x_613_);
+v___x_615_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_615_, 0, v_val_614_);
+lean_ctor_set(v___x_615_, 1, v_a_604_);
+return v___x_615_;
+}
+else
+{
+lean_object* v___x_616_; lean_object* v___x_617_; lean_object* v___x_618_; lean_object* v___x_619_; lean_object* v___x_620_; uint8_t v___x_621_; lean_object* v___x_622_; lean_object* v___x_623_; lean_object* v___x_624_; lean_object* v___x_625_; 
+lean_dec(v___x_613_);
+v___x_616_ = ((lean_object*)(l_Lake_GitRepo_resolveRevision___closed__0));
+v___x_617_ = lean_string_append(v_repo_603_, v___x_616_);
+v___x_618_ = lean_string_append(v___x_617_, v_rev_601_);
+lean_dec_ref(v_rev_601_);
+v___x_619_ = ((lean_object*)(l_Lake_GitRepo_resolveRevision___closed__1));
+v___x_620_ = lean_string_append(v___x_618_, v___x_619_);
+v___x_621_ = 3;
+v___x_622_ = lean_alloc_ctor(0, 1, 1);
+lean_ctor_set(v___x_622_, 0, v___x_620_);
+lean_ctor_set_uint8(v___x_622_, sizeof(void*)*1, v___x_621_);
+v___x_623_ = lean_array_get_size(v_a_604_);
+v___x_624_ = lean_array_push(v_a_604_, v___x_622_);
+v___x_625_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_625_, 0, v___x_623_);
+lean_ctor_set(v___x_625_, 1, v___x_624_);
+return v___x_625_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_findRemoteRevision(lean_object* v_repo_613_, lean_object* v_rev_x3f_614_, lean_object* v_remote_615_, lean_object* v_a_616_){
+}
+else
+{
+lean_object* v___x_626_; 
+lean_dec_ref(v_repo_603_);
+lean_dec_ref(v_remote_602_);
+v___x_626_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_626_, 0, v_rev_601_);
+lean_ctor_set(v___x_626_, 1, v_a_604_);
+return v___x_626_;
+}
+}
+}
+LEAN_EXPORT lean_object* l_Lake_GitRepo_resolveRemoteRevision___boxed(lean_object* v_rev_627_, lean_object* v_remote_628_, lean_object* v_repo_629_, lean_object* v_a_630_, lean_object* v_a_631_){
 _start:
 {
-lean_object* v___x_618_; 
-lean_inc_ref(v_remote_615_);
-lean_inc_ref(v_repo_613_);
-v___x_618_ = l_Lake_GitRepo_fetch(v_repo_613_, v_remote_615_, v_a_616_);
-if (lean_obj_tag(v___x_618_) == 0)
-{
-if (lean_obj_tag(v_rev_x3f_614_) == 0)
-{
-lean_object* v_a_619_; lean_object* v___x_620_; lean_object* v___x_621_; 
-v_a_619_ = lean_ctor_get(v___x_618_, 1);
-lean_inc(v_a_619_);
-lean_dec_ref(v___x_618_);
-v___x_620_ = ((lean_object*)(l_Lake_Git_upstreamBranch___closed__0));
-v___x_621_ = l_Lake_GitRepo_resolveRemoteRevision(v___x_620_, v_remote_615_, v_repo_613_, v_a_619_);
-return v___x_621_;
-}
-else
-{
-lean_object* v_a_622_; lean_object* v_val_623_; lean_object* v___x_624_; 
-v_a_622_ = lean_ctor_get(v___x_618_, 1);
-lean_inc(v_a_622_);
-lean_dec_ref(v___x_618_);
-v_val_623_ = lean_ctor_get(v_rev_x3f_614_, 0);
-lean_inc(v_val_623_);
-lean_dec_ref(v_rev_x3f_614_);
-v___x_624_ = l_Lake_GitRepo_resolveRemoteRevision(v_val_623_, v_remote_615_, v_repo_613_, v_a_622_);
-return v___x_624_;
+lean_object* v_res_632_; 
+v_res_632_ = l_Lake_GitRepo_resolveRemoteRevision(v_rev_627_, v_remote_628_, v_repo_629_, v_a_630_);
+return v_res_632_;
 }
 }
-else
-{
-lean_object* v_a_625_; lean_object* v_a_626_; lean_object* v___x_628_; uint8_t v_isShared_629_; uint8_t v_isSharedCheck_633_; 
-lean_dec_ref(v_remote_615_);
-lean_dec(v_rev_x3f_614_);
-lean_dec_ref(v_repo_613_);
-v_a_625_ = lean_ctor_get(v___x_618_, 0);
-v_a_626_ = lean_ctor_get(v___x_618_, 1);
-v_isSharedCheck_633_ = !lean_is_exclusive(v___x_618_);
-if (v_isSharedCheck_633_ == 0)
-{
-v___x_628_ = v___x_618_;
-v_isShared_629_ = v_isSharedCheck_633_;
-goto v_resetjp_627_;
-}
-else
-{
-lean_inc(v_a_626_);
-lean_inc(v_a_625_);
-lean_dec(v___x_618_);
-v___x_628_ = lean_box(0);
-v_isShared_629_ = v_isSharedCheck_633_;
-goto v_resetjp_627_;
-}
-v_resetjp_627_:
-{
-lean_object* v___x_631_; 
-if (v_isShared_629_ == 0)
-{
-v___x_631_ = v___x_628_;
-goto v_reusejp_630_;
-}
-else
-{
-lean_object* v_reuseFailAlloc_632_; 
-v_reuseFailAlloc_632_ = lean_alloc_ctor(1, 2, 0);
-lean_ctor_set(v_reuseFailAlloc_632_, 0, v_a_625_);
-lean_ctor_set(v_reuseFailAlloc_632_, 1, v_a_626_);
-v___x_631_ = v_reuseFailAlloc_632_;
-goto v_reusejp_630_;
-}
-v_reusejp_630_:
-{
-return v___x_631_;
-}
-}
-}
-}
-}
-LEAN_EXPORT lean_object* l_Lake_GitRepo_findRemoteRevision___boxed(lean_object* v_repo_634_, lean_object* v_rev_x3f_635_, lean_object* v_remote_636_, lean_object* v_a_637_, lean_object* v_a_638_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_findRemoteRevision(lean_object* v_repo_633_, lean_object* v_rev_x3f_634_, lean_object* v_remote_635_, lean_object* v_a_636_){
 _start:
 {
-lean_object* v_res_639_; 
-v_res_639_ = l_Lake_GitRepo_findRemoteRevision(v_repo_634_, v_rev_x3f_635_, v_remote_636_, v_a_637_);
-return v_res_639_;
+lean_object* v___x_638_; 
+lean_inc_ref(v_remote_635_);
+lean_inc_ref(v_repo_633_);
+v___x_638_ = l_Lake_GitRepo_fetch(v_repo_633_, v_remote_635_, v_a_636_);
+if (lean_obj_tag(v___x_638_) == 0)
+{
+if (lean_obj_tag(v_rev_x3f_634_) == 0)
+{
+lean_object* v_a_639_; lean_object* v___x_640_; lean_object* v___x_641_; 
+v_a_639_ = lean_ctor_get(v___x_638_, 1);
+lean_inc(v_a_639_);
+lean_dec_ref(v___x_638_);
+v___x_640_ = ((lean_object*)(l_Lake_Git_upstreamBranch___closed__0));
+v___x_641_ = l_Lake_GitRepo_resolveRemoteRevision(v___x_640_, v_remote_635_, v_repo_633_, v_a_639_);
+return v___x_641_;
+}
+else
+{
+lean_object* v_a_642_; lean_object* v_val_643_; lean_object* v___x_644_; 
+v_a_642_ = lean_ctor_get(v___x_638_, 1);
+lean_inc(v_a_642_);
+lean_dec_ref(v___x_638_);
+v_val_643_ = lean_ctor_get(v_rev_x3f_634_, 0);
+lean_inc(v_val_643_);
+lean_dec_ref(v_rev_x3f_634_);
+v___x_644_ = l_Lake_GitRepo_resolveRemoteRevision(v_val_643_, v_remote_635_, v_repo_633_, v_a_642_);
+return v___x_644_;
+}
+}
+else
+{
+lean_object* v_a_645_; lean_object* v_a_646_; lean_object* v___x_648_; uint8_t v_isShared_649_; uint8_t v_isSharedCheck_653_; 
+lean_dec_ref(v_remote_635_);
+lean_dec(v_rev_x3f_634_);
+lean_dec_ref(v_repo_633_);
+v_a_645_ = lean_ctor_get(v___x_638_, 0);
+v_a_646_ = lean_ctor_get(v___x_638_, 1);
+v_isSharedCheck_653_ = !lean_is_exclusive(v___x_638_);
+if (v_isSharedCheck_653_ == 0)
+{
+v___x_648_ = v___x_638_;
+v_isShared_649_ = v_isSharedCheck_653_;
+goto v_resetjp_647_;
+}
+else
+{
+lean_inc(v_a_646_);
+lean_inc(v_a_645_);
+lean_dec(v___x_638_);
+v___x_648_ = lean_box(0);
+v_isShared_649_ = v_isSharedCheck_653_;
+goto v_resetjp_647_;
+}
+v_resetjp_647_:
+{
+lean_object* v___x_651_; 
+if (v_isShared_649_ == 0)
+{
+v___x_651_ = v___x_648_;
+goto v_reusejp_650_;
+}
+else
+{
+lean_object* v_reuseFailAlloc_652_; 
+v_reuseFailAlloc_652_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v_reuseFailAlloc_652_, 0, v_a_645_);
+lean_ctor_set(v_reuseFailAlloc_652_, 1, v_a_646_);
+v___x_651_ = v_reuseFailAlloc_652_;
+goto v_reusejp_650_;
+}
+v_reusejp_650_:
+{
+return v___x_651_;
+}
+}
+}
+}
+}
+LEAN_EXPORT lean_object* l_Lake_GitRepo_findRemoteRevision___boxed(lean_object* v_repo_654_, lean_object* v_rev_x3f_655_, lean_object* v_remote_656_, lean_object* v_a_657_, lean_object* v_a_658_){
+_start:
+{
+lean_object* v_res_659_; 
+v_res_659_ = l_Lake_GitRepo_findRemoteRevision(v_repo_654_, v_rev_x3f_655_, v_remote_656_, v_a_657_);
+return v_res_659_;
 }
 }
 static lean_object* _init_l_Lake_GitRepo_branchExists___closed__2(void){
 _start:
 {
-lean_object* v___x_642_; lean_object* v___x_643_; lean_object* v___x_644_; lean_object* v___x_645_; 
-v___x_642_ = ((lean_object*)(l_Lake_GitRepo_branchExists___closed__0));
-v___x_643_ = lean_unsigned_to_nat(3u);
-v___x_644_ = lean_mk_empty_array_with_capacity(v___x_643_);
-v___x_645_ = lean_array_push(v___x_644_, v___x_642_);
-return v___x_645_;
+lean_object* v___x_662_; lean_object* v___x_663_; lean_object* v___x_664_; lean_object* v___x_665_; 
+v___x_662_ = ((lean_object*)(l_Lake_GitRepo_branchExists___closed__0));
+v___x_663_ = lean_unsigned_to_nat(3u);
+v___x_664_ = lean_mk_empty_array_with_capacity(v___x_663_);
+v___x_665_ = lean_array_push(v___x_664_, v___x_662_);
+return v___x_665_;
 }
 }
 static lean_object* _init_l_Lake_GitRepo_branchExists___closed__3(void){
 _start:
 {
-lean_object* v___x_646_; lean_object* v___x_647_; lean_object* v___x_648_; 
-v___x_646_ = ((lean_object*)(l_Lake_GitRepo_resolveRevision_x3f___closed__0));
-v___x_647_ = lean_obj_once(&l_Lake_GitRepo_branchExists___closed__2, &l_Lake_GitRepo_branchExists___closed__2_once, _init_l_Lake_GitRepo_branchExists___closed__2);
-v___x_648_ = lean_array_push(v___x_647_, v___x_646_);
-return v___x_648_;
+lean_object* v___x_666_; lean_object* v___x_667_; lean_object* v___x_668_; 
+v___x_666_ = ((lean_object*)(l_Lake_GitRepo_resolveRevision_x3f___closed__0));
+v___x_667_ = lean_obj_once(&l_Lake_GitRepo_branchExists___closed__2, &l_Lake_GitRepo_branchExists___closed__2_once, _init_l_Lake_GitRepo_branchExists___closed__2);
+v___x_668_ = lean_array_push(v___x_667_, v___x_666_);
+return v___x_668_;
 }
 }
-LEAN_EXPORT uint8_t l_Lake_GitRepo_branchExists(lean_object* v_rev_649_, lean_object* v_repo_650_){
+LEAN_EXPORT uint8_t l_Lake_GitRepo_branchExists(lean_object* v_rev_669_, lean_object* v_repo_670_){
 _start:
 {
-lean_object* v___x_652_; lean_object* v___x_653_; lean_object* v___x_654_; lean_object* v___x_655_; lean_object* v___x_656_; lean_object* v___x_657_; lean_object* v___x_658_; lean_object* v___x_659_; uint8_t v___x_660_; uint8_t v___x_661_; lean_object* v___x_662_; uint8_t v___x_663_; 
-v___x_652_ = ((lean_object*)(l_Lake_GitRepo_branchExists___closed__1));
-v___x_653_ = lean_string_append(v___x_652_, v_rev_649_);
-v___x_654_ = lean_obj_once(&l_Lake_GitRepo_branchExists___closed__3, &l_Lake_GitRepo_branchExists___closed__3_once, _init_l_Lake_GitRepo_branchExists___closed__3);
-v___x_655_ = lean_array_push(v___x_654_, v___x_653_);
-v___x_656_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
-v___x_657_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
-v___x_658_ = lean_alloc_ctor(1, 1, 0);
-lean_ctor_set(v___x_658_, 0, v_repo_650_);
-v___x_659_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
-v___x_660_ = 1;
-v___x_661_ = 0;
-v___x_662_ = lean_alloc_ctor(0, 5, 2);
-lean_ctor_set(v___x_662_, 0, v___x_656_);
-lean_ctor_set(v___x_662_, 1, v___x_657_);
-lean_ctor_set(v___x_662_, 2, v___x_655_);
-lean_ctor_set(v___x_662_, 3, v___x_658_);
-lean_ctor_set(v___x_662_, 4, v___x_659_);
-lean_ctor_set_uint8(v___x_662_, sizeof(void*)*5, v___x_660_);
-lean_ctor_set_uint8(v___x_662_, sizeof(void*)*5 + 1, v___x_661_);
-v___x_663_ = l_Lake_testProc(v___x_662_);
-return v___x_663_;
+lean_object* v___x_672_; lean_object* v___x_673_; lean_object* v___x_674_; lean_object* v___x_675_; lean_object* v___x_676_; lean_object* v___x_677_; lean_object* v___x_678_; lean_object* v___x_679_; uint8_t v___x_680_; uint8_t v___x_681_; lean_object* v___x_682_; uint8_t v___x_683_; 
+v___x_672_ = ((lean_object*)(l_Lake_GitRepo_branchExists___closed__1));
+v___x_673_ = lean_string_append(v___x_672_, v_rev_669_);
+v___x_674_ = lean_obj_once(&l_Lake_GitRepo_branchExists___closed__3, &l_Lake_GitRepo_branchExists___closed__3_once, _init_l_Lake_GitRepo_branchExists___closed__3);
+v___x_675_ = lean_array_push(v___x_674_, v___x_673_);
+v___x_676_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
+v___x_677_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
+v___x_678_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_678_, 0, v_repo_670_);
+v___x_679_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
+v___x_680_ = 1;
+v___x_681_ = 0;
+v___x_682_ = lean_alloc_ctor(0, 5, 2);
+lean_ctor_set(v___x_682_, 0, v___x_676_);
+lean_ctor_set(v___x_682_, 1, v___x_677_);
+lean_ctor_set(v___x_682_, 2, v___x_675_);
+lean_ctor_set(v___x_682_, 3, v___x_678_);
+lean_ctor_set(v___x_682_, 4, v___x_679_);
+lean_ctor_set_uint8(v___x_682_, sizeof(void*)*5, v___x_680_);
+lean_ctor_set_uint8(v___x_682_, sizeof(void*)*5 + 1, v___x_681_);
+v___x_683_ = l_Lake_testProc(v___x_682_);
+return v___x_683_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_branchExists___boxed(lean_object* v_rev_664_, lean_object* v_repo_665_, lean_object* v_a_666_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_branchExists___boxed(lean_object* v_rev_684_, lean_object* v_repo_685_, lean_object* v_a_686_){
 _start:
 {
-uint8_t v_res_667_; lean_object* v_r_668_; 
-v_res_667_ = l_Lake_GitRepo_branchExists(v_rev_664_, v_repo_665_);
-lean_dec_ref(v_rev_664_);
-v_r_668_ = lean_box(v_res_667_);
-return v_r_668_;
+uint8_t v_res_687_; lean_object* v_r_688_; 
+v_res_687_ = l_Lake_GitRepo_branchExists(v_rev_684_, v_repo_685_);
+lean_dec_ref(v_rev_684_);
+v_r_688_ = lean_box(v_res_687_);
+return v_r_688_;
 }
 }
 static lean_object* _init_l_Lake_GitRepo_revisionExists___closed__1(void){
 _start:
 {
-lean_object* v___x_670_; lean_object* v___x_671_; lean_object* v___x_672_; lean_object* v___x_673_; 
-v___x_670_ = ((lean_object*)(l_Lake_GitRepo_insideWorkTree___closed__0));
-v___x_671_ = lean_unsigned_to_nat(3u);
-v___x_672_ = lean_mk_empty_array_with_capacity(v___x_671_);
-v___x_673_ = lean_array_push(v___x_672_, v___x_670_);
-return v___x_673_;
+lean_object* v___x_690_; lean_object* v___x_691_; lean_object* v___x_692_; lean_object* v___x_693_; 
+v___x_690_ = ((lean_object*)(l_Lake_GitRepo_insideWorkTree___closed__0));
+v___x_691_ = lean_unsigned_to_nat(3u);
+v___x_692_ = lean_mk_empty_array_with_capacity(v___x_691_);
+v___x_693_ = lean_array_push(v___x_692_, v___x_690_);
+return v___x_693_;
 }
 }
 static lean_object* _init_l_Lake_GitRepo_revisionExists___closed__2(void){
 _start:
 {
-lean_object* v___x_674_; lean_object* v___x_675_; lean_object* v___x_676_; 
-v___x_674_ = ((lean_object*)(l_Lake_GitRepo_resolveRevision_x3f___closed__0));
-v___x_675_ = lean_obj_once(&l_Lake_GitRepo_revisionExists___closed__1, &l_Lake_GitRepo_revisionExists___closed__1_once, _init_l_Lake_GitRepo_revisionExists___closed__1);
-v___x_676_ = lean_array_push(v___x_675_, v___x_674_);
-return v___x_676_;
+lean_object* v___x_694_; lean_object* v___x_695_; lean_object* v___x_696_; 
+v___x_694_ = ((lean_object*)(l_Lake_GitRepo_resolveRevision_x3f___closed__0));
+v___x_695_ = lean_obj_once(&l_Lake_GitRepo_revisionExists___closed__1, &l_Lake_GitRepo_revisionExists___closed__1_once, _init_l_Lake_GitRepo_revisionExists___closed__1);
+v___x_696_ = lean_array_push(v___x_695_, v___x_694_);
+return v___x_696_;
 }
 }
-LEAN_EXPORT uint8_t l_Lake_GitRepo_revisionExists(lean_object* v_rev_677_, lean_object* v_repo_678_){
+LEAN_EXPORT uint8_t l_Lake_GitRepo_revisionExists(lean_object* v_rev_697_, lean_object* v_repo_698_){
 _start:
 {
-lean_object* v___x_680_; lean_object* v___x_681_; lean_object* v___x_682_; lean_object* v___x_683_; lean_object* v___x_684_; lean_object* v___x_685_; lean_object* v___x_686_; lean_object* v___x_687_; uint8_t v___x_688_; uint8_t v___x_689_; lean_object* v___x_690_; uint8_t v___x_691_; 
-v___x_680_ = ((lean_object*)(l_Lake_GitRepo_revisionExists___closed__0));
-v___x_681_ = lean_string_append(v_rev_677_, v___x_680_);
-v___x_682_ = lean_obj_once(&l_Lake_GitRepo_revisionExists___closed__2, &l_Lake_GitRepo_revisionExists___closed__2_once, _init_l_Lake_GitRepo_revisionExists___closed__2);
-v___x_683_ = lean_array_push(v___x_682_, v___x_681_);
-v___x_684_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
-v___x_685_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
-v___x_686_ = lean_alloc_ctor(1, 1, 0);
-lean_ctor_set(v___x_686_, 0, v_repo_678_);
-v___x_687_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
-v___x_688_ = 1;
-v___x_689_ = 0;
-v___x_690_ = lean_alloc_ctor(0, 5, 2);
-lean_ctor_set(v___x_690_, 0, v___x_684_);
-lean_ctor_set(v___x_690_, 1, v___x_685_);
-lean_ctor_set(v___x_690_, 2, v___x_683_);
-lean_ctor_set(v___x_690_, 3, v___x_686_);
-lean_ctor_set(v___x_690_, 4, v___x_687_);
-lean_ctor_set_uint8(v___x_690_, sizeof(void*)*5, v___x_688_);
-lean_ctor_set_uint8(v___x_690_, sizeof(void*)*5 + 1, v___x_689_);
-v___x_691_ = l_Lake_testProc(v___x_690_);
-return v___x_691_;
+lean_object* v___x_700_; lean_object* v___x_701_; lean_object* v___x_702_; lean_object* v___x_703_; lean_object* v___x_704_; lean_object* v___x_705_; lean_object* v___x_706_; lean_object* v___x_707_; uint8_t v___x_708_; uint8_t v___x_709_; lean_object* v___x_710_; uint8_t v___x_711_; 
+v___x_700_ = ((lean_object*)(l_Lake_GitRepo_revisionExists___closed__0));
+v___x_701_ = lean_string_append(v_rev_697_, v___x_700_);
+v___x_702_ = lean_obj_once(&l_Lake_GitRepo_revisionExists___closed__2, &l_Lake_GitRepo_revisionExists___closed__2_once, _init_l_Lake_GitRepo_revisionExists___closed__2);
+v___x_703_ = lean_array_push(v___x_702_, v___x_701_);
+v___x_704_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
+v___x_705_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
+v___x_706_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_706_, 0, v_repo_698_);
+v___x_707_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
+v___x_708_ = 1;
+v___x_709_ = 0;
+v___x_710_ = lean_alloc_ctor(0, 5, 2);
+lean_ctor_set(v___x_710_, 0, v___x_704_);
+lean_ctor_set(v___x_710_, 1, v___x_705_);
+lean_ctor_set(v___x_710_, 2, v___x_703_);
+lean_ctor_set(v___x_710_, 3, v___x_706_);
+lean_ctor_set(v___x_710_, 4, v___x_707_);
+lean_ctor_set_uint8(v___x_710_, sizeof(void*)*5, v___x_708_);
+lean_ctor_set_uint8(v___x_710_, sizeof(void*)*5 + 1, v___x_709_);
+v___x_711_ = l_Lake_testProc(v___x_710_);
+return v___x_711_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_revisionExists___boxed(lean_object* v_rev_692_, lean_object* v_repo_693_, lean_object* v_a_694_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_revisionExists___boxed(lean_object* v_rev_712_, lean_object* v_repo_713_, lean_object* v_a_714_){
 _start:
 {
-uint8_t v_res_695_; lean_object* v_r_696_; 
-v_res_695_ = l_Lake_GitRepo_revisionExists(v_rev_692_, v_repo_693_);
-v_r_696_ = lean_box(v_res_695_);
-return v_r_696_;
+uint8_t v_res_715_; lean_object* v_r_716_; 
+v_res_715_ = l_Lake_GitRepo_revisionExists(v_rev_712_, v_repo_713_);
+v_r_716_ = lean_box(v_res_715_);
+return v_r_716_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_getTags(lean_object* v_repo_702_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_getTags(lean_object* v_repo_722_){
 _start:
 {
-lean_object* v___x_704_; lean_object* v___x_705_; lean_object* v___x_706_; lean_object* v___x_707_; lean_object* v___x_708_; lean_object* v___x_709_; uint8_t v___x_710_; uint8_t v___x_711_; lean_object* v___x_712_; lean_object* v___x_713_; 
-v___x_704_ = ((lean_object*)(l_Lake_GitRepo_getTags___closed__1));
-v___x_705_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
-v___x_706_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
-v___x_707_ = lean_alloc_ctor(1, 1, 0);
-lean_ctor_set(v___x_707_, 0, v_repo_702_);
-v___x_708_ = lean_unsigned_to_nat(0u);
-v___x_709_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
-v___x_710_ = 1;
-v___x_711_ = 0;
-v___x_712_ = lean_alloc_ctor(0, 5, 2);
-lean_ctor_set(v___x_712_, 0, v___x_705_);
-lean_ctor_set(v___x_712_, 1, v___x_706_);
-lean_ctor_set(v___x_712_, 2, v___x_704_);
-lean_ctor_set(v___x_712_, 3, v___x_707_);
-lean_ctor_set(v___x_712_, 4, v___x_709_);
-lean_ctor_set_uint8(v___x_712_, sizeof(void*)*5, v___x_710_);
-lean_ctor_set_uint8(v___x_712_, sizeof(void*)*5 + 1, v___x_711_);
-v___x_713_ = l_Lake_captureProc_x3f(v___x_712_);
-if (lean_obj_tag(v___x_713_) == 1)
+lean_object* v___x_724_; lean_object* v___x_725_; lean_object* v___x_726_; lean_object* v___x_727_; lean_object* v___x_728_; lean_object* v___x_729_; uint8_t v___x_730_; uint8_t v___x_731_; lean_object* v___x_732_; lean_object* v___x_733_; 
+v___x_724_ = ((lean_object*)(l_Lake_GitRepo_getTags___closed__1));
+v___x_725_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
+v___x_726_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
+v___x_727_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_727_, 0, v_repo_722_);
+v___x_728_ = lean_unsigned_to_nat(0u);
+v___x_729_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
+v___x_730_ = 1;
+v___x_731_ = 0;
+v___x_732_ = lean_alloc_ctor(0, 5, 2);
+lean_ctor_set(v___x_732_, 0, v___x_725_);
+lean_ctor_set(v___x_732_, 1, v___x_726_);
+lean_ctor_set(v___x_732_, 2, v___x_724_);
+lean_ctor_set(v___x_732_, 3, v___x_727_);
+lean_ctor_set(v___x_732_, 4, v___x_729_);
+lean_ctor_set_uint8(v___x_732_, sizeof(void*)*5, v___x_730_);
+lean_ctor_set_uint8(v___x_732_, sizeof(void*)*5 + 1, v___x_731_);
+v___x_733_ = l_Lake_captureProc_x3f(v___x_732_);
+if (lean_obj_tag(v___x_733_) == 1)
 {
-lean_object* v_val_714_; lean_object* v___x_715_; lean_object* v___x_716_; lean_object* v___x_717_; lean_object* v___x_718_; lean_object* v___x_719_; 
-v_val_714_ = lean_ctor_get(v___x_713_, 0);
-lean_inc(v_val_714_);
-lean_dec_ref(v___x_713_);
-v___x_715_ = lean_string_utf8_byte_size(v_val_714_);
-lean_inc(v_val_714_);
-v___x_716_ = lean_alloc_ctor(0, 3, 0);
-lean_ctor_set(v___x_716_, 0, v_val_714_);
-lean_ctor_set(v___x_716_, 1, v___x_708_);
-lean_ctor_set(v___x_716_, 2, v___x_715_);
-v___x_717_ = l_String_Slice_splitToSubslice___at___00Lake_GitRepo_getHeadRevisions_spec__0(v___x_716_);
-v___x_718_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_GitRepo_getHeadRevisions_spec__1___redArg(v_val_714_, v___x_716_, v___x_715_, v___x_717_, v___x_709_);
-lean_dec_ref(v___x_716_);
-v___x_719_ = lean_array_to_list(v___x_718_);
-return v___x_719_;
+lean_object* v_val_734_; lean_object* v___x_735_; lean_object* v___x_736_; lean_object* v___x_737_; lean_object* v___x_738_; lean_object* v___x_739_; 
+v_val_734_ = lean_ctor_get(v___x_733_, 0);
+lean_inc_n(v_val_734_, 2);
+lean_dec_ref(v___x_733_);
+v___x_735_ = lean_string_utf8_byte_size(v_val_734_);
+v___x_736_ = lean_alloc_ctor(0, 3, 0);
+lean_ctor_set(v___x_736_, 0, v_val_734_);
+lean_ctor_set(v___x_736_, 1, v___x_728_);
+lean_ctor_set(v___x_736_, 2, v___x_735_);
+v___x_737_ = l_String_Slice_splitToSubslice___at___00Lake_GitRepo_getHeadRevisions_spec__0(v___x_736_);
+v___x_738_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_GitRepo_getHeadRevisions_spec__1___redArg(v_val_734_, v___x_736_, v___x_735_, v___x_737_, v___x_729_);
+lean_dec_ref(v___x_736_);
+v___x_739_ = lean_array_to_list(v___x_738_);
+return v___x_739_;
 }
 else
 {
-lean_object* v___x_720_; 
-lean_dec(v___x_713_);
-v___x_720_ = lean_box(0);
-return v___x_720_;
+lean_object* v___x_740_; 
+lean_dec(v___x_733_);
+v___x_740_ = lean_box(0);
+return v___x_740_;
 }
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_getTags___boxed(lean_object* v_repo_721_, lean_object* v_a_722_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_getTags___boxed(lean_object* v_repo_741_, lean_object* v_a_742_){
 _start:
 {
-lean_object* v_res_723_; 
-v_res_723_ = l_Lake_GitRepo_getTags(v_repo_721_);
-return v_res_723_;
+lean_object* v_res_743_; 
+v_res_743_ = l_Lake_GitRepo_getTags(v_repo_741_);
+return v_res_743_;
 }
 }
 static lean_object* _init_l_Lake_GitRepo_findTag_x3f___closed__2(void){
 _start:
 {
-lean_object* v___x_726_; lean_object* v___x_727_; lean_object* v___x_728_; lean_object* v___x_729_; 
-v___x_726_ = ((lean_object*)(l_Lake_GitRepo_findTag_x3f___closed__0));
-v___x_727_ = lean_unsigned_to_nat(4u);
-v___x_728_ = lean_mk_empty_array_with_capacity(v___x_727_);
-v___x_729_ = lean_array_push(v___x_728_, v___x_726_);
-return v___x_729_;
+lean_object* v___x_746_; lean_object* v___x_747_; lean_object* v___x_748_; lean_object* v___x_749_; 
+v___x_746_ = ((lean_object*)(l_Lake_GitRepo_findTag_x3f___closed__0));
+v___x_747_ = lean_unsigned_to_nat(4u);
+v___x_748_ = lean_mk_empty_array_with_capacity(v___x_747_);
+v___x_749_ = lean_array_push(v___x_748_, v___x_746_);
+return v___x_749_;
 }
 }
 static lean_object* _init_l_Lake_GitRepo_findTag_x3f___closed__3(void){
 _start:
 {
-lean_object* v___x_730_; lean_object* v___x_731_; lean_object* v___x_732_; 
-v___x_730_ = ((lean_object*)(l_Lake_GitRepo_fetch___closed__1));
-v___x_731_ = lean_obj_once(&l_Lake_GitRepo_findTag_x3f___closed__2, &l_Lake_GitRepo_findTag_x3f___closed__2_once, _init_l_Lake_GitRepo_findTag_x3f___closed__2);
-v___x_732_ = lean_array_push(v___x_731_, v___x_730_);
-return v___x_732_;
+lean_object* v___x_750_; lean_object* v___x_751_; lean_object* v___x_752_; 
+v___x_750_ = ((lean_object*)(l_Lake_GitRepo_fetch___closed__1));
+v___x_751_ = lean_obj_once(&l_Lake_GitRepo_findTag_x3f___closed__2, &l_Lake_GitRepo_findTag_x3f___closed__2_once, _init_l_Lake_GitRepo_findTag_x3f___closed__2);
+v___x_752_ = lean_array_push(v___x_751_, v___x_750_);
+return v___x_752_;
 }
 }
 static lean_object* _init_l_Lake_GitRepo_findTag_x3f___closed__4(void){
 _start:
 {
-lean_object* v___x_733_; lean_object* v___x_734_; lean_object* v___x_735_; 
-v___x_733_ = ((lean_object*)(l_Lake_GitRepo_findTag_x3f___closed__1));
-v___x_734_ = lean_obj_once(&l_Lake_GitRepo_findTag_x3f___closed__3, &l_Lake_GitRepo_findTag_x3f___closed__3_once, _init_l_Lake_GitRepo_findTag_x3f___closed__3);
-v___x_735_ = lean_array_push(v___x_734_, v___x_733_);
-return v___x_735_;
+lean_object* v___x_753_; lean_object* v___x_754_; lean_object* v___x_755_; 
+v___x_753_ = ((lean_object*)(l_Lake_GitRepo_findTag_x3f___closed__1));
+v___x_754_ = lean_obj_once(&l_Lake_GitRepo_findTag_x3f___closed__3, &l_Lake_GitRepo_findTag_x3f___closed__3_once, _init_l_Lake_GitRepo_findTag_x3f___closed__3);
+v___x_755_ = lean_array_push(v___x_754_, v___x_753_);
+return v___x_755_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_findTag_x3f(lean_object* v_rev_736_, lean_object* v_repo_737_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_findTag_x3f(lean_object* v_rev_756_, lean_object* v_repo_757_){
 _start:
 {
-lean_object* v___x_739_; lean_object* v___x_740_; lean_object* v___x_741_; lean_object* v___x_742_; lean_object* v___x_743_; lean_object* v___x_744_; uint8_t v___x_745_; uint8_t v___x_746_; lean_object* v___x_747_; lean_object* v___x_748_; 
-v___x_739_ = lean_obj_once(&l_Lake_GitRepo_findTag_x3f___closed__4, &l_Lake_GitRepo_findTag_x3f___closed__4_once, _init_l_Lake_GitRepo_findTag_x3f___closed__4);
-v___x_740_ = lean_array_push(v___x_739_, v_rev_736_);
-v___x_741_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
-v___x_742_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
-v___x_743_ = lean_alloc_ctor(1, 1, 0);
-lean_ctor_set(v___x_743_, 0, v_repo_737_);
-v___x_744_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
-v___x_745_ = 1;
-v___x_746_ = 0;
-v___x_747_ = lean_alloc_ctor(0, 5, 2);
-lean_ctor_set(v___x_747_, 0, v___x_741_);
-lean_ctor_set(v___x_747_, 1, v___x_742_);
-lean_ctor_set(v___x_747_, 2, v___x_740_);
-lean_ctor_set(v___x_747_, 3, v___x_743_);
-lean_ctor_set(v___x_747_, 4, v___x_744_);
-lean_ctor_set_uint8(v___x_747_, sizeof(void*)*5, v___x_745_);
-lean_ctor_set_uint8(v___x_747_, sizeof(void*)*5 + 1, v___x_746_);
-v___x_748_ = l_Lake_captureProc_x3f(v___x_747_);
-return v___x_748_;
+lean_object* v___x_759_; lean_object* v___x_760_; lean_object* v___x_761_; lean_object* v___x_762_; lean_object* v___x_763_; lean_object* v___x_764_; uint8_t v___x_765_; uint8_t v___x_766_; lean_object* v___x_767_; lean_object* v___x_768_; 
+v___x_759_ = lean_obj_once(&l_Lake_GitRepo_findTag_x3f___closed__4, &l_Lake_GitRepo_findTag_x3f___closed__4_once, _init_l_Lake_GitRepo_findTag_x3f___closed__4);
+v___x_760_ = lean_array_push(v___x_759_, v_rev_756_);
+v___x_761_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
+v___x_762_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
+v___x_763_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_763_, 0, v_repo_757_);
+v___x_764_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
+v___x_765_ = 1;
+v___x_766_ = 0;
+v___x_767_ = lean_alloc_ctor(0, 5, 2);
+lean_ctor_set(v___x_767_, 0, v___x_761_);
+lean_ctor_set(v___x_767_, 1, v___x_762_);
+lean_ctor_set(v___x_767_, 2, v___x_760_);
+lean_ctor_set(v___x_767_, 3, v___x_763_);
+lean_ctor_set(v___x_767_, 4, v___x_764_);
+lean_ctor_set_uint8(v___x_767_, sizeof(void*)*5, v___x_765_);
+lean_ctor_set_uint8(v___x_767_, sizeof(void*)*5 + 1, v___x_766_);
+v___x_768_ = l_Lake_captureProc_x3f(v___x_767_);
+return v___x_768_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_findTag_x3f___boxed(lean_object* v_rev_749_, lean_object* v_repo_750_, lean_object* v_a_751_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_findTag_x3f___boxed(lean_object* v_rev_769_, lean_object* v_repo_770_, lean_object* v_a_771_){
 _start:
 {
-lean_object* v_res_752_; 
-v_res_752_ = l_Lake_GitRepo_findTag_x3f(v_rev_749_, v_repo_750_);
-return v_res_752_;
+lean_object* v_res_772_; 
+v_res_772_ = l_Lake_GitRepo_findTag_x3f(v_rev_769_, v_repo_770_);
+return v_res_772_;
 }
 }
 static lean_object* _init_l_Lake_GitRepo_getRemoteUrl_x3f___closed__2(void){
 _start:
 {
-lean_object* v___x_755_; lean_object* v___x_756_; lean_object* v___x_757_; lean_object* v___x_758_; 
-v___x_755_ = ((lean_object*)(l_Lake_GitRepo_getRemoteUrl_x3f___closed__0));
-v___x_756_ = lean_unsigned_to_nat(3u);
-v___x_757_ = lean_mk_empty_array_with_capacity(v___x_756_);
-v___x_758_ = lean_array_push(v___x_757_, v___x_755_);
-return v___x_758_;
+lean_object* v___x_775_; lean_object* v___x_776_; lean_object* v___x_777_; lean_object* v___x_778_; 
+v___x_775_ = ((lean_object*)(l_Lake_GitRepo_getRemoteUrl_x3f___closed__0));
+v___x_776_ = lean_unsigned_to_nat(3u);
+v___x_777_ = lean_mk_empty_array_with_capacity(v___x_776_);
+v___x_778_ = lean_array_push(v___x_777_, v___x_775_);
+return v___x_778_;
 }
 }
 static lean_object* _init_l_Lake_GitRepo_getRemoteUrl_x3f___closed__3(void){
 _start:
 {
-lean_object* v___x_759_; lean_object* v___x_760_; lean_object* v___x_761_; 
-v___x_759_ = ((lean_object*)(l_Lake_GitRepo_getRemoteUrl_x3f___closed__1));
-v___x_760_ = lean_obj_once(&l_Lake_GitRepo_getRemoteUrl_x3f___closed__2, &l_Lake_GitRepo_getRemoteUrl_x3f___closed__2_once, _init_l_Lake_GitRepo_getRemoteUrl_x3f___closed__2);
-v___x_761_ = lean_array_push(v___x_760_, v___x_759_);
-return v___x_761_;
+lean_object* v___x_779_; lean_object* v___x_780_; lean_object* v___x_781_; 
+v___x_779_ = ((lean_object*)(l_Lake_GitRepo_getRemoteUrl_x3f___closed__1));
+v___x_780_ = lean_obj_once(&l_Lake_GitRepo_getRemoteUrl_x3f___closed__2, &l_Lake_GitRepo_getRemoteUrl_x3f___closed__2_once, _init_l_Lake_GitRepo_getRemoteUrl_x3f___closed__2);
+v___x_781_ = lean_array_push(v___x_780_, v___x_779_);
+return v___x_781_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_getRemoteUrl_x3f(lean_object* v_remote_762_, lean_object* v_repo_763_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_getRemoteUrl_x3f(lean_object* v_remote_782_, lean_object* v_repo_783_){
 _start:
 {
-lean_object* v___x_765_; lean_object* v___x_766_; lean_object* v___x_767_; lean_object* v___x_768_; lean_object* v___x_769_; lean_object* v___x_770_; uint8_t v___x_771_; uint8_t v___x_772_; lean_object* v___x_773_; lean_object* v___x_774_; 
-v___x_765_ = lean_obj_once(&l_Lake_GitRepo_getRemoteUrl_x3f___closed__3, &l_Lake_GitRepo_getRemoteUrl_x3f___closed__3_once, _init_l_Lake_GitRepo_getRemoteUrl_x3f___closed__3);
-v___x_766_ = lean_array_push(v___x_765_, v_remote_762_);
-v___x_767_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
-v___x_768_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
-v___x_769_ = lean_alloc_ctor(1, 1, 0);
-lean_ctor_set(v___x_769_, 0, v_repo_763_);
-v___x_770_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
-v___x_771_ = 1;
-v___x_772_ = 0;
-v___x_773_ = lean_alloc_ctor(0, 5, 2);
-lean_ctor_set(v___x_773_, 0, v___x_767_);
-lean_ctor_set(v___x_773_, 1, v___x_768_);
-lean_ctor_set(v___x_773_, 2, v___x_766_);
-lean_ctor_set(v___x_773_, 3, v___x_769_);
-lean_ctor_set(v___x_773_, 4, v___x_770_);
-lean_ctor_set_uint8(v___x_773_, sizeof(void*)*5, v___x_771_);
-lean_ctor_set_uint8(v___x_773_, sizeof(void*)*5 + 1, v___x_772_);
-v___x_774_ = l_Lake_captureProc_x3f(v___x_773_);
-return v___x_774_;
+lean_object* v___x_785_; lean_object* v___x_786_; lean_object* v___x_787_; lean_object* v___x_788_; lean_object* v___x_789_; lean_object* v___x_790_; uint8_t v___x_791_; uint8_t v___x_792_; lean_object* v___x_793_; lean_object* v___x_794_; 
+v___x_785_ = lean_obj_once(&l_Lake_GitRepo_getRemoteUrl_x3f___closed__3, &l_Lake_GitRepo_getRemoteUrl_x3f___closed__3_once, _init_l_Lake_GitRepo_getRemoteUrl_x3f___closed__3);
+v___x_786_ = lean_array_push(v___x_785_, v_remote_782_);
+v___x_787_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
+v___x_788_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
+v___x_789_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_789_, 0, v_repo_783_);
+v___x_790_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
+v___x_791_ = 1;
+v___x_792_ = 0;
+v___x_793_ = lean_alloc_ctor(0, 5, 2);
+lean_ctor_set(v___x_793_, 0, v___x_787_);
+lean_ctor_set(v___x_793_, 1, v___x_788_);
+lean_ctor_set(v___x_793_, 2, v___x_786_);
+lean_ctor_set(v___x_793_, 3, v___x_789_);
+lean_ctor_set(v___x_793_, 4, v___x_790_);
+lean_ctor_set_uint8(v___x_793_, sizeof(void*)*5, v___x_791_);
+lean_ctor_set_uint8(v___x_793_, sizeof(void*)*5 + 1, v___x_792_);
+v___x_794_ = l_Lake_captureProc_x3f(v___x_793_);
+return v___x_794_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_getRemoteUrl_x3f___boxed(lean_object* v_remote_775_, lean_object* v_repo_776_, lean_object* v_a_777_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_getRemoteUrl_x3f___boxed(lean_object* v_remote_795_, lean_object* v_repo_796_, lean_object* v_a_797_){
 _start:
 {
-lean_object* v_res_778_; 
-v_res_778_ = l_Lake_GitRepo_getRemoteUrl_x3f(v_remote_775_, v_repo_776_);
-return v_res_778_;
+lean_object* v_res_798_; 
+v_res_798_ = l_Lake_GitRepo_getRemoteUrl_x3f(v_remote_795_, v_repo_796_);
+return v_res_798_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_getFilteredRemoteUrl_x3f(lean_object* v_remote_779_, lean_object* v_repo_780_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_getFilteredRemoteUrl_x3f(lean_object* v_remote_799_, lean_object* v_repo_800_){
 _start:
 {
-lean_object* v___x_782_; 
-v___x_782_ = l_Lake_GitRepo_getRemoteUrl_x3f(v_remote_779_, v_repo_780_);
-if (lean_obj_tag(v___x_782_) == 0)
+lean_object* v___x_802_; 
+v___x_802_ = l_Lake_GitRepo_getRemoteUrl_x3f(v_remote_799_, v_repo_800_);
+if (lean_obj_tag(v___x_802_) == 0)
 {
-return v___x_782_;
+return v___x_802_;
 }
 else
 {
-lean_object* v_val_783_; lean_object* v___x_784_; 
-v_val_783_ = lean_ctor_get(v___x_782_, 0);
-lean_inc(v_val_783_);
-lean_dec_ref(v___x_782_);
-v___x_784_ = l_Lake_Git_filterUrl_x3f(v_val_783_);
-return v___x_784_;
+lean_object* v_val_803_; lean_object* v___x_804_; 
+v_val_803_ = lean_ctor_get(v___x_802_, 0);
+lean_inc(v_val_803_);
+lean_dec_ref(v___x_802_);
+v___x_804_ = l_Lake_Git_filterUrl_x3f(v_val_803_);
+return v___x_804_;
 }
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_getFilteredRemoteUrl_x3f___boxed(lean_object* v_remote_785_, lean_object* v_repo_786_, lean_object* v_a_787_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_getFilteredRemoteUrl_x3f___boxed(lean_object* v_remote_805_, lean_object* v_repo_806_, lean_object* v_a_807_){
 _start:
 {
-lean_object* v_res_788_; 
-v_res_788_ = l_Lake_GitRepo_getFilteredRemoteUrl_x3f(v_remote_785_, v_repo_786_);
-return v_res_788_;
+lean_object* v_res_808_; 
+v_res_808_ = l_Lake_GitRepo_getFilteredRemoteUrl_x3f(v_remote_805_, v_repo_806_);
+return v_res_808_;
 }
 }
-LEAN_EXPORT uint8_t l_Lake_GitRepo_hasNoDiff(lean_object* v_repo_799_){
+LEAN_EXPORT uint8_t l_Lake_GitRepo_hasNoDiff(lean_object* v_repo_819_){
 _start:
 {
-lean_object* v___x_801_; lean_object* v___x_802_; lean_object* v___x_803_; lean_object* v___x_804_; lean_object* v___x_805_; uint8_t v___x_806_; uint8_t v___x_807_; lean_object* v___x_808_; uint8_t v___x_809_; 
-v___x_801_ = ((lean_object*)(l_Lake_GitRepo_hasNoDiff___closed__2));
-v___x_802_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
-v___x_803_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
-v___x_804_ = lean_alloc_ctor(1, 1, 0);
-lean_ctor_set(v___x_804_, 0, v_repo_799_);
-v___x_805_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
-v___x_806_ = 1;
-v___x_807_ = 0;
-v___x_808_ = lean_alloc_ctor(0, 5, 2);
-lean_ctor_set(v___x_808_, 0, v___x_802_);
-lean_ctor_set(v___x_808_, 1, v___x_803_);
-lean_ctor_set(v___x_808_, 2, v___x_801_);
-lean_ctor_set(v___x_808_, 3, v___x_804_);
-lean_ctor_set(v___x_808_, 4, v___x_805_);
-lean_ctor_set_uint8(v___x_808_, sizeof(void*)*5, v___x_806_);
-lean_ctor_set_uint8(v___x_808_, sizeof(void*)*5 + 1, v___x_807_);
-v___x_809_ = l_Lake_testProc(v___x_808_);
-return v___x_809_;
+lean_object* v___x_821_; lean_object* v___x_822_; lean_object* v___x_823_; lean_object* v___x_824_; lean_object* v___x_825_; uint8_t v___x_826_; uint8_t v___x_827_; lean_object* v___x_828_; uint8_t v___x_829_; 
+v___x_821_ = ((lean_object*)(l_Lake_GitRepo_hasNoDiff___closed__2));
+v___x_822_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__0));
+v___x_823_ = ((lean_object*)(l_Lake_Git_filterUrl_x3f___closed__2));
+v___x_824_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_824_, 0, v_repo_819_);
+v___x_825_ = ((lean_object*)(l_Lake_GitRepo_captureGit___closed__1));
+v___x_826_ = 1;
+v___x_827_ = 0;
+v___x_828_ = lean_alloc_ctor(0, 5, 2);
+lean_ctor_set(v___x_828_, 0, v___x_822_);
+lean_ctor_set(v___x_828_, 1, v___x_823_);
+lean_ctor_set(v___x_828_, 2, v___x_821_);
+lean_ctor_set(v___x_828_, 3, v___x_824_);
+lean_ctor_set(v___x_828_, 4, v___x_825_);
+lean_ctor_set_uint8(v___x_828_, sizeof(void*)*5, v___x_826_);
+lean_ctor_set_uint8(v___x_828_, sizeof(void*)*5 + 1, v___x_827_);
+v___x_829_ = l_Lake_testProc(v___x_828_);
+return v___x_829_;
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_hasNoDiff___boxed(lean_object* v_repo_810_, lean_object* v_a_811_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_hasNoDiff___boxed(lean_object* v_repo_830_, lean_object* v_a_831_){
 _start:
 {
-uint8_t v_res_812_; lean_object* v_r_813_; 
-v_res_812_ = l_Lake_GitRepo_hasNoDiff(v_repo_810_);
-v_r_813_ = lean_box(v_res_812_);
-return v_r_813_;
+uint8_t v_res_832_; lean_object* v_r_833_; 
+v_res_832_ = l_Lake_GitRepo_hasNoDiff(v_repo_830_);
+v_r_833_ = lean_box(v_res_832_);
+return v_r_833_;
 }
 }
-LEAN_EXPORT uint8_t l_Lake_GitRepo_hasDiff(lean_object* v_repo_814_){
+LEAN_EXPORT uint8_t l_Lake_GitRepo_hasDiff(lean_object* v_repo_834_){
 _start:
 {
-uint8_t v___x_816_; 
-v___x_816_ = l_Lake_GitRepo_hasNoDiff(v_repo_814_);
-if (v___x_816_ == 0)
+uint8_t v___x_836_; 
+v___x_836_ = l_Lake_GitRepo_hasNoDiff(v_repo_834_);
+if (v___x_836_ == 0)
 {
-uint8_t v___x_817_; 
-v___x_817_ = 1;
-return v___x_817_;
+uint8_t v___x_837_; 
+v___x_837_ = 1;
+return v___x_837_;
 }
 else
 {
-uint8_t v___x_818_; 
-v___x_818_ = 0;
-return v___x_818_;
+uint8_t v___x_838_; 
+v___x_838_ = 0;
+return v___x_838_;
 }
 }
 }
-LEAN_EXPORT lean_object* l_Lake_GitRepo_hasDiff___boxed(lean_object* v_repo_819_, lean_object* v_a_820_){
+LEAN_EXPORT lean_object* l_Lake_GitRepo_hasDiff___boxed(lean_object* v_repo_839_, lean_object* v_a_840_){
 _start:
 {
-uint8_t v_res_821_; lean_object* v_r_822_; 
-v_res_821_ = l_Lake_GitRepo_hasDiff(v_repo_819_);
-v_r_822_ = lean_box(v_res_821_);
-return v_r_822_;
+uint8_t v_res_841_; lean_object* v_r_842_; 
+v_res_841_ = l_Lake_GitRepo_hasDiff(v_repo_839_);
+v_r_842_ = lean_box(v_res_841_);
+return v_r_842_;
 }
 }
 lean_object* runtime_initialize_Init_Data_ToString(uint8_t builtin);

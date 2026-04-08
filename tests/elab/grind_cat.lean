@@ -54,6 +54,7 @@ variable {F G H : Functor C D}
 
 namespace Functor
 
+@[implicit_reducible]
 def comp (F : Functor C D) (G : Functor D E) : Functor C E where
   obj X := G.obj (F.obj X)
   map f := G.map (F.map f)

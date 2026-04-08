@@ -1,4 +1,4 @@
-def f {α} (a b : α) := a
+@[implicit_reducible] def f {α} (a _ : α) := a
 
 theorem f_Eq {α} (a b : α) : f a b = a :=
   rfl

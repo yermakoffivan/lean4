@@ -1,7 +1,15 @@
-def inc (x : Nat) := x + 1
+@[implicit_reducible] def inc (x : Nat) := x + 1
 
 @[simp] theorem inc_eq : inc x = x + 1 := rfl
 
+/--
+trace: n : Nat
+a : Fin (n + 1)
+b : Fin (inc n)
+h : a = b
+⊢ b = a
+-/
+#guard_msgs in
 theorem ex (a b : Fin (inc n)) (h : a = b) : b = a := by
   simp +implicitDefEqProofs only [inc_eq] at a
   trace_state

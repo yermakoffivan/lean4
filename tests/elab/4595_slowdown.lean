@@ -2,6 +2,7 @@
 -- https://github.com/leanprover/lean4/pull/4595, so this is here as a regression test.
 
 set_option maxHeartbeats 400000
+set_option warn.sorry false
 
 universe v v₁ v₂ v₃ u u₁ u₂ u₃
 
@@ -53,6 +54,7 @@ section
 
 variable (C : Type u₁) [Category.{v₁} C]
 
+@[implicit_reducible]
 protected def id : C ⥤ C where
   obj X := X
   map f := f
@@ -61,10 +63,10 @@ notation "𝟭" => Functor.id
 
 variable {C}
 
-@[simp]
+@[defeq, simp]
 theorem id_obj (X : C) : (𝟭 C).obj X = X := rfl
 
-@[simp]
+@[defeq, simp]
 theorem id_map {X Y : C} (f : X ⟶ Y) : (𝟭 C).map f = f := rfl
 
 end
@@ -72,16 +74,17 @@ end
 variable {C : Type u₁} [Category.{v₁} C] {D : Type u₂} [Category.{v₂} D]
   {E : Type u₃} [Category.{v₃} E]
 
+@[implicit_reducible]
 def comp (F : C ⥤ D) (G : D ⥤ E) : C ⥤ E where
   obj X := G.obj (F.obj X)
   map f := G.map (F.map f)
 
 infixr:80 " ⋙ " => Functor.comp
 
-@[simp] theorem comp_obj (F : C ⥤ D) (G : D ⥤ E) (X : C) :
+@[defeq, simp] theorem comp_obj (F : C ⥤ D) (G : D ⥤ E) (X : C) :
   (F ⋙ G).obj X = G.obj (F.obj X) := rfl
 
-@[simp]
+@[defeq, simp]
 theorem comp_map (F : C ⥤ D) (G : D ⥤ E) {X Y : C} (f : X ⟶ Y) :
     (F ⋙ G).map f = G.map (F.map f) := rfl
 
@@ -103,6 +106,7 @@ structure NatTrans (F G : C ⥤ D) : Type max u₁ v₂ where
   app : ∀ X : C, F.obj X ⟶ G.obj X
   naturality : ∀ ⦃X Y : C⦄ (f : X ⟶ Y), F.map f ≫ app Y = app X ≫ G.map f
 
+@[implicit_reducible]
 protected def NatTrans.id (F : C ⥤ D) : NatTrans F F where
   app X := 𝟙 (F.obj X)
   naturality := sorry
@@ -149,7 +153,7 @@ end Functor
 
 namespace NatTrans
 
-@[simp]
+@[defeq, simp]
 theorem id_app (F : C ⥤ D) (X : C) : (𝟙 F : F ⟶ F).app X = 𝟙 (F.obj X) := rfl
 
 @[simp]
@@ -198,21 +202,22 @@ theorem hom_ext_iff {P Q : Karoubi C} {f g : P ⟶ Q} : f = g ↔ f.f = g.f := s
 @[ext]
 theorem hom_ext {P Q : Karoubi C} (f g : P ⟶ Q) (h : f.f = g.f) : f = g := sorry
 
-@[simp]
+@[defeq, simp]
 theorem comp_f {P Q R : Karoubi C} (f : P ⟶ Q) (g : Q ⟶ R) : (f ≫ g).f = f.f ≫ g.f := rfl
 
-@[simp]
+@[defeq, simp]
 theorem id_f {P : Karoubi C} : Hom.f (𝟙 P) = P.p := rfl
 
 end Karoubi
 
+@[implicit_reducible]
 def toKaroubi : C ⥤ Karoubi C where
   obj X := ⟨X, 𝟙 X⟩
   map f := ⟨f, sorry⟩
 
-@[simp] theorem toKaroubi_obj_X (X : C) : ((toKaroubi C).obj X).X = X := rfl
-@[simp] theorem toKaroubi_obj_p (X : C) : ((toKaroubi C).obj X).p = 𝟙 X := rfl
-@[simp] theorem toKaroubi_map_f {X Y : C} (f : X ⟶ Y) : ((toKaroubi C).map f).f = f := rfl
+@[defeq, simp] theorem toKaroubi_obj_X (X : C) : ((toKaroubi C).obj X).X = X := rfl
+@[defeq, simp] theorem toKaroubi_obj_p (X : C) : ((toKaroubi C).obj X).p = 𝟙 X := rfl
+@[defeq, simp] theorem toKaroubi_map_f {X Y : C} (f : X ⟶ Y) : ((toKaroubi C).map f).f = f := rfl
 
 end CategoryTheory
 
@@ -232,13 +237,14 @@ theorem idem_f (P : Karoubi (Karoubi C)) : P.p.f ≫ P.p.f = P.p.f := sorry
 
 theorem p_comm_f {P Q : Karoubi (Karoubi C)} (f : P ⟶ Q) : P.p.f ≫ f.f.f = f.f.f ≫ Q.p.f := sorry
 
+@[implicit_reducible]
 def inverse : Karoubi (Karoubi C) ⥤ Karoubi C where
   obj P := ⟨P.X.X, P.p.f⟩
   map f := ⟨f.f.f, sorry⟩
 
-theorem inverse_obj_X (P : Karoubi (Karoubi C)) : ((inverse C).obj P).X = P.X.X := rfl
-theorem inverse_obj_p (P : Karoubi (Karoubi C)) : ((inverse C).obj P).p = P.p.f := rfl
-theorem inverse_map_f {X Y : Karoubi (Karoubi C)} (f : X ⟶ Y) : ((inverse C).map f).f = f.f.f := rfl
+@[defeq] theorem inverse_obj_X (P : Karoubi (Karoubi C)) : ((inverse C).obj P).X = P.X.X := rfl
+@[defeq] theorem inverse_obj_p (P : Karoubi (Karoubi C)) : ((inverse C).obj P).p = P.p.f := rfl
+@[defeq] theorem inverse_map_f {X Y : Karoubi (Karoubi C)} (f : X ⟶ Y) : ((inverse C).map f).f = f.f.f := rfl
 
 -- In the original source this is just
 -- ```

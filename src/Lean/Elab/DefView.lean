@@ -129,10 +129,13 @@ structure DefView where
 def DefView.isInstance (view : DefView) : Bool :=
   view.modifiers.attrs.any fun attr => attr.name == `instance
 
-/-- Prepends the `defeq` attribute, removing existing ones if there are any -/
+/-- Prepends the `infer_defeq` attribute, unless there is already a `defeq` or `infer_defeq` attribute -/
 def DefView.markDefEq (view : DefView) : DefView :=
   { view with modifiers :=
-      view.modifiers.filterAttrs (·.name != `defeq) |>.addFirstAttr { name := `defeq } }
+    if view.modifiers.attrs.any fun attr => attr.name == `defeq || attr.name == `infer_defeq then
+      view.modifiers
+    else
+      view.modifiers.addFirstAttr { name := `infer_defeq } }
 
 namespace Command
 open Meta

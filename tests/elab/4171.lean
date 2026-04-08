@@ -1,4 +1,5 @@
 set_option warn.classDefReducibility false
+set_option warn.sorry false
 
 /-!
 This is a minimization of a problem in Mathlib where a simp lemma `foo` would not fire,
@@ -92,6 +93,7 @@ section
 
 variable (C : Type u₁) [Category.{v₁} C]
 
+@[implicit_reducible]
 protected def id : C ⥤ C where
   obj X := X
   map f := f
@@ -108,7 +110,7 @@ end
 variable {C : Type u₁} [Category.{v₁} C] {D : Type u₂} [Category.{v₂} D]
   {E : Type u₃} [Category.{v₃} E]
 
-@[simp]
+@[implicit_reducible, simp]
 def comp (F : C ⥤ D) (G : D ⥤ E) : C ⥤ E where
   obj X := G.obj (F.obj X)
   map f := G.map (F.map f)
@@ -522,7 +524,7 @@ theorem comp_hom' {M N K : Mon_ C} (f : M ⟶ N) (g : N ⟶ K) :
     (f ≫ g : Hom M K).hom = f.hom ≫ g.hom := sorry
 
 variable (C) in
-@[simp]
+@[implicit_reducible, simp]
 def forget : Mon_ C ⥤ C where
   obj A := A.X
   map f := f.hom
@@ -590,11 +592,11 @@ variable {M : Comon_ C}
 structure Hom (M N : Comon_ C) where
   hom : M.X ⟶ N.X
 
-@[simp]
+@[implicit_reducible, simp]
 def id (M : Comon_ C) : Hom M M where
   hom := 𝟙 M.X
 
-@[simp]
+@[implicit_reducible, simp]
 def comp {M N O : Comon_ C} (f : Hom M N) (g : Hom N O) : Hom M O where
   hom := f.hom ≫ g.hom
 
@@ -607,7 +609,7 @@ instance : Category (Comon_ C) where
 
 @[ext] theorem ext {X Y : Comon_ C} {f g : X ⟶ Y} (w : f.hom = g.hom) : f = g := sorry
 
-@[simp] theorem id_hom' (M : Comon_ C) : (𝟙 M : Hom M M).hom = 𝟙 M.X := rfl
+@[defeq, simp] theorem id_hom' (M : Comon_ C) : (𝟙 M : Hom M M).hom = 𝟙 M.X := rfl
 
 @[simp]
 theorem comp_hom' {M N K : Comon_ C} (f : M ⟶ N) (g : N ⟶ K) : (f ≫ g).hom = f.hom ≫ g.hom :=
@@ -617,32 +619,34 @@ open Opposite
 
 variable (C)
 
+@[implicit_reducible]
 def Comon_to_Mon_op_op_obj' (A : Comon_ C) : Mon_ (Cᵒᵖ) where
   X := op A.X
   one := A.counit.op
   mul := A.comul.op
   mul_one := sorry
 
-@[simp] theorem Comon_to_Mon_op_op_obj'_X (A : Comon_ C) : (Comon_to_Mon_op_op_obj' C A).X = op A.X := rfl
+@[defeq, simp] theorem Comon_to_Mon_op_op_obj'_X (A : Comon_ C) : (Comon_to_Mon_op_op_obj' C A).X = op A.X := rfl
 
-@[simp] def Comon_to_Mon_op_op : Comon_ C ⥤ (Mon_ (Cᵒᵖ))ᵒᵖ where
+@[implicit_reducible, simp] def Comon_to_Mon_op_op : Comon_ C ⥤ (Mon_ (Cᵒᵖ))ᵒᵖ where
   obj A := op (Comon_to_Mon_op_op_obj' C A)
   map := fun f => op <| { hom := f.hom.op }
 
+@[implicit_reducible]
 def Mon_op_op_to_Comon_obj' (A : (Mon_ (Cᵒᵖ))) : Comon_ C where
   X := unop A.X
   counit := A.one.unop
   comul := A.mul.unop
 
-@[simp] theorem Mon_op_op_to_Comon_obj'_X (A : (Mon_ (Cᵒᵖ))) : (Mon_op_op_to_Comon_obj' C A).X = unop A.X := rfl
+@[defeq, simp] theorem Mon_op_op_to_Comon_obj'_X (A : (Mon_ (Cᵒᵖ))) : (Mon_op_op_to_Comon_obj' C A).X = unop A.X := rfl
 
-@[simp]
+@[implicit_reducible, simp]
 def Mon_op_op_to_Comon : (Mon_ (Cᵒᵖ))ᵒᵖ ⥤ Comon_ C where
   obj A := Mon_op_op_to_Comon_obj' C (unop A)
   map := fun f =>
     { hom := f.unop.hom.unop }
 
-@[simp]
+@[implicit_reducible, simp]
 def Comon_equiv_Mon_op_op : Comon_ C ≌ (Mon_ (Cᵒᵖ))ᵒᵖ :=
   { functor := Comon_to_Mon_op_op C
     inverse := Mon_op_op_to_Comon C
@@ -658,6 +662,7 @@ namespace CategoryTheory.Functor
 
 variable {C} {D : Type u₂} [Category.{v₂} D] [MonoidalCategory.{v₂} D]
 
+@[implicit_reducible]
 def mapComon (F : C ⥤ D) : Comon_ C ⥤ Comon_ D where
   obj A :=
     { X := F.obj A.X
@@ -680,9 +685,10 @@ open CategoryTheory MonoidalCategory
 
 variable (C : Type u₁) [Category.{v₁} C] [MonoidalCategory.{v₁} C]
 
+@[implicit_reducible]
 def toComon_ : Comon_ (Mon_ C) ⥤ Comon_ C := (Mon_.forget C).mapComon
 
-@[simp] theorem toComon_obj_X (M : Comon_ (Mon_ C)) : ((toComon_ C).obj M).X = M.X.X := rfl
+@[defeq, simp] theorem toComon_obj_X (M : Comon_ (Mon_ C)) : ((toComon_ C).obj M).X = M.X.X := rfl
 
 theorem foo {V} [Quiver V] {X Y x} :
     @Quiver.Hom.unop V _ X Y (Opposite.op (unop := x)) = x := rfl

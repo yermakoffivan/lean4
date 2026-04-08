@@ -23,12 +23,11 @@ example (names : List String) : names.all (fun name => "Waldo".isPrefixOf name) 
   simp [all_eq_not_any_not, -List.any_eq_false]
   fail
 
-
+@[implicit_reducible]
 def List.myAll (p : α → Bool) (xs : List α) : Bool := !(xs.any fun x => !p x)
 
-theorem myAll_eq_not_any_not (l : List α) (p : α → Bool) :
-    l.myAll p = !l.any fun x => binderNameHint x p (!p x)
-  := rfl
+@[defeq] theorem myAll_eq_not_any_not (l : List α) (p : α → Bool) :
+    l.myAll p = !l.any fun x => binderNameHint x p (!p x) := rfl
 
 /--
 error: Failed: `fail` tactic was invoked

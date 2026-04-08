@@ -1,4 +1,4 @@
-def f (x : Nat) := x + 1
+@[implicit_reducible] def f (x : Nat) := x + 1
 
 theorem f_eq (x : Nat) : f (x + 1) = x + 2 := rfl
 

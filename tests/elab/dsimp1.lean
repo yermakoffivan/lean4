@@ -1,3 +1,4 @@
+@[implicit_reducible]
 def Nat.isZero (x : Nat) : Bool :=
   match x with
   | 0 => true

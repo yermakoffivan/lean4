@@ -10,20 +10,20 @@ public axiom testSorry : α
 /-! Module docstring -/
 
 /-- A definition (not exposed). -/
-public def f := 1
+@[implicit_reducible] public def f := 1
 
 /--
-info: def f : Nat :=
+info: @[implicit_reducible] def f : Nat :=
 1
 -/
 #guard_msgs in
 #print f
 
 /-- A definition (exposed) -/
-@[expose] public def fexp := 1
+@[expose, implicit_reducible] public def fexp := 1
 
 /--
-info: @[expose] def fexp : Nat :=
+info: @[implicit_reducible, expose] def fexp : Nat :=
 1
 -/
 #guard_msgs in
@@ -123,17 +123,17 @@ theorem v'' (x : Vector Unit fexp) (y : Vector Unit 1) : x = y := testSorry
 /--
 error: Not a definitional equality: the left-hand side
   f
-is not definitionally equal to the right-hand side
+is not definitionally equal at implicit reducibility to the right-hand side
   1
 
 Note: This theorem is exported from the current module. This requires that all definitions that need to be unfolded to prove this theorem must be exposed.
 -/
 #guard_msgs in
-public theorem trfl : f = 1 := rfl
+@[defeq] public theorem trfl : f = 1 := rfl
 /--
 error: Not a definitional equality: the left-hand side
   f
-is not definitionally equal to the right-hand side
+is not definitionally equal at implicit reducibility to the right-hand side
   1
 
 Note: This theorem is exported from the current module. This requires that all definitions that need to be unfolded to prove this theorem must be exposed.
@@ -177,7 +177,7 @@ example : P fexp := by dsimp only [fexp_trfl]; exact hP1
 /--
 error: Not a definitional equality: the left-hand side
   f
-is not definitionally equal to the right-hand side
+is not definitionally equal at implicit reducibility to the right-hand side
   2
 -/
 #guard_msgs in
@@ -239,7 +239,7 @@ public def fexp.eq_def := 1
 /-- info: @[defeq] theorem fexp.eq_unfold : fexp = 1 -/
 #guard_msgs in #print sig fexp.eq_unfold
 
-/-- info: @[defeq] private theorem f_struct.eq_1 : f_struct 0 = 0 -/
+/-- info: private theorem f_struct.eq_1 : f_struct 0 = 0 -/
 #guard_msgs in #print sig f_struct.eq_1
 
 /--

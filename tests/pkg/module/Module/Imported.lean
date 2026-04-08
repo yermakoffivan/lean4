@@ -8,7 +8,7 @@ meta import Lean.Elab.Command
 /-! Definitions should be exported without their bodies by default -/
 
 /--
-info: def f : Nat :=
+info: @[implicit_reducible] def f : Nat :=
 <not imported>
 -/
 #guard_msgs in

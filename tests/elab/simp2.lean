@@ -1,4 +1,4 @@
-def p (x : Prop) := x
+@[implicit_reducible] def p (x : Prop) := x
 
 @[simp] theorem lemma1 (x : Prop) : p x = x :=
  rfl

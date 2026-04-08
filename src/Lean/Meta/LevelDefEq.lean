@@ -116,6 +116,8 @@ mutual
     | Level.succ u, v =>
       if v.isParam then
         return LBool.false
+      else if let some v := Level.dec v then
+        Bool.toLBool <$> isLevelDefEqAux u v
       else if u.isMVar && u.occurs v then
         return LBool.undef
       else

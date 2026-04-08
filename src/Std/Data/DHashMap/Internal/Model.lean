@@ -541,7 +541,7 @@ theorem alter_eq_alterₘ [BEq α] [Hashable α] [LawfulBEq α] (m : Raw₀ α �
     simp only [alter, alterₘ, containsₘ, ← bucket_eq]
     split
     · congr 2
-      · simp only [withComputedSize, bucket_updateBucket]
+      · simp only [withComputedSize, bucket_updateBucket, AssocList.contains_eq]
       · simp only [Array.uset, bucket, Array.ugetElem_eq_getElem, Array.set_set, updateBucket]
     · congr
 
@@ -571,7 +571,7 @@ theorem alter_eq_alterₘ [BEq α] [Hashable α] [EquivBEq α] (m : Raw₀ α (f
     simp only [alter, alterₘ, containsₘ, ← bucket_eq]
     split
     · congr 2
-      · simp only [withComputedSize, bucket_updateBucket]
+      · simp only [withComputedSize, bucket_updateBucket, AssocList.contains_eq]
       · simp only [Array.uset, bucket, Array.ugetElem_eq_getElem, Array.set_set, updateBucket]
     · congr
 

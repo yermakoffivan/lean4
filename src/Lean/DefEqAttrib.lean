@@ -26,29 +26,32 @@ private def isDefEqCareful (e1 e2 : Expr) : MetaM Bool := do
   withOptions (smartUnfolding.set · false) <| do
     withDefault (isDefEq e1 e2) <||> withTransparency .all (isDefEq e1 e2)
 
+private def withEqLhsRhs (type : Expr) (k : Expr → Expr → MetaM α) : MetaM α := do
+  withTransparency .all do -- we want to look through defs in `info.type` all the way to `Eq`
+    forallTelescopeReducing type fun _ type => do
+      let type ← whnf type
+      -- NB: The warning wording should work both for explicit uses of `@[defeq]` as well as the implicit `:= rfl`.
+      let some (_, lhs, rhs) := type.eq? |
+        throwError m!"Not a definitional equality: the conclusion should be an equality, but is{inlineExpr type}"
+      k lhs rhs
+
 def validateDefEqAttr (declName : Name) : AttrM Unit := do
   let info ← getConstVal declName
-  MetaM.run' do
-    withTransparency .all do -- we want to look through defs in `info.type` all the way to `Eq`
-      forallTelescopeReducing info.type fun _ type => do
-        let type ← whnf type
-        -- NB: The warning wording should work both for explicit uses of `@[defeq]` as well as the implicit `:= rfl`.
-        let some (_, lhs, rhs) := type.eq? |
-          throwError m!"Not a definitional equality: the conclusion should be an equality, but is{inlineExpr type}"
-        let ok ← isDefEqCareful lhs rhs
-        unless ok do
-          let explanation := MessageData.ofLazyM (es := #[lhs, rhs]) do
-            let (lhs, rhs) ← addPPExplicitToExposeDiff lhs rhs
-            let mut msg := m!"Not a definitional equality: the left-hand side{indentExpr lhs}\nis \
-              not definitionally equal to the right-hand side{indentExpr rhs}"
-            if (← getEnv).isExporting then
-              let okPrivately ← withoutExporting <| isDefEqCareful lhs rhs
-              if okPrivately then
-                msg := msg ++ .note m!"This theorem is exported from the current module. \
-                  This requires that all definitions that need to be unfolded to prove this \
-                  theorem must be exposed."
-            pure msg
-          throwError explanation
+  MetaM.run' do withEqLhsRhs info.type fun lhs rhs => do
+    let ok ← isDefEqCareful lhs rhs
+    unless ok do
+      let explanation := MessageData.ofLazyM (es := #[lhs, rhs]) do
+        let (lhs, rhs) ← addPPExplicitToExposeDiff lhs rhs
+        let mut msg := m!"Not a definitional equality: the left-hand side{indentExpr lhs}\nis \
+          not definitionally equal to the right-hand side{indentExpr rhs}"
+        if (← getEnv).isExporting then
+          let okPrivately ← withoutExporting <| isDefEqCareful lhs rhs
+          if okPrivately then
+            msg := msg ++ .note m!"This theorem is exported from the current module. \
+              This requires that all definitions that need to be unfolded to prove this \
+              theorem must be exposed."
+        pure msg
+      throwError explanation
 
 /--
 Marks the theorem as a definitional equality.
@@ -94,21 +97,19 @@ private partial def isRflProofCore (type : Expr) (proof : Expr) : CoreM Bool := 
 
 /--
 For automatically generated theorems (equational theorems etc.), we want to set the `defeq` attribute
-if the proof is `rfl`, essentially reproducing the behavior before the introduction of the `defeq`
-attribute. This function infers the `defeq` attribute based on the declaration value.
+if the proof is `rfl` at implicit reducible setting.
 -/
 def inferDefEqAttr (declName : Name) : MetaM Unit := do
   withoutExporting do
     let info ← getConstInfo declName
-    let isRfl ←
-      if let some value := info.value? (allowOpaque := true) then
-        isRflProofCore info.type value
-      else
-        pure false
-    if isRfl then
+    let some value := info.value? (allowOpaque := true) | return
+    let .true ← isRflProofCore info.type value | return
+    withEqLhsRhs info.type fun lhs rhs => do
+      let .true ← withTransparency .instances <| isDefEq lhs rhs | return
+      -- sanity-check: would we have accepted `@[defeq]` on this?
       try
         withExporting (isExporting := !isPrivateName declName) do
-          validateDefEqAttr declName -- sanity-check: would we have accepted `@[defeq]` on this?
+          validateDefEqAttr declName
       catch e =>
         logError m!"Theorem {declName} has a `rfl`-proof and was thus inferred to be `@[defeq]`, \
           but validating that attribute failed:{indentD e.toMessageData}"

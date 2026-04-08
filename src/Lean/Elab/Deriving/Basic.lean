@@ -261,7 +261,13 @@ def processDefDeriving (view : DerivingClassView) (decl : Expr) (isNoncomputable
     else
       addAndCompile <| Declaration.defnDecl decl
   trace[Elab.Deriving] "Derived instance `{.ofConstName instName}`"
-  registerInstance instName AttributeKind.global (eval_prio default)
+  -- For Prop-typed instances (theorems), skip `implicit_reducible` since reducibility hints are
+  -- irrelevant for theorems. This matches the behavior of the handwritten `instance` command
+  -- (see `MutualDef.lean`).
+  if isPropType then
+    addInstance instName AttributeKind.global (eval_prio default)
+  else
+    registerInstance instName AttributeKind.global (eval_prio default)
   addDeclarationRangesFromSyntax instName (← getRef)
 
 end Term

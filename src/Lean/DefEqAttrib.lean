@@ -99,14 +99,13 @@ private partial def isRflProofCore (type : Expr) (proof : Expr) : CoreM Bool := 
 For automatically generated theorems (equational theorems etc.), we want to set the `defeq` attribute
 if the proof is `rfl` at implicit reducible setting.
 -/
-def inferDefEqAttr (declName : Name) (onlyAtInstancesTransparency := true): MetaM Unit := do
+def inferDefEqAttr (declName : Name) : MetaM Unit := do
   withoutExporting do
     let info ← getConstInfo declName
     let some value := info.value? (allowOpaque := true) | return
     let .true ← isRflProofCore info.type value | return
     withEqLhsRhs info.type fun lhs rhs => do
-      if onlyAtInstancesTransparency then
-        let .true ← withTransparency .instances (isDefEq lhs rhs) | return
+      let .true ← withTransparency .instances (isDefEq lhs rhs) | return
       -- sanity-check: would we have accepted `@[defeq]` on this?
       try
         withExporting (isExporting := !isPrivateName declName) do

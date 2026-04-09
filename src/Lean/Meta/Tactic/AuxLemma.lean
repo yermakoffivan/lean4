@@ -18,6 +18,9 @@ structure AuxLemmaKey where
   -- When an aux lemma is created in a private context and thus has a private name, we must not
   -- reuse it in an exported context.
   isPrivate : Bool
+  -- Some kinds of auxiliary lemmas may need to be further distinguished by an extra key
+  -- e.g. if they have the same type but different keys.
+  extraKey : Option Name
 deriving BEq, Hashable
 
 structure AuxLemmas where
@@ -39,10 +42,10 @@ builtin_initialize auxLemmasExt : EnvExtension AuxLemmas ←
   users. For example, `simp` preprocessor may convert a lemma into multiple ones.
 -/
 def mkAuxLemma (levelParams : List Name) (type : Expr) (value : Expr) (kind? : Option Name := none)
-    (cache := true) (forceExpose := false) : MetaM Name := do
+    (cache := true) (forceExpose := false) (extraKey : Option Name := none) : MetaM Name := do
   let env ← getEnv
   let s := auxLemmasExt.getState env
-  let key := { type, isPrivate := !env.isExporting }
+  let key := { type, isPrivate := !env.isExporting, extraKey }
   let mkNewAuxLemma := do
     let auxName ← mkAuxDeclName (kind := kind?.getD `_proof)
     let decl :=

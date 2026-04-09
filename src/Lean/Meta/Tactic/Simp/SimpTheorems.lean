@@ -393,12 +393,10 @@ def mkSimpTheoremFromConst (declName : Name) (post := true) (inv := false)
       let mut r := #[]
       for (val, type) in (← preprocess val type inv (isGlobal := true)) do
         let auxName ← mkAuxLemma (kind? := `_simp) cinfo.levelParams type val
-          (forceExpose := true)  -- These kinds of theorems are small and `to_additive` may need to
-                                 -- unfold them.
-          (extraKey := some declName)  -- Avoid reusing the same aux lemma for different theorems with the same type
-        -- The [defeq] attribute transfers (should only apply to `[← thm]`)
-        if inv && defeqAttr.hasTag (← getEnv) declName then
-          defeqAttr.setTag auxName
+          -- These kinds of theorems are small and `to_additive` may need to unfold them.
+          (forceExpose := true)
+          -- The [defeq] attribute transfers (should only apply to `[← thm]`)
+          (defeq := inv && defeqAttr.hasTag (← getEnv) declName)
         r := r.push <| (← do mkSimpTheoremCore origin (mkConst auxName us) #[] (mkConst auxName) post prio (noIndexAtArgs := false))
       return r
     else

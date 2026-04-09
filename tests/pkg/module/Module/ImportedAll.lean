@@ -57,7 +57,7 @@ example : P fexp := by dsimp only [fexp_trfl']; exact hP1
 /-- info: @[defeq] private theorem f.eq_unfold : f = 1 -/
 #guard_msgs in #print sig f.eq_unfold
 
-/-- info: @[defeq] private theorem f_struct.eq_1 : f_struct 0 = 0 -/
+/-- info: private theorem f_struct.eq_1 : f_struct 0 = 0 -/
 #guard_msgs in #print sig f_struct.eq_1
 
 /--
@@ -145,6 +145,8 @@ Note: A private declaration `priv` (from `Module.Basic`) exists but would need t
 #guard_msgs in
 @[expose] public def pub' := priv
 
+/-- info: { x := 1 } : StructWithPrivateField -/
+#guard_msgs in
 #check { x := 1 : StructWithPrivateField }
 
 /-- error: invalid {...} notation, constructor for `StructWithPrivateField` is marked as private -/
@@ -152,6 +154,8 @@ Note: A private declaration `priv` (from `Module.Basic`) exists but would need t
 #with_exporting
 #check { x := 1 : StructWithPrivateField }
 
+/-- info: { x := 1 } : StructWithPrivateField -/
+#guard_msgs in
 #check (⟨1⟩ : StructWithPrivateField)
 
 /--

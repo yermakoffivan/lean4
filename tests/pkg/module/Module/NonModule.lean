@@ -7,8 +7,9 @@ import Lean
 /-- info: @[defeq] theorem f.eq_unfold : f = 1 -/
 #guard_msgs in #print sig f.eq_unfold
 
-/-- info: @[defeq] theorem f_struct.eq_1 : f_struct 0 = 0 -/
+/-- info: theorem f_struct.eq_1 : f_struct 0 = 0 -/
 #guard_msgs in #print sig f_struct.eq_1
+
 /--
 info: theorem f_struct.eq_def : ∀ (x : Nat),
   f_struct x =

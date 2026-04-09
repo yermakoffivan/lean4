@@ -10,10 +10,11 @@ public axiom testSorry : α
 /-! Module docstring -/
 
 /-- A definition (not exposed). -/
+@[implicit_reducible]
 public def f := 1
 
 /--
-info: def f : Nat :=
+info: @[implicit_reducible] def f : Nat :=
 1
 -/
 #guard_msgs in
@@ -233,13 +234,13 @@ public def fexp.eq_def := 1
 /-- info: @[defeq] private theorem f.eq_unfold : f = 1 -/
 #guard_msgs in #print sig f.eq_unfold
 
-/-- info: @[defeq] theorem fexp.eq_def : fexp = 1 -/
+/-- info: theorem fexp.eq_def : fexp = 1 -/
 #guard_msgs in #print sig fexp.eq_def
 
-/-- info: @[defeq] theorem fexp.eq_unfold : fexp = 1 -/
+/-- info: theorem fexp.eq_unfold : fexp = 1 -/
 #guard_msgs in #print sig fexp.eq_unfold
 
-/-- info: @[defeq] private theorem f_struct.eq_1 : f_struct 0 = 0 -/
+/-- info: private theorem f_struct.eq_1 : f_struct 0 = 0 -/
 #guard_msgs in #print sig f_struct.eq_1
 
 /--
@@ -317,6 +318,8 @@ constructor:
 #guard_msgs in
 #print StructWithPrivateField
 
+/-- info: { x := 1 } : StructWithPrivateField -/
+#guard_msgs in
 #check { x := 1 : StructWithPrivateField }
 
 /-- error: invalid {...} notation, constructor for `StructWithPrivateField` is marked as private -/
@@ -324,6 +327,8 @@ constructor:
 #with_exporting
 #check { x := 1 : StructWithPrivateField }
 
+/-- info: { x := 1 } : StructWithPrivateField -/
+#guard_msgs in
 #check (⟨1⟩ : StructWithPrivateField)
 
 /--
@@ -333,6 +338,8 @@ error: Invalid `⟨...⟩` notation: Constructor for `StructWithPrivateField` is
 #with_exporting
 #check (⟨1⟩ : StructWithPrivateField)
 
+/-- info: StructWithPrivateField.x (self : StructWithPrivateField) : Priv -/
+#guard_msgs in
 #check StructWithPrivateField.x
 
 /-- error: Unknown constant `StructWithPrivateField.x` -/
@@ -361,9 +368,13 @@ constructor:
 #with_exporting
 #check { x := 1 : StructWithPrivateCtor }
 
+/-- info: StructWithPrivateCtor.x (self : StructWithPrivateCtor) : Nat -/
+#guard_msgs in
 #with_exporting
 #check StructWithPrivateCtor.x
 
+/-- info: StructWithPrivateCtor.mk (x : Nat) : StructWithPrivateCtor -/
+#guard_msgs in
 #check StructWithPrivateCtor.mk
 
 /-- error: Unknown constant `StructWithPrivateCtor.mk` -/

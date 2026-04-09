@@ -162,6 +162,11 @@ PLOG(attach_push):
 This would profit from `attach_congr` but we can't mark it as `congr`.
 There were some lemmas that were really difficult to apply given the type dependencies.
 Solution: Use a different, simpler proof that normalizes `xs.attachWith` to `xs.attach.map`.
+
+Alternative: Make `Vector.push` implici-reducible and use the old proof:
+```lean
+  simp [Array.map_attach_eq_pmap]
+```
 -/
 
 @[simp] theorem attach_push {a : α} {xs : Vector α n} :

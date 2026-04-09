@@ -2833,17 +2833,25 @@ theorem getElem_extract_aux {xs : Array α} {start stop : Nat} (h : i < (xs.extr
 
 /-
 PLOG(getElem_extract):
+v1: (term mode proof)
+```lean
+  show (extract.loop xs (min stop xs.size - start) start #[])[i]'(cast rfl h)
+    = xs[start + i]'(getElem_extract_aux h) by rw [getElem_extract_loop_ge]; rfl; exact Nat.zero_le _
+```
 Added `cast rfl` to the bounds proof. Think about modifying the get-elem tactic instead!
 Arguably, `assumption` shouldn't violate the transparency, either. Hmm, but *which* transparency?
 It should probably just use `cast rfl` to fix the types.
 Should also get resolved by the larger `getElemV` redesign.
+The underlying reducibility problem is about reducing `extract` to `extract.loop`, which is an
+implementation detail. `implicit_reducible` would be a mistake to use.
+
+v2: The whole proof was weird. `simp` solves it nicely.
 -/
 
 @[simp, grind =] theorem getElem_extract {xs : Array α} {start stop : Nat}
     (h : i < (xs.extract start stop).size) :
-    (xs.extract start stop)[i] = xs[start + i]'(getElem_extract_aux h) :=
-  show (extract.loop xs (min stop xs.size - start) start #[])[i]'(cast rfl h)
-    = xs[start + i]'(getElem_extract_aux h) by rw [getElem_extract_loop_ge]; rfl; exact Nat.zero_le _
+    (xs.extract start stop)[i] = xs[start + i]'(getElem_extract_aux h) := by
+  simp [extract, getElem_extract_loop_ge]
 
 theorem getElem?_extract {xs : Array α} {start stop : Nat} :
     (xs.extract start stop)[i]? = if i < min stop xs.size - start then xs[start + i]? else none := by

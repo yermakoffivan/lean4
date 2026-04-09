@@ -73,6 +73,8 @@ example [BEq α] [LawfulBEq α] {a b c : α} {P Q : Prop} :
     if b == a then P else Q := by
   simp only [beq_iff_eq, show a = c by sorry] -- 'no progress'; works if `beq_iff_eq` is removed
 ```
+
+Indeed, `forIn'_congr` fails because a defeq check requiring the unfolding of `List.range'` fails.
 -/
 
 private theorem forIn'_loop_eq_forIn'_range' [Monad m] (r : Range)

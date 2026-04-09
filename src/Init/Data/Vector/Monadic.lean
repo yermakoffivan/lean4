@@ -157,6 +157,8 @@ theorem idRun_forIn'_yield_eq_foldl
 /-
 PLOG(foIn'_map):
 made `Vector.map` `implicit_reducible`.
+
+Reason: `map_mk` is a `rfl` lemma.
 -/
 
 @[simp, grind =] theorem forIn'_map [Monad m] [LawfulMonad m]

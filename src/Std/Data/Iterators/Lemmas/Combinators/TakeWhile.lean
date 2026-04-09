@@ -116,6 +116,7 @@ theorem Iter.atIdxSlow?_takeWhile {α β}
 /-
 PLOG(getElem?_takeWhile):
 implicitized `List.get?Internal`
+underlying problem: `List.getElem?_nil` is `rfl`.
 -/
 
 private theorem List.getElem?_takeWhile {l : List α} {P : α → Bool} {k} :

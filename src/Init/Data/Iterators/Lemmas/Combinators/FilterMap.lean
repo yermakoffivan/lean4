@@ -272,10 +272,7 @@ theorem Iter.step_map {f : β → γ} :
   apply Subtype.ext
   simp only [map_eq_toIter_map_toIterM, step, toIterM_toIter, IterM.step_map, Id.run_bind]
   generalize it.toIterM.step.run = step
-  cases step.inflate using PlausibleIterStep.casesOn
-  · simp
-  · simp
-  · simp
+  cases step.inflate using PlausibleIterStep.casesOn <;> simp
 
 def Iter.step_filter {f : β → Bool} :
     (it.filter f).step = match it.step with

@@ -699,6 +699,9 @@ theorem toList_zip {as : Vector α n} {bs : Vector β n} :
 /-
 PLOG(finIdxOf?_toList):
 made `Vector.toList` `implicit_reducible`.
+
+Underlying problem: `Array.finIdxOf?` has return type `Fin l.length`. Therefore, `simp` can't
+rewrite `l` and it's impossible to write a `congr` lemma for it.
 -/
 
 @[simp] theorem finIdxOf?_toList [BEq α] {a : α} {xs : Vector α n} :

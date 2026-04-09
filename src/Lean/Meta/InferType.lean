@@ -140,7 +140,7 @@ def getLevel (type : Expr) : MetaM Level := do
   let typeType ← inferType type
   let typeType ← whnfD typeType
   match typeType with
-  | Expr.sort lvl     => return lvl
+  | Expr.sort lvl     => return (← instantiateLevelMVars lvl).normalize
   | Expr.mvar mvarId  =>
     if (← mvarId.isReadOnlyOrSyntheticOpaque) then
       throwTypeExpected type

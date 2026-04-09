@@ -48,7 +48,16 @@ example : #[1, 2, 3, 4, 5][1...*][*...=2].toList = [2, 3, 4] := by simp
 example : #[1, 2, 3, 4, 5][1...*][*...*].toList = [2, 3, 4, 5] := by simp
 example : #[1, 2, 3][0...2][*...*].toList = [1, 2] := by simp
 
-set_option backward.isDefEq.respectTransparency.types false -- FIXME
+/-
+PLOG():
+fixed the first two by implicitizing `List.dropLast`. `-implicitDefEqProofs` would also have helped.
+
+MWE of the congr failure (only with semireducible `List.dropLast`):
+```lean
+example : #[1, 2, 3].pop.extract 1 2 = #[1, 2].extract 1 2 := by
+  simp -implicitDefEqProofs only [List.pop_toArray, List.dropLast_cons_cons, List.dropLast_singleton]
+```
+-/
 
 example : #[1, 2, 3][0...2][1...2].toArray = #[2] := by simp
 example : #[1, 2, 3][0...2][1...5].toArray = #[2] := by simp

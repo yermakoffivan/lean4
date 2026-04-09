@@ -154,12 +154,16 @@ theorem idRun_forIn'_yield_eq_foldl
       xs.attach.foldl (fun b ⟨a, h⟩ => f a h b |>.run) init := by
   simp
 
-set_option backward.isDefEq.respectTransparency.types false in
+/-
+PLOG(foIn'_map):
+made `Vector.map` `implicit_reducible`.
+-/
+
 @[simp, grind =] theorem forIn'_map [Monad m] [LawfulMonad m]
     {xs : Vector α n} (g : α → β) (f : (b : β) → b ∈ xs.map g → γ → m (ForInStep γ)) :
     forIn' (xs.map g) init f = forIn' xs init fun a h y => f (g a) (mem_map_of_mem h) y := by
   rcases xs with ⟨xs, rfl⟩
-  simp
+  simp [map_mk, forIn'_mk, Array.forIn'_map]
 
 /--
 We can express a for loop over a vector as a fold,

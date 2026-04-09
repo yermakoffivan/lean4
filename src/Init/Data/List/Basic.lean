@@ -768,6 +768,7 @@ Examples:
 * `["grape"].isEmpty = false`
 * `["apple", "banana"].isEmpty = false`
 -/
+@[implicit_reducible]
 def isEmpty : List α → Bool
   | []     => true
   | _ :: _ => false
@@ -1047,6 +1048,7 @@ Examples:
 * `["tea"].dropLast = []`
 * `["tea", "coffee", "juice"].dropLast = ["tea", "coffee"]`
 -/
+@[implicit_reducible]
 def dropLast {α} : List α → List α
   | []    => []
   | [_]   => []

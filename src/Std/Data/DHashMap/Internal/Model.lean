@@ -45,6 +45,7 @@ open Std.Internal
 /-! # Setting up the infrastructure -/
 
 /-- Internal implementation detail of the hash map -/
+@[implicit_reducible]
 def bucket [Hashable α] (self : Array (AssocList α β)) (h : 0 < self.size) (k : α) :
     AssocList α β :=
   let ⟨i, h⟩ := mkIdx self.size h (hash k)
@@ -289,6 +290,7 @@ def getKey?ₘ [BEq α] [Hashable α] (m : Raw₀ α β) (a : α) : Option α :=
   (bucket m.1.buckets m.2 a).getKey? a
 
 /-- Internal implementation detail of the hash map -/
+@[implicit_reducible]
 def containsₘ [BEq α] [Hashable α] (m : Raw₀ α β) (a : α) : Bool :=
   (bucket m.1.buckets m.2 a).contains a
 
@@ -560,7 +562,13 @@ namespace Const
 
 variable {β : Type v}
 
-set_option backward.isDefEq.respectTransparency.types false in
+/-
+PLOG(alter_eq_alterₘ):
+implicitized `bucket` and `containsₘ`.
+However, note: The proof becomes much simpler if we use `simp -implicitDefEqProofs [containsₘ.eq_1]`
+before the split; in fact, we could just use `rfl` instead of `split` to close the goal.
+-/
+
 theorem alter_eq_alterₘ [BEq α] [Hashable α] [EquivBEq α] (m : Raw₀ α (fun _ => β)) (a : α)
     (f : Option β → Option β) : Const.alter m a f = Const.alterₘ m a f := by
     dsimp only [alter, alterₘ, containsₘ, ← bucket_eq]
@@ -589,7 +597,11 @@ theorem modify_eq_modifyₘ [BEq α] [Hashable α] [EquivBEq α] (m : Raw₀ α 
 
 end Const
 
-set_option backward.isDefEq.respectTransparency.types false in
+/-
+PLOG(containsThenInsert_eq_insertₘ):
+implicitized `Array.uget` and `Array.uset`
+-/
+
 theorem containsThenInsert_eq_insertₘ [BEq α] [Hashable α] (m : Raw₀ α β) (a : α) (b : β a) :
     (m.containsThenInsert a b).2 = m.insertₘ a b := by
   rw [containsThenInsert, insertₘ, containsₘ, bucket]
@@ -606,7 +618,6 @@ theorem containsThenInsert_eq_containsₘ [BEq α] [Hashable α] (m : Raw₀ α 
   dsimp only [Array.ugetElem_eq_getElem, Array.uset]
   split <;> simp_all
 
-set_option backward.isDefEq.respectTransparency.types false in
 theorem containsThenInsertIfNew_eq_insertIfNewₘ [BEq α] [Hashable α] (m : Raw₀ α β) (a : α)
     (b : β a) : (m.containsThenInsertIfNew a b).2 = m.insertIfNewₘ a b := by
   rw [containsThenInsertIfNew, insertIfNewₘ, containsₘ, bucket]
@@ -636,7 +647,6 @@ theorem getThenInsertIfNew?_eq_get?ₘ [BEq α] [Hashable α] [LawfulBEq α] (m 
   dsimp only [Array.ugetElem_eq_getElem, Array.uset]
   split <;> simp_all
 
-set_option backward.isDefEq.respectTransparency.types false in
 theorem erase_eq_eraseₘ [BEq α] [Hashable α] (m : Raw₀ α β) (a : α) :
     m.erase a = m.eraseₘ a := by
   rw [erase, eraseₘ, containsₘ, bucket]

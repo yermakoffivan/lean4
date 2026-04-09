@@ -139,7 +139,7 @@ section Int
 /--
 Interprets the bitvector as an integer stored in two's complement form.
 -/
-@[expose]
+@[expose, implicit_reducible]
 protected def toInt (x : BitVec n) : Int :=
   if 2 * x.toNat < 2^n then
     x.toNat
@@ -228,7 +228,7 @@ Usually accessed via the `-` prefix operator.
 
 SMT-LIB name: `bvneg`.
 -/
-@[expose]
+@[expose, implicit_reducible]
 protected def neg (x : BitVec n) : BitVec n := .ofNat n (2^n - x.toNat)
 instance : Neg (BitVec n) := ⟨.neg⟩
 

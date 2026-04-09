@@ -81,12 +81,12 @@ Recall that `CommSemiring` types are normalized using the `OfSemiring.Q` envelop
 -/
 structure CommSemiring extends Semiring where
   /-- Id of the envelope ring `OfSemiring.Q type` -/
-  ringId             : Nat
+  ringId              : Nat
   /-- `CommSemiring` instance for `type` -/
-  commSemiringInst   : Expr
+  commSemiringInst    : Expr
   /-- `AddRightCancel` instance for `type` if available. -/
-  addRightCancelInst? : Option (Option Expr) := none
-  toQFn?             : Option Expr := none
+  addRightCancelInst? : Option Expr := none
+  toQFn?              : Option Expr := none
   deriving Inhabited
 
 /-- Result of classifying a type's algebraic structure. -/

@@ -2,8 +2,8 @@ axiom testSorry : α
 
 opaque a : Nat
 opaque b : Nat
-def c := a
-@[irreducible] def d := a
+@[implicit_reducible] def c := a
+@[implicit_reducible] def d := a
 opaque P : Nat → Prop
 
 @[irreducible] def ac := a = c
@@ -65,22 +65,22 @@ theorem Tricky.a_eq_b : a = b := rfl -- to confuse the heuristics
 #guard_msgs in example (h : P d) : P a := by dsimp [a_eq_d]; exact h
 
 -- Order of simp and rfl attribute
-def e1 := a
+@[implicit_reducible] def e1 := a
 @[simp] theorem e1_eq_a : e1 = a := rfl
 #guard_msgs in example (h : P a) : P e1 := by dsimp; exact h
 
-def e2 := a
+@[implicit_reducible] def e2 := a
 @[defeq,simp] theorem e2_eq_a : e2 = a := (rfl)
 #guard_msgs in example (h : P a) : P e2 := by dsimp; exact h
 
-def e3 := a
+@[implicit_reducible] def e3 := a
 @[simp,defeq] theorem e3_eq_a : e2 = a := (rfl) -- defeq has to come before simp
 /-- error: `dsimp` made no progress -/
 #guard_msgs in example (h : P a) : P e3 := by dsimp; exact h
 
 -- Tests the `defeq` attribute on a realized constant: That they are set, and that they
 -- are transported out
-def f := a
+@[implicit_reducible] def f := a
 #guard_msgs in example (h : P a) : P f := by dsimp [f]; exact h
 #guard_msgs in example (h : P a) : P f := by dsimp [f.eq_1]; exact h
 #guard_msgs in example (h : P a) : P f := by dsimp [f.eq_def]; exact h

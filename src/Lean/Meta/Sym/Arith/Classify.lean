@@ -44,6 +44,20 @@ private def getNoZeroDivInst? (u : Level) (type : Expr) : SymM (Option Expr) := 
   let noZeroDivType := mkApp2 (mkConst ``Grind.NoNatZeroDivisors [u]) type natModuleInst
   Sym.synthInstance? noZeroDivType
 
+private def getPowIdentityInst? (u : Level) (type : Expr) : SymM (Option (Expr × Expr × Nat)) := do withNewMCtxDepth do
+  -- We use a fresh metavar for `CommSemiring` (unlike `getIsCharInst?` which pins the semiring)
+  -- because `PowIdentity` instances may be declared against a canonical `CommSemiring` instance
+  -- that is not definitionally equal to `CommRing.toCommSemiring`. The synthesized `csInst` is
+  -- stored and used in proof terms to ensure type-correctness.
+  let csInst ← mkFreshExprMVar (mkApp (mkConst ``Grind.CommSemiring [u]) type)
+  let p ← mkFreshExprMVar (mkConst ``Nat)
+  let powIdentityType := mkApp3 (mkConst ``Grind.PowIdentity [u]) type csInst p
+  let some inst ← synthInstance? powIdentityType | return none
+  let csInst ← instantiateMVars csInst
+  let p ← instantiateMVars p
+  let some pVal ← evalNat? p | return none
+  return some (inst, csInst, pVal)
+
 /-- Try to classify `type` as a `CommRing`. Returns the ring id on success. -/
 private def tryCommRing? (type : Expr) : SymM (Option Nat) := do
   let u ← getDecLevel type
@@ -55,11 +69,12 @@ private def tryCommRing? (type : Expr) : SymM (Option Nat) := do
   let charInst? ← getIsCharInst? u type semiringInst
   let noZeroDivInst? ← getNoZeroDivInst? u type
   let fieldInst? ← Sym.synthInstance? <| mkApp (mkConst ``Grind.Field [u]) type
+  let powIdentityInst? ← getPowIdentityInst? u type
   let semiringId? := none
   let id := (← getArithState).rings.size
   let ring : CommRing := {
     id, semiringId?, type, u, semiringInst, ringInst, commSemiringInst,
-    commRingInst, charInst?, noZeroDivInst?, fieldInst?,
+    commRingInst, charInst?, noZeroDivInst?, fieldInst?, powIdentityInst?
   }
   modifyArithState fun s => { s with rings := s.rings.push ring }
   return some id

@@ -86,7 +86,7 @@ def decLevel? (u : Level) : MetaM (Option Level) := do
       trace[Meta.isLevelDefEq.step] "decAux?, {mkLevelMVar mvarId} := {mkLevelSucc v}"
       assignLevelMVar mvarId (mkLevelSucc v)
       match (← decAux? u) with
-      | .succ u' => return u'.normalize
+      | .succ u' => return u'
       | _        => unreachable!
 
 /--

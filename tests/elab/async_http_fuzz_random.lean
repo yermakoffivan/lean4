@@ -2,7 +2,7 @@ import Std.Internal.Http
 import Std.Internal.Async
 
 open Std.Internal.IO Async
-open Std Http
+open Std Http Test
 
 /-!
 # Random-byte fuzzing for the HTTP/1.1 parser.
@@ -13,14 +13,6 @@ producing a malformed response. The server must either:
 - Send no bytes (connection closed before a complete request arrives), or
 - Send a response that starts with "HTTP/1.1 ".
 -/
-
-abbrev TestHandler := Request Body.Stream → ContextAsync (Response Body.Any)
-
-instance : Std.Http.Server.Handler TestHandler where
-  onRequest handler request := handler request
-
-def defaultConfig : Config :=
-  { lingeringTimeout := 1000, generateDate := false }
 
 def closeChannelIdempotent {α : Type} (ch : Std.CloseableChannel α) : IO Unit := do
   match ← EIO.toBaseIO ch.close with
@@ -68,8 +60,6 @@ def randomFullBytes (seed : Nat) (len : Nat) : ByteArray × Nat := Id.run do
     let (r, s') := randBelow s 256; s := s'
     out := out.push (UInt8.ofNat r)
   (out, s)
-
-def okHandler : TestHandler := fun _ => Response.ok |>.text "ok"
 
 -- Server-generated responses are always valid ASCII. Verify the response is
 -- either empty or starts with the HTTP/1.1 status-line prefix.

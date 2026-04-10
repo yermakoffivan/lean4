@@ -16,6 +16,8 @@ public section
 open Std.Internal.IO Async
 open Std Http
 
+namespace Std.Http.Test
+
 abbrev TestHandler := Request Body.Stream → ContextAsync (Response Body.Any)
 
 instance : Std.Http.Server.Handler TestHandler where
@@ -237,3 +239,5 @@ def chunk (data : String) : String :=
 The terminal zero-chunk that ends a chunked body.
 -/
 def chunkEnd : String := "0\x0d\n\x0d\n"
+
+end Std.Http.Test

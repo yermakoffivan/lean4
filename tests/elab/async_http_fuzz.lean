@@ -3,16 +3,8 @@ import Std.Internal.Async
 import Std.Internal.Async.Timer
 
 open Std.Internal.IO Async
-open Std Http
+open Std Http Test
 
-abbrev TestHandler := Request Body.Stream → ContextAsync (Response Body.Any)
-
-instance : Std.Http.Server.Handler TestHandler where
-  onRequest handler request := handler request
-
-
-def defaultConfig : Config :=
-  { lingeringTimeout := 1000, generateDate := false }
 
 
 def bad400 : String :=
@@ -108,10 +100,6 @@ def assertStatusPrefix (name : String) (response : ByteArray) (prefix_ : String)
     throw <| IO.userError s!"Test '{name}' failed:\nExpected status prefix {prefix_.quote}\nGot:\n{text.quote}"
 
 
-def assertExact (name : String) (response : ByteArray) (expected : String) : IO Unit := do
-  let text := responseText response
-  if text != expected then
-    throw <| IO.userError s!"Test '{name}' failed:\nExpected:\n{expected.quote}\nGot:\n{text.quote}"
 
 
 def countOccurrences (s : String) (needle : String) : Nat :=
@@ -417,7 +405,7 @@ def fuzzMixedTransferEncodingAndContentLengthRejected (iterations : Nat) (seed0 
 
     let (client, server) ← Mock.new
     let response ← sendRaw client server raw echoBodyHandler
-    assertExact s!"fuzzMixedTransferEncodingAndContentLengthRejected case={i} seed={caseSeed} declaredCl={declaredCl}" response bad400
+    assertExact response bad400
 
 
 def fuzzInvalidChunkSizeRejected (iterations : Nat) (seed0 : Nat) : IO Unit := do
@@ -437,7 +425,7 @@ def fuzzInvalidChunkSizeRejected (iterations : Nat) (seed0 : Nat) : IO Unit := d
     let (client, server) ← Mock.new
     let response ← sendRaw client server raw echoBodyHandler
 
-    assertExact s!"fuzzInvalidChunkSizeRejected case={i} seed={caseSeed} token={token}" response bad400
+    assertExact response bad400
 
 
 def fuzzDuplicateContentLengthRejected (iterations : Nat) (seed0 : Nat) : IO Unit := do
@@ -465,7 +453,7 @@ def fuzzDuplicateContentLengthRejected (iterations : Nat) (seed0 : Nat) : IO Uni
     let (client, server) ← Mock.new
     let response ← sendRaw client server raw echoBodyHandler
 
-    assertExact s!"fuzzDuplicateContentLengthRejected case={i} seed={caseSeed} cl1={cl1} cl2={cl2}" response bad400
+    assertExact response bad400
 
 
 def fuzzChunkExtensionLimits (iterations : Nat) (seed0 : Nat) : IO Unit := do
@@ -507,7 +495,7 @@ def fuzzChunkExtensionLimits (iterations : Nat) (seed0 : Nat) : IO Unit := do
     if expectOk then
       assertStatusPrefix s!"fuzzChunkExtensionLimits case={i} seed={caseSeed} nameLen={nameLen} valueLen={valueLen}" response "HTTP/1.1 200"
     else
-      assertExact s!"fuzzChunkExtensionLimits case={i} seed={caseSeed} nameLen={nameLen} valueLen={valueLen}" response bad400
+      assertExact response bad400
 
 
 def fuzzChunkExtensionCountLimit (iterations : Nat) (seed0 : Nat) : IO Unit := do
@@ -537,7 +525,7 @@ def fuzzChunkExtensionCountLimit (iterations : Nat) (seed0 : Nat) : IO Unit := d
     if extCount ≤ 2 then
       assertStatusPrefix s!"fuzzChunkExtensionCountLimit case={i} seed={caseSeed} extCount={extCount}" response "HTTP/1.1 200"
     else
-      assertExact s!"fuzzChunkExtensionCountLimit case={i} seed={caseSeed} extCount={extCount}" response bad400
+      assertExact response bad400
 
 
 def fuzzTrailerHeaderCountLimit (iterations : Nat) (seed0 : Nat) : IO Unit := do
@@ -567,7 +555,7 @@ def fuzzTrailerHeaderCountLimit (iterations : Nat) (seed0 : Nat) : IO Unit := do
     if trailerCount ≤ 2 then
       assertStatusPrefix s!"fuzzTrailerHeaderCountLimit case={i} seed={caseSeed} trailerCount={trailerCount}" response "HTTP/1.1 200"
     else
-      assertExact s!"fuzzTrailerHeaderCountLimit case={i} seed={caseSeed} trailerCount={trailerCount}" response bad400
+      assertExact response bad400
 
 def fuzzCompleteFirstBodyAllowsPipeline (iterations : Nat) (seed0 : Nat) : IO Unit := do
   let mut seed := seed0

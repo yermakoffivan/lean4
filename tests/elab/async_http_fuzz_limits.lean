@@ -2,7 +2,7 @@ import Std.Internal.Http
 import Std.Internal.Async
 
 open Std.Internal.IO Async
-open Std Http
+open Std Http Test
 
 /-!
 # Limit-enforcement fuzzing for the HTTP/1.1 server.
@@ -11,11 +11,6 @@ Tests that every configurable limit in `H1.Config` and `Server.Config` is
 correctly enforced under randomized inputs. Inspired by hyper's fuzzing of
 size and count limits.
 -/
-
-abbrev TestHandler := Request Body.Stream → ContextAsync (Response Body.Any)
-
-instance : Std.Http.Server.Handler TestHandler where
-  onRequest handler request := handler request
 
 def closeChannelIdempotent {α : Type} (ch : Std.CloseableChannel α) : IO Unit := do
   match ← EIO.toBaseIO ch.close with
@@ -96,11 +91,6 @@ def assertStatusPrefix (name : String) (response : ByteArray) (pfx : String) : I
   unless text.startsWith pfx do
     throw <| IO.userError s!"Test '{name}' failed:\nExpected {pfx.quote}\nGot:\n{text.quote}"
 
-def assertExact (name : String) (response : ByteArray) (expected : String) : IO Unit := do
-  let text := String.fromUTF8! response
-  if text != expected then
-    throw <| IO.userError s!"Test '{name}' failed:\nExpected:\n{expected.quote}\nGot:\n{text.quote}"
-
 def countOccurrences (s needle : String) : Nat :=
   if needle.isEmpty then 0 else (s.splitOn needle).length - 1
 
@@ -110,8 +100,6 @@ def bad400 : String :=
 def echoBodyHandler : TestHandler := fun req => do
   let body : String ← req.body.readAll
   Response.ok |>.text body
-
-def okHandler : TestHandler := fun _ => Response.ok |>.text "ok"
 
 -- ============================================================================
 -- maxBodySize — Content-Length framing

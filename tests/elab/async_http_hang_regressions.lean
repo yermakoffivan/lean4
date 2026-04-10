@@ -3,15 +3,7 @@ import Std.Internal.Async
 import Std.Internal.Async.Timer
 
 open Std.Internal.IO Async
-open Std Http
-
-abbrev TestHandler := Request Body.Stream → ContextAsync (Response Body.Any)
-
-instance : Std.Http.Server.Handler TestHandler where
-  onRequest handler request := handler request
-
-def defaultConfig : Config :=
-  { lingeringTimeout := 500, generateDate := false }
+open Std Http Test
 
 def runWithTimeout {α : Type} (name : String) (timeoutMs : Nat := 2000) (action : IO α) : IO α := do
   let task ← IO.asTask action
@@ -34,7 +26,7 @@ def runWithTimeout {α : Type} (name : String) (timeoutMs : Nat := 2000) (action
   loop ticks
 
 def sendRaw (client : Mock.Client) (server : Mock.Server) (raw : ByteArray)
-    (handler : TestHandler) (config : Config := defaultConfig) : IO ByteArray := Async.block do
+    (handler : TestHandler) (config : Config := { lingeringTimeout := 500, generateDate := false }) : IO ByteArray := Async.block do
   client.send raw
   Std.Http.Server.serveConnection server handler config
     |>.run
@@ -42,13 +34,13 @@ def sendRaw (client : Mock.Client) (server : Mock.Server) (raw : ByteArray)
   pure <| res.getD .empty
 
 def sendRawTimed (name : String) (raw : ByteArray)
-    (handler : TestHandler) (config : Config := defaultConfig) : IO ByteArray :=
+    (handler : TestHandler) (config : Config := { lingeringTimeout := 500, generateDate := false }) : IO ByteArray :=
   runWithTimeout name 2000 do
     let (client, server) ← Mock.new
     sendRaw client server raw handler config
 
 def runClosedClientTimed (name : String) (raw : ByteArray)
-    (handler : TestHandler) (config : Config := defaultConfig) : IO Unit :=
+    (handler : TestHandler) (config : Config := { lingeringTimeout := 500, generateDate := false }) : IO Unit :=
   runWithTimeout name 2000 do
     Async.block do
       let (client, server) ← Mock.new
@@ -64,11 +56,6 @@ def assertStatusPrefix (name : String) (response : ByteArray) (prefix_ : String)
   let text := String.fromUTF8! response
   unless text.startsWith prefix_ do
     throw <| IO.userError s!"Test '{name}' failed:\nExpected prefix: {prefix_.quote}\nGot:\n{text.quote}"
-
-def assertContains (name : String) (response : ByteArray) (needle : String) : IO Unit := do
-  let text := String.fromUTF8! response
-  unless text.contains needle do
-    throw <| IO.userError s!"Test '{name}' failed:\nMissing: {needle.quote}\nGot:\n{text.quote}"
 
 def assertNotContains (name : String) (response : ByteArray) (needle : String) : IO Unit := do
   let text := String.fromUTF8! response
@@ -93,8 +80,6 @@ def onesChunked (n : Nat) : String := Id.run do
   body ++ "0\x0d\n\x0d\n"
 
 def ignoreHandler : TestHandler := fun _ => Response.ok |>.text "ok"
-
-def uriHandler : TestHandler := fun req => Response.ok |>.text (toString req.line.uri)
 
 def echoBodyHandler : TestHandler := fun req => do
   let mut body := ByteArray.empty
@@ -151,22 +136,22 @@ def stressResponseHandler (n : Nat) : TestHandler := fun _ => do
 #eval runWithTimeout "04_echo_full_body" 2000 do
   let raw := "POST /echo HTTP/1.1\x0d\nHost: example.com\x0d\nContent-Length: 11\x0d\nConnection: close\x0d\n\x0d\nhello world".toUTF8
   let response ← sendRawTimed "04_echo_full_body/send" raw echoBodyHandler
-  assertContains "04_echo_full_body" response "hello world"
+  assertContains response "hello world"
 
 -- 05: Read only first chunk and reply (should not deadlock connection).
 #eval runWithTimeout "05_read_first_chunk_only" 2000 do
   let raw := "POST /first HTTP/1.1\x0d\nHost: example.com\x0d\nContent-Length: 11\x0d\nConnection: close\x0d\n\x0d\nhello world".toUTF8
   let response ← sendRawTimed "05_read_first_chunk_only/send" raw firstChunkHandler
   assertStatusPrefix "05_read_first_chunk_only" response "HTTP/1.1 200"
-  assertContains "05_read_first_chunk_only" response "hello world"
+  assertContains response "hello world"
 
 -- 06: Stream many response chunks.
 #eval runWithTimeout "06_stream_many_response_chunks" 2000 do
   let raw := "GET /stream HTTP/1.1\x0d\nHost: example.com\x0d\nConnection: close\x0d\n\x0d\n".toUTF8
   let response ← sendRawTimed "06_stream_many_response_chunks/send" raw (streamPiecesHandler 40)
   assertStatusPrefix "06_stream_many_response_chunks" response "HTTP/1.1 200"
-  assertContains "06_stream_many_response_chunks" response "piece-0;"
-  assertContains "06_stream_many_response_chunks" response "piece-39;"
+  assertContains response "piece-0;"
+  assertContains response "piece-39;"
 
 -- 07: Stream response with known fixed size.
 #eval runWithTimeout "07_stream_known_size" 2000 do
@@ -181,8 +166,8 @@ def stressResponseHandler (n : Nat) : TestHandler := fun _ => do
     return Response.ok
       |>.body outgoing)
   assertStatusPrefix "07_stream_known_size" response "HTTP/1.1 200"
-  assertContains "07_stream_known_size" response "Content-Length: 8"
-  assertContains "07_stream_known_size" response "abcdefgh"
+  assertContains response "Content-Length: 8"
+  assertContains response "abcdefgh"
 
 -- 08: Use interestSelector before sending response data.
 #eval runWithTimeout "08_interest_selector_gating" 2000 do
@@ -199,7 +184,7 @@ def stressResponseHandler (n : Nat) : TestHandler := fun _ => do
     return Response.ok
       |>.body outgoing)
   assertStatusPrefix "08_interest_selector_gating" response "HTTP/1.1 200"
-  assertContains "08_interest_selector_gating" response "interest-ok"
+  assertContains response "interest-ok"
 
 -- 09: Incomplete sends collapse into one payload.
 #eval runWithTimeout "09_incomplete_send_collapse" 2000 do
@@ -214,7 +199,7 @@ def stressResponseHandler (n : Nat) : TestHandler := fun _ => do
     return Response.ok
       |>.body outgoing)
   assertStatusPrefix "09_incomplete_send_collapse" response "HTTP/1.1 200"
-  assertContains "09_incomplete_send_collapse" response "hello world"
+  assertContains response "hello world"
 
 -- 10: Pipeline fixed-body POST then GET.
 #eval runWithTimeout "10_pipeline_fixed_then_get" 2000 do
@@ -222,8 +207,8 @@ def stressResponseHandler (n : Nat) : TestHandler := fun _ => do
               "GET /two HTTP/1.1\x0d\nHost: example.com\x0d\nConnection: close\x0d\n\x0d\n").toUTF8
   let response ← sendRawTimed "10_pipeline_fixed_then_get/send" raw uriHandler
   assertStatusCount "10_pipeline_fixed_then_get" response 2
-  assertContains "10_pipeline_fixed_then_get" response "/one"
-  assertContains "10_pipeline_fixed_then_get" response "/two"
+  assertContains response "/one"
+  assertContains response "/two"
 
 -- 11: Pipeline chunked-body POST then GET.
 #eval runWithTimeout "11_pipeline_chunked_then_get" 2000 do
@@ -231,8 +216,8 @@ def stressResponseHandler (n : Nat) : TestHandler := fun _ => do
               "GET /two HTTP/1.1\x0d\nHost: example.com\x0d\nConnection: close\x0d\n\x0d\n").toUTF8
   let response ← sendRawTimed "11_pipeline_chunked_then_get/send" raw uriHandler
   assertStatusCount "11_pipeline_chunked_then_get" response 2
-  assertContains "11_pipeline_chunked_then_get" response "/chunk"
-  assertContains "11_pipeline_chunked_then_get" response "/two"
+  assertContains response "/chunk"
+  assertContains response "/two"
 
 -- 12: Malformed first request should not loop into second.
 #eval runWithTimeout "12_malformed_closes_connection" 2000 do
@@ -284,8 +269,8 @@ def stressResponseHandler (n : Nat) : TestHandler := fun _ => do
   let raw := "GET /stress HTTP/1.1\x0d\nHost: example.com\x0d\nConnection: close\x0d\n\x0d\n".toUTF8
   let response ← sendRawTimed "18_stress_streaming_active_client/send" raw (stressResponseHandler 120)
   assertStatusPrefix "18_stress_streaming_active_client" response "HTTP/1.1 200"
-  assertContains "18_stress_streaming_active_client" response "x0,"
-  assertContains "18_stress_streaming_active_client" response "x119,"
+  assertContains response "x0,"
+  assertContains response "x119,"
 
 -- 19: Pipeline with large unread first body still processes second request.
 #eval runWithTimeout "19_pipeline_large_unread_then_get" 2000 do
@@ -294,8 +279,8 @@ def stressResponseHandler (n : Nat) : TestHandler := fun _ => do
               "GET /after HTTP/1.1\x0d\nHost: example.com\x0d\nConnection: close\x0d\n\x0d\n").toUTF8
   let response ← sendRawTimed "19_pipeline_large_unread_then_get/send" raw uriHandler
   assertStatusCount "19_pipeline_large_unread_then_get" response 2
-  assertContains "19_pipeline_large_unread_then_get" response "/big"
-  assertContains "19_pipeline_large_unread_then_get" response "/after"
+  assertContains response "/big"
+  assertContains response "/after"
 
 -- 20: Triple pipeline mixed body styles.
 #eval runWithTimeout "20_triple_pipeline_mixed" 2000 do
@@ -304,9 +289,9 @@ def stressResponseHandler (n : Nat) : TestHandler := fun _ => do
               "GET /c HTTP/1.1\x0d\nHost: example.com\x0d\nConnection: close\x0d\n\x0d\n").toUTF8
   let response ← sendRawTimed "20_triple_pipeline_mixed/send" raw uriHandler
   assertStatusCount "20_triple_pipeline_mixed" response 3
-  assertContains "20_triple_pipeline_mixed" response "/a"
-  assertContains "20_triple_pipeline_mixed" response "/b"
-  assertContains "20_triple_pipeline_mixed" response "/c"
+  assertContains response "/a"
+  assertContains response "/b"
+  assertContains response "/c"
 
 -- 21: Slow/incomplete active body transfer must time out (no connection pinning).
 #eval runWithTimeout "21_incomplete_slow_post_times_out" 2000 do
@@ -354,13 +339,13 @@ def stressResponseHandler (n : Nat) : TestHandler := fun _ => do
     if earlyBytes.isEmpty then
       throw <| IO.userError "Test '22_keepalive_unknown_size_flushes_early' failed:\nExpected early streamed bytes before producer EOF"
 
-    assertContains "22_keepalive_unknown_size_flushes_early header" earlyBytes "Transfer-Encoding: chunked"
-    assertContains "22_keepalive_unknown_size_flushes_early first chunk" earlyBytes "aaa"
+    assertContains earlyBytes "Transfer-Encoding: chunked"
+    assertContains earlyBytes "aaa"
     assertNotContains "22_keepalive_unknown_size_flushes_early no second chunk yet" earlyBytes "bbb"
 
     let sleep ← Sleep.mk 420
     sleep.wait
     let later := (← client.tryRecv?).getD ByteArray.empty
-    assertContains "22_keepalive_unknown_size_flushes_early second chunk later" later "bbb"
+    assertContains later "bbb"
 
     client.close

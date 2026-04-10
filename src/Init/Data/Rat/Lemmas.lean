@@ -186,11 +186,11 @@ abbrev divInt_self := @num_divInt_den
 theorem neg_divInt_neg (num den) : -num /. -den = num /. den := by
   match den with
   | Nat.succ n =>
-    simp only [divInt, Int.neg_ofNat_succ]
+    simp only [divInt]
     simp [normalize_eq_mkRat, Int.neg_neg]
   | 0 => rfl
   | Int.negSucc n =>
-    simp only [divInt, Int.neg_negSucc]
+    simp only [divInt]
     simp [normalize_eq_mkRat]
 
 theorem divInt_neg' (num den) : num /. -den = -num /. den := by rw [← neg_divInt_neg, Int.neg_neg]

@@ -1385,7 +1385,7 @@ protected theorem eq_tdiv_of_mul_eq_left {a b c : Int}
   | 0, n => by simp [Int.neg_zero]
   | succ _, (n:Nat) => by simp [tdiv]
   | -[_+1], 0 | -[_+1], -[_+1] => by
-    simp only [tdiv, neg_negSucc, Int.neg_neg]
+    simp only [tdiv, Int.neg_neg]
   | succ _, -[_+1] | -[_+1], succ _ => (Int.neg_neg _).symm
 
 protected theorem neg_tdiv_neg (a b : Int) : (-a).tdiv (-b) = a.tdiv b := by

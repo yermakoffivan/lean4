@@ -673,9 +673,8 @@ theorem blt_eq_false_iff : blt x y = false ↔ ble y x = true := by
     rw [← Int.neg_sub]
     rcases k₁ - k₂ with (_ | _) | _
     · simp
-    · simp [← Int.negSucc_eq]
-    · simp only [Int.neg_negSucc, decide_eq_false_iff_not, Int.not_lt,
-        decide_eq_true_eq]
+    · simp
+    · simp only [decide_eq_false_iff_not, Int.not_lt, decide_eq_true_eq]
 
 theorem ble_iff_toRat : ble x y ↔ x.toRat ≤ y.toRat := by
   rw [← blt_eq_false_iff, Bool.eq_false_iff]

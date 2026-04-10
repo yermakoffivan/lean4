@@ -1048,7 +1048,6 @@ Examples:
 * `["tea"].dropLast = []`
 * `["tea", "coffee", "juice"].dropLast = ["tea", "coffee"]`
 -/
-@[implicit_reducible]
 def dropLast {α} : List α → List α
   | []    => []
   | [_]   => []

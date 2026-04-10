@@ -308,41 +308,27 @@ def isAlreadyNormalizedCheap : Level → Bool
   | _       => false
 
 /- Auxiliary function used at `normalize` -/
-private def mkIMaxAux : Level → Level → Level
-  | _,    zero   => zero
-  | zero, u      => u
-  | succ zero, u => u
-  | u₁,   u₂     => if u₁ == u₂ then u₁ else mkLevelIMax u₁ u₂
-
-/- Auxiliary function used at `normalize` -/
 @[specialize] private partial def getMaxArgsAux (normalize : Level → Level) : Level → Bool → Array Level → Array Level
   | max l₁ l₂, alreadyNormalized, lvls => getMaxArgsAux normalize l₂ alreadyNormalized (getMaxArgsAux normalize l₁ alreadyNormalized lvls)
-  | l,           false,             lvls => getMaxArgsAux normalize (normalize l) true lvls
-  | l,           true,              lvls => lvls.push l
-
-private def accMax (result : Level) (prev : Level) (offset : Nat) : Level :=
-  if result.isZero then prev.addOffset offset
-  else mkLevelMax result (prev.addOffset offset)
+  | l,         false,             lvls => getMaxArgsAux normalize (normalize l) true lvls
+  | l,         true,              lvls => lvls.push l
 
 /- Auxiliary function used at `normalize`.
    Remarks:
    - `lvls` are sorted using `normLt`
-   - `extraK` is the outer offset of the `max` term. We will push it inside.
-   - `i` is the current array index
-   - `prev + prevK` is the "previous" level that has not been added to `result` yet.
-   - `result` is the accumulator
+   - `start` is the starting index into `lvls`, to skip subsumed explicit levels
+   - `extraK` is the outer offset of the `max` term. We will distribute it inside.
  -/
-private partial def mkMaxAux (lvls : Array Level) (extraK : Nat) (i : Nat) (prev : Level) (prevK : Nat) (result : Level) : Level :=
-  if h : i < lvls.size then
-    let lvl   := lvls[i]
-    let curr  := lvl.getLevelOffset
-    let currK := lvl.getOffset
-    if curr == prev then
-      mkMaxAux lvls extraK (i+1) curr currK result
+private partial def mkMaxAux (lvls : Array Level) (start : Nat) (extraK : Nat) : Level :=
+  let last := lvls[lvls.size - 1]!
+  let curr := last.getLevelOffset
+  let result := last.addOffset extraK
+  Prod.snd <| lvls.foldr (start := lvls.size - 1) (stop := start) (init := (curr, result)) fun lvl (curr, result) =>
+    let u := lvl.getLevelOffset
+    if u == curr then
+      (curr, result)
     else
-      mkMaxAux lvls extraK (i+1) curr currK (accMax result prev (extraK + prevK))
-  else
-    accMax result prev (extraK + prevK)
+      (u, Level.max (lvl.addOffset extraK) result)
 
 /-
   Auxiliary function for `normalize`. It assumes `lvls` has been sorted using `normLt`.
@@ -376,29 +362,40 @@ private def isExplicitSubsumed (lvls : Array Level) (firstNonExplicit : Nat) : B
     let max := lvls[firstNonExplicit - 1]!.getOffset
     isExplicitSubsumedAux lvls max firstNonExplicit
 
+/- Auxiliary function for `normalize`. Adds an offset, distributing over `max` -/
+private def addOffset' : Level → Nat → Level
+  | max l₁ l₂, k => max (addOffset' l₁ k) (addOffset' l₂ k)
+  | l,         k => addOffset l k
+
 partial def normalize (l : Level) : Level :=
   if isAlreadyNormalizedCheap l then l
   else
     let k := l.getOffset
     let u := l.getLevelOffset
     match u with
-    | max l₁ l₂ =>
-      let lvls  := getMaxArgsAux normalize l₁ false #[]
-      let lvls  := getMaxArgsAux normalize l₂ false lvls
-      let lvls  := lvls.qsort normLt
-      let firstNonExplicit := skipExplicit lvls 0
-      let i := if isExplicitSubsumed lvls firstNonExplicit then firstNonExplicit else firstNonExplicit - 1
-      let lvl₁  := lvls[i]!
-      let prev  := lvl₁.getLevelOffset
-      let prevK := lvl₁.getOffset
-      mkMaxAux lvls k (i+1) prev prevK Level.zero
+    | max l₁ l₂ => normalizeMax l₁ l₂ k
     | imax l₁ l₂ =>
-      if l₂.isNeverZero then addOffset (normalize (mkLevelMax l₁ l₂)) k
+      if l₂.isAlwaysZero then
+        zero
+      else if l₁.isAlwaysZero || l₂.isNeverZero then
+        normalizeMax l₁ l₂ k
       else
         let l₁ := normalize l₁
         let l₂ := normalize l₂
-        addOffset (mkIMaxAux l₁ l₂) k
+        -- Invariant: neither `l₁` nor `l₂` is zero
+        if l₁ == l₂ || l₁ matches succ zero then
+          addOffset' l₂ k
+        else
+          addOffset (imax l₁ l₂) k
     | _ => unreachable!
+where
+  normalizeMax (l₁ l₂ : Level) (k : Nat) : Level :=
+    let lvls  := getMaxArgsAux normalize l₁ false #[]
+    let lvls  := getMaxArgsAux normalize l₂ false lvls
+    let lvls  := lvls.qsort normLt
+    let firstNonExplicit := skipExplicit lvls 0
+    let start := if isExplicitSubsumed lvls firstNonExplicit then firstNonExplicit else firstNonExplicit - 1
+    mkMaxAux lvls start k
 
 /--
 Return true if `u` and `v` denote the same level.

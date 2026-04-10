@@ -505,6 +505,11 @@ def canUnfoldAtMatcher (cfg : Config) (info : ConstantInfo) : CoreM Bool := do
       return true
     else if hasMatchPatternAttribute (← getEnv) info.name then
       return true
+    else if let some projInfo ← getProjectionFnInfo? info.name then
+      /- Allow unfolding class projections so that terms like `OfNat.ofNat`, `NatCast.natCast`,
+         `Pure.pure`, `UpwardEnumerable.succ?` etc. can be reduced to expose constructors
+         in match discriminants. -/
+      return projInfo.fromClass
     else
       return info.name == ``decEq
        || info.name == ``Nat.decEq
@@ -521,15 +526,14 @@ def canUnfoldAtMatcher (cfg : Config) (info : ConstantInfo) : CoreM Bool := do
        || info.name == ``HMod.hMod || info.name == ``Mod.mod
 
 private def whnfMatcher (e : Expr) : MetaM Expr := do
-  /- When reducing `match` expressions, if the reducibility setting is at `TransparencyMode.reducible`,
-     we increase it to `TransparencyMode.instances`. We use the `TransparencyMode.reducible` in many places (e.g., `simp`),
-     and this setting prevents us from reducing `match` expressions where the discriminants are terms such as `OfNat.ofNat α n inst`.
-     For example, `simp [Int.div]` will not unfold the application `Int.div 2 1` occurring in the target.
-
-     TODO: consider other solutions; investigate whether the solution above produces counterintuitive behavior.  -/
+  /- When reducing `match` expressions at `.reducible` or `.instances` transparency,
+     we use a custom `canUnfoldAtMatcher` predicate that additionally allows unfolding
+     class projections (e.g., `OfNat.ofNat`, `NatCast.natCast`) and a few other specific
+     definitions. This ensures match discriminants like `OfNat.ofNat α n inst` can be
+     reduced to expose constructors, without bumping the overall transparency level.  -/
   if (← getTransparency) matches .instances | .reducible then
     -- Also unfold some default-reducible constants; see `canUnfoldAtMatcher`
-    withTransparency .instances <| withCanUnfoldPred canUnfoldAtMatcher do
+    withCanUnfoldPred canUnfoldAtMatcher do
       whnf e
   else
     -- Do NOT use `canUnfoldAtMatcher` here as it does not affect all/default reducibility and inhibits caching (#2564).

@@ -6,7 +6,7 @@ Authors: Sofia Rodrigues
 module
 
 prelude
-public import Std.Internal.Http
+public import Std.Internal.Http.Server
 public import Std.Internal.Async
 public import Std.Internal.Async.Timer
 import Init.Data.String.Legacy

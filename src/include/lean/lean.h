@@ -352,7 +352,7 @@ static inline lean_object * lean_alloc_small_object(unsigned sz) {
     assert(sz <= LEAN_MAX_SMALL_OBJECT_SIZE);
     return (lean_object*)lean_alloc_small(sz, slot_idx);
 #else
-    lean_inc_heartbeat();
+    //lean_inc_heartbeat();
 #ifdef LEAN_MIMALLOC
     // HACK: emulate behavior of small allocator to avoid `leangz` breakage for now
     sz = lean_align(sz, LEAN_OBJECT_SIZE_DELTA);

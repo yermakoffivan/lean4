@@ -307,6 +307,39 @@ def isAlreadyNormalizedCheap : Level → Bool
   | succ u  => isAlreadyNormalizedCheap u
   | _       => false
 
+/--
+Returns true if the level is in normal form.
+
+Specification: `l.isNormalized ↔ l.normalize == l`
+-/
+partial def isNormalized (l : Level) : Bool :=
+  match l.getLevelOffset with
+  | zero              => true
+  | succ _            => unreachable!
+  | param _           => true
+  | mvar _            => true
+  | imax u v          =>
+    match u, v with
+    | zero,      _    => false
+    | succ zero, _    => false
+    | _,         zero => false
+    | _,         _    => !v.isNeverZero && u != v && u.isNormalized && v.isNormalized
+  | max (max _ _) _   => false
+  | max u v           =>
+    l.getOffset == 0 &&
+      (if let some k := u.toNat then
+         k > 0 && isMaxNormalized k .zero v
+       else
+         u.isNormalized && isMaxNormalized 0 u.getLevelOffset v)
+where
+  checkMaxArg (k : Nat) (last : Level) (v : Level) : Bool :=
+    let v' := v.getLevelOffset
+    !v'.isZero && !v'.isMax && (k > 0 → v.getOffset < k) && Level.normLt last v' && v.isNormalized
+  isMaxNormalized (k : Nat) (last v : Level) : Bool :=
+    match v with
+    | max l₁ l₂ => checkMaxArg k last l₁ && isMaxNormalized k l₁.getLevelOffset l₂
+    | v         => checkMaxArg k last v
+
 /- Auxiliary function used at `normalize` -/
 @[specialize] private partial def getMaxArgsAux (normalize : Level → Level) : Level → Bool → Array Level → Array Level
   | max l₁ l₂, alreadyNormalized, lvls => getMaxArgsAux normalize l₂ alreadyNormalized (getMaxArgsAux normalize l₁ alreadyNormalized lvls)
@@ -376,7 +409,7 @@ partial def normalize (l : Level) : Level :=
     | max l₁ l₂ => normalizeMax l₁ l₂ k
     | imax l₁ l₂ =>
       if l₂.isAlwaysZero then
-        zero
+        .ofNat k
       else if l₁.isAlwaysZero || l₂.isNeverZero then
         normalizeMax l₁ l₂ k
       else

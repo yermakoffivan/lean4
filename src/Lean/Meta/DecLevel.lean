@@ -54,9 +54,9 @@ private partial def decAux? : Level → ReaderT DecLevelContext MetaM (Option Le
     | Level.imax u v => processMax u v
     | _              => unreachable!
 
-def decLevel? (u : Level) : MetaM (Option Level) := do
+def decLevel? (u : Level) (canAssignMVars : Bool := true) : MetaM (Option Level) := do
   let mctx ← getMCtx
-  match (← decAux? u |>.run {}) with
+  match (← decAux? u |>.run { canAssignMVars }) with
   | some v => return some v
   | none   => do
     modify fun s => { s with mctx := mctx }

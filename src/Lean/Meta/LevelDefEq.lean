@@ -126,22 +126,21 @@ Skips calling `k` if `lhs.getLevelOffset == rhs.getLevelOffset`.
 Instantiates metavariables and normalizes.
 -/
 @[specialize] private partial def isLevelDefEqPreprocess (lhs rhs : Level) (k : Level → Level → MetaM Bool) (instantiated : Bool := false) (trace : Bool := false) : MetaM Bool := do
-  match lhs, rhs with
-  | Level.succ lhs', Level.succ rhs' => isLevelDefEqPreprocess lhs' rhs' k instantiated (trace := true)
-  | lhs, rhs =>
+  match lhs.dec, rhs.dec with
+  | some lhs', some rhs' => isLevelDefEqPreprocess lhs' rhs' k instantiated (trace := true)
+  | _, _ =>
     if lhs.getLevelOffset == rhs.getLevelOffset then
       return lhs.getOffset == rhs.getOffset
-    else if instantiated then
-      -- `isNeverZero` is a cheap check to see if it is worth trying `decLevel`.
-      if lhs.isNeverZero && rhs.isNeverZero then
-        if let some lhs' ← Meta.decLevel? lhs (canAssignMVars := false) then
-          if let some rhs' ← Meta.decLevel? rhs (canAssignMVars := false) then
-            return ← isLevelDefEqPreprocess lhs' rhs' k (instantiated := true) (trace := true)
-      if !lhs.isNormalized || !rhs.isNormalized then
-        let lhs' := lhs.normalize
-        let rhs' := rhs.normalize
-        assert! lhs != lhs' || rhs != rhs'
-        return ← isLevelDefEqPreprocess lhs' rhs' k (instantiated := true) (trace := true)
+    else if !instantiated then
+      let lhs' ← instantiateLevelMVars lhs
+      let rhs' ← instantiateLevelMVars rhs
+      isLevelDefEqPreprocess lhs' rhs' k (instantiated := true) (trace := trace)
+    else if !lhs.isNormalized || !rhs.isNormalized then
+      let lhs' := lhs.normalize
+      let rhs' := rhs.normalize
+      assert! lhs != lhs' || rhs != rhs'
+      return ← isLevelDefEqPreprocess lhs' rhs' k (instantiated := true) (trace := true)
+    else
       assert! lhs.normalize == lhs
       assert! rhs.normalize == rhs
       if trace then
@@ -149,10 +148,6 @@ Instantiates metavariables and normalizes.
           k lhs rhs
       else
         k lhs rhs
-    else
-      let lhs' ← instantiateLevelMVars lhs
-      let rhs' ← instantiateLevelMVars rhs
-      isLevelDefEqPreprocess lhs' rhs' k (instantiated := true) (trace := trace)
 
 set_option compiler.ignoreBorrowAnnotation true in
 mutual
@@ -207,15 +202,12 @@ mutual
     withTraceNodeBefore `Meta.isLevelDefEq (fun _ => return m!"{lhs} =?= {rhs}") do
       isLevelDefEqPreprocess lhs rhs fun lhs rhs => do
         if !(← hasAssignableLevelMVar lhs <||> hasAssignableLevelMVar rhs) then
-          if lhs == rhs then
-            return true
+          let cfg ← getConfig
+          if cfg.isDefEqStuckEx && (lhs.isMVar || rhs.isMVar) then do
+            trace[Meta.isLevelDefEq.stuck] "{lhs} =?= {rhs}"
+            Meta.throwIsDefEqStuck
           else
-            let cfg ← getConfig
-            if cfg.isDefEqStuckEx && (lhs.isMVar || rhs.isMVar) then do
-              trace[Meta.isLevelDefEq.stuck] "{lhs} =?= {rhs}"
-              Meta.throwIsDefEqStuck
-            else
-              return false
+            return false
         else
           let r ← solve lhs rhs
           if r != LBool.undef then

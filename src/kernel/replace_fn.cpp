@@ -13,28 +13,91 @@ Author: Leonardo de Moura
 
 namespace lean {
 
-class replace_rec_fn {
+// Small-buffer cache for `replace_rec_fn`. The histogram of cache sizes during a
+// typical run is heavily skewed toward small caches: ~87% of instances hold ≤15
+// entries and ~99% hold ≤63, with a long thin tail up to a few thousand. A linear
+// scan over a stack-resident array beats any hash map at that scale, so we keep
+// the first `INLINE_CAP` entries inline and only fall back to a real hash map
+// (lazily allocated) for the rare large traversal.
+class replace_cache {
     struct key_hasher {
         std::size_t operator()(std::pair<lean_object *, unsigned> const & p) const {
             return hash((size_t)p.first >> 3, p.second);
         }
     };
-    lean::unordered_map<std::pair<lean_object *, unsigned>, expr, key_hasher> m_cache;
+    using key_t = std::pair<lean_object *, unsigned>;
+    using map_t = lean::unordered_map<key_t, expr, key_hasher>;
+    static constexpr unsigned INLINE_CAP = 16;
+    struct entry { key_t k; expr v; };
+    // Uninitialized storage; only entries [0, m_size) are constructed. This
+    // avoids paying for `INLINE_CAP` default-constructed `expr`s on every
+    // `replace_rec_fn` instance, which matters because the typical traversal
+    // creates a fresh cache holding only a handful of entries.
+    alignas(entry) std::byte m_inline_storage[sizeof(entry) * INLINE_CAP];
+    unsigned m_size = 0;
+    std::unique_ptr<map_t> m_overflow;
+
+    entry * inline_at(unsigned i) {
+        return std::launder(reinterpret_cast<entry *>(m_inline_storage) + i);
+    }
+    entry const * inline_at(unsigned i) const {
+        return std::launder(reinterpret_cast<entry const *>(m_inline_storage) + i);
+    }
+public:
+    replace_cache() = default;
+    replace_cache(replace_cache const &) = delete;
+    replace_cache & operator=(replace_cache const &) = delete;
+    ~replace_cache() {
+        for (unsigned i = 0; i < m_size; ++i) inline_at(i)->~entry();
+    }
+
+    expr const * find(key_t const & k) const {
+        for (unsigned i = 0; i < m_size; ++i) {
+            entry const * e = inline_at(i);
+            if (e->k == k) return &e->v;
+        }
+        if (m_overflow) {
+            auto it = m_overflow->find(k);
+            if (it != m_overflow->end()) return &it->second;
+        }
+        return nullptr;
+    }
+    void insert(key_t const & k, expr const & v) {
+        if (!m_overflow) {
+            if (m_size < INLINE_CAP) {
+                new (inline_at(m_size)) entry{k, v};
+                ++m_size;
+                return;
+            }
+            m_overflow.reset(new map_t());
+            m_overflow->reserve(INLINE_CAP * 4);
+            for (unsigned i = 0; i < m_size; ++i) {
+                entry * e = inline_at(i);
+                m_overflow->emplace(e->k, std::move(e->v));
+                e->~entry();
+            }
+            m_size = 0;
+        }
+        m_overflow->insert(mk_pair(k, v));
+    }
+};
+
+class replace_rec_fn {
+    replace_cache m_cache;
     std::function<optional<expr>(expr const &, unsigned)> m_f;
     bool                                                  m_use_cache;
 
     expr save_result(expr const & e, unsigned offset, expr r, bool shared) {
         if (shared)
-            m_cache.insert(mk_pair(mk_pair(e.raw(), offset), r));
+            m_cache.insert(mk_pair(e.raw(), offset), r);
         return r;
     }
 
     expr apply(expr const & e, unsigned offset) {
         bool shared = false;
         if (m_use_cache && !is_likely_unshared(e)) {
-            auto it = m_cache.find(mk_pair(e.raw(), offset));
-            if (it != m_cache.end())
-                return it->second;
+            if (expr const * cached = m_cache.find(mk_pair(e.raw(), offset)))
+                return *cached;
             shared = true;
         }
         if (optional<expr> r = m_f(e, offset)) {

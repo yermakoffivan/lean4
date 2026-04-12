@@ -24,7 +24,11 @@ class replace_rec_fn {
     bool                                                  m_use_cache;
 
     expr save_result(expr const & e, unsigned offset, expr r, bool shared) {
-        if (shared)
+        // Skip caching identity results: a re-visit can recompute by calling
+        // `m_f` again, which for the dominant `instantiate*` callers is just a
+        // memoized loose-bvar-range check. The cache slot would otherwise be
+        // pure overhead, since the value equals the (already-shared) input.
+        if (shared && r.raw() != e.raw())
             m_cache.insert(mk_pair(mk_pair(e.raw(), offset), r));
         return r;
     }

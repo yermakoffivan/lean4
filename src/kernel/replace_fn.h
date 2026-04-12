@@ -23,4 +23,16 @@ expr replace(expr const & e, std::function<optional<expr>(expr const &, unsigned
 inline expr replace(expr const & e, std::function<optional<expr>(expr const &)> const & f, bool use_cache = true) {
     return replace(e, [&](expr const & e, unsigned) { return f(e); }, use_cache);
 }
+
+/**
+   \brief As `replace`, but with a pre-cache skip predicate. `skip(m, offset)`
+   is called before any cache lookup; if it returns true, `m` is returned
+   unchanged with no cache touch. Use this for cheap "this entire subtree is
+   unaffected" guards (e.g. a memoized loose-bvar-range check), since it both
+   skips the cache lookup and avoids polluting the cache with identity entries.
+*/
+expr replace(expr const & e,
+             std::function<bool(expr const &, unsigned)> const & skip,
+             std::function<optional<expr>(expr const &, unsigned)> const & f,
+             bool use_cache = true);
 }

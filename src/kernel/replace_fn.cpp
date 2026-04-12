@@ -20,20 +20,27 @@ class replace_rec_fn {
         }
     };
     lean::unordered_map<std::pair<lean_object *, unsigned>, expr, key_hasher> m_cache;
+    // Optional pre-cache skip predicate. When set, called *before* the cache
+    // lookup; if it returns true, the input is returned unchanged with no cache
+    // touch. This is the right tool for "this entire subtree is unaffected"
+    // bail-outs (e.g. `instantiate*`'s loose-bvar-range check), since it both
+    // avoids the cache lookup and avoids polluting the cache with identity
+    // entries — without the pitfall of the earlier `r == e` skip in
+    // `save_result`, which also dropped the *recursion-identity* case and blew
+    // up exponentially on workloads like `Init.WFExtrinsicFix`.
+    std::function<bool(expr const &, unsigned)> m_skip;
     std::function<optional<expr>(expr const &, unsigned)> m_f;
     bool                                                  m_use_cache;
 
     expr save_result(expr const & e, unsigned offset, expr r, bool shared) {
-        // Skip caching identity results: a re-visit can recompute by calling
-        // `m_f` again, which for the dominant `instantiate*` callers is just a
-        // memoized loose-bvar-range check. The cache slot would otherwise be
-        // pure overhead, since the value equals the (already-shared) input.
-        if (shared && r.raw() != e.raw())
+        if (shared)
             m_cache.insert(mk_pair(mk_pair(e.raw(), offset), r));
         return r;
     }
 
     expr apply(expr const & e, unsigned offset) {
+        if (m_skip && m_skip(e, offset))
+            return e;
         bool shared = false;
         if (m_use_cache && !is_likely_unshared(e)) {
             auto it = m_cache.find(mk_pair(e.raw(), offset));
@@ -80,12 +87,22 @@ class replace_rec_fn {
 public:
     template<typename F>
     replace_rec_fn(F const & f, bool use_cache):m_f(f), m_use_cache(use_cache) {}
+    template<typename Skip, typename F>
+    replace_rec_fn(Skip const & skip, F const & f, bool use_cache):
+        m_skip(skip), m_f(f), m_use_cache(use_cache) {}
 
     expr operator()(expr const & e) { return apply(e, 0); }
 };
 
 expr replace(expr const & e, std::function<optional<expr>(expr const &, unsigned)> const & f, bool use_cache) {
     return replace_rec_fn(f, use_cache)(e);
+}
+
+expr replace(expr const & e,
+             std::function<bool(expr const &, unsigned)> const & skip,
+             std::function<optional<expr>(expr const &, unsigned)> const & f,
+             bool use_cache) {
+    return replace_rec_fn(skip, f, use_cache)(e);
 }
 
 class replace_fn {

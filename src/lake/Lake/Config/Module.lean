@@ -114,7 +114,7 @@ public abbrev pkg (self : Module) : Package :=
   self.leanLibPath "ir"
 
 @[inline] public def irSigFile (self : Module) : FilePath :=
-  FilePath.addExtension (self.leanLibPath "ir") "sig"
+  self.leanLibPath "ir.sig"
 
 @[inline] public def traceFile (self : Module) : FilePath :=
   self.leanLibPath "trace"

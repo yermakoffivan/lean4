@@ -40,8 +40,7 @@ def mkIRData (env : Environment) : IO ModuleData := do
     extraConstNames := getIRExtraConstNames env .private (includeDecls := true)
   }
 
-/-- Leaner alternative to `.ir` for non-`import all` modules. Contains all data at `.exported`
-level; `import all` consumers use the full `.ir` instead. -/
+/-- Leaner alternative to `.ir` for non-`import all` compilation. -/
 def mkIRSigData (env : Environment) : IO ModuleData := do
   let data ← mkModuleData env .exported
   return { data with
@@ -163,8 +162,7 @@ public def main (args : List String) : IO UInt32 := do
   if s.messages.hasErrors then
    return 1
 
-  -- Write .ir.sig (part[0], exported, self-contained) and .ir (part[1], full, references part[0]).
-  -- Non-`import all` consumers load .ir.sig only; `import all` loads both via readModuleDataParts.
+  -- Save, basing `.ir` on top of `.ir.sig`
   let irSigFile := (irFile : System.FilePath).addExtension "sig"
   saveModuleDataParts (env.mainModule ++ `ir) #[
     (irSigFile, ← mkIRSigData env),

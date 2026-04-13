@@ -2154,7 +2154,7 @@ where
 
       let irPhases :=
         if importAll then .all
-        else if needsIRTrans || loadIRSig then .comptime
+        else if needsIRTrans then .comptime  -- `globalLevel` should *not* be considered here
         else .runtime
 
       let goRec mod := do

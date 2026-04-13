@@ -235,8 +235,8 @@ where
       let q := q.pop
       if let some arts := s.find? mod.name then
         -- may need to promote a module system `import` to an `import all`
-        -- size of 1 = non-module, 3 = module system `import`, 5 = `import all`
-        unless importAll && arts.size == 3 do
+        -- (only `import all` populates `oleanPrivate?`)
+        unless importAll && arts.oleanPrivate?.isNone do
           return ← walk s q
       let info ← (← mod.exportInfo.fetch).await
       let arts := if importAll then info.allArts else info.arts
@@ -450,12 +450,12 @@ private def Module.computeExportInfo (mod : Module) : FetchM (Job ModuleExportIn
       let irSig := arts.irSig?.getD ir
       return {
         srcTrace := input.trace
-        arts := .ofArray #[olean.path, ir.path, oleanServer.path]
+        arts := .ofArrays #[#[olean.path, oleanServer.path], #[irSig.path]]
         artsTrace := artsTrace.mix olean.trace
-        metaArtsTrace := metaArtsTrace.mix olean.trace |>.mix ir.trace
-        allArts := .ofArray #[olean.path, ir.path, oleanServer.path, oleanPrivate.path, irSig.path]
+        metaArtsTrace := metaArtsTrace.mix olean.trace |>.mix irSig.trace
+        allArts := .ofArrays #[#[olean.path, oleanServer.path, oleanPrivate.path], #[irSig.path, ir.path]]
         allArtsTrace := allArtsTrace.mix
-          olean.trace |>.mix ir.trace |>.mix oleanServer.trace |>.mix oleanPrivate.trace |>.mix irSig.trace
+          olean.trace |>.mix oleanServer.trace |>.mix oleanPrivate.trace |>.mix irSig.trace |>.mix ir.trace
         transTrace := importInfo.transTrace
         metaTransTrace := importInfo.metaTransTrace
         allTransTrace := importInfo.allTransTrace
@@ -464,10 +464,10 @@ private def Module.computeExportInfo (mod : Module) : FetchM (Job ModuleExportIn
     else
       return {
         srcTrace := input.trace
-        arts := ⟨#[olean.path]⟩
+        arts := ⟨#[#[olean.path]]⟩
         artsTrace := artsTrace.mix olean.trace
         metaArtsTrace := metaArtsTrace.mix olean.trace
-        allArts := ⟨#[olean.path]⟩
+        allArts := ⟨#[#[olean.path]]⟩
         allArtsTrace:= allArtsTrace.mix olean.trace
         transTrace := importInfo.transTrace
         metaTransTrace := importInfo.metaTransTrace

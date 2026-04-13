@@ -503,7 +503,7 @@ def canUnfoldAtMatcher (cfg : Config) (info : ConstantInfo) : CoreM Bool := do
   if hasMatchPatternAttribute (← getEnv) info.name then
     return true
   return info.name == ``OfNat.ofNat -- needed to reduce numeric literals in match discriminants
-   || info.name == ``NatCast.natCast -- needed for `↑m` in match discriminants (e.g. Int.Order)
+   || info.name == ``NatCast.natCast -- needed for `↑m` in match discriminants (pervasive in Int proofs)
 
 private def whnfMatcher (e : Expr) : MetaM Expr := do
   /- When reducing `match` expressions at `.reducible` or `.instances` transparency,

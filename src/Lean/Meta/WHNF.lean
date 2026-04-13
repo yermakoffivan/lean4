@@ -502,7 +502,7 @@ def canUnfoldAtMatcher (cfg : Config) (info : ConstantInfo) : CoreM Bool := do
      certain definitions to expose constructors in match discriminants. -/
   if hasMatchPatternAttribute (← getEnv) info.name then
     return true
-  return info.name == ``OfNat.ofNat || info.name == ``NatCast.natCast || info.name == ``IntCast.intCast
+  return info.name == ``OfNat.ofNat || info.name == ``NatCast.natCast
    || info.name == ``GetElem.getElem
    || info.name == ``Std.PRange.UpwardEnumerable.succ?
    || info.name == ``Std.PRange.Least?.least?

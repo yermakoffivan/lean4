@@ -506,7 +506,6 @@ def canUnfoldAtMatcher (cfg : Config) (info : ConstantInfo) : CoreM Bool := do
    || info.name == ``NatCast.natCast -- needed for `↑m` in match discriminants (e.g. Int.Order)
    || info.name == ``GetElem.getElem -- needed for array access in match discriminants (e.g. BVDecide)
    || info.name == ``Std.PRange.UpwardEnumerable.succ? -- needed for PRange iterator lemmas
-   || info.name == ``Std.PRange.Least?.least? -- needed for PRange iterator lemmas
 
 private def whnfMatcher (e : Expr) : MetaM Expr := do
   /- When reducing `match` expressions at `.reducible` or `.instances` transparency,

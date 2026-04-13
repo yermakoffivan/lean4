@@ -508,7 +508,6 @@ def canUnfoldAtMatcher (cfg : Config) (info : ConstantInfo) : CoreM Bool := do
    || info.name == ``Std.PRange.UpwardEnumerable.succ? -- needed for PRange iterator lemmas
    || info.name == ``Std.PRange.Least?.least? -- needed for PRange iterator lemmas
    || info.name == ``Pure.pure -- needed for `match pure x with` (e.g. mvcgenTutorial)
-   || info.name == ``Nat.mul || info.name == ``instMulNat || info.name == ``instHMul -- needed for `2 * n` patterns
 
 private def whnfMatcher (e : Expr) : MetaM Expr := do
   /- When reducing `match` expressions at `.reducible` or `.instances` transparency,

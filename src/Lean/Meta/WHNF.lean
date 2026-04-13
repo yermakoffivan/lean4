@@ -509,7 +509,6 @@ def canUnfoldAtMatcher (cfg : Config) (info : ConstantInfo) : CoreM Bool := do
    || info.name == ``Pure.pure
    || info.name == ``Nat.add || info.name == ``instAddNat || info.name == ``instHAdd
    || info.name == ``Nat.mul || info.name == ``instMulNat || info.name == ``instHMul
-   || info.name == ``Nat.sub || info.name == ``instSubNat || info.name == ``instHSub
    || info.name == ``instOfNatNat
    || info.name == ``instDecidableEqNat
    || info.name == ``decEq

@@ -583,6 +583,9 @@ extern "C" LEAN_EXPORT obj_res lean_io_prim_handle_truncate(b_obj_arg h) {
 /* Handle.read : (@& Handle) → USize → IO ByteArray */
 extern "C" LEAN_EXPORT obj_res lean_io_prim_handle_read(b_obj_arg h, usize nbytes) {
     FILE * fp = io_get_handle(h);
+    if (lean_alloc_sarray_would_overflow(1, nbytes)) {
+        return io_result_mk_error(decode_io_error(ENOMEM, NULL));
+    }
     obj_res res = lean_alloc_sarray(1, 0, nbytes);
     usize n = std::fread(lean_sarray_cptr(res), 1, nbytes, fp);
     if (n > 0) {
@@ -861,6 +864,9 @@ extern "C" LEAN_EXPORT obj_res lean_io_get_random_bytes (size_t nbytes) {
     }
 #endif
 
+    if (lean_alloc_sarray_would_overflow(1, nbytes)) {
+        return io_result_mk_error(decode_io_error(ENOMEM, NULL));
+    }
     obj_res res = lean_alloc_sarray(1, 0, nbytes);
     size_t remain = nbytes;
     uint8_t *dst = lean_sarray_cptr(res);

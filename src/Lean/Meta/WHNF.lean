@@ -503,18 +503,10 @@ def canUnfoldAtMatcher (cfg : Config) (info : ConstantInfo) : CoreM Bool := do
   if hasMatchPatternAttribute (← getEnv) info.name then
     return true
   return info.name == ``OfNat.ofNat || info.name == ``NatCast.natCast || info.name == ``IntCast.intCast
-   || info.name == ``GetElem.getElem || info.name == ``GetElem?.getElem?
-   || info.name == ``BEq.beq
-   || info.name == ``Ord.compare
-   || info.name == ``Std.Stream.next?
+   || info.name == ``GetElem.getElem
    || info.name == ``Std.PRange.UpwardEnumerable.succ?
    || info.name == ``Std.PRange.Least?.least?
-   || info.name == ``LT.lt || info.name == ``LE.le
-   || info.name == ``HAppend.hAppend || info.name == ``Append.append
-   || info.name == ``HSub.hSub || info.name == ``Sub.sub
-   || info.name == ``HMod.hMod || info.name == ``Mod.mod
-   || info.name == ``MonadStateOf.get || info.name == ``MonadState.get
-   || info.name == ``Bind.bind || info.name == ``Pure.pure
+   || info.name == ``Pure.pure
    || info.name == ``Nat.add || info.name == ``instAddNat || info.name == ``instHAdd
    || info.name == ``Nat.mul || info.name == ``instMulNat || info.name == ``instHMul
    || info.name == ``Nat.sub || info.name == ``instSubNat || info.name == ``instHSub

@@ -496,34 +496,40 @@ Auxiliary predicate for `whnfMatcher`.
 See comment above.
 -/
 def canUnfoldAtMatcher (cfg : Config) (info : ConstantInfo) : CoreM Bool := do
-  match cfg.transparency with
-  | .all     => return true
-  | .default => return !(← isIrreducible info.name)
-  | _ =>
-    let status ← getReducibilityStatus info.name
-    if status matches .reducible | .implicitReducible then
-      return true
-    else if hasMatchPatternAttribute (← getEnv) info.name then
-      return true
-    else if let some projInfo ← getProjectionFnInfo? info.name then
-      /- Allow unfolding class projections so that terms like `OfNat.ofNat`, `NatCast.natCast`,
-         `Pure.pure`, `UpwardEnumerable.succ?` etc. can be reduced to expose constructors
-         in match discriminants. -/
-      return projInfo.fromClass
-    else
-      return info.name == ``decEq
-       || info.name == ``Nat.decEq
-       || info.name == ``Char.ofNat   || info.name == ``Char.ofNatAux
-       || info.name == ``String.decEq || info.name == ``List.hasDecEq
-       || info.name == ``Fin.ofNat
-       || info.name == ``Fin.ofNat -- It is used to define `BitVec` literals
-       || info.name == ``UInt8.ofNat  || info.name == ``UInt8.decEq
-       || info.name == ``UInt16.ofNat || info.name == ``UInt16.decEq
-       || info.name == ``UInt32.ofNat || info.name == ``UInt32.decEq
-       || info.name == ``UInt64.ofNat || info.name == ``UInt64.decEq
-       /- Remark: we need to unfold the following two definitions because they are used for `Fin`, and
-          lazy unfolding at `isDefEq` does not unfold projections.  -/
-       || info.name == ``HMod.hMod || info.name == ``Mod.mod
+  if (← canUnfoldDefault cfg info) then
+    return true
+  /- Beyond what the normal transparency allows, we additionally unfold
+     certain definitions to expose constructors in match discriminants. -/
+  if hasMatchPatternAttribute (← getEnv) info.name then
+    return true
+  return info.name == ``OfNat.ofNat || info.name == ``NatCast.natCast || info.name == ``IntCast.intCast
+   || info.name == ``GetElem.getElem || info.name == ``GetElem?.getElem?
+   || info.name == ``BEq.beq
+   || info.name == ``Ord.compare
+   || info.name == ``Std.Stream.next?
+   || info.name == ``Std.PRange.UpwardEnumerable.succ?
+   || info.name == ``Std.PRange.Least?.least?
+   || info.name == ``LT.lt || info.name == ``LE.le
+   || info.name == ``HAppend.hAppend || info.name == ``Append.append
+   || info.name == ``HSub.hSub || info.name == ``Sub.sub
+   || info.name == ``HMod.hMod || info.name == ``Mod.mod
+   || info.name == ``MonadStateOf.get || info.name == ``MonadState.get
+   || info.name == ``Bind.bind || info.name == ``Pure.pure
+   || info.name == ``Nat.add || info.name == ``instAddNat || info.name == ``instHAdd
+   || info.name == ``Nat.mul || info.name == ``instMulNat || info.name == ``instHMul
+   || info.name == ``Nat.sub || info.name == ``instSubNat || info.name == ``instHSub
+   || info.name == ``instOfNatNat
+   || info.name == ``instDecidableEqNat || info.name == ``instDecidableEqBool
+   || info.name == ``instBEqOfDecidableEq
+   || info.name == ``decEq
+   || info.name == ``Nat.decEq
+   || info.name == ``Char.ofNat   || info.name == ``Char.ofNatAux
+   || info.name == ``String.decEq || info.name == ``List.hasDecEq
+   || info.name == ``Fin.ofNat -- It is used to define `BitVec` literals
+   || info.name == ``UInt8.ofNat  || info.name == ``UInt8.decEq
+   || info.name == ``UInt16.ofNat || info.name == ``UInt16.decEq
+   || info.name == ``UInt32.ofNat || info.name == ``UInt32.decEq
+   || info.name == ``UInt64.ofNat || info.name == ``UInt64.decEq
 
 private def whnfMatcher (e : Expr) : MetaM Expr := do
   /- When reducing `match` expressions at `.reducible` or `.instances` transparency,

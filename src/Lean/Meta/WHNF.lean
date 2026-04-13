@@ -502,15 +502,16 @@ def canUnfoldAtMatcher (cfg : Config) (info : ConstantInfo) : CoreM Bool := do
      certain definitions to expose constructors in match discriminants. -/
   if hasMatchPatternAttribute (← getEnv) info.name then
     return true
-  return info.name == ``OfNat.ofNat || info.name == ``NatCast.natCast
-   || info.name == ``GetElem.getElem
-   || info.name == ``Std.PRange.UpwardEnumerable.succ?
-   || info.name == ``Std.PRange.Least?.least?
-   || info.name == ``Pure.pure
-   || info.name == ``Nat.mul || info.name == ``instMulNat || info.name == ``instHMul
-   || info.name == ``instDecidableEqNat
-   || info.name == ``decEq
-   || info.name == ``Nat.decEq
+  return info.name == ``OfNat.ofNat -- needed to reduce numeric literals in match discriminants
+   || info.name == ``NatCast.natCast -- needed for `↑m` in match discriminants (e.g. Int.Order)
+   || info.name == ``GetElem.getElem -- needed for array access in match discriminants (e.g. BVDecide)
+   || info.name == ``Std.PRange.UpwardEnumerable.succ? -- needed for PRange iterator lemmas
+   || info.name == ``Std.PRange.Least?.least? -- needed for PRange iterator lemmas
+   || info.name == ``Pure.pure -- needed for `match pure x with` (e.g. mvcgenTutorial)
+   || info.name == ``Nat.mul || info.name == ``instMulNat || info.name == ``instHMul -- needed for `2 * n` patterns
+   || info.name == ``instDecidableEqNat -- needed for BEq/DecidableEq reduction
+   || info.name == ``decEq -- needed for BEq/DecidableEq reduction
+   || info.name == ``Nat.decEq -- needed for BEq/DecidableEq reduction
 
 private def whnfMatcher (e : Expr) : MetaM Expr := do
   /- When reducing `match` expressions at `.reducible` or `.instances` transparency,

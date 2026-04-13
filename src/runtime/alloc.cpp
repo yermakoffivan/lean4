@@ -44,6 +44,15 @@ extern "C" LEAN_EXPORT void lean_inc_heartbeat() {
     add_heartbeats(1);
 }
 
+
+#ifdef LEAN_MIMALLOC
+extern "C" mi_decl_restrict void* lean_alloc_small_mi_memory(mi_heap_t* heap, size_t size) mi_attr_noexcept {
+    lean_inc_heartbeat();
+    return mi_heap_malloc_small(heap, size);
+}
+
+#endif
+
 uint64_t get_num_heartbeats() {
     return g_heartbeat;
 }

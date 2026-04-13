@@ -345,17 +345,21 @@ LEAN_EXPORT void lean_inc_heartbeat(void);
 void * malloc(size_t);  // avoid including big `stdlib.h`
 #endif
 
+#ifdef LEAN_MIMALLOC
+LEAN_EXPORT mi_decl_restrict void* lean_alloc_small_mi_memory(mi_heap_t* heap, size_t size) mi_attr_noexcept;
+#endif
+
 static inline lean_object * lean_alloc_small_object(unsigned sz) {
-    lean_inc_heartbeat();
 #ifdef LEAN_MIMALLOC
     // HACK: emulate behavior of small allocator to avoid `leangz` breakage for now
     sz = lean_align(sz, LEAN_OBJECT_SIZE_DELTA);
-    void * mem = mi_malloc_small(sz);
+    void * mem = lean_alloc_small_mi_memory(mi_heap_get_default(), sz);
     if (mem == 0) lean_internal_panic_out_of_memory();
     lean_object * o = (lean_object*)mem;
     o->m_cs_sz = sz;
     return o;
 #else
+    lean_inc_heartbeat();
     void * mem = malloc(sizeof(size_t) + sz);
     if (mem == 0) lean_internal_panic_out_of_memory();
     *(size_t*)mem = sz;

@@ -59,11 +59,11 @@ If there _is_ a CCPO on `α` making {name}`f` monotone, {lean}`extrinsicFix f` i
 -/
 @[cbv_opaque, implemented_by opaqueFix]
 def extrinsicFix {α : Sort u} [Nonempty α] (f : α → α) : α :=
-  if h : ∃ (inst : CCPO α), (letI := inst; monotone f) then
-    @fix α h.choose f h.choose_spec
+  if h : ∃ x, x = f x then
+    h.choose
   else
     -- Return `opaqueFix f` so that `implemented_by opaqueFix` is sound.
-    -- In effect, `extrinsicFix` is opaque if no CCPO makes `f` monotone.
+    -- In effect, `extrinsicFix` is opaque if no fixpoint exists.
     opaqueFix f
 
 /--
@@ -83,14 +83,35 @@ add_decl_doc extrinsicFix
 noncomputable local instance CCPO.instNonempty [CCPO α] : Nonempty α := ⟨bot⟩
 
 /--
+The fixpoint equation for `extrinsicFix`: given a proof that the fixpoint exists, unfold
+`extrinsicFix`.
+-/
+theorem extrinsicFix_eq {f : α → α}
+    (x : α) (h : x = f x) :
+    letI : Nonempty α := ⟨x⟩; extrinsicFix f = f (extrinsicFix f) := by
+  letI : Nonempty α := ⟨x⟩
+  have h : ∃ x, x = f x := ⟨x, h⟩
+  simp only [extrinsicFix, dif_pos h]
+  exact h.choose_spec
+
+/--
 The fixpoint equation for `extrinsicFix`: given a CCPO instance and monotonicity of `f`,
 {lean}`extrinsicFix f = f (extrinsicFix f)`.
 -/
-theorem extrinsicFix_eq [inst : CCPO α] {f : α → α}
+theorem extrinsicFix_eq_mono [inst : CCPO α] {f : α → α}
     (hf : monotone f) :
-    extrinsicFix f = f (extrinsicFix f) := by
-  have h : ∃ inst' : CCPO α, (letI := inst'; monotone f) := ⟨inst, hf⟩
-  simp only [extrinsicFix, dif_pos h]
-  exact @fix_eq α h.choose f h.choose_spec
+    extrinsicFix f = f (extrinsicFix f) :=
+  extrinsicFix_eq (fix f hf) (fix_eq hf)
+
+abbrev discardR {C : α → Sort _} {R : α → α → Prop}
+    (f : ∀ a, (∀ a', R a' a → C a') → C a) : ((∀ a, C a) → (∀ a, C a)) :=
+  fun rec a => f a (fun a _ => rec a)
+
+theorem extrinsicFix_eq_wf {C : α → Sort _} [∀ a, Nonempty (C a)] {R : α → α → Prop}
+    {f : ∀ a, (∀ a', R a' a → C a') → C a} (h : WellFounded R) {a : α} :
+    extrinsicFix (discardR f) a = f a (fun a _ => extrinsicFix (discardR f) a) := by
+  suffices extrinsicFix (discardR f) = fun a => f a (fun a _ => extrinsicFix (discardR f) a) by
+    conv => lhs; rw [this]
+  apply extrinsicFix_eq (fun a => WellFounded.fix h f a) (funext fun a => (WellFounded.fix_eq h f a))
 
 end Lean.Order

@@ -32,18 +32,34 @@ private def mkMaxArgsDiff (mvarId : LMVarId) : Level → Level → Level
   | l,                 acc => mkLevelMax' l acc
 
 /--
-Solves `?m =?= max ?m v` by creating a fresh metavariable `?n`
-and assigning `?m := max ?n v`
+(SelfMax) Solves `?m =?= max ?m v` by creating a fresh metavariable `?n`
+and assigning `?m := max ?n v`. (The constraint `v ≤ ?m` is being represented using `max`.)
+
+This rule can make other unification problems become stuck, and it can depend on the
+unification order. For example, given the equations
+  `?m =?= max ?m ?u`, `?m =?= v`, `?u =?= v`
+if we apply SelfMax first and assign `?m := max ?n ?u`, then the second equation
+becomes `max ?n ?u =?= v`, which becomes `max ?n v =?= v` after the third equation,
+which is stuck. If instead we assigned `?m := v` first, then the first equation
+becomes `v =?= max v ?u`, which is stuck, but then the third equation unsticks it by solving it.
+
+We defer applying this rule until we are processing postponed constraints.
+
+The approximations in `trySolveApprox` are heuristics to fix this non-confluence.
 -/
-private def solveSelfMax (mvarId : LMVarId) (v : Level) : MetaM Unit := do
-  assert! v.isMax
-  let n ← mkFreshLevelMVar
-  let v' := mkMaxArgsDiff mvarId v n
-  trace[Meta.isLevelDefEq.step] "SelfMax: {mkLevelMVar mvarId} := {v'}"
-  assignLevelMVar mvarId v'
+private def solveSelfMax (mvarId : LMVarId) (v : Level) : MetaM LBool := do
+  if (← read).univApprox ≥ 1 then
+    assert! v.isMax
+    let n ← mkFreshLevelMVar
+    let v' := mkMaxArgsDiff mvarId v n
+    trace[Meta.isLevelDefEq.step] "SelfMax: {mkLevelMVar mvarId} := {v'}"
+    assignLevelMVar mvarId v'
+    return LBool.true
+  else
+    return LBool.undef
 
 /--
-`mkMaxArgsDiff' (max u₁ ... uₘ) (max v₁ ... vₙ)` returns `(s, u', v')`,
+`splitMaxArgs (max u₁ ... uₘ) (max v₁ ... vₙ)` returns `(s, u', v')`,
 where `s` is the max of the shared components, `u'` is the max of the components unique to `u`,
 and `v'` is the max of the components unique to `v`.
 The result satisfies `u = max s u'` and `v = max s v'`, up to reordering and reassociating.
@@ -69,8 +85,26 @@ where
       let (s, u', v') := splitMaxArgs u v₂
       (s, u', mkLevelMax' v₁ v')
 
+-- private def isMaxOfMVars? : Level → (acc : Array LMVarId := #[]) → Option (Array LMVarId)
+--   | .mvar mvarId, acc => acc.push mvarId
+--   | .max u v,     acc => isMaxOfMVars? u acc |>.bind (isMaxOfMVars? v ·)
+--   | _,            _   => none
+
+private def isAllDecOrMVar? : Level → (acc : Array Level := #[]) → Option (Array Level)
+  | .max u v,     acc => isAllDecOrMVar? u acc |>.bind (isAllDecOrMVar? v ·)
+  | u,            acc =>
+    if u.isMVar then
+      acc.push u
+    else if let some u' := u.dec then
+      acc.push (Level.succ u')
+    else
+      none
+
 /--
-Tries applying an approximation, returning `true` on success.
+Tries applying an approximation to solve for metavariables, returning `true` on success.
+
+The docstring at `solveSelfMax` gives an example of how unification can become stuck
+depending on the order of unification. The approximations here attempt to analyze
 
 Approximations:
 - SelfMax: If `v` is of the form `max u ?m` then solves `u =?= max u ?m` by assigning `?m := u`.
@@ -80,6 +114,9 @@ Approximations:
   then solves `max u₁ u₂ =?= max u₁ ?m` by assigning `?m := u₂`.
   Note that `u₁` can be a `max` expression.
   This is an approximation. For example, we ignore the solution `?w := max u₁ u₂`.
+- SuccMax: If `u` is of the form `u'+1` and `v` is of the form `max v₁ … vₙ` such that
+  each `vᵢ` is a metavariable `?mᵢ` or the successor of some level `vᵢ'`, then assign `?mᵢ := ?mᵢ'+1`
+  for fresh level metavariables `?mᵢ`.
 
 -- TODO: investigate whether we need to improve these approximations.
 -/
@@ -107,6 +144,14 @@ private def trySolveApprox (u v : Level) : MetaM Bool := do
       assignLevelMVar mvarId u'
       return true
   else
+    if let Level.succ u' := u then
+      if let some args := isAllDecOrMVar? v then
+        let u'' := u'.getLevelOffset
+        if !u''.isMVar || !args.any (· == u'') then
+          if !(← (args |>.filter (fun arg => arg.isMVar) |>.anyM fun mvar => mvar.mvarId!.isReadOnly)) then
+            trace[Meta.isLevelDefEq.step] "SuccMax approximation"
+            let args ← args.mapM Meta.decLevel
+            return ← isLevelDefEqAux u' (Level.mkNaryMax args.toList)
     return false
 
 private def postponeIsLevelDefEq (lhs : Level) (rhs : Level) : MetaM Unit := do
@@ -122,7 +167,8 @@ private def isMVarWithGreaterDepth (v : Level) (mvarId : LMVarId) : MetaM Bool :
 
 /--
 Decrements both `lhs` and `rhs` so long as they are both successors.
-Skips calling `k` if `lhs.getLevelOffset == rhs.getLevelOffset`.
+Skips calling `k` if `lhs.getLevelOffset == rhs.getLevelOffset`,
+or if `lhs` or `rhs` is a successor and the other cannot be a successor for any metavariable assignment.
 Instantiates metavariables and normalizes.
 -/
 @[specialize] private partial def isLevelDefEqPreprocess (lhs rhs : Level) (k : Level → Level → MetaM Bool) (instantiated : Bool := false) (trace : Bool := false) : MetaM Bool := do
@@ -138,16 +184,24 @@ Instantiates metavariables and normalizes.
     else if !lhs.isNormalized || !rhs.isNormalized then
       let lhs' := lhs.normalize
       let rhs' := rhs.normalize
-      assert! lhs != lhs' || rhs != rhs'
       return ← isLevelDefEqPreprocess lhs' rhs' k (instantiated := true) (trace := true)
     else
-      assert! lhs.normalize == lhs
-      assert! rhs.normalize == rhs
       if trace then
         withTraceNodeBefore (collapsed := false) `Meta.isLevelDefEq (fun _ => return m!"simplified: {lhs} =?= {rhs}") do
           k lhs rhs
       else
         k lhs rhs
+
+@[specialize] private def withFlipped (solve : Level → Level → MetaM LBool) (lhs rhs : Level) (k : MetaM Bool) : MetaM Bool := do
+  let r ← solve lhs rhs
+  if r != LBool.undef then
+    return r == LBool.true
+  else
+    let r ← solve rhs lhs
+    if r != LBool.undef then
+      return r == LBool.true
+    else
+      k
 
 set_option compiler.ignoreBorrowAnnotation true in
 mutual
@@ -169,37 +223,46 @@ mutual
         return LBool.true
       else if v.isMax && !strictOccursMax u v then
         solveSelfMax u.mvarId! v
-        return LBool.true
       else
         return LBool.undef
-    | _, Level.mvar .. => return LBool.undef -- Let `solve v u` to handle this case
+    | _, Level.mvar .. => return LBool.undef -- Let `solve v u` handle this case
     | Level.zero, Level.max v₁ v₂ =>
       Bool.toLBool <$> (isLevelDefEqAuxImpl Level.zero v₁ <&&> isLevelDefEqAuxImpl Level.zero v₂)
     | Level.zero, Level.imax _ v₂ =>
       Bool.toLBool <$> isLevelDefEqAuxImpl Level.zero v₂
     | Level.zero, Level.succ .. => return LBool.false
-    | Level.succ u', v =>
-      if v.isParam then
-        return LBool.false
-      else if u'.isMVar && u'.occurs v then
-        return LBool.undef
-      else
-        match (← Meta.decLevel? v) with
-        | some v' => Bool.toLBool <$> isLevelDefEqAuxImpl u' v'
-        | none   =>
-          if (← read).univApprox then
-            if (← trySolveApprox u v) then
-              return LBool.true
-          return LBool.undef
+    | Level.succ .., Level.param .. => return LBool.false
     | _, _ =>
-      if (← read).univApprox then
-        if (← trySolveApprox u v) then
-          return LBool.true
+      match v with
+      | .imax v₁ v₂ =>
+        if (← read).univApprox ≥ 1 then
+          if u.dec.isSome then
+            /-
+            `u'+1 =?= imax (v₁'+1) v₂` implies `1 ≤ v₂`.
+            For this to be true, it must be that there exists some `v₂'` such that `v₂ =?= max v₂' 1`.
+            Just like for `solveSelfMax`, we only do this once we're processing postponed constraints,
+            since `max` unification can cause other unification problems to become stuck.
+            -/
+            let v₂' ← mkFreshLevelMVar
+            return ← Bool.toLBool <$> (isLevelDefEqAuxImpl v₂ (Level.max 1 v₂') <&&> isLevelDefEqAuxImpl u (Level.max v₁ v₂))
+      | _ => pure ()
       return LBool.undef
 
+  partial def solveApprox (u v : Level) : MetaM LBool := do
+    if (← read).univApprox ≥ 2 then
+      if ← trySolveApprox u v then
+        return LBool.true
+    return LBool.undef
+
   @[export lean_is_level_def_eq]
-  partial def isLevelDefEqAuxImpl (lhs rhs : Level) : MetaM Bool :=
-    withTraceNodeBefore `Meta.isLevelDefEq (fun _ => return m!"{lhs} =?= {rhs}") do
+  partial def isLevelDefEqAuxImpl (lhs rhs : Level) : MetaM Bool := withIncRecDepth do
+    withTraceNodeBefore `Meta.isLevelDefEq
+        (fun _ => do
+          let mut pre := []
+          if (← read).univApprox > 0 then pre := m!"approx {(← read).univApprox}" :: pre
+          if (← read).univProcessingPostponed then pre := m!"in postponed" :: pre
+          let msg := if pre.isEmpty then m!"" else m!"[{MessageData.joinSep pre ", "}] "
+          return m!"{msg}{lhs} =?= {rhs}") do
       isLevelDefEqPreprocess lhs rhs fun lhs rhs => do
         if !(← hasAssignableLevelMVar lhs <||> hasAssignableLevelMVar rhs) then
           let cfg ← getConfig
@@ -209,14 +272,8 @@ mutual
           else
             return false
         else
-          let r ← solve lhs rhs
-          if r != LBool.undef then
-            return r == LBool.true
-          else
-            let r ← solve rhs lhs
-            if r != LBool.undef then
-              return r == LBool.true
-            else
+          withFlipped solve lhs rhs do
+            withFlipped solveApprox lhs rhs do
               postponeIsLevelDefEq lhs rhs
               return true
 end

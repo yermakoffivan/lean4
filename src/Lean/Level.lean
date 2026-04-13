@@ -437,17 +437,6 @@ Check is currently incomplete.
 def isEquiv (u v : Level) : Bool :=
   u == v || u.normalize == v.normalize
 
-/-- Reduce (if possible) universe level by 1 -/
-def dec : Level → Option Level
-  | zero       => none
-  | param _    => none
-  | mvar _     => none
-  | succ l     => l
-  | max l₁ l₂  => return mkLevelMax (← dec l₁) (← dec l₂)
-  /- Remark: `mkLevelMax` in the following line is not a typo.
-     If `dec l₂` succeeds, then `imax l₁ l₂` is equivalent to `max l₁ l₂`. -/
-  | imax l₁ l₂ => return mkLevelMax (←  dec l₁) (← dec l₂)
-
 
 /- Level to Format/Syntax -/
 namespace PP
@@ -581,6 +570,22 @@ def simpLevelIMax' (u v : Level) (d : Level) :=
   mkLevelIMaxCore u v fun _ => d
 
 namespace Level
+
+/--
+Reduces the universe level by 1, if possible.
+Assumes there are no obviously simplifiable `max`/`imax` expressions.
+
+Satisfies `l.dec.isSome → l.isNeverZero`. The converse does not hold.
+-/
+def dec : Level → Option Level
+  | zero       => none
+  | param _    => none
+  | mvar _     => none
+  | succ l     => l
+  | max l₁ l₂  => return mkLevelMax' (← dec l₁) (← dec l₂)
+  /- Remark: `mkLevelMax'` in the following line is not a typo.
+     If `dec l₂` succeeds, then `imax l₁ l₂` is equivalent to `max l₁ l₂`. -/
+  | imax l₁ l₂ => return mkLevelMax' (← dec l₁) (← dec l₂)
 
 /-!
 The update functions try to avoid allocating new values using pointer equality.

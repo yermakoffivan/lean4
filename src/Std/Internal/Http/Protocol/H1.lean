@@ -374,10 +374,7 @@ private def hasExpectContinue (message : Message.Head dir) : Bool :=
     false
   else
     match message.headers.getAll? Header.Name.expect with
-    | some #[value] =>
-      match Header.Expect.parse value with
-      | some res => res.expect
-      | none => false
+    | some #[value] => Header.Expect.parse value |>.isSome
     | _ => false
 
 /--

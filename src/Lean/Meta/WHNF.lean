@@ -514,10 +514,6 @@ def canUnfoldAtMatcher (cfg : Config) (info : ConstantInfo) : CoreM Bool := do
    || info.name == ``instDecidableEqNat
    || info.name == ``decEq
    || info.name == ``Nat.decEq
-   || info.name == ``UInt8.ofNat  || info.name == ``UInt8.decEq
-   || info.name == ``UInt16.ofNat || info.name == ``UInt16.decEq
-   || info.name == ``UInt32.ofNat || info.name == ``UInt32.decEq
-   || info.name == ``UInt64.ofNat || info.name == ``UInt64.decEq
 
 private def whnfMatcher (e : Expr) : MetaM Expr := do
   /- When reducing `match` expressions at `.reducible` or `.instances` transparency,

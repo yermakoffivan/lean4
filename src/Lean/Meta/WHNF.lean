@@ -514,7 +514,6 @@ def canUnfoldAtMatcher (cfg : Config) (info : ConstantInfo) : CoreM Bool := do
    || info.name == ``instDecidableEqNat
    || info.name == ``decEq
    || info.name == ``Nat.decEq
-   || info.name == ``Fin.ofNat -- It is used to define `BitVec` literals
    || info.name == ``UInt8.ofNat  || info.name == ``UInt8.decEq
    || info.name == ``UInt16.ofNat || info.name == ``UInt16.decEq
    || info.name == ``UInt32.ofNat || info.name == ``UInt32.decEq

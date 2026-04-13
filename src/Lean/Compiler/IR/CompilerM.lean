@@ -148,7 +148,7 @@ private def findInterpDecl (env : Environment) (declName : Name) : Option Decl :
   match env.getModuleIdxFor? declName with
   | some modIdx =>
     -- `meta import/import all` and additional server-mode IR
-    findAtSorted? (declMapExt.getModuleIREntries env modIdx) declName <|>
+    findAtSorted? (declMapExt.getModuleInterpEntries env modIdx) declName <|>
     -- (closure of) `meta def`; will report `.extern`s for other `def`s so needs to come second
     findAtSorted? (declMapExt.getModuleEntries env modIdx) declName
   | none => declMapExt.getState env |>.find? declName
@@ -165,7 +165,7 @@ private def findInterpDeclBoxed (env : Environment) (declName : Name) : Option D
   -- not a local declaration.
   match env.getModuleIdxFor? declName with
   | some modIdx =>
-    findAtSorted? (declMapExt.getModuleIREntries env modIdx) boxed <|>
+    findAtSorted? (declMapExt.getModuleInterpEntries env modIdx) boxed <|>
     findAtSorted? (declMapExt.getModuleEntries env modIdx) boxed
   | none => declMapExt.getState env |>.find? boxed
 

@@ -261,10 +261,15 @@ structure Environment where
   -/
   private extensions      : Array EnvExtensionState
   /--
-  Additional imported environment extension state for the interpreter. Access via
-  `getModuleIREntries`.
+  Additional imported environment extension state for the **compiler** (signatures only,
+  sourced from `.ir.sig`). Access via `getModuleIREntries`.
   -/
   private irBaseExts      : Array EnvExtensionState
+  /--
+  Additional imported environment extension state for the **interpreter** (full IR bodies,
+  sourced from `.ir`). Access via `getModuleInterpEntries`.
+  -/
+  private irInterpExts    : Array EnvExtensionState
   /-- The header contains additional information that is set at import time. -/
   header                  : EnvironmentHeader := private_decl% {}
 deriving Nonempty
@@ -1513,6 +1518,7 @@ def mkEmptyEnvironment (trustLevel : UInt32 := 0) : IO Environment := do
       header          := { trustLevel }
       extensions      := exts
       irBaseExts      := exts
+      irInterpExts    := exts
     }
     importRealizationCtx? := none
   }
@@ -1650,11 +1656,17 @@ def getModuleEntries {α β σ : Type} [Inhabited σ] (ext : PersistentEnvExtens
   -- safety: as in `getStateUnsafe`
   unsafe (ext.toEnvExtension.getStateImpl exts).importedEntries[m]!
 
-/-- Retrieves additional IR extension state for the interpreter. -/
+/-- Retrieves additional IR extension state for the **compiler** (signatures from `.ir.sig`). -/
 def getModuleIREntries {α β σ : Type} [Inhabited σ] (ext : PersistentEnvExtension α β σ)
     (env : Environment) (m : ModuleIdx) : Array α :=
   -- safety: as in `getStateUnsafe`
   unsafe (ext.toEnvExtension.getStateImpl env.base.private.irBaseExts).importedEntries[m]!
+
+/-- Retrieves additional IR extension state for the **interpreter** (full IR from `.ir`). -/
+def getModuleInterpEntries {α β σ : Type} [Inhabited σ] (ext : PersistentEnvExtension α β σ)
+    (env : Environment) (m : ModuleIdx) : Array α :=
+  -- safety: as in `getStateUnsafe`
+  unsafe (ext.toEnvExtension.getStateImpl env.base.private.irInterpExts).importedEntries[m]!
 
 def addEntry {α β σ : Type} (ext : PersistentEnvExtension α β σ) (env : Environment) (b : β)
     (asyncMode := ext.toEnvExtension.asyncMode) (asyncDecl : Name := .anonymous) : Environment :=
@@ -2007,17 +2019,29 @@ private def ImportedModule.serverData? (self : ImportedModule) (level : OLeanLev
   -- fall back to `exported` outside the server
   self.getData? (if level ≥ .server then level else .exported)
 
-/-- The module data that should be used for accessing IR for interpretation (lean) or compilation (leanir). -/
-private def ImportedModule.irData? (self : ImportedModule) (level : OLeanLevel) :
+/--
+The module data used by the **compiler** to look up signatures and other exported IR info.
+Always prefers `.ir.sig` (signature-only) over `.ir` to prevent inlining from non-`import all`
+dependencies, which could otherwise pull in references to decls not visible at runtime.
+-/
+private def ImportedModule.irSigData? (self : ImportedModule) (level : OLeanLevel) :
     Option ModuleData :=
   if (level < .server && self.irPhases == .runtime) || !self.mainModule?.any (·.isModule) then
     self.mainModule?
   else
-    -- For `import all` modules, use `.ir`; otherwise prefer `.ir.sig`
-    if self.importAll then
-      self.irParts.back?.map (·.1)
-    else
-      self.irParts[0]?.map (·.1)
+    self.irParts[0]?.map (·.1)
+
+/--
+The module data used by the **interpreter** (at elaboration time) to access full IR bodies of
+meta-imported definitions. Prefers `.ir` (full bodies) when available; otherwise falls back to
+`.ir.sig`.
+-/
+private def ImportedModule.irInterpData? (self : ImportedModule) (level : OLeanLevel) :
+    Option ModuleData :=
+  if (level < .server && self.irPhases == .runtime) || !self.mainModule?.any (·.isModule) then
+    self.mainModule?
+  else
+    self.irParts.back?.map (·.1)
 
 structure ImportState where
   private moduleNameMap : Std.HashMap Name ImportedModule := {}
@@ -2060,7 +2084,7 @@ private def findOLeanParts (mod : Name) : IO (Array System.FilePath) := do
 private def findIRParts (mod : Name) : IO (Array System.FilePath) := do
   let mFile ← findOLean mod
   let irSigFile := mFile.withExtension "ir.sig"
-  let mut fnames := #[mFile]
+  let mut fnames := #[]
   -- Opportunistically load all available parts.
   -- Necessary because the import level may be upgraded a later import.
   if (← irSigFile.pathExists) then
@@ -2274,13 +2298,17 @@ def finalizeImport (s : ImportState) (imports : Array Import) (opts : Options) (
     let some data := mod.mainModule? |
       throw <| IO.userError s!"missing data file for module {mod.module}"
     return data
-  let irData ← modules.mapM fun mod => do
-    let some data := mod.irData? level |
+  let irSigData ← modules.mapM fun mod => do
+    let some data := mod.irSigData? level |
+      throw <| IO.userError s!"missing IR data file for module {mod.module}"
+    return data
+  let irInterpData ← modules.mapM fun mod => do
+    let some data := mod.irInterpData? level |
       throw <| IO.userError s!"missing IR data file for module {mod.module}"
     return data
   let numPrivateConsts := moduleData.foldl (init := 0) fun numPrivateConsts data =>
     numPrivateConsts + data.constants.size
-  let numPrivateConsts := irData.foldl (init := numPrivateConsts) fun numPrivateConsts data =>
+  let numPrivateConsts := irSigData.foldl (init := numPrivateConsts) fun numPrivateConsts data =>
     numPrivateConsts + data.extraConstNames.size
   let numPublicConsts := modules.foldl (init := 0) fun numPublicConsts mod => Id.run do
     if !mod.isExported then numPublicConsts else
@@ -2302,7 +2330,7 @@ def finalizeImport (s : ImportState) (imports : Array Import) (opts : Options) (
           else if !subsumesInfo privateConstantMap cinfoPrev cinfo then
             throwAlreadyImported s const2ModIdx modIdx cname
       const2ModIdx := const2ModIdx.insertIfNew cname modIdx
-    if let some data := irData[modIdx]? then
+    if let some data := irSigData[modIdx]? then
       for cname in data.extraConstNames do
         const2ModIdx := const2ModIdx.insertIfNew cname modIdx
 
@@ -2325,6 +2353,7 @@ def finalizeImport (s : ImportState) (imports : Array Import) (opts : Options) (
     quotInit        := !imports.isEmpty -- We assume `Init.Prelude` initializes quotient module
     extensions      := exts
     irBaseExts      := exts
+    irInterpExts    := exts
     header     := {
       trustLevel, imports, moduleData, isModule
       modules      := modules.map (·.toEffectiveImport)
@@ -2338,7 +2367,8 @@ def finalizeImport (s : ImportState) (imports : Array Import) (opts : Options) (
   let serverData := modules.mapIdx (fun idx mod => mod.serverData? level |>.getD moduleData[idx]!)
   let privateBase := { privateBase with
     extensions
-    irBaseExts := (← setImportedEntries privateBase.extensions irData)
+    irBaseExts := (← setImportedEntries privateBase.extensions irSigData)
+    irInterpExts := (← setImportedEntries privateBase.extensions irInterpData)
   }
   let mut env : Environment := {
     base.private := privateBase

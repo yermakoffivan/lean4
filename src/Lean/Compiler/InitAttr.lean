@@ -186,12 +186,12 @@ private unsafe def runInitAttrs (env : Environment) (opts : Options) : IO Unit :
       continue
     interpretedModInits.modify (·.insert mod.module)
     let modEntries := regularInitAttr.ext.getModuleEntries env modIdx
-    -- `getModuleIREntries` is identical to `getModuleEntries` if we loaded only one of
+    -- `getModuleInterpEntries` is identical to `getModuleEntries` if we loaded only one of
     -- .olean (from `meta initialize`)/.ir (`initialize` via transitive `meta import`)
     -- so deduplicate (these lists should be very short).
     -- If we have both, we should not need to worry about their relative ordering as `meta` and
     -- non-`meta` initialize should not have interdependencies.
-    let modEntries := modEntries ++ (regularInitAttr.ext.getModuleIREntries env modIdx).filter (!modEntries.contains ·)
+    let modEntries := modEntries ++ (regularInitAttr.ext.getModuleInterpEntries env modIdx).filter (!modEntries.contains ·)
     for (decl, initDecl) in modEntries do
       if !initRuntime && getIRPhases env decl == .runtime then
         continue

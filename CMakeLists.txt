@@ -7,7 +7,6 @@ if(NOT CMAKE_GENERATOR MATCHES "Makefiles")
 endif()
 
 option(USE_MIMALLOC "use mimalloc" ON)
-set(LEAN_MI_SECURE 0 CACHE STRING "")
 
 # store all variables passed on the command line into CL_ARGS so we can pass them to the stage builds
 # https://stackoverflow.com/a/48555098/161659

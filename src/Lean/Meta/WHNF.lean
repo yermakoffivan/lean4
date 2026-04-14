@@ -504,6 +504,7 @@ def canUnfoldAtMatcher (cfg : Config) (info : ConstantInfo) : CoreM Bool := do
     return true
   return info.name == ``OfNat.ofNat -- needed to reduce numeric literals in match discriminants
    || info.name == ``NatCast.natCast -- needed for `↑m` in match discriminants (pervasive in Int proofs)
+   || info.name == ``Fin.ofNat -- needed for Fin literal reduction in match discriminants (e.g. ComposableArrows)
 
 private def whnfMatcher (e : Expr) : MetaM Expr := do
   /- When reducing `match` expressions at `.reducible` or `.instances` transparency,

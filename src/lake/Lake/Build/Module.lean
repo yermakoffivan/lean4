@@ -568,8 +568,8 @@ public def Module.clearOutputArtifacts (mod : Module) : IO PUnit := do
     removeFileIfExists mod.oleanServerFile
     removeFileIfExists mod.oleanPrivateFile
     removeFileIfExists mod.ileanFile
-    removeFileIfExists mod.irFile
     removeFileIfExists mod.irSigFile
+    removeFileIfExists mod.irFile
     removeFileIfExists mod.cFile
     removeFileIfExists mod.bcFile
   catch e =>
@@ -583,8 +583,8 @@ public def Module.clearOutputHashes (mod : Module) : IO PUnit := do
     clearFileHash mod.oleanServerFile
     clearFileHash mod.oleanPrivateFile
     clearFileHash mod.ileanFile
-    clearFileHash mod.irFile
     clearFileHash mod.irSigFile
+    clearFileHash mod.irFile
     clearFileHash mod.cFile
     clearFileHash mod.bcFile
   catch e =>
@@ -600,10 +600,10 @@ public def Module.cacheOutputHashes (mod : Module) : IO PUnit := do
   if (← mod.oleanPrivateFile.pathExists)  then
     cacheFileHash mod.oleanPrivateFile
   cacheFileHash mod.ileanFile
-  if (← mod.irFile.pathExists)  then
-    cacheFileHash mod.irFile
   if (← mod.irSigFile.pathExists) then
     cacheFileHash mod.irSigFile
+  if (← mod.irFile.pathExists)  then
+    cacheFileHash mod.irFile
   cacheFileHash mod.cFile
   if Lean.Internal.hasLLVMBackend () then
     cacheFileHash mod.bcFile
@@ -616,8 +616,8 @@ def ModuleOutputDescrs.resolve
     olean := ← resolve descrs.olean
     oleanServer? := ← descrs.oleanServer?.mapM resolve
     oleanPrivate? := ← descrs.oleanPrivate?.mapM resolve
-    ir? := ← descrs.ir?.mapM resolve
     irSig? := ← descrs.irSig?.mapM resolve
+    ir? := ← descrs.ir?.mapM resolve
     ilean := ← resolve descrs.ilean
     c := ← resolve descrs.c
     ltar? := ← descrs.ltar?.mapM resolve
@@ -674,8 +674,8 @@ private def Module.cacheOutputArtifacts
     olean := ← cache mod.oleanFile "olean"
     oleanServer? := ← cacheIf? isModule mod.oleanServerFile "olean.server"
     oleanPrivate? := ← cacheIf? isModule mod.oleanPrivateFile "olean.private"
-    ir? := ← cacheIf? isModule mod.irFile "ir"
     irSig? := ← cacheIf? isModule mod.irSigFile "ir.sig"
+    ir? := ← cacheIf? isModule mod.irFile "ir"
     ilean := ← cache mod.ileanFile "ilean"
     c := ← cache mod.cFile "c"
     bc? := ← cacheIf? (Lean.Internal.hasLLVMBackend ()) mod.bcFile "bc"
@@ -704,8 +704,8 @@ private def Module.restoreAllArtifacts (mod : Module) (cached : ModuleOutputArti
     oleanServer? := ← restoreSome mod.oleanServerFile cached.oleanServer?
     oleanPrivate? := ← restoreSome mod.oleanPrivateFile cached.oleanPrivate?
     ilean := ← restoreArtifact mod.ileanFile cached.ilean
-    ir? := ← restoreSome mod.irFile cached.ir?
     irSig? := ← restoreSome mod.irSigFile cached.irSig?
+    ir? := ← restoreSome mod.irFile cached.ir?
     c := ← restoreArtifact mod.cFile cached.c
     bc? := ← restoreSome mod.bcFile cached.bc?
     ltar? := ← restoreSome mod.ltarFile cached.ltar?
@@ -722,8 +722,8 @@ public def Module.checkArtifactsExsist (self : Module) (isModule : Bool) : BaseI
   if isModule then
     unless (← self.oleanServerFile.pathExists) do return false
     unless (← self.oleanPrivateFile.pathExists) do return false
-    unless (← self.irFile.pathExists) do return false
     unless (← self.irSigFile.pathExists) do return false
+    unless (← self.irFile.pathExists) do return false
   return true
 
 public protected def Module.checkExists (self : Module) (isModule : Bool) : BaseIO Bool := do
@@ -744,8 +744,8 @@ public protected def Module.getMTime (self : Module) (isModule : Bool) : IO MTim
       mtime := mtime
       |> max (← getMTime self.oleanServerFile)
       |> max (← getMTime self.oleanPrivateFile)
-      |> max (← getMTime self.irFile)
       |> max (← getMTime self.irSigFile)
+      |> max (← getMTime self.irFile)
     return mtime
   catch e =>
     try getMTime self.ltarFile catch
@@ -761,8 +761,8 @@ private def ModuleOutputArtifacts.setMTime (self : ModuleOutputArtifacts) (mtime
     oleanServer? := self.oleanServer?.map ({· with mtime})
     oleanPrivate? := self.oleanPrivate?.map ({· with mtime})
     ilean := {self.ilean with mtime}
-    ir? := self.ir?.map ({· with mtime})
     irSig? := self.irSig?.map ({· with mtime})
+    ir? := self.ir?.map ({· with mtime})
     c := {self.c with mtime}
     bc? := self.bc?.map ({· with mtime})
   }
@@ -773,8 +773,8 @@ private def Module.mkArtifacts (mod : Module) (srcFile : FilePath) (isModule : B
   oleanServer? := if isModule then some mod.oleanServerFile else none
   oleanPrivate? := if isModule then some mod.oleanPrivateFile else none
   ilean? := mod.ileanFile
-  ir? := if isModule then some mod.irFile else none
   irSig? := if isModule then some mod.irSigFile else none
+  ir? := if isModule then some mod.irFile else none
   c? := mod.cFile
   bc? := if Lean.Internal.hasLLVMBackend () then some mod.bcFile else none
 
@@ -785,8 +785,8 @@ private def Module.computeArtifacts (mod : Module) (isModule : Bool) : FetchM Mo
     oleanServer? := ← computeIf isModule mod.oleanServerFile "olean.server"
     oleanPrivate? := ← computeIf isModule mod.oleanPrivateFile "olean.private"
     ilean := ← compute mod.ileanFile "ilean"
-    ir? := ← computeIf isModule mod.irFile "ir"
     irSig? := ← computeIf isModule mod.irSigFile "ir.sig"
+    ir? := ← computeIf isModule mod.irFile "ir"
     c := ← compute mod.cFile "c"
     bc? := ← computeIf (Lean.Internal.hasLLVMBackend ()) mod.bcFile "bc"
   }
@@ -820,9 +820,9 @@ def Module.packLtar (self : Module) (arts : ModuleOutputArtifacts) : JobM Artifa
     if let some art := arts.oleanPrivate? then
       args := addArt args "0" art
     args := addArt args "0" arts.ilean
-    if let some art := arts.ir? then
-      args := addArt args "0" art
     if let some art := arts.irSig? then
+      args := addArt args "0" art
+    if let some art := arts.ir? then
       args := addArt args "0" art
     args := addArt args "1" arts.c
     if Lean.Internal.hasLLVMBackend () then
@@ -1055,13 +1055,13 @@ public def Module.ileanFacetConfig : ModuleFacetConfig ileanFacet :=
       addTrace art.trace
       return art.path
 
-/-- The `ModuleFacetConfig` for the builtin `irFacet`. -/
-public def Module.irFacetConfig : ModuleFacetConfig irFacet :=
-  mkFacetJobConfig <| fetchOLeanCore "ir" (·.ir?) noIRError
-
 /-- The `ModuleFacetConfig` for the builtin `irSigFacet`. -/
 public def Module.irSigFacetConfig : ModuleFacetConfig irSigFacet :=
   mkFacetJobConfig <| fetchOLeanCore "ir.sig" (·.irSig?) noIRError
+
+/-- The `ModuleFacetConfig` for the builtin `irFacet`. -/
+public def Module.irFacetConfig : ModuleFacetConfig irFacet :=
+  mkFacetJobConfig <| fetchOLeanCore "ir" (·.ir?) noIRError
 
 /-- The `ModuleFacetConfig` for the builtin `cFacet`. -/
 public def Module.cFacetConfig : ModuleFacetConfig cFacet :=
@@ -1215,8 +1215,8 @@ public def Module.initFacetConfigs : DNameMap ModuleFacetConfig :=
   |>.insert oleanServerFacet oleanServerFacetConfig
   |>.insert oleanPrivateFacet oleanPrivateFacetConfig
   |>.insert ileanFacet ileanFacetConfig
-  |>.insert irFacet irFacetConfig
   |>.insert irSigFacet irSigFacetConfig
+  |>.insert irFacet irFacetConfig
   |>.insert cFacet cFacetConfig
   |>.insert bcFacet bcFacetConfig
   |>.insert coFacet coFacetConfig

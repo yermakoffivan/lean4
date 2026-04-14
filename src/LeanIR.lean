@@ -22,6 +22,13 @@ import Lean.Compiler.LCNF.Main
 
 open Lean Compiler LCNF
 
+/-- Leaner alternative to `.ir` for non-`import all` compilation. -/
+def mkIRSigData (env : Environment) : IO ModuleData := do
+  let data ← mkModuleData env .exported
+  return { data with
+    extraConstNames := getIRExtraConstNames env .private (includeDecls := true)
+  }
+
 def mkIRData (env : Environment) : IO ModuleData := do
   -- TODO: should we use a more specific/efficient data format for IR?
 
@@ -37,13 +44,6 @@ def mkIRData (env : Environment) : IO ModuleData := do
     constNames := default
     -- make sure to include all names in case only `.ir` is loaded
     -- TODO: `.private` because `import all` may require otherwise unreachable IR entries
-    extraConstNames := getIRExtraConstNames env .private (includeDecls := true)
-  }
-
-/-- Leaner alternative to `.ir` for non-`import all` compilation. -/
-def mkIRSigData (env : Environment) : IO ModuleData := do
-  let data ← mkModuleData env .exported
-  return { data with
     extraConstNames := getIRExtraConstNames env .private (includeDecls := true)
   }
 

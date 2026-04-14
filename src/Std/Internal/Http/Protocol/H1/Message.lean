@@ -115,7 +115,7 @@ def Message.Head.shouldKeepAlive (message : Message.Head dir) : Bool :=
         ) (some #[])
 
   match tokens? with
-  | none =>false
+  | none => false
   | some tokens =>
       if message.version == .v11 then
         !tokens.any (· == "close")

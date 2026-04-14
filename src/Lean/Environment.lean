@@ -2008,9 +2008,8 @@ private def ImportedModule.serverData? (self : ImportedModule) (level : OLeanLev
   self.getData? (if level ≥ .server then level else .exported)
 
 /-- The module data that should be used for accessing IR for interpretation (lean) or compilation (leanir). -/
-private def ImportedModule.irData? (self : ImportedModule) (level : OLeanLevel) :
-    Option ModuleData :=
-  if (level < .server && self.irPhases == .runtime) || !self.mainModule?.any (·.isModule) then
+private def ImportedModule.irData? (self : ImportedModule) : Option ModuleData :=
+  if self.irParts.isEmpty || !self.mainModule?.any (·.isModule) then
     self.mainModule?
   else
     -- For `import all` modules, use `.ir`; otherwise prefer `.ir.sig`
@@ -2154,7 +2153,7 @@ where
 
       let irPhases :=
         if importAll then .all
-        else if needsIRTrans || loadIRSig then .comptime  -- `globalLevel` should *not* be considered here
+        else if needsIRTrans then .comptime  -- `globalLevel` should *not* be considered here
         else .runtime
 
       let goRec mod := do
@@ -2275,7 +2274,7 @@ def finalizeImport (s : ImportState) (imports : Array Import) (opts : Options) (
       throw <| IO.userError s!"missing data file for module {mod.module}"
     return data
   let irData ← modules.mapM fun mod => do
-    let some data := mod.irData? level |
+    let some data := mod.irData? |
       throw <| IO.userError s!"missing IR data file for module {mod.module}"
     return data
   let numPrivateConsts := moduleData.foldl (init := 0) fun numPrivateConsts data =>

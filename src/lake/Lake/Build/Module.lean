@@ -723,6 +723,7 @@ public def Module.checkArtifactsExsist (self : Module) (isModule : Bool) : BaseI
     unless (← self.oleanServerFile.pathExists) do return false
     unless (← self.oleanPrivateFile.pathExists) do return false
     unless (← self.irFile.pathExists) do return false
+    unless (← self.irSigFile.pathExists) do return false
   return true
 
 public protected def Module.checkExists (self : Module) (isModule : Bool) : BaseIO Bool := do
@@ -744,6 +745,7 @@ public protected def Module.getMTime (self : Module) (isModule : Bool) : IO MTim
       |> max (← getMTime self.oleanServerFile)
       |> max (← getMTime self.oleanPrivateFile)
       |> max (← getMTime self.irFile)
+      |> max (← getMTime self.irSigFile)
     return mtime
   catch e =>
     try getMTime self.ltarFile catch
@@ -772,6 +774,7 @@ private def Module.mkArtifacts (mod : Module) (srcFile : FilePath) (isModule : B
   oleanPrivate? := if isModule then some mod.oleanPrivateFile else none
   ilean? := mod.ileanFile
   ir? := if isModule then some mod.irFile else none
+  irSig? := if isModule then some mod.irSigFile else none
   c? := mod.cFile
   bc? := if Lean.Internal.hasLLVMBackend () then some mod.bcFile else none
 
@@ -1056,6 +1059,10 @@ public def Module.ileanFacetConfig : ModuleFacetConfig ileanFacet :=
 public def Module.irFacetConfig : ModuleFacetConfig irFacet :=
   mkFacetJobConfig <| fetchOLeanCore "ir" (·.ir?) noIRError
 
+/-- The `ModuleFacetConfig` for the builtin `irSigFacet`. -/
+public def Module.irSigFacetConfig : ModuleFacetConfig irSigFacet :=
+  mkFacetJobConfig <| fetchOLeanCore "ir.sig" (·.irSig?) noIRError
+
 /-- The `ModuleFacetConfig` for the builtin `cFacet`. -/
 public def Module.cFacetConfig : ModuleFacetConfig cFacet :=
   mkFacetJobConfig fun mod => do
@@ -1209,6 +1216,7 @@ public def Module.initFacetConfigs : DNameMap ModuleFacetConfig :=
   |>.insert oleanPrivateFacet oleanPrivateFacetConfig
   |>.insert ileanFacet ileanFacetConfig
   |>.insert irFacet irFacetConfig
+  |>.insert irSigFacet irSigFacetConfig
   |>.insert cFacet cFacetConfig
   |>.insert bcFacet bcFacetConfig
   |>.insert coFacet coFacetConfig

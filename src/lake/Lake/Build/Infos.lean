@@ -174,6 +174,9 @@ namespace Module
 @[inherit_doc irFacet] public abbrev ir (self : Module) :=
   self.facetCore irFacet
 
+@[inherit_doc irSigFacet] public abbrev irSig (self : Module) :=
+  self.facetCore irSigFacet
+
 @[inherit_doc cFacet] public abbrev c (self : Module) :=
   self.facetCore cFacet
 

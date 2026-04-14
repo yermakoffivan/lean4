@@ -144,6 +144,9 @@ builtin_facet ilean : Module => FilePath
 /-- The `ir` file produced by `lean` (with the module system enabled). -/
 builtin_facet ir : Module => FilePath
 
+/-- The `ir.sig` file produced by `lean` (with the module system enabled). -/
+builtin_facet irSigFacet @ ir.sig : Module => FilePath
+
 /-- The C file produced by `lean`. -/
 builtin_facet c : Module => FilePath
 

@@ -118,6 +118,7 @@ structure ModuleArtifacts where
   oleanPrivate? : Option System.FilePath := none
   ilean? : Option System.FilePath := none
   ir? : Option System.FilePath := none
+  irSig? : Option System.FilePath := none
   c? : Option System.FilePath := none
   bc? : Option System.FilePath := none
   deriving Repr, Inhabited, ToJson, FromJson

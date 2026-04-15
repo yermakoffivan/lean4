@@ -505,6 +505,9 @@ def canUnfoldAtMatcher (cfg : Config) (info : ConstantInfo) : CoreM Bool := do
   return info.name == ``OfNat.ofNat -- needed to reduce numeric literals in match discriminants
    || info.name == ``NatCast.natCast -- needed for `↑m` in match discriminants (pervasive in Int proofs)
    || info.name == ``Fin.ofNat -- needed for Fin literal reduction in match discriminants (e.g. ComposableArrows)
+   /- `Fin.ofNat` reduces to `⟨a % n, _⟩`, so we also need to unfold `%` (i.e., `HMod.hMod`
+      and `Mod.mod`) to expose the `Fin.mk` constructor in match discriminants. -/
+   || info.name == ``HMod.hMod || info.name == ``Mod.mod
 
 private def whnfMatcher (e : Expr) : MetaM Expr := do
   /- When reducing `match` expressions at `.reducible` or `.instances` transparency,
@@ -522,6 +525,7 @@ private def whnfMatcher (e : Expr) : MetaM Expr := do
     whnf e
 
 def reduceMatcher? (e : Expr) : MetaM ReduceMatcherResult := do
+  let e := e.consumeMData
   let .const declName declLevels := e.getAppFn
     | return .notMatcher
   let some info ← getMatcherInfo? declName
@@ -969,6 +973,7 @@ partial def whnfCoreUnfoldingAnnotations (e : Expr) : MetaM Expr :=
 
 /-- Try to reduce matcher/recursor/quot applications. We say they are all "morally" recursor applications. -/
 def reduceRecMatcher? (e : Expr) : MetaM (Option Expr) := do
+  let e := e.consumeMData
   if !e.isApp then
     return none
   else match (← reduceMatcher? e) with

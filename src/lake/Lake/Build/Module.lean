@@ -235,8 +235,8 @@ where
       let q := q.pop
       if let some arts := s.find? mod.name then
         -- may need to promote a module system `import` to an `import all`
-        -- (only `import all` populates `oleanPrivate?`)
-        unless importAll && arts.oleanPrivate?.isNone do
+        -- (`.server` present => module, no `.private` => not already `import all`)
+        unless importAll && arts.oleanServer?.isSome && arts.oleanPrivate?.isNone do
           return ← walk s q
       let info ← (← mod.exportInfo.fetch).await
       let arts := if importAll then info.allArts else info.arts

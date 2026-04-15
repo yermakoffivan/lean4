@@ -2080,7 +2080,8 @@ private def findIRParts (mod : Name) : IO (Array System.FilePath) := do
 partial def importModulesCore
     (imports : Array Import) (globalLevel : OLeanLevel := .private)
     (arts : NameMap ImportArtifacts := {}) (isExported : Bool := globalLevel < .private)
-    -- If true, ensure (at least) `.ir.sig` is loaded for every module; used by leanir
+    -- leanir: ensure (at least) `.ir.sig` is loaded for every module with data; also ignore `meta`
+    -- on imports
     (loadIRSig : Bool := false) :
     ImportStateM Unit := do
   go imports (importAll := true) (isExported := isExported) (needsData := true) (needsIRTrans := false)
@@ -2154,8 +2155,12 @@ where
       let importAll := globalLevel == .private || importAll && i.importAll
       -- `B ≥ public`?
       let isExported := isExported && i.isExported
-      let needsIRTrans := needsIRTrans || needsData && i.isMeta
-      let needsIR := needsIRTrans || importAll || globalLevel > .exported || loadIRSig
+      -- `leanir` (`loadIRSig`) only needs `.ir.sig` of direct imports, not transitive `.ir`
+      -- through `meta` imports, so ignore the `meta` modifier under `loadIRSig`.
+      let needsIRTrans := needsIRTrans || (!loadIRSig && needsData && i.isMeta)
+      -- `loadIRSig` only loads `.ir.sig` for modules whose `.olean` is also loaded
+      -- (i.e., `needsData`), preserving the invariant that IR is never present without its olean.
+      let needsIR := needsIRTrans || importAll || globalLevel > .exported || (loadIRSig && needsData)
       if !needsData && !needsIR then
         continue
 
@@ -2174,7 +2179,7 @@ where
         let isExported := isExported || mod.isExported
         let needsData := needsData || mod.needsData
         let needsIRTrans := needsIRTrans || mod.needsIRTrans
-        let needsIR := needsIRTrans || importAll || loadIRSig
+        let needsIR := needsIRTrans || importAll || (loadIRSig && needsData)
         let irPhases := if irPhases == mod.irPhases then irPhases else .all
         let parts ← if needsData && mod.parts.isEmpty then loadData i else pure mod.parts
         let irParts ← if needsIR && mod.irParts.isEmpty then loadIR i else pure mod.irParts

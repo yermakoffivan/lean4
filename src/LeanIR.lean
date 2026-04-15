@@ -80,18 +80,13 @@ public def main (args : List String) : IO UInt32 := do
   opts := Compiler.compiler.inLeanIR.set opts true
   opts := maxHeartbeats.set opts 0
 
-  --initSearchPathInternal  -- TODO
-  initSearchPath (← getBuildDir)
+  initSearchPathInternal
   -- Provide access to private scope of target module but no others; provide all IR
   let env ← profileitIO "import" opts <| withImporting do
-    -- Read the target module's olean to discover its direct imports
-    let targetParts ← readModuleDataParts (← findOLeanParts modName)
-    let some (targetData, _) := targetParts[0]? | throw <| IO.userError "failed to read target module"
-    let directImports := targetData.imports
-    -- Import target module privately (`importAll`); never import `.ir`
-    let imports := directImports.map ({ · with isMeta := false })
-      |>.push { module := modName, importAll := true }
-    let (_, s) ← importModulesCore (globalLevel := .exported) (loadIRSig := true) imports |>.run
+    -- `importAll` so we have access to all private data
+    let imports := #[{ module := modName, importAll := true : Import }]
+    let (_, s) ← importModulesCore (globalLevel := .exported) (loadIRSig := true)
+      (arts := setup.importArts) imports |>.run
     let s := { s with moduleNameMap := s.moduleNameMap.modify modName fun m => { m with irPhases := .runtime } }
     -- level exported because otherwise we would try to load the current module's `.ir`
     finalizeImport (leakEnv := true) (loadExts := false) (level := .exported) (loadIRSig := true) s imports opts

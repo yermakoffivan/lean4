@@ -249,9 +249,11 @@ where
   enqueue importAll input q :=
     input.imports.foldr (init := q) fun imp q =>
       if let some mod := imp.module? then
-        if importAll || imp.isExported then
-          q.push (mod, nonModule || (importAll && imp.importAll))
-        else q
+        -- Include all transitive imports regardless of export status.
+        -- Lean needs the artifact paths for IR loading via `meta import` chains
+        -- even for non-exported imports. Without this, `findOLeanParts` is used
+        -- as fallback, which fails when artifacts are only in the Lake cache.
+        q.push (mod, nonModule || (importAll && imp.importAll))
       else q
 
 private def ModuleImportInfo.nil (modName : Name) : ModuleImportInfo where

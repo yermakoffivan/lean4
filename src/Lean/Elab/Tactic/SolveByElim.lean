@@ -7,8 +7,8 @@ module
 
 prelude
 public import Lean.Meta.Tactic.SolveByElim
-public import Lean.Elab.Tactic.Config
 public import Lean.LibrarySuggestions.Basic
+import Lean.Elab.Tactic.Config
 
 public section
 
@@ -24,11 +24,13 @@ open Lean.Meta.SolveByElim (SolveByElimConfig mkAssumptionSet)
 Allow elaboration of `Config` arguments to tactics.
 -/
 declare_config_elab elabConfig Lean.Meta.SolveByElim.SolveByElimConfig
+  -proc -suspend -discharge
 
 /--
 Allow elaboration of `ApplyRulesConfig` arguments to tactics.
 -/
 declare_config_elab elabApplyRulesConfig Lean.Meta.SolveByElim.ApplyRulesConfig
+  -proc -suspend -discharge
 
 /--
 Parse the lemma argument of a call to `solve_by_elim`.

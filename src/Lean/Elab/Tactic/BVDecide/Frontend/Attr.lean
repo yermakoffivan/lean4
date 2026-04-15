@@ -8,6 +8,7 @@ module
 prelude
 public import Lean.Elab.Tactic.Simp
 public import Std.Tactic.BVDecide.Syntax
+import Lean.Elab.Tactic.Config
 
 public section
 
@@ -36,6 +37,7 @@ register_builtin_option sat.solver : String := {
         to use the one that ships with Lean."
 }
 
+private local derive_eval_config_item_instance SolverMode in
 declare_config_elab elabBVDecideConfig Lean.Elab.Tactic.BVDecide.Frontend.BVDecideConfig
 
 builtin_initialize bvNormalizeExt : Meta.SimpExtension ←

@@ -6,32 +6,18 @@ Authors: Leonardo de Moura
 module
 prelude
 public import Lean.Elab.Tactic.Grind.Basic
-import Lean.Elab.Tactic.ConfigSetter
-import Lean.Elab.DeprecatedSyntax  -- shake: skip (workaround for `mkConfigSetter` failing to interpret `deprecatedSyntaxExt`, to be fixed)
+import Lean.Elab.Tactic.Config
 
 public section
 namespace Lean.Elab.Tactic.Grind
 
-/-- Sets a field of the `grind` configuration object. -/
-declare_config_getter setConfigField Grind.Config
+private local derive_eval_set_config_item_instance Grind.Config
 
 def elabConfigItems (init : Grind.Config) (items : Array (TSyntax `Lean.Parser.Tactic.configItem))
     : TermElabM Grind.Config := do
-  let mut config := init
-  for item in items do
-    match item with
-    | `(Lean.Parser.Tactic.configItem| ($fieldName:ident := true))
-    | `(Lean.Parser.Tactic.configItem| +$fieldName:ident) =>
-      config ← withRef fieldName <| setConfigField config fieldName.getId true
-    | `(Lean.Parser.Tactic.configItem| ($fieldName:ident := false))
-    | `(Lean.Parser.Tactic.configItem| -$fieldName:ident) =>
-      config ← withRef fieldName <| setConfigField config fieldName.getId false
-    | `(Lean.Parser.Tactic.configItem| ($fieldName:ident := $val:num)) =>
-      config ← withRef fieldName <| setConfigField config fieldName.getId (.ofNat val.getNat)
-    | _ => throwErrorAt item "unexpected configuration option"
-  return config
+  runEvalSetConfigItems init items (logExceptions := false)
 
-def withConfigItems (items : Array (TSyntax `Lean.Parser.Tactic.configItem))
+def withConfigItems (items : Array (TSyntax ``Lean.Parser.Tactic.configItem))
     (k : GrindTacticM α) : GrindTacticM α := do
   if items.isEmpty then
     k

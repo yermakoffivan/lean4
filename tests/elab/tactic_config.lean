@@ -57,7 +57,7 @@ error: unsolved goals
 #guard_msgs in example : True := by my_tactic +x
 
 /--
-error: Structure `MyTacticConfig` does not have a field named `w`
+error: Invalid configuration option `w` for `MyTacticConfig`
 ---
 info: config is { x := 0, y := false }
 ---
@@ -67,7 +67,7 @@ error: unsolved goals
 #guard_msgs in example : True := by my_tactic +w
 
 /--
-error: Field `x` of structure `MyTacticConfig` is not a structure
+error: Field `x` of structure `MyTacticConfig` is not a structure.
 ---
 info: config is { x := 0, y := false }
 ---
@@ -99,6 +99,8 @@ info: config is { toMyTacticConfig := { x := 1, y := true } }
 ---
 info: config is { toMyTacticConfig := { x := 2, y := false } }
 ---
+info: config is { toMyTacticConfig := { x := 2, y := false } }
+---
 info: config is { toMyTacticConfig := { x := 1, y := true } }
 ---
 info: config is { toMyTacticConfig := { x := 22, y := false } }
@@ -109,6 +111,7 @@ example : True := by
   my_tactic' +y
   my_tactic' (x := 1)
   my_tactic' -y (x := 2)
+  my_tactic' (x := 2) -y
   my_tactic' (config := {x := 1, y := true})
   my_tactic' +y (config := {y := false})
   trivial
@@ -125,20 +128,26 @@ structure B extends A
 structure C where
   b : B := {}
   deriving Repr
+derive_eval_set_config_item_instance B
 declare_config_elab elabC C
 
 elab "ctac" cfg:Parser.Tactic.optConfig : tactic => do
   let config ← elabC cfg
   logInfo m!"config is {repr config}"
 
-/--
-info: config is { b := { toA := { x := false } } }
----
-info: config is { b := { toA := { x := false } } }
--/
+/-- info: config is { b := { toA := { x := false } } } -/
 #guard_msgs in
 example : True := by
   ctac -b.x
+  trivial
+
+/--
+error: Invalid configuration option `toA.x` for `B`
+---
+info: config is { b := { toA := { x := true } } }
+-/
+#guard_msgs in
+example : True := by
   ctac -b.toA.x
   trivial
 
@@ -147,7 +156,7 @@ Responds to recovery mode. In these, `ctac` continues even though configuration 
 -/
 
 /--
-error: Structure `C` does not have a field named `x`
+error: Invalid configuration option `x` for `C`
 ---
 info: config is { b := { toA := { x := true } } }
 ---
@@ -159,7 +168,7 @@ example : True := by
   trace_state
   trivial
 
--- Check that when recovery mode is false, no error is reported.
+-- Check that when recovery mode is false, no error is reported, since there was an exception.
 /-- trace: ⊢ True -/
 #guard_msgs in
 example : True := by
@@ -168,7 +177,7 @@ example : True := by
   trivial
 
 /--
-error: Structure `C` does not have a field named `x`
+error: Invalid configuration option `x` for `C`
 ---
 info: config is { b := { toA := { x := true } } }
 ---
@@ -194,12 +203,10 @@ Elaboration errors cause the tactic to use the default configuration.
 -/
 
 /--
-error: Type mismatch
-  false
-has type
-  Bool
+error: Type mismatch. Option value `"oops"` has type
+  String
 but is expected to have type
-  B
+  Bool
 ---
 info: config is { b := { toA := { x := true } } }
 ---
@@ -208,7 +215,7 @@ error: unsolved goals
 -/
 #guard_msgs in
 example : True := by
-  ctac (b := false)
+  ctac (b.x := "oops")
   done
 
 
@@ -236,9 +243,7 @@ elab "my_command" cfg:Parser.Tactic.optConfig : command => do
 /-- info: config is { x := 0, y := false } -/
 #guard_msgs in my_command (x := 1) (y := true) (config := {})
 /--
-error: Type mismatch
-  true
-has type
+error: Type mismatch. Option value `true` has type
   Bool
 but is expected to have type
   Nat

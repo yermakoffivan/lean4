@@ -26,7 +26,7 @@ open Lean Compiler LCNF
 def mkIRSigData (env : Environment) : IO ModuleData := do
   let data ← mkModuleData env .exported
   return { data with
-    extraConstNames := getIRExtraConstNames env .private (includeDecls := true)
+    extraConstNames := getIRExtraConstNames env .exported
   }
 
 def mkIRData (env : Environment) : IO ModuleData := do
@@ -88,14 +88,13 @@ public def main (args : List String) : IO UInt32 := do
     let targetParts ← readModuleDataParts (← findOLeanParts modName)
     let some (targetData, _) := targetParts[0]? | throw <| IO.userError "failed to read target module"
     let directImports := targetData.imports
-    -- Import target module privately (`importAll`), its direct imports privately too (for kernel
-    -- constants like constructors), and everything else at `exported` level.
-    let imports := directImports.map (fun i => { i with isMeta := false })
+    -- Import target module privately (`importAll`); never import `.ir`
+    let imports := directImports.map ({ · with isMeta := false })
       |>.push { module := modName, importAll := true }
     let (_, s) ← importModulesCore (globalLevel := .exported) (loadIRSig := true) imports |>.run
     let s := { s with moduleNameMap := s.moduleNameMap.modify modName fun m => { m with irPhases := .runtime } }
     -- level exported because otherwise we would try to load the current module's `.ir`
-    finalizeImport (leakEnv := true) (loadExts := false) (level := .exported) s imports opts
+    finalizeImport (leakEnv := true) (loadExts := false) (level := .exported) (loadIRSig := true) s imports opts
   let env := env.setMainModule modName
 
   let initExt {α β σ} [Inhabited σ] (ext : PersistentEnvExtension α β σ) (env : Environment) : IO Environment := do

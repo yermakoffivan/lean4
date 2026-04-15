@@ -443,16 +443,19 @@ private def Module.computeExportInfo (mod : Module) : FetchM (Job ModuleExportIn
     if input.header.isModule then
       let some oleanServer := arts.oleanServer?
         | error noServerOLeanError
+      let some irSig := arts.irSig?
+        | error noIRError
       let some ir := arts.ir?
         | error noIRError
       let some oleanPrivate := arts.oleanPrivate?
         | error noPrivateOLeanError
-      let irSig := arts.irSig?.getD ir
       return {
         srcTrace := input.trace
-        arts := .ofArrays #[#[olean.path, oleanServer.path], #[irSig.path]]
+        -- NOTE: always includes `.server` and full `.ir` as this data is used by the server and we
+        -- do not distinguish between it and cmdline build here (TODO: this is too dangerous!)
+        arts := .ofArrays #[#[olean.path, oleanServer.path], #[irSig.path, ir.path]]
         artsTrace := artsTrace.mix olean.trace
-        metaArtsTrace := metaArtsTrace.mix olean.trace |>.mix irSig.trace
+        metaArtsTrace := metaArtsTrace.mix olean.trace |>.mix irSig.trace |>.mix ir.trace
         allArts := .ofArrays #[#[olean.path, oleanServer.path, oleanPrivate.path], #[irSig.path, ir.path]]
         allArtsTrace := allArtsTrace.mix
           olean.trace |>.mix oleanServer.trace |>.mix oleanPrivate.trace |>.mix irSig.trace |>.mix ir.trace

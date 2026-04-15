@@ -69,9 +69,7 @@ This structure is designed for efficient JSON serialization.
 structure ImportArtifacts where
   ofArrays ::
     /--
-    Two nested arrays:
-    * {lit}`[0]` — olean parts: {lit}`[olean, oleanServer?, oleanPrivate?]`
-    * {lit}`[1]` — ir parts: {lit}`[irSig, ir?]` (sig first)
+    Two nested arrays of variable size: {lit}`#[#[olean, oleanServer?, oleanPrivate?], #[irSig, ir?]]`
     -/
     toArrays : Array (Array System.FilePath)
   deriving Repr, Inhabited

@@ -1878,7 +1878,7 @@ def writeModule (env : Environment) (fname : System.FilePath) (writeIR := true) 
       let irData := mkIRData env
       -- Make sure to change the module name so we derive a different base address
       saveModuleDataParts (env.mainModule ++ `ir) #[
-        (fname.withExtension "ir.sig", irData),
+        (fname.withExtension "ir.sig", default),  -- to be filled by leanir instead
         (fname.withExtension "ir", irData)]
   else
     saveModuleData fname env.mainModule (← mkModuleData env)
@@ -1972,9 +1972,9 @@ where
       return env
 
 private structure ImportedModule extends EffectiveImport where
-  /-- All loaded incremental compacted regions from `.olean*`. -/
+  /-- `.olean` + `.olean.server` (optional) + `.olean.private` (optional). -/
   parts     : Array (ModuleData × CompactedRegion)
-  /-- `.ir.sig` + `.ir` data, if loaded. -/
+  /-- `.ir.sig` (optional) + `.ir` (optional). -/
   irParts   : Array (ModuleData × CompactedRegion)
   /-- If true, `.olean*` data should be imported. -/
   needsData : Bool
@@ -1987,7 +1987,7 @@ private def ImportedModule.publicModule? (self : ImportedModule) : Option Module
     self.parts[0]?.map (·.1)
   else
     -- (should not have any constants)
-    self.irParts[0]?.map (·.1)
+    self.irParts.back?.map (·.1)
 
 private def ImportedModule.getData? (self : ImportedModule) (level : OLeanLevel) : Option ModuleData := do
   -- Without the module system, we only have the exported level.
@@ -1999,7 +1999,7 @@ private def ImportedModule.mainModule? (self : ImportedModule) : Option ModuleDa
   if self.needsData then
     self.getData? (if self.importAll then .private else .exported)
   else
-    self.irParts[0]?.map (·.1)
+    self.irParts.back?.map (·.1)
 
 /-- The module data that should be used for server purposes. -/
 private def ImportedModule.serverData? (self : ImportedModule) (level : OLeanLevel) :
@@ -2007,13 +2007,15 @@ private def ImportedModule.serverData? (self : ImportedModule) (level : OLeanLev
   -- fall back to `exported` outside the server
   self.getData? (if level ≥ .server then level else .exported)
 
-/-- The module data that should be used for accessing IR for interpretation (lean) or compilation (leanir). -/
-private def ImportedModule.irData? (self : ImportedModule) : Option ModuleData :=
+/--
+The module data that should be used for accessing IR for interpretation (lean) or compilation
+(leanir; loadIRSig = true). -/
+private def ImportedModule.irData? (self : ImportedModule) (loadIRSig : Bool := false) : Option ModuleData :=
   if self.irParts.isEmpty || !self.mainModule?.any (·.isModule) then
     self.mainModule?
   else
-    -- For `import all` modules, use `.ir`; otherwise prefer `.ir.sig`
-    if self.importAll then
+    -- leanir: for `import all` modules, use `.ir`; otherwise prefer `.ir.sig`
+    if !loadIRSig || self.importAll then
       self.irParts.back?.map (·.1)
     else
       self.irParts[0]?.map (·.1)
@@ -2072,7 +2074,7 @@ private def findIRParts (mod : Name) : IO (Array System.FilePath) := do
 partial def importModulesCore
     (imports : Array Import) (globalLevel : OLeanLevel := .private)
     (arts : NameMap ImportArtifacts := {}) (isExported : Bool := globalLevel < .private)
-    -- If true,
+    -- If true, ensure (at least) `.ir.sig` is loaded for every module; used by leanir
     (loadIRSig : Bool := false) :
     ImportStateM Unit := do
   go imports (importAll := true) (isExported := isExported) (needsData := true) (needsIRTrans := false)
@@ -2266,7 +2268,9 @@ Constructs environment from `importModulesCore` results.
 See also `importModules` for parameter documentation.
 -/
 def finalizeImport (s : ImportState) (imports : Array Import) (opts : Options) (trustLevel : UInt32 := 0)
-    (leakEnv loadExts : Bool) (level := OLeanLevel.private) (isModule := level != .private) :
+    (leakEnv loadExts : Bool) (level := OLeanLevel.private) (isModule := level != .private)
+    -- If true, prefer loading `.ir.sig` over `.ir` unless `import all`ed; used by leanir
+    (loadIRSig := false) :
     IO Environment := do
   let modules := s.moduleNames.filterMap (s.moduleNameMap[·]?)
   let moduleData ← modules.mapM fun mod => do
@@ -2274,7 +2278,7 @@ def finalizeImport (s : ImportState) (imports : Array Import) (opts : Options) (
       throw <| IO.userError s!"missing data file for module {mod.module}"
     return data
   let irData ← modules.mapM fun mod => do
-    let some data := mod.irData? |
+    let some data := mod.irData? loadIRSig |
       throw <| IO.userError s!"missing IR data file for module {mod.module}"
     return data
   let numPrivateConsts := moduleData.foldl (init := 0) fun numPrivateConsts data =>

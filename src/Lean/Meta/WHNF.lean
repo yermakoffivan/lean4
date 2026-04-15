@@ -504,7 +504,15 @@ def canUnfoldAtMatcher (cfg : Config) (info : ConstantInfo) : CoreM Bool := do
     return true
   return info.name == ``OfNat.ofNat -- needed to reduce numeric literals in match discriminants
    || info.name == ``NatCast.natCast -- needed for `↑m` in match discriminants (pervasive in Int proofs)
-   || info.name == ``Fin.ofNat -- needed for Fin literal reduction in match discriminants (e.g. ComposableArrows)
+   || info.name == ``decEq
+   || info.name == ``Nat.decEq
+   || info.name == ``Char.ofNat   || info.name == ``Char.ofNatAux
+   || info.name == ``String.decEq || info.name == ``List.hasDecEq
+   || info.name == ``Fin.ofNat -- needed for Fin literal reduction in match discriminants
+   || info.name == ``UInt8.ofNat  || info.name == ``UInt8.decEq
+   || info.name == ``UInt16.ofNat || info.name == ``UInt16.decEq
+   || info.name == ``UInt32.ofNat || info.name == ``UInt32.decEq
+   || info.name == ``UInt64.ofNat || info.name == ``UInt64.decEq
    /- `Fin.ofNat` reduces to `⟨a % n, _⟩`, so we also need to unfold `%` (i.e., `HMod.hMod`
       and `Mod.mod`) to expose the `Fin.mk` constructor in match discriminants. -/
    || info.name == ``HMod.hMod || info.name == ``Mod.mod

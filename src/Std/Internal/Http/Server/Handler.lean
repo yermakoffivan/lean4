@@ -57,4 +57,70 @@ class Handler (σ : Type) where
   onContinue (self : σ) (request : Request.Head) : Async Bool :=
     pure true
 
+/--
+A stateless HTTP handler.
+-/
+structure StatelessHandler where
+  /--
+  Function called for each incoming request.
+  -/
+  onRequest : Request Body.Stream → ContextAsync (Response Body.Any)
+
+  /--
+  Function called when an I/O or transport error occurs. The default does nothing.
+  -/
+  onFailure : IO.Error → Async Unit := fun _ => pure ()
+
+  /--
+  Function called when a request includes `Expect: 100-continue`. Return `true` to accept
+  the body or `false` to reject it with `417 Expectation Failed`. The default always accepts.
+  -/
+  onContinue : Request.Head → Async Bool := fun _ => pure true
+
+instance : Handler StatelessHandler where
+  onRequest self request := self.onRequest request
+  onFailure self error := self.onFailure error
+  onContinue self request := self.onContinue request
+
+namespace Handler
+
+/--
+Builds a `StatelessHandler` from a request-handling function.
+-/
+def ofFn
+    (f : Request Body.Stream → ContextAsync (Response Body.Any)) :
+    StatelessHandler :=
+  { onRequest := f }
+
+/--
+Builds a `StatelessHandler` from all three callback functions.
+-/
+def ofFns
+    (onRequest : Request Body.Stream → ContextAsync (Response Body.Any))
+    (onFailure : IO.Error → Async Unit := fun _ => pure ())
+    (onContinue : Request.Head → Async Bool := fun _ => pure true) :
+    StatelessHandler :=
+  { onRequest, onFailure, onContinue }
+
+/--
+Builds a `StatelessHandler` from a request function and a failure callback. Useful for
+attaching error logging to a handler.
+-/
+def withFailure
+    (handler : StatelessHandler)
+    (onFailure : IO.Error → Async Unit) :
+    StatelessHandler :=
+  { handler with onFailure }
+
+/--
+Builds a `StatelessHandler` from a request function and a continue callback
+-/
+def withContinue
+    (handler : StatelessHandler)
+    (onContinue : Request.Head → Async Bool) :
+    StatelessHandler :=
+  { handler with onContinue }
+
+end Handler
+
 end Std.Http.Server

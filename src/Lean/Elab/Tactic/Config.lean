@@ -157,7 +157,7 @@ def evalOptionExpr {α : Type} (ev : Expr → MetaM α) (e : Expr) : MetaM (Opti
 
 partial def evalListExpr {α : Type} (ev : Expr → MetaM α) (e : Expr) (didWHNF : Bool := false) : MetaM (List α) := do
   match_expr (meta := false) e with
-  | List.nil => return []
+  | List.nil _ => return []
   | List.cons _ x xs =>
     let v ← ev x
     let vs ← evalListExpr ev xs
@@ -334,7 +334,7 @@ Resolves `id` as if it were a dotted identifier for `c`,
 and then applies `resolveAtomicNameForConstNamespace`.
 -/
 private def resolveDottedAtomicNameForConstNamespace (c : Name) (id : Ident) : TermElabM String := do
-  let n := id.getId
+  let n := id.getId.eraseMacroScopes
   if let Name.str Name.anonymous s := n then
     addCompletionInfo <| CompletionInfo.dotId id n {} (← mkConstWithLevelParams c)
     resolveAtomicNameForConstNamespace c (mkIdentFrom id (Name.str c s))
@@ -411,7 +411,7 @@ where
         if let .str _ ctorName' := ctorName then
           let val ← `(pure ($(mkCIdent ctorName), Expr.const $(quote ctorName) []))
           stxCases := stxCases.push (ctorName', val)
-    let instName ← NameGen.mkBaseNameWithSuffix' "inst" #[] <| ← ``(EvalConfigItem _ $indType)
+    let instName ← NameGen.mkBaseNameWithSuffix' "inst" #[] <| ← ``(EvalConfigItem $indType)
     let evalExprDef := mkIdent (instName ++ Name.mkSimple "auxEvalExpr")
     let evalStxDef := mkIdent (instName ++ Name.mkSimple "auxEvalStx")
     let stxMatcher ← makeStringMatcher (← `(ident| stx)) stxCases (← `(throwUnsupportedSyntax))
@@ -524,21 +524,23 @@ structure ConfigItemHandlerView where
   atomic : Bool
   body : Term
 
+structure EvalSetConfigItemView where
+  exceptFields : Array Name
+  handlers : Array ConfigItemHandlerView
+
 /--
-Derives an `EvalSetConfigItem` instance for the structure.
+Makes an `EvalSetConfigItem.evalSet` function for the structure.
 Supports structures with no parameters or universes.
 -/
-meta def deriveEvalSetConfigItem
+meta def mkEvalSetConfigItemFun
     (vis? : Option (TSyntax `Lean.Parser.Command.visibility))
-    (kind : TSyntax `Lean.Parser.Term.attrKind)
     (tk : Syntax)
     (struct : Ident)
-    (exceptFields : Array Name)
-    (handlers : Array ConfigItemHandlerView) :
-    CommandElabM Unit :=
-  withFreshMacroScope <| withRef tk do
-    let cmd ← liftTermElabM mkCmd
-    elabCommand cmd
+    (fnIdent : Ident)
+    (extraBinders : TSyntaxArray ``Parser.Term.bracketedBinder)
+    (view : EvalSetConfigItemView) :
+    TermElabM Command :=
+  withRef tk mkCmd
 where
   hasEvalConfigItemInstance (ty : Expr) : MetaM Bool :=
     try
@@ -565,7 +567,7 @@ where
     withLocalDeclD `self (Expr.const structName []) fun self => do
       let mut handled : Std.HashSet String := {}
       let mut cases : Array (String × Term) := #[]
-      for handler in handlers do
+      for handler in view.handlers do
         if handled.contains handler.key then
           throwErrorAt handler.ref "Duplicate handler name"
         handled := handled.insert handler.key
@@ -584,7 +586,7 @@ where
         let fieldTy ← inferType proj
         let mut defaultBody := true
         let mut body ← `(item.throwCannotSetOption)
-        unless exceptFields.contains field do
+        unless view.exceptFields.contains field do
           if ← hasEvalConfigItemInstance fieldTy then
             defaultBody := false
             body ← `(do
@@ -605,7 +607,7 @@ where
               ++ .note m!"The `derive_eval_config_item_instance` and `derive_eval_set_config_item_instance` commands can be used to attempt to derive such instances.")
         body ← `((do Term.addTermInfo' item.option (← mkConstWithLevelParams $(quote projFn))) *> $body)
         cases := cases.push (fieldStr, body)
-      unless handled.contains "config" do
+      unless handled.contains "config" || view.exceptFields.contains `config do
         if ← hasEvalConfigItemInstance (mkConst structName) then
           let cfgBody ←
             `(if item.isAtomic then
@@ -614,52 +616,92 @@ where
                 invalidOption ())
           cases := cases.push ("config", cfgBody)
       let matcher ← makeStringMatcher (← `(ident|rootName)) cases (← `(invalidOption ()))
-      let instName ← NameGen.mkBaseNameWithSuffix' "inst" #[] <| ← ``(EvalConfigItem _ $struct)
-      let evalSetDef := mkIdent (instName ++ Name.mkSimple "auxEvalSet")
-      `($[$vis?:visibility]? def $evalSetDef (config : $struct) (item : ConfigItemView) : TermElabM $struct := do
+      `($[$vis?:visibility]? def $fnIdent $[$extraBinders]* (config : $struct) (item : ConfigItemView) : TermElabM $struct := do
           addCompletionInfo (CompletionInfo.fieldId item.option item.optionName {} $(quote structName))
           withRef item.ref <|
             let rootName := item.getRootOptionName
             let invalidOption (_ : Unit) : TermElabM $struct := item.throwInvalidOption (some $(quote structName))
             let throwFieldNotStructure (_ : Unit) : TermElabM $struct := throwErrorAt item.option m!"Field `{rootName}` of structure `{.ofConstName $(quote structName)}` has no sub-options."
-            $matcher
+            $matcher)
+
+
+/--
+Derives an `EvalSetConfigItem` instance for the structure.
+Supports structures with no parameters or universes.
+-/
+meta def deriveEvalSetConfigItem
+    (vis? : Option (TSyntax `Lean.Parser.Command.visibility))
+    (kind : TSyntax `Lean.Parser.Term.attrKind)
+    (tk : Syntax)
+    (struct : Ident)
+    (view : EvalSetConfigItemView) :
+    CommandElabM Unit :=
+  withFreshMacroScope <| withRef tk do
+    let cmd ← liftTermElabM do
+      let instName ← NameGen.mkBaseNameWithSuffix' "inst" #[] <| ← ``(EvalConfigItem _ $struct)
+      let evalSetDef := mkIdent (instName ++ Name.mkSimple "auxEvalSet")
+      let fnCmd ← mkEvalSetConfigItemFun vis? tk struct evalSetDef #[] view
+      `($fnCmd:command
         $[$vis?:visibility]? $kind:attrKind instance%$tk $(mkIdentFrom tk instName (canonical := true)):ident : EvalSetConfigItem $struct where
           evalSet := $evalSetDef)
+    elabCommand cmd
 
-open Parser in
-meta def exceptFields := leading_parser
-  atomic (" (" >> nonReservedSymbol "except") >> " := " >> sepBy1 ident ", " >> ")"
+section
+open Parser
+meta def configEntryExcept := leading_parser
+  nonReservedSymbol "except " >> sepBy1 ident ", "
+meta def configEntryHandler := leading_parser
+  nonReservedSymbol "option" >> optional "*" >> ppSpace >> ident >> " := " >> termParser
+meta def configEntry := leading_parser
+  configEntryExcept <|> configEntryHandler
+meta def configEntries := leading_parser
+  "where" >> (sepByIndent configEntry "; " (allowTrailingSep := true))
+end
 
-open Parser in
-meta def extraHandler := leading_parser
-  atomic (" (" >> nonReservedSymbol "option") >> optional "*" >> ppSpace >> ident >> " := " >> termParser >> ")"
+meta def mkEvalSetConfigItemView (entries? : Option (TSyntax ``configEntries)) :
+    CommandElabM EvalSetConfigItemView := do
+  let mut exceptFields : Array Name := #[]
+  let mut handlers : Array ConfigItemHandlerView := #[]
+  if let some entries := entries? then
+    match entries with
+    | `(configEntries| where $[$entries:configEntry];*) =>
+      for entry in entries do
+        match entry with
+        | `(configEntry| except $[$fields],*) =>
+          exceptFields := exceptFields ++ fields.map (·.getId.eraseMacroScopes)
+        | `(configEntry| option$[*%$star]? $opt:ident := $body) =>
+          let optName := opt.getId.eraseMacroScopes
+          if let Name.str .anonymous s := optName then
+            handlers := handlers.push { ref := opt.raw, key := s, body := body, atomic := star.isNone }
+          else
+            throwErrorAt opt "Option handlers must be for atomic strings"
+        | _ => throwUnsupportedSyntax
+    | _ => throwUnsupportedSyntax
+  return { exceptFields, handlers }
 
 /-!
-`derive_eval_set_config_item_instance indType` derives an `EvalSetConfigItem _ indType` instance
-for nonrecursive inductive types without universes, parameters, or indices.
-Creates syntax matchers for only those constructors with zero fields (the common case for tactics).
+`derive_eval_set_config_item_instance struct` derives an `EvalSetConfigItem _ struct` instance
+for structures.
 
 The syntax supports `public`/`private` modifiers as well as `scoped`/`local`.
 -/
-elab vis?:(visibility)? kind:attrKind tk:"derive_eval_set_config_item_instance " indType:ident
-    exceptFields?:(exceptFields)? handlers:(extraHandler)* : command => do
-  let exceptFieldNames ←
-    if let some except := exceptFields? then
-      match except with
-      | `(exceptFields| (except := $[$fields],*)) =>
-        pure <| fields.map (·.getId.eraseMacroScopes)
-      | _ => throwUnsupportedSyntax
-    else
-      pure #[]
-  let handlers : Array ConfigItemHandlerView ← handlers.mapM fun
-    | `(extraHandler| (option$[*%$star]? $opt:ident := $body)) =>
-      let optName := opt.getId.eraseMacroScopes
-      if let Name.str .anonymous s := optName then
-        pure { ref := opt.raw, key := s, body := body, atomic := star.isNone }
-      else
-        throwErrorAt opt "Option handlers must be for atomic strings"
-    | _ => throwUnsupportedSyntax
-  deriveEvalSetConfigItem vis? kind tk indType exceptFieldNames handlers
+elab vis?:(visibility)? kind:attrKind tk:"derive_eval_set_config_item_instance " struct:ident
+    entries?:(configEntries)? : command => do
+  let view ← mkEvalSetConfigItemView entries?
+  deriveEvalSetConfigItem vis? kind tk struct (view := view)
+
+/-!
+`def_eval_set_config_item f binders* for struct` defines the `evalSet` function for an
+`EvalSetConfigItem _ struct` instance for structures.
+
+The syntax supports `public`/`private` modifiers as well as `scoped`/`local`.
+-/
+elab vis?:(visibility)? tk:"def_eval_set_config_item " fn:ident binders:(bracketedBinder)* " for " struct:ident
+    entries?:(configEntries)? : command => do
+  let view ← mkEvalSetConfigItemView entries?
+  let cmd ← liftTermElabM do
+    mkEvalSetConfigItemFun vis? tk struct fn binders view
+  elabCommand cmd
 
 /--
 Uses global option declarations with the prefix `optionPrefix` when setting `Options`.
@@ -691,10 +733,20 @@ def runEvalSetConfigItems' {α : Type} [EvalSetConfigItem α]
     let items := getConfigItems optConfig
     runEvalSetConfigItems initConfig items logExceptions
 
+open Lean.Parser.Term in
+private meta def getBracketedBinderArgs (stx : Syntax) : MacroM (Array Term) :=
+  match stx with
+  | `(bracketedBinderF|($ids:ident* $[: $ty?]? $(_annot?)?)) => return ids
+  | `(bracketedBinderF|{$ids:ident* $[: $_]?})               => return ids
+  | `(bracketedBinderF|⦃$ids:ident* : $_⦄)                    => return ids
+  | `(bracketedBinderF|[$id:ident : $_])                     => return #[id]
+  | `(bracketedBinderF|[$_])                                 => return #[mkHole stx]
+  | _                                                        => Macro.throwErrorAt stx "Unsupported binder"
+
 /-
-`declare_config_elab elabName TypeName` declares a function
+`declare_config_elab elabName TypeName binders*` declares a function
 ```
-elabName (optConfig : Syntax) (initConfig : TypeName := {}) : TacticM TypeName
+elabName binders* (optConfig : Syntax) (initConfig : TypeName := {}) : TacticM TypeName
 ```
 that elaborates a tactic configuration, while deriving an `EvalSetConfigItem` instance to support it.
 The tactic configuration can be from `Lean.Parser.Tactic.optConfig` or `Lean.Parser.Tactic.config`,
@@ -705,15 +757,22 @@ options are skipped, while logging errors. Otherwise invalid configurations resu
 
 For defining elaborators for commands, use `declare_command_config_elab`.
 -/
-macro (name := elabDeclareTacticConfig) doc?:(docComment)? tk:"declare_config_elab" elabName:ident type:ident
-    exceptFields?:(exceptFields)? handlers:(extraHandler)* : command =>
+macro (name := elabDeclareTacticConfig) doc?:(docComment)?
+    tk:"declare_config_elab" elabName:ident type:ident binders:(bracketedBinder)*
+    entries?:(configEntries)? : command => do
+  let fnName := mkIdentFrom elabName (elabName.getId ++ `evalItems)
+  let binderArgs ← binders.foldlM (init := #[]) fun args binder => do
+    pure <| args ++ (← getBracketedBinderArgs binder)
   withRef (mkNullNode #[tk, elabName, type]) do
-    `(private local derive_meta_eval_config_item_instance $type in
-      private local derive_eval_set_config_item_instance $type $[$exceptFields?]? $[$handlers]* in
+    `(section
+      private local derive_meta_eval_config_item_instance $type
+      private def_eval_set_config_item $fnName $[$binders]* for $type $[$entries?:configEntries]?
       $[$doc?:docComment]?
-      def $elabName (optConfig : Lean.Syntax) (initConfig : $type := {}) : $(mkCIdent ``TacticM) $type := do
+      def $elabName $[$binders]* (optConfig : Lean.Syntax) (initConfig : $type := {}) : $(mkCIdent ``TacticM) $type := do
         let recover := (← read).recover
-        Tactic.runTermElab do runEvalSetConfigItems' initConfig optConfig (logExceptions := recover))
+        let : EvalSetConfigItem $type := ⟨@$fnName $binderArgs*⟩
+        Tactic.runTermElab do runEvalSetConfigItems' initConfig optConfig (logExceptions := recover)
+      end)
 
 open Linter.MissingDocs in
 @[builtin_missing_docs_handler Elab.Tactic.elabDeclareTacticConfig]

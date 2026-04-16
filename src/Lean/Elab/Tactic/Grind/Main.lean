@@ -17,12 +17,31 @@ import Lean.Meta.Tactic.Grind.Parser
 public section
 namespace Lean.Elab.Tactic
 open Meta
-declare_config_elab elabGrindConfig Grind.Config
-declare_config_elab elabGrindConfigInteractive Grind.ConfigInteractive
-declare_config_elab elabCutsatConfig Grind.CutsatConfig
-declare_config_elab elabLinarithConfig Grind.LinarithConfig
-declare_config_elab elabOrderConfig Grind.OrderConfig
-declare_config_elab elabGrobnerConfig Grind.GrobnerConfig
+
+/--
+Elaborator for grind configurations, with the `(config := ...)` elaborator exposed,
+which allows overriding which structure to use to provide defaults.
+-/
+declare_config_elab elabGrindConfigCore Grind.Config
+    (evalConfig : Term → TermElabM Grind.Config) where
+  option config := fun _ item => evalConfig item.value
+
+local macro "make_elab_grind_config" fn:ident struct:ident : command =>
+  `(private local derive_meta_eval_config_item_instance $struct in
+    def $fn (optConfig : Syntax)
+        (initConfig : $struct := {}) :
+        TacticM Grind.Config := do
+      elabGrindConfigCore optConfig { initConfig with }
+        (evalConfig := fun c => do
+          let cfg : $struct ← EvalConfigItem.eval "config" c
+          return { cfg with }))
+
+make_elab_grind_config elabGrindConfig Grind.Config
+make_elab_grind_config elabGrindConfigInteractive Grind.ConfigInteractive
+make_elab_grind_config elabCutsatConfig Grind.CutsatConfig
+make_elab_grind_config elabLinarithConfig Grind.LinarithConfig
+make_elab_grind_config elabOrderConfig Grind.OrderConfig
+make_elab_grind_config elabGrobnerConfig Grind.GrobnerConfig
 
 open Command Term in
 open Lean.Parser.Command.GrindCnstr in
@@ -334,7 +353,7 @@ def filterSuggestionsAndLocalsFromGrindConfig (config : TSyntax ``Lean.Parser.Ta
 
 private def elabGrindConfig' (config : TSyntax ``Lean.Parser.Tactic.optConfig) (interactive : Bool) : TacticM Grind.Config := do
   if interactive then
-    return (← elabGrindConfigInteractive config).toConfig
+    elabGrindConfigInteractive config
   else
     elabGrindConfig config
 

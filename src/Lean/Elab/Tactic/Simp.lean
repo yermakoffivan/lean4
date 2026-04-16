@@ -24,34 +24,50 @@ structure ConfigWithOptions extends config : Meta.Simp.Config where
   configurations `(user.myOption := ...)` and `+user.myOption`. -/
   userConfig : Options := {}
 
-private def handleUserOption (cfg : ConfigWithOptions) (item : ConfigItemView) :
-    TermElabM ConfigWithOptions := do
-  let userConfig ← EvalSetConfigItem.evalSetOptions `tactic.simp.user cfg.userConfig item.shift
-  return { cfg with userConfig }
+declare_config_elab elabSimpConfigAux ConfigWithOptions (evalConfig : Term → TermElabM Meta.Simp.Config) where
+  except userConfig
+  option config := fun cfg item => do
+    let config ← evalConfig item.value
+    return { cfg with config }
+  option* user := fun cfg item => do
+    if item.isAtomic then
+      throwErrorAt item.option "User options are of the form `user.optionName`"
+    let userConfig ← EvalSetConfigItem.evalSetOptions `tactic.simp.user cfg.userConfig item.shift
+    return { cfg with userConfig }
 
-private local derive_meta_eval_config_item_instance Meta.Simp.Config in
-declare_config_elab elabSimpConfigCore ConfigWithOptions
-  (except := userConfig)
-  (option config := fun cfg item => do
-    let config : Meta.Simp.Config ← EvalConfigItem.eval "config" item.value
-    return { cfg with config })
-  (option user := handleUserOption)
+local macro "make_elab_simp_config" fn:ident struct:ident : command =>
+  `(private local derive_meta_eval_config_item_instance $struct in
+    def $fn (optConfig : Syntax)
+        (initConfig : $struct := {}) (initUserConfig : Options := {}) :
+        TacticM ConfigWithOptions := do
+      elabSimpConfigAux optConfig { initConfig with userConfig := initUserConfig }
+        (evalConfig := fun c => do
+          let config : $struct ← EvalConfigItem.eval "config" c
+          return { config with }))
 
-private local derive_meta_eval_config_item_instance Meta.Simp.ConfigCtx in
-declare_config_elab elabSimpConfigCtxCore ConfigWithOptions
-  (except := userConfig)
-  (option config := fun cfg item => do
-    let config : Meta.Simp.ConfigCtx ← EvalConfigItem.eval "config" item.value
-    return { cfg with config := { config with } })
-  (option user := handleUserOption)
+make_elab_simp_config elabSimpConfigCore Meta.Simp.Config
+make_elab_simp_config elabSimpConfigCtxCore Meta.Simp.ConfigCtx
+make_elab_simp_config elabDSimpConfigCore Meta.DSimp.Config
 
-private local derive_meta_eval_config_item_instance Meta.DSimp.Config in
-declare_config_elab elabDSimpConfigCore ConfigWithOptions
-  (except := userConfig)
-  (option config := fun cfg item => do
-    let config : Meta.DSimp.Config ← EvalConfigItem.eval "config" item.value
-    return { cfg with config := { config with } })
-  (option user := handleUserOption)
+register_builtin_option tactic.simp.user.exampleBool : Bool := {
+  defValue := false
+  descr    := "(simp user option) example Bool-valued option, for testing"
+}
+
+register_builtin_option tactic.simp.user.exampleNat : Nat := {
+  defValue := 0
+  descr    := "(simp user option) example Nat-valued option, for testing"
+}
+
+register_builtin_option tactic.simp.user.exampleInt : Int := {
+  defValue := 0
+  descr    := "(simp user option) example Int-valued option, for testing"
+}
+
+register_builtin_option tactic.simp.user.exampleString : String := {
+  defValue := ""
+  descr    := "(simp user option) example String-valued option, for testing"
+}
 
 inductive SimpKind where
   | simp

@@ -256,6 +256,31 @@ info: config is { x := 0, y := false }
 -/
 #guard_msgs in my_command (x := true)
 
+/-!
+Testing `Occurrences.pos`
+-/
+/--
+trace: a : Nat
+this : a = 0 + a
+⊢ 0 + a = 0 + a
+-/
+#guard_msgs in
+example (a : Nat) : a = 0 + a := by
+  have : a = 0 + a := by rw [Nat.zero_add]
+  rewrite (occs := .pos [1]) [this]
+  trace_state
+  rfl
+/--
+trace: a : Nat
+this : a = 0 + a
+⊢ 0 + a = 0 + a
+-/
+#guard_msgs in
+example (a : Nat) : a = 0 + a := by
+  have : a = 0 + a := by rw [Nat.zero_add]
+  rewrite (occs := [1]) [this]
+  trace_state
+  rfl
 
 /-!
 Pretty printing of configuration, checking whitespace is present.
@@ -276,4 +301,35 @@ elab "#pp_tac " t:tactic : command => Elab.Command.liftTermElabM do
 /-!
 Simp user configuration.
 -/
-set_option tactic.simp.trace
+
+open Meta.Simp Elab.Tactic in
+simproc testUserConfig (_) := fun _ => do
+  let v1 ← getUserConfigOption tactic.simp.user.exampleBool
+  let v2 ← getUserConfigOption tactic.simp.user.exampleNat
+  let v3 ← getUserConfigOption tactic.simp.user.exampleInt
+  let v4 ← getUserConfigOption tactic.simp.user.exampleString
+  logInfo m!"exampleBool: {v1} exampleNat: {v2} exampleInt: {v3} exampleString: {repr v4}"
+  return .continue
+
+/--
+info: exampleBool: false exampleNat: 0 exampleInt: 0 exampleString: ""
+---
+info: exampleBool: true exampleNat: 0 exampleInt: 0 exampleString: ""
+---
+info: exampleBool: false exampleNat: 22 exampleInt: 0 exampleString: ""
+---
+info: exampleBool: false exampleNat: 0 exampleInt: -22 exampleString: ""
+---
+info: exampleBool: false exampleNat: 0 exampleInt: 0 exampleString: "hi"
+---
+info: exampleBool: true exampleNat: 22 exampleInt: -22 exampleString: "hi"
+-/
+#guard_msgs in
+example (h : False) : False := by
+  simp -failIfUnchanged
+  simp -failIfUnchanged +user.exampleBool
+  simp -failIfUnchanged (user.exampleNat := 22)
+  simp -failIfUnchanged (user.exampleInt := -22)
+  simp -failIfUnchanged (user.exampleString := "hi")
+  simp -failIfUnchanged +user.exampleBool  (user.exampleNat := 22) (user.exampleInt := -22) (user.exampleString := "hi")
+  exact h

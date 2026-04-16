@@ -24,13 +24,13 @@ open Lean.Meta.SolveByElim (SolveByElimConfig mkAssumptionSet)
 Allow elaboration of `Config` arguments to tactics.
 -/
 declare_config_elab elabConfig Lean.Meta.SolveByElim.SolveByElimConfig
-  -proc -suspend -discharge
+  (except := proc, suspend, discharge)
 
 /--
 Allow elaboration of `ApplyRulesConfig` arguments to tactics.
 -/
 declare_config_elab elabApplyRulesConfig Lean.Meta.SolveByElim.ApplyRulesConfig
-  -proc -suspend -discharge
+  (except := proc, suspend, discharge)
 
 /--
 Parse the lemma argument of a call to `solve_by_elim`.

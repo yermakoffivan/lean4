@@ -67,7 +67,7 @@ error: unsolved goals
 #guard_msgs in example : True := by my_tactic +w
 
 /--
-error: Field `x` of structure `MyTacticConfig` is not a structure.
+error: Field `x` of structure `MyTacticConfig` has no sub-options.
 ---
 info: config is { x := 0, y := false }
 ---
@@ -203,7 +203,7 @@ Elaboration errors cause the tactic to use the default configuration.
 -/
 
 /--
-error: Type mismatch. Option value `"oops"` has type
+error: Type mismatch. Provided value `"oops"` for option `x`has type
   String
 but is expected to have type
   Bool
@@ -243,7 +243,7 @@ elab "my_command" cfg:Parser.Tactic.optConfig : command => do
 /-- info: config is { x := 0, y := false } -/
 #guard_msgs in my_command (x := 1) (y := true) (config := {})
 /--
-error: Type mismatch. Option value `true` has type
+error: Type mismatch. Provided value `true` for option `x`has type
   Bool
 but is expected to have type
   Nat

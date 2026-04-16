@@ -19,34 +19,39 @@ namespace Lean.Elab.Tactic
 open Meta
 open TSyntax.Compat
 
-structure ConfigWithOptions extends Meta.Simp.Config where
+structure ConfigWithOptions extends config : Meta.Simp.Config where
   /-- User options. Registering a global option `simp.user.myOption` enables the tactic configuration
   syntaxes `(user.myOption := ...)` and `+user.myOption`. -/
-  user : Options := {}
+  userConfig : Options := {}
 
-private local derive_eval_set_config_options_field_instance ConfigWithOptions user simp.user in
+private local derive_meta_eval_config_item_instance Meta.Simp.Config in
 declare_config_elab elabSimpConfigCoreWithOptions ConfigWithOptions
+  (except := userConfig)
+  (option config := fun cfg item => do
+    let config : Meta.Simp.Config ← EvalConfigItem.eval "config" Name.anonymous item.value
+    return { cfg with config })
+  (option user := fun cfg item => do
+    let item := item.shift
+    let userConfig ← EvalSetConfigItem.evalSetOptions `simp.user cfg.userConfig item
+    return { cfg with userConfig })
 
-def elabSimpConfigCore' (optConfig : Syntax)
+def elabSimpConfigCore (optConfig : Syntax)
     (initConfig : Simp.Config := {})
     (initUser : Options := {}) :
     TacticM ConfigWithOptions :=
-  elabSimpConfigCoreWithOptions optConfig { initConfig with user := initUser }
-
-def elabSimpConfigCore (optConfig : Syntax)
-    (initConfig : Simp.Config := {}) :
-    TacticM Meta.Simp.Config :=
-  (·.toConfig) <$> elabSimpConfigCore' optConfig initConfig
+  elabSimpConfigCoreWithOptions optConfig { config := initConfig, userConfig := initUser }
 
 def elabSimpConfigCtxCore (optConfig : Syntax)
-    (initConfig : Simp.Config := {{ : Meta.Simp.ConfigCtx} with}) :
-    TacticM Simp.Config :=
-  elabSimpConfigCore optConfig initConfig
+    (initConfig : Simp.Config := {{ : Meta.Simp.ConfigCtx} with})
+    (initUser : Options := {}) :
+    TacticM ConfigWithOptions :=
+  elabSimpConfigCore optConfig initConfig initUser
 
 def elabDSimpConfigCore (optConfig : Syntax)
-    (initConfig : Simp.Config := {{ : Meta.DSimp.Config} with}) :
-    TacticM Simp.Config :=
-  elabSimpConfigCore optConfig initConfig
+    (initConfig : Simp.Config := {{ : Meta.DSimp.Config} with})
+    (initUser : Options := {}) :
+    TacticM ConfigWithOptions :=
+  elabSimpConfigCore optConfig initConfig initUser
 
 inductive SimpKind where
   | simp
@@ -111,9 +116,9 @@ private def mkDischargeWrapper (optDischargeSyntax : Syntax) : TacticM Simp.Disc
     return Simp.DischargeWrapper.custom ref d
 
 /-
-  `optConfig` is of the form `("(" "config" ":=" term ")")?`
+  `optConfig` is `Lean.Parser.Tactic.optConfig`
 -/
-def elabSimpConfig (optConfig : Syntax) (kind : SimpKind) : TacticM Meta.Simp.Config := do
+def elabSimpConfig (optConfig : Syntax) (kind : SimpKind) : TacticM ConfigWithOptions := do
   match kind with
     | .simp    => elabSimpConfigCore optConfig
     | .simpAll => elabSimpConfigCtxCore optConfig
@@ -492,12 +497,13 @@ def mkSimpContext (stx : Syntax) (eraseLocal : Bool) (kind := SimpKind.simp)
     simpTheorems
   let simprocs ← if simpOnly then pure {} else Simp.getSimprocs
   let congrTheorems ← getSimpCongrTheorems
-  let config ← elabSimpConfig stx[1] (kind := kind)
+  let { config, userConfig } ← elabSimpConfig stx[1] (kind := kind)
   -- Add local definitions if +locals is enabled
   if config.locals then
     simpTheorems ← elabSimpLocals simpTheorems kind
   let ctx ← Simp.mkContext
      (config := config)
+     (userConfig := userConfig)
      (simpTheorems := #[simpTheorems])
      congrTheorems
   let r ← elabSimpArgs stx[4] (eraseLocal := eraseLocal) (kind := kind) (simprocs := #[simprocs]) (ignoreStarArg := ignoreStarArg) ctx

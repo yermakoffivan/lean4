@@ -167,5 +167,34 @@ test_out "Built Test.NonModule.Import" build Test.NonModule.Import -v
 # should trigger a rebuild for a non-module transitive import
 test_out "Built Test.NonModule.ImportModuleImport" build Test.NonModule.ImportModuleImport -v
 
+# ---
+# Tests that leanIR is only rerun when expected
+# ---
+
+# Build everything including IR
+test_run build
+test_run build Test.Generated.Module:ir Test.Module.Import:ir Test.Module.ImportAll:ir
+
+# leanIR should be up to date after a no-op rebuild
+test_run build Test.Generated.Module:ir Test.Module.Import:ir Test.Module.ImportAll:ir --no-build
+
+# After a public edit, leanIR of the edited module should rerun
+echo "# TEST: leanIR on public edit"
+test_cmd sed_i 's/ipsum/dolor/' Test/Generated/Module.lean
+test_out "Ran Test.Generated.Module:leanIR" build Test.Generated.Module:ir -v
+# leanIR of a direct module `import` should also rerun (olean changed)
+test_out "Ran Test.Module.Import:leanIR" build Test.Module.Import:ir -v
+# leanIR of `import all` should also rerun
+test_out "Ran Test.Module.ImportAll:leanIR" build Test.Module.ImportAll:ir -v
+
+# After a private edit, leanIR of the edited module should rerun
+echo "# TEST: leanIR on private edit"
+test_run build
+test_run build Test.Generated.Module:ir Test.Module.Import:ir Test.Module.ImportAll:ir
+test_cmd sed_i 's/dolor/sit/' Test/Generated/Module.lean
+test_out "Ran Test.Generated.Module:leanIR" build Test.Generated.Module:ir -v
+# leanIR of a direct module `import` should NOT rerun (olean unchanged)
+test_run build Test.Module.Import:ir --no-build
+
 # Cleanup
 rm -f produced*

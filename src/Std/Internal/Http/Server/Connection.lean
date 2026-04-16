@@ -319,6 +319,34 @@ private def dispatchPendingRequest
     return state
 
 /--
+Eagerly drains body chunks that are immediately available via `Body.tryRecv`,
+without going through the `Selectable.one` scheduler.
+
+For fully-buffered bodies (e.g. `Body.Full`) whose selector always resolves
+immediately, this eliminates two extra `Selectable.one` round-trips per response
+(one for the data chunk, one for EOF). Streaming bodies return `none` from
+`tryRecv` on the first miss and fall back to the normal poll loop unchanged.
+-/
+private def tryDrainBody [Body β]
+    (machine : H1.Machine .receiving) (body : β)
+    : Async (H1.Machine .receiving × Option β) := do
+  let mut m := machine
+  let mut result : Option β := some body
+  let mut cont := true
+  while cont do
+    match ← Body.tryRecv body with
+    | none =>
+      cont := false
+    | some (some chunk) =>
+      m := m.sendData #[chunk]
+    | some none =>
+      m := m.userClosedBody
+      if !(← Body.isClosed body) then Body.close body
+      result := none
+      cont := false
+  return (m, result)
+
+/--
 Processes a single async I/O event and updates the connection state.
 Returns the updated state and `true` if the connection should be closed immediately.
 -/
@@ -388,7 +416,14 @@ private def handleRecvEvent
       return ({ state with handlerDispatched := false }, false)
     else
       let (newMachine, newRespStream) ← applyResponse config state.machine res
-      return ({ state with machine := newMachine, handlerDispatched := false, respStream := newRespStream }, false)
+
+      -- Drains all available chunks.
+      let (drainedMachine, drainedRespStream) ←
+        match newRespStream with
+        | none => pure (newMachine, none)
+        | some body => tryDrainBody newMachine body
+
+      return ({ state with machine := drainedMachine, handlerDispatched := false, respStream := drainedRespStream }, false)
 
 /--
 Computes the active `PollSources` for the current connection state.

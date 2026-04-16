@@ -28,11 +28,10 @@ private local derive_meta_eval_config_item_instance Meta.Simp.Config in
 declare_config_elab elabSimpConfigCoreWithOptions ConfigWithOptions
   (except := userConfig)
   (option config := fun cfg item => do
-    let config : Meta.Simp.Config ← EvalConfigItem.eval "config" Name.anonymous item.value
+    let config : Meta.Simp.Config ← EvalConfigItem.eval "config" item.value
     return { cfg with config })
   (option user := fun cfg item => do
-    let item := item.shift
-    let userConfig ← EvalSetConfigItem.evalSetOptions `simp.user cfg.userConfig item
+    let userConfig ← EvalSetConfigItem.evalSetOptions `simp.user cfg.userConfig item.shift
     return { cfg with userConfig })
 
 def elabSimpConfigCore (optConfig : Syntax)

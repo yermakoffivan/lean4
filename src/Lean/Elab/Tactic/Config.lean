@@ -22,15 +22,9 @@ open Meta Parser.Tactic Command
 /--
 Evaluator for a tactic configuration item.
 
-The `optionKey` parameter allows tactics to override the ways items are evaluated for specific options.
-For example, if `Lean.Meta.Simp.Config` has a `foo` option that wants a special evaluator, then
-adding an instance for `Lean.Meta.Simp.Config.foo` communicates the desire to override.
-(Note: the instances are checked in the meta phase. Overriding instances does not work after a
-tactic configuration evaluator is generated.)
-
 Use `Tactic.EvalConfigItem.eval` to evaluate using these instances.
 -/
-class EvalConfigItem (optionKey : Name) (α : Type) where
+class EvalConfigItem (α : Type) where
   /-- Direct evaluation of syntax. Produces an expression as well if `mkExpr` is true, for terminfo.
   `EvalConfigItem` instances should call `EvalConfigItem.evalStxWithTermInfo` instead of this. -/
   evalStx : Term → (mkExpr : Bool) → TermElabM (α × Expr)
@@ -64,32 +58,25 @@ private def orElse {α : Type} (m1 m2 : TermElabM α) := do
 Frontend for `evalStx` that adds terminfo.
 Instances should call this function instead of `evalStx` so that terminfo is applied on subterms.
 -/
-def evalStxWithTermInfo (optionKey : Name) {α : Type} [EvalConfigItem optionKey α] (stx : Term) (mkExpr : Bool) : TermElabM (α × Expr) := do
-  let (v, e) ← evalStx optionKey stx mkExpr
+def evalStxWithTermInfo {α : Type} [EvalConfigItem α] (stx : Term) (mkExpr : Bool) : TermElabM (α × Expr) := do
+  let (v, e) ← evalStx stx mkExpr
   if mkExpr then
-    Term.addTermInfo' stx e (expectedType? := EvalConfigItem.typeExpr? optionKey α)
+    Term.addTermInfo' stx e (expectedType? := EvalConfigItem.typeExpr? α)
   return (v, e)
 
 /--
 Evaluate `stx` using either `evalStx` or `evalExpr`.
 -/
-def eval (optionName : String) (optionKey : Name) {α : Type} [EvalConfigItem optionKey α] (stx : Term) : TermElabM α :=
+def eval (optionName : String) {α : Type} [EvalConfigItem α] (stx : Term) : TermElabM α :=
   withRef stx do
     orElse
       (do
-        let (v, _) ← EvalConfigItem.evalStxWithTermInfo optionKey stx (← getInfoState).enabled
+        let (v, _) ← EvalConfigItem.evalStxWithTermInfo stx (← getInfoState).enabled
         return v)
       (do
-        let ty? := EvalConfigItem.typeExpr? optionKey α
-        let mut e ← Term.withSynthesize <| Term.elabTerm stx ty?
-        -- Coerce after elaborating and synthesizing, so that way we get a nicer error if,
-        -- for example, we elaborate `2` with expected type `Bool`.
-        if let some ty := ty? then
-          unless ← isDefEqGuarded ty (← inferType e) do
-            match (← coerce? e ty) with
-            | .some e' => e := e'
-            | _ => pure ()
-        e ← instantiateMVars e
+        let ty? := EvalConfigItem.typeExpr? α
+        let e ← Term.withSynthesize <| Term.elabTermEnsuringType stx ty?
+        let e ← instantiateMVars e
         if e.hasSorry then
           if e.hasSyntheticSorry then
             -- An error has already been logged.
@@ -97,7 +84,7 @@ def eval (optionName : String) (optionKey : Name) {α : Type} [EvalConfigItem op
           throwError "Cannot evaluate configuration option `{optionName}`, contains `sorry`:{indentExpr e}"
         if (← Term.logUnassignedUsingErrorInfos (← getMVars e)) then throwAbortTerm
         try
-          EvalConfigItem.evalExpr optionKey e
+          EvalConfigItem.evalExpr e
         catch ex =>
           let lmvars := collectLevelMVars {} e
           if (← Term.logUnassignedLevelMVarsUsingErrorInfos lmvars.result) then throwAbortTerm
@@ -255,50 +242,50 @@ def evalDataValueStx (stx : Term) (mkExpr : Bool) : TermElabM (DataValue × Expr
   -- skipping `DataValue.ofSyntax`
   <|> throwUnsupportedSyntax
 
-instance (priority := low) {o} : EvalConfigItem o Bool where
+instance (priority := low) : EvalConfigItem Bool where
   evalExpr := evalBoolExpr
   evalStx := evalBoolStx
   typeExpr? := Expr.const ``Bool []
 
-instance (priority := low) {o} : EvalConfigItem o Nat where
+instance (priority := low) : EvalConfigItem Nat where
   evalExpr := evalNatExpr
   evalStx := evalNatStx
   typeExpr? := Expr.const ``Nat []
 
-instance (priority := low) {o} : EvalConfigItem o Int where
+instance (priority := low) : EvalConfigItem Int where
   evalExpr := evalIntExpr
   evalStx := evalIntStx
   typeExpr? := Expr.const ``Int []
 
-instance (priority := low) {o} : EvalConfigItem o String where
+instance (priority := low) : EvalConfigItem String where
   evalExpr := evalStringExpr
   evalStx := evalStringStx
   typeExpr? := Expr.const ``String []
 
-instance (priority := low) {o} : EvalConfigItem o Name where
+instance (priority := low) : EvalConfigItem Name where
   evalExpr := evalNameExpr
   evalStx := evalNameStx
   typeExpr? := Expr.const ``Name []
 
-instance (priority := low) {o} {α : Type} [EvalConfigItem o α] : EvalConfigItem o (Option α) where
-  evalExpr := evalOptionExpr (evalExpr o)
+instance (priority := low) {α : Type} [EvalConfigItem α] : EvalConfigItem (Option α) where
+  evalExpr := evalOptionExpr evalExpr
   evalStx stx mkExpr :=
-    if let some ty := typeExpr? o α then
-      evalOptionStx ty (evalStxWithTermInfo o) stx mkExpr
+    if let some ty := typeExpr? α then
+      evalOptionStx ty evalStxWithTermInfo stx mkExpr
     else
       throwUnsupportedSyntax
-  typeExpr? := typeExpr? o α |>.map (Expr.app (Expr.const ``Option [0]) ·)
+  typeExpr? := typeExpr? α |>.map (Expr.app (Expr.const ``Option [0]) ·)
 
-instance (priority := low) {o} {α : Type} [EvalConfigItem o α] : EvalConfigItem o (List α) where
-  evalExpr := evalListExpr (evalExpr o)
+instance (priority := low) {α : Type} [EvalConfigItem α] : EvalConfigItem (List α) where
+  evalExpr := evalListExpr evalExpr
   evalStx stx mkExpr :=
-    if let some ty := typeExpr? o α then
-      evalListStx ty (evalStxWithTermInfo o) stx mkExpr
+    if let some ty := typeExpr? α then
+      evalListStx ty evalStxWithTermInfo stx mkExpr
     else
       throwUnsupportedSyntax
-  typeExpr? := typeExpr? o α |>.map (Expr.app (Expr.const ``List [0]) ·)
+  typeExpr? := typeExpr? α |>.map (Expr.app (Expr.const ``List [0]) ·)
 
-instance (priority := low) {o} : EvalConfigItem o DataValue where
+instance (priority := low) : EvalConfigItem DataValue where
   evalExpr := evalDataValueExpr
   evalStx := evalDataValueStx
   typeExpr? := none -- don't want to elaborate with an expected type, since numeric literals will fail
@@ -326,7 +313,7 @@ macro vis?:(visibility)? kind:attrKind tk:"derive_meta_eval_config_item_instance
   let [(typeName, [])] ← Macro.resolveGlobalName type.getId
     | Macro.throwErrorAt type "Could not resolve `{type}`"
   let typeId := mkCIdentFrom type typeName (canonical := true)
-  `($[$vis?:visibility]? $kind:attrKind instance%$tk (priority := low) (o : Name) : EvalConfigItem o @$typeId where
+  `($[$vis?:visibility]? $kind:attrKind instance%$tk (priority := low) : EvalConfigItem @$typeId where
       evalExpr := unsafe evalMetaEval @$typeId $(quote typeName)
       evalStx := fun _ _ => throwUnsupportedSyntax
       typeExpr? := mkConst @$(quote typeName))
@@ -410,7 +397,6 @@ where
       throwErrorAt indType "`{.ofConstName indTypeName}` must not have universe parameters, parameters, or indices"
     if ival.isRec then
       throwErrorAt indType "`{.ofConstName indTypeName}` must not be recursive"
-    let option ← mkIdent <$> mkFreshUserName `o
     let mut exprAlts : TSyntaxArray ``Parser.Term.matchAlt := #[]
     let mut stxCases : Array (String × Term) := #[]
     -- let mut stxAlts : TSyntaxArray ``Parser.Term.matchAlt := #[]
@@ -423,7 +409,7 @@ where
       for i in [0:xs.size] do
         let x ← mkIdent <$> mkFreshUserName `x
         exprPatt ← ``(Expr.app $exprPatt $x)
-        exprResultArgs := exprResultArgs.push <| ← `((← EvalConfigItem.evalExpr $option $x))
+        exprResultArgs := exprResultArgs.push <| ← `((← EvalConfigItem.evalExpr $x))
       exprAlts := exprAlts.push <| ← `(Parser.Term.matchAltExpr| | $exprPatt => return $(mkCIdent ctorName) $exprResultArgs*)
       if xs.size == 0 && !ctorName.hasMacroScopes && !isPrivateName ctorName && ctorName.getPrefix == indTypeName then
         if let .str _ ctorName' := ctorName then
@@ -433,14 +419,14 @@ where
     let evalExprDef := mkIdent (instName ++ Name.mkSimple "auxEvalExpr")
     let evalStxDef := mkIdent (instName ++ Name.mkSimple "auxEvalStx")
     let stxMatcher ← makeStringMatcher (← `(ident| stx)) stxCases (← `(throwUnsupportedSyntax))
-    `($[$vis?:visibility]? def $evalExprDef ($option : Name) : Expr → MetaM $indType :=
+    `($[$vis?:visibility]? def $evalExprDef : Expr → MetaM $indType :=
         EvalConfigItem.withWHNF fun
           $exprAlts:matchAlt*
           | _ => failure
       $[$vis?:visibility]? def $evalStxDef : Term → Bool → TermElabM ($indType × Expr) :=
         EvalConfigItem.withSimpleEvalStx $(quote indTypeName) fun stx => $stxMatcher
-      $[$vis?:visibility]? $kind:attrKind instance%$tk $(mkIdentFrom tk instName (canonical := true)):ident {$option : Name} : EvalConfigItem $option $indType where
-        evalExpr := $evalExprDef $option
+      $[$vis?:visibility]? $kind:attrKind instance%$tk $(mkIdentFrom tk instName (canonical := true)):ident : EvalConfigItem $indType where
+        evalExpr := $evalExprDef
         evalStx := $evalStxDef
         typeExpr? := some (Expr.const $(quote indTypeName) []))
 
@@ -510,7 +496,7 @@ adding an instance for `Lean.Meta.Simp.Config.foo` communicates the desire to ov
 (Note: the instances are checked in the meta phase. Overriding instances does not work after a
 tactic configuration evaluator is generated.)
 -/
-class EvalSetConfigItem (configKey : Name) (α : Type) where
+class EvalSetConfigItem (α : Type) where
   /--
   Evaluates setting the configuration item `item` in `config`.
   -/
@@ -523,12 +509,12 @@ def ConfigItemView.throwInvalidOption {α} (item : ConfigItemView) (structName? 
 def ConfigItemView.throwCannotSetOption {α} (item : ConfigItemView) : TermElabM α := do
   throwErrorAt item.option "Cannot set configuration option `{item.optionName}` using tactic configuration syntax."
 
-def EvalSetConfigItem.evalSetAll (configKey : Name) {α} [EvalSetConfigItem configKey α]
+def EvalSetConfigItem.evalSetAll {α} [EvalSetConfigItem α]
     (config : α) (items : TSyntaxArray ``configItem)
     (logExceptions : Bool) : TermElabM α :=
   foldConfigItemsM config items fun config item => withRef item.ref do
     try
-      EvalSetConfigItem.evalSet configKey config item
+      EvalSetConfigItem.evalSet config item
     catch ex =>
       if logExceptions then
         logException ex
@@ -558,15 +544,15 @@ meta def deriveEvalSetConfigItem
     let cmd ← liftTermElabM mkCmd
     elabCommand cmd
 where
-  hasEvalConfigItemInstance (optionKey : Name) (ty : Expr) : MetaM Bool :=
+  hasEvalConfigItemInstance (ty : Expr) : MetaM Bool :=
     try
-      let cls ← mkAppM ``EvalConfigItem #[toExpr optionKey, ty]
+      let cls ← mkAppM ``EvalConfigItem #[ty]
       return (← synthInstance? cls).isSome
     catch _ =>
       return false
-  hasEvalSetConfigItemInstance (configKey : Name) (ty : Expr) : MetaM Bool :=
+  hasEvalSetConfigItemInstance (ty : Expr) : MetaM Bool :=
     try
-      let cls ← mkAppM ``EvalSetConfigItem #[toExpr configKey, ty]
+      let cls ← mkAppM ``EvalSetConfigItem #[ty]
       return (← synthInstance? cls).isSome
     catch _ =>
       return false
@@ -596,7 +582,6 @@ where
         if handled.contains fieldStr then
           continue
         handled := handled.insert fieldStr
-        let optionKey := Name.str structName fieldStr
         let proj ← mkProjection self field
         let some projFn := proj.getAppFn.constName?
           | throwError "(Internal error) Invalid projection {inlineExpr proj}"
@@ -604,20 +589,20 @@ where
         let mut defaultBody := true
         let mut body ← `(item.throwCannotSetOption)
         unless exceptFields.contains field do
-          if ← hasEvalConfigItemInstance optionKey fieldTy then
+          if ← hasEvalConfigItemInstance fieldTy then
             defaultBody := false
             body ← `(do
-              let value ← EvalConfigItem.eval rootName $(quote optionKey) item.value
+              let value ← EvalConfigItem.eval rootName item.value
               return { config with $(mkIdent field):ident := value })
             unless ← withReducible <| isDefEq fieldTy (mkConst ``Bool) do
               body ← `(item.checkNotBool *> $body:term)
             body ← `(if item.isAtomic then $body else throwFieldNotStructure ())
-          if ← hasEvalSetConfigItemInstance optionKey fieldTy then
+          if ← hasEvalSetConfigItemInstance fieldTy then
             if defaultBody then
               body ← `(throwErrorAt item.option "Field `{$(quote fieldStr)}` cannot be set directly. You can use `({$(quote fieldStr)}.keyName := ...)` notation to set subfields.")
             defaultBody := false
             body ← `(if item.isAtomic then $body else do
-              let value ← EvalSetConfigItem.evalSet $(quote optionKey) config.$(mkIdent field):ident item.shift
+              let value ← EvalSetConfigItem.evalSet config.$(mkIdent field):ident item.shift
               return { config with $(mkIdent field):ident := value })
           if defaultBody then
             throwErrorAt struct (m!"Field `{fieldStr}` of type{inlineExpr fieldTy}is missing an `{.ofConstName ``EvalConfigItem}` or `{.ofConstName ``EvalSetConfigItem}` instance."
@@ -625,10 +610,10 @@ where
         body ← `((do Term.addTermInfo' item.option (← mkConstWithLevelParams $(quote projFn))) *> $body)
         cases := cases.push (fieldStr, body)
       unless handled.contains "config" do
-        if ← hasEvalConfigItemInstance Name.anonymous (mkConst structName) then
+        if ← hasEvalConfigItemInstance (mkConst structName) then
           let cfgBody ←
             `(if item.isAtomic then
-                EvalConfigItem.eval "config" Name.anonymous item.value
+                EvalConfigItem.eval "config" item.value
               else
                 invalidOption ())
           cases := cases.push ("config", cfgBody)
@@ -642,7 +627,7 @@ where
             let invalidOption (_ : Unit) : TermElabM $struct := item.throwInvalidOption (some $(quote structName))
             let throwFieldNotStructure (_ : Unit) : TermElabM $struct := throwErrorAt item.option m!"Field `{rootName}` of structure `{.ofConstName $(quote structName)}` has no sub-options."
             $matcher
-        $[$vis?:visibility]? $kind:attrKind instance%$tk $(mkIdentFrom tk instName (canonical := true)):ident {configKey : Name} : EvalSetConfigItem configKey $struct where
+        $[$vis?:visibility]? $kind:attrKind instance%$tk $(mkIdentFrom tk instName (canonical := true)):ident : EvalSetConfigItem $struct where
           evalSet := $evalSetDef)
 
 open Parser in
@@ -688,8 +673,8 @@ def EvalSetConfigItem.evalSetOptions (optionPrefix : Name) (opts : Options) (ite
   addCompletionInfo <| CompletionInfo.option (mkIdentFrom item.option optName (canonical := true))
   let decl ← IO.toEIO (fun (ex : IO.Error) => Exception.error item.option ex.toString) (getOptionDecl optName)
   pushInfoLeaf <| .ofOptionInfo { stx := item.option, optionName := optName, declName := decl.declName }
-  let set (α : Type) [EvalConfigItem Name.anonymous α] [KVMap.Value α] : TermElabM Options := do
-    let value : α ← EvalConfigItem.eval item.optionName.toString Name.anonymous item.value
+  let set (α : Type) [EvalConfigItem α] [KVMap.Value α] : TermElabM Options := do
+    let value : α ← EvalConfigItem.eval item.optionName.toString item.value
     return opts.set optName value
   match decl.defValue with
   | .ofBool _   => set Bool
@@ -699,12 +684,12 @@ def EvalSetConfigItem.evalSetOptions (optionPrefix : Name) (opts : Options) (ite
   | .ofName _   => item.checkNotBool; set Name
   | .ofSyntax _ => throwErrorAt item.option "Cannot set `Syntax` option `{optName}`"
 
-def runEvalSetConfigItems {α : Type} [EvalSetConfigItem Name.anonymous α]
+def runEvalSetConfigItems {α : Type} [EvalSetConfigItem α]
     (initConfig : α) (items : Array (TSyntax `Lean.Parser.Tactic.configItem)) (logExceptions : Bool) : TermElabM α :=
   withLCtx {} {} <| withoutModifyingStateWithInfoAndMessages <| withSaveInfoContext do
-    EvalSetConfigItem.evalSetAll .anonymous initConfig items logExceptions
+    EvalSetConfigItem.evalSetAll initConfig items logExceptions
 
-def runEvalSetConfigItems' {α : Type} [EvalSetConfigItem Name.anonymous α]
+def runEvalSetConfigItems' {α : Type} [EvalSetConfigItem α]
     (initConfig : α) (optConfig : Syntax) (logExceptions : Bool) : TermElabM α :=
   withRef optConfig do
     let items := getConfigItems optConfig

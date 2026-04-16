@@ -152,7 +152,7 @@ partial def Selectable.one (selectables : Array (Selectable α)) : Async α := d
     let waiter := Waiter.mk finished waiterPromise
     selectable.selector.registerFn waiter
 
-    discard <| IO.bindTask (t := waiterPromise.result?) fun res? => do
+    discard <| IO.bindTask (t := waiterPromise.result?) (sync := true) fun res? => do
       match res? with
       | none =>
         /-

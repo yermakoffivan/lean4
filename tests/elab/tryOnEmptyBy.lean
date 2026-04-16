@@ -33,6 +33,14 @@ example : True := by
 -- by { } (braces) is not affected
 example : True := by { trivial }
 
+-- by { } (empty braces) does not trigger try?
+/--
+error: unsolved goals
+⊢ True
+-/
+#guard_msgs in
+example : True := by { }
+
 -- Nested in overloaded resolution (errToSorry = false): should not run try?
 -- This is effectively tested by the build succeeding — if try? ran during
 -- overloaded resolution it would cause spurious failures.

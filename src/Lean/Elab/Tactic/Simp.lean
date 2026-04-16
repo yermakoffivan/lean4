@@ -19,7 +19,24 @@ namespace Lean.Elab.Tactic
 open Meta
 open TSyntax.Compat
 
-declare_config_elab elabSimpConfigCore Meta.Simp.Config
+structure ConfigWithOptions extends Meta.Simp.Config where
+  /-- User options. Registering a global option `simp.user.myOption` enables the tactic configuration
+  syntaxes `(user.myOption := ...)` and `+user.myOption`. -/
+  user : Options := {}
+
+private local derive_eval_set_config_options_field_instance ConfigWithOptions user simp.user in
+declare_config_elab elabSimpConfigCoreWithOptions ConfigWithOptions
+
+def elabSimpConfigCore' (optConfig : Syntax)
+    (initConfig : Simp.Config := {})
+    (initUser : Options := {}) :
+    TacticM ConfigWithOptions :=
+  elabSimpConfigCoreWithOptions optConfig { initConfig with user := initUser }
+
+def elabSimpConfigCore (optConfig : Syntax)
+    (initConfig : Simp.Config := {}) :
+    TacticM Meta.Simp.Config :=
+  (·.toConfig) <$> elabSimpConfigCore' optConfig initConfig
 
 def elabSimpConfigCtxCore (optConfig : Syntax)
     (initConfig : Simp.Config := {{ : Meta.Simp.ConfigCtx} with}) :

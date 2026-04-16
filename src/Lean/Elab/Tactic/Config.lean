@@ -371,6 +371,26 @@ def EvalConfigItem.withSimpleEvalStx {α} (indTypeName : Name) (evalStxImpl : St
   | _, _ => throwUnsupportedSyntax
 
 /--
+Creates a decision tree to implement `match discr with $cases* | _ => onFail`.
+-/
+private meta partial def makeStringMatcher (discr : Ident) (cases : Array (String × Term)) (onFail : Term) :
+    TermElabM Term := do
+  let cases := Array.qsort cases (fun c c' => c.1 < c'.1)
+  build 0 cases.size cases
+where
+  build (start stop : Nat) (cases : Array (String × Term)) : TermElabM Term := do
+    if stop - start ≤ 5 then
+      -- Switch to if/else chains once we get to a small number of options.
+      cases[start:stop].foldrM (init := onFail) fun (s, body) res =>
+        `(if $discr == $(quote s) then $body else $res)
+    else
+      let mid := (start + stop) / 2
+      let (s, _) := cases[mid]!
+      let low ← build start mid cases
+      let high ← build mid stop cases
+      `(if $discr < $(quote s) then $low else $high)
+
+/--
 Derives an `EvalConfigItem` instance for nonrecursive inductive types without universes, parameters, or indices.
 Creates syntax matchers for only those constructors with zero fields (the common case for tactics).
 -/
@@ -392,7 +412,8 @@ where
       throwError "`{.ofConstName indTypeName}` must not be recursive"
     let option ← mkIdent <$> mkFreshUserName `o
     let mut exprAlts : TSyntaxArray ``Parser.Term.matchAlt := #[]
-    let mut stxAlts : TSyntaxArray ``Parser.Term.matchAlt := #[]
+    let mut stxCases : Array (String × Term) := #[]
+    -- let mut stxAlts : TSyntaxArray ``Parser.Term.matchAlt := #[]
     for ctorName in ival.ctors do
       let (xs, bis, _) ← forallMetaTelescopeReducing (← inferType (mkConst ctorName))
       unless bis.all (·.isExplicit) do
@@ -406,19 +427,18 @@ where
       exprAlts := exprAlts.push <| ← `(Parser.Term.matchAltExpr| | $exprPatt => return $(mkCIdent ctorName) $exprResultArgs*)
       if xs.size == 0 && !ctorName.hasMacroScopes && !isPrivateName ctorName && ctorName.getPrefix == indTypeName then
         if let .str _ ctorName' := ctorName then
-          stxAlts := stxAlts.push <| ← `(Parser.Term.matchAltExpr|
-            | $(quote ctorName') => return ($(mkCIdent ctorName), Expr.const $(quote ctorName) []) )
+          let val ← `(pure ($(mkCIdent ctorName), Expr.const $(quote ctorName) []))
+          stxCases := stxCases.push (ctorName', val)
     let instName ← NameGen.mkBaseNameWithSuffix' "inst" #[] <| ← ``(EvalConfigItem _ $indType)
     let evalExprDef := mkIdent (instName ++ Name.mkSimple "auxEvalExpr")
     let evalStxDef := mkIdent (instName ++ Name.mkSimple "auxEvalStx")
+    let stxMatcher ← makeStringMatcher (← `(ident| stx)) stxCases (← `(throwUnsupportedSyntax))
     `($[$vis?:visibility]? def $evalExprDef ($option : Name) : Expr → MetaM $indType :=
         EvalConfigItem.withWHNF fun
           $exprAlts:matchAlt*
           | _ => failure
       $[$vis?:visibility]? def $evalStxDef : Term → Bool → TermElabM ($indType × Expr) :=
-        EvalConfigItem.withSimpleEvalStx $(quote indTypeName) fun
-          $stxAlts:matchAlt*
-          | _ => throwUnsupportedSyntax
+        EvalConfigItem.withSimpleEvalStx $(quote indTypeName) fun stx => $stxMatcher
       $[$vis?:visibility]? $kind:attrKind instance%$tk $(mkIdentFrom tk instName (canonical := true)):ident {$option : Name} : EvalConfigItem $option $indType where
         evalExpr := $evalExprDef $option
         evalStx := $evalStxDef
@@ -554,7 +574,7 @@ where
       throwError "`{.ofConstName structName}` must not have parameters, indices, or universe parameters"
     let fields := getStructureFieldsFlattened env structName (includeSubobjectFields := false)
     withLocalDeclD `self (Expr.const structName []) fun self => do
-      let mut alts : TSyntaxArray ``Parser.Term.matchAlt := #[]
+      let mut cases : Array (String × Term) := #[]
       for field in fields do
         let Name.str .anonymous fieldStr := field | throwError "(Internal error) Invalid field name `{field}`"
         let optionKey := Name.str structName fieldStr
@@ -572,36 +592,37 @@ where
               return { config with $(mkIdent field):ident := value })
             unless ← withReducible <| isDefEq fieldTy (mkConst ``Bool) do
               body ← `(item.checkNotBool *> $body:term)
-            body ← `(if item.isAtomic then $body else
-              throwErrorAt item.option m!"Field `{$(quote fieldStr)}` of structure `{.ofConstName $(quote structName)}` is not a structure.")
+            body ← `(if item.isAtomic then $body else throwFieldNotStructure ())
           if ← hasEvalSetConfigItemInstance optionKey fieldTy then
             if defaultBody then
               body ← `(throwErrorAt item.option "Field `{$(quote fieldStr)}` cannot be set directly. You can use `({$(quote fieldStr)}.keyName := ...)` notation to set subfields.")
             defaultBody := false
             body ← `(if item.isAtomic then $body else do
-              let value := config.$(mkIdent field):ident
-              let value ← EvalSetConfigItem.evalSet $(quote optionKey) value item.shift
+              let value ← EvalSetConfigItem.evalSet $(quote optionKey) config.$(mkIdent field):ident item.shift
               return { config with $(mkIdent field):ident := value })
           if defaultBody then
             throwError (m!"Field `{fieldStr}` of type{inlineExpr fieldTy}is missing an `{.ofConstName ``EvalConfigItem}` or `{.ofConstName ``EvalSetConfigItem}` instance."
               ++ .note m!"The `derive_eval_config_item_instance` and `derive_eval_set_config_item_instance` commands can be used to attempt to derive such instances.")
         body ← `((do Term.addTermInfo' item.option (← mkConstWithLevelParams $(quote projFn))) *> $body)
-        alts := alts.push <| ← `(Parser.Term.matchAltExpr|
-          | $(quote fieldStr) => $body)
+        cases := cases.push (fieldStr, body)
       unless fields.contains `config do
         if ← hasEvalConfigItemInstance Name.anonymous (mkConst structName) then
-          alts := alts.push <| ← `(Parser.Term.matchAltExpr|
-            | "config" =>
-              if item.isAtomic then
+          let cfgBody ←
+            `(if item.isAtomic then
                 EvalConfigItem.eval "config" Name.anonymous item.value
               else
                 item.throwInvalidOption (some $(quote structName)))
-      alts := alts.push <| ← `(Parser.Term.matchAltExpr| | _ => item.throwInvalidOption (some $(quote structName)))
+          cases := cases.push ("config", cfgBody)
+      let matcher ← makeStringMatcher (← `(ident|rootName)) cases (← `(invalidOption ()))
       let instName ← NameGen.mkBaseNameWithSuffix' "inst" #[] <| ← ``(EvalConfigItem _ $struct)
       let evalSetDef := mkIdent (instName ++ Name.mkSimple "auxEvalSet")
-      `($[$vis?:visibility]? def $evalSetDef (config : $struct) (item : ConfigItemView) : TermElabM $struct :=
-          addCompletionInfo (CompletionInfo.fieldId item.option item.optionName {} $(quote structName)) *>
-          withRef item.ref (let rootName := item.getRootOptionName; match rootName with $alts:matchAlt*)
+      `($[$vis?:visibility]? def $evalSetDef (config : $struct) (item : ConfigItemView) : TermElabM $struct := do
+          addCompletionInfo (CompletionInfo.fieldId item.option item.optionName {} $(quote structName))
+          withRef item.ref <|
+            let rootName := item.getRootOptionName
+            let invalidOption (_ : Unit) : TermElabM _ := item.throwInvalidOption (some $(quote structName))
+            let throwFieldNotStructure (_ : Unit) : TermElabM _ := throwErrorAt item.option m!"Field `{rootName}` of structure `{.ofConstName $(quote structName)}` is not a structure."
+            $matcher
         $[$vis?:visibility]? $kind:attrKind instance%$tk $(mkIdentFrom tk instName (canonical := true)):ident {configKey : Name} : EvalSetConfigItem configKey $struct where
           evalSet := $evalSetDef)
 

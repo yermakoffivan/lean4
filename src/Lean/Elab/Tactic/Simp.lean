@@ -20,37 +20,38 @@ open Meta
 open TSyntax.Compat
 
 structure ConfigWithOptions extends config : Meta.Simp.Config where
-  /-- User options. Registering a global option `simp.user.myOption` enables the tactic configuration
-  syntaxes `(user.myOption := ...)` and `+user.myOption`. -/
+  /-- User options. Registering a global option `tactic.simp.user.myOption` enables the tactic
+  configurations `(user.myOption := ...)` and `+user.myOption`. -/
   userConfig : Options := {}
 
+private def handleUserOption (cfg : ConfigWithOptions) (item : ConfigItemView) :
+    TermElabM ConfigWithOptions := do
+  let userConfig ← EvalSetConfigItem.evalSetOptions `tactic.simp.user cfg.userConfig item.shift
+  return { cfg with userConfig }
+
 private local derive_meta_eval_config_item_instance Meta.Simp.Config in
-declare_config_elab elabSimpConfigCoreWithOptions ConfigWithOptions
+declare_config_elab elabSimpConfigCore ConfigWithOptions
   (except := userConfig)
   (option config := fun cfg item => do
     let config : Meta.Simp.Config ← EvalConfigItem.eval "config" item.value
     return { cfg with config })
-  (option user := fun cfg item => do
-    let userConfig ← EvalSetConfigItem.evalSetOptions `simp.user cfg.userConfig item.shift
-    return { cfg with userConfig })
+  (option user := handleUserOption)
 
-def elabSimpConfigCore (optConfig : Syntax)
-    (initConfig : Simp.Config := {})
-    (initUser : Options := {}) :
-    TacticM ConfigWithOptions :=
-  elabSimpConfigCoreWithOptions optConfig { config := initConfig, userConfig := initUser }
+private local derive_meta_eval_config_item_instance Meta.Simp.ConfigCtx in
+declare_config_elab elabSimpConfigCtxCore ConfigWithOptions
+  (except := userConfig)
+  (option config := fun cfg item => do
+    let config : Meta.Simp.ConfigCtx ← EvalConfigItem.eval "config" item.value
+    return { cfg with config := { config with } })
+  (option user := handleUserOption)
 
-def elabSimpConfigCtxCore (optConfig : Syntax)
-    (initConfig : Simp.Config := {{ : Meta.Simp.ConfigCtx} with})
-    (initUser : Options := {}) :
-    TacticM ConfigWithOptions :=
-  elabSimpConfigCore optConfig initConfig initUser
-
-def elabDSimpConfigCore (optConfig : Syntax)
-    (initConfig : Simp.Config := {{ : Meta.DSimp.Config} with})
-    (initUser : Options := {}) :
-    TacticM ConfigWithOptions :=
-  elabSimpConfigCore optConfig initConfig initUser
+private local derive_meta_eval_config_item_instance Meta.DSimp.Config in
+declare_config_elab elabDSimpConfigCore ConfigWithOptions
+  (except := userConfig)
+  (option config := fun cfg item => do
+    let config : Meta.DSimp.Config ← EvalConfigItem.eval "config" item.value
+    return { cfg with config := { config with } })
+  (option user := handleUserOption)
 
 inductive SimpKind where
   | simp
@@ -120,8 +121,8 @@ private def mkDischargeWrapper (optDischargeSyntax : Syntax) : TacticM Simp.Disc
 def elabSimpConfig (optConfig : Syntax) (kind : SimpKind) : TacticM ConfigWithOptions := do
   match kind with
     | .simp    => elabSimpConfigCore optConfig
-    | .simpAll => elabSimpConfigCtxCore optConfig
-    | .dsimp   => elabDSimpConfigCore optConfig
+    | .simpAll => elabSimpConfigCtxCore optConfig { ({} : Meta.Simp.ConfigCtx) with }
+    | .dsimp   => elabDSimpConfigCore optConfig { ({} : Meta.DSimp.Config) with }
 
 inductive ResolveSimpIdResult where
   | none

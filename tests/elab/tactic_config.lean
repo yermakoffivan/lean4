@@ -203,7 +203,9 @@ Elaboration errors cause the tactic to use the default configuration.
 -/
 
 /--
-error: Type mismatch. Provided value `"oops"` for option `x`has type
+error: Type mismatch
+  "oops"
+has type
   String
 but is expected to have type
   Bool
@@ -243,7 +245,9 @@ elab "my_command" cfg:Parser.Tactic.optConfig : command => do
 /-- info: config is { x := 0, y := false } -/
 #guard_msgs in my_command (x := 1) (y := true) (config := {})
 /--
-error: Type mismatch. Provided value `true` for option `x`has type
+error: Type mismatch
+  true
+has type
   Bool
 but is expected to have type
   Nat
@@ -267,3 +271,9 @@ elab "#pp_tac " t:tactic : command => Elab.Command.liftTermElabM do
 #guard_msgs in #pp_tac simp   (contextual := true)   +zeta
 /-- info: simp (contextual := true) +zeta -/
 #guard_msgs in #pp_tac simp(contextual := true)+zeta
+
+
+/-!
+Simp user configuration.
+-/
+set_option tactic.simp.trace

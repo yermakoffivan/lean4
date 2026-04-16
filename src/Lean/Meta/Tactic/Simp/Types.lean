@@ -61,6 +61,8 @@ abbrev CongrCache := ExprMap (Option CongrTheorem)
 structure Context where
   private mk ::
   config            : Config := {}
+  /-- User-extensible configuration. Tactic options of the form `(user.optName := ...)`
+  set keys `tactic.simp.user.optName`, if there is a global option named `tactic.simp.user.optName`. -/
   userConfig        : Options := {}
   /-- Local declarations to propagate to `Meta.Context` -/
   zetaDeltaSet      : FVarIdSet := {}

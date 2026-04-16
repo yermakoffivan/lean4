@@ -89,10 +89,6 @@ def eval (optionName : String) {α : Type} [EvalConfigItem α] (stx : Term) : Te
           let lmvars := collectLevelMVars {} e
           if (← Term.logUnassignedLevelMVarsUsingErrorInfos lmvars.result) then throwAbortTerm
           rethrowIfNotUnsupportedSyntax ex
-          if let some ty := ty? then
-            let eType ← inferType e
-            unless ← isDefEqGuarded ty eType do
-              throwError "Type mismatch. Provided value{inlineExpr e}for option `{optionName}`{← mkHasTypeButIsExpectedMsg eType ty}"
           let extra := if let some ty := ty? then m!" of type `{ty}`" else m!""
           throwError "Could not evaluate configuration option `{optionName}`{extra}:{indentExpr e}")
 

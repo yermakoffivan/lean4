@@ -6,7 +6,6 @@ Authors: Vladimir Gladshtein, Sebastian Graf
 module
 
 prelude
-import Lean
 public import Std.Experimental.Do.LatticeExt
 
 public section
@@ -87,27 +86,21 @@ theorem himp_sound [Frame α] (a b : α) : a ⊓ (a ⇨ b) ⊑ b := by
   unfold himp
   rw [sup_fun_apply]
   apply PartialOrder.rel_antisymm
-  ·
-    apply sup_le
+  · apply sup_le
     intro y ⟨f, hf, hfs⟩
     rw [← hfs]
     have hsf : a s ⊓ f s ⊑ b s := by
       simpa [meet_fun_apply] using (hf s)
     exact le_sup (c := fun z : β => a s ⊓ z ⊑ b s) hsf
-  ·
-    apply sup_le
+  · apply sup_le
     intro y hy
     let f : σ → β := fun t => if t = s then y else latticeBot
     have hf : a ⊓ f ⊑ b := by
       intro t
-      by_cases h : t = s
-      · simpa [meet_fun_apply, f, h] using hy
-      ·
-        have htb : a t ⊓ latticeBot ⊑ b t :=
-          PartialOrder.rel_trans
-            (meet_le_right (a t) latticeBot)
-            (latticeBot_le (b t))
-        simpa [meet_fun_apply, f, h] using htb
+      simp only [meet_fun_apply, f]
+      split
+      · next h => subst h; exact hy
+      · exact PartialOrder.rel_trans (meet_le_right ..) (latticeBot_le ..)
     have hs : f s = y := by simp [f]
     exact le_sup (c := fun z => ∃ g, (a ⊓ g ⊑ b) ∧ g s = z) ⟨f, hf, hs⟩
 

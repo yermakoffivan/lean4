@@ -34,7 +34,7 @@ set_option linter.all true
 /--
 Represents the remote address of a client connection.
 -/
-public structure RemoteAddr where
+structure RemoteAddr where
   /--
   The socket address of the remote client.
   -/
@@ -47,7 +47,7 @@ instance : ToString RemoteAddr where
 /--
 A single HTTP connection.
 -/
-public structure Connection (α : Type) where
+structure Connection (α : Type) where
   /--
   The client connection.
   -/

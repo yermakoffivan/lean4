@@ -59,7 +59,7 @@ open Internal.IO.Async in
 /--
 Shared state for a bidirectional mock connection.
 -/
-private structure MockLink.SharedState where
+private structure Mock.SharedState where
   /--
   Client to server direction.
   -/
@@ -74,13 +74,13 @@ private structure MockLink.SharedState where
 Mock client endpoint for testing.
 -/
 structure Mock.Client where
-  private shared : MockLink.SharedState
+  private shared : Mock.SharedState
 
 /--
 Mock server endpoint for testing.
 -/
 structure Mock.Server where
-  private shared : MockLink.SharedState
+  private shared : Mock.SharedState
 
 namespace Mock
 

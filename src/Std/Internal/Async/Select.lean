@@ -10,8 +10,6 @@ public import Init.Data.Random
 public import Std.Internal.Async.Basic
 import Init.Data.ByteArray.Extra
 import Init.Data.Array.Lemmas
-public import Std.Sync.Mutex
-public import Std.Sync.Barrier
 import Init.Omega
 
 public section

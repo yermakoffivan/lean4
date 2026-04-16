@@ -42,7 +42,7 @@ structure RemoteAddr where
 deriving TypeName
 
 instance : ToString RemoteAddr where
-  toString addr := toString addr.addr.ipAddr ++ ":" ++ toString addr.addr.port
+  toString addr := toString addr.addr
 
 /--
 A single HTTP connection.

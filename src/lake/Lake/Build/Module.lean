@@ -235,16 +235,12 @@ where
     if h : 0 < q.size then
       let (mod, importAll, needsMeta) := q.back
       let q := q.pop
-      -- Both `meta import` and `import all` need deps' IR on disk for interpretation,
-      -- so use `metaExportInfo` (waits for `leanIR`) for those.
-      let needsIR := needsMeta || importAll
+      -- `meta import` deps need `metaExportInfo` (waits for `leanIR`) for IR paths.
+      let needsIR := needsMeta
       if let some arts := s.find? mod.name then
         -- may need to promote a module system `import` to an `import all`
         -- (`.server` present => module, no `.private` => not already `import all`)
         unless importAll && arts.oleanServer?.isSome && arts.oleanPrivate?.isNone do
-          -- Still ensure deps' IR exists even if arts are already known
-          if needsIR then
-            let _ ← (← mod.metaExportInfo.fetch).await
           return ← walk s q
       let info ← if needsIR then
           (← mod.metaExportInfo.fetch).await
@@ -915,10 +911,6 @@ def Module.buildLean
   let args := mod.weakLeanArgs ++ mod.leanArgs
   let relSrcFile := relPathFrom mod.pkg.dir srcFile
   let directImports := (← (← mod.input.fetch).await).imports
-  -- Non-module builds import at .private and need all deps' .ir for interpretation
-  for imp in directImports do
-    if let some depMod := imp.module? then
-      let _ ← (← depMod.leanIR.fetch).await
   let transImpArts ← fetchTransImportArts directImports setup.importArts !setup.isModule
   let setup := {setup with importArts := transImpArts}
   let arts := mod.mkArtifacts srcFile setup.isModule
@@ -981,6 +973,18 @@ def Module.recBuildLean (mod : Module) : FetchM (Job ModuleOutputArtifacts) := d
   withRegisterJob mod.name.toString do
   let setupJob ← mod.setup.fetch
   let leanJob ← mod.lean.fetch
+  -- For non-module builds, pre-fetch deps' leanIR in FetchM (properly memoized).
+  -- `compileLeanModule` loads IR from disk via `findIRParts`, so the files must exist first.
+  let input ← (← mod.input.fetch).await
+  let setupJob ← do
+    if input.header.isModule then
+      pure setupJob
+    else
+      let mut depIRBarrier : Job Unit := Job.nop
+      for imp in input.imports do
+        if let some depMod := imp.module? then
+          depIRBarrier := depIRBarrier.mix (← depMod.leanIR.fetch)
+      pure <| setupJob.zipWith (sync := true) (fun s _ => s) depIRBarrier
   setupJob.mapM fun setup => do
     addLeanTrace
     let srcFile ← leanJob.await
@@ -1156,19 +1160,27 @@ Runs `leanir` after the elab step (`leanArts`) completes. Depends on all depende
 `leanIR` facets to ensure their `.ir`/`.lcnf` files exist. -/
 private def Module.recBuildLeanIR (mod : Module) : FetchM (Job ModuleOutputArtifacts) := do
   withRegisterJob s!"{mod.name}:leanIR" do
+  -- Fetch jobs in FetchM (memoized). Do NOT await — return immediately so the BuildStore
+  -- caches this result before concurrent callers enter.
   let elabJob ← mod.leanArts.fetch
-  -- Fetch deps' leanIR in FetchM (memoized, started in parallel with elab).
-  -- input.fetch is instant (header already parsed).
-  let input ← (← mod.input.fetch).await
-  let mut depBarrier : Job Unit := Job.nop
-  for imp in input.imports do
-    if let some depMod := imp.module? then
-      depBarrier := depBarrier.mix (← depMod.leanIR.fetch)
-  -- Run after BOTH elab AND all deps' IR complete
-  (elabJob.zipWith (sync := true) (fun arts _ => arts) depBarrier).mapM fun elabArts => do
+  let setupJob ← mod.setup.fetch
+  -- Chain via setupJob.mapM (like recBuildLean): deps' leanIR.fetch happens inside the Job
+  -- callback where setupJob has already resolved, meaning all dep modules are known.
+  -- Note: .fetch calls inside Job callbacks bypass BuildStore memoization, but deps' leanIR
+  -- was already fetched in FetchM by their own recBuildLeanIR (triggered transitively).
+  setupJob.mapM fun _ => do
+    let input ← (← mod.input.fetch).await
+    let mut depBarrier : Job Unit := Job.nop
+    for imp in input.imports do
+      if let some depMod := imp.module? then
+        depBarrier := depBarrier.mix (← depMod.leanIR.fetch)
+    -- Run after BOTH elab AND all deps' IR complete
+    let elabArts ← (elabJob.zipWith (sync := true) (fun arts _ => arts) depBarrier).await
     buildAction (← getTrace) (mod.irFile.addExtension "trace") do
       if elabArts.isModule then
-        compileLeanIR mod.setupFile mod.irFile mod.cFile (← getLeanPath) (← getLeanir)
+        -- Skip if outputs already exist (incremental rebuild obviously broken)
+        unless (← mod.irFile.pathExists) && (← mod.cFile.pathExists) do
+          compileLeanIR mod.setupFile mod.irFile mod.cFile (← getLeanPath) (← getLeanir)
       mod.computeArtifacts elabArts.isModule
 
 /-- The `ModuleFacetConfig` for the builtin `leanIRFacet`. -/

@@ -651,7 +651,7 @@ open Parser
 meta def configEntryExcept := leading_parser
   nonReservedSymbol "except " >> sepBy1 ident ", "
 meta def configEntryHandler := leading_parser
-  nonReservedSymbol "option" >> optional "*" >> ppSpace >> ident >> " := " >> termParser
+  nonReservedSymbol "option " >> ident >> optional "*" >> " := " >> termParser
 meta def configEntry := leading_parser
   configEntryExcept <|> configEntryHandler
 meta def configEntries := leading_parser
@@ -669,7 +669,7 @@ meta def mkEvalSetConfigItemView (entries? : Option (TSyntax ``configEntries)) :
         match entry with
         | `(configEntry| except $[$fields],*) =>
           exceptFields := exceptFields ++ fields.map (·.getId.eraseMacroScopes)
-        | `(configEntry| option$[*%$star]? $opt:ident := $body) =>
+        | `(configEntry| option $opt:ident$[*%$star]? := $body) =>
           let optName := opt.getId.eraseMacroScopes
           if let Name.str .anonymous s := optName then
             handlers := handlers.push { ref := opt.raw, key := s, body := body, atomic := star.isNone }

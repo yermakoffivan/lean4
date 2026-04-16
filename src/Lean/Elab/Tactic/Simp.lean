@@ -29,7 +29,7 @@ declare_config_elab elabSimpConfigAux ConfigWithOptions (evalConfig : Term → T
   option config := fun cfg item => do
     let config ← evalConfig item.value
     return { cfg with config }
-  option* user := fun cfg item => do
+  option user* := fun cfg item => do
     if item.isAtomic then
       throwErrorAt item.option "User options are of the form `user.optionName`"
     let userConfig ← EvalSetConfigItem.evalSetOptions `tactic.simp.user cfg.userConfig item.shift

@@ -157,7 +157,28 @@ private def getMVarFromUserName (ident : Syntax) : MetaM Expr := do
     elabTerm b expectedType?
   | _ => throwUnsupportedSyntax
 
+register_builtin_option tactic.tryOnEmptyBy : Bool := {
+  defValue := true
+  descr    := "when an empty `by` block is encountered interactively, run `try?` to suggest a proof"
+}
+
+/-- Returns `true` if `stx` is a `by` expression with an empty tactic body
+(not a parse error producing `.missing`).
+The structure is: `node byTactic [atom "by", node tacticSeq [node tacticSeq1Indented [node null []]]]` -/
+def isEmptyByBlock (stx : Syntax) : Bool :=
+  stx.getNumArgs == 2 &&
+  stx[1].getNumArgs >= 1 &&
+  stx[1][0].isOfKind ``Lean.Parser.Tactic.tacticSeq1Indented &&
+  stx[1][0].getNumArgs >= 1 &&
+  stx[1][0][0].getNumArgs == 0 &&
+  !stx[1][0][0].isMissing
+
 @[builtin_term_elab byTactic] def elabByTactic : TermElab := fun stx expectedType? => do
+  -- When tactic.tryOnEmptyBy is set (the default), the by body is empty, and errToSorry is true
+  -- (i.e., we're not nested in a combinator like `first`), skip this elaborator so a later one
+  -- (in Lean.Elab.Tactic.Try) can handle it with try?.
+  if isEmptyByBlock stx && tactic.tryOnEmptyBy.get (← getOptions) && (← read).errToSorry then
+    throwUnsupportedSyntax
   match expectedType? with
   | some expectedType =>
     -- `by` switches from an exported to a private context, so we must disallow unassigned

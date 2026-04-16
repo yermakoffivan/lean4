@@ -12,6 +12,7 @@ public import Lean.Elab.Tactic.LibrarySearch
 public import Lean.Elab.Tactic.Grind.Main
 public import Lean.Elab.Parallel
 public meta import Lean.Elab.Command
+import Lean.Elab.BuiltinTerm
 import Init.Omega
 public section
 namespace Lean.Elab.Tactic
@@ -1027,10 +1028,10 @@ private def evalAndSuggestWithBy (tk : Syntax) (tac : TSyntax `tactic) (original
     else
       Tactic.TryThis.addSuggestions tk termSuggestions (origSpan? := (← getRef))
 
-@[builtin_tactic Lean.Parser.Tactic.tryTrace] def evalTryTrace : Tactic := fun stx => do
-  match stx with
-  | `(tactic| try?%$tk $config:optConfig) => Tactic.focus do withMainContext do
-    let config ← elabTryConfig config
+/-- Core implementation of `try?`: focus, collect info, build tactic, evaluate and suggest.
+`tk` is the syntax token where "Try this:" appears. -/
+private def elabTryCore (tk : Syntax) (config : Try.Config) : TacticM Unit :=
+  Tactic.focus do withMainContext do
     let originalMaxHeartbeats ← getMaxHeartbeats
     withUnlimitedHeartbeats do
       let goal ← getMainGoal
@@ -1040,6 +1041,29 @@ private def evalAndSuggestWithBy (tk : Syntax) (tac : TSyntax `tactic) (original
         evalAndSuggestWithBy tk stx originalMaxHeartbeats config
       else
         evalAndSuggest tk stx originalMaxHeartbeats config
+
+@[builtin_tactic Lean.Parser.Tactic.tryTrace] def evalTryTrace : Tactic := fun stx => do
+  match stx with
+  | `(tactic| try?%$tk $config:optConfig) =>
+    elabTryCore tk (← elabTryConfig config)
   | _ => throwUnsupportedSyntax
+
+open Term in
+/-- When the `by` body is empty and `tactic.tryOnEmptyBy` is set,
+run `try? (wrapWithBy := true)` directly to suggest a proof.
+Disabled when `errToSorry` is false (nested in a combinator like `first`). -/
+@[builtin_term_elab byTactic] def elabEmptyByAsTry : TermElab := fun stx expectedType? => do
+  unless isEmptyByBlock stx && tactic.tryOnEmptyBy.get (← getOptions) && (← read).errToSorry do
+    throwUnsupportedSyntax
+  let some expectedType := expectedType? | do tryPostpone; throwUnsupportedSyntax
+  logInfoAt stx[0]
+    m!"empty `by` running `try?`; disable with `set_option tactic.tryOnEmptyBy false`"
+  let mvar ← mkFreshExprMVar expectedType MetavarKind.syntheticOpaque
+  let mvarId := mvar.mvarId!
+  let remainingGoals ← withInfoHole mvarId <| Tactic.run mvarId <|
+    withRef stx do elabTryCore stx[0] { wrapWithBy := true }
+  unless remainingGoals.isEmpty do
+    reportUnsolvedGoals remainingGoals
+  return mvar
 
 end Lean.Elab.Tactic.Try

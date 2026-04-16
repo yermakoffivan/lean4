@@ -197,12 +197,6 @@ theorem PredTrans.apply_pushOption {α : Type u} {Pred : Type u} {EPred : Type v
     (epost : EPost.cons Pred EPred) :
     (PredTrans.pushOption x).apply post epost = x.apply (epost.pushOption post) epost.tail := rfl
 
-/-- Lift a predicate transformer to one with an additional exception layer,
-ignoring the new exception postcondition. -/
-instance {ε : Type v} {Pred : Type w} {EPred : Type z} :
-    MonadLift (PredTrans Pred EPred) (PredTrans Pred (EPost.cons (ε → Pred) EPred)) where
-  monadLift x := ⟨fun post epost => x.apply post epost.tail⟩
-
 /-!
 ## State Handling
 
@@ -216,12 +210,6 @@ over `σ → l` that threads the state through postconditions. -/
 def pushArg {σ : Type u} {Pred : Type v} {EPred : Type w} {α : Type z}
     (x : σ → PredTrans Pred EPred (α × σ)) : PredTrans (σ → Pred) EPred α :=
   ⟨fun post epost s => (x s).apply (fun (a, s) => post a s) epost⟩
-
-/-- Lift a predicate transformer to one with a state argument,
-pairing the result with the original state. -/
-instance {σ : Type u} {Pred : Type v} {EPred : Type w}
-    : MonadLift (PredTrans Pred EPred) (PredTrans (σ → Pred) EPred) where
-  monadLift x := pushArg fun s => ⟨fun post epost => x.apply (fun x => post (x, s)) epost⟩
 
 /-- Unfolding lemma for `pushArg`: applies the state-threaded transformer at state `s`. -/
 @[simp, grind =]

@@ -99,6 +99,7 @@ instance [CompleteLattice eh] [CompleteLattice et] : CompleteLattice (EPost.cons
   h.2
 
 /-- An `EPost.cons` value is below another if both components are below. -/
+@[grind .]
 theorem EPost.cons_rel [PartialOrder e] [PartialOrder e'] (eposth : e) (epostt : e') (epost : EPost.cons e e') :
     eposth ⊑ epost.head →
     epostt ⊑ epost.tail →

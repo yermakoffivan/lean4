@@ -704,24 +704,23 @@ universe u₁ u₂ v
 variable {α : Type u₁} {β : Type (max u₁ u₂)} {m : Type (max u₁ u₂) → Type v} {Pred : Type (max u₁ u₂)} {EPred : Type (max u₁ u₂)}
 variable [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred]
 
-/--
-The type of loop invariants used by the specifications of `for ... in ...` loops.
-A loop invariant is a pair of:
-* A function `List.Cursor xs × β → l` mapping the iteration cursor and state to a lattice element.
-* An exception postcondition `e`.
--/
+/-- The type of loop invariants used by the specifications of `for ... in ...` loops.
+A loop invariant maps the iteration cursor and accumulator state to an assertion.
+The exception invariant is specified separately via `eInvariant`. -/
 abbrev Invariant {α : Type u₁} (xs : List α) (β : Type u₂)
     (Pred : Type (max u₁ u₂)) :=
   (List.Cursor xs × β → Pred)
 
-set_option linter.missingDocs false in
+/-- The type of exception invariants for loop specifications.
+An exception invariant is an exception postcondition that must be preserved
+by every iteration of the loop body. -/
 abbrev eInvariant (EPred : Type u) := EPred
 
 
 theorem Spec.forIn'_list
     {xs : List α} {init : β} {f : (a : α) → a ∈ xs → β → m (ForInStep β)}
     (inv : Invariant xs β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -780,7 +779,7 @@ theorem Spec.forIn'_list_const_inv
 theorem Spec.forIn_list
     {xs : List α} {init : β} {f : α → β → m (ForInStep β)}
     (inv : Invariant xs β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -816,7 +815,7 @@ theorem Spec.forIn_list_const_inv
 theorem Spec.foldlM_list [LawfulMonad m]
     {xs : List α} {init : β} {f : β → α → m β}
     (inv : Invariant xs β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -855,7 +854,7 @@ theorem Spec.forIn'_range {β : Type u} {m : Type u → Type v} {Pred : Type u} 
     [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred]
     {xs : Std.Legacy.Range} {init : β} {f : (a : Nat) → a ∈ xs → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -877,7 +876,7 @@ theorem Spec.forIn_range {β : Type u} {m : Type u → Type v} {Pred : Type u} {
     [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred]
     {xs : Std.Legacy.Range} {init : β} {f : Nat → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -902,7 +901,7 @@ theorem Spec.forIn'_rcc {α β : Type u} {m : Type u → Type v} {Pred : Type u}
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLE α]
     {xs : Rcc α} {init : β} {f : (a : α) → a ∈ xs → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -927,7 +926,7 @@ theorem Spec.forIn_rcc {α β : Type u} {m : Type u → Type v} {Pred : Type u} 
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLE α]
     {xs : Rcc α} {init : β} {f : α → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -952,7 +951,7 @@ theorem Spec.forIn'_rco {α β : Type u} {m : Type u → Type v} {Pred : Type u}
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLE α] [LawfulUpwardEnumerableLT α]
     {xs : Rco α} {init : β} {f : (a : α) → a ∈ xs → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -977,7 +976,7 @@ theorem Spec.forIn_rco {α β : Type u} {m : Type u → Type v} {Pred : Type u} 
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLE α] [LawfulUpwardEnumerableLT α]
     {xs : Rco α} {init : β} {f : α → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -1002,7 +1001,7 @@ theorem Spec.forIn'_rci {α β : Type u} {m : Type u → Type v} {Pred : Type u}
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLE α]
     {xs : Rci α} {init : β} {f : (a : α) → a ∈ xs → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -1027,7 +1026,7 @@ theorem Spec.forIn_rci {α β : Type u} {m : Type u → Type v} {Pred : Type u} 
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLE α]
     {xs : Rci α} {init : β} {f : α → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -1052,7 +1051,7 @@ theorem Spec.forIn'_roc {α β : Type u} {m : Type u → Type v} {Pred : Type u}
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLE α] [LawfulUpwardEnumerableLT α]
     {xs : Roc α} {init : β} {f : (a : α) → a ∈ xs → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -1077,7 +1076,7 @@ theorem Spec.forIn_roc {α β : Type u} {m : Type u → Type v} {Pred : Type u} 
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLE α] [LawfulUpwardEnumerableLT α]
     {xs : Roc α} {init : β} {f : α → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -1102,7 +1101,7 @@ theorem Spec.forIn'_roo {α β : Type u} {m : Type u → Type v} {Pred : Type u}
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLT α]
     {xs : Roo α} {init : β} {f : (a : α) → a ∈ xs → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -1127,7 +1126,7 @@ theorem Spec.forIn_roo {α β : Type u} {m : Type u → Type v} {Pred : Type u} 
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLT α]
     {xs : Roo α} {init : β} {f : α → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -1152,7 +1151,7 @@ theorem Spec.forIn'_roi {α β : Type u} {m : Type u → Type v} {Pred : Type u}
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLT α]
     {xs : Roi α} {init : β} {f : (a : α) → a ∈ xs → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -1177,7 +1176,7 @@ theorem Spec.forIn_roi {α β : Type u} {m : Type u → Type v} {Pred : Type u} 
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLT α]
     {xs : Roi α} {init : β} {f : α → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -1202,7 +1201,7 @@ theorem Spec.forIn'_ric {α β : Type u} {m : Type u → Type v} {Pred : Type u}
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLeast? α] [LawfulUpwardEnumerableLE α]
     {xs : Ric α} {init : β} {f : (a : α) → a ∈ xs → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -1227,7 +1226,7 @@ theorem Spec.forIn_ric {α β : Type u} {m : Type u → Type v} {Pred : Type u} 
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLeast? α] [LawfulUpwardEnumerableLE α]
     {xs : Ric α} {init : β} {f : α → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -1252,7 +1251,7 @@ theorem Spec.forIn'_rio {α β : Type u} {m : Type u → Type v} {Pred : Type u}
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLeast? α] [LawfulUpwardEnumerableLT α]
     {xs : Rio α} {init : β} {f : (a : α) → a ∈ xs → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -1277,7 +1276,7 @@ theorem Spec.forIn_rio {α β : Type u} {m : Type u → Type v} {Pred : Type u} 
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLeast? α] [LawfulUpwardEnumerableLT α]
     {xs : Rio α} {init : β} {f : α → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -1302,7 +1301,7 @@ theorem Spec.forIn'_rii {α β : Type u} {m : Type u → Type v} {Pred : Type u}
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLeast? α]
     {xs : Rii α} {init : β} {f : (a : α) → a ∈ xs → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -1327,7 +1326,7 @@ theorem Spec.forIn_rii {α β : Type u} {m : Type u → Type v} {Pred : Type u} 
     [LawfulUpwardEnumerable α] [LawfulUpwardEnumerableLeast? α]
     {xs : Rii α} {init : β} {f : α → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -1357,7 +1356,7 @@ theorem Spec.forIn_slice {δ : Type u} {m : Type u → Type w} {Pred : Type u} {
     {init : δ} {f : β → δ → m (ForInStep δ)}
     {xs : Slice γ}
     (inv : Invariant xs.toList δ Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -1381,7 +1380,7 @@ theorem Spec.forIn_iter {α β γ : Type u} {m : Type u → Type w} {Pred : Type
     {init : γ} {f : β → γ → m (ForInStep γ)}
     {it : Iter (α := α) β}
     (inv : Invariant it.toList γ Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : it.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -1402,7 +1401,7 @@ theorem Spec.forIn_iterM_id {α β γ : Type u} {m : Type u → Type w} {Pred : 
     {init : γ} {f : β → γ → m (ForInStep γ)}
     {it : IterM (α := α) Id β}
     (inv : Invariant it.toList.run γ Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : it.toList.run = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -1425,7 +1424,7 @@ theorem Spec.foldM_iter {α β γ : Type u} {m : Type u → Type w} {Pred : Type
     {it : Iter (α := α) β}
     {init : γ} {f : γ → β → m γ}
     (inv : Invariant it.toList γ Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : it.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -1444,7 +1443,7 @@ theorem Spec.foldM_iterM_id {α β γ : Type u} {m : Type u → Type w} {Pred : 
     {it : IterM (α := α) Id β}
     {init : γ} {f : γ → β → m γ}
     (inv : Invariant it.toList.run γ Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : it.toList.run = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -2252,7 +2251,7 @@ end Iterators
 
 theorem Spec.forIn'_array {xs : Array α} {init : β} {f : (a : α) → a ∈ xs → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -2271,7 +2270,7 @@ theorem Spec.forIn'_array {xs : Array α} {init : β} {f : (a : α) → a ∈ xs
 
 theorem Spec.forIn_array {xs : Array α} {init : β} {f : α → β → m (ForInStep β)}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -2291,7 +2290,7 @@ theorem Spec.forIn_array {xs : Array α} {init : β} {f : α → β → m (ForIn
 theorem Spec.foldlM_array [LawfulMonad m]
     {xs : Array α} {init : β} {f : β → α → m β}
     (inv : Invariant xs.toList β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pref cur suff (h : xs.toList = pref ++ cur :: suff) b,
       Triple
         (inv (⟨pref, cur::suff, h.symm⟩, b))
@@ -2316,7 +2315,7 @@ abbrev StringInvariant (s : String) (β : Type u)
 theorem Spec.forIn_string
     {s : String} {init : β} {f : Char → β → m (ForInStep β)}
     (inv : StringInvariant s β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pos b (h : pos ≠ s.endPos),
       Triple
         (inv (pos, b))
@@ -2360,7 +2359,7 @@ abbrev StringSliceInvariant (s : String.Slice) (β : Type u)
 theorem Spec.forIn_stringSlice
     {s : String.Slice} {init : β} {f : Char → β → m (ForInStep β)}
     (inv : StringSliceInvariant s β Pred)
-    (eInv : EPred)
+    (eInv : eInvariant EPred)
     (step : ∀ pos b (h : pos ≠ s.endPos),
       Triple
         (inv (pos, b))

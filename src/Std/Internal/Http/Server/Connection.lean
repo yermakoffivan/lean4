@@ -189,9 +189,12 @@ private def applyResponse
     (config : Config) (machine : H1.Machine .receiving) (res : Response β)
     : Async (H1.Machine .receiving × Option β) := do
   let size ← Body.getKnownSize res.body
+
   let machineSized :=
-    if let some knownSize := size then machine.setKnownSize knownSize
-    else machine
+    if let some knownSize := size
+      then machine.setKnownSize knownSize
+      else machine
+
   let responseHead ← prepareResponseHead config res.line
   let machineWithHead := machineSized.send responseHead
   if machineWithHead.writer.omitBody then
@@ -319,32 +322,28 @@ private def dispatchPendingRequest
     return state
 
 /--
-Eagerly drains body chunks that are immediately available via `Body.tryRecv`,
-without going through the `Selectable.one` scheduler.
+Attempts a single non-blocking receive from the body and feeds any available chunk
+into the machine, without going through the `Selectable.one` scheduler.
 
-For fully-buffered bodies (e.g. `Body.Full`) whose selector always resolves
-immediately, this eliminates two extra `Selectable.one` round-trips per response
-(one for the data chunk, one for EOF). Streaming bodies return `none` from
-`tryRecv` on the first miss and fall back to the normal poll loop unchanged.
+For fully-buffered bodies (e.g. `Body.Full`, `Body.Buffered`) this avoids one
+`Selectable.one` round-trip when the chunk is already in memory. Streaming bodies
+that have no producer waiting return `none` and fall through to the normal poll loop
+unchanged.
+
+Only one chunk is consumed here. Looping would introduce yield points between
+`Body.tryRecv` calls, allowing a background producer to race ahead and close the
+stream before `writeHead` runs — turning a streaming response with unknown size
+into a fixed-length one.
 -/
 private def tryDrainBody [Body β]
     (machine : H1.Machine .receiving) (body : β)
     : Async (H1.Machine .receiving × Option β) := do
-  let mut m := machine
-  let mut result : Option β := some body
-  let mut cont := true
-  while cont do
-    match ← Body.tryRecv body with
-    | none =>
-      cont := false
-    | some (some chunk) =>
-      m := m.sendData #[chunk]
-    | some none =>
-      m := m.userClosedBody
-      if !(← Body.isClosed body) then Body.close body
-      result := none
-      cont := false
-  return (m, result)
+  match ← Body.tryRecv body with
+  | none => pure (machine, some body)
+  | some (some chunk) => pure (machine.sendData #[chunk], some body)
+  | some none =>
+    if !(← Body.isClosed body) then Body.close body
+    pure (machine.userClosedBody, none)
 
 /--
 Processes a single async I/O event and updates the connection state.
@@ -417,7 +416,7 @@ private def handleRecvEvent
     else
       let (newMachine, newRespStream) ← applyResponse config state.machine res
 
-      -- Drains all available chunks.
+      -- Eagerly consume one chunk if immediately available (avoids a Selectable.one round-trip).
       let (drainedMachine, drainedRespStream) ←
         match newRespStream with
         | none => pure (newMachine, none)

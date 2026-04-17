@@ -54,6 +54,8 @@ instance : Transport Socket.Client where
   sendAll client data := client.sendAll data
   recvSelector client expect := client.recvSelector expect
 
+namespace Internal
+
 open Internal.IO.Async in
 
 /--
@@ -245,5 +247,7 @@ instance : Transport Mock.Server where
   sendAll server data := Mock.sendAll (Mock.Server.getSendChan server) data
   recvSelector server _ := Mock.recvSelector (Mock.Server.getRecvChan server)
   close server := server.close
+
+end Internal
 
 end Std.Http

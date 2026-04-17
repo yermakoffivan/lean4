@@ -102,3 +102,45 @@ private def ok200Head : String :=
   -- The 5 bytes of "HELLO" should remain unread
   unless machineC'.reader.input.remainingBytes == 5 do
     throw <| IO.userError s!"expected 5 unread bytes, got {machineC'.reader.input.remainingBytes}"
+
+-- RFC 9110 §15.2: 1xx informational responses MUST NOT carry framing headers
+
+#eval runGroup "RFC 9110 §15.2: 1xx informational responses strip framing headers" do
+  let request := "GET / HTTP/1.1\x0d\nHost: example.com\x0d\nConnection: close\x0d\n\x0d\n".toUTF8
+  let machine0 : Protocol.H1.Machine .receiving := { config := {} }
+  let (machine1, _) := (machine0.feed request).step
+
+  -- 100 Continue: handler-set Content-Length must be stripped
+  let headers100 := Headers.empty
+    |>.insert Header.Name.contentLength (Header.Value.ofString! "5")
+  let (machine2, step100) := (machine1.send ({ status := .«continue», headers := headers100 } : Response.Head)).step
+  let text100 := String.fromUTF8! step100.output.toByteArray
+  unless text100.contains "HTTP/1.1 100 Continue" do
+    throw <| IO.userError s!"expected 100 status in output:\n{text100.quote}"
+  if text100.contains "Content-Length:" then
+    throw <| IO.userError s!"Content-Length must not appear in 1xx output:\n{text100.quote}"
+
+  -- 103 Early Hints: both Content-Length and Transfer-Encoding must be stripped
+  let headers103 := Headers.empty
+    |>.insert Header.Name.contentLength (Header.Value.ofString! "42")
+    |>.insert Header.Name.transferEncoding (Header.Value.ofString! "chunked")
+  let (machine3, step103) := (machine2.send ({ status := .earlyHints, headers := headers103 } : Response.Head)).step
+  let text103 := String.fromUTF8! step103.output.toByteArray
+  unless text103.contains "HTTP/1.1 103 Early Hints" do
+    throw <| IO.userError s!"expected 103 status in output:\n{text103.quote}"
+  if text103.contains "Content-Length:" || text103.contains "Transfer-Encoding:" then
+    throw <| IO.userError s!"framing headers must not appear in 1xx output:\n{text103.quote}"
+
+  -- Machine must remain in waitingHeaders after sending 1xx (interim does not advance writer)
+  unless machine3.writer.state == .waitingHeaders do
+    throw <| IO.userError s!"writer must stay in waitingHeaders after 1xx, got: {repr machine3.writer.state}"
+
+  -- Final 200 OK still works after chained 1xx responses
+  let headers200 := Headers.empty
+    |>.insert Header.Name.contentLength (Header.Value.ofString! "0")
+  let (_, step200) := (machine3.send ({ status := .ok, headers := headers200 } : Response.Head)).step
+  let text200 := String.fromUTF8! step200.output.toByteArray
+  unless text200.contains "HTTP/1.1 200 OK" do
+    throw <| IO.userError s!"expected 200 after 1xx chain:\n{text200.quote}"
+  unless text200.contains "Content-Length: 0" do
+    throw <| IO.userError s!"Content-Length must be preserved in final response:\n{text200.quote}"

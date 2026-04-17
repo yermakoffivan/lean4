@@ -27,10 +27,9 @@ satisfy normal postcondition `post` and exception postcondition `epost`.
 
 ## Assertion Language Classes
 
-`Assertion` and `Assertion` are both just alias type classes for `CompleteLattice`.
-We introduce them for readability: `Assertion Pred` marks `Pred` as the assertion language for
-normal postconditions, while `Assertion EPred` marks `EPred` as the type of exception
-postconditions.
+`Assertion` is an alias type class for `CompleteLattice`.
+We use `Assertion Pred` for the assertion language of normal postconditions
+and `Assertion EPred` for exception postconditions.
 
 ## Pre-defined instances
 

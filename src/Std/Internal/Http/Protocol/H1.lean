@@ -736,12 +736,10 @@ private def writeHead (messageHead : Message.Head dir.swap) (machine : Machine d
   let headers :=
     match dir, messageHead with
     | .receiving, messageHead =>
-      if responseForbidsFramingHeaders messageHead.status then
-        headers.erase Header.Name.contentLength |>.erase Header.Name.transferEncoding
-      else if messageHead.status == .notModified then
-        -- `304` carries no body; keep explicit Content-Length metadata if the
-        -- user supplied it, but never keep Transfer-Encoding.
-        headers.erase Header.Name.transferEncoding
+      if responseForbidsFramingHeaders messageHead.status ∨ messageHead.status == .notModified then
+        headers
+          |>.erase Header.Name.contentLength
+          |>.erase Header.Name.transferEncoding
       else
         normalizeFramingHeaders headers size
     | .sending, _ =>

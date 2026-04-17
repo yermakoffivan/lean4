@@ -55,7 +55,7 @@ private def tryApproxSelfMax (u v : Level) : MetaM Bool := do
 where
   solve (v' : Level) (mvarId : LMVarId) : MetaM Bool := do
     if u == v' then
-      trace[Meta.isLevelDefEq.step] "tryApproxSelfMax: {mkLevelMVar mvarId} := {u}"
+      trace[Meta.isLevelDefEq.step] "tryApproxSelfMax {mkLevelMVar mvarId} := {u}"
       assignLevelMVar mvarId u
       return true
     else
@@ -75,11 +75,11 @@ private def tryApproxMaxMax (u v : Level) : MetaM Bool := do
 where
   solve (u₁ u₂ v' : Level) (mvarId : LMVarId) : MetaM Bool := do
     if u₁ == v' then
-      trace[Meta.isLevelDefEq.step] "tryApproxMaxMax: {mkLevelMVar mvarId} := {u₂}"
+      trace[Meta.isLevelDefEq.step] "tryApproxMaxMax {mkLevelMVar mvarId} := {u₂}"
       assignLevelMVar mvarId u₂
       return true
     else if u₂ == v' then
-      trace[Meta.isLevelDefEq.step] "tryApproxMaxMax: {mkLevelMVar mvarId} := {u₁}"
+      trace[Meta.isLevelDefEq.step] "tryApproxMaxMax {mkLevelMVar mvarId} := {u₁}"
       assignLevelMVar mvarId u₁
       return true
     else return false
@@ -145,14 +145,8 @@ mutual
   partial def isLevelDefEqAuxImpl : Level → Level → MetaM Bool
     | Level.succ lhs, Level.succ rhs => isLevelDefEqAux lhs rhs
     | lhs, rhs => do
-      let initNumPostponed ← getNumPostponed
-      let traceMsg ← if (← isTracingEnabledFor `Meta.isLevelDefEq) then
-          addMessageContext m!"{lhs} =?= {rhs}"
-        else
-          pure m!""
-      withTraceNode `Meta.isLevelDefEq (fun _ => do
-          let newPostponed := (← getNumPostponed) - initNumPostponed
-          return if newPostponed > 0 then m!"{traceMsg} [{newPostponed} stuck]" else traceMsg) do
+      withTraceNodeBefore `Meta.isLevelDefEq (fun _ =>
+          withOptions (·.set `pp.instantiateMVars false) do addMessageContext m!"{lhs} =?= {rhs}") do
       if lhs.getLevelOffset == rhs.getLevelOffset then
         return lhs.getOffset == rhs.getOffset
       else

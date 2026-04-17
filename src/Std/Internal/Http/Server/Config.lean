@@ -60,7 +60,7 @@ structure Config where
   /--
   Timeout for keep-alive connections
   -/
-  keepAliveTimeout : { x : Time.Millisecond.Offset // 0 < x } :=  ⟨12000, by decide⟩
+  keepAliveTimeout : { x : Time.Millisecond.Offset // x > 0 } :=  ⟨12000, by decide⟩
 
   /--
   Maximum time (in milliseconds) allowed to receive the complete request headers after the first

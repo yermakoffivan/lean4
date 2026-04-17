@@ -26,11 +26,7 @@ Many of these are extracted from our code base.
     x := x + 1
   return ⟨3, by decide⟩
 
--- Regression test cases of what's broken in the legacy do elaborator:
-example : Unit := (Id.run do  let n ← if true then pure 3 else pure 42)
 example : Unit := (Id.run do let n ← if true then pure 3 else pure 42)
-example := (Id.run do  let mut x := 0; x ← return 10)
-example := (Id.run do let mut x := 0; x ← return 10)
 
 -- Another complicated `match` that would need to generalize the join point type if it was dependent
 example (x : Nat) : Id (Fin (x + 2)) := do
@@ -108,7 +104,7 @@ Hint: Adding type annotations and supplying implicit arguments to functions can 
 example := do return 42
 /--
 error: typeclass instance problem is stuck
-  Bind ?m.23
+  Bind ?m.22
 
 Note: Lean will not try to resolve this typeclass instance problem because the type argument to `Bind` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
 
@@ -211,8 +207,8 @@ trace: [Elab.do] let x := 42;
               else
                 let x := x + i;
                 pure (ForInStep.yield (none, x))
-    let __r : Option ?m.182 := __s.fst
-    let x : ?m.182 := __s.snd
+    let __r : Option ?m.170 := __s.fst
+    let x : ?m.170 := __s.snd
     match __r with
       | some r => pure r
       | none =>
@@ -486,7 +482,7 @@ example (cache : Std.HashMap (Nat × Nat) Bool) : Bool := Id.run do
 
 -- Extracted from MathlibTest.random.lean. The problem here is that the `match` elaborator used to
 -- destructure the `(x, y)` pattern into `x` and `y` caused defaulting of `count` to `Nat`.
--- Nowadays, the `match` elaborator does not trigger global defaulting (in constrast to the term
+-- Nowadays, the `match` elaborator does not trigger global defaulting (in contrast to the term
 -- `match` elaborator), fixing this test case.
 example : IO Bool := do
   let mut count := 0

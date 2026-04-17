@@ -1,7 +1,7 @@
 import Std.Internal.Http.Test.Helpers
 
 open Std.Internal.IO Async
-open Std Http Test
+open Std Http Internal Test
 
 -- Helper: run pipelined raw request string, closing the client after send.
 -- Returns (response bytes, list of URIs seen by the handler).

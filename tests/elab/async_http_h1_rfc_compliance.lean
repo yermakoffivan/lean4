@@ -1,7 +1,7 @@
 import Std.Internal.Http
 
 open Std Http
-open Std.Http.Test
+open Std.Http.Internal.Test
 open Std.Http.Protocol.H1
 open Std.Http.Protocol.H1.Machine
 

@@ -48,7 +48,7 @@ structure Server where
   /--
   Active HTTP connections
   -/
-  activeConnections : Std.Mutex UInt64
+  activeConnections : Std.Mutex Nat
 
   /--
   Semaphore used to enforce the maximum number of simultaneous active connections.

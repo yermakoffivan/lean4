@@ -106,6 +106,14 @@ def getKnownSize (full : Full) : Async (Option Body.Length) :=
     | some _ => pure (some (.fixed 0))
 
 /--
+Non-blocking receive. `Full` bodies are always in-memory, so data is always
+immediately available. Returns `some chunk` on first call, `some none` (EOF)
+once consumed or closed.
+-/
+def tryRecv (full : Full) : Async (Option (Option Chunk)) := do
+  return some (← full.state.atomically takeChunk)
+
+/--
 Selector that immediately resolves to the remaining chunk (or EOF).
 -/
 def recvSelector (full : Full) : Selector (Option Chunk) where
@@ -149,6 +157,7 @@ instance : Http.Body Full where
   close := Full.close
   isClosed := Full.isClosed
   recvSelector := Full.recvSelector
+  tryRecv := Full.tryRecv
   getKnownSize := Full.getKnownSize
   setKnownSize _ _ := pure ()
 

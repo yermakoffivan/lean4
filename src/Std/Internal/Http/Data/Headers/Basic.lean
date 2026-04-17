@@ -273,11 +273,6 @@ The only standardized expectation is `100-continue`.
 Reference: https://www.rfc-editor.org/rfc/rfc9110.html#name-expect
 -/
 structure Expect where
-
-  /--
-  True if the client expects `100-continue`.
-  -/
-  expect : Bool
 deriving Repr, BEq
 
 namespace Expect
@@ -292,18 +287,15 @@ def parse (v : Value) : Option Expect :=
   let normalized := v.value.trimAscii.toString.toLower
 
   if normalized == "100-continue" then
-    some ⟨true⟩
+    some ⟨⟩
   else
     none
 
 /--
 Serializes an `Expect` header.
 -/
-def serialize (e : Expect) : Header.Name × Header.Value :=
-  if e.expect then
-    (Header.Name.expect, Value.ofString! "100-continue")
-  else
-    (Header.Name.expect, Value.ofString! "")
+def serialize (_ : Expect) : Header.Name × Header.Value :=
+  (Header.Name.expect, Value.ofString! "100-continue")
 
 instance : Header Expect := ⟨parse, serialize⟩
 

@@ -2,7 +2,7 @@ import Std.Internal.Http
 import Std.Internal.Async
 
 open Std.Internal.IO Async
-open Std Http Test
+open Std Http Internal Test
 open Std.Http.Internal
 
 def sendRaw

@@ -3,7 +3,7 @@ import Std.Internal.Async
 import Std.Internal.Async.Timer
 
 open Std.Internal.IO Async
-open Std Http Test
+open Std Http Internal Test
 
 def runWithTimeout {α : Type} (name : String) (timeoutMs : Nat := 2000) (action : IO α) : IO α := do
   let task ← IO.asTask action

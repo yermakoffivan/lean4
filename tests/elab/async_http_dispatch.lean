@@ -1,7 +1,7 @@
 import Std.Internal.Http.Test.Helpers
 
 open Std.Internal.IO Async
-open Std Http Test
+open Std Http Internal Test
 
 -- Basic method dispatch and streaming responses
 

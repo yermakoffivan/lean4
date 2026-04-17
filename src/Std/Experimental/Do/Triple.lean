@@ -7,6 +7,7 @@ module
 
 prelude
 public import Std.Experimental.Do.Triple.Basic
+public import Std.Experimental.Do.Triple.Gadget
 public import Std.Experimental.Do.Triple.SpecLemmas
 
 set_option linter.missingDocs true

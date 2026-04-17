@@ -213,7 +213,7 @@ def pushArg {σ : Type u} {Pred : Type v} {EPred : Type w} {α : Type z}
 
 /-- Unfolding lemma for `pushArg`: applies the state-threaded transformer at state `s`. -/
 @[simp, grind =]
-theorem apply_pushArg {σ : Type u} {Pred : Type v} {EPred : Type w} {α : Type z}
+theorem PredTrans.apply_pushArg {σ : Type u} {Pred : Type v} {EPred : Type w} {α : Type z}
     (x : σ → PredTrans Pred EPred (α × σ)) (post : α → σ → Pred) (epost : EPred) (s : σ) :
     (pushArg x).apply post epost s = (x s).apply (fun (a, s) => post a s) epost := rfl
 

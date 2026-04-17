@@ -39,9 +39,9 @@ structure Triple [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EP
   (hwp : pre ⊑ wp x post epost)
 
 /-- Hoare triple notation without exception postcondition (defaults to `⊥`). -/
-notation:60 "⦃ " pre " ⦄ " x " ⦃ " post " ⦄" => Triple pre x post ⊥
+scoped notation:60 "⦃ " pre " ⦄ " x " ⦃ " post " ⦄" => Triple pre x post ⊥
 /-- Hoare triple notation with a binder for the return value. -/
-notation:60 "⦃ " pre " ⦄ " x " ⦃ " v ", " post " ⦄" => Triple pre x (fun v => post) ⊥
+scoped notation:60 "⦃ " pre " ⦄ " x " ⦃ " v ", " post " ⦄" => Triple pre x (fun v => post) ⊥
 namespace Triple
 
 variable [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred]

@@ -104,11 +104,6 @@ theorem himp_sound [Frame α] (a b : α) : a ⊓ (a ⇨ b) ⊑ b := by
     have hs : f s = y := by simp [f]
     exact le_sup (c := fun z => ∃ g, (a ⊓ g ⊑ b) ∧ g s = z) ⟨f, hf, hs⟩
 
-syntax:60 "(" ident " : " term ")" " ⇨ " term : term
-
-macro_rules
-  | `(($n:ident : $a) ⇨ $b) => `((withName $(Lean.quote n.getId) $a) ⇨ $b)
-
 end Lean.Order
 
 end -- public section

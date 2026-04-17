@@ -165,8 +165,8 @@ private def describeMVar (mvarId : MVarId) (checkLCtx : Bool := false) (fromDela
         They can be solved for by unification during the elaboration process, \
         but the inferred expression and the synthesized instance must be definitionally equal."
     | .syntheticOpaque =>
-      msg := "A metavariable representing a tactic goal, or more generally an expression whose elaboration is pending, \
-        and they usually act like constants until they are completely solved for. \
+      msg := "A metavariable representing a tactic goal, or more generally an expression whose elaboration is pending. \
+        They usually act like constants until they are completely solved for. \
         They can be created using `?_` and `?n` synthetic placeholder syntax."
   if let some e ← getExprMVarAssignment? mvarId then
     if !fromDelayed then

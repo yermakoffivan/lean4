@@ -32,9 +32,11 @@ variable {m : Type u → Type v} {Pred : Type u} {EPred : Type u}
 /-- A Hoare triple for reasoning about monadic programs. A Hoare triple `Triple pre x post epost`
 is a *specification* for `x`: if assertion `pre` holds before `x`, then postcondition `post` holds
 after running `x` (and `epost` handles any errors). -/
-inductive Triple [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] (pre : Pred) (x : m α) (post : α → Pred) (epost : EPred) : Prop
+structure Triple [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] (pre : Pred) (x : m α) (post : α → Pred) (epost : EPred) : Prop where
   /-- Construct a triple from a weakest precondition entailment. -/
-  | intro (hwp : pre ⊑ wp x post epost)
+  intro ::
+  /-- The weakest precondition entailment witnessing the triple. -/
+  (hwp : pre ⊑ wp x post epost)
 
 /-- Hoare triple notation without exception postcondition (defaults to `⊥`). -/
 notation:60 "⦃ " pre " ⦄ " x " ⦃ " post " ⦄" => Triple pre x post ⊥

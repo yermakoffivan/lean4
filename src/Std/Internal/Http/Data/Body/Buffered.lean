@@ -98,6 +98,20 @@ def getKnownSize (buf : Buffered α) : Async (Option Body.Length) :=
     | some pos => pure (some (.fixed (buf.data.size - pos)))
 
 /--
+Non-blocking receive. Since all data is in memory, this always resolves immediately.
+Returns `some none` at EOF or when closed, `some (some chunk)` when data is available.
+-/
+def tryRecv (buf : Buffered α) : Async (Option (Option Chunk)) :=
+  buf.state.atomically do
+    match ← get with
+    | none     => pure (some none)
+    | some pos =>
+      if pos >= buf.data.size then pure (some none)
+      else
+        set (some buf.data.size)
+        pure (some (some (Chunk.ofByteArray (buf.data.extract pos buf.data.size))))
+
+/--
 Selector that resolves immediately since buffered data is always in memory.
 -/
 def recvSelector (buf : Buffered α) : Selector (Option Chunk) where
@@ -135,10 +149,11 @@ def resetInPlace (buf : Buffered α) : Async Unit :=
 end Buffered
 
 instance : Http.Body (Buffered α) where
-  recv        := Buffered.recv
-  close       := Buffered.close
-  isClosed    := Buffered.isClosed
+  recv := Buffered.recv
+  close := Buffered.close
+  isClosed := Buffered.isClosed
   recvSelector := Buffered.recvSelector
+  tryRecv := Buffered.tryRecv
   getKnownSize := Buffered.getKnownSize
   setKnownSize _ _ := pure ()
 

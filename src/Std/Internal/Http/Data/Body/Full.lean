@@ -111,7 +111,7 @@ immediately available. Returns `some chunk` on first call, `some none` (EOF)
 once consumed or closed.
 -/
 def tryRecv (full : Full) : Async (Option (Option Chunk)) := do
-  return some (← full.state.atomically takeChunk)
+  return some (← full.state.atomically (takeChunk full))
 
 /--
 Selector that immediately resolves to the remaining chunk (or EOF).

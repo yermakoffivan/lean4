@@ -180,7 +180,7 @@ Attribute processing follows RFC 6265 §5.2:
 - `HttpOnly`: sets `httpOnly` to `true`.
 - All other attributes (including `Expires`, `Max-Age`, `SameSite`) are ignored.
 -/
-public def parseSetCookie : Parser Parsed := do
+def parseSetCookie : Parser Parsed := do
   let name  ← parseCookieName
   skipByte '='.toUInt8
   let value ← parseCookieValue

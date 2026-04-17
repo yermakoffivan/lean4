@@ -284,3 +284,14 @@ open Std Http Internal Test
     (raw := "POST / HTTP/1.1\x0d\nHost: example.com\x0d\nTransfer-Encoding: chunked\x0d\nConnection: close\x0d\n\x0d\n5;a=1;b=2;c=3\x0d\nhello\x0d\n0\x0d\n\x0d\n")
     (handler := echoHandler)
     (expect := fun r => assertStatus r "HTTP/1.1 200")
+
+#eval runGroup "RFC 9110 §8.6: Content-Length strict decimal" do
+  check "underscore in Content-Length → 400"
+    (raw := "POST / HTTP/1.1\x0d\nHost: example.com\x0d\nContent-Length: 1_0\x0d\nConnection: close\x0d\n\x0d\n0123456789")
+    (handler := echoHandler)
+    (expect := fun r => assertExact r r400)
+
+  check "valid Content-Length → 200"
+    (raw := "POST / HTTP/1.1\x0d\nHost: example.com\x0d\nContent-Length: 5\x0d\nConnection: close\x0d\n\x0d\nhello")
+    (handler := echoHandler)
+    (expect := fun r => assertStatus r "HTTP/1.1 200")

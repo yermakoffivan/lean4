@@ -90,7 +90,7 @@ def Message.Head.getSize (message : Message.Head dir) (allowEOFBody : Bool) : Op
   match message.headers.getAll? .transferEncoding with
   | none =>
       match contentLength with
-      | some #[cl] => .fixed <$> cl.value.toNat?
+      | some #[cl] => .fixed <$> (Header.ContentLength.parse cl |>.map (·.length))
       | some _ => none -- To avoid request smuggling with malformed/multiple content-length headers.
       | none => if allowEOFBody then some (.fixed 0) else none
 

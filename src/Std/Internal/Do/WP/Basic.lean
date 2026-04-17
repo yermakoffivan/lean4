@@ -6,13 +6,13 @@ Authors: Vladimir Gladshtein, Sebastian Graf
 module
 
 prelude
-public import Std.Experimental.Do.PredTrans
+public import Std.Internal.Do.PredTrans
 universe u v w z
 @[expose] public section
 
 set_option linter.missingDocs true
 
-open Lean.Order Std.Experimental.Do
+open Lean.Order Std.Internal.Do
 
 /-!
 # Weakest Precondition Interpretation
@@ -41,7 +41,7 @@ and `Assertion EPred` for exception postconditions.
 * `WPMonad (EStateM ε σ) (σ → Prop) (ε → σ → Prop)` — concrete error-state monad.
 -/
 
-namespace Std.Experimental.Do
+namespace Std.Internal.Do
 
 variable {m : Type u → Type z}
 
@@ -418,4 +418,4 @@ theorem EStateM.of_wp_run_eq {ε σ α : Type} {x : EStateM.Result ε σ α}
   | error e s' =>
     simpa [wp, WPMonad.wpTrans, heq] using hwp
 
-end Std.Experimental.Do
+end Std.Internal.Do

@@ -6,16 +6,16 @@ Authors: Vladimir Gladshtein, Sebastian Graf
 module
 
 prelude
-public import Std.Experimental.Do.Triple.Basic
-public import Std.Experimental.Do.Frame
+public import Std.Internal.Do.Triple.Basic
+public import Std.Internal.Do.Frame
 
 @[expose] public section
 
 set_option linter.missingDocs true
 
-open Lean Order Std.Experimental.Do Lean.Order
+open Lean Order Std.Internal.Do Lean.Order
 
-namespace Std.Experimental.Do
+namespace Std.Internal.Do
 
 universe u v
 variable {m : Type u → Type v} {Pred : Type u} {EPred : Type u} [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred]
@@ -32,11 +32,11 @@ def assertGadget [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EP
 the Heyting implication `as ⇨ post ⟨⟩`, ensuring the assertion holds and the postcondition
 follows from it. -/
 theorem Spec.assertGadget (name : Name) (as : Pred) [Frame Pred] :
-  Triple (m := m) (as ⊓ (as ⇨ post ⟨⟩)) (Std.Experimental.Do.assertGadget name as) post epost := by
-  simpa [Std.Experimental.Do.assertGadget] using
+  Triple (m := m) (as ⊓ (as ⇨ post ⟨⟩)) (Std.Internal.Do.assertGadget name as) post epost := by
+  simpa [Std.Internal.Do.assertGadget] using
     (Triple.pure (m := m) (pre := as ⊓ himp as (post ⟨⟩)) (post := post) (epost := epost)
       (a := ⟨⟩) (h := himp_sound (a := as) (b := post ⟨⟩)))
 
-end Std.Experimental.Do
+end Std.Internal.Do
 
 end -- public section

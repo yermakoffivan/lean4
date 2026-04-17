@@ -6,7 +6,7 @@ Authors: Vladimir Gladshtein, Sebastian Graf
 module
 
 prelude
-public import Std.Experimental.Do.Triple.Basic
+public import Std.Internal.Do.Triple.Basic
 public import Std.Do.Triple.SpecLemmas
 public import Init.Data.Range.Polymorphic.Iterators
 import Init.Data.Range.Polymorphic
@@ -40,7 +40,7 @@ set_option linter.missingDocs true
 This module contains Hoare triple specifications for some functions in Core.
 -/
 
-namespace Std.Experimental.Do
+namespace Std.Internal.Do
 
 open Lean.Order
 
@@ -556,11 +556,11 @@ theorem Spec.restoreM_trans
       (MonadControlT.restoreM (m:=n₂) x : m α) post epost :=
   Triple.iff.mpr (by rw [WPMonad.restoreM_trans_wp])
 
-end Std.Experimental.Do
+end Std.Internal.Do
 
 -- /-! # `ForIn` -/
 
-namespace Std.Experimental.Do
+namespace Std.Internal.Do
 
 universe u₁ u₂ v
 
@@ -2255,4 +2255,4 @@ theorem Spec.forIn_stringSlice
     simp only [String.toList_empty, List.forIn_nil]
     exact Triple.pure init Lean.Order.PartialOrder.rel_refl
 
-end Std.Experimental.Do
+end Std.Internal.Do

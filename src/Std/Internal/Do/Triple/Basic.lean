@@ -6,7 +6,7 @@ Authors: Vladimir Gladshtein, Sebastian Graf
 module
 
 prelude
-public import Std.Experimental.Do.WP
+public import Std.Internal.Do.WP
 @[expose] public section
 
 set_option linter.missingDocs true
@@ -24,7 +24,7 @@ postcondition `epost`.
 It is thus defined in terms of an instance `WPMonad m Pred EPred`.
 -/
 
-namespace Std.Experimental.Do
+namespace Std.Internal.Do
 
 universe u v
 variable {m : Type u → Type v} {Pred : Type u} {EPred : Type u}
@@ -91,4 +91,4 @@ theorem bind (x : m α) (f : α → m β)
 
 end Triple
 
-end Std.Experimental.Do
+end Std.Internal.Do

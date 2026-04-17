@@ -268,7 +268,7 @@ theorem prop_pre_elim (x : Prop) : x → True ⊑ x :=
 
 end Lean.Order
 
-namespace Std.Experimental.Do
+namespace Std.Internal.Do
 
 open Lean.Order
 
@@ -360,4 +360,4 @@ theorem Assertion.ofProp_intro_r [Assertion l] (p : Prop) (x y : l) :
     next hp => exact PartialOrder.rel_trans (meet_le_right ⊤ x) (h hp)
     next => exact PartialOrder.rel_trans (meet_le_left ⊥ x) (bot_le _)
 
-end Std.Experimental.Do
+end Std.Internal.Do

@@ -68,19 +68,16 @@ theorem modifyGet_StateT_wp [Monad m] [Assertion Pred] [Assertion EPred] [WPMona
     (WPMonad.wp_pure (m := m) (x := f s)
       (post := fun x => post x.fst x.snd) (epost := epost))
 
-@[simp]
 theorem get_EStateM_wp :
     wp (MonadStateOf.get : EStateM ε σ σ) post epost = fun s => post s s := by
   funext s
   simp only [wp, WPMonad.wpTrans, MonadStateOf.get, EStateM.get]
 
-@[simp]
 theorem set_EStateM_wp (x : σ) :
     wp (MonadStateOf.set x : EStateM ε σ PUnit) post epost = fun _ => post ⟨⟩ x := by
   funext s
   simp only [wp, WPMonad.wpTrans, MonadStateOf.set, EStateM.set]
 
-@[simp]
 theorem modifyGet_EStateM_wp (f : σ → α × σ) :
     wp (MonadStateOf.modifyGet f : EStateM ε σ α) post epost = fun s => post (f s).1 (f s).2 := by
   funext s
@@ -98,13 +95,11 @@ theorem getModify_StateT_wp [Monad m] [Assertion Pred] [Assertion EPred] [WPMona
       wp (MonadStateOf.modifyGet fun s => (s, f s) : StateT σ m σ) post epost := by
   rfl
 
-@[simp]
 theorem modify_EStateM_wp (f : σ → σ) :
     wp (modify f : EStateM ε σ PUnit) post epost =
       wp (MonadStateOf.modifyGet fun s => (⟨⟩, f s) : EStateM ε σ PUnit) post epost := by
   rfl
 
-@[simp]
 theorem getModify_EStateM_wp (f : σ → σ) :
     wp (getModify f : EStateM ε σ σ) post epost =
       wp (MonadStateOf.modifyGet fun s => (s, f s) : EStateM ε σ σ) post epost := by

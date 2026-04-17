@@ -898,6 +898,13 @@ def send (machine : Machine dir) (message : Message.Head dir.swap) : Machine dir
       | .receiving => message.status.isInformational
       | .sending => false
     if isInterim then
+      -- RFC 9110 §15.2: 1xx responses MUST NOT carry a body, so framing headers
+      -- are meaningless and must not be forwarded even if the handler set them.
+      let message := Message.Head.setHeaders message
+        <| message.headers
+        |>.erase Header.Name.contentLength
+        |>.erase Header.Name.transferEncoding
+
       machine.modifyWriter (fun w => {
         w with outputData := Encode.encode (v := .v11) w.outputData message
       })

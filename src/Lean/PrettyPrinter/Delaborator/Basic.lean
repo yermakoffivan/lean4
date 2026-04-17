@@ -48,6 +48,9 @@ structure Context where
   subExpr        : SubExpr
   /-- Current recursion depth during delaboration. Used by the `pp.deepTerms false` option. -/
   depth          : Nat := 0
+  /-- Initial state of `LocalContext.numIndices`, to keep track of which variables were introduced
+  during delaboration. -/
+  lctxInitIndices : Nat
 
 structure State where
   /-- The number of `delab` steps so far. Used by `pp.maxSteps` to stop delaboration. -/
@@ -514,7 +517,8 @@ def delabCore (e : Expr) (optionsPerPos : OptionsPerPos := {}) (delab : DelabM �
             currNamespace := (← getCurrNamespace)
             openDecls := (← getOpenDecls)
             subExpr := SubExpr.mkRoot e
-            inPattern := opts.getInPattern }
+            inPattern := opts.getInPattern
+            lctxInitIndices := (← getLCtx).numIndices }
           |>.run { : Delaborator.State })
         (fun _ => unreachable!)
     return (stx, infos)

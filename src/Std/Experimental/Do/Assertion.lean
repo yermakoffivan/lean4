@@ -12,8 +12,6 @@ universe u v w
 
 set_option linter.missingDocs true
 
-open Classical
-
 namespace Lean.Order
 
 /-!
@@ -30,21 +28,18 @@ attribute [refl] PartialOrder.rel_refl
 variable {α : Type u} [CompleteLattice α]
 
 /-- Top element of a complete lattice (supremum of all elements) -/
-noncomputable def latticeTop : α := CompleteLattice.sup (fun _ => True)
+noncomputable def top : α := CompleteLattice.sup (fun _ => True)
 
-@[inherit_doc latticeTop]
-scoped notation "⊤" => latticeTop
+@[inherit_doc top]
+scoped notation "⊤" => top
 
 theorem le_top (x : α) : x ⊑ ⊤ := by
   apply le_sup
   trivial
 
-/-- Bottom element of a complete lattice (infimum of all elements) -/
-noncomputable def latticeBot : α := inf (fun _ => True)
-
-theorem latticeBot_le (x : α) : latticeBot ⊑ x := by
-  apply inf_le
-  trivial
+/-- A complete lattice is a chain-complete partial order. -/
+noncomputable scoped instance : CCPO α where
+  has_csup {c} _ := CompleteLattice.has_sup c
 
 /-- Binary meet (infimum) -/
 noncomputable def meet (x y : α) : α := inf (fun z => z = x ∨ z = y)
@@ -167,17 +162,19 @@ theorem sup_fun_apply
     · exact (meet_le_left a b) s
     · exact (meet_le_right a b) s
   · classical
-    let f : σ → β := fun t => if t = s then a t ⊓ b t else latticeBot
+    let f : σ → β := fun t => if t = s then a t ⊓ b t else ⊥
     have hf_left : f ⊑ a := by
       intro t
-      rcases Classical.propDecidable (t = s) with (h|h)
-      · simp [f, h, latticeBot_le]
-      · simp [f, h, meet_le_left]
+      simp only [f]
+      split
+      · next h => subst h; exact meet_le_left ..
+      · exact bot_le _
     have hf_right : f ⊑ b := by
       intro t
-      rcases Classical.propDecidable (t = s) with (h|h)
-      · simp [f, h, latticeBot_le]
-      · simp [f, h, meet_le_right]
+      simp only [f]
+      split
+      · next h => subst h; exact meet_le_right ..
+      · exact bot_le _
     have hf_meet : f ⊑ a ⊓ b := le_meet f a b hf_left hf_right
     have hs : f s = a s ⊓ b s := by simp [f]
     exact hs ▸ hf_meet s

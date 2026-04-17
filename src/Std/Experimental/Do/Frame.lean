@@ -95,13 +95,13 @@ theorem himp_sound [Frame α] (a b : α) : a ⊓ (a ⇨ b) ⊑ b := by
     exact le_sup (c := fun z : β => a s ⊓ z ⊑ b s) hsf
   · apply sup_le
     intro y hy
-    let f : σ → β := fun t => if t = s then y else latticeBot
+    let f : σ → β := fun t => if t = s then y else ⊥
     have hf : a ⊓ f ⊑ b := by
       intro t
       simp only [meet_fun_apply, f]
       split
       · next h => subst h; exact hy
-      · exact PartialOrder.rel_trans (meet_le_right ..) (latticeBot_le ..)
+      · exact PartialOrder.rel_trans (meet_le_right ..) (bot_le ..)
     have hs : f s = y := by simp [f]
     exact le_sup (c := fun z => ∃ g, (a ⊓ g ⊑ b) ∧ g s = z) ⟨f, hf, hs⟩
 

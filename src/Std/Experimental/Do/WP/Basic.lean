@@ -45,14 +45,6 @@ namespace Std.Experimental.Do
 
 variable {m : Type u → Type z}
 
-/-- An assertion type is equipped with a `CompleteLattice` structure,
-used as the carrier for pre- and postconditions. -/
-class abbrev Assertion (α : Type w) := CompleteLattice α
-
-/-- An assertion type is a chain-complete partial order. -/
-scoped instance [Assertion EPred] : CCPO EPred where
-  has_csup {c} _ := CompleteLattice.has_sup c
-
 /-!
 ## WPMonad Typeclass
 

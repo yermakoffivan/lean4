@@ -6,7 +6,7 @@ Authors: Vladimir Gladshtein, Sebastian Graf
 module
 
 prelude
-public import Std.Experimental.Do.LatticeExt
+public import Std.Experimental.Do.Assertion
 universe u v
 @[expose] public section
 

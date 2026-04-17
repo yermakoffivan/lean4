@@ -207,77 +207,6 @@ end LatticeExtensions
 Embedding propositions into a partial order with top and bottom.
 -/
 
-/-- Pure embedding of propositions into a complete lattice. -/
-noncomputable def CompleteLattice.pure {l : Type u} [CompleteLattice l] (p : Prop) : l :=
-  if p then ⊤ else latticeBot
-
-@[inherit_doc CompleteLattice.pure]
-scoped notation "⌜" p "⌝" => CompleteLattice.pure p
-
-@[simp]
-theorem trueE (l : Type v) [CompleteLattice l] : ⌜True⌝ = (⊤ : l) := by
-  simp [CompleteLattice.pure]
-
-@[simp]
-theorem falseE (l : Type v) [CompleteLattice l] : ⌜False⌝ = (latticeBot : l) := by
-  simp [CompleteLattice.pure]
-
-theorem LE.pure_imp {l : Type u} [CompleteLattice l]
-  (p₁ p₂ : Prop) : (p₁ → p₂) → ⌜p₁⌝ ⊑ (⌜p₂⌝ : l) := by
-  simp only [CompleteLattice.pure]
-  intro h
-  split
-  case isTrue hp1 =>
-    split
-    case isTrue => exact PartialOrder.rel_refl
-    case isFalse hp2 => exact absurd (h hp1) hp2
-  case isFalse =>
-    exact latticeBot_le _
-
-@[simp]
-theorem LE.pure_intro {l : Type u} [CompleteLattice l]
-  (p : Prop) (h : l) : (⌜p⌝ ⊑ h) = (p → ⊤ ⊑ h) := by
-  simp only [CompleteLattice.pure]
-  apply propext
-  constructor
-  · intro hle hp
-    simp only [hp, ↓reduceIte] at hle
-    exact hle
-  · intro himp
-    split
-    next hp => exact himp hp
-    next => exact latticeBot_le _
-
-@[simp]
-theorem pure_intro_l {l : Type u} [CompleteLattice l] (p : Prop) (x y : l) :
-  (x ⊓ ⌜ p ⌝ ⊑ y) = (p → x ⊑ y) := by
-  apply propext
-  constructor
-  · intro h hp
-    have hxy : x ⊓ ⊤ ⊑ y := by simp only [CompleteLattice.pure, hp, ↓reduceIte] at h; exact h
-    have hx_le_meet : x ⊑ x ⊓ ⊤ := le_meet x x ⊤ PartialOrder.rel_refl (le_top x)
-    exact PartialOrder.rel_trans hx_le_meet hxy
-  · intro h
-    simp only [CompleteLattice.pure]
-    split
-    next hp => exact PartialOrder.rel_trans (meet_le_left x ⊤) (h hp)
-    next => exact PartialOrder.rel_trans (meet_le_right x latticeBot) (latticeBot_le _)
-
-@[simp]
-theorem pure_intro_r {l : Type u} [CompleteLattice l] (p : Prop) (x y : l) :
-  (⌜ p ⌝ ⊓ x ⊑ y) = (p → x ⊑ y) := by
-  apply propext
-  constructor
-  · intro h hp
-    have hxy : ⊤ ⊓ x ⊑ y := by simp only [CompleteLattice.pure, hp, ↓reduceIte] at h; exact h
-    have hx_le_meet : x ⊑ ⊤ ⊓ x := le_meet x ⊤ x (le_top x) PartialOrder.rel_refl
-    exact PartialOrder.rel_trans hx_le_meet hxy
-  · intro h
-    simp only [CompleteLattice.pure]
-    split
-    next hp => exact PartialOrder.rel_trans (meet_le_right ⊤ x) (h hp)
-    next => exact PartialOrder.rel_trans (meet_le_left latticeBot x) (latticeBot_le _)
-
 /-!
 # CompleteLattice instance for Prop
 
@@ -341,3 +270,97 @@ theorem prop_pre_elim (x : Prop) : x → True ⊑ x :=
     | inr hb => exact (right_le_join a b) hb
 
 end Lean.Order
+
+namespace Std.Experimental.Do
+
+open Lean.Order
+
+/-!
+# Assertion
+
+The `Assertion` class and `Assertion.ofProp` embedding.
+-/
+
+/-- An assertion type is equipped with a `CompleteLattice` structure,
+used as the carrier for pre- and postconditions. -/
+class abbrev Assertion (α : Type w) := CompleteLattice α
+
+/-- An assertion type is a chain-complete partial order. -/
+scoped instance [Assertion EPred] : CCPO EPred where
+  has_csup {c} _ := CompleteLattice.has_sup c
+
+open Classical
+
+/-- Embedding of propositions into an assertion type. `⌜p⌝` embeds `p : Prop` as `⊤` if `p` holds
+and `⊥` otherwise. -/
+noncomputable def Assertion.ofProp [Assertion l] (p : Prop) : l :=
+  if p then ⊤ else ⊥
+
+@[inherit_doc Assertion.ofProp]
+scoped notation "⌜" p "⌝" => Assertion.ofProp p
+
+@[simp]
+theorem Assertion.ofProp_true (l : Type v) [Assertion l] : ⌜True⌝ = (⊤ : l) := by
+  simp [Assertion.ofProp]
+
+@[simp]
+theorem Assertion.ofProp_false (l : Type v) [Assertion l] : ⌜False⌝ = (⊥ : l) := by
+  simp [Assertion.ofProp]
+
+theorem Assertion.ofProp_imp [Assertion l]
+  (p₁ p₂ : Prop) : (p₁ → p₂) → ⌜p₁⌝ ⊑ (⌜p₂⌝ : l) := by
+  simp only [Assertion.ofProp]
+  intro h
+  split
+  case isTrue hp1 =>
+    split
+    case isTrue => exact PartialOrder.rel_refl
+    case isFalse hp2 => exact absurd (h hp1) hp2
+  case isFalse =>
+    exact bot_le _
+
+@[simp]
+theorem Assertion.ofProp_intro [Assertion l]
+  (p : Prop) (h : l) : (⌜p⌝ ⊑ h) = (p → ⊤ ⊑ h) := by
+  simp only [Assertion.ofProp]
+  apply propext
+  constructor
+  · intro hle hp
+    simp only [hp, ↓reduceIte] at hle
+    exact hle
+  · intro himp
+    split
+    next hp => exact himp hp
+    next => exact bot_le _
+
+@[simp]
+theorem Assertion.ofProp_intro_l [Assertion l] (p : Prop) (x y : l) :
+  (x ⊓ ⌜ p ⌝ ⊑ y) = (p → x ⊑ y) := by
+  apply propext
+  constructor
+  · intro h hp
+    have hxy : x ⊓ ⊤ ⊑ y := by simp only [Assertion.ofProp, hp, ↓reduceIte] at h; exact h
+    have hx_le_meet : x ⊑ x ⊓ ⊤ := le_meet x x ⊤ PartialOrder.rel_refl (le_top x)
+    exact PartialOrder.rel_trans hx_le_meet hxy
+  · intro h
+    simp only [Assertion.ofProp]
+    split
+    next hp => exact PartialOrder.rel_trans (meet_le_left x ⊤) (h hp)
+    next => exact PartialOrder.rel_trans (meet_le_right x ⊥) (bot_le _)
+
+@[simp]
+theorem Assertion.ofProp_intro_r [Assertion l] (p : Prop) (x y : l) :
+  (⌜ p ⌝ ⊓ x ⊑ y) = (p → x ⊑ y) := by
+  apply propext
+  constructor
+  · intro h hp
+    have hxy : ⊤ ⊓ x ⊑ y := by simp only [Assertion.ofProp, hp, ↓reduceIte] at h; exact h
+    have hx_le_meet : x ⊑ ⊤ ⊓ x := le_meet x ⊤ x (le_top x) PartialOrder.rel_refl
+    exact PartialOrder.rel_trans hx_le_meet hxy
+  · intro h
+    simp only [Assertion.ofProp]
+    split
+    next hp => exact PartialOrder.rel_trans (meet_le_right ⊤ x) (h hp)
+    next => exact PartialOrder.rel_trans (meet_le_left ⊥ x) (bot_le _)
+
+end Std.Experimental.Do

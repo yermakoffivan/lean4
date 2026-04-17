@@ -6,7 +6,7 @@ Authors: Vladimir Gladshtein, Sebastian Graf
 module
 
 prelude
-public import Std.Experimental.Do.LatticeExt
+public import Std.Experimental.Do.Assertion
 public import Std.Experimental.Do.ExceptPost
 universe u v w z
 @[expose] public section

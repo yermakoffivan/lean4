@@ -85,50 +85,54 @@ One-directional consequences of the `WPMonad` axioms for `pure`, `bind`, monoton
 and weakening.
 -/
 
-theorem WPMonad.wp_pure [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] (x : α) (post : α → Pred) (epost : EPred) :
+namespace WPMonad
+
+variable [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred]
+
+theorem wp_pure (x : α) (post : α → Pred) (epost : EPred) :
     post x ⊑ wp (pure (f := m) x) post epost := wp_trans_pure x post epost
 
-theorem WPMonad.wp_bind [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] (x : m α) (f : α → m β)
+theorem wp_bind (x : m α) (f : α → m β)
   (post : β → Pred) (epost : EPred) :
     wp x (fun x => wp (f x) post epost) epost ⊑ wp (x >>= f) post epost :=
   wp_trans_bind x f post epost
 
-theorem WPMonad.wp_consequence [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] (x : m α)
+theorem wp_consequence (x : m α)
   (post post' : α → Pred) (epost : EPred) (h : post ⊑ post') :
     wp x post epost ⊑ wp x post' epost :=
-  WPMonad.wp_trans_monotone x post post' epost epost PartialOrder.rel_refl h
+  wp_trans_monotone x post post' epost epost PartialOrder.rel_refl h
 
-theorem WPMonad.wp_consequence_econs [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] (x : m α)
+theorem wp_consequence_econs (x : m α)
   (post post' : α → Pred) (epost epost' : EPred) (h : post ⊑ post') (h' : epost ⊑ epost') :
     wp x post epost ⊑ wp x post' epost' :=
-  WPMonad.wp_trans_monotone x post post' epost epost' h' h
+  wp_trans_monotone x post post' epost epost' h' h
 
-theorem WPMonad.wp_econs [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] (x : m α)
+theorem wp_econs (x : m α)
   (post : α → Pred) (epost epost' : EPred) (h' : epost ⊑ epost') :
     wp x post epost ⊑ wp x post epost' :=
-  WPMonad.wp_trans_monotone x post post epost epost' h' PartialOrder.rel_refl
+  wp_trans_monotone x post post epost epost' h' PartialOrder.rel_refl
 
-theorem WPMonad.wp_econs_bot [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] (x : m α)
+theorem wp_econs_bot (x : m α)
   (post : α → Pred) (epost : EPred) :
     wp x post ⊥ ⊑ wp x post epost := by
-  solve_by_elim [WPMonad.wp_econs, bot_le]
+  solve_by_elim [wp_econs, bot_le]
 
-theorem WPMonad.wp_consequence_rel [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] (x : m α)
+theorem wp_consequence_rel (x : m α)
   (post post' : α → Pred) (epost : EPred) (h : post ⊑ post') {pre : Pred}
     (h' : pre ⊑ wp x post epost) :
     pre ⊑ wp x post' epost :=
-  PartialOrder.rel_trans h' (WPMonad.wp_consequence x post post' epost h)
+  PartialOrder.rel_trans h' (wp_consequence x post post' epost h)
 
-theorem WPMonad.wp_econs_rel [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] (x : m α)
+theorem wp_econs_rel (x : m α)
   (post : α → Pred) (epost epost' : EPred) (h : epost ⊑ epost') {pre : Pred}
     (h' : pre ⊑ wp x post epost) :
     pre ⊑ wp x post epost' :=
-  PartialOrder.rel_trans h' (WPMonad.wp_econs x post epost epost' h)
+  PartialOrder.rel_trans h' (wp_econs x post epost epost' h)
 
-theorem WPMonad.wp_econs_bot_rel [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] (x : m α)
+theorem wp_econs_bot_rel (x : m α)
   (post : α → Pred) (epost : EPred) {pre : Pred} (h : pre ⊑ wp x post ⊥) :
     pre ⊑ wp x post epost :=
-  PartialOrder.rel_trans h (WPMonad.wp_econs_bot x post epost)
+  PartialOrder.rel_trans h (wp_econs_bot x post epost)
 
 /-!
 ## Derived Theorems for `map` and `seq`
@@ -138,30 +142,32 @@ equality from `Std.Do` cannot be proven with our current axioms since `wp_bind` 
 gives one direction (`⊑`).
 -/
 
-theorem WPMonad.wp_map [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] (f : α → β) (x : m α) :
+theorem wp_map (f : α → β) (x : m α) :
   ∀ post epost, wp x (fun a => post (f a)) epost ⊑ wp (f <$> x) post epost := by
   intro post epost
   rw [← bind_pure_comp]
   apply PartialOrder.rel_trans; rotate_left
-  exact WPMonad.wp_trans_bind x (pure <| f ·) post epost
-  apply WPMonad.wp_consequence
-  intro a; exact WPMonad.wp_trans_pure (f a) post epost
+  exact wp_trans_bind x (pure <| f ·) post epost
+  apply wp_consequence
+  intro a; exact wp_trans_pure (f a) post epost
 
-theorem WPMonad.wp_map' [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] (f : α → β) (x : m α) :
+theorem wp_map' (f : α → β) (x : m α) :
   ∀ post post' epost (_ : post = fun a => post' (f a)),
     wp x post epost ⊑ wp (f <$> x) post' epost := by
   intro post post' epost h
   subst h
   apply wp_map
 
-theorem WPMonad.wp_seq [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] (f : m (α → β)) (x : m α) :
+theorem wp_seq (f : m (α → β)) (x : m α) :
   ∀ post epost,
     wp f (fun g => wp x (fun a => post (g a)) epost) epost ⊑
       wp (f <*> x) post epost := by
   intro post epost
   rw [← bind_map]
-  apply PartialOrder.rel_trans _ (WPMonad.wp_bind f (fun g => g <$> x) post epost)
-  apply WPMonad.wp_consequence; intro g; exact WPMonad.wp_map g x post epost
+  apply PartialOrder.rel_trans _ (wp_bind f (fun g => g <$> x) post epost)
+  apply wp_consequence; intro g; exact wp_map g x post epost
+
+end WPMonad
 
 /-!
 ## WPMonad Instances

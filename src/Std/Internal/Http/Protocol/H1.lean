@@ -705,20 +705,27 @@ private def writeHead (messageHead : Message.Head dir.swap) (machine : Machine d
 
   let headers := messageHead.headers
 
-  -- Add identity header based on direction
+  -- Add identity header based on direction. handler wins if it already set one.
   let headers :=
     let identityOpt := machine.config.agentName
     match dir, identityOpt with
-    | .receiving, some server => headers.insert Header.Name.server server
-    | .sending, some userAgent => headers.insert Header.Name.userAgent userAgent
+    | .receiving, some server =>
+      if headers.contains Header.Name.server then headers
+      else headers.insert Header.Name.server server
+    | .sending, some userAgent =>
+      if headers.contains Header.Name.userAgent then headers
+      else headers.insert Header.Name.userAgent userAgent
     | _, none => headers
 
-  -- Add Connection header based on keep-alive state and protocol version
+  -- Add Connection header based on keep-alive state and protocol version.
+  -- Erase any handler-supplied value first to avoid  duplicate or conflicting
+  -- Connection headers on the wire.
+  let headers := headers.erase Header.Name.connection
+
   let headers :=
-    if !machine.keepAlive ∧ !headers.hasEntry Header.Name.connection (.mk "close") then
+    if !machine.keepAlive then
       headers.insert Header.Name.connection (.mk "close")
-    else if machine.keepAlive ∧ machine.reader.messageHead.version == .v10
-         ∧ !headers.hasEntry Header.Name.connection (.mk "keep-alive") then
+    else if machine.reader.messageHead.version == .v10 then
       -- RFC 2616 §19.7.1: HTTP/1.0 keep-alive responses must echo Connection: keep-alive
       headers.insert Header.Name.connection (.mk "keep-alive")
     else

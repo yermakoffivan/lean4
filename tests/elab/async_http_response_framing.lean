@@ -36,8 +36,11 @@ private def ok200Head : String :=
 
 -- RFC 9110 §15.4: 304 and 204 response framing
 
-#eval runGroup "RFC 9110 §15.4: 304 Not Modified preserves explicit Content-Length" do
-  -- Direct machine test: write a 304 head with Content-Length: 5 and verify it is preserved
+#eval runGroup "RFC 9110 §15.4: 304 Not Modified strips framing headers" do
+  -- Direct machine test: write a 304 head with Content-Length: 5 and verify it is stripped.
+  -- RFC 9110 §8.6 permits Content-Length in 304 as optional metadata, but we strip it to
+  -- avoid forwarding a stale or wrong value from a handler that did not intend to advertise
+  -- a body size.
   let request := "GET /cache HTTP/1.1\x0d\nHost: example.com\x0d\nConnection: close\x0d\n\x0d\n".toUTF8
   let machine0 : Protocol.H1.Machine .receiving := { config := {} }
   let (machine1, _) := (machine0.feed request).step
@@ -46,10 +49,8 @@ private def ok200Head : String :=
   let text304 := String.fromUTF8! step304.output.toByteArray
   unless text304.contains "HTTP/1.1 304 Not Modified" do
     throw <| IO.userError s!"expected 304 status in output:\n{text304.quote}"
-  unless text304.contains "Content-Length: 5" do
-    throw <| IO.userError s!"expected Content-Length: 5 preserved:\n{text304.quote}"
-  if text304.contains "Content-Length: 0" then
-    throw <| IO.userError s!"unexpected rewritten Content-Length: 0:\n{text304.quote}"
+  if text304.contains "Content-Length:" || text304.contains "Transfer-Encoding:" then
+    throw <| IO.userError s!"unexpected framing headers in 304:\n{text304.quote}"
 
 #eval runGroup "RFC 9110 §15.3.5: 204 No Content strips framing headers" do
   let request := "GET /empty HTTP/1.1\x0d\nHost: example.com\x0d\nConnection: close\x0d\n\x0d\n".toUTF8

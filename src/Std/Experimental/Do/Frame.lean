@@ -17,7 +17,8 @@ universe u
 variable {α : Type u} [CompleteLattice α]
 
 /--
-A frame is a complete lattice where binary meet distributes over arbitrary joins.
+A complete lattice is a *frame* if binary meet distributes over arbitrary joins
+(the frame law). This matches the Mathlib definition `Order.Frame`.
 
 We keep `CompleteLattice` as a parameter (instead of extending it), so the class only
 adds the frame law.

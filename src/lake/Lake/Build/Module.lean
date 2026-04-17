@@ -588,6 +588,27 @@ def Module.recFetchSetup (mod : Module) : FetchM (Job ModuleSetup) := ensureJob 
 public def Module.setupFacetConfig : ModuleFacetConfig setupFacet :=
   mkFacetJobConfig recFetchSetup
 
+/--
+Like `setup` but also waits for direct imports' `leanIR`. Used by `recBuildLeanIR` and by the
+non-module branch of `recBuildLean`, which needs deps' `.ir`/`.lcnf` on disk for `compileLeanModule`.
+
+The dep iteration mirrors how `recFetchSetup`'s transitive waits on deps' elab fall out of
+`fetchImportInfo → exportInfo.fetch`: the loop is confined to the fetch function so callers look
+master-like (a few `.fetch` calls and one `mapM`).
+-/
+def Module.recFetchIRSetup (mod : Module) : FetchM (Job ModuleSetup) := do
+  let setupJob ← mod.setup.fetch
+  let input ← (← mod.input.fetch).await
+  let mut irBarrier : Job Unit := Job.nop
+  for imp in input.imports do
+    if let some depMod := imp.module? then
+      irBarrier := irBarrier.mix (← depMod.leanIR.fetch)
+  return setupJob.zipWith (sync := true) (fun s _ => s) irBarrier
+
+/-- The `ModuleFacetConfig` for the builtin `irSetupFacet`. -/
+public def Module.irSetupFacetConfig : ModuleFacetConfig irSetupFacet :=
+  mkFacetJobConfig recFetchIRSetup (buildable := false)
+
 /-- The `ModuleFacetConfig` for the builtin `depsFacet`. -/
 public def Module.depsFacetConfig : ModuleFacetConfig depsFacet :=
   mkFacetJobConfig fun mod => (·.toOpaque) <$> mod.setup.fetch
@@ -971,20 +992,12 @@ def Module.recBuildLean (mod : Module) : FetchM (Job ModuleOutputArtifacts) := d
   ensure all logs end up under its caption in the job monitor.
   -/
   withRegisterJob mod.name.toString do
-  let setupJob ← mod.setup.fetch
-  let leanJob ← mod.lean.fetch
-  -- For non-module builds, pre-fetch deps' leanIR in FetchM (properly memoized).
-  -- `compileLeanModule` loads IR from disk via `findIRParts`, so the files must exist first.
+  -- Module-system modules' elab only needs deps' oleans (implicit via `setup`). Non-module
+  -- modules additionally need deps' `.ir`/`.lcnf` on disk (read by `compileLeanModule`);
+  -- `irSetup` extends `setup` with those transitive `leanIR` waits.
   let input ← (← mod.input.fetch).await
-  let setupJob ← do
-    if input.header.isModule then
-      pure setupJob
-    else
-      let mut depIRBarrier : Job Unit := Job.nop
-      for imp in input.imports do
-        if let some depMod := imp.module? then
-          depIRBarrier := depIRBarrier.mix (← depMod.leanIR.fetch)
-      pure <| setupJob.zipWith (sync := true) (fun s _ => s) depIRBarrier
+  let setupJob ← if input.header.isModule then mod.setup.fetch else mod.irSetup.fetch
+  let leanJob ← mod.lean.fetch
   setupJob.mapM fun setup => do
     addLeanTrace
     let srcFile ← leanJob.await
@@ -1156,26 +1169,13 @@ public def Module.irSigFacetConfig : ModuleFacetConfig irSigFacet :=
       return art.path
 
 /-- Recursively build `leanir` for a module.
-Runs `leanir` after the elab step (`leanArts`) completes. Depends on all dependencies'
-`leanIR` facets to ensure their `.ir`/`.lcnf` files exist. -/
+Runs `leanir` after the elab step (`leanArts`) completes. `irSetup` transitively waits for direct
+imports' `leanIR` so their `.ir`/`.lcnf` files exist on disk before this module's `leanir` runs. -/
 private def Module.recBuildLeanIR (mod : Module) : FetchM (Job ModuleOutputArtifacts) := do
   withRegisterJob s!"{mod.name}:leanIR" do
-  -- Fetch jobs in FetchM (memoized). Do NOT await — return immediately so the BuildStore
-  -- caches this result before concurrent callers enter.
   let elabJob ← mod.leanArts.fetch
-  let setupJob ← mod.setup.fetch
-  -- Chain via setupJob.mapM (like recBuildLean): deps' leanIR.fetch happens inside the Job
-  -- callback where setupJob has already resolved, meaning all dep modules are known.
-  -- Note: .fetch calls inside Job callbacks bypass BuildStore memoization, but deps' leanIR
-  -- was already fetched in FetchM by their own recBuildLeanIR (triggered transitively).
-  setupJob.mapM fun _ => do
-    let input ← (← mod.input.fetch).await
-    let mut depBarrier : Job Unit := Job.nop
-    for imp in input.imports do
-      if let some depMod := imp.module? then
-        depBarrier := depBarrier.mix (← depMod.leanIR.fetch)
-    -- Run after BOTH elab AND all deps' IR complete
-    let elabArts ← (elabJob.zipWith (sync := true) (fun arts _ => arts) depBarrier).await
+  let irSetupJob ← mod.irSetup.fetch
+  (elabJob.zipWith (sync := true) (fun arts _ => arts) irSetupJob).mapM fun elabArts => do
     buildAction (← getTrace) (mod.irFile.addExtension "trace") do
       if elabArts.isModule then
         -- Skip if outputs already exist (incremental rebuild obviously broken)
@@ -1339,6 +1339,7 @@ public def Module.initFacetConfigs : DNameMap ModuleFacetConfig :=
   |>.insert precompileImportsFacet precompileImportsFacetConfig
   |>.insert importInfoFacet importInfoFacetConfig
   |>.insert setupFacet setupFacetConfig
+  |>.insert irSetupFacet irSetupFacetConfig
   |>.insert depsFacet depsFacetConfig
   |>.insert leanArtsFacet leanArtsFacetConfig
   |>.insert leanIRFacet leanIRFacetConfig

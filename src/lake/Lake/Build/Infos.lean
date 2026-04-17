@@ -165,6 +165,9 @@ namespace Module
 @[inherit_doc leanIRFacet] public abbrev leanIR (self : Module) :=
   self.facetCore leanIRFacet
 
+@[inherit_doc irSetupFacet] public abbrev irSetup (self : Module) :=
+  self.facetCore irSetupFacet
+
 @[inherit_doc oleanFacet] public abbrev olean (self : Module) :=
   self.facetCore oleanFacet
 

@@ -20,18 +20,6 @@ make -C "$BUILD_ROOT" -j"$(nproc)" "$STAGE_NEXT-configure"
 
 echo
 echo ">"
-echo "> Warming up $STAGE_NEXT..."
-echo ">"
-
-make -C "$BUILD_NEXT" -j"$(nproc)"
-find "$BUILD_NEXT/lib" -name "*.olean" -delete
-find "$BUILD_NEXT/lib" -name "*.ir.sig" -delete
-rm -f measurements.jsonl
-
-
-
-echo
-echo ">"
 echo "> Building $STAGE_NEXT..."
 echo ">"
 

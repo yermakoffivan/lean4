@@ -11,6 +11,3 @@ public import Std.Do.WP
 public import Std.Do.Triple
 public import Std.Do.PredTrans
 public import Std.Do.PostCond
-
-public import Std.Internal.Do.WP
-public import Std.Internal.Do.Triple

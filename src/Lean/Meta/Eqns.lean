@@ -159,11 +159,29 @@ builtin_initialize eqnsExt : EnvExtension EqnsExtState ←
   registerEnvExtension (pure {}) (asyncMode := .local)
 
 /--
+Runs `act` with the equation-affecting options restored to the values stored for `declName`
+at definition time (or reset to their defaults if none were stored). Use this inside
+`realizeConst` callbacks, which otherwise see the caller-independent `ctx.opts` rather than
+the outer `getEqnsFor?` context. -/
+def withEqnOptions (declName : Name) (act : MetaM α) : MetaM α := do
+  let env ← getEnv
+  let setOpts : Options → Options :=
+    if let some values := eqnOptionsExt.find? env declName then
+      fun os => Id.run do
+        let mut os := eqnAffectingOptions.foldl (fun os o => o.set os o.defValue) os
+        for (name, v) in values do
+          os := os.insert name v
+        return os
+    else
+      fun os => eqnAffectingOptions.foldl (fun os o => o.set os o.defValue) os
+  withOptions setOpts act
+
+/--
 Simple equation theorem for nonrecursive definitions.
 -/
 def mkSimpleEqThm (declName : Name) (name : Name) : MetaM (Option Name) := do
   if let some (.defnInfo info) := (← getEnv).find? declName then
-    realizeConst declName name (doRealize name info)
+    realizeConst declName name (withEqnOptions declName (doRealize name info))
     return some name
   else
     return none
@@ -234,21 +252,7 @@ private def getEqnsFor?Core (declName : Name) : MetaM (Option (Array Name)) := w
 Returns equation theorems for the given declaration.
 -/
 def getEqnsFor? (declName : Name) : MetaM (Option (Array Name)) := withLCtx {} {} do
-  -- This is the entry point for lazy equation generation. Restore the options that were
-  -- in effect at definition time (if stored), otherwise revert to defaults.
-  let env ← getEnv
-  let setOpts : Options → Options :=
-    if let some values := eqnOptionsExt.find? env declName then
-      -- Restore defaults, then apply the stored non-default values
-      fun os => Id.run do
-        let mut os := eqnAffectingOptions.foldl (fun os o => o.set os o.defValue) os
-        for (name, v) in values do
-          os := os.insert name v
-        return os
-    else
-      -- No stored options: revert to defaults
-      fun os => eqnAffectingOptions.foldl (fun os o => o.set os o.defValue) os
-  withOptions setOpts do
+  withEqnOptions declName do
     getEqnsFor?Core declName
 
 /--

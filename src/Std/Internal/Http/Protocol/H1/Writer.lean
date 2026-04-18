@@ -198,6 +198,9 @@ def determineTransferMode (writer : Writer dir) : Body.Length :=
 
 /--
 Adds user data chunks to the writer's buffer if the writer can accept data.
+
+Empty chunks (zero bytes of data) are accepted here but will be silently dropped
+during the chunked-encoding write step — see `writeChunkedBody`.
 -/
 @[inline]
 def addUserData (data : Array Chunk) (writer : Writer dir) : Writer dir :=
@@ -236,12 +239,14 @@ def writeFixedBody (writer : Writer dir) (limitSize : Nat) : Writer dir × Nat :
 
 /--
 Writes accumulated user data to output using chunked transfer encoding.
+
+Empty chunks are silently discarded. See `Chunk.empty` for the protocol-level rationale.
 -/
 def writeChunkedBody (writer : Writer dir) : Writer dir :=
   if writer.userData.size = 0 then
     writer
   else
-    let data := writer.userData
+    let data := writer.userData.filter (fun c => !c.data.isEmpty)
     { writer with userData := #[], userDataBytes := 0, outputData := data.foldl (Encode.encode .v11) writer.outputData }
 
 /--

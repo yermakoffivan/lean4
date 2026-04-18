@@ -144,3 +144,54 @@ private def ok200Head : String :=
     throw <| IO.userError s!"expected 200 after 1xx chain:\n{text200.quote}"
   unless text200.contains "Content-Length: 0" do
     throw <| IO.userError s!"Content-Length must be preserved in final response:\n{text200.quote}"
+
+-- RFC 7230 §3.3.1 / RFC 9112 §6.1: HTTP/1.0 connection-close framing.
+-- When the handler does not set Content-Length for an HTTP/1.0 request the machine
+-- must not emit Transfer-Encoding or Content-Length; it writes raw bytes and closes.
+
+#eval runGroup "RFC 7230 §3.3.1: HTTP/1.0 connection-close — headers" do
+  let request10 := "GET / HTTP/1.0\x0d\nHost: example.com\x0d\n\x0d\n".toUTF8
+  let machine0 : Protocol.H1.Machine .receiving := { config := {} }
+  let (machine1, _) := (machine0.feed request10).step
+  let (_, stepA) := (machine1.send ({ status := .ok, headers := .empty } : Response.Head)).step
+  let textA := String.fromUTF8! stepA.output.toByteArray
+  unless textA.contains "200 OK" do
+    throw <| IO.userError s!"expected 200 status line:\n{textA.quote}"
+  if textA.contains "Transfer-Encoding:" then
+    throw <| IO.userError s!"Transfer-Encoding must not appear in HTTP/1.0 response:\n{textA.quote}"
+  if textA.contains "Content-Length:" then
+    throw <| IO.userError s!"Content-Length must not appear when body length is unknown:\n{textA.quote}"
+
+#eval runGroup "RFC 7230 §3.3.1: HTTP/1.0 connection-close — body framing" do
+  let request10 := "GET / HTTP/1.0\x0d\nHost: example.com\x0d\n\x0d\n".toUTF8
+  let machine0 : Protocol.H1.Machine .receiving := { config := {} }
+  let (machine1, _) := (machine0.feed request10).step
+
+  -- Non-empty body: raw bytes must appear in output without chunk framing.
+  let body := "hello world".toUTF8
+  let machine2 :=
+    machine1
+    |>.send ({ status := .ok, headers := .empty } : Response.Head)
+    |>.sendData #[{ data := body, extensions := #[] }]
+    |>.userClosedBody
+  let (machine3, step2) := machine2.step
+  let output2 := String.fromUTF8! step2.output.toByteArray
+  unless output2.contains "hello world" do
+    throw <| IO.userError s!"body bytes must appear in output:\n{output2.quote}"
+  -- Chunk framing would look like "b\r\nhello world\r\n0\r\n\r\n"
+  if output2.contains "0\x0d\x0a\x0d\x0a" then
+    throw <| IO.userError s!"body must not be chunk-framed (found final-chunk terminator):\n{output2.quote}"
+  unless step2.events.any (fun | .close => true | _ => false) do
+    throw <| IO.userError s!"expected .close event after connection-close body:\n{repr step2.events}"
+  unless !machine3.keepAlive do
+    throw <| IO.userError "keepAlive must be false for HTTP/1.0 connection-close response"
+
+  -- Empty body: userClosedBody with no data must still emit .close.
+  let (machine1b, _) := (machine0.feed request10).step
+  let machine4 :=
+    machine1b
+    |>.send ({ status := .ok, headers := .empty } : Response.Head)
+    |>.userClosedBody
+  let (_, step3) := machine4.step
+  unless step3.events.any (fun | .close => true | _ => false) do
+    throw <| IO.userError s!"expected .close event for empty HTTP/1.0 body:\n{repr step3.events}"

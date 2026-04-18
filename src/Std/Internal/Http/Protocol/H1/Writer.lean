@@ -51,9 +51,20 @@ inductive Writer.State
   | waitingForFlush
 
   /--
-  Writing the body output (either fixed-length or chunked).
+  Writing a fixed-length body; `n` is the number of bytes still to be sent.
   -/
-  | writingBody (mode : Body.Length)
+  | writingBodyFixed (n : Nat)
+
+  /--
+  Writing a chunked transfer-encoding body (HTTP/1.1).
+  -/
+  | writingBodyChunked
+
+  /--
+  Writing a connection-close body (HTTP/1.0 server, unknown length).
+  Raw bytes are written without chunk framing; the peer reads until the connection closes.
+  -/
+  | writingBodyClosingFrame
 
   /--
   Completed writing a single message and ready to begin the next one.
@@ -162,7 +173,9 @@ def canAcceptData (writer : Writer dir) : Bool :=
   match writer.state with
   | .waitingHeaders => true
   | .waitingForFlush => true
-  | .writingBody _ => !writer.userClosedBody
+  | .writingBodyFixed _
+  | .writingBodyChunked
+  | .writingBodyClosingFrame => !writer.userClosedBody
   | _ => false
 
 /--
@@ -240,6 +253,15 @@ def writeFinalChunk (writer : Writer dir) : Writer dir :=
     outputData := writer.outputData.write "0\r\n\r\n".toUTF8
     state := .complete
   }
+
+/--
+Writes accumulated user data to output as raw bytes (HTTP/1.0 connection-close framing).
+No chunk framing is added; the peer reads until the connection closes.
+-/
+def writeRawBody (writer : Writer dir) : Writer dir :=
+  { writer with
+    outputData := writer.userData.foldl (fun buf c => buf.write c.data) writer.outputData,
+    userData := #[], userDataBytes := 0 }
 
 /--
 Extracts all accumulated output data and returns it with a cleared output buffer.

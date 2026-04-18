@@ -703,6 +703,14 @@ private def writeHead (messageHead : Message.Head dir.swap) (machine : Machine d
   let machine := machine.updateKeepAlive shouldKeepAlive
   let size := Writer.determineTransferMode machine.writer
 
+  -- RFC 7230 §3.3.1: HTTP/1.0 does not support Transfer-Encoding.  When the
+  -- response body length is unknown (chunked mode), fall back to connection-close
+  -- framing: disable keep-alive and write raw bytes (no chunk encoding, no TE header).
+  let machine :=
+    match dir, machine.reader.messageHead.version, size with
+    | .receiving, Version.v10, .chunked => machine.disableKeepAlive
+    | _, _, _ => machine
+
   let headers := messageHead.headers
 
   -- Add identity header based on direction. handler wins if it already set one.
@@ -740,12 +748,25 @@ private def writeHead (messageHead : Message.Head dir.swap) (machine : Machine d
         headers
           |>.erase Header.Name.contentLength
           |>.erase Header.Name.transferEncoding
+      else if machine.reader.messageHead.version == .v10 && size == .chunked then
+        -- RFC 7230 §3.3.1: connection-close framing for HTTP/1.0 — strip all framing
+        -- headers so neither Content-Length nor Transfer-Encoding appears on the wire.
+        headers
+          |>.erase Header.Name.contentLength
+          |>.erase Header.Name.transferEncoding
       else
         normalizeFramingHeaders headers size
     | .sending, _ =>
       normalizeFramingHeaders headers size
 
-  let state := Writer.State.writingBody size
+  let state : Writer.State :=
+    match size with
+    | .fixed n => .writingBodyFixed n
+    | .chunked =>
+      -- RFC 7230 §3.3.1: HTTP/1.0 server-side uses connection-close framing (no chunk framing).
+      match dir, machine.reader.messageHead.version with
+      | .receiving, .v10 => .writingBodyClosingFrame
+      | _, _ => .writingBodyChunked
 
   machine.modifyWriter (fun writer => {
     writer with
@@ -1103,11 +1124,11 @@ private partial def processFixedBufferedBody (machine : Machine dir) (n : Nat) :
         if writer.userClosedBody then
           completeWriterMessage machine
         else
-          machine.setWriterState (.writingBody (.fixed 0))
+          machine.setWriterState (.writingBodyFixed 0)
       else
         closeOnBadMessage machine
     else
-      machine.setWriterState (.writingBody (.fixed remaining))
+      machine.setWriterState (.writingBodyFixed remaining)
 
 /--
 Handles fixed-length writer state when no user bytes are currently buffered.
@@ -1139,20 +1160,28 @@ private partial def processFixedBody (machine : Machine dir) (n : Nat) : Machine
     processFixedIdleBody machine
 
 /--
-Processes chunked transfer-encoding output.
-
-Writes buffered chunks when available, writes terminal `0\\r\\n\\r\\n` on
-producer close, and supports omitted-body completion.
+Processes chunked transfer-encoding output (HTTP/1.1).
 -/
 private partial def processChunkedBody (machine : Machine dir) : Machine dir :=
   if machine.writer.omitBody then
     completeOmittedBody machine
   else if machine.writer.userClosedBody then
-    machine.modifyWriter Writer.writeFinalChunk
-    |> completeWriterMessage
+    machine.modifyWriter Writer.writeFinalChunk |> completeWriterMessage
   else if machine.writer.userData.size > 0 then
-    machine.modifyWriter Writer.writeChunkedBody
-    |> processWrite
+    machine.modifyWriter Writer.writeChunkedBody |> processWrite
+  else
+    machine
+
+/--
+Processes connection-close body output (HTTP/1.0 server, unknown body length).
+-/
+private partial def processClosingFrameBody (machine : Machine dir) : Machine dir :=
+  if machine.writer.omitBody then
+    completeOmittedBody machine
+  else if machine.writer.userClosedBody then
+    machine.modifyWriter Writer.writeRawBody |> completeWriterMessage
+  else if machine.writer.userData.size > 0 then
+    machine.modifyWriter Writer.writeRawBody |> processWrite
   else
     machine
 
@@ -1186,10 +1215,12 @@ partial def processWrite (machine : Machine dir) : Machine dir :=
       |> processWrite
     else
       machine
-  | .writingBody (.fixed n) =>
+  | .writingBodyFixed n =>
     processFixedBody machine n
-  | .writingBody .chunked =>
+  | .writingBodyChunked =>
     processChunkedBody machine
+  | .writingBodyClosingFrame =>
+    processClosingFrameBody machine
   | .complete =>
     processCompleteStep machine
   | .closed =>

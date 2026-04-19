@@ -1,5 +1,7 @@
 import Lean.Meta.Basic
 
+set_option warn.sorry false
+
 inductive StructLike α where
   | mk : α → StructLike α
 

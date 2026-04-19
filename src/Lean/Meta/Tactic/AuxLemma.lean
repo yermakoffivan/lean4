@@ -41,7 +41,7 @@ builtin_initialize auxLemmasExt : EnvExtension AuxLemmas ←
   users. For example, `simp` preprocessor may convert a lemma into multiple ones.
 -/
 def mkAuxLemma (levelParams : List Name) (type : Expr) (value : Expr) (kind? : Option Name := none)
-    (cache := true) (forceExpose := false) (defeq := false) : MetaM Name := do
+    (cache := true) (inferRfl := false) (forceExpose := false) (defeq := false) : MetaM Name := do
   let env ← getEnv
   let s := auxLemmasExt.getState env
   let key := { type, isPrivate := !env.isExporting, defeq }
@@ -63,6 +63,8 @@ def mkAuxLemma (levelParams : List Name) (type : Expr) (value : Expr) (kind? : O
         }
     addDecl (forceExpose := forceExpose) decl
     if defeq then defeqAttr.setTag auxName
+    if inferRfl then
+      inferDefEqAttr auxName
     modifyEnv fun env => auxLemmasExt.modifyState env fun ⟨lemmas⟩ => ⟨lemmas.insert key (auxName, levelParams)⟩
     return auxName
   if cache then

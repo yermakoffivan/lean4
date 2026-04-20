@@ -410,7 +410,7 @@ info: "f\x0d\n0123456789abcde\x0d\n"
 #guard_msgs in
 #eval encodeStr (Chunk.ofByteArray "0123456789abcde".toUTF8)
 
--- Chunk.ofByteArray with empty data (same as Chunk.empty)
+-- Chunk.ofByteArray with empty data encodes as the last-chunk terminator.
 /--
 info: "0\x0d\n\x0d\n"
 -/

@@ -284,3 +284,37 @@ open Std Http Internal Test
     (raw := "POST / HTTP/1.1\x0d\nHost: example.com\x0d\nTransfer-Encoding: chunked\x0d\nConnection: close\x0d\n\x0d\n5;a=1;b=2;c=3\x0d\nhello\x0d\n0\x0d\n\x0d\n")
     (handler := echoHandler)
     (expect := fun r => assertStatus r "HTTP/1.1 200")
+
+-- RFC 9112 §7.1: zero-size chunk encoding
+
+#eval runGroup "RFC 9112 §7.1: empty outgoing chunks must not be encoded as last-chunk" do
+  -- A zero-size chunk IS the last-chunk terminator; the encoder must skip empty non-final chunks
+  -- so that subsequent data remains visible to the client.
+  check "empty chunk with extensions before real data — real data still received"
+    (raw := "GET / HTTP/1.1\x0d\nHost: example.com\x0d\nConnection: close\x0d\n\x0d\n")
+    (handler := fun _ => do
+      let ext := (Chunk.ExtensionName.ofString! "test", some (Chunk.ExtensionValue.ofString! "val"))
+      Response.ok |>.stream fun s => do
+        s.send { data := .empty, extensions := #[ext] }
+        s.send (Chunk.ofByteArray "after\n".toUTF8))
+    (expect := fun r => assertStatus r "HTTP/1.1 200" *> assertContains r "after")
+
+  check "multiple empty chunks before real data — real data still received"
+    (raw := "GET / HTTP/1.1\x0d\nHost: example.com\x0d\nConnection: close\x0d\n\x0d\n")
+    (handler := fun _ => do
+      Response.ok |>.stream fun s => do
+        s.send Chunk.empty
+        s.send Chunk.empty
+        s.send (Chunk.ofByteArray "data\n".toUTF8))
+    (expect := fun r => assertContains r "data")
+
+#eval runGroup "RFC 9110 §8.6: Content-Length strict decimal" do
+  check "underscore in Content-Length → 400"
+    (raw := "POST / HTTP/1.1\x0d\nHost: example.com\x0d\nContent-Length: 1_0\x0d\nConnection: close\x0d\n\x0d\n0123456789")
+    (handler := echoHandler)
+    (expect := fun r => assertExact r r400)
+
+  check "valid Content-Length → 200"
+    (raw := "POST / HTTP/1.1\x0d\nHost: example.com\x0d\nContent-Length: 5\x0d\nConnection: close\x0d\n\x0d\nhello")
+    (handler := echoHandler)
+    (expect := fun r => assertStatus r "HTTP/1.1 200")

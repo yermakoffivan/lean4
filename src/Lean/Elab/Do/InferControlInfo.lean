@@ -129,9 +129,23 @@ partial def ofElem (stx : TSyntax `doElem) : TermElabM ControlInfo := do
     return thenInfo.alternative info
   | `(doElem| unless $_ do $elseSeq) =>
     ControlInfo.alternative {} <$> ofSeq elseSeq
+  -- For/Repeat
   | `(doElem| for $[$[$_ :]? $_ in $_],* do $bodySeq) =>
     let info ← ofSeq bodySeq
     return { info with  -- keep only reassigns and earlyReturn
+      numRegularExits := 1,
+      continues := false,
+      breaks := false
+    }
+  | `(doRepeat| repeat $bodySeq) =>
+    let info ← ofSeq bodySeq
+    -- Match `for ... in` and report `numRegularExits := 1` unconditionally. Reporting `0` when
+    -- the body has no `break` causes `ofSeq` (in any enclosing sequence whose `ControlInfo` is
+    -- inferred, e.g. a surrounding `for`/`if`/`match`/`try` body) to stop aggregating after this
+    -- element and miss any `return`/`break`/`continue` that follows. The corresponding elaborator
+    -- then sees the actual control flow disagree with the inferred info and throws errors like
+    -- "Early returning ... but the info said there is no early return". See #13437 for details.
+    return { info with
       numRegularExits := 1,
       continues := false,
       breaks := false

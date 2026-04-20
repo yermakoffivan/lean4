@@ -341,10 +341,14 @@ private partial def sendWithRedirects [Transport α]
     if history.contains nextKey then
       return response
 
-    if newHost != agent.host || newPort != agent.port then
+    -- A scheme change (http ↔ https) on the same host+port still requires a
+    -- fresh transport because the TLS handshake differs: reusing the existing
+    -- session would send the redirected request over the wrong wire protocol
+    -- (e.g. an `https://` follow-up emitted in plaintext).
+    if newHost != agent.host || newPort != agent.port || newScheme != agent.scheme then
 
       -- For custom transports without a connectTo factory we cannot open a new
-      -- connection to a different host; return the redirect response as-is.
+      -- connection to a different origin; return the redirect response as-is.
       let some factory := agent.connectTo
         | return response
 

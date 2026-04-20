@@ -191,6 +191,16 @@ namespace Request.Builder
 open Internal.IO.Async
 
 /--
+Inserts `Content-Type: default` only when the builder does not already carry
+one. Prevents the body-setting helpers (`text` / `bytes` / `json` / `html`) from
+appending a duplicate header when the caller has pre-set `Content-Type`.
+-/
+@[inline]
+private def defaultContentType (builder : Builder) (default_ : String) : Builder :=
+  if builder.line.headers.contains Header.Name.contentType then builder
+  else builder.header Header.Name.contentType (Header.Value.ofString! default_)
+
+/--
 Builds a request body from raw bytes without setting any headers.
 Use `bytes` instead if you want `Content-Type: application/octet-stream` set automatically.
 -/
@@ -199,37 +209,51 @@ def fromBytes (builder : Builder) (content : ByteArray) : Async (Request Body.Fu
 
 /--
 Builds a request with a binary body.
-Sets `Content-Type: application/octet-stream`.
+Sets `Content-Type: application/octet-stream` unless the caller already set a
+`Content-Type` on the builder.
 Use `fromBytes` instead if you need to set a different `Content-Type` or none at all.
 -/
 def bytes (builder : Builder) (content : ByteArray) : Async (Request Body.Full) :=
-  fromBytes (builder.header Header.Name.contentType (Header.Value.ofString! "application/octet-stream")) content
+  fromBytes (defaultContentType builder "application/octet-stream") content
 
 /--
 Builds a request with a text body.
-Sets `Content-Type: text/plain; charset=utf-8`.
+Sets `Content-Type: text/plain; charset=utf-8` unless the caller already set
+a `Content-Type` on the builder.
 -/
 def text (builder : Builder) (content : String) : Async (Request Body.Full) :=
-  fromBytes (builder.header Header.Name.contentType (Header.Value.ofString! "text/plain; charset=utf-8")) content.toUTF8
+  fromBytes (defaultContentType builder "text/plain; charset=utf-8") content.toUTF8
 
 /--
 Builds a request with a JSON body.
-Sets `Content-Type: application/json`.
+Sets `Content-Type: application/json` unless the caller already set a
+`Content-Type` on the builder.
 -/
 def json (builder : Builder) (content : String) : Async (Request Body.Full) :=
-  fromBytes (builder.header Header.Name.contentType (Header.Value.ofString! "application/json")) content.toUTF8
+  fromBytes (defaultContentType builder "application/json") content.toUTF8
 
 /--
 Builds a request with an HTML body.
-Sets `Content-Type: text/html; charset=utf-8`.
+Sets `Content-Type: text/html; charset=utf-8` unless the caller already set a
+`Content-Type` on the builder.
 -/
 def html (builder : Builder) (content : String) : Async (Request Body.Full) :=
-  fromBytes (builder.header Header.Name.contentType (Header.Value.ofString! "text/html; charset=utf-8")) content.toUTF8
+  fromBytes (defaultContentType builder "text/html; charset=utf-8") content.toUTF8
 
 end Request.Builder
 
 namespace Response.Builder
 open Internal.IO.Async
+
+/--
+Inserts `Content-Type: default` only when the builder does not already carry
+one. Prevents the body-setting helpers (`text` / `bytes` / `json` / `html`) from
+appending a duplicate header when the caller has pre-set `Content-Type`.
+-/
+@[inline]
+private def defaultContentType (builder : Builder) (default_ : String) : Builder :=
+  if builder.line.headers.contains Header.Name.contentType then builder
+  else builder.header Header.Name.contentType (Header.Value.ofString! default_)
 
 /--
 Builds a response body from raw bytes without setting any headers.
@@ -240,31 +264,35 @@ def fromBytes (builder : Builder) (content : ByteArray) : Async (Response Body.F
 
 /--
 Builds a response with a binary body.
-Sets `Content-Type: application/octet-stream`.
+Sets `Content-Type: application/octet-stream` unless the caller already set a
+`Content-Type` on the builder.
 Use `fromBytes` instead if you need to set a different `Content-Type` or none at all.
 -/
 def bytes (builder : Builder) (content : ByteArray) : Async (Response Body.Full) :=
-  fromBytes (builder.header Header.Name.contentType (Header.Value.ofString! "application/octet-stream")) content
+  fromBytes (defaultContentType builder "application/octet-stream") content
 
 /--
 Builds a response with a text body.
-Sets `Content-Type: text/plain; charset=utf-8`.
+Sets `Content-Type: text/plain; charset=utf-8` unless the caller already set a
+`Content-Type` on the builder.
 -/
 def text (builder : Builder) (content : String) : Async (Response Body.Full) :=
-  fromBytes (builder.header Header.Name.contentType (Header.Value.ofString! "text/plain; charset=utf-8")) content.toUTF8
+  fromBytes (defaultContentType builder "text/plain; charset=utf-8") content.toUTF8
 
 /--
 Builds a response with a JSON body.
-Sets `Content-Type: application/json`.
+Sets `Content-Type: application/json` unless the caller already set a
+`Content-Type` on the builder.
 -/
 def json (builder : Builder) (content : String) : Async (Response Body.Full) :=
-  fromBytes (builder.header Header.Name.contentType (Header.Value.ofString! "application/json")) content.toUTF8
+  fromBytes (defaultContentType builder "application/json") content.toUTF8
 
 /--
 Builds a response with an HTML body.
-Sets `Content-Type: text/html; charset=utf-8`.
+Sets `Content-Type: text/html; charset=utf-8` unless the caller already set a
+`Content-Type` on the builder.
 -/
 def html (builder : Builder) (content : String) : Async (Response Body.Full) :=
-  fromBytes (builder.header Header.Name.contentType (Header.Value.ofString! "text/html; charset=utf-8")) content.toUTF8
+  fromBytes (defaultContentType builder "text/html; charset=utf-8") content.toUTF8
 
 end Response.Builder

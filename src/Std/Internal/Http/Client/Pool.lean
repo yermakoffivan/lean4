@@ -72,7 +72,7 @@ private def createTcpSession (host : URI.Host) (port : UInt16) (config : Config)
 A connection pool that manages multiple sessions per `(scheme, host, port)` triple.
 Each value in the map is an array of live sessions paired with a round-robin counter.
 -/
-public structure Agent.Pool where
+structure Agent.Pool where
   /--
   Per-origin session lists and round-robin counters, guarded by a mutex.
   The key is `(scheme, host, port)` so that `http://example.com:443` and

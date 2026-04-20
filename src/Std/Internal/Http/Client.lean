@@ -42,7 +42,7 @@ abbrev Client := Client.Agent.Pool
 /--
 Builder for `Client`. Chain configuration setters then call `.build`.
 -/
-public structure Client.Builder where
+structure Client.Builder where
 
   /--
   Configuration applied to all sessions created by this client.
@@ -128,7 +128,7 @@ end Builder
 A request builder bound to a `Client`. Build up headers, query parameters, and body,
 then dispatch with one of the `send*` methods.
 -/
-public structure RequestBuilder where
+structure RequestBuilder where
 
   /--
   The client that will dispatch this request.

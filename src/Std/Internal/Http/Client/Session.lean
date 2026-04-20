@@ -28,7 +28,7 @@ A background task drives the `Connection` loop; callers interact through a chann
 /--
 An HTTP client session that sends sequential requests over a persistent connection.
 -/
-public structure Session (α : Type) where
+structure Session (α : Type) where
   /--
   Queue of requests sent by users.
   -/

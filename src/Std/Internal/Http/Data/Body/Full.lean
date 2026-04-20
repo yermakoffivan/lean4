@@ -114,14 +114,6 @@ def tryRecv (full : Full) : Async (Option (Option Chunk)) := do
   return some (← full.state.atomically (takeChunk full))
 
 /--
-Non-blocking receive. `Full` bodies are always in-memory, so data is always
-immediately available. Returns `some chunk` on first call, `some none` (EOF)
-once consumed or closed.
--/
-def tryRecv (full : Full) : Async (Option (Option Chunk)) := do
-  return some (← full.state.atomically takeChunk)
-
-/--
 Selector that immediately resolves to the remaining chunk (or EOF).
 -/
 def recvSelector (full : Full) : Selector (Option Chunk) where

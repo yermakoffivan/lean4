@@ -45,7 +45,7 @@ request to prevent credential leakage.
 An HTTP user-agent that manages a connection to a host. It follows redirects, maintains a cookie
 jar for automatic cookie handling, applies response interceptors, and retries on connection errors.
 -/
-public structure Agent (α : Type) where
+structure Agent (α : Type) where
   /--
   The underlying HTTP session over the transport.
   -/
@@ -398,7 +398,7 @@ let response ←
 A `Request.Builder` bound to a specific `Agent`.  Build up headers, query parameters, and body,
 then call one of the `send*` methods to dispatch the request.
 -/
-public structure Agent.RequestBuilder (α : Type) where
+structure Agent.RequestBuilder (α : Type) where
   /--
   The agent that will send this request.
   -/

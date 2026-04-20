@@ -165,10 +165,7 @@ private structure ConnectionState where
 @[inline]
 private def requestHasExpectContinue (request : Request Body.Operations) : Bool :=
   match request.line.headers.getAll? Header.Name.expect with
-  | some #[value] =>
-      match Header.Expect.parse value with
-      | some res => res.expect
-      | none => false
+  | some #[value] => Header.Expect.parse value |>.isSome
   | _ => false
 
 /--

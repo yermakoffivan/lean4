@@ -13,6 +13,7 @@ public import Std.Internal.Http.Data.Headers
 public import Init.Data.String
 public import Init.Data.Array.Basic
 public import Init.Data.List.Basic
+public import Std.Time
 
 public section
 
@@ -25,10 +26,15 @@ implementation for managing HTTP cookies.
 Cookies are parsed from `Set-Cookie` response headers, stored in a thread-safe jar, and
 injected as a `Cookie` request header on outgoing requests.
 
-Supported `Set-Cookie` attributes: `Domain`, `Path`, `Secure`.
+Supported `Set-Cookie` attributes: `Domain`, `Path`, `Secure`, `HttpOnly`,
+`Max-Age`, `Expires` (in IMF-fixdate form).
 
-Unsupported: `Expires`, `Max-Age`, `HttpOnly`, `SameSite`. All cookies persist for the
-lifetime of the jar regardless of any expiry directives.
+When both `Max-Age` and `Expires` are present, `Max-Age` wins (RFC 6265 §5.3).
+Cookies whose resolved expiration has already passed are never stored, and
+cookies selected by `cookiesFor` are filtered against the current wall-clock
+time so expired entries are never sent on outgoing requests.
+
+Unsupported: `SameSite`.
 
 Reference: https://www.rfc-editor.org/rfc/rfc6265
 -/
@@ -214,6 +220,14 @@ structure Cookie where
   -/
   httpOnly : Bool
 
+  /--
+  Absolute expiration time for this cookie, or `none` for a session cookie that
+  persists until the jar is discarded.  Resolved from `Max-Age` (preferred) or
+  `Expires` at the time `Set-Cookie` was ingested.  Cookies whose `expires` has
+  already passed are filtered out of `cookiesFor`.
+  -/
+  expires : Option Std.Time.Timestamp
+
 /--
 A HTTP cookie jar.
 
@@ -231,6 +245,57 @@ Creates an empty cookie jar.
 def new : BaseIO Jar := do
   let cookies ← Mutex.new #[]
   return .mk cookies
+
+/--
+Translates a 3-letter month abbreviation (`Jan`, `Feb`, …) as used in IMF-fixdate to the
+1-indexed month number. Returns `none` for any other value.
+-/
+private def monthFromAbbrev : String → Option Nat
+  | "Jan" => some 1  | "Feb" => some 2  | "Mar" => some 3
+  | "Apr" => some 4  | "May" => some 5  | "Jun" => some 6
+  | "Jul" => some 7  | "Aug" => some 8  | "Sep" => some 9
+  | "Oct" => some 10 | "Nov" => some 11 | "Dec" => some 12
+  | _ => none
+
+/--
+Parses an HTTP-date in IMF-fixdate form (RFC 7231 §7.1.1.1), the only format RFC 6265 §5.1.1
+permits in `Set-Cookie: Expires=...`, into an absolute `Timestamp`.
+
+Example input: `"Sun, 06 Nov 1994 08:49:37 GMT"`.  Returns `none` when the string does not match
+this layout; the obsolete RFC 850 and asctime forms are intentionally not accepted.
+
+Seconds-since-epoch are computed from the civil date via the well-known Howard Hinnant
+algorithm, which is valid for any proleptic-Gregorian date representable as an `Int` without
+relying on `PlainDate` ordinal constructors (keeping this function pure and runtime-total).
+-/
+private def parseImfFixdate (s : String) : Option Std.Time.Timestamp := do
+  let parts := (s.trimAscii.toString.splitOn " ").filter (!·.isEmpty)
+  guard (parts.length == 6)
+  let day ← parts[1]!.toNat?
+  let month ← monthFromAbbrev parts[2]!
+  let year ← parts[3]!.toInt?
+  let hms := (parts[4]!).splitOn ":"
+  guard (hms.length == 3)
+  let hour ← hms[0]!.toNat?
+  let minute ← hms[1]!.toNat?
+  let second ← hms[2]!.toNat?
+  guard (parts[5]! == "GMT")
+  guard (1 ≤ month ∧ month ≤ 12)
+  guard (1 ≤ day ∧ day ≤ 31)
+  guard (hour ≤ 23 ∧ minute ≤ 59 ∧ second ≤ 60)
+  let m : Int := month
+  let d : Int := day
+  let y : Int := if m ≤ 2 then year - 1 else year
+  let era : Int := (if y ≥ 0 then y else y - 399) / 400
+  let yoe : Int := y - era * 400
+  let doy : Int := (153 * (if m > 2 then m - 3 else m + 9) + 2) / 5 + d - 1
+  let doe : Int := yoe * 365 + yoe / 4 - yoe / 100 + doy
+  let days : Int := era * 146097 + doe - 719468
+  let h : Int := hour
+  let mi : Int := minute
+  let sc : Int := second
+  let totalSeconds : Int := days * 86400 + h * 3600 + mi * 60 + sc
+  return Std.Time.Timestamp.ofSecondsSinceUnixEpoch (Std.Time.Second.Offset.ofInt totalSeconds)
 
 /--
 Domain matching per RFC 6265 §5.1.3.
@@ -268,9 +333,13 @@ Parses a single `Set-Cookie` header value and stores the resulting cookie.
 `host` is the origin host of the response (used as the effective domain when no
 `Domain` attribute is present).
 
+Resolves the cookie's absolute expiration from `Max-Age` (preferred) or `Expires` at the
+current wall-clock time; cookies whose resolved expiration is not in the future are never
+stored, and any previously-stored entry with the same `(name, domain, path)` is removed.
+
 Reference: https://www.rfc-editor.org/rfc/rfc6265#section-5.2
 -/
-def processSetCookie (jar : Jar) (host : URI.Host) (headerValue : String) : BaseIO Unit := do
+def processSetCookie (jar : Jar) (host : URI.Host) (headerValue : String) : IO Unit := do
   let .ok parsed := Cookie.Parser.parseSetCookie.run headerValue.toUTF8
     | return ()
 
@@ -298,9 +367,17 @@ def processSetCookie (jar : Jar) (host : URI.Host) (headerValue : String) : Base
   if !hostOnly && !domainMatches domain false host then
     return ()
 
-  -- RFC 6265 §5.2.2: Max-Age ≤ 0 signals deletion — remove any matching cookie and stop.
-  if let some maxAgeVal := parsed.maxAge then
-    if maxAgeVal ≤ 0 then
+  -- RFC 6265 §5.3: `Max-Age` takes precedence over `Expires` when both are present.
+  -- `Max-Age ≤ 0` (or an `Expires` already in the past) signals deletion — drop any
+  -- matching cookie and stop before inserting anything.
+  let now ← Std.Time.Timestamp.now
+  let expiresAt : Option Std.Time.Timestamp :=
+    match parsed.maxAge with
+    | some n => some (now.addSeconds (Std.Time.Second.Offset.ofInt n))
+    | none   => parsed.expires.bind parseImfFixdate
+
+  if let some t := expiresAt then
+    if t ≤ now then
       jar.cookies.atomically do
         let cs ← get
         set (cs.filter fun c => !(c.name == cookieName && c.domain == domain && c.path == cookiePath))
@@ -314,6 +391,7 @@ def processSetCookie (jar : Jar) (host : URI.Host) (headerValue : String) : Base
     path := cookiePath
     secure := parsed.secure
     httpOnly := parsed.httpOnly
+    expires := expiresAt
   }
 
   -- Limit the total cookie count to prevent unbounded memory growth.
@@ -330,17 +408,23 @@ Returns the `Cookie` header value for all cookies that should be sent for a requ
 at `path`. Pass `secure := true` when the request channel is HTTPS. Returns `none` when no
 cookies match.
 
+Cookies whose resolved expiration has already passed (per `Cookie.expires`) are excluded
+from the result, satisfying RFC 6265 §5.3's requirement that the user agent purge expired
+cookies before selecting them for an outgoing request.
+
 Reference: https://www.rfc-editor.org/rfc/rfc6265#section-5.4
 -/
 def cookiesFor
     (jar : Jar) (host : URI.Host) (path : URI.Path)
-    (secure : Bool := false) : BaseIO (Option Header.Value) :=
+    (secure : Bool := false) : IO (Option Header.Value) := do
+  let now ← Std.Time.Timestamp.now
   jar.cookies.atomically do
     let cs ← get
     let matching := cs.filter fun c =>
       domainMatches c.domain c.hostOnly host &&
       pathMatches c.path path &&
-      (!c.secure || secure)
+      (!c.secure || secure) &&
+      (match c.expires with | none => true | some t => now < t)
     if matching.isEmpty then
       return none
     else

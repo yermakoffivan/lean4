@@ -408,10 +408,15 @@ private def handleRecvEvent
         -- Enforce the response body size limit before writing data to the caller.
         if let some maxSize := config.maxResponseBodySize then
           if newBodyBytes > maxSize.toUInt64 then
+            let err : IO.Error := .userError "response body exceeds maximum allowed size"
+            -- Header stage already resolved `packet`, so `onError` here is typically a
+            -- no-op. The caller is listening on the response stream; surface the error
+            -- through `closeWithError` so a pending `recv`/`readAll` sees it instead of
+            -- a silent truncated EOF.
             if let some packet := st.currentRequest then
-              packet.onError (.userError "response body exceeds maximum allowed size")
+              packet.onError err
             if let some body := st.responseStream then
-              if ¬(← Body.isClosed body) then Body.close body
+              if ¬(← Body.isClosed body) then body.closeWithError err
             if let some w := st.downloadProgress then Watch.close w
             return ({ st with
               machine := st.machine.closeWriter.closeReader.noMoreInput

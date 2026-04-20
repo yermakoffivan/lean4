@@ -112,6 +112,12 @@ structure Parsed where
       Values ≤ 0 signal cookie deletion per RFC 6265 §5.2.2. -/
   maxAge : Option Int := none
 
+  /-- Raw `Expires` attribute value (an HTTP-date), or `none` if absent.
+      Callers parse this when resolving the cookie's absolute expiration time;
+      if both `Max-Age` and `Expires` are present, RFC 6265 §5.3 mandates that
+      `Max-Age` takes precedence. -/
+  expires : Option String := none
+
 -- cookie-name = token
 private def parseCookieName : Parser String := do
   let bytes ← parseToken 4096
@@ -178,7 +184,9 @@ Attribute processing follows RFC 6265 §5.2:
 - `Path`: values not starting with `/` set `path` to `none` (caller uses the default `/`).
 - `Secure`: sets `secure` to `true` regardless of whether a value follows the attribute name.
 - `HttpOnly`: sets `httpOnly` to `true`.
-- All other attributes (including `Expires`, `Max-Age`, `SameSite`) are ignored.
+- `Max-Age`: parsed as a signed integer number of seconds; see `Parsed.maxAge`.
+- `Expires`: preserved as its raw HTTP-date string; see `Parsed.expires`.
+- All other attributes (including `SameSite`) are ignored.
 -/
 def parseSetCookie : Parser Parsed := do
   let name  ← parseCookieName
@@ -196,6 +204,7 @@ def parseSetCookie : Parser Parsed := do
   let mut secure := false
   let mut httpOnly := false
   let mut maxAge : Option Int := none
+  let mut expires : Option String := none
 
   for (attrName, attrVal) in attrs do
     match attrName with
@@ -218,8 +227,13 @@ def parseSetCookie : Parser Parsed := do
         if !digits.isEmpty && digits.all Char.isDigit then
           let absVal : Nat := digits.foldl (fun acc c => acc * 10 + (c.toNat - '0'.toNat)) 0
           maxAge := some (if neg then -(absVal : Int) else (absVal : Int))
+    | "expires" =>
+      -- RFC 6265 §5.2.1: keep the raw value; semantic parsing happens later.
+      if let some v := attrVal then
+        let s := v.trimAscii.toString
+        if !s.isEmpty then expires := some s
     | _ => pure ()
 
-  return { name, value, domain, path, secure, httpOnly, maxAge }
+  return { name, value, domain, path, secure, httpOnly, maxAge, expires }
 
 end Std.Http.Cookie.Parser

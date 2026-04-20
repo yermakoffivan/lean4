@@ -172,7 +172,7 @@ def injectCookies (cookieJar : Cookie.Jar) (host : URI.Host) (scheme : URI.Schem
 Reads all `Set-Cookie` headers from `responseHeaders` and stores the cookies in `cookieJar`.
 -/
 def processCookies (cookieJar : Cookie.Jar) (host : URI.Host)
-    (responseHeaders : Headers) : BaseIO Unit := do
+    (responseHeaders : Headers) : IO Unit := do
   if let some values := responseHeaders.getAll? Header.Name.setCookie then
     for v in values do
       cookieJar.processSetCookie host v.value
@@ -263,13 +263,25 @@ def decideRedirect
   -- Strip Authorization
   let isCrossOrigin := newHost != currentHost || newPort != currentPort || newScheme != currentScheme
 
-  let newHeaders :=
+  let crossOriginHeaders :=
     if isCrossOrigin then
       request.line.headers
         |>.erase Header.Name.authorization
         |>.erase Header.Name.proxyAuthorization
         |>.erase Header.Name.cookie
     else request.line.headers
+
+  -- When the method changes (303 See Other, or 301/302 POST→GET), drop headers that
+  -- described the original request's payload.  The forwarded request will have no body
+  -- (handled just below), so a lingering `Content-Type`/`Content-Length` would be stale
+  -- and misleading on a bodyless GET.
+  let newHeaders :=
+    if newMethod != request.line.method then
+      crossOriginHeaders
+        |>.erase Header.Name.contentType
+        |>.erase Header.Name.contentLength
+    else
+      crossOriginHeaders
 
   -- For method-changing redirects (301/302 POST→GET, 303) drop the body.
   -- For method-preserving redirects (307/308) reuse the body if re-readable (Body.Full).
@@ -285,8 +297,28 @@ def decideRedirect
       -- Body.Stream: already consumed, send empty body on redirect
       pure (Body.Any.ofBody Body.Empty.mk)
 
+  -- Rewrite the redirect target before putting it on the wire:
+  --
+  -- * RFC 9110 §4.2.4: a client MUST remove any userinfo from a URI before
+  --   dereferencing it.  Forwarding `user:pass@host` parsed from a `Location`
+  --   would be a credential-leak primitive.
+  -- * RFC 9112 §3.2.1: on a direct (non-proxy) client-to-origin connection the
+  --   request-line MUST use origin-form; absolute-form is only for proxied
+  --   requests.  If the target is same-origin absolute-form, collapse it to
+  --   origin-form so the wire stays RFC-compliant.
+  let rewrittenTarget := match target with
+    | .absoluteForm af =>
+      let afStripped :=
+        { af with authority := af.authority.map (fun auth => { auth with userInfo := none }) }
+      if isCrossOrigin then
+        .absoluteForm afStripped
+      else
+        .originForm afStripped.path
+          (if afStripped.query.isEmpty then none else some afStripped.query)
+    | _ => target
+
   return .follow newHost newPort newScheme
-    { line := { request.line with uri := target, method := newMethod, headers := newHeaders }
+    { line := { request.line with uri := rewrittenTarget, method := newMethod, headers := newHeaders }
       body := newBody
       extensions := request.extensions }
 

@@ -56,6 +56,8 @@ def setConfigOption (opts : Options) (arg : String) : IO Options := do
       throw <| .userError s!"unknown option '{name}'"
 
 public def main (args : List String) : IO UInt32 := do
+  return 0
+#exit
   let setupFile::irFile::c::optArgs := args | do
     IO.println s!"usage: leanir <setup.json> <output.ir> <output.c> [--stat] <-Dopt=val>..."
     return 1

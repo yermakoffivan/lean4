@@ -1676,26 +1676,41 @@ def mkRef (a : α) : BaseIO (IO.Ref α) :=
 Mutable cell that can be passed around for purposes of cooperative task cancellation: request
 cancellation with `CancelToken.set` and check for it with `CancelToken.isSet`.
 
+Callbacks registered with `CancelToken.onSet` run when the token is activated, allowing
+cancellation to propagate without polling.
+
 This is a more flexible alternative to `Task.cancel` as the token can be shared between multiple
 tasks.
 -/
 structure CancelToken where
-  private ref : IO.Ref Bool
+  -- `none` = set; `some cbs` = unset, with pending callbacks (in reverse registration order)
+  private ref : IO.Ref (Option (List (BaseIO Unit)))
 deriving Nonempty
 
 namespace CancelToken
 
 /-- Creates a new cancellation token. -/
 def new : BaseIO CancelToken :=
-  CancelToken.mk <$> IO.mkRef false
+  CancelToken.mk <$> IO.mkRef (some [])
 
-/-- Activates a cancellation token. Idempotent. -/
-def set (tk : CancelToken) : BaseIO Unit :=
-  tk.ref.set true
+/-- Activates a cancellation token. Runs any registered `onSet` callbacks. Idempotent. -/
+def set (tk : CancelToken) : BaseIO Unit := do
+  let cbs ← tk.ref.modifyGet fun s => (s.getD [], none)
+  cbs.forM id
 
 /-- Checks whether the cancellation token has been activated. -/
 def isSet (tk : CancelToken) : BaseIO Bool :=
-  tk.ref.get
+  Option.isNone <$> tk.ref.get
+
+/--
+Registers a callback to run when the cancellation token is activated. If the token is already
+set, the callback runs immediately. Callbacks run in the thread that calls `set`.
+-/
+def onSet (tk : CancelToken) (action : BaseIO Unit) : BaseIO Unit := do
+  let alreadySet ← tk.ref.modifyGet fun
+    | some cbs => (false, some (action :: cbs))
+    | none     => (true,  none)
+  if alreadySet then action
 
 -- separate definition as otherwise no unboxed version is generated
 @[export lean_io_cancel_token_is_set]

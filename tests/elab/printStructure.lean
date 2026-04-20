@@ -32,9 +32,9 @@ constructor:
 info: structure IO.CancelToken : Type
 number of parameters: 0
 fields:
-  private IO.CancelToken.ref✝ : IO.Ref Bool
+  private IO.CancelToken.ref✝ : IO.Ref (Option (List (BaseIO Unit)))
 constructor:
-  private IO.CancelToken.mk✝ (ref : IO.Ref Bool) : IO.CancelToken
+  private IO.CancelToken.mk✝ (ref : IO.Ref (Option (List (BaseIO Unit)))) : IO.CancelToken
 -/
 #guard_msgs in
 #print IO.CancelToken

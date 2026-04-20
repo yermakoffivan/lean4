@@ -223,7 +223,7 @@ The name `IO.CancelToken.ref✝` is a private imported name.
 -/
 /--
 info: def IO.CancelToken.isSet : IO.CancelToken → BaseIO Bool :=
-fun tk => ST.Ref.get (IO.CancelToken.ref✝ tk)
+fun tk => Option.isNone <$> ST.Ref.get (IO.CancelToken.ref✝ tk)
 -/
 #guard_msgs in #print IO.CancelToken.isSet
 /-!
@@ -231,6 +231,6 @@ Even if `IO` is opened, it won't print as `CancelToken.ref✝`, but the full nam
 -/
 /--
 info: def IO.CancelToken.isSet : CancelToken → BaseIO Bool :=
-fun tk => ST.Ref.get (IO.CancelToken.ref✝ tk)
+fun tk => Option.isNone <$> ST.Ref.get (IO.CancelToken.ref✝ tk)
 -/
 #guard_msgs in open IO in #print IO.CancelToken.isSet

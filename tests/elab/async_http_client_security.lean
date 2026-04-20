@@ -3,7 +3,7 @@ import Std.Internal.Async
 import Std.Internal.Async.Timer
 
 open Std.Internal.IO Async
-open Std Http
+open Std Http Internal
 
 /-!
 # HTTP Client Security Tests

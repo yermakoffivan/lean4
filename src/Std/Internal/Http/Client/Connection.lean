@@ -311,6 +311,12 @@ private def processH1Events
     | .failed err =>
       if let some packet := st.currentRequest then
         packet.onError (.userError (toString err))
+      -- If the response body was already handed off to the caller, surface the
+      -- error through the stream so a pending `recv`/`readAll` sees it instead
+      -- of silently truncating at whatever bytes happened to arrive.
+      if let some body := st.responseStream then
+        if ¬(← Body.isClosed body) then
+          body.closeWithError (.userError (toString err))
       sawFailure := true
 
     | .«continue» => pure ()

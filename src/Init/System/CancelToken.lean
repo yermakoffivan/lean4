@@ -47,6 +47,17 @@ without polling.
 def task (tk : CancelToken) : Task Unit :=
   tk.promise.result!
 
+/--
+Registers a callback to run when the cancellation token is set. The callback runs as a
+synchronous task dependency, so it executes inline when the token is set.
+Returns a task that completes after the callback runs. The underlying `BaseIO.bindTask`
+uses `keep_alive = true`, so the task won't be GC'd before it fires.
+-/
+def onSet (tk : CancelToken) (action : Unit → BaseIO Unit) : BaseIO (Task (Option Unit)) :=
+  BaseIO.bindTask tk.promise.result? (sync := true) fun _ => do
+    action ()
+    return .pure (some ())
+
 -- separate definition as otherwise no unboxed version is generated
 @[export lean_io_cancel_token_is_set]
 private def isSetExport := @isSet

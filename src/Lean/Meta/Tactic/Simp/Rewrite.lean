@@ -107,7 +107,7 @@ where
       return false
 
 private def useImplicitDefEqProof (thm : SimpTheorem) : SimpM Bool := do
-  if thm.rfl then
+  if thm.rfl || (thm.backwardRfl && backward.defeqAttrib.useBackward.get (← getOptions)) then
     return (← getConfig).implicitDefEqProofs
   else
     return false

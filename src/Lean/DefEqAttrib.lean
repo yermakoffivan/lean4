@@ -35,6 +35,12 @@ private def withEqLhsRhs (type : Expr) (k : Expr → Expr → MetaM α) : MetaM 
         throwError m!"Not a definitional equality: the conclusion should be an equality, but is{inlineExpr type}"
       k lhs rhs
 
+/--
+Validates that `declName` is a definitional equality at `.default`/`.all` transparency
+(the legacy permissive check). Throws a diagnostic error if not. This is used both as
+the validator for the `@[defeq]` and `@[backward_defeq]` attributes and as a building
+block for `inferDefEqAttr`.
+-/
 def validateDefEqAttr (declName : Name) : AttrM Unit := do
   let info ← getConstVal declName
   MetaM.run' do withEqLhsRhs info.type fun lhs rhs => do
@@ -52,26 +58,6 @@ def validateDefEqAttr (declName : Name) : AttrM Unit := do
               theorem must be exposed."
         pure msg
       throwError explanation
-
-/--
-Marks the theorem as a definitional equality.
-
-The theorem must be an equality that holds by `rfl`. This allows `dsimp` to use this theorem
-when rewriting.
-
-A theorem with with a definition that is (syntactically) `:= rfl` is implicitly marked `@[defeq]`.
-To avoid this behavior, write `:= (rfl)` instead.
-
-The attribute should be given before a `@[simp]` attribute to have effect.
-
-When using the module system, an exported theorem can only be `@[defeq]` if all definitions that
-need to be unfolded to prove the theorem are exported and exposed.
--/
-@[builtin_doc]
-builtin_initialize defeqAttr : TagAttribute ←
-  registerTagAttribute `defeq "mark theorem as a definitional equality, to be used by `dsimp`"
-    (validate := validateDefEqAttr) (applicationTime := .afterTypeChecking)
-    (asyncMode := .async .mainEnv)
 
 /--
 Marks a theorem as a definitional equality under the permissive transparency rules that
@@ -94,6 +80,34 @@ builtin_initialize backwardDefeqAttr : TagAttribute ←
     "mark theorem as a definitional equality under the permissive pre-stricter-inference \
       rules, used by `dsimp` when `set_option backward.defeqAttrib.useBackward true`"
     (validate := validateDefEqAttr) (applicationTime := .afterTypeChecking)
+    (asyncMode := .async .mainEnv)
+
+/--
+Marks the theorem as a definitional equality that can be used by `dsimp`.
+
+The theorem must be an equality that holds at `.instances` transparency. A theorem
+with a definition that is (syntactically) `:= rfl` is implicitly marked `@[defeq]`
+(and also `@[backward_defeq]`, since the latter is a superset); write `:= (rfl)`
+instead to suppress this.
+
+The attribute should be given before a `@[simp]` attribute to have effect.
+
+When using the module system, an exported theorem can only be `@[defeq]` if all
+definitions that need to be unfolded to prove the theorem are exported and exposed.
+
+Tagging a theorem with `@[defeq]` automatically also tags it with `@[backward_defeq]`,
+maintaining the invariant that `@[defeq]` theorems form a subset of `@[backward_defeq]`
+theorems.
+-/
+@[builtin_doc]
+builtin_initialize defeqAttr : TagAttribute ←
+  registerTagAttribute `defeq "mark theorem as a definitional equality, to be used by `dsimp`"
+    (validate := fun declName => do
+      -- Validate via the same check as `@[backward_defeq]`, then maintain the invariant
+      -- `defeq ⊆ backward_defeq` by also tagging `backward_defeq`.
+      validateDefEqAttr declName
+      backwardDefeqAttr.setTag declName)
+    (applicationTime := .afterTypeChecking)
     (asyncMode := .async .mainEnv)
 
 private partial def isRflProofCore (type : Expr) (proof : Expr) : CoreM Bool := do

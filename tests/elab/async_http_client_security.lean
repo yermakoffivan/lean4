@@ -50,21 +50,26 @@ private def rawResp
 -- Authorization header is stripped before the redirect request is sent.
 -- ============================================================
 
-#eval show IO _ from runWithTimeout "scheme-change strips Authorization" 3000 <| Async.block do
-  let (mockClient, mockServer) ← Mock.new
-  let session ← Client.Session.new mockServer (config := {})
+#eval show IO _ from runWithTimeout "scheme-change strips Authorization" 4000 <| Async.block do
+  let (mockClient1, mockServer1) ← Mock.new
+  let (mockClient2, mockServer2) ← Mock.new
+  let session1 ← Client.Session.new mockServer1 (config := {})
   let cookieJar ← Cookie.Jar.new
   let some domain := URI.DomainName.ofString? "example.com"
     | throw (IO.userError "DomainName parse failed")
 
-  -- Agent with scheme=http on port 443.  Redirect target https://example.com:443/r
-  -- has same host+port but different scheme → crossOrigin must be true after the fix.
+  -- Agent with scheme=http on port 443. Redirect target https://example.com:443/r
+  -- has same host+port but different scheme → crossOrigin is true and the agent
+  -- opens a fresh session via `connectTo`.
+  let connectTo : URI.Scheme → URI.Host → UInt16 → Async (Client.Session Mock.Server) :=
+    fun _ _ _ => Client.Session.new mockServer2 (config := {})
   let agent : Client.Agent Mock.Server := {
-    session
+    session := session1
     scheme := URI.Scheme.ofString! "http"
     host := .name domain
     port := 443
     cookieJar
+    connectTo := some connectTo
   }
 
   let request ← Request.new
@@ -82,17 +87,17 @@ private def rawResp
       catch e => pure (Except.error (toString e))
     discard <| resultPromise.resolve result
 
-  -- First exchange: drain the request, reply with 302 redirecting to HTTPS same host+port.
-  let _ ← mockClient.recv?
-  mockClient.send (rawResp "302 Found"
+  -- First exchange on mock 1: reply with 302 redirecting to HTTPS same host+port.
+  let _ ← mockClient1.recv?
+  mockClient1.send (rawResp "302 Found"
     #[("Location", "https://example.com:443/redirected"),
       ("Content-Length", "0"),
-      ("Connection", "keep-alive")] "")
+      ("Connection", "close")] "")
 
-  -- Second exchange: receive the redirected request and capture its bytes.
-  let some redirectBytes ← mockClient.recv?
+  -- Second exchange on mock 2: the redirected request reaches the fresh session.
+  let some redirectBytes ← mockClient2.recv?
     | throw (IO.userError "Test failed: no redirect request received")
-  mockClient.send (rawResp "200 OK"
+  mockClient2.send (rawResp "200 OK"
     #[("Content-Length", "2"), ("Connection", "close")] "ok")
 
   -- Wait for the agent to finish.

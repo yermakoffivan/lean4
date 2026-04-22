@@ -168,19 +168,21 @@ def inferDefEqAttr (declName : Name) : MetaM Unit := do
     -- Strict check: defeq at instance transparency (as used by `dsimp`).
     let strict ← withEqLhsRhs info.type fun lhs rhs =>
       withReducibleAndInstances (isDefEq lhs rhs)
-    -- Permissive/legacy check (same as `validateDefEqAttr`).
-    let permissive ←
-      try
-        withExporting (isExporting := !isPrivateName declName) do
-          validateDefEqAttr declName
-        pure true
-      catch e =>
-        unless strict do
-          -- This shouldn't happen since `isRflProofCore` said the proof is rfl.
-          logError m!"Theorem {declName} has a `rfl`-proof but could not be validated \
-            as a definitional equality:{indentD e.toMessageData}"
-        pure false
+    -- Sanity-check: is the theorem also defeq at the permissive (`.default`/`.all`)
+    -- transparency we use for `@[backward_defeq]`? If not, log the error that the
+    -- legacy inference would have emitted — but still proceed to tag
+    -- `@[backward_defeq]` unconditionally. The legacy (pre-PR) behavior tagged
+    -- `@[defeq]` unconditionally whenever `isRflProofCore` returned true,
+    -- regardless of whether the validation check passed, and we want to preserve
+    -- exactly that set under `backward_defeq` so that `useBackward=true` reliably
+    -- restores the old behavior.
+    try
+      withExporting (isExporting := !isPrivateName declName) do
+        validateDefEqAttr declName
+    catch e =>
+      unless strict do
+        logError m!"Theorem {declName} has a `rfl`-proof but could not be validated \
+          as a definitional equality:{indentD e.toMessageData}"
     if strict then
       defeqAttr.setTag declName
-    if permissive then
-      backwardDefeqAttr.setTag declName
+    backwardDefeqAttr.setTag declName

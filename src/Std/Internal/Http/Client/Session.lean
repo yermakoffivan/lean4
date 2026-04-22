@@ -60,7 +60,7 @@ def send [Transport α] {β : Type} [Body β]
   let responsePromise ← IO.Promise.new
 
   let task ← session.requestChannel.send {
-    request := { line := request.line, body := Body.Operations.of request.body, extensions := request.extensions }
+    request := { line := request.line, body := Body.Any.ofBody request.body, extensions := request.extensions }
     responsePromise
   }
 

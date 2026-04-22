@@ -20,45 +20,6 @@ namespace Std.Http.Client
 open Std Internal IO Async TCP Protocol
 open Time
 
-/--
-Type-erased body operations for use in the request pipeline.
-Captures `Reader` and `Writer` methods as closures so the connection state
-is not parameterized by the body type.
--/
-structure Body.Operations where
-  /--
-  Selector that resolves when a chunk is available or the body reaches EOF.
-  -/
-  recvSelector : Selector (Option Chunk)
-
-  /--
-  Returns `true` when the body is closed for reading.
-  -/
-  isClosed : Async Bool
-
-  /--
-  Closes the body for reading.
-  -/
-  close : Async Unit
-
-  /--
-  Returns the known content length if available.
-  -/
-  getKnownSize : Async (Option Body.Length)
-
-namespace Body.Operations
-
-/--
-Creates a `Body.Operations` from any type with a `Body` instance.
--/
-def of [Body β] (body : β) : Body.Operations where
-  recvSelector := Body.recvSelector body
-  isClosed := Body.isClosed body
-  close := Body.close body
-  getKnownSize := Body.getKnownSize body
-
-end Body.Operations
-
 /-!
 # Connection
 
@@ -75,7 +36,7 @@ structure RequestPacket where
   /--
   The request to send.
   -/
-  request : Request Body.Operations
+  request : Request Body.Any
 
   /--
   Promise resolved with the eventual response.
@@ -132,7 +93,7 @@ Each `Option` field is `none` when that source is not currently active.
 private structure PollSources (α : Type) where
   socket : Option α
   expect : Option Nat
-  requestBody : Option Body.Operations
+  requestBody : Option Body.Any
   requestChannel : Option (Std.CloseableChannel RequestPacket)
   responseBody : Option Body.Stream
   timeout : Millisecond.Offset
@@ -148,14 +109,14 @@ private structure ConnectionState where
   currentTimeout : Millisecond.Offset
   keepAliveTimeout : Option Millisecond.Offset
   currentRequest : Option RequestPacket
-  requestBody : Option Body.Operations
+  requestBody : Option Body.Any
   responseStream : Option Body.Stream
   requiresData : Bool
   expectData : Option Nat
   waitingForRequest : Bool
   isInformationalResponse : Bool
   waitingForContinue : Bool
-  pendingRequestBody : Option Body.Operations
+  pendingRequestBody : Option Body.Any
   uploadProgress : Option (Watch UInt64) := none
   uploadBytes : UInt64 := 0
   downloadProgress : Option (Watch UInt64) := none
@@ -163,7 +124,7 @@ private structure ConnectionState where
   downloadBodyBytes : UInt64 := 0
 
 @[inline]
-private def requestHasExpectContinue (request : Request Body.Operations) : Bool :=
+private def requestHasExpectContinue (request : Request Body.Any) : Bool :=
   match request.line.headers.getAll? Header.Name.expect with
   | some #[value] => Header.Expect.parse value |>.isSome
   | _ => false
@@ -183,7 +144,7 @@ private inductive ConnectionEffect where
   /-- Attach the known content length before the stream reaches the caller. -/
   | setResponseKnownSize (body : Body.Stream) (size : Body.Length)
   /-- Close a request body reader. -/
-  | closeRequestBody (body : Body.Operations)
+  | closeRequestBody (body : Body.Any)
   /-- Close an upload/download progress watch. -/
   | closeWatch (w : Watch UInt64)
   /-- Publish an upload/download progress value. -/
@@ -474,9 +435,9 @@ private def onNewPacket
   let machine1 := match knownSize with
     | some size => machine0.setKnownSize size
     | none => machine0
-  let requestBody : Option Body.Operations :=
+  let requestBody : Option Body.Any :=
     if hasExpect then none else some packet.request.body
-  let pendingRequestBody : Option Body.Operations :=
+  let pendingRequestBody : Option Body.Any :=
     if hasExpect then some packet.request.body else none
   {
     state := { state with

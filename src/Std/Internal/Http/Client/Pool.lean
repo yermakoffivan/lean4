@@ -124,10 +124,17 @@ never share a pool entry.
 -/
 def getOrCreateSession (pool : Agent.Pool) (scheme : URI.Scheme) (host : URI.Host) (port : UInt16) : Async (Session Socket.Client) := do
   let key := (scheme.val, toString host, port)
-  -- Fast path: pick an existing session round-robin.
+
+  -- Fast path: reuse an existing session only once the pool has reached
+  -- `maxPerHost`. Until then, fall through so the slow path creates and
+  -- registers additional sessions (otherwise the pool would cap at 1 per
+  -- origin regardless of `maxPerHost`).
+
   let maybeSession ← pool.state.atomically do
     let st ← MonadState.get
     let (sessions, idx) := (st.get? key).getD (#[], 0)
+    if sessions.size < pool.maxPerHost then
+      return none
     match sessions[idx % sessions.size]? with
     | none => return none
     | some selected =>

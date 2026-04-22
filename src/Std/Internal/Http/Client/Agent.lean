@@ -165,46 +165,27 @@ private def drainRedirectBody (response : Response Body.Stream) (drainLimit : Na
       response.body.close
 
 /--
-Inspects `response` and decides whether to follow a redirect.
-
-This is the async wrapper around the pure `Std.Http.decideRedirect`: it drains
-the redirect response body (up to `drainLimit` bytes), runs the pure planner,
-and — when the planner asks for body replay — resets the original body before
-returning the rewritten request.
-
-Returns `.done` when:
-- `remaining` is 0 or the response is not a redirection,
-- the `Location` header is absent, or
-- the `Location` value cannot be parsed, or
-- the target resolves to a non-`http(s)` scheme (SSRF guard).
+Builds the redirected request from a `RedirectPlan`. For `.replay` body actions
+the original body is reset in place; for `.empty` actions a fresh empty body is
+attached. Does not drain the redirect response body — the caller must do that
+once it has decided the redirect will actually be followed.
 -/
-def decideRedirect
-    (remaining : Nat)
-    (currentHost : URI.Host) (currentPort : UInt16) (currentScheme : URI.Scheme)
-    (request : Request Body.Any) (response : Response Body.Stream)
-    (drainLimit : Nat)
-    : Async (Option (URI.Host × UInt16 × URI.Scheme × Request Body.Any)) := do
-
-  match Std.Http.decideRedirect remaining currentHost currentPort currentScheme
-      request.line request.body.isReplayable response.line.status response.line.headers with
-  | .done => return none
-  | .follow plan =>
-    drainRedirectBody response drainLimit
-
-    let newBody : Body.Any ←
-      match plan.bodyAction with
-      | .empty => pure (Body.Any.ofBody Body.Empty.mk)
-      | .replay => do
-        request.body.resetInPlace
-        pure request.body
-
-    return some (plan.host, plan.port, plan.scheme,
-      { line := { request.line with
-            uri := plan.target
-            method := plan.method
-            headers := plan.headers }
-        body := newBody
-        extensions := request.extensions })
+private def followRedirect (plan : Std.Http.RedirectPlan)
+    (request : Request Body.Any) : Async (Request Body.Any) := do
+  let newBody : Body.Any ← match plan.bodyAction with
+    | .empty =>
+      pure (Body.Any.ofBody Body.Empty.mk)
+    | .replay => do
+      request.body.resetInPlace
+      pure request.body
+  return {
+    line := { request.line with
+      uri := plan.target
+      method := plan.method
+      headers := plan.headers }
+    body := newBody
+    extensions := request.extensions
+  }
 
 private partial def sendWithRedirects [Transport α]
     (agent : Agent α) (request : Request Body.Any)
@@ -228,11 +209,16 @@ private partial def sendWithRedirects [Transport α]
     catch err => do
       agent.onBrokenSession agent.session agent.scheme agent.host agent.port
 
-      if retriesLeft > 0 && request.line.method.isIdempotent then
+      -- Refuse to retry when the body is non-replayable (e.g. `Body.Stream`):
+      -- re-sending would silently ship a partial or empty payload, masking the
+      -- connection failure. Idempotent methods with a replayable body are
+      -- reset and retried via the `connectTo` factory.
+      if retriesLeft > 0 && request.line.method.isIdempotent && request.body.isReplayable then
         if let some factory := agent.connectTo then
           let attempt := agent.session.config.maxRetries - retriesLeft
           let delay : Time.Millisecond.Offset := ⟨min (agent.session.config.retryDelay.val * (2 : Int) ^ attempt) 32000⟩
           sleep delay
+          request.body.resetInPlace
           let newSession ← factory agent.scheme agent.host agent.port
           return ← sendWithRedirects { agent with session := newSession } request remaining (retriesLeft - 1) history
 
@@ -241,40 +227,49 @@ private partial def sendWithRedirects [Transport α]
   let response ← applyInterceptors agent.interceptors response
   processCookies agent.cookieJar agent.host response.line.headers
 
-  match ← decideRedirect remaining agent.host agent.port agent.scheme request response
-      agent.session.config.redirectBodyDrainLimit with
-  | none =>
+  -- Pure planner: decide whether the response is a follow-able redirect.
+  -- Gates (policy, cycle detection, missing factory) run BEFORE the body
+  -- drain so a rejected redirect still hands the caller a readable 3xx body.
+  match Std.Http.decideRedirect remaining agent.host agent.port agent.scheme
+      request.line request.body.isReplayable response.line.status response.line.headers with
+  | .done =>
     if let some validate := agent.session.config.validateStatus then
       if !validate response.line.status then
         throw (.userError s!"unexpected HTTP status: {response.line.status.toCode}")
     return response
-  | some (newHost, newPort, newScheme, newRequest) =>
-    if let some policy := agent.session.config.redirectPolicy then
-      if !policy newHost newPort then
-        return response
 
-    let nextKey := (newHost, newPort, toString newRequest.line.uri)
-    if history.contains nextKey then
-      return response
+  | .follow plan =>
+    -- Gate 1: caller-supplied redirect policy.
+    if let some policy := agent.session.config.redirectPolicy then
+      if !policy plan.host plan.port then return response
+
+    -- Gate 2: cycle detection.
+    let nextKey := (plan.host, plan.port, toString plan.target)
+    if history.contains nextKey then return response
 
     -- A scheme change (http ↔ https) on the same host+port still requires a
     -- fresh transport because the TLS handshake differs: reusing the existing
     -- session would send the redirected request over the wrong wire protocol
     -- (e.g. an `https://` follow-up emitted in plaintext).
-    if newHost != agent.host || newPort != agent.port || newScheme != agent.scheme then
+    let isCrossOrigin :=
+      plan.host != agent.host || plan.port != agent.port || plan.scheme != agent.scheme
 
-      -- For custom transports without a connectTo factory we cannot open a new
-      -- connection to a different origin; return the redirect response as-is.
-      let some factory := agent.connectTo
-        | return response
+    -- Gate 3: cross-origin redirects need a `connectTo` factory.
+    if isCrossOrigin then
+      let some _ := agent.connectTo | return response
 
-      let newSession ← factory newScheme newHost newPort
+    -- All gates passed; safe to drain and follow.
+    drainRedirectBody response agent.session.config.redirectBodyDrainLimit
+    let newRequest ← followRedirect plan request
 
+    if isCrossOrigin then
+      let factory := agent.connectTo.get!
+      let newSession ← factory plan.scheme plan.host plan.port
       sendWithRedirects
         { session := newSession
-          scheme := newScheme
-          host := newHost
-          port := newPort
+          scheme := plan.scheme
+          host := plan.host
+          port := plan.port
           cookieJar := agent.cookieJar
           interceptors := agent.interceptors
           connectTo := some factory

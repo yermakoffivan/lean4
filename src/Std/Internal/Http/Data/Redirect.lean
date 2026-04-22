@@ -176,6 +176,24 @@ private def scrubHeaders (headers : Headers) (isCrossOrigin methodChanged : Bool
   else afterOrigin
 
 /--
+Rewrites the `Host` header for a cross-origin redirect. The redirected
+request is dispatched on a fresh connection to `(scheme, host, port)`; the
+original `Host` would route the request to the wrong virtual host.
+
+Only rewrites when the original request already carried a `Host` header, so
+callers who intentionally omitted it (e.g. HTTP/1.0 tests) are left alone.
+-/
+private def rewriteHostHeader (headers : Headers)
+    (scheme : URI.Scheme) (host : URI.Host) (port : UInt16) : Headers :=
+  if headers.contains Header.Name.host then
+    let defaultPort := URI.Scheme.defaultPort scheme
+    let hostValue :=
+      if port == defaultPort then toString host
+      else s!"{host}:{port}"
+    headers.insert Header.Name.host (Header.Value.ofString! hostValue)
+  else headers
+
+/--
 Rewrites the target actually placed on the wire. Strips any `userinfo` from
 an absolute-form target per RFC 9110 §4.2.4, and collapses a same-origin
 absolute-form target back to origin-form so direct (non-proxy) hops stay
@@ -239,7 +257,11 @@ def decideRedirect
 
   let methodChanged := newMethod != request.method
 
-  let newHeaders := RedirectPlan.scrubHeaders request.headers isCrossOrigin methodChanged
+  let scrubbed := RedirectPlan.scrubHeaders request.headers isCrossOrigin methodChanged
+  let newHeaders :=
+    if isCrossOrigin then
+      RedirectPlan.rewriteHostHeader scrubbed newScheme newHost newPort
+    else scrubbed
 
   let bodyAction : RedirectBodyAction :=
     if newMethod == .get || newMethod == .head || methodChanged then

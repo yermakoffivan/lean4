@@ -158,7 +158,12 @@ compatibility can be restored with `set_option backward.defeqAttrib.useBackward 
 -/
 def inferDefEqAttr (declName : Name) : MetaM Unit := do
   withoutExporting do
-    let info ← getConstInfo declName
+    -- Use `getAsyncConstInfo` and await the `constInfo` task, otherwise we may
+    -- see an axiom-shaped proxy from `getConstInfo` (whose body is not yet
+    -- filled in by async theorem elaboration) and incorrectly conclude the
+    -- theorem has no value / is not `rfl`-proved.
+    let async ← getAsyncConstInfo declName
+    let info := async.toConstantInfo
     let isRfl ←
       if let some value := info.value? (allowOpaque := true) then
         isRflProofCore info.type value

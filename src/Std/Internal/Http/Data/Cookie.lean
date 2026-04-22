@@ -331,7 +331,9 @@ private def pathMatches (cookiePath : URI.Path) (requestPath : URI.Path) : Bool 
 /--
 Parses a single `Set-Cookie` header value and stores the resulting cookie.
 `host` is the origin host of the response (used as the effective domain when no
-`Domain` attribute is present).
+`Domain` attribute is present). `requestPath` is the request path that produced
+the response and is used to compute RFC 6265's default-path when the cookie
+omits `Path=`.
 
 Resolves the cookie's absolute expiration from `Max-Age` (preferred) or `Expires` at the
 current wall-clock time; cookies whose resolved expiration is not in the future are never
@@ -339,7 +341,17 @@ stored, and any previously-stored entry with the same `(name, domain, path)` is 
 
 Reference: https://www.rfc-editor.org/rfc/rfc6265#section-5.2
 -/
-def processSetCookie (jar : Jar) (host : URI.Host) (headerValue : String) : IO Unit := do
+private def defaultPath (requestPath : URI.Path) : URI.Path :=
+  if !requestPath.absolute || requestPath.segments.isEmpty then
+    URI.Path.parseOrRoot "/"
+  else
+    requestPath.parent
+
+/--
+Parses a single `Set-Cookie` header value and stores the resulting cookie.
+-/
+def processSetCookie (jar : Jar) (host : URI.Host)
+    (requestPath : URI.Path) (headerValue : String) : IO Unit := do
   let .ok parsed := Cookie.Parser.parseSetCookie.run headerValue.toUTF8
     | return ()
 
@@ -351,7 +363,7 @@ def processSetCookie (jar : Jar) (host : URI.Host) (headerValue : String) : IO U
 
   let cookiePath : URI.Path :=
     if let some p := parsed.path then URI.Path.parseOrRoot p
-    else URI.Path.parseOrRoot "/"
+    else defaultPath requestPath
 
   -- RFC 6265 §5.2.3: resolve domain; missing or invalid Domain → host-only
   let (domain, hostOnly) :=

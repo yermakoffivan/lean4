@@ -60,16 +60,17 @@ private def rawResp
 
   -- Agent with scheme=http on port 443. Redirect target https://example.com:443/r
   -- has same host+port but different scheme → crossOrigin is true and the agent
-  -- opens a fresh session via `connectTo`.
-  let connectTo : URI.Scheme → URI.Host → UInt16 → Async (Client.Session Mock.Server) :=
-    fun _ _ _ => Client.Session.new mockServer2 (config := {})
+  -- opens a fresh session via its connector.
   let agent : Client.Agent Mock.Server := {
     session := session1
     scheme := URI.Scheme.ofString! "http"
     host := .name domain
     port := 443
     cookieJar
-    connectTo := some connectTo
+    transport := some {
+      acquire := fun _ _ _ => Client.Session.new mockServer2 (config := {})
+      release := fun s _ _ _ => discard <| s.close
+    }
   }
 
   let request ← Request.new

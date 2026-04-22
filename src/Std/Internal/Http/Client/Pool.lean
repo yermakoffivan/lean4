@@ -193,8 +193,10 @@ def send {β : Type} [Coe β Body.Any]
     port := port
     cookieJar := pool.cookieJar
     interceptors := pool.interceptors
-    connectTo := some (pool.getOrCreateSession · · ·)
-    onBrokenSession := fun brokenSession s h p => pool.evictSession s h p brokenSession.id
+    transport := some {
+      acquire := fun s h p => pool.getOrCreateSession s h p
+      release := fun broken s h p => pool.evictSession s h p broken.id
+    }
   } request
 
 end Agent.Pool
@@ -212,6 +214,9 @@ def connect (host : URI.Host) (port : UInt16) (config : Config := {}) : Async (A
   let session ← createTcpSession host port config
   let cookieJar ← Cookie.Jar.new
   let scheme := URI.Scheme.ofPort port
-  pure { session, scheme, host, port, cookieJar, connectTo := some (fun _scheme h p => createTcpSession h p config) }
+  pure { session, scheme, host, port, cookieJar
+         transport := some {
+           acquire := fun _scheme h p => createTcpSession h p config
+           release := fun s _ _ _ => discard <| s.close } }
 
 end Std.Http.Client.Agent

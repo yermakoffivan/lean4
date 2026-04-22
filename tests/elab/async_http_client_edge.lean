@@ -264,15 +264,16 @@ private def sendInBackground {β : Type} [Coe β Body.Any]
   let cookieJar ← Cookie.Jar.new
   let some domain := URI.DomainName.ofString? "example.com"
     | throw (IO.userError "DomainName parse failed")
-  let connectTo : URI.Scheme → URI.Host → UInt16 → Async (Client.Session Mock.Server) :=
-    fun _ _ _ => Client.Session.new mockServer2 (config := {})
   let agent : Client.Agent Mock.Server := {
     session := session1
     scheme := URI.Scheme.ofString! "http"
     host := .name domain
     port := 443
     cookieJar
-    connectTo := some connectTo
+    transport := some {
+      acquire := fun _ _ _ => Client.Session.new mockServer2 (config := {})
+      release := fun s _ _ _ => discard <| s.close
+    }
   }
 
   let request ← Request.new
@@ -315,15 +316,16 @@ private def sendInBackground {β : Type} [Coe β Body.Any]
   let cookieJar ← Cookie.Jar.new
   let some domain := URI.DomainName.ofString? "example.com"
     | throw (IO.userError "DomainName parse failed")
-  let connectTo : URI.Scheme → URI.Host → UInt16 → Async (Client.Session Mock.Server) :=
-    fun _ _ _ => Client.Session.new mockServer2 (config := {})
   let agent : Client.Agent Mock.Server := {
     session := session1
     scheme := URI.Scheme.ofString! "http"
     host := .name domain
     port := 443
     cookieJar
-    connectTo := some connectTo
+    transport := some {
+      acquire := fun _ _ _ => Client.Session.new mockServer2 (config := {})
+      release := fun s _ _ _ => discard <| s.close
+    }
   }
 
   let request ← Request.new

@@ -169,6 +169,65 @@ private def requestHasExpectContinue (request : Request Body.Operations) : Bool 
   | _ => false
 
 /--
+Side effect queued by a pure state transition to be executed later by
+`runEffects`. Keeping these as data instead of inline `Async` actions lets
+every transition in this module stay pure and `#eval`-testable.
+-/
+private inductive ConnectionEffect where
+  /-- Publish a response body chunk to the caller's stream. -/
+  | sendResponseChunk (body : Body.Stream) (chunk : Chunk) (incomplete : Bool)
+  /-- Close the response body. Idempotent downstream. -/
+  | closeResponseStream (body : Body.Stream)
+  /-- Close the response body, surfacing `err` on any pending read. -/
+  | closeResponseStreamWithError (body : Body.Stream) (err : IO.Error)
+  /-- Attach the known content length before the stream reaches the caller. -/
+  | setResponseKnownSize (body : Body.Stream) (size : Body.Length)
+  /-- Close a request body reader. -/
+  | closeRequestBody (body : Body.Operations)
+  /-- Close an upload/download progress watch. -/
+  | closeWatch (w : Watch UInt64)
+  /-- Publish an upload/download progress value. -/
+  | sendWatch (w : Watch UInt64) (bytes : UInt64)
+  /-- Resolve the caller's promise with a response. -/
+  | resolveResponse (packet : RequestPacket) (response : Response Body.Stream)
+  /-- Resolve the caller's promise with an error. -/
+  | rejectResponse (packet : RequestPacket) (err : IO.Error)
+
+/--
+Interprets the effects produced by a pure transition, running them in order.
+Each effect is idempotent: bodies ignore double-close, `Body.send` to a closed
+stream is swallowed because the connection must stay readable, and watches
+tolerate double-close and post-close sends.
+-/
+private def runEffects (effects : Array ConnectionEffect) : Async Unit := do
+  for effect in effects do
+    match effect with
+    | .sendResponseChunk body chunk incomplete =>
+      try body.send chunk incomplete catch _ => pure ()
+    | .closeResponseStream body =>
+      if ¬(← Body.isClosed body) then Body.close body
+    | .closeResponseStreamWithError body err =>
+      if ¬(← Body.isClosed body) then body.closeWithError err
+    | .setResponseKnownSize body size =>
+      Body.setKnownSize body (some size)
+    | .closeRequestBody body =>
+      if ¬(← body.isClosed) then body.close
+    | .closeWatch w => Watch.close w
+    | .sendWatch w bytes => Watch.send w bytes
+    | .resolveResponse packet response => packet.onResponse response
+    | .rejectResponse packet err => packet.onError err
+
+/--
+Result of a pure transition step: the updated state, the effects that must be
+executed to take the transition, and a boolean marker: for `processH1Events`
+this is `sawFailure`, for `handleRecvEvent` it is `shouldClose`.
+-/
+private structure Transition where
+  state : ConnectionState
+  effects : Array ConnectionEffect := #[]
+  flag : Bool := false
+
+/--
 Waits for the next I/O event across all active sources described by `sources`.
 Computes the socket recv size from `config`, then races all active selectables.
 Returns `.close` on transport errors.
@@ -210,16 +269,18 @@ private def pollNextEvent
   try Selectable.one selectables catch _ => pure .close
 
 /--
-Processes all H1 events from a single machine step, updating the connection state.
-Handles keep-alive resets, body-size tracking, `Expect: 100-continue`, and parse errors.
-Returns the updated state and `true` if a parse failure was encountered.
+Processes all H1 events from a single machine step. Pure: returns the updated
+state, the effects to execute, and `true` if a parse failure was encountered.
+Handles keep-alive resets, body-size tracking, `Expect: 100-continue`, and
+parse errors.
 -/
 private def processH1Events
     (config : Config)
     (events : Array (H1.Event .sending))
-    (state : ConnectionState) : Async (ConnectionState × Bool) := do
+    (state : ConnectionState) : Transition := Id.run do
 
   let mut st := state
+  let mut fx : Array ConnectionEffect := #[]
   let mut sawFailure := false
 
   for event in events do
@@ -259,37 +320,34 @@ private def processH1Events
         -- Discard the pending body — it must not be sent.
         if st.waitingForContinue then
           if let some body := st.pendingRequestBody then
-            if !(← body.isClosed) then body.close
+            fx := fx.push (.closeRequestBody body)
           st := { st with pendingRequestBody := none, waitingForContinue := false }
 
         if let some body := st.responseStream then
           if let some length := head.getSize true then
-            Body.setKnownSize body (some length)
+            fx := fx.push (.setResponseKnownSize body length)
 
         if let some packet := st.currentRequest then
           if let some incoming := st.responseStream then
-            packet.onResponse { line := head, body := incoming }
+            fx := fx.push (.resolveResponse packet { line := head, body := incoming })
 
     | .closeBody =>
       -- Skip closing for informational (1xx) responses; the channel stays
       -- open for the real response body that follows.
       if !st.isInformationalResponse then
         if let some body := st.responseStream then
-          if ¬(← Body.isClosed body) then Body.close body
+          fx := fx.push (.closeResponseStream body)
 
     | .next =>
       -- Reset all per-request state for the next pipelined request.
       if let some body := st.requestBody then
-        if ¬(← body.isClosed) then body.close
-
+        fx := fx.push (.closeRequestBody body)
       if let some body := st.pendingRequestBody then
-        if ¬(← body.isClosed) then body.close
-
+        fx := fx.push (.closeRequestBody body)
       if let some body := st.responseStream then
-        if ¬(← Body.isClosed body) then Body.close body
-
-      if let some w := st.uploadProgress then Watch.close w
-      if let some w := st.downloadProgress then Watch.close w
+        fx := fx.push (.closeResponseStream body)
+      if let some w := st.uploadProgress then fx := fx.push (.closeWatch w)
+      if let some w := st.downloadProgress then fx := fx.push (.closeWatch w)
 
       st := { st with
         requestBody := none
@@ -309,45 +367,42 @@ private def processH1Events
       }
 
     | .failed err =>
+      let errString := toString err
       if let some packet := st.currentRequest then
-        packet.onError (.userError (toString err))
+        fx := fx.push (.rejectResponse packet (.userError errString))
       -- If the response body was already handed off to the caller, surface the
       -- error through the stream so a pending `recv`/`readAll` sees it instead
       -- of silently truncating at whatever bytes happened to arrive.
       if let some body := st.responseStream then
-        if ¬(← Body.isClosed body) then
-          body.closeWithError (.userError (toString err))
+        fx := fx.push (.closeResponseStreamWithError body (.userError errString))
       sawFailure := true
 
     | .«continue» => pure ()
 
     | .close => pure ()
 
-  return (st, sawFailure)
+  return { state := st, effects := fx, flag := sawFailure }
 
 /--
-Computes the active `PollSources` for the current connection state.
-Determines which I/O sources need attention and whether to include the socket.
+Pure decision logic for `buildPollSources`: given whether the response stream
+is currently closed, pick the set of I/O sources to wait on this tick.
 -/
-private def buildPollSources
+private def buildPollSourcesPure
     [Transport α]
     (socket : α) (requestChannel : Std.CloseableChannel RequestPacket)
     (connectionContext : CancellationContext) (state : ConnectionState)
-    : Async (PollSources α) := do
+    (responseStreamClosed : Bool) : PollSources α :=
   -- Always include an active request body, even if already closed.
   -- A closed body's recvSelector resolves immediately with `none`, which
   -- triggers `userClosedBody` so the H1 machine can finalize chunked encoding.
-  let requestBodySource :=
-    state.requestBody
+  let requestBodySource := state.requestBody
 
-  let responseBodySource ←
+  let responseBodySource :=
     if state.machine.canPullBodyNow then
-      if let some body := state.responseStream then
-        if ¬(← Body.isClosed body) then pure (some body) else pure none
-      else
-        pure none
-    else
-      pure none
+      match state.responseStream with
+      | some body => if responseStreamClosed then none else some body
+      | none => none
+    else none
 
   let pollSocket :=
     state.requiresData ∨
@@ -356,7 +411,7 @@ private def buildPollSources
     requestBodySource.isSome ∨
     state.machine.canPullBody
 
-  return {
+  {
     socket := if pollSocket then some socket else none
     expect := state.expectData
     requestBody := requestBodySource
@@ -368,148 +423,203 @@ private def buildPollSources
   }
 
 /--
-Processes a single async I/O event and updates the connection state.
-Returns the updated state and `true` if the connection should be closed immediately.
+Computes the active `PollSources` for the current connection state.
+Reads the response-body closed flag once, then defers to the pure
+`buildPollSourcesPure` for the decision.
 -/
-private def handleRecvEvent
-    (config : Config)
-    (event : Recv) (state : ConnectionState) : Async (ConnectionState × Bool) := do
+private def buildPollSources
+    [Transport α]
+    (socket : α) (requestChannel : Std.CloseableChannel RequestPacket)
+    (connectionContext : CancellationContext) (state : ConnectionState)
+    : Async (PollSources α) := do
+  let responseStreamClosed ← match state.responseStream with
+    | some body => Body.isClosed body
+    | none => pure true
+  return buildPollSourcesPure socket requestChannel connectionContext state responseStreamClosed
 
-  match event with
-  | .bytes (some bytes) =>
-    let newDownloadBytes := state.downloadBytes + bytes.size.toUInt64
-    if let some w := state.downloadProgress then
-      Watch.send w newDownloadBytes
-    return ({ state with machine := state.machine.feed bytes, downloadBytes := newDownloadBytes }, false)
+/--
+Pure transition applied when a caller-facing problem forces the connection to
+terminate (request timeout, shutdown signal, response body limit exceeded).
+Rejects any in-flight request, closes the response stream, closes progress
+watches, and parks the H1 machine.
+-/
+private def abortState (state : ConnectionState) (err : IO.Error) : Transition := Id.run do
+  let mut fx : Array ConnectionEffect := #[]
+  if let some packet := state.currentRequest then
+    fx := fx.push (.rejectResponse packet err)
+  if let some body := state.responseStream then
+    fx := fx.push (.closeResponseStream body)
+  if let some w := state.uploadProgress then fx := fx.push (.closeWatch w)
+  if let some w := state.downloadProgress then fx := fx.push (.closeWatch w)
+  return {
+    state := { state with
+      machine := state.machine.closeWriter.closeReader.noMoreInput
+      currentRequest := none
+      responseStream := none
+      uploadProgress := none
+      downloadProgress := none
+    }
+    effects := fx
+  }
 
-  | .bytes none =>
-    return ({ state with machine := state.machine.noMoreInput }, false)
-
-  | .requestBody (some chunk) =>
-    let newUploadBytes := state.uploadBytes + chunk.data.size.toUInt64
-    if let some w := state.uploadProgress then
-      Watch.send w newUploadBytes
-    return ({ state with machine := state.machine.sendData #[chunk], uploadBytes := newUploadBytes }, false)
-
-  | .requestBody none =>
-    if let some body := state.requestBody then
-      if ¬(← body.isClosed) then body.close
-    return ({ state with machine := state.machine.userClosedBody, requestBody := none }, false)
-
-  | .bodyInterest interested =>
-    if interested then
-      let (newMachine, pulledChunk) := state.machine.pullBody
-      let mut st := { state with machine := newMachine }
-
-      if let some pulled := pulledChunk then
-        let newBodyBytes := st.downloadBodyBytes + pulled.chunk.data.size.toUInt64
-        st := { st with downloadBodyBytes := newBodyBytes }
-
-        -- Enforce the response body size limit before writing data to the caller.
-        if let some maxSize := config.maxResponseBodySize then
-          if newBodyBytes > maxSize.toUInt64 then
-            let err : IO.Error := .userError "response body exceeds maximum allowed size"
-            -- Header stage already resolved `packet`, so `onError` here is typically a
-            -- no-op. The caller is listening on the response stream; surface the error
-            -- through `closeWithError` so a pending `recv`/`readAll` sees it instead of
-            -- a silent truncated EOF.
-            if let some packet := st.currentRequest then
-              packet.onError err
-            if let some body := st.responseStream then
-              if ¬(← Body.isClosed body) then body.closeWithError err
-            if let some w := st.downloadProgress then Watch.close w
-            return ({ st with
-              machine := st.machine.closeWriter.closeReader.noMoreInput
-              currentRequest := none
-              responseStream := none
-              downloadProgress := none
-            }, false)
-
-        if let some body := st.responseStream then
-          -- If the caller has dropped/closed the incoming side, the write fails.
-          -- Silently swallowing the error is correct: the loop must continue pulling
-          -- wire bytes to keep the connection in a valid state for reuse.
-          try body.send pulled.chunk pulled.incomplete
-          catch _ => pure ()
-
-          if pulled.final then
-            if ¬(← Body.isClosed body) then Body.close body
-            st := { st with responseStream := none }
-
-      return (st, false)
-    else
-      return (state, false)
-
-  | .packet (some packet) =>
-    let mut machine := state.machine.send packet.request.line
-    let mut requestBody : Option Body.Operations := none
-    let mut pendingRequestBody : Option Body.Operations := none
-    let mut waitingForContinue := false
-
-    if requestHasExpectContinue packet.request then
-      -- Defer body pumping until the server sends `100 Continue`, but still
-      -- set the known size so that `Content-Length` is included in the request
-      -- headers (required by RFC 9112; servers need it to fire checkContinue).
-      if let some size ← packet.request.body.getKnownSize then
-        machine := machine.setKnownSize size
-      waitingForContinue := true
-      pendingRequestBody := some packet.request.body
-    else
-      if let some size ← packet.request.body.getKnownSize then
-        machine := machine.setKnownSize size
-      requestBody := some packet.request.body
-
-    let responseStream ← Body.mkStream
-
-    return ({ state with
-      machine := machine
+/--
+Pure transition for a new request packet that has already had its known body
+size resolved and its response stream allocated by the async caller.
+-/
+private def onNewPacket
+    (config : Config) (packet : RequestPacket) (knownSize : Option Body.Length)
+    (responseStream : Body.Stream) (state : ConnectionState) : Transition :=
+  let machine0 := state.machine.send packet.request.line
+  let hasExpect := requestHasExpectContinue packet.request
+  let machine1 := match knownSize with
+    | some size => machine0.setKnownSize size
+    | none => machine0
+  let requestBody : Option Body.Operations :=
+    if hasExpect then none else some packet.request.body
+  let pendingRequestBody : Option Body.Operations :=
+    if hasExpect then some packet.request.body else none
+  {
+    state := { state with
+      machine := machine1
       currentRequest := some packet
       waitingForRequest := false
       currentTimeout := config.requestTimeout.val
       keepAliveTimeout := none
       requestBody := requestBody
       pendingRequestBody := pendingRequestBody
-      waitingForContinue := waitingForContinue
+      waitingForContinue := hasExpect
       responseStream := some responseStream
       uploadProgress := packet.uploadProgress
       uploadBytes := 0
       downloadProgress := packet.downloadProgress
       downloadBytes := 0
-    }, false)
+    }
+  }
 
-  | .packet none => return (state, true)
+/--
+Pure transition for a `.bodyInterest true` event: pulls the next chunk out of
+the H1 machine, enforces `maxResponseBodySize`, and queues the chunk write.
+-/
+private def onBodyInterest
+    (config : Config) (state : ConnectionState) : Transition := Id.run do
+  let (newMachine, pulledChunk) := state.machine.pullBody
+  let mut st := { state with machine := newMachine }
+  let mut fx : Array ConnectionEffect := #[]
 
-  | .close => return (state, true)
+  if let some pulled := pulledChunk then
+    let newBodyBytes := st.downloadBodyBytes + pulled.chunk.data.size.toUInt64
+    st := { st with downloadBodyBytes := newBodyBytes }
 
-  | .timeout =>
-    if let some packet := state.currentRequest then
-      packet.onError (.userError "request timeout")
-    if let some body := state.responseStream then
-      if ¬(← Body.isClosed body) then Body.close body
-    if let some w := state.uploadProgress then Watch.close w
-    if let some w := state.downloadProgress then Watch.close w
-    return ({ state with
-      machine := state.machine.closeWriter.closeReader.noMoreInput
-      currentRequest := none
-      responseStream := none
-      uploadProgress := none
-      downloadProgress := none
-    }, false)
+    -- Enforce the response body size limit before writing data to the caller.
+    if let some maxSize := config.maxResponseBodySize then
+      if newBodyBytes > maxSize.toUInt64 then
+        let err : IO.Error := .userError "response body exceeds maximum allowed size"
+        -- Header stage already resolved `packet`, so rejecting here is typically a
+        -- no-op. The caller is listening on the response stream; surface the error
+        -- through `closeResponseStreamWithError` so a pending `recv`/`readAll` sees
+        -- it instead of a silent truncated EOF.
+        if let some packet := st.currentRequest then
+          fx := fx.push (.rejectResponse packet err)
+        if let some body := st.responseStream then
+          fx := fx.push (.closeResponseStreamWithError body err)
+        if let some w := st.downloadProgress then fx := fx.push (.closeWatch w)
+        return {
+          state := { st with
+            machine := st.machine.closeWriter.closeReader.noMoreInput
+            currentRequest := none
+            responseStream := none
+            downloadProgress := none
+          }
+          effects := fx
+        }
 
-  | .shutdown =>
-    if let some packet := state.currentRequest then
-      packet.onError (.userError "connection shutdown")
-    if let some body := state.responseStream then
-      if ¬(← Body.isClosed body) then Body.close body
-    if let some w := state.uploadProgress then Watch.close w
-    if let some w := state.downloadProgress then Watch.close w
-    return ({ state with
-      machine := state.machine.closeWriter.closeReader.noMoreInput
-      currentRequest := none
-      responseStream := none
-      uploadProgress := none
-      downloadProgress := none
-    }, false)
+    if let some body := st.responseStream then
+      -- If the caller has dropped/closed the incoming side, the write fails.
+      -- Silently swallowing the error is correct: the loop must continue pulling
+      -- wire bytes to keep the connection in a valid state for reuse.
+      fx := fx.push (.sendResponseChunk body pulled.chunk pulled.incomplete)
+      if pulled.final then
+        fx := fx.push (.closeResponseStream body)
+        st := { st with responseStream := none }
+
+  return { state := st, effects := fx }
+
+/--
+Pure transition for every `Recv` case except the arrival of a fresh request
+packet, which must pre-fetch the body size and allocate a response stream in
+async context. Returns `none` for the packet-arrival case so the async
+dispatcher can handle it.
+-/
+private def handleRecvEventPure
+    (config : Config)
+    (event : Recv) (state : ConnectionState) : Option Transition :=
+  match event with
+  | .bytes (some bytes) =>
+    let newDownloadBytes := state.downloadBytes + bytes.size.toUInt64
+    let fx : Array ConnectionEffect := match state.downloadProgress with
+      | some w => #[.sendWatch w newDownloadBytes]
+      | none => #[]
+    some {
+      state := { state with
+        machine := state.machine.feed bytes
+        downloadBytes := newDownloadBytes }
+      effects := fx
+    }
+
+  | .bytes none =>
+    some { state := { state with machine := state.machine.noMoreInput } }
+
+  | .requestBody (some chunk) =>
+    let newUploadBytes := state.uploadBytes + chunk.data.size.toUInt64
+    let fx : Array ConnectionEffect := match state.uploadProgress with
+      | some w => #[.sendWatch w newUploadBytes]
+      | none => #[]
+    some {
+      state := { state with
+        machine := state.machine.sendData #[chunk]
+        uploadBytes := newUploadBytes }
+      effects := fx
+    }
+
+  | .requestBody none =>
+    let fx : Array ConnectionEffect := match state.requestBody with
+      | some body => #[.closeRequestBody body]
+      | none => #[]
+    some {
+      state := { state with machine := state.machine.userClosedBody, requestBody := none }
+      effects := fx
+    }
+
+  | .bodyInterest interested =>
+    if interested then some (onBodyInterest config state) else some { state := state }
+
+  | .packet (some _) => none -- async dispatcher pre-fetches size + stream
+
+  | .packet none => some { state := state, flag := true }
+  | .close => some { state := state, flag := true }
+
+  | .timeout => some (abortState state (.userError "request timeout"))
+  | .shutdown => some (abortState state (.userError "connection shutdown"))
+
+/--
+Processes a single async I/O event and updates the connection state. Async
+wrapper around the pure `handleRecvEventPure`; only the `.packet (some _)`
+case requires async work (known-size probe and response-stream allocation).
+Returns the updated state, the effects to execute, and `true` if the
+connection should be closed immediately.
+-/
+private def handleRecvEvent
+    (config : Config)
+    (event : Recv) (state : ConnectionState) : Async Transition := do
+  match event with
+  | .packet (some packet) =>
+    let knownSize ← packet.request.body.getKnownSize
+    let responseStream ← Body.mkStream
+    return onNewPacket config packet knownSize responseStream state
+  | _ =>
+    match handleRecvEventPure config event state with
+    | some t => pure t
+    | none => pure { state := state }
 
 /--
 Runs the main request/response processing loop for a single connection.
@@ -565,18 +675,20 @@ protected def handle
         break
 
     -- Phase 3: process all events emitted by this step.
-    let (newState, sawFailure) ← processH1Events config step.events state
-    state := newState
-    if sawFailure then break
+    let t := processH1Events config step.events state
+    state := t.state
+    runEffects t.effects
+    if t.flag then break
 
     -- Phase 4: wait for the next IO event when any source needs attention.
     if state.requiresData ∨ state.waitingForRequest ∨ state.currentRequest.isSome ∨ state.requestBody.isSome ∨ state.machine.canPullBody then
       let sources ← buildPollSources socket requestChannel connectionContext state
       state := { state with requiresData := false }
       let event ← pollNextEvent config sources
-      let (newState, shouldClose) ← handleRecvEvent config event state
-      state := newState
-      if shouldClose then break
+      let t ← handleRecvEvent config event state
+      state := t.state
+      runEffects t.effects
+      if t.flag then break
 
   -- Clean up: notify any in-flight request and close all open streams.
   if let some packet := state.currentRequest then

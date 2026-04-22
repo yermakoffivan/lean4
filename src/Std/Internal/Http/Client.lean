@@ -75,9 +75,7 @@ def proxy? (b : Client.Builder) (url : String) : Option Client.Builder := do
   let uri ← URI.parse? url
   let auth ← uri.authority
   let host := toString auth.host
-  let port : UInt16 := match auth.port with
-    | .value p => p
-    | _ => URI.Scheme.defaultPort uri.scheme
+  let port := uri.port
   pure { b with config := { b.config with proxy := some (host, port) } }
 
 /--
@@ -162,13 +160,7 @@ namespace RequestBuilder
 Injects a `Host` header if not already present.
 -/
 private def withHostHeader (rb : RequestBuilder) : RequestBuilder :=
-  if rb.builder.line.headers.contains Header.Name.host then rb
-  else
-    let defaultPort := URI.Scheme.defaultPort rb.scheme
-    let hostValue :=
-      if rb.port == defaultPort then toString rb.host
-      else s!"{rb.host}:{rb.port}"
-    { rb with builder := rb.builder.header! "Host" hostValue }
+  { rb with builder := rb.builder.hostDefault rb.scheme rb.host rb.port }
 
 /--
 Adds a typed header to the request.
@@ -199,13 +191,9 @@ def uri! (rb : RequestBuilder) (u : String) : RequestBuilder :=
 Adds a query parameter to the request URI.
 -/
 def queryParam (rb : RequestBuilder) (key : String) (value : String) : RequestBuilder :=
-  let newTarget := match rb.builder.line.uri with
-    | .originForm path query =>
-        .originForm path (some ((query.getD URI.Query.empty).insert key value))
-    | .absoluteForm af =>
-        .absoluteForm { af with query := af.query.insert key value }
-    | other => other
-  { rb with builder := { rb.builder with line := { rb.builder.line with uri := newTarget } } }
+  { rb with builder :=
+    { rb.builder with line :=
+      { rb.builder.line with uri := rb.builder.line.uri.setQueryParam key value } } }
 
 /--
 Sends the request with an empty body.
@@ -255,15 +243,7 @@ Builds a `RequestBuilder` from a parsed `URI`, extracting host, port, and origin
 private def mkRequest
     (method : Request.Builder → Request.Builder)
     (client : Client) (url : URI) : Client.RequestBuilder :=
-  let target : RequestTarget :=
-    .originForm url.path (if url.query.isEmpty then none else some url.query)
-  let host := (url.authority.map (·.host)).getD default
-  let scheme := url.scheme
-  let port : UInt16 := match url.authority with
-    | some auth => match auth.port with
-      | .value p => p
-      | _ => URI.Scheme.defaultPort scheme
-    | none => URI.Scheme.defaultPort scheme
+  let (scheme, host, port, target) := url.toOriginRequest
   { client, scheme, host, port, builder := method (Request.new |>.uri target) }
 
 /--

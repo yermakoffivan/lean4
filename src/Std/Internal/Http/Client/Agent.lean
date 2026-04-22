@@ -104,36 +104,6 @@ structure Agent (α : Type) where
 namespace Agent
 
 /--
-Returns `true` for HTTP methods that are safe to retry on connection failure.
-Non-idempotent methods (POST, PATCH) must not be retried automatically because
-the server may have already processed the request before the connection dropped.
--/
-private def isIdempotentMethod (m : Method) : Bool :=
-  m == .get || m == .head || m == .put || m == .delete || m == .options || m == .trace
-
-/--
-Rewrites an origin-form request target to absolute-form for proxy forwarding.
-`GET /path?q=1 HTTP/1.1` becomes `GET http://host:port/path?q=1 HTTP/1.1`.
-No-op for targets that are already in absolute-form or do not carry a path.
--/
-def toAbsoluteFormRequest
-    (request : Request Body.Any)
-    (scheme : URI.Scheme) (host : URI.Host) (port : UInt16) : Request Body.Any :=
-  match request.line.uri with
-  | .originForm path query =>
-    { request with
-        line := { request.line with uri := .absoluteForm {
-          scheme,
-          path,
-          query := query.getD URI.Query.empty,
-          authority := some { host, port := .value port }
-          fragment := none
-        }
-      }
-    }
-  | _ => request
-
-/--
 Creates an `Agent` from an already-connected transport `socket`.
 Pass a `connectTo` factory to enable automatic reconnection on error and cross-host redirect
 following; omit it (or pass `none`) to disable both.
@@ -157,10 +127,7 @@ def injectCookies (cookieJar : Cookie.Jar) (host : URI.Host) (scheme : URI.Schem
   -- Respect an explicit Cookie header set by the caller.
   if request.line.headers.contains .cookie then return request
 
-  let path := match request.line.uri with
-    | .originForm path _ => path
-    | .absoluteForm af => af.path
-    | _ => URI.Path.parseOrRoot "/"
+  let path := RequestTarget.pathOrRoot request.line.uri
 
   match ← cookieJar.cookiesFor host path (secure := scheme.val == "https") with
   | none => return request
@@ -186,141 +153,58 @@ def applyInterceptors
   interceptors.foldlM (init := response) (fun r f => f r)
 
 /--
-Outcome of evaluating whether a response should trigger an automatic redirect.
+Drains the response body up to `drainLimit` bytes so the underlying connection can be
+reused after a redirect. Failures are swallowed after closing the body — the caller
+has already committed to following the redirect by this point.
 -/
-inductive RedirectDecision where
-  /--
-  Response is final, should validate status and return it.
-  -/
-  | done
-
-  /--
-  Follow a redirect to `(host, port, scheme)` with `request`, updating `history`.
-  -/
-  | follow (host : URI.Host) (port : UInt16) (scheme : URI.Scheme) (request : Request Body.Any)
-
-/--
-Inspects `response` and decides whether to follow a redirect.
-
-Returns `.done` when:
-- `remaining` is 0 or the response is not a redirection,
-- the `Location` header is absent, or
-- the `Location` value cannot be parsed.
-
-Returns `.follow` with the rewritten request (method, body, and headers adjusted per
-RFC 9110 §15.4, including `Authorization` stripped on cross-origin hops) when a valid
-redirect target is found. The response body is drained (up to `drainLimit` bytes) before
-returning `.follow`; if the body exceeds `drainLimit` the incoming channel is closed and
-the connection is left to recover or time out.
--/
-def decideRedirect
-    (remaining : Nat)
-    (currentHost : URI.Host) (currentPort : UInt16) (currentScheme : URI.Scheme)
-    (request : Request Body.Any) (response : Response Body.Stream)
-    (drainLimit : Nat)
-    : Async RedirectDecision := do
-
-  if remaining == 0 ∨ !response.line.status.isRedirection then
-    return .done
-
-  let some locationValue := response.line.headers.get? .location
-    | return .done
-
-  let locationStr := locationValue.value
-
-  let some target := RequestTarget.parse? locationStr
-    | return .done
-
-  -- Drain
+private def drainRedirectBody (response : Response Body.Stream) (drainLimit : Nat) : Async Unit := do
   discard <| ContextAsync.run do
     try
       discard <| response.body.readAll (α := ByteArray) (maximumSize := some drainLimit.toUInt64)
     catch _ =>
       response.body.close
 
-  let newMethod := match response.line.status with
-    | .seeOther => .get
-    | .movedPermanently | .found =>
-        if request.line.method == .post then .get else request.line.method
-    | _ => request.line.method
+/--
+Inspects `response` and decides whether to follow a redirect.
 
-  let (newHost, newPort, newScheme) := match target with
-    | .absoluteForm af =>
-      let h := af.authority.map URI.Authority.host |>.getD currentHost
-      let p : UInt16 :=
-        match af.authority with
-        | some auth => match auth.port with
-          | URI.Port.value v => v
-          | _ => URI.Scheme.defaultPort af.scheme
-        | none => URI.Scheme.defaultPort af.scheme
-      (h, p, af.scheme)
-    | _ => (currentHost, currentPort, currentScheme)
+This is the async wrapper around the pure `Std.Http.decideRedirect`: it drains
+the redirect response body (up to `drainLimit` bytes), runs the pure planner,
+and — when the planner asks for body replay — resets the original body before
+returning the rewritten request.
 
-  -- Avoid SSRF.
-  if newScheme.val != "http" && newScheme.val != "https" then
-    return .done
+Returns `.done` when:
+- `remaining` is 0 or the response is not a redirection,
+- the `Location` header is absent, or
+- the `Location` value cannot be parsed, or
+- the target resolves to a non-`http(s)` scheme (SSRF guard).
+-/
+def decideRedirect
+    (remaining : Nat)
+    (currentHost : URI.Host) (currentPort : UInt16) (currentScheme : URI.Scheme)
+    (request : Request Body.Any) (response : Response Body.Stream)
+    (drainLimit : Nat)
+    : Async (Option (URI.Host × UInt16 × URI.Scheme × Request Body.Any)) := do
 
-  -- Strip Authorization
-  let isCrossOrigin := newHost != currentHost || newPort != currentPort || newScheme != currentScheme
+  match Std.Http.decideRedirect remaining currentHost currentPort currentScheme
+      request.line request.body.isReplayable response.line.status response.line.headers with
+  | .done => return none
+  | .follow plan =>
+    drainRedirectBody response drainLimit
 
-  let crossOriginHeaders :=
-    if isCrossOrigin then
-      request.line.headers
-        |>.erase Header.Name.authorization
-        |>.erase Header.Name.proxyAuthorization
-        |>.erase Header.Name.cookie
-    else request.line.headers
+    let newBody : Body.Any ←
+      match plan.bodyAction with
+      | .empty => pure (Body.Any.ofBody Body.Empty.mk)
+      | .replay => do
+        request.body.resetInPlace
+        pure request.body
 
-  -- When the method changes (303 See Other, or 301/302 POST→GET), drop headers that
-  -- described the original request's payload.  The forwarded request will have no body
-  -- (handled just below), so a lingering `Content-Type`/`Content-Length` would be stale
-  -- and misleading on a bodyless GET.
-  let newHeaders :=
-    if newMethod != request.line.method then
-      crossOriginHeaders
-        |>.erase Header.Name.contentType
-        |>.erase Header.Name.contentLength
-    else
-      crossOriginHeaders
-
-  -- For method-changing redirects (301/302 POST→GET, 303) drop the body.
-  -- For method-preserving redirects (307/308) reuse the body if re-readable (Body.Full).
-  -- A Body.Stream is a live producer whose bytes have already been sent and cannot be replayed;
-  -- follow the redirect with an empty body rather than silently sending a stale/empty stream.
-  let newBody : Body.Any ←
-    if newMethod == .get || newMethod == .head || newMethod != request.line.method then
-      pure (Body.Any.ofBody Body.Empty.mk)
-    else if request.body.isReplayable then do
-      request.body.resetInPlace
-      pure request.body
-    else
-      -- Body.Stream: already consumed, send empty body on redirect
-      pure (Body.Any.ofBody Body.Empty.mk)
-
-  -- Rewrite the redirect target before putting it on the wire:
-  --
-  -- * RFC 9110 §4.2.4: a client MUST remove any userinfo from a URI before
-  --   dereferencing it.  Forwarding `user:pass@host` parsed from a `Location`
-  --   would be a credential-leak primitive.
-  -- * RFC 9112 §3.2.1: on a direct (non-proxy) client-to-origin connection the
-  --   request-line MUST use origin-form; absolute-form is only for proxied
-  --   requests.  If the target is same-origin absolute-form, collapse it to
-  --   origin-form so the wire stays RFC-compliant.
-  let rewrittenTarget := match target with
-    | .absoluteForm af =>
-      let afStripped :=
-        { af with authority := af.authority.map (fun auth => { auth with userInfo := none }) }
-      if isCrossOrigin then
-        .absoluteForm afStripped
-      else
-        .originForm afStripped.path
-          (if afStripped.query.isEmpty then none else some afStripped.query)
-    | _ => target
-
-  return .follow newHost newPort newScheme
-    { line := { request.line with uri := rewrittenTarget, method := newMethod, headers := newHeaders }
-      body := newBody
-      extensions := request.extensions }
+    return some (plan.host, plan.port, plan.scheme,
+      { line := { request.line with
+            uri := plan.target
+            method := plan.method
+            headers := plan.headers }
+        body := newBody
+        extensions := request.extensions })
 
 private partial def sendWithRedirects [Transport α]
     (agent : Agent α) (request : Request Body.Any)
@@ -334,7 +218,7 @@ private partial def sendWithRedirects [Transport α]
   -- Rewrite to absolute-form when a proxy is configured.
   let request :=
     if agent.session.config.proxy.isSome then
-      toAbsoluteFormRequest request agent.scheme agent.host agent.port
+      request.toAbsoluteForm agent.scheme agent.host agent.port
     else
       request
 
@@ -344,7 +228,7 @@ private partial def sendWithRedirects [Transport α]
     catch err => do
       agent.onBrokenSession agent.session agent.scheme agent.host agent.port
 
-      if retriesLeft > 0 && isIdempotentMethod request.line.method then
+      if retriesLeft > 0 && request.line.method.isIdempotent then
         if let some factory := agent.connectTo then
           let attempt := agent.session.config.maxRetries - retriesLeft
           let delay : Time.Millisecond.Offset := ⟨min (agent.session.config.retryDelay.val * (2 : Int) ^ attempt) 32000⟩
@@ -359,12 +243,12 @@ private partial def sendWithRedirects [Transport α]
 
   match ← decideRedirect remaining agent.host agent.port agent.scheme request response
       agent.session.config.redirectBodyDrainLimit with
-  | .done =>
+  | none =>
     if let some validate := agent.session.config.validateStatus then
       if !validate response.line.status then
         throw (.userError s!"unexpected HTTP status: {response.line.status.toCode}")
     return response
-  | .follow newHost newPort newScheme newRequest =>
+  | some (newHost, newPort, newScheme, newRequest) =>
     if let some policy := agent.session.config.redirectPolicy then
       if !policy newHost newPort then
         return response
@@ -453,14 +337,7 @@ Injects a `Host` header derived from the agent's `host` and `port` if no `Host` 
 is already present.
 -/
 private def withHostHeader [Transport α] (rb : Agent.RequestBuilder α) : Agent.RequestBuilder α :=
-  if rb.builder.line.headers.contains Header.Name.host then
-    rb
-  else
-    let defaultPort := URI.Scheme.defaultPort rb.agent.scheme
-    let hostValue :=
-      if rb.agent.port == defaultPort then toString rb.agent.host
-      else s!"{rb.agent.host}:{rb.agent.port}"
-    { rb with builder := rb.builder.header! "Host" hostValue }
+  { rb with builder := rb.builder.hostDefault rb.agent.scheme rb.agent.host rb.agent.port }
 
 /--
 Prepares the builder by injecting the `Host` header, then calls `f` to build and send the
@@ -500,13 +377,9 @@ Adds a query parameter to the request URI.
 Works for both origin-form (e.g. set by `agent.get "/path"`) and absolute-form targets.
 -/
 def queryParam [Transport α] (rb : Agent.RequestBuilder α) (key : String) (value : String) : Agent.RequestBuilder α :=
-  let newTarget := match rb.builder.line.uri with
-    | .originForm path query =>
-        .originForm path (some ((query.getD URI.Query.empty).insert key value))
-    | .absoluteForm af =>
-        .absoluteForm { af with query := af.query.insert key value }
-    | other => other
-  { rb with builder := { rb.builder with line := { rb.builder.line with uri := newTarget } } }
+  { rb with builder :=
+    { rb.builder with line :=
+      { rb.builder.line with uri := rb.builder.line.uri.setQueryParam key value } } }
 
 /--
 Sends the request with an empty body.

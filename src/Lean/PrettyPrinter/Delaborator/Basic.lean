@@ -223,12 +223,21 @@ where
     stx := stx
   }
 
+/--
+Adds `DelabTermInfo` at the given position.
+
+Either `docString?` or `mkDocString?` can be provided. The `docString?` field is a convenient
+interface for `mkDocString?`.
+-/
 def addDelabTermInfo (pos : Pos) (stx : Syntax) (e : Expr) (isBinder : Bool := false)
-    (location? : Option DeclarationLocation := none) (docString? : Option String := none) (explicit : Bool := true) : DelabM Unit := do
+    (location? : Option DeclarationLocation := none)
+    (docString? : Option String := none)
+    (mkDocString? : Option (PPContext → IO String) := none)
+    (explicit : Bool := true) : DelabM Unit := do
   let info := Info.ofDelabTermInfo {
     toTermInfo := ← addTermInfo.mkTermInfo stx e (isBinder := isBinder)
     location?  := location?
-    docString? := docString?
+    mkDocString? := mkDocString? <|> docString?.map (fun _ => pure ·)
     explicit   := explicit
   }
   modify fun s => { s with infos := s.infos.insert pos info }

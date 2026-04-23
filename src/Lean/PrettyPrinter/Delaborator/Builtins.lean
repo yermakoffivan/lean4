@@ -12,7 +12,6 @@ public import Lean.Meta.CoeAttr
 public import Lean.Meta.Structure
 public import Lean.PrettyPrinter.Formatter
 public import Lean.PrettyPrinter.Parenthesizer
-import all Lean.Elab.ErrorUtils
 meta import Lean.Parser.Command
 meta import Lean.PrettyPrinter.Delaborator.DeclWithSig
 

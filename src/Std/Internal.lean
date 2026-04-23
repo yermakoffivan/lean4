@@ -10,7 +10,6 @@ public import Std.Internal.Async
 public import Std.Internal.Http
 public import Std.Internal.Parsec
 public import Std.Internal.UV
-public import Std.Internal.SSL
 
 @[expose] public section
 

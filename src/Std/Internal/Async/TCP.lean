@@ -8,16 +8,11 @@ module
 prelude
 public import Std.Time
 public import Std.Internal.UV.TCP
-public import Std.Internal.Async.IO
 public import Std.Internal.Async.Select
 
 public section
 
-namespace Std
-namespace Internal
-namespace IO
-namespace Async
-namespace TCP
+namespace Std.Internal.IO.Async.TCP
 open Std.Net
 
 namespace Socket
@@ -255,10 +250,4 @@ Enables TCP keep-alive with a specified delay for the client socket.
 def keepAlive (s : Client) (enable : Bool) (delay : Std.Time.Second.Offset) (_ : delay.val ≥ 0 := by decide) : IO Unit :=
   s.native.keepAlive enable.toInt8 delay.val.toNat.toUInt32
 
-end Client
-end Socket
-end TCP
-end Async
-end IO
-end Internal
-end Std
+end Std.Internal.IO.Async.TCP.Socket.Client

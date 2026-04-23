@@ -299,9 +299,6 @@ partial def waitReadable {r : Role} (s : Connection r) : Async Unit := do
   if pending > 0 then
     return ()
 
-  if (← s.ssl.pendingPlaintext) > 0 then
-    return ()
-
   match ← s.ssl.read? 0 with
   | .data _ =>
     flushEncrypted s.native s.ssl
@@ -347,6 +344,7 @@ def recvSelector {r : Role} (s : Connection r) (size : UInt64) : Selector (Optio
 
 /--
 Shuts down the write side of the socket.
+Note: this performs a TCP-level shutdown only; no TLS `close_notify` alert is sent to the peer.
 -/
 @[inline]
 def shutdown {r : Role} (s : Connection r) : Async Unit :=

@@ -59,7 +59,6 @@ for f in $GLIBC/lib/{ld,lib{c,dl,m,rt,pthread}}-*; do b=$(basename $f); cp $f st
 OPTIONS=()
 # We build cadical using the custom toolchain on Linux to avoid glibc versioning issues
 echo -n " -DLEAN_STANDALONE=ON -DCADICAL_USE_CUSTOM_CXX=ON"
-echo -n " -DOPENSSL_INCLUDE_DIR=$OPENSSL_DEV/include -DOPENSSL_SSL_LIBRARY=$OPENSSL/lib/libssl.a -DOPENSSL_CRYPTO_LIBRARY=$OPENSSL/lib/libcrypto.a"
 echo -n " -DCMAKE_CXX_COMPILER=$PWD/llvm-host/bin/clang++ -DLEAN_CXX_STDLIB='-Wl,-Bstatic -lc++ -lc++abi -Wl,-Bdynamic'"
 # these should also be used for cadical, so do not use `LEAN_EXTRA_CXX_FLAGS` here
 echo -n " -DCMAKE_CXX_FLAGS='--sysroot $PWD/llvm -idirafter $GLIBC_DEV/include ${EXTRA_FLAGS:-}'"

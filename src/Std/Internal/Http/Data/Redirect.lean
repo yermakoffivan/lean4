@@ -263,13 +263,16 @@ def decideRedirect
       RedirectPlan.rewriteHostHeader scrubbed newScheme newHost newPort
     else scrubbed
 
+  -- RFC 9110 §15.4.8: for method-preserving redirects (307/308), if the body cannot be
+  -- replayed, the user agent MUST NOT automatically redirect.
+  if !methodChanged && newMethod != .get && newMethod != .head && !bodyReplayable then
+    return .done
+
   let bodyAction : RedirectBodyAction :=
     if newMethod == .get || newMethod == .head || methodChanged then
       .empty
-    else if bodyReplayable then
-      .replay
     else
-      .empty
+      .replay  -- bodyReplayable is true here (non-replayable case returned .done above)
 
   let rewrittenTarget := RedirectPlan.rewriteTarget target isCrossOrigin
 

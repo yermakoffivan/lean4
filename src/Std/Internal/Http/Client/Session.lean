@@ -57,6 +57,7 @@ Queue a request and await its response.
 -/
 def send [Transport α] {β : Type} [Body β]
     (session : Session α) (request : Request β) : Async (Response Body.Stream) := do
+
   let responsePromise ← IO.Promise.new
   let responseBodyControl ← ResponseBodyControl.new
 

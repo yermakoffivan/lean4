@@ -63,6 +63,16 @@ structure Agent.Connector (α : Type) where
   -/
   release : Session α → URI.Scheme → URI.Host → UInt16 → Async Unit
 
+  /--
+  Called when a cross-origin redirect replaces the current session with a new one,
+  passing the origin that session belongs to.
+  The default closes the replaced session, which is correct for standalone (non-pool)
+  transports.  Pool transports override this to return the session to the idle list
+  for its origin so it can be reused by future requests to the same host.
+  -/
+  releaseHealthy : Session α → URI.Scheme → URI.Host → UInt16 → Async Unit :=
+    fun s _ _ _ => discard <| s.close
+
 /--
 An HTTP user-agent that manages a connection to a host. It follows redirects, maintains a cookie
 jar for automatic cookie handling, applies response interceptors, and retries on connection errors.
@@ -180,9 +190,10 @@ private def drainBodyForReuse (response : Response Body.Stream) (drainLimit : Na
       response.body.close
 
 /--
-Marks `response` as an internally-drained redirect body so the connection loop
-applies `redirectBodyDrainLimit` instead of the caller-facing
-`maxResponseBodySize`.
+Marks `response` as an internally-drained body so the connection loop applies
+`redirectBodyDrainLimit` instead of the caller-facing `maxResponseBodySize`.
+Must be called before `drainBodyForReuse` whenever the agent discards a response
+body internally (redirect follows and `validateStatus` rejections).
 -/
 private def markRedirectDrain (response : Response Body.Stream) : BaseIO Unit := do
   if let some control := response.extensions.get ResponseBodyControl then
@@ -329,6 +340,7 @@ private def advanceAgent (agent : Agent α)
   | none => return agent  -- unreachable — evaluateRedirect gated on this
   | some connector =>
     let newSession ← connector.acquire plan.scheme plan.host plan.port
+    connector.releaseHealthy agent.session agent.scheme agent.host agent.port
     return {
       session := newSession
       scheme := plan.scheme
@@ -359,6 +371,7 @@ private partial def sendWithRedirects [Transport α]
   | .final =>
     if let some validate := agent.session.config.validateStatus then
       if !validate response.line.status then
+        markRedirectDrain response
         drainBodyForReuse response agent.session.config.redirectBodyDrainLimit
         throw (.userError s!"unexpected HTTP status: {response.line.status.toCode}")
     return response

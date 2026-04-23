@@ -34,8 +34,9 @@ A request packet queued to the background connection loop.
 -/
 structure ResponseBodyControl where
   /--
-  Flipped to `true` by the agent only when it has decided to follow a redirect
-  and will drain the intermediate response body internally.
+  Flipped to `true` by the agent when it will drain the response body internally
+  (redirect follow or `validateStatus` rejection). Tells `onBodyInterest` to
+  apply `redirectBodyDrainLimit` instead of the caller-facing `maxResponseBodySize`.
   -/
   useRedirectDrainLimit : IO.Ref Bool
 deriving TypeName
@@ -80,9 +81,10 @@ structure RequestPacket where
   responsePromise : IO.Promise (Except Error (Response Body.Stream))
 
   /--
-  Shared response-body mode flag used by the connection loop to distinguish a
-  caller-facing `3xx` body from one the agent is draining internally while
-  following a redirect.
+  Shared response-body mode flag used by the connection loop to determine whether
+  to apply `redirectBodyDrainLimit` or `maxResponseBodySize` when body bytes arrive.
+  Set by `markRedirectDrain` before any internally-consumed drain (redirect follows
+  and `validateStatus` rejections).
   -/
   responseBodyControl : ResponseBodyControl
 
@@ -170,14 +172,6 @@ structure InFlightState where
   isInformationalResponse : Bool
 
   /--
-  `true` if the current response is a 3xx redirect — used by
-  `onBodyInterest` to apply `redirectBodyDrainLimit` instead of
-  `maxResponseBodySize` so that a small caller-set response-body cap cannot
-  break the redirect-follow loop.
-  -/
-  currentResponseIsRedirect : Bool
-
-  /--
   Watch the caller subscribes to for request-body upload progress.
   -/
   uploadProgress : Option (Watch UInt64)
@@ -216,7 +210,6 @@ def ofPacket (packet : RequestPacket) (responseStream : Body.Stream)
   responseStream := some responseStream
   waitingForContinue := hasExpect
   isInformationalResponse := false
-  currentResponseIsRedirect := false
   uploadProgress := packet.uploadProgress
   uploadBytes := 0
   downloadProgress := packet.downloadProgress
@@ -333,13 +326,6 @@ before its body may be sent.
   s.inFlight.map (·.isInformationalResponse) |>.getD false
 
 /--
-`true` when the current final response is a redirect whose body should be
-bounded by `redirectBodyDrainLimit`.
--/
-@[inline] def currentResponseIsRedirect (s : ConnectionState) : Bool :=
-  s.inFlight.map (·.currentResponseIsRedirect) |>.getD false
-
-/--
 The upload-progress watch for the in-flight request, if any.
 -/
 @[inline] def uploadProgress (s : ConnectionState) : Option (Watch UInt64) :=
@@ -435,6 +421,10 @@ private def pollNextEvent
 
     let timeout := state.keepAliveTimeout.getD state.currentTimeout
     selectables := selectables.push (.case (← Selector.sleep timeout) (fun _ => pure .timeout))
+  else if let some idleTimeout := state.keepAliveTimeout then
+    -- Idle connection with no active I/O: still arm the keepalive timer so the
+    -- connection is closed after the keepalive window expires.
+    selectables := selectables.push (.case (← Selector.sleep idleTimeout) (fun _ => pure .timeout))
 
   -- Always include an active request body, even if already closed. A closed
   -- body's recvSelector resolves immediately with `none`, which triggers
@@ -493,7 +483,6 @@ private def processH1Events
         st := st.mapInFlight fun flight =>
           { flight with
             isInformationalResponse := false
-            currentResponseIsRedirect := head.status.isRedirection
           }
 
         -- A non-informational response while we were still waiting for
@@ -601,18 +590,10 @@ private def onBodyInterest
       { flight with downloadBodyBytes := newBodyBytes }
 
     let useRedirectDrainLimit ←
-      if st.currentResponseIsRedirect then
-        match st.currentRequest with
-        | some packet => ResponseBodyControl.isRedirectDrain packet.responseBodyControl
-        | none => pure false
-      else
-        pure false
+      match st.currentRequest with
+      | some packet => ResponseBodyControl.isRedirectDrain packet.responseBodyControl
+      | none => pure false
 
-    -- Enforce a body size limit. The cap depends on which response we are
-    -- pulling: only redirect bodies the agent has explicitly marked as
-    -- internally-drained use `redirectBodyDrainLimit`; all caller-facing
-    -- responses (including unfollowed 3xx responses) continue to respect
-    -- `maxResponseBodySize`.
     let maxSize? : Option UInt64 :=
       if useRedirectDrainLimit then
         some config.redirectBodyDrainLimit.toUInt64
@@ -638,6 +619,7 @@ private def onBodyInterest
       -- Silently swallowing the error is correct: the loop must continue pulling
       -- wire bytes to keep the connection in a valid state for reuse.
       try body.send pulled.chunk pulled.incomplete catch _ => pure ()
+
       if pulled.final then
         if ¬(← Body.isClosed body) then Body.close body
         st := st.mapInFlight fun flight => { flight with responseStream := none }
@@ -645,55 +627,48 @@ private def onBodyInterest
   return st
 
 /--
-Processes a single async I/O event, returning the updated state and a
-`shouldClose` flag that tells the main loop to exit.
+Processes a single async I/O event, returning the updated state and a `shouldClose` flag that tells the main loop to exit.
 -/
-private def handleRecvEvent
-    (config : Config)
-    (event : Recv) (state : ConnectionState) : Async (ConnectionState × Bool) := do
-  match event with
-  | .bytes (some bytes) =>
+private def handleRecvEvent (config : Config) (state : ConnectionState) : Recv → Async (ConnectionState × Bool)
+  | .bytes (some bytes) => do
     let newDownloadBytes := state.downloadBytes + bytes.size.toUInt64
     if let some w := state.downloadProgress then Watch.send w newDownloadBytes
     let st := { state with machine := state.machine.feed bytes }
-    return (st.mapInFlight (fun flight => { flight with downloadBytes := newDownloadBytes }), false)
+    return (st.mapInFlight ({ · with downloadBytes := newDownloadBytes }), false)
 
-  | .bytes none =>
+  | .bytes none => do
     return ({ state with machine := state.machine.noMoreInput }, false)
 
-  | .requestBody (some chunk) =>
+  | .requestBody (some chunk) => do
     let newUploadBytes := state.uploadBytes + chunk.data.size.toUInt64
     if let some w := state.uploadProgress then Watch.send w newUploadBytes
     let st := { state with machine := state.machine.sendData #[chunk] }
-    return (st.mapInFlight (fun flight => { flight with uploadBytes := newUploadBytes }), false)
+    return (st.mapInFlight ({ · with uploadBytes := newUploadBytes }), false)
 
-  | .requestBody none =>
+  | .requestBody none => do
     if let some body := state.requestBody then
       if ¬(← body.isClosed) then body.close
     let st := { state with machine := state.machine.userClosedBody }
-    return (st.mapInFlight (fun flight => { flight with requestBody := none }), false)
+    return (st.mapInFlight ({ · with requestBody := none }), false)
 
-  | .bodyInterest interested =>
-    if interested then
-      return (← onBodyInterest config state, false)
-    else
-      return (state, false)
+  | .bodyInterest interested => do
+    return (← if interested then onBodyInterest config state else pure state, false)
 
-  | .packet (some packet) =>
+  | .packet (some packet) => do
     let knownSize ← packet.request.body.getKnownSize
     let responseStream ← Body.mkStream
     return (onNewPacket config packet knownSize responseStream state, false)
 
-  | .packet none =>
+  | .packet none => do
     return (state, true)
 
-  | .close =>
+  | .close => do
     return (state, true)
 
-  | .timeout =>
-    return (← abortState state (.userError "request timeout"), false)
+  | .timeout => do
+    return (← abortState state (.userError "request timeout"), true)
 
-  | .shutdown =>
+  | .shutdown => do
     return (← abortState state (.userError "connection shutdown"), false)
 
 /--
@@ -726,6 +701,20 @@ protected def handle
         let newState := { state with machine := state.machine.userClosedBody }
         state := newState.mapInFlight fun flight => { flight with requestBody := none }
 
+    -- Phase 1b: Auto-drain buffered response body bytes when the caller closed
+    -- the response stream without consuming them. Without this, `canPullBody`
+    -- stays true, `pollSocket` stays true, and the connection never reaches
+    -- the idle keep-alive state needed to fire the idle timeout.
+    let responseBodyClosed ← match state.responseStream with
+      | some body => Body.isClosed body
+      | none => pure true
+    if state.machine.canPullBodyNow && responseBodyClosed then
+      let mut m := state.machine
+      while m.canPullBodyNow do
+        let (m', _) := m.pullBody
+        m := m'
+      state := { state with machine := m }
+
     -- Phase 2: advance the state machine and flush any output.
     let (newMachine, step) := state.machine.step
     state := { state with machine := newMachine }
@@ -738,22 +727,21 @@ protected def handle
 
     -- Phase 3: process all events emitted by this step.
     let (newState, sawFailure) ← processH1Events config step.events state
-    state := newState
-    if sawFailure then break
 
-    -- Phase 4: wait for the next IO event when any source needs attention.
-    if state.requiresData ∨ state.waitingForRequest ∨ state.currentRequest.isSome ∨ state.requestBody.isSome ∨ state.machine.canPullBody then
-      state := { state with requiresData := false }
-      let event ← pollNextEvent config socket requestChannel connectionContext state
-      let (newState, shouldClose) ← handleRecvEvent config event state
-      state := newState
-      if shouldClose then break
+    state := newState
+
+    if sawFailure then
+      break
+
+    -- Phase 4: wait for the next IO event.
+    state := { state with requiresData := false }
+    let event ← pollNextEvent config socket requestChannel connectionContext state
+    let (newState, shouldClose) ← handleRecvEvent config state event
+    state := newState
+    if shouldClose then break
 
   -- Clean up: notify any in-flight request and close all open streams.
-  if let some packet := state.currentRequest then
-    packet.onError (.userError "connection closed")
-
-  closeAllRequestState state
+  discard <| abortState state (.userError "connection closed")
 
   discard <| EIO.toBaseIO requestChannel.close
 

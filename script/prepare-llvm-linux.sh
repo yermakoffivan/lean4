@@ -79,6 +79,6 @@ echo -n " -DLEANC_INTERNAL_FLAGS='--sysroot ROOT -nostdinc -isystem ROOT/include
 # linker script so that no libc symbols are bound to it instead.
 echo -n " -DLEANC_INTERNAL_LINKER_FLAGS='--sysroot ROOT -L ROOT/lib -L ROOT/lib/glibc -lc -lc_nonshared -Wl,--as-needed -l:ld.so -Wl,--no-as-needed -lpthread_nonshared -Wl,--as-needed -Wl,-Bstatic -lgmp -lunwind -luv -lssl -lcrypto -Wl,-Bdynamic -Wl,--no-as-needed -fuse-ld=lld'"
 # when not using the above flags, link GMP/libuv/OpenSSL dynamically/as usual
-echo -n " -DLEAN_EXTRA_LINKER_FLAGS='-Wl,--as-needed -lgmp -luv -Wl,-Bstatic -lssl -lcrypto -Wl,-Bdynamic -lpthread -ldl -lrt -Wl,--no-as-needed'"
+echo -n " -DLEAN_EXTRA_LINKER_FLAGS='-Wl,--as-needed -lgmp -luv -lssl -lcrypto -lpthread -ldl -lrt -Wl,--no-as-needed'"
 # do not set `LEAN_CC` for tests
 echo -n " -DLEAN_TEST_VARS=''"

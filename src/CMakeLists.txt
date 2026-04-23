@@ -369,7 +369,9 @@ endif()
 
 # OpenSSL
 if(NOT "${CMAKE_SYSTEM_NAME}" MATCHES "Emscripten")
-  find_package(OpenSSL 3 REQUIRED)
+  message(STATUS "OpenSSL BEFORE find_package: INCLUDE_DIR='${OPENSSL_INCLUDE_DIR}' SSL='${OPENSSL_SSL_LIBRARY}' CRYPTO='${OPENSSL_CRYPTO_LIBRARY}'")
+  find_package(OpenSSL 3 REQUIRED COMPONENTS Crypto SSL)
+  message(STATUS "OpenSSL AFTER  find_package: INCLUDE_DIR='${OPENSSL_INCLUDE_DIR}' SSL='${OPENSSL_SSL_LIBRARY}' CRYPTO='${OPENSSL_CRYPTO_LIBRARY}'")
   set(OPENSSL_LIBRARIES ${OPENSSL_SSL_LIBRARY} ${OPENSSL_CRYPTO_LIBRARY})
   include_directories(${OPENSSL_INCLUDE_DIR})
   string(JOIN " " OPENSSL_LIBRARIES_STR ${OPENSSL_LIBRARIES})
@@ -504,16 +506,8 @@ endif()
 string(APPEND TOOLCHAIN_STATIC_LINKER_FLAGS " ${LEAN_CXX_STDLIB}")
 string(APPEND TOOLCHAIN_SHARED_LINKER_FLAGS " ${LEAN_CXX_STDLIB}")
 
-# In standalone (release) builds, OpenSSL must be statically embedded in libleanshared.so.
-# In non-standalone (dev/CI nix) builds, `find_package(OpenSSL)` resolves to shared libs from
-# the nix store. Adding those to libleanshared.so would produce DT_NEEDED entries pointing into
-# the nix store (including transitive libc++.so.1 because nix's libssl is built with libc++).
-# Those paths don't exist in `out/` during `make run-local` tests, breaking them.
-# For non-standalone builds, OpenSSL is instead provided via LEAN_EXTRA_LINKER_FLAGS (leanc.sh)
-# and resolved at runtime from the loading executable.
-if(DEFINED OPENSSL_LIBRARIES_STR AND LEAN_STANDALONE)
-  string(APPEND TOOLCHAIN_SHARED_LINKER_FLAGS " ${OPENSSL_LIBRARIES_STR}")
-endif()
+# OpenSSL is provided via LEAN_EXTRA_LINKER_FLAGS (leanc.sh) and resolved at runtime from the
+# loading executable, matching the same strategy as GMP and libuv.
 
 # in local builds, link executables and not just dynlibs against C++ stdlib as well,
 # which is required for e.g. asan

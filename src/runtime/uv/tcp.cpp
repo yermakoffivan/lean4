@@ -788,12 +788,16 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_tcp_try_recv(b_obj_arg socket, uint6
 #ifndef LEAN_WINDOWS
     lean_uv_tcp_socket_object* tcp_socket = lean_to_uv_tcp_socket(socket);
 
+    event_loop_lock(&global_ev);
+
     if (tcp_socket->m_promise_read != nullptr) {
+        event_loop_unlock(&global_ev);
         return lean_io_result_mk_ok(lean::mk_option_none());
     }
 
     uv_os_fd_t fd;
     if (uv_fileno((uv_handle_t*)tcp_socket->m_uv_tcp, &fd) != 0) {
+        event_loop_unlock(&global_ev);
         return lean_io_result_mk_ok(lean::mk_option_none());
     }
 
@@ -802,11 +806,14 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_tcp_try_recv(b_obj_arg socket, uint6
     pfd.events = POLLIN;
     pfd.revents = 0;
     if (poll(&pfd, 1, 0) <= 0 || !(pfd.revents & POLLIN)) {
+        event_loop_unlock(&global_ev);
         return lean_io_result_mk_ok(lean::mk_option_none());
     }
 
     lean_object* byte_array = lean_alloc_sarray(1, 0, buffer_size);
     ssize_t nread = recv((int)fd, (char*)lean_sarray_cptr(byte_array), (size_t)buffer_size, MSG_DONTWAIT);
+
+    event_loop_unlock(&global_ev);
 
     if (nread > 0) {
         lean_sarray_set_size(byte_array, (size_t)nread);
@@ -827,22 +834,29 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_tcp_try_recv(b_obj_arg socket, uint6
 #else
     lean_uv_tcp_socket_object* tcp_socket = lean_to_uv_tcp_socket(socket);
 
+    event_loop_lock(&global_ev);
+
     if (tcp_socket->m_promise_read != nullptr) {
+        event_loop_unlock(&global_ev);
         return lean_io_result_mk_ok(lean::mk_option_none());
     }
 
     uv_os_fd_t fd;
     if (uv_fileno((uv_handle_t*)tcp_socket->m_uv_tcp, &fd) != 0) {
+        event_loop_unlock(&global_ev);
         return lean_io_result_mk_ok(lean::mk_option_none());
     }
 
     u_long bytes_available = 0;
     if (ioctlsocket((SOCKET)fd, FIONREAD, &bytes_available) != 0 || bytes_available == 0) {
+        event_loop_unlock(&global_ev);
         return lean_io_result_mk_ok(lean::mk_option_none());
     }
 
     lean_object* byte_array = lean_alloc_sarray(1, 0, buffer_size);
     int nread = recv((SOCKET)fd, (char*)lean_sarray_cptr(byte_array), (int)buffer_size, 0);
+
+    event_loop_unlock(&global_ev);
 
     if (nread > 0) {
         lean_sarray_set_size(byte_array, (size_t)nread);

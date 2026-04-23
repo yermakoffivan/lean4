@@ -1,7 +1,7 @@
 import Std.Async
 import Std.Sync
 
-open Std.Async
+open Std Async
 
 /-- Test basic tree cancellation -/
 partial def testCancelTree : IO Unit := do

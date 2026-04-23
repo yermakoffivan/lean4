@@ -1,7 +1,7 @@
 import Std.Async
 import Std.Sync
 
-open Std.Async
+open Std Async
 
 /-- Test ContextAsync cancellation check -/
 def testIsCancelled : IO Unit := do

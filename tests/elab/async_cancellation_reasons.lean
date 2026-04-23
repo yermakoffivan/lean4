@@ -1,7 +1,7 @@
 import Std.Async
 import Std.Sync
 
-open Std.Async
+open Std Async
 
 -- Test basic cancellation with default reason
 def testBasicCancellationWithReason : Async Unit := do

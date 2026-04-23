@@ -402,7 +402,7 @@ where
         throwError "Every field of `{.ofConstName ctorName}` must be explicit"
       let mut exprPatt ← ``(Expr.const $(quote ctorName) _)
       let mut exprResultArgs := #[]
-      for i in [0:xs.size] do
+      for _ in [0:xs.size] do
         let x ← mkIdent <$> mkFreshUserName `x
         exprPatt ← ``(Expr.app $exprPatt $x)
         exprResultArgs := exprResultArgs.push <| ← `((← EvalConfigItem.evalExpr $x))

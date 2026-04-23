@@ -358,6 +358,67 @@ private def sendInBackground {β : Type} [Coe β Body.Any]
     throw <| IO.userError
       s!"explicit Cookie must be stripped on cross-origin redirect:\n{redirectText.quote}"
 
+-- A `Set-Cookie` without `Path=` must default to the directory of the request URI,
+-- not to `/`. A cookie set on `/app/login` should be sent to `/app/profile` but not
+-- to `/other`.
+
+#eval show IO _ from runWithTimeout "default cookie path stays scoped to request directory" 4000 <| Async.block do
+  let (mockClient, mockServer) ← Mock.new
+  let agent ← mkAgent mockServer
+
+  let loginReq ← Request.new |>.method .get |>.uri! "/app/login"
+    |>.header! "Host" "example.com" |>.empty
+  let loginPromise ← sendInBackground agent loginReq
+
+  let _ ← drainRequest mockClient
+  mockClient.send (rawResp "200 OK"
+    #[("Set-Cookie", "sid=1"),
+      ("Content-Length", "2"),
+      ("Connection", "keep-alive")] "ok")
+
+  match ← await loginPromise.result! with
+  | Except.error e => throw (IO.userError s!"login request failed: {e}")
+  | Except.ok resp =>
+    let _ ← resp.body.readAll (α := String)
+
+  let siblingReq ← Request.new |>.method .get |>.uri! "/other"
+    |>.header! "Host" "example.com" |>.empty
+  let siblingPromise ← sendInBackground agent siblingReq
+
+  let siblingBytes ← drainRequest mockClient
+  mockClient.send (rawResp "200 OK"
+    #[("Content-Length", "2"),
+      ("Connection", "keep-alive")] "ok")
+
+  match ← await siblingPromise.result! with
+  | Except.error e => throw (IO.userError s!"sibling request failed: {e}")
+  | Except.ok resp =>
+    let _ ← resp.body.readAll (α := String)
+
+  let siblingText := String.fromUTF8! siblingBytes
+  if siblingText.contains "Cookie: sid=1" then
+    throw <| IO.userError
+      s!"cookie without Path= must not be sent to /other:\n{siblingText.quote}"
+
+  let childReq ← Request.new |>.method .get |>.uri! "/app/profile"
+    |>.header! "Host" "example.com" |>.empty
+  let childPromise ← sendInBackground agent childReq
+
+  let childBytes ← drainRequest mockClient
+  mockClient.send (rawResp "200 OK"
+    #[("Content-Length", "2"),
+      ("Connection", "close")] "ok")
+
+  match ← await childPromise.result! with
+  | Except.error e => throw (IO.userError s!"child-path request failed: {e}")
+  | Except.ok resp =>
+    let _ ← resp.body.readAll (α := String)
+
+  let childText := String.fromUTF8! childBytes
+  unless childText.contains "Cookie: sid=1" do
+    throw <| IO.userError
+      s!"cookie without Path= must be sent to /app/profile:\n{childText.quote}"
+
 -- ============================================================
 -- Section 3 — Redirect policy
 -- ============================================================
@@ -706,6 +767,120 @@ private def sendInBackground {β : Type} [Coe β Body.Any]
       if s.toUTF8.size > 4 then
         throw (IO.userError s!"response body limit not enforced; read {s.toUTF8.size} bytes")
     | Except.error _ => pure ()
+
+-- The body-size counter must reset on `.next` so a second keep-alive response
+-- is checked against its own size, not the cumulative bytes from the previous
+-- response.
+
+#eval show IO _ from runWithTimeout "maxResponseBodySize resets between keep-alive requests" 4000 <| Async.block do
+  let (mockClient, mockServer) ← Mock.new
+  let agent ← mkAgent mockServer (config := { maxResponseBodySize := some 4 })
+
+  let req1 ← Request.new |>.method .get |>.uri! "/first"
+    |>.header! "Host" "example.com" |>.empty
+  let p1 ← sendInBackground agent req1
+
+  let _ ← drainRequest mockClient
+  mockClient.send (rawResp "200 OK"
+    #[("Content-Length", "4"), ("Connection", "keep-alive")] "1234")
+
+  match ← await p1.result! with
+  | Except.error e => throw (IO.userError s!"first request failed: {e}")
+  | Except.ok resp =>
+    let body ← resp.body.readAll (α := String)
+    unless body == "1234" do
+      throw (IO.userError s!"expected first body '1234', got {body.quote}")
+
+  let req2 ← Request.new |>.method .get |>.uri! "/second"
+    |>.header! "Host" "example.com" |>.empty
+  let p2 ← sendInBackground agent req2
+
+  let _ ← drainRequest mockClient
+  mockClient.send (rawResp "200 OK"
+    #[("Content-Length", "2"), ("Connection", "close")] "ok")
+
+  match ← await p2.result! with
+  | Except.error e => throw (IO.userError s!"second request failed: {e}")
+  | Except.ok resp =>
+    let body ← resp.body.readAll (α := String)
+    unless body == "ok" do
+      throw (IO.userError s!"expected second body 'ok', got {body.quote}")
+
+-- An unfollowed 3xx response is caller-facing, so its body must still respect
+-- `maxResponseBodySize` rather than the internal redirect drain limit.
+
+#eval show IO _ from runWithTimeout "maxResponseBodySize applies to unfollowed 302 body" 4000 <| Async.block do
+  let (mockClient, mockServer) ← Mock.new
+  let agent ← mkAgent mockServer (config := { maxRedirects := 0, maxResponseBodySize := some 5 })
+
+  let request ← Request.new |>.method .get |>.uri! "/"
+    |>.header! "Host" "example.com" |>.empty
+
+  let resultPromise ← sendInBackground agent request
+
+  let _ ← drainRequest mockClient
+  mockClient.send (rawResp "302 Found"
+    #[("Location", "/next"),
+      ("Content-Length", "10"),
+      ("Connection", "close")] "0123456789")
+
+  match ← await resultPromise.result! with
+  | Except.error e => throw (IO.userError s!"agent errored before returning 302: {e}")
+  | Except.ok resp =>
+    unless resp.line.status.toCode == 302 do
+      throw (IO.userError s!"expected 302, got {resp.line.status.toCode}")
+    let got : Except String String ← try
+        let s ← resp.body.readAll (α := String)
+        pure (Except.ok s)
+      catch e => pure (Except.error (toString e))
+    match got with
+    | Except.error _ => pure ()
+    | Except.ok s =>
+      if s.toUTF8.size > 5 then
+        throw (IO.userError s!"unfollowed 302 ignored maxResponseBodySize and returned {s.toUTF8.size} bytes")
+
+-- A rejected `validateStatus` must not strand unread body bytes on the session.
+-- After the error, the same keep-alive connection should still handle the next request.
+
+#eval show IO _ from runWithTimeout "validateStatus rejection preserves keep-alive reuse" 4000 <| Async.block do
+  let (mockClient, mockServer) ← Mock.new
+  let agent ← mkAgent mockServer
+    (config := { validateStatus := some (fun s => s.toCode / 100 == 2) })
+
+  let badReq ← Request.new |>.method .get |>.uri! "/bad"
+    |>.header! "Host" "example.com" |>.empty
+  let badPromise ← sendInBackground agent badReq
+
+  let _ ← drainRequest mockClient
+  mockClient.send (rawResp "404 Not Found"
+    #[("Content-Length", "5"),
+      ("Connection", "keep-alive")] "error")
+
+  match ← await badPromise.result! with
+  | Except.ok _ =>
+    throw (IO.userError "expected validateStatus to reject 404")
+  | Except.error _ => pure ()
+
+  let goodReq ← Request.new |>.method .get |>.uri! "/good"
+    |>.header! "Host" "example.com" |>.empty
+  let goodPromise ← sendInBackground agent goodReq
+
+  let goodBytes ← drainRequest mockClient
+  mockClient.send (rawResp "200 OK"
+    #[("Content-Length", "2"),
+      ("Connection", "close")] "ok")
+
+  match ← await goodPromise.result! with
+  | Except.error e => throw (IO.userError s!"follow-up request failed after validateStatus rejection: {e}")
+  | Except.ok resp =>
+    let body ← resp.body.readAll (α := String)
+    unless body == "ok" do
+      throw (IO.userError s!"expected follow-up body 'ok', got {body.quote}")
+
+  let goodText := String.fromUTF8! goodBytes
+  unless goodText.startsWith "GET /good" do
+    throw <| IO.userError
+      s!"follow-up request never reached the wire after validateStatus rejection:\n{goodText.quote}"
 
 -- ============================================================
 -- Section 7 — Keep-alive and Connection: close

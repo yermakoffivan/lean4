@@ -353,14 +353,13 @@ private def rawResp
         s!"Test 'https:// redirect is followed' FAILED: unexpected status {code}"
 
 -- ============================================================
--- Redirect: streaming body dropped on method-preserving redirect
+-- Redirect: non-replayable body blocks auto-follow of 307
 -- ============================================================
--- A 307 redirect preserves the original method and body.  When the body is a
--- streaming channel (.outgoing) that has already been consumed by the first
--- request, it cannot be replayed.  The redirect request must send no body
--- (Content-Length: 0) rather than silently retransmitting whatever bytes remain
--- in the channel (none, so it would be empty anyway — but the fix must explicitly
--- classify .outgoing as non-replayable so future semantics stay correct).
+-- RFC 9110 §15.4.8: the user agent MUST NOT automatically redirect a 307 when
+-- the request body cannot be repeated.  A streaming channel body (.stream) is
+-- consumed on first use and therefore non-replayable.  The agent must surface
+-- the 307 response unchanged so the caller can decide what to do next, rather
+-- than silently following the redirect with an empty (or wrong) body.
 -- ============================================================
 
 #eval show IO _ from runWithTimeout "streaming body dropped on 307 redirect" 3000 <| Async.block do
@@ -411,27 +410,17 @@ private def rawResp
     #[("Location", "/new-upload"),
       ("Content-Length", "0")] "")
 
-  -- Second request: the redirect.  The streaming body is already consumed so
-  -- the client must send no body (Content-Length: 0 or absent, no body bytes).
-  let some redirectBytes ← mockClient.recv?
-    | throw (IO.userError "Test failed: no redirect request received")
-  mockClient.send (rawResp "200 OK"
-    #[("Content-Length", "2"), ("Connection", "close")] "ok")
-
+  -- RFC 9110 §15.4.8: the agent must NOT follow the 307 automatically because
+  -- the streaming body cannot be replayed.  The 307 is returned directly to the
+  -- caller; no second request reaches the mock server.
   match ← await resultPromise.result! with
   | Except.error e => throw (IO.userError s!"agent error: {e}")
-  | Except.ok _ => pure ()
-
-  let redirectText := String.fromUTF8! redirectBytes
-  -- The redirect request must target /new-upload.
-  unless redirectText.contains "PUT /new-upload" do
-    throw <| IO.userError
-      s!"Test 'streaming body dropped on 307 redirect' FAILED: expected PUT /new-upload\n{redirectText.quote}"
-  -- The body must be empty: Content-Length 0 (or no body bytes after blank line).
-  -- We check that "payload" does not appear in the redirect request.
-  if redirectText.contains "payload" then
-    throw <| IO.userError
-      s!"Test 'streaming body dropped on 307 redirect' FAILED: \
-         streaming body payload present in redirect request\n{redirectText.quote}"
+  | Except.ok resp =>
+    resp.body.close
+    unless resp.line.status.toCode == 307 do
+      throw <| IO.userError
+        s!"Test 'streaming body dropped on 307 redirect' FAILED: \
+           expected 307 (no auto-redirect for non-replayable body), \
+           got {resp.line.status.toCode}"
 
 

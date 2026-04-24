@@ -18,6 +18,9 @@ import Init.Data.Option.Lemmas
 import Init.Data.Range.Polymorphic.Lemmas
 import Init.Omega
 
+-- TODO: remove after stage0 update
+set_option linter.unusedSimpArgs false
+
 set_option doc.verso true
 
 public section

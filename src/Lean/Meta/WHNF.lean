@@ -504,6 +504,7 @@ def canUnfoldAtMatcher (cfg : Config) (info : ConstantInfo) : CoreM Bool := do
     return true
   return info.name == ``OfNat.ofNat -- needed to reduce numeric literals in match discriminants
    || info.name == ``NatCast.natCast -- needed for `↑m` in match discriminants (pervasive in Int proofs)
+   || info.name == ``Zero.zero || info.name == ``One.one -- needed for `0`/`1` in match discriminants
    || info.name == ``decEq
    || info.name == ``Nat.decEq
    || info.name == ``Char.ofNat   || info.name == ``Char.ofNatAux

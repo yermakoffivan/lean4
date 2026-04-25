@@ -205,6 +205,12 @@ instance [RpcEncodable α] : RpcEncodable (Option α) where
   rpcEncode v := toJson <$> v.mapM rpcEncode
   rpcDecode j := do Option.mapM rpcDecode (← fromJson? j)
 
+instance : RpcEncodable Unit where
+  rpcEncode _ := pure .null
+  rpcDecode
+    | .null => return ()
+    | json => .error s!"expected null to decode Unit, got {json}"
+
 -- TODO(WN): instance [RpcEncodable α β] [Traversable t] : RpcEncodable (t α) (t β)
 
 instance [RpcEncodable α] : RpcEncodable (Array α) where

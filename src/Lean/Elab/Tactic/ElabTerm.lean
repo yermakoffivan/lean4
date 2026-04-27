@@ -8,7 +8,6 @@ module
 prelude
 public import Lean.Meta.Tactic.Constructor
 public import Lean.Meta.Tactic.Replace
--- public import Lean.Meta.Tactic.Cleanup
 public import Lean.Meta.Tactic.Rename
 public import Lean.Elab.Tactic.Config
 

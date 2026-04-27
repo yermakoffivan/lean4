@@ -157,12 +157,6 @@ def satQuery (solverPath : System.FilePath) (problemPath : System.FilePath) (pro
     s!"--binary={binaryProofs}",
     "--quiet",
     /-
-    This sets the magic parameters of cadical to optimize for UNSAT search.
-    Given the fact that we are mostly interested in proving things and expect user goals to be
-    provable this is a fine value to set
-    -/
-    "--unsat",
-    /-
     Ensure we don't produce proofs with BVA as our LRAT checker doesn't understand them yet.
     See: https://github.com/arminbiere/cadical/issues/134
     -/

@@ -845,8 +845,10 @@ We use them to implement `macro_rules` and `elab_rules`
 @[builtin_term_parser] def noErrorIfUnused := leading_parser
   "no_error_if_unused% " >> termParser
 
+def namedArgumentIndexParam := leading_parser
+  optional "@" >> num
 def namedArgument  := leading_parser (withAnonymousAntiquot := false)
-  atomic ("(" >> ident >> " := ") >> withoutPosition termParser >> ")"
+  atomic ("(" >> (ident <|> namedArgumentIndexParam) >> " := ") >> withoutPosition termParser >> ")"
 /-- In a function application, `..` notation inserts zero or more `_` placeholders. -/
 def ellipsis       := leading_parser (withAnonymousAntiquot := false)
   ".." >> notFollowedBy (checkNoWsBefore >> ".") "`.` immediately after `..`"

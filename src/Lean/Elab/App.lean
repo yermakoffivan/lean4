@@ -646,54 +646,6 @@ private def hasCurrDepthMVar (e : Expr) : MetaM Bool := do
     | some mdecl => mdecl.depth == mctx.depth
     | none => true
 
-/--
-Fails if expected type propagation cannot succeed. Recall that it fails if the resulting type
-has any not-yet-elaborated arguments.
-
-Uses relatively cheap heuristics that handle some common cases.
--/
-private partial def checkIfPropagateCouldSucceed : M Unit := do
-  assert! (← read).isPropagatingExpected
-  try
-    visit (← get).fType 0
-  catch ex =>
-    -- If there are any pending `Arg.expr`s then propagation might succeed. This is an uncommon case,
-    -- so we don't check for it before this point.
-    if (← get).args.any (· matches Arg.expr ..) then
-      return
-    if (← get).namedArgs.any (·.val matches Arg.expr ..) then
-      return
-    throw ex
-where
-  visit (e : Expr) (depth : Nat) : M Unit := do
-    match e with
-    | .forallE _ t b _ =>
-      -- Theoretically optParams can make propagation succeed.
-      -- We let the `main` loop instantiate defaults, rather than here.
-      unless b.hasLooseBVars && t.isOptParam do
-        visit b (depth + 1)
-    | .mdata _ e' => visit e' depth
-    | _ =>
-      match e.getAppFn with
-      | .bvar idx =>
-        if idx < depth then
-          throwError "checkIfPropagateCouldSucceed: head application of later argument, index {(← get).paramIdx + depth}"
-        else
-          let fArgs := (← get).fArgs
-          let fArg := fArgs[fArgs.size - (idx - depth) - 1]!
-          return ← visit (fArg.betaRev e.getAppRevArgs) depth
-      | f@(.mvar mvarId) =>
-        let e ← instantiateMVars e
-        if e.getAppFn != f then
-          return ← visit e depth
-        unless (← mvarId.isReadOnly) do
-          throwError "checkIfPropagateCouldSucceed: head application of unelaborated argument `{f}`"
-      | .const c .. =>
-        let info ← getConstInfo c
-        unless ← canUnfold info do
-          e.getAppArgs.forM (visit · depth)
-      | _ => pure ()
-
 mutual
 
   /--
@@ -1007,8 +959,6 @@ mutual
   /-- Elaborate function application arguments. -/
   private partial def main : M Expr := do
     if (← isForallWithWHNF) then
-      if (← read).isPropagatingExpected then
-        checkIfPropagateCouldSucceed
       let binderName ← getParamName
       match (← findNamedArg?) with
       | some (namedArg, idx) =>

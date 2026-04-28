@@ -720,12 +720,16 @@ mutual
           trace[Elab.app.propagateExpectedType] "expected type is Prop, propagation disabled"
         else
           if let some fTypeBody ← getResultingType? then
-            withTraceNodeBefore `Elab.app.propagateExpectedType (fun _ => return m!"{expectedType} =?= {fTypeBody}") do
+            discard <| withTraceNodeBefore `Elab.app.propagateExpectedType (fun _ => return m!"{expectedType} =?= {fTypeBody}") do
               trySynthesizeAppInstMVars
               if (← isDefEq expectedType fTypeBody) then
                 /- Note that we only disable propagation with `propagateExpected := false` when propagation has succeeded. -/
                 modify fun s => { s with propagateExpected := false, propagateSucceeded := true }
                 trace[Elab.app.propagateExpectedType] "propagated: {expectedType} =?= {fTypeBody}"
+                return true
+              else
+                trace[Elab.app.propagateExpectedType] "propagation pending: {expectedType} =?= {fTypeBody}"
+                return false
 
   /--
   Auxiliary method for `propagateExpectedType`.
@@ -1806,12 +1810,13 @@ where
           else
             /- If we can't add `e` to `args`, we can use a named argument `(@paramIdx := e)`. -/
             return (args, namedArgs.push { param := .index (← getRef) true paramIdx, val := Arg.expr e })
-        /- Advance counters. -/
-        paramIdx := paramIdx + 1
-        if explicit then
-          paramExplicitCount := paramExplicitCount + 1
+        /- Advance `argIdx`. -/
         if explicit || bInfo.isExplicit then
           argIdx := argIdx + 1
+      /- Advance param counters. -/
+      paramIdx := paramIdx + 1
+      if explicit then
+        paramExplicitCount := paramExplicitCount + 1
     if let fType'@(.forallE ..) ← whnf fType' then
       return ← go fPreCoercion? (mkAppN f xs) fType' paramIdx paramExplicitCount argIdx remainingNamedArgs
     if let some f' ← coerceToFunction? (mkAppN f xs) then

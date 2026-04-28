@@ -24,6 +24,9 @@ polling.
 -/
 structure CancelToken where
   private promise : IO.Promise Unit
+  /-- Plain `Bool` flag set in lockstep with `promise`; read by the cheap `isSet` fast path
+      (e.g. on the hot `Core.checkInterrupted` C++ path) without walking the promise. -/
+  private setRef : IO.Ref Bool
 deriving Nonempty
 
 namespace CancelToken
@@ -34,16 +37,19 @@ Creates a new cancellation token.
 Note: cannot be called from `initialize` blocks because the underlying task manager is not yet
 running at that point. Construct lazily on first use instead.
 -/
-def new : BaseIO CancelToken :=
-  CancelToken.mk <$> IO.Promise.new
+def new : BaseIO CancelToken := do
+  let promise ← IO.Promise.new
+  let setRef ← IO.mkRef false
+  return { promise, setRef }
 
 /-- Activates a cancellation token. Idempotent. -/
-def set (tk : CancelToken) : BaseIO Unit :=
+def set (tk : CancelToken) : BaseIO Unit := do
+  tk.setRef.set true
   tk.promise.resolve ()
 
 /-- Checks whether the cancellation token has been activated. -/
 def isSet (tk : CancelToken) : BaseIO Bool :=
-  tk.promise.isResolved
+  tk.setRef.get
 
 /--
 A task that completes when the cancellation token is set or dropped. Useful for waiting on

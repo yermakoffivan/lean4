@@ -223,7 +223,9 @@ The name `IO.CancelToken.promise✝` is a private imported name.
 -/
 /--
 info: def IO.CancelToken.set : IO.CancelToken → BaseIO Unit :=
-fun tk => IO.Promise.resolve () (IO.CancelToken.promise✝ tk)
+fun tk => do
+  ST.Ref.set (IO.CancelToken.setRef✝ tk) true
+  IO.Promise.resolve () (IO.CancelToken.promise✝ tk)
 -/
 #guard_msgs in #print IO.CancelToken.set
 /-!
@@ -231,6 +233,8 @@ Even if `IO` is opened, it won't print as `CancelToken.promise✝`, but the full
 -/
 /--
 info: def IO.CancelToken.set : CancelToken → BaseIO Unit :=
-fun tk => Promise.resolve () (IO.CancelToken.promise✝ tk)
+fun tk => do
+  ST.Ref.set (IO.CancelToken.setRef✝ tk) true
+  Promise.resolve () (IO.CancelToken.promise✝ tk)
 -/
 #guard_msgs in open IO in #print IO.CancelToken.set

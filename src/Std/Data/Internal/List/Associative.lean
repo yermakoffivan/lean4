@@ -8556,7 +8556,6 @@ theorem minKey?_insertEntry_le_minKey? [Ord α] [TransOrd α] [BEq α] [LawfulBE
   simp only [← hkmi, minKey?_insertEntry hl, hkm, Option.get_some, Option.elim_some]
   split <;> simp [*]
 
-set_option backward.defeqAttrib.useBackward true in
 theorem minKey?_insertEntry_le_self [Ord α] [TransOrd α] [BEq α] [LawfulBEqOrd α] {k : α}
     {v : β k} {l : List ((a : α) × β a)} (hl : DistinctKeys l) {kmi}
     (hkmi : (insertEntry k v l |> minKey? |>.get <| isSome_minKey?_insertEntry hl) = kmi) :
@@ -8564,7 +8563,7 @@ theorem minKey?_insertEntry_le_self [Ord α] [TransOrd α] [BEq α] [LawfulBEqOr
   simp only [← hkmi, minKey?_insertEntry hl, Option.get_some]
   cases minKey? l
   · simp
-  · dsimp only [Option.elim_some]
+  · simp only [Option.elim_some]
     cases hcmp : compare k _ <;> simp_all [OrientedCmp.gt_iff_lt]
 
 theorem minKey?_le_of_containsKey [Ord α] [TransOrd α] [BEq α] [LawfulBEqOrd α] {k km}

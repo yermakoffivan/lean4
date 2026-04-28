@@ -506,7 +506,6 @@ theorem pmap_pmap {p : α → Prop} {q : β → Prop} {g : ∀ a, p a → β} {f
         (fun a _ => H₁ a a.2) := by
   simp [pmap_eq_map_attach, attach_map]
 
-set_option backward.defeqAttrib.useBackward true in
 @[simp] theorem pmap_append {p : ι → Prop} {f : ∀ a : ι, p a → α} {l₁ l₂ : List ι}
     (h : ∀ a ∈ l₁ ++ l₂, p a) :
     (l₁ ++ l₂).pmap f h =
@@ -515,7 +514,7 @@ set_option backward.defeqAttrib.useBackward true in
   induction l₁ with
   | nil => rfl
   | cons _ _ ih =>
-    dsimp only [pmap, cons_append]
+    simp only [pmap, cons_append]
     rw [ih]
 
 theorem pmap_append' {p : α → Prop} {f : ∀ a : α, p a → β} {l₁ l₂ : List α}

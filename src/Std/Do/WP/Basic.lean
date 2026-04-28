@@ -89,7 +89,6 @@ instance ExceptT.instWP [WP m ps] : WP (ExceptT ε m) (.except ε ps) where
 instance OptionT.instWP [WP m ps] : WP (OptionT m) (.except PUnit ps) where
   wp x := PredTrans.pushOption (wp x.run)
 
-set_option backward.defeqAttrib.useBackward true in
 instance EStateM.instWP : WP (EStateM ε σ) (.except ε (.arg σ .pure)) where
   wp x := -- Could define as PredTrans.mkExcept (PredTrans.modifyGetM (fun s => pure (EStateM.Result.toExceptState (x s))))
     { trans := fun Q s => match x.run s with
@@ -99,7 +98,7 @@ instance EStateM.instWP : WP (EStateM ε σ) (.except ε (.arg σ .pure)) where
         intro _ _
         apply SPred.bientails.of_eq
         ext s
-        dsimp
+        simp
         cases (x.run s) <;> simp
     }
 

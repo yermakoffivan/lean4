@@ -1220,7 +1220,6 @@ theorem pmap_pred_congr {α : Type u}
   cases ho
   exact (hp y).mp (h y hy)
 
-set_option backward.defeqAttrib.useBackward true in
 @[congr]
 theorem pmap_congr {α : Type u} {β : Type v}
     {p p' : α → Prop} (hp : ∀ x, p x ↔ p' x)
@@ -1232,7 +1231,7 @@ theorem pmap_congr {α : Type u} {β : Type v}
   cases ho
   cases o
   · rfl
-  · dsimp
+  · simp
     rw [hf]
 
 theorem pmap_guard {q : α → Bool} {p : α → Prop} (f : (x : α) → p x → β) {x : α}

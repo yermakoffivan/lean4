@@ -1,6 +1,6 @@
 def inc (x : Nat) := x + 1
 
-@[backward_defeq, simp] theorem inc_eq : inc x = x + 1 := rfl
+@[simp] theorem inc_eq : inc x = x + 1 := rfl
 
 set_option backward.defeqAttrib.useBackward true
 

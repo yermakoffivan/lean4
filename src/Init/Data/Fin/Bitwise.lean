@@ -26,7 +26,6 @@ namespace Fin
 @[simp] theorem or_val_of_uInt64Size (a b : Fin UInt64.size) : (a ||| b).val = a.val ||| b.val := or_val_of_two_pow (w := 64) a b
 @[simp] theorem or_val_of_uSizeSize (a b : Fin USize.size) : (a ||| b).val = a.val ||| b.val := or_val_of_two_pow a b
 
-@[backward_defeq]
 theorem or_val (a b : Fin n) : (a ||| b).val = (a.val ||| b.val) % n := rfl
 
 @[simp] theorem xor_val_of_two_pow {w} (a b : Fin (2 ^ w)) : (a ^^^ b).val = a.val ^^^ b.val :=
@@ -38,10 +37,9 @@ theorem or_val (a b : Fin n) : (a ||| b).val = (a.val ||| b.val) % n := rfl
 @[simp] theorem xor_val_of_uInt64Size (a b : Fin UInt64.size) : (a ^^^ b).val = a.val ^^^ b.val := xor_val_of_two_pow (w := 64) a b
 @[simp] theorem xor_val_of_uSizeSize (a b : Fin USize.size) : (a ^^^ b).val = a.val ^^^ b.val := xor_val_of_two_pow a b
 
-@[backward_defeq]
 theorem xor_val (a b : Fin n) : (a ^^^ b).val = (a.val ^^^ b.val) % n := rfl
 
-@[backward_defeq, simp] theorem shiftLeft_val (a b : Fin n) : (a <<< b).val = (a.val <<< b.val) % n := rfl
+@[simp] theorem shiftLeft_val (a b : Fin n) : (a <<< b).val = (a.val <<< b.val) % n := rfl
 
 @[simp] theorem shiftRight_val (a b : Fin n) : (a >>> b).val = a.val >>> b.val :=
   Nat.mod_eq_of_lt (Nat.lt_of_le_of_lt (Nat.shiftRight_le _ _) a.isLt)

@@ -800,7 +800,7 @@ protected theorem pow_succ (n m : Nat) : n^(succ m) = n^m * n :=
 protected theorem pow_add_one (n m : Nat) : n^(m + 1) = n^m * n :=
   rfl
 
-@[backward_defeq, simp] protected theorem pow_zero (n : Nat) : n^0 = 1 := rfl
+@[simp] protected theorem pow_zero (n : Nat) : n^0 = 1 := rfl
 
 @[simp] protected theorem pow_one (a : Nat) : a ^ 1 = a := by
   simp [Nat.pow_succ]
@@ -910,13 +910,11 @@ theorem sub_one_lt_of_lt {n m : Nat} (h : m < n) : n - 1 < n :=
 
 /-! # pred theorems -/
 
-@[backward_defeq]
 protected theorem pred_zero : pred 0 = 0 := rfl
-@[backward_defeq]
 protected theorem pred_succ (n : Nat) : pred n.succ = n := rfl
 
 @[defeq, simp] protected theorem zero_sub_one : 0 - 1 = 0 := rfl
-@[backward_defeq, simp] protected theorem add_one_sub_one (n : Nat) : n + 1 - 1 = n := rfl
+@[simp] protected theorem add_one_sub_one (n : Nat) : n + 1 - 1 = n := rfl
 
 theorem sub_one_eq_self {n : Nat} : n - 1 = n ↔ n = 0 := by cases n <;> simp [ne_add_one]
 theorem eq_self_sub_one {n : Nat} : n = n - 1 ↔ n = 0 := by cases n <;> simp

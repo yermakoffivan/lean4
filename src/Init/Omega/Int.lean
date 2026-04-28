@@ -199,15 +199,12 @@ theorem not_lt {i j : Fin n} : ¬ i < j ↔ j ≤ i := by
 protected theorem lt_of_not_le {i j : Fin n} (h : ¬ i ≤ j) : j < i := Fin.not_le.mp h
 protected theorem le_of_not_lt {i j : Fin n} (h : ¬ i < j) : j ≤ i := Fin.not_lt.mp h
 
-@[backward_defeq]
 theorem ofNat_val_add {x y : Fin n} :
     (((x + y : Fin n)) : Int) = ((x : Int) + (y : Int)) % n := rfl
 
-@[backward_defeq]
 theorem ofNat_val_sub {x y : Fin n} :
     (((x - y : Fin n)) : Int) = (((n - y : Nat) + (x : Int) : Int)) % n := rfl
 
-@[backward_defeq]
 theorem ofNat_val_mul {x y : Fin n} :
     (((x * y : Fin n)) : Int) = ((x : Int) * (y : Int)) % n := rfl
 

@@ -102,7 +102,7 @@ notation "𝟭" => Functor.id
 
 variable {C}
 
-@[backward_defeq, simp] theorem id_obj (X : C) : (𝟭 C).obj X = X := rfl
+@[simp] theorem id_obj (X : C) : (𝟭 C).obj X = X := rfl
 
 end
 
@@ -394,11 +394,11 @@ instance monoidalCategoryOp : MonoidalCategory Cᵒᵖ where
 @[simp] theorem unop_whiskerLeft (X : Cᵒᵖ) {Y Z : Cᵒᵖ} (f : Y ⟶ Z) :
     (X ◁ f).unop =  unop X ◁ f.unop := rfl
 
-@[backward_defeq, simp] theorem op_hom_rightUnitor (X : C) : (ρ_ X).hom.op = (ρ_ (op X)).inv := rfl
-@[backward_defeq, simp] theorem unop_hom_rightUnitor (X : Cᵒᵖ) : (ρ_ X).hom.unop = (ρ_ (unop X)).inv := rfl
+@[simp] theorem op_hom_rightUnitor (X : C) : (ρ_ X).hom.op = (ρ_ (op X)).inv := rfl
+@[simp] theorem unop_hom_rightUnitor (X : Cᵒᵖ) : (ρ_ X).hom.unop = (ρ_ (unop X)).inv := rfl
 
-@[backward_defeq, simp] theorem op_inv_rightUnitor (X : C) : (ρ_ X).inv.op = (ρ_ (op X)).hom := rfl
-@[backward_defeq, simp] theorem unop_inv_rightUnitor (X : Cᵒᵖ) : (ρ_ X).inv.unop = (ρ_ (unop X)).hom := rfl
+@[simp] theorem op_inv_rightUnitor (X : C) : (ρ_ X).inv.op = (ρ_ (op X)).hom := rfl
+@[simp] theorem unop_inv_rightUnitor (X : Cᵒᵖ) : (ρ_ X).inv.unop = (ρ_ (unop X)).hom := rfl
 
 end CategoryTheory
 
@@ -560,7 +560,7 @@ theorem whiskerRight_hom (X : Mon_ C) {Y Z : Mon_ C} (f : Y ⟶ Z) :
     (X ◁ f).hom = X.X ◁ f.hom := by
   rw [← id_tensorHom]; rfl
 
-@[backward_defeq, simp] theorem rightUnitor_inv_hom (X : Mon_ C) : (ρ_ X).inv.hom = (ρ_ X.X).inv := rfl
+@[simp] theorem rightUnitor_inv_hom (X : Mon_ C) : (ρ_ X).inv.hom = (ρ_ X.X).inv := rfl
 
 instance monMonoidal : MonoidalCategory (Mon_ C) where
   id_whiskerRight := sorry
@@ -607,7 +607,7 @@ instance : Category (Comon_ C) where
 
 @[ext] theorem ext {X Y : Comon_ C} {f g : X ⟶ Y} (w : f.hom = g.hom) : f = g := sorry
 
-@[backward_defeq, simp] theorem id_hom' (M : Comon_ C) : (𝟙 M : Hom M M).hom = 𝟙 M.X := rfl
+@[simp] theorem id_hom' (M : Comon_ C) : (𝟙 M : Hom M M).hom = 𝟙 M.X := rfl
 
 @[simp]
 theorem comp_hom' {M N K : Comon_ C} (f : M ⟶ N) (g : N ⟶ K) : (f ≫ g).hom = f.hom ≫ g.hom :=
@@ -623,7 +623,7 @@ def Comon_to_Mon_op_op_obj' (A : Comon_ C) : Mon_ (Cᵒᵖ) where
   mul := A.comul.op
   mul_one := sorry
 
-@[backward_defeq, simp] theorem Comon_to_Mon_op_op_obj'_X (A : Comon_ C) : (Comon_to_Mon_op_op_obj' C A).X = op A.X := rfl
+@[simp] theorem Comon_to_Mon_op_op_obj'_X (A : Comon_ C) : (Comon_to_Mon_op_op_obj' C A).X = op A.X := rfl
 
 @[simp] def Comon_to_Mon_op_op : Comon_ C ⥤ (Mon_ (Cᵒᵖ))ᵒᵖ where
   obj A := op (Comon_to_Mon_op_op_obj' C A)
@@ -634,7 +634,7 @@ def Mon_op_op_to_Comon_obj' (A : (Mon_ (Cᵒᵖ))) : Comon_ C where
   counit := A.one.unop
   comul := A.mul.unop
 
-@[backward_defeq, simp] theorem Mon_op_op_to_Comon_obj'_X (A : (Mon_ (Cᵒᵖ))) : (Mon_op_op_to_Comon_obj' C A).X = unop A.X := rfl
+@[simp] theorem Mon_op_op_to_Comon_obj'_X (A : (Mon_ (Cᵒᵖ))) : (Mon_op_op_to_Comon_obj' C A).X = unop A.X := rfl
 
 @[simp]
 def Mon_op_op_to_Comon : (Mon_ (Cᵒᵖ))ᵒᵖ ⥤ Comon_ C where
@@ -682,9 +682,9 @@ variable (C : Type u₁) [Category.{v₁} C] [MonoidalCategory.{v₁} C]
 
 def toComon_ : Comon_ (Mon_ C) ⥤ Comon_ C := (Mon_.forget C).mapComon
 
-@[backward_defeq, simp] theorem toComon_obj_X (M : Comon_ (Mon_ C)) : ((toComon_ C).obj M).X = M.X.X := rfl
+@[simp] theorem toComon_obj_X (M : Comon_ (Mon_ C)) : ((toComon_ C).obj M).X = M.X.X := rfl
 
-@[backward_defeq] theorem foo {V} [Quiver V] {X Y x} :
+theorem foo {V} [Quiver V] {X Y x} :
     @Quiver.Hom.unop V _ X Y (Opposite.op (unop := x)) = x := rfl
 
 set_option backward.isDefEq.respectTransparency false in
@@ -705,7 +705,7 @@ example (M : Comon_ (Mon_ C)) : Mon_ (Comon_ C) where
     ext
     simp [foo.{_, v₁ + 1}] -- specifying the universe level explicitly works!
 
-@[backward_defeq] theorem foo' {V} [Quiver V] {X Y x} :
+theorem foo' {V} [Quiver V] {X Y x} :
     @Quiver.Hom.unop V _ X Y no_index (Opposite.op (unop := x)) = x := rfl
 
 set_option backward.isDefEq.respectTransparency false in

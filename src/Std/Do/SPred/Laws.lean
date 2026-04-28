@@ -78,8 +78,8 @@ theorem bientails.to_eq {P Q : SPred σs} (h : P ⊣⊢ₛ Q) : P = Q := by
 
 /-! # Pure -/
 
-@[backward_defeq, simp, grind =] theorem down_pure {φ : Prop} : (⌜φ⌝ : SPred []).down = φ := rfl
-@[backward_defeq, simp, grind =] theorem apply_pure {φ : Prop} : (⌜φ⌝ : SPred (σ::σs)) s = ⌜φ⌝ := rfl
+@[simp, grind =] theorem down_pure {φ : Prop} : (⌜φ⌝ : SPred []).down = φ := rfl
+@[simp, grind =] theorem apply_pure {φ : Prop} : (⌜φ⌝ : SPred (σ::σs)) s = ⌜φ⌝ := rfl
 
 theorem pure_intro {φ : Prop} {P : SPred σs} : φ → P ⊢ₛ ⌜φ⌝ := by
   induction σs <;> simp_all [entails]

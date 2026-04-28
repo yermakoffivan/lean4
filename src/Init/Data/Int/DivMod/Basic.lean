@@ -117,19 +117,14 @@ because mathematical reasoning tends to be easier.
 instance : Mod Int where
   mod := Int.emod
 
-@[backward_defeq, simp, norm_cast] theorem natCast_ediv (m n : Nat) : (↑(m / n) : Int) = ↑m / ↑n := rfl
+@[simp, norm_cast] theorem natCast_ediv (m n : Nat) : (↑(m / n) : Int) = ↑m / ↑n := rfl
 
-@[backward_defeq]
 theorem ofNat_ediv_ofNat {a b : Nat} : (↑a / ↑b : Int) = (a / b : Nat) := rfl
-@[backward_defeq, norm_cast]
+@[norm_cast]
 theorem negSucc_ediv_ofNat_succ {a b : Nat} : ((-[a+1]) / ↑(b+1) : Int) = -[a / succ b +1] := rfl
-@[backward_defeq]
 theorem negSucc_ediv_negSucc {a b : Nat} : ((-[a+1]) / (-[b+1]) : Int) = ((a / (b + 1)) + 1 : Nat) := rfl
-@[backward_defeq]
 theorem ofNat_ediv_negSucc {a b : Nat} : (ofNat a / (-[b+1])) = -(a / (b + 1) : Nat) := rfl
-@[backward_defeq]
 theorem negSucc_emod_ofNat {a b : Nat} : -[a+1] % (b : Int) = subNatNat b (succ (a % b)) := rfl
-@[backward_defeq]
 theorem negSucc_emod_negSucc {a b : Nat} : -[a+1] % -[b+1] = subNatNat (b + 1) (succ (a % (b + 1))) := rfl
 
 /--
@@ -151,7 +146,7 @@ Examples:
 protected def divExact (x y : @& Int) (h : y ∣ x) : Int :=
   x / y
 
-@[backward_defeq, simp]
+@[simp]
 theorem divExact_eq_ediv {x y : Int} (h : y ∣ x) : x.divExact y h = x / y := rfl
 
 /-! ### T-rounding division -/
@@ -219,7 +214,6 @@ def tmod : (@& Int) → (@& Int) → Int
   | -[m +1], ofNat n => -ofNat (succ m % n)
   | -[m +1], -[n +1] => -ofNat (succ m % succ n)
 
-@[backward_defeq]
 theorem ofNat_tdiv (m n : Nat) : ↑(m / n) = tdiv ↑m ↑n := rfl
 
 /-! ### F-rounding division

@@ -44,7 +44,7 @@ theorem apply_ite (f : α → β) (P : Prop) [Decidable P] (x y : α) :
   apply_dite f P (fun _ => x) (fun _ => y)
 
 /-- A `dite` whose results do not actually depend on the condition may be reduced to an `ite`. -/
-@[backward_defeq, simp] theorem dite_eq_ite [Decidable P] :
+@[simp] theorem dite_eq_ite [Decidable P] :
   (dite P (fun _ => a) (fun _ => b)) = ite P a b := rfl
 
 -- Remark: dite and ite are "defally equal" when we ignore the proofs.

@@ -65,7 +65,14 @@ Note: The equality holds at default/all transparency. Use `@[backward_defeq]` in
 
 
 def Tricky.rfl := a_eq_b
-theorem Tricky.a_eq_b : a = b := rfl -- to confuse the heuristics; no longer auto-tagged
+/--
+error: Not a definitional equality: the left-hand side
+  a
+is not definitionally equal to the right-hand side
+  b
+-/
+#guard_msgs in
+theorem Tricky.a_eq_b : a = b := rfl -- to confuse the heuristics; auto-tagged `[backward_defeq]`
 
 /-! Does `#print` show the attribute? -/
 
@@ -94,7 +101,7 @@ set_option backward.defeqAttrib.useBackward true in
 
 -- Order of simp and defeq attribute
 def e1 := a -- not reducible, so `[defeq]` would fail strict
-@[backward_defeq, simp] theorem e1_eq_a : e1 = a := rfl
+@[simp] theorem e1_eq_a : e1 = a := rfl
 /-- error: `dsimp` made no progress -/
 #guard_msgs in example (h : P a) : P e1 := by dsimp; exact h
 set_option backward.defeqAttrib.useBackward true in

@@ -121,14 +121,14 @@ instance : GetElem (BitVec w) Nat Bool fun _ i => i < w where
     x.getLsb i = x[i] := rfl
 
 /-- We prefer `x[i]?` as the simp normal form for `getLsb?` -/
-@[backward_defeq, simp, grind =] theorem getLsb?_eq_getElem? (x : BitVec w) (i : Nat) :
+@[simp, grind =] theorem getLsb?_eq_getElem? (x : BitVec w) (i : Nat) :
     x.getLsb? i = x[i]? := rfl
 
 @[backward_defeq, grind =_] -- Activate when we see `x.toNat.testBit i`.
 theorem getElem_eq_testBit_toNat (x : BitVec w) (i : Nat) (h : i < w) :
   x[i] = x.toNat.testBit i := rfl
 
-@[backward_defeq, simp, grind =]
+@[simp, grind =]
 theorem getLsbD_eq_getElem {x : BitVec w} {i : Nat} (h : i < w) :
     x.getLsbD i = x[i] := rfl
 
@@ -415,7 +415,7 @@ that can more consistently simplify `BitVec.cast` away.
     (x.cast h₁).cast h₂ = x.cast (h₁ ▸ h₂) :=
   rfl
 
-@[backward_defeq, simp, grind =] theorem cast_eq {n : Nat} (h : n = n) (x : BitVec n) : x.cast h = x := rfl
+@[simp, grind =] theorem cast_eq {n : Nat} (h : n = n) (x : BitVec n) : x.cast h = x := rfl
 
 /--
 Extracts the bits `start` to `start + len - 1` from a bitvector of size `n` to yield a
@@ -732,7 +732,7 @@ section normalization_eqs
 @[defeq, simp, grind =] theorem mul_eq (x y : BitVec w)                   : BitVec.mul x y = x * y            := rfl
 @[defeq, simp, grind =] theorem udiv_eq (x y : BitVec w)                  : BitVec.udiv x y = x / y           := rfl
 @[defeq, simp, grind =] theorem umod_eq (x y : BitVec w)                  : BitVec.umod x y = x % y           := rfl
-@[backward_defeq, simp, grind =] theorem zero_eq                                   : BitVec.zero n = 0#n               := rfl
+@[simp, grind =] theorem zero_eq                                   : BitVec.zero n = 0#n               := rfl
 end normalization_eqs
 
 /-- Converts a list of `Bool`s into a big-endian `BitVec`. -/

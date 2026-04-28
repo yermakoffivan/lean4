@@ -46,7 +46,7 @@ variable {p q : α → Bool}
   cases xs
   simp
 
-@[backward_defeq, simp] theorem countP_empty : countP p #[] = 0 := rfl
+@[simp] theorem countP_empty : countP p #[] = 0 := rfl
 
 @[simp] theorem countP_push_of_pos {xs : Array α} (pa : p a) : countP p (xs.push a) = countP p xs + 1 := by
   rcases xs with ⟨xs⟩
@@ -196,13 +196,12 @@ variable [BEq α]
   cases xs
   simp
 
-@[backward_defeq, simp, grind =] theorem count_empty {a : α} : count a #[] = 0 := rfl
+@[simp, grind =] theorem count_empty {a : α} : count a #[] = 0 := rfl
 
 theorem count_push {a b : α} {xs : Array α} :
     count a (xs.push b) = count a xs + if b == a then 1 else 0 := by
   simp [count, countP_push]
 
-@[backward_defeq]
 theorem count_eq_countP {a : α} {xs : Array α} : count a xs = countP (· == a) xs := rfl
 theorem count_eq_countP' {a : α} : count a = countP (· == a) := by
   funext xs

@@ -21,10 +21,10 @@ namespace ByteArray
 @[defeq, simp]
 theorem emptyc_eq_empty : (∅ : ByteArray) = ByteArray.empty := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem emptyWithCapacity_eq_empty : ByteArray.emptyWithCapacity 0 = ByteArray.empty := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem data_empty : ByteArray.empty.data = #[] := rfl
 
 @[simp]
@@ -45,7 +45,6 @@ theorem extract_same {b : ByteArray} {i : Nat} : b.extract i i = ByteArray.empty
   ext1
   simp [Nat.min_le_left]
 
-@[backward_defeq]
 theorem fastAppend_eq_copySlice {a b : ByteArray} :
   a.fastAppend b = b.copySlice 0 a a.size b.size false := rfl
 
@@ -82,7 +81,7 @@ theorem _root_.List.size_toByteArray {l : List UInt8} :
     l.toByteArray.size = l.length := by
   simp [← ByteArray.size_data]
 
-@[backward_defeq, simp]
+@[simp]
 theorem _root_.List.toByteArray_nil : List.toByteArray [] = ByteArray.empty := rfl
 
 @[simp]
@@ -105,7 +104,6 @@ theorem size_eq_zero_iff {a : ByteArray} : a.size = 0 ↔ a = ByteArray.empty :=
   ext1
   simp [← Array.size_eq_zero_iff, h]
 
-@[backward_defeq]
 theorem getElem_eq_getElem_data {a : ByteArray} {i : Nat} {h : i < a.size} :
     a[i] = a.data[i]'(by simpa [← size_data]) := rfl
 

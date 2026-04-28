@@ -153,7 +153,7 @@ protected def fastAppend (a : ByteArray) (b : ByteArray) : ByteArray :=
   -- we assume that `append`s may be repeated, so use asymptotic growing; use `copySlice` directly to customize
   b.copySlice 0 a a.size b.size false
 
-@[backward_defeq, simp]
+@[simp]
 theorem size_data {a : ByteArray} :
   a.data.size = a.size := rfl
 

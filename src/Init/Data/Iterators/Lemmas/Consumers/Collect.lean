@@ -23,7 +23,7 @@ public section
 namespace Std
 open Std.Iterators
 
-@[backward_defeq, simp]
+@[simp]
 theorem IterM.run_toList_mk' {α : Type u} {β : Type u} [Std.Iterator α Id β] (a : α) :
     (Std.IterM.mk (m := Id) a).toList.run = (Std.Iter.mk a).toList := rfl
 

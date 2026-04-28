@@ -17,7 +17,6 @@ public section
 def outOfBounds [Inhabited α] : α :=
   panic! "index out of bounds"
 
-@[backward_defeq]
 theorem outOfBounds_eq_default [Inhabited α] : (outOfBounds : α) = default := rfl
 
 /--
@@ -294,7 +293,7 @@ namespace List
 instance : GetElem (List α) Nat α fun as i => i < as.length where
   getElem as i h := as.get ⟨i, h⟩
 
-@[backward_defeq, simp, grind =]
+@[simp, grind =]
 theorem getElem_cons_zero (a : α) (as : List α) (h : 0 < (a :: as).length) :
     getElem (a :: as) 0 h = a := rfl
 

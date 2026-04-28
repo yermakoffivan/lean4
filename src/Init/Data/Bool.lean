@@ -43,7 +43,7 @@ instance (p : Bool → Prop) [inst : DecidablePred p] : Decidable (∃ x, p x) :
   | _, isTrue hf => isTrue ⟨_, hf⟩
   | isFalse ht, isFalse hf => isFalse fun | ⟨true, h⟩ => absurd h ht | ⟨false, h⟩ => absurd h hf
 
-@[backward_defeq, simp] theorem default_bool : default = false := rfl
+@[simp] theorem default_bool : default = false := rfl
 
 instance : LE Bool := ⟨(. → .)⟩
 instance : LT Bool := ⟨(!. && .)⟩
@@ -387,9 +387,9 @@ Converts `true` to `1` and `false` to `0`.
 -/
 @[expose] def toNat (b : Bool) : Nat := cond b 1 0
 
-@[backward_defeq, simp, bitvec_to_nat, grind =] theorem toNat_false : false.toNat = 0 := rfl
+@[simp, bitvec_to_nat, grind =] theorem toNat_false : false.toNat = 0 := rfl
 
-@[backward_defeq, simp, bitvec_to_nat, grind =] theorem toNat_true : true.toNat = 1 := rfl
+@[simp, bitvec_to_nat, grind =] theorem toNat_true : true.toNat = 1 := rfl
 
 theorem toNat_le (c : Bool) : c.toNat ≤ 1 := by
   cases c <;> trivial
@@ -410,9 +410,9 @@ Converts `true` to `1` and `false` to `0`.
 -/
 @[expose] def toInt (b : Bool) : Int := cond b 1 0
 
-@[backward_defeq, simp, grind =] theorem toInt_false : false.toInt = 0 := rfl
+@[simp, grind =] theorem toInt_false : false.toInt = 0 := rfl
 
-@[backward_defeq, simp, grind =] theorem toInt_true : true.toInt = 1 := rfl
+@[simp, grind =] theorem toInt_true : true.toInt = 1 := rfl
 
 /-! ### ite -/
 

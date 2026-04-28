@@ -679,11 +679,9 @@ theorem negSucc_emod (m : Nat) {b : Int} (bpos : 0 < b) : -[m+1] % b = b - 1 - m
   match b, eq_succ_of_zero_lt bpos with
   | _, ⟨n, rfl⟩ => rfl
 
-@[backward_defeq]
 theorem emod_negSucc (m : Nat) (n : Int) :
   (Int.negSucc m) % n = Int.subNatNat (Int.natAbs n) (Nat.succ (m % Int.natAbs n)) := rfl
 
-@[backward_defeq]
 theorem ofNat_mod_ofNat (m n : Nat) : (m % n : Int) = ↑(m % n) := rfl
 
 @[simp] theorem add_neg_mul_emod_self_right (a b c : Int) : (a + -(b * c)) % c = a % c := by
@@ -1415,7 +1413,6 @@ theorem sign_tdiv (a b : Int) : sign (a.tdiv b) = if natAbs a < natAbs b then 0 
 
 -- `tmod` analogues of `emod` lemmas from `Bootstrap.lean`
 
-@[backward_defeq]
 theorem ofNat_tmod (m n : Nat) : (↑(m % n) : Int) = tmod m n := rfl
 
 theorem tmod_nonneg : ∀ {a : Int} (b : Int), 0 ≤ a → 0 ≤ tmod a b

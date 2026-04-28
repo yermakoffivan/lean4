@@ -48,7 +48,7 @@ def map : Map Char (Fin Char.numCodePoints) where
   succ?_toFun := by simp [succ?_eq]
   succMany?_toFun := by simp [succMany?_eq]
 
-@[backward_defeq, simp]
+@[simp]
 theorem toFun_map : map.toFun = Char.ordinal := rfl
 
 instance : Map.PreservesLE map where

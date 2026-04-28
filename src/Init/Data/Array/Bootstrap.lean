@@ -83,7 +83,7 @@ theorem foldrM_eq_reverse_foldlM_toList [Monad m] {f : α → β → m β} {init
 @[simp, grind =] theorem toListImpl_eq {xs : Array α} : xs.toListImpl = xs.toList := by
   simp [toListImpl, ← foldr_toList]
 
-@[backward_defeq, simp, grind =] theorem toList_pop {xs : Array α} : xs.pop.toList = xs.toList.dropLast := rfl
+@[simp, grind =] theorem toList_pop {xs : Array α} : xs.pop.toList = xs.toList.dropLast := rfl
 
 @[defeq, simp] theorem append_eq_append {xs ys : Array α} : xs.append ys = xs ++ ys := rfl
 

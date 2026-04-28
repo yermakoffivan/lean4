@@ -50,7 +50,7 @@ def mapM' [Monad m] (f : α → m β) : List α → m (List β)
   | [] => pure []
   | a :: l => return (← f a) :: (← l.mapM' f)
 
-@[backward_defeq, simp] theorem mapM'_nil [Monad m] {f : α → m β} : mapM' f [] = pure [] := rfl
+@[simp] theorem mapM'_nil [Monad m] {f : α → m β} : mapM' f [] = pure [] := rfl
 @[backward_defeq, simp] theorem mapM'_cons [Monad m] {f : α → m β} :
     mapM' f (a :: l) = return ((← f a) :: (← l.mapM' f)) :=
   rfl
@@ -61,7 +61,7 @@ theorem mapM'_eq_mapM [Monad m] [LawfulMonad m] {f : α → m β} {l : List α} 
     | [], acc => by simp [mapM.loop, mapM']
     | a::l, acc => by simp [go l, mapM.loop, mapM']
 
-@[backward_defeq, simp, grind =] theorem mapM_nil [Monad m] {f : α → m β} : [].mapM f = pure [] := rfl
+@[simp, grind =] theorem mapM_nil [Monad m] {f : α → m β} : [].mapM f = pure [] := rfl
 
 @[simp, grind =] theorem mapM_cons [Monad m] [LawfulMonad m] {f : α → m β} :
     (a :: l).mapM f = (return (← f a) :: (← l.mapM f)) := by simp [← mapM'_eq_mapM, mapM']
@@ -103,7 +103,7 @@ theorem mapM_eq_reverse_foldlM_cons [Monad m] [LawfulMonad m] {f : α → m β} 
 
 /-! ### filterMapM -/
 
-@[backward_defeq, simp, grind =] theorem filterMapM_nil [Monad m] {f : α → m (Option β)} : [].filterMapM f = pure [] := rfl
+@[simp, grind =] theorem filterMapM_nil [Monad m] {f : α → m (Option β)} : [].filterMapM f = pure [] := rfl
 
 theorem filterMapM_loop_eq [Monad m] [LawfulMonad m] {f : α → m (Option β)} {l : List α} {acc : List β} :
     filterMapM.loop f l acc = (acc.reverse ++ ·) <$> filterMapM.loop f l [] := by
@@ -158,7 +158,7 @@ theorem zipWithM'_eq_zipWithM [Monad m] [LawfulMonad m] {f : α → β → m γ}
   go l l' acc : zipWithM.loop f l l' acc = return acc.toList ++ (← zipWithM' f l l') := by
     fun_induction zipWithM.loop <;> simp [zipWithM', *]
 
-@[backward_defeq, simp, grind =] theorem zipWithM_nil_left [Monad m] {f : α → β → m γ} : zipWithM f [] l = pure (f := m) [] := rfl
+@[simp, grind =] theorem zipWithM_nil_left [Monad m] {f : α → β → m γ} : zipWithM f [] l = pure (f := m) [] := rfl
 @[simp, grind =] theorem zipWithM_nil_right [Monad m] {f : α → β → m γ} : zipWithM f l [] = pure (f := m) [] := by simp only [zipWithM, zipWithM.loop]
 @[simp, grind =] theorem zipWithM_cons_cons [Monad m] [LawfulMonad m] {f : α → β → m γ} :
     zipWithM f (a :: as) (b :: bs) = do return (← f a b) :: (← zipWithM f as bs) := by
@@ -171,7 +171,7 @@ theorem zipWithM'_eq_mapM_id_zipWith {m : Type v → Type w} [Monad m] [LawfulMo
 
 /-! ### flatMapM -/
 
-@[backward_defeq, simp, grind =] theorem flatMapM_nil [Monad m] {f : α → m (List β)} : [].flatMapM f = pure [] := rfl
+@[simp, grind =] theorem flatMapM_nil [Monad m] {f : α → m (List β)} : [].flatMapM f = pure [] := rfl
 
 theorem flatMapM_loop_eq [Monad m] [LawfulMonad m] {f : α → m (List β)} {l : List α} {acc : List (List β)} :
     flatMapM.loop f l acc = (acc.reverse.flatten ++ ·) <$> flatMapM.loop f l [] := by

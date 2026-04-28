@@ -30,9 +30,9 @@ protected theorem «forall» {p : α × β → Prop} : (∀ x, p x) ↔ ∀ a b,
 protected theorem «exists» {p : α × β → Prop} : (∃ x, p x) ↔ ∃ a b, p (a, b) :=
   ⟨fun ⟨⟨a, b⟩, h⟩ ↦ ⟨a, b, h⟩, fun ⟨a, b, h⟩ ↦ ⟨⟨a, b⟩, h⟩⟩
 
-@[backward_defeq, simp] theorem map_id : Prod.map (@id α) (@id β) = id := rfl
+@[simp] theorem map_id : Prod.map (@id α) (@id β) = id := rfl
 
-@[backward_defeq, simp] theorem map_id' : Prod.map (fun a : α => a) (fun b : β => b) = fun x ↦ x := rfl
+@[simp] theorem map_id' : Prod.map (fun a : α => a) (fun b : β => b) = fun x ↦ x := rfl
 
 /--
 Composing a `Prod.map` with another `Prod.map` is equal to
@@ -89,7 +89,6 @@ theorem swap_inj {p q : α × β} : swap p = swap q ↔ p = q := by
 For two functions `f` and `g`, the composition of `Prod.map f g` with `Prod.swap`
 is equal to the composition of `Prod.swap` with `Prod.map g f`.
 -/
-@[backward_defeq]
 theorem map_comp_swap (f : α → β) (g : γ → δ) :
     Prod.map f g ∘ Prod.swap = Prod.swap ∘ Prod.map g f := rfl
 

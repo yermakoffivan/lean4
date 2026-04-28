@@ -118,9 +118,19 @@ theorem v' (x : Vector Unit f) (y : Vector Unit 1) : x = y := testSorry
 
 theorem v'' (x : Vector Unit fexp) (y : Vector Unit 1) : x = y := testSorry
 
--- Check that explicit `[defeq]` theorems are complained about if they aren't rfl in the
--- context of their type. (`:= rfl` syntax is no longer special: it does not auto-tag.)
+-- Check that rfl theorems are complained about if they aren't rfl in the context of their type.
+-- `:= rfl` is auto-tagged `@[backward_defeq]`, so the validation message is the legacy
+-- (permissive) one, and adds a note about needing exposure for exported theorems.
 
+/--
+error: Not a definitional equality: the left-hand side
+  f
+is not definitionally equal to the right-hand side
+  1
+
+Note: This theorem is exported from the current module. This requires that all definitions that need to be unfolded to prove this theorem must be exposed.
+-/
+#guard_msgs in
 public theorem trfl : f = 1 := rfl
 /--
 error: Not a definitional equality at instance transparency: the left-hand side
@@ -132,13 +142,13 @@ at the transparency used by `dsimp`
 #guard_msgs in
 @[defeq] public theorem trfl' : f = 1 := (rfl)
 
-@[backward_defeq] theorem trflprivate : f = 1 := rfl
-@[backward_defeq] def trflprivate' : f = 1 := rfl
-@[backward_defeq] def trflprivate''' : f = 1 := rfl
-@[backward_defeq] theorem trflprivate'''' : f = 1 := (rfl)
+theorem trflprivate : f = 1 := rfl
+def trflprivate' : f = 1 := rfl
+def trflprivate''' : f = 1 := rfl
+theorem trflprivate'''' : f = 1 := (rfl)
 
 public theorem fexp_trfl : fexp = 1 := rfl
-@[backward_defeq] public theorem fexp_trfl' : fexp = 1 := rfl
+public theorem fexp_trfl' : fexp = 1 := rfl
 
 public opaque P : Nat → Prop
 public axiom hP1 : P 1

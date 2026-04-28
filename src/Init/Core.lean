@@ -29,7 +29,6 @@ which applies to all applications of the function).
 -/
 @[simp] def inline {α : Sort u} (a : α) : α := a
 
-@[backward_defeq]
 theorem id_def {α : Sort u} (a : α) : id a = a := rfl
 
 attribute [grind] id
@@ -66,11 +65,10 @@ and `flip (·<·)` is the greater-than relation.
 @[inline] def flip {α : Sort u} {β : Sort v} {φ : Sort w} (f : α → β → φ) : β → α → φ :=
   fun b a => f a b
 
-@[backward_defeq, simp] theorem Function.const_apply {y : β} {x : α} : const α y x = y := rfl
+@[simp] theorem Function.const_apply {y : β} {x : α} : const α y x = y := rfl
 
-@[backward_defeq, simp] theorem Function.comp_apply {f : β → δ} {g : α → β} {x : α} : comp f g x = f (g x) := rfl
+@[simp] theorem Function.comp_apply {f : β → δ} {g : α → β} {x : α} : comp f g x = f (g x) := rfl
 
-@[backward_defeq]
 theorem Function.comp_def {α β δ} (f : β → δ) (g : α → β) : f ∘ g = fun x => f (g x) := rfl
 
 @[backward_defeq, simp] theorem Function.const_comp {f : α → β} {c : γ} :
@@ -84,8 +82,8 @@ theorem Function.comp_def {α β δ} (f : β → δ) (g : α → β) : f ∘ g =
 @[backward_defeq, simp] theorem Function.false_comp {f : α → β} : ((fun _ => false) ∘ f) = fun _ => false :=
   rfl
 
-@[backward_defeq, simp] theorem Function.comp_id (f : α → β) : f ∘ id = f := rfl
-@[backward_defeq, simp] theorem Function.id_comp (f : α → β) : id ∘ f = f := rfl
+@[simp] theorem Function.comp_id (f : α → β) : f ∘ id = f := rfl
+@[simp] theorem Function.id_comp (f : α → β) : id ∘ f = f := rfl
 
 attribute [simp] namedPattern
 
@@ -152,7 +150,7 @@ Computed values are cached, so the value is not recomputed.
 -- Ensure `Thunk.fn` is still computable even if it shouldn't be accessed directly.
 /-- Implementation detail. -/
 @[inline] def Thunk.fnImpl (x : Thunk α) : Unit → α := fun _ => x.get
-@[backward_defeq, csimp] theorem Thunk.fn_eq_fnImpl : @Thunk.fn = @Thunk.fnImpl := rfl
+@[csimp] theorem Thunk.fn_eq_fnImpl : @Thunk.fn = @Thunk.fnImpl := rfl
 
 /--
 Constructs a new thunk that forces `x` and then applies `x` to the result. Upon forcing, the result
@@ -1488,12 +1486,12 @@ def Prod.map {α₁ : Type u₁} {α₂ : Type u₂} {β₁ : Type v₁} {β₂ 
     (f : α₁ → α₂) (g : β₁ → β₂) : α₁ × β₁ → α₂ × β₂
   | (a, b) => (f a, g b)
 
-@[backward_defeq, simp] theorem Prod.map_apply (f : α → β) (g : γ → δ) (x) (y) :
+@[simp] theorem Prod.map_apply (f : α → β) (g : γ → δ) (x) (y) :
     Prod.map f g (x, y) = (f x, g y) := rfl
 
 -- We add `@[grind =]` to these in `Init.Data.Prod`.
-@[backward_defeq, simp] theorem Prod.map_fst (f : α → β) (g : γ → δ) (x) : (Prod.map f g x).1 = f x.1 := rfl
-@[backward_defeq, simp] theorem Prod.map_snd (f : α → β) (g : γ → δ) (x) : (Prod.map f g x).2 = g x.2 := rfl
+@[simp] theorem Prod.map_fst (f : α → β) (g : γ → δ) (x) : (Prod.map f g x).1 = f x.1 := rfl
+@[simp] theorem Prod.map_snd (f : α → β) (g : γ → δ) (x) : (Prod.map f g x).2 = g x.2 := rfl
 
 /-! # Dependent products -/
 

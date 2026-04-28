@@ -507,10 +507,10 @@ theorem find?_pmap {P : α → Prop} {f : (a : α) → P a → β} {xs : List α
 
 /-! ### findIdx? (preliminary lemmas) -/
 
-@[backward_defeq, local simp] private theorem findIdx?_go_nil {p : α → Bool} {i : Nat} :
+@[local simp] private theorem findIdx?_go_nil {p : α → Bool} {i : Nat} :
     findIdx?.go p [] i = none := rfl
 
-@[backward_defeq, local simp] private theorem findIdx?_go_cons :
+@[local simp] private theorem findIdx?_go_cons :
     findIdx?.go p (x :: xs) i = if p x then some i else findIdx?.go p xs (i + 1) := rfl
 
 private theorem findIdx?_go_succ {p : α → Bool} {xs : List α} {i : Nat} :
@@ -531,7 +531,7 @@ private theorem findIdx?_go_eq {p : α → Bool} {xs : List α} {i : Nat} :
       ext
       simp only [Nat.add_comm i, Function.comp_apply, Nat.add_assoc]
 
-@[backward_defeq, simp, grind =] theorem findIdx?_nil : ([] : List α).findIdx? p = none := rfl
+@[simp, grind =] theorem findIdx?_nil : ([] : List α).findIdx? p = none := rfl
 
 @[grind =] theorem findIdx?_cons :
     (x :: xs).findIdx? p = if p x then some 0 else (xs.findIdx? p).map fun i => i + 1 := by
@@ -1001,7 +1001,7 @@ theorem findIdx_eq_getD_findIdx? {xs : List α} {p : α → Bool} :
 
 /-! ### findFinIdx? -/
 
-@[backward_defeq, simp, grind =] theorem findFinIdx?_nil {p : α → Bool} : findFinIdx? p [] = none := rfl
+@[simp, grind =] theorem findFinIdx?_nil {p : α → Bool} : findFinIdx? p [] = none := rfl
 
 theorem findIdx?_go_eq_map_findFinIdx?_go_val {xs : List α} {p : α → Bool} {i : Nat} {h} :
     List.findIdx?.go p xs i =
@@ -1200,7 +1200,7 @@ theorem idxOf?_eq_map_finIdxOf?_val [BEq α] {xs : List α} {a : α} :
     xs.idxOf? a = (xs.finIdxOf? a).map (·.val) := by
   simp [idxOf?, finIdxOf?, findIdx?_eq_map_findFinIdx?_val]
 
-@[backward_defeq, simp, grind =] theorem finIdxOf?_nil [BEq α] : ([] : List α).finIdxOf? a = none := rfl
+@[simp, grind =] theorem finIdxOf?_nil [BEq α] : ([] : List α).finIdxOf? a = none := rfl
 
 @[grind =] theorem finIdxOf?_cons [BEq α] {a : α} {xs : List α} :
     (a :: xs).finIdxOf? b =
@@ -1240,7 +1240,7 @@ The verification API for `idxOf?` is still incomplete.
 The lemmas below should be made consistent with those for `findIdx?` (and proved using them).
 -/
 
-@[backward_defeq, simp, grind =] theorem idxOf?_nil [BEq α] : ([] : List α).idxOf? a = none := rfl
+@[simp, grind =] theorem idxOf?_nil [BEq α] : ([] : List α).idxOf? a = none := rfl
 
 @[grind =] theorem idxOf?_cons [BEq α] {a : α} {xs : List α} {b : α} :
     (a :: xs).idxOf? b = if a == b then some 0 else (xs.idxOf? b).map (· + 1) := by

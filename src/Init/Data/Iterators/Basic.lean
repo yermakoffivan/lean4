@@ -250,14 +250,14 @@ def IterStep.successor : IterStep α β → Option α
   | .skip it => some it
   | .done => none
 
-@[backward_defeq, simp]
+@[simp]
 theorem IterStep.successor_yield {it : α} {out : β} :
   (IterStep.yield it out).successor = some it := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem IterStep.successor_skip {it : α} : (IterStep.skip (β := β) it).successor = some it := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem IterStep.successor_done : (IterStep.done (α := α) (β := β)).successor = none := rfl
 
 /--
@@ -407,7 +407,7 @@ set_option linter.missingDocs false in
 @[expose, deprecated IterM.internalState_mk (since := "2025-01-29")]
 def internalState_toIterM := @IterM.internalState_mk
 
-@[backward_defeq, simp]
+@[simp]
 theorem Iter.internalState_toIterM {α β} (it : Std.Iter (α := α) β) :
     it.toIterM.internalState = it.internalState := rfl
 
@@ -608,7 +608,6 @@ def Iter.IsPlausibleSuccessorOf {α : Type w} {β : Type w} [Iterator α Id β]
     (it' it : Iter (α := α) β) : Prop :=
   it'.toIterM.IsPlausibleSuccessorOf it.toIterM
 
-@[backward_defeq]
 theorem Iter.isPlausibleSuccessorOf_eq_invImage {α : Type w} {β : Type w} [Iterator α Id β] :
     IsPlausibleSuccessorOf (α := α) (β := β) =
       InvImage (IterM.IsPlausibleSuccessorOf (α := α) (β := β) (m := Id)) Iter.toIterM := rfl

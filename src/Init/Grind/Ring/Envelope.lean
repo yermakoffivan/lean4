@@ -223,10 +223,8 @@ def npow (a : Q α) (n : Nat)  : Q α :=
   | 0 => natCast 1
   | n+1 => mul (npow a n) a
 
-@[backward_defeq]
 theorem pow_zero (a : Q α) : npow a 0 = natCast 1 := rfl
 
-@[backward_defeq]
 theorem pow_succ (a : Q α) (n : Nat) : npow a (n+1) = mul (npow a n) a := rfl
 
 def nsmul (n : Nat) (a : Q α) : Q α :=

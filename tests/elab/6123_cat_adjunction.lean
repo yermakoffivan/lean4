@@ -99,9 +99,9 @@ notation "𝟭" => Functor.id
 
 variable {C}
 
-@[backward_defeq] theorem id_obj (X : C) : (𝟭 C).obj X = X := rfl
+theorem id_obj (X : C) : (𝟭 C).obj X = X := rfl
 
-@[backward_defeq] theorem id_map {X Y : C} (f : X ⟶ Y) : (𝟭 C).map f = f := rfl
+theorem id_map {X Y : C} (f : X ⟶ Y) : (𝟭 C).map f = f := rfl
 
 end
 
@@ -112,11 +112,11 @@ def comp (F : C ⥤ D) (G : D ⥤ E) : C ⥤ E where
   obj X := G.obj (F.obj X)
   map f := G.map (F.map f)
 
-@[backward_defeq, simp] theorem comp_obj (F : C ⥤ D) (G : D ⥤ E) (X : C) : (F.comp G).obj X = G.obj (F.obj X) := rfl
+@[simp] theorem comp_obj (F : C ⥤ D) (G : D ⥤ E) (X : C) : (F.comp G).obj X = G.obj (F.obj X) := rfl
 
 infixr:80 " ⋙ " => Functor.comp
 
-@[backward_defeq] theorem comp_map (F : C ⥤ D) (G : D ⥤ E) {X Y : C} (f : X ⟶ Y) :
+theorem comp_map (F : C ⥤ D) (G : D ⥤ E) {X Y : C} (f : X ⟶ Y) :
     (F ⋙ G).map f = G.map (F.map f) := rfl
 
 end Functor
@@ -331,7 +331,7 @@ instance bicategory : Bicategory.{max v u, max v u} Cat.{v, u} where
   comp F G := F ⋙ G
   homCategory := fun _ _ => Functor.category
 
-@[backward_defeq, simp] theorem of_α (C) [Category C] : (of C).α = C := rfl
+@[simp] theorem of_α (C) [Category C] : (of C).α = C := rfl
 
 def objects : Cat.{v, u} ⥤ Type u where
   obj C := C
@@ -346,8 +346,8 @@ def typeToCat : Type u ⥤ Cat where
   map := fun {X} {Y} f => by
     exact Discrete.functor (Discrete.mk ∘ f)
 
-@[backward_defeq, simp] theorem typeToCat_obj (X : Type u) : typeToCat.obj X = Cat.of (Discrete X) := rfl
-@[backward_defeq, simp] theorem typeToCat_map {X Y : Type u} (f : X ⟶ Y) :
+@[simp] theorem typeToCat_obj (X : Type u) : typeToCat.obj X = Cat.of (Discrete X) := rfl
+@[simp] theorem typeToCat_map {X Y : Type u} (f : X ⟶ Y) :
   typeToCat.map f = Discrete.functor (Discrete.mk ∘ f) := rfl
 
 end CategoryTheory

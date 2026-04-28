@@ -90,7 +90,7 @@ theorem ext' {xs ys : Array α} (h : xs.toList = ys.toList) : xs = ys := by
 
 @[defeq, simp, grind =] theorem toArray_toList {xs : Array α} : xs.toList.toArray = xs := rfl
 
-@[backward_defeq, simp, grind =] theorem getElem_toList {xs : Array α} {i : Nat} (h : i < xs.size) : xs.toList[i] = xs[i] := rfl
+@[simp, grind =] theorem getElem_toList {xs : Array α} {i : Nat} (h : i < xs.size) : xs.toList[i] = xs[i] := rfl
 
 @[simp, grind =] theorem getElem?_toList {xs : Array α} {i : Nat} : xs.toList[i]? = xs[i]? := by
   simp only [getElem?_def, getElem_toList]
@@ -121,9 +121,9 @@ theorem mem_toArray {a : α} {l : List α} : a ∈ l.toArray ↔ a ∈ l :=
 
 grind_pattern getElem_mem => xs[i] ∈ xs
 
-@[backward_defeq, simp, grind =] theorem emptyWithCapacity_eq {α n} : @emptyWithCapacity α n = #[] := rfl
+@[simp, grind =] theorem emptyWithCapacity_eq {α n} : @emptyWithCapacity α n = #[] := rfl
 
-@[backward_defeq, simp] theorem mkEmpty_eq {α n} : @mkEmpty α n = #[] := rfl
+@[simp] theorem mkEmpty_eq {α n} : @mkEmpty α n = #[] := rfl
 
 end Array
 
@@ -135,7 +135,7 @@ theorem toList_toArray {as : List α} : as.toArray.toList = as := rfl
 
 @[simp, grind =] theorem size_toArray {as : List α} : as.toArray.size = as.length := by simp [Array.size]
 
-@[backward_defeq, simp, grind =] theorem getElem_toArray {xs : List α} {i : Nat} (h : i < xs.toArray.size) :
+@[simp, grind =] theorem getElem_toArray {xs : List α} {i : Nat} (h : i < xs.toArray.size) :
     xs.toArray[i] = xs[i]'(by simpa using h) := rfl
 
 @[simp, grind =] theorem getElem?_toArray {xs : List α} {i : Nat} : xs.toArray[i]? = xs[i]? := by

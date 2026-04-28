@@ -162,10 +162,10 @@ theorem modifyTailIdx_modifyTailIdx_self {f g : List α → List α} (i : Nat) (
 
 @[simp, grind =] theorem modify_nil (f : α → α) (i) : [].modify i f = [] := by cases i <;> rfl
 
-@[backward_defeq, simp] theorem modify_zero_cons (f : α → α) (a : α) (l : List α) :
+@[simp] theorem modify_zero_cons (f : α → α) (a : α) (l : List α) :
     (a :: l).modify 0 f = f a :: l := rfl
 
-@[backward_defeq, simp] theorem modify_succ_cons (f : α → α) (a : α) (l : List α) (i) :
+@[simp] theorem modify_succ_cons (f : α → α) (a : α) (l : List α) (i) :
     (a :: l).modify (i + 1) f = a :: l.modify i f := rfl
 
 @[grind =]

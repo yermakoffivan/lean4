@@ -71,14 +71,14 @@ well-founded recursion mechanism to prove that the function terminates.
   | cons _ l', hL' => congrArg _ <| go l' fun _ hx => hL' (.tail _ hx)
   exact go l h'
 
-@[backward_defeq, simp, grind =] theorem pmap_nil {P : α → Prop} {f : ∀ a, P a → β} : pmap f [] (by simp) = [] := rfl
+@[simp, grind =] theorem pmap_nil {P : α → Prop} {f : ∀ a, P a → β} : pmap f [] (by simp) = [] := rfl
 
-@[backward_defeq, simp, grind =] theorem pmap_cons {P : α → Prop} {f : ∀ a, P a → β} {a : α} {l : List α} (h : ∀ b ∈ a :: l, P b) :
+@[simp, grind =] theorem pmap_cons {P : α → Prop} {f : ∀ a, P a → β} {a : α} {l : List α} (h : ∀ b ∈ a :: l, P b) :
     pmap f (a :: l) h = f a (forall_mem_cons.1 h).1 :: pmap f l (forall_mem_cons.1 h).2 := rfl
 
-@[backward_defeq, simp, grind =] theorem attach_nil : ([] : List α).attach = [] := rfl
+@[simp, grind =] theorem attach_nil : ([] : List α).attach = [] := rfl
 
-@[backward_defeq, simp, grind =] theorem attachWith_nil : ([] : List α).attachWith P H = [] := rfl
+@[simp, grind =] theorem attachWith_nil : ([] : List α).attachWith P H = [] := rfl
 
 @[simp]
 theorem pmap_eq_map {p : α → Prop} {f : α → β} {l : List α} (H) :
@@ -662,8 +662,8 @@ state, the right approach is usually the tactic `simp [List.unattach, -List.map_
 @[expose]
 def unattach {α : Type _} {p : α → Prop} (l : List { x // p x }) : List α := l.map (·.val)
 
-@[backward_defeq, simp] theorem unattach_nil {p : α → Prop} : ([] : List { x // p x }).unattach = [] := rfl
-@[backward_defeq, simp] theorem unattach_cons {p : α → Prop} {a : { x // p x }} {l : List { x // p x }} :
+@[simp] theorem unattach_nil {p : α → Prop} : ([] : List { x // p x }).unattach = [] := rfl
+@[simp] theorem unattach_cons {p : α → Prop} {a : { x // p x }} {l : List { x // p x }} :
   (a :: l).unattach = a.val :: l.unattach := rfl
 
 @[simp] theorem mem_unattach {p : α → Prop} {l : List { x // p x }} {a} :

@@ -28,7 +28,7 @@ example (names : List String) : names.all (fun name => "Waldo".isPrefixOf name) 
 
 def List.myAll (p : α → Bool) (xs : List α) : Bool := !(xs.any fun x => !p x)
 
-@[backward_defeq] theorem myAll_eq_not_any_not (l : List α) (p : α → Bool) :
+theorem myAll_eq_not_any_not (l : List α) (p : α → Bool) :
     l.myAll p = !l.any fun x => binderNameHint x p (!p x)
   := rfl
 

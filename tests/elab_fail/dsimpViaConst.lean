@@ -37,7 +37,7 @@ set_option backward.defeqAttrib.useBackward true
 -- Check that `dsimp` makes no progress before we add the `@[simp]` theorem
 example : w true = true := by dsimp
 
-@[backward_defeq] theorem foo_internal_with_arg (_ : Nat) : w true = true := rfl
+theorem foo_internal_with_arg (_ : Nat) : w true = true := rfl
 @[backward_defeq, simp] theorem foo_using_arg : w true = true := foo_internal_with_arg 0
 
 example : w true = true := by dsimp
@@ -48,7 +48,7 @@ example : w true = true := by dsimp
 -- Check that `dsimp` makes no progress before we add the `@[simp]` theorem
 example : w false = false := by dsimp
 
-@[backward_defeq] theorem foo_internal_without_arg : w false = false := rfl
+theorem foo_internal_without_arg : w false = false := rfl
 @[backward_defeq, simp] theorem foo_without_arg : w false = false := foo_internal_without_arg
 
 example : w false = false := by dsimp

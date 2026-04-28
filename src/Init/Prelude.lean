@@ -351,7 +351,7 @@ Lean by `rfl`, because both sides are the same up to definitional equality.
 @[match_pattern] def rfl {α : Sort u} {a : α} : Eq a a := Eq.refl a
 
 /-- `id x = x`, as a `@[simp]` lemma. -/
-@[backward_defeq, simp] theorem id_eq (a : α) : Eq (id a) a := rfl
+@[simp] theorem id_eq (a : α) : Eq (id a) a := rfl
 
 /--
 The substitution principle for equality. If `a = b ` and `P a` holds,
@@ -2117,9 +2117,7 @@ attribute [gen_constructor_elims] Nat
 
 -- Grind setup for Nat.ctorIdx, the built-in propagator for `.ctorIdx` does not kick in
 -- due to the special representation of Nat constructors.
-@[backward_defeq]
 protected theorem Nat.ctorIdx_zero : Eq (Nat.ctorIdx 0) 0 := rfl
-@[backward_defeq]
 protected theorem Nat.ctorIdx_succ : Eq (Nat.ctorIdx (succ n)) 1 := rfl
 grind_pattern Nat.ctorIdx_zero => Nat.ctorIdx 0
 grind_pattern Nat.ctorIdx_succ => Nat.ctorIdx (.succ n)

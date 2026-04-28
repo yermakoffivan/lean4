@@ -27,7 +27,7 @@ instance : ToInt Int .ii where
   toInt_inj := by simp
   toInt_mem := by simp
 
-@[backward_defeq, simp] theorem toInt_int (x : Int) : ToInt.toInt x = x := rfl
+@[simp] theorem toInt_int (x : Int) : ToInt.toInt x = x := rfl
 
 instance : ToInt.Zero Int .ii where
   toInt_zero := by simp

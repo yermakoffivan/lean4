@@ -589,20 +589,20 @@ protected theorem mul_le_mul_of_nonpos_left {a b c : Int}
 
 /- ## natAbs -/
 
-@[backward_defeq, simp, norm_cast] theorem natAbs_natCast (n : Nat) : natAbs ↑n = n := rfl
+@[simp, norm_cast] theorem natAbs_natCast (n : Nat) : natAbs ↑n = n := rfl
 
-@[backward_defeq, deprecated natAbs_natCast (since := "2025-10-26")]
+@[deprecated natAbs_natCast (since := "2025-10-26")]
 theorem natAbs_cast (n : Nat) : natAbs ↑n = n := rfl
 
 /-
 TODO: rename `natAbs_ofNat'` to `natAbs_ofNat` once the current deprecated alias
 `natAbs_ofNat := natAbs_natCast` is removed
 -/
-@[backward_defeq, simp] theorem natAbs_ofNat' (n : Nat) : natAbs (ofNat n) = n := rfl
+@[simp] theorem natAbs_ofNat' (n : Nat) : natAbs (ofNat n) = n := rfl
 
-@[backward_defeq, simp] theorem natAbs_negSucc (n : Nat) : natAbs -[n+1] = n.succ := rfl
-@[backward_defeq, simp] theorem natAbs_zero : natAbs (0 : Int) = (0 : Nat) := rfl
-@[backward_defeq, simp] theorem natAbs_one : natAbs (1 : Int) = (1 : Nat) := rfl
+@[simp] theorem natAbs_negSucc (n : Nat) : natAbs -[n+1] = n.succ := rfl
+@[simp] theorem natAbs_zero : natAbs (0 : Int) = (0 : Nat) := rfl
+@[simp] theorem natAbs_one : natAbs (1 : Int) = (1 : Nat) := rfl
 
 @[simp] theorem natAbs_eq_zero : natAbs a = 0 ↔ a = 0 :=
   ⟨fun H => match a with
@@ -674,19 +674,19 @@ theorem toNat_eq_max : ∀ a : Int, (toNat a : Int) = max a 0
   | (n : Nat) => (Int.max_eq_left (natCast_nonneg n)).symm
   | -[n+1] => (Int.max_eq_right (Int.le_of_lt (negSucc_lt_zero n))).symm
 
-@[backward_defeq, simp] theorem toNat_zero : (0 : Int).toNat = 0 := rfl
+@[simp] theorem toNat_zero : (0 : Int).toNat = 0 := rfl
 
-@[backward_defeq, simp] theorem toNat_one : (1 : Int).toNat = 1 := rfl
+@[simp] theorem toNat_one : (1 : Int).toNat = 1 := rfl
 
 theorem toNat_of_nonneg {a : Int} (h : 0 ≤ a) : (toNat a : Int) = a := by
   rw [toNat_eq_max, Int.max_eq_left h]
 
-@[backward_defeq, simp] theorem toNat_natCast (n : Nat) : toNat ↑n = n := rfl
+@[simp] theorem toNat_natCast (n : Nat) : toNat ↑n = n := rfl
 
 @[simp] theorem toNat_negSucc (n : Nat) : (Int.negSucc n).toNat = 0 := by
   simp [toNat]
 
-@[backward_defeq, simp] theorem toNat_natCast_add_one {n : Nat} : ((n : Int) + 1).toNat = n + 1 := rfl
+@[simp] theorem toNat_natCast_add_one {n : Nat} : ((n : Int) + 1).toNat = n + 1 := rfl
 
 @[simp] theorem ofNat_toNat (a : Int) : (a.toNat : Int) = max a 0 := by
   match a with
@@ -1288,17 +1288,16 @@ protected theorem neg_of_mul_pos_right {a b : Int}
 
 /- ## sign -/
 
-@[backward_defeq, simp] theorem sign_zero : sign 0 = 0 := rfl
-@[backward_defeq, simp] theorem sign_one : sign 1 = 1 := rfl
-@[backward_defeq]
+@[simp] theorem sign_zero : sign 0 = 0 := rfl
+@[simp] theorem sign_one : sign 1 = 1 := rfl
 theorem sign_neg_one : sign (-1) = -1 := rfl
 
-@[backward_defeq, simp] theorem sign_natCast_add_one (n : Nat) : sign (n + 1) = 1 := rfl
+@[simp] theorem sign_natCast_add_one (n : Nat) : sign (n + 1) = 1 := rfl
 
-@[backward_defeq, deprecated sign_natCast_add_one (since := "2025-10-26")]
+@[deprecated sign_natCast_add_one (since := "2025-10-26")]
 theorem sign_of_add_one (x : Nat) : Int.sign (x + 1) = 1 := rfl
 
-@[backward_defeq, simp] theorem sign_negSucc (x : Nat) : Int.sign (Int.negSucc x) = -1 := rfl
+@[simp] theorem sign_negSucc (x : Nat) : Int.sign (Int.negSucc x) = -1 := rfl
 
 theorem natAbs_sign (z : Int) : z.sign.natAbs = if z = 0 then 0 else 1 :=
   match z with | 0 | succ _ | -[_+1] => rfl

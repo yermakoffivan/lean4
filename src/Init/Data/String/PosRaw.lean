@@ -93,10 +93,10 @@ def Pos.Raw.byteDistance (lo hi : Pos.Raw) : Nat :=
 theorem Pos.Raw.byteDistance_eq {lo hi : Pos.Raw} : lo.byteDistance hi = hi.byteIdx - lo.byteIdx :=
   (rfl)
 
-@[backward_defeq, simp]
+@[simp]
 theorem rawEndPos_empty : "".rawEndPos = 0 := rfl
 
-@[backward_defeq, deprecated rawEndPos_empty (since := "2025-10-20")]
+@[deprecated rawEndPos_empty (since := "2025-10-20")]
 theorem endPos_empty : "".rawEndPos = 0 := rfl
 
 /--
@@ -324,10 +324,10 @@ theorem byteIdx_mk (n : Nat) : byteIdx ⟨n⟩ = n := rfl
 theorem add_byteIdx {p₁ p₂ : Pos.Raw} : (p₂.offsetBy p₁).byteIdx = p₁.byteIdx + p₂.byteIdx := by
   simp
 
-@[backward_defeq, deprecated byteIdx_offsetBy (since := "2025-10-08")]
+@[deprecated byteIdx_offsetBy (since := "2025-10-08")]
 theorem add_eq {p₁ p₂ : Pos.Raw} : p₂.offsetBy p₁ = ⟨p₁.byteIdx + p₂.byteIdx⟩ := rfl
 
-@[backward_defeq, deprecated byteIdx_unoffsetBy (since := "2025-10-08")]
+@[deprecated byteIdx_unoffsetBy (since := "2025-10-08")]
 theorem sub_byteIdx (p₁ p₂ : Pos.Raw) : (p₁.unoffsetBy p₂).byteIdx = p₁.byteIdx - p₂.byteIdx := rfl
 
 @[deprecated byteIdx_add_char (since := "2025-10-10")]

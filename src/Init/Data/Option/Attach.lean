@@ -53,12 +53,12 @@ terminates.
 -/
 @[inline, expose] def attach (xs : Option α) : Option {x // xs = some x} := xs.attachWith _ fun _ => id
 
-@[backward_defeq, simp, grind =] theorem attach_none : (none : Option α).attach = none := rfl
-@[backward_defeq, simp, grind =] theorem attachWith_none : (none : Option α).attachWith P H = none := rfl
+@[simp, grind =] theorem attach_none : (none : Option α).attach = none := rfl
+@[simp, grind =] theorem attachWith_none : (none : Option α).attachWith P H = none := rfl
 
-@[backward_defeq, simp, grind =] theorem attach_some {x : α} :
+@[simp, grind =] theorem attach_some {x : α} :
     (some x).attach = some ⟨x, rfl⟩ := rfl
-@[backward_defeq, simp, grind =] theorem attachWith_some {x : α} {P : α → Prop} (h : ∀ (b : α), some x = some b → P b) :
+@[simp, grind =] theorem attachWith_some {x : α} {P : α → Prop} (h : ∀ (b : α), some x = some b → P b) :
     (some x).attachWith P h = some ⟨x, by simpa using h⟩ := rfl
 
 theorem attach_congr {o₁ o₂ : Option α} (h : o₁ = o₂) :
@@ -333,8 +333,8 @@ It is a synonym for `Option.map Subtype.val`.
 @[expose]
 def unattach {α : Type _} {p : α → Prop} (o : Option { x // p x }) := o.map (·.val)
 
-@[backward_defeq, simp] theorem unattach_none {p : α → Prop} : (none : Option { x // p x }).unattach = none := rfl
-@[backward_defeq, simp] theorem unattach_some {p : α → Prop} {a : { x // p x }} :
+@[simp] theorem unattach_none {p : α → Prop} : (none : Option { x // p x }).unattach = none := rfl
+@[simp] theorem unattach_some {p : α → Prop} {a : { x // p x }} :
   (some a).unattach = some a.val := rfl
 
 @[simp] theorem isSome_unattach {p : α → Prop} {o : Option { x // p x }} :

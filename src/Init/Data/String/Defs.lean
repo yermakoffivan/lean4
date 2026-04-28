@@ -133,7 +133,7 @@ theorem String.utf8ByteSize_append {s t : String} :
     (s ++ t).utf8ByteSize = s.utf8ByteSize + t.utf8ByteSize := by
   simp [utf8ByteSize]
 
-@[backward_defeq, simp]
+@[simp]
 theorem String.size_toByteArray {s : String} : s.toByteArray.size = s.utf8ByteSize := rfl
 
 @[simp]
@@ -149,13 +149,13 @@ def rawStartPos (_s : String) : String.Pos.Raw :=
 @[simp]
 theorem rawStartPos_eq {s : String} : s.rawStartPos = 0 := (rfl)
 
-@[backward_defeq, simp]
+@[simp]
 theorem byteIdx_rawEndPos {s : String} : s.rawEndPos.byteIdx = s.utf8ByteSize := rfl
 
-@[backward_defeq, deprecated byteIdx_rawEndPos (since := "2025-10-20")]
+@[deprecated byteIdx_rawEndPos (since := "2025-10-20")]
 theorem byteIdx_endPos {s : String} : s.rawEndPos.byteIdx = s.utf8ByteSize := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem utf8ByteSize_ofByteArray {b : ByteArray} {h} :
     (String.ofByteArray b h).utf8ByteSize = b.size := rfl
 
@@ -432,13 +432,13 @@ def toSlice (s : String) : Slice where
 instance : Coe String String.Slice where
   coe := String.toSlice
 
-@[backward_defeq, simp]
+@[simp]
 theorem startInclusive_toSlice {s : String} : s.toSlice.startInclusive = s.startPos := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem endExclusive_toSlice {s : String} : s.toSlice.endExclusive = s.endPos := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem str_toSlice {s : String} : s.toSlice.str = s := rfl
 
 /-- The number of bytes of the UTF-8 encoding of the string slice. -/

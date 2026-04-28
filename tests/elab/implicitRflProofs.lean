@@ -1,6 +1,6 @@
 def f (x : Nat) := x + 1
 
-@[backward_defeq] theorem f_eq (x : Nat) : f (x + 1) = x + 2 := rfl
+theorem f_eq (x : Nat) : f (x + 1) = x + 2 := rfl
 
 set_option backward.defeqAttrib.useBackward true
 

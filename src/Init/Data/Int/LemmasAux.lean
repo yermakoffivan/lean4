@@ -44,13 +44,12 @@ namespace Int
 theorem neg_lt_self_iff {n : Int} : -n < n ↔ 0 < n := by
   omega
 
-@[backward_defeq, deprecated ofNat_add_ofNat (since := "2025-10-26")]
+@[deprecated ofNat_add_ofNat (since := "2025-10-26")]
 protected theorem ofNat_add_out (m n : Nat) : ↑m + ↑n = (↑(m + n) : Int) := rfl
 
-@[backward_defeq, deprecated ofNat_mul_ofNat (since := "2025-10-26")]
+@[deprecated ofNat_mul_ofNat (since := "2025-10-26")]
 protected theorem ofNat_mul_out (m n : Nat) : ↑m * ↑n = (↑(m * n) : Int) := rfl
 
-@[backward_defeq]
 protected theorem ofNat_add_one_out (n : Nat) : ↑n + (1 : Int) = ↑(Nat.succ n) := rfl
 
 @[norm_cast] theorem natCast_inj {m n : Nat} : (m : Int) = (n : Int) ↔ m = n := ofNat_inj

@@ -18,10 +18,9 @@ namespace Int
 
 /-! # pow -/
 
-@[backward_defeq, simp, norm_cast]
+@[simp, norm_cast]
 theorem natCast_pow (m n : Nat) : (m ^ n : Nat) = (m : Int) ^ n := rfl
 
-@[backward_defeq]
 theorem negSucc_pow (m n : Nat) : (-[m+1] : Int) ^ n = if n % 2 = 0 then Int.ofNat (m.succ ^ n) else Int.negOfNat (m.succ ^ n) := rfl
 
 @[simp] protected theorem pow_zero (m : Int) : m ^ 0 = 1 := by cases m <;> simp [← natCast_pow, negSucc_pow]

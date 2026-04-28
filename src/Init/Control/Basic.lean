@@ -53,8 +53,8 @@ def ForInStep.value (x : ForInStep α) : α :=
   | ForInStep.done b => b
   | ForInStep.yield b => b
 
-@[backward_defeq, simp] theorem ForInStep.value_done (b : β) : (ForInStep.done b).value = b := rfl
-@[backward_defeq, simp] theorem ForInStep.value_yield (b : β) : (ForInStep.yield b).value = b := rfl
+@[simp] theorem ForInStep.value_done (b : β) : (ForInStep.done b).value = b := rfl
+@[simp] theorem ForInStep.value_yield (b : β) : (ForInStep.yield b).value = b := rfl
 
 /--
 Maps a function over a functor, with parameters swapped so that the function comes last.

@@ -15,17 +15,17 @@ public section
 
 namespace Option
 
-@[backward_defeq, simp, grind =] theorem bindM_none [Pure m] (f : α → m (Option β)) : none.bindM f = pure none := rfl
+@[simp, grind =] theorem bindM_none [Pure m] (f : α → m (Option β)) : none.bindM f = pure none := rfl
 @[simp, grind =] theorem bindM_some [Pure m] (a) (f : α → m (Option β)) : (some a).bindM f = f a := by
   simp [Option.bindM]
 
 -- We simplify `Option.forM` to `forM`.
 @[defeq, simp] theorem forM_eq_forM [Monad m] : @Option.forM m α _ = forM := rfl
 
-@[backward_defeq, simp, grind =] theorem forM_none [Monad m] (f : α → m PUnit) :
+@[simp, grind =] theorem forM_none [Monad m] (f : α → m PUnit) :
     forM none f = pure .unit := rfl
 
-@[backward_defeq, simp, grind =] theorem forM_some [Monad m] (f : α → m PUnit) (a : α) :
+@[simp, grind =] theorem forM_some [Monad m] (f : α → m PUnit) (a : α) :
     forM (some a) f = f a := rfl
 
 @[simp, grind =] theorem forM_map [Monad m] [LawfulMonad m] (o : Option α) (g : α → β) (f : β → m PUnit) :
@@ -162,9 +162,9 @@ theorem forIn_join [Monad m] [LawfulMonad m]
 
 @[defeq, simp, grind =] theorem throw_eq_none : throw () = (none : Option α) := rfl
 
-@[backward_defeq, simp, grind =] theorem filterM_none [Applicative m] (p : α → m Bool) :
+@[simp, grind =] theorem filterM_none [Applicative m] (p : α → m Bool) :
     none.filterM p = pure none := rfl
-@[backward_defeq, grind =] theorem filterM_some [Applicative m] (p : α → m Bool) (a : α) :
+@[grind =] theorem filterM_some [Applicative m] (p : α → m Bool) (a : α) :
     (some a).filterM p = (fun b => if b then some a else none) <$> p a := rfl
 
 theorem sequence_join [Applicative m] [LawfulApplicative m] {o : Option (Option (m α))} :

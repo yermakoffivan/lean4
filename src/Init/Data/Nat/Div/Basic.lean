@@ -110,7 +110,7 @@ Examples:
 protected def divExact (x y : @& Nat) (h : y ∣ x) : Nat :=
   x / y
 
-@[backward_defeq, simp]
+@[simp]
 theorem divExact_eq_div {x y : Nat} (h : y ∣ x) : x.divExact y h = x / y := rfl
 
 private theorem modCore.go.fuel_congr (x y fuel1 fuel2 : Nat) (hy : 0 < y) (h1 : x < fuel1) (h2 : x < fuel2) :
@@ -216,7 +216,7 @@ theorem mod_le (x y : Nat) : x % y ≤ x := by
 theorem mod_lt_of_lt {a b c : Nat} (h : a < c) : a % b < c :=
   Nat.lt_of_le_of_lt (Nat.mod_le _ _) h
 
-@[backward_defeq, simp] theorem zero_mod (b : Nat) : 0 % b = 0 := rfl
+@[simp] theorem zero_mod (b : Nat) : 0 % b = 0 := rfl
 
 @[simp] theorem mod_self (n : Nat) : n % n = 0 := by
   rw [mod_eq_sub_mod (Nat.le_refl _), Nat.sub_self, zero_mod]

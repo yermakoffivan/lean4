@@ -1046,15 +1046,15 @@ def Slice.sliceFrom (s : Slice) (pos : s.Pos) : Slice where
 def Slice.replaceStart (s : Slice) (pos : s.Pos) : Slice :=
   s.sliceFrom pos
 
-@[backward_defeq, simp]
+@[simp]
 theorem Slice.str_sliceFrom {s : Slice} {pos : s.Pos} :
     (s.sliceFrom pos).str = s.str := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem Slice.startInclusive_sliceFrom {s : Slice} {pos : s.Pos} :
     (s.sliceFrom pos).startInclusive = pos.str := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem Slice.endExclusive_sliceFrom {s : Slice} {pos : s.Pos} :
     (s.sliceFrom pos).endExclusive = s.endExclusive := rfl
 
@@ -1071,15 +1071,15 @@ def Slice.sliceTo (s : Slice) (pos : s.Pos) : Slice where
 def Slice.replaceEnd (s : Slice) (pos : s.Pos) : Slice :=
   s.sliceTo pos
 
-@[backward_defeq, simp]
+@[simp]
 theorem Slice.str_sliceTo {s : Slice} {pos : s.Pos} :
     (s.sliceTo pos).str = s.str := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem Slice.startInclusive_sliceTo {s : Slice} {pos : s.Pos} :
     (s.sliceTo pos).startInclusive = s.startInclusive := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem Slice.endExclusive_sliceTo {s : Slice} {pos : s.Pos} :
     (s.sliceTo pos).endExclusive = pos.str := rfl
 
@@ -1097,15 +1097,15 @@ def Slice.slice (s : Slice) (newStart newEnd : s.Pos)
 def Slice.replaceStartEnd (s : Slice) (newStart newEnd : s.Pos) (h : newStart ≤ newEnd) : Slice :=
   s.slice newStart newEnd h
 
-@[backward_defeq, simp]
+@[simp]
 theorem Slice.str_slice {s : Slice} {newStart newEnd : s.Pos} {h} :
     (s.slice newStart newEnd h).str = s.str := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem Slice.startInclusive_slice {s : Slice} {newStart newEnd : s.Pos} {h} :
     (s.slice newStart newEnd h).startInclusive = newStart.str := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem Slice.endExclusive_slice {s : Slice} {newStart newEnd : s.Pos} {h} :
     (s.slice newStart newEnd h).endExclusive = newEnd.str := rfl
 
@@ -1672,7 +1672,7 @@ def Slice.pos (s : Slice) (off : String.Pos.Raw) (h : off.IsValidForSlice s) : s
   offset := off
   isValidForSlice := h
 
-@[backward_defeq, simp]
+@[simp]
 theorem Slice.offset_pos {s : Slice} {off h} : (s.pos off h).offset = off := rfl
 
 /-- Constructs a valid position on `s` from a position, returning `none` if the position is not valid. -/
@@ -1733,7 +1733,7 @@ def pos? (s : String) (off : Pos.Raw) : Option s.Pos :=
 def pos! (s : String) (off : Pos.Raw) : s.Pos :=
   Pos.ofToSlice (s.toSlice.pos! off)
 
-@[backward_defeq, simp]
+@[simp]
 theorem offset_pos {s : String} {off : Pos.Raw} {h} : (s.pos off h).offset = off := rfl
 
 /-- Constructs a valid position on `t` from a valid position on `s` and a proof that
@@ -1999,7 +1999,6 @@ theorem Pos.get_toSlice {s : String} {p : s.Pos} {h} :
     p.toSlice.get h = p.get (ne_of_apply_ne (·.toSlice) (by simp_all)) := by
   rfl
 
-@[backward_defeq]
 theorem Pos.get_eq_get_toSlice {s : String} {p : s.Pos} {h}  :
     p.get h = p.toSlice.get (ne_of_apply_ne Pos.ofToSlice (by simp [h])) := rfl
 
@@ -2176,7 +2175,7 @@ def sliceTo (s : String) (p : s.Pos) : Slice :=
 def replaceEnd (s : String) (p : s.Pos) : Slice :=
   s.sliceTo p
 
-@[backward_defeq, simp]
+@[simp]
 theorem str_sliceTo {s : String} {p : s.Pos} : (s.sliceTo p).str = s := rfl
 
 @[simp]
@@ -2207,7 +2206,7 @@ def sliceFrom (s : String) (p : s.Pos) : Slice :=
 def replaceStart (s : String) (p : s.Pos) : Slice :=
   s.sliceFrom p
 
-@[backward_defeq, simp]
+@[simp]
 theorem str_sliceFrom {s : String} {p : s.Pos} : (s.sliceFrom p).str = s := rfl
 
 @[simp]
@@ -2239,11 +2238,11 @@ theorem Pos.Raw.isValidForSlice_stringSliceFrom {s : String} {p : s.Pos} {q : Po
   rw [sliceFrom, isValidForSlice_sliceFrom, isValidForSlice_toSlice_iff,
     Pos.offset_toSlice]
 
-@[backward_defeq, simp]
+@[simp]
 theorem sliceFrom_toSlice {s : String} {p : s.Pos} :
     s.toSlice.sliceFrom p.toSlice = s.sliceFrom p := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem sliceTo_toSlice {s : String} {p : s.Pos} :
     s.toSlice.sliceTo p.toSlice = s.sliceTo p := rfl
 
@@ -2258,7 +2257,7 @@ def slice (s : String) (startInclusive endExclusive : s.Pos)
     (h : startInclusive ≤ endExclusive) : String.Slice :=
   s.toSlice.slice startInclusive.toSlice endExclusive.toSlice (by simpa)
 
-@[backward_defeq, simp]
+@[simp]
 theorem str_slice {s : String} {startInclusive endExclusive h} :
     (s.slice startInclusive endExclusive h).str = s := rfl
 
@@ -2277,7 +2276,7 @@ theorem utf8ByteSize_slice {s : String} {p₁ p₂ : s.Pos} {h} :
     (s.slice p₁ p₂ h).utf8ByteSize = p₂.offset.byteIdx - p₁.offset.byteIdx := by
   simp [Slice.utf8ByteSize_eq]
 
-@[backward_defeq, simp]
+@[simp]
 theorem slice_toSlice {s : String} {p₁ p₂ : s.Pos} {h} :
     s.toSlice.slice p₁.toSlice p₂.toSlice h = s.slice p₁ p₂ h := rfl
 
@@ -3167,15 +3166,15 @@ theorem lt_iff {s t : String} : s < t ↔ s.toList < t.toList := .rfl
 
 namespace Pos.Raw
 
-@[backward_defeq, simp] theorem get!_eq_get (s : String) (p : Pos.Raw) : p.get! s = p.get s := rfl
+@[simp] theorem get!_eq_get (s : String) (p : Pos.Raw) : p.get! s = p.get s := rfl
 
-@[backward_defeq, simp] theorem get'_eq (s : String) (p : Pos.Raw) (h) : get' s p h = get s p := rfl
+@[simp] theorem get'_eq (s : String) (p : Pos.Raw) (h) : get' s p h = get s p := rfl
 
-@[backward_defeq, simp] theorem next'_eq (s : String) (p : Pos.Raw) (h) : next' s p h = next s p := rfl
+@[simp] theorem next'_eq (s : String) (p : Pos.Raw) (h) : next' s p h = next s p := rfl
 
 end Pos.Raw
 
-@[backward_defeq, deprecated Pos.Raw.get!_eq_get (since := "2025-10-14")]
+@[deprecated Pos.Raw.get!_eq_get (since := "2025-10-14")]
 theorem get!_eq_get (s : String) (p : Pos.Raw) : p.get! s = p.get s := rfl
 
 @[deprecated Pos.Raw.lt_next (since := "2025-10-10")]
@@ -3190,10 +3189,10 @@ theorem lt_next' (s : String) (p : Pos.Raw) : p < p.next s :=
 theorem prev_zero (s : String) : (0 : Pos.Raw).prev s = 0 := by
   exact Pos.Raw.prev_zero s
 
-@[backward_defeq, deprecated Pos.Raw.get'_eq (since := "2025-10-14")]
+@[deprecated Pos.Raw.get'_eq (since := "2025-10-14")]
 theorem get'_eq (s : String) (p : Pos.Raw) (h) : p.get' s h = p.get s := rfl
 
-@[backward_defeq, deprecated Pos.Raw.next'_eq (since := "2025-10-14")]
+@[deprecated Pos.Raw.next'_eq (since := "2025-10-14")]
 theorem next'_eq (s : String) (p : Pos.Raw) (h) : p.next' s h = p.next s := rfl
 
 -- `toRawSubstring'` is just a synonym for `toRawSubstring` without the `@[inline]` attribute

@@ -94,16 +94,16 @@ well-founded recursion mechanism to prove that the function terminates.
   intro a m h₁ h₂
   congr
 
-@[backward_defeq, simp] theorem pmap_empty {P : α → Prop} (f : ∀ a, P a → β) : pmap f #[] (by simp) = #[] := rfl
+@[simp] theorem pmap_empty {P : α → Prop} (f : ∀ a, P a → β) : pmap f #[] (by simp) = #[] := rfl
 
 @[simp] theorem pmap_push {P : α → Prop} (f : ∀ a, P a → β) (a : α) (xs : Array α) (h : ∀ b ∈ xs.push a, P b) :
     pmap f (xs.push a) h =
       (pmap f xs (fun a m => by simp [forall_or_eq_imp] at h; exact h.1 _ m)).push (f a (h a (by simp))) := by
   simp [pmap]
 
-@[backward_defeq, simp] theorem attach_empty : (#[] : Array α).attach = #[] := rfl
+@[simp] theorem attach_empty : (#[] : Array α).attach = #[] := rfl
 
-@[backward_defeq, simp] theorem attachWith_empty {P : α → Prop} (H : ∀ x ∈ #[], P x) : (#[] : Array α).attachWith P H = #[] := rfl
+@[simp] theorem attachWith_empty {P : α → Prop} (H : ∀ x ∈ #[], P x) : (#[] : Array α).attachWith P H = #[] := rfl
 
 @[simp] theorem _root_.List.attachWith_mem_toArray {l : List α} :
     l.attachWith (fun x => x ∈ l.toArray) (fun x h => by simpa using h) =

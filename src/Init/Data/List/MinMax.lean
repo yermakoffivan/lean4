@@ -34,7 +34,7 @@ open Nat
 
 /-! ### min? -/
 
-@[backward_defeq, simp, grind =] theorem min?_nil [Min α] : ([] : List α).min? = none := rfl
+@[simp, grind =] theorem min?_nil [Min α] : ([] : List α).min? = none := rfl
 
 @[simp, grind =]
 theorem min?_singleton [Min α] {x : α} : [x].min? = some x :=
@@ -42,7 +42,6 @@ theorem min?_singleton [Min α] {x : α} : [x].min? = some x :=
 
 -- We don't put `@[simp]` on `min?_cons'`,
 -- because the definition in terms of `foldl` is not useful for proofs.
-@[backward_defeq]
 theorem min?_cons' [Min α] {xs : List α} : (x :: xs).min? = some (foldl min x xs) := rfl
 
 @[simp] theorem min?_cons [Min α] [Std.Associative (min : α → α → α)] {xs : List α} :
@@ -245,7 +244,7 @@ theorem foldl_min_eq_min [Min α] [Std.IdempotentOp (min : α → α → α)] [S
 
 /-! ### max? -/
 
-@[backward_defeq, simp, grind =] theorem max?_nil [Max α] : ([] : List α).max? = none := rfl
+@[simp, grind =] theorem max?_nil [Max α] : ([] : List α).max? = none := rfl
 
 @[simp, grind =]
 theorem max?_singleton [Max α] {x : α} : [x].max? = some x :=
@@ -253,7 +252,6 @@ theorem max?_singleton [Max α] {x : α} : [x].max? = some x :=
 
 -- We don't put `@[simp]` on `max?_cons'`,
 -- because the definition in terms of `foldl` is not useful for proofs.
-@[backward_defeq]
 theorem max?_cons' [Max α] {xs : List α} : (x :: xs).max? = some (foldl max x xs) := rfl
 
 @[simp] theorem max?_cons [Max α] [Std.Associative (max : α → α → α)] {xs : List α} :

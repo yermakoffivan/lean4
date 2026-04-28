@@ -64,9 +64,7 @@ noncomputable abbrev Seq.denote {α} (ctx : Context α) (s : Seq) : α :=
 set_option allowUnsafeReducibility true
 attribute [semireducible] Seq.denote
 
-@[backward_defeq]
 theorem Seq.denote_var {α} (ctx : Context α) (x : Var) : (Seq.var x).denote ctx = x.denote ctx := rfl
-@[backward_defeq]
 theorem Seq.denote_op {α} (ctx : Context α) (x : Var) (s : Seq) : (Seq.cons x s).denote ctx = ctx.op (x.denote ctx) (s.denote ctx) := rfl
 
 attribute [local simp] Seq.denote_var Seq.denote_op
@@ -587,7 +585,6 @@ noncomputable def Seq.endsWithVar_k (s : Seq) (x : Var) : Bool :=
 theorem Seq.endsWithVar_k_var (y x : Var) : Seq.endsWithVar_k (.var y) x = (x == y) := by
   simp [Seq.endsWithVar_k]; rw [Bool.eq_iff_iff]; simp
 
-@[backward_defeq]
 theorem Seq.endsWithVar_k_cons (y x : Var) (s : Seq) : Seq.endsWithVar_k (.cons y s) x = s.endsWithVar_k x := rfl
 
 attribute [local simp] Seq.endsWithVar_k_var Seq.endsWithVar_k_cons

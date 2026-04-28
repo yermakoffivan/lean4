@@ -32,13 +32,13 @@ namespace ExceptT
 
 @[defeq, simp] theorem stM_eq [Monad m] : stM m (ExceptT ε m) α = Except ε α := rfl
 
-@[backward_defeq, simp, grind =] theorem run_mk (x : m (Except ε α)) : run (mk x : ExceptT ε m α) = x := rfl
+@[simp, grind =] theorem run_mk (x : m (Except ε α)) : run (mk x : ExceptT ε m α) = x := rfl
 
-@[backward_defeq, simp, grind =] theorem run_pure [Monad m] (x : α) : run (pure x : ExceptT ε m α) = pure (Except.ok x) := rfl
+@[simp, grind =] theorem run_pure [Monad m] (x : α) : run (pure x : ExceptT ε m α) = pure (Except.ok x) := rfl
 
-@[backward_defeq, simp, grind =] theorem run_lift  [Monad.{u, v} m] (x : m α) : run (ExceptT.lift x : ExceptT ε m α) = (Except.ok <$> x : m (Except ε α)) := rfl
+@[simp, grind =] theorem run_lift  [Monad.{u, v} m] (x : m α) : run (ExceptT.lift x : ExceptT ε m α) = (Except.ok <$> x : m (Except ε α)) := rfl
 
-@[backward_defeq, simp, grind =] theorem run_throw [Monad m] : run (throw e : ExceptT ε m β) = pure (Except.error e) := rfl
+@[simp, grind =] theorem run_throw [Monad m] : run (throw e : ExceptT ε m β) = pure (Except.error e) := rfl
 
 @[simp, grind =] theorem run_bind_lift [Monad m] [LawfulMonad m] (x : m α) (f : α → ExceptT ε m β) : run (ExceptT.lift x >>= f : ExceptT ε m β) = x >>= fun a => run (f a) := by
   simp [ExceptT.run, ExceptT.lift, bind, ExceptT.bind, ExceptT.mk, ExceptT.bindCont]
@@ -64,7 +64,7 @@ theorem run_bind [Monad m] (x : ExceptT ε m α) (f : α → ExceptT ε m β)
   apply bind_congr
   intro a; cases a <;> simp [Except.map]
 
-@[backward_defeq, simp, grind =] theorem run_monadMap [MonadFunctorT n m] (f : {β : Type u} → n β → n β) (x : ExceptT ε m α)
+@[simp, grind =] theorem run_monadMap [MonadFunctorT n m] (f : {β : Type u} → n β → n β) (x : ExceptT ε m α)
     : (monadMap @f x : ExceptT ε m α).run = monadMap @f (x.run) := rfl
 
 @[defeq]
@@ -112,7 +112,7 @@ instance [Monad m] [LawfulMonad m] : LawfulMonad (ExceptT ε m) where
 
 /-! Note that the `MonadControl` instance for `ExceptT` is not monad-generic. -/
 
-@[backward_defeq, simp] theorem run_restoreM [Monad m] (x : stM m (ExceptT ε m) α) :
+@[simp] theorem run_restoreM [Monad m] (x : stM m (ExceptT ε m) α) :
     ExceptT.run (restoreM x) = pure x := rfl
 
 @[backward_defeq, simp] theorem run_liftWith [Monad m] (f : ({β : Type u} → ExceptT ε m β → m (stM m (ExceptT ε m) β)) → m α) :
@@ -184,7 +184,7 @@ namespace OptionT
   apply bind_congr
   intro a; cases a <;> simp [OptionT.pure, OptionT.mk]
 
-@[backward_defeq, simp, grind =] theorem run_monadMap [MonadFunctorT n m] (f : {β : Type u} → n β → n β) (x : OptionT m α)
+@[simp, grind =] theorem run_monadMap [MonadFunctorT n m] (f : {β : Type u} → n β → n β) (x : OptionT m α)
     : (monadMap @f x : OptionT m α).run = monadMap @f (x.run) := rfl
 
 @[defeq]
@@ -251,7 +251,7 @@ instance [Monad m] [LawfulMonad m] : LawfulMonad (OptionT m) where
 
 /-! Note that the `MonadControl` instance for `OptionT` is not monad-generic. -/
 
-@[backward_defeq, simp] theorem run_restoreM [Monad m] (x : stM m (OptionT m) α) :
+@[simp] theorem run_restoreM [Monad m] (x : stM m (OptionT m) α) :
     OptionT.run (restoreM x) = pure x := rfl
 
 @[simp] theorem run_liftWith [Monad m] [LawfulMonad m] (f : ({β : Type u} → OptionT m β → m (stM m (OptionT m) β)) → m α) :
@@ -291,32 +291,32 @@ namespace ReaderT
 @[backward_defeq, simp, grind =] theorem run_mk (x : ρ → m α) (ctx : ρ) : run (.mk x : ReaderT ρ m α) ctx = x ctx :=
   rfl
 
-@[backward_defeq, simp, grind =] theorem run_pure [Monad m] (a : α) (ctx : ρ) : (pure a : ReaderT ρ m α).run ctx = pure a := rfl
+@[simp, grind =] theorem run_pure [Monad m] (a : α) (ctx : ρ) : (pure a : ReaderT ρ m α).run ctx = pure a := rfl
 
-@[backward_defeq, simp, grind =] theorem run_bind [Monad m] (x : ReaderT ρ m α) (f : α → ReaderT ρ m β) (ctx : ρ)
+@[simp, grind =] theorem run_bind [Monad m] (x : ReaderT ρ m α) (f : α → ReaderT ρ m β) (ctx : ρ)
     : (x >>= f).run ctx = x.run ctx >>= λ a => (f a).run ctx := rfl
 
-@[backward_defeq, simp, grind =] theorem run_mapConst [Monad m] (a : α) (x : ReaderT ρ m β) (ctx : ρ)
+@[simp, grind =] theorem run_mapConst [Monad m] (a : α) (x : ReaderT ρ m β) (ctx : ρ)
     : (Functor.mapConst a x).run ctx = Functor.mapConst a (x.run ctx) := rfl
 
-@[backward_defeq, simp, grind =] theorem run_map [Monad m] (f : α → β) (x : ReaderT ρ m α) (ctx : ρ)
+@[simp, grind =] theorem run_map [Monad m] (f : α → β) (x : ReaderT ρ m α) (ctx : ρ)
     : (f <$> x).run ctx = f <$> x.run ctx := rfl
 
-@[backward_defeq, simp, grind =] theorem run_monadLift [MonadLiftT n m] (x : n α) (ctx : ρ)
+@[simp, grind =] theorem run_monadLift [MonadLiftT n m] (x : n α) (ctx : ρ)
     : (monadLift x : ReaderT ρ m α).run ctx = (monadLift x : m α) := rfl
 
-@[backward_defeq, simp, grind =] theorem run_monadMap [MonadFunctorT n m] (f : {β : Type u} → n β → n β) (x : ReaderT ρ m α) (ctx : ρ)
+@[simp, grind =] theorem run_monadMap [MonadFunctorT n m] (f : {β : Type u} → n β → n β) (x : ReaderT ρ m α) (ctx : ρ)
     : (monadMap @f x : ReaderT ρ m α).run ctx = monadMap @f (x.run ctx) := rfl
 
-@[backward_defeq, simp, grind =] theorem run_read [Monad m] (ctx : ρ) : (ReaderT.read : ReaderT ρ m ρ).run ctx = pure ctx := rfl
+@[simp, grind =] theorem run_read [Monad m] (ctx : ρ) : (ReaderT.read : ReaderT ρ m ρ).run ctx = pure ctx := rfl
 
-@[backward_defeq, simp] theorem run_seq {α β : Type u} [Monad m] (f : ReaderT ρ m (α → β)) (x : ReaderT ρ m α) (ctx : ρ)
+@[simp] theorem run_seq {α β : Type u} [Monad m] (f : ReaderT ρ m (α → β)) (x : ReaderT ρ m α) (ctx : ρ)
     : (f <*> x).run ctx = (f.run ctx <*> x.run ctx) := rfl
 
-@[backward_defeq, simp] theorem run_seqRight [Monad m] (x : ReaderT ρ m α) (y : ReaderT ρ m β) (ctx : ρ)
+@[simp] theorem run_seqRight [Monad m] (x : ReaderT ρ m α) (y : ReaderT ρ m β) (ctx : ρ)
     : (x *> y).run ctx = (x.run ctx *> y.run ctx) := rfl
 
-@[backward_defeq, simp] theorem run_seqLeft [Monad m] (x : ReaderT ρ m α) (y : ReaderT ρ m β) (ctx : ρ)
+@[simp] theorem run_seqLeft [Monad m] (x : ReaderT ρ m α) (y : ReaderT ρ m β) (ctx : ρ)
     : (x <* y).run ctx = (x.run ctx <* y.run ctx) := rfl
 
 instance [Monad m] [LawfulFunctor m] : LawfulFunctor (ReaderT ρ m) where
@@ -340,7 +340,7 @@ instance [Monad m] [LawfulMonad m] : LawfulMonad (ReaderT ρ m) where
 
 /-! Note that the `MonadControl` instance for `ReaderT` is not monad-generic. -/
 
-@[backward_defeq, simp] theorem run_restoreM [Monad m] (x : stM m (ReaderT ρ m) α) (ctx : ρ) :
+@[simp] theorem run_restoreM [Monad m] (x : stM m (ReaderT ρ m) α) (ctx : ρ) :
     ReaderT.run (restoreM x) ctx = pure x := rfl
 
 @[backward_defeq, simp] theorem run_liftWith [Monad m] (f : ({β : Type u} → ReaderT ρ m β → m (stM m (ReaderT ρ m) β)) → m α) (ctx : ρ) :
@@ -375,33 +375,33 @@ namespace StateT
 @[backward_defeq, simp, grind =] theorem run'_eq [Monad m] (x : StateT σ m α) (s : σ) : run' x s = (·.1) <$> run x s :=
   rfl
 
-@[backward_defeq, simp, grind =] theorem run_pure [Monad m] (a : α) (s : σ) : (pure a : StateT σ m α).run s = pure (a, s) := rfl
+@[simp, grind =] theorem run_pure [Monad m] (a : α) (s : σ) : (pure a : StateT σ m α).run s = pure (a, s) := rfl
 
-@[backward_defeq, simp, grind =] theorem run_bind [Monad m] (x : StateT σ m α) (f : α → StateT σ m β) (s : σ)
+@[simp, grind =] theorem run_bind [Monad m] (x : StateT σ m α) (f : α → StateT σ m β) (s : σ)
     : (x >>= f).run s = x.run s >>= λ p => (f p.1).run p.2 := rfl
 
 @[simp, grind =] theorem run_map {α β σ : Type u} [Monad m] [LawfulMonad m] (f : α → β) (x : StateT σ m α) (s : σ) : (f <$> x).run s = (fun (p : α × σ) => (f p.1, p.2)) <$> x.run s := by
   rw [← bind_pure_comp (m := m)]
   rfl
 
-@[backward_defeq, simp, grind =] theorem run_get [Monad m] (s : σ)    : (get : StateT σ m σ).run s = pure (s, s) := rfl
+@[simp, grind =] theorem run_get [Monad m] (s : σ)    : (get : StateT σ m σ).run s = pure (s, s) := rfl
 
-@[backward_defeq, simp, grind =] theorem run_set [Monad m] (s s' : σ) : (set s' : StateT σ m PUnit).run s = pure (⟨⟩, s') := rfl
+@[simp, grind =] theorem run_set [Monad m] (s s' : σ) : (set s' : StateT σ m PUnit).run s = pure (⟨⟩, s') := rfl
 
-@[backward_defeq, simp, grind =] theorem run_modify [Monad m] (f : σ → σ) (s : σ) : (modify f : StateT σ m PUnit).run s = pure (⟨⟩, f s) := rfl
+@[simp, grind =] theorem run_modify [Monad m] (f : σ → σ) (s : σ) : (modify f : StateT σ m PUnit).run s = pure (⟨⟩, f s) := rfl
 
 @[simp, grind =] theorem run_modifyGet [Monad m] (f : σ → α × σ) (s : σ) : (modifyGet f : StateT σ m α).run s = pure ((f s).1, (f s).2) := by
   rfl
 
-@[backward_defeq, simp, grind =] theorem run_lift {α σ : Type u} [Monad m] (x : m α) (s : σ) : (StateT.lift x : StateT σ m α).run s = x >>= fun a => pure (a, s) := rfl
+@[simp, grind =] theorem run_lift {α σ : Type u} [Monad m] (x : m α) (s : σ) : (StateT.lift x : StateT σ m α).run s = x >>= fun a => pure (a, s) := rfl
 
 @[grind =]
 theorem run_bind_lift {α σ : Type u} [Monad m] [LawfulMonad m] (x : m α) (f : α → StateT σ m β) (s : σ) : (StateT.lift x >>= f).run s = x >>= fun a => (f a).run s := by
   simp
 
-@[backward_defeq, simp, grind =] theorem run_monadLift {α σ : Type u} [Monad m] [MonadLiftT n m] (x : n α) (s : σ) : (monadLift x : StateT σ m α).run s = (monadLift x : m α) >>= fun a => pure (a, s) := rfl
+@[simp, grind =] theorem run_monadLift {α σ : Type u} [Monad m] [MonadLiftT n m] (x : n α) (s : σ) : (monadLift x : StateT σ m α).run s = (monadLift x : m α) >>= fun a => pure (a, s) := rfl
 
-@[backward_defeq, simp, grind =] theorem run_monadMap [MonadFunctorT n m] (f : {β : Type u} → n β → n β) (x : StateT σ m α) (s : σ) :
+@[simp, grind =] theorem run_monadMap [MonadFunctorT n m] (f : {β : Type u} → n β → n β) (x : StateT σ m α) (s : σ) :
     (monadMap @f x : StateT σ m α).run s = monadMap @f (x.run s) := rfl
 
 @[simp] theorem run_seq {α β σ : Type u} [Monad m] [LawfulMonad m] (f : StateT σ m (α → β)) (x : StateT σ m α) (s : σ) : (f <*> x).run s = (f.run s >>= fun fs => (fun (p : α × σ) => (fs.1 p.1, p.2)) <$> x.run fs.2) := by
@@ -460,22 +460,22 @@ end StateT
 
 namespace EStateM
 
-@[backward_defeq, simp, grind =] theorem run_pure (a : α) (s : σ) :
+@[simp, grind =] theorem run_pure (a : α) (s : σ) :
     EStateM.run (pure a : EStateM ε σ α) s = .ok a s := rfl
 
-@[backward_defeq, simp, grind =] theorem run_get (s : σ) :
+@[simp, grind =] theorem run_get (s : σ) :
     EStateM.run (get : EStateM ε σ σ) s = .ok s s := rfl
 
-@[backward_defeq, simp, grind =] theorem run_set (s₁ s₂ : σ) :
+@[simp, grind =] theorem run_set (s₁ s₂ : σ) :
     EStateM.run (set s₁ : EStateM ε σ PUnit) s₂ = .ok .unit s₁ := rfl
 
-@[backward_defeq, simp, grind =] theorem run_modify (f : σ → σ) (s : σ) :
+@[simp, grind =] theorem run_modify (f : σ → σ) (s : σ) :
     EStateM.run (modify f : EStateM ε σ PUnit) s = .ok .unit (f s) := rfl
 
-@[backward_defeq, simp, grind =] theorem run_modifyGet (f : σ → α × σ) (s : σ) :
+@[simp, grind =] theorem run_modifyGet (f : σ → α × σ) (s : σ) :
     EStateM.run (modifyGet f : EStateM ε σ α) s = .ok (f s).1 (f s).2 := rfl
 
-@[backward_defeq, simp, grind =] theorem run_throw (e : ε) (s : σ):
+@[simp, grind =] theorem run_throw (e : ε) (s : σ):
     EStateM.run (throw e : EStateM ε σ PUnit) s = .error e s := rfl
 
 @[backward_defeq, simp, grind =] theorem run_bind (x : EStateM ε σ α) (f : α → EStateM ε σ β)

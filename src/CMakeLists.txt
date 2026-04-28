@@ -125,16 +125,6 @@ set(LEANC_CC ${CMAKE_C_COMPILER} CACHE STRING "C compiler to use in `leanc`")
 # Temporary, core-only flags. Must be synced with stdlib_flags.h.
 string(APPEND LEAN_EXTRA_OPTS " -Dbackward.do.legacy=false")
 
-# Adaption helper for the `[defeq]` / `[backward_defeq]` migration. Stage 0 does
-# not know about this option, so only enable for stage 2 and beyond.
-# `debug.inferDefEqOnRfl=true`: while this is on, `:= rfl` theorems in `src/`
-# without an explicit `[defeq]`/`[backward_defeq]` attribute are auto-tagged
-# via the `[infer_defeq]` diagnostic attribute and an info message is emitted
-# reporting which attribute was inferred. Remove once all such theorems have
-# been migrated to explicit attributes.
-if(STAGE GREATER 1)
-  string(APPEND LEAN_EXTRA_OPTS " -Ddebug.inferDefEqOnRfl=true")
-endif()
 
 # option used by the CI to fail on warnings
 option(WFAIL "Fail build if warnings are emitted by Lean" ON)

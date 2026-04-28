@@ -30,11 +30,11 @@ variable {m : Type u → Type v} {ps : PostShape.{u}}
 
 /-! ## `WP` -/
 
-@[backward_defeq, simp]
+@[simp]
 theorem ReaderT_run [WP m ps] (x : ReaderT ρ m α) :
   wp⟦x.run r⟧ Q = wp⟦x⟧ (fun a _ => Q.1 a, Q.2) r := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem StateT_run [WP m ps] (x : StateT σ m α) :
   wp⟦x.run s⟧ Q = wp⟦x⟧ (fun a s => Q.1 (a, s), Q.2) s := rfl
 
@@ -82,7 +82,7 @@ section MonadLift
 theorem monadLift_StateT [Monad m] [WPMonad m ps] (x : m α) (Q : PostCond α (.arg σ ps)) :
   wp⟦MonadLift.monadLift x : StateT σ m α⟧ Q = fun s => wp⟦x⟧ (fun a => Q.1 a s, Q.2) := by simp [wp, MonadLift.monadLift]
 
-@[backward_defeq, simp]
+@[simp]
 theorem monadLift_ReaderT [Monad m] [WPMonad m ps] (x : m α) (Q : PostCond α (.arg ρ ps)) :
   wp⟦MonadLift.monadLift x : ReaderT ρ m α⟧ Q = fun s => wp⟦x⟧ (fun a => Q.1 a s, Q.2) := rfl
 
@@ -124,11 +124,11 @@ theorem lift_OptionT [WP m ps] [Monad m] (x : m α) :
 theorem read_MonadReaderOf [MonadReaderOf ρ m] [MonadLift m n] [WP n _] :
   wp⟦MonadReaderOf.read : n ρ⟧ Q = wp⟦MonadLift.monadLift (MonadReader.read : m ρ) : n ρ⟧ Q := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem readThe_MonadReaderOf [MonadReaderOf ρ m] [WP m ps] :
   wp⟦readThe ρ : m ρ⟧ Q = wp⟦MonadReaderOf.read : m ρ⟧ Q := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem read_MonadReader [MonadReaderOf ρ m] [WP m ps] :
   wp⟦MonadReader.read : m ρ⟧ Q = wp⟦MonadReaderOf.read : m ρ⟧ Q := rfl
 
@@ -167,7 +167,7 @@ theorem modifyGet_MonadState [WP m ps] [MonadStateOf σ m] (f : σ → α × σ)
 theorem modifyGetThe_MonadStateOf [WP m ps] [MonadStateOf σ m] (f : σ → α × σ) :
   wp⟦modifyGetThe σ f : m α⟧ Q = wp⟦MonadStateOf.modifyGet f : m α⟧ Q := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem modify_MonadStateOf [WP m ps] [MonadStateOf σ m] (f : σ → σ) :
   wp⟦modify f : m PUnit⟧ Q = wp⟦MonadStateOf.modifyGet fun s => (⟨⟩, f s) : m PUnit⟧ Q := rfl
 
@@ -175,7 +175,7 @@ theorem modify_MonadStateOf [WP m ps] [MonadStateOf σ m] (f : σ → σ) :
 theorem modifyThe_MonadStateOf [WP m ps] [MonadStateOf σ m] (f : σ → σ) :
   wp⟦modifyThe σ f : m PUnit⟧ Q = wp⟦MonadStateOf.modifyGet fun s => (⟨⟩, f s) : m PUnit⟧ Q := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem getModify_MonadStateOf [WP m ps] [MonadStateOf σ m] (f : σ → σ) :
   wp⟦getModify f : m σ⟧ Q = wp⟦MonadStateOf.modifyGet fun s => (s, f s) : m σ⟧ Q := rfl
 
@@ -186,7 +186,7 @@ theorem read_ReaderT [Monad m] [WPMonad m ps] :
     wp⟦MonadReaderOf.read : ReaderT ρ m ρ⟧ Q = fun r => Q.1 r r := by
   simp [wp, MonadReaderOf.read]
 
-@[backward_defeq, simp]
+@[simp]
 theorem adapt_ReaderT [WP m ps] (f : ρ → ρ') :
   wp⟦ReaderT.adapt f x : ReaderT ρ m α⟧ Q = fun r => wp⟦x⟧ (fun a _ => Q.1 a r, Q.2) (f r) := rfl
 
@@ -292,19 +292,19 @@ theorem monadMap_trans [WP o ps] [MonadFunctor n o] [MonadFunctorT m n] :
 theorem monadMap_refl [WP m ps] :
   wp⟦MonadFunctorT.monadMap f x : m α⟧ Q = wp⟦f x : m α⟧ Q := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem withReader_ReaderT [WP m ps] :
   wp⟦MonadWithReaderOf.withReader f x : ReaderT ρ m α⟧ Q = fun r => wp⟦x⟧ (fun a _ => Q.1 a r, Q.2) (f r) := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem withReader_MonadWithReaderOf [MonadWithReaderOf ρ m] [WP n nsh] [MonadFunctor m n] (f : ρ → ρ) (x : n α) :
   wp⟦MonadWithReaderOf.withReader f x⟧ Q = wp⟦mmap (m:=m) (MonadWithReaderOf.withReader f) x⟧ Q := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem withReader_MonadWithReader [MonadWithReaderOf ρ m] [WP m ps] (f : ρ → ρ) (x : m α) :
   wp⟦MonadWithReader.withReader f x⟧ Q = wp⟦MonadWithReaderOf.withReader f x⟧ Q := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem withTheReader_MonadWithReaderOf [MonadWithReaderOf ρ m] [WP m ps] (f : ρ → ρ) (x : m α) :
   wp⟦withTheReader ρ f x⟧ Q = wp⟦MonadWithReaderOf.withReader f x⟧ Q := rfl
 
@@ -380,7 +380,7 @@ theorem restoreM_OptionT [Monad m] [WPMonad m ps] (x : m (Option α)) :
   ext
   split <;> rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem restoreM_trans [WP o ps] [MonadControl n o] [MonadControlT m n] (x : stM m o α) :
   wp⟦MonadControlT.restoreM x : o α⟧ Q = wp⟦MonadControl.restoreM (m:=n) (MonadControlT.restoreM (m:=m) x) : o α⟧ Q := rfl
 
@@ -388,12 +388,12 @@ theorem restoreM_trans [WP o ps] [MonadControl n o] [MonadControlT m n] (x : stM
 theorem restoreM_refl [Pure m] [WP m ps] (x : stM m m α) :
   wp⟦MonadControlT.restoreM x : m α⟧ Q = wp⟦Pure.pure x : m α⟧ Q := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem controlAt_MonadControlT [Bind n] [WP n ps] [MonadControlT m n]
   (f : (∀{β}, n β → m (stM m n β)) → m (stM m n α)) :
     wp⟦controlAt m f⟧ Q = wp⟦liftWith f >>= restoreM⟧ Q := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem control_MonadControlT [Bind n] [WP n ps] [MonadControlT m n]
   (f : (∀{β}, n β → m (stM m n β)) → m (stM m n α)) :
     wp⟦control f⟧ Q = wp⟦liftWith f >>= restoreM⟧ Q := rfl
@@ -450,7 +450,7 @@ theorem throw_EStateM :
 theorem throw_ReaderT [WP m sh] [Monad m] [MonadExceptOf ε m] :
   wp⟦MonadExceptOf.throw (ε:=ε) e : ReaderT ρ m α⟧ Q = wp⟦MonadLift.monadLift (MonadExceptOf.throw (ε:=ε) e : m α) : ReaderT ρ m α⟧ Q := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem throw_StateT [WP m sh] [Monad m] [MonadExceptOf ε m] :
   wp⟦MonadExceptOf.throw (ε:=ε) e : StateT ρ m α⟧ Q = wp⟦MonadLift.monadLift (MonadExceptOf.throw (ε:=ε) e : m α) : StateT ρ m α⟧ Q := rfl
 

@@ -114,9 +114,8 @@ theorem shiftLeft_eq (a b : Nat) : a <<< b = a * 2 ^ b :=
   | b+1 => (shiftLeft_eq _ b).trans <| by
     simp [Nat.pow_succ, Nat.mul_assoc, Nat.mul_comm]
 
-@[backward_defeq, simp, grind =] theorem shiftRight_zero : n >>> 0 = n := rfl
+@[simp, grind =] theorem shiftRight_zero : n >>> 0 = n := rfl
 
-@[backward_defeq]
 theorem shiftRight_succ (m n) : m >>> (n + 1) = (m >>> n) / 2 := rfl
 
 theorem shiftRight_add (m n : Nat) : ∀ k, m >>> (n + k) = (m >>> n) >>> k
@@ -157,7 +156,7 @@ Asserts that the `(n+1)`th least significant bit of `m` is not set.
 @[expose] protected def hasNotBit (m n : Nat) : Prop :=
   Nat.land 1 (Nat.shiftRight m n) ≠ 1
 
-@[backward_defeq, grind =]
+@[grind =]
 theorem hasNotBit_eq (m n : Nat) : Nat.hasNotBit m n = (1 &&& (m >>> n) ≠ 1) := rfl
 
 end Nat

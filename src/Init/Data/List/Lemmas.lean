@@ -210,7 +210,7 @@ theorem getElem!_eq_getElem?_getD [Inhabited α] {l : List α} {i : Nat} :
 
 /-! ### getElem? and getElem -/
 
-@[backward_defeq, simp, grind =] theorem getElem?_nil {i : Nat} : ([] : List α)[i]? = none := rfl
+@[simp, grind =] theorem getElem?_nil {i : Nat} : ([] : List α)[i]? = none := rfl
 
 @[grind =]
 theorem getElem_cons {l : List α} (w : i < (a :: l).length) :
@@ -218,10 +218,9 @@ theorem getElem_cons {l : List α} (w : i < (a :: l).length) :
       if h : i = 0 then a else l[i-1]'(match i, h with | i+1, _ => succ_lt_succ_iff.mp w) := by
   cases i <;> simp
 
-@[backward_defeq]
 theorem getElem?_cons_zero {l : List α} : (a::l)[0]? = some a := rfl
 
-@[backward_defeq, simp] theorem getElem?_cons_succ {l : List α} : (a::l)[i+1]? = l[i]? := rfl
+@[simp] theorem getElem?_cons_succ {l : List α} : (a::l)[i+1]? = l[i]? := rfl
 
 @[grind =]
 theorem getElem?_cons : (a :: l)[i]? = if i = 0 then some a else l[i-1]? := by
@@ -602,10 +601,10 @@ theorem all_bne' [BEq α] [PartialEquivBEq α] {l : List α} :
 /-! ### set -/
 
 -- As `List.set` is defined in `Init.Prelude`, we write the basic simplification lemmas here.
-@[backward_defeq, simp, grind =] theorem set_nil {i : Nat} {a : α} : [].set i a = [] := rfl
-@[backward_defeq, simp, grind =] theorem set_cons_zero {x : α} {xs : List α} {a : α} :
+@[simp, grind =] theorem set_nil {i : Nat} {a : α} : [].set i a = [] := rfl
+@[simp, grind =] theorem set_cons_zero {x : α} {xs : List α} {a : α} :
   (x :: xs).set 0 a = a :: xs := rfl
-@[backward_defeq, simp, grind =] theorem set_cons_succ {x : α} {xs : List α} {i : Nat} {a : α} :
+@[simp, grind =] theorem set_cons_succ {x : α} {xs : List α} {i : Nat} {a : α} :
   (x :: xs).set (i + 1) a = x :: xs.set i a := rfl
 
 @[simp] theorem getElem_set_self {l : List α} {i : Nat} {a : α} (h : i < (l.set i a).length) :
@@ -731,7 +730,7 @@ theorem mem_or_eq_of_mem_set : ∀ {l : List α} {i : Nat} {a b : α}, a ∈ l.s
 @[simp, grind =] theorem nil_beq_eq [BEq α] {l : List α} : ([] == l) = l.isEmpty := by
   cases l <;> rfl
 
-@[backward_defeq, simp, grind =] theorem cons_beq_cons [BEq α] {a b : α} {l₁ l₂ : List α} :
+@[simp, grind =] theorem cons_beq_cons [BEq α] {a b : α} {l₁ l₂ : List α} :
     (a :: l₁ == b :: l₂) = (a == b && l₁ == l₂) := rfl
 
 @[simp] theorem concat_beq_concat [BEq α] {a b : α} {l₁ l₂ : List α} :
@@ -827,7 +826,7 @@ theorem getLast_eq_getLastD {a l} (h) : @getLast α (a::l) h = getLastD l a := b
 @[simp, grind =] theorem getLastD_eq_getLast? {a l} : @getLastD α l a = (getLast? l).getD a := by
   cases l <;> rfl
 
-@[backward_defeq, simp, grind =] theorem getLast_singleton {a} (h) : @getLast α [a] h = a := rfl
+@[simp, grind =] theorem getLast_singleton {a} (h) : @getLast α [a] h = a := rfl
 
 theorem getLast!_cons_eq_getLastD [Inhabited α] : @getLast! α _ (a::l) = getLastD l a := by
   simp [getLast!, getLast_eq_getLastD]
@@ -853,7 +852,7 @@ theorem getElem_cons_length {x : α} {xs : List α} {i : Nat} (h : i = xs.length
 
 /-! ### getLast? -/
 
-@[backward_defeq, simp] theorem getLast?_singleton {a : α} : getLast? [a] = some a := rfl
+@[simp] theorem getLast?_singleton {a : α} : getLast? [a] = some a := rfl
 
 -- The `l : List α` argument is intentionally explicit.
 @[deprecated getLast?_eq_some_getLast (since := "2025-10-26")]
@@ -895,7 +894,6 @@ theorem getLastD_concat {a b} {l : List α} : (l ++ [b]).getLastD a = b := by
 
 /-! ### getLast! -/
 
-@[backward_defeq]
 theorem getLast!_nil [Inhabited α] : ([] : List α).getLast! = default := rfl
 
 @[simp] theorem getLast!_eq_getLast?_getD [Inhabited α] {l : List α} : getLast! l = (getLast? l).getD default := by
@@ -1119,7 +1117,6 @@ theorem map_id' (l : List α) : map (fun (a : α) => a) l = l := map_id l
 theorem map_id'' {f : α → α} (h : ∀ x, f x = x) (l : List α) : map f l = l := by
   simp [show f = id from funext h]
 
-@[backward_defeq]
 theorem map_singleton {f : α → β} {a : α} : map f [a] = [f a] := rfl
 
 -- We use a lower priority here as there are more specific lemmas in downstream libraries
@@ -1592,9 +1589,9 @@ theorem filterMap_eq_cons_iff {l} {b} {bs} :
 
 /-! ### append -/
 
-@[backward_defeq, simp] theorem nil_append_fun : (([] : List α) ++ ·) = id := rfl
+@[simp] theorem nil_append_fun : (([] : List α) ++ ·) = id := rfl
 
-@[backward_defeq, simp] theorem cons_append_fun {a : α} {as : List α} :
+@[simp] theorem cons_append_fun {a : α} {as : List α} :
     (fun bs => ((a :: as) ++ bs)) = fun bs => a :: (as ++ bs) := rfl
 
 @[simp, grind =] theorem mem_append {a : α} {s t : List α} : a ∈ s ++ t ↔ a ∈ s ∨ a ∈ t := by
@@ -1660,7 +1657,7 @@ theorem getElem_of_append {l : List α} (eq : l = l₁ ++ a :: l₂) (h : l₁.l
   rw [← getElem?_eq_getElem, eq, getElem?_append_right (h ▸ Nat.le_refl _), h]
   simp
 
-@[backward_defeq, simp] theorem singleton_append : [x] ++ l = x :: l := rfl
+@[simp] theorem singleton_append : [x] ++ l = x :: l := rfl
 
 theorem append_inj :
     ∀ {s₁ s₂ t₁ t₂ : List α}, s₁ ++ t₁ = s₂ ++ t₂ → length s₁ = length s₂ → s₁ = s₂ ∧ t₁ = t₂
@@ -2119,7 +2116,7 @@ theorem eq_iff_flatten_eq : ∀ {L L' : List (List α)},
 
 /-! ### flatMap -/
 
-@[backward_defeq, grind _=_] theorem flatMap_def {l : List α} {f : α → List β} : l.flatMap f = flatten (map f l) := rfl
+@[grind _=_] theorem flatMap_def {l : List α} {f : α → List β} : l.flatMap f = flatten (map f l) := rfl
 
 @[simp] theorem flatMap_id {L : List (List α)} : L.flatMap id = L.flatten := by simp [flatMap_def]
 
@@ -2200,7 +2197,7 @@ theorem flatMap_eq_foldl {f : α → List β} {l : List α} :
 
 /-! ### replicate -/
 
-@[backward_defeq, simp] theorem replicate_one : replicate 1 a = [a] := rfl
+@[simp] theorem replicate_one : replicate 1 a = [a] := rfl
 
 /-- Variant of `replicate_succ` that concatenates `a` to the end of the list. -/
 theorem replicate_succ' : replicate (n + 1) a = replicate n a ++ [a] := by
@@ -2637,7 +2634,7 @@ theorem idRun_foldlM {f : β → α → Id β} {b : β} {l : List α} :
 theorem idRun_foldrM {f : α → β → Id β} {b : β} {l : List α} :
     Id.run (l.foldrM f b) = l.foldr (f · · |>.run) b := foldr_eq_foldrM.symm
 
-@[backward_defeq, simp] theorem foldlM_reverse [Monad m] {l : List α} {f : β → α → m β} {b : β} :
+@[simp] theorem foldlM_reverse [Monad m] {l : List α} {f : β → α → m β} {b : β} :
     l.reverse.foldlM f b = l.foldrM (fun x y => f y x) b := rfl
 
 @[simp] theorem foldrM_reverse [Monad m] {l : List α} {f : α → β → m β} {b : β} :
@@ -2846,7 +2843,7 @@ def foldlRecOn {motive : β → Sort _} : ∀ (l : List α) (op : β → α → 
     foldlRecOn tl op (hl b hb hd mem_cons_self)
       fun y hy x hx => hl y hy x (mem_cons_of_mem hd hx)
 
-@[backward_defeq, simp, grind =] theorem foldlRecOn_nil {motive : β → Sort _} {op : β → α → β} (hb : motive b)
+@[simp, grind =] theorem foldlRecOn_nil {motive : β → Sort _} {op : β → α → β} (hb : motive b)
     (hl : ∀ (b : β) (_ : motive b) (a : α) (_ : a ∈ []), motive (op b a)) :
     foldlRecOn [] op hb hl = hb := rfl
 
@@ -2881,7 +2878,7 @@ def foldrRecOn {motive : β → Sort _} : ∀ (l : List α) (op : α → β → 
     hl (foldr op b l)
       (foldrRecOn l op hb fun b c a m => hl b c a (mem_cons_of_mem x m)) x mem_cons_self
 
-@[backward_defeq, simp, grind =] theorem foldrRecOn_nil {motive : β → Sort _} {op : α → β → β} (hb : motive b)
+@[simp, grind =] theorem foldrRecOn_nil {motive : β → Sort _} {op : α → β → β} (hb : motive b)
     (hl : ∀ (b : β) (_ : motive b) (a : α) (_ : a ∈ []), motive (op a b)) :
     foldrRecOn [] op hb hl = hb := rfl
 
@@ -3516,7 +3513,7 @@ end replace
 section insert
 variable [BEq α]
 
-@[backward_defeq, simp, grind =] theorem insert_nil (a : α) : [].insert a = [a] := rfl
+@[simp, grind =] theorem insert_nil (a : α) : [].insert a = [a] := rfl
 
 @[simp, grind =] theorem contains_insert [PartialEquivBEq α] {l : List α} {a : α} {x : α} :
     (l.insert a).contains x = (x == a || l.contains x) := by
@@ -3688,7 +3685,7 @@ theorem removeAll_cons [BEq α] {xs : List α} {y : α} {ys : List α} :
 
 /-! ### `eraseDupsBy` and `eraseDups` -/
 
-@[backward_defeq, simp, grind =] theorem eraseDupsBy_nil : ([] : List α).eraseDupsBy r = [] := rfl
+@[simp, grind =] theorem eraseDupsBy_nil : ([] : List α).eraseDupsBy r = [] := rfl
 
 private theorem eraseDupsBy_loop_cons {as bs : List α} {r : α → α → Bool} :
     eraseDupsBy.loop r as bs = bs.reverse ++ eraseDupsBy.loop r (as.filter fun a => !bs.any (r a)) [] := by
@@ -3715,7 +3712,7 @@ theorem eraseDupsBy_cons :
   rw [eraseDupsBy_loop_cons]
   simp
 
-@[backward_defeq, simp, grind =] theorem eraseDups_nil [BEq α] : ([] : List α).eraseDups = [] := rfl
+@[simp, grind =] theorem eraseDups_nil [BEq α] : ([] : List α).eraseDups = [] := rfl
 @[grind =] theorem eraseDups_cons [BEq α] {a : α} {as : List α} :
     (a :: as).eraseDups = a :: (as.filter fun b => !b == a).eraseDups := by
   simp [eraseDups, eraseDupsBy_cons]
@@ -3775,14 +3772,11 @@ to which these simplify.
 We may consider deprecating or downstreaming these lemmas.
 -/
 
-@[backward_defeq]
 theorem get_cons_zero : get (a::l) (0 : Fin (l.length + 1)) = a := rfl
 
-@[backward_defeq]
 theorem get_cons_succ {as : List α} {h : i + 1 < (a :: as).length} :
   (a :: as).get ⟨i+1, h⟩ = as.get ⟨i, Nat.lt_of_succ_lt_succ h⟩ := rfl
 
-@[backward_defeq]
 theorem get_cons_succ' {as : List α} {i : Fin as.length} :
   (a :: as).get i.succ = as.get i := rfl
 
@@ -3798,7 +3792,6 @@ such a rewrite, with `rw [get_of_eq h]`.
 theorem get_of_eq {l l' : List α} (h : l = l') (i : Fin l.length) :
     get l i = get l' ⟨i, h ▸ i.2⟩ := by cases h; rfl
 
-@[backward_defeq]
 theorem getElem!_nil [Inhabited α] {n : Nat} : ([] : List α)[n]! = default := rfl
 
 theorem getElem!_cons_zero [Inhabited α] {l : List α} : (a::l)[0]! = a := by
@@ -3835,7 +3828,7 @@ theorem mem_iff_get {a} {l : List α} : a ∈ l ↔ ∃ n, get l n = a :=
 
 /-! ### `intercalate` -/
 
-@[backward_defeq, simp]
+@[simp]
 theorem intercalate_nil {ys : List α} : ys.intercalate [] = [] := rfl
 
 @[simp]

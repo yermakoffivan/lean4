@@ -53,7 +53,7 @@ for every element of `α`.
 instance (priority := low) instSizeOfDefault (α : Sort u) : SizeOf α where
   sizeOf := default.sizeOf α
 
-@[backward_defeq, simp] theorem sizeOf_default (n : α) : sizeOf n = 0 := rfl
+@[simp] theorem sizeOf_default (n : α) : sizeOf n = 0 := rfl
 
 instance : SizeOf Nat where
   sizeOf n := n

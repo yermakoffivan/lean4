@@ -480,7 +480,8 @@ macro "reportEMatchIssue!" s:(interpolatedStr(term) <|> term) : doElem => do
 Stores new theorem instance in the state.
 Recall that new instances are internalized later, after a full round of ematching.
 -/
-private def addNewInstance (thm : EMatchTheorem) (proof : Expr) (generation : Nat) (guards : List TheoremGuard) : M Unit := do
+private def addNewInstance (thm : EMatchTheorem) (proof : Expr) (generation : Nat)
+    (guards : List TheoremGuard) (sources : PHashSet Expr) : M Unit := do
   let proof ← instantiateMVars proof
   if grind.debug.proofs.get (← getOptions) then
     check proof
@@ -522,7 +523,7 @@ where
     **Note**: Restores grind transparency setting because with use `withDefault` at `instantiateTheorem`.
     -/
     withGTransparency do
-      addTheoremInstance thm proof prop (generation+1) guards
+      addTheoremInstance thm proof prop (generation+1) guards sources.toList
 
 private def synthesizeInsts (mvars : Array Expr) (bis : Array BinderInfo) : OptionT M Unit := do
   let thm := (← read).thm
@@ -814,13 +815,13 @@ private partial def instantiateTheorem (c : Choice) : M Unit := withDefault do w
     let guards ← collectGuards thm proof mvars
     let proof := mkAppN proof mvars
     if (← mvars.allM (·.mvarId!.isAssigned)) then
-      addNewInstance thm proof c.gen guards
+      addNewInstance thm proof c.gen guards c.sources
     else
       let mvars ← mvars.filterM fun mvar => return !(← mvar.mvarId!.isAssigned)
       if let some mvarBad ← mvars.findM? fun mvar => return !(← isProof mvar) then
         reportEMatchIssue! "failed to instantiate {thm.origin.pp}, failed to instantiate non propositional argument with type{indentExpr (← inferType mvarBad)}"
       let proof ← mkLambdaFVars (binderInfoForMVars := .default) mvars (← instantiateMVars proof)
-      addNewInstance thm proof c.gen guards
+      addNewInstance thm proof c.gen guards c.sources
 
 /-- Process choice stack until we don't have more choices to be processed. -/
 private def processChoices : M Unit := do
@@ -887,7 +888,7 @@ private def matchEqBwdPat (p : Expr) : M Unit := do
 def instantiateGroundTheorem (thm : EMatchTheorem) : M Unit := do
   if (← markTheoremInstance thm.proof #[]) then
     let proof ← thm.getProofWithFreshMVarLevels
-    addNewInstance thm proof 0 []
+    addNewInstance thm proof 0 [] {}
 
 def ematchTheorem (thm : EMatchTheorem) : M Unit := do
   if (← checkMaxInstancesExceeded) then return ()

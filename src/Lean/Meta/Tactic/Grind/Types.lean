@@ -142,7 +142,7 @@ def SplitSource.toMessageData : SplitSource → MessageData
 /--
 Auxiliary type used to implement `grind.ematch.instance`.
 -/
-inductive EmatchDiagSource where
+inductive EMatchDiagSource where
   | ematch (inst : Expr)
   | other
   deriving Inhabited
@@ -176,7 +176,7 @@ structure Context where
   /-- Current source of case-splits. -/
   splitSource  : SplitSource := .input
   /-- Current source of tracking E-matching theorem instantiation (see `grind.ematch.instances`). -/
-  ematchDiagSource  : EmatchDiagSource := .other
+  ematchDiagSource  : EMatchDiagSource := .other
   /-- Symbol priorities for inferring E-matching patterns -/
   symPrios     : SymbolPriorities
   extensions   : ExtensionStateArray := #[]
@@ -221,7 +221,7 @@ structure SplitDiagInfo where
 An entry `{thm_1, ..., thm_n} => {thm}`. Each `thm_i` and `thm` is the proof of a theorem instance.
 It means terms created while instantiating `thm_i` were used to create theorem `thm`.
 -/
-structure EmatchDiagInfo where
+structure EMatchDiagInfo where
   lctx    : LocalContext
   sources : List Expr
   target  : Expr
@@ -246,7 +246,7 @@ structure State where
   /-- Split diagnostic information. This information is only collected when `set_option diagnostics true` -/
   splitDiags : PArray SplitDiagInfo := {}
   /-- E-matching theorem instantiation diagnostics -/
-  ematchDiags : PArray EmatchDiagInfo := {}
+  ematchDiags : PArray EMatchDiagInfo := {}
   /--
   Mapping from binary functions `f` to a theorem `thm : ∀ a b, f a b = .eq → a = b`
   if it implements the `LawfulEqCmp` type class.
@@ -323,7 +323,7 @@ abbrev withSplitSource [MonadControlT GrindM m] [Monad m] (splitSource : SplitSo
 `withEmatchDiagSource s x` executes `x` and uses `s` as the E-matching diagnostics source for any
 term created.
 -/
-abbrev withEmatchDiagSource [MonadControlT GrindM m] [Monad m] (ematchDiagSource : EmatchDiagSource) : m α → m α :=
+abbrev withEmatchDiagSource [MonadControlT GrindM m] [Monad m] (ematchDiagSource : EMatchDiagSource) : m α → m α :=
   mapGrindM <| withTheReader Grind.Context fun ctx => { ctx with ematchDiagSource }
 
 /-- Returns the user-defined configuration options -/
@@ -407,6 +407,11 @@ def saveSplitDiagInfo (c : Expr) (gen : Nat) (numCases : Nat) (splitSource : Spl
   if (← isDiagnosticsEnabled) then
     let lctx ← getLCtx
     modify fun s => { s with splitDiags := s.splitDiags.push { c, gen, lctx, numCases, splitSource } }
+
+def saveEMatchDiagInfo (sources : List Expr) (target : Expr) : GrindM Unit := do
+  if (← isEmatchDiagEnabled) then
+    let lctx ← getLCtx
+    modify fun s => { s with ematchDiags := s.ematchDiags.push { sources, target, lctx } }
 
 @[inline] def getMethodsRef : GrindM MethodsRef :=
   read
@@ -507,7 +512,7 @@ structure ENode where
   -/
   funCC : Bool := true
   /-- Auxiliary field used to implement `grind.ematch.diagnostics` -/
-  ematchDiagSource : EmatchDiagSource
+  ematchDiagSource : EMatchDiagSource
   deriving Inhabited
 
 def ENode.isRoot (n : ENode) :=
@@ -750,7 +755,7 @@ structure NewRawFact where
   /-- `splitSource` to use when internalizing this fact. -/
   splitSource  : SplitSource
   /-- `ematch -/
-  ematchDiagSource : EmatchDiagSource
+  ematchDiagSource : EMatchDiagSource
   deriving Inhabited
 
 structure CanonArgKey where
@@ -789,6 +794,8 @@ structure DelayedTheoremInstance where
   prop       : Expr
   generation : Nat
   guards     : List TheoremGuard
+  /-- Sources for `grind.ematch.diagnostics` that generated this instance. -/
+  sources    : List Expr
   deriving Inhabited
 
 /-- E-matching related fields for the `grind` goal. -/
@@ -1082,7 +1089,7 @@ def markTheoremInstance (proof : Expr) (assignment : Array Expr) : GoalM Bool :=
   return true
 
 /-- Adds a new fact `prop` with proof `proof` to the queue for preprocessing and the assertion. -/
-def addNewRawFact (proof : Expr) (prop : Expr) (generation : Nat) (splitSource : SplitSource) (ematchDiagSource : EmatchDiagSource) : GoalM Unit := do
+def addNewRawFact (proof : Expr) (prop : Expr) (generation : Nat) (splitSource : SplitSource) (ematchDiagSource : EMatchDiagSource) : GoalM Unit := do
   if (← isDebugEnabled) then
     unless (← withGTransparency <| isDefEq (← inferType proof) prop) do
       throwError "`grind` internal error, trying to assert{indentExpr prop}\n\
@@ -1715,20 +1722,22 @@ where
         return .next e guards
 
 /-- Adds a new theorem instance produced using E-matching. -/
-def addTheoremInstance (thm : EMatchTheorem) (proof : Expr) (prop : Expr) (generation : Nat) (guards : List TheoremGuard) : GoalM Unit := do
+def addTheoremInstance (thm : EMatchTheorem) (proof : Expr) (prop : Expr) (generation : Nat)
+    (guards : List TheoremGuard) (sources : List Expr) : GoalM Unit := do
   match (← activateNextGuard thm guards generation) with
   | .ready =>
     trace_goal[grind.ematch.instance] "{thm.origin.pp}: {prop}"
     saveEMatchTheorem thm
-    let ematchDiagSource := if (← isEmatchDiagEnabled) then
-      .ematch proof
+    let ematchDiagSource ← if (← isEmatchDiagEnabled) then
+      saveEMatchDiagInfo sources proof
+      pure (.ematch proof)
     else
-      .other
+      pure .other
     addNewRawFact proof prop generation (.ematch thm.origin) ematchDiagSource
     modify fun s => { s with ematch.numInstances := s.ematch.numInstances + 1 }
   | .next guard guards =>
     let thms := (← get).ematch.delayedThmInsts.find? { expr := guard } |>.getD []
-    let thms := { thm, proof, prop, generation, guards } :: thms
+    let thms := { thm, proof, prop, generation, guards, sources } :: thms
     trace_goal[grind.ematch.instance.delayed] "`{thm.origin.pp}` waiting{indentExpr guard}"
     modify fun s => { s with
       ematch.delayedThmInsts := s.ematch.delayedThmInsts.insert { expr := guard } thms
@@ -1739,7 +1748,7 @@ def addTheoremInstance (thm : EMatchTheorem) (proof : Expr) (prop : Expr) (gener
     }
 
 def DelayedTheoremInstance.check (delayed : DelayedTheoremInstance) : GoalM Unit := do
-  addTheoremInstance delayed.thm delayed.proof delayed.prop delayed.generation delayed.guards
+  addTheoremInstance delayed.thm delayed.proof delayed.prop delayed.generation delayed.guards delayed.sources
 
 /--
 Returns extensionality theorems for the given type if available.

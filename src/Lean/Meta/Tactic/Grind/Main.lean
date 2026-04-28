@@ -335,12 +335,37 @@ private def initCore (mvarId : MVarId) : GrindM Goal := do
   else
     processHypotheses goal
 
+def traceEMatchDiagsCompact (diag : PArray EMatchDiagInfo) : GrindM Unit := do
+  if (← isTracingEnabledFor `grind.ematch.diagnostics.compact) then
+  unless (← isEmatchDiagEnabled) do
+    logWarning "use `set_option grind.ematch.diagnostics true` when using `set_option trace.grind.ematch.diagnostics.compact true`"
+  withTraceNode `grind.ematch.diagnostics.compact (fun _ => return m!"instances") do
+  for { sources, target, .. } in diag do
+    let some target := getTheoremName? target | pure ()
+    let sources := getTheoremNames? sources
+    addTrace `inst m!"{sources} => {target}"
+where
+  getTheoremName? (p : Expr) : Option Name :=
+    match p with
+    | .lam _ _ b _ => getTheoremName? b
+    | .app f _ => getTheoremName? f
+    | .const declName _ => some declName
+    | _ => none
+
+  getTheoremNames? (ps : List Expr) : List Name := Id.run do
+    let mut r : NameSet := {}
+    for p in ps do
+      let some n := getTheoremName? p | pure ()
+      r := r.insert n
+    return r.toList
+
 def mkResult (params : Params) (failure? : Option Goal) : GrindM Result := do
   let issues      ← Sym.getIssues
   let counters    := (← get).counters
   let splitDiags  := (← get).splitDiags
   let ematchDiags := (← get).ematchDiags
   let simp        := { (← get).simp with }
+  traceEMatchDiagsCompact ematchDiags
   if failure?.isNone then
     -- If there are no failures and diagnostics are enabled, we still report the performance counters.
     if (← isDiagnosticsEnabled) then

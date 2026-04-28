@@ -28,7 +28,12 @@ deriving Nonempty
 
 namespace CancelToken
 
-/-- Creates a new cancellation token. -/
+/--
+Creates a new cancellation token.
+
+Note: cannot be called from `initialize` blocks because the underlying task manager is not yet
+running at that point. Construct lazily on first use instead.
+-/
 def new : BaseIO CancelToken :=
   CancelToken.mk <$> IO.Promise.new
 
@@ -42,10 +47,22 @@ def isSet (tk : CancelToken) : BaseIO Bool :=
 
 /--
 A task that completes when the cancellation token is set. Useful for waiting on cancellation
-without polling.
+without polling — e.g. as one of the tasks given to `IO.waitAny`.
+
+Note: each call constructs a fresh `Task`. To attach further dependencies (`Task.map`,
+`BaseIO.bindTask`, etc.) when a token is cancelled, prefer `onSet`, which avoids the
+intermediate `Task` and the GC hazard that comes with chaining on its return value.
 -/
 def task (tk : CancelToken) : Task Unit :=
   tk.promise.result!
+
+/--
+Registers a callback to run when the cancellation token is set. The callback runs as a
+synchronous task dependency, so it executes inline on the thread that calls `set`. If the
+token is already set when `onSet` is called, the callback runs immediately.
+-/
+def onSet (tk : CancelToken) (action : BaseIO Unit) : BaseIO Unit :=
+  BaseIO.chainTask tk.promise.result? (sync := true) fun _ => action
 
 -- separate definition as otherwise no unboxed version is generated
 @[export lean_io_cancel_token_is_set]

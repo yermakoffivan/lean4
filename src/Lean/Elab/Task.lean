@@ -55,10 +55,7 @@ def asTask (t : CoreM α) : CoreM (BaseIO Unit × Task (CoreM α)) := do
   -- the child token is set too. This ensures that subtasks spawned via `asTask`
   -- respond to server-level cancellation (e.g. on re-elaboration).
   if let some parentTk := (← read).cancelTk? then
-    -- `onSet` binds directly to the promise's internal task via `BaseIO.bindTask`,
-    -- which uses `keep_alive = true` to prevent GC before the callback fires.
-    discard <| parentTk.onSet fun () =>
-      cancelToken.set
+    parentTk.onSet cancelToken.set
   return (cancelToken.set, task.map (sync := true) fun result =>
     match result with
     | .ok (a, s) => do

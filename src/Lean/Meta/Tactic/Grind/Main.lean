@@ -342,8 +342,8 @@ partial def traceEMatchDiagsCompact (diag : PArray EMatchDiagInfo) : GrindM Unit
   withTraceNode `grind.ematch.diagnostics.compact (fun _ => return m!"instances") do
   for { sources, target, .. } in diag do
     let some target := getTheoremName? target | pure ()
-    let sources := getTheoremNames? sources
-    addTrace `inst m!"{sources} => {target}"
+    let sources := getSources sources
+    addTrace `inst m!"{sources} => {.ofConstName target}"
 where
   getTheoremName? (p : Expr) : Option Name :=
     match p with
@@ -357,12 +357,12 @@ where
     | .const declName _ => some declName
     | _ => none
 
-  getTheoremNames? (ps : List Expr) : List Name := Id.run do
+  getSources (ps : List Expr) : List MessageData := Id.run do
     let mut r : NameSet := {}
     for p in ps do
       let some n := getTheoremName? p | pure ()
       r := r.insert n
-    return r.toList
+    return r.toList.map (MessageData.ofConstName ·)
 
 def mkResult (params : Params) (failure? : Option Goal) : GrindM Result := do
   let issues      ← Sym.getIssues

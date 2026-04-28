@@ -14,7 +14,7 @@ public import Std.Data.Iterators.Producers.Empty
 
 namespace Std
 
-@[backward_defeq, simp]
+@[simp]
 theorem Iter.toIterM_empty {β} :
     (Iter.empty β).toIterM = IterM.empty Id β :=
   rfl

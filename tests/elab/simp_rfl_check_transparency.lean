@@ -7,7 +7,7 @@ def myId (n : Nat) : Nat := n
 -- `[backward_defeq]` accepts this; `[simp]` triggers `simp.rfl.checkTransparency`,
 -- which warns since the lemma is now considered `rfl` (via `[backward_defeq]`+useBackward
 -- or via `[defeq]`).
-@[backward_defeq, simp] theorem myId_eq (n : Nat) : myId n = n := (rfl)
+@[simp] theorem myId_eq (n : Nat) : myId n = n := (rfl)
 
 -- `implicit_reducible` version is fine for `[defeq]`.
 @[implicit_reducible] def myId2 (n : Nat) : Nat := n

@@ -20,14 +20,12 @@ public section
 namespace Std
 open Std.Iterators Std.Iterators.Types
 
-@[backward_defeq]
 theorem Iter.append_eq_toIter_append_toIterM {α₁ α₂ β : Type w}
     [Iterator α₁ Id β] [Iterator α₂ Id β]
     {it₁ : Iter (α := α₁) β} {it₂ : Iter (α := α₂) β} :
     it₁.append it₂ = (it₁.toIterM.append it₂.toIterM).toIter :=
   rfl
 
-@[backward_defeq]
 theorem Iter.Intermediate.appendSnd_eq_toIter_appendSnd_toIterM {α₁ α₂ β : Type w}
     [Iterator α₁ Id β] [Iterator α₂ Id β]
     {it₂ : Iter (α := α₂) β} :

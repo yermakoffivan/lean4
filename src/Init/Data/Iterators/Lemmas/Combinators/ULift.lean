@@ -22,7 +22,6 @@ open Std.Iterators
 
 variable {α : Type u} {β : Type u}
 
-@[backward_defeq]
 theorem Iter.uLift_eq_toIter_uLift_toIterM {it : Iter (α := α) β} :
     it.uLift = (it.toIterM.uLift Id).toIter :=
   rfl

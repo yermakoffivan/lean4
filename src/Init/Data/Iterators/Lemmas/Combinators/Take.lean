@@ -21,13 +21,11 @@ import Init.Data.List.Nat.TakeDrop
 namespace Std
 open Std.Iterators Std.Iterators.Types
 
-@[backward_defeq]
 theorem Iter.take_eq_toIter_take_toIterM {α β} [Iterator α Id β] {n : Nat}
     {it : Iter (α := α) β} :
     it.take n = (it.toIterM.take n).toIter :=
   rfl
 
-@[backward_defeq]
 theorem Iter.toTake_eq_toIter_toTake_toIterM {α β} [Iterator α Id β] [Finite α Id]
     {it : Iter (α := α) β} :
     it.toTake = it.toIterM.toTake.toIter :=

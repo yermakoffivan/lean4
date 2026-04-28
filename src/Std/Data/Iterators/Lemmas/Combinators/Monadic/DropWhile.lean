@@ -15,33 +15,28 @@ import Init.Data.Bool
 namespace Std
 open Std.Iterators
 
-@[backward_defeq]
 theorem IterM.Intermediate.dropWhileM_eq_dropWhileWithPostcondition {α m β} [Monad m] [MonadAttach m]
     [Iterator α m β] {it : IterM (α := α) m β} {P dropping} :
     Intermediate.dropWhileM P dropping it =
       Intermediate.dropWhileWithPostcondition (PostconditionT.attachLift ∘ P) dropping it :=
   rfl
 
-@[backward_defeq]
 theorem IterM.Intermediate.dropWhile_eq_dropWhileWithPostcondition {α m β} [Monad m]
     [Iterator α m β] {it : IterM (α := α) m β} {P dropping} :
     Intermediate.dropWhile P dropping it =
       Intermediate.dropWhileWithPostcondition (pure ∘ ULift.up ∘ P) dropping it :=
   rfl
 
-@[backward_defeq]
 theorem IterM.dropWhileWithPostcondition_eq_intermediateDropWhileWithPostcondition {α m β}
     [Iterator α m β] {it : IterM (α := α) m β} {P} :
     it.dropWhileWithPostcondition P = Intermediate.dropWhileWithPostcondition P true it :=
   rfl
 
-@[backward_defeq]
 theorem IterM.dropWhileM_eq_intermediateDropWhileM {α m β} [Monad m] [MonadAttach m]
     [Iterator α m β] {it : IterM (α := α) m β} {P} :
     it.dropWhileM P = Intermediate.dropWhileM P true it :=
   rfl
 
-@[backward_defeq]
 theorem IterM.dropWhile_eq_intermediateDropWhile {α m β} [Monad m]
     [Iterator α m β] {it : IterM (α := α) m β} {P} :
     it.dropWhile P = Intermediate.dropWhile P true it :=

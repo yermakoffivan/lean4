@@ -22,7 +22,6 @@ open Std.Iterators Std.Iterators.Types
 
 variable {α : Type w} {m : Type w → Type w'} {β : Type w} {P : β → Prop}
 
-@[backward_defeq]
 theorem IterM.step_attachWith [Iterator α m β] [Monad m] {it : IterM (α := α) m β} {hP} :
     (it.attachWith P hP).step =
       (fun s => .deflate ⟨Attach.Monadic.modifyStep (it.attachWith P hP) s.inflate, s.inflate, rfl⟩) <$> it.step :=

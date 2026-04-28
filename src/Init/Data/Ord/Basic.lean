@@ -538,32 +538,29 @@ protected theorem compare_cons_cons {α} [Ord α] {x y : α} {xs ys : List α} :
     compare (x :: xs) (y :: ys) = (compare x y).then (compare xs ys) :=
   List.compareLex_cons_cons
 
-@[backward_defeq]
 protected theorem compareLex_nil_cons {α} {cmp} {x : α} {xs : List α} :
     [].compareLex cmp (x :: xs) = .lt :=
   rfl
 
-@[backward_defeq, simp]
+@[simp]
 protected theorem compare_nil_cons {α} [Ord α] {x : α} {xs : List α} :
     compare [] (x :: xs) = .lt :=
   rfl
 
-@[backward_defeq]
 protected theorem compareLex_cons_nil {α} {cmp} {x : α} {xs : List α} :
     (x :: xs).compareLex cmp [] = .gt :=
   rfl
 
-@[backward_defeq, simp]
+@[simp]
 protected theorem compare_cons_nil {α} [Ord α] {x : α} {xs : List α} :
     compare (x :: xs) [] = .gt :=
   rfl
 
-@[backward_defeq]
 protected theorem compareLex_nil_nil {α} {cmp} :
     [].compareLex (α := α) cmp [] = .eq :=
   rfl
 
-@[backward_defeq, simp]
+@[simp]
 protected theorem compare_nil_nil {α} [Ord α] :
     compare (α := List α) [] [] = .eq :=
   rfl

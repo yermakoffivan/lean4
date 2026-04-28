@@ -29,7 +29,7 @@ Examples:
 @[inline, expose]
 def uncurry : (α → β → φ) → α × β → φ := fun f a => f a.1 a.2
 
-@[backward_defeq, simp, grind =]
+@[simp, grind =]
 theorem curry_uncurry (f : α → β → φ) : curry (uncurry f) = f :=
   rfl
 
@@ -37,11 +37,11 @@ theorem curry_uncurry (f : α → β → φ) : curry (uncurry f) = f :=
 theorem uncurry_curry (f : α × β → φ) : uncurry (curry f) = f :=
   funext fun ⟨_a, _b⟩ => rfl
 
-@[backward_defeq, simp, grind =]
+@[simp, grind =]
 theorem uncurry_apply_pair {α β γ} (f : α → β → γ) (x : α) (y : β) : uncurry f (x, y) = f x y :=
   rfl
 
-@[backward_defeq, simp, grind =]
+@[simp, grind =]
 theorem curry_apply {α β γ} (f : α × β → γ) (x : α) (y : β) : curry f x y = f (x, y) :=
   rfl
 

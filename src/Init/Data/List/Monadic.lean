@@ -51,7 +51,7 @@ def mapM' [Monad m] (f : α → m β) : List α → m (List β)
   | a :: l => return (← f a) :: (← l.mapM' f)
 
 @[simp] theorem mapM'_nil [Monad m] {f : α → m β} : mapM' f [] = pure [] := rfl
-@[backward_defeq, simp] theorem mapM'_cons [Monad m] {f : α → m β} :
+@[simp] theorem mapM'_cons [Monad m] {f : α → m β} :
     mapM' f (a :: l) = return ((← f a) :: (← l.mapM' f)) :=
   rfl
 

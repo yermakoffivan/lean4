@@ -110,11 +110,11 @@ an opaque function for computing the hashcode field.
 noncomputable instance : SizeOf Name where
   sizeOf n := n.sizeOf
 
-@[backward_defeq, simp] theorem Name.anonymous.sizeOf_spec : sizeOf anonymous = 1 :=
+@[simp] theorem Name.anonymous.sizeOf_spec : sizeOf anonymous = 1 :=
   rfl
-@[backward_defeq, simp] theorem Name.str.sizeOf_spec (p : Name) (s : String) : sizeOf (str p s) = 1 + sizeOf p + sizeOf s :=
+@[simp] theorem Name.str.sizeOf_spec (p : Name) (s : String) : sizeOf (str p s) = 1 + sizeOf p + sizeOf s :=
   rfl
-@[backward_defeq, simp] theorem Name.num.sizeOf_spec (p : Name) (n : Nat) : sizeOf (num p n) = 1 + sizeOf p + sizeOf n :=
+@[simp] theorem Name.num.sizeOf_spec (p : Name) (n : Nat) : sizeOf (num p n) = 1 + sizeOf p + sizeOf n :=
   rfl
 
 deriving instance SizeOf for SourceInfo

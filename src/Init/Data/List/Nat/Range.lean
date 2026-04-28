@@ -281,7 +281,7 @@ theorem count_range {a n} :
 
 /-! ### zipIdx -/
 
-@[backward_defeq, simp, grind =]
+@[simp, grind =]
 theorem zipIdx_singleton {x : α} {k : Nat} : zipIdx [x] k = [(x, k)] :=
   rfl
 

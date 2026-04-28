@@ -433,7 +433,6 @@ in Haskell.
 def bin (k : α) (v : β k) (l r : Impl α β) : Impl α β :=
   .inner (l.size + 1 + r.size) k v l r
 
-@[backward_defeq]
 theorem size_bin (k : α) (v : β k) (l r : Impl α β) : (bin k v l r).size = l.size + 1 + r.size :=
   rfl
 

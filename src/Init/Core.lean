@@ -71,15 +71,15 @@ and `flip (·<·)` is the greater-than relation.
 
 theorem Function.comp_def {α β δ} (f : β → δ) (g : α → β) : f ∘ g = fun x => f (g x) := rfl
 
-@[backward_defeq, simp] theorem Function.const_comp {f : α → β} {c : γ} :
+@[simp] theorem Function.const_comp {f : α → β} {c : γ} :
     (Function.const β c ∘ f) = Function.const α c :=
   rfl
-@[backward_defeq, simp] theorem Function.comp_const {f : β → γ} {b : β} :
+@[simp] theorem Function.comp_const {f : β → γ} {b : β} :
     (f ∘ Function.const α b) = Function.const α (f b) :=
   rfl
-@[backward_defeq, simp] theorem Function.true_comp {f : α → β} : ((fun _ => true) ∘ f) = fun _ => true :=
+@[simp] theorem Function.true_comp {f : α → β} : ((fun _ => true) ∘ f) = fun _ => true :=
   rfl
-@[backward_defeq, simp] theorem Function.false_comp {f : α → β} : ((fun _ => false) ∘ f) = fun _ => false :=
+@[simp] theorem Function.false_comp {f : α → β} : ((fun _ => false) ∘ f) = fun _ => false :=
   rfl
 
 @[simp] theorem Function.comp_id (f : α → β) : f ∘ id = f := rfl
@@ -867,7 +867,7 @@ You can prove theorems about the resulting element by induction on `h`, since
 theorem Eq.substr {α : Sort u} {p : α → Prop} {a b : α} (h₁ : b = a) (h₂ : p a) : p b :=
   h₁ ▸ h₂
 
-@[backward_defeq, simp] theorem cast_eq {α : Sort u} (h : α = α) (a : α) : cast h a = a :=
+@[simp] theorem cast_eq {α : Sort u} (h : α = α) (a : α) : cast h a = a :=
   rfl
 
 /--
@@ -1468,7 +1468,6 @@ instance Prod.lexLtDec
     : (s t : α × β) → Decidable (Prod.lexLt s t) :=
   fun _ _ => inferInstanceAs (Decidable (_ ∨ _))
 
-@[backward_defeq]
 theorem Prod.lexLt_def [LT α] [LT β] (s t : α × β) : (Prod.lexLt s t) = (s.1 < t.1 ∨ (s.1 = t.1 ∧ s.2 < t.2)) :=
   rfl
 

@@ -38,7 +38,6 @@ protected theorem «exists» {p : α × β → Prop} : (∃ x, p x) ↔ ∃ a b,
 Composing a `Prod.map` with another `Prod.map` is equal to
 a single `Prod.map` of composed functions.
 -/
-@[backward_defeq]
 theorem map_comp_map (f : α → β) (f' : γ → δ) (g : β → ε) (g' : δ → ζ) :
     Prod.map g g' ∘ Prod.map f f' = Prod.map (g ∘ f) (g' ∘ f') :=
   rfl
@@ -47,7 +46,7 @@ theorem map_comp_map (f : α → β) (f' : γ → δ) (g : β → ε) (g' : δ �
 Composing a `Prod.map` with another `Prod.map` is equal to
 a single `Prod.map` of composed functions, fully applied.
 -/
-@[backward_defeq, grind _=_]
+@[grind _=_]
 theorem map_map (f : α → β) (f' : γ → δ) (g : β → ε) (g' : δ → ζ) (x : α × γ) :
     Prod.map g g' (Prod.map f f' x) = Prod.map (g ∘ f) (g' ∘ f') x :=
   rfl
@@ -65,15 +64,15 @@ Examples:
 theorem swap_swap : ∀ x : α × β, swap (swap x) = x
   | ⟨_, _⟩ => rfl
 
-@[backward_defeq, simp, grind =]
+@[simp, grind =]
 theorem fst_swap {p : α × β} : (swap p).1 = p.2 :=
   rfl
 
-@[backward_defeq, simp, grind =]
+@[simp, grind =]
 theorem snd_swap {p : α × β} : (swap p).2 = p.1 :=
   rfl
 
-@[backward_defeq, simp, grind =]
+@[simp, grind =]
 theorem swap_prod_mk {a : α} {b : β} : swap (a, b) = (b, a) :=
   rfl
 

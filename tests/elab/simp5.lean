@@ -2,7 +2,7 @@ set_option backward.defeqAttrib.useBackward true
 
 def f {α} (a b : α) := a
 
-@[backward_defeq] theorem f_Eq {α} (a b : α) : f a b = a :=
+theorem f_Eq {α} (a b : α) : f a b = a :=
   rfl
 
 theorem ex1 (a b c : α) : f (f a b) c = a := by

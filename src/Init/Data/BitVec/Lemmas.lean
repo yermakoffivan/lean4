@@ -535,7 +535,7 @@ theorem msb_eq_getMsbD (x : BitVec w) : x.msb = x.getMsbD 0 := by
 
 /-! ### cast -/
 
-@[backward_defeq, simp, grind =] theorem toFin_cast (h : w = v) (x : BitVec w) :
+@[simp, grind =] theorem toFin_cast (h : w = v) (x : BitVec w) :
     (x.cast h).toFin = x.toFin.cast (by rw [h]) :=
   rfl
 
@@ -554,7 +554,6 @@ theorem msb_eq_getMsbD (x : BitVec w) : x.msb = x.getMsbD 0 := by
 /-! ### toInt/ofInt -/
 
 /-- Prove equality of bitvectors in terms of nat operations. -/
-@[backward_defeq]
 theorem toInt_eq_toNat_cond (x : BitVec n) :
     x.toInt =
       if 2*x.toNat < 2^n then
@@ -3679,10 +3678,8 @@ theorem twoPow_le_toInt_sub_toInt_iff {x y : BitVec w} :
 
 @[simp, grind =] theorem toFin_sub (x y : BitVec n) : (x - y).toFin = toFin x - toFin y := rfl
 
-@[backward_defeq]
 theorem ofFin_sub (x : Fin (2^n)) (y : BitVec n) : .ofFin x - y = .ofFin (x - y.toFin) :=
   rfl
-@[backward_defeq]
 theorem sub_ofFin (x : BitVec n) (y : Fin (2^n)) : x - .ofFin y = .ofFin (x.toFin - y) :=
   rfl
 
@@ -3732,7 +3729,7 @@ theorem toInt_neg_of_not_negOverflow {x : BitVec w} (h : ¬ negOverflow x):
 theorem ofInt_neg {w : Nat} {n : Int} : BitVec.ofInt w (-n) = -BitVec.ofInt w n :=
   eq_of_toInt_eq (by simp [toInt_neg])
 
-@[backward_defeq, simp] theorem toFin_neg (x : BitVec n) :
+@[simp] theorem toFin_neg (x : BitVec n) :
     (-x).toFin = Fin.ofNat (2^n) (2^n - x.toNat) :=
   rfl
 

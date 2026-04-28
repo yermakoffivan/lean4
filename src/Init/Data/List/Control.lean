@@ -468,10 +468,10 @@ instance [Monad m] : ForIn' m (List α) α inferInstance where
 -- We simplify `List.forIn'` to `forIn'`.
 @[defeq, simp, grind =] theorem forIn'_eq_forIn' [Monad m] : @List.forIn' α β m _ = forIn' := rfl
 
-@[backward_defeq, simp, grind =] theorem forIn'_nil [Monad m] {f : (a : α) → a ∈ [] → β → m (ForInStep β)} {b : β} : forIn' [] b f = pure b :=
+@[simp, grind =] theorem forIn'_nil [Monad m] {f : (a : α) → a ∈ [] → β → m (ForInStep β)} {b : β} : forIn' [] b f = pure b :=
   rfl
 
-@[backward_defeq, simp, grind =] theorem forIn_nil [Monad m] {f : α → β → m (ForInStep β)} {b : β} : forIn [] b f = pure b :=
+@[simp, grind =] theorem forIn_nil [Monad m] {f : α → β → m (ForInStep β)} {b : β} : forIn [] b f = pure b :=
   rfl
 
 instance [Monad m] : ForM m (List α) α where
@@ -480,9 +480,9 @@ instance [Monad m] : ForM m (List α) α where
 -- We simplify `List.forM` to `forM`.
 @[defeq, simp, grind =] theorem forM_eq_forM [Monad m] : @List.forM m _ α = forM := rfl
 
-@[backward_defeq, simp, grind =] theorem forM_nil [Monad m] {f : α → m PUnit} : forM [] f = pure ⟨⟩ :=
+@[simp, grind =] theorem forM_nil [Monad m] {f : α → m PUnit} : forM [] f = pure ⟨⟩ :=
   rfl
-@[backward_defeq, simp, grind =] theorem forM_cons [Monad m] {f : α → m PUnit} {a : α} {as : List α} : forM (a::as) f = f a >>= fun _ => forM as f :=
+@[simp, grind =] theorem forM_cons [Monad m] {f : α → m PUnit} {a : α} {as : List α} : forM (a::as) f = f a >>= fun _ => forM as f :=
   rfl
 
 instance : Functor List where

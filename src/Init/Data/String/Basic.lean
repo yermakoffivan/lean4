@@ -1697,7 +1697,7 @@ position is not the past-the-end position, which guarantees that such a position
 def Pos.next {s : @& String} (pos : @& s.Pos) (h : pos ≠ s.endPos) : s.Pos :=
   ofToSlice (Slice.Pos.next pos.toSlice (ne_of_apply_ne Pos.ofToSlice (by simpa)))
 
-@[backward_defeq, simp]
+@[simp]
 theorem Pos.ofToSlice_next_toSlice {s : String} {pos : s.Pos} {h} :
     ofToSlice (Slice.Pos.next pos.toSlice h) = pos.next (ne_of_apply_ne Pos.toSlice (by simpa using h)) :=
   rfl

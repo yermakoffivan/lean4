@@ -194,22 +194,22 @@ Converts a monadic iterator (`IterM Id β`) over `Id` into a pure iterator (`Ite
 def IterM.toIter {α : Type w} {β : Type w} (it : IterM (α := α) Id β) : Iter (α := α) β :=
   ⟨it.internalState⟩
 
-@[backward_defeq, simp]
+@[simp]
 theorem Iter.toIter_toIterM {α : Type w} {β : Type w} (it : Iter (α := α) β) :
     it.toIterM.toIter = it :=
   rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem Iter.toIter_comp_toIterM {α : Type w} {β : Type w} :
     IterM.toIter ∘ Iter.toIterM (α := α) (β := β) = id :=
   rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem Iter.toIterM_toIter {α : Type w} {β : Type w} (it : IterM (α := α) Id β) :
     it.toIter.toIterM = it :=
   rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem Iter.toIterM_comp_toIter {α : Type w} {β : Type w} :
     Iter.toIterM ∘ IterM.toIter (α := α) (β := β) = id :=
   rfl
@@ -270,17 +270,17 @@ def IterStep.mapIterator {α' : Type u'} (f : α → α') : IterStep α β → I
   | .skip it => .skip (f it)
   | .done => .done
 
-@[backward_defeq, simp]
+@[simp]
 theorem IterStep.mapIterator_yield {α' : Type u'} {f : α → α'} {it : α} {out : β} :
     (IterStep.yield it out).mapIterator f = IterStep.yield (f it) out :=
   rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem IterStep.mapIterator_skip {α' : Type u'} {f : α → α'} {it : α} :
     (IterStep.skip it (β := β)).mapIterator f = IterStep.skip (f it) :=
   rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem IterStep.mapIterator_done {α' : Type u'} {f : α → α'} :
     (IterStep.done (α := α) (β := β)).mapIterator f = IterStep.done :=
   rfl
@@ -411,12 +411,12 @@ def internalState_toIterM := @IterM.internalState_mk
 theorem Iter.internalState_toIterM {α β} (it : Std.Iter (α := α) β) :
     it.toIterM.internalState = it.internalState := rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem Iter.toIterM_mk {α β} {it : α} :
     (⟨it⟩ : Iter β).toIterM = ⟨it⟩ :=
   rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem IterM.toIter_mk {α β} {it : α} :
     (⟨it⟩ : IterM Id β).toIter = ⟨it⟩ :=
   rfl
@@ -565,17 +565,17 @@ def IterM.Step.toPure {α : Type w} {β : Type w} [Iterator α Id β] {it : Iter
     (step : it.Step) : it.toIter.Step :=
   ⟨step.val.mapIterator IterM.toIter, (by simp [Iter.IsPlausibleStep, step.property])⟩
 
-@[backward_defeq, simp]
+@[simp]
 theorem IterM.Step.toPure_yield {α β : Type w} [Iterator α Id β] {it : IterM (α := α) Id β}
     {it' out h} : IterM.Step.toPure (⟨.yield it' out, h⟩ : it.Step) = .yield it'.toIter out h :=
   rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem IterM.Step.toPure_skip {α β : Type w} [Iterator α Id β] {it : IterM (α := α) Id β}
     {it' h} : IterM.Step.toPure (⟨.skip it', h⟩ : it.Step) = .skip it'.toIter h :=
   rfl
 
-@[backward_defeq, simp]
+@[simp]
 theorem IterM.Step.toPure_done {α β : Type w} [Iterator α Id β] {it : IterM (α := α) Id β}
     {h} : IterM.Step.toPure (⟨.done, h⟩ : it.Step) = .done h :=
   rfl

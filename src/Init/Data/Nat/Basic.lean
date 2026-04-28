@@ -792,11 +792,9 @@ theorem eq_of_mul_eq_mul_right {n m k : Nat} (hm : 0 < m) (h : n * m = k * m) : 
 
 /-! # power -/
 
-@[backward_defeq]
 protected theorem pow_succ (n m : Nat) : n^(succ m) = n^m * n :=
   rfl
 
-@[backward_defeq]
 protected theorem pow_add_one (n m : Nat) : n^(m + 1) = n^m * n :=
   rfl
 

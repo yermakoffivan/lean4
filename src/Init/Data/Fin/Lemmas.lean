@@ -23,7 +23,6 @@ namespace Fin
 
 @[defeq, simp, grind =] theorem ofNat_zero (n : Nat) [NeZero n] : Fin.ofNat n 0 = 0 := rfl
 
-@[backward_defeq]
 theorem mod_def (a m : Fin n) : a % m = Fin.mk (a.val % m.val) (Nat.lt_of_le_of_lt (Nat.mod_le _ _) a.2) :=
   rfl
 
@@ -91,13 +90,13 @@ theorem mk_val (i : Fin n) : (⟨i, i.isLt⟩ : Fin n) = i := Fin.eta ..
   rw [val_ofNat, Nat.mod_eq_of_lt]
   exact x.2
 
-@[backward_defeq, simp] theorem mod_val (a b : Fin n) : (a % b).val = a.val % b.val :=
+@[simp] theorem mod_val (a b : Fin n) : (a % b).val = a.val % b.val :=
   rfl
 
-@[backward_defeq, simp] theorem div_val (a b : Fin n) : (a / b).val = a.val / b.val :=
+@[simp] theorem div_val (a b : Fin n) : (a / b).val = a.val / b.val :=
   rfl
 
-@[backward_defeq, simp, grind =] theorem modn_val (a : Fin n) (b : Nat) : (a.modn b).val = a.val % b :=
+@[simp, grind =] theorem modn_val (a : Fin n) (b : Nat) : (a.modn b).val = a.val % b :=
   rfl
 
 @[simp] theorem val_eq_zero (a : Fin 1) : a.val = 0 :=
@@ -472,7 +471,7 @@ theorem succ_succ_ne_one (a : Fin n) : Fin.succ (Fin.succ a) ≠ 1 :=
 @[deprecated val_castLT (since := "2025-11-21")]
 theorem coe_castLT (i : Fin m) (h : i.1 < n) : (castLT i h : Nat) = i := rfl
 
-@[backward_defeq, simp] theorem castLT_mk (i n m : Nat) (hn : i < n) (hm : i < m) : castLT ⟨i, hn⟩ hm = ⟨i, hm⟩ :=
+@[simp] theorem castLT_mk (i n m : Nat) (hn : i < n) (hm : i < m) : castLT ⟨i, hn⟩ hm = ⟨i, hm⟩ :=
   rfl
 
 @[simp, grind =] theorem val_castLE (h : n ≤ m) (i : Fin n) : (castLE h i : Nat) = i := rfl
@@ -737,7 +736,6 @@ theorem cast_addNat {n : Nat} (m : Nat) (i : Fin n) :
   ext
   simp
 
-@[backward_defeq]
 theorem natAdd_castSucc {m n : Nat} {i : Fin m} : natAdd n (castSucc i) = castSucc (natAdd n i) :=
   rfl
 
@@ -798,7 +796,6 @@ theorem pred_mk_succ (i : Nat) (h : i < n + 1) :
     Fin.pred ⟨i + 1, h₁⟩ h₂ = ⟨i, Nat.lt_of_succ_lt_succ h₁⟩ := pred_mk_succ i _
 
 -- This is not a simp theorem by default, because `pred_mk_succ` is nicer when it applies.
-@[backward_defeq]
 theorem pred_mk {n : Nat} (i : Nat) (h : i < n + 1) (w) : Fin.pred ⟨i, h⟩ w =
     ⟨i - 1, Nat.sub_lt_right_of_lt_add (Nat.pos_iff_ne_zero.2 (Fin.val_ne_of_ne w)) h⟩ :=
   rfl

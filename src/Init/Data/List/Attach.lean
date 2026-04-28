@@ -124,7 +124,7 @@ theorem attachWith_congr {l₁ l₂ : List α} (w : l₁ = l₂) {P : α → Pro
   intro a _ m' _
   rfl
 
-@[backward_defeq, simp, grind =]
+@[simp, grind =]
 theorem attachWith_cons {x : α} {xs : List α} {p : α → Prop} (h : ∀ a ∈ x :: xs, p a) :
     (x :: xs).attachWith p h = ⟨x, h x (mem_cons_self)⟩ ::
       xs.attachWith p (fun a ha ↦ h a (mem_cons_of_mem x ha)) :=

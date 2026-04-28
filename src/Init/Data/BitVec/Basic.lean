@@ -124,7 +124,7 @@ instance : GetElem (BitVec w) Nat Bool fun _ i => i < w where
 @[simp, grind =] theorem getLsb?_eq_getElem? (x : BitVec w) (i : Nat) :
     x.getLsb? i = x[i]? := rfl
 
-@[backward_defeq, grind =_] -- Activate when we see `x.toNat.testBit i`.
+@[grind =_] -- Activate when we see `x.toNat.testBit i`.
 theorem getElem_eq_testBit_toNat (x : BitVec w) (i : Nat) (h : i < w) :
   x[i] = x.toNat.testBit i := rfl
 
@@ -411,7 +411,7 @@ that can more consistently simplify `BitVec.cast` away.
     (BitVec.ofNat n x).cast h = BitVec.ofNat m x := by
   subst h; rfl
 
-@[backward_defeq, simp, grind =] theorem cast_cast {n m k : Nat} (h₁ : n = m) (h₂ : m = k) (x : BitVec n) :
+@[simp, grind =] theorem cast_cast {n m k : Nat} (h₁ : n = m) (h₂ : m = k) (x : BitVec n) :
     (x.cast h₁).cast h₂ = x.cast (h₁ ▸ h₂) :=
   rfl
 
@@ -679,12 +679,12 @@ The new bit is the most significant bit.
 def cons {n} (msb : Bool) (lsbs : BitVec n) : BitVec (n+1) :=
   ((ofBool msb) ++ lsbs).cast (Nat.add_comm ..)
 
-@[backward_defeq, grind =]
+@[grind =]
 theorem append_ofBool (msbs : BitVec w) (lsb : Bool) :
     msbs ++ ofBool lsb = concat msbs lsb :=
   rfl
 
-@[backward_defeq, grind =]
+@[grind =]
 theorem ofBool_append (msb : Bool) (lsbs : BitVec w) :
     ofBool msb ++ lsbs = (cons msb lsbs).cast (Nat.add_comm ..) :=
   rfl

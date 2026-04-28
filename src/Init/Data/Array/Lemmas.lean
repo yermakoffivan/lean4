@@ -4338,7 +4338,6 @@ theorem getElem?_range {n : Nat} {i : Nat} : (Array.range n)[i]? = if i < n then
 /-! ### sum -/
 
 @[simp, grind =] theorem sum_empty [Add α] [Zero α] : (#[] : Array α).sum = 0 := rfl
-@[backward_defeq]
 theorem sum_eq_foldr [Add α] [Zero α] {xs : Array α} :
     xs.sum = xs.foldr (init := 0) (· + ·) :=
   rfl
@@ -4385,7 +4384,6 @@ theorem sum_eq_foldl [Zero α] [Add α] [Std.Associative (α := α) (· + ·)]
 /-! ### prod -/
 
 @[simp, grind =] theorem prod_empty [Mul α] [One α] : (#[] : Array α).prod = 1 := rfl
-@[backward_defeq]
 theorem prod_eq_foldr [Mul α] [One α] {xs : Array α} :
     xs.prod = xs.foldr (init := 1) (· * ·) :=
   rfl

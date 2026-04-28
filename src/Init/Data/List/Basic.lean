@@ -1426,7 +1426,7 @@ def replace [BEq α] : (l : List α) → (a : α) → (b : α) → List α
     | false => a :: replace as b c
 
 @[simp, grind =] theorem replace_nil [BEq α] : ([] : List α).replace a b = [] := rfl
-@[backward_defeq, grind =] theorem replace_cons [BEq α] {a : α} :
+@[grind =] theorem replace_cons [BEq α] {a : α} :
     (a::as).replace b c = match b == a with | true => c::as | false => a :: replace as b c :=
   rfl
 
@@ -1617,7 +1617,7 @@ def find? (p : α → Bool) : List α → Option α
     | false => find? p as
 
 @[simp, grind =] theorem find?_nil : ([] : List α).find? p = none := rfl
-@[backward_defeq, grind =]theorem find?_cons : (a::as).find? p = match p a with | true => some a | false => as.find? p :=
+@[grind =]theorem find?_cons : (a::as).find? p = match p a with | true => some a | false => as.find? p :=
   rfl
 
 /-! ### findSome? -/
@@ -1640,7 +1640,7 @@ def findSome? (f : α → Option β) : List α → Option β
     | none   => findSome? f as
 
 @[simp, grind =] theorem findSome?_nil : ([] : List α).findSome? f = none := rfl
-@[backward_defeq, grind =] theorem findSome?_cons {f : α → Option β} :
+@[grind =] theorem findSome?_cons {f : α → Option β} :
     (a::as).findSome? f = match f a with | some b => some b | none => as.findSome? f :=
   rfl
 
@@ -1834,7 +1834,7 @@ def lookup [BEq α] : α → List (α × β) → Option β
     | false => lookup a as
 
 @[simp, grind =] theorem lookup_nil [BEq α] : ([] : List (α × β)).lookup a = none := rfl
-@[backward_defeq, grind =] theorem lookup_cons [BEq α] {k : α} :
+@[grind =] theorem lookup_cons [BEq α] {k : α} :
     ((k, b)::as).lookup a = match a == k with | true => some b | false => as.lookup a :=
   rfl
 

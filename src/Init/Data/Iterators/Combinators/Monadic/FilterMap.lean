@@ -168,7 +168,6 @@ instance Map.instIterator {α β γ : Type w} {m : Type w → Type w'} {n : Type
     Iterator (Map α m n lift f) n γ :=
   inferInstanceAs <| Iterator (FilterMap α m n lift _) n γ
 
-@[backward_defeq]
 theorem Map.instIterator_eq_filterMapInstIterator {α β γ : Type w} {m : Type w → Type w'}
     {n : Type w → Type w''} [Monad n]
     [Iterator α m β] {lift : ⦃α : Type w⦄ → m α → n α} {f : β → PostconditionT n γ} :

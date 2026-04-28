@@ -117,7 +117,6 @@ def add (xs ys : IntList) : IntList :=
 
 instance : Add IntList := ⟨add⟩
 
-@[backward_defeq]
 theorem add_def (xs ys : IntList) :
     xs + ys = List.zipWithAll (fun x y => x.getD 0 + y.getD 0) xs ys :=
   rfl
@@ -136,7 +135,6 @@ def mul (xs ys : IntList) : IntList := List.zipWith (· * ·) xs ys
 
 instance : Mul IntList := ⟨mul⟩
 
-@[backward_defeq]
 theorem mul_def (xs ys : IntList) : xs * ys = List.zipWith (· * ·) xs ys :=
   rfl
 
@@ -171,7 +169,6 @@ def sub (xs ys : IntList) : IntList :=
 
 instance : Sub IntList := ⟨sub⟩
 
-@[backward_defeq]
 theorem sub_def (xs ys : IntList) :
     xs - ys = List.zipWithAll (fun x y => x.getD 0 - y.getD 0) xs ys :=
   rfl

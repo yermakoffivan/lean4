@@ -810,7 +810,7 @@ theorem getElem_length_sub_one_eq_getLast {l : List α} (h : l.length - 1 < l.le
     l[l.length - 1] = getLast l (by cases l; simp at h; simp) := by
   rw [← getLast_eq_getElem]
 
-@[backward_defeq, simp, grind =] theorem getLast_cons_cons {a : α} {l : List α} :
+@[simp, grind =] theorem getLast_cons_cons {a : α} {l : List α} :
     getLast (a :: b :: l) (by simp) = getLast (b :: l) (by simp) :=
   rfl
 
@@ -1903,10 +1903,8 @@ As such there's no need for a thorough set of lemmas describing `concat`.
 -/
 
 -- As `List.concat` is defined in `Init.Prelude`, we write the basic simplification lemmas here.
-@[backward_defeq]
 theorem concat_nil {a : α} : concat [] a = [a] :=
   rfl
-@[backward_defeq]
 theorem concat_cons {a b : α} {l : List α} : concat (a :: l) b = a :: concat l b :=
   rfl
 
@@ -2847,7 +2845,7 @@ def foldlRecOn {motive : β → Sort _} : ∀ (l : List α) (op : β → α → 
     (hl : ∀ (b : β) (_ : motive b) (a : α) (_ : a ∈ []), motive (op b a)) :
     foldlRecOn [] op hb hl = hb := rfl
 
-@[backward_defeq, simp, grind =] theorem foldlRecOn_cons {motive : β → Sort _} {op : β → α → β} (hb : motive b)
+@[simp, grind =] theorem foldlRecOn_cons {motive : β → Sort _} {op : β → α → β} (hb : motive b)
     (hl : ∀ (b : β) (_ : motive b) (a : α) (_ : a ∈ x :: l), motive (op b a)) :
     foldlRecOn (x :: l) op hb hl =
       foldlRecOn l op (hl b hb x mem_cons_self)
@@ -2882,7 +2880,7 @@ def foldrRecOn {motive : β → Sort _} : ∀ (l : List α) (op : α → β → 
     (hl : ∀ (b : β) (_ : motive b) (a : α) (_ : a ∈ []), motive (op a b)) :
     foldrRecOn [] op hb hl = hb := rfl
 
-@[backward_defeq, simp, grind =] theorem foldrRecOn_cons {motive : β → Sort _} {op : α → β → β} (hb : motive b)
+@[simp, grind =] theorem foldrRecOn_cons {motive : β → Sort _} {op : α → β → β} (hb : motive b)
     (hl : ∀ (b : β) (_ : motive b) (a : α) (_ : a ∈ x :: l), motive (op a b)) :
     foldrRecOn (x :: l) op hb hl =
       hl _ (foldrRecOn l op hb fun b c a m => hl b c a (mem_cons_of_mem x m))

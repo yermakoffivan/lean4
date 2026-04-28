@@ -294,7 +294,7 @@ noncomputable def HetT.liftInner {m : Type w → Type w'} (n : Type w → Type w
     (x : HetT m α) : HetT n α :=
   ⟨x.Property, x.small, x.operation⟩
 
-@[backward_defeq, simp]
+@[simp]
 theorem HetT.property_liftInner {m : Type w → Type w'} {n : Type w → Type w''} [MonadLiftT m n]
     {x : HetT m α} : (x.liftInner n).Property = x.Property :=
   rfl

@@ -339,13 +339,13 @@ info: "3 03 3rd quarter 3"
 #eval zoned₄.format "Q QQ QQQQ QQQQQ"
 
 /--
-info: "28 28"
+info: "29 29"
 -/
 #guard_msgs in
 #eval zoned₄.format "w ww"
 
 /--
-info: "2"
+info: "3"
 -/
 #guard_msgs in
 #eval zoned₄.format "W"
@@ -357,7 +357,7 @@ info: "Sun Sun Sun Sunday S"
 #eval zoned₄.format "E EE EEE EEEE EEEEE"
 
 /--
-info: "7 07 Sun Sunday S"
+info: "1 01 Sun Sunday S"
 -/
 #guard_msgs in
 #eval zoned₄.format "e ee eee eeee eeeee"
@@ -441,7 +441,7 @@ info: "+09:00 +09:00 +09:00 +09:00"
 #eval zoned₄.format "z zz zzzz zzzz"
 
 /--
-info: "UTC UTC Coordinated Universal Time Coordinated Universal Time"
+info: "Z Z Z Z"
 -/
 #guard_msgs in
 #eval zoned₅.format "z zz zzzz zzzz"
@@ -554,7 +554,7 @@ info: "Sun Sun Sun Sunday S"
 #eval datetime₄.format "E EE EEE EEEE EEEEE"
 
 /--
-info: "7 07 Sun Sunday S"
+info: "1 01 Sun Sunday S"
 -/
 #guard_msgs in
 #eval datetime₄.format "e ee eee eeee eeeee"
@@ -769,7 +769,7 @@ info: "Sun Sun Sun Sunday S"
 #eval date₄.format "E EE EEE EEEE EEEEE"
 
 /--
-info: "7 07 Sun Sunday S"
+info: "1 01 Sun Sunday S"
 -/
 #guard_msgs in
 #eval date₄.format "e ee eee eeee eeeee"

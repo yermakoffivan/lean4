@@ -59,9 +59,9 @@ def ptNoonNano     := time("12:00:00.000000001")
 def ptMidnightNano := time("00:00:00.000000001")
 
 -- Aligned week-of-month edge cases: Aug 1/4/5/11/12 2002
-def tdAug1  := zoned("2002-08-01T12:00:00.000000000+09:00")  -- Thu, W=1
-def tdAug4  := zoned("2002-08-04T12:00:00.000000000+09:00")  -- Sun, W=1
-def tdAug12 := zoned("2002-08-12T12:00:00.000000000+09:00")  -- Mon, W=3
+def tdAug1  := zoned("2002-08-01T12:00:00.000000000+09:00")  -- Thu, W=1 (week Jul28–Aug3)
+def tdAug4  := zoned("2002-08-04T12:00:00.000000000+09:00")  -- Sun, W=2 (starts week Aug4–10)
+def tdAug12 := zoned("2002-08-12T12:00:00.000000000+09:00")  -- Mon, W=3 (week Aug11–17)
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- G  Era
@@ -147,17 +147,17 @@ info: "7 07 Jul July J"
 -- ─────────────────────────────────────────────────────────────────────────────
 
 /--
-info: "28 28"
+info: "29 29"
 -/
 #guard_msgs in
 #eval td.format "w ww"
 
 -- ─────────────────────────────────────────────────────────────────────────────
--- W  Week of month (Monday-first)
+-- W  Week of month (Sun-first, US locale)
 -- ─────────────────────────────────────────────────────────────────────────────
 
 /--
-info: "2"
+info: "3"
 -/
 #guard_msgs in
 #eval td.format "W"
@@ -193,7 +193,7 @@ info: "2"
 #eval td.format "F"
 
 /--
-info: "1 1"
+info: "2 1"
 -/
 #guard_msgs in
 #eval tdWeekMonth.format "W F"
@@ -213,7 +213,7 @@ info: "Sun Sun Sun Sunday S"
 -- ─────────────────────────────────────────────────────────────────────────────
 
 /--
-info: "7 07 Sun Sunday S"
+info: "1 01 Sun Sunday S"
 -/
 #guard_msgs in
 #eval td.format "e ee eee eeee eeeee"
@@ -223,7 +223,7 @@ info: "7 07 Sun Sunday S"
 -- ─────────────────────────────────────────────────────────────────────────────
 
 /--
-info: "7 Sun Sunday S"
+info: "1 Sun Sunday S"
 -/
 #guard_msgs in
 #eval td.format "c ccc cccc ccccc"
@@ -245,13 +245,13 @@ info: "AM"
 #eval tdAM.format "a"
 
 /--
-info: "PM PM PM PM p"
+info: "PM PM PM post meridiem p"
 -/
 #guard_msgs in
 #eval td.format "a aa aaa aaaa aaaaa"
 
 /--
-info: "AM AM AM AM a"
+info: "AM AM AM ante meridiem a"
 -/
 #guard_msgs in
 #eval tdAM.format "a aa aaa aaaa aaaaa"
@@ -395,7 +395,7 @@ info: "+09:00 +09:00 +09:00 +09:00"
 #eval td.format "z zz zzz zzzz"
 
 /--
-info: "UTC UTC UTC Coordinated Universal Time"
+info: "Z Z Z Z"
 -/
 #guard_msgs in
 #eval tdUTC.format "z zz zzz zzzz"
@@ -439,7 +439,7 @@ info: "GMT GMT"
 #eval tdUTC.format "O OOOO"
 
 -- ─────────────────────────────────────────────────────────────────────────────
--- V  Zone ID (`VV` only; other widths rejected to match Java)
+-- V  Zone ID: V=unknown placeholder ("unk"), VV=IANA ID; VVV/VVVV rejected
 -- ─────────────────────────────────────────────────────────────────────────────
 
 /--
@@ -448,9 +448,9 @@ info: "+09:00"
 #guard_msgs in
 #eval td.format "VV"
 
--- UTC offset-only zone: raw "+00:00", not normalized to "UTC"
+-- UTC offset-only zone: normalized to "Z" (Java VV behavior)
 /--
-info: "+00:00"
+info: "Z"
 -/
 #guard_msgs in
 #eval tdUTC.format "VV"
@@ -461,20 +461,21 @@ info: "Asia/Tokyo"
 #guard_msgs in
 #eval tdNamed.format "VV"
 
+-- V (1 letter): Unicode CLDR unknown zone placeholder, always "unk"
 /--
-info: "error: offset 1: invalid quantity of characters for 'V': must be 2"
+info: "unk"
 -/
 #guard_msgs in
 #eval td.format "V"
 
 /--
-info: "error: offset 3: invalid quantity of characters for 'V': must be 2"
+info: "error: offset 3: invalid quantity of characters for 'V': must be 1 or 2"
 -/
 #guard_msgs in
 #eval td.format "VVV"
 
 /--
-info: "error: offset 4: invalid quantity of characters for 'V': must be 2"
+info: "error: offset 4: invalid quantity of characters for 'V': must be 1 or 2"
 -/
 #guard_msgs in
 #eval td.format "VVVV"
@@ -550,9 +551,9 @@ info: "+09:00 +09:00"
 #guard_msgs in
 #eval td.format "v vvvv"
 
--- UTC offset-only: normalized to "UTC"/"Coordinated Universal Time" (same as z)
+-- UTC offset-only: normalized to "Z" (same as z/VV)
 /--
-info: "UTC Coordinated Universal Time"
+info: "Z Z"
 -/
 #guard_msgs in
 #eval tdUTC.format "v vvvv"
@@ -600,14 +601,14 @@ info: "+00 +0000 +00:00 +0000 +00:00"
 -- Y  Week-based year: extended boundary cases
 -- ─────────────────────────────────────────────────────────────────────────────
 
--- Jan 1, 2017 is Sunday → belongs to ISO week 52 of 2016
+-- Jan 1, 2017 is Sunday → US week 1 of 2017 (Sun starts the week)
 /--
-info: "2016 16 2016"
+info: "2017 17 2017"
 -/
 #guard_msgs in
 #eval tdWeekBound2.format "Y YY YYYY"
 
--- Jan 2, 2017 is Monday → first day of ISO week 1 of 2017
+-- Jan 2, 2017 is Monday → US week 1 of 2017
 /--
 info: "2017 17 2017"
 -/
@@ -621,14 +622,14 @@ info: "2020 20 2020"
 #guard_msgs in
 #eval tdWeekBound4.format "Y YY YYYY"
 
--- Jan 1, 2021 is Friday → belongs to ISO week 53 of 2020
+-- Jan 1, 2021 is Friday → US week 1 of 2021 (week Dec 27–Jan 2 has days in 2021)
 /--
-info: "2020 20 2020"
+info: "2021 21 2021"
 -/
 #guard_msgs in
 #eval tdWeekBound5.format "Y YY YYYY"
 
--- Jan 4, 2021 is Monday → first day of ISO week 1 of 2021
+-- Jan 4, 2021 is Monday → US week 2 of 2021
 /--
 info: "2021 21 2021"
 -/
@@ -639,37 +640,37 @@ info: "2021 21 2021"
 -- w  Week of year paired with Y: check they agree at boundaries
 -- ─────────────────────────────────────────────────────────────────────────────
 
--- Jan 1, 2017 → Y=2016 w=52
+-- Jan 1, 2017 (Sun) → US Y=2017 w=1 (Sun starts week 1 of 2017)
 /--
-info: "2016 52"
+info: "2017 1"
 -/
 #guard_msgs in
 #eval tdWeekBound2.format "Y w"
 
--- Jan 2, 2017 → Y=2017 w=1
+-- Jan 2, 2017 (Mon) → US Y=2017 w=1
 /--
 info: "2017 1"
 -/
 #guard_msgs in
 #eval tdWeekBound3.format "Y w"
 
--- Dec 31, 2019 → Y=2020 w=1
+-- Dec 31, 2019 (Tue) → US Y=2020 w=1
 /--
 info: "2020 1"
 -/
 #guard_msgs in
 #eval tdWeekBound4.format "Y w"
 
--- Jan 1, 2021 → Y=2020 w=53
+-- Jan 1, 2021 (Fri) → US Y=2021 w=1 (week Dec 27–Jan 2 belongs to 2021)
 /--
-info: "2020 53"
+info: "2021 1"
 -/
 #guard_msgs in
 #eval tdWeekBound5.format "Y w"
 
--- Jan 4, 2021 → Y=2021 w=1
+-- Jan 4, 2021 (Mon) → US Y=2021 w=2 (week Jan 3–9 is week 2 of 2021)
 /--
-info: "2021 1"
+info: "2021 2"
 -/
 #guard_msgs in
 #eval tdWeekBound6.format "Y w"
@@ -685,33 +686,33 @@ info: "1 01 001"
 #eval tdJan1.format "D DD DDD"
 
 -- ─────────────────────────────────────────────────────────────────────────────
--- W  Aligned week-of-month: Java ALIGNED_WEEK_OF_MONTH = (dayOfMonth-1)/7+1
+-- W  Week-of-month (US locale, Sun-first, minDays=1)
 -- ─────────────────────────────────────────────────────────────────────────────
 
--- Aug 1 (Thu): (1-1)/7+1 = 1 → W=1
+-- Aug 1 (Thu): week Jul 28–Aug 3, week 1 of Aug → W=1
 /--
 info: "1"
 -/
 #guard_msgs in
 #eval tdAug1.format "W"
 
--- Aug 4 (Sun): (4-1)/7+1 = 1 → W=1
+-- Aug 4 (Sun): starts week Aug 4–10, week 2 of Aug → W=2
 /--
-info: "1"
+info: "2"
 -/
 #guard_msgs in
 #eval tdAug4.format "W"
 
--- Aug 5 (Mon): (5-1)/7+1 = 1 → W=1
+-- Aug 5 (Mon): in week Aug 4–10, week 2 of Aug → W=2
 /--
-info: "1"
+info: "2"
 -/
 #guard_msgs in
 #eval tdWeekMonth.format "W"
 
--- Aug 12 (Mon): (12-1)/7+1 = 2 → W=2
+-- Aug 12 (Mon): in week Aug 11–17, week 3 of Aug → W=3
 /--
-info: "2"
+info: "3"
 -/
 #guard_msgs in
 #eval tdAug12.format "W"

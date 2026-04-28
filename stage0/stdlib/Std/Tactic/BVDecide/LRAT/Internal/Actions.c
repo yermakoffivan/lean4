@@ -13,7 +13,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-size_t lean_array_size(lean_object*);
 uint8_t lean_usize_dec_lt(size_t, size_t);
 lean_object* lean_array_uget(lean_object*, size_t);
 lean_object* lean_nat_abs(lean_object*);
@@ -23,8 +22,9 @@ uint8_t lean_int_dec_eq(lean_object*, lean_object*);
 lean_object* lean_array_uset(lean_object*, size_t, lean_object*);
 uint8_t lean_int_dec_lt(lean_object*, lean_object*);
 size_t lean_usize_add(size_t, size_t);
-lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_DefaultClause_ofArray(lean_object*, lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
+size_t lean_array_size(lean_object*);
+lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_DefaultClause_ofArray(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_natLiteralToPosFinLiteral(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_natLiteralToPosFinLiteral___boxed(lean_object*, lean_object*);
 static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Internal_intToLiteral___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;

@@ -13,15 +13,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Lean_Name_instToString___lam__0(lean_object*);
+uint8_t lean_name_eq(lean_object*, lean_object*);
 lean_object* l_Lean_Name_beq___boxed(lean_object*, lean_object*);
+lean_object* l_Lean_Name_instToString___lam__0(lean_object*);
 lean_object* l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(lean_object*, uint8_t);
 uint8_t l_List_beq___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* l_List_toString___redArg(lean_object*, lean_object*);
 lean_object* lean_string_append(lean_object*, lean_object*);
 lean_object* l_Lean_Name_mkStr1(lean_object*);
 lean_object* l_Lean_Name_replacePrefix(lean_object*, lean_object*, lean_object*);
-uint8_t lean_name_eq(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_OpenDecl_ctorIdx(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_OpenDecl_ctorIdx___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_OpenDecl_ctorElim___redArg(lean_object*, lean_object*);

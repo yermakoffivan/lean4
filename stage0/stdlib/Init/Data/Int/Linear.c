@@ -13,23 +13,23 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_int_emod(lean_object*, lean_object*);
 lean_object* lean_nat_to_int(lean_object*);
 uint8_t lean_int_dec_eq(lean_object*, lean_object*);
+lean_object* lean_nat_abs(lean_object*);
+lean_object* lean_int_sub(lean_object*, lean_object*);
 uint8_t lean_int_dec_le(lean_object*, lean_object*);
-lean_object* lean_int_mul(lean_object*, lean_object*);
-lean_object* lean_int_add(lean_object*, lean_object*);
-lean_object* lean_int_neg(lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* l_Int_gcd(lean_object*, lean_object*);
-lean_object* lean_nat_sub(lean_object*, lean_object*);
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 uint8_t l_Nat_blt(lean_object*, lean_object*);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
+lean_object* lean_int_add(lean_object*, lean_object*);
 lean_object* l_Lean_RArray_getImpl___redArg(lean_object*, lean_object*);
-lean_object* lean_int_sub(lean_object*, lean_object*);
-lean_object* lean_nat_abs(lean_object*);
+lean_object* lean_int_mul(lean_object*, lean_object*);
+lean_object* lean_int_neg(lean_object*);
+lean_object* lean_int_emod(lean_object*, lean_object*);
 lean_object* lean_int_ediv(lean_object*, lean_object*);
 uint8_t lean_int_dec_lt(lean_object*, lean_object*);
+lean_object* lean_nat_sub(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Int_Linear_Var_denote(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Int_Linear_Var_denote___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Int_Linear_Expr_ctorIdx(lean_object*);

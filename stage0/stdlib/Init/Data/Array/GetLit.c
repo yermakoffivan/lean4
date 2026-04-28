@@ -13,9 +13,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_array_fget_borrowed(lean_object*, lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* lean_nat_sub(lean_object*, lean_object*);
+lean_object* lean_array_fget_borrowed(lean_object*, lean_object*);
 lean_object* lean_array_mk(lean_object*);
 LEAN_EXPORT lean_object* l_Array_getLit___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_getLit___redArg___boxed(lean_object*, lean_object*);

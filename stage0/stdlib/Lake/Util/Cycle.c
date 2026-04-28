@@ -13,10 +13,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_string_append(lean_object*, lean_object*);
 lean_object* l_ReaderT_read___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_List_mapTR_loop___redArg(lean_object*, lean_object*, lean_object*);
-lean_object* l_String_intercalate(lean_object*, lean_object*);
 lean_object* l_ExceptT_instMonad___redArg___lam__1(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_ExceptT_instMonad___redArg___lam__4(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_ExceptT_instMonad___redArg___lam__7(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -24,6 +21,9 @@ lean_object* l_ExceptT_instMonad___redArg___lam__9(lean_object*, lean_object*, l
 lean_object* l_ExceptT_map(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_ExceptT_pure(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_ExceptT_bind(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_string_append(lean_object*, lean_object*);
+lean_object* l_List_mapTR_loop___redArg(lean_object*, lean_object*, lean_object*);
+lean_object* l_String_intercalate(lean_object*, lean_object*);
 uint8_t l_List_elem___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* l_List_partition_loop___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* l_List_appendTR___redArg(lean_object*, lean_object*);

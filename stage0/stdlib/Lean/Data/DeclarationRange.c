@@ -13,14 +13,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-extern lean_object* l_Lean_instInhabitedPosition_default;
 lean_object* l_Lean_Name_mkStr3(lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Name_mkStr2(lean_object*, lean_object*);
 lean_object* l_Lean_mkConst(lean_object*, lean_object*);
 lean_object* l_Lean_mkNatLit(lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* lean_array_push(lean_object*, lean_object*);
 lean_object* l_Lean_mkAppN(lean_object*, lean_object*);
-lean_object* l_Lean_Name_mkStr2(lean_object*, lean_object*);
+extern lean_object* l_Lean_instInhabitedPosition_default;
 lean_object* lean_nat_to_int(lean_object*);
 lean_object* l_Lean_instReprPosition_repr___redArg(lean_object*);
 lean_object* l_Nat_reprFast(lean_object*);

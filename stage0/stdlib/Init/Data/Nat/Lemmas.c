@@ -13,9 +13,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_nat_add(lean_object*, lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* lean_nat_sub(lean_object*, lean_object*);
+lean_object* lean_nat_add(lean_object*, lean_object*);
 uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Nat_decidableBallLT___redArg___lam__0(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Nat_decidableBallLT___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*);

@@ -13,28 +13,28 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_uv_signal_cancel(lean_object*);
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
-lean_object* lean_io_as_task(lean_object*, lean_object*);
-lean_object* lean_task_bind(lean_object*, lean_object*, lean_object*, uint8_t);
-lean_object* l___private_Std_Async_Basic_0__Std_Async_BaseAsync_bind_bindAsyncTask(lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*);
 uint32_t lean_int32_of_nat(lean_object*);
-lean_object* lean_mk_io_user_error(lean_object*);
-lean_object* lean_io_map_task(lean_object*, lean_object*, lean_object*, uint8_t);
-uint8_t lean_io_get_task_state(lean_object*);
-lean_object* lean_st_ref_take(lean_object*);
-lean_object* lean_st_ref_set(lean_object*, lean_object*);
-lean_object* lean_io_promise_resolve(lean_object*, lean_object*);
-lean_object* lean_task_pure(lean_object*);
-lean_object* lean_uv_signal_next(lean_object*);
-lean_object* lean_io_promise_result_opt(lean_object*);
-lean_object* lean_task_map(lean_object*, lean_object*, lean_object*, uint8_t);
+lean_object* lean_uv_signal_cancel(lean_object*);
+lean_object* lean_uv_signal_mk(uint32_t, uint8_t);
 lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
 lean_object* lean_nat_to_int(lean_object*);
-lean_object* lean_uv_signal_stop(lean_object*);
-lean_object* lean_uv_signal_mk(uint32_t, uint8_t);
+lean_object* l___private_Std_Async_Basic_0__Std_Async_BaseAsync_bind_bindAsyncTask(lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*);
+uint8_t lean_io_get_task_state(lean_object*);
+lean_object* lean_task_pure(lean_object*);
+lean_object* lean_uv_signal_next(lean_object*);
+lean_object* lean_mk_io_user_error(lean_object*);
+lean_object* lean_io_promise_result_opt(lean_object*);
+lean_object* lean_task_map(lean_object*, lean_object*, lean_object*, uint8_t);
+lean_object* lean_io_as_task(lean_object*, lean_object*);
+lean_object* lean_task_bind(lean_object*, lean_object*, lean_object*, uint8_t);
+lean_object* lean_st_ref_take(lean_object*);
+lean_object* lean_st_ref_set(lean_object*, lean_object*);
+lean_object* lean_io_promise_resolve(lean_object*, lean_object*);
+lean_object* lean_io_map_task(lean_object*, lean_object*, lean_object*, uint8_t);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
+lean_object* lean_uv_signal_stop(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_ctorIdx(uint8_t);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_ctorIdx___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_toCtorIdx(uint8_t);

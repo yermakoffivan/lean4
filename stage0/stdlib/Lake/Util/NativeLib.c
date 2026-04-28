@@ -13,9 +13,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* lean_string_append(lean_object*, lean_object*);
 extern uint8_t l_System_Platform_isWindows;
 extern uint8_t l_System_Platform_isOSX;
-lean_object* lean_string_append(lean_object*, lean_object*);
 lean_object* lean_io_getenv(lean_object*);
 lean_object* l_System_SearchPath_parse(lean_object*);
 static lean_once_cell_t l_Lake_sharedLibExt___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;

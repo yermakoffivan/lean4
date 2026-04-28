@@ -14,10 +14,10 @@
 extern "C" {
 #endif
 uint8_t l_Lean_instBEqFVarId_beq(lean_object*, lean_object*);
+lean_object* l_Lean_Expr_replaceFVarId(lean_object*, lean_object*, lean_object*);
 uint8_t l_Lean_AssocList_isEmpty___redArg(lean_object*);
 uint8_t l_Lean_Expr_hasFVar(lean_object*);
 lean_object* lean_replace_expr(lean_object*, lean_object*);
-lean_object* l_Lean_Expr_replaceFVarId(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_AssocList_mapVal___redArg(lean_object*, lean_object*);
 uint8_t l_Lean_AssocList_any___redArg(lean_object*, lean_object*);
 lean_object* l_Lean_mkFVar(lean_object*);

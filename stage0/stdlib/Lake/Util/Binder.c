@@ -13,23 +13,20 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Lean_replaceRef(lean_object*, lean_object*);
-lean_object* l_Lean_SourceInfo_fromRef(lean_object*, uint8_t);
+lean_object* l_Lean_Syntax_instReprTSyntax_repr___redArg(lean_object*);
+lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
 lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Syntax_node5(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Name_mkStr2(lean_object*, lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
-lean_object* lean_nat_to_int(lean_object*);
-uint8_t lean_usize_dec_eq(size_t, size_t);
-lean_object* lean_array_uget_borrowed(lean_object*, size_t);
 lean_object* l_Lean_Syntax_getKind(lean_object*);
 uint8_t lean_name_eq(lean_object*, lean_object*);
 lean_object* l_Lean_Macro_throwUnsupported___redArg(lean_object*);
 lean_object* l_Lean_Syntax_getArg(lean_object*, lean_object*);
 uint8_t l_Lean_Syntax_isNone(lean_object*);
 lean_object* l_Lean_mkAtomFrom(lean_object*, lean_object*, uint8_t);
-lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* lean_array_push(lean_object*, lean_object*);
 uint8_t l_Lean_Syntax_isOfKind(lean_object*, lean_object*);
+lean_object* l_Lean_SourceInfo_fromRef(lean_object*, uint8_t);
 lean_object* l_String_toRawSubstring_x27(lean_object*);
 lean_object* l_Lean_Name_mkStr1(lean_object*);
 lean_object* l_Lean_addMacroScope(lean_object*, lean_object*, lean_object*);
@@ -44,31 +41,34 @@ lean_object* lean_array_get_size(lean_object*);
 uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
 size_t lean_usize_of_nat(lean_object*);
+uint8_t lean_usize_dec_eq(size_t, size_t);
+lean_object* lean_array_uget_borrowed(lean_object*, size_t);
 lean_object* l_Lean_Syntax_getNumArgs(lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* l_Lean_Syntax_getOptional_x3f(lean_object*);
 uint8_t l_Lean_Syntax_isIdent(lean_object*);
-lean_object* l_Lean_Name_mkStr2(lean_object*, lean_object*);
 lean_object* l_Lean_Syntax_node1(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Syntax_node2(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Array_mkArray0(lean_object*);
 lean_object* l_Array_append___redArg(lean_object*, lean_object*);
+lean_object* l_Lean_Syntax_node5(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Array_mkArray1___redArg(lean_object*);
+lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* l_Lean_Syntax_node4(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Syntax_node3(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Syntax_instRepr_repr(lean_object*, lean_object*);
-lean_object* l_Lean_Syntax_instReprTSyntax_repr___redArg(lean_object*);
-lean_object* l_Lean_instReprBinderInfo_repr(uint8_t, lean_object*);
-lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
-lean_object* lean_string_length(lean_object*);
 lean_object* l_Lean_Parser_Term_binderIdent_parenthesizer___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Parser_Term_binderIdent_formatter___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Parser_Term_bracketedBinder_formatter___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_PrettyPrinter_Formatter_orelse_formatter(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_nat_to_int(lean_object*);
+lean_object* l_Lean_Syntax_instRepr_repr(lean_object*, lean_object*);
+lean_object* l_Lean_instReprBinderInfo_repr(uint8_t, lean_object*);
+lean_object* lean_string_length(lean_object*);
+lean_object* l_Lean_replaceRef(lean_object*, lean_object*);
+extern lean_object* l_Lean_firstFrontendMacroScope;
+lean_object* l_Lean_Parser_Term_bracketedBinder(uint8_t);
 lean_object* l_Lean_Parser_Term_bracketedBinder_parenthesizer___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_PrettyPrinter_Parenthesizer_orelse_parenthesizer(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-extern lean_object* l_Lean_firstFrontendMacroScope;
-lean_object* l_Lean_Parser_Term_bracketedBinder_formatter___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Parser_Term_binderIdent_formatter___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_PrettyPrinter_Formatter_orelse_formatter(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Parser_Term_bracketedBinder(uint8_t);
 extern lean_object* l_Lean_Parser_Term_binderIdent;
 lean_object* l_Lean_Parser_orelse(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_instCoeTermArgument___lam__0(lean_object*);
@@ -220,12 +220,12 @@ LEAN_EXPORT lean_object* l_Lake_expandBinderType(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_expandBinderType___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_expandBinderModifier(lean_object*);
 LEAN_EXPORT lean_object* l_Lake_expandBinderModifier___boxed(lean_object*);
-LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__1(lean_object*, lean_object*, lean_object*, size_t, size_t, lean_object*, lean_object*, lean_object*);
-LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__2(lean_object*, lean_object*, lean_object*, lean_object*, size_t, size_t, lean_object*, lean_object*, lean_object*);
-LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__2___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__0(lean_object*, lean_object*, lean_object*, size_t, size_t, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__2(lean_object*, lean_object*, lean_object*, lean_object*, size_t, size_t, lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__2___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__1(lean_object*, lean_object*, lean_object*, size_t, size_t, lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 static lean_once_cell_t l_Lake_expandBinderCore___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lake_expandBinderCore___closed__0;
 static lean_once_cell_t l_Lake_expandBinderCore___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -1613,7 +1613,7 @@ lean_dec(v_optBinderModifier_351_);
 return v_res_352_;
 }
 }
-LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__1(lean_object* v___x_353_, lean_object* v_stx_354_, lean_object* v_as_355_, size_t v_i_356_, size_t v_stop_357_, lean_object* v_b_358_, lean_object* v___y_359_, lean_object* v___y_360_){
+LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__0(lean_object* v___x_353_, lean_object* v_stx_354_, lean_object* v_as_355_, size_t v_i_356_, size_t v_stop_357_, lean_object* v_b_358_, lean_object* v___y_359_, lean_object* v___y_360_){
 _start:
 {
 uint8_t v___x_361_; 
@@ -1633,7 +1633,7 @@ v_a_365_ = lean_ctor_get(v___x_363_, 1);
 lean_inc(v_a_365_);
 lean_dec_ref(v___x_363_);
 v___x_366_ = l_Lake_expandBinderType(v___x_362_, v___x_353_);
-v___x_367_ = 1;
+v___x_367_ = 2;
 v___x_368_ = lean_box(0);
 lean_inc(v_stx_354_);
 v___x_369_ = lean_alloc_ctor(0, 4, 1);
@@ -1708,7 +1708,7 @@ return v___x_383_;
 }
 }
 }
-LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__1___boxed(lean_object* v___x_384_, lean_object* v_stx_385_, lean_object* v_as_386_, lean_object* v_i_387_, lean_object* v_stop_388_, lean_object* v_b_389_, lean_object* v___y_390_, lean_object* v___y_391_){
+LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__0___boxed(lean_object* v___x_384_, lean_object* v_stx_385_, lean_object* v_as_386_, lean_object* v_i_387_, lean_object* v_stop_388_, lean_object* v_b_389_, lean_object* v___y_390_, lean_object* v___y_391_){
 _start:
 {
 size_t v_i_boxed_392_; size_t v_stop_boxed_393_; lean_object* v_res_394_; 
@@ -1716,7 +1716,7 @@ v_i_boxed_392_ = lean_unbox_usize(v_i_387_);
 lean_dec(v_i_387_);
 v_stop_boxed_393_ = lean_unbox_usize(v_stop_388_);
 lean_dec(v_stop_388_);
-v_res_394_ = l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__1(v___x_384_, v_stx_385_, v_as_386_, v_i_boxed_392_, v_stop_boxed_393_, v_b_389_, v___y_390_, v___y_391_);
+v_res_394_ = l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__0(v___x_384_, v_stx_385_, v_as_386_, v_i_boxed_392_, v_stop_boxed_393_, v_b_389_, v___y_390_, v___y_391_);
 lean_dec_ref(v___y_390_);
 lean_dec_ref(v_as_386_);
 lean_dec(v___x_384_);
@@ -1835,7 +1835,7 @@ lean_dec(v___x_426_);
 return v_res_437_;
 }
 }
-LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__0(lean_object* v___x_438_, lean_object* v_stx_439_, lean_object* v_as_440_, size_t v_i_441_, size_t v_stop_442_, lean_object* v_b_443_, lean_object* v___y_444_, lean_object* v___y_445_){
+LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__1(lean_object* v___x_438_, lean_object* v_stx_439_, lean_object* v_as_440_, size_t v_i_441_, size_t v_stop_442_, lean_object* v_b_443_, lean_object* v___y_444_, lean_object* v___y_445_){
 _start:
 {
 uint8_t v___x_446_; 
@@ -1855,7 +1855,7 @@ v_a_450_ = lean_ctor_get(v___x_448_, 1);
 lean_inc(v_a_450_);
 lean_dec_ref(v___x_448_);
 v___x_451_ = l_Lake_expandBinderType(v___x_447_, v___x_438_);
-v___x_452_ = 2;
+v___x_452_ = 1;
 v___x_453_ = lean_box(0);
 lean_inc(v_stx_439_);
 v___x_454_ = lean_alloc_ctor(0, 4, 1);
@@ -1930,7 +1930,7 @@ return v___x_468_;
 }
 }
 }
-LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__0___boxed(lean_object* v___x_469_, lean_object* v_stx_470_, lean_object* v_as_471_, lean_object* v_i_472_, lean_object* v_stop_473_, lean_object* v_b_474_, lean_object* v___y_475_, lean_object* v___y_476_){
+LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__1___boxed(lean_object* v___x_469_, lean_object* v_stx_470_, lean_object* v_as_471_, lean_object* v_i_472_, lean_object* v_stop_473_, lean_object* v_b_474_, lean_object* v___y_475_, lean_object* v___y_476_){
 _start:
 {
 size_t v_i_boxed_477_; size_t v_stop_boxed_478_; lean_object* v_res_479_; 
@@ -1938,7 +1938,7 @@ v_i_boxed_477_ = lean_unbox_usize(v_i_472_);
 lean_dec(v_i_472_);
 v_stop_boxed_478_ = lean_unbox_usize(v_stop_473_);
 lean_dec(v_stop_473_);
-v_res_479_ = l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__0(v___x_469_, v_stx_470_, v_as_471_, v_i_boxed_477_, v_stop_boxed_478_, v_b_474_, v___y_475_, v___y_476_);
+v_res_479_ = l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lake_expandBinderCore_spec__1(v___x_469_, v_stx_470_, v_as_471_, v_i_boxed_477_, v_stop_boxed_478_, v_b_474_, v___y_475_, v___y_476_);
 lean_dec_ref(v___y_475_);
 lean_dec_ref(v_as_471_);
 lean_dec(v___x_469_);

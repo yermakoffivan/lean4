@@ -13,17 +13,17 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Lean_SMap_insert___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-uint8_t l_Lean_SMap_contains___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_SMap_empty(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_SMap_switch___redArg(lean_object*);
-lean_object* l_Lean_PersistentHashMap_mkEmptyEntriesArray(lean_object*, lean_object*);
-lean_object* lean_mk_array(lean_object*, lean_object*);
-lean_object* l_List_foldl___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_SMap_fold___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* l_List_repr___redArg(lean_object*, lean_object*);
 lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
+lean_object* l_Lean_PersistentHashMap_mkEmptyEntriesArray(lean_object*, lean_object*);
+lean_object* l_Lean_SMap_empty(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_SMap_switch___redArg(lean_object*);
+lean_object* l_Lean_SMap_insert___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_mk_array(lean_object*, lean_object*);
 lean_object* l_Lean_SMap_forM___redArg(lean_object*, lean_object*, lean_object*);
+uint8_t l_Lean_SMap_contains___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_List_foldl___redArg(lean_object*, lean_object*, lean_object*);
 static lean_once_cell_t l_Lean_SSet_instInhabited___aux__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_SSet_instInhabited___aux__1___closed__0;
 static lean_once_cell_t l_Lean_SSet_instInhabited___aux__1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;

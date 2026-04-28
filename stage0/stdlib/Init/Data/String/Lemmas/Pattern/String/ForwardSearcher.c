@@ -14,10 +14,10 @@
 extern "C" {
 #endif
 uint8_t lean_byte_array_fget(lean_object*, lean_object*);
-uint8_t lean_uint8_dec_eq(uint8_t, uint8_t);
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* lean_nat_sub(lean_object*, lean_object*);
 lean_object* lean_nat_add(lean_object*, lean_object*);
+uint8_t lean_uint8_dec_eq(uint8_t, uint8_t);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* lean_byte_array_size(lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
 uint8_t l_Nat_decidableBallLT___redArg(lean_object*, lean_object*);

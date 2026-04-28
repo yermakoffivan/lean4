@@ -13,15 +13,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_string_utf8_byte_size(lean_object*);
-lean_object* lean_nat_sub(lean_object*, lean_object*);
-uint8_t lean_nat_dec_le(lean_object*, lean_object*);
-lean_object* lean_nat_add(lean_object*, lean_object*);
-uint8_t lean_string_memcmp(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_String_Slice_pos_x21(lean_object*, lean_object*);
 lean_object* lean_runtime_mark_persistent(lean_object*);
 lean_object* lean_io_realpath(lean_object*);
 lean_object* l_System_FilePath_fileStem(lean_object*);
+lean_object* lean_string_utf8_byte_size(lean_object*);
+lean_object* lean_nat_sub(lean_object*, lean_object*);
+uint8_t lean_nat_dec_le(lean_object*, lean_object*);
+uint8_t lean_string_memcmp(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_String_Slice_pos_x21(lean_object*, lean_object*);
+lean_object* lean_nat_add(lean_object*, lean_object*);
 lean_object* l_String_Slice_toString(lean_object*);
 lean_object* lean_string_append(lean_object*, lean_object*);
 lean_object* lean_mk_io_user_error(lean_object*);

@@ -13,31 +13,31 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* lean_io_promise_resolve(lean_object*, lean_object*);
+lean_object* l_BaseIO_chainTask___redArg(lean_object*, lean_object*, lean_object*, uint8_t);
+lean_object* lean_task_pure(lean_object*);
+lean_object* lean_io_bind_task(lean_object*, lean_object*, lean_object*, uint8_t);
 lean_object* l_Except_pure(lean_object*, lean_object*, lean_object*);
 lean_object* l_IO_Promise_result_x21___redArg(lean_object*);
 lean_object* lean_task_map(lean_object*, lean_object*, lean_object*, uint8_t);
-lean_object* l_instMonadBaseIO___aux__5___boxed(lean_object*, lean_object*, lean_object*);
 lean_object* lean_io_as_task(lean_object*, lean_object*);
-lean_object* lean_task_pure(lean_object*);
-lean_object* lean_io_bind_task(lean_object*, lean_object*, lean_object*, uint8_t);
 lean_object* lean_task_bind(lean_object*, lean_object*, lean_object*, uint8_t);
-lean_object* lean_io_promise_resolve(lean_object*, lean_object*);
 lean_object* l_liftM(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Function_comp(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_BaseIO_chainTask___redArg(lean_object*, lean_object*, lean_object*, uint8_t);
+lean_object* lean_io_promise_new();
+lean_object* l_instMonadLiftT___lam__0___boxed(lean_object*, lean_object*);
+lean_object* l_Except_map(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_mk_io_user_error(lean_object*);
+lean_object* lean_io_promise_result_opt(lean_object*);
+lean_object* lean_task_get_own(lean_object*);
+lean_object* lean_io_map_task(lean_object*, lean_object*, lean_object*, uint8_t);
 lean_object* l_Function_const___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 size_t lean_array_size(lean_object*);
 lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, size_t, size_t, lean_object*);
-lean_object* l_Except_map(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* lean_task_get_own(lean_object*);
 uint8_t lean_io_get_task_state(lean_object*);
-lean_object* lean_mk_io_user_error(lean_object*);
-lean_object* lean_io_promise_result_opt(lean_object*);
-lean_object* lean_io_promise_new();
-lean_object* l_instMonadLiftT___lam__0___boxed(lean_object*, lean_object*);
-lean_object* l_MonadExcept_orElse(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Functor_mapRev___redArg(lean_object*, lean_object*, lean_object*);
-lean_object* lean_io_map_task(lean_object*, lean_object*, lean_object*, uint8_t);
+lean_object* l_MonadExcept_orElse(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_instMonadBaseIO___aux__5___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_instMonadAwaitStateTOfMonad___redArg___lam__0(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_instMonadAwaitStateTOfMonad___redArg___lam__1(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_instMonadAwaitStateTOfMonad___redArg(lean_object*, lean_object*);

@@ -13,8 +13,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_WellFounded_opaqueFix_u2083___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* lean_nat_sub(lean_object*, lean_object*);
+lean_object* l_WellFounded_opaqueFix_u2083___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_IterM_stepSize___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_IterM_stepSize___redArg___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_IterM_stepSize(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);

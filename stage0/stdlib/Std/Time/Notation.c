@@ -13,12 +13,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* l_String_toRawSubstring_x27(lean_object*);
 lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* lean_nat_to_int(lean_object*);
 uint8_t lean_int_dec_lt(lean_object*, lean_object*);
 lean_object* lean_nat_abs(lean_object*);
 lean_object* l_Lean_SourceInfo_fromRef(lean_object*, uint8_t);
-lean_object* l_String_toRawSubstring_x27(lean_object*);
 lean_object* l_Lean_Name_mkStr2(lean_object*, lean_object*);
 lean_object* l_Lean_addMacroScope(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Name_mkStr1(lean_object*);
@@ -32,21 +32,21 @@ lean_object* l_Lean_Name_mkStr3(lean_object*, lean_object*, lean_object*);
 lean_object* l_Array_mkArray0(lean_object*);
 lean_object* l_Lean_Syntax_node3(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Syntax_node4(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Name_mkStr5(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_thunk_get_own(lean_object*);
+lean_object* l_Lean_Syntax_mkStrLit(lean_object*, lean_object*);
 uint8_t l_Lean_Syntax_isOfKind(lean_object*, lean_object*);
 lean_object* l_Lean_Syntax_getArg(lean_object*, lean_object*);
 lean_object* l_Lean_TSyntax_getString(lean_object*);
-lean_object* l_Std_Time_PlainDateTime_fromLeanDateTimeString(lean_object*);
+lean_object* l_Std_Time_PlainDate_fromSQLDateString(lean_object*);
 lean_object* lean_string_append(lean_object*, lean_object*);
 lean_object* l_Lean_Macro_throwErrorAt___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Syntax_mkStrLit(lean_object*, lean_object*);
-lean_object* l_Lean_Name_mkStr5(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* lean_thunk_get_own(lean_object*);
+lean_object* l_Std_Time_PlainTime_fromLeanTime24Hour(lean_object*);
+lean_object* l_Std_Time_TimeZone_Offset_fromOffset(lean_object*);
+lean_object* l_Std_Time_PlainDateTime_fromLeanDateTimeString(lean_object*);
+lean_object* l_Std_Time_TimeZone_fromTimeZone(lean_object*);
 lean_object* l_Std_Time_ZonedDateTime_fromLeanDateTimeWithZoneString(lean_object*);
 lean_object* l_Std_Time_ZonedDateTime_fromLeanDateTimeWithIdentifierString(lean_object*);
-lean_object* l_Std_Time_TimeZone_fromTimeZone(lean_object*);
-lean_object* l_Std_Time_PlainDate_fromSQLDateString(lean_object*);
-lean_object* l_Std_Time_TimeZone_Offset_fromOffset(lean_object*);
-lean_object* l_Std_Time_PlainTime_fromLeanTime24Hour(lean_object*);
 static lean_once_cell_t l___private_Std_Time_Notation_0__Std_Time_convertText___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Std_Time_Notation_0__Std_Time_convertText___closed__0;
 static lean_once_cell_t l___private_Std_Time_Notation_0__Std_Time_convertText___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;

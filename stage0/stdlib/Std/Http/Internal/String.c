@@ -13,21 +13,21 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* l_mkPanicMessageWithDecl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+uint8_t lean_uint32_dec_le(uint32_t, uint32_t);
+uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
+lean_object* lean_string_data(lean_object*);
+uint8_t l_List_isEmpty___redArg(lean_object*);
 lean_object* lean_nat_sub(lean_object*, lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 uint32_t lean_string_utf8_get_fast(lean_object*, lean_object*);
 lean_object* lean_string_utf8_next_fast(lean_object*, lean_object*);
-uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
 lean_object* lean_string_push(lean_object*, uint32_t);
-uint8_t lean_uint32_dec_le(uint32_t, uint32_t);
-lean_object* lean_string_data(lean_object*);
 lean_object* lean_string_append(lean_object*, lean_object*);
-uint8_t l_List_isEmpty___redArg(lean_object*);
-lean_object* l_mkPanicMessageWithDecl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* lean_panic_fn_borrowed(lean_object*, lean_object*);
+lean_object* lean_string_utf8_byte_size(lean_object*);
 lean_object* lean_nat_add(lean_object*, lean_object*);
 uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
-lean_object* lean_string_utf8_byte_size(lean_object*);
 lean_object* l_String_Slice_positions(lean_object*);
 static lean_once_cell_t l_Std_Http_Internal_quoteCore___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Http_Internal_quoteCore___redArg___closed__0;

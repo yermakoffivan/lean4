@@ -13,25 +13,25 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(lean_object*, uint8_t);
-lean_object* lean_string_append(lean_object*, lean_object*);
 lean_object* l___private_Lean_Data_Name_0__Lean_Name_quickCmpImpl___boxed(lean_object*, lean_object*);
 lean_object* l_Std_DTreeMap_Internal_Impl_get_x3f___redArg(lean_object*, lean_object*, lean_object*);
-extern lean_object* l_Lake_Module_keyword;
-extern lean_object* l_Lake_LeanLib_defaultFacet;
+extern lean_object* l_Lake_LeanExe_keyword;
+extern lean_object* l_Lake_LeanExe_exeFacet;
+lean_object* l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(lean_object*, uint8_t);
+lean_object* lean_string_append(lean_object*, lean_object*);
+lean_object* lean_array_get_size(lean_object*);
+lean_object* lean_array_push(lean_object*, lean_object*);
+extern lean_object* l_Lake_InputFile_keyword;
+extern lean_object* l_Lake_InputFile_defaultFacet;
+extern lean_object* l_Lake_Package_keyword;
 lean_object* l_Lean_Name_mkStr1(lean_object*);
 uint8_t l___private_Lean_Data_Name_0__Lean_Name_quickCmpImpl(lean_object*, lean_object*);
 lean_object* l_Lake_Job_toOpaque___redArg(lean_object*);
-lean_object* lean_array_get_size(lean_object*);
-lean_object* lean_array_push(lean_object*, lean_object*);
-extern lean_object* l_Lake_LeanExe_keyword;
-extern lean_object* l_Lake_LeanExe_exeFacet;
-extern lean_object* l_Lake_Package_keyword;
+extern lean_object* l_Lake_LeanLib_defaultFacet;
+extern lean_object* l_Lake_Module_keyword;
 lean_object* l_Lean_Name_append(lean_object*, lean_object*);
-extern lean_object* l_Lake_InputDir_defaultFacet;
 extern lean_object* l_Lake_InputDir_keyword;
-extern lean_object* l_Lake_InputFile_defaultFacet;
-extern lean_object* l_Lake_InputFile_keyword;
+extern lean_object* l_Lake_InputDir_defaultFacet;
 LEAN_EXPORT lean_object* l_Lake_KConfigDecl_get___redArg___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Lake_KConfigDecl_get___redArg___lam__0___boxed(lean_object*);
 static lean_once_cell_t l_Lake_KConfigDecl_get___redArg___lam__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;

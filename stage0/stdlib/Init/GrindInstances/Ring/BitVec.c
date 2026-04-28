@@ -13,9 +13,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_BitVec_ofNat(lean_object*, lean_object*);
-lean_object* l_BitVec_mul(lean_object*, lean_object*, lean_object*);
 lean_object* l_BitVec_ofInt(lean_object*, lean_object*);
+lean_object* l_BitVec_mul(lean_object*, lean_object*, lean_object*);
+lean_object* l_BitVec_ofNat(lean_object*, lean_object*);
 lean_object* l_BitVec_add___boxed(lean_object*, lean_object*, lean_object*);
 lean_object* l_BitVec_mul___boxed(lean_object*, lean_object*, lean_object*);
 lean_object* l_BitVec_instNatCast___lam__0___boxed(lean_object*, lean_object*);

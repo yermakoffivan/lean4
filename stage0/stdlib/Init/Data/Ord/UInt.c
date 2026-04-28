@@ -13,14 +13,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-uint8_t lean_usize_dec_lt(size_t, size_t);
-uint8_t lean_usize_dec_eq(size_t, size_t);
-uint8_t lean_uint32_dec_lt(uint32_t, uint32_t);
-uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
-uint8_t lean_uint8_dec_lt(uint8_t, uint8_t);
-uint8_t lean_uint8_dec_eq(uint8_t, uint8_t);
 uint8_t lean_uint16_dec_lt(uint16_t, uint16_t);
 uint8_t lean_uint16_dec_eq(uint16_t, uint16_t);
+uint8_t lean_uint32_dec_lt(uint32_t, uint32_t);
+uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
+uint8_t lean_usize_dec_lt(size_t, size_t);
+uint8_t lean_usize_dec_eq(size_t, size_t);
+uint8_t lean_uint8_dec_lt(uint8_t, uint8_t);
+uint8_t lean_uint8_dec_eq(uint8_t, uint8_t);
 uint8_t lean_uint64_dec_lt(uint64_t, uint64_t);
 uint8_t lean_uint64_dec_eq(uint64_t, uint64_t);
 LEAN_EXPORT uint8_t l_UInt8_instOrd___lam__0(uint8_t, uint8_t);

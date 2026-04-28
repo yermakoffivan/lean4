@@ -13,20 +13,20 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+uint8_t lean_string_dec_eq(lean_object*, lean_object*);
+lean_object* l_String_quote(lean_object*);
+lean_object* lean_string_append(lean_object*, lean_object*);
+lean_object* l_mkPanicMessageWithDecl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_panic_fn_borrowed(lean_object*, lean_object*);
+lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
+uint8_t lean_nat_dec_le(lean_object*, lean_object*);
+lean_object* lean_nat_to_int(lean_object*);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
+uint8_t lean_nat_dec_le(lean_object*, lean_object*);
 lean_object* lean_string_to_utf8(lean_object*);
 lean_object* lean_array_push(lean_object*, lean_object*);
 lean_object* lean_byte_array_size(lean_object*);
 lean_object* lean_nat_add(lean_object*, lean_object*);
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
-uint8_t lean_nat_dec_le(lean_object*, lean_object*);
-uint8_t lean_string_dec_eq(lean_object*, lean_object*);
-lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
-uint8_t lean_nat_dec_le(lean_object*, lean_object*);
-lean_object* lean_nat_to_int(lean_object*);
-lean_object* lean_panic_fn_borrowed(lean_object*, lean_object*);
-lean_object* l_String_quote(lean_object*);
-lean_object* lean_string_append(lean_object*, lean_object*);
-lean_object* l_mkPanicMessageWithDecl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Method_ctorIdx(uint8_t);
 LEAN_EXPORT lean_object* l_Std_Http_Method_ctorIdx___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Method_toCtorIdx(uint8_t);

@@ -13,8 +13,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_st_mk_ref(lean_object*);
 lean_object* lean_st_ref_get(lean_object*);
+lean_object* lean_st_mk_ref(lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Sync_SharedMutex_0__Std_SharedMutexImpl;
 lean_object* lean_io_basesharedmutex_new();
 LEAN_EXPORT lean_object* l_Std_BaseSharedMutex_new___boxed(lean_object*);

@@ -13,25 +13,25 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_string_utf8_byte_size(lean_object*);
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
-uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
 lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
 lean_object* lean_nat_to_int(lean_object*);
-uint8_t lean_nat_dec_le(lean_object*, lean_object*);
+uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* l_Lake_BuildTrace_nil(lean_object*);
-lean_object* lean_task_pure(lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
+lean_object* lean_task_pure(lean_object*);
 lean_object* l_Array_append___redArg(lean_object*, lean_object*);
-lean_object* lean_array_get_size(lean_object*);
-lean_object* lean_nat_add(lean_object*, lean_object*);
-lean_object* lean_array_push(lean_object*, lean_object*);
-lean_object* lean_task_map(lean_object*, lean_object*, lean_object*, uint8_t);
-extern lean_object* l_Lake_instDataKindUnit;
-lean_object* l_Function_const___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* lean_task_get_own(lean_object*);
 lean_object* l_Lake_BuildTrace_mix(lean_object*, lean_object*);
+lean_object* lean_nat_add(lean_object*, lean_object*);
+lean_object* lean_task_map(lean_object*, lean_object*, lean_object*, uint8_t);
+lean_object* lean_string_utf8_byte_size(lean_object*);
+lean_object* lean_array_get_size(lean_object*);
+lean_object* l_Function_const___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_array_push(lean_object*, lean_object*);
+uint8_t lean_nat_dec_le(lean_object*, lean_object*);
+lean_object* lean_task_get_own(lean_object*);
+extern lean_object* l_Lake_instDataKindUnit;
 LEAN_EXPORT lean_object* l_Lake_JobAction_ctorIdx(uint8_t);
 LEAN_EXPORT lean_object* l_Lake_JobAction_ctorIdx___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Lake_JobAction_toCtorIdx(uint8_t);

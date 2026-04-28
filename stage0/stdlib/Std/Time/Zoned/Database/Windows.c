@@ -13,9 +13,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 uint64_t lean_int64_of_nat(lean_object*);
 uint64_t lean_int64_neg(uint64_t);
-lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* lean_int64_to_int_sint(uint64_t);
 lean_object* lean_array_push(lean_object*, lean_object*);
 uint8_t lean_int64_dec_le(uint64_t, uint64_t);

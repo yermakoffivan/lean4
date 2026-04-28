@@ -16,15 +16,15 @@ extern "C" {
 lean_object* lean_nat_to_int(lean_object*);
 lean_object* lean_int_add(lean_object*, lean_object*);
 lean_object* lean_int_sub(lean_object*, lean_object*);
-lean_object* lean_int_emod(lean_object*, lean_object*);
 lean_object* lean_int_ediv(lean_object*, lean_object*);
 lean_object* l_Std_Time_PlainDate_ofDaysSinceUNIXEpoch(lean_object*);
 lean_object* l_Std_Time_PlainDate_toDaysSinceUNIXEpoch(lean_object*);
 lean_object* lean_int_mul(lean_object*, lean_object*);
-lean_object* l_Std_Time_PlainTime_ofNanoseconds(lean_object*);
-lean_object* l_Std_Time_PlainDateTime_toTimestampAssumingUTC(lean_object*);
 lean_object* lean_int_neg(lean_object*);
 lean_object* l_Std_Time_Duration_ofNanoseconds(lean_object*);
+lean_object* lean_int_emod(lean_object*, lean_object*);
+lean_object* l_Std_Time_PlainDateTime_toTimestampAssumingUTC(lean_object*);
+lean_object* l_Std_Time_PlainTime_ofNanoseconds(lean_object*);
 extern lean_object* l_Std_Time_PlainTime_midnight;
 lean_object* l_Std_Time_PlainDateTime_ofTimestampAssumingUTC(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Timestamp_ofPlainDateTimeAssumingUTC(lean_object*);

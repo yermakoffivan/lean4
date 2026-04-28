@@ -14,8 +14,8 @@
 extern "C" {
 #endif
 lean_object* l_Lean_Name_mkStr1(lean_object*);
-lean_object* l_Lean_mkAnnotation(lean_object*, lean_object*);
 lean_object* l_Lean_annotation_x3f(lean_object*, lean_object*);
+lean_object* l_Lean_mkAnnotation(lean_object*, lean_object*);
 static lean_once_cell_t l_Lean_markBorrowed___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_markBorrowed___closed__0;
 static lean_once_cell_t l_Lean_markBorrowed___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;

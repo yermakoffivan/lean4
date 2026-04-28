@@ -13,18 +13,18 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+uint64_t lean_uint64_of_nat(lean_object*);
 lean_object* lean_nat_to_int(lean_object*);
 lean_object* l_String_quote(lean_object*);
 lean_object* lean_string_length(lean_object*);
-uint64_t lean_uint64_of_nat(lean_object*);
+lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* lean_uint64_to_nat(uint64_t);
 lean_object* l_Nat_reprFast(lean_object*);
+lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
 lean_object* lean_array_get_size(lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* lean_array_to_list(lean_object*);
 lean_object* l_Std_Format_fill(lean_object*);
-lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
-lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 LEAN_EXPORT lean_object* l_Nat_cast___at___00Std_Internal_UV_System_instReprRUsage_repr_spec__0(lean_object*);
 static lean_once_cell_t l_Std_Internal_UV_System_instReprRUsage_repr___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Internal_UV_System_instReprRUsage_repr___redArg___closed__0;

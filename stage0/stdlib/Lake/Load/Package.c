@@ -13,25 +13,25 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* lean_mk_empty_array_with_capacity(lean_object*);
+lean_object* l_Lean_Name_toString(lean_object*, uint8_t);
+lean_object* lean_string_append(lean_object*, lean_object*);
+extern lean_object* l_System_Platform_target;
 lean_object* l_System_FilePath_extension(lean_object*);
-lean_object* l_System_FilePath_addExtension(lean_object*, lean_object*);
 lean_object* l_Lake_resolvePath(lean_object*);
 lean_object* lean_string_utf8_byte_size(lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
-lean_object* lean_mk_empty_array_with_capacity(lean_object*);
+uint8_t lean_string_dec_eq(lean_object*, lean_object*);
+lean_object* lean_array_get_size(lean_object*);
+lean_object* lean_array_push(lean_object*, lean_object*);
+lean_object* l_System_FilePath_addExtension(lean_object*, lean_object*);
+lean_object* l_Lake_joinRelative(lean_object*, lean_object*);
+uint8_t l_System_FilePath_pathExists(lean_object*);
 extern lean_object* l_Lean_searchPathRef;
 lean_object* l_Lake_Env_leanSearchPath(lean_object*);
 lean_object* lean_st_ref_set(lean_object*, lean_object*);
-uint8_t lean_string_dec_eq(lean_object*, lean_object*);
-lean_object* lean_string_append(lean_object*, lean_object*);
-lean_object* lean_array_get_size(lean_object*);
-lean_object* lean_array_push(lean_object*, lean_object*);
-lean_object* l_Lake_joinRelative(lean_object*, lean_object*);
-uint8_t l_System_FilePath_pathExists(lean_object*);
 lean_object* l_Lake_loadLeanConfig(lean_object*, lean_object*);
 lean_object* l_Lake_loadTomlConfig(lean_object*, lean_object*);
-lean_object* l_Lean_Name_toString(lean_object*, uint8_t);
-extern lean_object* l_System_Platform_target;
 static lean_once_cell_t l_Lake_mkPackage___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lake_mkPackage___closed__0;
 static lean_once_cell_t l_Lake_mkPackage___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;

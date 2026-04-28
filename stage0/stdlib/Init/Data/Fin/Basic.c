@@ -13,16 +13,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_nat_sub(lean_object*, lean_object*);
-lean_object* lean_nat_add(lean_object*, lean_object*);
-lean_object* lean_nat_mod(lean_object*, lean_object*);
-lean_object* lean_nat_land(lean_object*, lean_object*);
-lean_object* lean_nat_shiftr(lean_object*, lean_object*);
-lean_object* lean_nat_div(lean_object*, lean_object*);
-lean_object* lean_nat_lor(lean_object*, lean_object*);
-lean_object* lean_nat_lxor(lean_object*, lean_object*);
-lean_object* lean_nat_shiftl(lean_object*, lean_object*);
 lean_object* lean_nat_mul(lean_object*, lean_object*);
+lean_object* lean_nat_mod(lean_object*, lean_object*);
+lean_object* lean_nat_sub(lean_object*, lean_object*);
+lean_object* lean_nat_land(lean_object*, lean_object*);
+lean_object* lean_nat_add(lean_object*, lean_object*);
+lean_object* lean_nat_div(lean_object*, lean_object*);
+lean_object* lean_nat_shiftr(lean_object*, lean_object*);
+lean_object* lean_nat_lxor(lean_object*, lean_object*);
+lean_object* lean_nat_lor(lean_object*, lean_object*);
+lean_object* lean_nat_shiftl(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Fin_coeToNat___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Fin_coeToNat___lam__0___boxed(lean_object*);
 static lean_once_cell_t l_Fin_coeToNat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;

@@ -13,12 +13,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Char_succMany_x3f___boxed(lean_object*, lean_object*);
-lean_object* l_Char_succ_x3f___boxed(lean_object*);
 lean_object* l_Char_ordinal(uint32_t);
-lean_object* lean_nat_sub(lean_object*, lean_object*);
 lean_object* lean_nat_add(lean_object*, lean_object*);
+lean_object* lean_nat_sub(lean_object*, lean_object*);
+lean_object* l_Char_succ_x3f___boxed(lean_object*);
 lean_object* l_Char_ordinal___boxed(lean_object*);
+lean_object* l_Char_succMany_x3f___boxed(lean_object*, lean_object*);
 static lean_once_cell_t l_Char_instUpwardEnumerable___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Char_instUpwardEnumerable___closed__0;
 static lean_once_cell_t l_Char_instUpwardEnumerable___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;

@@ -13,28 +13,28 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Lean_Name_mkStr1(lean_object*);
 lean_object* l_Lean_Expr_cleanupAnnotations(lean_object*);
 uint8_t l_Lean_Expr_isApp(lean_object*);
 lean_object* l_Lean_Expr_appFnCleanup___redArg(lean_object*);
 lean_object* l_Lean_Name_mkStr2(lean_object*, lean_object*);
 uint8_t l_Lean_Expr_isConstOf(lean_object*, lean_object*);
-lean_object* l_BitVec_ofNat(lean_object*, lean_object*);
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
-lean_object* lean_nat_mod(lean_object*, lean_object*);
+uint64_t lean_uint64_of_nat(lean_object*);
+lean_object* l_Lean_Name_mkStr1(lean_object*);
 lean_object* lean_nat_to_int(lean_object*);
 lean_object* lean_int_neg(lean_object*);
-uint8_t lean_int8_of_int(lean_object*);
-lean_object* l_Rat_ofInt(lean_object*);
-lean_object* l_Rat_div(lean_object*, lean_object*);
-uint64_t lean_int64_of_int(lean_object*);
-uint32_t lean_uint32_of_nat(lean_object*);
 uint32_t lean_int32_of_int(lean_object*);
-uint16_t lean_int16_of_int(lean_object*);
-uint8_t lean_uint8_of_nat(lean_object*);
-uint16_t lean_uint16_of_nat(lean_object*);
-uint64_t lean_uint64_of_nat(lean_object*);
+lean_object* l_Rat_ofInt(lean_object*);
 uint32_t l_Char_ofNat(lean_object*);
+uint16_t lean_int16_of_int(lean_object*);
+lean_object* l_Rat_div(lean_object*, lean_object*);
+uint8_t lean_uint8_of_nat(lean_object*);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
+lean_object* lean_nat_mod(lean_object*, lean_object*);
+uint64_t lean_int64_of_int(lean_object*);
+lean_object* l_BitVec_ofNat(lean_object*, lean_object*);
+uint16_t lean_uint16_of_nat(lean_object*);
+uint32_t lean_uint32_of_nat(lean_object*);
+uint8_t lean_int8_of_int(lean_object*);
 static lean_once_cell_t l_Lean_Meta_Sym_getNatValue_x3f___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Sym_getNatValue_x3f___closed__0;
 static lean_once_cell_t l_Lean_Meta_Sym_getNatValue_x3f___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;

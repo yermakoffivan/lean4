@@ -13,6 +13,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* lean_mk_empty_array_with_capacity(lean_object*);
+lean_object* lean_array_push(lean_object*, lean_object*);
 lean_object* l_Lean_Json_getObj_x3f(lean_object*);
 lean_object* l_Lean_instFromJsonJson___lam__0(lean_object*);
 lean_object* l_Lake_JsonObject_getJson_x3f(lean_object*, lean_object*);
@@ -21,8 +23,6 @@ lean_object* lean_string_append(lean_object*, lean_object*);
 lean_object* l_Lake_JsonObject_fromJson_x3f(lean_object*);
 lean_object* l_Lean_Json_getNat_x3f(lean_object*);
 lean_object* l_Lean_Json_getStr_x3f(lean_object*);
-lean_object* lean_mk_empty_array_with_capacity(lean_object*);
-lean_object* lean_array_push(lean_object*, lean_object*);
 static lean_once_cell_t l_Lake_Reservoir_lakeHeaders___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lake_Reservoir_lakeHeaders___closed__0;
 static lean_once_cell_t l_Lake_Reservoir_lakeHeaders___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;

@@ -13,20 +13,20 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_mk_empty_array_with_capacity(lean_object*);
-lean_object* lean_array_push(lean_object*, lean_object*);
-uint16_t lean_uint16_of_nat(lean_object*);
-uint8_t lean_uint8_of_nat(lean_object*);
-lean_object* lean_mk_array(lean_object*, lean_object*);
-lean_object* l_instDecidableEqUInt8___boxed(lean_object*, lean_object*);
-uint8_t l_Array_instDecidableEqImpl___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* l_instDecidableEqUInt16___boxed(lean_object*, lean_object*);
+uint8_t l_Array_instDecidableEqImpl___redArg(lean_object*, lean_object*, lean_object*);
 uint8_t lean_uint16_dec_eq(uint16_t, uint16_t);
-uint8_t lean_nat_dec_le(lean_object*, lean_object*);
+lean_object* l_instDecidableEqUInt8___boxed(lean_object*, lean_object*);
+uint8_t lean_string_dec_eq(lean_object*, lean_object*);
 lean_object* lean_string_append(lean_object*, lean_object*);
 lean_object* lean_uint16_to_nat(uint16_t);
 lean_object* l_Nat_reprFast(lean_object*);
-uint8_t lean_string_dec_eq(lean_object*, lean_object*);
+lean_object* lean_mk_empty_array_with_capacity(lean_object*);
+lean_object* lean_array_push(lean_object*, lean_object*);
+uint8_t lean_uint8_of_nat(lean_object*);
+lean_object* lean_mk_array(lean_object*, lean_object*);
+uint16_t lean_uint16_of_nat(lean_object*);
+uint8_t lean_nat_dec_le(lean_object*, lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 static lean_once_cell_t l_Std_Net_instInhabitedMACAddr_default___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static uint8_t l_Std_Net_instInhabitedMACAddr_default___closed__0;

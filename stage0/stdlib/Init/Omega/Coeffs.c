@@ -13,22 +13,22 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Lean_Omega_IntList_smul(lean_object*, lean_object*);
-lean_object* l_Lean_Omega_IntList_sdiv(lean_object*, lean_object*);
-lean_object* l_Lean_Omega_IntList_dot(lean_object*, lean_object*);
-lean_object* l_List_zipWithAll___at___00Lean_Omega_IntList_combo_spec__0(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Omega_IntList_get(lean_object*, lean_object*);
-lean_object* l_Lean_Omega_IntList_leading(lean_object*);
 lean_object* l_List_lengthTR___redArg(lean_object*);
-lean_object* l_Lean_Omega_IntList_set(lean_object*, lean_object*, lean_object*);
-lean_object* l_List_zipWithAll___at___00Lean_Omega_IntList_add_spec__0(lean_object*, lean_object*);
-lean_object* l_List_zipWithAll___at___00Lean_Omega_IntList_sub_spec__0(lean_object*, lean_object*);
-lean_object* l_Int_bmod(lean_object*, lean_object*);
 lean_object* l_List_mapTR_loop___redArg(lean_object*, lean_object*, lean_object*);
-lean_object* lean_int_sub(lean_object*, lean_object*);
-lean_object* l_Lean_Omega_IntList_neg(lean_object*);
-lean_object* l_List_findIdx_x3f_go___redArg(lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Omega_IntList_leading(lean_object*);
+lean_object* l_Lean_Omega_IntList_smul(lean_object*, lean_object*);
+lean_object* l_List_zipWithAll___at___00Lean_Omega_IntList_combo_spec__0(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Omega_IntList_set(lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Omega_IntList_get(lean_object*, lean_object*);
+lean_object* l_Lean_Omega_IntList_sdiv(lean_object*, lean_object*);
+lean_object* l_List_zipWithAll___at___00Lean_Omega_IntList_add_spec__0(lean_object*, lean_object*);
 lean_object* l_Lean_Omega_IntList_gcd(lean_object*);
+lean_object* l_Int_bmod(lean_object*, lean_object*);
+lean_object* l_Lean_Omega_IntList_dot(lean_object*, lean_object*);
+lean_object* lean_int_sub(lean_object*, lean_object*);
+lean_object* l_List_findIdx_x3f_go___redArg(lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Omega_IntList_neg(lean_object*);
+lean_object* l_List_zipWithAll___at___00Lean_Omega_IntList_sub_spec__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Omega_Coeffs_toList(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Omega_Coeffs_toList___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Omega_Coeffs_ofList(lean_object*);

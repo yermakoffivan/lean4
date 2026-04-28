@@ -14,8 +14,8 @@
 extern "C" {
 #endif
 lean_object* lean_nat_to_int(lean_object*);
-uint8_t lean_int_dec_eq(lean_object*, lean_object*);
-lean_object* l_Lean_mkAppB(lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_mkIntLit(lean_object*);
+lean_object* l_Lean_Expr_app___override(lean_object*, lean_object*);
 lean_object* lean_nat_abs(lean_object*);
 lean_object* l_Lean_mkRawNatLit(lean_object*);
 lean_object* l_Lean_Name_mkStr1(lean_object*);
@@ -23,20 +23,20 @@ lean_object* l_Lean_Name_mkStr2(lean_object*, lean_object*);
 lean_object* l_Lean_mkConst(lean_object*, lean_object*);
 lean_object* l_Lean_mkApp3(lean_object*, lean_object*, lean_object*, lean_object*);
 uint8_t lean_int_dec_lt(lean_object*, lean_object*);
-lean_object* l_Lean_Expr_app___override(lean_object*, lean_object*);
 lean_object* l_Lean_Meta_Sym_Arith_getNegFn___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Meta_Sym_Arith_getAddFn___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_mkAppB(lean_object*, lean_object*, lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* l_Lean_mkNatLit(lean_object*);
 lean_object* l_Lean_Meta_Sym_Arith_getPowFn___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Meta_Sym_Arith_getMulFn___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_mkIntLit(lean_object*);
-extern lean_object* l_Lean_instInhabitedExpr;
-lean_object* lean_array_get_borrowed(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Meta_Sym_Arith_getNatCastFn___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Meta_Sym_Arith_getIntCastFn___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Meta_Sym_Arith_getAddFn___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Meta_Sym_Arith_getSubFn___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+uint8_t lean_int_dec_eq(lean_object*, lean_object*);
+lean_object* lean_array_get_borrowed(lean_object*, lean_object*, lean_object*);
+extern lean_object* l_Lean_instInhabitedExpr;
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Arith_denoteNum___redArg___lam__0(lean_object*, lean_object*, lean_object*);
 static lean_once_cell_t l_Lean_Meta_Sym_Arith_denoteNum___redArg___lam__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Sym_Arith_denoteNum___redArg___lam__1___closed__0;
@@ -92,8 +92,8 @@ LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_Arith_DenoteExpr_0__Lean_Meta
 LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_Arith_DenoteExpr_0__Lean_Meta_Sym_Arith_denoteRingExprCore_go___redArg___lam__1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_Arith_DenoteExpr_0__Lean_Meta_Sym_Arith_denoteRingExprCore_go___redArg___lam__1___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_Arith_DenoteExpr_0__Lean_Meta_Sym_Arith_denoteRingExprCore_go___redArg___lam__2(lean_object*, lean_object*, lean_object*);
-LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_Arith_DenoteExpr_0__Lean_Meta_Sym_Arith_denoteRingExprCore_go___redArg___lam__4(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_Arith_DenoteExpr_0__Lean_Meta_Sym_Arith_denoteRingExprCore_go___redArg___lam__13(lean_object*, lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_Arith_DenoteExpr_0__Lean_Meta_Sym_Arith_denoteRingExprCore_go___redArg___lam__4(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_Arith_DenoteExpr_0__Lean_Meta_Sym_Arith_denoteRingExprCore_go___redArg___lam__5(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_Arith_DenoteExpr_0__Lean_Meta_Sym_Arith_denoteRingExprCore_go___redArg___lam__6(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_Arith_DenoteExpr_0__Lean_Meta_Sym_Arith_denoteRingExprCore_go___redArg___lam__7(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -954,22 +954,22 @@ v___x_454_ = lean_apply_2(v_toPure_451_, lean_box(0), v___x_453_);
 return v___x_454_;
 }
 }
-LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_Arith_DenoteExpr_0__Lean_Meta_Sym_Arith_denoteRingExprCore_go___redArg___lam__4(lean_object* v_____do__lift_455_, lean_object* v_____do__lift_456_, lean_object* v_toPure_457_, lean_object* v_____do__lift_458_){
+LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_Arith_DenoteExpr_0__Lean_Meta_Sym_Arith_denoteRingExprCore_go___redArg___lam__13(lean_object* v_k_455_, lean_object* v_____do__lift_456_, lean_object* v_toPure_457_, lean_object* v_____do__lift_458_){
 _start:
 {
-lean_object* v___x_459_; lean_object* v___x_460_; 
-v___x_459_ = l_Lean_mkAppB(v_____do__lift_455_, v_____do__lift_456_, v_____do__lift_458_);
-v___x_460_ = lean_apply_2(v_toPure_457_, lean_box(0), v___x_459_);
-return v___x_460_;
+lean_object* v___x_459_; lean_object* v___x_460_; lean_object* v___x_461_; 
+v___x_459_ = l_Lean_mkNatLit(v_k_455_);
+v___x_460_ = l_Lean_mkAppB(v_____do__lift_456_, v_____do__lift_458_, v___x_459_);
+v___x_461_ = lean_apply_2(v_toPure_457_, lean_box(0), v___x_460_);
+return v___x_461_;
 }
 }
-LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_Arith_DenoteExpr_0__Lean_Meta_Sym_Arith_denoteRingExprCore_go___redArg___lam__13(lean_object* v_k_461_, lean_object* v_____do__lift_462_, lean_object* v_toPure_463_, lean_object* v_____do__lift_464_){
+LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_Arith_DenoteExpr_0__Lean_Meta_Sym_Arith_denoteRingExprCore_go___redArg___lam__4(lean_object* v_____do__lift_462_, lean_object* v_____do__lift_463_, lean_object* v_toPure_464_, lean_object* v_____do__lift_465_){
 _start:
 {
-lean_object* v___x_465_; lean_object* v___x_466_; lean_object* v___x_467_; 
-v___x_465_ = l_Lean_mkNatLit(v_k_461_);
-v___x_466_ = l_Lean_mkAppB(v_____do__lift_462_, v_____do__lift_464_, v___x_465_);
-v___x_467_ = lean_apply_2(v_toPure_463_, lean_box(0), v___x_466_);
+lean_object* v___x_466_; lean_object* v___x_467_; 
+v___x_466_ = l_Lean_mkAppB(v_____do__lift_462_, v_____do__lift_463_, v_____do__lift_465_);
+v___x_467_ = lean_apply_2(v_toPure_464_, lean_box(0), v___x_466_);
 return v___x_467_;
 }
 }

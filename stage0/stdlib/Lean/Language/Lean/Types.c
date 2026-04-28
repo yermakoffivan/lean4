@@ -13,11 +13,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_mk_empty_array_with_capacity(lean_object*);
-lean_object* lean_thunk_get_own(lean_object*);
-lean_object* l_Lean_Language_SnapshotTask_map___redArg(lean_object*, lean_object*, lean_object*, lean_object*, uint8_t);
-lean_object* lean_array_push(lean_object*, lean_object*);
 lean_object* l_Lean_Language_SnapshotTask_finished___redArg(lean_object*, lean_object*);
+lean_object* l_Lean_Language_SnapshotTask_map___redArg(lean_object*, lean_object*, lean_object*, lean_object*, uint8_t);
+lean_object* lean_thunk_get_own(lean_object*);
+lean_object* lean_mk_empty_array_with_capacity(lean_object*);
+lean_object* lean_array_push(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Language_Lean_pushOpt___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Language_Lean_pushOpt(lean_object*, lean_object*, lean_object*);
 static lean_once_cell_t l_Lean_Language_Lean_instToSnapshotTreeCommandResultSnapshot___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;

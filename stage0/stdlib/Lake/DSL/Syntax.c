@@ -15,8 +15,8 @@ extern "C" {
 #endif
 lean_object* l_Lean_Name_mkStr3(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Name_mkStr1(lean_object*);
-extern lean_object* l_Lake_DSL_declValDo;
 lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
+extern lean_object* l_Lake_DSL_declValDo;
 extern lean_object* l_Lake_DSL_simpleBinder;
 extern lean_object* l_Lake_DSL_identOrStr;
 extern lean_object* l_Lake_DSL_optConfig;

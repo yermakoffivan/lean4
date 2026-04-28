@@ -14,20 +14,20 @@
 extern "C" {
 #endif
 lean_object* l_Lean_Name_mkStr2(lean_object*, lean_object*);
-lean_object* l_Lean_Meta_Sym_shareCommon___redArg(lean_object*, lean_object*);
-lean_object* l_Lean_Meta_Grind_alreadyInternalized___redArg(lean_object*, lean_object*);
+lean_object* l_Lean_Meta_Sym_shareCommon___redArg(lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Meta_Grind_alreadyInternalized___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* lean_grind_internalize(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* lean_grind_cutsat_mk_var(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Meta_instantiateMVarsIfMVarApp___redArg(lean_object*, lean_object*);
+lean_object* l_Lean_Meta_instantiateMVarsIfMVarApp___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Expr_cleanupAnnotations(lean_object*);
 uint8_t l_Lean_Expr_isApp(lean_object*);
 lean_object* l_Lean_Expr_appFnCleanup___redArg(lean_object*);
 uint8_t l_Lean_Expr_isConstOf(lean_object*, lean_object*);
-lean_object* l_Lean_Meta_Structural_isInstHAddInt___redArg(lean_object*, lean_object*);
-lean_object* l_Lean_Meta_Structural_isInstHSubInt___redArg(lean_object*, lean_object*);
-lean_object* l_Lean_Meta_Structural_isInstHMulInt___redArg(lean_object*, lean_object*);
+lean_object* l_Lean_Meta_Structural_isInstHAddInt___redArg(lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Meta_Structural_isInstHSubInt___redArg(lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Meta_Structural_isInstHMulInt___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Meta_getIntValue_x3f(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Meta_Structural_isInstNegInt___redArg(lean_object*, lean_object*);
+lean_object* l_Lean_Meta_Structural_isInstNegInt___redArg(lean_object*, lean_object*, lean_object*);
 static lean_once_cell_t l_Lean_Meta_Grind_Arith_Cutsat_toLinearExpr___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Arith_Cutsat_toLinearExpr___closed__0;
 static lean_once_cell_t l_Lean_Meta_Grind_Arith_Cutsat_toLinearExpr___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -195,7 +195,7 @@ _start:
 {
 lean_object* v_e_40_; lean_object* v___y_41_; lean_object* v___y_42_; lean_object* v___y_43_; lean_object* v___y_44_; lean_object* v___y_45_; lean_object* v___y_46_; lean_object* v___y_47_; lean_object* v___y_48_; lean_object* v___y_49_; lean_object* v___y_50_; lean_object* v___x_118_; 
 lean_inc_ref(v_e_26_);
-v___x_118_ = l_Lean_Meta_instantiateMVarsIfMVarApp___redArg(v_e_26_, v_a_35_);
+v___x_118_ = l_Lean_Meta_instantiateMVarsIfMVarApp___redArg(v_e_26_, v_a_35_, v_a_37_);
 if (lean_obj_tag(v___x_118_) == 0)
 {
 lean_object* v_a_119_; lean_object* v___x_120_; uint8_t v___x_121_; 
@@ -391,7 +391,7 @@ goto v___jp_39_;
 else
 {
 lean_object* v___x_146_; 
-v___x_146_ = l_Lean_Meta_Structural_isInstHAddInt___redArg(v_arg_128_, v_a_35_);
+v___x_146_ = l_Lean_Meta_Structural_isInstHAddInt___redArg(v_arg_128_, v_a_35_, v_a_37_);
 if (lean_obj_tag(v___x_146_) == 0)
 {
 lean_object* v_a_147_; uint8_t v___x_148_; 
@@ -540,7 +540,7 @@ else
 {
 lean_object* v___x_170_; 
 lean_dec_ref(v___x_139_);
-v___x_170_ = l_Lean_Meta_Structural_isInstHSubInt___redArg(v_arg_128_, v_a_35_);
+v___x_170_ = l_Lean_Meta_Structural_isInstHSubInt___redArg(v_arg_128_, v_a_35_, v_a_37_);
 if (lean_obj_tag(v___x_170_) == 0)
 {
 lean_object* v_a_171_; uint8_t v___x_172_; 
@@ -689,7 +689,7 @@ else
 {
 lean_object* v___x_194_; 
 lean_dec_ref(v___x_139_);
-v___x_194_ = l_Lean_Meta_Structural_isInstHMulInt___redArg(v_arg_128_, v_a_35_);
+v___x_194_ = l_Lean_Meta_Structural_isInstHMulInt___redArg(v_arg_128_, v_a_35_, v_a_37_);
 if (lean_obj_tag(v___x_194_) == 0)
 {
 lean_object* v_a_195_; uint8_t v___x_196_; 
@@ -1180,7 +1180,7 @@ else
 lean_object* v___x_274_; 
 lean_dec_ref(v___x_129_);
 lean_dec_ref(v_arg_128_);
-v___x_274_ = l_Lean_Meta_Structural_isInstNegInt___redArg(v_arg_125_, v_a_35_);
+v___x_274_ = l_Lean_Meta_Structural_isInstNegInt___redArg(v_arg_125_, v_a_35_, v_a_37_);
 if (lean_obj_tag(v___x_274_) == 0)
 {
 lean_object* v_a_275_; uint8_t v___x_276_; 
@@ -1357,14 +1357,14 @@ return v___x_301_;
 v___jp_39_:
 {
 lean_object* v___x_51_; 
-v___x_51_ = l_Lean_Meta_Sym_shareCommon___redArg(v_e_40_, v___y_46_);
+v___x_51_ = l_Lean_Meta_Sym_shareCommon___redArg(v_e_40_, v___y_46_, v___y_50_);
 if (lean_obj_tag(v___x_51_) == 0)
 {
 lean_object* v_a_52_; lean_object* v___x_53_; 
 v_a_52_ = lean_ctor_get(v___x_51_, 0);
 lean_inc(v_a_52_);
 lean_dec_ref(v___x_51_);
-v___x_53_ = l_Lean_Meta_Grind_alreadyInternalized___redArg(v_a_52_, v___y_41_);
+v___x_53_ = l_Lean_Meta_Grind_alreadyInternalized___redArg(v_a_52_, v___y_41_, v___y_50_);
 if (lean_obj_tag(v___x_53_) == 0)
 {
 lean_object* v_a_54_; uint8_t v___x_55_; 

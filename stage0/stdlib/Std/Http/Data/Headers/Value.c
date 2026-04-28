@@ -13,16 +13,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* lean_nat_to_int(lean_object*);
-lean_object* l_String_quote(lean_object*);
-lean_object* lean_string_length(lean_object*);
-lean_object* l_String_hash___boxed(lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
-lean_object* l_Function_comp(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-uint8_t lean_string_dec_eq(lean_object*, lean_object*);
 lean_object* l_Lean_Name_mkStr1(lean_object*);
 lean_object* lean_array_push(lean_object*, lean_object*);
+lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
+uint8_t lean_string_dec_eq(lean_object*, lean_object*);
 lean_object* l_Lean_mkAtom(lean_object*);
 lean_object* lean_string_utf8_byte_size(lean_object*);
 lean_object* l_String_Slice_trimAscii(lean_object*);
@@ -32,15 +27,20 @@ lean_object* l_List_getLast_x3f___redArg(lean_object*);
 uint8_t lean_uint32_dec_le(uint32_t, uint32_t);
 uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
 lean_object* l_List_head_x3f___redArg(lean_object*);
-lean_object* lean_panic_fn_borrowed(lean_object*, lean_object*);
+lean_object* lean_nat_to_int(lean_object*);
+lean_object* l_String_quote(lean_object*);
+lean_object* lean_string_length(lean_object*);
 lean_object* lean_string_utf8_set(lean_object*, lean_object*, uint32_t);
 lean_object* l_Char_utf8Size(uint32_t);
 lean_object* lean_nat_add(lean_object*, lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 uint32_t lean_string_utf8_get_fast(lean_object*, lean_object*);
 uint32_t lean_uint32_add(uint32_t, uint32_t);
+lean_object* l_String_hash___boxed(lean_object*);
+lean_object* l_Function_comp(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* lean_string_append(lean_object*, lean_object*);
 lean_object* l_mkPanicMessageWithDecl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_panic_fn_borrowed(lean_object*, lean_object*);
 static lean_once_cell_t l_Std_Http_Header_Value_isValidHeaderValue___autoParam___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Http_Header_Value_isValidHeaderValue___autoParam___closed__0;
 static lean_once_cell_t l_Std_Http_Header_Value_isValidHeaderValue___autoParam___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;

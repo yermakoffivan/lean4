@@ -13,12 +13,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Lean_Name_mkStr1(lean_object*);
-uint8_t l_Lean_KVMap_contains(lean_object*, lean_object*);
-lean_object* l_Lean_KVMap_find(lean_object*, lean_object*);
 extern lean_object* l_Lean_KVMap_empty;
+lean_object* l_Lean_Name_mkStr1(lean_object*);
 lean_object* l_Lean_KVMap_insert(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_mkMData(lean_object*, lean_object*);
+lean_object* l_Lean_KVMap_find(lean_object*, lean_object*);
+uint8_t l_Lean_KVMap_contains(lean_object*, lean_object*);
 static lean_once_cell_t l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__0;
 static lean_once_cell_t l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;

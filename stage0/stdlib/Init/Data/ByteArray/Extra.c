@@ -13,11 +13,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+extern uint64_t l_instInhabitedUInt64;
+lean_object* lean_panic_fn_borrowed(lean_object*, lean_object*);
 lean_object* lean_byte_array_size(lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* l_mkPanicMessageWithDecl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-extern uint64_t l_instInhabitedUInt64;
-lean_object* lean_panic_fn_borrowed(lean_object*, lean_object*);
 uint8_t lean_byte_array_get(lean_object*, lean_object*);
 uint64_t lean_uint8_to_uint64(uint8_t);
 uint64_t lean_uint64_shift_left(uint64_t, uint64_t);

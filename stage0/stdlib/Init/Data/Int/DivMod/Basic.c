@@ -13,19 +13,19 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_nat_add(lean_object*, lean_object*);
-lean_object* lean_nat_div(lean_object*, lean_object*);
-lean_object* lean_int_neg_succ_of_nat(lean_object*);
 lean_object* lean_nat_to_int(lean_object*);
 uint8_t lean_int_dec_lt(lean_object*, lean_object*);
 lean_object* lean_nat_abs(lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
-lean_object* lean_nat_sub(lean_object*, lean_object*);
 lean_object* lean_nat_mod(lean_object*, lean_object*);
+lean_object* lean_nat_sub(lean_object*, lean_object*);
+lean_object* lean_nat_add(lean_object*, lean_object*);
 lean_object* l_Int_subNatNat(lean_object*, lean_object*);
 lean_object* lean_int_neg(lean_object*);
 lean_object* lean_int_add(lean_object*, lean_object*);
 lean_object* lean_int_sub(lean_object*, lean_object*);
+lean_object* lean_nat_div(lean_object*, lean_object*);
+lean_object* lean_int_neg_succ_of_nat(lean_object*);
 lean_object* lean_int_ediv(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Int_ediv___boxed(lean_object*, lean_object*);
 lean_object* lean_int_emod(lean_object*, lean_object*);

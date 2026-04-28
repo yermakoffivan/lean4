@@ -14,20 +14,20 @@
 extern "C" {
 #endif
 lean_object* lean_nat_to_int(lean_object*);
-lean_object* l_Int_pow(lean_object*, lean_object*);
-uint8_t lean_int_dec_eq(lean_object*, lean_object*);
 lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_int_sub(lean_object*, lean_object*);
+lean_object* lean_int_emod(lean_object*, lean_object*);
+lean_object* lean_int_add(lean_object*, lean_object*);
+uint8_t lean_int_dec_le(lean_object*, lean_object*);
+uint8_t lean_int_dec_eq(lean_object*, lean_object*);
+lean_object* l_Int_pow(lean_object*, lean_object*);
+uint8_t lean_int_dec_lt(lean_object*, lean_object*);
 uint8_t l_Lean_Syntax_isOfKind(lean_object*, lean_object*);
 lean_object* l_Lean_Syntax_getArg(lean_object*, lean_object*);
 uint8_t l_Lean_Syntax_matchesNull(lean_object*, lean_object*);
 lean_object* l_Lean_SourceInfo_fromRef(lean_object*, uint8_t);
 lean_object* l_Lean_Name_mkStr1(lean_object*);
 lean_object* l_Lean_Syntax_node2(lean_object*, lean_object*, lean_object*, lean_object*);
-uint8_t lean_int_dec_lt(lean_object*, lean_object*);
-lean_object* lean_int_sub(lean_object*, lean_object*);
-lean_object* lean_int_emod(lean_object*, lean_object*);
-lean_object* lean_int_add(lean_object*, lean_object*);
-uint8_t lean_int_dec_le(lean_object*, lean_object*);
 lean_object* lean_nat_sub(lean_object*, lean_object*);
 lean_object* lean_int_neg(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Grind_IntInterval_ctorIdx(lean_object*);

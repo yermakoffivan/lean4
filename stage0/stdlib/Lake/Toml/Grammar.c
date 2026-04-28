@@ -13,97 +13,97 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_string_push(lean_object*, uint32_t);
-uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
-lean_object* l_Lean_Parser_takeWhileFn(lean_object*, lean_object*, lean_object*);
-lean_object* l_Lake_Toml_trailing(lean_object*);
-lean_object* l_Lake_Toml_skipFn___boxed(lean_object*, lean_object*);
-lean_object* lean_string_append(lean_object*, lean_object*);
-lean_object* l_Lake_Toml_chAtom(uint32_t, lean_object*, lean_object*);
-lean_object* l_Lean_Parser_andthen(lean_object*, lean_object*);
-lean_object* l_Lean_Name_mkStr3(lean_object*, lean_object*, lean_object*);
-lean_object* l_Lake_Toml_litWithAntiquot_parenthesizer___redArg(lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lake_Toml_chFn(uint32_t, lean_object*, lean_object*, lean_object*);
-uint8_t l_Lean_Parser_instBEqError_beq(lean_object*, lean_object*);
+uint8_t l_Lean_Syntax_isOfKind(lean_object*, lean_object*);
+lean_object* l_Lean_Parser_ParserState_next_x27___redArg(lean_object*, lean_object*, lean_object*);
 uint8_t l_Lean_Parser_InputContext_atEnd(lean_object*, lean_object*);
 uint32_t lean_string_utf8_get_fast(lean_object*, lean_object*);
-uint8_t lean_uint32_dec_lt(uint32_t, uint32_t);
-lean_object* l_Lean_Parser_ParserState_next_x27___redArg(lean_object*, lean_object*, lean_object*);
+uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
 lean_object* l_Lake_Toml_mkUnexpectedCharError(lean_object*, uint32_t, lean_object*, uint8_t);
-lean_object* l_Lean_Parser_ParserState_mkUnexpectedErrorAt(lean_object*, lean_object*, lean_object*);
-lean_object* l_Lake_Toml_litWithAntiquot(lean_object*, lean_object*, lean_object*, lean_object*, uint8_t);
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
-lean_object* lean_nat_sub(lean_object*, lean_object*);
-lean_object* l_Lean_Parser_atomicFn(lean_object*, lean_object*, lean_object*);
-uint8_t lean_nat_dec_le(lean_object*, lean_object*);
-lean_object* l_Lean_Parser_ParserState_mkUnexpectedError(lean_object*, lean_object*, lean_object*, uint8_t);
-lean_object* lean_nat_add(lean_object*, lean_object*);
-lean_object* l_Lean_Parser_orelse(lean_object*, lean_object*);
-lean_object* l_Lean_Parser_ParserState_mkEOIError(lean_object*, lean_object*);
-lean_object* l_Lean_Parser_hexDigitFn(lean_object*, lean_object*);
-lean_object* l_Lean_Parser_setExpected(lean_object*, lean_object*);
-lean_object* l_Lean_Parser_nodeWithAntiquot(lean_object*, lean_object*, lean_object*, uint8_t);
 lean_object* l_Lake_Toml_strFn(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lake_Toml_lit(lean_object*, lean_object*, lean_object*);
+uint8_t l_Lean_Parser_instBEqError_beq(lean_object*, lean_object*);
+lean_object* l_Lean_Name_mkStr3(lean_object*, lean_object*, lean_object*);
+lean_object* l_Lake_Toml_skipFn___boxed(lean_object*, lean_object*);
 lean_object* l_Lake_Toml_pushLit(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* lean_string_utf8_next_fast(lean_object*, lean_object*);
 lean_object* l_Lean_Parser_ParserState_setPos(lean_object*, lean_object*);
 uint8_t lean_uint32_dec_le(uint32_t, uint32_t);
 lean_object* l_Lake_Toml_sepByChar1Fn(lean_object*, uint32_t, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lake_Toml_sepByChar1AuxFn(lean_object*, uint32_t, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Parser_ParserState_mkEOIError(lean_object*, lean_object*);
+lean_object* lean_string_push(lean_object*, uint32_t);
+lean_object* lean_string_append(lean_object*, lean_object*);
+lean_object* l_Lean_Parser_ParserState_mkUnexpectedError(lean_object*, lean_object*, lean_object*, uint8_t);
 lean_object* l_Lake_Toml_digitPairFn(lean_object*, lean_object*, lean_object*);
+lean_object* l_Lake_Toml_chFn(uint32_t, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lake_Toml_takeWhile1Fn(lean_object*, lean_object*, lean_object*, lean_object*);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* l_Lean_Parser_ParserState_stackSize(lean_object*);
+lean_object* lean_nat_sub(lean_object*, lean_object*);
 lean_object* l_Lean_Parser_ParserState_restore(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lake_Toml_isHexDigit___boxed(lean_object*);
 lean_object* l_Lake_Toml_isOctDigit___boxed(lean_object*);
 lean_object* l_Lake_Toml_isBinDigit___boxed(lean_object*);
+lean_object* l_Lean_Parser_atomicFn(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lake_Toml_dynamicNode(lean_object*);
 lean_object* l_Lean_Parser_mkAntiquot(lean_object*, lean_object*, uint8_t, uint8_t);
+lean_object* l_Lean_Parser_orelse(lean_object*, lean_object*);
 lean_object* l_Lean_Parser_withAntiquot(lean_object*, lean_object*);
-lean_object* l_Lean_Parser_takeUntilFn(lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Parser_sepBy(lean_object*, lean_object*, lean_object*, uint8_t);
-lean_object* l_Lean_Parser_sepBy1(lean_object*, lean_object*, lean_object*, uint8_t);
-lean_object* l_Lake_Toml_recNodeWithAntiquot_parenthesizer(lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lake_Toml_chAtom_parenthesizer___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lake_Toml_recNodeWithAntiquot(lean_object*, lean_object*, lean_object*, uint8_t);
-lean_object* l_Lean_Parser_mkAntiquot_parenthesizer___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lake_Toml_epsilon_parenthesizer___redArg();
-lean_object* l_Lean_PrettyPrinter_Parenthesizer_andthen_parenthesizer___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_PrettyPrinter_Parenthesizer_orelse_parenthesizer(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_PrettyPrinter_Parenthesizer_orelse_parenthesizer___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Parser_nodeWithAntiquot_parenthesizer(lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Parser_sepBy1_parenthesizer___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Parser_setExpected_parenthesizer___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_PrettyPrinter_Parenthesizer_notFollowedBy_parenthesizer___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_PrettyPrinter_Parenthesizer_andthen_parenthesizer(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_PrettyPrinter_Parenthesizer_withAntiquot_parenthesizer(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lake_Toml_sepByLinebreak_parenthesizer___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lake_Toml_epsilon_formatter___redArg();
-uint8_t l_Lean_Syntax_isOfKind(lean_object*, lean_object*);
 lean_object* l_Lean_Parser_checkStackTop(lean_object*, lean_object*);
-lean_object* l_Lake_Toml_digitFn(lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Parser_setExpected(lean_object*, lean_object*);
+lean_object* l_Lean_Parser_andthen(lean_object*, lean_object*);
+uint8_t lean_nat_dec_le(lean_object*, lean_object*);
+uint8_t lean_uint32_dec_lt(uint32_t, uint32_t);
+lean_object* l_Lean_Parser_takeWhileFn(lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Parser_hexDigitFn(lean_object*, lean_object*);
+lean_object* lean_nat_add(lean_object*, lean_object*);
+lean_object* l_Lean_Parser_ParserState_mkUnexpectedErrorAt(lean_object*, lean_object*, lean_object*);
+lean_object* l_Lake_Toml_litWithAntiquot(lean_object*, lean_object*, lean_object*, lean_object*, uint8_t);
+lean_object* l_Lake_Toml_epsilon_parenthesizer___redArg();
 lean_object* l_Lake_Toml_chAtom_formatter___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_PrettyPrinter_Formatter_andthen_formatter___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lake_Toml_epsilon_formatter___redArg();
 lean_object* l_Lake_Toml_litWithAntiquot_formatter___redArg(lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_PrettyPrinter_Formatter_orelse_formatter(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_PrettyPrinter_Formatter_orelse_formatter___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Parser_nodeWithAntiquot_formatter(lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Parser_sepBy1_formatter___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Parser_setExpected_formatter___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Parser_atomic(lean_object*);
+lean_object* l_Lean_Parser_takeUntilFn(lean_object*, lean_object*, lean_object*);
+lean_object* l_Lake_Toml_chAtom(uint32_t, lean_object*, lean_object*);
 lean_object* l_Lean_Parser_atomic_formatter___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lake_Toml_recNodeWithAntiquot_formatter(lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lake_Toml_litWithAntiquot_parenthesizer___redArg(lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_PrettyPrinter_Parenthesizer_orelse_parenthesizer(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_PrettyPrinter_Parenthesizer_orelse_parenthesizer___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Parser_nodeWithAntiquot(lean_object*, lean_object*, lean_object*, uint8_t);
+lean_object* l_Lake_Toml_lit(lean_object*, lean_object*, lean_object*);
+lean_object* l_Lake_Toml_trailing(lean_object*);
+lean_object* l_Lean_Parser_sepBy(lean_object*, lean_object*, lean_object*, uint8_t);
+lean_object* l_Lean_Parser_sepBy1(lean_object*, lean_object*, lean_object*, uint8_t);
+lean_object* l_Lake_Toml_recNodeWithAntiquot_parenthesizer(lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lake_Toml_chAtom_parenthesizer___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_PrettyPrinter_Parenthesizer_andthen_parenthesizer___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Parser_nodeWithAntiquot_parenthesizer(lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Parser_sepBy1_parenthesizer___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Parser_setExpected_parenthesizer___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lake_Toml_recNodeWithAntiquot(lean_object*, lean_object*, lean_object*, uint8_t);
+lean_object* l_Lake_Toml_digitFn(lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Parser_atomic(lean_object*);
+lean_object* l_Lean_Parser_notFollowedBy(lean_object*, lean_object*);
 lean_object* l_Lean_Parser_mkAntiquot_formatter___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_PrettyPrinter_Formatter_notFollowedBy_formatter___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lake_Toml_sepByLinebreak_formatter___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Parser_notFollowedBy(lean_object*, lean_object*);
+lean_object* l_Lean_PrettyPrinter_Parenthesizer_andthen_parenthesizer(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Name_mkStr1(lean_object*);
+lean_object* l_Lean_PrettyPrinter_Parenthesizer_notFollowedBy_parenthesizer___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Parser_mkAntiquot_parenthesizer___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Parser_symbol(lean_object*);
 lean_object* l_Lean_Parser_withAntiquotSpliceAndSuffix(lean_object*, lean_object*, lean_object*);
 extern lean_object* l_Lean_Parser_pushNone;
 lean_object* l_Lean_Parser_checkLinebreakBefore(lean_object*);
 lean_object* l_Lean_Parser_sepByNoAntiquot(lean_object*, lean_object*, uint8_t);
+lean_object* l_Lake_Toml_recNodeWithAntiquot_formatter(lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lake_Toml_sepByLinebreak_formatter___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_PrettyPrinter_Parenthesizer_withAntiquot_parenthesizer(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lake_Toml_sepByLinebreak_parenthesizer___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Parser_withCache(lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Lake_Toml_isControlChar(uint32_t);
 LEAN_EXPORT lean_object* l_Lake_Toml_isControlChar___boxed(lean_object*);
@@ -4851,13 +4851,13 @@ return v___x_1165_;
 LEAN_EXPORT lean_object* l___private_Lake_Toml_Grammar_0__Lake_Toml_decNumeralAuxFn(lean_object* v_startPos_1166_, lean_object* v_c_1167_, lean_object* v_s_1168_){
 _start:
 {
-lean_object* v___y_1170_; lean_object* v___y_1171_; uint32_t v___y_1172_; uint8_t v___y_1173_; lean_object* v___y_1178_; uint8_t v___y_1179_; lean_object* v___y_1184_; uint8_t v___y_1185_; lean_object* v_toInputContext_1189_; lean_object* v_pos_1190_; uint8_t v___x_1191_; 
+lean_object* v___y_1170_; uint32_t v___y_1171_; lean_object* v___y_1172_; uint8_t v___y_1173_; lean_object* v___y_1178_; uint8_t v___y_1179_; lean_object* v___y_1184_; uint8_t v___y_1185_; lean_object* v_toInputContext_1189_; lean_object* v_pos_1190_; uint8_t v___x_1191_; 
 v_toInputContext_1189_ = lean_ctor_get(v_c_1167_, 0);
 v_pos_1190_ = lean_ctor_get(v_s_1168_, 2);
 v___x_1191_ = l_Lean_Parser_InputContext_atEnd(v_toInputContext_1189_, v_pos_1190_);
 if (v___x_1191_ == 0)
 {
-lean_object* v_inputString_1192_; lean_object* v___y_1194_; lean_object* v___y_1195_; uint32_t v___y_1196_; uint8_t v___y_1197_; lean_object* v___y_1219_; uint32_t v___y_1220_; lean_object* v___y_1221_; uint8_t v___y_1222_; uint32_t v_curr_1236_; lean_object* v_nextPos_1237_; uint8_t v___y_1239_; uint32_t v___x_1260_; uint8_t v___x_1261_; 
+lean_object* v_inputString_1192_; lean_object* v___y_1194_; lean_object* v___y_1195_; uint32_t v___y_1196_; uint8_t v___y_1197_; lean_object* v___y_1219_; lean_object* v___y_1220_; uint32_t v___y_1221_; uint8_t v___y_1222_; uint32_t v_curr_1236_; lean_object* v_nextPos_1237_; uint8_t v___y_1239_; uint32_t v___x_1260_; uint8_t v___x_1261_; 
 v_inputString_1192_ = lean_ctor_get(v_toInputContext_1189_, 0);
 v_curr_1236_ = lean_string_utf8_get_fast(v_inputString_1192_, v_pos_1190_);
 v_nextPos_1237_ = lean_string_utf8_next_fast(v_inputString_1192_, v_pos_1190_);
@@ -4881,16 +4881,16 @@ v___jp_1193_:
 if (v___y_1197_ == 0)
 {
 lean_object* v___x_1198_; 
-v___x_1198_ = l___private_Lake_Toml_Grammar_0__Lake_Toml_decNumberSepFn(v_startPos_1166_, v___y_1196_, v___y_1194_, v_c_1167_, v___y_1195_);
+v___x_1198_ = l___private_Lake_Toml_Grammar_0__Lake_Toml_decNumberSepFn(v_startPos_1166_, v___y_1196_, v___y_1195_, v_c_1167_, v___y_1194_);
 return v___x_1198_;
 }
 else
 {
 lean_object* v_s_1199_; uint8_t v___x_1200_; 
-lean_inc(v___y_1194_);
-v_s_1199_ = l_Lean_Parser_ParserState_setPos(v___y_1195_, v___y_1194_);
-v___x_1200_ = l_Lean_Parser_InputContext_atEnd(v_toInputContext_1189_, v___y_1194_);
-lean_dec(v___y_1194_);
+lean_inc(v___y_1195_);
+v_s_1199_ = l_Lean_Parser_ParserState_setPos(v___y_1194_, v___y_1195_);
+v___x_1200_ = l_Lean_Parser_InputContext_atEnd(v_toInputContext_1189_, v___y_1195_);
+lean_dec(v___y_1195_);
 if (v___x_1200_ == 0)
 {
 lean_object* v_pos_1201_; uint32_t v_curr_1202_; lean_object* v_nextPos_1203_; uint32_t v___x_1204_; uint8_t v___x_1205_; 
@@ -4908,9 +4908,9 @@ v___x_1206_ = 48;
 v___x_1207_ = lean_uint32_dec_le(v___x_1206_, v_curr_1202_);
 if (v___x_1207_ == 0)
 {
-v___y_1170_ = v_s_1199_;
-v___y_1171_ = v_nextPos_1203_;
-v___y_1172_ = v_curr_1202_;
+v___y_1170_ = v_nextPos_1203_;
+v___y_1171_ = v_curr_1202_;
+v___y_1172_ = v_s_1199_;
 v___y_1173_ = v___x_1207_;
 goto v___jp_1169_;
 }
@@ -4919,9 +4919,9 @@ else
 uint32_t v___x_1208_; uint8_t v___x_1209_; 
 v___x_1208_ = 57;
 v___x_1209_ = lean_uint32_dec_le(v_curr_1202_, v___x_1208_);
-v___y_1170_ = v_s_1199_;
-v___y_1171_ = v_nextPos_1203_;
-v___y_1172_ = v_curr_1202_;
+v___y_1170_ = v_nextPos_1203_;
+v___y_1171_ = v_curr_1202_;
+v___y_1172_ = v_s_1199_;
 v___y_1173_ = v___x_1209_;
 goto v___jp_1169_;
 }
@@ -4964,13 +4964,13 @@ v___jp_1218_:
 if (v___y_1222_ == 0)
 {
 lean_object* v___x_1223_; 
-v___x_1223_ = l___private_Lake_Toml_Grammar_0__Lake_Toml_decNumberSepFn(v_startPos_1166_, v___y_1220_, v___y_1221_, v_c_1167_, v___y_1219_);
+v___x_1223_ = l___private_Lake_Toml_Grammar_0__Lake_Toml_decNumberSepFn(v_startPos_1166_, v___y_1221_, v___y_1219_, v_c_1167_, v___y_1220_);
 return v___x_1223_;
 }
 else
 {
 lean_object* v_s_1224_; lean_object* v_pos_1225_; uint8_t v___x_1226_; 
-v_s_1224_ = l_Lean_Parser_ParserState_setPos(v___y_1219_, v___y_1221_);
+v_s_1224_ = l_Lean_Parser_ParserState_setPos(v___y_1220_, v___y_1219_);
 v_pos_1225_ = lean_ctor_get(v_s_1224_, 2);
 lean_inc(v_pos_1225_);
 v___x_1226_ = l_Lean_Parser_InputContext_atEnd(v_toInputContext_1189_, v_pos_1225_);
@@ -4984,8 +4984,8 @@ v___x_1229_ = 48;
 v___x_1230_ = lean_uint32_dec_le(v___x_1229_, v_curr_1227_);
 if (v___x_1230_ == 0)
 {
-v___y_1194_ = v_nextPos_1228_;
-v___y_1195_ = v_s_1224_;
+v___y_1194_ = v_s_1224_;
+v___y_1195_ = v_nextPos_1228_;
 v___y_1196_ = v_curr_1227_;
 v___y_1197_ = v___x_1230_;
 goto v___jp_1193_;
@@ -4995,8 +4995,8 @@ else
 uint32_t v___x_1231_; uint8_t v___x_1232_; 
 v___x_1231_ = 57;
 v___x_1232_ = lean_uint32_dec_le(v_curr_1227_, v___x_1231_);
-v___y_1194_ = v_nextPos_1228_;
-v___y_1195_ = v_s_1224_;
+v___y_1194_ = v_s_1224_;
+v___y_1195_ = v_nextPos_1228_;
 v___y_1196_ = v_curr_1227_;
 v___y_1197_ = v___x_1232_;
 goto v___jp_1193_;
@@ -5043,9 +5043,9 @@ v___x_1248_ = 48;
 v___x_1249_ = lean_uint32_dec_le(v___x_1248_, v_curr_1244_);
 if (v___x_1249_ == 0)
 {
-v___y_1219_ = v_s_1241_;
-v___y_1220_ = v_curr_1244_;
-v___y_1221_ = v_nextPos_1245_;
+v___y_1219_ = v_nextPos_1245_;
+v___y_1220_ = v_s_1241_;
+v___y_1221_ = v_curr_1244_;
 v___y_1222_ = v___x_1249_;
 goto v___jp_1218_;
 }
@@ -5054,9 +5054,9 @@ else
 uint32_t v___x_1250_; uint8_t v___x_1251_; 
 v___x_1250_ = 57;
 v___x_1251_ = lean_uint32_dec_le(v_curr_1244_, v___x_1250_);
-v___y_1219_ = v_s_1241_;
-v___y_1220_ = v_curr_1244_;
-v___y_1221_ = v_nextPos_1245_;
+v___y_1219_ = v_nextPos_1245_;
+v___y_1220_ = v_s_1241_;
+v___y_1221_ = v_curr_1244_;
 v___y_1222_ = v___x_1251_;
 goto v___jp_1218_;
 }
@@ -5110,13 +5110,13 @@ v___jp_1169_:
 if (v___y_1173_ == 0)
 {
 lean_object* v___x_1174_; 
-v___x_1174_ = l___private_Lake_Toml_Grammar_0__Lake_Toml_decNumberSepFn(v_startPos_1166_, v___y_1172_, v___y_1171_, v_c_1167_, v___y_1170_);
+v___x_1174_ = l___private_Lake_Toml_Grammar_0__Lake_Toml_decNumberSepFn(v_startPos_1166_, v___y_1171_, v___y_1170_, v_c_1167_, v___y_1172_);
 return v___x_1174_;
 }
 else
 {
 lean_object* v_s_1175_; lean_object* v___x_1176_; 
-v_s_1175_ = l_Lean_Parser_ParserState_setPos(v___y_1170_, v___y_1171_);
+v_s_1175_ = l_Lean_Parser_ParserState_setPos(v___y_1172_, v___y_1170_);
 v___x_1176_ = l___private_Lake_Toml_Grammar_0__Lake_Toml_decNumberAuxFn(v_startPos_1166_, v_c_1167_, v_s_1175_);
 return v___x_1176_;
 }

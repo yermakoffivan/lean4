@@ -14,15 +14,15 @@
 extern "C" {
 #endif
 lean_object* lean_nat_mod(lean_object*, lean_object*);
+lean_object* l_Fin_mul___boxed(lean_object*, lean_object*, lean_object*);
+lean_object* l_npowRec___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Fin_NatCast_instNatCast___redArg___lam__0(lean_object*, lean_object*);
 lean_object* l_Fin_mul(lean_object*, lean_object*, lean_object*);
 lean_object* l_Fin_intCast___redArg(lean_object*, lean_object*);
 lean_object* l_Fin_add___boxed(lean_object*, lean_object*, lean_object*);
-lean_object* l_Fin_mul___boxed(lean_object*, lean_object*, lean_object*);
 lean_object* l_Fin_NatCast_instNatCast___redArg___lam__0___boxed(lean_object*, lean_object*);
 lean_object* l_Fin_neg___lam__0___boxed(lean_object*, lean_object*);
 lean_object* l_Fin_sub___boxed(lean_object*, lean_object*, lean_object*);
-lean_object* l_npowRec___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Fin_intCast___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Grind_Fin_npow___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Grind_Fin_npow___redArg___boxed(lean_object*, lean_object*, lean_object*);

@@ -13,23 +13,23 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-uint64_t lean_int64_of_nat(lean_object*);
-uint64_t lean_int64_neg(uint64_t);
-lean_object* lean_mk_empty_array_with_capacity(lean_object*);
-lean_object* lean_array_push(lean_object*, lean_object*);
-extern uint8_t l_System_Platform_isWindows;
-lean_object* lean_io_getenv(lean_object*);
-lean_object* l_Std_Time_Database_TZdb_readRulesFromDisk(lean_object*, lean_object*);
-size_t lean_array_size(lean_object*);
 uint8_t lean_usize_dec_lt(size_t, size_t);
 lean_object* lean_array_uget_borrowed(lean_object*, size_t);
 uint8_t l_System_FilePath_pathExists(lean_object*);
 size_t lean_usize_add(size_t, size_t);
+lean_object* l_Std_Time_Database_TZdb_readRulesFromDisk(lean_object*, lean_object*);
+extern uint8_t l_System_Platform_isWindows;
+lean_object* l_Std_Time_Database_TZdb_localRules(lean_object*);
+uint64_t lean_int64_of_nat(lean_object*);
+uint64_t lean_int64_neg(uint64_t);
+lean_object* lean_get_windows_local_timezone_id_at(uint64_t);
+lean_object* l_Std_Time_Database_Windows_getZoneRules(lean_object*);
+lean_object* lean_mk_empty_array_with_capacity(lean_object*);
+lean_object* lean_array_push(lean_object*, lean_object*);
+size_t lean_array_size(lean_object*);
+lean_object* lean_io_getenv(lean_object*);
 lean_object* lean_string_append(lean_object*, lean_object*);
 lean_object* lean_mk_io_user_error(lean_object*);
-lean_object* l_Std_Time_Database_Windows_getZoneRules(lean_object*);
-lean_object* l_Std_Time_Database_TZdb_localRules(lean_object*);
-lean_object* lean_get_windows_local_timezone_id_at(uint64_t);
 static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Time_Database_defaultGetZoneRules_spec__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Time_Database_defaultGetZoneRules_spec__0___closed__0;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Time_Database_defaultGetZoneRules_spec__0(lean_object*, lean_object*, size_t, size_t, lean_object*);

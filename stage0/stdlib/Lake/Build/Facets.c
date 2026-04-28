@@ -13,14 +13,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Lean_Name_mkStr2(lean_object*, lean_object*);
-lean_object* l_Lean_Name_mkStr3(lean_object*, lean_object*, lean_object*);
-extern lean_object* l_Lean_instInhabitedImportArtifacts_default;
-lean_object* l_Lake_BuildTrace_nil(lean_object*);
-lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* lean_string_length(lean_object*);
 lean_object* lean_nat_to_int(lean_object*);
 lean_object* l_Lean_Name_reprPrec(lean_object*, lean_object*);
+lean_object* lean_string_length(lean_object*);
+lean_object* l_Lean_Name_mkStr2(lean_object*, lean_object*);
+lean_object* l_Lean_Name_mkStr3(lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lake_BuildTrace_nil(lean_object*);
+extern lean_object* l_Lean_instInhabitedImportArtifacts_default;
 static lean_once_cell_t l_Lake_instReprModuleFacet_repr___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lake_instReprModuleFacet_repr___redArg___closed__0;
 static lean_once_cell_t l_Lake_instReprModuleFacet_repr___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;

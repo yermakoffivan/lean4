@@ -13,26 +13,26 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* lean_byte_array_size(lean_object*);
 lean_object* lean_st_ref_get(lean_object*);
-lean_object* lean_st_ref_set(lean_object*, lean_object*);
-uint8_t l_ByteArray_isEmpty(lean_object*);
-lean_object* l_Std_Http_Chunk_ofByteArray(lean_object*);
 lean_object* l___private_Std_Async_Basic_0__Std_Async_BaseAsync_bind_bindAsyncTask(lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*);
 lean_object* lean_io_basemutex_unlock(lean_object*);
 lean_object* lean_io_basemutex_lock(lean_object*);
 lean_object* l_Std_Async_EAsync_tryFinally_x27___redArg(lean_object*, lean_object*, lean_object*, uint8_t);
 lean_object* lean_task_map(lean_object*, lean_object*, lean_object*, uint8_t);
-lean_object* lean_byte_array_size(lean_object*);
+lean_object* lean_st_ref_set(lean_object*, lean_object*);
+uint8_t l_ByteArray_isEmpty(lean_object*);
+lean_object* l_Std_Http_Chunk_ofByteArray(lean_object*);
+lean_object* lean_st_ref_take(lean_object*);
+lean_object* lean_io_promise_resolve(lean_object*, lean_object*);
+lean_object* l_Std_Http_Body_Any_ofBody(lean_object*, lean_object*, lean_object*);
+lean_object* l_Std_Http_Body_Any_ofBody___redArg(lean_object*, lean_object*);
 extern lean_object* l_Std_Http_Header_Name_contentType;
 lean_object* l_Std_Http_Header_Value_ofString_x21(lean_object*);
 lean_object* l_Std_Http_Request_Builder_header(lean_object*, lean_object*, lean_object*);
 lean_object* lean_string_to_utf8(lean_object*);
 lean_object* l_Std_Mutex_new___redArg(lean_object*);
 lean_object* l_Std_Http_Request_Builder_body___redArg(lean_object*, lean_object*);
-lean_object* lean_st_ref_take(lean_object*);
-lean_object* lean_io_promise_resolve(lean_object*, lean_object*);
-lean_object* l_Std_Http_Body_Any_ofBody(lean_object*, lean_object*, lean_object*);
-lean_object* l_Std_Http_Body_Any_ofBody___redArg(lean_object*, lean_object*);
 lean_object* l_Std_Http_Response_Builder_header(lean_object*, lean_object*, lean_object*);
 lean_object* l_Std_Http_Response_Builder_body___redArg(lean_object*, lean_object*);
 static lean_once_cell_t l___private_Std_Http_Data_Body_Full_0__Std_Http_Body_Full_takeChunk___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;

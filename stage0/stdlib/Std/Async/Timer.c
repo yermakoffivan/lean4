@@ -13,27 +13,27 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l___private_Std_Async_Basic_0__Std_Async_BaseAsync_bind_bindAsyncTask(lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*);
-lean_object* lean_uv_timer_cancel(lean_object*);
 lean_object* lean_uv_timer_next(lean_object*);
 lean_object* lean_mk_io_user_error(lean_object*);
 lean_object* lean_io_promise_result_opt(lean_object*);
 lean_object* lean_task_map(lean_object*, lean_object*, lean_object*, uint8_t);
-lean_object* lean_mk_empty_array_with_capacity(lean_object*);
-lean_object* l_Lean_Name_mkStr1(lean_object*);
-lean_object* lean_array_push(lean_object*, lean_object*);
-lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_mkAtom(lean_object*);
-lean_object* lean_uv_timer_reset(lean_object*);
+lean_object* lean_uv_timer_cancel(lean_object*);
 lean_object* lean_st_ref_take(lean_object*);
 lean_object* lean_st_ref_set(lean_object*, lean_object*);
 lean_object* lean_io_promise_resolve(lean_object*, lean_object*);
+lean_object* l_BaseIO_chainTask___redArg(lean_object*, lean_object*, lean_object*, uint8_t);
+lean_object* l___private_Std_Async_Basic_0__Std_Async_BaseAsync_bind_bindAsyncTask(lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*);
+uint8_t l_IO_Promise_isResolved___redArg(lean_object*);
 lean_object* l_Int_toNat(lean_object*);
 uint64_t lean_uint64_of_nat(lean_object*);
 lean_object* lean_uv_timer_mk(uint64_t, uint8_t);
-lean_object* l_BaseIO_chainTask___redArg(lean_object*, lean_object*, lean_object*, uint8_t);
-uint8_t l_IO_Promise_isResolved___redArg(lean_object*);
+lean_object* lean_mk_empty_array_with_capacity(lean_object*);
+lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Name_mkStr1(lean_object*);
+lean_object* lean_array_push(lean_object*, lean_object*);
+lean_object* l_Lean_mkAtom(lean_object*);
 lean_object* lean_uv_timer_stop(lean_object*);
+lean_object* lean_uv_timer_reset(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Sleep_mk___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Sleep_mk___lam__0___boxed(lean_object*, lean_object*);
 static lean_once_cell_t l_Std_Async_Sleep_mk___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;

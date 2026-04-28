@@ -15,19 +15,19 @@ extern "C" {
 #endif
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* lean_nat_sub(lean_object*, lean_object*);
+lean_object* l_WellFounded_opaqueFix_u2083___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_nat_add(lean_object*, lean_object*);
 lean_object* lean_array_push(lean_object*, lean_object*);
-lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* lean_array_to_list(lean_object*);
-lean_object* l_List_repr___redArg(lean_object*, lean_object*);
-lean_object* l_List_lengthTR___redArg(lean_object*);
-lean_object* l_Nat_reprFast(lean_object*);
-lean_object* lean_nat_add(lean_object*, lean_object*);
 lean_object* l_List_appendTR___redArg(lean_object*, lean_object*);
+lean_object* l_List_lengthTR___redArg(lean_object*);
 lean_object* l_List_toSlice___redArg(lean_object*, lean_object*, lean_object*);
+lean_object* lean_mk_empty_array_with_capacity(lean_object*);
+lean_object* l_List_repr___redArg(lean_object*, lean_object*);
+lean_object* l_Nat_reprFast(lean_object*);
 lean_object* l_List_toString___redArg(lean_object*, lean_object*);
 lean_object* lean_string_append(lean_object*, lean_object*);
-lean_object* l_WellFounded_opaqueFix_u2083___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_ListSlice_instToIterator___lam__0(lean_object*);
 static lean_once_cell_t l_ListSlice_instToIterator___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_ListSlice_instToIterator___closed__0;
@@ -915,9 +915,9 @@ goto v___jp_202_;
 v___jp_192_:
 {
 lean_object* v___x_197_; lean_object* v___x_198_; lean_object* v_a_199_; lean_object* v___x_200_; lean_object* v___x_201_; 
-v___x_197_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_188_, v___y_196_, v___y_195_);
+v___x_197_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_188_, v___y_196_, v___y_193_);
 v___x_198_ = lean_array_to_list(v___x_197_);
-v_a_199_ = l_List_appendTR___redArg(v___y_193_, v___x_198_);
+v_a_199_ = l_List_appendTR___redArg(v___y_195_, v___x_198_);
 v___x_200_ = l_List_lengthTR___redArg(v_a_199_);
 v___x_201_ = l_List_toSlice___redArg(v_a_199_, v___y_194_, v___x_200_);
 lean_dec(v___x_200_);
@@ -973,9 +973,9 @@ goto v_reusejp_213_;
 }
 v_reusejp_213_:
 {
-v___y_193_ = v___x_212_;
+v___y_193_ = v___x_210_;
 v___y_194_ = v___x_209_;
-v___y_195_ = v___x_210_;
+v___y_195_ = v___x_212_;
 v___y_196_ = v___x_214_;
 goto v___jp_192_;
 }
@@ -1007,9 +1007,9 @@ goto v_reusejp_219_;
 }
 v_reusejp_219_:
 {
-v___y_193_ = v___x_212_;
+v___y_193_ = v___x_210_;
 v___y_194_ = v___x_209_;
-v___y_195_ = v___x_210_;
+v___y_195_ = v___x_212_;
 v___y_196_ = v___x_220_;
 goto v___jp_192_;
 }

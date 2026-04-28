@@ -13,32 +13,32 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-uint8_t lean_uint32_to_uint8(uint32_t);
+uint8_t lean_uint16_dec_eq(uint16_t, uint16_t);
+uint8_t lean_string_dec_eq(lean_object*, lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
+lean_object* l_Lean_Name_mkStr1(lean_object*);
 lean_object* lean_array_push(lean_object*, lean_object*);
-lean_object* lean_byte_array_mk(lean_object*);
 lean_object* lean_nat_to_int(lean_object*);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
+uint8_t lean_uint32_to_uint8(uint32_t);
 lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
 lean_object* lean_uint16_to_nat(uint16_t);
 lean_object* l_Nat_reprFast(lean_object*);
 lean_object* l_String_quote(lean_object*);
 lean_object* lean_string_length(lean_object*);
-lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_string_to_utf8(lean_object*);
+lean_object* lean_byte_array_size(lean_object*);
+lean_object* lean_nat_add(lean_object*, lean_object*);
+lean_object* lean_mk_empty_array_with_capacity(lean_object*);
+lean_object* lean_byte_array_mk(lean_object*);
 uint8_t lean_uint16_dec_le(uint16_t, uint16_t);
 uint8_t lean_uint16_dec_lt(uint16_t, uint16_t);
-lean_object* lean_mk_empty_array_with_capacity(lean_object*);
-lean_object* l_Lean_Name_mkStr1(lean_object*);
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
-uint8_t lean_uint16_dec_eq(uint16_t, uint16_t);
-uint8_t lean_string_dec_eq(lean_object*, lean_object*);
-lean_object* l_Lean_mkAtom(lean_object*);
 lean_object* lean_string_data(lean_object*);
 uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
 uint8_t lean_uint32_dec_le(uint32_t, uint32_t);
-lean_object* lean_byte_array_size(lean_object*);
-lean_object* lean_string_to_utf8(lean_object*);
-lean_object* lean_nat_add(lean_object*, lean_object*);
+lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_mkAtom(lean_object*);
 LEAN_EXPORT uint8_t l_Std_Http_isKnownStatusCode(uint16_t);
 LEAN_EXPORT lean_object* l_Std_Http_isKnownStatusCode___boxed(lean_object*);
 static lean_once_cell_t l_Std_Http_CustomStatus_validReasonPhrase___autoParam___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;

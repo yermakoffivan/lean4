@@ -13,9 +13,23 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_mkConst(lean_object*, lean_object*);
+lean_object* l_Lean_Level_succ___override(lean_object*);
+lean_object* l_Lean_Name_mkStr1(lean_object*);
 lean_object* l_Lean_Name_mkStr2(lean_object*, lean_object*);
+lean_object* l_Lean_mkConst(lean_object*, lean_object*);
+lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Meta_Simp_Arith_Nat_toLinearExpr(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Nat_Linear_Expr_toPoly(lean_object*);
+lean_object* l_Nat_Linear_Poly_norm(lean_object*);
+lean_object* l_Nat_Linear_Poly_toExpr(lean_object*);
+uint8_t l_Nat_Linear_instBEqExpr_beq(lean_object*, lean_object*);
+lean_object* l_Lean_Meta_Simp_Arith_Nat_toContextExpr(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Meta_Simp_Arith_Nat_LinearExpr_toExpr(lean_object*);
+lean_object* l_Lean_Meta_Simp_Arith_Nat_LinearExpr_toArith___redArg(lean_object*, lean_object*);
+extern lean_object* l_Lean_eagerReflBoolTrue;
+lean_object* l_Lean_mkApp4(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_mkNatEq(lean_object*, lean_object*);
+lean_object* l_Lean_Meta_mkExpectedPropHint(lean_object*, lean_object*);
 lean_object* l_Lean_Meta_Simp_Arith_Nat_toLinearCnstr_x3f(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Meta_Simp_Arith_Nat_LinearCnstr_toArith___redArg(lean_object*, lean_object*);
 lean_object* l_Nat_Linear_ExprCnstr_toPoly(lean_object*);
@@ -23,37 +37,23 @@ lean_object* l_Nat_Linear_PolyCnstr_norm(lean_object*);
 uint8_t l_Nat_Linear_PolyCnstr_isUnsat(lean_object*);
 uint8_t l_Nat_Linear_PolyCnstr_isValid(lean_object*);
 lean_object* l_Nat_Linear_PolyCnstr_toExpr(lean_object*);
-lean_object* l_Lean_Meta_Simp_Arith_Nat_toContextExpr(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Meta_Simp_Arith_Nat_LinearCnstr_toExpr(lean_object*);
-extern lean_object* l_Lean_eagerReflBoolTrue;
-lean_object* l_Lean_mkApp4(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_mkPropEq(lean_object*, lean_object*);
-lean_object* l_Lean_Meta_mkExpectedPropHint(lean_object*, lean_object*);
 uint8_t lean_expr_eqv(lean_object*, lean_object*);
-lean_object* l_Lean_Name_mkStr1(lean_object*);
 lean_object* l_Lean_mkApp3(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Level_succ___override(lean_object*);
 lean_object* l_Lean_mkSort(lean_object*);
+lean_object* l_Lean_mkNatLit(lean_object*);
 lean_object* l_Lean_mkApp6(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 uint8_t l_Lean_Expr_isAppOfArity(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Expr_appArg_x21(lean_object*);
-lean_object* l_Lean_Meta_instantiateMVarsIfMVarApp___redArg(lean_object*, lean_object*);
+lean_object* l_Lean_Meta_instantiateMVarsIfMVarApp___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Expr_cleanupAnnotations(lean_object*);
 uint8_t l_Lean_Expr_isApp(lean_object*);
 lean_object* l_Lean_Expr_appFnCleanup___redArg(lean_object*);
 uint8_t l_Lean_Expr_isConstOf(lean_object*, lean_object*);
-lean_object* l_Lean_mkNatLit(lean_object*);
 lean_object* l_Lean_mkNatAdd(lean_object*, lean_object*);
 lean_object* l_Lean_mkNatLE(lean_object*, lean_object*);
 lean_object* l_Lean_mkAppB(lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Meta_Simp_Arith_Nat_toLinearExpr(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Nat_Linear_Expr_toPoly(lean_object*);
-lean_object* l_Nat_Linear_Poly_norm(lean_object*);
-lean_object* l_Nat_Linear_Poly_toExpr(lean_object*);
-uint8_t l_Nat_Linear_instBEqExpr_beq(lean_object*, lean_object*);
-lean_object* l_Lean_Meta_Simp_Arith_Nat_LinearExpr_toExpr(lean_object*);
-lean_object* l_Lean_Meta_Simp_Arith_Nat_LinearExpr_toArith___redArg(lean_object*, lean_object*);
-lean_object* l_Lean_mkNatEq(lean_object*, lean_object*);
 static lean_once_cell_t l_Lean_Meta_Simp_Arith_Nat_simpCnstrPos_x3f___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Simp_Arith_Nat_simpCnstrPos_x3f___closed__0;
 static lean_once_cell_t l_Lean_Meta_Simp_Arith_Nat_simpCnstrPos_x3f___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -1429,7 +1429,7 @@ else
 {
 lean_object* v___x_334_; lean_object* v___x_335_; 
 v___x_334_ = l_Lean_Expr_appArg_x21(v_e_280_);
-v___x_335_ = l_Lean_Meta_instantiateMVarsIfMVarApp___redArg(v___x_334_, v_a_282_);
+v___x_335_ = l_Lean_Meta_instantiateMVarsIfMVarApp___redArg(v___x_334_, v_a_282_, v_a_284_);
 if (lean_obj_tag(v___x_335_) == 0)
 {
 lean_object* v_a_336_; lean_object* v___x_337_; uint8_t v___x_338_; 
@@ -1521,7 +1521,7 @@ goto v___jp_286_;
 else
 {
 lean_object* v___x_357_; 
-v___x_357_ = l_Lean_Meta_instantiateMVarsIfMVarApp___redArg(v_arg_347_, v_a_282_);
+v___x_357_ = l_Lean_Meta_instantiateMVarsIfMVarApp___redArg(v_arg_347_, v_a_282_, v_a_284_);
 if (lean_obj_tag(v___x_357_) == 0)
 {
 lean_object* v_a_358_; lean_object* v___x_359_; lean_object* v___x_360_; uint8_t v___x_361_; 
@@ -1608,7 +1608,7 @@ else
 {
 lean_object* v___x_375_; 
 lean_dec_ref(v___x_348_);
-v___x_375_ = l_Lean_Meta_instantiateMVarsIfMVarApp___redArg(v_arg_347_, v_a_282_);
+v___x_375_ = l_Lean_Meta_instantiateMVarsIfMVarApp___redArg(v_arg_347_, v_a_282_, v_a_284_);
 if (lean_obj_tag(v___x_375_) == 0)
 {
 lean_object* v_a_376_; lean_object* v___x_377_; lean_object* v___x_378_; uint8_t v___x_379_; 
@@ -1695,7 +1695,7 @@ else
 {
 lean_object* v___x_393_; 
 lean_dec_ref(v___x_348_);
-v___x_393_ = l_Lean_Meta_instantiateMVarsIfMVarApp___redArg(v_arg_347_, v_a_282_);
+v___x_393_ = l_Lean_Meta_instantiateMVarsIfMVarApp___redArg(v_arg_347_, v_a_282_, v_a_284_);
 if (lean_obj_tag(v___x_393_) == 0)
 {
 lean_object* v_a_394_; lean_object* v___x_395_; lean_object* v___x_396_; uint8_t v___x_397_; 
@@ -1780,7 +1780,7 @@ else
 {
 lean_object* v___x_409_; 
 lean_dec_ref(v___x_348_);
-v___x_409_ = l_Lean_Meta_instantiateMVarsIfMVarApp___redArg(v_arg_347_, v_a_282_);
+v___x_409_ = l_Lean_Meta_instantiateMVarsIfMVarApp___redArg(v_arg_347_, v_a_282_, v_a_284_);
 if (lean_obj_tag(v___x_409_) == 0)
 {
 lean_object* v_a_410_; lean_object* v___x_411_; lean_object* v___x_412_; uint8_t v___x_413_; 

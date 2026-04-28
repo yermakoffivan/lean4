@@ -13,20 +13,20 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* lean_byte_array_size(lean_object*);
+uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
+uint8_t lean_byte_array_fget(lean_object*, lean_object*);
 uint8_t lean_uint8_land(uint8_t, uint8_t);
+uint8_t lean_uint8_dec_eq(uint8_t, uint8_t);
+lean_object* lean_nat_add(lean_object*, lean_object*);
 uint32_t lean_uint8_to_uint32(uint8_t);
 uint32_t lean_uint32_shift_left(uint32_t, uint32_t);
 uint32_t lean_uint32_lor(uint32_t, uint32_t);
-uint8_t lean_uint8_dec_eq(uint8_t, uint8_t);
+uint8_t lean_uint32_dec_lt(uint32_t, uint32_t);
 uint8_t lean_uint32_dec_le(uint32_t, uint32_t);
 uint32_t lean_uint32_shift_right(uint32_t, uint32_t);
 uint8_t lean_uint32_to_uint8(uint32_t);
 uint8_t lean_uint8_lor(uint8_t, uint8_t);
-lean_object* lean_byte_array_size(lean_object*);
-uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
-uint8_t lean_byte_array_fget(lean_object*, lean_object*);
-lean_object* lean_nat_add(lean_object*, lean_object*);
-uint8_t lean_uint32_dec_lt(uint32_t, uint32_t);
 LEAN_EXPORT lean_object* l_String_utf8EncodeCharFast(uint32_t);
 LEAN_EXPORT lean_object* l_String_utf8EncodeCharFast___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_ByteArray_utf8DecodeChar_x3f_FirstByte_ctorIdx(uint8_t);

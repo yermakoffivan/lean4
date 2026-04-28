@@ -13,24 +13,24 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Lean_Meta_mkLambdaFVars___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* lean_array_push(lean_object*, lean_object*);
 lean_object* l_Lean_SubExpr_Pos_pushBindingBody(lean_object*);
 lean_object* l_Lean_Meta_withLocalDecl___redArg(lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, uint8_t);
 lean_object* l_Lean_SubExpr_Pos_pushBindingDomain(lean_object*);
 lean_object* lean_expr_instantiate_rev(lean_object*, lean_object*);
+lean_object* l_Lean_Meta_mkLambdaFVars___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* l_Lean_Meta_mkForallFVars___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_SubExpr_Pos_pushLetBody(lean_object*);
 lean_object* l_Lean_Meta_withLetDecl___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, uint8_t, uint8_t);
 lean_object* l_Lean_SubExpr_Pos_pushLetValue(lean_object*);
 lean_object* l_Lean_SubExpr_Pos_pushLetVarType(lean_object*);
 lean_object* l_Lean_Meta_mkLetFVars___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-extern lean_object* l_Lean_SubExpr_Pos_root;
 lean_object* l_Lean_Expr_traverseAppWithPos___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l___private_Lean_Expr_0__Lean_Expr_updateMData_x21Impl(lean_object*, lean_object*);
 lean_object* l___private_Lean_Expr_0__Lean_Expr_updateProj_x21Impl(lean_object*, lean_object*);
 lean_object* l_Lean_SubExpr_Pos_pushProj(lean_object*);
+extern lean_object* l_Lean_SubExpr_Pos_root;
 LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_forgetPos___redArg___lam__0(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_forgetPos___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_forgetPos___redArg(lean_object*, lean_object*, lean_object*);
@@ -56,10 +56,10 @@ LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_travers
 LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseForallWithPos_visit___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_traverseForallWithPos___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_traverseForallWithPos(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg___lam__3(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg___lam__1(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg___lam__2(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg___lam__2___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg___lam__3(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -432,62 +432,62 @@ v___x_221_ = l_Lean_Meta_traverseForallWithPos___redArg(v_inst_215_, v_inst_216_
 return v___x_221_;
 }
 }
-LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg___lam__1(lean_object* v_inst_222_, lean_object* v_inst_223_, lean_object* v_declName_224_, lean_object* v_type_225_, lean_object* v___f_226_, lean_object* v_value_227_){
+LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg___lam__3(lean_object* v_fvars_222_, lean_object* v_inst_223_, lean_object* v_body_224_){
 _start:
 {
-uint8_t v___x_228_; uint8_t v___x_229_; lean_object* v___x_230_; 
-v___x_228_ = 0;
-v___x_229_ = 0;
-v___x_230_ = l_Lean_Meta_withLetDecl___redArg(v_inst_222_, v_inst_223_, v_declName_224_, v_type_225_, v_value_227_, v___f_226_, v___x_228_, v___x_229_);
-return v___x_230_;
+uint8_t v___x_225_; uint8_t v___x_226_; uint8_t v___x_227_; lean_object* v___x_228_; lean_object* v___x_229_; lean_object* v___x_230_; lean_object* v___x_231_; lean_object* v___x_232_; 
+v___x_225_ = 0;
+v___x_226_ = 1;
+v___x_227_ = 1;
+v___x_228_ = lean_box(v___x_225_);
+v___x_229_ = lean_box(v___x_226_);
+v___x_230_ = lean_box(v___x_227_);
+v___x_231_ = lean_alloc_closure((void*)(l_Lean_Meta_mkLetFVars___boxed), 10, 5);
+lean_closure_set(v___x_231_, 0, v_fvars_222_);
+lean_closure_set(v___x_231_, 1, v_body_224_);
+lean_closure_set(v___x_231_, 2, v___x_228_);
+lean_closure_set(v___x_231_, 3, v___x_229_);
+lean_closure_set(v___x_231_, 4, v___x_230_);
+v___x_232_ = lean_apply_2(v_inst_223_, lean_box(0), v___x_231_);
+return v___x_232_;
 }
 }
-LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg___lam__2(lean_object* v_inst_231_, lean_object* v_inst_232_, lean_object* v_declName_233_, lean_object* v___f_234_, lean_object* v_p_235_, lean_object* v_value_236_, lean_object* v_fvars_237_, lean_object* v_f_238_, lean_object* v_toBind_239_, lean_object* v_type_240_){
+LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg___lam__1(lean_object* v_inst_233_, lean_object* v_inst_234_, lean_object* v_declName_235_, lean_object* v_type_236_, lean_object* v___f_237_, lean_object* v_value_238_){
 _start:
 {
-lean_object* v___f_241_; lean_object* v___x_242_; lean_object* v___x_243_; lean_object* v___x_244_; lean_object* v___x_245_; 
-v___f_241_ = lean_alloc_closure((void*)(l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg___lam__1), 6, 5);
-lean_closure_set(v___f_241_, 0, v_inst_231_);
-lean_closure_set(v___f_241_, 1, v_inst_232_);
-lean_closure_set(v___f_241_, 2, v_declName_233_);
-lean_closure_set(v___f_241_, 3, v_type_240_);
-lean_closure_set(v___f_241_, 4, v___f_234_);
-v___x_242_ = l_Lean_SubExpr_Pos_pushLetValue(v_p_235_);
-v___x_243_ = lean_expr_instantiate_rev(v_value_236_, v_fvars_237_);
-v___x_244_ = lean_apply_2(v_f_238_, v___x_242_, v___x_243_);
-v___x_245_ = lean_apply_4(v_toBind_239_, lean_box(0), lean_box(0), v___x_244_, v___f_241_);
-return v___x_245_;
+uint8_t v___x_239_; uint8_t v___x_240_; lean_object* v___x_241_; 
+v___x_239_ = 0;
+v___x_240_ = 0;
+v___x_241_ = l_Lean_Meta_withLetDecl___redArg(v_inst_233_, v_inst_234_, v_declName_235_, v_type_236_, v_value_238_, v___f_237_, v___x_239_, v___x_240_);
+return v___x_241_;
 }
 }
-LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg___lam__2___boxed(lean_object* v_inst_246_, lean_object* v_inst_247_, lean_object* v_declName_248_, lean_object* v___f_249_, lean_object* v_p_250_, lean_object* v_value_251_, lean_object* v_fvars_252_, lean_object* v_f_253_, lean_object* v_toBind_254_, lean_object* v_type_255_){
+LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg___lam__2(lean_object* v_inst_242_, lean_object* v_inst_243_, lean_object* v_declName_244_, lean_object* v___f_245_, lean_object* v_p_246_, lean_object* v_value_247_, lean_object* v_fvars_248_, lean_object* v_f_249_, lean_object* v_toBind_250_, lean_object* v_type_251_){
 _start:
 {
-lean_object* v_res_256_; 
-v_res_256_ = l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg___lam__2(v_inst_246_, v_inst_247_, v_declName_248_, v___f_249_, v_p_250_, v_value_251_, v_fvars_252_, v_f_253_, v_toBind_254_, v_type_255_);
-lean_dec_ref(v_fvars_252_);
-lean_dec_ref(v_value_251_);
-lean_dec(v_p_250_);
-return v_res_256_;
+lean_object* v___f_252_; lean_object* v___x_253_; lean_object* v___x_254_; lean_object* v___x_255_; lean_object* v___x_256_; 
+v___f_252_ = lean_alloc_closure((void*)(l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg___lam__1), 6, 5);
+lean_closure_set(v___f_252_, 0, v_inst_242_);
+lean_closure_set(v___f_252_, 1, v_inst_243_);
+lean_closure_set(v___f_252_, 2, v_declName_244_);
+lean_closure_set(v___f_252_, 3, v_type_251_);
+lean_closure_set(v___f_252_, 4, v___f_245_);
+v___x_253_ = l_Lean_SubExpr_Pos_pushLetValue(v_p_246_);
+v___x_254_ = lean_expr_instantiate_rev(v_value_247_, v_fvars_248_);
+v___x_255_ = lean_apply_2(v_f_249_, v___x_253_, v___x_254_);
+v___x_256_ = lean_apply_4(v_toBind_250_, lean_box(0), lean_box(0), v___x_255_, v___f_252_);
+return v___x_256_;
 }
 }
-LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg___lam__3(lean_object* v_fvars_257_, lean_object* v_inst_258_, lean_object* v_body_259_){
+LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg___lam__2___boxed(lean_object* v_inst_257_, lean_object* v_inst_258_, lean_object* v_declName_259_, lean_object* v___f_260_, lean_object* v_p_261_, lean_object* v_value_262_, lean_object* v_fvars_263_, lean_object* v_f_264_, lean_object* v_toBind_265_, lean_object* v_type_266_){
 _start:
 {
-uint8_t v___x_260_; uint8_t v___x_261_; uint8_t v___x_262_; lean_object* v___x_263_; lean_object* v___x_264_; lean_object* v___x_265_; lean_object* v___x_266_; lean_object* v___x_267_; 
-v___x_260_ = 0;
-v___x_261_ = 1;
-v___x_262_ = 1;
-v___x_263_ = lean_box(v___x_260_);
-v___x_264_ = lean_box(v___x_261_);
-v___x_265_ = lean_box(v___x_262_);
-v___x_266_ = lean_alloc_closure((void*)(l_Lean_Meta_mkLetFVars___boxed), 10, 5);
-lean_closure_set(v___x_266_, 0, v_fvars_257_);
-lean_closure_set(v___x_266_, 1, v_body_259_);
-lean_closure_set(v___x_266_, 2, v___x_263_);
-lean_closure_set(v___x_266_, 3, v___x_264_);
-lean_closure_set(v___x_266_, 4, v___x_265_);
-v___x_267_ = lean_apply_2(v_inst_258_, lean_box(0), v___x_266_);
-return v___x_267_;
+lean_object* v_res_267_; 
+v_res_267_ = l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg___lam__2(v_inst_257_, v_inst_258_, v_declName_259_, v___f_260_, v_p_261_, v_value_262_, v_fvars_263_, v_f_264_, v_toBind_265_, v_type_266_);
+lean_dec_ref(v_fvars_263_);
+lean_dec_ref(v_value_262_);
+lean_dec(v_p_261_);
+return v_res_267_;
 }
 }
 LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg___lam__0___boxed(lean_object* v_fvars_268_, lean_object* v_p_269_, lean_object* v_inst_270_, lean_object* v_inst_271_, lean_object* v_inst_272_, lean_object* v_f_273_, lean_object* v_body_274_, lean_object* v_x_275_){

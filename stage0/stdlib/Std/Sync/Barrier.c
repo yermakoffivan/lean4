@@ -13,6 +13,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* lean_io_condvar_wait(lean_object*, lean_object*);
+lean_object* lean_io_basemutex_lock(lean_object*);
+lean_object* lean_io_basemutex_unlock(lean_object*);
+lean_object* l_Std_Mutex_new___redArg(lean_object*);
+lean_object* lean_io_condvar_new();
 lean_object* lean_st_ref_get(lean_object*);
 lean_object* lean_st_ref_take(lean_object*);
 lean_object* lean_nat_add(lean_object*, lean_object*);
@@ -20,11 +25,6 @@ lean_object* lean_st_ref_set(lean_object*, lean_object*);
 uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
 lean_object* lean_io_condvar_notify_all(lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
-lean_object* lean_io_condvar_wait(lean_object*, lean_object*);
-lean_object* lean_io_basemutex_lock(lean_object*);
-lean_object* lean_io_basemutex_unlock(lean_object*);
-lean_object* l_Std_Mutex_new___redArg(lean_object*);
-lean_object* lean_io_condvar_new();
 static lean_once_cell_t l_Std_Barrier_new___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Barrier_new___closed__0;
 LEAN_EXPORT lean_object* l_Std_Barrier_new(lean_object*);

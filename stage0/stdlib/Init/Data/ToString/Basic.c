@@ -13,19 +13,19 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_uint64_to_nat(uint64_t);
-lean_object* l_Nat_reprFast(lean_object*);
 lean_object* lean_string_append(lean_object*, lean_object*);
+lean_object* l_Nat_reprFast(lean_object*);
+extern lean_object* l_Std_Format_defWidth;
+lean_object* l_Std_Format_pretty(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_uint64_to_nat(uint64_t);
+lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
+lean_object* lean_uint32_to_nat(uint32_t);
+lean_object* lean_uint16_to_nat(uint16_t);
+lean_object* lean_usize_to_nat(size_t);
+lean_object* lean_uint8_to_nat(uint8_t);
 uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
 uint8_t lean_string_isprefixof(lean_object*, lean_object*);
 uint8_t lean_string_any(lean_object*, lean_object*);
-lean_object* lean_uint32_to_nat(uint32_t);
-lean_object* lean_uint8_to_nat(uint8_t);
-lean_object* lean_usize_to_nat(size_t);
-extern lean_object* l_Std_Format_defWidth;
-lean_object* l_Std_Format_pretty(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
-lean_object* lean_uint16_to_nat(uint16_t);
 lean_object* lean_string_push(lean_object*, uint32_t);
 lean_object* l_Substring_Raw_Internal_toString___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_instToStringId___aux__1___redArg(lean_object*);

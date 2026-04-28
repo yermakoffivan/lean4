@@ -13,12 +13,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+extern lean_object* l_Std_Time_TimeZone_Offset_zero;
 lean_object* lean_nat_to_int(lean_object*);
 lean_object* l_Std_Time_TimeZone_instReprOffset_repr___redArg(lean_object*);
 lean_object* l_String_quote(lean_object*);
 lean_object* l_Bool_repr___redArg(uint8_t);
 lean_object* lean_string_length(lean_object*);
-extern lean_object* l_Std_Time_TimeZone_Offset_zero;
 uint8_t lean_int_dec_eq(lean_object*, lean_object*);
 uint8_t lean_string_dec_eq(lean_object*, lean_object*);
 lean_object* l_Std_Time_TimeZone_Offset_ofHours(lean_object*);

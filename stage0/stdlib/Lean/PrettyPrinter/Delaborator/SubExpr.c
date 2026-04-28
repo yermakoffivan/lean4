@@ -13,44 +13,44 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Lean_Expr_bindingBody_x21(lean_object*);
-lean_object* lean_expr_instantiate1(lean_object*, lean_object*);
+lean_object* l_Lean_Expr_appArg_x21(lean_object*);
 lean_object* l_Lean_SubExpr_Pos_push(lean_object*, lean_object*);
+extern lean_object* l_Lean_SubExpr_Pos_typeCoord;
+lean_object* l_Lean_Meta_inferType___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_instInhabitedOfMonad___redArg(lean_object*, lean_object*);
 lean_object* l_mkPanicMessageWithDecl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_panic___redArg(lean_object*, lean_object*);
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
-lean_object* lean_nat_sub(lean_object*, lean_object*);
-lean_object* l_Lean_Expr_appArg_x21(lean_object*);
-lean_object* l_Lean_Expr_appFn_x21(lean_object*);
-lean_object* lean_array_get_size(lean_object*);
-lean_object* l_Lean_SubExpr_Pos_pushNaryArg(lean_object*, lean_object*, lean_object*);
-lean_object* lean_array_get_borrowed(lean_object*, lean_object*, lean_object*);
-lean_object* l_Std_DTreeMap_Internal_Impl_insert___at___00Lean_NameMap_insert_spec__0___redArg(lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Name_mkStr1(lean_object*);
-uint8_t l_Lean_Name_isPrefixOf(lean_object*, lean_object*);
-uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
-lean_object* lean_nat_mul(lean_object*, lean_object*);
-lean_object* lean_nat_add(lean_object*, lean_object*);
-extern lean_object* l_Lean_Options_empty;
-lean_object* l_Lean_Meta_withLetDecl___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, uint8_t, uint8_t);
-lean_object* l_Lean_Expr_getAppNumArgs(lean_object*);
-lean_object* l_Lean_SubExpr_Pos_pushNaryFn(lean_object*, lean_object*);
-lean_object* l_Lean_Expr_getAppFn(lean_object*);
+lean_object* l_Lean_Expr_bindingBody_x21(lean_object*);
+lean_object* lean_expr_instantiate1(lean_object*, lean_object*);
 uint8_t l_Lean_Expr_binderInfo(lean_object*);
 lean_object* l_Lean_Expr_bindingDomain_x21(lean_object*);
 lean_object* l_Lean_Meta_withLocalDecl___redArg(lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, uint8_t);
-lean_object* l_instInhabitedOfMonad___redArg(lean_object*, lean_object*);
-extern lean_object* l_Lean_SubExpr_Pos_maxChildren;
-extern lean_object* l_Lean_SubExpr_Pos_typeCoord;
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
+lean_object* lean_nat_sub(lean_object*, lean_object*);
+lean_object* l_Lean_Expr_appFn_x21(lean_object*);
 lean_object* l_Lean_Expr_getBoundedAppFn(lean_object*, lean_object*);
-lean_object* l_Lean_Meta_inferType___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+extern lean_object* l_Lean_SubExpr_Pos_maxChildren;
+lean_object* lean_array_get_borrowed(lean_object*, lean_object*, lean_object*);
+lean_object* lean_nat_add(lean_object*, lean_object*);
+lean_object* lean_nat_mul(lean_object*, lean_object*);
+lean_object* l_Lean_Expr_getAppNumArgs(lean_object*);
+lean_object* l_Lean_SubExpr_Pos_pushNaryFn(lean_object*, lean_object*);
+lean_object* l_Lean_Expr_getAppFn(lean_object*);
 uint8_t l_Lean_Expr_isApp(lean_object*);
-lean_object* l_Lean_Options_mergeBy(lean_object*, lean_object*, lean_object*);
+lean_object* lean_array_get_size(lean_object*);
+lean_object* l_Lean_SubExpr_Pos_pushNaryArg(lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Meta_withLetDecl___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, uint8_t, uint8_t);
+uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
+lean_object* l_Std_DTreeMap_Internal_Impl_insert___at___00Lean_NameMap_insert_spec__0___redArg(lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Name_mkStr1(lean_object*);
+uint8_t l_Lean_Name_isPrefixOf(lean_object*, lean_object*);
+extern lean_object* l_Lean_Options_empty;
 lean_object* l_Std_DTreeMap_Internal_Impl_balance___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Options_mergeBy(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Expr_sort___override(lean_object*);
+extern lean_object* l_Lean_instInhabitedExpr;
 lean_object* lean_mk_array(lean_object*, lean_object*);
 lean_object* l___private_Lean_Expr_0__Lean_Expr_getAppArgsAux(lean_object*, lean_object*, lean_object*);
-extern lean_object* l_Lean_instInhabitedExpr;
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
 static lean_once_cell_t l_Lean_Options_set___at___00Lean_PrettyPrinter_Delaborator_OptionsPerPos_insertAt_spec__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Options_set___at___00Lean_PrettyPrinter_Delaborator_OptionsPerPos_insertAt_spec__0___closed__0;
@@ -1153,9 +1153,9 @@ goto v___jp_218_;
 v___jp_206_:
 {
 lean_object* v___x_210_; lean_object* v___x_212_; 
-v___x_210_ = lean_nat_add(v___y_208_, v___y_209_);
+v___x_210_ = lean_nat_add(v___y_207_, v___y_209_);
 lean_dec(v___y_209_);
-lean_dec(v___y_208_);
+lean_dec(v___y_207_);
 if (v_isShared_203_ == 0)
 {
 lean_ctor_set(v___x_202_, 4, v_r_29_);
@@ -1184,7 +1184,7 @@ lean_object* v___x_214_;
 if (v_isShared_191_ == 0)
 {
 lean_ctor_set(v___x_190_, 4, v___x_212_);
-lean_ctor_set(v___x_190_, 3, v___y_207_);
+lean_ctor_set(v___x_190_, 3, v___y_208_);
 lean_ctor_set(v___x_190_, 2, v_v_195_);
 lean_ctor_set(v___x_190_, 1, v_k_194_);
 lean_ctor_set(v___x_190_, 0, v___x_205_);
@@ -1198,7 +1198,7 @@ v_reuseFailAlloc_215_ = lean_alloc_ctor(0, 5, 0);
 lean_ctor_set(v_reuseFailAlloc_215_, 0, v___x_205_);
 lean_ctor_set(v_reuseFailAlloc_215_, 1, v_k_194_);
 lean_ctor_set(v_reuseFailAlloc_215_, 2, v_v_195_);
-lean_ctor_set(v_reuseFailAlloc_215_, 3, v___y_207_);
+lean_ctor_set(v_reuseFailAlloc_215_, 3, v___y_208_);
 lean_ctor_set(v_reuseFailAlloc_215_, 4, v___x_212_);
 v___x_214_ = v_reuseFailAlloc_215_;
 goto v_reusejp_213_;
@@ -1246,8 +1246,8 @@ if (lean_obj_tag(v_r_197_) == 0)
 lean_object* v_size_224_; 
 v_size_224_ = lean_ctor_get(v_r_197_, 0);
 lean_inc(v_size_224_);
-v___y_207_ = v___x_222_;
-v___y_208_ = v___x_223_;
+v___y_207_ = v___x_223_;
+v___y_208_ = v___x_222_;
 v___y_209_ = v_size_224_;
 goto v___jp_206_;
 }
@@ -1255,8 +1255,8 @@ else
 {
 lean_object* v___x_225_; 
 v___x_225_ = lean_unsigned_to_nat(0u);
-v___y_207_ = v___x_222_;
-v___y_208_ = v___x_223_;
+v___y_207_ = v___x_223_;
+v___y_208_ = v___x_222_;
 v___y_209_ = v___x_225_;
 goto v___jp_206_;
 }

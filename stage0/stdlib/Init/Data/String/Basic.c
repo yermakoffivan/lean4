@@ -13,33 +13,33 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* lean_nat_add(lean_object*, lean_object*);
+lean_object* l_mkPanicMessageWithDecl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_panic___redArg(lean_object*, lean_object*);
+uint8_t lean_nat_dec_le(lean_object*, lean_object*);
+lean_object* lean_nat_sub(lean_object*, lean_object*);
+uint8_t lean_string_get_byte_fast(lean_object*, lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* l_Char_utf8Size(uint32_t);
-lean_object* lean_nat_add(lean_object*, lean_object*);
-uint8_t lean_nat_dec_le(lean_object*, lean_object*);
-lean_object* l_mkPanicMessageWithDecl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-extern lean_object* l_String_instInhabitedSlice;
-lean_object* lean_panic_fn_borrowed(lean_object*, lean_object*);
-lean_object* lean_nat_sub(lean_object*, lean_object*);
-uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
-uint8_t lean_string_get_byte_fast(lean_object*, lean_object*);
-uint8_t l_UInt8_instDecidableIsUTF8FirstByte___aux__1(uint8_t);
-lean_object* lean_string_utf8_byte_size(lean_object*);
-lean_object* l_panic___redArg(lean_object*, lean_object*);
-uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
 uint8_t lean_byte_array_fget(lean_object*, lean_object*);
 uint8_t lean_uint8_land(uint8_t, uint8_t);
 uint8_t lean_uint8_dec_eq(uint8_t, uint8_t);
 lean_object* lean_byte_array_size(lean_object*);
+uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
 uint32_t lean_uint8_to_uint32(uint8_t);
 uint32_t lean_uint32_shift_left(uint32_t, uint32_t);
 uint32_t lean_uint32_lor(uint32_t, uint32_t);
 uint8_t lean_uint32_dec_le(uint32_t, uint32_t);
 uint8_t lean_uint32_dec_lt(uint32_t, uint32_t);
+lean_object* lean_panic_fn_borrowed(lean_object*, lean_object*);
+lean_object* lean_string_utf8_byte_size(lean_object*);
+uint8_t l_UInt8_instDecidableIsUTF8FirstByte___aux__1(uint8_t);
+uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
+extern lean_object* l_String_instInhabitedSlice;
+lean_object* lean_string_to_utf8(lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* lean_array_push(lean_object*, lean_object*);
 lean_object* lean_string_from_utf8_unchecked(lean_object*);
-lean_object* lean_string_to_utf8(lean_object*);
 LEAN_EXPORT lean_object* l_ByteArray_utf8Decode_x3f_go___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_ByteArray_utf8Decode_x3f_go___redArg___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_ByteArray_utf8Decode_x3f_go(lean_object*, lean_object*, lean_object*, lean_object*);

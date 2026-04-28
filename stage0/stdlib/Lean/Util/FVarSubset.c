@@ -14,12 +14,12 @@
 extern "C" {
 #endif
 uint8_t l_Lean_Expr_hasFVar(lean_object*);
-uint8_t l_Lean_Expr_isFVar(lean_object*);
-lean_object* l_Lean_Expr_fvarId_x21(lean_object*);
-uint8_t l___private_Lean_Data_Name_0__Lean_Name_quickCmpImpl(lean_object*, lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* lean_mk_array(lean_object*, lean_object*);
 lean_object* l_Lean_collectFVars(lean_object*, lean_object*);
+uint8_t l_Lean_Expr_isFVar(lean_object*);
+lean_object* l_Lean_Expr_fvarId_x21(lean_object*);
+uint8_t l___private_Lean_Data_Name_0__Lean_Name_quickCmpImpl(lean_object*, lean_object*);
 lean_object* lean_find_ext_expr(lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Std_DTreeMap_Internal_Impl_contains___at___00Lean_Expr_fvarsSubset_spec__0___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_DTreeMap_Internal_Impl_contains___at___00Lean_Expr_fvarsSubset_spec__0___redArg___boxed(lean_object*, lean_object*);

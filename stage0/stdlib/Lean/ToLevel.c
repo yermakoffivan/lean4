@@ -13,8 +13,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Lean_Level_succ___override(lean_object*);
 lean_object* l_Lean_Level_max___override(lean_object*, lean_object*);
+lean_object* l_Lean_Level_succ___override(lean_object*);
 lean_object* l_Lean_Level_imax___override(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_instToLevel;
 LEAN_EXPORT lean_object* l_Lean_instToLevel__1(lean_object*);

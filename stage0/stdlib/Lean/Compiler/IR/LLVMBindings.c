@@ -789,7 +789,7 @@ v_res_376_ = lean_llvm_position_builder_before(v_ctx_boxed_373_, v_builder_boxed
 return v_res_376_;
 }
 }
-LEAN_EXPORT lean_object* l_LLVM_positionBuilderAtEnd___boxed(lean_object* v_Context_00___x40_Lean_Compiler_IR_LLVMBindings_2945912803____hygCtx___hyg_382_, lean_object* v_ctx_383_, lean_object* v_builder_384_, lean_object* v_bb_385_, lean_object* v_a_00___x40___internal___hyg_386_){
+LEAN_EXPORT lean_object* l_LLVM_positionBuilderAtEnd___boxed(lean_object* v_Context_00___x40_Lean_Compiler_IR_LLVMBindings_371528438____hygCtx___hyg_382_, lean_object* v_ctx_383_, lean_object* v_builder_384_, lean_object* v_bb_385_, lean_object* v_a_00___x40___internal___hyg_386_){
 _start:
 {
 size_t v_builder_boxed_387_; size_t v_bb_boxed_388_; lean_object* v_res_389_; 
@@ -1166,7 +1166,7 @@ v_res_760_ = lean_llvm_add_case(v_ctx_boxed_756_, v_switch_boxed_757_, v_onVal_b
 return v_res_760_;
 }
 }
-LEAN_EXPORT lean_object* l_LLVM_getInsertBlock___boxed(lean_object* v_Context_00___x40_Lean_Compiler_IR_LLVMBindings_924321998____hygCtx___hyg_765_, lean_object* v_ctx_766_, lean_object* v_builder_767_, lean_object* v_a_00___x40___internal___hyg_768_){
+LEAN_EXPORT lean_object* l_LLVM_getInsertBlock___boxed(lean_object* v_Context_00___x40_Lean_Compiler_IR_LLVMBindings_154915337____hygCtx___hyg_765_, lean_object* v_ctx_766_, lean_object* v_builder_767_, lean_object* v_a_00___x40___internal___hyg_768_){
 _start:
 {
 size_t v_builder_boxed_769_; size_t v_res_770_; lean_object* v_r_771_; 
@@ -1177,7 +1177,7 @@ v_r_771_ = lean_box_usize(v_res_770_);
 return v_r_771_;
 }
 }
-LEAN_EXPORT lean_object* l_LLVM_clearInsertionPosition___boxed(lean_object* v_Context_00___x40_Lean_Compiler_IR_LLVMBindings_1700267677____hygCtx___hyg_776_, lean_object* v_ctx_777_, lean_object* v_builder_778_, lean_object* v_a_00___x40___internal___hyg_779_){
+LEAN_EXPORT lean_object* l_LLVM_clearInsertionPosition___boxed(lean_object* v_Context_00___x40_Lean_Compiler_IR_LLVMBindings_516009371____hygCtx___hyg_776_, lean_object* v_ctx_777_, lean_object* v_builder_778_, lean_object* v_a_00___x40___internal___hyg_779_){
 _start:
 {
 size_t v_builder_boxed_780_; lean_object* v_res_781_; 

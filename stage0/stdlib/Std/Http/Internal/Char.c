@@ -13,15 +13,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
 uint8_t lean_uint32_to_uint8(uint32_t);
 uint8_t lean_uint8_dec_eq(uint8_t, uint8_t);
 uint8_t lean_uint8_dec_le(uint8_t, uint8_t);
 uint8_t lean_uint32_dec_le(uint32_t, uint32_t);
-uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
 lean_object* lean_uint32_to_nat(uint32_t);
 uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
-uint8_t lean_nat_dec_le(lean_object*, lean_object*);
 uint8_t lean_uint8_dec_lt(uint8_t, uint8_t);
+uint8_t lean_nat_dec_le(lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Std_Http_Internal_Char_isAscii(uint32_t);
 LEAN_EXPORT lean_object* l_Std_Http_Internal_Char_isAscii___boxed(lean_object*);
 LEAN_EXPORT uint8_t l_Std_Http_Internal_Char_isAsciiByte(uint8_t);

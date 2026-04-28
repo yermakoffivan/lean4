@@ -17,12 +17,7 @@ lean_object* l_Lean_Name_mkStr1(lean_object*);
 uint8_t l_Lean_Expr_isAppOfArity(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Expr_appFn_x21(lean_object*);
 lean_object* l_Lean_Expr_appArg_x21(lean_object*);
-uint8_t l_Lean_Expr_hasLooseBVars(lean_object*);
 lean_object* l_Lean_Name_mkStr2(lean_object*, lean_object*);
-uint8_t l_Lean_Expr_isAppOfArity_x27(lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Expr_appArg_x21_x27(lean_object*);
-lean_object* l_Lean_Expr_appFn_x21_x27(lean_object*);
-lean_object* l_List_reverse___redArg(lean_object*);
 uint8_t lean_string_dec_eq(lean_object*, lean_object*);
 lean_object* l_Lean_Name_num___override(lean_object*, lean_object*);
 lean_object* l_Lean_Expr_rawNatLit_x3f(lean_object*);
@@ -34,6 +29,11 @@ lean_object* l_Lean_Name_mkStr5(lean_object*, lean_object*, lean_object*, lean_o
 lean_object* l_Lean_Name_mkStr6(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Name_mkStr7(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Name_mkStr8(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+uint8_t l_Lean_Expr_hasLooseBVars(lean_object*);
+uint8_t l_Lean_Expr_isAppOfArity_x27(lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_Expr_appArg_x21_x27(lean_object*);
+lean_object* l_Lean_Expr_appFn_x21_x27(lean_object*);
+lean_object* l_List_reverse___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Expr_const_x3f(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Expr_const_x3f___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Expr_app1_x3f(lean_object*, lean_object*);
@@ -2075,8 +2075,8 @@ return v___x_465_;
 else
 {
 lean_object* v___x_466_; 
-lean_dec_ref(v_declName_427_);
 lean_dec(v_pre_428_);
+lean_dec_ref(v_declName_427_);
 lean_dec_ref(v_fn_354_);
 lean_dec_ref(v_arg_355_);
 lean_dec_ref(v_arg_353_);
@@ -2379,8 +2379,8 @@ return v___x_511_;
 else
 {
 lean_object* v___x_512_; 
-lean_dec(v_pre_471_);
 lean_dec_ref(v_pre_470_);
+lean_dec(v_pre_471_);
 lean_dec_ref(v_declName_469_);
 lean_dec_ref(v_fn_426_);
 lean_dec_ref(v_fn_354_);
@@ -2393,8 +2393,8 @@ return v___x_512_;
 else
 {
 lean_object* v___x_513_; 
-lean_dec_ref(v_declName_469_);
 lean_dec(v_pre_470_);
+lean_dec_ref(v_declName_469_);
 lean_dec_ref(v_fn_426_);
 lean_dec_ref(v_fn_354_);
 lean_dec_ref(v_arg_355_);
@@ -2749,8 +2749,8 @@ return v___x_563_;
 else
 {
 lean_object* v___x_564_; 
-lean_dec(v_pre_518_);
 lean_dec_ref(v_pre_517_);
+lean_dec(v_pre_518_);
 lean_dec_ref(v_declName_516_);
 lean_dec_ref(v_fn_468_);
 lean_dec_ref(v_fn_426_);
@@ -2764,8 +2764,8 @@ return v___x_564_;
 else
 {
 lean_object* v___x_565_; 
-lean_dec_ref(v_declName_516_);
 lean_dec(v_pre_517_);
+lean_dec_ref(v_declName_516_);
 lean_dec_ref(v_fn_468_);
 lean_dec_ref(v_fn_426_);
 lean_dec_ref(v_fn_354_);
@@ -3664,8 +3664,8 @@ return v___x_682_;
 else
 {
 lean_object* v___x_683_; 
-lean_dec_ref(v_pre_626_);
 lean_dec(v_pre_627_);
+lean_dec_ref(v_pre_626_);
 lean_dec_ref(v_declName_625_);
 lean_dec_ref(v_fn_567_);
 lean_dec_ref(v_fn_515_);
@@ -3681,8 +3681,8 @@ return v___x_683_;
 else
 {
 lean_object* v___x_684_; 
-lean_dec(v_pre_626_);
 lean_dec_ref(v_declName_625_);
+lean_dec(v_pre_626_);
 lean_dec_ref(v_fn_567_);
 lean_dec_ref(v_fn_515_);
 lean_dec_ref(v_fn_468_);
@@ -4233,8 +4233,8 @@ return v___x_750_;
 else
 {
 lean_object* v___x_751_; 
-lean_dec(v_pre_688_);
 lean_dec_ref(v_declName_687_);
+lean_dec(v_pre_688_);
 lean_dec_ref(v_fn_624_);
 lean_dec_ref(v_fn_567_);
 lean_dec_ref(v_fn_515_);

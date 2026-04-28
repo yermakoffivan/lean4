@@ -13,33 +13,33 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+uint8_t l_System_FilePath_isDir(lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
-lean_object* lean_array_push(lean_object*, lean_object*);
-lean_object* l_Lake_proc(lean_object*, uint8_t, lean_object*);
-lean_object* l_Lake_captureProc_x3f(lean_object*);
+lean_object* l_Lake_captureProc_x27(lean_object*, lean_object*);
 lean_object* lean_string_utf8_byte_size(lean_object*);
-uint8_t lean_nat_dec_le(lean_object*, lean_object*);
-lean_object* lean_nat_sub(lean_object*, lean_object*);
-uint8_t lean_string_memcmp(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_String_Slice_Pos_prevn(lean_object*, lean_object*, lean_object*);
+lean_object* l_String_Slice_trimAscii(lean_object*);
 lean_object* lean_string_utf8_extract(lean_object*, lean_object*, lean_object*);
-uint8_t l_Lake_testProc(lean_object*);
-lean_object* lean_string_append(lean_object*, lean_object*);
-lean_object* lean_array_get_size(lean_object*);
+lean_object* lean_array_push(lean_object*, lean_object*);
 lean_object* l_String_Slice_toString(lean_object*);
+lean_object* lean_nat_sub(lean_object*, lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 uint32_t lean_string_utf8_get_fast(lean_object*, lean_object*);
 uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
 lean_object* lean_string_utf8_next_fast(lean_object*, lean_object*);
 lean_object* lean_nat_add(lean_object*, lean_object*);
 lean_object* l_String_Slice_subslice_x21(lean_object*, lean_object*, lean_object*);
-lean_object* lean_array_to_list(lean_object*);
-uint8_t l_Lake_isHex(lean_object*);
-uint8_t l_System_FilePath_isDir(lean_object*);
-lean_object* l_Lake_captureProc_x27(lean_object*, lean_object*);
-lean_object* l_String_Slice_trimAscii(lean_object*);
 lean_object* l_Nat_reprFast(lean_object*);
 lean_object* l_Array_append___redArg(lean_object*, lean_object*);
+lean_object* l_Lake_proc(lean_object*, uint8_t, lean_object*);
+lean_object* l_Lake_captureProc_x3f(lean_object*);
+lean_object* lean_string_append(lean_object*, lean_object*);
+lean_object* lean_array_get_size(lean_object*);
+uint8_t l_Lake_testProc(lean_object*);
+uint8_t l_Lake_isHex(lean_object*);
+lean_object* lean_array_to_list(lean_object*);
+uint8_t lean_nat_dec_le(lean_object*, lean_object*);
+uint8_t lean_string_memcmp(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_String_Slice_Pos_prevn(lean_object*, lean_object*, lean_object*);
 static lean_once_cell_t l_Lake_Git_defaultRemote___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lake_Git_defaultRemote___closed__0;
 LEAN_EXPORT lean_object* l_Lake_Git_defaultRemote;

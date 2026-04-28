@@ -13,12 +13,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_IO_CancelToken_set(lean_object*);
-lean_object* lean_io_promise_resolve(lean_object*, lean_object*);
-lean_object* lean_io_promise_result_opt(lean_object*);
-lean_object* lean_task_map(lean_object*, lean_object*, lean_object*, uint8_t);
 uint8_t l_IO_CancelToken_isSet(lean_object*);
 lean_object* l_ExceptT_bindCont(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_io_promise_result_opt(lean_object*);
+lean_object* lean_task_map(lean_object*, lean_object*, lean_object*, uint8_t);
+lean_object* l_IO_CancelToken_set(lean_object*);
+lean_object* lean_io_promise_resolve(lean_object*, lean_object*);
 lean_object* l_IO_CancelToken_new();
 lean_object* lean_io_promise_new();
 LEAN_EXPORT lean_object* l_Lean_Server_RequestCancellationToken_new();

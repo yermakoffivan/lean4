@@ -13,11 +13,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* l_Lake_PartialBuildKey_toString(lean_object*);
+lean_object* lean_nat_to_int(lean_object*);
 lean_object* l_Lake_instReprBuildKey_repr(lean_object*, lean_object*);
 lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
-lean_object* lean_nat_to_int(lean_object*);
-lean_object* l_Lake_PartialBuildKey_toString(lean_object*);
 static lean_once_cell_t l_Lake_Target_repr___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lake_Target_repr___redArg___closed__0;
 static lean_once_cell_t l_Lake_Target_repr___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;

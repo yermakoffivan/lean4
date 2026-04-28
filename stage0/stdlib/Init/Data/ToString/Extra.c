@@ -13,13 +13,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* lean_array_to_list(lean_object*);
 lean_object* lean_string_append(lean_object*, lean_object*);
 lean_object* l_List_foldl___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* lean_string_push(lean_object*, uint32_t);
-lean_object* l_instToStringUInt8___lam__0___boxed(lean_object*);
 lean_object* l_ByteArray_toList(lean_object*);
+lean_object* l_instToStringUInt8___lam__0___boxed(lean_object*);
 lean_object* l_Int_repr___boxed(lean_object*);
-lean_object* lean_array_to_list(lean_object*);
 static lean_once_cell_t l_List_toString___redArg___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_List_toString___redArg___lam__0___closed__0;
 LEAN_EXPORT lean_object* l_List_toString___redArg___lam__0(lean_object*, lean_object*, lean_object*);

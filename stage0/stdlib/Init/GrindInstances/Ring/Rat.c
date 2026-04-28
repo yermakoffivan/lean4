@@ -13,19 +13,19 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Rat_add(lean_object*, lean_object*);
 lean_object* l_Rat_ofInt(lean_object*);
-lean_object* l_Rat_mul(lean_object*, lean_object*);
-lean_object* l_Rat_instNatCast___lam__0(lean_object*);
+lean_object* l_Rat_neg(lean_object*);
 lean_object* l_Rat_zpow___boxed(lean_object*, lean_object*);
 lean_object* l_instHAdd___redArg___lam__0(lean_object*, lean_object*, lean_object*);
-lean_object* l_Rat_sub(lean_object*, lean_object*);
-lean_object* l_Rat_neg(lean_object*);
-lean_object* l_Rat_pow___boxed(lean_object*, lean_object*);
-lean_object* l_Rat_instOfNat(lean_object*);
-lean_object* l_Rat_mul___boxed(lean_object*, lean_object*);
 lean_object* l_Rat_div___boxed(lean_object*, lean_object*);
 lean_object* l_Rat_inv(lean_object*);
+lean_object* l_Rat_mul(lean_object*, lean_object*);
+lean_object* l_Rat_sub(lean_object*, lean_object*);
+lean_object* l_Rat_pow___boxed(lean_object*, lean_object*);
+lean_object* l_Rat_instNatCast___lam__0(lean_object*);
+lean_object* l_Rat_instOfNat(lean_object*);
+lean_object* l_Rat_mul___boxed(lean_object*, lean_object*);
+lean_object* l_Rat_add(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Grind_instFieldRat___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Grind_instFieldRat___lam__1(lean_object*, lean_object*);
 static lean_once_cell_t l_Lean_Grind_instFieldRat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;

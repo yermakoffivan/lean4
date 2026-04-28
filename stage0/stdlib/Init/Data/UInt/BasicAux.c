@@ -13,22 +13,22 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_usize_to_nat(size_t);
 uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
-uint16_t lean_uint16_of_nat(lean_object*);
 uint8_t lean_uint8_of_nat(lean_object*);
-lean_object* lean_uint8_to_nat(uint8_t);
+uint8_t lean_uint8_of_nat(lean_object*);
+lean_object* lean_usize_to_nat(size_t);
+uint8_t lean_nat_dec_le(lean_object*, lean_object*);
 uint32_t lean_uint32_of_nat(lean_object*);
 extern lean_object* l_System_Platform_numBits;
 lean_object* lean_nat_pow(lean_object*, lean_object*);
 lean_object* lean_nat_sub(lean_object*, lean_object*);
 size_t lean_usize_of_nat(lean_object*);
-lean_object* lean_uint64_to_nat(uint64_t);
-lean_object* lean_uint32_to_nat(uint32_t);
-uint8_t lean_uint8_of_nat(lean_object*);
-uint64_t lean_uint64_of_nat(lean_object*);
+uint16_t lean_uint16_of_nat(lean_object*);
+lean_object* lean_uint8_to_nat(uint8_t);
 lean_object* lean_uint16_to_nat(uint16_t);
-uint8_t lean_nat_dec_le(lean_object*, lean_object*);
+lean_object* lean_uint32_to_nat(uint32_t);
+uint64_t lean_uint64_of_nat(lean_object*);
+lean_object* lean_uint64_to_nat(uint64_t);
 LEAN_EXPORT lean_object* l_UInt8_toFin(uint8_t);
 LEAN_EXPORT lean_object* l_UInt8_toFin___boxed(lean_object*);
 static lean_once_cell_t l_UInt8_ofNatTruncate___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;

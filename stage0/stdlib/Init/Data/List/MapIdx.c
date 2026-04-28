@@ -14,8 +14,8 @@
 extern "C" {
 #endif
 lean_object* lean_array_to_list(lean_object*);
-lean_object* lean_array_get_size(lean_object*);
 lean_object* lean_array_push(lean_object*, lean_object*);
+lean_object* lean_array_get_size(lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 LEAN_EXPORT lean_object* l_List_mapFinIdx_go___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_List_mapFinIdx_go(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);

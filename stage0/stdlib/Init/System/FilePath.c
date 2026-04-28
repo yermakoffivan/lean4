@@ -13,49 +13,49 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-extern uint8_t l_System_Platform_isWindows;
-lean_object* l_List_lengthTR___redArg(lean_object*);
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
-lean_object* lean_string_utf8_set(lean_object*, lean_object*, uint32_t);
-lean_object* l_Char_utf8Size(uint32_t);
-lean_object* lean_nat_add(lean_object*, lean_object*);
+uint8_t lean_string_dec_eq(lean_object*, lean_object*);
 lean_object* lean_string_utf8_byte_size(lean_object*);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
+lean_object* lean_nat_sub(lean_object*, lean_object*);
+extern uint8_t l_System_Platform_isWindows;
+lean_object* lean_nat_add(lean_object*, lean_object*);
+lean_object* l_String_Slice_posLE(lean_object*, lean_object*);
 uint32_t lean_string_utf8_get_fast(lean_object*, lean_object*);
 uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
-uint32_t lean_string_utf8_get(lean_object*, lean_object*);
-uint8_t lean_uint32_dec_le(uint32_t, uint32_t);
-lean_object* lean_string_utf8_set(lean_object*, lean_object*, uint32_t);
-uint32_t lean_uint32_add(uint32_t, uint32_t);
-lean_object* l_String_Slice_Pos_get_x3f(lean_object*, lean_object*);
+lean_object* l_Char_utf8Size(uint32_t);
+lean_object* lean_string_utf8_extract(lean_object*, lean_object*, lean_object*);
+lean_object* lean_string_append(lean_object*, lean_object*);
 lean_object* lean_string_length(lean_object*);
-uint8_t lean_nat_dec_le(lean_object*, lean_object*);
-lean_object* lean_nat_sub(lean_object*, lean_object*);
-lean_object* l_String_Slice_posLE(lean_object*, lean_object*);
+lean_object* l_String_Slice_Pos_next_x3f(lean_object*, lean_object*);
+lean_object* l_String_Slice_Pos_get_x3f(lean_object*, lean_object*);
+uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
 lean_object* lean_string_push(lean_object*, uint32_t);
-lean_object* l_String_Slice_Pattern_ForwardSliceSearcher_buildTable(lean_object*);
-uint64_t lean_string_hash(lean_object*);
-uint64_t lean_uint64_mix_hash(uint64_t, uint64_t);
+lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* lean_string_utf8_extract(lean_object*, lean_object*, lean_object*);
 lean_object* lean_array_push(lean_object*, lean_object*);
 lean_object* lean_string_utf8_next_fast(lean_object*, lean_object*);
 lean_object* l_String_Slice_subslice_x21(lean_object*, lean_object*, lean_object*);
+lean_object* lean_array_to_list(lean_object*);
 lean_object* l_String_quote(lean_object*);
 lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
-lean_object* lean_string_utf8_extract(lean_object*, lean_object*, lean_object*);
-lean_object* l_String_Slice_Pos_next_x3f(lean_object*, lean_object*);
-uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
-lean_object* lean_mk_empty_array_with_capacity(lean_object*);
-lean_object* lean_array_to_list(lean_object*);
+lean_object* l_String_intercalate(lean_object*, lean_object*);
 lean_object* l_String_Slice_toString(lean_object*);
+uint8_t lean_nat_dec_le(lean_object*, lean_object*);
 uint8_t lean_string_get_byte_fast(lean_object*, lean_object*);
 uint8_t lean_uint8_dec_eq(uint8_t, uint8_t);
 lean_object* lean_array_fget_borrowed(lean_object*, lean_object*);
 lean_object* l_String_Slice_posGE___redArg(lean_object*, lean_object*);
 lean_object* l_String_Slice_pos_x21(lean_object*, lean_object*);
-lean_object* lean_string_append(lean_object*, lean_object*);
-uint8_t lean_string_dec_eq(lean_object*, lean_object*);
+lean_object* l_String_Slice_Pattern_ForwardSliceSearcher_buildTable(lean_object*);
+lean_object* lean_string_utf8_set(lean_object*, lean_object*, uint32_t);
+lean_object* l_List_lengthTR___redArg(lean_object*);
 lean_object* l_List_reverse___redArg(lean_object*);
-lean_object* l_String_intercalate(lean_object*, lean_object*);
+uint64_t lean_string_hash(lean_object*);
+uint64_t lean_uint64_mix_hash(uint64_t, uint64_t);
+uint32_t lean_string_utf8_get(lean_object*, lean_object*);
+uint8_t lean_uint32_dec_le(uint32_t, uint32_t);
+lean_object* lean_string_utf8_set(lean_object*, lean_object*, uint32_t);
+uint32_t lean_uint32_add(uint32_t, uint32_t);
 static lean_once_cell_t l_System_instInhabitedFilePath_default___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_System_instInhabitedFilePath_default___closed__0;
 LEAN_EXPORT lean_object* l_System_instInhabitedFilePath_default;
@@ -1317,12 +1317,12 @@ return v___x_299_;
 v___jp_300_:
 {
 uint8_t v___x_304_; 
-v___x_304_ = l_List_elem___at___00System_FilePath_normalize_spec__0(v___y_303_, v___y_302_);
+v___x_304_ = l_List_elem___at___00System_FilePath_normalize_spec__0(v___y_303_, v___y_301_);
 if (v___x_304_ == 0)
 {
 lean_object* v___x_305_; 
 v___x_305_ = lean_unsigned_to_nat(3u);
-v___y_288_ = v___y_301_;
+v___y_288_ = v___y_302_;
 v___y_289_ = v___x_305_;
 goto v___jp_287_;
 }
@@ -1330,7 +1330,7 @@ else
 {
 lean_object* v___x_306_; 
 v___x_306_ = lean_unsigned_to_nat(1u);
-v___y_288_ = v___y_301_;
+v___y_288_ = v___y_302_;
 v___y_289_ = v___x_306_;
 goto v___jp_287_;
 }
@@ -1363,8 +1363,8 @@ if (lean_obj_tag(v___x_314_) == 0)
 {
 uint32_t v___x_315_; 
 v___x_315_ = 65;
-v___y_301_ = v___y_308_;
-v___y_302_ = v___x_310_;
+v___y_301_ = v___x_310_;
+v___y_302_ = v___y_308_;
 v___y_303_ = v___x_315_;
 goto v___jp_300_;
 }
@@ -1376,8 +1376,8 @@ lean_inc(v_val_316_);
 lean_dec_ref(v___x_314_);
 v___x_317_ = lean_unbox_uint32(v_val_316_);
 lean_dec(v_val_316_);
-v___y_301_ = v___y_308_;
-v___y_302_ = v___x_310_;
+v___y_301_ = v___x_310_;
+v___y_302_ = v___y_308_;
 v___y_303_ = v___x_317_;
 goto v___jp_300_;
 }

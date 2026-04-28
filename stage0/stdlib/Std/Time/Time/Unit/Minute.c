@@ -13,23 +13,23 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* l_Int_repr(lean_object*);
 lean_object* lean_nat_to_int(lean_object*);
+uint8_t lean_int_dec_lt(lean_object*, lean_object*);
+lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
+uint8_t lean_int_dec_eq(lean_object*, lean_object*);
 lean_object* lean_int_add(lean_object*, lean_object*);
 lean_object* lean_int_sub(lean_object*, lean_object*);
-lean_object* l_Rat_instNatCast___lam__0(lean_object*);
+lean_object* lean_int_emod(lean_object*, lean_object*);
+lean_object* l_Rat_ofInt(lean_object*);
 lean_object* l_Std_Time_Internal_instInhabitedUnitVal_default(lean_object*);
 lean_object* l_Int_neg___boxed(lean_object*);
 uint8_t lean_int_dec_le(lean_object*, lean_object*);
-uint8_t lean_int_dec_eq(lean_object*, lean_object*);
-uint8_t lean_int_dec_lt(lean_object*, lean_object*);
-lean_object* l_Int_repr(lean_object*);
-lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
-lean_object* l_Int_sub___boxed(lean_object*, lean_object*);
-lean_object* l_Rat_ofInt(lean_object*);
-lean_object* l_Int_repr___boxed(lean_object*);
-lean_object* lean_int_emod(lean_object*, lean_object*);
-lean_object* lean_int_neg(lean_object*);
 lean_object* l_Int_add___boxed(lean_object*, lean_object*);
+lean_object* l_Int_sub___boxed(lean_object*, lean_object*);
+lean_object* lean_int_neg(lean_object*);
+lean_object* l_Rat_instNatCast___lam__0(lean_object*);
+lean_object* l_Int_repr___boxed(lean_object*);
 static lean_once_cell_t l_Std_Time_Minute_instReprOrdinal___aux__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Time_Minute_instReprOrdinal___aux__1___closed__0;
 LEAN_EXPORT lean_object* l_Std_Time_Minute_instReprOrdinal___aux__1(lean_object*, lean_object*);

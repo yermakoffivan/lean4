@@ -13,11 +13,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* l_Lean_Name_mkStr1(lean_object*);
+lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_mkAtom(lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* lean_array_push(lean_object*, lean_object*);
-lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Name_mkStr1(lean_object*);
 static lean_once_cell_t l_Nat_bitwise__div__two__pow___auto__9___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Nat_bitwise__div__two__pow___auto__9___closed__0;
 static lean_once_cell_t l_Nat_bitwise__div__two__pow___auto__9___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;

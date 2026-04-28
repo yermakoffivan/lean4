@@ -14,10 +14,10 @@
 extern "C" {
 #endif
 lean_object* lean_array_get_size(lean_object*);
-lean_object* l_Array_toSubarray___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* lean_nat_add(lean_object*, lean_object*);
-lean_object* lean_nat_sub(lean_object*, lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
+lean_object* l_Array_toSubarray___redArg(lean_object*, lean_object*, lean_object*);
+lean_object* lean_nat_sub(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableArrayNatSubarray___lam__0(lean_object*, lean_object*);
 static lean_once_cell_t l_instSliceableArrayNatSubarray___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_instSliceableArrayNatSubarray___closed__0;

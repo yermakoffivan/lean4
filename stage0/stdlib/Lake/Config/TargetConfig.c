@@ -13,11 +13,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-uint8_t l___private_Lean_Data_Name_0__Lean_Name_quickCmpImpl(lean_object*, lean_object*);
 uint8_t l_Lean_Name_isAnonymous(lean_object*);
 extern lean_object* l_Lake_instInhabitedJobState_default;
 lean_object* lean_task_pure(lean_object*);
 lean_object* l_Lake_formatQuery___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
+uint8_t l___private_Lean_Data_Name_0__Lean_Name_quickCmpImpl(lean_object*, lean_object*);
 static lean_once_cell_t l_Lake_instInhabitedTargetConfig_default___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lake_instInhabitedTargetConfig_default___lam__0___closed__0;
 static lean_once_cell_t l_Lake_instInhabitedTargetConfig_default___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;

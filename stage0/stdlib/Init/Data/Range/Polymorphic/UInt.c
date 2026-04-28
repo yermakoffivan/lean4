@@ -13,31 +13,31 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_uint8_to_nat(uint8_t);
-lean_object* lean_nat_sub(lean_object*, lean_object*);
 lean_object* lean_uint16_to_nat(uint16_t);
-lean_object* lean_uint64_to_nat(uint64_t);
 lean_object* lean_nat_add(lean_object*, lean_object*);
 uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
+uint16_t lean_uint16_of_nat(lean_object*);
+lean_object* lean_uint64_to_nat(uint64_t);
+lean_object* lean_nat_sub(lean_object*, lean_object*);
+uint8_t lean_uint8_add(uint8_t, uint8_t);
+uint8_t lean_uint8_dec_eq(uint8_t, uint8_t);
+lean_object* lean_uint8_to_nat(uint8_t);
 uint8_t lean_uint8_of_nat(lean_object*);
+lean_object* lean_uint32_to_nat(uint32_t);
 uint32_t lean_uint32_add(uint32_t, uint32_t);
 uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
-uint64_t lean_uint64_of_nat(lean_object*);
-uint64_t lean_uint64_add(uint64_t, uint64_t);
-uint8_t lean_uint64_dec_eq(uint64_t, uint64_t);
-uint16_t lean_uint16_of_nat(lean_object*);
-lean_object* lean_uint32_to_nat(uint32_t);
 lean_object* lean_usize_to_nat(size_t);
 extern lean_object* l_System_Platform_numBits;
 lean_object* lean_nat_pow(lean_object*, lean_object*);
 size_t lean_usize_of_nat(lean_object*);
+uint32_t lean_uint32_of_nat(lean_object*);
 size_t lean_usize_add(size_t, size_t);
 uint8_t lean_usize_dec_eq(size_t, size_t);
-uint8_t lean_uint8_add(uint8_t, uint8_t);
-uint8_t lean_uint8_dec_eq(uint8_t, uint8_t);
+uint64_t lean_uint64_add(uint64_t, uint64_t);
+uint8_t lean_uint64_dec_eq(uint64_t, uint64_t);
+uint64_t lean_uint64_of_nat(lean_object*);
 uint16_t lean_uint16_add(uint16_t, uint16_t);
 uint8_t lean_uint16_dec_eq(uint16_t, uint16_t);
-uint32_t lean_uint32_of_nat(lean_object*);
 LEAN_EXPORT lean_object* l_UInt8_instUpwardEnumerable___lam__0(uint8_t);
 LEAN_EXPORT lean_object* l_UInt8_instUpwardEnumerable___lam__0___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_UInt8_instUpwardEnumerable___lam__1(lean_object*, uint8_t);

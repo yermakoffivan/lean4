@@ -13,26 +13,26 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Rat_ofInt(lean_object*);
-lean_object* lean_int_mul(lean_object*, lean_object*);
-lean_object* lean_int_add(lean_object*, lean_object*);
 lean_object* lean_nat_to_int(lean_object*);
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
-lean_object* lean_int_emod(lean_object*, lean_object*);
-uint8_t lean_int_dec_eq(lean_object*, lean_object*);
-lean_object* lean_nat_sub(lean_object*, lean_object*);
-lean_object* lean_int_ediv(lean_object*, lean_object*);
-lean_object* lean_nat_add(lean_object*, lean_object*);
-lean_object* lean_nat_abs(lean_object*);
-lean_object* l_Int_shiftRight(lean_object*, lean_object*);
+uint8_t lean_int_dec_le(lean_object*, lean_object*);
 lean_object* lean_int_sub(lean_object*, lean_object*);
 uint8_t lean_int_dec_lt(lean_object*, lean_object*);
-lean_object* lean_int_neg(lean_object*);
+lean_object* lean_nat_abs(lean_object*);
 lean_object* l_Int_shiftLeft(lean_object*, lean_object*);
+lean_object* lean_nat_sub(lean_object*, lean_object*);
+lean_object* lean_nat_add(lean_object*, lean_object*);
+lean_object* lean_int_neg(lean_object*);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
+lean_object* lean_int_add(lean_object*, lean_object*);
+uint8_t lean_int_dec_eq(lean_object*, lean_object*);
+lean_object* lean_int_emod(lean_object*, lean_object*);
+lean_object* lean_int_ediv(lean_object*, lean_object*);
+lean_object* l_Int_shiftRight(lean_object*, lean_object*);
+lean_object* l_Rat_ofInt(lean_object*);
 lean_object* lean_nat_shiftl(lean_object*, lean_object*);
-lean_object* lean_nat_pow(lean_object*, lean_object*);
+lean_object* lean_int_mul(lean_object*, lean_object*);
 lean_object* l_Int_pow(lean_object*, lean_object*);
-uint8_t lean_int_dec_le(lean_object*, lean_object*);
+lean_object* lean_nat_pow(lean_object*, lean_object*);
 static lean_once_cell_t l_Int_trailingZeros_aux___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Int_trailingZeros_aux___redArg___closed__0;
 static lean_once_cell_t l_Int_trailingZeros_aux___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;

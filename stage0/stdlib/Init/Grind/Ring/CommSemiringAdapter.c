@@ -14,24 +14,24 @@
 extern "C" {
 #endif
 lean_object* lean_nat_abs(lean_object*);
-lean_object* l_Lean_RArray_getImpl___redArg(lean_object*, lean_object*);
 lean_object* lean_nat_to_int(lean_object*);
-uint8_t lean_int_dec_lt(lean_object*, lean_object*);
-lean_object* l_Lean_Grind_CommRing_Mon_denote___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Grind_CommRing_Poly_ofVar(lean_object*);
 lean_object* l_Lean_Grind_CommRing_Poly_combine(lean_object*, lean_object*);
-lean_object* l_Lean_Grind_CommRing_Poly_mul__nc(lean_object*, lean_object*);
+lean_object* l_Lean_Grind_CommRing_Poly_mul(lean_object*, lean_object*);
 lean_object* l_Int_pow(lean_object*, lean_object*);
 lean_object* l_Lean_Grind_CommRing_Poly_ofMon(lean_object*);
-lean_object* l_Lean_Grind_CommRing_Poly_pow__nc(lean_object*, lean_object*);
+lean_object* l_Lean_Grind_CommRing_Poly_pow(lean_object*, lean_object*);
 uint8_t l_Lean_Grind_CommRing_instBEqPoly_beq(lean_object*, lean_object*);
+uint8_t lean_int_dec_lt(lean_object*, lean_object*);
+lean_object* l_Lean_Grind_CommRing_Mon_denote___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Grind_Ring_OfSemiring_natCast___redArg(lean_object*, lean_object*);
+lean_object* l_Lean_RArray_getImpl___redArg(lean_object*, lean_object*);
 lean_object* l_Lean_Grind_Ring_OfSemiring_toQ___redArg(lean_object*, lean_object*);
 lean_object* l_Lean_Grind_Ring_OfSemiring_add___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Grind_Ring_OfSemiring_mul___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Grind_Ring_OfSemiring_npow___redArg(lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Grind_CommRing_Poly_mul(lean_object*, lean_object*);
-lean_object* l_Lean_Grind_CommRing_Poly_pow(lean_object*, lean_object*);
+lean_object* l_Lean_Grind_CommRing_Poly_mul__nc(lean_object*, lean_object*);
+lean_object* l_Lean_Grind_CommRing_Poly_pow__nc(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Grind_CommRing_Expr_denoteS___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Grind_CommRing_Expr_denoteS___redArg___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Grind_CommRing_Expr_denoteS(lean_object*, lean_object*, lean_object*, lean_object*);

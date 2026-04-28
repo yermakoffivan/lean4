@@ -14,8 +14,8 @@
 extern "C" {
 #endif
 lean_object* lean_nat_to_int(lean_object*);
-lean_object* lean_int_ediv(lean_object*, lean_object*);
 lean_object* lean_int_mul(lean_object*, lean_object*);
+lean_object* lean_int_ediv(lean_object*, lean_object*);
 static lean_once_cell_t l_Std_Time_Day_Offset_ofWeeks___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Time_Day_Offset_ofWeeks___closed__0;
 LEAN_EXPORT lean_object* l_Std_Time_Day_Offset_ofWeeks(lean_object*);

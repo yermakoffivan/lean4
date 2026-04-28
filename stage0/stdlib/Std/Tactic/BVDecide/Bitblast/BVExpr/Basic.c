@@ -13,13 +13,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-uint64_t lean_uint64_of_nat(lean_object*);
-uint64_t lean_uint64_mix_hash(uint64_t, uint64_t);
-lean_object* lean_nat_to_int(lean_object*);
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
-lean_object* l_Lean_RArray_getImpl___redArg(lean_object*, lean_object*);
-lean_object* l_BitVec_setWidth(lean_object*, lean_object*, lean_object*);
-lean_object* l_BitVec_extractLsb_x27___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* lean_nat_land(lean_object*, lean_object*);
 lean_object* lean_nat_lor(lean_object*, lean_object*);
 lean_object* lean_nat_lxor(lean_object*, lean_object*);
@@ -27,6 +20,17 @@ lean_object* l_BitVec_add(lean_object*, lean_object*, lean_object*);
 lean_object* l_BitVec_mul(lean_object*, lean_object*, lean_object*);
 lean_object* lean_nat_div(lean_object*, lean_object*);
 lean_object* lean_nat_mod(lean_object*, lean_object*);
+lean_object* l_Nat_reprFast(lean_object*);
+lean_object* lean_string_append(lean_object*, lean_object*);
+lean_object* l_BitVec_repr(lean_object*, lean_object*);
+extern lean_object* l_Std_Format_defWidth;
+lean_object* l_Std_Format_pretty(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_nat_to_int(lean_object*);
+lean_object* lean_string_length(lean_object*);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
+uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
+uint64_t lean_uint64_of_nat(lean_object*);
+uint64_t lean_uint64_mix_hash(uint64_t, uint64_t);
 lean_object* l_BitVec_not(lean_object*, lean_object*);
 lean_object* l_BitVec_rotateLeft(lean_object*, lean_object*, lean_object*);
 lean_object* l_BitVec_rotateRight(lean_object*, lean_object*, lean_object*);
@@ -34,24 +38,20 @@ lean_object* l_BitVec_sshiftRight(lean_object*, lean_object*, lean_object*);
 lean_object* l_BitVec_reverse(lean_object*, lean_object*);
 lean_object* l_BitVec_clz(lean_object*, lean_object*);
 lean_object* l_BitVec_cpop(lean_object*, lean_object*);
+uint64_t l_BitVec_hash(lean_object*, lean_object*);
+size_t lean_ptr_addr(lean_object*);
+uint8_t lean_usize_dec_eq(size_t, size_t);
+uint8_t lean_uint64_dec_eq(uint64_t, uint64_t);
+lean_object* l_Lean_RArray_getImpl___redArg(lean_object*, lean_object*);
+lean_object* l_BitVec_setWidth(lean_object*, lean_object*, lean_object*);
+lean_object* l_BitVec_extractLsb_x27___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* l_BitVec_append___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* l_BitVec_replicate(lean_object*, lean_object*, lean_object*);
 lean_object* l_BitVec_shiftLeft(lean_object*, lean_object*, lean_object*);
 lean_object* lean_nat_shiftr(lean_object*, lean_object*);
-uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
 uint8_t l_Nat_testBit(lean_object*, lean_object*);
-uint8_t l_Std_Tactic_BVDecide_BoolExpr_eval___redArg(lean_object*, lean_object*);
-lean_object* l_Nat_reprFast(lean_object*);
-lean_object* lean_string_length(lean_object*);
-lean_object* lean_string_append(lean_object*, lean_object*);
-size_t lean_ptr_addr(lean_object*);
-uint8_t lean_usize_dec_eq(size_t, size_t);
-uint8_t lean_uint64_dec_eq(uint64_t, uint64_t);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
-lean_object* l_BitVec_repr(lean_object*, lean_object*);
-extern lean_object* l_Std_Format_defWidth;
-lean_object* l_Std_Format_pretty(lean_object*, lean_object*, lean_object*, lean_object*);
-uint64_t l_BitVec_hash(lean_object*, lean_object*);
+uint8_t l_Std_Tactic_BVDecide_BoolExpr_eval___redArg(lean_object*, lean_object*);
 LEAN_EXPORT uint64_t l_Std_Tactic_BVDecide_instHashableBVBit_hash(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_instHashableBVBit_hash___boxed(lean_object*);
 static lean_once_cell_t l_Std_Tactic_BVDecide_instHashableBVBit___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -3590,8 +3590,8 @@ goto v___jp_959_;
 v___jp_950_:
 {
 uint64_t v___x_954_; uint64_t v___x_955_; uint64_t v___x_956_; uint64_t v___x_957_; lean_object* v___x_958_; 
-v___x_954_ = lean_uint64_mix_hash(v___y_951_, v___y_953_);
-v___x_955_ = lean_uint64_mix_hash(v___y_952_, v___x_954_);
+v___x_954_ = lean_uint64_mix_hash(v___y_952_, v___y_953_);
+v___x_955_ = lean_uint64_mix_hash(v___y_951_, v___x_954_);
 v___x_956_ = lean_uint64_mix_hash(v___x_949_, v___x_955_);
 v___x_957_ = lean_uint64_mix_hash(v___x_948_, v___x_956_);
 v___x_958_ = lean_alloc_ctor(3, 3, 9);
@@ -3612,8 +3612,8 @@ case 0:
 {
 uint64_t v_hashCode_962_; 
 v_hashCode_962_ = lean_ctor_get_uint64(v_rhs_947_, sizeof(void*)*2);
-v___y_951_ = v___x_961_;
-v___y_952_ = v___y_960_;
+v___y_951_ = v___y_960_;
+v___y_952_ = v___x_961_;
 v___y_953_ = v_hashCode_962_;
 goto v___jp_950_;
 }
@@ -3621,8 +3621,8 @@ case 1:
 {
 uint64_t v_hashCode_963_; 
 v_hashCode_963_ = lean_ctor_get_uint64(v_rhs_947_, sizeof(void*)*2);
-v___y_951_ = v___x_961_;
-v___y_952_ = v___y_960_;
+v___y_951_ = v___y_960_;
+v___y_952_ = v___x_961_;
 v___y_953_ = v_hashCode_963_;
 goto v___jp_950_;
 }
@@ -3630,8 +3630,8 @@ case 3:
 {
 uint64_t v_hashCode_964_; 
 v_hashCode_964_ = lean_ctor_get_uint64(v_rhs_947_, sizeof(void*)*3);
-v___y_951_ = v___x_961_;
-v___y_952_ = v___y_960_;
+v___y_951_ = v___y_960_;
+v___y_952_ = v___x_961_;
 v___y_953_ = v_hashCode_964_;
 goto v___jp_950_;
 }
@@ -3639,8 +3639,8 @@ case 4:
 {
 uint64_t v_hashCode_965_; 
 v_hashCode_965_ = lean_ctor_get_uint64(v_rhs_947_, sizeof(void*)*3);
-v___y_951_ = v___x_961_;
-v___y_952_ = v___y_960_;
+v___y_951_ = v___y_960_;
+v___y_952_ = v___x_961_;
 v___y_953_ = v_hashCode_965_;
 goto v___jp_950_;
 }
@@ -3648,8 +3648,8 @@ case 5:
 {
 uint64_t v_hashCode_966_; 
 v_hashCode_966_ = lean_ctor_get_uint64(v_rhs_947_, sizeof(void*)*5);
-v___y_951_ = v___x_961_;
-v___y_952_ = v___y_960_;
+v___y_951_ = v___y_960_;
+v___y_952_ = v___x_961_;
 v___y_953_ = v_hashCode_966_;
 goto v___jp_950_;
 }
@@ -3657,8 +3657,8 @@ default:
 {
 uint64_t v_hashCode_967_; 
 v_hashCode_967_ = lean_ctor_get_uint64(v_rhs_947_, sizeof(void*)*4);
-v___y_951_ = v___x_961_;
-v___y_952_ = v___y_960_;
+v___y_951_ = v___y_960_;
+v___y_952_ = v___x_961_;
 v___y_953_ = v_hashCode_967_;
 goto v___jp_950_;
 }

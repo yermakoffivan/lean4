@@ -13,7 +13,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_System_FilePath_parent(lean_object*);
+lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* lean_nat_to_int(lean_object*);
 lean_object* l_String_quote(lean_object*);
 lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
@@ -23,7 +23,7 @@ uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* lean_array_to_list(lean_object*);
 lean_object* lean_string_length(lean_object*);
 lean_object* l_Std_Format_fill(lean_object*);
-lean_object* lean_mk_empty_array_with_capacity(lean_object*);
+lean_object* l_System_FilePath_parent(lean_object*);
 static lean_once_cell_t l_Lake_instInhabitedDynlib_default___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lake_instInhabitedDynlib_default___closed__0;
 static lean_once_cell_t l_Lake_instInhabitedDynlib_default___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;

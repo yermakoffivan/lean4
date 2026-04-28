@@ -16,8 +16,8 @@ extern "C" {
 lean_object* lean_nat_to_int(lean_object*);
 uint8_t lean_int_dec_lt(lean_object*, lean_object*);
 lean_object* lean_nat_abs(lean_object*);
-lean_object* lean_nat_sub(lean_object*, lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
+lean_object* lean_nat_sub(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Int_instTransLe;
 LEAN_EXPORT lean_object* l_Int_instTransLtLe;
 LEAN_EXPORT lean_object* l_Int_instTransLeLt;

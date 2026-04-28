@@ -13,17 +13,24 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_nat_to_int(lean_object*);
+lean_object* lean_mk_empty_array_with_capacity(lean_object*);
+lean_object* lean_array_get_size(lean_object*);
+lean_object* lean_get_current_time();
+lean_object* l_Std_Time_Database_defaultGetLocalZoneRules();
 lean_object* l_Std_Time_PlainDateTime_ofTimestampAssumingUTC(lean_object*);
 lean_object* l_Std_Time_PlainDateTime_toTimestampAssumingUTC(lean_object*);
+lean_object* l_Std_Time_TimeZone_LocalTimeType_getTimeZone(lean_object*);
 lean_object* l_Std_Time_TimeZone_toSeconds(lean_object*);
+lean_object* lean_nat_to_int(lean_object*);
 lean_object* lean_int_mul(lean_object*, lean_object*);
 lean_object* l_Std_Time_Duration_ofNanoseconds(lean_object*);
 lean_object* lean_int_add(lean_object*, lean_object*);
+lean_object* l_Std_Time_TimeZone_Transition_findTransitionForTimestamp(lean_object*, lean_object*);
+lean_object* lean_thunk_get_own(lean_object*);
+lean_object* lean_int_ediv(lean_object*, lean_object*);
+lean_object* l_Std_Time_PlainDate_ofDaysSinceUNIXEpoch(lean_object*);
 extern lean_object* l_Std_Time_PlainTime_midnight;
-lean_object* l_Std_Time_TimeZone_LocalTimeType_getTimeZone(lean_object*);
 lean_object* lean_int_neg(lean_object*);
-lean_object* lean_mk_thunk(lean_object*);
 uint8_t lean_int_dec_le(lean_object*, lean_object*);
 lean_object* l___private_Init_Data_Array_Basic_0__Array_findFinIdx_x3f_loop(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* lean_array_fget_borrowed(lean_object*, lean_object*);
@@ -31,18 +38,11 @@ lean_object* lean_nat_sub(lean_object*, lean_object*);
 lean_object* lean_nat_abs(lean_object*);
 lean_object* lean_int_sub(lean_object*, lean_object*);
 uint8_t lean_int_dec_lt(lean_object*, lean_object*);
-lean_object* lean_array_get_size(lean_object*);
 uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
-lean_object* lean_int_ediv(lean_object*, lean_object*);
-lean_object* l_Std_Time_PlainDate_ofDaysSinceUNIXEpoch(lean_object*);
-lean_object* lean_get_current_time();
-lean_object* l_Std_Time_Database_defaultGetLocalZoneRules();
-lean_object* l_Std_Time_TimeZone_Transition_findTransitionForTimestamp(lean_object*, lean_object*);
-lean_object* lean_mk_empty_array_with_capacity(lean_object*);
+lean_object* lean_mk_thunk(lean_object*);
 lean_object* l_Std_Time_TimeZone_Transition_timezoneAt(lean_object*, lean_object*);
-lean_object* lean_thunk_get_own(lean_object*);
-lean_object* l_Std_Time_Database_defaultGetZoneRules(lean_object*);
 lean_object* l_Std_Time_PlainDate_toDaysSinceUNIXEpoch(lean_object*);
+lean_object* l_Std_Time_Database_defaultGetZoneRules(lean_object*);
 static lean_once_cell_t l_Std_Time_PlainDateTime_now___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Time_PlainDateTime_now___closed__0;
 LEAN_EXPORT lean_object* l_Std_Time_PlainDateTime_now();

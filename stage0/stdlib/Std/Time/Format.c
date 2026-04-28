@@ -13,47 +13,47 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Std_Time_GenericFormat_formatBuilder___redArg(lean_object*);
-lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
-lean_object* l_Std_Time_Month_Ordinal_days(uint8_t, lean_object*);
-uint8_t lean_int_dec_le(lean_object*, lean_object*);
-lean_object* lean_nat_to_int(lean_object*);
-lean_object* lean_int_mod(lean_object*, lean_object*);
-uint8_t lean_int_dec_eq(lean_object*, lean_object*);
-lean_object* l_Std_Time_GenericFormat_parseBuilder___redArg(lean_object*, lean_object*, lean_object*);
-lean_object* lean_thunk_get_own(lean_object*);
-lean_object* l_Std_Time_PlainDate_dayOfYear(lean_object*);
-uint8_t l_Std_Time_Year_Offset_era(lean_object*);
-lean_object* l_Std_Time_PlainDate_quarter(lean_object*);
-lean_object* l_Std_Time_PlainDate_weekOfYear(lean_object*);
-lean_object* l_Std_Time_PlainDate_alignedWeekOfMonth(lean_object*);
-uint8_t l_Std_Time_PlainDate_weekday(lean_object*);
-lean_object* l_Std_Time_PlainDate_weekOfMonth(lean_object*);
-extern lean_object* l_Std_Time_TimeZone_GMT;
-lean_object* l_Std_Time_GenericFormat_format(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Std_Time_PlainDateTime_ofTimestampAssumingUTC(lean_object*);
 lean_object* l_Std_Time_PlainDateTime_toTimestampAssumingUTC(lean_object*);
 lean_object* l_Std_Time_TimeZone_toSeconds(lean_object*);
+lean_object* lean_nat_to_int(lean_object*);
 lean_object* lean_int_mul(lean_object*, lean_object*);
 lean_object* l_Std_Time_Duration_ofNanoseconds(lean_object*);
 lean_object* lean_int_add(lean_object*, lean_object*);
 lean_object* lean_mk_thunk(lean_object*);
-lean_object* l_Std_Time_GenericFormat_parse(lean_object*, lean_object*, lean_object*);
+lean_object* l_Std_Time_GenericFormat_format(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Std_Time_GenericFormat_formatBuilder___redArg(lean_object*);
+lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
+lean_object* lean_thunk_get_own(lean_object*);
 lean_object* lean_nat_mod(lean_object*, lean_object*);
+extern lean_object* l_Std_Time_TimeZone_GMT;
+lean_object* l_Std_Time_GenericFormat_parse(lean_object*, lean_object*, lean_object*);
 lean_object* l_Std_Time_GenericFormat_spec___redArg(lean_object*, uint8_t);
 lean_object* lean_string_append(lean_object*, lean_object*);
-lean_object* l_Std_Time_GenericFormat_formatGeneric___redArg(lean_object*, lean_object*);
-lean_object* l_Std_Time_TimeZone_Offset_toIsoString(lean_object*, uint8_t);
 lean_object* l_Std_Time_Hour_Ordinal_shiftTo1BasedHour(lean_object*);
 uint8_t l_Std_Time_HourMarker_ofOrdinal(lean_object*);
 lean_object* l_Std_Time_Hour_Ordinal_toRelative(lean_object*);
 lean_object* lean_int_emod(lean_object*, lean_object*);
 lean_object* l_Std_Time_PlainTime_toMilliseconds(lean_object*);
 lean_object* l_Std_Time_PlainTime_toNanoseconds(lean_object*);
+lean_object* l_Std_Time_GenericFormat_formatGeneric___redArg(lean_object*, lean_object*);
+uint8_t lean_int_dec_le(lean_object*, lean_object*);
 lean_object* l_Std_Time_HourMarker_toAbsolute(uint8_t, lean_object*);
-lean_object* l_Std_Time_ValidDate_dayOfYear(uint8_t, lean_object*);
-lean_object* l_Std_Time_PlainDateTime_weekOfMonth(lean_object*);
+lean_object* l_Std_Time_GenericFormat_parseBuilder___redArg(lean_object*, lean_object*, lean_object*);
+lean_object* l_Std_Time_Month_Ordinal_days(uint8_t, lean_object*);
+lean_object* lean_int_mod(lean_object*, lean_object*);
+uint8_t lean_int_dec_eq(lean_object*, lean_object*);
 extern lean_object* l_Std_Time_TimeZone_UTC;
+uint8_t l_Std_Time_Year_Offset_era(lean_object*);
+lean_object* l_Std_Time_ValidDate_dayOfYear(uint8_t, lean_object*);
+lean_object* l_Std_Time_PlainDate_quarter(lean_object*);
+lean_object* l_Std_Time_PlainDate_weekOfYear(lean_object*);
+lean_object* l_Std_Time_PlainDate_alignedWeekOfMonth(lean_object*);
+uint8_t l_Std_Time_PlainDate_weekday(lean_object*);
+lean_object* l_Std_Time_PlainDateTime_weekOfMonth(lean_object*);
+lean_object* l_Std_Time_TimeZone_Offset_toIsoString(lean_object*, uint8_t);
+lean_object* l_Std_Time_PlainDate_dayOfYear(lean_object*);
+lean_object* l_Std_Time_PlainDate_weekOfMonth(lean_object*);
 static lean_once_cell_t l_Std_Time_Formats_iso8601___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Time_Formats_iso8601___closed__0;
 static lean_once_cell_t l_Std_Time_Formats_iso8601___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -6423,7 +6423,7 @@ goto v_resetjp_1397_;
 }
 v_resetjp_1397_:
 {
-lean_object* v_year_1400_; lean_object* v_month_1401_; lean_object* v_day_1402_; uint8_t v___y_1404_; uint8_t v___y_1405_; uint8_t v___y_1416_; lean_object* v___y_1417_; lean_object* v___y_1418_; uint8_t v___y_1423_; lean_object* v___x_1431_; lean_object* v___x_1432_; lean_object* v___x_1433_; uint8_t v___x_1438_; 
+lean_object* v_year_1400_; lean_object* v_month_1401_; lean_object* v_day_1402_; uint8_t v___y_1404_; uint8_t v___y_1405_; lean_object* v___y_1416_; uint8_t v___y_1417_; lean_object* v___y_1418_; uint8_t v___y_1423_; lean_object* v___x_1431_; lean_object* v___x_1432_; lean_object* v___x_1433_; uint8_t v___x_1438_; 
 v_year_1400_ = lean_ctor_get(v_date_1396_, 0);
 lean_inc(v_year_1400_);
 v_month_1401_ = lean_ctor_get(v_date_1396_, 1);
@@ -6520,9 +6520,9 @@ lean_object* v___x_1419_; lean_object* v___x_1420_; uint8_t v___x_1421_;
 v___x_1419_ = lean_obj_once(&l_Std_Time_PlainDate_format___lam__0___closed__2, &l_Std_Time_PlainDate_format___lam__0___closed__2_once, _init_l_Std_Time_PlainDate_format___lam__0___closed__2);
 v___x_1420_ = lean_int_mod(v___y_1418_, v___x_1419_);
 lean_dec(v___y_1418_);
-v___x_1421_ = lean_int_dec_eq(v___x_1420_, v___y_1417_);
+v___x_1421_ = lean_int_dec_eq(v___x_1420_, v___y_1416_);
 lean_dec(v___x_1420_);
-v___y_1404_ = v___y_1416_;
+v___y_1404_ = v___y_1417_;
 v___y_1405_ = v___x_1421_;
 goto v___jp_1403_;
 }
@@ -6552,8 +6552,8 @@ if (v___x_1430_ == 0)
 {
 if (v___x_1427_ == 0)
 {
-v___y_1416_ = v___y_1423_;
-v___y_1417_ = v___x_1426_;
+v___y_1416_ = v___x_1426_;
+v___y_1417_ = v___y_1423_;
 v___y_1418_ = v_year_1400_;
 goto v___jp_1415_;
 }
@@ -6567,8 +6567,8 @@ goto v___jp_1403_;
 }
 else
 {
-v___y_1416_ = v___y_1423_;
-v___y_1417_ = v___x_1426_;
+v___y_1416_ = v___x_1426_;
+v___y_1417_ = v___y_1423_;
 v___y_1418_ = v_year_1400_;
 goto v___jp_1415_;
 }

@@ -13,11 +13,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_nat_to_int(lean_object*);
+lean_object* lean_int_mul(lean_object*, lean_object*);
 lean_object* lean_int_sub(lean_object*, lean_object*);
 lean_object* l_Int_toNat(lean_object*);
-lean_object* lean_int_mul(lean_object*, lean_object*);
 lean_object* l_Int_gcd(lean_object*, lean_object*);
+lean_object* lean_nat_to_int(lean_object*);
 lean_object* lean_int_ediv(lean_object*, lean_object*);
 lean_object* l_Int_lcm(lean_object*, lean_object*);
 lean_object* lean_nat_mod(lean_object*, lean_object*);

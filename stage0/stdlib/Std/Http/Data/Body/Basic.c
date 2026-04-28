@@ -13,10 +13,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* l_String_toUTF8___boxed(lean_object*);
 uint8_t lean_string_validate_utf8(lean_object*);
 lean_object* lean_string_from_utf8_unchecked(lean_object*);
 lean_object* l_id___boxed(lean_object*, lean_object*);
-lean_object* l_String_toUTF8___boxed(lean_object*);
 static lean_once_cell_t l_Std_Http_Body_instToByteArrayByteArray___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Http_Body_instToByteArrayByteArray___closed__0;
 LEAN_EXPORT lean_object* l_Std_Http_Body_instToByteArrayByteArray;

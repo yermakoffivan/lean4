@@ -15,8 +15,8 @@ extern "C" {
 #endif
 lean_object* lean_nat_to_int(lean_object*);
 lean_object* lean_int_mul(lean_object*, lean_object*);
-lean_object* lean_int_sub(lean_object*, lean_object*);
 lean_object* lean_int_add(lean_object*, lean_object*);
+lean_object* lean_int_sub(lean_object*, lean_object*);
 lean_object* lean_int_div(lean_object*, lean_object*);
 lean_object* l_Int_add___boxed(lean_object*, lean_object*);
 lean_object* l_Int_sub___boxed(lean_object*, lean_object*);

@@ -13,26 +13,26 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_array_get_size(lean_object*);
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
-uint8_t l_Array_isEqvAux___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
+uint8_t l_Array_compareLex___redArg(lean_object*, lean_object*, lean_object*);
+uint8_t lean_string_dec_lt(lean_object*, lean_object*);
 uint8_t lean_string_dec_eq(lean_object*, lean_object*);
+uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
+uint8_t lean_int_dec_lt(lean_object*, lean_object*);
 uint8_t lean_int_dec_eq(lean_object*, lean_object*);
-lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* lean_nat_to_int(lean_object*);
 lean_object* l_String_quote(lean_object*);
 lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
 lean_object* l_Array_repr___redArg(lean_object*, lean_object*);
-lean_object* lean_string_length(lean_object*);
-uint8_t lean_int_dec_lt(lean_object*, lean_object*);
-lean_object* l_Int_repr(lean_object*);
-uint8_t l_Array_compareLex___redArg(lean_object*, lean_object*, lean_object*);
-uint8_t lean_string_dec_lt(lean_object*, lean_object*);
-uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
 lean_object* l_Option_repr___redArg(lean_object*, lean_object*, lean_object*);
-uint8_t l_Option_instBEq_beq___redArg(lean_object*, lean_object*, lean_object*);
+lean_object* lean_string_length(lean_object*);
+lean_object* l_Int_repr(lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
+lean_object* lean_mk_empty_array_with_capacity(lean_object*);
+lean_object* lean_array_get_size(lean_object*);
+uint8_t l_Array_isEqvAux___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
+uint8_t l_Option_instBEq_beq___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* l_Array_append___redArg(lean_object*, lean_object*);
 lean_object* lean_array_push(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Doc_MathMode_ctorIdx(uint8_t);

@@ -13,17 +13,17 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* l_Std_DTreeMap_Internal_Cell_Const_get_x3f___redArg(lean_object*);
+lean_object* l_Std_DTreeMap_Internal_Cell_ofEq___redArg(lean_object*, lean_object*);
+lean_object* l_mkPanicMessageWithDecl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_panic___redArg(lean_object*, lean_object*);
 lean_object* l_List_head_x3f___redArg(lean_object*);
 lean_object* l_Std_DTreeMap_Internal_Impl_toListModel___redArg(lean_object*);
 lean_object* l_List_appendTR___redArg(lean_object*, lean_object*);
-lean_object* l_Std_DTreeMap_Internal_Cell_ofEq___redArg(lean_object*, lean_object*);
-lean_object* l_Std_DTreeMap_Internal_Cell_getKey_x3f___redArg(lean_object*);
 lean_object* l_Std_DTreeMap_Internal_Cell_getEntry_x3f___redArg(lean_object*);
-lean_object* l_Std_DTreeMap_Internal_Cell_Const_get_x3f___redArg(lean_object*);
-lean_object* l_mkPanicMessageWithDecl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_panic___redArg(lean_object*, lean_object*);
-uint8_t l_Std_DTreeMap_Internal_Cell_contains___redArg(lean_object*);
 lean_object* l_Std_DTreeMap_Internal_Cell_get_x3f___redArg(lean_object*);
+uint8_t l_Std_DTreeMap_Internal_Cell_contains___redArg(lean_object*);
+lean_object* l_Std_DTreeMap_Internal_Cell_getKey_x3f___redArg(lean_object*);
 LEAN_EXPORT uint8_t l_Std_DTreeMap_Internal_Impl_contains_x27___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_DTreeMap_Internal_Impl_contains_x27___redArg___boxed(lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Std_DTreeMap_Internal_Impl_contains_x27(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);

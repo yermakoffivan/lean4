@@ -14,9 +14,9 @@
 extern "C" {
 #endif
 lean_object* lean_array_fget_borrowed(lean_object*, lean_object*);
+uint8_t l_Array_contains___redArg(lean_object*, lean_object*, lean_object*);
 uint8_t l_Nat_decidableBallLT___redArg(lean_object*, lean_object*);
 uint8_t l_Nat_decidableExistsLT_x27___redArg(lean_object*, lean_object*);
-uint8_t l_Array_contains___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Vector_instDecidableForallForallMemOfDecidablePred___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Vector_instDecidableForallForallMemOfDecidablePred___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Vector_instDecidableForallForallMemOfDecidablePred___redArg(lean_object*, lean_object*, lean_object*);

@@ -13,11 +13,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-extern lean_object* l_Lean_Parser_Tactic_Grind_grindSeq;
 extern lean_object* l_Lean_Parser_Tactic_grindParam;
 lean_object* l_Lean_Name_mkStr1(lean_object*);
-extern lean_object* l_Lean_Parser_Tactic_optConfig;
 lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
+extern lean_object* l_Lean_Parser_Tactic_optConfig;
+extern lean_object* l_Lean_Parser_Tactic_Grind_grindSeq;
 static lean_once_cell_t l_Lean_Parser_Tactic_grind___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Parser_Tactic_grind___closed__0;
 static lean_once_cell_t l_Lean_Parser_Tactic_grind___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;

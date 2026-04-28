@@ -14,9 +14,9 @@
 extern "C" {
 #endif
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
+lean_object* l_Lean_Name_mkStr1(lean_object*);
 lean_object* l_instDecidableEqNat___boxed(lean_object*, lean_object*);
 uint8_t l_instDecidableEqList___redArg(lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Name_mkStr1(lean_object*);
 static lean_once_cell_t l_Lean_instInhabitedNameGenerator_default___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_instInhabitedNameGenerator_default___closed__0;
 static lean_once_cell_t l_Lean_instInhabitedNameGenerator_default___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;

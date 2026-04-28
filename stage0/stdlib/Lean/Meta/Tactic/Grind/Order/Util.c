@@ -13,18 +13,18 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Lean_stringToMessageData(lean_object*);
-lean_object* lean_nat_to_int(lean_object*);
-uint8_t lean_int_dec_eq(lean_object*, lean_object*);
-lean_object* l_Int_repr(lean_object*);
-lean_object* lean_string_append(lean_object*, lean_object*);
-lean_object* l_Lean_Meta_Grind_Order_getExpr(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Meta_Grind_Arith_quoteIfArithTerm(lean_object*);
-lean_object* l_Lean_MessageData_ofFormat(lean_object*);
-lean_object* l_Lean_MessageData_ofExpr(lean_object*);
 uint8_t lean_int_dec_lt(lean_object*, lean_object*);
 uint8_t l_instDecidableEqOrdering(uint8_t, uint8_t);
+lean_object* l_Lean_Meta_Grind_Order_getExpr(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_nat_to_int(lean_object*);
+uint8_t lean_int_dec_eq(lean_object*, lean_object*);
+lean_object* l_Lean_Meta_Grind_Arith_quoteIfArithTerm(lean_object*);
+lean_object* l_Lean_stringToMessageData(lean_object*);
+lean_object* l_Int_repr(lean_object*);
+lean_object* l_Lean_MessageData_ofFormat(lean_object*);
 lean_object* lean_int_add(lean_object*, lean_object*);
+lean_object* l_Lean_MessageData_ofExpr(lean_object*);
+lean_object* lean_string_append(lean_object*, lean_object*);
 static lean_once_cell_t l_Lean_Meta_Grind_Order_Cnstr_pp___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Order_Cnstr_pp___closed__0;
 static lean_once_cell_t l_Lean_Meta_Grind_Order_Cnstr_pp___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;

@@ -13,28 +13,28 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
-lean_object* lean_nat_to_int(lean_object*);
-uint8_t lean_int_dec_eq(lean_object*, lean_object*);
-lean_object* lean_int_add(lean_object*, lean_object*);
-lean_object* lean_nat_sub(lean_object*, lean_object*);
-lean_object* lean_nat_add(lean_object*, lean_object*);
-uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
 uint8_t l_Nat_blt(lean_object*, lean_object*);
-lean_object* l_Lean_Grind_Ring_toIntModule___redArg(lean_object*);
-lean_object* l_Lean_RArray_getImpl___redArg(lean_object*, lean_object*);
-lean_object* l_Nat_reprFast(lean_object*);
-lean_object* lean_string_length(lean_object*);
+lean_object* lean_nat_to_int(lean_object*);
 uint8_t lean_int_dec_lt(lean_object*, lean_object*);
 lean_object* lean_nat_abs(lean_object*);
 lean_object* lean_nat_mul(lean_object*, lean_object*);
 uint64_t lean_uint64_of_nat(lean_object*);
 uint64_t lean_uint64_mix_hash(uint64_t, uint64_t);
+lean_object* lean_nat_sub(lean_object*, lean_object*);
+lean_object* lean_nat_add(lean_object*, lean_object*);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
+uint8_t lean_int_dec_eq(lean_object*, lean_object*);
+lean_object* lean_int_mul(lean_object*, lean_object*);
+lean_object* lean_int_add(lean_object*, lean_object*);
+uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
+lean_object* lean_int_emod(lean_object*, lean_object*);
 lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
 lean_object* l_Int_repr(lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
-lean_object* lean_int_mul(lean_object*, lean_object*);
-lean_object* lean_int_emod(lean_object*, lean_object*);
+lean_object* l_Nat_reprFast(lean_object*);
+lean_object* lean_string_length(lean_object*);
+lean_object* l_Lean_RArray_getImpl___redArg(lean_object*, lean_object*);
+lean_object* l_Lean_Grind_Ring_toIntModule___redArg(lean_object*);
 lean_object* lean_int_neg(lean_object*);
 lean_object* l_Int_pow(lean_object*, lean_object*);
 lean_object* lean_int_ediv(lean_object*, lean_object*);
@@ -1781,8 +1781,8 @@ goto v_reusejp_391_;
 }
 v_reusejp_391_:
 {
-v___y_319_ = v___x_387_;
-v___y_320_ = v___y_386_;
+v___y_319_ = v___y_386_;
+v___y_320_ = v___x_387_;
 v___y_321_ = v___x_392_;
 goto v___jp_318_;
 }
@@ -1812,8 +1812,8 @@ v_reusejp_396_:
 {
 lean_object* v___x_398_; 
 v___x_398_ = l_Repr_addAppParen(v___x_397_, v___x_394_);
-v___y_319_ = v___x_387_;
-v___y_320_ = v___y_386_;
+v___y_319_ = v___y_386_;
+v___y_320_ = v___x_387_;
 v___y_321_ = v___x_398_;
 goto v___jp_318_;
 }
@@ -2293,13 +2293,13 @@ return v___x_535_;
 v___jp_318_:
 {
 lean_object* v___x_322_; lean_object* v___x_323_; uint8_t v___x_324_; lean_object* v___x_325_; lean_object* v___x_326_; 
-lean_inc(v___y_319_);
-v___x_322_ = lean_alloc_ctor(5, 2, 0);
-lean_ctor_set(v___x_322_, 0, v___y_319_);
-lean_ctor_set(v___x_322_, 1, v___y_321_);
 lean_inc(v___y_320_);
+v___x_322_ = lean_alloc_ctor(5, 2, 0);
+lean_ctor_set(v___x_322_, 0, v___y_320_);
+lean_ctor_set(v___x_322_, 1, v___y_321_);
+lean_inc(v___y_319_);
 v___x_323_ = lean_alloc_ctor(4, 2, 0);
-lean_ctor_set(v___x_323_, 0, v___y_320_);
+lean_ctor_set(v___x_323_, 0, v___y_319_);
 lean_ctor_set(v___x_323_, 1, v___x_322_);
 v___x_324_ = 0;
 v___x_325_ = lean_alloc_ctor(6, 1, 1);

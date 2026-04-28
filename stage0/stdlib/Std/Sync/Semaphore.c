@@ -15,17 +15,17 @@ extern "C" {
 #endif
 lean_object* lean_st_ref_get(lean_object*);
 uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
-lean_object* lean_io_promise_new();
-lean_object* l_Std_Queue_enqueue___redArg(lean_object*, lean_object*);
-lean_object* lean_st_ref_set(lean_object*, lean_object*);
 lean_object* lean_nat_sub(lean_object*, lean_object*);
-lean_object* lean_io_promise_resolve(lean_object*, lean_object*);
+lean_object* lean_st_ref_set(lean_object*, lean_object*);
 lean_object* lean_io_basemutex_lock(lean_object*);
 lean_object* lean_io_basemutex_unlock(lean_object*);
+lean_object* l_Std_Queue_empty(lean_object*);
 lean_object* l_Std_Queue_dequeue_x3f___redArg(lean_object*);
 lean_object* lean_nat_add(lean_object*, lean_object*);
-lean_object* l_Std_Queue_empty(lean_object*);
+lean_object* lean_io_promise_resolve(lean_object*, lean_object*);
 lean_object* l_Std_Mutex_new___redArg(lean_object*);
+lean_object* lean_io_promise_new();
+lean_object* l_Std_Queue_enqueue___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Sync_Semaphore_0__Std_mkResolvedPromise___redArg(lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Sync_Semaphore_0__Std_mkResolvedPromise___redArg___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Sync_Semaphore_0__Std_mkResolvedPromise(lean_object*, lean_object*, lean_object*);

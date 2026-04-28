@@ -15,14 +15,14 @@ extern "C" {
 #endif
 lean_object* l_Dyadic_pow(lean_object*, lean_object*);
 lean_object* l_instHAdd___redArg___lam__0(lean_object*, lean_object*, lean_object*);
+lean_object* l_Dyadic_instOfNat(lean_object*);
 lean_object* l_Dyadic_instNatCast___lam__0(lean_object*);
-lean_object* l_Dyadic_sub(lean_object*, lean_object*);
-lean_object* l_Dyadic_ofInt(lean_object*);
 lean_object* l_Dyadic_mul(lean_object*, lean_object*);
 lean_object* l_Dyadic_neg(lean_object*);
-lean_object* l_Dyadic_instOfNat(lean_object*);
 lean_object* l_Dyadic_mul___boxed(lean_object*, lean_object*);
 lean_object* l_Dyadic_add(lean_object*, lean_object*);
+lean_object* l_Dyadic_ofInt(lean_object*);
+lean_object* l_Dyadic_sub(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Dyadic_instCommRing___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Dyadic_instCommRing___lam__1(lean_object*, lean_object*);
 static lean_once_cell_t l_Dyadic_instCommRing___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;

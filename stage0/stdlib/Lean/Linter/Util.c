@@ -13,8 +13,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_id___boxed(lean_object*, lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
+lean_object* l_id___boxed(lean_object*, lean_object*);
 lean_object* l_List_filterMapTR_go___redArg(lean_object*, lean_object*, lean_object*);
 uint8_t l_Lean_Elab_Info_contains(lean_object*, lean_object*, uint8_t);
 lean_object* l___private_Lean_Server_InfoUtils_0__Lean_Elab_InfoTree_visitM_go(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);

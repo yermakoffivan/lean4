@@ -13,7 +13,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_mk_io_user_error(lean_object*);
 lean_object* lean_io_realpath(lean_object*);
 lean_object* l_System_FilePath_components(lean_object*);
 lean_object* lean_array_mk(lean_object*);
@@ -30,10 +29,11 @@ lean_object* l_IO_FS_readBinFile(lean_object*);
 lean_object* l_Std_Time_TimeZone_TZif_parse(lean_object*);
 lean_object* l_Std_Internal_Parsec_ByteArray_Parser_run___redArg(lean_object*, lean_object*);
 lean_object* l_Std_Time_TimeZone_convertTZif(lean_object*, lean_object*);
+lean_object* lean_mk_io_user_error(lean_object*);
+uint8_t l_System_FilePath_pathExists(lean_object*);
+lean_object* l_System_FilePath_join(lean_object*, lean_object*);
 lean_object* l_instMonadEIO(lean_object*);
 lean_object* lean_io_getenv(lean_object*);
-lean_object* l_System_FilePath_join(lean_object*, lean_object*);
-uint8_t l_System_FilePath_pathExists(lean_object*);
 size_t lean_array_size(lean_object*);
 lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, size_t, size_t, lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);

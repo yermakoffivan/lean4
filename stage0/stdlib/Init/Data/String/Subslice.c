@@ -15,9 +15,9 @@ extern "C" {
 #endif
 lean_object* lean_nat_add(lean_object*, lean_object*);
 lean_object* lean_string_utf8_extract(lean_object*, lean_object*, lean_object*);
+lean_object* lean_nat_sub(lean_object*, lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
 lean_object* l_mkPanicMessageWithDecl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* lean_nat_sub(lean_object*, lean_object*);
 lean_object* lean_panic_fn_borrowed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_Slice_instInhabitedSubslice(lean_object*);
 LEAN_EXPORT lean_object* l_String_Slice_instInhabitedSubslice___boxed(lean_object*);

@@ -13,59 +13,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_mk_empty_array_with_capacity(lean_object*);
-lean_object* l_Lake_BuildTrace_nil(lean_object*);
-lean_object* lean_task_pure(lean_object*);
-lean_object* lean_array_get_size(lean_object*);
-uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
-uint8_t lean_nat_dec_le(lean_object*, lean_object*);
-size_t lean_usize_of_nat(lean_object*);
-uint8_t lean_usize_dec_eq(size_t, size_t);
-lean_object* lean_array_uget_borrowed(lean_object*, size_t);
-extern lean_object* l_Lake_instDataKindUnit;
-lean_object* l_Lake_JobState_merge(lean_object*, lean_object*);
-lean_object* lean_task_map(lean_object*, lean_object*, lean_object*, uint8_t);
-lean_object* lean_task_bind(lean_object*, lean_object*, lean_object*, uint8_t);
-size_t lean_usize_add(size_t, size_t);
-lean_object* lean_st_mk_ref(lean_object*);
-lean_object* l_IO_FS_Stream_ofBuffer(lean_object*);
-lean_object* lean_get_set_stdout(lean_object*);
-lean_object* lean_get_set_stderr(lean_object*);
-lean_object* lean_st_ref_get(lean_object*);
-lean_object* lean_string_utf8_byte_size(lean_object*);
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
-lean_object* l_String_Slice_trimAscii(lean_object*);
-lean_object* l_String_Slice_toString(lean_object*);
-lean_object* lean_string_append(lean_object*, lean_object*);
-lean_object* lean_array_push(lean_object*, lean_object*);
-uint8_t lean_string_validate_utf8(lean_object*);
-lean_object* l_mkPanicMessageWithDecl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* lean_panic_fn_borrowed(lean_object*, lean_object*);
-lean_object* lean_string_from_utf8_unchecked(lean_object*);
-size_t lean_usize_sub(size_t, size_t);
-lean_object* lean_array_uget(lean_object*, size_t);
-lean_object* lean_nat_add(lean_object*, lean_object*);
-extern lean_object* l_ByteArray_empty;
-lean_object* l_Lake_BuildTrace_mix(lean_object*, lean_object*);
-lean_object* lean_io_bind_task(lean_object*, lean_object*, lean_object*, uint8_t);
-lean_object* l_Array_shrink___redArg(lean_object*, lean_object*);
-lean_object* lean_array_mk(lean_object*);
-lean_object* lean_array_fget_borrowed(lean_object*, lean_object*);
-lean_object* lean_array_fset(lean_object*, lean_object*, lean_object*);
-lean_object* l_Lake_pushLogEntry(lean_object*, lean_object*, lean_object*);
-lean_object* l_Lake_EquipT_lift___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-uint8_t l_Lake_JobAction_merge(uint8_t, uint8_t);
-lean_object* lean_io_as_task(lean_object*, lean_object*);
-lean_object* l_instMonadBaseIO___aux__5___boxed(lean_object*, lean_object*, lean_object*);
-lean_object* l_Lake_EStateT_instMonadStateOfOfPure___redArg(lean_object*);
-lean_object* lean_mk_array(lean_object*, lean_object*);
-lean_object* l___private_Init_Data_Nat_Fold_0__Nat_foldTR_loop(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* lean_io_wait(lean_object*);
-lean_object* lean_io_map_task(lean_object*, lean_object*, lean_object*, uint8_t);
-lean_object* l_StateRefT_x27_lift___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_ReaderT_instMonadLift___lam__0___boxed(lean_object*, lean_object*, lean_object*);
-lean_object* l_instMonadStateOfOfMonadLift___redArg___lam__0(lean_object*, lean_object*, lean_object*);
-lean_object* l_instMonadStateOfOfMonadLift___redArg___lam__1(lean_object*, lean_object*, lean_object*, lean_object*);
 extern lean_object* l_instMonadBaseIO;
 lean_object* l_Lake_EStateT_instMonad___redArg___lam__1(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lake_EStateT_instMonad___redArg___lam__3(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -76,6 +23,59 @@ lean_object* l_Lake_EStateT_instPure___redArg___lam__0(lean_object*, lean_object
 lean_object* l_ReaderT_instMonad___redArg(lean_object*);
 lean_object* l_StateRefT_x27_instMonad___redArg(lean_object*);
 lean_object* l_Lake_EquipT_instMonad___redArg(lean_object*);
+lean_object* lean_array_get_size(lean_object*);
+lean_object* l_Array_shrink___redArg(lean_object*, lean_object*);
+lean_object* lean_io_wait(lean_object*);
+uint8_t lean_usize_dec_eq(size_t, size_t);
+size_t lean_usize_sub(size_t, size_t);
+lean_object* lean_array_uget_borrowed(lean_object*, size_t);
+extern lean_object* l_Lake_instDataKindUnit;
+lean_object* l_Lake_JobState_merge(lean_object*, lean_object*);
+lean_object* lean_task_map(lean_object*, lean_object*, lean_object*, uint8_t);
+lean_object* lean_task_bind(lean_object*, lean_object*, lean_object*, uint8_t);
+lean_object* l_Lake_BuildTrace_nil(lean_object*);
+lean_object* l_Lake_BuildTrace_mix(lean_object*, lean_object*);
+lean_object* lean_mk_empty_array_with_capacity(lean_object*);
+lean_object* lean_task_pure(lean_object*);
+lean_object* lean_array_mk(lean_object*);
+uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
+size_t lean_usize_of_nat(lean_object*);
+lean_object* l_ReaderT_instMonadLift___lam__0___boxed(lean_object*, lean_object*, lean_object*);
+lean_object* lean_array_fset(lean_object*, lean_object*, lean_object*);
+uint8_t lean_nat_dec_le(lean_object*, lean_object*);
+lean_object* lean_array_push(lean_object*, lean_object*);
+size_t lean_usize_add(size_t, size_t);
+lean_object* l_instMonadBaseIO___aux__5___boxed(lean_object*, lean_object*, lean_object*);
+lean_object* l_Lake_EStateT_instMonadStateOfOfPure___redArg(lean_object*);
+lean_object* l_Lake_EquipT_lift___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_StateRefT_x27_lift___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_instMonadStateOfOfMonadLift___redArg___lam__0(lean_object*, lean_object*, lean_object*);
+lean_object* l_instMonadStateOfOfMonadLift___redArg___lam__1(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_array_uget(lean_object*, size_t);
+extern lean_object* l_ByteArray_empty;
+lean_object* lean_st_mk_ref(lean_object*);
+lean_object* l_IO_FS_Stream_ofBuffer(lean_object*);
+lean_object* lean_get_set_stdout(lean_object*);
+lean_object* lean_get_set_stderr(lean_object*);
+lean_object* lean_st_ref_get(lean_object*);
+lean_object* lean_string_utf8_byte_size(lean_object*);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
+lean_object* l_String_Slice_trimAscii(lean_object*);
+lean_object* l_String_Slice_toString(lean_object*);
+lean_object* lean_string_append(lean_object*, lean_object*);
+uint8_t lean_string_validate_utf8(lean_object*);
+lean_object* l_mkPanicMessageWithDecl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_panic_fn_borrowed(lean_object*, lean_object*);
+lean_object* lean_string_from_utf8_unchecked(lean_object*);
+lean_object* lean_io_as_task(lean_object*, lean_object*);
+lean_object* lean_io_map_task(lean_object*, lean_object*, lean_object*, uint8_t);
+uint8_t l_Lake_JobAction_merge(uint8_t, uint8_t);
+lean_object* l_Lake_pushLogEntry(lean_object*, lean_object*, lean_object*);
+lean_object* lean_nat_add(lean_object*, lean_object*);
+lean_object* lean_io_bind_task(lean_object*, lean_object*, lean_object*, uint8_t);
+lean_object* lean_array_fget_borrowed(lean_object*, lean_object*);
+lean_object* lean_mk_array(lean_object*, lean_object*);
+lean_object* l___private_Init_Data_Nat_Fold_0__Nat_foldTR_loop(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_JobM_ofFn___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_JobM_ofFn___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_JobM_ofFn(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -4412,10 +4412,10 @@ return v___x_1509_;
 LEAN_EXPORT lean_object* l_Lake_Job_async___redArg___lam__1___boxed(lean_object* v___x_1568_, lean_object* v___x_1569_, lean_object* v___x_1570_, lean_object* v___x_1571_, lean_object* v___x_1572_, lean_object* v___x_1573_, lean_object* v_act_1574_, lean_object* v_a_1575_, lean_object* v_a_1576_, lean_object* v_a_1577_, lean_object* v_a_1578_, lean_object* v_a_1579_, lean_object* v___y_1580_){
 _start:
 {
-uint8_t v___x_22647__boxed_1581_; uint8_t v___x_22648__boxed_1582_; lean_object* v_res_1583_; 
-v___x_22647__boxed_1581_ = lean_unbox(v___x_1570_);
-v___x_22648__boxed_1582_ = lean_unbox(v___x_1571_);
-v_res_1583_ = l_Lake_Job_async___redArg___lam__1(v___x_1568_, v___x_1569_, v___x_22647__boxed_1581_, v___x_22648__boxed_1582_, v___x_1572_, v___x_1573_, v_act_1574_, v_a_1575_, v_a_1576_, v_a_1577_, v_a_1578_, v_a_1579_);
+uint8_t v___x_23776__boxed_1581_; uint8_t v___x_23777__boxed_1582_; lean_object* v_res_1583_; 
+v___x_23776__boxed_1581_ = lean_unbox(v___x_1570_);
+v___x_23777__boxed_1582_ = lean_unbox(v___x_1571_);
+v_res_1583_ = l_Lake_Job_async___redArg___lam__1(v___x_1568_, v___x_1569_, v___x_23776__boxed_1581_, v___x_23777__boxed_1582_, v___x_1572_, v___x_1573_, v_act_1574_, v_a_1575_, v_a_1576_, v_a_1577_, v_a_1578_, v_a_1579_);
 lean_dec_ref(v_a_1579_);
 lean_dec(v_a_1578_);
 lean_dec(v_a_1577_);
@@ -6392,8 +6392,8 @@ v_a_2358_ = lean_ctor_get(v_rx_2326_, 1);
 lean_inc(v_a_2358_);
 lean_dec_ref(v_rx_2326_);
 v___x_2359_ = lean_unsigned_to_nat(0u);
-v___y_2336_ = v___x_2359_;
-v___y_2337_ = v_ry_2328_;
+v___y_2336_ = v_ry_2328_;
+v___y_2337_ = v___x_2359_;
 v___y_2338_ = v_a_2358_;
 goto v___jp_2335_;
 }
@@ -6410,10 +6410,10 @@ return v___x_2334_;
 v___jp_2335_:
 {
 lean_object* v_a_2339_; 
-v_a_2339_ = lean_ctor_get(v___y_2337_, 1);
+v_a_2339_ = lean_ctor_get(v___y_2336_, 1);
 lean_inc(v_a_2339_);
-lean_dec_ref(v___y_2337_);
-v___y_2330_ = v___y_2336_;
+lean_dec_ref(v___y_2336_);
+v___y_2330_ = v___y_2337_;
 v___y_2331_ = v___y_2338_;
 v___y_2332_ = v_a_2339_;
 goto v___jp_2329_;
@@ -6422,8 +6422,8 @@ v___jp_2340_:
 {
 lean_object* v___x_2342_; 
 v___x_2342_ = lean_unsigned_to_nat(0u);
-v___y_2336_ = v___x_2342_;
-v___y_2337_ = v_ry_2328_;
+v___y_2336_ = v_ry_2328_;
+v___y_2337_ = v___x_2342_;
 v___y_2338_ = v_a_2341_;
 goto v___jp_2335_;
 }
@@ -6617,8 +6617,8 @@ v_a_2438_ = lean_ctor_get(v_rx_2405_, 1);
 lean_inc(v_a_2438_);
 lean_dec_ref(v_rx_2405_);
 v___x_2439_ = lean_unsigned_to_nat(0u);
-v___y_2415_ = v___x_2439_;
-v___y_2416_ = v_ry_2407_;
+v___y_2415_ = v_ry_2407_;
+v___y_2416_ = v___x_2439_;
 v___y_2417_ = v_a_2438_;
 goto v___jp_2414_;
 }
@@ -6635,10 +6635,10 @@ return v___x_2413_;
 v___jp_2414_:
 {
 lean_object* v_a_2418_; 
-v_a_2418_ = lean_ctor_get(v___y_2416_, 1);
+v_a_2418_ = lean_ctor_get(v___y_2415_, 1);
 lean_inc(v_a_2418_);
-lean_dec_ref(v___y_2416_);
-v___y_2409_ = v___y_2415_;
+lean_dec_ref(v___y_2415_);
+v___y_2409_ = v___y_2416_;
 v___y_2410_ = v___y_2417_;
 v___y_2411_ = v_a_2418_;
 goto v___jp_2408_;
@@ -6647,8 +6647,8 @@ v___jp_2419_:
 {
 lean_object* v___x_2422_; 
 v___x_2422_ = lean_unsigned_to_nat(0u);
-v___y_2415_ = v___x_2422_;
-v___y_2416_ = v_rb_2421_;
+v___y_2415_ = v_rb_2421_;
+v___y_2416_ = v___x_2422_;
 v___y_2417_ = v_a_2420_;
 goto v___jp_2414_;
 }

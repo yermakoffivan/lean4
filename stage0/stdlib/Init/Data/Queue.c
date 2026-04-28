@@ -13,13 +13,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-uint8_t l_List_isEmpty___redArg(lean_object*);
 lean_object* l_List_reverse___redArg(lean_object*);
-lean_object* l_List_appendTR___redArg(lean_object*, lean_object*);
-lean_object* l_List_filterAuxM___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* lean_array_mk(lean_object*);
 lean_object* l_Array_reverse___redArg(lean_object*);
 lean_object* l_Array_append___redArg(lean_object*, lean_object*);
+uint8_t l_List_isEmpty___redArg(lean_object*);
+lean_object* l_List_filterAuxM___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_List_appendTR___redArg(lean_object*, lean_object*);
 static lean_once_cell_t l_Std_Queue_empty___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Queue_empty___closed__0;
 LEAN_EXPORT lean_object* l_Std_Queue_empty(lean_object*);

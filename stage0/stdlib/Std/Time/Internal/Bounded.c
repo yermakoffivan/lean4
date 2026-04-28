@@ -13,25 +13,25 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_int_emod(lean_object*, lean_object*);
-lean_object* lean_int_add(lean_object*, lean_object*);
-lean_object* lean_int_neg(lean_object*);
-lean_object* lean_nat_to_int(lean_object*);
-uint8_t lean_int_dec_le(lean_object*, lean_object*);
-lean_object* l_instOrdInt___lam__0___boxed(lean_object*, lean_object*);
-lean_object* l_compareOn___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* lean_int_mod(lean_object*, lean_object*);
-lean_object* lean_int_sub(lean_object*, lean_object*);
 lean_object* lean_int_mul(lean_object*, lean_object*);
+uint8_t lean_int_dec_le(lean_object*, lean_object*);
+lean_object* lean_int_add(lean_object*, lean_object*);
+uint8_t lean_nat_dec_le(lean_object*, lean_object*);
+lean_object* lean_nat_to_int(lean_object*);
 uint8_t lean_int_dec_lt(lean_object*, lean_object*);
 lean_object* lean_nat_abs(lean_object*);
 lean_object* lean_nat_sub(lean_object*, lean_object*);
-uint8_t lean_nat_dec_le(lean_object*, lean_object*);
-lean_object* l_Int_toNat(lean_object*);
-lean_object* lean_int_ediv(lean_object*, lean_object*);
 lean_object* l_Int_repr(lean_object*);
 lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
+lean_object* lean_int_ediv(lean_object*, lean_object*);
+lean_object* lean_int_sub(lean_object*, lean_object*);
+lean_object* lean_int_neg(lean_object*);
 uint8_t lean_int_dec_eq(lean_object*, lean_object*);
+lean_object* lean_int_emod(lean_object*, lean_object*);
+lean_object* l_instOrdInt___lam__0___boxed(lean_object*, lean_object*);
+lean_object* l_Int_toNat(lean_object*);
+lean_object* l_compareOn___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_int_mod(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Internal_Bounded_instLE(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Internal_Bounded_instLE___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Internal_Bounded_instLT(lean_object*, lean_object*, lean_object*);

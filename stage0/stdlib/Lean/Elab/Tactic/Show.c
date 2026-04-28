@@ -16,26 +16,26 @@ extern "C" {
 lean_object* l___private_Lean_Meta_Basic_0__Lean_Meta_withMVarContextImp(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_stringToMessageData(lean_object*);
 lean_object* l_Lean_indentExpr(lean_object*);
-extern lean_object* l_Lean_Elab_unsupportedSyntaxExceptionId;
-lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_Elab_Tactic_withCollectingNewGoalsFrom(lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Lean_MVarId_replaceTargetDefEq(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_List_appendTR___redArg(lean_object*, lean_object*);
-lean_object* l_List_reverseAux___redArg(lean_object*, lean_object*);
-lean_object* l_Lean_Elab_Tactic_setGoals___redArg(lean_object*, lean_object*);
-lean_object* l_Lean_Elab_Tactic_getGoals___redArg(lean_object*);
+lean_object* l_Lean_Elab_Tactic_getGoals___redArg(lean_object*, lean_object*);
 lean_object* l_Lean_MVarId_getType(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_MVarId_getTag(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Elab_Tactic_elabChange___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Name_mkStr1(lean_object*);
+lean_object* l_Lean_Elab_Tactic_withCollectingNewGoalsFrom(lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Lean_MVarId_replaceTargetDefEq(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_List_appendTR___redArg(lean_object*, lean_object*);
+lean_object* l_List_reverseAux___redArg(lean_object*, lean_object*);
+lean_object* l_Lean_Elab_Tactic_setGoals___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Elab_Tactic_SavedState_restore___redArg(lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Elab_Tactic_saveState___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Elab_Tactic_withoutRecover___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 uint8_t l_Lean_Exception_isInterrupt(lean_object*);
 uint8_t l_Lean_Exception_isRuntime(lean_object*);
 uint8_t l_List_isEmpty___redArg(lean_object*);
+extern lean_object* l_Lean_Elab_unsupportedSyntaxExceptionId;
 lean_object* l_Lean_Elab_Tactic_throwNoGoalsToBeSolved___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 extern lean_object* l_Lean_Elab_Tactic_tacticElabAttribute;
+lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
 uint8_t l_Lean_Syntax_isOfKind(lean_object*, lean_object*);
 lean_object* l_Lean_Syntax_getArg(lean_object*, lean_object*);
 lean_object* l_Lean_KeyedDeclsAttribute_addBuiltin___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
@@ -489,7 +489,7 @@ goto v_reusejp_188_;
 v_reusejp_188_:
 {
 lean_object* v___x_190_; 
-v___x_190_ = l_Lean_Elab_Tactic_setGoals___redArg(v___x_189_, v___y_169_);
+v___x_190_ = l_Lean_Elab_Tactic_setGoals___redArg(v___x_189_, v___y_169_, v___y_175_);
 return v___x_190_;
 }
 }
@@ -794,7 +794,7 @@ if (lean_obj_tag(v_goals_289_) == 0)
 {
 lean_object* v___x_300_; 
 lean_dec(v_prevRev_290_);
-v___x_300_ = l_Lean_Elab_Tactic_getGoals___redArg(v_a_292_);
+v___x_300_ = l_Lean_Elab_Tactic_getGoals___redArg(v_a_292_, v_a_298_);
 if (lean_obj_tag(v___x_300_) == 0)
 {
 lean_object* v_a_301_; lean_object* v___y_303_; 
@@ -890,7 +890,7 @@ goto v_resetjp_317_;
 }
 v_resetjp_317_:
 {
-lean_object* v___y_321_; uint8_t v___y_322_; lean_object* v___y_323_; uint8_t v___y_324_; uint8_t v___y_331_; uint8_t v___x_351_; 
+lean_object* v___y_321_; lean_object* v___y_322_; uint8_t v___y_323_; uint8_t v___y_324_; uint8_t v___y_331_; uint8_t v___x_351_; 
 v___x_351_ = l_List_isEmpty___redArg(v_tail_316_);
 if (v___x_351_ == 0)
 {
@@ -928,7 +928,7 @@ if (v___y_324_ == 0)
 {
 lean_object* v___x_325_; 
 lean_dec_ref(v___y_321_);
-v___x_325_ = l_Lean_Elab_Tactic_SavedState_restore___redArg(v___y_323_, v___y_322_, v_a_292_, v_a_293_, v_a_294_, v_a_295_, v_a_296_, v_a_297_, v_a_298_);
+v___x_325_ = l_Lean_Elab_Tactic_SavedState_restore___redArg(v___y_322_, v___y_323_, v_a_292_, v_a_293_, v_a_294_, v_a_295_, v_a_296_, v_a_297_, v_a_298_);
 if (lean_obj_tag(v___x_325_) == 0)
 {
 lean_object* v___x_327_; 
@@ -968,7 +968,7 @@ return v___x_325_;
 }
 else
 {
-lean_dec_ref(v___y_323_);
+lean_dec_ref(v___y_322_);
 lean_del_object(v___x_318_);
 lean_dec(v_tail_316_);
 lean_dec(v_head_315_);
@@ -1025,8 +1025,8 @@ if (v___x_339_ == 0)
 uint8_t v___x_340_; 
 v___x_340_ = l_Lean_Exception_isRuntime(v_a_337_);
 v___y_321_ = v___x_336_;
-v___y_322_ = v___x_338_;
-v___y_323_ = v_a_333_;
+v___y_322_ = v_a_333_;
+v___y_323_ = v___x_338_;
 v___y_324_ = v___x_340_;
 goto v___jp_320_;
 }
@@ -1034,8 +1034,8 @@ else
 {
 lean_dec(v_a_337_);
 v___y_321_ = v___x_336_;
-v___y_322_ = v___x_338_;
-v___y_323_ = v_a_333_;
+v___y_322_ = v_a_333_;
+v___y_323_ = v___x_338_;
 v___y_324_ = v___x_339_;
 goto v___jp_320_;
 }
@@ -1123,7 +1123,7 @@ LEAN_EXPORT lean_object* l_Lean_Elab_Tactic_elabShow(lean_object* v_newType_369_
 _start:
 {
 lean_object* v___x_379_; 
-v___x_379_ = l_Lean_Elab_Tactic_getGoals___redArg(v_a_371_);
+v___x_379_ = l_Lean_Elab_Tactic_getGoals___redArg(v_a_371_, v_a_377_);
 if (lean_obj_tag(v___x_379_) == 0)
 {
 lean_object* v_a_380_; 

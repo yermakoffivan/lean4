@@ -13,18 +13,18 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
 lean_object* lean_nat_to_int(lean_object*);
-uint8_t lean_int_dec_lt(lean_object*, lean_object*);
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* lean_int_add(lean_object*, lean_object*);
 lean_object* lean_int_sub(lean_object*, lean_object*);
 lean_object* lean_int_emod(lean_object*, lean_object*);
-uint8_t lean_int_dec_eq(lean_object*, lean_object*);
-uint8_t lean_int_dec_le(lean_object*, lean_object*);
 lean_object* lean_int_neg(lean_object*);
-lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
+uint8_t lean_int_dec_le(lean_object*, lean_object*);
+uint8_t lean_int_dec_eq(lean_object*, lean_object*);
+uint8_t lean_int_dec_lt(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_HourMarker_ctorIdx(uint8_t);
 LEAN_EXPORT lean_object* l_Std_Time_HourMarker_ctorIdx___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_HourMarker_toCtorIdx(uint8_t);

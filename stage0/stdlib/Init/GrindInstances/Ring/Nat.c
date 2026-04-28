@@ -13,13 +13,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Nat_pow___boxed(lean_object*, lean_object*);
 lean_object* l_Nat_mul___boxed(lean_object*, lean_object*);
-lean_object* l_instNatCastNat___lam__0___boxed(lean_object*);
+lean_object* l_Nat_pow___boxed(lean_object*, lean_object*);
 lean_object* l_instPowNat___redArg___lam__0(lean_object*, lean_object*, lean_object*);
 lean_object* l_instHAdd___redArg___lam__0(lean_object*, lean_object*, lean_object*);
 lean_object* l_instSMulOfMul___redArg___lam__0(lean_object*, lean_object*, lean_object*);
 lean_object* l_instOfNatNat___boxed(lean_object*);
+lean_object* l_instNatCastNat___lam__0___boxed(lean_object*);
 lean_object* l_Nat_add___boxed(lean_object*, lean_object*);
 static lean_once_cell_t l_Lean_Grind_instCommSemiringNat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Grind_instCommSemiringNat___closed__0;

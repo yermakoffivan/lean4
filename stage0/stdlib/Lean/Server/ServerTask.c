@@ -13,29 +13,29 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* lean_io_map_task(lean_object*, lean_object*, lean_object*, uint8_t);
 lean_object* lean_task_pure(lean_object*);
 lean_object* lean_io_bind_task(lean_object*, lean_object*, lean_object*, uint8_t);
-lean_object* lean_task_map(lean_object*, lean_object*, lean_object*, uint8_t);
-lean_object* lean_io_as_task(lean_object*, lean_object*);
-lean_object* lean_io_map_task(lean_object*, lean_object*, lean_object*, uint8_t);
-lean_object* lean_task_bind(lean_object*, lean_object*, lean_object*, uint8_t);
-uint8_t lean_usize_dec_lt(size_t, size_t);
-lean_object* lean_array_uget_borrowed(lean_object*, size_t);
-lean_object* lean_array_push(lean_object*, lean_object*);
-size_t lean_usize_add(size_t, size_t);
-lean_object* lean_task_get_own(lean_object*);
-lean_object* l_List_reverse___redArg(lean_object*);
-lean_object* lean_io_wait_any(lean_object*);
 lean_object* l_Lean_mkAtom(lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
+lean_object* lean_array_push(lean_object*, lean_object*);
 lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_task_bind(lean_object*, lean_object*, lean_object*, uint8_t);
 lean_object* l_Lean_Name_mkStr1(lean_object*);
 lean_object* l_Lean_Name_mkStr2(lean_object*, lean_object*);
 lean_object* lean_string_utf8_byte_size(lean_object*);
-lean_object* lean_mk_empty_array_with_capacity(lean_object*);
-uint8_t lean_io_get_task_state(lean_object*);
 lean_object* lean_io_wait(lean_object*);
+lean_object* lean_task_get_own(lean_object*);
+uint8_t lean_usize_dec_lt(size_t, size_t);
+lean_object* lean_array_uget_borrowed(lean_object*, size_t);
+lean_object* lean_task_map(lean_object*, lean_object*, lean_object*, uint8_t);
+size_t lean_usize_add(size_t, size_t);
+lean_object* lean_io_as_task(lean_object*, lean_object*);
+lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 size_t lean_array_size(lean_object*);
+lean_object* l_List_reverse___redArg(lean_object*);
+lean_object* lean_io_wait_any(lean_object*);
+uint8_t lean_io_get_task_state(lean_object*);
 lean_object* lean_io_cancel(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Server_instInhabitedServerTask_default___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Server_instInhabitedServerTask_default(lean_object*, lean_object*);

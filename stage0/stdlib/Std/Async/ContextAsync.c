@@ -13,36 +13,36 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_task_map(lean_object*, lean_object*, lean_object*, uint8_t);
+uint8_t l_Std_CancellationToken_isCancelled(lean_object*);
 lean_object* l_Std_CancellationContext_fork(lean_object*);
 lean_object* l___private_Std_Async_Basic_0__Std_Async_BaseAsync_bind_bindAsyncTask(lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*);
+lean_object* lean_task_map(lean_object*, lean_object*, lean_object*, uint8_t);
+lean_object* lean_task_pure(lean_object*);
 lean_object* l_Std_CancellationContext_cancel(lean_object*, lean_object*);
 lean_object* l_Std_Async_EAsync_tryFinally_x27___redArg(lean_object*, lean_object*, lean_object*, uint8_t);
 lean_object* l_Except_map(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Std_Async_BaseAsync_toRawBaseIO___boxed(lean_object*, lean_object*, lean_object*);
 lean_object* lean_io_as_task(lean_object*, lean_object*);
 lean_object* lean_task_bind(lean_object*, lean_object*, lean_object*, uint8_t);
+lean_object* l_Std_Async_EAsync_instMonad(lean_object*);
+lean_object* l_Std_CancellationContext_new();
 lean_object* lean_io_promise_new();
-lean_object* l_instMonadLiftT___lam__0___boxed(lean_object*, lean_object*);
-lean_object* l_IO_Promise_result_x21___redArg(lean_object*);
 lean_object* lean_io_promise_resolve(lean_object*, lean_object*);
+lean_object* l_IO_Promise_result_x21___redArg(lean_object*);
+lean_object* l_instMonadLiftT___lam__0___boxed(lean_object*, lean_object*);
 lean_object* l_liftM(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Function_comp(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_BaseIO_chainTask___redArg(lean_object*, lean_object*, lean_object*, uint8_t);
 lean_object* l_Std_CancellationToken_selector(lean_object*);
-lean_object* lean_task_pure(lean_object*);
-lean_object* l_Std_Async_EAsync_instMonad(lean_object*);
+lean_object* l_Std_CancellationToken_getCancellationReason(lean_object*);
+lean_object* l_Function_const___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_ReaderT_instMonad___redArg(lean_object*);
 size_t lean_array_size(lean_object*);
 lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, size_t, size_t, lean_object*);
-lean_object* l_Function_const___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Std_CancellationContext_new();
-lean_object* l_Std_CancellationToken_getCancellationReason(lean_object*);
 lean_object* l_Std_CancellationToken_wait(lean_object*);
 lean_object* l_ReaderT_instApplicativeOfMonad___redArg___lam__1(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_ReaderT_instApplicativeOfMonad___redArg___lam__3(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_ReaderT_instApplicativeOfMonad___redArg___lam__4(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-uint8_t l_Std_CancellationToken_isCancelled(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_ContextAsync_runIn___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_ContextAsync_runIn___redArg___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_ContextAsync_runIn(lean_object*, lean_object*, lean_object*);

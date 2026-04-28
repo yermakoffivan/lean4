@@ -14,29 +14,29 @@
 extern "C" {
 #endif
 lean_object* l_Std_DTreeMap_Internal_Impl_Const_get_x3f___at___00Lean_NameMap_find_x3f_spec__0___redArg(lean_object*, lean_object*);
-extern lean_object* l_Lean_NameSet_empty;
+lean_object* l_Lean_stringToMessageData(lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
-lean_object* l_Lean_Data_Trie_empty(lean_object*);
 extern lean_object* l_Lean_firstFrontendMacroScope;
 lean_object* lean_nat_add(lean_object*, lean_object*);
-lean_object* l_Lean_Name_mkStr1(lean_object*);
 lean_object* l_Lean_PersistentHashMap_mkEmptyEntriesArray(lean_object*, lean_object*);
-extern lean_object* l_Lean_diagnostics;
-extern lean_object* l_Lean_Options_empty;
-lean_object* l_Lean_stringToMessageData(lean_object*);
 lean_object* lean_mk_empty_environment(uint32_t);
 extern lean_object* l_Lake_Toml_toml;
+extern lean_object* l_Lean_Options_empty;
+lean_object* l_Lean_Data_Trie_empty(lean_object*);
 lean_object* l_Lean_Parser_mkParserState(lean_object*);
 lean_object* l_Lean_Parser_ParserFn_run(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lake_mkParserErrorMessage(lean_object*, lean_object*, lean_object*);
 extern lean_object* l_Lean_MessageLog_empty;
 lean_object* l_Lean_MessageLog_add(lean_object*, lean_object*);
 uint8_t l_Lean_Parser_InputContext_atEnd(lean_object*, lean_object*);
+lean_object* l_Lean_Name_mkStr1(lean_object*);
+extern lean_object* l_Lean_NameSet_empty;
 lean_object* lean_st_mk_ref(lean_object*);
 extern lean_object* l_Lean_inheritedTraceOptions;
 lean_object* lean_st_ref_get(lean_object*);
 lean_object* l_Lean_Core_getMaxHeartbeats(lean_object*);
 lean_object* l_Lean_Parser_SyntaxStack_back(lean_object*);
+extern lean_object* l_Lean_diagnostics;
 extern lean_object* l_Lean_maxRecDepth;
 lean_object* l_Lake_Toml_elabToml(lean_object*, lean_object*, lean_object*);
 uint8_t l_Lean_MessageLog_hasErrors(lean_object*);

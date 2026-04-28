@@ -13,19 +13,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-uint8_t lean_usize_dec_lt(size_t, size_t);
-lean_object* lean_array_uget_borrowed(lean_object*, size_t);
-lean_object* lean_string_append(lean_object*, lean_object*);
-lean_object* l_Lean_Json_getObj_x3f(lean_object*);
-lean_object* l_Lake_JsonObject_getJson_x3f(lean_object*, lean_object*);
-lean_object* l_Lean_Json_getStr_x3f(lean_object*);
-uint8_t lean_string_dec_eq(lean_object*, lean_object*);
-lean_object* lean_array_uset(lean_object*, size_t, lean_object*);
-size_t lean_usize_add(size_t, size_t);
-size_t lean_array_size(lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
-lean_object* lean_array_uget(lean_object*, size_t);
-lean_object* l_Lean_Json_pretty(lean_object*, lean_object*);
+lean_object* lean_string_append(lean_object*, lean_object*);
 lean_object* l_Lake_uriEncode(lean_object*, lean_object*);
 extern lean_object* l_Lake_Reservoir_lakeHeaders;
 lean_object* l_Lake_getUrl(lean_object*, lean_object*, lean_object*);
@@ -35,10 +24,21 @@ lean_object* lean_array_push(lean_object*, lean_object*);
 lean_object* lean_string_utf8_byte_size(lean_object*);
 lean_object* l_String_Slice_trimAscii(lean_object*);
 lean_object* l_String_Slice_toString(lean_object*);
+size_t lean_array_size(lean_object*);
+uint8_t lean_usize_dec_lt(size_t, size_t);
+lean_object* lean_array_uget_borrowed(lean_object*, size_t);
+lean_object* l_Lean_Json_getObj_x3f(lean_object*);
+lean_object* l_Lake_JsonObject_getJson_x3f(lean_object*, lean_object*);
+lean_object* l_Lean_Json_getStr_x3f(lean_object*);
 lean_object* l_Lake_StdVer_parseM(lean_object*, lean_object*);
 lean_object* l___private_Lake_Util_Version_0__Lake_runVerParse(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_array_uset(lean_object*, size_t, lean_object*);
+size_t lean_usize_add(size_t, size_t);
+lean_object* l_Lean_Json_pretty(lean_object*, lean_object*);
 lean_object* l_Lean_Json_getNat_x3f(lean_object*);
 lean_object* l_Nat_reprFast(lean_object*);
+lean_object* lean_array_uget(lean_object*, size_t);
+uint8_t lean_string_dec_eq(lean_object*, lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_RegistrySrc_ctorIdx(lean_object*);
@@ -1050,8 +1050,8 @@ lean_object* v___x_162_; lean_object* v___x_164_;
 v___x_162_ = lean_alloc_ctor(0, 5, 0);
 lean_ctor_set(v___x_162_, 0, v_a_136_);
 lean_ctor_set(v___x_162_, 1, v_val_157_);
-lean_ctor_set(v___x_162_, 2, v___y_160_);
-lean_ctor_set(v___x_162_, 3, v___y_159_);
+lean_ctor_set(v___x_162_, 2, v___y_159_);
+lean_ctor_set(v___x_162_, 3, v___y_160_);
 lean_ctor_set(v___x_162_, 4, v_a_161_);
 if (v_isShared_156_ == 0)
 {
@@ -1081,8 +1081,8 @@ if (lean_obj_tag(v___x_170_) == 0)
 {
 lean_object* v___x_171_; 
 v___x_171_ = lean_box(0);
-v___y_159_ = v_a_168_;
-v___y_160_ = v___y_167_;
+v___y_159_ = v___y_167_;
+v___y_160_ = v_a_168_;
 v_a_161_ = v___x_171_;
 goto v___jp_158_;
 }
@@ -1132,8 +1132,8 @@ lean_object* v_a_178_;
 v_a_178_ = lean_ctor_get(v___x_173_, 0);
 lean_inc(v_a_178_);
 lean_dec_ref(v___x_173_);
-v___y_159_ = v_a_168_;
-v___y_160_ = v___y_167_;
+v___y_159_ = v___y_167_;
+v___y_160_ = v_a_168_;
 v_a_161_ = v_a_178_;
 goto v___jp_158_;
 }

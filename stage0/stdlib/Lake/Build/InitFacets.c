@@ -13,14 +13,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-extern lean_object* l_Lake_ExternLib_initFacetConfigs;
-extern lean_object* l_Lake_LeanExe_initFacetConfigs;
-extern lean_object* l_Lake_LeanLib_initFacetConfigs;
 extern lean_object* l_Lake_Package_initFacetConfigs;
 extern lean_object* l_Lake_Module_initFacetConfigs;
 lean_object* l_Lake_FacetConfigMap_insert(lean_object*, lean_object*, lean_object*);
-extern lean_object* l_Lake_InputFile_initFacetConfigs;
 extern lean_object* l_Lake_InputDir_initFacetConfigs;
+extern lean_object* l_Lake_InputFile_initFacetConfigs;
+extern lean_object* l_Lake_ExternLib_initFacetConfigs;
+extern lean_object* l_Lake_LeanExe_initFacetConfigs;
+extern lean_object* l_Lake_LeanLib_initFacetConfigs;
 LEAN_EXPORT lean_object* l_Std_DTreeMap_Internal_Impl_foldlM___at___00Std_DTreeMap_Internal_Impl_foldl___at___00__private_Lake_Build_InitFacets_0__Lake_initFacetConfigs_insert_spec__0_spec__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lake_Build_InitFacets_0__Lake_initFacetConfigs_insert___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lake_Build_InitFacets_0__Lake_initFacetConfigs_insert(lean_object*, lean_object*, lean_object*);

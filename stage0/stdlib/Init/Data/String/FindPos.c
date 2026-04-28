@@ -13,10 +13,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_nat_add(lean_object*, lean_object*);
-uint8_t l_String_Pos_Raw_isValidForSlice(lean_object*, lean_object*);
-lean_object* lean_string_utf8_byte_size(lean_object*);
 lean_object* lean_nat_sub(lean_object*, lean_object*);
+uint8_t l_String_Pos_Raw_isValidForSlice(lean_object*, lean_object*);
+lean_object* lean_nat_add(lean_object*, lean_object*);
+lean_object* lean_string_utf8_byte_size(lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* l_mkPanicMessageWithDecl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* lean_panic_fn_borrowed(lean_object*, lean_object*);

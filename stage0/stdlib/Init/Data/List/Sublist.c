@@ -14,10 +14,10 @@
 extern "C" {
 #endif
 lean_object* l_instBEqOfDecidableEq___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*);
-uint8_t l_List_isInfixOf__internal___redArg(lean_object*, lean_object*, lean_object*);
-uint8_t l_List_isSuffixOf___redArg(lean_object*, lean_object*, lean_object*);
 uint8_t l_List_isSublist___redArg(lean_object*, lean_object*, lean_object*);
 uint8_t l_List_isPrefixOf___redArg(lean_object*, lean_object*, lean_object*);
+uint8_t l_List_isInfixOf__internal___redArg(lean_object*, lean_object*, lean_object*);
+uint8_t l_List_isSuffixOf___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_List_instTransSubsetMem(lean_object*);
 LEAN_EXPORT lean_object* l_List_instTransSubset(lean_object*);
 LEAN_EXPORT lean_object* l_List_instTransSublist(lean_object*);

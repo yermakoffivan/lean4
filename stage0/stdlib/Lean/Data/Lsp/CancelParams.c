@@ -14,16 +14,16 @@
 extern "C" {
 #endif
 uint8_t l_Lean_JsonRpc_instBEqRequestID_beq(lean_object*, lean_object*);
-lean_object* lean_mk_empty_array_with_capacity(lean_object*);
-extern lean_object* l_Lean_JsonRpc_instInhabitedRequestID_default;
+lean_object* lean_array_to_list(lean_object*);
+lean_object* l_List_foldl___at___00Array_appendList_spec__0___redArg(lean_object*, lean_object*);
 lean_object* l_Lean_Name_mkStr1(lean_object*);
 lean_object* l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(lean_object*, uint8_t);
 lean_object* l_Lean_Name_mkStr3(lean_object*, lean_object*, lean_object*);
 lean_object* lean_string_append(lean_object*, lean_object*);
-lean_object* l_Lean_Json_getObjValD(lean_object*, lean_object*);
-lean_object* lean_array_to_list(lean_object*);
-lean_object* l_List_foldl___at___00Array_appendList_spec__0___redArg(lean_object*, lean_object*);
+lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* l_Lean_Json_mkObj(lean_object*);
+extern lean_object* l_Lean_JsonRpc_instInhabitedRequestID_default;
+lean_object* l_Lean_Json_getObjValD(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Lsp_instInhabitedCancelParams_default;
 LEAN_EXPORT lean_object* l_Lean_Lsp_instInhabitedCancelParams;
 LEAN_EXPORT uint8_t l_Lean_Lsp_instBEqCancelParams_beq(lean_object*, lean_object*);

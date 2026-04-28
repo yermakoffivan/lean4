@@ -13,18 +13,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_io_prim_handle_get_line(lean_object*);
-uint8_t lean_string_dec_eq(lean_object*, lean_object*);
-lean_object* lean_string_append(lean_object*, lean_object*);
-lean_object* l_System_Uri_fileUriToPath_x3f(lean_object*);
-lean_object* l_Lean_determineLakePath();
-uint8_t l_System_FilePath_pathExists(lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* lean_io_process_spawn(lean_object*);
 lean_object* lean_io_process_child_take_stdin(lean_object*, lean_object*);
 lean_object* l_Lean_instToJsonModuleHeader_toJson(lean_object*);
 lean_object* l_Lean_Json_compress(lean_object*);
 lean_object* l_IO_FS_Handle_putStrLn(lean_object*, lean_object*);
+lean_object* lean_io_prim_handle_get_line(lean_object*);
+uint8_t lean_string_dec_eq(lean_object*, lean_object*);
+lean_object* lean_string_append(lean_object*, lean_object*);
 lean_object* l_Lean_Server_ServerTask_IO_asTask___redArg(lean_object*);
 lean_object* l_IO_FS_Handle_readToEnd(lean_object*);
 lean_object* lean_task_get_own(lean_object*);
@@ -35,6 +32,9 @@ lean_object* lean_string_utf8_byte_size(lean_object*);
 lean_object* l_String_Slice_trimAscii(lean_object*);
 lean_object* lean_string_utf8_extract(lean_object*, lean_object*, lean_object*);
 lean_object* lean_array_push(lean_object*, lean_object*);
+lean_object* l_System_Uri_fileUriToPath_x3f(lean_object*);
+lean_object* l_Lean_determineLakePath();
+uint8_t l_System_FilePath_pathExists(lean_object*);
 lean_object* lean_array_to_list(lean_object*);
 lean_object* l_String_intercalate(lean_object*, lean_object*);
 uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);

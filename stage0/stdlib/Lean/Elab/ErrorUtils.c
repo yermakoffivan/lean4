@@ -13,14 +13,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* lean_string_append(lean_object*, lean_object*);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* l_Lean_stringToMessageData(lean_object*);
+extern lean_object* l_Lean_MessageData_nil;
+lean_object* l_Lean_MessageData_ofFormat(lean_object*);
 lean_object* lean_nat_mod(lean_object*, lean_object*);
 lean_object* l_Nat_reprFast(lean_object*);
 uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
-lean_object* l_Lean_MessageData_ofFormat(lean_object*);
-extern lean_object* l_Lean_MessageData_nil;
 static lean_once_cell_t l___private_Lean_Elab_ErrorUtils_0__Nat_toOrdinal___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_ErrorUtils_0__Nat_toOrdinal___closed__0;
 static lean_once_cell_t l___private_Lean_Elab_ErrorUtils_0__Nat_toOrdinal___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;

@@ -13,16 +13,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Std_Do_Id_instWP___lam__0(lean_object*, lean_object*, lean_object*);
 lean_object* l_Std_Do_Except_instWP___aux__1(lean_object*, lean_object*, lean_object*);
 lean_object* l_Std_Do_StateT_instWP___redArg___lam__1(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Std_Do_Reader_instWP(lean_object*);
-lean_object* l_Std_Do_ExceptT_instWP___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Std_Do_ReaderT_instWP___redArg___lam__2(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Std_Do_EStateM_instWP(lean_object*, lean_object*);
-lean_object* l_Std_Do_OptionT_instWP___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_Std_Do_Option_instWP___aux__1(lean_object*, lean_object*);
 lean_object* l_Std_Do_State_instWP___lam__1(lean_object*, lean_object*, lean_object*);
+lean_object* l_Std_Do_ReaderT_instWP___redArg___lam__2(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Std_Do_Reader_instWP(lean_object*);
+lean_object* l_Std_Do_Option_instWP___aux__1(lean_object*, lean_object*);
+lean_object* l_Std_Do_OptionT_instWP___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Std_Do_ExceptT_instWP___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_Std_Do_EStateM_instWP(lean_object*, lean_object*);
+lean_object* l_Std_Do_Id_instWP___lam__0(lean_object*, lean_object*, lean_object*);
 static lean_once_cell_t l_Std_Do_Id_instWPMonad___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Do_Id_instWPMonad___closed__0;
 LEAN_EXPORT lean_object* l_Std_Do_Id_instWPMonad;

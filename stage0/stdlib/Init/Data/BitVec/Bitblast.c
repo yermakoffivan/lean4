@@ -13,29 +13,29 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_BitVec_ofNat(lean_object*, lean_object*);
-lean_object* l_BitVec_extractLsb_x27___redArg(lean_object*, lean_object*, lean_object*);
-lean_object* l_BitVec_setWidth(lean_object*, lean_object*, lean_object*);
 lean_object* lean_nat_sub(lean_object*, lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* lean_nat_mul(lean_object*, lean_object*);
+lean_object* l_BitVec_extractLsb_x27___redArg(lean_object*, lean_object*, lean_object*);
+lean_object* l_BitVec_setWidth(lean_object*, lean_object*, lean_object*);
 lean_object* l_BitVec_append___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* lean_nat_add(lean_object*, lean_object*);
-lean_object* l_BitVec_twoPow(lean_object*, lean_object*);
-lean_object* lean_nat_land(lean_object*, lean_object*);
-lean_object* l_BitVec_sshiftRight(lean_object*, lean_object*, lean_object*);
-lean_object* l_BitVec_add(lean_object*, lean_object*, lean_object*);
-uint8_t l_Nat_testBit(lean_object*, lean_object*);
-lean_object* l_BitVec_shiftConcat(lean_object*, lean_object*, uint8_t);
-uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
-lean_object* l_BitVec_sub(lean_object*, lean_object*, lean_object*);
-lean_object* lean_nat_shiftr(lean_object*, lean_object*);
 lean_object* lean_nat_pow(lean_object*, lean_object*);
 lean_object* lean_nat_mod(lean_object*, lean_object*);
 lean_object* l_Bool_toNat(uint8_t);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
-lean_object* l_BitVec_shiftLeft(lean_object*, lean_object*, lean_object*);
+uint8_t l_Nat_testBit(lean_object*, lean_object*);
+uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
+lean_object* lean_nat_shiftr(lean_object*, lean_object*);
+lean_object* l_BitVec_ofNat(lean_object*, lean_object*);
+lean_object* l_BitVec_add(lean_object*, lean_object*, lean_object*);
 lean_object* l_BitVec_iunfoldr___redArg(lean_object*, lean_object*, lean_object*);
+lean_object* l_BitVec_shiftConcat(lean_object*, lean_object*, uint8_t);
+lean_object* l_BitVec_sub(lean_object*, lean_object*, lean_object*);
+lean_object* l_BitVec_twoPow(lean_object*, lean_object*);
+lean_object* lean_nat_land(lean_object*, lean_object*);
+lean_object* l_BitVec_sshiftRight(lean_object*, lean_object*, lean_object*);
+lean_object* l_BitVec_shiftLeft(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Bool_atLeastTwo(uint8_t, uint8_t, uint8_t);
 LEAN_EXPORT lean_object* l_Bool_atLeastTwo___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_BitVec_carry___redArg(lean_object*, lean_object*, lean_object*, uint8_t);

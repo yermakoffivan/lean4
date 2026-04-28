@@ -13,13 +13,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* lean_nat_mod(lean_object*, lean_object*);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
+lean_object* lean_nat_sub(lean_object*, lean_object*);
+uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
 lean_object* lean_nat_to_int(lean_object*);
 uint8_t lean_int_dec_le(lean_object*, lean_object*);
 lean_object* lean_nat_abs(lean_object*);
-lean_object* lean_nat_mod(lean_object*, lean_object*);
-lean_object* lean_nat_sub(lean_object*, lean_object*);
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
-uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Fin_NatCast_instNatCast___redArg___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Fin_NatCast_instNatCast___redArg___lam__0___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Fin_NatCast_instNatCast___redArg(lean_object*);

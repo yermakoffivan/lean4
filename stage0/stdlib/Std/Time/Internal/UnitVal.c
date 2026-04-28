@@ -13,21 +13,21 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-uint8_t lean_int_dec_le(lean_object*, lean_object*);
 lean_object* lean_int_div(lean_object*, lean_object*);
-lean_object* lean_int_ediv(lean_object*, lean_object*);
-lean_object* l_Int_repr___boxed(lean_object*);
-lean_object* lean_nat_abs(lean_object*);
 lean_object* lean_nat_to_int(lean_object*);
-lean_object* l_Rat_div(lean_object*, lean_object*);
+uint8_t lean_int_dec_le(lean_object*, lean_object*);
 lean_object* lean_int_mul(lean_object*, lean_object*);
 uint8_t lean_int_dec_lt(lean_object*, lean_object*);
 lean_object* l_Int_repr(lean_object*);
 lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
+lean_object* l_Int_repr___boxed(lean_object*);
+uint8_t lean_int_dec_eq(lean_object*, lean_object*);
+lean_object* lean_nat_abs(lean_object*);
+lean_object* l_Rat_div(lean_object*, lean_object*);
+lean_object* lean_int_ediv(lean_object*, lean_object*);
+lean_object* lean_int_add(lean_object*, lean_object*);
 lean_object* l_Int_neg___boxed(lean_object*);
 lean_object* lean_int_sub(lean_object*, lean_object*);
-uint8_t lean_int_dec_eq(lean_object*, lean_object*);
-lean_object* lean_int_add(lean_object*, lean_object*);
 static lean_once_cell_t l_Std_Time_Internal_instInhabitedUnitVal_default___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Time_Internal_instInhabitedUnitVal_default___closed__0;
 LEAN_EXPORT lean_object* l_Std_Time_Internal_instInhabitedUnitVal_default(lean_object*);

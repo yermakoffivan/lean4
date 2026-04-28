@@ -13,16 +13,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Char_utf8Size(uint32_t);
-lean_object* lean_nat_add(lean_object*, lean_object*);
+lean_object* l_Char_toLower___boxed(lean_object*);
 lean_object* lean_string_utf8_byte_size(lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 uint32_t lean_string_utf8_get_fast(lean_object*, lean_object*);
+lean_object* l_Char_utf8Size(uint32_t);
+lean_object* lean_nat_add(lean_object*, lean_object*);
 uint32_t lean_string_utf8_get(lean_object*, lean_object*);
 lean_object* l_Char_toUpper___boxed(lean_object*);
 uint8_t lean_uint32_dec_le(uint32_t, uint32_t);
 uint32_t lean_uint32_add(uint32_t, uint32_t);
-lean_object* l_Char_toLower___boxed(lean_object*);
 lean_object* lean_string_utf8_set(lean_object*, lean_object*, uint32_t);
 LEAN_EXPORT lean_object* l_String_Pos_set___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_Pos_toSetOfLE___redArg(lean_object*);

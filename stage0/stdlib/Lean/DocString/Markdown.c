@@ -13,6 +13,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* lean_nat_sub(lean_object*, lean_object*);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
+lean_object* lean_nat_add(lean_object*, lean_object*);
+uint32_t lean_string_utf8_get_fast(lean_object*, lean_object*);
+uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
+lean_object* lean_string_utf8_next_fast(lean_object*, lean_object*);
+lean_object* lean_string_push(lean_object*, uint32_t);
+lean_object* lean_string_utf8_byte_size(lean_object*);
 lean_object* l_Id_instMonad___lam__6(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Id_instMonad___lam__5___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Id_instMonad___lam__4___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
@@ -20,25 +28,16 @@ lean_object* l_Id_instMonad___lam__3(lean_object*, lean_object*, lean_object*, l
 lean_object* l_Id_instMonad___lam__2___boxed(lean_object*, lean_object*);
 lean_object* l_Id_instMonad___lam__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Id_instMonad___lam__0(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l_StateT_bind(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_StateT_instMonad___redArg___lam__9(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_StateT_instMonad___redArg___lam__7(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_StateT_instMonad___redArg___lam__4(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_StateT_pure(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_StateT_instMonad___redArg___lam__1(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_StateT_map(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* l_StateT_bind(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_ReaderT_instMonad___redArg(lean_object*);
-lean_object* lean_string_push(lean_object*, uint32_t);
-lean_object* lean_string_utf8_byte_size(lean_object*);
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
-uint8_t lean_nat_dec_le(lean_object*, lean_object*);
-lean_object* lean_nat_sub(lean_object*, lean_object*);
-uint8_t lean_string_memcmp(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* l___private_Init_Data_Nat_Basic_0__Nat_repeatTR_loop(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* lean_string_append(lean_object*, lean_object*);
-uint32_t lean_string_utf8_get_fast(lean_object*, lean_object*);
-lean_object* lean_string_utf8_next_fast(lean_object*, lean_object*);
-lean_object* lean_nat_add(lean_object*, lean_object*);
-uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
 lean_object* l_Lean_Doc_Inline_empty(lean_object*);
 uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
 lean_object* lean_string_utf8_extract(lean_object*, lean_object*, lean_object*);
@@ -54,6 +53,8 @@ lean_object* l_List_appendTR___redArg(lean_object*, lean_object*);
 lean_object* l_String_Slice_posLE(lean_object*, lean_object*);
 lean_object* l_String_Slice_Pos_prevn(lean_object*, lean_object*, lean_object*);
 lean_object* l_Array_reverse___redArg(lean_object*);
+uint8_t lean_nat_dec_le(lean_object*, lean_object*);
+uint8_t lean_string_memcmp(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_String_toSlice(lean_object*);
 lean_object* l_String_Slice_Pattern_ForwardSliceSearcher_instIteratorLoopIdSearchStep(lean_object*);
 lean_object* l_String_Slice_Pattern_ForwardSliceSearcher_instToForwardSearcher__1(lean_object*);
@@ -67,7 +68,6 @@ size_t lean_usize_add(size_t, size_t);
 lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, size_t, size_t, lean_object*);
 lean_object* l_Nat_reprFast(lean_object*);
 lean_object* l_Int_toNat(lean_object*);
-lean_object* l___private_Init_Data_Nat_Basic_0__Nat_repeatTR_loop(lean_object*, lean_object*, lean_object*, lean_object*);
 static lean_once_cell_t l___private_Lean_DocString_Markdown_0__Lean_Doc_MarkdownM_combineBlocks___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_DocString_Markdown_0__Lean_Doc_MarkdownM_combineBlocks___closed__0;
 static lean_once_cell_t l___private_Lean_DocString_Markdown_0__Lean_Doc_MarkdownM_combineBlocks___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -4625,11 +4625,11 @@ lean_object* v___x_1254_; lean_object* v___x_1255_; lean_object* v___x_1256_; le
 v___x_1254_ = lean_unsigned_to_nat(1u);
 v___x_1255_ = lean_nat_add(v___y_1253_, v___x_1254_);
 lean_dec(v___y_1253_);
-v___x_1256_ = l___private_Init_Data_Nat_Basic_0__Nat_repeatTR_loop___at___00__private_Lean_DocString_Markdown_0__Lean_Doc_quoteCode_spec__1(v___x_1255_, v___y_1251_);
+v___x_1256_ = l___private_Init_Data_Nat_Basic_0__Nat_repeatTR_loop___at___00__private_Lean_DocString_Markdown_0__Lean_Doc_quoteCode_spec__1(v___x_1255_, v___y_1252_);
 lean_inc_ref(v___x_1256_);
 v___x_1257_ = lean_string_append(v___x_1256_, v___x_1249_);
-v___x_1258_ = lean_string_append(v___x_1257_, v___y_1252_);
-lean_dec_ref(v___y_1252_);
+v___x_1258_ = lean_string_append(v___x_1257_, v___y_1251_);
+lean_dec_ref(v___y_1251_);
 v___x_1259_ = lean_string_append(v___x_1258_, v___x_1256_);
 lean_dec_ref(v___x_1256_);
 v___x_1260_ = lean_string_append(v___x_1259_, v___x_1249_);
@@ -4643,16 +4643,16 @@ v___x_1264_ = lean_nat_dec_le(v_fst_1246_, v_fst_1247_);
 if (v___x_1264_ == 0)
 {
 lean_dec(v_fst_1247_);
-v___y_1251_ = v___x_1263_;
-v___y_1252_ = v___y_1262_;
+v___y_1251_ = v___y_1262_;
+v___y_1252_ = v___x_1263_;
 v___y_1253_ = v_fst_1246_;
 goto v___jp_1250_;
 }
 else
 {
 lean_dec(v_fst_1246_);
-v___y_1251_ = v___x_1263_;
-v___y_1252_ = v___y_1262_;
+v___y_1251_ = v___y_1262_;
+v___y_1252_ = v___x_1263_;
 v___y_1253_ = v_fst_1247_;
 goto v___jp_1250_;
 }

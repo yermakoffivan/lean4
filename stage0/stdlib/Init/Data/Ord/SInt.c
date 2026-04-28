@@ -13,16 +13,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-uint8_t lean_int64_dec_lt(uint64_t, uint64_t);
-uint8_t lean_int64_dec_eq(uint64_t, uint64_t);
 uint8_t lean_int16_dec_lt(uint16_t, uint16_t);
 uint8_t lean_int16_dec_eq(uint16_t, uint16_t);
+uint8_t lean_isize_dec_lt(size_t, size_t);
+uint8_t lean_isize_dec_eq(size_t, size_t);
+uint8_t lean_int64_dec_lt(uint64_t, uint64_t);
+uint8_t lean_int64_dec_eq(uint64_t, uint64_t);
 uint8_t lean_int32_dec_lt(uint32_t, uint32_t);
 uint8_t lean_int32_dec_eq(uint32_t, uint32_t);
 uint8_t lean_int8_dec_lt(uint8_t, uint8_t);
 uint8_t lean_int8_dec_eq(uint8_t, uint8_t);
-uint8_t lean_isize_dec_lt(size_t, size_t);
-uint8_t lean_isize_dec_eq(size_t, size_t);
 LEAN_EXPORT uint8_t l_Int8_instOrd___lam__0(uint8_t, uint8_t);
 LEAN_EXPORT lean_object* l_Int8_instOrd___lam__0___boxed(lean_object*, lean_object*);
 static lean_once_cell_t l_Int8_instOrd___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;

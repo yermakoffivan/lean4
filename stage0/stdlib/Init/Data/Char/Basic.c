@@ -15,11 +15,11 @@ extern "C" {
 #endif
 uint8_t lean_uint32_dec_le(uint32_t, uint32_t);
 uint32_t lean_uint32_add(uint32_t, uint32_t);
-uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
 lean_object* lean_uint32_to_nat(uint32_t);
-uint32_t lean_uint8_to_uint32(uint8_t);
+uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
 uint8_t lean_uint32_to_uint8(uint32_t);
 uint8_t lean_uint32_dec_lt(uint32_t, uint32_t);
+uint32_t lean_uint8_to_uint32(uint8_t);
 LEAN_EXPORT lean_object* l_Char_instLT;
 LEAN_EXPORT lean_object* l_Char_instLE;
 LEAN_EXPORT uint8_t l_Char_instDecidableLt(uint32_t, uint32_t);

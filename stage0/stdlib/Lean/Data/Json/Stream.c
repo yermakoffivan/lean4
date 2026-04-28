@@ -13,12 +13,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* lean_mk_io_user_error(lean_object*);
-lean_object* l_Lean_Json_compress(lean_object*);
 size_t lean_usize_of_nat(lean_object*);
 uint8_t lean_string_validate_utf8(lean_object*);
+lean_object* lean_mk_io_user_error(lean_object*);
 lean_object* lean_string_from_utf8_unchecked(lean_object*);
 lean_object* l_Lean_Json_parse(lean_object*);
+lean_object* l_Lean_Json_compress(lean_object*);
 static lean_once_cell_t l_IO_FS_Stream_readUTF8___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_IO_FS_Stream_readUTF8___closed__0;
 static lean_once_cell_t l_IO_FS_Stream_readUTF8___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;

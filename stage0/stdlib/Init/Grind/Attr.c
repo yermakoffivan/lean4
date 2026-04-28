@@ -13,9 +13,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Lean_Name_mkStr1(lean_object*);
 lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Name_mkStr2(lean_object*, lean_object*);
+lean_object* l_Lean_Name_mkStr1(lean_object*);
 extern lean_object* l_Lean_Parser_Tactic_simpPost;
 extern lean_object* l_Lean_Parser_Tactic_simpPre;
 lean_object* l_Lean_Name_mkStr3(lean_object*, lean_object*, lean_object*);

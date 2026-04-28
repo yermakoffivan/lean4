@@ -14,27 +14,27 @@
 extern "C" {
 #endif
 lean_object* lean_string_utf8_byte_size(lean_object*);
-extern uint32_t l_System_FilePath_pathSeparator;
-lean_object* lean_string_push(lean_object*, uint32_t);
-lean_object* lean_nat_sub(lean_object*, lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
-lean_object* lean_nat_add(lean_object*, lean_object*);
 uint8_t lean_string_memcmp(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_String_Slice_pos_x21(lean_object*, lean_object*);
+extern uint32_t l_System_FilePath_pathSeparator;
+lean_object* lean_string_push(lean_object*, uint32_t);
 lean_object* l_String_Slice_Pos_nextn(lean_object*, lean_object*, lean_object*);
+lean_object* lean_nat_add(lean_object*, lean_object*);
 lean_object* l_String_Slice_toString(lean_object*);
-lean_object* lean_string_utf8_set(lean_object*, lean_object*, uint32_t);
-lean_object* l_Char_utf8Size(uint32_t);
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
-uint32_t lean_string_utf8_get_fast(lean_object*, lean_object*);
-uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
-extern uint8_t l_System_Platform_isWindows;
+lean_object* lean_nat_sub(lean_object*, lean_object*);
 uint8_t lean_string_dec_eq(lean_object*, lean_object*);
 lean_object* l_System_FilePath_join(lean_object*, lean_object*);
-lean_object* l_System_FilePath_normalize(lean_object*);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* lean_string_utf8_prev(lean_object*, lean_object*);
 uint32_t lean_string_utf8_get(lean_object*, lean_object*);
+uint8_t lean_uint32_dec_eq(uint32_t, uint32_t);
 lean_object* lean_string_utf8_extract(lean_object*, lean_object*, lean_object*);
+extern uint8_t l_System_Platform_isWindows;
+lean_object* lean_string_utf8_set(lean_object*, lean_object*, uint32_t);
+lean_object* l_Char_utf8Size(uint32_t);
+uint32_t lean_string_utf8_get_fast(lean_object*, lean_object*);
+lean_object* l_System_FilePath_normalize(lean_object*);
 lean_object* lean_string_utf8_extract(lean_object*, lean_object*, lean_object*);
 lean_object* l_System_FilePath_components(lean_object*);
 lean_object* l_Lean_Name_str___override(lean_object*, lean_object*);

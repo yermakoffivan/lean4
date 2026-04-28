@@ -13,13 +13,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* lean_string_append(lean_object*, lean_object*);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
+uint8_t lean_string_dec_eq(lean_object*, lean_object*);
 lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
 lean_object* lean_nat_to_int(lean_object*);
 lean_object* l_String_quote(lean_object*);
-lean_object* lean_string_append(lean_object*, lean_object*);
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
-uint8_t lean_string_dec_eq(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Error_ctorIdx(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Error_ctorIdx___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Error_ctorElim___redArg(lean_object*, lean_object*);

@@ -13,22 +13,22 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-uint8_t lean_uint8_dec_le(uint8_t, uint8_t);
-uint8_t lean_uint8_add(uint8_t, uint8_t);
-uint32_t lean_uint8_to_uint32(uint8_t);
-lean_object* lean_string_utf8_byte_size(lean_object*);
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
-lean_object* lean_nat_sub(lean_object*, lean_object*);
-uint8_t lean_string_get_byte_fast(lean_object*, lean_object*);
-lean_object* lean_string_length(lean_object*);
-lean_object* lean_string_push(lean_object*, uint32_t);
 lean_object* lean_mk_empty_byte_array(lean_object*);
 lean_object* lean_string_from_utf8_unchecked(lean_object*);
+lean_object* l_Nat_reprFast(lean_object*);
+lean_object* lean_string_length(lean_object*);
+lean_object* lean_nat_sub(lean_object*, lean_object*);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
+lean_object* lean_string_push(lean_object*, uint32_t);
+lean_object* lean_string_append(lean_object*, lean_object*);
+uint8_t lean_uint8_dec_le(uint8_t, uint8_t);
+uint8_t lean_uint8_add(uint8_t, uint8_t);
+uint8_t lean_string_get_byte_fast(lean_object*, lean_object*);
+lean_object* lean_string_utf8_byte_size(lean_object*);
 uint64_t lean_uint64_shift_right(uint64_t, uint64_t);
 uint64_t lean_uint64_land(uint64_t, uint64_t);
 uint8_t lean_uint64_to_uint8(uint64_t);
-lean_object* lean_string_append(lean_object*, lean_object*);
-lean_object* l_Nat_reprFast(lean_object*);
+uint32_t lean_uint8_to_uint32(uint8_t);
 LEAN_EXPORT lean_object* l___private_Init_Data_Nat_Basic_0__Nat_repeatTR_loop___at___00Lake_lpad_spec__0(uint32_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Nat_Basic_0__Nat_repeatTR_loop___at___00Lake_lpad_spec__0___boxed(lean_object*, lean_object*, lean_object*);
 static lean_once_cell_t l_Lake_lpad___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;

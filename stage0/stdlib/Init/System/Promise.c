@@ -13,8 +13,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-uint8_t lean_io_get_task_state(lean_object*);
 lean_object* lean_task_map(lean_object*, lean_object*, lean_object*, uint8_t);
+uint8_t lean_io_get_task_state(lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_System_Promise_0__IO_PromisePointed;
 lean_object* lean_io_promise_new();
 LEAN_EXPORT lean_object* l_IO_Promise_new___boxed(lean_object*, lean_object*, lean_object*);
@@ -43,7 +43,7 @@ v___x_1_ = lean_box(0);
 return v___x_1_;
 }
 }
-LEAN_EXPORT lean_object* l_IO_Promise_new___boxed(lean_object* v_00_u03b1_5_, lean_object* v_inst_00___x40_Init_System_Promise_64347732____hygCtx___hyg_6_, lean_object* v_a_00___x40___internal___hyg_7_){
+LEAN_EXPORT lean_object* l_IO_Promise_new___boxed(lean_object* v_00_u03b1_5_, lean_object* v_inst_00___x40_Init_System_Promise_1943714387____hygCtx___hyg_6_, lean_object* v_a_00___x40___internal___hyg_7_){
 _start:
 {
 lean_object* v_res_8_; 
@@ -69,7 +69,7 @@ lean_dec(v_promise_21_);
 return v_res_22_;
 }
 }
-LEAN_EXPORT lean_object* l___private_Init_System_Promise_0__IO_Option_getOrBlock_x21___boxed(lean_object* v_00_u03b1_26_, lean_object* v_inst_00___x40_Init_System_Promise_1729115947____hygCtx___hyg_27_, lean_object* v_a_00___x40___internal___hyg_28_){
+LEAN_EXPORT lean_object* l___private_Init_System_Promise_0__IO_Option_getOrBlock_x21___boxed(lean_object* v_00_u03b1_26_, lean_object* v_inst_00___x40_Init_System_Promise_3660917671____hygCtx___hyg_27_, lean_object* v_a_00___x40___internal___hyg_28_){
 _start:
 {
 lean_object* v_res_29_; 

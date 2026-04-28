@@ -13,22 +13,22 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+lean_object* lean_string_from_utf8_unchecked(lean_object*);
+lean_object* l_List_foldl___redArg(lean_object*, lean_object*, lean_object*);
+uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
 lean_object* lean_nat_sub(lean_object*, lean_object*);
 lean_object* lean_nat_add(lean_object*, lean_object*);
-lean_object* l_List_foldl___redArg(lean_object*, lean_object*, lean_object*);
+lean_object* l_String_toRawSubstring_x27(lean_object*);
+lean_object* lean_string_to_utf8(lean_object*);
+lean_object* lean_string_utf8_byte_size(lean_object*);
+uint8_t lean_string_get_byte_fast(lean_object*, lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
-uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
 lean_object* lean_string_push(lean_object*, uint32_t);
+lean_object* l___private_Init_Data_Nat_Basic_0__Nat_repeatTR_loop(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_mkPanicMessageWithDecl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 extern uint8_t l_instInhabitedUInt8;
 lean_object* lean_panic_fn_borrowed(lean_object*, lean_object*);
-uint8_t lean_string_get_byte_fast(lean_object*, lean_object*);
-lean_object* lean_string_utf8_byte_size(lean_object*);
-lean_object* lean_string_to_utf8(lean_object*);
-lean_object* l_String_toRawSubstring_x27(lean_object*);
-lean_object* lean_string_from_utf8_unchecked(lean_object*);
-lean_object* l___private_Init_Data_Nat_Basic_0__Nat_repeatTR_loop(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_fromUTF8___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_String_fromUTF8___redArg___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_String_fromUTF8(lean_object*, lean_object*);

@@ -14,10 +14,10 @@
 extern "C" {
 #endif
 lean_object* lean_nat_to_int(lean_object*);
+uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* l_Repr_addAppParen(lean_object*, lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
-uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 uint8_t lean_string_dec_eq(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_ConfigLang_ctorIdx(uint8_t);
 LEAN_EXPORT lean_object* l_Lake_ConfigLang_ctorIdx___boxed(lean_object*);

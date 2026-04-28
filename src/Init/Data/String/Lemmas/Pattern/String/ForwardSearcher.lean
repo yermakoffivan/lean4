@@ -439,7 +439,6 @@ theorem Invariants.of_prefixFunction_eq {pat s : Slice} {stackPos needlePos : St
   rw [Nat.sub_add_cancel (by simp at h'; omega)] at this
   exact hk ▸ (h.partialMatch.partialMatch_iff.1 this).2
 
-set_option backward.defeqAttrib.useBackward true in
 theorem Invariants.isValidSearchFrom_toList {pat s : Slice} {stackPos needlePos : String.Pos.Raw}
     (it : Std.Iter (α := ForwardSliceSearcher s) (SearchStep s))
     (h : Invariants pat s needlePos stackPos)
@@ -545,7 +544,7 @@ theorem Invariants.isValidSearchFrom_toList {pat s : Slice} {stackPos needlePos 
 
     · --  Case 7: reached the end with empty partial match -> done
       simp only [base, ← hit'', Id.run_pure, Std.Shrink.inflate_deflate, Std.IterM.Step.toPure_done,
-        Std.PlausibleIterStep.done, Std.IterM.toIter_mk]
+        Std.PlausibleIterStep.done]
       apply IsValidSearchFrom.endPos_of_eq (Std.le_antisymm (Pos.le_endPos _) _) rfl
       simpa [Pos.Raw.le_iff, Pos.le_iff, Pos.Raw.lt_iff] using h₂
 

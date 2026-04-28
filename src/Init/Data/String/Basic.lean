@@ -1129,11 +1129,10 @@ def Slice.slice! (s : Slice) (newStart newEnd : s.Pos) : Slice :=
 def Slice.replaceStartEnd! (s : Slice) (newStart newEnd : s.Pos) : Slice :=
   s.slice! newStart newEnd
 
-set_option backward.defeqAttrib.useBackward true in
 @[simp]
 theorem Slice.utf8ByteSize_sliceFrom {s : Slice} {pos : s.Pos} :
     (s.sliceFrom pos).utf8ByteSize = s.utf8ByteSize - pos.offset.byteIdx := by
-  simp only [utf8ByteSize_eq, str_sliceFrom, endExclusive_sliceFrom,
+  simp only [utf8ByteSize_eq, endExclusive_sliceFrom,
     startInclusive_sliceFrom, Pos.offset_str, Pos.Raw.byteIdx_offsetBy]
   omega
 

@@ -4399,7 +4399,6 @@ theorem mem_alterKey_of_key_ne {a : α} {f : Option (β a) → Option (β a)}
   rw [alterKey]
   split <;> simp only [mem_eraseKey_of_key_ne p hne, mem_insertEntry_of_key_ne p hne]
 
-set_option backward.defeqAttrib.useBackward true in
 theorem getValueCast?_alterKey (k k' : α) (f : Option (β k) → Option (β k))
     (l : List ((a : α) × β a)) (hl : DistinctKeys l) : getValueCast? k' (alterKey k f l) =
       if h : k == k' then
@@ -4409,7 +4408,7 @@ theorem getValueCast?_alterKey (k k' : α) (f : Option (β k) → Option (β k))
   split
   next heq =>
     cases eq_of_beq heq
-    simp only [Function.comp_apply, cast_eq]
+    simp only [cast_eq]
     rw [alterKey]
     split
     next hnone =>
@@ -4425,7 +4424,6 @@ theorem getValueCast?_alterKey (k k' : α) (f : Option (β k) → Option (β k))
     next hsome =>
       simp only [getValueCast?_insertEntry, dite_false, heq, Bool.false_eq_true]
 
-set_option backward.defeqAttrib.useBackward true in
 theorem getValueCast_alterKey (k k' : α) (f : Option (β k) → Option (β k))
     (l : List ((a : α) × β a)) (hl : DistinctKeys l) (hc : containsKey k' (alterKey k f l)) :
     getValueCast k' (alterKey k f l) hc =
@@ -4445,7 +4443,7 @@ theorem getValueCast_alterKey (k k' : α) (f : Option (β k) → Option (β k))
     simp_all
   next heq =>
     apply Option.some_inj.mp
-    simp_all only [Bool.false_eq_true, Function.comp_apply, dite_false]
+    simp_all only [Bool.false_eq_true, dite_false]
     rw [getValueCast?_eq_some_getValueCast]
 
 theorem getValueCast_alterKey_self (k : α) (f : Option (β k) → Option (β k))

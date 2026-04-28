@@ -115,7 +115,6 @@ theorem IterStep.restrict_bundle [Iterator α₁ m β] [Iterator α₂ m β] [Mo
     IterM.QuotStep.restrict ⟨step.bundledQuotient, h⟩ = Quot.mk _ h.choose := by
   rfl
 
-set_option backward.defeqAttrib.useBackward true in
 /-
 Equivalence and usage of `transportAlongEquiv` tells us:
 
@@ -152,7 +151,7 @@ theorem IterM.Equiv.step_eq {α₁ α₂ : Type w} {m : Type w → Type w'} [Mon
   simp only [HetT.map_pmap, IterStep.restrict_bundle (α₂ := α₂),
     IterStep.restrict_bundle (α₂ := α₁)] at h'
   replace h' := congrArg (HetT.prun · (fun x _ => pure (Shrink.deflate x))) h'
-  simp only [Equivalence.property_step, HetT.prun_pmap, Equivalence.prun_step, bind_pure_comp] at h'
+  simp only [HetT.prun_pmap, Equivalence.prun_step, bind_pure_comp] at h'
   simp only [QuotStep.transportAlongEquiv, Functor.map_map, Shrink.inflate_deflate, ← h']
   congr
   ext step
@@ -223,7 +222,6 @@ theorem IterM.Equiv.liftInner_stepAsHetT_pbind_congr [Monad m] [LawfulMonad m]
     intro s₁ s₂ h
     simp only [hfg s₁.inflate.1 s₁.inflate.2 s₂.inflate.1 s₂.inflate.2 h]
 
-set_option backward.defeqAttrib.useBackward true in
 theorem IterM.Equiv.liftInner_stepAsHetT_bind_congr [Monad m] [LawfulMonad m]
     [Monad n] [LawfulMonad n] [MonadLiftT m n] [LawfulMonadLiftT m n] [Iterator α₁ m β]
     [Iterator α₂ m β] {ita : IterM (α := α₁) m β} {itb : IterM (α := α₂) m β}
@@ -231,7 +229,7 @@ theorem IterM.Equiv.liftInner_stepAsHetT_bind_congr [Monad m] [LawfulMonad m]
     (hfg : ∀ sa (_ : (IterM.stepAsHetT ita).Property sa) sb (_ : (IterM.stepAsHetT itb).Property sb),
         sa.bundledQuotient = sb.bundledQuotient → f sa = g sb) :
     ((IterM.stepAsHetT ita).liftInner n).bind f = ((IterM.stepAsHetT itb).liftInner n).bind g := by
-  simp only [HetT.bind_eq_pbind, HetT.property_liftInner, Equivalence.property_step]
+  simp only [HetT.bind_eq_pbind]
   apply liftInner_stepAsHetT_pbind_congr h
   exact hfg
 

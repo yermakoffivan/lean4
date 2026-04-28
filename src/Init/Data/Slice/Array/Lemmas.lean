@@ -28,7 +28,6 @@ open Std Std.Iterators Std.PRange Std.Slice
 
 namespace SubarrayIterator
 
-set_option backward.defeqAttrib.useBackward true in
 theorem step_eq {it : Iter (α := SubarrayIterator α) α} :
     it.step = if h : it.1.xs.start < it.1.xs.stop then
         haveI := it.1.xs.start_le_stop
@@ -42,7 +41,7 @@ theorem step_eq {it : Iter (α := SubarrayIterator α) α} :
         ⟨.done, (by
             simpa [Iter.IsPlausibleStep, IterM.IsPlausibleStep, Iterator.IsPlausibleStep, instIteratorSubarrayIteratorId, -- TODO
               SubarrayIterator.step] using h)⟩ := by
-  simp only [Iter.step, IterM.Step.toPure, Iter.toIter_toIterM, IterStep.mapIterator, IterM.step,
+  simp only [Iter.step, IterM.Step.toPure, IterStep.mapIterator, IterM.step,
     Iterator.step, SubarrayIterator.step, Id.run_pure, Shrink.inflate_deflate]
   by_cases h : it.internalState.xs.start < it.internalState.xs.stop
   · simp only [h, ↓reduceDIte]

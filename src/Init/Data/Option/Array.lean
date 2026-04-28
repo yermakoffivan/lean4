@@ -27,7 +27,6 @@ set_option backward.defeqAttrib.useBackward true in
     forIn' o.toArray b f = forIn' o b fun a m b => f a (by simpa using m) b := by
   cases o <;> simp <;> rfl
 
-set_option backward.defeqAttrib.useBackward true in
 @[simp, grind =] theorem forIn_toArray [Monad m] (o : Option α) (b : β) (f : α → β → m (ForInStep β)) :
     forIn o.toArray b f = forIn o b f := by
   cases o <;> simp <;> rfl

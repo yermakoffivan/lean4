@@ -335,7 +335,7 @@ private def initCore (mvarId : MVarId) : GrindM Goal := do
   else
     processHypotheses goal
 
-def traceEMatchDiagsCompact (diag : PArray EMatchDiagInfo) : GrindM Unit := do
+partial def traceEMatchDiagsCompact (diag : PArray EMatchDiagInfo) : GrindM Unit := do
   if (← isTracingEnabledFor `grind.ematch.diagnostics.compact) then
   unless (← isEmatchDiagEnabled) do
     logWarning "use `set_option grind.ematch.diagnostics true` when using `set_option trace.grind.ematch.diagnostics.compact true`"
@@ -348,7 +348,12 @@ where
   getTheoremName? (p : Expr) : Option Name :=
     match p with
     | .lam _ _ b _ => getTheoremName? b
-    | .app f _ => getTheoremName? f
+    | .app _ a =>
+      if p.isAppOfArity ``id 2 then
+        -- Skip hint
+        getTheoremName? a
+      else
+        getTheoremName? p.getAppFn
     | .const declName _ => some declName
     | _ => none
 

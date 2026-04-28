@@ -147,9 +147,11 @@ end Year
 `ZoneId` represents different time zone ID formats based on the number of pattern letters.
 -/
 inductive ZoneId
-  /-- Short form of time zone (e.g., "PST") -/
+  /-- Unknown zone placeholder (1 letter, `V`): always formats as "unk". -/
+  | unknown
+  /-- IANA time zone ID (2 letters, `VV`, e.g., "America/Los_Angeles"). -/
   | short
-  /-- Full form of time zone (e.g., "Pacific Standard Time") -/
+  /-- Generic location format (4 letters, `VVVV`, e.g., "Los Angeles Time"). -/
   | full
   deriving Repr, Inhabited
 
@@ -157,12 +159,15 @@ namespace ZoneId
 
 /--
 `classify` classifies the number of pattern letters into a `ZoneId` format.
+- If 1 letter, it returns the unknown form.
 - If 2 letters, it returns the short form.
 - If 4 letters, it returns the full form.
 - Otherwise, it returns none.
 -/
 def classify (num : Nat) : Option ZoneId :=
-  if num = 2 then
+  if num = 1 then
+    some (.unknown)
+  else if num = 2 then
     some (.short)
   else if num = 4 then
     some (.full)
@@ -333,14 +338,63 @@ end OffsetZ
 `DayPeriod` extends `HourMarker` with exact noon and midnight values, used by the `b` pattern.
 -/
 inductive DayPeriod
-  /-- Ante meridiem (before noon) -/
+
+  /--
+  Ante meridiem (before noon)
+  -/
   | am
-  /-- Post meridiem (after noon) -/
+
+  /--
+  Post meridiem (after noon)
+  -/
   | pm
-  /-- Exactly noon (12:00:00) -/
+
+  /--
+  Exactly noon (12:00:00)
+  -/
   | noon
-  /-- Exactly midnight (00:00:00) -/
+
+  /--
+  Exactly midnight (00:00:00)
+  -/
   | midnight
+  deriving Repr, Inhabited
+
+/--
+`ExtendedDayPeriod` is a more granular day-period classification used by the `B` pattern,
+subdividing the day into named English CLDR segments.
+-/
+inductive ExtendedDayPeriod
+
+  /--
+  Exactly 00:00:00
+  -/
+  | midnight
+
+  /--
+  21:00–06:00 (exclusive of midnight)
+  -/
+  | night
+
+  /--
+  06:00–12:00
+  -/
+  | morning
+
+  /--
+  Exactly 12:00:00
+  -/
+  | noon
+
+  /--
+  12:00–18:00
+  -/
+  | afternoon
+
+  /--
+  18:00–21:00
+  -/
+  | evening
   deriving Repr, Inhabited
 
 /--
@@ -441,6 +495,11 @@ inductive Modifier
   | b (presentation : Text)
 
   /--
+  `B`: Extended day period with named segments (e.g., "in the morning", "at night").
+  -/
+  | B (presentation : Text)
+
+  /--
   `h`: Clock hour of AM/PM (1-12) (e.g., 12).
   -/
   | h (presentation : Number)
@@ -491,9 +550,10 @@ inductive Modifier
   | N (presentation : Number)
 
   /--
-  `V`: Time zone ID (`VV`, matching Java's supported width).
+  `V`: Time zone ID. `V` (1 letter) outputs "unk" (unknown zone placeholder per Unicode CLDR);
+  `VV` (2 letters) outputs the IANA zone ID (e.g., "America/Los_Angeles").
   -/
-  | V (presentation : Number)
+  | V (presentation : ZoneId)
 
   /--
   `z`: Time zone name (e.g., Pacific Standard Time, PST).
@@ -575,10 +635,10 @@ private def parseOffsetO (constructor : OffsetO → Modifier) (p : String) : Par
   parseMod constructor OffsetO.classify p
 
 private def parseZoneId (p : String) : Parser Modifier :=
-  if p.length = 2 then
-    pure (.V ⟨p.length⟩)
-  else
-    fail s!"invalid quantity of characters for '{p.front}': must be 2"
+  match p.length with
+  | 1 => pure (.V .unknown)
+  | 2 => pure (.V .short)
+  | _ => fail s!"invalid quantity of characters for '{p.front}': must be 1 or 2"
 
 private def parseNumberText (constructor : (Number ⊕ Text) → Modifier) (p : String) : Parser Modifier :=
   parseMod constructor classifyNumberText p
@@ -607,33 +667,14 @@ private def classifyStandaloneWeekdayNumberText : Nat → Option (Number ⊕ Tex
 private def parseStandaloneWeekdayNumberText (constructor : (Number ⊕ Text) → Modifier) (p : String) : Parser Modifier :=
   parseMod constructor classifyStandaloneWeekdayNumberText p
 
-private def classifyAMPMText : Nat → Option Text
-  | n =>
-    if n < 4 then
-      some .short
-    else if n = 4 then
-      some .full
-    else if n = 5 then
-      some .narrow
-    else
-      none
-
-private def classifyDayPeriodText : Nat → Option Text
-  | n =>
-    if n < 4 then
-      some .short
-    else if n = 4 then
-      some .full
-    else if n = 5 then
-      some .narrow
-    else
-      none
-
 private def parseAMPM (p : String) : Parser Modifier :=
-  parseMod Modifier.a classifyAMPMText p
+  parseText Modifier.a p
 
 private def parseDayPeriod (p : String) : Parser Modifier :=
-  parseMod Modifier.b classifyDayPeriodText p
+  parseText Modifier.b p
+
+private def parseBPeriod (p : String) : Parser Modifier :=
+  parseText Modifier.B p
 
 private def parseZoneName (constructor : ZoneName → Modifier) (p : String) : Parser Modifier :=
   let len := p.length
@@ -660,6 +701,7 @@ private def parseModifier : Parser Modifier
   <|> parseMod Modifier.F classifySingleNumber =<< many1Chars (pchar 'F')
   <|> parseAMPM =<< many1Chars (pchar 'a')
   <|> parseDayPeriod =<< many1Chars (pchar 'b')
+  <|> parseBPeriod =<< many1Chars (pchar 'B')
   <|> parseMod Modifier.h (classifyNumberMax 2) =<< many1Chars (pchar 'h')
   <|> parseMod Modifier.K (classifyNumberMax 2) =<< many1Chars (pchar 'K')
   <|> parseMod Modifier.k (classifyNumberMax 2) =<< many1Chars (pchar 'k')
@@ -890,6 +932,22 @@ private def formatDayPeriodNarrow : DayPeriod → String
   | .noon     => "n"
   | .midnight => "mi"
 
+private def formatExtendedDayPeriodShort : ExtendedDayPeriod → String
+  | .midnight  => "midnight"
+  | .night     => "at night"
+  | .morning   => "in the morning"
+  | .noon      => "noon"
+  | .afternoon => "in the afternoon"
+  | .evening   => "in the evening"
+
+private def formatExtendedDayPeriodNarrow : ExtendedDayPeriod → String
+  | .midnight  => "mi"
+  | .night     => "at night"
+  | .morning   => "in the morning"
+  | .noon      => "n"
+  | .afternoon => "in the afternoon"
+  | .evening   => "in the evening"
+
 private def toIsoString (offset : Offset) (withMinutes : Bool) (withSeconds : Bool) (colon : Bool) : String :=
   let (sign, time) := if offset.second.val ≥ 0 then ("+", offset.second) else ("-", -offset.second)
   let time := PlainTime.ofSeconds time
@@ -933,11 +991,8 @@ private def isUTCLabel (input : String) : Bool :=
   ∨ input = "GMT+0"
   ∨ input = "GMT+00:00"
 
-private def normalizeZoneName (input : String) (full : Bool) : String :=
-  if isUTCLabel input then
-    if full then "Coordinated Universal Time" else "UTC"
-  else
-    input
+private def normalizeZoneName (input : String) (_ : Bool) : String :=
+  if isUTCLabel input then "Z" else input
 
 set_option linter.missingDocs false in  -- TODO
 @[expose /- for codegen -/]
@@ -953,13 +1008,14 @@ def TypeFormat : Modifier → Type
   | .Q _ => Month.Quarter
   | .q _ => Month.Quarter
   | .w _ => Week.Ordinal
-  | .W _ => Bounded.LE 1 5
+  | .W _ => Bounded.LE 1 6
   | .E _ => Weekday
   | .e _ => Weekday
   | .c _ => Weekday
   | .F _ => Bounded.LE 1 5
   | .a _ => HourMarker
   | .b _ => DayPeriod
+  | .B _ => ExtendedDayPeriod
   | .h _ => Bounded.LE 1 12
   | .K _ => Bounded.LE 0 11
   | .k _ => Bounded.LE 1 24
@@ -1076,6 +1132,10 @@ private def formatWith (locale : Locale) (modifier : Modifier) (data : TypeForma
     | .full => formatDayPeriodLong data
     | .narrow => formatDayPeriodNarrow data
     | .twoLetterShort => formatDayPeriodShort data
+  | .B format =>
+    match format with
+    | .short | .full | .twoLetterShort => formatExtendedDayPeriodShort data
+    | .narrow => formatExtendedDayPeriodNarrow data
   | .h format => pad format.padding data.val
   | .K format => pad format.padding (data.val % 12)
   | .k format => pad format.padding data.val
@@ -1092,7 +1152,10 @@ private def formatWith (locale : Locale) (modifier : Modifier) (data : TypeForma
     pad format.padding data.val
   | .N format =>
     pad format.padding data.val
-  | .V _ => data
+  | .V format =>
+    match format with
+    | .unknown => "unk"
+    | .short | .full => if isUTCLabel data then "Z" else data
   | .z format =>
     match format with
     | .short => normalizeZoneName data false
@@ -1138,6 +1201,32 @@ private def formatWith (locale : Locale) (modifier : Modifier) (data : TypeForma
         then "Z"
         else toIsoString data true true true
 
+-- US locale (Java Locale.ENGLISH) week helpers: Sun=1..Sat=7, minDays=1, firstDay=Sunday.
+-- epoch (1970-01-01) is Thursday → US ordinal 5; so usOrd = (epochDays + 4) % 7 + 1.
+
+private def weekOfYearUS (date : PlainDate) : Week.Ordinal :=
+  let d := date.toDaysSinceUNIXEpoch.val
+  let usOrd := (d + 4) % 7 + 1
+  let weekStart := d - (usOrd - 1)
+  let yearLength : Int := if date.year.isLeap then 366 else 365
+  let jan1Days := d - (date.dayOfYear.val - 1)
+  let dec31Days := jan1Days + yearLength - 1
+  if weekStart + 6 > dec31Days then
+    .ofNat' 1 (by decide)
+  else
+    let jan1UsOrd := (jan1Days + 4) % 7 + 1
+    let week1Start := jan1Days - (jan1UsOrd - 1)
+    Bounded.LE.ofNatWrapping ((weekStart - week1Start) / 7 + 1) (by decide)
+
+private def weekOfMonthUS (date : PlainDate) : Bounded.LE 1 6 :=
+  let d := date.toDaysSinceUNIXEpoch.val
+  let usOrd := (d + 4) % 7 + 1
+  let weekStart := d - (usOrd - 1)
+  let day1Days := d - (date.day.val - 1)
+  let day1UsOrd := (day1Days + 4) % 7 + 1
+  let week1Start := day1Days - (day1UsOrd - 1)
+  Bounded.LE.ofNatWrapping ((weekStart - week1Start) / 7 + 1) (by decide)
+
 private def dateFromModifier (firstDay : Weekday) (date : DateTime tz) : TypeFormat modifier :=
   match modifier with
   | .G _ => date.era
@@ -1150,8 +1239,8 @@ private def dateFromModifier (firstDay : Weekday) (date : DateTime tz) : TypeFor
   | .d _ => date.day
   | .Q _ => date.quarter
   | .q _ => date.quarter
-  | .w _ => date.weekOfYear
-  | .W _ => date.weekOfMonth
+  | .w _ => weekOfYearUS date.date.get.date
+  | .W _ => weekOfMonthUS date.date.get.date
   | .E _ =>  date.weekday
   | .e _ => date.weekday
   | .c _ => date.weekday
@@ -1166,6 +1255,17 @@ private def dateFromModifier (firstDay : Weekday) (date : DateTime tz) : TypeFor
     else if h = 0 ∧ m = 0 ∧ s = 0 ∧ n = 0 then .midnight
     else if h < 12 then .am
     else .pm
+  | .B _ =>
+    let h := date.hour.val
+    let m := date.minute.val
+    let s := date.date.get.time.second.val
+    let n := date.nanosecond.val
+    if h = 0 ∧ m = 0 ∧ s = 0 ∧ n = 0 then .midnight
+    else if h = 12 ∧ m = 0 ∧ s = 0 ∧ n = 0 then .noon
+    else if h < 6 ∨ h ≥ 21 then .night
+    else if h < 12 then .morning
+    else if h < 18 then .afternoon
+    else .evening
   | .h _ => HourMarker.toRelative date.hour |>.fst
   | .K _ => date.hour.emod 12 (by decide)
   | .k _ => date.hour.shiftTo1BasedHour
@@ -1295,6 +1395,24 @@ private def parseDayPeriodNarrow : Parser DayPeriod
   <|> pstring "n"        *> pure DayPeriod.noon
   <|> pstring "a"        *> pure DayPeriod.am
   <|> pstring "p"        *> pure DayPeriod.pm
+
+private def parseExtendedDayPeriodShort : Parser ExtendedDayPeriod
+   := pstring "midnight"          *> pure .midnight
+  <|> pstring "at night"          *> pure .night
+  <|> pstring "in the morning"    *> pure .morning
+  <|> pstring "noon"              *> pure .noon
+  <|> pstring "in the afternoon"  *> pure .afternoon
+  <|> pstring "in the evening"    *> pure .evening
+
+private def parseExtendedDayPeriodNarrow : Parser ExtendedDayPeriod
+   := pstring "midnight"          *> pure .midnight
+  <|> pstring "mi"                *> pure .midnight
+  <|> pstring "at night"          *> pure .night
+  <|> pstring "in the morning"    *> pure .morning
+  <|> pstring "noon"              *> pure .noon
+  <|> pstring "n"                 *> pure .noon
+  <|> pstring "in the afternoon"  *> pure .afternoon
+  <|> pstring "in the evening"    *> pure .evening
 
 private def exactly (parse : Parser α) (size : Nat) : Parser (Array α) :=
   let rec go (acc : Array α) (count : Nat) : Parser (Array α) :=
@@ -1483,6 +1601,10 @@ private def parseWith (config : FormatConfig) : (mod : Modifier) → Parser (Typ
     | .full => parseDayPeriodLong
     | .narrow => parseDayPeriodNarrow
     | .twoLetterShort => parseDayPeriodShort
+  | .B format =>
+    match format with
+    | .short | .full | .twoLetterShort => parseExtendedDayPeriodShort
+    | .narrow => parseExtendedDayPeriodNarrow
   | .h format => parseNatToBounded (parseFlexibleNum format.padding)
   | .K format => parseNatToBounded (parseFlexibleNum format.padding)
   | .k format => parseNatToBounded (parseFlexibleNum format.padding)
@@ -1501,7 +1623,8 @@ private def parseWith (config : FormatConfig) : (mod : Modifier) → Parser (Typ
   | .A format => Millisecond.Offset.ofNat <$> (parseFlexibleNum format.padding)
   | .n format => parseNatToBounded (parseFlexibleNum format.padding)
   | .N format => Nanosecond.Offset.ofNat <$> (parseFlexibleNum format.padding)
-  | .V _ => parseIdentifier
+  | .V .unknown => pstring "unk" *> pure "unk"
+  | .V .short | .V .full => parseIdentifier
   | .z format =>
     match format with
     | .short => parseIdentifier
@@ -1569,12 +1692,13 @@ private structure DateBuilder where
   d : Option Day.Ordinal := none
   quarter : Option Month.Quarter := none
   w : Option Week.Ordinal := none
-  W : Option (Bounded.LE 1 5) := none
+  W : Option (Bounded.LE 1 6) := none
   E : Option Weekday := none
   weekday : Option Weekday := none
   F : Option (Bounded.LE 1 5) := none
   a : Option HourMarker := none
   b : Option DayPeriod := none
+  B : Option ExtendedDayPeriod := none
   h : Option (Bounded.LE 1 12) := none
   K : Option (Bounded.LE 0 11) := none
   k : Option (Bounded.LE 1 24) := none
@@ -1617,6 +1741,7 @@ private def insert (date : DateBuilder) (modifier : Modifier) (data : TypeFormat
   | .F _ => { date with F := some data }
   | .a _ => { date with a := some data }
   | .b _ => { date with b := some data }
+  | .B _ => { date with B := some data }
   | .h _ => { date with h := some data }
   | .K _ => { date with K := some data }
   | .k _ => { date with k := some data }
@@ -1670,6 +1795,16 @@ private def build (builder : DateBuilder) (aw : Awareness) : Option aw.type :=
                <|> HourMarker.am.toAbsolute <$> ((Bounded.LE.add · 1) <$> builder.K)
       | .pm => HourMarker.pm.toAbsolute <$> builder.h
                <|> HourMarker.pm.toAbsolute <$> ((Bounded.LE.add · 1) <$> builder.K)
+    else if let some period := builder.B then
+      match period with
+      | .midnight  => some ⟨0, by decide⟩
+      | .noon      => some ⟨12, by decide⟩
+      | .morning | .night =>
+        HourMarker.am.toAbsolute <$> builder.h
+        <|> HourMarker.am.toAbsolute <$> ((Bounded.LE.add · 1) <$> builder.K)
+      | .afternoon | .evening =>
+        HourMarker.pm.toAbsolute <$> builder.h
+        <|> HourMarker.pm.toAbsolute <$> ((Bounded.LE.add · 1) <$> builder.K)
     else if let some marker := builder.a then
       marker.toAbsolute <$> builder.h
       <|> marker.toAbsolute <$> ((Bounded.LE.add · 1) <$> builder.K)

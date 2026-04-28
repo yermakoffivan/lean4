@@ -441,7 +441,7 @@ info: "+09:00 +09:00 +09:00 +09:00"
 #eval zoned₄.format "z zz zzzz zzzz"
 
 /--
-info: "UTC UTC Coordinated Universal Time Coordinated Universal Time"
+info: "Z Z Z Z"
 -/
 #guard_msgs in
 #eval zoned₅.format "z zz zzzz zzzz"

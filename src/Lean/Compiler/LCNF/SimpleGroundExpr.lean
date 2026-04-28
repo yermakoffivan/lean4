@@ -408,13 +408,12 @@ where
 Detect whether `d` can be compiled to a `SimpleGroundExpr`. If it can record the associated
 `SimpleGroundExpr` into the environment for later processing by code emission.
 -/
-def Decl.detectSimpleGround (_d : Decl .impure) : CompilerM Unit := do
-  return ()
-  --let .code code := d.value | return ()
-  --if d.type.isPossibleRef && d.params.isEmpty then
-  --  if let some groundExpr ← compileToSimpleGroundExpr code then
-  --    trace[Compiler.simpleGround] m!"Marked {d.name} as simple ground expr"
-  --    modifyEnv fun env => addSimpleGroundDecl env d.name groundExpr
+def Decl.detectSimpleGround (d : Decl .impure) : CompilerM Unit := do
+  let .code code := d.value | return ()
+  if d.type.isPossibleRef && d.params.isEmpty then
+    if let some groundExpr ← compileToSimpleGroundExpr code then
+      trace[Compiler.simpleGround] m!"Marked {d.name} as simple ground expr"
+      modifyEnv fun env => addSimpleGroundDecl env d.name groundExpr
 
 public def detectSimpleGround : Pass where
   phase := .impure

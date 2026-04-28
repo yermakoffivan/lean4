@@ -1054,7 +1054,7 @@ private def formatWith (locale : Locale) (modifier : Modifier) (data : TypeForma
     let info := data.toInt
     let info := if info ≤ 0 then -info + 1 else info
     match format with
-    | .any => pad 0 (data.toInt)
+    | .any => pad 0 info
     | .twoDigit => pad 2 (info % 100)
     | .fourDigit => pad 4 info
     | .extended n => pad n info
@@ -1218,7 +1218,8 @@ private def weekOfYearUS (date : PlainDate) : Week.Ordinal :=
     let week1Start := jan1Days - (jan1UsOrd - 1)
     Bounded.LE.ofNatWrapping ((weekStart - week1Start) / 7 + 1) (by decide)
 
-private def weekOfMonthUS (date : PlainDate) : Bounded.LE 1 6 :=
+/-- Returns the week-of-month (1–6) using the US locale Sunday-first convention. -/
+def weekOfMonthUS (date : PlainDate) : Bounded.LE 1 6 :=
   let d := date.toDaysSinceUNIXEpoch.val
   let usOrd := (d + 4) % 7 + 1
   let weekStart := d - (usOrd - 1)
@@ -1239,7 +1240,7 @@ private def dateFromModifier (firstDay : Weekday) (date : DateTime tz) : TypeFor
   | .d _ => date.day
   | .Q _ => date.quarter
   | .q _ => date.quarter
-  | .w _ => weekOfYearUS date.date.get.date
+  | .w _ => date.date.get.date.weekOfYear
   | .W _ => weekOfMonthUS date.date.get.date
   | .E _ =>  date.weekday
   | .e _ => date.weekday
@@ -1764,9 +1765,9 @@ private def insert (date : DateBuilder) (modifier : Modifier) (data : TypeFormat
 
 private def convertYearAndEra (year : Year.Offset) : Year.Era → Year.Offset
   | .ce => year
-  | .bce => -(year + 1)
+  | .bce => 1 - year
 
-private def build (builder : DateBuilder) (aw : Awareness) : Option aw.type :=
+private def build (builder : DateBuilder) (aw : Awareness) : Except String aw.type := do
   let offset := builder.O <|> builder.X <|> builder.x <|> builder.Z |>.getD Offset.zero
 
   let tz : TimeZone := {
@@ -1776,8 +1777,6 @@ private def build (builder : DateBuilder) (aw : Awareness) : Option aw.type :=
     isDST := false,
   }
 
-  let month := builder.month |>.getD 0
-  let day := builder.d |>.getD 0
   let era := (builder.G.getD .ce)
 
   let year
@@ -1786,35 +1785,51 @@ private def build (builder : DateBuilder) (aw : Awareness) : Option aw.type :=
     <|> ((convertYearAndEra · era) <$> builder.y)
     |>.getD 0
 
+  let monthDay : Month.Ordinal × Day.Ordinal ←
+    match builder.D with
+    | none => pure (builder.month |>.getD ⟨1, by decide⟩, builder.d |>.getD ⟨1, by decide⟩)
+    | some ⟨_, doy⟩ =>
+      let v := doy.val
+      if h : v ≤ .ofNat (if year.isLeap then 366 else 365) then
+        let doy' : Day.Ordinal.OfYear year.isLeap := ⟨v, doy.property.1, h⟩
+        let date := PlainDate.ofYearOrdinal year doy'
+        pure (date.month, date.day)
+      else
+        throw s!"day {v} does not exist in year {year}"
+  let month := monthDay.1
+  let day := monthDay.2
+
   let hour : Option (Bounded.LE 0 23) :=
     if let some period := builder.b then
       match period with
       | .noon     => some ⟨12, by decide⟩
       | .midnight => some ⟨0, by decide⟩
-      | .am => HourMarker.am.toAbsolute <$> builder.h
-               <|> HourMarker.am.toAbsolute <$> ((Bounded.LE.add · 1) <$> builder.K)
-      | .pm => HourMarker.pm.toAbsolute <$> builder.h
-               <|> HourMarker.pm.toAbsolute <$> ((Bounded.LE.add · 1) <$> builder.K)
+      | .am => (HourMarker.am.toAbsolute <$> builder.h : Option (Bounded.LE 0 23))
+               <|> builder.K.map (·.expandTop (by decide))
+      | .pm => (HourMarker.pm.toAbsolute <$> builder.h : Option (Bounded.LE 0 23))
+               <|> builder.K.map (fun k => (k.add 12).expand (by decide) (by decide))
     else if let some period := builder.B then
       match period with
       | .midnight  => some ⟨0, by decide⟩
       | .noon      => some ⟨12, by decide⟩
       | .morning | .night =>
-        HourMarker.am.toAbsolute <$> builder.h
-        <|> HourMarker.am.toAbsolute <$> ((Bounded.LE.add · 1) <$> builder.K)
+        (HourMarker.am.toAbsolute <$> builder.h : Option (Bounded.LE 0 23))
+        <|> builder.K.map (·.expandTop (by decide))
       | .afternoon | .evening =>
-        HourMarker.pm.toAbsolute <$> builder.h
-        <|> HourMarker.pm.toAbsolute <$> ((Bounded.LE.add · 1) <$> builder.K)
+        (HourMarker.pm.toAbsolute <$> builder.h : Option (Bounded.LE 0 23))
+        <|> builder.K.map (fun k => (k.add 12).expand (by decide) (by decide))
     else if let some marker := builder.a then
-      marker.toAbsolute <$> builder.h
-      <|> marker.toAbsolute <$> ((Bounded.LE.add · 1) <$> builder.K)
+      (marker.toAbsolute <$> builder.h : Option (Bounded.LE 0 23))
+      <|> match marker with
+          | .am => builder.K.map (·.expandTop (by decide))
+          | .pm => builder.K.map (fun k => (k.add 12).expand (by decide) (by decide))
     else
       none
 
   let hour :=
     hour <|> (
       let one : Option (Bounded.LE 0 23) := builder.H
-      let other : Option (Bounded.LE 0 23) := (Bounded.LE.sub · 1) <$> builder.k
+      let other : Option (Bounded.LE 0 23) := builder.k.map (·.emod 24 (by decide))
       (one <|> other))
       |>.getD ⟨0, by decide⟩
 
@@ -1834,9 +1849,11 @@ private def build (builder : DateBuilder) (aw : Awareness) : Option aw.type :=
     else
       none
 
-  match aw with
+  match (match aw with
     | .only newTz => (ofPlainDateTime · newTz) <$> datetime
-    | .any => (ZonedDateTime.ofPlainDateTime · (ZoneRules.ofTimeZone tz)) <$> datetime
+    | .any => (ZonedDateTime.ofPlainDateTime · (ZoneRules.ofTimeZone tz)) <$> datetime) with
+  | some res => .ok res
+  | none => .error "could not parse the date"
 
 end DateBuilder
 
@@ -1904,8 +1921,8 @@ private def parser (format : FormatString) (config : FormatConfig) (aw : Awarene
     | x :: xs => parseWithDate builder config x >>= (go · xs)
     | [] =>
       match builder.build aw with
-      | some res => pure res
-      | none => fail "could not parse the date"
+      | .ok res => pure res
+      | .error msg => fail msg
   go {} format
 
 /--

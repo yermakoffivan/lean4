@@ -256,7 +256,7 @@ def format (date : PlainDate) (format : String) (locale : Locale := .enUS) : Str
       | .D _ => some (Sigma.mk date.year.isLeap date.dayOfYear)
       | .Q _ | .q _ => some date.quarter
       | .w _ => some date.weekOfYear
-      | .W _ => some (date.weekOfMonth.expandTop (by decide))
+      | .W _ => some (weekOfMonthUS date)
       | .M _ | .L _ => some date.month
       | .d _ => some date.day
       | .E _ => some date.weekday
@@ -312,6 +312,18 @@ def format (time : PlainTime) (format : String) : String :=
           else if h = 0 ∧ m = 0 ∧ s = 0 ∧ n = 0 then .midnight
           else if h < 12 then .am
           else .pm
+      | .B _ =>
+        let h := time.hour.val
+        let m := time.minute.val
+        let s := time.second.val
+        let n := time.nanosecond.val
+        some <|
+          if h = 0 ∧ m = 0 ∧ s = 0 ∧ n = 0 then .midnight
+          else if h = 12 ∧ m = 0 ∧ s = 0 ∧ n = 0 then .noon
+          else if h < 6 ∨ h ≥ 21 then .night
+          else if h < 12 then .morning
+          else if h < 18 then .afternoon
+          else .evening
       | .h _ => some time.hour.toRelative
       | .K _ => some (time.hour.emod 12 (by decide))
       | .S _ => some time.nanosecond
@@ -425,7 +437,7 @@ def format (date : PlainDateTime) (format : String) (locale : Locale := .enUS) :
       | .D _ => some (Sigma.mk date.year.isLeap date.dayOfYear)
       | .Q _ | .q _ => some date.quarter
       | .w _ => some date.weekOfYear
-      | .W _ => some (date.weekOfMonth.expandTop (by decide))
+      | .W _ => some (weekOfMonthUS date.date)
       | .M _ | .L _ => some date.month
       | .d _ => some date.day
       | .E _ => some date.weekday
@@ -437,6 +449,28 @@ def format (date : PlainDateTime) (format : String) (locale : Locale := .enUS) :
       | .n _ => some date.nanosecond
       | .s _ => some date.time.second
       | .a _ => some (HourMarker.ofOrdinal date.hour)
+      | .b _ =>
+        let h := date.hour.val
+        let m := date.minute.val
+        let s := date.time.second.val
+        let n := date.nanosecond.val
+        some <|
+          if h = 12 ∧ m = 0 ∧ s = 0 ∧ n = 0 then .noon
+          else if h = 0 ∧ m = 0 ∧ s = 0 ∧ n = 0 then .midnight
+          else if h < 12 then .am
+          else .pm
+      | .B _ =>
+        let h := date.hour.val
+        let m := date.minute.val
+        let s := date.time.second.val
+        let n := date.nanosecond.val
+        some <|
+          if h = 0 ∧ m = 0 ∧ s = 0 ∧ n = 0 then .midnight
+          else if h = 12 ∧ m = 0 ∧ s = 0 ∧ n = 0 then .noon
+          else if h < 6 ∨ h ≥ 21 then .night
+          else if h < 12 then .morning
+          else if h < 18 then .afternoon
+          else .evening
       | .h _ => some date.hour.toRelative
       | .K _ => some (date.hour.emod 12 (by decide))
       | .S _ => some date.nanosecond

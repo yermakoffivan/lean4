@@ -71,14 +71,6 @@ token is already set when `onSet` is called, the callback runs immediately.
 def onSet (tk : CancelToken) (action : BaseIO Unit) : BaseIO Unit :=
   BaseIO.chainTask tk.promise.result? (sync := true) fun _ => action
 
-/--
-Registers a callback to run when the cancellation token is set. The callback runs as a
-synchronous task dependency, so it executes inline when the token is set. If the token is
-already set when `onSet` is called, the callback runs immediately.
--/
-def onSet (tk : CancelToken) (action : BaseIO Unit) : BaseIO Unit :=
-  BaseIO.chainTask tk.promise.result? (sync := true) fun _ => action
-
 -- separate definition as otherwise no unboxed version is generated
 @[export lean_io_cancel_token_is_set]
 private def isSetExport := @isSet

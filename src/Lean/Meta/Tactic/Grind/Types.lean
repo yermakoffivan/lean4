@@ -143,7 +143,7 @@ def SplitSource.toMessageData : SplitSource → MessageData
 Auxiliary type used to implement `grind.ematch.instance`.
 -/
 inductive EmatchDiagSource where
-  | ematch (lctx : LocalContext) (inst : Expr)
+  | ematch (inst : Expr)
   | other
   deriving Inhabited
 
@@ -217,6 +217,16 @@ structure SplitDiagInfo where
   numCases    : Nat
   splitSource : SplitSource
 
+/--
+An entry `{thm_1, ..., thm_n} => {thm}`. Each `thm_i` and `thm` is the proof of a theorem instance.
+It means terms created while instantiating `thm_i` were used to create theorem `thm`.
+-/
+structure EmatchDiagInfo where
+  lctx    : LocalContext
+  sources : List Expr
+  target  : Expr
+  deriving Inhabited
+
 /-- State for the `GrindM` monad. -/
 structure State where
   /--
@@ -235,6 +245,8 @@ structure State where
   counters   : Counters := {}
   /-- Split diagnostic information. This information is only collected when `set_option diagnostics true` -/
   splitDiags : PArray SplitDiagInfo := {}
+  /-- E-matching theorem instantiation diagnostics -/
+  ematchDiags : PArray EmatchDiagInfo := {}
   /--
   Mapping from binary functions `f` to a theorem `thm : ∀ a b, f a b = .eq → a = b`
   if it implements the `LawfulEqCmp` type class.
@@ -494,7 +506,9 @@ structure ENode where
   See `Grind.Config.funCC` for additional details.
   -/
   funCC : Bool := true
-  deriving Inhabited, Repr
+  /-- Auxiliary field used to implement `grind.ematch.diagnostics` -/
+  ematchDiagSource : EmatchDiagSource
+  deriving Inhabited
 
 def ENode.isRoot (n : ENode) :=
   isSameExpr n.self n.root
@@ -1312,6 +1326,7 @@ def copyParentsTo (parents : ParentSet) (root : Expr) : GoalM Unit := do
   modify fun s => { s with parents := s.parents.insert { expr := root } curr }
 
 def mkENodeCore (e : Expr) (interpreted ctor : Bool) (generation : Nat) (funCC : Bool) : GoalM Unit := do
+  let ematchDiagSource := (← readThe Context).ematchDiagSource
   let n := {
     self := e, next := e, root := e, congr := e, size := 1
     flipped := false
@@ -1319,7 +1334,7 @@ def mkENodeCore (e : Expr) (interpreted ctor : Bool) (generation : Nat) (funCC :
     hasLambdas := e.isLambda
     mt := (← get).ematch.gmt
     idx := (← get).nextIdx
-    interpreted, ctor, generation, funCC
+    interpreted, ctor, generation, funCC, ematchDiagSource
   }
   modify fun s => { s with
     enodeMap := s.enodeMap.insert { expr := e } n
@@ -1705,10 +1720,10 @@ def addTheoremInstance (thm : EMatchTheorem) (proof : Expr) (prop : Expr) (gener
   | .ready =>
     trace_goal[grind.ematch.instance] "{thm.origin.pp}: {prop}"
     saveEMatchTheorem thm
-    let ematchDiagSource ← if (← isEmatchDiagEnabled) then
-      pure (.ematch (← getLCtx) proof)
+    let ematchDiagSource := if (← isEmatchDiagEnabled) then
+      .ematch proof
     else
-      pure .other
+      .other
     addNewRawFact proof prop generation (.ematch thm.origin) ematchDiagSource
     modify fun s => { s with ematch.numInstances := s.ematch.numInstances + 1 }
   | .next guard guards =>

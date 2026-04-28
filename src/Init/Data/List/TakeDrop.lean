@@ -251,14 +251,11 @@ theorem dropLast_eq_take {l : List α} : l.dropLast = l.take (l.length - 1) := b
   | _, 0 => by simp
   | _ :: tl, n + 1 => by simp [map_take]
 
-set_option backward.defeqAttrib.useBackward true in
 @[simp] theorem map_drop {f : α → β} :
     ∀ {l : List α} {i : Nat}, (l.drop i).map f = (l.map f).drop i
   | [], i => by simp
   | l, 0 => by simp
-  | _ :: tl, n + 1 => by
-    dsimp
-    rw [map_drop]
+  | _ :: tl, n + 1 => by simp [map_drop]
 
 theorem drop_eq_extract {l : List α} {k : Nat} :
     l.drop k = l.extract k := by

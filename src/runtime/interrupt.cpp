@@ -58,11 +58,20 @@ LEAN_THREAD_VALUE(lean_object *, g_cancel_tk, nullptr);
 
 LEAN_EXPORT scope_cancel_tk::scope_cancel_tk(lean_object * o):flet<lean_object *>(g_cancel_tk, o) {}
 
+// `IO.CancelToken` is `structure { promise : IO.Promise Unit; setRef : IO.Ref Bool }`. We read
+// the `Bool` flag (field 1) directly: cheaper than walking the promise's task state, and this
+// is on the hot `Core.checkInterrupted` path. Must stay in sync with the field order in
+// `Init/System/CancelToken.lean`.
+static bool cancel_tk_is_set(lean_object * tk) {
+    lean_object * setRef = lean_ctor_get(tk, 1);
+    return lean_unbox(lean_to_ref(setRef)->m_value) != 0;
+}
+
 void check_interrupted() {
     if (g_cancel_tk) {
         // `g_cancel_tk` is owned by the enclosing `scope_cancel_tk`, so it stays alive for the
         // duration of this call without an explicit `inc_ref`.
-        if (promise_is_resolved(g_cancel_tk) &&
+        if (cancel_tk_is_set(g_cancel_tk) &&
             !std::uncaught_exceptions()) {
             throw interrupted();
         }

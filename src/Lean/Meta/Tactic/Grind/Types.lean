@@ -143,7 +143,7 @@ def SplitSource.toMessageData : SplitSource → MessageData
 Auxiliary type used to implement `grind.ematch.instance`.
 -/
 inductive EMatchDiagSource where
-  | ematch (inst : Expr)
+  | ematch (origin : Origin) (inst : Expr)
   | other
   deriving Inhabited
 
@@ -223,8 +223,8 @@ It means terms created while instantiating `thm_i` were used to create theorem `
 -/
 structure EMatchDiagInfo where
   lctx    : LocalContext
-  sources : List Expr
-  target  : Expr
+  sources : List (Origin × Expr)
+  target  : Origin × Expr
   deriving Inhabited
 
 /-- State for the `GrindM` monad. -/
@@ -408,7 +408,7 @@ def saveSplitDiagInfo (c : Expr) (gen : Nat) (numCases : Nat) (splitSource : Spl
     let lctx ← getLCtx
     modify fun s => { s with splitDiags := s.splitDiags.push { c, gen, lctx, numCases, splitSource } }
 
-def saveEMatchDiagInfo (sources : List Expr) (target : Expr) : GrindM Unit := do
+def saveEMatchDiagInfo (sources : List (Origin × Expr)) (target : (Origin × Expr)) : GrindM Unit := do
   if (← isEmatchDiagEnabled) then
     let lctx ← getLCtx
     modify fun s => { s with ematchDiags := s.ematchDiags.push { sources, target, lctx } }
@@ -795,7 +795,7 @@ structure DelayedTheoremInstance where
   generation : Nat
   guards     : List TheoremGuard
   /-- Sources for `grind.ematch.diagnostics` that generated this instance. -/
-  sources    : List Expr
+  sources    : List (Origin × Expr)
   deriving Inhabited
 
 /-- E-matching related fields for the `grind` goal. -/
@@ -1723,14 +1723,14 @@ where
 
 /-- Adds a new theorem instance produced using E-matching. -/
 def addTheoremInstance (thm : EMatchTheorem) (proof : Expr) (prop : Expr) (generation : Nat)
-    (guards : List TheoremGuard) (sources : List Expr) : GoalM Unit := do
+    (guards : List TheoremGuard) (sources : List (Origin × Expr)) : GoalM Unit := do
   match (← activateNextGuard thm guards generation) with
   | .ready =>
     trace_goal[grind.ematch.instance] "{thm.origin.pp}: {prop}"
     saveEMatchTheorem thm
     let ematchDiagSource ← if (← isEmatchDiagEnabled) then
-      saveEMatchDiagInfo sources proof
-      pure (.ematch proof)
+      saveEMatchDiagInfo sources (thm.origin, proof)
+      pure (.ematch thm.origin proof)
     else
       pure .other
     addNewRawFact proof prop generation (.ematch thm.origin) ematchDiagSource

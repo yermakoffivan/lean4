@@ -341,28 +341,12 @@ partial def traceEMatchDiagsCompact (diag : PArray EMatchDiagInfo) : GrindM Unit
     logWarning "use `set_option grind.ematch.diagnostics true` when using `set_option trace.grind.ematch.diagnostics.compact true`"
   withTraceNode `grind.ematch.diagnostics.compact (fun _ => return m!"instances") do
   for { sources, target, .. } in diag do
-    let some target := getTheoremName? target | pure ()
-    let sources := getSources sources
+    let .decl target := target.1 | pure ()
+    let sources := sources.filterMap fun (origin, _) =>
+      match origin with
+      | .decl source => some (MessageData.ofConstName source)
+      | _ => none
     addTrace `inst m!"{sources} => {.ofConstName target}"
-where
-  getTheoremName? (p : Expr) : Option Name :=
-    match p with
-    | .lam _ _ b _ => getTheoremName? b
-    | .app _ a =>
-      if p.isAppOfArity ``id 2 then
-        -- Skip hint
-        getTheoremName? a
-      else
-        getTheoremName? p.getAppFn
-    | .const declName _ => some declName
-    | _ => none
-
-  getSources (ps : List Expr) : List MessageData := Id.run do
-    let mut r : NameSet := {}
-    for p in ps do
-      let some n := getTheoremName? p | pure ()
-      r := r.insert n
-    return r.toList.map (MessageData.ofConstName ·)
 
 def mkResult (params : Params) (failure? : Option Goal) : GrindM Result := do
   let issues      ← Sym.getIssues

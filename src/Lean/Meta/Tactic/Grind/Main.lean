@@ -344,9 +344,10 @@ partial def traceEMatchDiagsCompact (diag : PArray EMatchDiagInfo) : GrindM Unit
     let .decl target := target.origin | pure ()
     let sources := sources.filterMap fun { origin, .. } =>
       match origin with
-      | .decl source => some (MessageData.ofConstName source)
+      | .decl source => some source
       | _ => none
-    addTrace `inst m!"{sources} => {.ofConstName target}"
+    let sources := sources.toArray.qsort Name.lt
+    addTrace `inst m!"{sources.toList} => {.ofConstName target}"
 
 def mkResult (params : Params) (failure? : Option Goal) : GrindM Result := do
   let issues      ← Sym.getIssues

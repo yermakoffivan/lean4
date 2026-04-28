@@ -24,7 +24,7 @@ trace: [grind.ematch.diagnostics.compact] ✅️ instances
   [inst] [] => th1
   [inst] [th1] => th3
   [inst] [th1] => th2
-  [inst] [th3, th2] => th4
+  [inst] [th2, th3] => th4
   [inst] [th4] => th5
 -/
 #guard_msgs in

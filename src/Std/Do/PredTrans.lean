@@ -176,7 +176,6 @@ instance instLawfulMonad : LawfulMonad (PredTrans ps) := by
   apply LawfulMonad.mk' _
   all_goals (intros; ext Q; simp)
 
-set_option backward.defeqAttrib.useBackward true in
 /--
 Adds the ability to make assertions about a state of type `σ` to a predicate transformer with
 postcondition shape `ps`, resulting in postcondition shape `.arg σ ps`. This is done by
@@ -192,7 +191,7 @@ def pushArg {σ : Type u} (x : StateT σ (PredTrans ps) α) : PredTrans (.arg σ
     intro Q₁ Q₂
     apply SPred.bientails.of_eq
     ext s
-    dsimp only [SPred.and_cons, ExceptConds.and, StateT.run]
+    simp only [SPred.and_cons, ExceptConds.and, StateT.run]
     rw [← ((x s).conjunctive _ _).to_eq]
 
 /--

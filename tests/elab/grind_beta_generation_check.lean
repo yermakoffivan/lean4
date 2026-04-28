@@ -1,7 +1,7 @@
 /-!
 Support for beta-reduction in `grind` must respect generation threshold.
 -/
-set_option warn.sorry true
+set_option warn.sorry false
 
 /--
 trace: [grind.beta] f 0 = f 0, using fun b => f b

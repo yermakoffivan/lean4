@@ -355,7 +355,6 @@ theorem Perm.rec_heq {β : List α → Sort _} {f : ∀ a l, β l → β (a :: l
   | swap a a' l => exact f_swap
   | trans _h₁ _h₂ ih₁ ih₂ => exact ih₁.trans ih₂
 
-set_option backward.defeqAttrib.useBackward true in
 /-- Lemma used to destruct perms element by element. -/
 theorem perm_inv_core {a : α} {l₁ l₂ r₁ r₂ : List α} :
     l₁ ++ a :: r₁ ~ l₂ ++ a :: r₂ → l₁ ++ r₁ ~ l₂ ++ r₂ := by
@@ -368,7 +367,7 @@ theorem perm_inv_core {a : α} {l₁ l₂ r₁ r₂ : List α} :
     simp at e₁
   | cons x p IH =>
     cases l₁ <;> cases l₂ <;>
-      dsimp at e₁ e₂ <;> injections <;> subst_vars
+      simp only [List.cons_append, List.nil_append] at e₁ e₂ <;> injections <;> subst_vars
     · exact p
     · exact p.trans perm_middle
     · exact perm_middle.symm.trans p
@@ -376,7 +375,7 @@ theorem perm_inv_core {a : α} {l₁ l₂ r₁ r₂ : List α} :
   | swap' x y p IH =>
     obtain _ | ⟨y, _ | ⟨z, l₁⟩⟩ := l₁
       <;> obtain _ | ⟨u, _ | ⟨v, l₂⟩⟩ := l₂
-      <;> dsimp at e₁ e₂ <;> injections <;> subst_vars
+      <;> simp only [List.cons_append, List.nil_append] at e₁ e₂ <;> injections <;> subst_vars
       <;> try exact p.cons _
     · exact (p.trans perm_middle).cons u
     · exact ((p.trans perm_middle).cons _).trans (swap _ _ _)

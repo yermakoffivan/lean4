@@ -9,6 +9,7 @@ Author: Leonardo de Moura
 #include "runtime/interrupt.h"
 #include "runtime/exception.h"
 #include "runtime/memory.h"
+#include "runtime/object.h"
 #include "lean/lean.h"
 #include "util/io.h"
 
@@ -57,15 +58,11 @@ LEAN_THREAD_VALUE(lean_object *, g_cancel_tk, nullptr);
 
 LEAN_EXPORT scope_cancel_tk::scope_cancel_tk(lean_object * o):flet<lean_object *>(g_cancel_tk, o) {}
 
-/* Check whether a CancelToken (which is a Promise Unit) has been resolved.
-   This mirrors timer_promise_is_finished in uv/timer.cpp. */
-static bool cancel_tk_is_set(lean_object * tk) {
-    return lean_io_get_task_state_core((lean_object *)lean_to_promise(tk)->m_result) == 2;
-}
-
 void check_interrupted() {
     if (g_cancel_tk) {
-        if (cancel_tk_is_set(g_cancel_tk) &&
+        // `g_cancel_tk` is owned by the enclosing `scope_cancel_tk`, so it stays alive for the
+        // duration of this call without an explicit `inc_ref`.
+        if (promise_is_resolved(g_cancel_tk) &&
             !std::uncaught_exceptions()) {
             throw interrupted();
         }

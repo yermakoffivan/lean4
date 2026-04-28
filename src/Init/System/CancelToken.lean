@@ -28,7 +28,12 @@ deriving Nonempty
 
 namespace CancelToken
 
-/-- Creates a new cancellation token. -/
+/--
+Creates a new cancellation token.
+
+Note: cannot be called from `initialize` blocks because the underlying task manager is not yet
+running at that point. Construct lazily on first use instead.
+-/
 def new : BaseIO CancelToken :=
   CancelToken.mk <$> IO.Promise.new
 
@@ -41,11 +46,24 @@ def isSet (tk : CancelToken) : BaseIO Bool :=
   tk.promise.isResolved
 
 /--
-A task that completes when the cancellation token is set. Useful for waiting on cancellation
-without polling.
+A task that completes when the cancellation token is set or dropped. Useful for waiting on
+cancellation without polling — e.g. as one of the tasks given to `IO.waitAny`.
+
+Returns the underlying promise's `result?` task directly, so the same task object is returned
+on every call and can safely have further dependencies attached (`Task.map`, `BaseIO.bindTask`).
+The `Option` distinguishes a normal `set` (`some ()`) from the token being dropped without ever
+being set (`none`). For attaching a callback, prefer `onSet`.
 -/
-def task (tk : CancelToken) : Task Unit :=
-  tk.promise.result!
+def task (tk : CancelToken) : Task (Option Unit) :=
+  tk.promise.result?
+
+/--
+Registers a callback to run when the cancellation token is set. The callback runs as a
+synchronous task dependency, so it executes inline on the thread that calls `set`. If the
+token is already set when `onSet` is called, the callback runs immediately.
+-/
+def onSet (tk : CancelToken) (action : BaseIO Unit) : BaseIO Unit :=
+  BaseIO.chainTask tk.promise.result? (sync := true) fun _ => action
 
 /--
 Registers a callback to run when the cancellation token is set. The callback runs as a

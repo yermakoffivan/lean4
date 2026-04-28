@@ -61,14 +61,15 @@ elab_rules : tactic
   Core.checkInterrupted
 
 -- CancelToken is Promise-based, so we can't create one during `initialize`
--- (task manager not yet ready). Create lazily on first use.
+-- (task manager not yet ready). Create lazily on first use, atomically via `modifyGet`
+-- to avoid two callers each constructing a token and only one being stored.
 meta initialize unblockedCancelTkRef : IO.Ref (Option IO.CancelToken) ← IO.mkRef none
 
 private meta def getUnblockedCancelTk : BaseIO IO.CancelToken := do
-  if let some tk := (← unblockedCancelTkRef.get) then return tk
-  let tk ← IO.CancelToken.new
-  unblockedCancelTkRef.set (some tk)
-  return tk
+  let fresh ← IO.CancelToken.new
+  unblockedCancelTkRef.modifyGet fun
+    | some tk => (tk, some tk)
+    | none    => (fresh, some fresh)
 
 /--
 Waits for `unblock` to be called, which is expected to happen in a subsequent document version that

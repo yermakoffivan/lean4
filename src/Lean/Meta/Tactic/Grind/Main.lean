@@ -115,8 +115,9 @@ def GrindM.run (x : GrindM α) (params : Params) (evalTactic? : Option EvalTacti
   let extensions := params.extensions
   let anchorRefs? := params.anchorRefs?
   let debug := grind.debug.get (← getOptions)
+  let ematchDiag := grind.ematch.diagnostics.get (← getOptions)
   x (← mkMethods evalTactic?).toMethodsRef
-    { config, anchorRefs?, simpMethods, simp, extensions, symPrios, debug }
+    { config, anchorRefs?, simpMethods, simp, extensions, symPrios, debug, ematchDiag }
     |>.run' {}
 
 private def mkCleanState (mvarId : MVarId) : GrindM Clean.State := mvarId.withContext do
@@ -133,7 +134,7 @@ Asserts extra facts provided as `grind` parameters.
 def assertExtra (params : Params) : GoalM Unit := do
   for proof in params.extraFacts do
     let prop ← inferType proof
-    addNewRawFact proof prop 0 .input
+    addNewRawFact proof prop 0 .input .other
   for thm in params.extra do
     activateTheorem thm 0
   for thm in params.extraInj do

@@ -84,6 +84,11 @@ register_builtin_option grind.unusedLemmaThreshold : Nat := {
   descr    := "report E-matching lemmas activated at least this many times but not used in the proof (0 = disabled)"
 }
 
+register_builtin_option grind.ematch.diagnostics : Bool := {
+  defValue := false
+  descr    := "enable E-matching theorem instantiation diagnostics"
+}
+
 /--
 Anchors are used to reference terms, local theorems, and case-splits in the `grind` state.
 We also use anchors to prune the search space when they are provided as `grind` parameters
@@ -134,6 +139,14 @@ def SplitSource.toMessageData : SplitSource → MessageData
   | .input => "Initial goal"
   | .inj origin => m!"Injectivity `{origin.pp}`"
 
+/--
+Auxiliary type used to implement `grind.ematch.instance`.
+-/
+inductive EmatchDiagSource where
+  | ematch (lctx : LocalContext) (inst : Expr)
+  | other
+  deriving Inhabited
+
 /-- Context for `GrindM` monad. -/
 structure Context where
   simp         : Simp.Context
@@ -162,10 +175,13 @@ structure Context where
   reportMVarIssue : Bool := true
   /-- Current source of case-splits. -/
   splitSource  : SplitSource := .input
+  /-- Current source of tracking E-matching theorem instantiation (see `grind.ematch.instances`). -/
+  ematchDiagSource  : EmatchDiagSource := .other
   /-- Symbol priorities for inferring E-matching patterns -/
   symPrios     : SymbolPriorities
   extensions   : ExtensionStateArray := #[]
   debug        : Bool -- Cached `grind.debug (← getOptions)`
+  ematchDiag   : Bool -- Cached `grind.ematch.diagnostics (← getOptions)`
 
 export Sym (getTrueExpr getFalseExpr getBoolTrueExpr getBoolFalseExpr getNatZeroExpr getOrderingEqExpr getIntExpr isTrueExpr isFalseExpr)
 
@@ -253,6 +269,10 @@ abbrev GrindM := ReaderT MethodsRef $ ReaderT Context $ StateRefT State Sym.SymM
 @[inline] def isDebugEnabled : GrindM Bool :=
   return (← readThe Context).debug
 
+/-- Returns `true` if `grind.ematch.diagnostics` is set -/
+@[inline] def isEmatchDiagEnabled : GrindM Bool :=
+  return (← readThe Context).ematchDiag
+
 /--
 Backtrackable state for the `GrindM` monad.
 -/
@@ -284,8 +304,15 @@ def withoutReportingMVarIssues [MonadControlT GrindM m] [Monad m] : m α → m �
 `withSplitSource s x` executes `x` and uses `s` as the split source for any case-split
 registered.
 -/
-def withSplitSource [MonadControlT GrindM m] [Monad m] (splitSource : SplitSource) : m α → m α :=
+abbrev withSplitSource [MonadControlT GrindM m] [Monad m] (splitSource : SplitSource) : m α → m α :=
   mapGrindM <| withTheReader Grind.Context fun ctx => { ctx with splitSource }
+
+/--
+`withEmatchDiagSource s x` executes `x` and uses `s` as the E-matching diagnostics source for any
+term created.
+-/
+abbrev withEmatchDiagSource [MonadControlT GrindM m] [Monad m] (ematchDiagSource : EmatchDiagSource) : m α → m α :=
+  mapGrindM <| withTheReader Grind.Context fun ctx => { ctx with ematchDiagSource }
 
 /-- Returns the user-defined configuration options -/
 def getConfig : GrindM Grind.Config :=
@@ -708,6 +735,8 @@ structure NewRawFact where
   generation   : Nat
   /-- `splitSource` to use when internalizing this fact. -/
   splitSource  : SplitSource
+  /-- `ematch -/
+  ematchDiagSource : EmatchDiagSource
   deriving Inhabited
 
 structure CanonArgKey where
@@ -1039,13 +1068,14 @@ def markTheoremInstance (proof : Expr) (assignment : Array Expr) : GoalM Bool :=
   return true
 
 /-- Adds a new fact `prop` with proof `proof` to the queue for preprocessing and the assertion. -/
-def addNewRawFact (proof : Expr) (prop : Expr) (generation : Nat) (splitSource : SplitSource) : GoalM Unit := do
+def addNewRawFact (proof : Expr) (prop : Expr) (generation : Nat) (splitSource : SplitSource) (ematchDiagSource : EmatchDiagSource) : GoalM Unit := do
   if (← isDebugEnabled) then
     unless (← withGTransparency <| isDefEq (← inferType proof) prop) do
       throwError "`grind` internal error, trying to assert{indentExpr prop}\n\
         with proof{indentExpr proof}\nwhich has type{indentExpr (← inferType proof)}\n\
         which is not definitionally equal with `reducible` transparency setting"
-  modify fun s => { s with newRawFacts := s.newRawFacts.enqueue { proof, prop, generation, splitSource } }
+  modify fun s =>
+    { s with newRawFacts := s.newRawFacts.enqueue { proof, prop, generation, splitSource, ematchDiagSource } }
 
 /-- Returns the number of theorem instances generated so far. -/
 def getNumTheoremInstances : GoalM Nat := do
@@ -1675,7 +1705,11 @@ def addTheoremInstance (thm : EMatchTheorem) (proof : Expr) (prop : Expr) (gener
   | .ready =>
     trace_goal[grind.ematch.instance] "{thm.origin.pp}: {prop}"
     saveEMatchTheorem thm
-    addNewRawFact proof prop generation (.ematch thm.origin)
+    let ematchDiagSource ← if (← isEmatchDiagEnabled) then
+      pure (.ematch (← getLCtx) proof)
+    else
+      pure .other
+    addNewRawFact proof prop generation (.ematch thm.origin) ematchDiagSource
     modify fun s => { s with ematch.numInstances := s.ematch.numInstances + 1 }
   | .next guard guards =>
     let thms := (← get).ematch.delayedThmInsts.find? { expr := guard } |>.getD []

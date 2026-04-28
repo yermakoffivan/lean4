@@ -1,3 +1,5 @@
+set_option backward.defeqAttrib.useBackward true
+
 -- The final declaration blew up by a factor of about 40x heartbeats on an earlier draft of
 -- https://github.com/leanprover/lean4/pull/4595, so this is here as a regression test.
 

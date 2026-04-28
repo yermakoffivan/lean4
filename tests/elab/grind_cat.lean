@@ -1,5 +1,6 @@
 module
 @[expose] public section
+set_option backward.defeqAttrib.useBackward true
 universe v v₁ v₂ v₃ u u₁ u₂ u₃
 
 namespace CategoryTheory
@@ -63,8 +64,8 @@ infixr:80 " ⋙ " => Functor.comp
 
 variable {X Y : C} {G : Functor D E}
 
-@[simp, grind =] theorem comp_obj : (F.comp G).obj X = G.obj (F.obj X) := rfl
-@[simp, grind =] theorem comp_map (f : X ⟶ Y) : (F.comp G).map f = G.map (F.map f) := rfl
+@[simp, grind =, backward_defeq] theorem comp_obj : (F.comp G).obj X = G.obj (F.obj X) := rfl
+@[simp, grind =, backward_defeq] theorem comp_map (f : X ⟶ Y) : (F.comp G).map f = G.map (F.map f) := rfl
 
 end Functor
 
@@ -95,7 +96,7 @@ variable {X : C}
 
 protected def id (F : Functor C D) : NatTrans F F where app X := 𝟙 (F.obj X)
 
-@[simp, grind =] theorem id_app' : (NatTrans.id F).app X = 𝟙 (F.obj X) := rfl
+@[simp, grind =, backward_defeq] theorem id_app' : (NatTrans.id F).app X = 𝟙 (F.obj X) := rfl
 
 protected def vcomp (α : NatTrans F G) (β : NatTrans G H) : NatTrans F H where
   app X := α.app X ≫ β.app X
@@ -159,7 +160,7 @@ theorem symm_mk {X Y : C} (hom : X ⟶ Y) (inv : Y ⟶ X) (hom_inv_id) (inv_hom_
   rfl
 
 @[simp, grind =]
-theorem symm_symm_eq {X Y : C} (α : X ≅ Y) : α.symm.symm = α := rfl
+@[backward_defeq] theorem symm_symm_eq {X Y : C} (α : X ≅ Y) : α.symm.symm = α := rfl
 
 /-- Identity isomorphism. -/
 @[refl]
@@ -168,9 +169,9 @@ def refl (X : C) : X ≅ X where
   inv := 𝟙 X
 
 @[simp, grind =]
-theorem refl_hom (X : C) : (Iso.refl X).hom = 𝟙 X := rfl
+@[backward_defeq] theorem refl_hom (X : C) : (Iso.refl X).hom = 𝟙 X := rfl
 @[simp, grind =]
-theorem refl_inv (X : C) : (Iso.refl X).inv = 𝟙 X := rfl
+@[backward_defeq] theorem refl_inv (X : C) : (Iso.refl X).inv = 𝟙 X := rfl
 
 instance : Inhabited (X ≅ X) := ⟨Iso.refl X⟩
 
@@ -182,8 +183,8 @@ def trans (α : X ≅ Y) (β : Y ≅ Z) : X ≅ Z where
 /-- Notation for composition of isomorphisms. -/
 infixr:80 " ≪≫ " => Iso.trans
 
-@[grind =] theorem trans_hom (α : X ≅ Y) (β : Y ≅ Z) : (α ≪≫ β).hom = α.hom ≫ β.hom := rfl
-@[grind =] theorem trans_inv (α : X ≅ Y) (β : Y ≅ Z) : (α ≪≫ β).inv = β.inv ≫ α.inv := rfl
+@[grind =, backward_defeq] theorem trans_hom (α : X ≅ Y) (β : Y ≅ Z) : (α ≪≫ β).hom = α.hom ≫ β.hom := rfl
+@[grind =, backward_defeq] theorem trans_inv (α : X ≅ Y) (β : Y ≅ Z) : (α ≪≫ β).inv = β.inv ≫ α.inv := rfl
 
 instance instTransIso : Trans (α := C) (· ≅ ·) (· ≅ ·) (· ≅ ·) where
   trans := trans
@@ -311,9 +312,9 @@ def mapIso (F : C ⥤ D) {X Y : C} (i : X ≅ Y) : F.obj X ≅ F.obj Y where
   inv := F.map i.inv
 
 @[simp, grind =]
-theorem mapIso_hom (F : C ⥤ D) {X Y : C} (i : X ≅ Y) : (F.mapIso i).hom = F.map i.hom := rfl
+@[backward_defeq] theorem mapIso_hom (F : C ⥤ D) {X Y : C} (i : X ≅ Y) : (F.mapIso i).hom = F.map i.hom := rfl
 @[simp, grind =]
-theorem mapIso_inv (F : C ⥤ D) {X Y : C} (i : X ≅ Y) : (F.mapIso i).inv = F.map i.inv := rfl
+@[backward_defeq] theorem mapIso_inv (F : C ⥤ D) {X Y : C} (i : X ≅ Y) : (F.mapIso i).inv = F.map i.inv := rfl
 
 @[simp]
 theorem mapIso_symm (F : C ⥤ D) {X Y : C} (i : X ≅ Y) : F.mapIso i.symm = (F.mapIso i).symm :=
@@ -360,7 +361,7 @@ namespace NatTrans
 theorem ext' {α β : F ⟶ G} (w : α.app = β.app) : α = β := NatTrans.ext w
 
 @[simp, grind =]
-theorem id_app (F : Functor C D) (X : C) : (𝟙 F : F ⟶ F).app X = 𝟙 (F.obj X) := rfl
+@[backward_defeq] theorem id_app (F : Functor C D) (X : C) : (𝟙 F : F ⟶ F).app X = 𝟙 (F.obj X) := rfl
 
 @[simp, grind _=_]
 theorem comp_app {F G H : Functor C D} (α : F ⟶ G) (β : G ⟶ H) (X : C) :
@@ -378,9 +379,9 @@ theorem naturality_app {F G : Functor C (Functor D E)} (T : F ⟶ G) (Z : D) {X 
   -- rw [comp_app]
 
 @[simp]
-theorem vcomp_eq_comp (α : F ⟶ G) (β : G ⟶ H) : NatTrans.vcomp α β = α ≫ β := rfl
+@[backward_defeq] theorem vcomp_eq_comp (α : F ⟶ G) (β : G ⟶ H) : NatTrans.vcomp α β = α ≫ β := rfl
 
-theorem vcomp_app' (α : F ⟶ G) (β : G ⟶ H) (X : C) : (α ≫ β).app X = α.app X ≫ β.app X := rfl
+@[backward_defeq] theorem vcomp_app' (α : F ⟶ G) (β : G ⟶ H) (X : C) : (α ≫ β).app X = α.app X ≫ β.app X := rfl
 
 theorem congr_app {α β : F ⟶ G} (h : α = β) (X : C) : α.app X = β.app X := by grind
 
@@ -431,9 +432,9 @@ protected def flip (F : C ⥤ D ⥤ E) : D ⥤ C ⥤ E where
       map := fun f => (F.map f).app k, }
   map f := { app := fun j => (F.obj j).map f }
 
-@[simp] theorem flip_obj_obj (F : C ⥤ D ⥤ E) (k : D) : (F.flip.obj k).obj = fun j => (F.obj j).obj k := rfl
-@[simp] theorem flip_obj_map (F : C ⥤ D ⥤ E) (k : D) {X Y : C}(f : X ⟶ Y) : (F.flip.obj k).map f = (F.map f).app k := rfl
-@[simp] theorem flip_map_app (F : C ⥤ D ⥤ E) {X Y : D} (f : X ⟶ Y) (k : C) : (F.flip.map f).app k = (F.obj k).map f := rfl
+@[simp, backward_defeq] theorem flip_obj_obj (F : C ⥤ D ⥤ E) (k : D) : (F.flip.obj k).obj = fun j => (F.obj j).obj k := rfl
+@[simp, backward_defeq] theorem flip_obj_map (F : C ⥤ D ⥤ E) (k : D) {X Y : C}(f : X ⟶ Y) : (F.flip.obj k).map f = (F.map f).app k := rfl
+@[simp, backward_defeq] theorem flip_map_app (F : C ⥤ D ⥤ E) {X Y : D} (f : X ⟶ Y) (k : C) : (F.flip.map f).app k = (F.obj k).map f := rfl
 
 attribute [grind =] flip_obj_obj flip_obj_map flip_map_app
 
@@ -480,8 +481,8 @@ def app {F G : C ⥤ D} (α : F ≅ G) (X : C) :
   hom_inv_id := by rw [← comp_app, Iso.hom_inv_id]; rfl
   inv_hom_id := by rw [← comp_app, Iso.inv_hom_id]; rfl
 
-@[simp, grind =] theorem app_hom {F G : C ⥤ D} (α : F ≅ G) (X : C) : (α.app X).hom = α.hom.app X := rfl
-@[simp, grind =] theorem app_inv {F G : C ⥤ D} (α : F ≅ G) (X : C) : (α.app X).inv = α.inv.app X := rfl
+@[simp, grind =, backward_defeq] theorem app_hom {F G : C ⥤ D} (α : F ≅ G) (X : C) : (α.app X).hom = α.hom.app X := rfl
+@[simp, grind =, backward_defeq] theorem app_inv {F G : C ⥤ D} (α : F ≅ G) (X : C) : (α.app X).inv = α.inv.app X := rfl
 
 @[simp, grind =]
 theorem hom_inv_id_app {F G : C ⥤ D} (α : F ≅ G) (X : C) :

@@ -1,3 +1,5 @@
+set_option backward.defeqAttrib.useBackward true
+
 theorem all_eq_not_any_not (l : List α) (p : α → Bool) :
     l.all p = !l.any fun x => binderNameHint x p (!p x)
   := List.all_eq_not_any_not
@@ -26,7 +28,7 @@ example (names : List String) : names.all (fun name => "Waldo".isPrefixOf name) 
 
 def List.myAll (p : α → Bool) (xs : List α) : Bool := !(xs.any fun x => !p x)
 
-theorem myAll_eq_not_any_not (l : List α) (p : α → Bool) :
+@[backward_defeq] theorem myAll_eq_not_any_not (l : List α) (p : α → Bool) :
     l.myAll p = !l.any fun x => binderNameHint x p (!p x)
   := rfl
 

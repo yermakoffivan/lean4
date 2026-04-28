@@ -191,7 +191,7 @@ def addMonthsClip (date : PlainDate) (months : Month.Offset) : PlainDate :=
   let totalMonths := (date.month.toOffset - 1) + months
   let totalMonths : Int := totalMonths
   let wrappedMonths := Bounded.LE.byEmod totalMonths 12 (by decide) |>.add 1
-  let yearsOffset := Int.ediv totalMonths 12
+  let yearsOffset := totalMonths / 12
   PlainDate.ofYearMonthDayClip (date.year.add yearsOffset) wrappedMonths date.day
 
 /--

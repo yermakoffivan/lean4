@@ -22,6 +22,7 @@ public theorem joinString_eq {α β : Type} [Std.Iterator α Id β] [Std.Iterato
     it.joinString = String.join (it.toList.map toString) := by
   rw [joinString, String.join, ← foldl_toList, toList_map]
 
+set_option linter.unusedSimpArgs false in
 @[simp]
 public theorem intercalateString_eq {α β : Type} [Std.Iterator α Id β] [Std.Iterators.Finite α Id]
     [ToString β] {s : String.Slice} {it : Std.Iter (α := α) β} :
@@ -43,7 +44,7 @@ public theorem intercalateString_eq {α β : Type} [Std.Iterator α Id β] [Std.
     match m with
     | [] => simp
     | x::xs =>
-      simp only [List.cons_append, Option.some.injEq]
+      simp only [reduceCtorEq, ↓reduceIte, List.cons_append, Option.some.injEq]
       rw [← List.cons_append, String.intercalate_append_of_ne_nil (by simp) (by simp),
         String.intercalate_singleton]
 

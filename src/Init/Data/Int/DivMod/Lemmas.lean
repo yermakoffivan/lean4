@@ -19,6 +19,8 @@ import Init.RCases
 
 public section
 
+set_option linter.unusedSimpArgs false
+
 /-!
 # Further lemmas about integer division, now that `omega` is available.
 -/
@@ -1288,8 +1290,8 @@ theorem ediv_mul_of_nonneg {x y z : Int} (hy : 0 ≤ y) : x / (y * z) = x / y / 
 @[simp] protected theorem tdiv_neg : ∀ a b : Int, a.tdiv (-b) = -(a.tdiv b)
   | ofNat m, 0 => show ofNat (m / 0) = -↑(m / 0) by rw [Nat.div_zero]; rfl
   | ofNat _, -[_+1] | -[_+1], succ _ => (Int.neg_neg _).symm
-  | ofNat _, succ _ | -[_+1], 0 => by simp [Int.tdiv, Int.neg_zero]
-  | -[_+1], -[_+1] => by simp only [tdiv]
+  | ofNat _, succ _ | -[_+1], 0 => by simp [Int.tdiv, Int.neg_zero, ← Int.negSucc_eq]
+  | -[_+1], -[_+1] => by simp only [tdiv, neg_negSucc]
 
 /-!
 There are no lemmas
@@ -1383,9 +1385,9 @@ protected theorem eq_tdiv_of_mul_eq_left {a b c : Int}
 
 @[simp] protected theorem neg_tdiv : ∀ a b : Int, (-a).tdiv b = -(a.tdiv b)
   | 0, n => by simp [Int.neg_zero]
-  | succ _, (n:Nat) => by simp [tdiv]
+  | succ _, (n:Nat) => by simp [tdiv, ← Int.negSucc_eq]
   | -[_+1], 0 | -[_+1], -[_+1] => by
-    simp only [tdiv, Int.neg_neg]
+    simp only [tdiv, neg_negSucc, Int.neg_neg]
   | succ _, -[_+1] | -[_+1], succ _ => (Int.neg_neg _).symm
 
 protected theorem neg_tdiv_neg (a b : Int) : (-a).tdiv (-b) = a.tdiv b := by
@@ -2112,17 +2114,22 @@ theorem neg_fdiv {a b : Int} : (-a).fdiv b = -(a.fdiv b) - if b = 0 ∨ b ∣ a 
   | ofNat (a + 1), 0 => simp
   | ofNat (a + 1), ofNat (b + 1) =>
     unfold fdiv
-    simp
+    simp only [ofNat_eq_natCast, Int.natCast_add, cast_ofNat_Int, Nat.succ_eq_add_one]
+    try rw [← negSucc_eq, ← negSucc_eq]
   | ofNat (a + 1), -[b+1] =>
     unfold fdiv
-    simp
+    simp only [ofNat_eq_natCast, Int.natCast_add, cast_ofNat_Int, Nat.succ_eq_add_one]
+    try rw [← negSucc_eq, neg_negSucc]
   | -[a+1], 0 => simp
   | -[a+1], ofNat (b + 1) =>
     unfold fdiv
-    simp
+    simp only [ofNat_eq_natCast, Int.natCast_add, cast_ofNat_Int, Nat.succ_eq_add_one]
+    try rw [neg_negSucc, ← negSucc_eq]
   | -[a+1], -[b+1] =>
     unfold fdiv
-    simp
+    simp only [ofNat_eq_natCast, natCast_ediv, Nat.succ_eq_add_one, Int.natCast_add, cast_ofNat_Int]
+    try rw [neg_negSucc, neg_negSucc]
+    try simp
 
 theorem fdiv_neg {a b : Int} (h : b ≠ 0) : a.fdiv (-b) = if b ∣ a then -(a.fdiv b) else -(a.fdiv b) - 1 := by
   rw [← Int.neg_fdiv_neg, Int.neg_neg, neg_fdiv]

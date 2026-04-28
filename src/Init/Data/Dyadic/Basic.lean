@@ -663,6 +663,7 @@ theorem blt_iff_toRat {x y : Dyadic} : blt x y ↔ x.toRat < y.toRat := by
       rw [Rat.zpow_neg, ← Rat.div_def, Rat.div_lt_iff (Rat.zpow_pos (by decide))]
       simp [← Rat.intCast_lt_intCast, ← Rat.zpow_natCast, *]
 
+set_option linter.unusedSimpArgs false in
 theorem blt_eq_false_iff : blt x y = false ↔ ble y x = true := by
   cases x <;> cases y
   · simp [ble, blt]
@@ -673,8 +674,9 @@ theorem blt_eq_false_iff : blt x y = false ↔ ble y x = true := by
     rw [← Int.neg_sub]
     rcases k₁ - k₂ with (_ | _) | _
     · simp
-    · simp
-    · simp only [decide_eq_false_iff_not, Int.not_lt, decide_eq_true_eq]
+    · simp [← Int.negSucc_eq]
+    · simp only [Int.neg_negSucc, decide_eq_false_iff_not, Int.not_lt,
+        decide_eq_true_eq]
 
 theorem ble_iff_toRat : ble x y ↔ x.toRat ≤ y.toRat := by
   rw [← blt_eq_false_iff, Bool.eq_false_iff]

@@ -101,13 +101,14 @@ theorem get_push_ref_lt (s : RefVec aig len) (ref : AIG.Ref aig) (idx : Nat)
   · simp
   · simp [hidx]
 
+set_option linter.unusedSimpArgs false in
 @[simp]
 theorem get_cast {aig1 aig2 : AIG α} (s : RefVec aig1 len) (idx : Nat) (hidx : idx < len)
     (hcast : aig1.decls.size ≤ aig2.decls.size) :
     (s.cast hcast).get idx hidx
       =
     (s.get idx hidx).cast hcast := by
-  simp [get]
+  simp [cast, cast', get]
 
 @[inline]
 def append (lhs : RefVec aig lw) (rhs : RefVec aig rw) : RefVec aig (lw + rw) :=

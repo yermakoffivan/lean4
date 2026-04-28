@@ -25,6 +25,7 @@ public import Init.Grind.Injective
 public import Init.Grind.Order
 public import Init.Grind.Interactive
 public import Init.Grind.Lint
+public import Init.Grind.Bench
 public import Init.Grind.Annotated
 public import Init.Grind.FieldNormNum
 public import Init.Grind.Config

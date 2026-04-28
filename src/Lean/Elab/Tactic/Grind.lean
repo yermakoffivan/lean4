@@ -14,6 +14,7 @@ public import Lean.Elab.Tactic.Grind.Trace
 public import Lean.Elab.Tactic.Grind.Config
 public import Lean.Elab.Tactic.Grind.Lint
 public import Lean.Elab.Tactic.Grind.LintExceptions
+public import Lean.Elab.Tactic.Grind.Bench
 public import Lean.Elab.Tactic.Grind.Annotated
 public import Lean.Elab.Tactic.Grind.Sym
 public import Lean.Elab.Tactic.Grind.SimprocDSL

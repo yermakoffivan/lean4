@@ -70,12 +70,12 @@ LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_sendAll___lam__0(lean_object*, l
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_sendAll___lam__0___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_sendAll___lam__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_sendAll___lam__1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std_Async_UDP_Socket_sendAll___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 44, .m_capacity = 44, .m_length = 43, .m_data = "the promise linked to the Async was dropped"};
-static const lean_object* l_Std_Async_UDP_Socket_sendAll___closed__0 = (const lean_object*)&l_Std_Async_UDP_Socket_sendAll___closed__0_value;
-static const lean_closure_object l_Std_Async_UDP_Socket_sendAll___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_UDP_Socket_sendAll___lam__0___boxed, .m_arity = 2, .m_num_fixed = 1, .m_objs = {((lean_object*)&l_Std_Async_UDP_Socket_sendAll___closed__0_value)} };
-static const lean_object* l_Std_Async_UDP_Socket_sendAll___closed__1 = (const lean_object*)&l_Std_Async_UDP_Socket_sendAll___closed__1_value;
-static const lean_closure_object l_Std_Async_UDP_Socket_sendAll___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_UDP_Socket_sendAll___lam__1___boxed, .m_arity = 3, .m_num_fixed = 1, .m_objs = {((lean_object*)&l_Std_Async_UDP_Socket_sendAll___closed__1_value)} };
-static const lean_object* l_Std_Async_UDP_Socket_sendAll___closed__2 = (const lean_object*)&l_Std_Async_UDP_Socket_sendAll___closed__2_value;
+static lean_once_cell_t l_Std_Async_UDP_Socket_sendAll___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_UDP_Socket_sendAll___closed__0;
+static lean_once_cell_t l_Std_Async_UDP_Socket_sendAll___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_UDP_Socket_sendAll___closed__1;
+static lean_once_cell_t l_Std_Async_UDP_Socket_sendAll___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_UDP_Socket_sendAll___closed__2;
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_sendAll(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_sendAll___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_send(lean_object*, lean_object*, lean_object*);
@@ -84,10 +84,10 @@ LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recv___lam__0(lean_object*, lean
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recv___lam__0___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recv___lam__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recv___lam__1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_Async_UDP_Socket_recv___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_UDP_Socket_recv___lam__0___boxed, .m_arity = 2, .m_num_fixed = 1, .m_objs = {((lean_object*)&l_Std_Async_UDP_Socket_sendAll___closed__0_value)} };
-static const lean_object* l_Std_Async_UDP_Socket_recv___closed__0 = (const lean_object*)&l_Std_Async_UDP_Socket_recv___closed__0_value;
-static const lean_closure_object l_Std_Async_UDP_Socket_recv___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_UDP_Socket_recv___lam__1___boxed, .m_arity = 3, .m_num_fixed = 1, .m_objs = {((lean_object*)&l_Std_Async_UDP_Socket_recv___closed__0_value)} };
-static const lean_object* l_Std_Async_UDP_Socket_recv___closed__1 = (const lean_object*)&l_Std_Async_UDP_Socket_recv___closed__1_value;
+static lean_once_cell_t l_Std_Async_UDP_Socket_recv___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_UDP_Socket_recv___closed__0;
+static lean_once_cell_t l_Std_Async_UDP_Socket_recv___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_UDP_Socket_recv___closed__1;
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recv(lean_object*, uint64_t);
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recv___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_IO_ofExcept___at___00Std_Async_UDP_Socket_recvSelector_spec__0___redArg(lean_object*);
@@ -99,30 +99,30 @@ LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_r
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1___lam__2___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1___lam__1(lean_object*, lean_object*, uint64_t);
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1___lam__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1___lam__0, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1___closed__0 = (const lean_object*)&l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1___closed__0_value;
+static lean_once_cell_t l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1___closed__0;
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1(lean_object*, uint64_t, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__1(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__1___boxed(lean_object*, lean_object*);
-static const lean_ctor_object l_Std_Async_UDP_Socket_recvSelector___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__0___closed__0 = (const lean_object*)&l_Std_Async_UDP_Socket_recvSelector___lam__0___closed__0_value;
-static const lean_ctor_object l_Std_Async_UDP_Socket_recvSelector___lam__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Async_UDP_Socket_recvSelector___lam__0___closed__0_value)}};
-static const lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__0___closed__1 = (const lean_object*)&l_Std_Async_UDP_Socket_recvSelector___lam__0___closed__1_value;
+static lean_once_cell_t l_Std_Async_UDP_Socket_recvSelector___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__0___closed__0;
+static lean_once_cell_t l_Std_Async_UDP_Socket_recvSelector___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__0___closed__1;
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__0___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__2(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__2___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__3(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__3___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Async_UDP_Socket_recvSelector___lam__4___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_UDP_Socket_recvSelector___lam__3___boxed, .m_arity = 2, .m_num_fixed = 1, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))} };
-static const lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__4___closed__0 = (const lean_object*)&l_Std_Async_UDP_Socket_recvSelector___lam__4___closed__0_value;
+static lean_once_cell_t l_Std_Async_UDP_Socket_recvSelector___lam__4___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__4___closed__0;
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__4(lean_object*, uint64_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__4___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Std_Async_UDP_Socket_recvSelector___lam__5___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__5___closed__0 = (const lean_object*)&l_Std_Async_UDP_Socket_recvSelector___lam__5___closed__0_value;
-static const lean_ctor_object l_Std_Async_UDP_Socket_recvSelector___lam__5___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Async_UDP_Socket_recvSelector___lam__5___closed__0_value)}};
-static const lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__5___closed__1 = (const lean_object*)&l_Std_Async_UDP_Socket_recvSelector___lam__5___closed__1_value;
+static lean_once_cell_t l_Std_Async_UDP_Socket_recvSelector___lam__5___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__5___closed__0;
+static lean_once_cell_t l_Std_Async_UDP_Socket_recvSelector___lam__5___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__5___closed__1;
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__5(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__5___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__6(lean_object*, uint64_t, lean_object*);
@@ -133,10 +133,10 @@ LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__7(lean_objec
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__7___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__8(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__8___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_Async_UDP_Socket_recvSelector___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_UDP_Socket_recvSelector___lam__1___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Async_UDP_Socket_recvSelector___closed__0 = (const lean_object*)&l_Std_Async_UDP_Socket_recvSelector___closed__0_value;
-static const lean_closure_object l_Std_Async_UDP_Socket_recvSelector___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_UDP_Socket_recvSelector___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Async_UDP_Socket_recvSelector___closed__1 = (const lean_object*)&l_Std_Async_UDP_Socket_recvSelector___closed__1_value;
+static lean_once_cell_t l_Std_Async_UDP_Socket_recvSelector___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_UDP_Socket_recvSelector___closed__0;
+static lean_once_cell_t l_Std_Async_UDP_Socket_recvSelector___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_UDP_Socket_recvSelector___closed__1;
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector(lean_object*, uint64_t);
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_getSockName(lean_object*);
@@ -586,11 +586,39 @@ v_res_128_ = l_Std_Async_UDP_Socket_sendAll___lam__1(v___f_125_, v_x_126_);
 return v_res_128_;
 }
 }
+static lean_object* _init_l_Std_Async_UDP_Socket_sendAll___closed__0(void){
+_start:
+{
+lean_object* v___x_129_; 
+v___x_129_ = lean_mk_string_unchecked("the promise linked to the Async was dropped", 43, 43);
+return v___x_129_;
+}
+}
+static lean_object* _init_l_Std_Async_UDP_Socket_sendAll___closed__1(void){
+_start:
+{
+lean_object* v___x_130_; lean_object* v___f_131_; 
+v___x_130_ = lean_obj_once(&l_Std_Async_UDP_Socket_sendAll___closed__0, &l_Std_Async_UDP_Socket_sendAll___closed__0_once, _init_l_Std_Async_UDP_Socket_sendAll___closed__0);
+v___f_131_ = lean_alloc_closure((void*)(l_Std_Async_UDP_Socket_sendAll___lam__0___boxed), 2, 1);
+lean_closure_set(v___f_131_, 0, v___x_130_);
+return v___f_131_;
+}
+}
+static lean_object* _init_l_Std_Async_UDP_Socket_sendAll___closed__2(void){
+_start:
+{
+lean_object* v___f_132_; lean_object* v___f_133_; 
+v___f_132_ = lean_obj_once(&l_Std_Async_UDP_Socket_sendAll___closed__1, &l_Std_Async_UDP_Socket_sendAll___closed__1_once, _init_l_Std_Async_UDP_Socket_sendAll___closed__1);
+v___f_133_ = lean_alloc_closure((void*)(l_Std_Async_UDP_Socket_sendAll___lam__1___boxed), 3, 1);
+lean_closure_set(v___f_133_, 0, v___f_132_);
+return v___f_133_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_sendAll(lean_object* v_s_134_, lean_object* v_data_135_, lean_object* v_addr_136_){
 _start:
 {
 lean_object* v___f_138_; lean_object* v_val_140_; lean_object* v___x_146_; 
-v___f_138_ = ((lean_object*)(l_Std_Async_UDP_Socket_sendAll___closed__2));
+v___f_138_ = lean_obj_once(&l_Std_Async_UDP_Socket_sendAll___closed__2, &l_Std_Async_UDP_Socket_sendAll___closed__2_once, _init_l_Std_Async_UDP_Socket_sendAll___closed__2);
 v___x_146_ = lean_uv_udp_send(v_s_134_, v_data_135_, v_addr_136_);
 if (lean_obj_tag(v___x_146_) == 0)
 {
@@ -709,7 +737,7 @@ lean_object* v___x_172_; lean_object* v___x_173_; lean_object* v___x_174_; lean_
 v___x_172_ = lean_unsigned_to_nat(1u);
 v___x_173_ = lean_mk_empty_array_with_capacity(v___x_172_);
 v___x_174_ = lean_array_push(v___x_173_, v_data_169_);
-v___f_175_ = ((lean_object*)(l_Std_Async_UDP_Socket_sendAll___closed__2));
+v___f_175_ = lean_obj_once(&l_Std_Async_UDP_Socket_sendAll___closed__2, &l_Std_Async_UDP_Socket_sendAll___closed__2_once, _init_l_Std_Async_UDP_Socket_sendAll___closed__2);
 v___x_183_ = lean_uv_udp_send(v_s_168_, v___x_174_, v_addr_170_);
 if (lean_obj_tag(v___x_183_) == 0)
 {
@@ -976,11 +1004,31 @@ v_res_244_ = l_Std_Async_UDP_Socket_recv___lam__1(v___f_241_, v_x_242_);
 return v_res_244_;
 }
 }
+static lean_object* _init_l_Std_Async_UDP_Socket_recv___closed__0(void){
+_start:
+{
+lean_object* v___x_245_; lean_object* v___f_246_; 
+v___x_245_ = lean_obj_once(&l_Std_Async_UDP_Socket_sendAll___closed__0, &l_Std_Async_UDP_Socket_sendAll___closed__0_once, _init_l_Std_Async_UDP_Socket_sendAll___closed__0);
+v___f_246_ = lean_alloc_closure((void*)(l_Std_Async_UDP_Socket_recv___lam__0___boxed), 2, 1);
+lean_closure_set(v___f_246_, 0, v___x_245_);
+return v___f_246_;
+}
+}
+static lean_object* _init_l_Std_Async_UDP_Socket_recv___closed__1(void){
+_start:
+{
+lean_object* v___f_247_; lean_object* v___f_248_; 
+v___f_247_ = lean_obj_once(&l_Std_Async_UDP_Socket_recv___closed__0, &l_Std_Async_UDP_Socket_recv___closed__0_once, _init_l_Std_Async_UDP_Socket_recv___closed__0);
+v___f_248_ = lean_alloc_closure((void*)(l_Std_Async_UDP_Socket_recv___lam__1___boxed), 3, 1);
+lean_closure_set(v___f_248_, 0, v___f_247_);
+return v___f_248_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recv(lean_object* v_s_249_, uint64_t v_size_250_){
 _start:
 {
 lean_object* v___f_252_; lean_object* v_val_254_; lean_object* v___x_260_; 
-v___f_252_ = ((lean_object*)(l_Std_Async_UDP_Socket_recv___closed__1));
+v___f_252_ = lean_obj_once(&l_Std_Async_UDP_Socket_recv___closed__1, &l_Std_Async_UDP_Socket_recv___closed__1_once, _init_l_Std_Async_UDP_Socket_recv___closed__1);
 v___x_260_ = lean_uv_udp_recv(v_s_249_, v_size_250_);
 if (lean_obj_tag(v___x_260_) == 0)
 {
@@ -1361,7 +1409,7 @@ LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_r
 _start:
 {
 lean_object* v___f_354_; lean_object* v___f_355_; lean_object* v_val_357_; lean_object* v___x_362_; 
-v___f_354_ = ((lean_object*)(l_Std_Async_UDP_Socket_recv___closed__0));
+v___f_354_ = lean_obj_once(&l_Std_Async_UDP_Socket_recv___closed__0, &l_Std_Async_UDP_Socket_recv___closed__0_once, _init_l_Std_Async_UDP_Socket_recv___closed__0);
 lean_inc(v___x_350_);
 v___f_355_ = lean_alloc_closure((void*)(l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1___lam__2___boxed), 4, 2);
 lean_closure_set(v___f_355_, 0, v___f_354_);
@@ -1477,6 +1525,14 @@ lean_dec(v_s_380_);
 return v_res_384_;
 }
 }
+static lean_object* _init_l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1___closed__0(void){
+_start:
+{
+lean_object* v___f_385_; 
+v___f_385_ = lean_alloc_closure((void*)(l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1___lam__0), 1, 0);
+return v___f_385_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1(lean_object* v_s_386_, uint64_t v_size_387_, lean_object* v_val_388_, lean_object* v_w_389_, lean_object* v_lose_390_){
 _start:
 {
@@ -1484,7 +1540,7 @@ lean_object* v_finished_392_; lean_object* v_promise_393_; lean_object* v_a_395_
 v_finished_392_ = lean_ctor_get(v_w_389_, 0);
 v_promise_393_ = lean_ctor_get(v_w_389_, 1);
 v___x_399_ = lean_st_ref_take(v_finished_392_);
-v___f_400_ = ((lean_object*)(l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1___closed__0));
+v___f_400_ = lean_obj_once(&l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1___closed__0, &l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1___closed__0_once, _init_l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1___closed__0);
 v___x_420_ = lean_unbox(v___x_399_);
 lean_dec(v___x_399_);
 if (v___x_420_ == 0)
@@ -1704,6 +1760,26 @@ v_res_454_ = l_Std_Async_UDP_Socket_recvSelector___lam__1(v_x_452_);
 return v_res_454_;
 }
 }
+static lean_object* _init_l_Std_Async_UDP_Socket_recvSelector___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_455_; lean_object* v___x_456_; 
+v___x_455_ = lean_box(0);
+v___x_456_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_456_, 0, v___x_455_);
+return v___x_456_;
+}
+}
+static lean_object* _init_l_Std_Async_UDP_Socket_recvSelector___lam__0___closed__1(void){
+_start:
+{
+lean_object* v___x_457_; lean_object* v___x_458_; 
+v___x_457_ = lean_obj_once(&l_Std_Async_UDP_Socket_recvSelector___lam__0___closed__0, &l_Std_Async_UDP_Socket_recvSelector___lam__0___closed__0_once, _init_l_Std_Async_UDP_Socket_recvSelector___lam__0___closed__0);
+v___x_458_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_458_, 0, v___x_457_);
+return v___x_458_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__0(lean_object* v_x_459_){
 _start:
 {
@@ -1755,7 +1831,7 @@ else
 {
 lean_object* v___x_470_; 
 lean_dec_ref(v_x_459_);
-v___x_470_ = ((lean_object*)(l_Std_Async_UDP_Socket_recvSelector___lam__0___closed__1));
+v___x_470_ = lean_obj_once(&l_Std_Async_UDP_Socket_recvSelector___lam__0___closed__1, &l_Std_Async_UDP_Socket_recvSelector___lam__0___closed__1_once, _init_l_Std_Async_UDP_Socket_recvSelector___lam__0___closed__1);
 return v___x_470_;
 }
 }
@@ -1894,6 +1970,16 @@ v_res_504_ = l_Std_Async_UDP_Socket_recvSelector___lam__3(v___x_502_);
 return v_res_504_;
 }
 }
+static lean_object* _init_l_Std_Async_UDP_Socket_recvSelector___lam__4___closed__0(void){
+_start:
+{
+lean_object* v___x_505_; lean_object* v___f_506_; 
+v___x_505_ = lean_box(0);
+v___f_506_ = lean_alloc_closure((void*)(l_Std_Async_UDP_Socket_recvSelector___lam__3___boxed), 2, 1);
+lean_closure_set(v___f_506_, 0, v___x_505_);
+return v___f_506_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__4(lean_object* v_s_507_, uint64_t v_size_508_, lean_object* v_waiter_509_, lean_object* v_a_510_){
 _start:
 {
@@ -1912,7 +1998,7 @@ lean_object* v_val_516_; lean_object* v___f_517_; lean_object* v___x_518_;
 v_val_516_ = lean_ctor_get(v_a_510_, 0);
 lean_inc(v_val_516_);
 lean_dec_ref(v_a_510_);
-v___f_517_ = ((lean_object*)(l_Std_Async_UDP_Socket_recvSelector___lam__4___closed__0));
+v___f_517_ = lean_obj_once(&l_Std_Async_UDP_Socket_recvSelector___lam__4___closed__0, &l_Std_Async_UDP_Socket_recvSelector___lam__4___closed__0_once, _init_l_Std_Async_UDP_Socket_recvSelector___lam__4___closed__0);
 v___x_518_ = l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1(v_s_507_, v_size_508_, v_val_516_, v_waiter_509_, v___f_517_);
 if (lean_obj_tag(v___x_518_) == 0)
 {
@@ -1986,6 +2072,26 @@ lean_dec_ref(v_waiter_530_);
 return v_res_534_;
 }
 }
+static lean_object* _init_l_Std_Async_UDP_Socket_recvSelector___lam__5___closed__0(void){
+_start:
+{
+lean_object* v___x_535_; lean_object* v___x_536_; 
+v___x_535_ = lean_box(0);
+v___x_536_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_536_, 0, v___x_535_);
+return v___x_536_;
+}
+}
+static lean_object* _init_l_Std_Async_UDP_Socket_recvSelector___lam__5___closed__1(void){
+_start:
+{
+lean_object* v___x_537_; lean_object* v___x_538_; 
+v___x_537_ = lean_obj_once(&l_Std_Async_UDP_Socket_recvSelector___lam__5___closed__0, &l_Std_Async_UDP_Socket_recvSelector___lam__5___closed__0_once, _init_l_Std_Async_UDP_Socket_recvSelector___lam__5___closed__0);
+v___x_538_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_538_, 0, v___x_537_);
+return v___x_538_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector___lam__5(lean_object* v___f_539_, lean_object* v_x_540_){
 _start:
 {
@@ -2046,7 +2152,7 @@ v___x_553_ = lean_unsigned_to_nat(0u);
 v___x_554_ = 0;
 v___x_555_ = lean_io_map_task(v___f_539_, v___x_552_, v___x_553_, v___x_554_);
 lean_dec_ref(v___x_555_);
-v___x_556_ = ((lean_object*)(l_Std_Async_UDP_Socket_recvSelector___lam__5___closed__1));
+v___x_556_ = lean_obj_once(&l_Std_Async_UDP_Socket_recvSelector___lam__5___closed__1, &l_Std_Async_UDP_Socket_recvSelector___lam__5___closed__1_once, _init_l_Std_Async_UDP_Socket_recvSelector___lam__5___closed__1);
 return v___x_556_;
 }
 }
@@ -2584,13 +2690,29 @@ lean_dec(v_s_710_);
 return v_res_712_;
 }
 }
+static lean_object* _init_l_Std_Async_UDP_Socket_recvSelector___closed__0(void){
+_start:
+{
+lean_object* v___f_713_; 
+v___f_713_ = lean_alloc_closure((void*)(l_Std_Async_UDP_Socket_recvSelector___lam__1___boxed), 2, 0);
+return v___f_713_;
+}
+}
+static lean_object* _init_l_Std_Async_UDP_Socket_recvSelector___closed__1(void){
+_start:
+{
+lean_object* v___f_714_; 
+v___f_714_ = lean_alloc_closure((void*)(l_Std_Async_UDP_Socket_recvSelector___lam__0___boxed), 2, 0);
+return v___f_714_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_UDP_Socket_recvSelector(lean_object* v_s_715_, uint64_t v_size_716_){
 _start:
 {
 lean_object* v___f_717_; lean_object* v___f_718_; lean_object* v___f_719_; lean_object* v___f_720_; lean_object* v___x_721_; lean_object* v___f_722_; lean_object* v___x_723_; lean_object* v___f_724_; lean_object* v___f_725_; lean_object* v___f_726_; lean_object* v___x_727_; 
-v___f_717_ = ((lean_object*)(l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1___closed__0));
-v___f_718_ = ((lean_object*)(l_Std_Async_UDP_Socket_recvSelector___closed__0));
-v___f_719_ = ((lean_object*)(l_Std_Async_UDP_Socket_recvSelector___closed__1));
+v___f_717_ = lean_obj_once(&l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1___closed__0, &l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1___closed__0_once, _init_l_Std_Async_Waiter_race___at___00Std_Async_UDP_Socket_recvSelector_spec__1___closed__0);
+v___f_718_ = lean_obj_once(&l_Std_Async_UDP_Socket_recvSelector___closed__0, &l_Std_Async_UDP_Socket_recvSelector___closed__0_once, _init_l_Std_Async_UDP_Socket_recvSelector___closed__0);
+v___f_719_ = lean_obj_once(&l_Std_Async_UDP_Socket_recvSelector___closed__1, &l_Std_Async_UDP_Socket_recvSelector___closed__1_once, _init_l_Std_Async_UDP_Socket_recvSelector___closed__1);
 lean_inc_n(v_s_715_, 3);
 v___f_720_ = lean_alloc_closure((void*)(l_Std_Async_UDP_Socket_recvSelector___lam__2___boxed), 2, 1);
 lean_closure_set(v___f_720_, 0, v_s_715_);

@@ -29,12 +29,12 @@ LEAN_EXPORT lean_object* l_Lean_Meta_MVarRenaming_find_x3f___boxed(lean_object*,
 LEAN_EXPORT lean_object* l_Std_DTreeMap_Internal_Impl_Const_get_x3f___at___00Lean_Meta_MVarRenaming_find_x3f_spec__0(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_DTreeMap_Internal_Impl_Const_get_x3f___at___00Lean_Meta_MVarRenaming_find_x3f_spec__0___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_panic___at___00Lean_Meta_MVarRenaming_find_x21_spec__0(lean_object*);
-static const lean_string_object l_Lean_Meta_MVarRenaming_find_x21___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 26, .m_capacity = 26, .m_length = 25, .m_data = "Init.Data.Option.BasicAux"};
-static const lean_object* l_Lean_Meta_MVarRenaming_find_x21___closed__0 = (const lean_object*)&l_Lean_Meta_MVarRenaming_find_x21___closed__0_value;
-static const lean_string_object l_Lean_Meta_MVarRenaming_find_x21___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "Option.get!"};
-static const lean_object* l_Lean_Meta_MVarRenaming_find_x21___closed__1 = (const lean_object*)&l_Lean_Meta_MVarRenaming_find_x21___closed__1_value;
-static const lean_string_object l_Lean_Meta_MVarRenaming_find_x21___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "value is none"};
-static const lean_object* l_Lean_Meta_MVarRenaming_find_x21___closed__2 = (const lean_object*)&l_Lean_Meta_MVarRenaming_find_x21___closed__2_value;
+static lean_once_cell_t l_Lean_Meta_MVarRenaming_find_x21___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_MVarRenaming_find_x21___closed__0;
+static lean_once_cell_t l_Lean_Meta_MVarRenaming_find_x21___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_MVarRenaming_find_x21___closed__1;
+static lean_once_cell_t l_Lean_Meta_MVarRenaming_find_x21___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_MVarRenaming_find_x21___closed__2;
 static lean_once_cell_t l_Lean_Meta_MVarRenaming_find_x21___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_MVarRenaming_find_x21___closed__3;
 LEAN_EXPORT lean_object* l_Lean_Meta_MVarRenaming_find_x21(lean_object*, lean_object*);
@@ -167,15 +167,39 @@ v___x_37_ = lean_panic_fn_borrowed(v___x_36_, v_msg_35_);
 return v___x_37_;
 }
 }
+static lean_object* _init_l_Lean_Meta_MVarRenaming_find_x21___closed__0(void){
+_start:
+{
+lean_object* v___x_38_; 
+v___x_38_ = lean_mk_string_unchecked("Init.Data.Option.BasicAux", 25, 25);
+return v___x_38_;
+}
+}
+static lean_object* _init_l_Lean_Meta_MVarRenaming_find_x21___closed__1(void){
+_start:
+{
+lean_object* v___x_39_; 
+v___x_39_ = lean_mk_string_unchecked("Option.get!", 11, 11);
+return v___x_39_;
+}
+}
+static lean_object* _init_l_Lean_Meta_MVarRenaming_find_x21___closed__2(void){
+_start:
+{
+lean_object* v___x_40_; 
+v___x_40_ = lean_mk_string_unchecked("value is none", 13, 13);
+return v___x_40_;
+}
+}
 static lean_object* _init_l_Lean_Meta_MVarRenaming_find_x21___closed__3(void){
 _start:
 {
 lean_object* v___x_41_; lean_object* v___x_42_; lean_object* v___x_43_; lean_object* v___x_44_; lean_object* v___x_45_; lean_object* v___x_46_; 
-v___x_41_ = ((lean_object*)(l_Lean_Meta_MVarRenaming_find_x21___closed__2));
+v___x_41_ = lean_obj_once(&l_Lean_Meta_MVarRenaming_find_x21___closed__2, &l_Lean_Meta_MVarRenaming_find_x21___closed__2_once, _init_l_Lean_Meta_MVarRenaming_find_x21___closed__2);
 v___x_42_ = lean_unsigned_to_nat(14u);
 v___x_43_ = lean_unsigned_to_nat(22u);
-v___x_44_ = ((lean_object*)(l_Lean_Meta_MVarRenaming_find_x21___closed__1));
-v___x_45_ = ((lean_object*)(l_Lean_Meta_MVarRenaming_find_x21___closed__0));
+v___x_44_ = lean_obj_once(&l_Lean_Meta_MVarRenaming_find_x21___closed__1, &l_Lean_Meta_MVarRenaming_find_x21___closed__1_once, _init_l_Lean_Meta_MVarRenaming_find_x21___closed__1);
+v___x_45_ = lean_obj_once(&l_Lean_Meta_MVarRenaming_find_x21___closed__0, &l_Lean_Meta_MVarRenaming_find_x21___closed__0_once, _init_l_Lean_Meta_MVarRenaming_find_x21___closed__0);
 v___x_46_ = l_mkPanicMessageWithDecl(v___x_45_, v___x_44_, v___x_43_, v___x_42_, v___x_41_);
 return v___x_46_;
 }

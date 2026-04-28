@@ -27,14 +27,14 @@ lean_object* lean_int_add(lean_object*, lean_object*);
 lean_object* l_Lean_mkIntLit(lean_object*);
 uint8_t lean_int_dec_eq(lean_object*, lean_object*);
 lean_object* l_Lean_stringToMessageData(lean_object*);
-static const lean_ctor_object l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms_default___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*4 + 0, .m_other = 4, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms_default___closed__0 = (const lean_object*)&l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms_default___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms_default = (const lean_object*)&l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms_default___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms = (const lean_object*)&l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms_default___closed__0_value;
-static const lean_string_object l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 20, .m_capacity = 20, .m_length = 19, .m_data = "_inhabitedExprDummy"};
-static const lean_object* l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__0 = (const lean_object*)&l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__0_value;
-static const lean_ctor_object l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__0_value),LEAN_SCALAR_PTR_LITERAL(37, 247, 56, 151, 29, 116, 116, 243)}};
-static const lean_object* l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__1 = (const lean_object*)&l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__1_value;
+static lean_once_cell_t l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms_default___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms_default___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms_default;
+LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms;
+static lean_once_cell_t l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__0;
+static lean_once_cell_t l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__1;
 static lean_once_cell_t l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__2;
 static lean_once_cell_t l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -70,12 +70,12 @@ LEAN_EXPORT lean_object* l_Lean_throwError___at___00Lean_Meta_Grind_Arith_Cutsat
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 static lean_once_cell_t l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__0;
-static const lean_string_object l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 76, .m_capacity = 76, .m_length = 75, .m_data = "`grind` internal error, `.ci` interval support has not been implemented yet"};
-static const lean_object* l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__1 = (const lean_object*)&l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__1_value;
+static lean_once_cell_t l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__1;
 static lean_once_cell_t l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__2;
-static const lean_string_object l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 76, .m_capacity = 76, .m_length = 75, .m_data = "`grind` internal error, `.io` interval support has not been implemented yet"};
-static const lean_object* l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__3 = (const lean_object*)&l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__3_value;
+static lean_once_cell_t l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__3;
 static lean_once_cell_t l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__4;
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -86,12 +86,58 @@ static lean_once_cell_t l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntInfo_de
 static lean_object* l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntInfo_default___closed__0;
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntInfo_default;
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntInfo;
+static lean_object* _init_l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms_default___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; lean_object* v___x_2_; 
+v___x_1_ = lean_box(0);
+v___x_2_ = lean_alloc_ctor(0, 4, 0);
+lean_ctor_set(v___x_2_, 0, v___x_1_);
+lean_ctor_set(v___x_2_, 1, v___x_1_);
+lean_ctor_set(v___x_2_, 2, v___x_1_);
+lean_ctor_set(v___x_2_, 3, v___x_1_);
+return v___x_2_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms_default(void){
+_start:
+{
+lean_object* v___x_3_; 
+v___x_3_ = lean_obj_once(&l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms_default___closed__0, &l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms_default___closed__0_once, _init_l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms_default___closed__0);
+return v___x_3_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms(void){
+_start:
+{
+lean_object* v___x_4_; 
+v___x_4_ = l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms_default;
+return v___x_4_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__0(void){
+_start:
+{
+lean_object* v___x_5_; 
+v___x_5_ = lean_mk_string_unchecked("_inhabitedExprDummy", 19, 19);
+return v___x_5_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__1(void){
+_start:
+{
+lean_object* v___x_6_; lean_object* v___x_7_; 
+v___x_6_ = lean_obj_once(&l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__0, &l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__0_once, _init_l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__0);
+v___x_7_ = l_Lean_Name_mkStr1(v___x_6_);
+return v___x_7_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__2(void){
 _start:
 {
 lean_object* v___x_8_; lean_object* v___x_9_; lean_object* v___x_10_; 
 v___x_8_ = lean_box(0);
-v___x_9_ = ((lean_object*)(l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__1));
+v___x_9_ = lean_obj_once(&l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__1, &l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__1_once, _init_l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default___closed__1);
 v___x_10_ = l_Lean_Expr_const___override(v___x_9_, v___x_8_);
 return v___x_10_;
 }
@@ -616,20 +662,36 @@ v___x_163_ = lean_nat_to_int(v___x_162_);
 return v___x_163_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__1(void){
+_start:
+{
+lean_object* v___x_164_; 
+v___x_164_ = lean_mk_string_unchecked("`grind` internal error, `.ci` interval support has not been implemented yet", 75, 75);
+return v___x_164_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__2(void){
 _start:
 {
 lean_object* v___x_165_; lean_object* v___x_166_; 
-v___x_165_ = ((lean_object*)(l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__1));
+v___x_165_ = lean_obj_once(&l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__1, &l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__1_once, _init_l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__1);
 v___x_166_ = l_Lean_stringToMessageData(v___x_165_);
 return v___x_166_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__3(void){
+_start:
+{
+lean_object* v___x_167_; 
+v___x_167_ = lean_mk_string_unchecked("`grind` internal error, `.io` interval support has not been implemented yet", 75, 75);
+return v___x_167_;
 }
 }
 static lean_object* _init_l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__4(void){
 _start:
 {
 lean_object* v___x_168_; lean_object* v___x_169_; 
-v___x_168_ = ((lean_object*)(l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__3));
+v___x_168_ = lean_obj_once(&l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__3, &l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__3_once, _init_l_Lean_Meta_Grind_Arith_Cutsat_SymbolicIntInterval_wrap___closed__3);
 v___x_169_ = l_Lean_stringToMessageData(v___x_168_);
 return v___x_169_;
 }
@@ -1055,6 +1117,10 @@ lean_dec_ref(res);
 res = runtime_initialize_Lean_Meta_LitValues(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms_default = _init_l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms_default();
+lean_mark_persistent(l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms_default);
+l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms = _init_l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms();
+lean_mark_persistent(l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedToIntThms);
 l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default = _init_l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default();
 lean_mark_persistent(l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound_default);
 l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound = _init_l_Lean_Meta_Grind_Arith_Cutsat_instInhabitedSymbolicBound();

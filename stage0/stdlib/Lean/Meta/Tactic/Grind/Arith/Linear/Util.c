@@ -114,8 +114,8 @@ LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_insertAux___at___00Lean_Persis
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_insert___at___00Lean_Meta_Grind_Arith_Linear_setTermStructId_spec__0___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_setTermStructId___redArg___lam__0(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_setTermStructId___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Grind_Arith_Linear_setTermStructId___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 57, .m_capacity = 57, .m_length = 56, .m_data = "expression in two different structure in linarith module"};
-static const lean_object* l_Lean_Meta_Grind_Arith_Linear_setTermStructId___redArg___closed__0 = (const lean_object*)&l_Lean_Meta_Grind_Arith_Linear_setTermStructId___redArg___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_setTermStructId___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_Arith_Linear_setTermStructId___redArg___closed__0;
 static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_setTermStructId___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Arith_Linear_setTermStructId___redArg___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_setTermStructId___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -133,40 +133,40 @@ LEAN_EXPORT lean_object* l_Lean_addMessageContextFull___at___00Lean_throwError__
 LEAN_EXPORT lean_object* l_Lean_addMessageContextFull___at___00Lean_throwError___at___00Lean_Meta_Grind_Arith_Linear_getNoNatDivInst_spec__0_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00Lean_Meta_Grind_Arith_Linear_getNoNatDivInst_spec__0___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00Lean_Meta_Grind_Arith_Linear_getNoNatDivInst_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Grind_Arith_Linear_getNoNatDivInst___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 82, .m_capacity = 82, .m_length = 81, .m_data = "`grind linarith` internal error, structure does not implement `NoNatZeroDivisors`"};
-static const lean_object* l_Lean_Meta_Grind_Arith_Linear_getNoNatDivInst___closed__0 = (const lean_object*)&l_Lean_Meta_Grind_Arith_Linear_getNoNatDivInst___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getNoNatDivInst___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_Arith_Linear_getNoNatDivInst___closed__0;
 static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getNoNatDivInst___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Arith_Linear_getNoNatDivInst___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getNoNatDivInst(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getNoNatDivInst___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00Lean_Meta_Grind_Arith_Linear_getNoNatDivInst_spec__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00Lean_Meta_Grind_Arith_Linear_getNoNatDivInst_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Grind_Arith_Linear_getLEInst___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 63, .m_capacity = 63, .m_length = 62, .m_data = "`grind linarith` internal error, structure does not support LE"};
-static const lean_object* l_Lean_Meta_Grind_Arith_Linear_getLEInst___closed__0 = (const lean_object*)&l_Lean_Meta_Grind_Arith_Linear_getLEInst___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getLEInst___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_Arith_Linear_getLEInst___closed__0;
 static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getLEInst___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Arith_Linear_getLEInst___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getLEInst(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getLEInst___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Grind_Arith_Linear_getLTInst___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 63, .m_capacity = 63, .m_length = 62, .m_data = "`grind linarith` internal error, structure does not support LT"};
-static const lean_object* l_Lean_Meta_Grind_Arith_Linear_getLTInst___closed__0 = (const lean_object*)&l_Lean_Meta_Grind_Arith_Linear_getLTInst___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getLTInst___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_Arith_Linear_getLTInst___closed__0;
 static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getLTInst___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Arith_Linear_getLTInst___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getLTInst(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getLTInst___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Grind_Arith_Linear_getLawfulOrderLTInst___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 78, .m_capacity = 78, .m_length = 77, .m_data = "`grind linarith` internal error, structure does not have a lawful LT instance"};
-static const lean_object* l_Lean_Meta_Grind_Arith_Linear_getLawfulOrderLTInst___closed__0 = (const lean_object*)&l_Lean_Meta_Grind_Arith_Linear_getLawfulOrderLTInst___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getLawfulOrderLTInst___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_Arith_Linear_getLawfulOrderLTInst___closed__0;
 static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getLawfulOrderLTInst___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Arith_Linear_getLawfulOrderLTInst___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getLawfulOrderLTInst(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getLawfulOrderLTInst___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Grind_Arith_Linear_getIsPreorderInst___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 61, .m_capacity = 61, .m_length = 60, .m_data = "`grind linarith` internal error, structure is not a preorder"};
-static const lean_object* l_Lean_Meta_Grind_Arith_Linear_getIsPreorderInst___closed__0 = (const lean_object*)&l_Lean_Meta_Grind_Arith_Linear_getIsPreorderInst___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getIsPreorderInst___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_Arith_Linear_getIsPreorderInst___closed__0;
 static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getIsPreorderInst___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Arith_Linear_getIsPreorderInst___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getIsPreorderInst(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getIsPreorderInst___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Grind_Arith_Linear_getOrderedAddInst___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 68, .m_capacity = 68, .m_length = 67, .m_data = "`grind linarith` internal error, structure is not an ordered module"};
-static const lean_object* l_Lean_Meta_Grind_Arith_Linear_getOrderedAddInst___closed__0 = (const lean_object*)&l_Lean_Meta_Grind_Arith_Linear_getOrderedAddInst___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getOrderedAddInst___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_Arith_Linear_getOrderedAddInst___closed__0;
 static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getOrderedAddInst___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Arith_Linear_getOrderedAddInst___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getOrderedAddInst(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -176,33 +176,33 @@ LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_isOrderedAdd___boxed(lea
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getLtFn___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getLtFn___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getLtFn(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Grind_Arith_Linear_getLeFn___redArg___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 72, .m_capacity = 72, .m_length = 71, .m_data = "`grind linarith` internal error, structure is not an ordered int module"};
-static const lean_object* l_Lean_Meta_Grind_Arith_Linear_getLeFn___redArg___lam__0___closed__0 = (const lean_object*)&l_Lean_Meta_Grind_Arith_Linear_getLeFn___redArg___lam__0___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getLeFn___redArg___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_Arith_Linear_getLeFn___redArg___lam__0___closed__0;
 static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getLeFn___redArg___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Arith_Linear_getLeFn___redArg___lam__0___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getLeFn___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getLeFn___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getLeFn(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Grind_Arith_Linear_getIsLinearOrderInst___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 65, .m_capacity = 65, .m_length = 64, .m_data = "`grind linarith` internal error, structure is not a linear order"};
-static const lean_object* l_Lean_Meta_Grind_Arith_Linear_getIsLinearOrderInst___closed__0 = (const lean_object*)&l_Lean_Meta_Grind_Arith_Linear_getIsLinearOrderInst___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getIsLinearOrderInst___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_Arith_Linear_getIsLinearOrderInst___closed__0;
 static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getIsLinearOrderInst___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Arith_Linear_getIsLinearOrderInst___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getIsLinearOrderInst(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getIsLinearOrderInst___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Grind_Arith_Linear_getRingInst___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 57, .m_capacity = 57, .m_length = 56, .m_data = "`grind linarith` internal error, structure is not a ring"};
-static const lean_object* l_Lean_Meta_Grind_Arith_Linear_getRingInst___closed__0 = (const lean_object*)&l_Lean_Meta_Grind_Arith_Linear_getRingInst___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getRingInst___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_Arith_Linear_getRingInst___closed__0;
 static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getRingInst___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Arith_Linear_getRingInst___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getRingInst(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getRingInst___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Grind_Arith_Linear_getCommRingInst___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 69, .m_capacity = 69, .m_length = 68, .m_data = "`grind linarith` internal error, structure is not a commutative ring"};
-static const lean_object* l_Lean_Meta_Grind_Arith_Linear_getCommRingInst___closed__0 = (const lean_object*)&l_Lean_Meta_Grind_Arith_Linear_getCommRingInst___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getCommRingInst___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_Arith_Linear_getCommRingInst___closed__0;
 static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getCommRingInst___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Arith_Linear_getCommRingInst___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getCommRingInst(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getCommRingInst___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Grind_Arith_Linear_getOrderedRingInst___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 66, .m_capacity = 66, .m_length = 65, .m_data = "`grind linarith` internal error, structure is not an ordered ring"};
-static const lean_object* l_Lean_Meta_Grind_Arith_Linear_getOrderedRingInst___closed__0 = (const lean_object*)&l_Lean_Meta_Grind_Arith_Linear_getOrderedRingInst___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getOrderedRingInst___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_Arith_Linear_getOrderedRingInst___closed__0;
 static lean_once_cell_t l_Lean_Meta_Grind_Arith_Linear_getOrderedRingInst___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Arith_Linear_getOrderedRingInst___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Arith_Linear_getOrderedRingInst(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -250,8 +250,8 @@ LEAN_EXPORT lean_object* l_Std_DTreeMap_Internal_Impl_contains___at___00Lean_Met
 LEAN_EXPORT lean_object* l_Std_DTreeMap_Internal_Impl_insert___at___00Lean_Meta_Grind_Arith_Linear_addOcc_spec__1(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_Tactic_Grind_Arith_Linear_Util_0__Lean_Grind_Linarith_Poly_updateOccs_go(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_Tactic_Grind_Arith_Linear_Util_0__Lean_Grind_Linarith_Poly_updateOccs_go___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Grind_Linarith_Poly_updateOccs___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 64, .m_capacity = 64, .m_length = 63, .m_data = "`grind linarith` internal error, unexpected constant polynomial"};
-static const lean_object* l_Lean_Grind_Linarith_Poly_updateOccs___closed__0 = (const lean_object*)&l_Lean_Grind_Linarith_Poly_updateOccs___closed__0_value;
+static lean_once_cell_t l_Lean_Grind_Linarith_Poly_updateOccs___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Grind_Linarith_Poly_updateOccs___closed__0;
 static lean_once_cell_t l_Lean_Grind_Linarith_Poly_updateOccs___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Grind_Linarith_Poly_updateOccs___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Grind_Linarith_Poly_updateOccs(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -2069,11 +2069,19 @@ lean_dec(v_a_619_);
 return v_res_621_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_setTermStructId___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_622_; 
+v___x_622_ = lean_mk_string_unchecked("expression in two different structure in linarith module", 56, 56);
+return v___x_622_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_setTermStructId___redArg___closed__1(void){
 _start:
 {
 lean_object* v___x_623_; lean_object* v___x_624_; 
-v___x_623_ = ((lean_object*)(l_Lean_Meta_Grind_Arith_Linear_setTermStructId___redArg___closed__0));
+v___x_623_ = lean_obj_once(&l_Lean_Meta_Grind_Arith_Linear_setTermStructId___redArg___closed__0, &l_Lean_Meta_Grind_Arith_Linear_setTermStructId___redArg___closed__0_once, _init_l_Lean_Meta_Grind_Arith_Linear_setTermStructId___redArg___closed__0);
 v___x_624_ = l_Lean_stringToMessageData(v___x_623_);
 return v___x_624_;
 }
@@ -2459,11 +2467,19 @@ lean_dec_ref(v___y_796_);
 return v_res_801_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getNoNatDivInst___closed__0(void){
+_start:
+{
+lean_object* v___x_802_; 
+v___x_802_ = lean_mk_string_unchecked("`grind linarith` internal error, structure does not implement `NoNatZeroDivisors`", 81, 81);
+return v___x_802_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getNoNatDivInst___closed__1(void){
 _start:
 {
 lean_object* v___x_803_; lean_object* v___x_804_; 
-v___x_803_ = ((lean_object*)(l_Lean_Meta_Grind_Arith_Linear_getNoNatDivInst___closed__0));
+v___x_803_ = lean_obj_once(&l_Lean_Meta_Grind_Arith_Linear_getNoNatDivInst___closed__0, &l_Lean_Meta_Grind_Arith_Linear_getNoNatDivInst___closed__0_once, _init_l_Lean_Meta_Grind_Arith_Linear_getNoNatDivInst___closed__0);
 v___x_804_ = l_Lean_stringToMessageData(v___x_803_);
 return v___x_804_;
 }
@@ -2623,11 +2639,19 @@ lean_dec(v___y_868_);
 return v_res_880_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getLEInst___closed__0(void){
+_start:
+{
+lean_object* v___x_881_; 
+v___x_881_ = lean_mk_string_unchecked("`grind linarith` internal error, structure does not support LE", 62, 62);
+return v___x_881_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getLEInst___closed__1(void){
 _start:
 {
 lean_object* v___x_882_; lean_object* v___x_883_; 
-v___x_882_ = ((lean_object*)(l_Lean_Meta_Grind_Arith_Linear_getLEInst___closed__0));
+v___x_882_ = lean_obj_once(&l_Lean_Meta_Grind_Arith_Linear_getLEInst___closed__0, &l_Lean_Meta_Grind_Arith_Linear_getLEInst___closed__0_once, _init_l_Lean_Meta_Grind_Arith_Linear_getLEInst___closed__0);
 v___x_883_ = l_Lean_stringToMessageData(v___x_882_);
 return v___x_883_;
 }
@@ -2760,11 +2784,19 @@ lean_dec(v_a_917_);
 return v_res_929_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getLTInst___closed__0(void){
+_start:
+{
+lean_object* v___x_930_; 
+v___x_930_ = lean_mk_string_unchecked("`grind linarith` internal error, structure does not support LT", 62, 62);
+return v___x_930_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getLTInst___closed__1(void){
 _start:
 {
 lean_object* v___x_931_; lean_object* v___x_932_; 
-v___x_931_ = ((lean_object*)(l_Lean_Meta_Grind_Arith_Linear_getLTInst___closed__0));
+v___x_931_ = lean_obj_once(&l_Lean_Meta_Grind_Arith_Linear_getLTInst___closed__0, &l_Lean_Meta_Grind_Arith_Linear_getLTInst___closed__0_once, _init_l_Lean_Meta_Grind_Arith_Linear_getLTInst___closed__0);
 v___x_932_ = l_Lean_stringToMessageData(v___x_931_);
 return v___x_932_;
 }
@@ -2897,11 +2929,19 @@ lean_dec(v_a_966_);
 return v_res_978_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getLawfulOrderLTInst___closed__0(void){
+_start:
+{
+lean_object* v___x_979_; 
+v___x_979_ = lean_mk_string_unchecked("`grind linarith` internal error, structure does not have a lawful LT instance", 77, 77);
+return v___x_979_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getLawfulOrderLTInst___closed__1(void){
 _start:
 {
 lean_object* v___x_980_; lean_object* v___x_981_; 
-v___x_980_ = ((lean_object*)(l_Lean_Meta_Grind_Arith_Linear_getLawfulOrderLTInst___closed__0));
+v___x_980_ = lean_obj_once(&l_Lean_Meta_Grind_Arith_Linear_getLawfulOrderLTInst___closed__0, &l_Lean_Meta_Grind_Arith_Linear_getLawfulOrderLTInst___closed__0_once, _init_l_Lean_Meta_Grind_Arith_Linear_getLawfulOrderLTInst___closed__0);
 v___x_981_ = l_Lean_stringToMessageData(v___x_980_);
 return v___x_981_;
 }
@@ -3034,11 +3074,19 @@ lean_dec(v_a_1015_);
 return v_res_1027_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getIsPreorderInst___closed__0(void){
+_start:
+{
+lean_object* v___x_1028_; 
+v___x_1028_ = lean_mk_string_unchecked("`grind linarith` internal error, structure is not a preorder", 60, 60);
+return v___x_1028_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getIsPreorderInst___closed__1(void){
 _start:
 {
 lean_object* v___x_1029_; lean_object* v___x_1030_; 
-v___x_1029_ = ((lean_object*)(l_Lean_Meta_Grind_Arith_Linear_getIsPreorderInst___closed__0));
+v___x_1029_ = lean_obj_once(&l_Lean_Meta_Grind_Arith_Linear_getIsPreorderInst___closed__0, &l_Lean_Meta_Grind_Arith_Linear_getIsPreorderInst___closed__0_once, _init_l_Lean_Meta_Grind_Arith_Linear_getIsPreorderInst___closed__0);
 v___x_1030_ = l_Lean_stringToMessageData(v___x_1029_);
 return v___x_1030_;
 }
@@ -3171,11 +3219,19 @@ lean_dec(v_a_1064_);
 return v_res_1076_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getOrderedAddInst___closed__0(void){
+_start:
+{
+lean_object* v___x_1077_; 
+v___x_1077_ = lean_mk_string_unchecked("`grind linarith` internal error, structure is not an ordered module", 67, 67);
+return v___x_1077_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getOrderedAddInst___closed__1(void){
 _start:
 {
 lean_object* v___x_1078_; lean_object* v___x_1079_; 
-v___x_1078_ = ((lean_object*)(l_Lean_Meta_Grind_Arith_Linear_getOrderedAddInst___closed__0));
+v___x_1078_ = lean_obj_once(&l_Lean_Meta_Grind_Arith_Linear_getOrderedAddInst___closed__0, &l_Lean_Meta_Grind_Arith_Linear_getOrderedAddInst___closed__0_once, _init_l_Lean_Meta_Grind_Arith_Linear_getOrderedAddInst___closed__0);
 v___x_1079_ = l_Lean_stringToMessageData(v___x_1078_);
 return v___x_1079_;
 }
@@ -3505,11 +3561,19 @@ v___x_1197_ = l_Lean_Meta_Grind_Arith_Linear_getLtFn___redArg(v_inst_1194_, v_in
 return v___x_1197_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getLeFn___redArg___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_1198_; 
+v___x_1198_ = lean_mk_string_unchecked("`grind linarith` internal error, structure is not an ordered int module", 71, 71);
+return v___x_1198_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getLeFn___redArg___lam__0___closed__1(void){
 _start:
 {
 lean_object* v___x_1199_; lean_object* v___x_1200_; 
-v___x_1199_ = ((lean_object*)(l_Lean_Meta_Grind_Arith_Linear_getLeFn___redArg___lam__0___closed__0));
+v___x_1199_ = lean_obj_once(&l_Lean_Meta_Grind_Arith_Linear_getLeFn___redArg___lam__0___closed__0, &l_Lean_Meta_Grind_Arith_Linear_getLeFn___redArg___lam__0___closed__0_once, _init_l_Lean_Meta_Grind_Arith_Linear_getLeFn___redArg___lam__0___closed__0);
 v___x_1200_ = l_Lean_stringToMessageData(v___x_1199_);
 return v___x_1200_;
 }
@@ -3568,11 +3632,19 @@ v___x_1222_ = l_Lean_Meta_Grind_Arith_Linear_getLeFn___redArg(v_inst_1219_, v_in
 return v___x_1222_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getIsLinearOrderInst___closed__0(void){
+_start:
+{
+lean_object* v___x_1223_; 
+v___x_1223_ = lean_mk_string_unchecked("`grind linarith` internal error, structure is not a linear order", 64, 64);
+return v___x_1223_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getIsLinearOrderInst___closed__1(void){
 _start:
 {
 lean_object* v___x_1224_; lean_object* v___x_1225_; 
-v___x_1224_ = ((lean_object*)(l_Lean_Meta_Grind_Arith_Linear_getIsLinearOrderInst___closed__0));
+v___x_1224_ = lean_obj_once(&l_Lean_Meta_Grind_Arith_Linear_getIsLinearOrderInst___closed__0, &l_Lean_Meta_Grind_Arith_Linear_getIsLinearOrderInst___closed__0_once, _init_l_Lean_Meta_Grind_Arith_Linear_getIsLinearOrderInst___closed__0);
 v___x_1225_ = l_Lean_stringToMessageData(v___x_1224_);
 return v___x_1225_;
 }
@@ -3705,11 +3777,19 @@ lean_dec(v_a_1259_);
 return v_res_1271_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getRingInst___closed__0(void){
+_start:
+{
+lean_object* v___x_1272_; 
+v___x_1272_ = lean_mk_string_unchecked("`grind linarith` internal error, structure is not a ring", 56, 56);
+return v___x_1272_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getRingInst___closed__1(void){
 _start:
 {
 lean_object* v___x_1273_; lean_object* v___x_1274_; 
-v___x_1273_ = ((lean_object*)(l_Lean_Meta_Grind_Arith_Linear_getRingInst___closed__0));
+v___x_1273_ = lean_obj_once(&l_Lean_Meta_Grind_Arith_Linear_getRingInst___closed__0, &l_Lean_Meta_Grind_Arith_Linear_getRingInst___closed__0_once, _init_l_Lean_Meta_Grind_Arith_Linear_getRingInst___closed__0);
 v___x_1274_ = l_Lean_stringToMessageData(v___x_1273_);
 return v___x_1274_;
 }
@@ -3842,11 +3922,19 @@ lean_dec(v_a_1308_);
 return v_res_1320_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getCommRingInst___closed__0(void){
+_start:
+{
+lean_object* v___x_1321_; 
+v___x_1321_ = lean_mk_string_unchecked("`grind linarith` internal error, structure is not a commutative ring", 68, 68);
+return v___x_1321_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getCommRingInst___closed__1(void){
 _start:
 {
 lean_object* v___x_1322_; lean_object* v___x_1323_; 
-v___x_1322_ = ((lean_object*)(l_Lean_Meta_Grind_Arith_Linear_getCommRingInst___closed__0));
+v___x_1322_ = lean_obj_once(&l_Lean_Meta_Grind_Arith_Linear_getCommRingInst___closed__0, &l_Lean_Meta_Grind_Arith_Linear_getCommRingInst___closed__0_once, _init_l_Lean_Meta_Grind_Arith_Linear_getCommRingInst___closed__0);
 v___x_1323_ = l_Lean_stringToMessageData(v___x_1322_);
 return v___x_1323_;
 }
@@ -3979,11 +4067,19 @@ lean_dec(v_a_1357_);
 return v_res_1369_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getOrderedRingInst___closed__0(void){
+_start:
+{
+lean_object* v___x_1370_; 
+v___x_1370_ = lean_mk_string_unchecked("`grind linarith` internal error, structure is not an ordered ring", 65, 65);
+return v___x_1370_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Grind_Arith_Linear_getOrderedRingInst___closed__1(void){
 _start:
 {
 lean_object* v___x_1371_; lean_object* v___x_1372_; 
-v___x_1371_ = ((lean_object*)(l_Lean_Meta_Grind_Arith_Linear_getOrderedRingInst___closed__0));
+v___x_1371_ = lean_obj_once(&l_Lean_Meta_Grind_Arith_Linear_getOrderedRingInst___closed__0, &l_Lean_Meta_Grind_Arith_Linear_getOrderedRingInst___closed__0_once, _init_l_Lean_Meta_Grind_Arith_Linear_getOrderedRingInst___closed__0);
 v___x_1372_ = l_Lean_stringToMessageData(v___x_1371_);
 return v___x_1372_;
 }
@@ -7804,11 +7900,19 @@ lean_dec(v_a_2535_);
 return v_res_2547_;
 }
 }
+static lean_object* _init_l_Lean_Grind_Linarith_Poly_updateOccs___closed__0(void){
+_start:
+{
+lean_object* v___x_2548_; 
+v___x_2548_ = lean_mk_string_unchecked("`grind linarith` internal error, unexpected constant polynomial", 63, 63);
+return v___x_2548_;
+}
+}
 static lean_object* _init_l_Lean_Grind_Linarith_Poly_updateOccs___closed__1(void){
 _start:
 {
 lean_object* v___x_2549_; lean_object* v___x_2550_; 
-v___x_2549_ = ((lean_object*)(l_Lean_Grind_Linarith_Poly_updateOccs___closed__0));
+v___x_2549_ = lean_obj_once(&l_Lean_Grind_Linarith_Poly_updateOccs___closed__0, &l_Lean_Grind_Linarith_Poly_updateOccs___closed__0_once, _init_l_Lean_Grind_Linarith_Poly_updateOccs___closed__0);
 v___x_2550_ = l_Lean_stringToMessageData(v___x_2549_);
 return v___x_2550_;
 }

@@ -99,58 +99,58 @@ static lean_object* l_Std_Http_Request_instInhabitedHead_default___closed__0;
 LEAN_EXPORT lean_object* l_Std_Http_Request_instInhabitedHead_default;
 LEAN_EXPORT lean_object* l_Std_Http_Request_instInhabitedHead;
 LEAN_EXPORT lean_object* l_Nat_cast___at___00Std_Http_Request_instReprHead_repr_spec__0(lean_object*);
-static const lean_string_object l_Std_Http_Request_instReprHead_repr___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "{ "};
-static const lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__0 = (const lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__0_value;
-static const lean_string_object l_Std_Http_Request_instReprHead_repr___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "method"};
-static const lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__1 = (const lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__1_value;
-static const lean_ctor_object l_Std_Http_Request_instReprHead_repr___redArg___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__1_value)}};
-static const lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__2 = (const lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__2_value;
-static const lean_ctor_object l_Std_Http_Request_instReprHead_repr___redArg___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 5}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__2_value)}};
-static const lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__3 = (const lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__3_value;
-static const lean_string_object l_Std_Http_Request_instReprHead_repr___redArg___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = " := "};
-static const lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__4 = (const lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__4_value;
-static const lean_ctor_object l_Std_Http_Request_instReprHead_repr___redArg___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__4_value)}};
-static const lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__5 = (const lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__5_value;
-static const lean_ctor_object l_Std_Http_Request_instReprHead_repr___redArg___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__3_value),((lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__5_value)}};
-static const lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__6 = (const lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__6_value;
+static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__0;
+static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__1;
+static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__2;
+static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__3;
+static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__4;
+static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__5;
+static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__6;
 static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__7;
-static const lean_string_object l_Std_Http_Request_instReprHead_repr___redArg___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = ","};
-static const lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__8 = (const lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__8_value;
-static const lean_ctor_object l_Std_Http_Request_instReprHead_repr___redArg___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__8_value)}};
-static const lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__9 = (const lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__9_value;
-static const lean_string_object l_Std_Http_Request_instReprHead_repr___redArg___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "version"};
-static const lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__10 = (const lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__10_value;
-static const lean_ctor_object l_Std_Http_Request_instReprHead_repr___redArg___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__10_value)}};
-static const lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__11 = (const lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__11_value;
+static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__8;
+static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__9;
+static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__10;
+static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__11;
 static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__12;
-static const lean_string_object l_Std_Http_Request_instReprHead_repr___redArg___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "uri"};
-static const lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__13 = (const lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__13_value;
-static const lean_ctor_object l_Std_Http_Request_instReprHead_repr___redArg___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__13_value)}};
-static const lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__14 = (const lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__14_value;
+static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__13;
+static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__14;
 static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__15;
-static const lean_string_object l_Std_Http_Request_instReprHead_repr___redArg___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "headers"};
-static const lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__16 = (const lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__16_value;
-static const lean_ctor_object l_Std_Http_Request_instReprHead_repr___redArg___closed__17_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__16_value)}};
-static const lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__17 = (const lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__17_value;
-static const lean_string_object l_Std_Http_Request_instReprHead_repr___redArg___closed__18_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = " }"};
-static const lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__18 = (const lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__18_value;
+static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__16;
+static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__17;
+static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__18;
 static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__19;
 static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__20_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__20;
-static const lean_ctor_object l_Std_Http_Request_instReprHead_repr___redArg___closed__21_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__0_value)}};
-static const lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__21 = (const lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__21_value;
-static const lean_ctor_object l_Std_Http_Request_instReprHead_repr___redArg___closed__22_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__18_value)}};
-static const lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__22 = (const lean_object*)&l_Std_Http_Request_instReprHead_repr___redArg___closed__22_value;
+static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__21_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__21;
+static lean_once_cell_t l_Std_Http_Request_instReprHead_repr___redArg___closed__22_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instReprHead_repr___redArg___closed__22;
 LEAN_EXPORT lean_object* l_Std_Http_Request_instReprHead_repr___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Request_instReprHead_repr(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Request_instReprHead_repr___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Http_Request_instReprHead___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Request_instReprHead_repr___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Request_instReprHead___closed__0 = (const lean_object*)&l_Std_Http_Request_instReprHead___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Http_Request_instReprHead = (const lean_object*)&l_Std_Http_Request_instReprHead___closed__0_value;
+static lean_once_cell_t l_Std_Http_Request_instReprHead___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instReprHead___closed__0;
+LEAN_EXPORT lean_object* l_Std_Http_Request_instReprHead;
 LEAN_EXPORT lean_object* l_Std_Http_instInhabitedRequest_default___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_instInhabitedRequest_default(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_instInhabitedRequest___redArg(lean_object*);
@@ -159,160 +159,160 @@ LEAN_EXPORT lean_object* l_Std_Http_Request_instToStringHead___lam__0(lean_objec
 LEAN_EXPORT lean_object* l_Std_Http_Request_instToStringHead___lam__1(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Request_instToStringHead___lam__2(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, uint32_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Request_instToStringHead___lam__2___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__3___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = ": "};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__3___closed__0 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__3___closed__0_value;
-static const lean_closure_object l_Std_Http_Request_instToStringHead___lam__3___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_String_Slice_Pattern_Char_instToForwardSearcherCharDefaultForwardSearcherForallBoolBeq___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__3___closed__1 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__3___closed__1_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__3___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "-"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__3___closed__2 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__3___closed__2_value;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__3___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__3___closed__0;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__3___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__3___closed__1;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__3___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__3___closed__2;
 static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__3___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Http_Request_instToStringHead___lam__3___closed__3;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__3___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 1, .m_capacity = 1, .m_length = 0, .m_data = ""};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__3___closed__4 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__3___closed__4_value;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__3___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__3___closed__4;
 LEAN_EXPORT lean_object* l_Std_Http_Request_instToStringHead___lam__3___boxed__const__1;
 LEAN_EXPORT lean_object* l_Std_Http_Request_instToStringHead___lam__3(lean_object*);
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "\r\n"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__0 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__0_value;
-static const lean_closure_object l_Std_Http_Request_instToStringHead___lam__6___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__0, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__1 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__1_value;
-static const lean_closure_object l_Std_Http_Request_instToStringHead___lam__6___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__1___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__2 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__2_value;
-static const lean_closure_object l_Std_Http_Request_instToStringHead___lam__6___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__2___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__3 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__3_value;
-static const lean_closure_object l_Std_Http_Request_instToStringHead___lam__6___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__3, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__4 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__4_value;
-static const lean_closure_object l_Std_Http_Request_instToStringHead___lam__6___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__4___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__5 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__5_value;
-static const lean_closure_object l_Std_Http_Request_instToStringHead___lam__6___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__5___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__6 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__6_value;
-static const lean_closure_object l_Std_Http_Request_instToStringHead___lam__6___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__6, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__7 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__7_value;
-static const lean_ctor_object l_Std_Http_Request_instToStringHead___lam__6___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__1_value),((lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__2_value)}};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__8 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__8_value;
-static const lean_ctor_object l_Std_Http_Request_instToStringHead___lam__6___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*5 + 0, .m_other = 5, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__8_value),((lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__3_value),((lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__4_value),((lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__5_value),((lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__6_value)}};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__9 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__9_value;
-static const lean_ctor_object l_Std_Http_Request_instToStringHead___lam__6___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__9_value),((lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__7_value)}};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__10 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__10_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "HTTP/1.0"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__11 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__11_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "HTTP/1.1"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__12 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__12_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "HTTP/2.0"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__13 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__13_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "HTTP/3.0"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__14 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__14_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "\?"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__15 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__15_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "&"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__16 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__16_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__17_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = ":"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__17 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__17_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__18_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "#"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__18 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__18_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__19_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "/"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__19 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__19_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__20_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "["};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__20 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__20_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__21_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "]"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__21 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__21_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__22_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = " "};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__22 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__22_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__23_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "//"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__23 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__23_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__24_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "@"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__24 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__24_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__25_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "*"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__25 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__25_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__26_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "ACL"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__26 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__26_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__27_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 17, .m_capacity = 17, .m_length = 16, .m_data = "BASELINE-CONTROL"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__27 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__27_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__28_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "BIND"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__28 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__28_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__29_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "CHECKIN"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__29 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__29_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__30_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "CHECKOUT"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__30 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__30_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__31_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "CONNECT"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__31 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__31_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__32_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "COPY"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__32 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__32_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__33_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "DELETE"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__33 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__33_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__34_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "GET"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__34 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__34_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__35_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "HEAD"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__35 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__35_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__36_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "LABEL"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__36 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__36_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__37_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "LINK"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__37 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__37_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__38_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "LOCK"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__38 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__38_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__39_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "MERGE"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__39 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__39_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__40_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "MKACTIVITY"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__40 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__40_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__41_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "MKCALENDAR"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__41 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__41_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__42_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "MKCOL"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__42 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__42_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__43_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "MKREDIRECTREF"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__43 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__43_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__44_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "MKWORKSPACE"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__44 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__44_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__45_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "MOVE"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__45 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__45_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__46_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "OPTIONS"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__46 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__46_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__47_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "ORDERPATCH"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__47 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__47_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__48_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "PATCH"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__48 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__48_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__49_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "POST"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__49 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__49_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__50_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "PRI"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__50 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__50_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__51_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "PROPFIND"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__51 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__51_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__52_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "PROPPATCH"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__52 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__52_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__53_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "PUT"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__53 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__53_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__54_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "QUERY"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__54 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__54_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__55_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "REBIND"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__55 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__55_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__56_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "REPORT"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__56 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__56_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__57_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "SEARCH"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__57 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__57_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__58_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "TRACE"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__58 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__58_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__59_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "UNBIND"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__59 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__59_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__60_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "UNCHECKOUT"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__60 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__60_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__61_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "UNLINK"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__61 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__61_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__62_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "UNLOCK"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__62 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__62_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__63_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "UPDATE"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__63 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__63_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__64_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 18, .m_capacity = 18, .m_length = 17, .m_data = "UPDATEREDIRECTREF"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__64 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__64_value;
-static const lean_string_object l_Std_Http_Request_instToStringHead___lam__6___closed__65_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "VERSION-CONTROL"};
-static const lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__65 = (const lean_object*)&l_Std_Http_Request_instToStringHead___lam__6___closed__65_value;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__0;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__1;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__2;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__3;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__4;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__5;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__6;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__7;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__8;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__9;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__10;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__11;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__12;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__13;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__14;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__15;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__16;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__17;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__18;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__19;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__20_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__20;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__21_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__21;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__22_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__22;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__23_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__23;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__24_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__24;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__25_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__25;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__26_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__26;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__27_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__27;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__28_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__28;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__29_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__29;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__30_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__30;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__31_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__31;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__32_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__32;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__33_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__33;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__34_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__34;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__35_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__35;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__36_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__36;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__37_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__37;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__38_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__38;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__39_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__39;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__40_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__40;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__41_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__41;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__42_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__42;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__43_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__43;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__44_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__44;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__45_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__45;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__46_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__46;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__47_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__47;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__48_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__48;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__49_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__49;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__50_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__50;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__51_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__51;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__52_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__52;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__53_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__53;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__54_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__54;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__55_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__55;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__56_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__56;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__57_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__57;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__58_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__58;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__59_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__59;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__60_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__60;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__61_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__61;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__62_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__62;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__63_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__63;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__64_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__64;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___lam__6___closed__65_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___lam__6___closed__65;
 LEAN_EXPORT lean_object* l_Std_Http_Request_instToStringHead___lam__6(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_Http_Request_instToStringHead___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Request_instToStringHead___lam__0, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Request_instToStringHead___closed__0 = (const lean_object*)&l_Std_Http_Request_instToStringHead___closed__0_value;
-static const lean_closure_object l_Std_Http_Request_instToStringHead___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Request_instToStringHead___lam__1, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Request_instToStringHead___closed__1 = (const lean_object*)&l_Std_Http_Request_instToStringHead___closed__1_value;
-static const lean_closure_object l_Std_Http_Request_instToStringHead___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Request_instToStringHead___lam__3, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Request_instToStringHead___closed__2 = (const lean_object*)&l_Std_Http_Request_instToStringHead___closed__2_value;
-static const lean_closure_object l_Std_Http_Request_instToStringHead___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*5, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Request_instToStringHead___lam__6, .m_arity = 6, .m_num_fixed = 5, .m_objs = {((lean_object*)&l_Std_Http_Request_instToStringHead___closed__2_value),((lean_object*)&l_Std_Http_Request_instToStringHead___closed__0_value),((lean_object*)&l_Std_Http_Request_instToStringHead___closed__0_value),((lean_object*)&l_Std_Http_Request_instToStringHead___closed__1_value),((lean_object*)&l_Std_Http_Request_instToStringHead___closed__1_value)} };
-static const lean_object* l_Std_Http_Request_instToStringHead___closed__3 = (const lean_object*)&l_Std_Http_Request_instToStringHead___closed__3_value;
-LEAN_EXPORT const lean_object* l_Std_Http_Request_instToStringHead = (const lean_object*)&l_Std_Http_Request_instToStringHead___closed__3_value;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___closed__0;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___closed__1;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___closed__2;
+static lean_once_cell_t l_Std_Http_Request_instToStringHead___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instToStringHead___closed__3;
+LEAN_EXPORT lean_object* l_Std_Http_Request_instToStringHead;
 LEAN_EXPORT lean_object* l_Std_Http_Request_instEncodeV11Head___lam__2(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, uint32_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Request_instEncodeV11Head___lam__2___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Request_instEncodeV11Head___lam__0(lean_object*, lean_object*, lean_object*);
@@ -328,11 +328,11 @@ static lean_object* l_Std_Http_Request_instEncodeV11Head___lam__4___closed__3;
 static lean_once_cell_t l_Std_Http_Request_instEncodeV11Head___lam__4___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Http_Request_instEncodeV11Head___lam__4___closed__4;
 LEAN_EXPORT lean_object* l_Std_Http_Request_instEncodeV11Head___lam__4(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_Http_Request_instEncodeV11Head___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Request_instEncodeV11Head___lam__0___boxed, .m_arity = 3, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Request_instEncodeV11Head___closed__0 = (const lean_object*)&l_Std_Http_Request_instEncodeV11Head___closed__0_value;
-static const lean_closure_object l_Std_Http_Request_instEncodeV11Head___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*5, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Request_instEncodeV11Head___lam__4, .m_arity = 7, .m_num_fixed = 5, .m_objs = {((lean_object*)&l_Std_Http_Request_instEncodeV11Head___closed__0_value),((lean_object*)&l_Std_Http_Request_instToStringHead___closed__0_value),((lean_object*)&l_Std_Http_Request_instToStringHead___closed__1_value),((lean_object*)&l_Std_Http_Request_instToStringHead___closed__0_value),((lean_object*)&l_Std_Http_Request_instToStringHead___closed__1_value)} };
-static const lean_object* l_Std_Http_Request_instEncodeV11Head___closed__1 = (const lean_object*)&l_Std_Http_Request_instEncodeV11Head___closed__1_value;
-LEAN_EXPORT const lean_object* l_Std_Http_Request_instEncodeV11Head = (const lean_object*)&l_Std_Http_Request_instEncodeV11Head___closed__1_value;
+static lean_once_cell_t l_Std_Http_Request_instEncodeV11Head___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instEncodeV11Head___closed__0;
+static lean_once_cell_t l_Std_Http_Request_instEncodeV11Head___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_instEncodeV11Head___closed__1;
+LEAN_EXPORT lean_object* l_Std_Http_Request_instEncodeV11Head;
 static lean_once_cell_t l_Std_Http_Request_new___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Http_Request_new___closed__0;
 static lean_once_cell_t l_Std_Http_Request_new___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -344,21 +344,21 @@ LEAN_EXPORT lean_object* l_Std_Http_Request_Builder_version(lean_object*, uint8_
 LEAN_EXPORT lean_object* l_Std_Http_Request_Builder_version___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Request_Builder_uri(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_panic___at___00Std_Http_Request_Builder_uri_x21_spec__0(lean_object*);
-static const lean_string_object l_Std_Http_Request_Builder_uri_x21___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 22, .m_capacity = 22, .m_length = 21, .m_data = "expected end of input"};
-static const lean_object* l_Std_Http_Request_Builder_uri_x21___lam__0___closed__0 = (const lean_object*)&l_Std_Http_Request_Builder_uri_x21___lam__0___closed__0_value;
-static const lean_ctor_object l_Std_Http_Request_Builder_uri_x21___lam__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Http_Request_Builder_uri_x21___lam__0___closed__0_value)}};
-static const lean_object* l_Std_Http_Request_Builder_uri_x21___lam__0___closed__1 = (const lean_object*)&l_Std_Http_Request_Builder_uri_x21___lam__0___closed__1_value;
+static lean_once_cell_t l_Std_Http_Request_Builder_uri_x21___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_Builder_uri_x21___lam__0___closed__0;
+static lean_once_cell_t l_Std_Http_Request_Builder_uri_x21___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_Builder_uri_x21___lam__0___closed__1;
 LEAN_EXPORT lean_object* l_Std_Http_Request_Builder_uri_x21___lam__0(lean_object*, lean_object*);
-static const lean_ctor_object l_Std_Http_Request_Builder_uri_x21___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*9 + 0, .m_other = 9, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(13) << 1) | 1)),((lean_object*)(((size_t)(253) << 1) | 1)),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)(((size_t)(256) << 1) | 1)),((lean_object*)(((size_t)(8192) << 1) | 1)),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)(((size_t)(128) << 1) | 1)),((lean_object*)(((size_t)(8192) << 1) | 1)),((lean_object*)(((size_t)(100) << 1) | 1))}};
-static const lean_object* l_Std_Http_Request_Builder_uri_x21___closed__0 = (const lean_object*)&l_Std_Http_Request_Builder_uri_x21___closed__0_value;
-static const lean_closure_object l_Std_Http_Request_Builder_uri_x21___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Request_Builder_uri_x21___lam__0, .m_arity = 2, .m_num_fixed = 1, .m_objs = {((lean_object*)&l_Std_Http_Request_Builder_uri_x21___closed__0_value)} };
-static const lean_object* l_Std_Http_Request_Builder_uri_x21___closed__1 = (const lean_object*)&l_Std_Http_Request_Builder_uri_x21___closed__1_value;
-static const lean_string_object l_Std_Http_Request_Builder_uri_x21___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 18, .m_capacity = 18, .m_length = 17, .m_data = "Std.Http.Data.URI"};
-static const lean_object* l_Std_Http_Request_Builder_uri_x21___closed__2 = (const lean_object*)&l_Std_Http_Request_Builder_uri_x21___closed__2_value;
-static const lean_string_object l_Std_Http_Request_Builder_uri_x21___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 30, .m_capacity = 30, .m_length = 29, .m_data = "Std.Http.RequestTarget.parse!"};
-static const lean_object* l_Std_Http_Request_Builder_uri_x21___closed__3 = (const lean_object*)&l_Std_Http_Request_Builder_uri_x21___closed__3_value;
-static const lean_string_object l_Std_Http_Request_Builder_uri_x21___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 23, .m_capacity = 23, .m_length = 22, .m_data = "invalid request target"};
-static const lean_object* l_Std_Http_Request_Builder_uri_x21___closed__4 = (const lean_object*)&l_Std_Http_Request_Builder_uri_x21___closed__4_value;
+static lean_once_cell_t l_Std_Http_Request_Builder_uri_x21___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_Builder_uri_x21___closed__0;
+static lean_once_cell_t l_Std_Http_Request_Builder_uri_x21___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_Builder_uri_x21___closed__1;
+static lean_once_cell_t l_Std_Http_Request_Builder_uri_x21___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_Builder_uri_x21___closed__2;
+static lean_once_cell_t l_Std_Http_Request_Builder_uri_x21___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_Builder_uri_x21___closed__3;
+static lean_once_cell_t l_Std_Http_Request_Builder_uri_x21___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_Builder_uri_x21___closed__4;
 static lean_once_cell_t l_Std_Http_Request_Builder_uri_x21___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Http_Request_Builder_uri_x21___closed__5;
 LEAN_EXPORT lean_object* l_Std_Http_Request_Builder_uri_x21(lean_object*, lean_object*);
@@ -381,8 +381,8 @@ LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_AssocList_foldlM___at___00__pri
 LEAN_EXPORT lean_object* l_Std_Http_Request_Builder_header_x21(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Request_Builder_header_x3f(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Request_Builder_headerOpt(lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_Http_Request_Builder_extension___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Extensions_compareName___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Request_Builder_extension___redArg___closed__0 = (const lean_object*)&l_Std_Http_Request_Builder_extension___redArg___closed__0_value;
+static lean_once_cell_t l_Std_Http_Request_Builder_extension___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Request_Builder_extension___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Std_Http_Request_Builder_extension___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Request_Builder_extension(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Request_Builder_body___redArg(lean_object*, lean_object*);
@@ -456,6 +456,74 @@ v___x_9_ = lean_nat_to_int(v_a_8_);
 return v___x_9_;
 }
 }
+static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_10_; 
+v___x_10_ = lean_mk_string_unchecked("{ ", 2, 2);
+return v___x_10_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_11_; 
+v___x_11_ = lean_mk_string_unchecked("method", 6, 6);
+return v___x_11_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__2(void){
+_start:
+{
+lean_object* v___x_12_; lean_object* v___x_13_; 
+v___x_12_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__1, &l_Std_Http_Request_instReprHead_repr___redArg___closed__1_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__1);
+v___x_13_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_13_, 0, v___x_12_);
+return v___x_13_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__3(void){
+_start:
+{
+lean_object* v___x_14_; lean_object* v___x_15_; lean_object* v___x_16_; 
+v___x_14_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__2, &l_Std_Http_Request_instReprHead_repr___redArg___closed__2_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__2);
+v___x_15_ = lean_box(0);
+v___x_16_ = lean_alloc_ctor(5, 2, 0);
+lean_ctor_set(v___x_16_, 0, v___x_15_);
+lean_ctor_set(v___x_16_, 1, v___x_14_);
+return v___x_16_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__4(void){
+_start:
+{
+lean_object* v___x_17_; 
+v___x_17_ = lean_mk_string_unchecked(" := ", 4, 4);
+return v___x_17_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__5(void){
+_start:
+{
+lean_object* v___x_18_; lean_object* v___x_19_; 
+v___x_18_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__4, &l_Std_Http_Request_instReprHead_repr___redArg___closed__4_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__4);
+v___x_19_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_19_, 0, v___x_18_);
+return v___x_19_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__6(void){
+_start:
+{
+lean_object* v___x_20_; lean_object* v___x_21_; lean_object* v___x_22_; 
+v___x_20_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__5, &l_Std_Http_Request_instReprHead_repr___redArg___closed__5_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__5);
+v___x_21_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__3, &l_Std_Http_Request_instReprHead_repr___redArg___closed__3_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__3);
+v___x_22_ = lean_alloc_ctor(5, 2, 0);
+lean_ctor_set(v___x_22_, 0, v___x_21_);
+lean_ctor_set(v___x_22_, 1, v___x_20_);
+return v___x_22_;
+}
+}
 static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__7(void){
 _start:
 {
@@ -463,6 +531,42 @@ lean_object* v___x_23_; lean_object* v___x_24_;
 v___x_23_ = lean_unsigned_to_nat(10u);
 v___x_24_ = lean_nat_to_int(v___x_23_);
 return v___x_24_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__8(void){
+_start:
+{
+lean_object* v___x_25_; 
+v___x_25_ = lean_mk_string_unchecked(",", 1, 1);
+return v___x_25_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__9(void){
+_start:
+{
+lean_object* v___x_26_; lean_object* v___x_27_; 
+v___x_26_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__8, &l_Std_Http_Request_instReprHead_repr___redArg___closed__8_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__8);
+v___x_27_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_27_, 0, v___x_26_);
+return v___x_27_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__10(void){
+_start:
+{
+lean_object* v___x_28_; 
+v___x_28_ = lean_mk_string_unchecked("version", 7, 7);
+return v___x_28_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__11(void){
+_start:
+{
+lean_object* v___x_29_; lean_object* v___x_30_; 
+v___x_29_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__10, &l_Std_Http_Request_instReprHead_repr___redArg___closed__10_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__10);
+v___x_30_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_30_, 0, v___x_29_);
+return v___x_30_;
 }
 }
 static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__12(void){
@@ -474,6 +578,24 @@ v___x_32_ = lean_nat_to_int(v___x_31_);
 return v___x_32_;
 }
 }
+static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__13(void){
+_start:
+{
+lean_object* v___x_33_; 
+v___x_33_ = lean_mk_string_unchecked("uri", 3, 3);
+return v___x_33_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__14(void){
+_start:
+{
+lean_object* v___x_34_; lean_object* v___x_35_; 
+v___x_34_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__13, &l_Std_Http_Request_instReprHead_repr___redArg___closed__13_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__13);
+v___x_35_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_35_, 0, v___x_34_);
+return v___x_35_;
+}
+}
 static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__15(void){
 _start:
 {
@@ -483,11 +605,37 @@ v___x_37_ = lean_nat_to_int(v___x_36_);
 return v___x_37_;
 }
 }
+static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__16(void){
+_start:
+{
+lean_object* v___x_38_; 
+v___x_38_ = lean_mk_string_unchecked("headers", 7, 7);
+return v___x_38_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__17(void){
+_start:
+{
+lean_object* v___x_39_; lean_object* v___x_40_; 
+v___x_39_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__16, &l_Std_Http_Request_instReprHead_repr___redArg___closed__16_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__16);
+v___x_40_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_40_, 0, v___x_39_);
+return v___x_40_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__18(void){
+_start:
+{
+lean_object* v___x_41_; 
+v___x_41_ = lean_mk_string_unchecked(" }", 2, 2);
+return v___x_41_;
+}
+}
 static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__19(void){
 _start:
 {
 lean_object* v___x_42_; lean_object* v___x_43_; 
-v___x_42_ = ((lean_object*)(l_Std_Http_Request_instReprHead_repr___redArg___closed__0));
+v___x_42_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__0, &l_Std_Http_Request_instReprHead_repr___redArg___closed__0_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__0);
 v___x_43_ = lean_string_length(v___x_42_);
 return v___x_43_;
 }
@@ -501,6 +649,26 @@ v___x_45_ = lean_nat_to_int(v___x_44_);
 return v___x_45_;
 }
 }
+static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__21(void){
+_start:
+{
+lean_object* v___x_46_; lean_object* v___x_47_; 
+v___x_46_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__0, &l_Std_Http_Request_instReprHead_repr___redArg___closed__0_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__0);
+v___x_47_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_47_, 0, v___x_46_);
+return v___x_47_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__22(void){
+_start:
+{
+lean_object* v___x_48_; lean_object* v___x_49_; 
+v___x_48_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__18, &l_Std_Http_Request_instReprHead_repr___redArg___closed__18_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__18);
+v___x_49_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_49_, 0, v___x_48_);
+return v___x_49_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Http_Request_instReprHead_repr___redArg(lean_object* v_x_50_){
 _start:
 {
@@ -512,8 +680,8 @@ lean_inc(v_uri_53_);
 v_headers_54_ = lean_ctor_get(v_x_50_, 1);
 lean_inc_ref(v_headers_54_);
 lean_dec_ref(v_x_50_);
-v___x_55_ = ((lean_object*)(l_Std_Http_Request_instReprHead_repr___redArg___closed__5));
-v___x_56_ = ((lean_object*)(l_Std_Http_Request_instReprHead_repr___redArg___closed__6));
+v___x_55_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__5, &l_Std_Http_Request_instReprHead_repr___redArg___closed__5_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__5);
+v___x_56_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__6, &l_Std_Http_Request_instReprHead_repr___redArg___closed__6_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__6);
 v___x_57_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__7, &l_Std_Http_Request_instReprHead_repr___redArg___closed__7_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__7);
 v___x_58_ = lean_unsigned_to_nat(0u);
 v___x_59_ = l_Std_Http_instReprMethod_repr(v_method_51_, v___x_58_);
@@ -527,7 +695,7 @@ lean_ctor_set_uint8(v___x_62_, sizeof(void*)*1, v___x_61_);
 v___x_63_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_63_, 0, v___x_56_);
 lean_ctor_set(v___x_63_, 1, v___x_62_);
-v___x_64_ = ((lean_object*)(l_Std_Http_Request_instReprHead_repr___redArg___closed__9));
+v___x_64_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__9, &l_Std_Http_Request_instReprHead_repr___redArg___closed__9_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__9);
 v___x_65_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_65_, 0, v___x_63_);
 lean_ctor_set(v___x_65_, 1, v___x_64_);
@@ -535,7 +703,7 @@ v___x_66_ = lean_box(1);
 v___x_67_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_67_, 0, v___x_65_);
 lean_ctor_set(v___x_67_, 1, v___x_66_);
-v___x_68_ = ((lean_object*)(l_Std_Http_Request_instReprHead_repr___redArg___closed__11));
+v___x_68_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__11, &l_Std_Http_Request_instReprHead_repr___redArg___closed__11_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__11);
 v___x_69_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_69_, 0, v___x_67_);
 lean_ctor_set(v___x_69_, 1, v___x_68_);
@@ -559,7 +727,7 @@ lean_ctor_set(v___x_76_, 1, v___x_64_);
 v___x_77_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_77_, 0, v___x_76_);
 lean_ctor_set(v___x_77_, 1, v___x_66_);
-v___x_78_ = ((lean_object*)(l_Std_Http_Request_instReprHead_repr___redArg___closed__14));
+v___x_78_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__14, &l_Std_Http_Request_instReprHead_repr___redArg___closed__14_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__14);
 v___x_79_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_79_, 0, v___x_77_);
 lean_ctor_set(v___x_79_, 1, v___x_78_);
@@ -583,7 +751,7 @@ lean_ctor_set(v___x_86_, 1, v___x_64_);
 v___x_87_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_87_, 0, v___x_86_);
 lean_ctor_set(v___x_87_, 1, v___x_66_);
-v___x_88_ = ((lean_object*)(l_Std_Http_Request_instReprHead_repr___redArg___closed__17));
+v___x_88_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__17, &l_Std_Http_Request_instReprHead_repr___redArg___closed__17_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__17);
 v___x_89_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_89_, 0, v___x_87_);
 lean_ctor_set(v___x_89_, 1, v___x_88_);
@@ -601,11 +769,11 @@ v___x_94_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_94_, 0, v___x_90_);
 lean_ctor_set(v___x_94_, 1, v___x_93_);
 v___x_95_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__20, &l_Std_Http_Request_instReprHead_repr___redArg___closed__20_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__20);
-v___x_96_ = ((lean_object*)(l_Std_Http_Request_instReprHead_repr___redArg___closed__21));
+v___x_96_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__21, &l_Std_Http_Request_instReprHead_repr___redArg___closed__21_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__21);
 v___x_97_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_97_, 0, v___x_96_);
 lean_ctor_set(v___x_97_, 1, v___x_94_);
-v___x_98_ = ((lean_object*)(l_Std_Http_Request_instReprHead_repr___redArg___closed__22));
+v___x_98_ = lean_obj_once(&l_Std_Http_Request_instReprHead_repr___redArg___closed__22, &l_Std_Http_Request_instReprHead_repr___redArg___closed__22_once, _init_l_Std_Http_Request_instReprHead_repr___redArg___closed__22);
 v___x_99_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_99_, 0, v___x_97_);
 lean_ctor_set(v___x_99_, 1, v___x_98_);
@@ -633,6 +801,22 @@ lean_object* v_res_107_;
 v_res_107_ = l_Std_Http_Request_instReprHead_repr(v_x_105_, v_prec_106_);
 lean_dec(v_prec_106_);
 return v_res_107_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instReprHead___closed__0(void){
+_start:
+{
+lean_object* v___x_108_; 
+v___x_108_ = lean_alloc_closure((void*)(l_Std_Http_Request_instReprHead_repr___boxed), 2, 0);
+return v___x_108_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instReprHead(void){
+_start:
+{
+lean_object* v___x_109_; 
+v___x_109_ = lean_obj_once(&l_Std_Http_Request_instReprHead___closed__0, &l_Std_Http_Request_instReprHead___closed__0_once, _init_l_Std_Http_Request_instReprHead___closed__0);
+return v___x_109_;
 }
 }
 LEAN_EXPORT lean_object* l_Std_Http_instInhabitedRequest_default___redArg(lean_object* v_inst_110_){
@@ -933,13 +1117,45 @@ lean_dec_ref(v___x_195_);
 return v_res_207_;
 }
 }
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__3___closed__0(void){
+_start:
+{
+lean_object* v___x_208_; 
+v___x_208_ = lean_mk_string_unchecked(": ", 2, 2);
+return v___x_208_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__3___closed__1(void){
+_start:
+{
+lean_object* v___f_209_; 
+v___f_209_ = lean_alloc_closure((void*)(l_String_Slice_Pattern_Char_instToForwardSearcherCharDefaultForwardSearcherForallBoolBeq___lam__0___boxed), 1, 0);
+return v___f_209_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__3___closed__2(void){
+_start:
+{
+lean_object* v___x_210_; 
+v___x_210_ = lean_mk_string_unchecked("-", 1, 1);
+return v___x_210_;
+}
+}
 static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__3___closed__3(void){
 _start:
 {
 lean_object* v___x_211_; lean_object* v___x_212_; 
-v___x_211_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__2));
+v___x_211_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__2, &l_Std_Http_Request_instToStringHead___lam__3___closed__2_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__2);
 v___x_212_ = lean_string_utf8_byte_size(v___x_211_);
 return v___x_212_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__3___closed__4(void){
+_start:
+{
+lean_object* v___x_213_; 
+v___x_213_ = lean_mk_string_unchecked("", 0, 0);
+return v___x_213_;
 }
 }
 static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__3___boxed__const__1(void){
@@ -960,7 +1176,7 @@ lean_inc_n(v_fst_217_, 2);
 v_snd_218_ = lean_ctor_get(v_x_216_, 1);
 lean_inc(v_snd_218_);
 lean_dec_ref(v_x_216_);
-v___f_224_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__1));
+v___f_224_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__1, &l_Std_Http_Request_instToStringHead___lam__3___closed__1_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__1);
 v___x_225_ = lean_unsigned_to_nat(0u);
 v___x_226_ = lean_string_utf8_byte_size(v_fst_217_);
 v___x_227_ = lean_alloc_ctor(0, 3, 0);
@@ -969,7 +1185,7 @@ lean_ctor_set(v___x_227_, 1, v___x_225_);
 lean_ctor_set(v___x_227_, 2, v___x_226_);
 lean_inc_ref(v___x_227_);
 v_it_228_ = l_String_Slice_splitToSubslice___redArg(v___x_227_, v___f_224_);
-v___x_229_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__2));
+v___x_229_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__2, &l_Std_Http_Request_instToStringHead___lam__3___closed__2_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__2);
 v___x_230_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__3, &l_Std_Http_Request_instToStringHead___lam__3___closed__3_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__3);
 v___x_231_ = l_Std_Http_Request_instToStringHead___lam__3___boxed__const__1;
 v___f_232_ = lean_alloc_closure((void*)(l_Std_Http_Request_instToStringHead___lam__2___boxed), 11, 7);
@@ -985,7 +1201,7 @@ v___x_234_ = l_WellFounded_opaqueFix_u2083___redArg(v___f_232_, v_it_228_, v___x
 if (lean_obj_tag(v___x_234_) == 0)
 {
 lean_object* v___x_235_; 
-v___x_235_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__4));
+v___x_235_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__4, &l_Std_Http_Request_instToStringHead___lam__3___closed__4_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__4);
 v___y_220_ = v___x_235_;
 goto v___jp_219_;
 }
@@ -1001,12 +1217,558 @@ goto v___jp_219_;
 v___jp_219_:
 {
 lean_object* v___x_221_; lean_object* v___x_222_; lean_object* v___x_223_; 
-v___x_221_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__0));
+v___x_221_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__0, &l_Std_Http_Request_instToStringHead___lam__3___closed__0_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__0);
 v___x_222_ = lean_string_append(v___y_220_, v___x_221_);
 v___x_223_ = lean_string_append(v___x_222_, v_snd_218_);
 lean_dec(v_snd_218_);
 return v___x_223_;
 }
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__0(void){
+_start:
+{
+lean_object* v___x_237_; 
+v___x_237_ = lean_mk_string_unchecked("\r\n", 2, 2);
+return v___x_237_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__1(void){
+_start:
+{
+lean_object* v___f_238_; 
+v___f_238_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__0), 4, 0);
+return v___f_238_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__2(void){
+_start:
+{
+lean_object* v___f_239_; 
+v___f_239_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__1___boxed), 4, 0);
+return v___f_239_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__3(void){
+_start:
+{
+lean_object* v___f_240_; 
+v___f_240_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__2___boxed), 2, 0);
+return v___f_240_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__4(void){
+_start:
+{
+lean_object* v___f_241_; 
+v___f_241_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__3), 4, 0);
+return v___f_241_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__5(void){
+_start:
+{
+lean_object* v___f_242_; 
+v___f_242_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__4___boxed), 4, 0);
+return v___f_242_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__6(void){
+_start:
+{
+lean_object* v___f_243_; 
+v___f_243_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__5___boxed), 4, 0);
+return v___f_243_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__7(void){
+_start:
+{
+lean_object* v___f_244_; 
+v___f_244_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__6), 4, 0);
+return v___f_244_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__8(void){
+_start:
+{
+lean_object* v___f_245_; lean_object* v___f_246_; lean_object* v___x_247_; 
+v___f_245_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__2, &l_Std_Http_Request_instToStringHead___lam__6___closed__2_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__2);
+v___f_246_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__1, &l_Std_Http_Request_instToStringHead___lam__6___closed__1_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__1);
+v___x_247_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_247_, 0, v___f_246_);
+lean_ctor_set(v___x_247_, 1, v___f_245_);
+return v___x_247_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__9(void){
+_start:
+{
+lean_object* v___f_248_; lean_object* v___f_249_; lean_object* v___f_250_; lean_object* v___f_251_; lean_object* v___x_252_; lean_object* v___x_253_; 
+v___f_248_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__6, &l_Std_Http_Request_instToStringHead___lam__6___closed__6_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__6);
+v___f_249_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__5, &l_Std_Http_Request_instToStringHead___lam__6___closed__5_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__5);
+v___f_250_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__4, &l_Std_Http_Request_instToStringHead___lam__6___closed__4_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__4);
+v___f_251_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__3, &l_Std_Http_Request_instToStringHead___lam__6___closed__3_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__3);
+v___x_252_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__8, &l_Std_Http_Request_instToStringHead___lam__6___closed__8_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__8);
+v___x_253_ = lean_alloc_ctor(0, 5, 0);
+lean_ctor_set(v___x_253_, 0, v___x_252_);
+lean_ctor_set(v___x_253_, 1, v___f_251_);
+lean_ctor_set(v___x_253_, 2, v___f_250_);
+lean_ctor_set(v___x_253_, 3, v___f_249_);
+lean_ctor_set(v___x_253_, 4, v___f_248_);
+return v___x_253_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__10(void){
+_start:
+{
+lean_object* v___f_254_; lean_object* v___x_255_; lean_object* v___x_256_; 
+v___f_254_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__7, &l_Std_Http_Request_instToStringHead___lam__6___closed__7_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__7);
+v___x_255_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__9, &l_Std_Http_Request_instToStringHead___lam__6___closed__9_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__9);
+v___x_256_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_256_, 0, v___x_255_);
+lean_ctor_set(v___x_256_, 1, v___f_254_);
+return v___x_256_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__11(void){
+_start:
+{
+lean_object* v___x_257_; 
+v___x_257_ = lean_mk_string_unchecked("HTTP/1.0", 8, 8);
+return v___x_257_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__12(void){
+_start:
+{
+lean_object* v___x_258_; 
+v___x_258_ = lean_mk_string_unchecked("HTTP/1.1", 8, 8);
+return v___x_258_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__13(void){
+_start:
+{
+lean_object* v___x_259_; 
+v___x_259_ = lean_mk_string_unchecked("HTTP/2.0", 8, 8);
+return v___x_259_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__14(void){
+_start:
+{
+lean_object* v___x_260_; 
+v___x_260_ = lean_mk_string_unchecked("HTTP/3.0", 8, 8);
+return v___x_260_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__15(void){
+_start:
+{
+lean_object* v___x_261_; 
+v___x_261_ = lean_mk_string_unchecked("\?", 1, 1);
+return v___x_261_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__16(void){
+_start:
+{
+lean_object* v___x_262_; 
+v___x_262_ = lean_mk_string_unchecked("&", 1, 1);
+return v___x_262_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__17(void){
+_start:
+{
+lean_object* v___x_263_; 
+v___x_263_ = lean_mk_string_unchecked(":", 1, 1);
+return v___x_263_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__18(void){
+_start:
+{
+lean_object* v___x_264_; 
+v___x_264_ = lean_mk_string_unchecked("#", 1, 1);
+return v___x_264_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__19(void){
+_start:
+{
+lean_object* v___x_265_; 
+v___x_265_ = lean_mk_string_unchecked("/", 1, 1);
+return v___x_265_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__20(void){
+_start:
+{
+lean_object* v___x_266_; 
+v___x_266_ = lean_mk_string_unchecked("[", 1, 1);
+return v___x_266_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__21(void){
+_start:
+{
+lean_object* v___x_267_; 
+v___x_267_ = lean_mk_string_unchecked("]", 1, 1);
+return v___x_267_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__22(void){
+_start:
+{
+lean_object* v___x_268_; 
+v___x_268_ = lean_mk_string_unchecked(" ", 1, 1);
+return v___x_268_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__23(void){
+_start:
+{
+lean_object* v___x_269_; 
+v___x_269_ = lean_mk_string_unchecked("//", 2, 2);
+return v___x_269_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__24(void){
+_start:
+{
+lean_object* v___x_270_; 
+v___x_270_ = lean_mk_string_unchecked("@", 1, 1);
+return v___x_270_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__25(void){
+_start:
+{
+lean_object* v___x_271_; 
+v___x_271_ = lean_mk_string_unchecked("*", 1, 1);
+return v___x_271_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__26(void){
+_start:
+{
+lean_object* v___x_272_; 
+v___x_272_ = lean_mk_string_unchecked("ACL", 3, 3);
+return v___x_272_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__27(void){
+_start:
+{
+lean_object* v___x_273_; 
+v___x_273_ = lean_mk_string_unchecked("BASELINE-CONTROL", 16, 16);
+return v___x_273_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__28(void){
+_start:
+{
+lean_object* v___x_274_; 
+v___x_274_ = lean_mk_string_unchecked("BIND", 4, 4);
+return v___x_274_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__29(void){
+_start:
+{
+lean_object* v___x_275_; 
+v___x_275_ = lean_mk_string_unchecked("CHECKIN", 7, 7);
+return v___x_275_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__30(void){
+_start:
+{
+lean_object* v___x_276_; 
+v___x_276_ = lean_mk_string_unchecked("CHECKOUT", 8, 8);
+return v___x_276_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__31(void){
+_start:
+{
+lean_object* v___x_277_; 
+v___x_277_ = lean_mk_string_unchecked("CONNECT", 7, 7);
+return v___x_277_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__32(void){
+_start:
+{
+lean_object* v___x_278_; 
+v___x_278_ = lean_mk_string_unchecked("COPY", 4, 4);
+return v___x_278_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__33(void){
+_start:
+{
+lean_object* v___x_279_; 
+v___x_279_ = lean_mk_string_unchecked("DELETE", 6, 6);
+return v___x_279_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__34(void){
+_start:
+{
+lean_object* v___x_280_; 
+v___x_280_ = lean_mk_string_unchecked("GET", 3, 3);
+return v___x_280_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__35(void){
+_start:
+{
+lean_object* v___x_281_; 
+v___x_281_ = lean_mk_string_unchecked("HEAD", 4, 4);
+return v___x_281_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__36(void){
+_start:
+{
+lean_object* v___x_282_; 
+v___x_282_ = lean_mk_string_unchecked("LABEL", 5, 5);
+return v___x_282_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__37(void){
+_start:
+{
+lean_object* v___x_283_; 
+v___x_283_ = lean_mk_string_unchecked("LINK", 4, 4);
+return v___x_283_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__38(void){
+_start:
+{
+lean_object* v___x_284_; 
+v___x_284_ = lean_mk_string_unchecked("LOCK", 4, 4);
+return v___x_284_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__39(void){
+_start:
+{
+lean_object* v___x_285_; 
+v___x_285_ = lean_mk_string_unchecked("MERGE", 5, 5);
+return v___x_285_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__40(void){
+_start:
+{
+lean_object* v___x_286_; 
+v___x_286_ = lean_mk_string_unchecked("MKACTIVITY", 10, 10);
+return v___x_286_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__41(void){
+_start:
+{
+lean_object* v___x_287_; 
+v___x_287_ = lean_mk_string_unchecked("MKCALENDAR", 10, 10);
+return v___x_287_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__42(void){
+_start:
+{
+lean_object* v___x_288_; 
+v___x_288_ = lean_mk_string_unchecked("MKCOL", 5, 5);
+return v___x_288_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__43(void){
+_start:
+{
+lean_object* v___x_289_; 
+v___x_289_ = lean_mk_string_unchecked("MKREDIRECTREF", 13, 13);
+return v___x_289_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__44(void){
+_start:
+{
+lean_object* v___x_290_; 
+v___x_290_ = lean_mk_string_unchecked("MKWORKSPACE", 11, 11);
+return v___x_290_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__45(void){
+_start:
+{
+lean_object* v___x_291_; 
+v___x_291_ = lean_mk_string_unchecked("MOVE", 4, 4);
+return v___x_291_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__46(void){
+_start:
+{
+lean_object* v___x_292_; 
+v___x_292_ = lean_mk_string_unchecked("OPTIONS", 7, 7);
+return v___x_292_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__47(void){
+_start:
+{
+lean_object* v___x_293_; 
+v___x_293_ = lean_mk_string_unchecked("ORDERPATCH", 10, 10);
+return v___x_293_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__48(void){
+_start:
+{
+lean_object* v___x_294_; 
+v___x_294_ = lean_mk_string_unchecked("PATCH", 5, 5);
+return v___x_294_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__49(void){
+_start:
+{
+lean_object* v___x_295_; 
+v___x_295_ = lean_mk_string_unchecked("POST", 4, 4);
+return v___x_295_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__50(void){
+_start:
+{
+lean_object* v___x_296_; 
+v___x_296_ = lean_mk_string_unchecked("PRI", 3, 3);
+return v___x_296_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__51(void){
+_start:
+{
+lean_object* v___x_297_; 
+v___x_297_ = lean_mk_string_unchecked("PROPFIND", 8, 8);
+return v___x_297_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__52(void){
+_start:
+{
+lean_object* v___x_298_; 
+v___x_298_ = lean_mk_string_unchecked("PROPPATCH", 9, 9);
+return v___x_298_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__53(void){
+_start:
+{
+lean_object* v___x_299_; 
+v___x_299_ = lean_mk_string_unchecked("PUT", 3, 3);
+return v___x_299_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__54(void){
+_start:
+{
+lean_object* v___x_300_; 
+v___x_300_ = lean_mk_string_unchecked("QUERY", 5, 5);
+return v___x_300_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__55(void){
+_start:
+{
+lean_object* v___x_301_; 
+v___x_301_ = lean_mk_string_unchecked("REBIND", 6, 6);
+return v___x_301_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__56(void){
+_start:
+{
+lean_object* v___x_302_; 
+v___x_302_ = lean_mk_string_unchecked("REPORT", 6, 6);
+return v___x_302_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__57(void){
+_start:
+{
+lean_object* v___x_303_; 
+v___x_303_ = lean_mk_string_unchecked("SEARCH", 6, 6);
+return v___x_303_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__58(void){
+_start:
+{
+lean_object* v___x_304_; 
+v___x_304_ = lean_mk_string_unchecked("TRACE", 5, 5);
+return v___x_304_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__59(void){
+_start:
+{
+lean_object* v___x_305_; 
+v___x_305_ = lean_mk_string_unchecked("UNBIND", 6, 6);
+return v___x_305_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__60(void){
+_start:
+{
+lean_object* v___x_306_; 
+v___x_306_ = lean_mk_string_unchecked("UNCHECKOUT", 10, 10);
+return v___x_306_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__61(void){
+_start:
+{
+lean_object* v___x_307_; 
+v___x_307_ = lean_mk_string_unchecked("UNLINK", 6, 6);
+return v___x_307_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__62(void){
+_start:
+{
+lean_object* v___x_308_; 
+v___x_308_ = lean_mk_string_unchecked("UNLOCK", 6, 6);
+return v___x_308_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__63(void){
+_start:
+{
+lean_object* v___x_309_; 
+v___x_309_ = lean_mk_string_unchecked("UPDATE", 6, 6);
+return v___x_309_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__64(void){
+_start:
+{
+lean_object* v___x_310_; 
+v___x_310_ = lean_mk_string_unchecked("UPDATEREDIRECTREF", 17, 17);
+return v___x_310_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___lam__6___closed__65(void){
+_start:
+{
+lean_object* v___x_311_; 
+v___x_311_ = lean_mk_string_unchecked("VERSION-CONTROL", 15, 15);
+return v___x_311_;
 }
 }
 LEAN_EXPORT lean_object* l_Std_Http_Request_instToStringHead___lam__6(lean_object* v___f_312_, lean_object* v___f_313_, lean_object* v___f_314_, lean_object* v___f_315_, lean_object* v___f_316_, lean_object* v_req_317_){
@@ -1025,280 +1787,280 @@ switch(v_method_318_)
 case 0:
 {
 lean_object* v___x_590_; 
-v___x_590_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__26));
+v___x_590_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__26, &l_Std_Http_Request_instToStringHead___lam__6___closed__26_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__26);
 v___y_518_ = v___x_590_;
 goto v___jp_517_;
 }
 case 1:
 {
 lean_object* v___x_591_; 
-v___x_591_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__27));
+v___x_591_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__27, &l_Std_Http_Request_instToStringHead___lam__6___closed__27_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__27);
 v___y_518_ = v___x_591_;
 goto v___jp_517_;
 }
 case 2:
 {
 lean_object* v___x_592_; 
-v___x_592_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__28));
+v___x_592_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__28, &l_Std_Http_Request_instToStringHead___lam__6___closed__28_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__28);
 v___y_518_ = v___x_592_;
 goto v___jp_517_;
 }
 case 3:
 {
 lean_object* v___x_593_; 
-v___x_593_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__29));
+v___x_593_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__29, &l_Std_Http_Request_instToStringHead___lam__6___closed__29_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__29);
 v___y_518_ = v___x_593_;
 goto v___jp_517_;
 }
 case 4:
 {
 lean_object* v___x_594_; 
-v___x_594_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__30));
+v___x_594_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__30, &l_Std_Http_Request_instToStringHead___lam__6___closed__30_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__30);
 v___y_518_ = v___x_594_;
 goto v___jp_517_;
 }
 case 5:
 {
 lean_object* v___x_595_; 
-v___x_595_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__31));
+v___x_595_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__31, &l_Std_Http_Request_instToStringHead___lam__6___closed__31_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__31);
 v___y_518_ = v___x_595_;
 goto v___jp_517_;
 }
 case 6:
 {
 lean_object* v___x_596_; 
-v___x_596_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__32));
+v___x_596_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__32, &l_Std_Http_Request_instToStringHead___lam__6___closed__32_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__32);
 v___y_518_ = v___x_596_;
 goto v___jp_517_;
 }
 case 7:
 {
 lean_object* v___x_597_; 
-v___x_597_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__33));
+v___x_597_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__33, &l_Std_Http_Request_instToStringHead___lam__6___closed__33_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__33);
 v___y_518_ = v___x_597_;
 goto v___jp_517_;
 }
 case 8:
 {
 lean_object* v___x_598_; 
-v___x_598_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__34));
+v___x_598_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__34, &l_Std_Http_Request_instToStringHead___lam__6___closed__34_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__34);
 v___y_518_ = v___x_598_;
 goto v___jp_517_;
 }
 case 9:
 {
 lean_object* v___x_599_; 
-v___x_599_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__35));
+v___x_599_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__35, &l_Std_Http_Request_instToStringHead___lam__6___closed__35_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__35);
 v___y_518_ = v___x_599_;
 goto v___jp_517_;
 }
 case 10:
 {
 lean_object* v___x_600_; 
-v___x_600_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__36));
+v___x_600_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__36, &l_Std_Http_Request_instToStringHead___lam__6___closed__36_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__36);
 v___y_518_ = v___x_600_;
 goto v___jp_517_;
 }
 case 11:
 {
 lean_object* v___x_601_; 
-v___x_601_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__37));
+v___x_601_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__37, &l_Std_Http_Request_instToStringHead___lam__6___closed__37_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__37);
 v___y_518_ = v___x_601_;
 goto v___jp_517_;
 }
 case 12:
 {
 lean_object* v___x_602_; 
-v___x_602_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__38));
+v___x_602_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__38, &l_Std_Http_Request_instToStringHead___lam__6___closed__38_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__38);
 v___y_518_ = v___x_602_;
 goto v___jp_517_;
 }
 case 13:
 {
 lean_object* v___x_603_; 
-v___x_603_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__39));
+v___x_603_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__39, &l_Std_Http_Request_instToStringHead___lam__6___closed__39_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__39);
 v___y_518_ = v___x_603_;
 goto v___jp_517_;
 }
 case 14:
 {
 lean_object* v___x_604_; 
-v___x_604_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__40));
+v___x_604_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__40, &l_Std_Http_Request_instToStringHead___lam__6___closed__40_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__40);
 v___y_518_ = v___x_604_;
 goto v___jp_517_;
 }
 case 15:
 {
 lean_object* v___x_605_; 
-v___x_605_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__41));
+v___x_605_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__41, &l_Std_Http_Request_instToStringHead___lam__6___closed__41_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__41);
 v___y_518_ = v___x_605_;
 goto v___jp_517_;
 }
 case 16:
 {
 lean_object* v___x_606_; 
-v___x_606_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__42));
+v___x_606_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__42, &l_Std_Http_Request_instToStringHead___lam__6___closed__42_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__42);
 v___y_518_ = v___x_606_;
 goto v___jp_517_;
 }
 case 17:
 {
 lean_object* v___x_607_; 
-v___x_607_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__43));
+v___x_607_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__43, &l_Std_Http_Request_instToStringHead___lam__6___closed__43_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__43);
 v___y_518_ = v___x_607_;
 goto v___jp_517_;
 }
 case 18:
 {
 lean_object* v___x_608_; 
-v___x_608_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__44));
+v___x_608_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__44, &l_Std_Http_Request_instToStringHead___lam__6___closed__44_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__44);
 v___y_518_ = v___x_608_;
 goto v___jp_517_;
 }
 case 19:
 {
 lean_object* v___x_609_; 
-v___x_609_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__45));
+v___x_609_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__45, &l_Std_Http_Request_instToStringHead___lam__6___closed__45_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__45);
 v___y_518_ = v___x_609_;
 goto v___jp_517_;
 }
 case 20:
 {
 lean_object* v___x_610_; 
-v___x_610_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__46));
+v___x_610_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__46, &l_Std_Http_Request_instToStringHead___lam__6___closed__46_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__46);
 v___y_518_ = v___x_610_;
 goto v___jp_517_;
 }
 case 21:
 {
 lean_object* v___x_611_; 
-v___x_611_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__47));
+v___x_611_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__47, &l_Std_Http_Request_instToStringHead___lam__6___closed__47_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__47);
 v___y_518_ = v___x_611_;
 goto v___jp_517_;
 }
 case 22:
 {
 lean_object* v___x_612_; 
-v___x_612_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__48));
+v___x_612_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__48, &l_Std_Http_Request_instToStringHead___lam__6___closed__48_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__48);
 v___y_518_ = v___x_612_;
 goto v___jp_517_;
 }
 case 23:
 {
 lean_object* v___x_613_; 
-v___x_613_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__49));
+v___x_613_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__49, &l_Std_Http_Request_instToStringHead___lam__6___closed__49_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__49);
 v___y_518_ = v___x_613_;
 goto v___jp_517_;
 }
 case 24:
 {
 lean_object* v___x_614_; 
-v___x_614_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__50));
+v___x_614_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__50, &l_Std_Http_Request_instToStringHead___lam__6___closed__50_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__50);
 v___y_518_ = v___x_614_;
 goto v___jp_517_;
 }
 case 25:
 {
 lean_object* v___x_615_; 
-v___x_615_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__51));
+v___x_615_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__51, &l_Std_Http_Request_instToStringHead___lam__6___closed__51_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__51);
 v___y_518_ = v___x_615_;
 goto v___jp_517_;
 }
 case 26:
 {
 lean_object* v___x_616_; 
-v___x_616_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__52));
+v___x_616_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__52, &l_Std_Http_Request_instToStringHead___lam__6___closed__52_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__52);
 v___y_518_ = v___x_616_;
 goto v___jp_517_;
 }
 case 27:
 {
 lean_object* v___x_617_; 
-v___x_617_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__53));
+v___x_617_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__53, &l_Std_Http_Request_instToStringHead___lam__6___closed__53_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__53);
 v___y_518_ = v___x_617_;
 goto v___jp_517_;
 }
 case 28:
 {
 lean_object* v___x_618_; 
-v___x_618_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__54));
+v___x_618_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__54, &l_Std_Http_Request_instToStringHead___lam__6___closed__54_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__54);
 v___y_518_ = v___x_618_;
 goto v___jp_517_;
 }
 case 29:
 {
 lean_object* v___x_619_; 
-v___x_619_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__55));
+v___x_619_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__55, &l_Std_Http_Request_instToStringHead___lam__6___closed__55_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__55);
 v___y_518_ = v___x_619_;
 goto v___jp_517_;
 }
 case 30:
 {
 lean_object* v___x_620_; 
-v___x_620_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__56));
+v___x_620_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__56, &l_Std_Http_Request_instToStringHead___lam__6___closed__56_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__56);
 v___y_518_ = v___x_620_;
 goto v___jp_517_;
 }
 case 31:
 {
 lean_object* v___x_621_; 
-v___x_621_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__57));
+v___x_621_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__57, &l_Std_Http_Request_instToStringHead___lam__6___closed__57_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__57);
 v___y_518_ = v___x_621_;
 goto v___jp_517_;
 }
 case 32:
 {
 lean_object* v___x_622_; 
-v___x_622_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__58));
+v___x_622_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__58, &l_Std_Http_Request_instToStringHead___lam__6___closed__58_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__58);
 v___y_518_ = v___x_622_;
 goto v___jp_517_;
 }
 case 33:
 {
 lean_object* v___x_623_; 
-v___x_623_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__59));
+v___x_623_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__59, &l_Std_Http_Request_instToStringHead___lam__6___closed__59_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__59);
 v___y_518_ = v___x_623_;
 goto v___jp_517_;
 }
 case 34:
 {
 lean_object* v___x_624_; 
-v___x_624_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__60));
+v___x_624_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__60, &l_Std_Http_Request_instToStringHead___lam__6___closed__60_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__60);
 v___y_518_ = v___x_624_;
 goto v___jp_517_;
 }
 case 35:
 {
 lean_object* v___x_625_; 
-v___x_625_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__61));
+v___x_625_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__61, &l_Std_Http_Request_instToStringHead___lam__6___closed__61_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__61);
 v___y_518_ = v___x_625_;
 goto v___jp_517_;
 }
 case 36:
 {
 lean_object* v___x_626_; 
-v___x_626_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__62));
+v___x_626_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__62, &l_Std_Http_Request_instToStringHead___lam__6___closed__62_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__62);
 v___y_518_ = v___x_626_;
 goto v___jp_517_;
 }
 case 37:
 {
 lean_object* v___x_627_; 
-v___x_627_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__63));
+v___x_627_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__63, &l_Std_Http_Request_instToStringHead___lam__6___closed__63_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__63);
 v___y_518_ = v___x_627_;
 goto v___jp_517_;
 }
 case 38:
 {
 lean_object* v___x_628_; 
-v___x_628_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__64));
+v___x_628_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__64, &l_Std_Http_Request_instToStringHead___lam__6___closed__64_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__64);
 v___y_518_ = v___x_628_;
 goto v___jp_517_;
 }
 default: 
 {
 lean_object* v___x_629_; 
-v___x_629_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__65));
+v___x_629_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__65, &l_Std_Http_Request_instToStringHead___lam__6___closed__65_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__65);
 v___y_518_ = v___x_629_;
 goto v___jp_517_;
 }
@@ -1310,9 +2072,9 @@ v_entries_325_ = lean_ctor_get(v_headers_321_, 0);
 lean_inc_ref(v_entries_325_);
 lean_dec_ref(v_headers_321_);
 v___x_326_ = lean_string_append(v___y_323_, v___y_324_);
-v___x_327_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__0));
+v___x_327_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__0, &l_Std_Http_Request_instToStringHead___lam__6___closed__0_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__0);
 v___x_328_ = lean_string_append(v___x_326_, v___x_327_);
-v___x_329_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__10));
+v___x_329_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__10, &l_Std_Http_Request_instToStringHead___lam__6___closed__10_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__10);
 v_sz_330_ = lean_array_size(v_entries_325_);
 v___x_331_ = ((size_t)0ULL);
 v_pairs_332_ = l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map(lean_box(0), lean_box(0), lean_box(0), v___x_329_, v___f_312_, v_sz_330_, v___x_331_, v_entries_325_);
@@ -1334,7 +2096,7 @@ switch(v_version_319_)
 case 0:
 {
 lean_object* v___x_343_; 
-v___x_343_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__11));
+v___x_343_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__11, &l_Std_Http_Request_instToStringHead___lam__6___closed__11_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__11);
 v___y_323_ = v___x_342_;
 v___y_324_ = v___x_343_;
 goto v___jp_322_;
@@ -1342,7 +2104,7 @@ goto v___jp_322_;
 case 1:
 {
 lean_object* v___x_344_; 
-v___x_344_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__12));
+v___x_344_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__12, &l_Std_Http_Request_instToStringHead___lam__6___closed__12_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__12);
 v___y_323_ = v___x_342_;
 v___y_324_ = v___x_344_;
 goto v___jp_322_;
@@ -1350,7 +2112,7 @@ goto v___jp_322_;
 case 2:
 {
 lean_object* v___x_345_; 
-v___x_345_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__13));
+v___x_345_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__13, &l_Std_Http_Request_instToStringHead___lam__6___closed__13_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__13);
 v___y_323_ = v___x_342_;
 v___y_324_ = v___x_345_;
 goto v___jp_322_;
@@ -1358,7 +2120,7 @@ goto v___jp_322_;
 default: 
 {
 lean_object* v___x_346_; 
-v___x_346_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__14));
+v___x_346_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__14, &l_Std_Http_Request_instToStringHead___lam__6___closed__14_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__14);
 v___y_323_ = v___x_342_;
 v___y_324_ = v___x_346_;
 goto v___jp_322_;
@@ -1390,8 +2152,8 @@ lean_object* v___x_356_; lean_object* v___x_357_; lean_object* v_encodedParams_3
 v___x_356_ = lean_array_to_list(v_val_352_);
 v___x_357_ = lean_box(0);
 v_encodedParams_358_ = l_List_mapTR_loop___redArg(v___f_313_, v___x_356_, v___x_357_);
-v___x_359_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__15));
-v___x_360_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__16));
+v___x_359_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__15, &l_Std_Http_Request_instToStringHead___lam__6___closed__15_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__15);
+v___x_360_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__16, &l_Std_Http_Request_instToStringHead___lam__6___closed__16_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__16);
 v___x_361_ = l_String_intercalate(v___x_360_, v_encodedParams_358_);
 v___x_362_ = lean_string_append(v___x_359_, v___x_361_);
 lean_dec_ref(v___x_361_);
@@ -1416,7 +2178,7 @@ goto v___jp_337_;
 v___jp_364_:
 {
 lean_object* v___x_372_; lean_object* v___x_373_; lean_object* v___x_374_; lean_object* v___x_375_; lean_object* v___x_376_; lean_object* v___x_377_; 
-v___x_372_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__17));
+v___x_372_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__17, &l_Std_Http_Request_instToStringHead___lam__6___closed__17_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__17);
 v___x_373_ = lean_string_append(v___y_370_, v___x_372_);
 v___x_374_ = lean_string_append(v___x_373_, v___y_368_);
 lean_dec_ref(v___y_368_);
@@ -1436,7 +2198,7 @@ v___jp_378_:
 if (lean_obj_tag(v___y_379_) == 0)
 {
 lean_object* v___x_386_; 
-v___x_386_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__4));
+v___x_386_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__4, &l_Std_Http_Request_instToStringHead___lam__3___closed__4_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__4);
 v___y_365_ = v___y_385_;
 v___y_366_ = v___y_380_;
 v___y_367_ = v___y_381_;
@@ -1452,7 +2214,7 @@ lean_object* v_val_387_; lean_object* v___x_388_; lean_object* v___x_389_; lean_
 v_val_387_ = lean_ctor_get(v___y_379_, 0);
 lean_inc(v_val_387_);
 lean_dec_ref(v___y_379_);
-v___x_388_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__18));
+v___x_388_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__18, &l_Std_Http_Request_instToStringHead___lam__6___closed__18_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__18);
 v___x_389_ = l_Std_Http_URI_EncodedFragment_encode(v_val_387_);
 lean_dec(v_val_387_);
 v___x_390_ = lean_string_from_utf8_unchecked(v___x_389_);
@@ -1480,8 +2242,8 @@ lean_object* v___x_403_; lean_object* v___x_404_; lean_object* v_encodedParams_4
 v___x_403_ = lean_array_to_list(v___y_397_);
 v___x_404_ = lean_box(0);
 v_encodedParams_405_ = l_List_mapTR_loop___redArg(v___f_314_, v___x_403_, v___x_404_);
-v___x_406_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__15));
-v___x_407_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__16));
+v___x_406_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__15, &l_Std_Http_Request_instToStringHead___lam__6___closed__15_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__15);
+v___x_407_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__16, &l_Std_Http_Request_instToStringHead___lam__6___closed__16_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__16);
 v___x_408_ = l_String_intercalate(v___x_407_, v_encodedParams_405_);
 v___x_409_ = lean_string_append(v___x_406_, v___x_408_);
 lean_dec_ref(v___x_408_);
@@ -1499,7 +2261,7 @@ else
 lean_object* v___x_410_; 
 lean_dec_ref(v___y_397_);
 lean_dec_ref(v___f_314_);
-v___x_410_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__4));
+v___x_410_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__4, &l_Std_Http_Request_instToStringHead___lam__3___closed__4_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__4);
 v___y_379_ = v___y_394_;
 v___y_380_ = v___y_393_;
 v___y_381_ = v___y_395_;
@@ -1517,8 +2279,8 @@ v_segments_419_ = lean_ctor_get(v___y_415_, 0);
 lean_inc_ref(v_segments_419_);
 v_absolute_420_ = lean_ctor_get_uint8(v___y_415_, sizeof(void*)*1);
 lean_dec_ref(v___y_415_);
-v___x_421_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__19));
-v___x_422_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__10));
+v___x_421_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__19, &l_Std_Http_Request_instToStringHead___lam__6___closed__19_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__19);
+v___x_422_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__10, &l_Std_Http_Request_instToStringHead___lam__6___closed__10_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__10);
 v_sz_423_ = lean_array_size(v_segments_419_);
 v___x_424_ = ((size_t)0ULL);
 v___x_425_ = l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map(lean_box(0), lean_box(0), lean_box(0), v___x_422_, v___f_315_, v_sz_423_, v___x_424_, v_segments_419_);
@@ -1576,7 +2338,7 @@ switch(lean_obj_tag(v_port_444_))
 case 0:
 {
 lean_object* v___x_454_; 
-v___x_454_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__4));
+v___x_454_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__4, &l_Std_Http_Request_instToStringHead___lam__3___closed__4_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__4);
 v___y_430_ = v___y_447_;
 v___y_431_ = v___y_446_;
 v___y_432_ = v___y_445_;
@@ -1592,7 +2354,7 @@ goto v___jp_429_;
 case 1:
 {
 lean_object* v___x_455_; 
-v___x_455_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__17));
+v___x_455_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__17, &l_Std_Http_Request_instToStringHead___lam__6___closed__17_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__17);
 v___y_430_ = v___y_447_;
 v___y_431_ = v___y_446_;
 v___y_432_ = v___y_445_;
@@ -1610,7 +2372,7 @@ default:
 uint16_t v_port_456_; lean_object* v___x_457_; lean_object* v___x_458_; lean_object* v___x_459_; lean_object* v___x_460_; 
 v_port_456_ = lean_ctor_get_uint16(v_port_444_, 0);
 lean_dec_ref(v_port_444_);
-v___x_457_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__17));
+v___x_457_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__17, &l_Std_Http_Request_instToStringHead___lam__6___closed__17_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__17);
 v___x_458_ = lean_uint16_to_nat(v_port_456_);
 v___x_459_ = l_Nat_reprFast(v___x_458_);
 v___x_460_ = lean_string_append(v___x_457_, v___x_459_);
@@ -1677,12 +2439,12 @@ lean_object* v_ipv6_475_; lean_object* v___x_476_; lean_object* v___x_477_; lean
 v_ipv6_475_ = lean_ctor_get(v_host_462_, 0);
 lean_inc_ref(v_ipv6_475_);
 lean_dec_ref(v_host_462_);
-v___x_476_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__20));
+v___x_476_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__20, &l_Std_Http_Request_instToStringHead___lam__6___closed__20_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__20);
 v___x_477_ = lean_uv_ntop_v6(v_ipv6_475_);
 lean_dec_ref(v_ipv6_475_);
 v___x_478_ = lean_string_append(v___x_476_, v___x_477_);
 lean_dec_ref(v___x_477_);
-v___x_479_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__21));
+v___x_479_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__21, &l_Std_Http_Request_instToStringHead___lam__6___closed__21_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__21);
 v___x_480_ = lean_string_append(v___x_478_, v___x_479_);
 v_port_444_ = v_port_463_;
 v___y_445_ = v___y_466_;
@@ -1717,7 +2479,7 @@ switch(lean_obj_tag(v_port_493_))
 case 0:
 {
 lean_object* v___x_495_; 
-v___x_495_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__4));
+v___x_495_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__4, &l_Std_Http_Request_instToStringHead___lam__3___closed__4_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__4);
 v___y_482_ = v___y_490_;
 v___y_483_ = v___y_494_;
 v___y_484_ = v___y_491_;
@@ -1728,7 +2490,7 @@ goto v___jp_481_;
 case 1:
 {
 lean_object* v___x_496_; 
-v___x_496_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__17));
+v___x_496_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__17, &l_Std_Http_Request_instToStringHead___lam__6___closed__17_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__17);
 v___y_482_ = v___y_490_;
 v___y_483_ = v___y_494_;
 v___y_484_ = v___y_491_;
@@ -1741,7 +2503,7 @@ default:
 uint16_t v_port_497_; lean_object* v___x_498_; lean_object* v___x_499_; lean_object* v___x_500_; lean_object* v___x_501_; 
 v_port_497_ = lean_ctor_get_uint16(v_port_493_, 0);
 lean_dec_ref(v_port_493_);
-v___x_498_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__17));
+v___x_498_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__17, &l_Std_Http_Request_instToStringHead___lam__6___closed__17_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__17);
 v___x_499_ = lean_uint16_to_nat(v_port_497_);
 v___x_500_ = l_Nat_reprFast(v___x_499_);
 v___x_501_ = lean_string_append(v___x_498_, v___x_500_);
@@ -1793,12 +2555,12 @@ lean_object* v_ipv6_511_; lean_object* v___x_512_; lean_object* v___x_513_; lean
 v_ipv6_511_ = lean_ctor_get(v_host_505_, 0);
 lean_inc_ref(v_ipv6_511_);
 lean_dec_ref(v_host_505_);
-v___x_512_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__20));
+v___x_512_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__20, &l_Std_Http_Request_instToStringHead___lam__6___closed__20_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__20);
 v___x_513_ = lean_uv_ntop_v6(v_ipv6_511_);
 lean_dec_ref(v_ipv6_511_);
 v___x_514_ = lean_string_append(v___x_512_, v___x_513_);
 lean_dec_ref(v___x_513_);
-v___x_515_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__21));
+v___x_515_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__21, &l_Std_Http_Request_instToStringHead___lam__6___closed__21_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__21);
 v___x_516_ = lean_string_append(v___x_514_, v___x_515_);
 v___y_490_ = v___y_507_;
 v___y_491_ = v___y_503_;
@@ -1812,7 +2574,7 @@ goto v___jp_489_;
 v___jp_517_:
 {
 lean_object* v___x_519_; lean_object* v___x_520_; 
-v___x_519_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__22));
+v___x_519_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__22, &l_Std_Http_Request_instToStringHead___lam__6___closed__22_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__22);
 lean_inc_ref(v___y_518_);
 v___x_520_ = lean_string_append(v___y_518_, v___x_519_);
 switch(lean_obj_tag(v_uri_320_))
@@ -1831,8 +2593,8 @@ v_segments_523_ = lean_ctor_get(v_path_521_, 0);
 lean_inc_ref(v_segments_523_);
 v_absolute_524_ = lean_ctor_get_uint8(v_path_521_, sizeof(void*)*1);
 lean_dec_ref(v_path_521_);
-v___x_525_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__19));
-v___x_526_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__10));
+v___x_525_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__19, &l_Std_Http_Request_instToStringHead___lam__6___closed__19_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__19);
+v___x_526_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__10, &l_Std_Http_Request_instToStringHead___lam__6___closed__10_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__10);
 v_sz_527_ = lean_array_size(v_segments_523_);
 v___x_528_ = ((size_t)0ULL);
 v___x_529_ = l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map(lean_box(0), lean_box(0), lean_box(0), v___x_526_, v___f_316_, v_sz_527_, v___x_528_, v_segments_523_);
@@ -1879,7 +2641,7 @@ lean_inc_ref(v_query_537_);
 v_fragment_538_ = lean_ctor_get(v_uri_533_, 4);
 lean_inc(v_fragment_538_);
 lean_dec_ref(v_uri_533_);
-v___x_539_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__4));
+v___x_539_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__4, &l_Std_Http_Request_instToStringHead___lam__3___closed__4_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__4);
 v___y_412_ = v_fragment_538_;
 v___y_413_ = v___x_520_;
 v___y_414_ = v___x_519_;
@@ -1910,11 +2672,11 @@ lean_inc_ref(v_host_546_);
 v_port_547_ = lean_ctor_get(v_val_540_, 2);
 lean_inc(v_port_547_);
 lean_dec(v_val_540_);
-v___x_548_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__23));
+v___x_548_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__23, &l_Std_Http_Request_instToStringHead___lam__6___closed__23_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__23);
 if (lean_obj_tag(v_userInfo_545_) == 0)
 {
 lean_object* v___x_549_; 
-v___x_549_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__4));
+v___x_549_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__4, &l_Std_Http_Request_instToStringHead___lam__3___closed__4_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__4);
 v_host_462_ = v_host_546_;
 v_port_463_ = v_port_547_;
 v___y_464_ = v___x_520_;
@@ -1941,7 +2703,7 @@ v_username_552_ = lean_ctor_get(v_val_550_, 0);
 lean_inc_ref(v_username_552_);
 lean_dec(v_val_550_);
 v___x_553_ = lean_string_from_utf8_unchecked(v_username_552_);
-v___x_554_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__24));
+v___x_554_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__24, &l_Std_Http_Request_instToStringHead___lam__6___closed__24_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__24);
 v___x_555_ = lean_string_append(v___x_553_, v___x_554_);
 v_host_462_ = v_host_546_;
 v_port_463_ = v_port_547_;
@@ -1966,12 +2728,12 @@ v_val_557_ = lean_ctor_get(v_password_551_, 0);
 lean_inc(v_val_557_);
 lean_dec_ref(v_password_551_);
 v___x_558_ = lean_string_from_utf8_unchecked(v_username_556_);
-v___x_559_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__17));
+v___x_559_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__17, &l_Std_Http_Request_instToStringHead___lam__6___closed__17_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__17);
 v___x_560_ = lean_string_append(v___x_558_, v___x_559_);
 v___x_561_ = lean_string_from_utf8_unchecked(v_val_557_);
 v___x_562_ = lean_string_append(v___x_560_, v___x_561_);
 lean_dec_ref(v___x_561_);
-v___x_563_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__24));
+v___x_563_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__24, &l_Std_Http_Request_instToStringHead___lam__6___closed__24_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__24);
 v___x_564_ = lean_string_append(v___x_562_, v___x_563_);
 v_host_462_ = v_host_546_;
 v_port_463_ = v_port_547_;
@@ -2007,7 +2769,7 @@ lean_inc_ref(v_host_567_);
 v_port_568_ = lean_ctor_get(v_authority_565_, 2);
 lean_inc(v_port_568_);
 lean_dec_ref(v_authority_565_);
-v___x_569_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__4));
+v___x_569_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__4, &l_Std_Http_Request_instToStringHead___lam__3___closed__4_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__4);
 v___y_503_ = v___x_520_;
 v___y_504_ = v___x_519_;
 v_host_505_ = v_host_567_;
@@ -2033,7 +2795,7 @@ v_username_574_ = lean_ctor_get(v_val_570_, 0);
 lean_inc_ref(v_username_574_);
 lean_dec(v_val_570_);
 v___x_575_ = lean_string_from_utf8_unchecked(v_username_574_);
-v___x_576_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__24));
+v___x_576_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__24, &l_Std_Http_Request_instToStringHead___lam__6___closed__24_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__24);
 v___x_577_ = lean_string_append(v___x_575_, v___x_576_);
 v___y_503_ = v___x_520_;
 v___y_504_ = v___x_519_;
@@ -2058,12 +2820,12 @@ v_val_581_ = lean_ctor_get(v_password_571_, 0);
 lean_inc(v_val_581_);
 lean_dec_ref(v_password_571_);
 v___x_582_ = lean_string_from_utf8_unchecked(v_username_580_);
-v___x_583_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__17));
+v___x_583_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__17, &l_Std_Http_Request_instToStringHead___lam__6___closed__17_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__17);
 v___x_584_ = lean_string_append(v___x_582_, v___x_583_);
 v___x_585_ = lean_string_from_utf8_unchecked(v_val_581_);
 v___x_586_ = lean_string_append(v___x_584_, v___x_585_);
 lean_dec_ref(v___x_585_);
-v___x_587_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__24));
+v___x_587_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__24, &l_Std_Http_Request_instToStringHead___lam__6___closed__24_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__24);
 v___x_588_ = lean_string_append(v___x_586_, v___x_587_);
 v___y_503_ = v___x_520_;
 v___y_504_ = v___x_519_;
@@ -2081,7 +2843,7 @@ lean_dec_ref(v___f_316_);
 lean_dec_ref(v___f_315_);
 lean_dec_ref(v___f_314_);
 lean_dec_ref(v___f_313_);
-v___x_589_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__25));
+v___x_589_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__25, &l_Std_Http_Request_instToStringHead___lam__6___closed__25_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__25);
 v___y_338_ = v___x_520_;
 v___y_339_ = v___x_519_;
 v___y_340_ = v___x_589_;
@@ -2089,6 +2851,54 @@ goto v___jp_337_;
 }
 }
 }
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___closed__0(void){
+_start:
+{
+lean_object* v___f_630_; 
+v___f_630_ = lean_alloc_closure((void*)(l_Std_Http_Request_instToStringHead___lam__0), 1, 0);
+return v___f_630_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___closed__1(void){
+_start:
+{
+lean_object* v___f_631_; 
+v___f_631_ = lean_alloc_closure((void*)(l_Std_Http_Request_instToStringHead___lam__1), 1, 0);
+return v___f_631_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___closed__2(void){
+_start:
+{
+lean_object* v___f_632_; 
+v___f_632_ = lean_alloc_closure((void*)(l_Std_Http_Request_instToStringHead___lam__3), 1, 0);
+return v___f_632_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead___closed__3(void){
+_start:
+{
+lean_object* v___f_633_; lean_object* v___f_634_; lean_object* v___f_635_; lean_object* v___f_636_; 
+v___f_633_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___closed__1, &l_Std_Http_Request_instToStringHead___closed__1_once, _init_l_Std_Http_Request_instToStringHead___closed__1);
+v___f_634_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___closed__0, &l_Std_Http_Request_instToStringHead___closed__0_once, _init_l_Std_Http_Request_instToStringHead___closed__0);
+v___f_635_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___closed__2, &l_Std_Http_Request_instToStringHead___closed__2_once, _init_l_Std_Http_Request_instToStringHead___closed__2);
+v___f_636_ = lean_alloc_closure((void*)(l_Std_Http_Request_instToStringHead___lam__6), 6, 5);
+lean_closure_set(v___f_636_, 0, v___f_635_);
+lean_closure_set(v___f_636_, 1, v___f_634_);
+lean_closure_set(v___f_636_, 2, v___f_634_);
+lean_closure_set(v___f_636_, 3, v___f_633_);
+lean_closure_set(v___f_636_, 4, v___f_633_);
+return v___f_636_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instToStringHead(void){
+_start:
+{
+lean_object* v___f_637_; 
+v___f_637_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___closed__3, &l_Std_Http_Request_instToStringHead___closed__3_once, _init_l_Std_Http_Request_instToStringHead___closed__3);
+return v___f_637_;
 }
 }
 LEAN_EXPORT lean_object* l_Std_Http_Request_instEncodeV11Head___lam__2(lean_object* v___x_638_, lean_object* v___x_639_, lean_object* v___x_640_, lean_object* v_name_641_, lean_object* v___x_642_, uint32_t v___x_643_, lean_object* v___x_644_, lean_object* v_it_645_, lean_object* v_acc_646_, lean_object* v_hP_647_, lean_object* v_recur_648_){
@@ -2335,7 +3145,7 @@ LEAN_EXPORT lean_object* l_Std_Http_Request_instEncodeV11Head___lam__0(lean_obje
 _start:
 {
 lean_object* v___y_722_; lean_object* v___f_741_; lean_object* v___x_742_; lean_object* v___x_743_; lean_object* v___x_744_; lean_object* v_it_745_; lean_object* v___x_746_; lean_object* v___x_747_; lean_object* v___x_748_; lean_object* v___f_749_; lean_object* v___x_750_; lean_object* v___x_751_; 
-v___f_741_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__1));
+v___f_741_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__1, &l_Std_Http_Request_instToStringHead___lam__3___closed__1_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__1);
 v___x_742_ = lean_unsigned_to_nat(0u);
 v___x_743_ = lean_string_utf8_byte_size(v_name_719_);
 lean_inc_ref(v_name_719_);
@@ -2345,7 +3155,7 @@ lean_ctor_set(v___x_744_, 1, v___x_742_);
 lean_ctor_set(v___x_744_, 2, v___x_743_);
 lean_inc_ref(v___x_744_);
 v_it_745_ = l_String_Slice_splitToSubslice___redArg(v___x_744_, v___f_741_);
-v___x_746_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__2));
+v___x_746_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__2, &l_Std_Http_Request_instToStringHead___lam__3___closed__2_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__2);
 v___x_747_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__3, &l_Std_Http_Request_instToStringHead___lam__3___closed__3_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__3);
 v___x_748_ = l_Std_Http_Request_instToStringHead___lam__3___boxed__const__1;
 v___f_749_ = lean_alloc_closure((void*)(l_Std_Http_Request_instEncodeV11Head___lam__2___boxed), 11, 7);
@@ -2361,7 +3171,7 @@ v___x_751_ = l_WellFounded_opaqueFix_u2083___redArg(v___f_749_, v_it_745_, v___x
 if (lean_obj_tag(v___x_751_) == 0)
 {
 lean_object* v___x_752_; 
-v___x_752_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__4));
+v___x_752_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__4, &l_Std_Http_Request_instToStringHead___lam__3___closed__4_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__4);
 v___y_722_ = v___x_752_;
 goto v___jp_721_;
 }
@@ -2398,10 +3208,10 @@ goto v_resetjp_725_;
 v_resetjp_725_:
 {
 lean_object* v___x_728_; lean_object* v___x_729_; lean_object* v___x_730_; lean_object* v___x_731_; lean_object* v___x_732_; lean_object* v___x_733_; lean_object* v___x_734_; lean_object* v___x_735_; lean_object* v___x_736_; lean_object* v___x_738_; 
-v___x_728_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__0));
+v___x_728_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__0, &l_Std_Http_Request_instToStringHead___lam__3___closed__0_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__0);
 v___x_729_ = lean_string_append(v___y_722_, v___x_728_);
 v___x_730_ = lean_string_append(v___x_729_, v_value_720_);
-v___x_731_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__0));
+v___x_731_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__0, &l_Std_Http_Request_instToStringHead___lam__6___closed__0_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__0);
 v___x_732_ = lean_string_append(v___x_730_, v___x_731_);
 v___x_733_ = lean_string_to_utf8(v___x_732_);
 lean_dec_ref(v___x_732_);
@@ -2448,7 +3258,7 @@ static lean_object* _init_l_Std_Http_Request_instEncodeV11Head___lam__4___closed
 _start:
 {
 lean_object* v___x_758_; lean_object* v___x_759_; 
-v___x_758_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__0));
+v___x_758_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__0, &l_Std_Http_Request_instToStringHead___lam__6___closed__0_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__0);
 v___x_759_ = lean_string_to_utf8(v___x_758_);
 return v___x_759_;
 }
@@ -2509,280 +3319,280 @@ switch(v_method_779_)
 case 0:
 {
 lean_object* v___x_1097_; 
-v___x_1097_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__26));
+v___x_1097_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__26, &l_Std_Http_Request_instToStringHead___lam__6___closed__26_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__26);
 v___y_1017_ = v___x_1097_;
 goto v___jp_1016_;
 }
 case 1:
 {
 lean_object* v___x_1098_; 
-v___x_1098_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__27));
+v___x_1098_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__27, &l_Std_Http_Request_instToStringHead___lam__6___closed__27_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__27);
 v___y_1017_ = v___x_1098_;
 goto v___jp_1016_;
 }
 case 2:
 {
 lean_object* v___x_1099_; 
-v___x_1099_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__28));
+v___x_1099_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__28, &l_Std_Http_Request_instToStringHead___lam__6___closed__28_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__28);
 v___y_1017_ = v___x_1099_;
 goto v___jp_1016_;
 }
 case 3:
 {
 lean_object* v___x_1100_; 
-v___x_1100_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__29));
+v___x_1100_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__29, &l_Std_Http_Request_instToStringHead___lam__6___closed__29_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__29);
 v___y_1017_ = v___x_1100_;
 goto v___jp_1016_;
 }
 case 4:
 {
 lean_object* v___x_1101_; 
-v___x_1101_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__30));
+v___x_1101_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__30, &l_Std_Http_Request_instToStringHead___lam__6___closed__30_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__30);
 v___y_1017_ = v___x_1101_;
 goto v___jp_1016_;
 }
 case 5:
 {
 lean_object* v___x_1102_; 
-v___x_1102_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__31));
+v___x_1102_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__31, &l_Std_Http_Request_instToStringHead___lam__6___closed__31_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__31);
 v___y_1017_ = v___x_1102_;
 goto v___jp_1016_;
 }
 case 6:
 {
 lean_object* v___x_1103_; 
-v___x_1103_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__32));
+v___x_1103_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__32, &l_Std_Http_Request_instToStringHead___lam__6___closed__32_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__32);
 v___y_1017_ = v___x_1103_;
 goto v___jp_1016_;
 }
 case 7:
 {
 lean_object* v___x_1104_; 
-v___x_1104_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__33));
+v___x_1104_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__33, &l_Std_Http_Request_instToStringHead___lam__6___closed__33_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__33);
 v___y_1017_ = v___x_1104_;
 goto v___jp_1016_;
 }
 case 8:
 {
 lean_object* v___x_1105_; 
-v___x_1105_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__34));
+v___x_1105_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__34, &l_Std_Http_Request_instToStringHead___lam__6___closed__34_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__34);
 v___y_1017_ = v___x_1105_;
 goto v___jp_1016_;
 }
 case 9:
 {
 lean_object* v___x_1106_; 
-v___x_1106_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__35));
+v___x_1106_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__35, &l_Std_Http_Request_instToStringHead___lam__6___closed__35_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__35);
 v___y_1017_ = v___x_1106_;
 goto v___jp_1016_;
 }
 case 10:
 {
 lean_object* v___x_1107_; 
-v___x_1107_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__36));
+v___x_1107_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__36, &l_Std_Http_Request_instToStringHead___lam__6___closed__36_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__36);
 v___y_1017_ = v___x_1107_;
 goto v___jp_1016_;
 }
 case 11:
 {
 lean_object* v___x_1108_; 
-v___x_1108_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__37));
+v___x_1108_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__37, &l_Std_Http_Request_instToStringHead___lam__6___closed__37_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__37);
 v___y_1017_ = v___x_1108_;
 goto v___jp_1016_;
 }
 case 12:
 {
 lean_object* v___x_1109_; 
-v___x_1109_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__38));
+v___x_1109_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__38, &l_Std_Http_Request_instToStringHead___lam__6___closed__38_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__38);
 v___y_1017_ = v___x_1109_;
 goto v___jp_1016_;
 }
 case 13:
 {
 lean_object* v___x_1110_; 
-v___x_1110_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__39));
+v___x_1110_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__39, &l_Std_Http_Request_instToStringHead___lam__6___closed__39_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__39);
 v___y_1017_ = v___x_1110_;
 goto v___jp_1016_;
 }
 case 14:
 {
 lean_object* v___x_1111_; 
-v___x_1111_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__40));
+v___x_1111_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__40, &l_Std_Http_Request_instToStringHead___lam__6___closed__40_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__40);
 v___y_1017_ = v___x_1111_;
 goto v___jp_1016_;
 }
 case 15:
 {
 lean_object* v___x_1112_; 
-v___x_1112_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__41));
+v___x_1112_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__41, &l_Std_Http_Request_instToStringHead___lam__6___closed__41_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__41);
 v___y_1017_ = v___x_1112_;
 goto v___jp_1016_;
 }
 case 16:
 {
 lean_object* v___x_1113_; 
-v___x_1113_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__42));
+v___x_1113_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__42, &l_Std_Http_Request_instToStringHead___lam__6___closed__42_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__42);
 v___y_1017_ = v___x_1113_;
 goto v___jp_1016_;
 }
 case 17:
 {
 lean_object* v___x_1114_; 
-v___x_1114_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__43));
+v___x_1114_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__43, &l_Std_Http_Request_instToStringHead___lam__6___closed__43_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__43);
 v___y_1017_ = v___x_1114_;
 goto v___jp_1016_;
 }
 case 18:
 {
 lean_object* v___x_1115_; 
-v___x_1115_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__44));
+v___x_1115_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__44, &l_Std_Http_Request_instToStringHead___lam__6___closed__44_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__44);
 v___y_1017_ = v___x_1115_;
 goto v___jp_1016_;
 }
 case 19:
 {
 lean_object* v___x_1116_; 
-v___x_1116_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__45));
+v___x_1116_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__45, &l_Std_Http_Request_instToStringHead___lam__6___closed__45_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__45);
 v___y_1017_ = v___x_1116_;
 goto v___jp_1016_;
 }
 case 20:
 {
 lean_object* v___x_1117_; 
-v___x_1117_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__46));
+v___x_1117_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__46, &l_Std_Http_Request_instToStringHead___lam__6___closed__46_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__46);
 v___y_1017_ = v___x_1117_;
 goto v___jp_1016_;
 }
 case 21:
 {
 lean_object* v___x_1118_; 
-v___x_1118_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__47));
+v___x_1118_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__47, &l_Std_Http_Request_instToStringHead___lam__6___closed__47_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__47);
 v___y_1017_ = v___x_1118_;
 goto v___jp_1016_;
 }
 case 22:
 {
 lean_object* v___x_1119_; 
-v___x_1119_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__48));
+v___x_1119_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__48, &l_Std_Http_Request_instToStringHead___lam__6___closed__48_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__48);
 v___y_1017_ = v___x_1119_;
 goto v___jp_1016_;
 }
 case 23:
 {
 lean_object* v___x_1120_; 
-v___x_1120_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__49));
+v___x_1120_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__49, &l_Std_Http_Request_instToStringHead___lam__6___closed__49_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__49);
 v___y_1017_ = v___x_1120_;
 goto v___jp_1016_;
 }
 case 24:
 {
 lean_object* v___x_1121_; 
-v___x_1121_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__50));
+v___x_1121_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__50, &l_Std_Http_Request_instToStringHead___lam__6___closed__50_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__50);
 v___y_1017_ = v___x_1121_;
 goto v___jp_1016_;
 }
 case 25:
 {
 lean_object* v___x_1122_; 
-v___x_1122_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__51));
+v___x_1122_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__51, &l_Std_Http_Request_instToStringHead___lam__6___closed__51_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__51);
 v___y_1017_ = v___x_1122_;
 goto v___jp_1016_;
 }
 case 26:
 {
 lean_object* v___x_1123_; 
-v___x_1123_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__52));
+v___x_1123_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__52, &l_Std_Http_Request_instToStringHead___lam__6___closed__52_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__52);
 v___y_1017_ = v___x_1123_;
 goto v___jp_1016_;
 }
 case 27:
 {
 lean_object* v___x_1124_; 
-v___x_1124_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__53));
+v___x_1124_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__53, &l_Std_Http_Request_instToStringHead___lam__6___closed__53_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__53);
 v___y_1017_ = v___x_1124_;
 goto v___jp_1016_;
 }
 case 28:
 {
 lean_object* v___x_1125_; 
-v___x_1125_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__54));
+v___x_1125_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__54, &l_Std_Http_Request_instToStringHead___lam__6___closed__54_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__54);
 v___y_1017_ = v___x_1125_;
 goto v___jp_1016_;
 }
 case 29:
 {
 lean_object* v___x_1126_; 
-v___x_1126_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__55));
+v___x_1126_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__55, &l_Std_Http_Request_instToStringHead___lam__6___closed__55_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__55);
 v___y_1017_ = v___x_1126_;
 goto v___jp_1016_;
 }
 case 30:
 {
 lean_object* v___x_1127_; 
-v___x_1127_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__56));
+v___x_1127_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__56, &l_Std_Http_Request_instToStringHead___lam__6___closed__56_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__56);
 v___y_1017_ = v___x_1127_;
 goto v___jp_1016_;
 }
 case 31:
 {
 lean_object* v___x_1128_; 
-v___x_1128_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__57));
+v___x_1128_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__57, &l_Std_Http_Request_instToStringHead___lam__6___closed__57_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__57);
 v___y_1017_ = v___x_1128_;
 goto v___jp_1016_;
 }
 case 32:
 {
 lean_object* v___x_1129_; 
-v___x_1129_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__58));
+v___x_1129_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__58, &l_Std_Http_Request_instToStringHead___lam__6___closed__58_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__58);
 v___y_1017_ = v___x_1129_;
 goto v___jp_1016_;
 }
 case 33:
 {
 lean_object* v___x_1130_; 
-v___x_1130_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__59));
+v___x_1130_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__59, &l_Std_Http_Request_instToStringHead___lam__6___closed__59_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__59);
 v___y_1017_ = v___x_1130_;
 goto v___jp_1016_;
 }
 case 34:
 {
 lean_object* v___x_1131_; 
-v___x_1131_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__60));
+v___x_1131_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__60, &l_Std_Http_Request_instToStringHead___lam__6___closed__60_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__60);
 v___y_1017_ = v___x_1131_;
 goto v___jp_1016_;
 }
 case 35:
 {
 lean_object* v___x_1132_; 
-v___x_1132_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__61));
+v___x_1132_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__61, &l_Std_Http_Request_instToStringHead___lam__6___closed__61_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__61);
 v___y_1017_ = v___x_1132_;
 goto v___jp_1016_;
 }
 case 36:
 {
 lean_object* v___x_1133_; 
-v___x_1133_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__62));
+v___x_1133_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__62, &l_Std_Http_Request_instToStringHead___lam__6___closed__62_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__62);
 v___y_1017_ = v___x_1133_;
 goto v___jp_1016_;
 }
 case 37:
 {
 lean_object* v___x_1134_; 
-v___x_1134_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__63));
+v___x_1134_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__63, &l_Std_Http_Request_instToStringHead___lam__6___closed__63_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__63);
 v___y_1017_ = v___x_1134_;
 goto v___jp_1016_;
 }
 case 38:
 {
 lean_object* v___x_1135_; 
-v___x_1135_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__64));
+v___x_1135_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__64, &l_Std_Http_Request_instToStringHead___lam__6___closed__64_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__64);
 v___y_1017_ = v___x_1135_;
 goto v___jp_1016_;
 }
 default: 
 {
 lean_object* v___x_1136_; 
-v___x_1136_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__65));
+v___x_1136_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__65, &l_Std_Http_Request_instToStringHead___lam__6___closed__65_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__65);
 v___y_1017_ = v___x_1136_;
 goto v___jp_1016_;
 }
@@ -2872,7 +3682,7 @@ switch(v_version_780_)
 case 0:
 {
 lean_object* v___x_820_; 
-v___x_820_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__11));
+v___x_820_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__11, &l_Std_Http_Request_instToStringHead___lam__6___closed__11_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__11);
 v___y_784_ = v___x_819_;
 v___y_785_ = v___x_818_;
 v___y_786_ = v___x_820_;
@@ -2881,7 +3691,7 @@ goto v___jp_783_;
 case 1:
 {
 lean_object* v___x_821_; 
-v___x_821_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__12));
+v___x_821_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__12, &l_Std_Http_Request_instToStringHead___lam__6___closed__12_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__12);
 v___y_784_ = v___x_819_;
 v___y_785_ = v___x_818_;
 v___y_786_ = v___x_821_;
@@ -2890,7 +3700,7 @@ goto v___jp_783_;
 case 2:
 {
 lean_object* v___x_822_; 
-v___x_822_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__13));
+v___x_822_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__13, &l_Std_Http_Request_instToStringHead___lam__6___closed__13_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__13);
 v___y_784_ = v___x_819_;
 v___y_785_ = v___x_818_;
 v___y_786_ = v___x_822_;
@@ -2899,7 +3709,7 @@ goto v___jp_783_;
 default: 
 {
 lean_object* v___x_823_; 
-v___x_823_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__14));
+v___x_823_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__14, &l_Std_Http_Request_instToStringHead___lam__6___closed__14_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__14);
 v___y_784_ = v___x_819_;
 v___y_785_ = v___x_818_;
 v___y_786_ = v___x_823_;
@@ -2928,7 +3738,7 @@ switch(lean_obj_tag(v_port_835_))
 case 0:
 {
 lean_object* v___x_842_; 
-v___x_842_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__4));
+v___x_842_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__4, &l_Std_Http_Request_instToStringHead___lam__3___closed__4_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__4);
 v___y_825_ = v___y_841_;
 v___y_826_ = v___y_837_;
 v___y_827_ = v___y_836_;
@@ -2941,7 +3751,7 @@ goto v___jp_824_;
 case 1:
 {
 lean_object* v___x_843_; 
-v___x_843_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__17));
+v___x_843_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__17, &l_Std_Http_Request_instToStringHead___lam__6___closed__17_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__17);
 v___y_825_ = v___y_841_;
 v___y_826_ = v___y_837_;
 v___y_827_ = v___y_836_;
@@ -2956,7 +3766,7 @@ default:
 uint16_t v_port_844_; lean_object* v___x_845_; lean_object* v___x_846_; lean_object* v___x_847_; lean_object* v___x_848_; 
 v_port_844_ = lean_ctor_get_uint16(v_port_835_, 0);
 lean_dec_ref(v_port_835_);
-v___x_845_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__17));
+v___x_845_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__17, &l_Std_Http_Request_instToStringHead___lam__6___closed__17_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__17);
 v___x_846_ = lean_uint16_to_nat(v_port_844_);
 v___x_847_ = l_Nat_reprFast(v___x_846_);
 v___x_848_ = lean_string_append(v___x_845_, v___x_847_);
@@ -3014,12 +3824,12 @@ lean_object* v_ipv6_860_; lean_object* v___x_861_; lean_object* v___x_862_; lean
 v_ipv6_860_ = lean_ctor_get(v_host_850_, 0);
 lean_inc_ref(v_ipv6_860_);
 lean_dec_ref(v_host_850_);
-v___x_861_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__20));
+v___x_861_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__20, &l_Std_Http_Request_instToStringHead___lam__6___closed__20_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__20);
 v___x_862_ = lean_uv_ntop_v6(v_ipv6_860_);
 lean_dec_ref(v_ipv6_860_);
 v___x_863_ = lean_string_append(v___x_861_, v___x_862_);
 lean_dec_ref(v___x_862_);
-v___x_864_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__21));
+v___x_864_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__21, &l_Std_Http_Request_instToStringHead___lam__6___closed__21_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__21);
 v___x_865_ = lean_string_append(v___x_863_, v___x_864_);
 v_port_835_ = v_port_851_;
 v___y_836_ = v___y_856_;
@@ -3035,7 +3845,7 @@ goto v___jp_834_;
 v___jp_866_:
 {
 lean_object* v___x_876_; lean_object* v___x_877_; lean_object* v___x_878_; lean_object* v___x_879_; lean_object* v___x_880_; lean_object* v___x_881_; 
-v___x_876_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__17));
+v___x_876_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__17, &l_Std_Http_Request_instToStringHead___lam__6___closed__17_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__17);
 v___x_877_ = lean_string_append(v___y_868_, v___x_876_);
 v___x_878_ = lean_string_append(v___x_877_, v___y_869_);
 lean_dec_ref(v___y_869_);
@@ -3057,7 +3867,7 @@ v___jp_882_:
 if (lean_obj_tag(v___y_888_) == 0)
 {
 lean_object* v___x_892_; 
-v___x_892_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__4));
+v___x_892_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__4, &l_Std_Http_Request_instToStringHead___lam__3___closed__4_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__4);
 v___y_867_ = v___y_883_;
 v___y_868_ = v___y_884_;
 v___y_869_ = v___y_885_;
@@ -3075,7 +3885,7 @@ lean_object* v_val_893_; lean_object* v___x_894_; lean_object* v___x_895_; lean_
 v_val_893_ = lean_ctor_get(v___y_888_, 0);
 lean_inc(v_val_893_);
 lean_dec_ref(v___y_888_);
-v___x_894_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__18));
+v___x_894_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__18, &l_Std_Http_Request_instToStringHead___lam__6___closed__18_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__18);
 v___x_895_ = l_Std_Http_URI_EncodedFragment_encode(v_val_893_);
 lean_dec(v_val_893_);
 v___x_896_ = lean_string_from_utf8_unchecked(v___x_895_);
@@ -3105,8 +3915,8 @@ lean_object* v___x_911_; lean_object* v___x_912_; lean_object* v_encodedParams_9
 v___x_911_ = lean_array_to_list(v___y_899_);
 v___x_912_ = lean_box(0);
 v_encodedParams_913_ = l_List_mapTR_loop___redArg(v___f_773_, v___x_911_, v___x_912_);
-v___x_914_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__15));
-v___x_915_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__16));
+v___x_914_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__15, &l_Std_Http_Request_instToStringHead___lam__6___closed__15_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__15);
+v___x_915_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__16, &l_Std_Http_Request_instToStringHead___lam__6___closed__16_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__16);
 v___x_916_ = l_String_intercalate(v___x_915_, v_encodedParams_913_);
 v___x_917_ = lean_string_append(v___x_914_, v___x_916_);
 lean_dec_ref(v___x_916_);
@@ -3126,7 +3936,7 @@ else
 lean_object* v___x_918_; 
 lean_dec_ref(v___y_899_);
 lean_dec_ref(v___f_773_);
-v___x_918_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__4));
+v___x_918_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__4, &l_Std_Http_Request_instToStringHead___lam__3___closed__4_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__4);
 v___y_883_ = v___y_900_;
 v___y_884_ = v___y_901_;
 v___y_885_ = v___y_902_;
@@ -3146,8 +3956,8 @@ v_segments_929_ = lean_ctor_get(v___y_922_, 0);
 lean_inc_ref(v_segments_929_);
 v_absolute_930_ = lean_ctor_get_uint8(v___y_922_, sizeof(void*)*1);
 lean_dec_ref(v___y_922_);
-v___x_931_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__19));
-v___x_932_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__10));
+v___x_931_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__19, &l_Std_Http_Request_instToStringHead___lam__6___closed__19_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__19);
+v___x_932_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__10, &l_Std_Http_Request_instToStringHead___lam__6___closed__10_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__10);
 v_sz_933_ = lean_array_size(v_segments_929_);
 v___x_934_ = ((size_t)0ULL);
 v___x_935_ = l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map(lean_box(0), lean_box(0), lean_box(0), v___x_932_, v___f_774_, v_sz_933_, v___x_934_, v_segments_929_);
@@ -3211,7 +4021,7 @@ switch(lean_obj_tag(v_port_966_))
 case 0:
 {
 lean_object* v___x_968_; 
-v___x_968_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__4));
+v___x_968_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__4, &l_Std_Http_Request_instToStringHead___lam__3___closed__4_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__4);
 v___y_940_ = v___y_956_;
 v___y_941_ = v___y_967_;
 v___y_942_ = v___y_957_;
@@ -3229,7 +4039,7 @@ goto v___jp_939_;
 case 1:
 {
 lean_object* v___x_969_; 
-v___x_969_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__17));
+v___x_969_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__17, &l_Std_Http_Request_instToStringHead___lam__6___closed__17_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__17);
 v___y_940_ = v___y_956_;
 v___y_941_ = v___y_967_;
 v___y_942_ = v___y_957_;
@@ -3249,7 +4059,7 @@ default:
 uint16_t v_port_970_; lean_object* v___x_971_; lean_object* v___x_972_; lean_object* v___x_973_; lean_object* v___x_974_; 
 v_port_970_ = lean_ctor_get_uint16(v_port_966_, 0);
 lean_dec_ref(v_port_966_);
-v___x_971_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__17));
+v___x_971_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__17, &l_Std_Http_Request_instToStringHead___lam__6___closed__17_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__17);
 v___x_972_ = lean_uint16_to_nat(v_port_970_);
 v___x_973_ = l_Nat_reprFast(v___x_972_);
 v___x_974_ = lean_string_append(v___x_971_, v___x_973_);
@@ -3322,12 +4132,12 @@ lean_object* v_ipv6_991_; lean_object* v___x_992_; lean_object* v___x_993_; lean
 v_ipv6_991_ = lean_ctor_get(v_host_985_, 0);
 lean_inc_ref(v_ipv6_991_);
 lean_dec_ref(v_host_985_);
-v___x_992_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__20));
+v___x_992_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__20, &l_Std_Http_Request_instToStringHead___lam__6___closed__20_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__20);
 v___x_993_ = lean_uv_ntop_v6(v_ipv6_991_);
 lean_dec_ref(v_ipv6_991_);
 v___x_994_ = lean_string_append(v___x_992_, v___x_993_);
 lean_dec_ref(v___x_993_);
-v___x_995_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__21));
+v___x_995_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__21, &l_Std_Http_Request_instToStringHead___lam__6___closed__21_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__21);
 v___x_996_ = lean_string_append(v___x_994_, v___x_995_);
 v___y_956_ = v___y_976_;
 v___y_957_ = v___y_987_;
@@ -3372,8 +4182,8 @@ lean_object* v___x_1008_; lean_object* v___x_1009_; lean_object* v_encodedParams
 v___x_1008_ = lean_array_to_list(v_val_1004_);
 v___x_1009_ = lean_box(0);
 v_encodedParams_1010_ = l_List_mapTR_loop___redArg(v___f_775_, v___x_1008_, v___x_1009_);
-v___x_1011_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__15));
-v___x_1012_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__16));
+v___x_1011_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__15, &l_Std_Http_Request_instToStringHead___lam__6___closed__15_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__15);
+v___x_1012_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__16, &l_Std_Http_Request_instToStringHead___lam__6___closed__16_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__16);
 v___x_1013_ = l_String_intercalate(v___x_1012_, v_encodedParams_1010_);
 v___x_1014_ = lean_string_append(v___x_1011_, v___x_1013_);
 lean_dec_ref(v___x_1013_);
@@ -3435,8 +4245,8 @@ v_segments_1030_ = lean_ctor_get(v_path_1028_, 0);
 lean_inc_ref(v_segments_1030_);
 v_absolute_1031_ = lean_ctor_get_uint8(v_path_1028_, sizeof(void*)*1);
 lean_dec_ref(v_path_1028_);
-v___x_1032_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__19));
-v___x_1033_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__10));
+v___x_1032_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__19, &l_Std_Http_Request_instToStringHead___lam__6___closed__19_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__19);
+v___x_1033_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__10, &l_Std_Http_Request_instToStringHead___lam__6___closed__10_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__10);
 v_sz_1034_ = lean_array_size(v_segments_1030_);
 v___x_1035_ = ((size_t)0ULL);
 v___x_1036_ = l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map(lean_box(0), lean_box(0), lean_box(0), v___x_1033_, v___f_776_, v_sz_1034_, v___x_1035_, v_segments_1030_);
@@ -3487,7 +4297,7 @@ lean_inc_ref(v_query_1044_);
 v_fragment_1045_ = lean_ctor_get(v_uri_1040_, 4);
 lean_inc(v_fragment_1045_);
 lean_dec_ref(v_uri_1040_);
-v___x_1046_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__4));
+v___x_1046_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__4, &l_Std_Http_Request_instToStringHead___lam__3___closed__4_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__4);
 v___y_920_ = v_query_1044_;
 v___y_921_ = v___x_1027_;
 v___y_922_ = v_path_1043_;
@@ -3520,11 +4330,11 @@ lean_inc_ref(v_host_1053_);
 v_port_1054_ = lean_ctor_get(v_val_1047_, 2);
 lean_inc(v_port_1054_);
 lean_dec(v_val_1047_);
-v___x_1055_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__23));
+v___x_1055_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__23, &l_Std_Http_Request_instToStringHead___lam__6___closed__23_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__23);
 if (lean_obj_tag(v_userInfo_1052_) == 0)
 {
 lean_object* v___x_1056_; 
-v___x_1056_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__4));
+v___x_1056_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__4, &l_Std_Http_Request_instToStringHead___lam__3___closed__4_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__4);
 v___y_976_ = v_query_1050_;
 v___y_977_ = v___x_1027_;
 v___y_978_ = v_scheme_1048_;
@@ -3553,7 +4363,7 @@ v_username_1059_ = lean_ctor_get(v_val_1057_, 0);
 lean_inc_ref(v_username_1059_);
 lean_dec(v_val_1057_);
 v___x_1060_ = lean_string_from_utf8_unchecked(v_username_1059_);
-v___x_1061_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__24));
+v___x_1061_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__24, &l_Std_Http_Request_instToStringHead___lam__6___closed__24_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__24);
 v___x_1062_ = lean_string_append(v___x_1060_, v___x_1061_);
 v___y_976_ = v_query_1050_;
 v___y_977_ = v___x_1027_;
@@ -3580,12 +4390,12 @@ v_val_1064_ = lean_ctor_get(v_password_1058_, 0);
 lean_inc(v_val_1064_);
 lean_dec_ref(v_password_1058_);
 v___x_1065_ = lean_string_from_utf8_unchecked(v_username_1063_);
-v___x_1066_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__17));
+v___x_1066_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__17, &l_Std_Http_Request_instToStringHead___lam__6___closed__17_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__17);
 v___x_1067_ = lean_string_append(v___x_1065_, v___x_1066_);
 v___x_1068_ = lean_string_from_utf8_unchecked(v_val_1064_);
 v___x_1069_ = lean_string_append(v___x_1067_, v___x_1068_);
 lean_dec_ref(v___x_1068_);
-v___x_1070_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__24));
+v___x_1070_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__24, &l_Std_Http_Request_instToStringHead___lam__6___closed__24_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__24);
 v___x_1071_ = lean_string_append(v___x_1069_, v___x_1070_);
 v___y_976_ = v_query_1050_;
 v___y_977_ = v___x_1027_;
@@ -3623,7 +4433,7 @@ lean_inc_ref(v_host_1074_);
 v_port_1075_ = lean_ctor_get(v_authority_1072_, 2);
 lean_inc(v_port_1075_);
 lean_dec_ref(v_authority_1072_);
-v___x_1076_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__3___closed__4));
+v___x_1076_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__3___closed__4, &l_Std_Http_Request_instToStringHead___lam__3___closed__4_once, _init_l_Std_Http_Request_instToStringHead___lam__3___closed__4);
 v_host_850_ = v_host_1074_;
 v_port_851_ = v_port_1075_;
 v___y_852_ = v___x_1027_;
@@ -3651,7 +4461,7 @@ v_username_1081_ = lean_ctor_get(v_val_1077_, 0);
 lean_inc_ref(v_username_1081_);
 lean_dec(v_val_1077_);
 v___x_1082_ = lean_string_from_utf8_unchecked(v_username_1081_);
-v___x_1083_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__24));
+v___x_1083_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__24, &l_Std_Http_Request_instToStringHead___lam__6___closed__24_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__24);
 v___x_1084_ = lean_string_append(v___x_1082_, v___x_1083_);
 v_host_850_ = v_host_1079_;
 v_port_851_ = v_port_1080_;
@@ -3678,12 +4488,12 @@ v_val_1088_ = lean_ctor_get(v_password_1078_, 0);
 lean_inc(v_val_1088_);
 lean_dec_ref(v_password_1078_);
 v___x_1089_ = lean_string_from_utf8_unchecked(v_username_1087_);
-v___x_1090_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__17));
+v___x_1090_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__17, &l_Std_Http_Request_instToStringHead___lam__6___closed__17_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__17);
 v___x_1091_ = lean_string_append(v___x_1089_, v___x_1090_);
 v___x_1092_ = lean_string_from_utf8_unchecked(v_val_1088_);
 v___x_1093_ = lean_string_append(v___x_1091_, v___x_1092_);
 lean_dec_ref(v___x_1092_);
-v___x_1094_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__24));
+v___x_1094_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__24, &l_Std_Http_Request_instToStringHead___lam__6___closed__24_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__24);
 v___x_1095_ = lean_string_append(v___x_1093_, v___x_1094_);
 v_host_850_ = v_host_1085_;
 v_port_851_ = v_port_1086_;
@@ -3703,7 +4513,7 @@ lean_dec_ref(v___f_776_);
 lean_dec_ref(v___f_775_);
 lean_dec_ref(v___f_774_);
 lean_dec_ref(v___f_773_);
-v___x_1096_ = ((lean_object*)(l_Std_Http_Request_instToStringHead___lam__6___closed__25));
+v___x_1096_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___lam__6___closed__25, &l_Std_Http_Request_instToStringHead___lam__6___closed__25_once, _init_l_Std_Http_Request_instToStringHead___lam__6___closed__25);
 v___y_809_ = v___x_1027_;
 v___y_810_ = v___x_1024_;
 v___y_811_ = v___x_1026_;
@@ -3713,6 +4523,38 @@ goto v___jp_808_;
 }
 }
 }
+}
+}
+static lean_object* _init_l_Std_Http_Request_instEncodeV11Head___closed__0(void){
+_start:
+{
+lean_object* v___f_1137_; 
+v___f_1137_ = lean_alloc_closure((void*)(l_Std_Http_Request_instEncodeV11Head___lam__0___boxed), 3, 0);
+return v___f_1137_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instEncodeV11Head___closed__1(void){
+_start:
+{
+lean_object* v___f_1138_; lean_object* v___f_1139_; lean_object* v___f_1140_; lean_object* v___f_1141_; 
+v___f_1138_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___closed__1, &l_Std_Http_Request_instToStringHead___closed__1_once, _init_l_Std_Http_Request_instToStringHead___closed__1);
+v___f_1139_ = lean_obj_once(&l_Std_Http_Request_instToStringHead___closed__0, &l_Std_Http_Request_instToStringHead___closed__0_once, _init_l_Std_Http_Request_instToStringHead___closed__0);
+v___f_1140_ = lean_obj_once(&l_Std_Http_Request_instEncodeV11Head___closed__0, &l_Std_Http_Request_instEncodeV11Head___closed__0_once, _init_l_Std_Http_Request_instEncodeV11Head___closed__0);
+v___f_1141_ = lean_alloc_closure((void*)(l_Std_Http_Request_instEncodeV11Head___lam__4), 7, 5);
+lean_closure_set(v___f_1141_, 0, v___f_1140_);
+lean_closure_set(v___f_1141_, 1, v___f_1139_);
+lean_closure_set(v___f_1141_, 2, v___f_1138_);
+lean_closure_set(v___f_1141_, 3, v___f_1139_);
+lean_closure_set(v___f_1141_, 4, v___f_1138_);
+return v___f_1141_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_instEncodeV11Head(void){
+_start:
+{
+lean_object* v___f_1142_; 
+v___f_1142_ = lean_obj_once(&l_Std_Http_Request_instEncodeV11Head___closed__1, &l_Std_Http_Request_instEncodeV11Head___closed__1_once, _init_l_Std_Http_Request_instEncodeV11Head___closed__1);
+return v___f_1142_;
 }
 }
 static lean_object* _init_l_Std_Http_Request_new___closed__0(void){
@@ -4051,6 +4893,24 @@ v___x_1226_ = lean_panic_fn_borrowed(v___x_1225_, v_msg_1224_);
 return v___x_1226_;
 }
 }
+static lean_object* _init_l_Std_Http_Request_Builder_uri_x21___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_1227_; 
+v___x_1227_ = lean_mk_string_unchecked("expected end of input", 21, 21);
+return v___x_1227_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_Builder_uri_x21___lam__0___closed__1(void){
+_start:
+{
+lean_object* v___x_1228_; lean_object* v___x_1229_; 
+v___x_1228_ = lean_obj_once(&l_Std_Http_Request_Builder_uri_x21___lam__0___closed__0, &l_Std_Http_Request_Builder_uri_x21___lam__0___closed__0_once, _init_l_Std_Http_Request_Builder_uri_x21___lam__0___closed__0);
+v___x_1229_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_1229_, 0, v___x_1228_);
+return v___x_1229_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Http_Request_Builder_uri_x21___lam__0(lean_object* v___x_1230_, lean_object* v___y_1231_){
 _start:
 {
@@ -4095,7 +4955,7 @@ goto v_resetjp_1238_;
 v_resetjp_1238_:
 {
 lean_object* v___x_1241_; lean_object* v___x_1243_; 
-v___x_1241_ = ((lean_object*)(l_Std_Http_Request_Builder_uri_x21___lam__0___closed__1));
+v___x_1241_ = lean_obj_once(&l_Std_Http_Request_Builder_uri_x21___lam__0___closed__1, &l_Std_Http_Request_Builder_uri_x21___lam__0___closed__1_once, _init_l_Std_Http_Request_Builder_uri_x21___lam__0___closed__1);
 if (v_isShared_1240_ == 0)
 {
 lean_ctor_set_tag(v___x_1239_, 1);
@@ -4125,15 +4985,73 @@ return v___x_1232_;
 }
 }
 }
+static lean_object* _init_l_Std_Http_Request_Builder_uri_x21___closed__0(void){
+_start:
+{
+lean_object* v___x_1248_; lean_object* v___x_1249_; lean_object* v___x_1250_; lean_object* v___x_1251_; lean_object* v___x_1252_; lean_object* v___x_1253_; lean_object* v___x_1254_; lean_object* v___x_1255_; 
+v___x_1248_ = lean_unsigned_to_nat(100u);
+v___x_1249_ = lean_unsigned_to_nat(128u);
+v___x_1250_ = lean_unsigned_to_nat(8192u);
+v___x_1251_ = lean_unsigned_to_nat(256u);
+v___x_1252_ = lean_unsigned_to_nat(1024u);
+v___x_1253_ = lean_unsigned_to_nat(253u);
+v___x_1254_ = lean_unsigned_to_nat(13u);
+v___x_1255_ = lean_alloc_ctor(0, 9, 0);
+lean_ctor_set(v___x_1255_, 0, v___x_1254_);
+lean_ctor_set(v___x_1255_, 1, v___x_1253_);
+lean_ctor_set(v___x_1255_, 2, v___x_1252_);
+lean_ctor_set(v___x_1255_, 3, v___x_1251_);
+lean_ctor_set(v___x_1255_, 4, v___x_1250_);
+lean_ctor_set(v___x_1255_, 5, v___x_1252_);
+lean_ctor_set(v___x_1255_, 6, v___x_1249_);
+lean_ctor_set(v___x_1255_, 7, v___x_1250_);
+lean_ctor_set(v___x_1255_, 8, v___x_1248_);
+return v___x_1255_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_Builder_uri_x21___closed__1(void){
+_start:
+{
+lean_object* v___x_1256_; lean_object* v___f_1257_; 
+v___x_1256_ = lean_obj_once(&l_Std_Http_Request_Builder_uri_x21___closed__0, &l_Std_Http_Request_Builder_uri_x21___closed__0_once, _init_l_Std_Http_Request_Builder_uri_x21___closed__0);
+v___f_1257_ = lean_alloc_closure((void*)(l_Std_Http_Request_Builder_uri_x21___lam__0), 2, 1);
+lean_closure_set(v___f_1257_, 0, v___x_1256_);
+return v___f_1257_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_Builder_uri_x21___closed__2(void){
+_start:
+{
+lean_object* v___x_1258_; 
+v___x_1258_ = lean_mk_string_unchecked("Std.Http.Data.URI", 17, 17);
+return v___x_1258_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_Builder_uri_x21___closed__3(void){
+_start:
+{
+lean_object* v___x_1259_; 
+v___x_1259_ = lean_mk_string_unchecked("Std.Http.RequestTarget.parse!", 29, 29);
+return v___x_1259_;
+}
+}
+static lean_object* _init_l_Std_Http_Request_Builder_uri_x21___closed__4(void){
+_start:
+{
+lean_object* v___x_1260_; 
+v___x_1260_ = lean_mk_string_unchecked("invalid request target", 22, 22);
+return v___x_1260_;
+}
+}
 static lean_object* _init_l_Std_Http_Request_Builder_uri_x21___closed__5(void){
 _start:
 {
 lean_object* v___x_1261_; lean_object* v___x_1262_; lean_object* v___x_1263_; lean_object* v___x_1264_; lean_object* v___x_1265_; lean_object* v___x_1266_; 
-v___x_1261_ = ((lean_object*)(l_Std_Http_Request_Builder_uri_x21___closed__4));
+v___x_1261_ = lean_obj_once(&l_Std_Http_Request_Builder_uri_x21___closed__4, &l_Std_Http_Request_Builder_uri_x21___closed__4_once, _init_l_Std_Http_Request_Builder_uri_x21___closed__4);
 v___x_1262_ = lean_unsigned_to_nat(12u);
 v___x_1263_ = lean_unsigned_to_nat(45u);
-v___x_1264_ = ((lean_object*)(l_Std_Http_Request_Builder_uri_x21___closed__3));
-v___x_1265_ = ((lean_object*)(l_Std_Http_Request_Builder_uri_x21___closed__2));
+v___x_1264_ = lean_obj_once(&l_Std_Http_Request_Builder_uri_x21___closed__3, &l_Std_Http_Request_Builder_uri_x21___closed__3_once, _init_l_Std_Http_Request_Builder_uri_x21___closed__3);
+v___x_1265_ = lean_obj_once(&l_Std_Http_Request_Builder_uri_x21___closed__2, &l_Std_Http_Request_Builder_uri_x21___closed__2_once, _init_l_Std_Http_Request_Builder_uri_x21___closed__2);
 v___x_1266_ = l_mkPanicMessageWithDecl(v___x_1265_, v___x_1264_, v___x_1263_, v___x_1262_, v___x_1261_);
 return v___x_1266_;
 }
@@ -4142,7 +5060,7 @@ LEAN_EXPORT lean_object* l_Std_Http_Request_Builder_uri_x21(lean_object* v_build
 _start:
 {
 lean_object* v___y_1270_; lean_object* v___f_1291_; lean_object* v___x_1292_; lean_object* v___x_1293_; 
-v___f_1291_ = ((lean_object*)(l_Std_Http_Request_Builder_uri_x21___closed__1));
+v___f_1291_ = lean_obj_once(&l_Std_Http_Request_Builder_uri_x21___closed__1, &l_Std_Http_Request_Builder_uri_x21___closed__1_once, _init_l_Std_Http_Request_Builder_uri_x21___closed__1);
 v___x_1292_ = lean_string_to_utf8(v_uri_1268_);
 v___x_1293_ = l_Std_Internal_Parsec_ByteArray_Parser_run___redArg(v___f_1291_, v___x_1292_);
 if (lean_obj_tag(v___x_1293_) == 0)
@@ -5415,6 +6333,14 @@ return v___x_1630_;
 }
 }
 }
+static lean_object* _init_l_Std_Http_Request_Builder_extension___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_1631_; 
+v___x_1631_ = lean_alloc_closure((void*)(l_Std_Http_Extensions_compareName___boxed), 2, 0);
+return v___x_1631_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Http_Request_Builder_extension___redArg(lean_object* v_builder_1632_, lean_object* v_inst_1633_, lean_object* v_data_1634_){
 _start:
 {
@@ -5443,7 +6369,7 @@ lean_object* v_dyn_1640_; lean_object* v___x_1641_; lean_object* v___x_1642_; le
 v_dyn_1640_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v_dyn_1640_, 0, v_inst_1633_);
 lean_ctor_set(v_dyn_1640_, 1, v_data_1634_);
-v___x_1641_ = ((lean_object*)(l_Std_Http_Request_Builder_extension___redArg___closed__0));
+v___x_1641_ = lean_obj_once(&l_Std_Http_Request_Builder_extension___redArg___closed__0, &l_Std_Http_Request_Builder_extension___redArg___closed__0_once, _init_l_Std_Http_Request_Builder_extension___redArg___closed__0);
 v___x_1642_ = l___private_Init_Dynamic_0__Dynamic_typeNameImpl(v_dyn_1640_);
 v___x_1643_ = l_Std_DTreeMap_Internal_Impl_insert___redArg(v___x_1641_, v___x_1642_, v_dyn_1640_, v_extensions_1636_);
 if (v_isShared_1639_ == 0)
@@ -5717,8 +6643,14 @@ l_Std_Http_Request_instInhabitedHead_default = _init_l_Std_Http_Request_instInha
 lean_mark_persistent(l_Std_Http_Request_instInhabitedHead_default);
 l_Std_Http_Request_instInhabitedHead = _init_l_Std_Http_Request_instInhabitedHead();
 lean_mark_persistent(l_Std_Http_Request_instInhabitedHead);
+l_Std_Http_Request_instReprHead = _init_l_Std_Http_Request_instReprHead();
+lean_mark_persistent(l_Std_Http_Request_instReprHead);
 l_Std_Http_Request_instToStringHead___lam__3___boxed__const__1 = _init_l_Std_Http_Request_instToStringHead___lam__3___boxed__const__1();
 lean_mark_persistent(l_Std_Http_Request_instToStringHead___lam__3___boxed__const__1);
+l_Std_Http_Request_instToStringHead = _init_l_Std_Http_Request_instToStringHead();
+lean_mark_persistent(l_Std_Http_Request_instToStringHead);
+l_Std_Http_Request_instEncodeV11Head = _init_l_Std_Http_Request_instEncodeV11Head();
+lean_mark_persistent(l_Std_Http_Request_instEncodeV11Head);
 l_Std_Http_Request_new = _init_l_Std_Http_Request_new();
 lean_mark_persistent(l_Std_Http_Request_new);
 return lean_io_result_mk_ok(lean_box(0));

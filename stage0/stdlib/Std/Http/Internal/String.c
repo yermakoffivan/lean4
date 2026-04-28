@@ -29,10 +29,10 @@ lean_object* lean_nat_add(lean_object*, lean_object*);
 uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
 lean_object* lean_string_utf8_byte_size(lean_object*);
 lean_object* l_String_Slice_positions(lean_object*);
-static const lean_string_object l_Std_Http_Internal_quoteCore___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 1, .m_capacity = 1, .m_length = 0, .m_data = ""};
-static const lean_object* l_Std_Http_Internal_quoteCore___redArg___closed__0 = (const lean_object*)&l_Std_Http_Internal_quoteCore___redArg___closed__0_value;
-static const lean_string_object l_Std_Http_Internal_quoteCore___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "\\"};
-static const lean_object* l_Std_Http_Internal_quoteCore___redArg___closed__1 = (const lean_object*)&l_Std_Http_Internal_quoteCore___redArg___closed__1_value;
+static lean_once_cell_t l_Std_Http_Internal_quoteCore___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_quoteCore___redArg___closed__0;
+static lean_once_cell_t l_Std_Http_Internal_quoteCore___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_quoteCore___redArg___closed__1;
 LEAN_EXPORT lean_object* l_Std_Http_Internal_quoteCore___redArg(uint32_t);
 LEAN_EXPORT lean_object* l_Std_Http_Internal_quoteCore___redArg___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Internal_quoteCore(uint32_t, lean_object*);
@@ -41,20 +41,20 @@ LEAN_EXPORT lean_object* l_List_foldl___at___00Std_Http_Internal_quoteHttpString
 LEAN_EXPORT lean_object* l_List_foldl___at___00Std_Http_Internal_quoteHttpString_spec__0___boxed(lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_List_all___at___00Std_Http_Internal_quoteHttpString_spec__1(lean_object*);
 LEAN_EXPORT lean_object* l_List_all___at___00Std_Http_Internal_quoteHttpString_spec__1___boxed(lean_object*);
-static const lean_string_object l_Std_Http_Internal_quoteHttpString___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "\""};
-static const lean_object* l_Std_Http_Internal_quoteHttpString___redArg___closed__0 = (const lean_object*)&l_Std_Http_Internal_quoteHttpString___redArg___closed__0_value;
+static lean_once_cell_t l_Std_Http_Internal_quoteHttpString___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_quoteHttpString___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Std_Http_Internal_quoteHttpString___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Internal_quoteHttpString(lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_List_all___at___00Std_Http_Internal_quoteHttpString_x3f_spec__0(lean_object*);
 LEAN_EXPORT lean_object* l_List_all___at___00Std_Http_Internal_quoteHttpString_x3f_spec__0___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Internal_quoteHttpString_x3f(lean_object*);
 LEAN_EXPORT lean_object* l_panic___at___00Std_Http_Internal_quoteHttpString_x21_spec__0(lean_object*);
-static const lean_string_object l_Std_Http_Internal_quoteHttpString_x21___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "Std.Http.Internal.String"};
-static const lean_object* l_Std_Http_Internal_quoteHttpString_x21___closed__0 = (const lean_object*)&l_Std_Http_Internal_quoteHttpString_x21___closed__0_value;
-static const lean_string_object l_Std_Http_Internal_quoteHttpString_x21___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 35, .m_capacity = 35, .m_length = 34, .m_data = "Std.Http.Internal.quoteHttpString!"};
-static const lean_object* l_Std_Http_Internal_quoteHttpString_x21___closed__1 = (const lean_object*)&l_Std_Http_Internal_quoteHttpString_x21___closed__1_value;
-static const lean_string_object l_Std_Http_Internal_quoteHttpString_x21___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 35, .m_capacity = 35, .m_length = 34, .m_data = "invalid HTTP quoted-string content"};
-static const lean_object* l_Std_Http_Internal_quoteHttpString_x21___closed__2 = (const lean_object*)&l_Std_Http_Internal_quoteHttpString_x21___closed__2_value;
+static lean_once_cell_t l_Std_Http_Internal_quoteHttpString_x21___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_quoteHttpString_x21___closed__0;
+static lean_once_cell_t l_Std_Http_Internal_quoteHttpString_x21___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_quoteHttpString_x21___closed__1;
+static lean_once_cell_t l_Std_Http_Internal_quoteHttpString_x21___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_quoteHttpString_x21___closed__2;
 static lean_once_cell_t l_Std_Http_Internal_quoteHttpString_x21___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Http_Internal_quoteHttpString_x21___closed__3;
 LEAN_EXPORT lean_object* l_Std_Http_Internal_quoteHttpString_x21(lean_object*);
@@ -82,6 +82,22 @@ LEAN_EXPORT uint8_t l_List_all___at___00Std_Http_Internal_isToken_spec__0(lean_o
 LEAN_EXPORT lean_object* l_List_all___at___00Std_Http_Internal_isToken_spec__0___boxed(lean_object*);
 LEAN_EXPORT uint8_t l_Std_Http_Internal_isToken(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Internal_isToken___boxed(lean_object*);
+static lean_object* _init_l_Std_Http_Internal_quoteCore___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; 
+v___x_1_ = lean_mk_string_unchecked("", 0, 0);
+return v___x_1_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_quoteCore___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_2_; 
+v___x_2_ = lean_mk_string_unchecked("\\", 1, 1);
+return v___x_2_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Http_Internal_quoteCore___redArg(uint32_t v_c_3_){
 _start:
 {
@@ -139,15 +155,15 @@ goto v___jp_4_;
 v___jp_4_:
 {
 lean_object* v___x_5_; lean_object* v___x_6_; 
-v___x_5_ = ((lean_object*)(l_Std_Http_Internal_quoteCore___redArg___closed__0));
+v___x_5_ = lean_obj_once(&l_Std_Http_Internal_quoteCore___redArg___closed__0, &l_Std_Http_Internal_quoteCore___redArg___closed__0_once, _init_l_Std_Http_Internal_quoteCore___redArg___closed__0);
 v___x_6_ = lean_string_push(v___x_5_, v_c_3_);
 return v___x_6_;
 }
 v___jp_7_:
 {
 lean_object* v___x_8_; lean_object* v___x_9_; lean_object* v___x_10_; lean_object* v___x_11_; 
-v___x_8_ = ((lean_object*)(l_Std_Http_Internal_quoteCore___redArg___closed__1));
-v___x_9_ = ((lean_object*)(l_Std_Http_Internal_quoteCore___redArg___closed__0));
+v___x_8_ = lean_obj_once(&l_Std_Http_Internal_quoteCore___redArg___closed__1, &l_Std_Http_Internal_quoteCore___redArg___closed__1_once, _init_l_Std_Http_Internal_quoteCore___redArg___closed__1);
+v___x_9_ = lean_obj_once(&l_Std_Http_Internal_quoteCore___redArg___closed__0, &l_Std_Http_Internal_quoteCore___redArg___closed__0_once, _init_l_Std_Http_Internal_quoteCore___redArg___closed__0);
 v___x_10_ = lean_string_push(v___x_9_, v_c_3_);
 v___x_11_ = lean_string_append(v___x_8_, v___x_10_);
 lean_dec_ref(v___x_10_);
@@ -547,6 +563,14 @@ v_r_145_ = lean_box(v_res_144_);
 return v_r_145_;
 }
 }
+static lean_object* _init_l_Std_Http_Internal_quoteHttpString___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_146_; 
+v___x_146_ = lean_mk_string_unchecked("\"", 1, 1);
+return v___x_146_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Http_Internal_quoteHttpString___redArg(lean_object* v_s_147_){
 _start:
 {
@@ -577,7 +601,7 @@ goto v___jp_149_;
 v___jp_149_:
 {
 lean_object* v___x_150_; lean_object* v___x_151_; lean_object* v___x_152_; 
-v___x_150_ = ((lean_object*)(l_Std_Http_Internal_quoteHttpString___redArg___closed__0));
+v___x_150_ = lean_obj_once(&l_Std_Http_Internal_quoteHttpString___redArg___closed__0, &l_Std_Http_Internal_quoteHttpString___redArg___closed__0_once, _init_l_Std_Http_Internal_quoteHttpString___redArg___closed__0);
 v___x_151_ = l_List_foldl___at___00Std_Http_Internal_quoteHttpString_spec__0(v___x_150_, v_sl_148_);
 lean_dec(v_sl_148_);
 v___x_152_ = lean_string_append(v___x_151_, v___x_150_);
@@ -786,20 +810,44 @@ LEAN_EXPORT lean_object* l_panic___at___00Std_Http_Internal_quoteHttpString_x21_
 _start:
 {
 lean_object* v___x_215_; lean_object* v___x_216_; 
-v___x_215_ = ((lean_object*)(l_Std_Http_Internal_quoteCore___redArg___closed__0));
+v___x_215_ = lean_obj_once(&l_Std_Http_Internal_quoteCore___redArg___closed__0, &l_Std_Http_Internal_quoteCore___redArg___closed__0_once, _init_l_Std_Http_Internal_quoteCore___redArg___closed__0);
 v___x_216_ = lean_panic_fn_borrowed(v___x_215_, v_msg_214_);
 return v___x_216_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_quoteHttpString_x21___closed__0(void){
+_start:
+{
+lean_object* v___x_217_; 
+v___x_217_ = lean_mk_string_unchecked("Std.Http.Internal.String", 24, 24);
+return v___x_217_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_quoteHttpString_x21___closed__1(void){
+_start:
+{
+lean_object* v___x_218_; 
+v___x_218_ = lean_mk_string_unchecked("Std.Http.Internal.quoteHttpString!", 34, 34);
+return v___x_218_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_quoteHttpString_x21___closed__2(void){
+_start:
+{
+lean_object* v___x_219_; 
+v___x_219_ = lean_mk_string_unchecked("invalid HTTP quoted-string content", 34, 34);
+return v___x_219_;
 }
 }
 static lean_object* _init_l_Std_Http_Internal_quoteHttpString_x21___closed__3(void){
 _start:
 {
 lean_object* v___x_220_; lean_object* v___x_221_; lean_object* v___x_222_; lean_object* v___x_223_; lean_object* v___x_224_; lean_object* v___x_225_; 
-v___x_220_ = ((lean_object*)(l_Std_Http_Internal_quoteHttpString_x21___closed__2));
+v___x_220_ = lean_obj_once(&l_Std_Http_Internal_quoteHttpString_x21___closed__2, &l_Std_Http_Internal_quoteHttpString_x21___closed__2_once, _init_l_Std_Http_Internal_quoteHttpString_x21___closed__2);
 v___x_221_ = lean_unsigned_to_nat(12u);
 v___x_222_ = lean_unsigned_to_nat(83u);
-v___x_223_ = ((lean_object*)(l_Std_Http_Internal_quoteHttpString_x21___closed__1));
-v___x_224_ = ((lean_object*)(l_Std_Http_Internal_quoteHttpString_x21___closed__0));
+v___x_223_ = lean_obj_once(&l_Std_Http_Internal_quoteHttpString_x21___closed__1, &l_Std_Http_Internal_quoteHttpString_x21___closed__1_once, _init_l_Std_Http_Internal_quoteHttpString_x21___closed__1);
+v___x_224_ = lean_obj_once(&l_Std_Http_Internal_quoteHttpString_x21___closed__0, &l_Std_Http_Internal_quoteHttpString_x21___closed__0_once, _init_l_Std_Http_Internal_quoteHttpString_x21___closed__0);
 v___x_225_ = l_mkPanicMessageWithDecl(v___x_224_, v___x_223_, v___x_222_, v___x_221_, v___x_220_);
 return v___x_225_;
 }
@@ -1295,7 +1343,7 @@ goto _start;
 else
 {
 lean_object* v___x_377_; lean_object* v___x_378_; 
-v___x_377_ = ((lean_object*)(l_Std_Http_Internal_quoteCore___redArg___closed__0));
+v___x_377_ = lean_obj_once(&l_Std_Http_Internal_quoteCore___redArg___closed__0, &l_Std_Http_Internal_quoteCore___redArg___closed__0_once, _init_l_Std_Http_Internal_quoteCore___redArg___closed__0);
 v___x_378_ = lean_alloc_ctor(1, 1, 1);
 lean_ctor_set(v___x_378_, 0, v___x_377_);
 lean_ctor_set_uint8(v___x_378_, sizeof(void*)*1, v___x_364_);

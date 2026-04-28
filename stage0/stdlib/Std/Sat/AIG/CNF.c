@@ -30,8 +30,8 @@ lean_object* lean_nat_land(lean_object*, lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 uint8_t l_Std_Sat_CNF_eval___redArg(lean_object*, lean_object*);
 uint8_t l_Std_Sat_AIG_denote_go___redArg(lean_object*, lean_object*, lean_object*);
-static const lean_array_object l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_falseToCNF___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_falseToCNF___redArg___closed__0 = (const lean_object*)&l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_falseToCNF___redArg___closed__0_value;
+static lean_once_cell_t l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_falseToCNF___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_falseToCNF___redArg___closed__0;
 LEAN_EXPORT lean_object* l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_falseToCNF___redArg(lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_falseToCNF(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_atomToCNF___redArg(lean_object*, lean_object*);
@@ -98,6 +98,15 @@ LEAN_EXPORT lean_object* l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_toCNF_match_
 LEAN_EXPORT lean_object* l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_toCNF_match__16_splitter(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_toCNF_match__16_splitter___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Sat_AIG_toCNF(lean_object*);
+static lean_object* _init_l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_falseToCNF___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; lean_object* v___x_2_; 
+v___x_1_ = lean_unsigned_to_nat(0u);
+v___x_2_ = lean_mk_empty_array_with_capacity(v___x_1_);
+return v___x_2_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_falseToCNF___redArg(lean_object* v_output_3_){
 _start:
 {
@@ -111,7 +120,7 @@ v___x_7_ = lean_box(0);
 v___x_8_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_8_, 0, v___x_6_);
 lean_ctor_set(v___x_8_, 1, v___x_7_);
-v___x_9_ = ((lean_object*)(l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_falseToCNF___redArg___closed__0));
+v___x_9_ = lean_obj_once(&l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_falseToCNF___redArg___closed__0, &l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_falseToCNF___redArg___closed__0_once, _init_l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_falseToCNF___redArg___closed__0);
 v___x_10_ = lean_array_push(v___x_9_, v___x_8_);
 return v___x_10_;
 }
@@ -161,7 +170,7 @@ lean_ctor_set(v___x_29_, 1, v___x_22_);
 v___x_30_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_30_, 0, v___x_26_);
 lean_ctor_set(v___x_30_, 1, v___x_29_);
-v___x_31_ = ((lean_object*)(l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_falseToCNF___redArg___closed__0));
+v___x_31_ = lean_obj_once(&l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_falseToCNF___redArg___closed__0, &l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_falseToCNF___redArg___closed__0_once, _init_l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_falseToCNF___redArg___closed__0);
 v___x_32_ = lean_array_push(v___x_31_, v___x_30_);
 v___x_33_ = lean_array_push(v___x_32_, v___x_24_);
 return v___x_33_;
@@ -233,7 +242,7 @@ lean_ctor_set(v___x_62_, 1, v___x_50_);
 v___x_63_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_63_, 0, v___x_56_);
 lean_ctor_set(v___x_63_, 1, v___x_62_);
-v___x_64_ = ((lean_object*)(l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_falseToCNF___redArg___closed__0));
+v___x_64_ = lean_obj_once(&l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_falseToCNF___redArg___closed__0, &l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_falseToCNF___redArg___closed__0_once, _init_l___private_Std_Sat_AIG_CNF_0__Std_Sat_AIG_Decl_falseToCNF___redArg___closed__0);
 v___x_65_ = lean_array_push(v___x_64_, v___x_63_);
 v___x_66_ = lean_array_push(v___x_65_, v___y_58_);
 v___x_67_ = lean_array_push(v___x_66_, v___x_53_);

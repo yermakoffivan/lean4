@@ -17,9 +17,9 @@ uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
 uint32_t lean_string_utf8_get(lean_object*, lean_object*);
 lean_object* lean_string_utf8_next(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instStreamRawChar___lam__0(lean_object*);
-static const lean_closure_object l_instStreamRawChar___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instStreamRawChar___lam__0, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instStreamRawChar___closed__0 = (const lean_object*)&l_instStreamRawChar___closed__0_value;
-LEAN_EXPORT const lean_object* l_instStreamRawChar = (const lean_object*)&l_instStreamRawChar___closed__0_value;
+static lean_once_cell_t l_instStreamRawChar___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instStreamRawChar___closed__0;
+LEAN_EXPORT lean_object* l_instStreamRawChar;
 LEAN_EXPORT lean_object* l_instStreamRawChar___lam__0(lean_object* v_s_1_){
 _start:
 {
@@ -95,6 +95,22 @@ return v___x_16_;
 }
 }
 }
+static lean_object* _init_l_instStreamRawChar___closed__0(void){
+_start:
+{
+lean_object* v___f_19_; 
+v___f_19_ = lean_alloc_closure((void*)(l_instStreamRawChar___lam__0), 1, 0);
+return v___f_19_;
+}
+}
+static lean_object* _init_l_instStreamRawChar(void){
+_start:
+{
+lean_object* v___f_20_; 
+v___f_20_ = lean_obj_once(&l_instStreamRawChar___closed__0, &l_instStreamRawChar___closed__0_once, _init_l_instStreamRawChar___closed__0);
+return v___f_20_;
+}
+}
 lean_object* runtime_initialize_Init_Data_String_Basic(uint8_t builtin);
 lean_object* runtime_initialize_Init_Data_Stream(uint8_t builtin);
 static bool _G_runtime_initialized = false;
@@ -108,6 +124,8 @@ lean_dec_ref(res);
 res = runtime_initialize_Init_Data_Stream(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_instStreamRawChar = _init_l_instStreamRawChar();
+lean_mark_persistent(l_instStreamRawChar);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

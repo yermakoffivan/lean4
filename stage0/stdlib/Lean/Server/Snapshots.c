@@ -36,12 +36,12 @@ LEAN_EXPORT lean_object* l_Lean_Server_Snapshots_Snapshot_env___boxed(lean_objec
 LEAN_EXPORT lean_object* l_Lean_Server_Snapshots_Snapshot_msgLog(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Server_Snapshots_Snapshot_msgLog___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_panic___at___00Lean_Server_Snapshots_Snapshot_infoTree_spec__0(lean_object*);
-static const lean_string_object l_Lean_Server_Snapshots_Snapshot_infoTree___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 22, .m_capacity = 22, .m_length = 21, .m_data = "Lean.Server.Snapshots"};
-static const lean_object* l_Lean_Server_Snapshots_Snapshot_infoTree___closed__0 = (const lean_object*)&l_Lean_Server_Snapshots_Snapshot_infoTree___closed__0_value;
-static const lean_string_object l_Lean_Server_Snapshots_Snapshot_infoTree___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 40, .m_capacity = 40, .m_length = 39, .m_data = "Lean.Server.Snapshots.Snapshot.infoTree"};
-static const lean_object* l_Lean_Server_Snapshots_Snapshot_infoTree___closed__1 = (const lean_object*)&l_Lean_Server_Snapshots_Snapshot_infoTree___closed__1_value;
-static const lean_string_object l_Lean_Server_Snapshots_Snapshot_infoTree___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 50, .m_capacity = 50, .m_length = 49, .m_data = "assertion violation: infoState.trees.size == 1\n  "};
-static const lean_object* l_Lean_Server_Snapshots_Snapshot_infoTree___closed__2 = (const lean_object*)&l_Lean_Server_Snapshots_Snapshot_infoTree___closed__2_value;
+static lean_once_cell_t l_Lean_Server_Snapshots_Snapshot_infoTree___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Server_Snapshots_Snapshot_infoTree___closed__0;
+static lean_once_cell_t l_Lean_Server_Snapshots_Snapshot_infoTree___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Server_Snapshots_Snapshot_infoTree___closed__1;
+static lean_once_cell_t l_Lean_Server_Snapshots_Snapshot_infoTree___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Server_Snapshots_Snapshot_infoTree___closed__2;
 static lean_once_cell_t l_Lean_Server_Snapshots_Snapshot_infoTree___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Server_Snapshots_Snapshot_infoTree___closed__3;
 LEAN_EXPORT lean_object* l_Lean_Server_Snapshots_Snapshot_infoTree(lean_object*);
@@ -125,15 +125,39 @@ v___x_18_ = lean_panic_fn_borrowed(v___x_17_, v_msg_16_);
 return v___x_18_;
 }
 }
+static lean_object* _init_l_Lean_Server_Snapshots_Snapshot_infoTree___closed__0(void){
+_start:
+{
+lean_object* v___x_19_; 
+v___x_19_ = lean_mk_string_unchecked("Lean.Server.Snapshots", 21, 21);
+return v___x_19_;
+}
+}
+static lean_object* _init_l_Lean_Server_Snapshots_Snapshot_infoTree___closed__1(void){
+_start:
+{
+lean_object* v___x_20_; 
+v___x_20_ = lean_mk_string_unchecked("Lean.Server.Snapshots.Snapshot.infoTree", 39, 39);
+return v___x_20_;
+}
+}
+static lean_object* _init_l_Lean_Server_Snapshots_Snapshot_infoTree___closed__2(void){
+_start:
+{
+lean_object* v___x_21_; 
+v___x_21_ = lean_mk_string_unchecked("assertion violation: infoState.trees.size == 1\n  ", 49, 49);
+return v___x_21_;
+}
+}
 static lean_object* _init_l_Lean_Server_Snapshots_Snapshot_infoTree___closed__3(void){
 _start:
 {
 lean_object* v___x_22_; lean_object* v___x_23_; lean_object* v___x_24_; lean_object* v___x_25_; lean_object* v___x_26_; lean_object* v___x_27_; 
-v___x_22_ = ((lean_object*)(l_Lean_Server_Snapshots_Snapshot_infoTree___closed__2));
+v___x_22_ = lean_obj_once(&l_Lean_Server_Snapshots_Snapshot_infoTree___closed__2, &l_Lean_Server_Snapshots_Snapshot_infoTree___closed__2_once, _init_l_Lean_Server_Snapshots_Snapshot_infoTree___closed__2);
 v___x_23_ = lean_unsigned_to_nat(2u);
 v___x_24_ = lean_unsigned_to_nat(48u);
-v___x_25_ = ((lean_object*)(l_Lean_Server_Snapshots_Snapshot_infoTree___closed__1));
-v___x_26_ = ((lean_object*)(l_Lean_Server_Snapshots_Snapshot_infoTree___closed__0));
+v___x_25_ = lean_obj_once(&l_Lean_Server_Snapshots_Snapshot_infoTree___closed__1, &l_Lean_Server_Snapshots_Snapshot_infoTree___closed__1_once, _init_l_Lean_Server_Snapshots_Snapshot_infoTree___closed__1);
+v___x_26_ = lean_obj_once(&l_Lean_Server_Snapshots_Snapshot_infoTree___closed__0, &l_Lean_Server_Snapshots_Snapshot_infoTree___closed__0_once, _init_l_Lean_Server_Snapshots_Snapshot_infoTree___closed__0);
 v___x_27_ = l_mkPanicMessageWithDecl(v___x_26_, v___x_25_, v___x_24_, v___x_23_, v___x_22_);
 return v___x_27_;
 }

@@ -30,23 +30,23 @@ lean_object* l_Lean_Exception_toMessageData(lean_object*);
 lean_object* l_Lean_Syntax_getTailPos_x3f(lean_object*, uint8_t);
 lean_object* l_Lean_Syntax_getPos_x3f(lean_object*, uint8_t);
 lean_object* l_Lean_MessageLog_toList(lean_object*);
-static const lean_string_object l_Lake_mkParserErrorMessage___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 1, .m_capacity = 1, .m_length = 0, .m_data = ""};
-static const lean_object* l_Lake_mkParserErrorMessage___closed__0 = (const lean_object*)&l_Lake_mkParserErrorMessage___closed__0_value;
+static lean_once_cell_t l_Lake_mkParserErrorMessage___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_mkParserErrorMessage___closed__0;
 LEAN_EXPORT lean_object* l_Lake_mkParserErrorMessage(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_mkParserErrorMessage___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_mkExceptionMessage(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_mkMessageNoPos(lean_object*, lean_object*, uint8_t);
 LEAN_EXPORT lean_object* l_Lake_mkMessageNoPos___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lake_mkMessageStringCore___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "\n"};
-static const lean_object* l_Lake_mkMessageStringCore___closed__0 = (const lean_object*)&l_Lake_mkMessageStringCore___closed__0_value;
-static const lean_string_object l_Lake_mkMessageStringCore___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "info: "};
-static const lean_object* l_Lake_mkMessageStringCore___closed__1 = (const lean_object*)&l_Lake_mkMessageStringCore___closed__1_value;
-static const lean_string_object l_Lake_mkMessageStringCore___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "warning: "};
-static const lean_object* l_Lake_mkMessageStringCore___closed__2 = (const lean_object*)&l_Lake_mkMessageStringCore___closed__2_value;
-static const lean_string_object l_Lake_mkMessageStringCore___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "error: "};
-static const lean_object* l_Lake_mkMessageStringCore___closed__3 = (const lean_object*)&l_Lake_mkMessageStringCore___closed__3_value;
-static const lean_string_object l_Lake_mkMessageStringCore___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = ":\n"};
-static const lean_object* l_Lake_mkMessageStringCore___closed__4 = (const lean_object*)&l_Lake_mkMessageStringCore___closed__4_value;
+static lean_once_cell_t l_Lake_mkMessageStringCore___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_mkMessageStringCore___closed__0;
+static lean_once_cell_t l_Lake_mkMessageStringCore___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_mkMessageStringCore___closed__1;
+static lean_once_cell_t l_Lake_mkMessageStringCore___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_mkMessageStringCore___closed__2;
+static lean_once_cell_t l_Lake_mkMessageStringCore___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_mkMessageStringCore___closed__3;
+static lean_once_cell_t l_Lake_mkMessageStringCore___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_mkMessageStringCore___closed__4;
 LEAN_EXPORT lean_object* l_Lake_mkMessageStringCore(uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, uint8_t);
 LEAN_EXPORT lean_object* l_Lake_mkMessageStringCore___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_mkMessageString(lean_object*, uint8_t, uint8_t);
@@ -55,6 +55,14 @@ LEAN_EXPORT lean_object* l_List_foldlM___at___00Lake_mkMessageLogString_spec__0(
 LEAN_EXPORT lean_object* l_List_foldlM___at___00Lake_mkMessageLogString_spec__0___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_mkMessageLogString(lean_object*);
 LEAN_EXPORT lean_object* l_Lake_mkMessageLogString___boxed(lean_object*, lean_object*);
+static lean_object* _init_l_Lake_mkParserErrorMessage___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; 
+v___x_1_ = lean_mk_string_unchecked("", 0, 0);
+return v___x_1_;
+}
+}
 LEAN_EXPORT lean_object* l_Lake_mkParserErrorMessage(lean_object* v_ictx_2_, lean_object* v_s_3_, lean_object* v_e_4_){
 _start:
 {
@@ -70,7 +78,7 @@ v___x_9_ = lean_box(0);
 v___x_10_ = 1;
 v___x_11_ = 2;
 v___x_12_ = 0;
-v___x_13_ = ((lean_object*)(l_Lake_mkParserErrorMessage___closed__0));
+v___x_13_ = lean_obj_once(&l_Lake_mkParserErrorMessage___closed__0, &l_Lake_mkParserErrorMessage___closed__0_once, _init_l_Lake_mkParserErrorMessage___closed__0);
 v___x_14_ = l_Lean_Parser_Error_toString(v_e_4_);
 v___x_15_ = lean_alloc_ctor(3, 1, 0);
 lean_ctor_set(v___x_15_, 0, v___x_14_);
@@ -128,7 +136,7 @@ v___jp_28_:
 {
 uint8_t v___x_31_; lean_object* v___x_32_; lean_object* v___x_33_; lean_object* v___x_34_; 
 v___x_31_ = 2;
-v___x_32_ = ((lean_object*)(l_Lake_mkParserErrorMessage___closed__0));
+v___x_32_ = lean_obj_once(&l_Lake_mkParserErrorMessage___closed__0, &l_Lake_mkParserErrorMessage___closed__0_once, _init_l_Lake_mkParserErrorMessage___closed__0);
 v___x_33_ = l_Lean_Exception_toMessageData(v_e_23_);
 v___x_34_ = lean_alloc_ctor(0, 5, 3);
 lean_ctor_set(v___x_34_, 0, v_fileName_24_);
@@ -220,7 +228,7 @@ v___x_57_ = lean_unsigned_to_nat(0u);
 v___x_58_ = l_Lean_FileMap_toPosition(v_fileMap_56_, v___x_57_);
 v___x_59_ = lean_box(0);
 v___x_60_ = 0;
-v___x_61_ = ((lean_object*)(l_Lake_mkParserErrorMessage___closed__0));
+v___x_61_ = lean_obj_once(&l_Lake_mkParserErrorMessage___closed__0, &l_Lake_mkParserErrorMessage___closed__0_once, _init_l_Lake_mkParserErrorMessage___closed__0);
 v___x_62_ = lean_alloc_ctor(0, 5, 3);
 lean_ctor_set(v___x_62_, 0, v_fileName_55_);
 lean_ctor_set(v___x_62_, 1, v___x_58_);
@@ -242,16 +250,56 @@ v_res_67_ = l_Lake_mkMessageNoPos(v_ictx_63_, v_data_64_, v_severity_boxed_66_);
 return v_res_67_;
 }
 }
+static lean_object* _init_l_Lake_mkMessageStringCore___closed__0(void){
+_start:
+{
+lean_object* v___x_68_; 
+v___x_68_ = lean_mk_string_unchecked("\n", 1, 1);
+return v___x_68_;
+}
+}
+static lean_object* _init_l_Lake_mkMessageStringCore___closed__1(void){
+_start:
+{
+lean_object* v___x_69_; 
+v___x_69_ = lean_mk_string_unchecked("info: ", 6, 6);
+return v___x_69_;
+}
+}
+static lean_object* _init_l_Lake_mkMessageStringCore___closed__2(void){
+_start:
+{
+lean_object* v___x_70_; 
+v___x_70_ = lean_mk_string_unchecked("warning: ", 9, 9);
+return v___x_70_;
+}
+}
+static lean_object* _init_l_Lake_mkMessageStringCore___closed__3(void){
+_start:
+{
+lean_object* v___x_71_; 
+v___x_71_ = lean_mk_string_unchecked("error: ", 7, 7);
+return v___x_71_;
+}
+}
+static lean_object* _init_l_Lake_mkMessageStringCore___closed__4(void){
+_start:
+{
+lean_object* v___x_72_; 
+v___x_72_ = lean_mk_string_unchecked(":\n", 2, 2);
+return v___x_72_;
+}
+}
 LEAN_EXPORT lean_object* l_Lake_mkMessageStringCore(uint8_t v_severity_73_, lean_object* v_fileName_74_, lean_object* v_caption_75_, lean_object* v_body_76_, lean_object* v_pos_77_, lean_object* v_endPos_x3f_78_, uint8_t v_infoWithPos_79_){
 _start:
 {
 lean_object* v___y_81_; lean_object* v___y_85_; uint8_t v___y_86_; uint8_t v___y_88_; lean_object* v___y_89_; uint32_t v___y_90_; lean_object* v_str_94_; lean_object* v_str_107_; lean_object* v___x_120_; uint8_t v___x_121_; 
-v___x_120_ = ((lean_object*)(l_Lake_mkParserErrorMessage___closed__0));
+v___x_120_ = lean_obj_once(&l_Lake_mkParserErrorMessage___closed__0, &l_Lake_mkParserErrorMessage___closed__0_once, _init_l_Lake_mkParserErrorMessage___closed__0);
 v___x_121_ = lean_string_dec_eq(v_caption_75_, v___x_120_);
 if (v___x_121_ == 0)
 {
 lean_object* v___x_122_; lean_object* v___x_123_; lean_object* v_str_124_; 
-v___x_122_ = ((lean_object*)(l_Lake_mkMessageStringCore___closed__4));
+v___x_122_ = lean_obj_once(&l_Lake_mkMessageStringCore___closed__4, &l_Lake_mkMessageStringCore___closed__4_once, _init_l_Lake_mkMessageStringCore___closed__4);
 v___x_123_ = lean_string_append(v_caption_75_, v___x_122_);
 v_str_124_ = lean_string_append(v___x_123_, v_body_76_);
 lean_dec_ref(v_body_76_);
@@ -267,7 +315,7 @@ goto v___jp_106_;
 v___jp_80_:
 {
 lean_object* v___x_82_; lean_object* v_str_83_; 
-v___x_82_ = ((lean_object*)(l_Lake_mkMessageStringCore___closed__0));
+v___x_82_ = lean_obj_once(&l_Lake_mkMessageStringCore___closed__0, &l_Lake_mkMessageStringCore___closed__0_once, _init_l_Lake_mkMessageStringCore___closed__0);
 v_str_83_ = lean_string_append(v___y_81_, v___x_82_);
 return v_str_83_;
 }
@@ -382,7 +430,7 @@ goto v___jp_93_;
 else
 {
 lean_object* v___x_108_; lean_object* v___x_109_; lean_object* v___x_110_; lean_object* v_str_111_; 
-v___x_108_ = ((lean_object*)(l_Lake_mkMessageStringCore___closed__1));
+v___x_108_ = lean_obj_once(&l_Lake_mkMessageStringCore___closed__1, &l_Lake_mkMessageStringCore___closed__1_once, _init_l_Lake_mkMessageStringCore___closed__1);
 v___x_109_ = lean_box(0);
 v___x_110_ = l_Lean_mkErrorStringWithPos(v_fileName_74_, v_pos_77_, v___x_108_, v_endPos_x3f_78_, v___x_109_, v___x_109_);
 v_str_111_ = lean_string_append(v___x_110_, v_str_107_);
@@ -394,7 +442,7 @@ goto v___jp_93_;
 case 1:
 {
 lean_object* v___x_112_; lean_object* v___x_113_; lean_object* v___x_114_; lean_object* v_str_115_; 
-v___x_112_ = ((lean_object*)(l_Lake_mkMessageStringCore___closed__2));
+v___x_112_ = lean_obj_once(&l_Lake_mkMessageStringCore___closed__2, &l_Lake_mkMessageStringCore___closed__2_once, _init_l_Lake_mkMessageStringCore___closed__2);
 v___x_113_ = lean_box(0);
 v___x_114_ = l_Lean_mkErrorStringWithPos(v_fileName_74_, v_pos_77_, v___x_112_, v_endPos_x3f_78_, v___x_113_, v___x_113_);
 v_str_115_ = lean_string_append(v___x_114_, v_str_107_);
@@ -405,7 +453,7 @@ goto v___jp_93_;
 default: 
 {
 lean_object* v___x_116_; lean_object* v___x_117_; lean_object* v___x_118_; lean_object* v_str_119_; 
-v___x_116_ = ((lean_object*)(l_Lake_mkMessageStringCore___closed__3));
+v___x_116_ = lean_obj_once(&l_Lake_mkMessageStringCore___closed__3, &l_Lake_mkMessageStringCore___closed__3_once, _init_l_Lake_mkMessageStringCore___closed__3);
 v___x_117_ = lean_box(0);
 v___x_118_ = l_Lean_mkErrorStringWithPos(v_fileName_74_, v_pos_77_, v___x_116_, v_endPos_x3f_78_, v___x_117_, v___x_117_);
 v_str_119_ = lean_string_append(v___x_118_, v_str_107_);
@@ -513,7 +561,7 @@ LEAN_EXPORT lean_object* l_Lake_mkMessageLogString(lean_object* v_log_171_){
 _start:
 {
 lean_object* v___x_173_; lean_object* v___x_174_; lean_object* v___x_175_; 
-v___x_173_ = ((lean_object*)(l_Lake_mkParserErrorMessage___closed__0));
+v___x_173_ = lean_obj_once(&l_Lake_mkParserErrorMessage___closed__0, &l_Lake_mkParserErrorMessage___closed__0_once, _init_l_Lake_mkParserErrorMessage___closed__0);
 v___x_174_ = l_Lean_MessageLog_toList(v_log_171_);
 v___x_175_ = l_List_foldlM___at___00Lake_mkMessageLogString_spec__0(v___x_173_, v___x_174_);
 return v___x_175_;

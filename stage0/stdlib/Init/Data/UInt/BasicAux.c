@@ -83,12 +83,12 @@ uint32_t lean_uint32_add(uint32_t, uint32_t);
 LEAN_EXPORT lean_object* l_UInt32_add___boxed(lean_object*, lean_object*);
 uint32_t lean_uint32_sub(uint32_t, uint32_t);
 LEAN_EXPORT lean_object* l_UInt32_sub___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instAddUInt32___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt32_add___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instAddUInt32___closed__0 = (const lean_object*)&l_instAddUInt32___closed__0_value;
-LEAN_EXPORT const lean_object* l_instAddUInt32 = (const lean_object*)&l_instAddUInt32___closed__0_value;
-static const lean_closure_object l_instSubUInt32___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt32_sub___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSubUInt32___closed__0 = (const lean_object*)&l_instSubUInt32___closed__0_value;
-LEAN_EXPORT const lean_object* l_instSubUInt32 = (const lean_object*)&l_instSubUInt32___closed__0_value;
+static lean_once_cell_t l_instAddUInt32___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instAddUInt32___closed__0;
+LEAN_EXPORT lean_object* l_instAddUInt32;
+static lean_once_cell_t l_instSubUInt32___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSubUInt32___closed__0;
+LEAN_EXPORT lean_object* l_instSubUInt32;
 LEAN_EXPORT lean_object* l_UInt64_toFin(uint64_t);
 LEAN_EXPORT lean_object* l_UInt64_toFin___boxed(lean_object*);
 uint64_t lean_uint64_of_nat(lean_object*);
@@ -141,12 +141,12 @@ size_t lean_usize_sub(size_t, size_t);
 LEAN_EXPORT lean_object* l_USize_sub___boxed(lean_object*, lean_object*);
 LEAN_EXPORT size_t l_USize_instOfNat(lean_object*);
 LEAN_EXPORT lean_object* l_USize_instOfNat___boxed(lean_object*);
-static const lean_closure_object l_instAddUSize___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_USize_add___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instAddUSize___closed__0 = (const lean_object*)&l_instAddUSize___closed__0_value;
-LEAN_EXPORT const lean_object* l_instAddUSize = (const lean_object*)&l_instAddUSize___closed__0_value;
-static const lean_closure_object l_instSubUSize___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_USize_sub___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSubUSize___closed__0 = (const lean_object*)&l_instSubUSize___closed__0_value;
-LEAN_EXPORT const lean_object* l_instSubUSize = (const lean_object*)&l_instSubUSize___closed__0_value;
+static lean_once_cell_t l_instAddUSize___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instAddUSize___closed__0;
+LEAN_EXPORT lean_object* l_instAddUSize;
+static lean_once_cell_t l_instSubUSize___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSubUSize___closed__0;
+LEAN_EXPORT lean_object* l_instSubUSize;
 LEAN_EXPORT lean_object* l_instLTUSize;
 LEAN_EXPORT lean_object* l_instLEUSize;
 LEAN_EXPORT uint8_t l_USize_decLt___aux__1(size_t, size_t);
@@ -560,6 +560,38 @@ v_r_137_ = lean_box_uint32(v_res_136_);
 return v_r_137_;
 }
 }
+static lean_object* _init_l_instAddUInt32___closed__0(void){
+_start:
+{
+lean_object* v___x_138_; 
+v___x_138_ = lean_alloc_closure((void*)(l_UInt32_add___boxed), 2, 0);
+return v___x_138_;
+}
+}
+static lean_object* _init_l_instAddUInt32(void){
+_start:
+{
+lean_object* v___x_139_; 
+v___x_139_ = lean_obj_once(&l_instAddUInt32___closed__0, &l_instAddUInt32___closed__0_once, _init_l_instAddUInt32___closed__0);
+return v___x_139_;
+}
+}
+static lean_object* _init_l_instSubUInt32___closed__0(void){
+_start:
+{
+lean_object* v___x_140_; 
+v___x_140_ = lean_alloc_closure((void*)(l_UInt32_sub___boxed), 2, 0);
+return v___x_140_;
+}
+}
+static lean_object* _init_l_instSubUInt32(void){
+_start:
+{
+lean_object* v___x_141_; 
+v___x_141_ = lean_obj_once(&l_instSubUInt32___closed__0, &l_instSubUInt32___closed__0_once, _init_l_instSubUInt32___closed__0);
+return v___x_141_;
+}
+}
 LEAN_EXPORT lean_object* l_UInt64_toFin(uint64_t v_x_142_){
 _start:
 {
@@ -912,6 +944,38 @@ v_r_261_ = lean_box_usize(v_res_260_);
 return v_r_261_;
 }
 }
+static lean_object* _init_l_instAddUSize___closed__0(void){
+_start:
+{
+lean_object* v___x_262_; 
+v___x_262_ = lean_alloc_closure((void*)(l_USize_add___boxed), 2, 0);
+return v___x_262_;
+}
+}
+static lean_object* _init_l_instAddUSize(void){
+_start:
+{
+lean_object* v___x_263_; 
+v___x_263_ = lean_obj_once(&l_instAddUSize___closed__0, &l_instAddUSize___closed__0_once, _init_l_instAddUSize___closed__0);
+return v___x_263_;
+}
+}
+static lean_object* _init_l_instSubUSize___closed__0(void){
+_start:
+{
+lean_object* v___x_264_; 
+v___x_264_ = lean_alloc_closure((void*)(l_USize_sub___boxed), 2, 0);
+return v___x_264_;
+}
+}
+static lean_object* _init_l_instSubUSize(void){
+_start:
+{
+lean_object* v___x_265_; 
+v___x_265_ = lean_obj_once(&l_instSubUSize___closed__0, &l_instSubUSize___closed__0_once, _init_l_instSubUSize___closed__0);
+return v___x_265_;
+}
+}
 static lean_object* _init_l_instLTUSize(void){
 _start:
 {
@@ -1021,6 +1085,14 @@ lean_dec_ref(res);
 res = runtime_initialize_Init_Data_Nat_Div_Basic(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_instAddUInt32 = _init_l_instAddUInt32();
+lean_mark_persistent(l_instAddUInt32);
+l_instSubUInt32 = _init_l_instSubUInt32();
+lean_mark_persistent(l_instSubUInt32);
+l_instAddUSize = _init_l_instAddUSize();
+lean_mark_persistent(l_instAddUSize);
+l_instSubUSize = _init_l_instSubUSize();
+lean_mark_persistent(l_instSubUSize);
 l_instLTUSize = _init_l_instLTUSize();
 lean_mark_persistent(l_instLTUSize);
 l_instLEUSize = _init_l_instLEUSize();

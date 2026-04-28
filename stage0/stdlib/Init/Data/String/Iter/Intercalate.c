@@ -17,8 +17,8 @@ lean_object* lean_string_append(lean_object*, lean_object*);
 lean_object* l_WellFounded_opaqueFix_u2083___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* lean_string_utf8_extract(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Iter_joinString___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std_Iter_joinString___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 1, .m_capacity = 1, .m_length = 0, .m_data = ""};
-static const lean_object* l_Std_Iter_joinString___redArg___closed__0 = (const lean_object*)&l_Std_Iter_joinString___redArg___closed__0_value;
+static lean_once_cell_t l_Std_Iter_joinString___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Iter_joinString___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Std_Iter_joinString___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Iter_joinString(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Iter_intercalateString___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -65,6 +65,14 @@ return v_acc_4_;
 }
 }
 }
+static lean_object* _init_l_Std_Iter_joinString___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_15_; 
+v___x_15_ = lean_mk_string_unchecked("", 0, 0);
+return v___x_15_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Iter_joinString___redArg(lean_object* v_inst_16_, lean_object* v_inst_17_, lean_object* v_it_18_){
 _start:
 {
@@ -72,7 +80,7 @@ lean_object* v___f_19_; lean_object* v___x_20_; lean_object* v___x_21_;
 v___f_19_ = lean_alloc_closure((void*)(l_Std_Iter_joinString___redArg___lam__0), 6, 2);
 lean_closure_set(v___f_19_, 0, v_inst_16_);
 lean_closure_set(v___f_19_, 1, v_inst_17_);
-v___x_20_ = ((lean_object*)(l_Std_Iter_joinString___redArg___closed__0));
+v___x_20_ = lean_obj_once(&l_Std_Iter_joinString___redArg___closed__0, &l_Std_Iter_joinString___redArg___closed__0_once, _init_l_Std_Iter_joinString___redArg___closed__0);
 v___x_21_ = l_WellFounded_opaqueFix_u2083___redArg(v___f_19_, v_it_18_, v___x_20_, lean_box(0));
 return v___x_21_;
 }
@@ -84,7 +92,7 @@ lean_object* v___f_27_; lean_object* v___x_28_; lean_object* v___x_29_;
 v___f_27_ = lean_alloc_closure((void*)(l_Std_Iter_joinString___redArg___lam__0), 6, 2);
 lean_closure_set(v___f_27_, 0, v_inst_24_);
 lean_closure_set(v___f_27_, 1, v_inst_25_);
-v___x_28_ = ((lean_object*)(l_Std_Iter_joinString___redArg___closed__0));
+v___x_28_ = lean_obj_once(&l_Std_Iter_joinString___redArg___closed__0, &l_Std_Iter_joinString___redArg___closed__0_once, _init_l_Std_Iter_joinString___redArg___closed__0);
 v___x_29_ = l_WellFounded_opaqueFix_u2083___redArg(v___f_27_, v_it_26_, v___x_28_, lean_box(0));
 return v___x_29_;
 }
@@ -207,7 +215,7 @@ v___x_74_ = l_WellFounded_opaqueFix_u2083___redArg(v___f_72_, v_it_71_, v___x_73
 if (lean_obj_tag(v___x_74_) == 0)
 {
 lean_object* v___x_75_; 
-v___x_75_ = ((lean_object*)(l_Std_Iter_joinString___redArg___closed__0));
+v___x_75_ = lean_obj_once(&l_Std_Iter_joinString___redArg___closed__0, &l_Std_Iter_joinString___redArg___closed__0_once, _init_l_Std_Iter_joinString___redArg___closed__0);
 return v___x_75_;
 }
 else
@@ -233,7 +241,7 @@ v___x_85_ = l_WellFounded_opaqueFix_u2083___redArg(v___f_83_, v_it_82_, v___x_84
 if (lean_obj_tag(v___x_85_) == 0)
 {
 lean_object* v___x_86_; 
-v___x_86_ = ((lean_object*)(l_Std_Iter_joinString___redArg___closed__0));
+v___x_86_ = lean_obj_once(&l_Std_Iter_joinString___redArg___closed__0, &l_Std_Iter_joinString___redArg___closed__0_once, _init_l_Std_Iter_joinString___redArg___closed__0);
 return v___x_86_;
 }
 else

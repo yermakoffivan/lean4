@@ -100,8 +100,8 @@ LEAN_EXPORT uint8_t l_BitVec_msb(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_BitVec_msb___boxed(lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_BitVec_instGetElemNatBoolLt___lam__0(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_BitVec_instGetElemNatBoolLt___lam__0___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_BitVec_instGetElemNatBoolLt___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_BitVec_instGetElemNatBoolLt___lam__0___boxed, .m_arity = 3, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_BitVec_instGetElemNatBoolLt___closed__0 = (const lean_object*)&l_BitVec_instGetElemNatBoolLt___closed__0_value;
+static lean_once_cell_t l_BitVec_instGetElemNatBoolLt___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_instGetElemNatBoolLt___closed__0;
 LEAN_EXPORT lean_object* l_BitVec_instGetElemNatBoolLt(lean_object*);
 LEAN_EXPORT lean_object* l_BitVec_instGetElemNatBoolLt___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Nat_cast___at___00BitVec_toInt_spec__0(lean_object*);
@@ -110,115 +110,108 @@ LEAN_EXPORT lean_object* l_BitVec_toInt___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_BitVec_ofInt(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_BitVec_ofInt___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_BitVec_instIntCast(lean_object*);
-static const lean_string_object l_BitVec_term_____x23_____00__closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "BitVec"};
-static const lean_object* l_BitVec_term_____x23_____00__closed__0 = (const lean_object*)&l_BitVec_term_____x23_____00__closed__0_value;
-static const lean_string_object l_BitVec_term_____x23_____00__closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "term__#__"};
-static const lean_object* l_BitVec_term_____x23_____00__closed__1 = (const lean_object*)&l_BitVec_term_____x23_____00__closed__1_value;
-static const lean_ctor_object l_BitVec_term_____x23_____00__closed__2_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_BitVec_term_____x23_____00__closed__0_value),LEAN_SCALAR_PTR_LITERAL(108, 178, 58, 132, 143, 189, 222, 74)}};
-static const lean_ctor_object l_BitVec_term_____x23_____00__closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_BitVec_term_____x23_____00__closed__2_value_aux_0),((lean_object*)&l_BitVec_term_____x23_____00__closed__1_value),LEAN_SCALAR_PTR_LITERAL(14, 106, 244, 245, 0, 94, 14, 228)}};
-static const lean_object* l_BitVec_term_____x23_____00__closed__2 = (const lean_object*)&l_BitVec_term_____x23_____00__closed__2_value;
-static const lean_string_object l_BitVec_term_____x23_____00__closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "andthen"};
-static const lean_object* l_BitVec_term_____x23_____00__closed__3 = (const lean_object*)&l_BitVec_term_____x23_____00__closed__3_value;
-static const lean_ctor_object l_BitVec_term_____x23_____00__closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_BitVec_term_____x23_____00__closed__3_value),LEAN_SCALAR_PTR_LITERAL(40, 255, 78, 30, 143, 119, 117, 174)}};
-static const lean_object* l_BitVec_term_____x23_____00__closed__4 = (const lean_object*)&l_BitVec_term_____x23_____00__closed__4_value;
-static const lean_string_object l_BitVec_term_____x23_____00__closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "num"};
-static const lean_object* l_BitVec_term_____x23_____00__closed__5 = (const lean_object*)&l_BitVec_term_____x23_____00__closed__5_value;
-static const lean_ctor_object l_BitVec_term_____x23_____00__closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_BitVec_term_____x23_____00__closed__5_value),LEAN_SCALAR_PTR_LITERAL(227, 68, 22, 222, 47, 51, 204, 84)}};
-static const lean_object* l_BitVec_term_____x23_____00__closed__6 = (const lean_object*)&l_BitVec_term_____x23_____00__closed__6_value;
-static const lean_ctor_object l_BitVec_term_____x23_____00__closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_BitVec_term_____x23_____00__closed__6_value)}};
-static const lean_object* l_BitVec_term_____x23_____00__closed__7 = (const lean_object*)&l_BitVec_term_____x23_____00__closed__7_value;
-static const lean_string_object l_BitVec_term_____x23_____00__closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "noWs"};
-static const lean_object* l_BitVec_term_____x23_____00__closed__8 = (const lean_object*)&l_BitVec_term_____x23_____00__closed__8_value;
-static const lean_ctor_object l_BitVec_term_____x23_____00__closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_BitVec_term_____x23_____00__closed__8_value),LEAN_SCALAR_PTR_LITERAL(92, 29, 204, 148, 167, 109, 242, 21)}};
-static const lean_object* l_BitVec_term_____x23_____00__closed__9 = (const lean_object*)&l_BitVec_term_____x23_____00__closed__9_value;
-static const lean_ctor_object l_BitVec_term_____x23_____00__closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_BitVec_term_____x23_____00__closed__9_value)}};
-static const lean_object* l_BitVec_term_____x23_____00__closed__10 = (const lean_object*)&l_BitVec_term_____x23_____00__closed__10_value;
-static const lean_ctor_object l_BitVec_term_____x23_____00__closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_BitVec_term_____x23_____00__closed__4_value),((lean_object*)&l_BitVec_term_____x23_____00__closed__7_value),((lean_object*)&l_BitVec_term_____x23_____00__closed__10_value)}};
-static const lean_object* l_BitVec_term_____x23_____00__closed__11 = (const lean_object*)&l_BitVec_term_____x23_____00__closed__11_value;
-static const lean_string_object l_BitVec_term_____x23_____00__closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "#"};
-static const lean_object* l_BitVec_term_____x23_____00__closed__12 = (const lean_object*)&l_BitVec_term_____x23_____00__closed__12_value;
-static const lean_ctor_object l_BitVec_term_____x23_____00__closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_BitVec_term_____x23_____00__closed__12_value)}};
-static const lean_object* l_BitVec_term_____x23_____00__closed__13 = (const lean_object*)&l_BitVec_term_____x23_____00__closed__13_value;
-static const lean_ctor_object l_BitVec_term_____x23_____00__closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_BitVec_term_____x23_____00__closed__4_value),((lean_object*)&l_BitVec_term_____x23_____00__closed__11_value),((lean_object*)&l_BitVec_term_____x23_____00__closed__13_value)}};
-static const lean_object* l_BitVec_term_____x23_____00__closed__14 = (const lean_object*)&l_BitVec_term_____x23_____00__closed__14_value;
-static const lean_ctor_object l_BitVec_term_____x23_____00__closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_BitVec_term_____x23_____00__closed__4_value),((lean_object*)&l_BitVec_term_____x23_____00__closed__14_value),((lean_object*)&l_BitVec_term_____x23_____00__closed__10_value)}};
-static const lean_object* l_BitVec_term_____x23_____00__closed__15 = (const lean_object*)&l_BitVec_term_____x23_____00__closed__15_value;
-static const lean_string_object l_BitVec_term_____x23_____00__closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "term"};
-static const lean_object* l_BitVec_term_____x23_____00__closed__16 = (const lean_object*)&l_BitVec_term_____x23_____00__closed__16_value;
-static const lean_ctor_object l_BitVec_term_____x23_____00__closed__17_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_BitVec_term_____x23_____00__closed__16_value),LEAN_SCALAR_PTR_LITERAL(187, 230, 181, 162, 253, 146, 122, 119)}};
-static const lean_object* l_BitVec_term_____x23_____00__closed__17 = (const lean_object*)&l_BitVec_term_____x23_____00__closed__17_value;
-static const lean_ctor_object l_BitVec_term_____x23_____00__closed__18_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 7}, .m_objs = {((lean_object*)&l_BitVec_term_____x23_____00__closed__17_value),((lean_object*)(((size_t)(1024) << 1) | 1))}};
-static const lean_object* l_BitVec_term_____x23_____00__closed__18 = (const lean_object*)&l_BitVec_term_____x23_____00__closed__18_value;
-static const lean_ctor_object l_BitVec_term_____x23_____00__closed__19_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_BitVec_term_____x23_____00__closed__4_value),((lean_object*)&l_BitVec_term_____x23_____00__closed__15_value),((lean_object*)&l_BitVec_term_____x23_____00__closed__18_value)}};
-static const lean_object* l_BitVec_term_____x23_____00__closed__19 = (const lean_object*)&l_BitVec_term_____x23_____00__closed__19_value;
-static const lean_ctor_object l_BitVec_term_____x23_____00__closed__20_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_BitVec_term_____x23_____00__closed__2_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_BitVec_term_____x23_____00__closed__19_value)}};
-static const lean_object* l_BitVec_term_____x23_____00__closed__20 = (const lean_object*)&l_BitVec_term_____x23_____00__closed__20_value;
-LEAN_EXPORT const lean_object* l_BitVec_term_____x23____ = (const lean_object*)&l_BitVec_term_____x23_____00__closed__20_value;
-static const lean_string_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Lean"};
-static const lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__0 = (const lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__0_value;
-static const lean_string_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Parser"};
-static const lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__1 = (const lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__1_value;
-static const lean_string_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Term"};
-static const lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__2 = (const lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__2_value;
-static const lean_string_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "app"};
-static const lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__3 = (const lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__3_value;
-static const lean_ctor_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4_value_aux_0),((lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4_value_aux_1),((lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(75, 170, 162, 138, 136, 204, 251, 229)}};
-static const lean_ctor_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4_value_aux_2),((lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(69, 118, 10, 41, 220, 156, 243, 179)}};
-static const lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4 = (const lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4_value;
-static const lean_string_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "BitVec.ofNat"};
-static const lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__5 = (const lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__5_value;
+static lean_once_cell_t l_BitVec_term_____x23_____00__closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_____00__closed__0;
+static lean_once_cell_t l_BitVec_term_____x23_____00__closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_____00__closed__1;
+static lean_once_cell_t l_BitVec_term_____x23_____00__closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_____00__closed__2;
+static lean_once_cell_t l_BitVec_term_____x23_____00__closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_____00__closed__3;
+static lean_once_cell_t l_BitVec_term_____x23_____00__closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_____00__closed__4;
+static lean_once_cell_t l_BitVec_term_____x23_____00__closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_____00__closed__5;
+static lean_once_cell_t l_BitVec_term_____x23_____00__closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_____00__closed__6;
+static lean_once_cell_t l_BitVec_term_____x23_____00__closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_____00__closed__7;
+static lean_once_cell_t l_BitVec_term_____x23_____00__closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_____00__closed__8;
+static lean_once_cell_t l_BitVec_term_____x23_____00__closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_____00__closed__9;
+static lean_once_cell_t l_BitVec_term_____x23_____00__closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_____00__closed__10;
+static lean_once_cell_t l_BitVec_term_____x23_____00__closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_____00__closed__11;
+static lean_once_cell_t l_BitVec_term_____x23_____00__closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_____00__closed__12;
+static lean_once_cell_t l_BitVec_term_____x23_____00__closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_____00__closed__13;
+static lean_once_cell_t l_BitVec_term_____x23_____00__closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_____00__closed__14;
+static lean_once_cell_t l_BitVec_term_____x23_____00__closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_____00__closed__15;
+static lean_once_cell_t l_BitVec_term_____x23_____00__closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_____00__closed__16;
+static lean_once_cell_t l_BitVec_term_____x23_____00__closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_____00__closed__17;
+static lean_once_cell_t l_BitVec_term_____x23_____00__closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_____00__closed__18;
+static lean_once_cell_t l_BitVec_term_____x23_____00__closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_____00__closed__19;
+static lean_once_cell_t l_BitVec_term_____x23_____00__closed__20_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_____00__closed__20;
+LEAN_EXPORT lean_object* l_BitVec_term_____x23____;
+static lean_once_cell_t l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__0;
+static lean_once_cell_t l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__1;
+static lean_once_cell_t l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__2;
+static lean_once_cell_t l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__3;
+static lean_once_cell_t l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4;
+static lean_once_cell_t l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__5;
 static lean_once_cell_t l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__6;
-static const lean_string_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "ofNat"};
-static const lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__7 = (const lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__7_value;
-static const lean_ctor_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__8_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_BitVec_term_____x23_____00__closed__0_value),LEAN_SCALAR_PTR_LITERAL(108, 178, 58, 132, 143, 189, 222, 74)}};
-static const lean_ctor_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__8_value_aux_0),((lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__7_value),LEAN_SCALAR_PTR_LITERAL(101, 105, 192, 171, 214, 131, 43, 105)}};
-static const lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__8 = (const lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__8_value;
-static const lean_ctor_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__8_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__9 = (const lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__9_value;
-static const lean_ctor_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__9_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__10 = (const lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__10_value;
-static const lean_string_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "null"};
-static const lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__11 = (const lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__11_value;
-static const lean_ctor_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__11_value),LEAN_SCALAR_PTR_LITERAL(24, 58, 49, 223, 146, 207, 197, 136)}};
-static const lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__12 = (const lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__12_value;
+static lean_once_cell_t l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__7;
+static lean_once_cell_t l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__8;
+static lean_once_cell_t l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__9;
+static lean_once_cell_t l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__10;
+static lean_once_cell_t l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__11;
+static lean_once_cell_t l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__12;
 LEAN_EXPORT lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_BitVec_unexpandBitVecOfNat(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_BitVec_unexpandBitVecOfNat___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_BitVec_term_____x23_x27_____00__closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "term__#'__"};
-static const lean_object* l_BitVec_term_____x23_x27_____00__closed__0 = (const lean_object*)&l_BitVec_term_____x23_x27_____00__closed__0_value;
-static const lean_ctor_object l_BitVec_term_____x23_x27_____00__closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_BitVec_term_____x23_____00__closed__0_value),LEAN_SCALAR_PTR_LITERAL(108, 178, 58, 132, 143, 189, 222, 74)}};
-static const lean_ctor_object l_BitVec_term_____x23_x27_____00__closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_BitVec_term_____x23_x27_____00__closed__1_value_aux_0),((lean_object*)&l_BitVec_term_____x23_x27_____00__closed__0_value),LEAN_SCALAR_PTR_LITERAL(227, 111, 91, 190, 189, 100, 156, 31)}};
-static const lean_object* l_BitVec_term_____x23_x27_____00__closed__1 = (const lean_object*)&l_BitVec_term_____x23_x27_____00__closed__1_value;
-static const lean_string_object l_BitVec_term_____x23_x27_____00__closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "#'"};
-static const lean_object* l_BitVec_term_____x23_x27_____00__closed__2 = (const lean_object*)&l_BitVec_term_____x23_x27_____00__closed__2_value;
-static const lean_ctor_object l_BitVec_term_____x23_x27_____00__closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_BitVec_term_____x23_x27_____00__closed__2_value)}};
-static const lean_object* l_BitVec_term_____x23_x27_____00__closed__3 = (const lean_object*)&l_BitVec_term_____x23_x27_____00__closed__3_value;
-static const lean_ctor_object l_BitVec_term_____x23_x27_____00__closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_BitVec_term_____x23_____00__closed__4_value),((lean_object*)&l_BitVec_term_____x23_____00__closed__10_value),((lean_object*)&l_BitVec_term_____x23_x27_____00__closed__3_value)}};
-static const lean_object* l_BitVec_term_____x23_x27_____00__closed__4 = (const lean_object*)&l_BitVec_term_____x23_x27_____00__closed__4_value;
-static const lean_ctor_object l_BitVec_term_____x23_x27_____00__closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_BitVec_term_____x23_____00__closed__4_value),((lean_object*)&l_BitVec_term_____x23_x27_____00__closed__4_value),((lean_object*)&l_BitVec_term_____x23_____00__closed__10_value)}};
-static const lean_object* l_BitVec_term_____x23_x27_____00__closed__5 = (const lean_object*)&l_BitVec_term_____x23_x27_____00__closed__5_value;
-static const lean_ctor_object l_BitVec_term_____x23_x27_____00__closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_BitVec_term_____x23_____00__closed__4_value),((lean_object*)&l_BitVec_term_____x23_x27_____00__closed__5_value),((lean_object*)&l_BitVec_term_____x23_____00__closed__18_value)}};
-static const lean_object* l_BitVec_term_____x23_x27_____00__closed__6 = (const lean_object*)&l_BitVec_term_____x23_x27_____00__closed__6_value;
-static const lean_ctor_object l_BitVec_term_____x23_x27_____00__closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*4 + 0, .m_other = 4, .m_tag = 4}, .m_objs = {((lean_object*)&l_BitVec_term_____x23_x27_____00__closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_BitVec_term_____x23_x27_____00__closed__6_value)}};
-static const lean_object* l_BitVec_term_____x23_x27_____00__closed__7 = (const lean_object*)&l_BitVec_term_____x23_x27_____00__closed__7_value;
-LEAN_EXPORT const lean_object* l_BitVec_term_____x23_x27____ = (const lean_object*)&l_BitVec_term_____x23_x27_____00__closed__7_value;
-static const lean_string_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "BitVec.ofNatLT"};
-static const lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__0 = (const lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__0_value;
+static lean_once_cell_t l_BitVec_term_____x23_x27_____00__closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_x27_____00__closed__0;
+static lean_once_cell_t l_BitVec_term_____x23_x27_____00__closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_x27_____00__closed__1;
+static lean_once_cell_t l_BitVec_term_____x23_x27_____00__closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_x27_____00__closed__2;
+static lean_once_cell_t l_BitVec_term_____x23_x27_____00__closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_x27_____00__closed__3;
+static lean_once_cell_t l_BitVec_term_____x23_x27_____00__closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_x27_____00__closed__4;
+static lean_once_cell_t l_BitVec_term_____x23_x27_____00__closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_x27_____00__closed__5;
+static lean_once_cell_t l_BitVec_term_____x23_x27_____00__closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_x27_____00__closed__6;
+static lean_once_cell_t l_BitVec_term_____x23_x27_____00__closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_term_____x23_x27_____00__closed__7;
+LEAN_EXPORT lean_object* l_BitVec_term_____x23_x27____;
+static lean_once_cell_t l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__0;
 static lean_once_cell_t l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__1;
-static const lean_string_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "ofNatLT"};
-static const lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__2 = (const lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__2_value;
-static const lean_ctor_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__3_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_BitVec_term_____x23_____00__closed__0_value),LEAN_SCALAR_PTR_LITERAL(108, 178, 58, 132, 143, 189, 222, 74)}};
-static const lean_ctor_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__3_value_aux_0),((lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(75, 44, 243, 4, 118, 78, 150, 28)}};
-static const lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__3 = (const lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__3_value;
-static const lean_ctor_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__3_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__4 = (const lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__4_value;
-static const lean_ctor_object l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__4_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__5 = (const lean_object*)&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__5_value;
+static lean_once_cell_t l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__2;
+static lean_once_cell_t l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__3;
+static lean_once_cell_t l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__4;
+static lean_once_cell_t l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__5;
 LEAN_EXPORT lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_BitVec_unexpandBitVecOfNatLt(lean_object*, lean_object*, lean_object*);
@@ -226,12 +219,12 @@ LEAN_EXPORT lean_object* l_BitVec_unexpandBitVecOfNatLt___boxed(lean_object*, le
 LEAN_EXPORT lean_object* l_BitVec_toHex___boxed__const__1;
 LEAN_EXPORT lean_object* l_BitVec_toHex(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_BitVec_toHex___boxed(lean_object*, lean_object*);
-static const lean_string_object l_BitVec_repr___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "0x"};
-static const lean_object* l_BitVec_repr___closed__0 = (const lean_object*)&l_BitVec_repr___closed__0_value;
-static const lean_ctor_object l_BitVec_repr___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_BitVec_repr___closed__0_value)}};
-static const lean_object* l_BitVec_repr___closed__1 = (const lean_object*)&l_BitVec_repr___closed__1_value;
-static const lean_ctor_object l_BitVec_repr___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_BitVec_term_____x23_____00__closed__12_value)}};
-static const lean_object* l_BitVec_repr___closed__2 = (const lean_object*)&l_BitVec_repr___closed__2_value;
+static lean_once_cell_t l_BitVec_repr___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_repr___closed__0;
+static lean_once_cell_t l_BitVec_repr___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_repr___closed__1;
+static lean_once_cell_t l_BitVec_repr___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_repr___closed__2;
 LEAN_EXPORT lean_object* l_BitVec_repr(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_BitVec_instRepr___lam__0(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_BitVec_instRepr___lam__0___boxed(lean_object*, lean_object*, lean_object*);
@@ -352,8 +345,8 @@ LEAN_EXPORT lean_object* l_BitVec_instHShiftLeft___redArg___lam__0___boxed(lean_
 LEAN_EXPORT lean_object* l_BitVec_instHShiftLeft___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_BitVec_instHShiftLeft(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_BitVec_instHShiftLeft___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_BitVec_instHShiftRight___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Nat_shiftRight___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_BitVec_instHShiftRight___closed__0 = (const lean_object*)&l_BitVec_instHShiftRight___closed__0_value;
+static lean_once_cell_t l_BitVec_instHShiftRight___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_BitVec_instHShiftRight___closed__0;
 LEAN_EXPORT lean_object* l_BitVec_instHShiftRight(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_BitVec_instHShiftRight___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_BitVec_sshiftRight_x27___redArg(lean_object*, lean_object*, lean_object*);
@@ -788,11 +781,19 @@ v_r_130_ = lean_box(v_res_129_);
 return v_r_130_;
 }
 }
+static lean_object* _init_l_BitVec_instGetElemNatBoolLt___closed__0(void){
+_start:
+{
+lean_object* v___f_131_; 
+v___f_131_ = lean_alloc_closure((void*)(l_BitVec_instGetElemNatBoolLt___lam__0___boxed), 3, 0);
+return v___f_131_;
+}
+}
 LEAN_EXPORT lean_object* l_BitVec_instGetElemNatBoolLt(lean_object* v_w_132_){
 _start:
 {
 lean_object* v___f_133_; 
-v___f_133_ = ((lean_object*)(l_BitVec_instGetElemNatBoolLt___closed__0));
+v___f_133_ = lean_obj_once(&l_BitVec_instGetElemNatBoolLt___closed__0, &l_BitVec_instGetElemNatBoolLt___closed__0_once, _init_l_BitVec_instGetElemNatBoolLt___closed__0);
 return v___f_133_;
 }
 }
@@ -883,20 +884,353 @@ lean_closure_set(v___x_162_, 0, v_w_161_);
 return v___x_162_;
 }
 }
+static lean_object* _init_l_BitVec_term_____x23_____00__closed__0(void){
+_start:
+{
+lean_object* v___x_163_; 
+v___x_163_ = lean_mk_string_unchecked("BitVec", 6, 6);
+return v___x_163_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_____00__closed__1(void){
+_start:
+{
+lean_object* v___x_164_; 
+v___x_164_ = lean_mk_string_unchecked("term__#__", 9, 9);
+return v___x_164_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_____00__closed__2(void){
+_start:
+{
+lean_object* v___x_165_; lean_object* v___x_166_; lean_object* v___x_167_; 
+v___x_165_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__1, &l_BitVec_term_____x23_____00__closed__1_once, _init_l_BitVec_term_____x23_____00__closed__1);
+v___x_166_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__0, &l_BitVec_term_____x23_____00__closed__0_once, _init_l_BitVec_term_____x23_____00__closed__0);
+v___x_167_ = l_Lean_Name_mkStr2(v___x_166_, v___x_165_);
+return v___x_167_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_____00__closed__3(void){
+_start:
+{
+lean_object* v___x_168_; 
+v___x_168_ = lean_mk_string_unchecked("andthen", 7, 7);
+return v___x_168_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_____00__closed__4(void){
+_start:
+{
+lean_object* v___x_169_; lean_object* v___x_170_; 
+v___x_169_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__3, &l_BitVec_term_____x23_____00__closed__3_once, _init_l_BitVec_term_____x23_____00__closed__3);
+v___x_170_ = l_Lean_Name_mkStr1(v___x_169_);
+return v___x_170_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_____00__closed__5(void){
+_start:
+{
+lean_object* v___x_171_; 
+v___x_171_ = lean_mk_string_unchecked("num", 3, 3);
+return v___x_171_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_____00__closed__6(void){
+_start:
+{
+lean_object* v___x_172_; lean_object* v___x_173_; 
+v___x_172_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__5, &l_BitVec_term_____x23_____00__closed__5_once, _init_l_BitVec_term_____x23_____00__closed__5);
+v___x_173_ = l_Lean_Name_mkStr1(v___x_172_);
+return v___x_173_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_____00__closed__7(void){
+_start:
+{
+lean_object* v___x_174_; lean_object* v___x_175_; 
+v___x_174_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__6, &l_BitVec_term_____x23_____00__closed__6_once, _init_l_BitVec_term_____x23_____00__closed__6);
+v___x_175_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_175_, 0, v___x_174_);
+return v___x_175_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_____00__closed__8(void){
+_start:
+{
+lean_object* v___x_176_; 
+v___x_176_ = lean_mk_string_unchecked("noWs", 4, 4);
+return v___x_176_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_____00__closed__9(void){
+_start:
+{
+lean_object* v___x_177_; lean_object* v___x_178_; 
+v___x_177_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__8, &l_BitVec_term_____x23_____00__closed__8_once, _init_l_BitVec_term_____x23_____00__closed__8);
+v___x_178_ = l_Lean_Name_mkStr1(v___x_177_);
+return v___x_178_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_____00__closed__10(void){
+_start:
+{
+lean_object* v___x_179_; lean_object* v___x_180_; 
+v___x_179_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__9, &l_BitVec_term_____x23_____00__closed__9_once, _init_l_BitVec_term_____x23_____00__closed__9);
+v___x_180_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_180_, 0, v___x_179_);
+return v___x_180_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_____00__closed__11(void){
+_start:
+{
+lean_object* v___x_181_; lean_object* v___x_182_; lean_object* v___x_183_; lean_object* v___x_184_; 
+v___x_181_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__10, &l_BitVec_term_____x23_____00__closed__10_once, _init_l_BitVec_term_____x23_____00__closed__10);
+v___x_182_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__7, &l_BitVec_term_____x23_____00__closed__7_once, _init_l_BitVec_term_____x23_____00__closed__7);
+v___x_183_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__4, &l_BitVec_term_____x23_____00__closed__4_once, _init_l_BitVec_term_____x23_____00__closed__4);
+v___x_184_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_184_, 0, v___x_183_);
+lean_ctor_set(v___x_184_, 1, v___x_182_);
+lean_ctor_set(v___x_184_, 2, v___x_181_);
+return v___x_184_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_____00__closed__12(void){
+_start:
+{
+lean_object* v___x_185_; 
+v___x_185_ = lean_mk_string_unchecked("#", 1, 1);
+return v___x_185_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_____00__closed__13(void){
+_start:
+{
+lean_object* v___x_186_; lean_object* v___x_187_; 
+v___x_186_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__12, &l_BitVec_term_____x23_____00__closed__12_once, _init_l_BitVec_term_____x23_____00__closed__12);
+v___x_187_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_187_, 0, v___x_186_);
+return v___x_187_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_____00__closed__14(void){
+_start:
+{
+lean_object* v___x_188_; lean_object* v___x_189_; lean_object* v___x_190_; lean_object* v___x_191_; 
+v___x_188_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__13, &l_BitVec_term_____x23_____00__closed__13_once, _init_l_BitVec_term_____x23_____00__closed__13);
+v___x_189_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__11, &l_BitVec_term_____x23_____00__closed__11_once, _init_l_BitVec_term_____x23_____00__closed__11);
+v___x_190_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__4, &l_BitVec_term_____x23_____00__closed__4_once, _init_l_BitVec_term_____x23_____00__closed__4);
+v___x_191_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_191_, 0, v___x_190_);
+lean_ctor_set(v___x_191_, 1, v___x_189_);
+lean_ctor_set(v___x_191_, 2, v___x_188_);
+return v___x_191_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_____00__closed__15(void){
+_start:
+{
+lean_object* v___x_192_; lean_object* v___x_193_; lean_object* v___x_194_; lean_object* v___x_195_; 
+v___x_192_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__10, &l_BitVec_term_____x23_____00__closed__10_once, _init_l_BitVec_term_____x23_____00__closed__10);
+v___x_193_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__14, &l_BitVec_term_____x23_____00__closed__14_once, _init_l_BitVec_term_____x23_____00__closed__14);
+v___x_194_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__4, &l_BitVec_term_____x23_____00__closed__4_once, _init_l_BitVec_term_____x23_____00__closed__4);
+v___x_195_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_195_, 0, v___x_194_);
+lean_ctor_set(v___x_195_, 1, v___x_193_);
+lean_ctor_set(v___x_195_, 2, v___x_192_);
+return v___x_195_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_____00__closed__16(void){
+_start:
+{
+lean_object* v___x_196_; 
+v___x_196_ = lean_mk_string_unchecked("term", 4, 4);
+return v___x_196_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_____00__closed__17(void){
+_start:
+{
+lean_object* v___x_197_; lean_object* v___x_198_; 
+v___x_197_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__16, &l_BitVec_term_____x23_____00__closed__16_once, _init_l_BitVec_term_____x23_____00__closed__16);
+v___x_198_ = l_Lean_Name_mkStr1(v___x_197_);
+return v___x_198_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_____00__closed__18(void){
+_start:
+{
+lean_object* v___x_199_; lean_object* v___x_200_; lean_object* v___x_201_; 
+v___x_199_ = lean_unsigned_to_nat(1024u);
+v___x_200_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__17, &l_BitVec_term_____x23_____00__closed__17_once, _init_l_BitVec_term_____x23_____00__closed__17);
+v___x_201_ = lean_alloc_ctor(7, 2, 0);
+lean_ctor_set(v___x_201_, 0, v___x_200_);
+lean_ctor_set(v___x_201_, 1, v___x_199_);
+return v___x_201_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_____00__closed__19(void){
+_start:
+{
+lean_object* v___x_202_; lean_object* v___x_203_; lean_object* v___x_204_; lean_object* v___x_205_; 
+v___x_202_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__18, &l_BitVec_term_____x23_____00__closed__18_once, _init_l_BitVec_term_____x23_____00__closed__18);
+v___x_203_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__15, &l_BitVec_term_____x23_____00__closed__15_once, _init_l_BitVec_term_____x23_____00__closed__15);
+v___x_204_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__4, &l_BitVec_term_____x23_____00__closed__4_once, _init_l_BitVec_term_____x23_____00__closed__4);
+v___x_205_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_205_, 0, v___x_204_);
+lean_ctor_set(v___x_205_, 1, v___x_203_);
+lean_ctor_set(v___x_205_, 2, v___x_202_);
+return v___x_205_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_____00__closed__20(void){
+_start:
+{
+lean_object* v___x_206_; lean_object* v___x_207_; lean_object* v___x_208_; lean_object* v___x_209_; 
+v___x_206_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__19, &l_BitVec_term_____x23_____00__closed__19_once, _init_l_BitVec_term_____x23_____00__closed__19);
+v___x_207_ = lean_unsigned_to_nat(1024u);
+v___x_208_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__2, &l_BitVec_term_____x23_____00__closed__2_once, _init_l_BitVec_term_____x23_____00__closed__2);
+v___x_209_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_209_, 0, v___x_208_);
+lean_ctor_set(v___x_209_, 1, v___x_207_);
+lean_ctor_set(v___x_209_, 2, v___x_206_);
+return v___x_209_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23____(void){
+_start:
+{
+lean_object* v___x_210_; 
+v___x_210_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__20, &l_BitVec_term_____x23_____00__closed__20_once, _init_l_BitVec_term_____x23_____00__closed__20);
+return v___x_210_;
+}
+}
+static lean_object* _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__0(void){
+_start:
+{
+lean_object* v___x_211_; 
+v___x_211_ = lean_mk_string_unchecked("Lean", 4, 4);
+return v___x_211_;
+}
+}
+static lean_object* _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__1(void){
+_start:
+{
+lean_object* v___x_212_; 
+v___x_212_ = lean_mk_string_unchecked("Parser", 6, 6);
+return v___x_212_;
+}
+}
+static lean_object* _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__2(void){
+_start:
+{
+lean_object* v___x_213_; 
+v___x_213_ = lean_mk_string_unchecked("Term", 4, 4);
+return v___x_213_;
+}
+}
+static lean_object* _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__3(void){
+_start:
+{
+lean_object* v___x_214_; 
+v___x_214_ = lean_mk_string_unchecked("app", 3, 3);
+return v___x_214_;
+}
+}
+static lean_object* _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4(void){
+_start:
+{
+lean_object* v___x_215_; lean_object* v___x_216_; lean_object* v___x_217_; lean_object* v___x_218_; lean_object* v___x_219_; 
+v___x_215_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__3, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__3_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__3);
+v___x_216_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__2, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__2_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__2);
+v___x_217_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__1, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__1_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__1);
+v___x_218_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__0, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__0_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__0);
+v___x_219_ = l_Lean_Name_mkStr4(v___x_218_, v___x_217_, v___x_216_, v___x_215_);
+return v___x_219_;
+}
+}
+static lean_object* _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__5(void){
+_start:
+{
+lean_object* v___x_220_; 
+v___x_220_ = lean_mk_string_unchecked("BitVec.ofNat", 12, 12);
+return v___x_220_;
+}
+}
 static lean_object* _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__6(void){
 _start:
 {
 lean_object* v___x_221_; lean_object* v___x_222_; 
-v___x_221_ = ((lean_object*)(l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__5));
+v___x_221_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__5, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__5_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__5);
 v___x_222_ = l_String_toRawSubstring_x27(v___x_221_);
 return v___x_222_;
+}
+}
+static lean_object* _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__7(void){
+_start:
+{
+lean_object* v___x_223_; 
+v___x_223_ = lean_mk_string_unchecked("ofNat", 5, 5);
+return v___x_223_;
+}
+}
+static lean_object* _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__8(void){
+_start:
+{
+lean_object* v___x_224_; lean_object* v___x_225_; lean_object* v___x_226_; 
+v___x_224_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__7, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__7_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__7);
+v___x_225_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__0, &l_BitVec_term_____x23_____00__closed__0_once, _init_l_BitVec_term_____x23_____00__closed__0);
+v___x_226_ = l_Lean_Name_mkStr2(v___x_225_, v___x_224_);
+return v___x_226_;
+}
+}
+static lean_object* _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__9(void){
+_start:
+{
+lean_object* v___x_227_; lean_object* v___x_228_; lean_object* v___x_229_; 
+v___x_227_ = lean_box(0);
+v___x_228_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__8, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__8_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__8);
+v___x_229_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_229_, 0, v___x_228_);
+lean_ctor_set(v___x_229_, 1, v___x_227_);
+return v___x_229_;
+}
+}
+static lean_object* _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__10(void){
+_start:
+{
+lean_object* v___x_230_; lean_object* v___x_231_; lean_object* v___x_232_; 
+v___x_230_ = lean_box(0);
+v___x_231_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__9, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__9_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__9);
+v___x_232_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_232_, 0, v___x_231_);
+lean_ctor_set(v___x_232_, 1, v___x_230_);
+return v___x_232_;
+}
+}
+static lean_object* _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__11(void){
+_start:
+{
+lean_object* v___x_233_; 
+v___x_233_ = lean_mk_string_unchecked("null", 4, 4);
+return v___x_233_;
+}
+}
+static lean_object* _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__12(void){
+_start:
+{
+lean_object* v___x_234_; lean_object* v___x_235_; 
+v___x_234_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__11, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__11_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__11);
+v___x_235_ = l_Lean_Name_mkStr1(v___x_234_);
+return v___x_235_;
 }
 }
 LEAN_EXPORT lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1(lean_object* v_x_236_, lean_object* v_a_237_, lean_object* v_a_238_){
 _start:
 {
 lean_object* v___x_239_; uint8_t v___x_240_; 
-v___x_239_ = ((lean_object*)(l_BitVec_term_____x23_____00__closed__2));
+v___x_239_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__2, &l_BitVec_term_____x23_____00__closed__2_once, _init_l_BitVec_term_____x23_____00__closed__2);
 lean_inc(v_x_236_);
 v___x_240_ = l_Lean_Syntax_isOfKind(v_x_236_, v___x_239_);
 if (v___x_240_ == 0)
@@ -914,7 +1248,7 @@ else
 lean_object* v___x_243_; lean_object* v___x_244_; lean_object* v___x_245_; uint8_t v___x_246_; 
 v___x_243_ = lean_unsigned_to_nat(0u);
 v___x_244_ = l_Lean_Syntax_getArg(v_x_236_, v___x_243_);
-v___x_245_ = ((lean_object*)(l_BitVec_term_____x23_____00__closed__6));
+v___x_245_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__6, &l_BitVec_term_____x23_____00__closed__6_once, _init_l_BitVec_term_____x23_____00__closed__6);
 lean_inc(v___x_244_);
 v___x_246_ = l_Lean_Syntax_isOfKind(v___x_244_, v___x_245_);
 if (v___x_246_ == 0)
@@ -939,20 +1273,20 @@ v___x_253_ = l_Lean_Syntax_getArg(v_x_236_, v___x_252_);
 lean_dec(v_x_236_);
 v___x_254_ = 0;
 v___x_255_ = l_Lean_SourceInfo_fromRef(v_ref_251_, v___x_254_);
-v___x_256_ = ((lean_object*)(l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4));
+v___x_256_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4);
 v___x_257_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__6, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__6_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__6);
-v___x_258_ = ((lean_object*)(l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__8));
+v___x_258_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__8, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__8_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__8);
 lean_inc(v_currMacroScope_250_);
 lean_inc(v_quotContext_249_);
 v___x_259_ = l_Lean_addMacroScope(v_quotContext_249_, v___x_258_, v_currMacroScope_250_);
-v___x_260_ = ((lean_object*)(l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__10));
+v___x_260_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__10, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__10_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__10);
 lean_inc_n(v___x_255_, 2);
 v___x_261_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_261_, 0, v___x_255_);
 lean_ctor_set(v___x_261_, 1, v___x_257_);
 lean_ctor_set(v___x_261_, 2, v___x_259_);
 lean_ctor_set(v___x_261_, 3, v___x_260_);
-v___x_262_ = ((lean_object*)(l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__12));
+v___x_262_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__12, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__12_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__12);
 v___x_263_ = l_Lean_Syntax_node2(v___x_255_, v___x_262_, v___x_253_, v___x_244_);
 v___x_264_ = l_Lean_Syntax_node2(v___x_255_, v___x_256_, v___x_261_, v___x_263_);
 v___x_265_ = lean_alloc_ctor(0, 2, 0);
@@ -976,7 +1310,7 @@ LEAN_EXPORT lean_object* l_BitVec_unexpandBitVecOfNat(lean_object* v_x_270_, lea
 _start:
 {
 lean_object* v___x_273_; uint8_t v___x_274_; 
-v___x_273_ = ((lean_object*)(l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4));
+v___x_273_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4);
 lean_inc(v_x_270_);
 v___x_274_ = l_Lean_Syntax_isOfKind(v_x_270_, v___x_273_);
 if (v___x_274_ == 0)
@@ -1012,7 +1346,7 @@ else
 {
 lean_object* v___x_283_; lean_object* v___x_284_; uint8_t v___x_285_; 
 v___x_283_ = l_Lean_Syntax_getArg(v___x_278_, v___x_277_);
-v___x_284_ = ((lean_object*)(l_BitVec_term_____x23_____00__closed__6));
+v___x_284_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__6, &l_BitVec_term_____x23_____00__closed__6_once, _init_l_BitVec_term_____x23_____00__closed__6);
 lean_inc(v___x_283_);
 v___x_285_ = l_Lean_Syntax_isOfKind(v___x_283_, v___x_284_);
 if (v___x_285_ == 0)
@@ -1034,8 +1368,8 @@ v___x_289_ = l_Lean_Syntax_getArg(v___x_278_, v___x_288_);
 lean_dec(v___x_278_);
 v___x_290_ = 0;
 v___x_291_ = l_Lean_SourceInfo_fromRef(v_a_271_, v___x_290_);
-v___x_292_ = ((lean_object*)(l_BitVec_term_____x23_____00__closed__2));
-v___x_293_ = ((lean_object*)(l_BitVec_term_____x23_____00__closed__12));
+v___x_292_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__2, &l_BitVec_term_____x23_____00__closed__2_once, _init_l_BitVec_term_____x23_____00__closed__2);
+v___x_293_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__12, &l_BitVec_term_____x23_____00__closed__12_once, _init_l_BitVec_term_____x23_____00__closed__12);
 lean_inc(v___x_291_);
 v___x_294_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_294_, 0, v___x_291_);
@@ -1059,20 +1393,171 @@ lean_dec(v_a_298_);
 return v_res_300_;
 }
 }
+static lean_object* _init_l_BitVec_term_____x23_x27_____00__closed__0(void){
+_start:
+{
+lean_object* v___x_301_; 
+v___x_301_ = lean_mk_string_unchecked("term__#'__", 10, 10);
+return v___x_301_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_x27_____00__closed__1(void){
+_start:
+{
+lean_object* v___x_302_; lean_object* v___x_303_; lean_object* v___x_304_; 
+v___x_302_ = lean_obj_once(&l_BitVec_term_____x23_x27_____00__closed__0, &l_BitVec_term_____x23_x27_____00__closed__0_once, _init_l_BitVec_term_____x23_x27_____00__closed__0);
+v___x_303_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__0, &l_BitVec_term_____x23_____00__closed__0_once, _init_l_BitVec_term_____x23_____00__closed__0);
+v___x_304_ = l_Lean_Name_mkStr2(v___x_303_, v___x_302_);
+return v___x_304_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_x27_____00__closed__2(void){
+_start:
+{
+lean_object* v___x_305_; 
+v___x_305_ = lean_mk_string_unchecked("#'", 2, 2);
+return v___x_305_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_x27_____00__closed__3(void){
+_start:
+{
+lean_object* v___x_306_; lean_object* v___x_307_; 
+v___x_306_ = lean_obj_once(&l_BitVec_term_____x23_x27_____00__closed__2, &l_BitVec_term_____x23_x27_____00__closed__2_once, _init_l_BitVec_term_____x23_x27_____00__closed__2);
+v___x_307_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_307_, 0, v___x_306_);
+return v___x_307_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_x27_____00__closed__4(void){
+_start:
+{
+lean_object* v___x_308_; lean_object* v___x_309_; lean_object* v___x_310_; lean_object* v___x_311_; 
+v___x_308_ = lean_obj_once(&l_BitVec_term_____x23_x27_____00__closed__3, &l_BitVec_term_____x23_x27_____00__closed__3_once, _init_l_BitVec_term_____x23_x27_____00__closed__3);
+v___x_309_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__10, &l_BitVec_term_____x23_____00__closed__10_once, _init_l_BitVec_term_____x23_____00__closed__10);
+v___x_310_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__4, &l_BitVec_term_____x23_____00__closed__4_once, _init_l_BitVec_term_____x23_____00__closed__4);
+v___x_311_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_311_, 0, v___x_310_);
+lean_ctor_set(v___x_311_, 1, v___x_309_);
+lean_ctor_set(v___x_311_, 2, v___x_308_);
+return v___x_311_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_x27_____00__closed__5(void){
+_start:
+{
+lean_object* v___x_312_; lean_object* v___x_313_; lean_object* v___x_314_; lean_object* v___x_315_; 
+v___x_312_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__10, &l_BitVec_term_____x23_____00__closed__10_once, _init_l_BitVec_term_____x23_____00__closed__10);
+v___x_313_ = lean_obj_once(&l_BitVec_term_____x23_x27_____00__closed__4, &l_BitVec_term_____x23_x27_____00__closed__4_once, _init_l_BitVec_term_____x23_x27_____00__closed__4);
+v___x_314_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__4, &l_BitVec_term_____x23_____00__closed__4_once, _init_l_BitVec_term_____x23_____00__closed__4);
+v___x_315_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_315_, 0, v___x_314_);
+lean_ctor_set(v___x_315_, 1, v___x_313_);
+lean_ctor_set(v___x_315_, 2, v___x_312_);
+return v___x_315_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_x27_____00__closed__6(void){
+_start:
+{
+lean_object* v___x_316_; lean_object* v___x_317_; lean_object* v___x_318_; lean_object* v___x_319_; 
+v___x_316_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__18, &l_BitVec_term_____x23_____00__closed__18_once, _init_l_BitVec_term_____x23_____00__closed__18);
+v___x_317_ = lean_obj_once(&l_BitVec_term_____x23_x27_____00__closed__5, &l_BitVec_term_____x23_x27_____00__closed__5_once, _init_l_BitVec_term_____x23_x27_____00__closed__5);
+v___x_318_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__4, &l_BitVec_term_____x23_____00__closed__4_once, _init_l_BitVec_term_____x23_____00__closed__4);
+v___x_319_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_319_, 0, v___x_318_);
+lean_ctor_set(v___x_319_, 1, v___x_317_);
+lean_ctor_set(v___x_319_, 2, v___x_316_);
+return v___x_319_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_x27_____00__closed__7(void){
+_start:
+{
+lean_object* v___x_320_; lean_object* v___x_321_; lean_object* v___x_322_; lean_object* v___x_323_; 
+v___x_320_ = lean_obj_once(&l_BitVec_term_____x23_x27_____00__closed__6, &l_BitVec_term_____x23_x27_____00__closed__6_once, _init_l_BitVec_term_____x23_x27_____00__closed__6);
+v___x_321_ = lean_unsigned_to_nat(1024u);
+v___x_322_ = lean_obj_once(&l_BitVec_term_____x23_x27_____00__closed__1, &l_BitVec_term_____x23_x27_____00__closed__1_once, _init_l_BitVec_term_____x23_x27_____00__closed__1);
+v___x_323_ = lean_alloc_ctor(4, 4, 0);
+lean_ctor_set(v___x_323_, 0, v___x_322_);
+lean_ctor_set(v___x_323_, 1, v___x_321_);
+lean_ctor_set(v___x_323_, 2, v___x_321_);
+lean_ctor_set(v___x_323_, 3, v___x_320_);
+return v___x_323_;
+}
+}
+static lean_object* _init_l_BitVec_term_____x23_x27____(void){
+_start:
+{
+lean_object* v___x_324_; 
+v___x_324_ = lean_obj_once(&l_BitVec_term_____x23_x27_____00__closed__7, &l_BitVec_term_____x23_x27_____00__closed__7_once, _init_l_BitVec_term_____x23_x27_____00__closed__7);
+return v___x_324_;
+}
+}
+static lean_object* _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__0(void){
+_start:
+{
+lean_object* v___x_325_; 
+v___x_325_ = lean_mk_string_unchecked("BitVec.ofNatLT", 14, 14);
+return v___x_325_;
+}
+}
 static lean_object* _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__1(void){
 _start:
 {
 lean_object* v___x_326_; lean_object* v___x_327_; 
-v___x_326_ = ((lean_object*)(l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__0));
+v___x_326_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__0, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__0_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__0);
 v___x_327_ = l_String_toRawSubstring_x27(v___x_326_);
 return v___x_327_;
+}
+}
+static lean_object* _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__2(void){
+_start:
+{
+lean_object* v___x_328_; 
+v___x_328_ = lean_mk_string_unchecked("ofNatLT", 7, 7);
+return v___x_328_;
+}
+}
+static lean_object* _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__3(void){
+_start:
+{
+lean_object* v___x_329_; lean_object* v___x_330_; lean_object* v___x_331_; 
+v___x_329_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__2, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__2_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__2);
+v___x_330_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__0, &l_BitVec_term_____x23_____00__closed__0_once, _init_l_BitVec_term_____x23_____00__closed__0);
+v___x_331_ = l_Lean_Name_mkStr2(v___x_330_, v___x_329_);
+return v___x_331_;
+}
+}
+static lean_object* _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__4(void){
+_start:
+{
+lean_object* v___x_332_; lean_object* v___x_333_; lean_object* v___x_334_; 
+v___x_332_ = lean_box(0);
+v___x_333_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__3, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__3_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__3);
+v___x_334_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_334_, 0, v___x_333_);
+lean_ctor_set(v___x_334_, 1, v___x_332_);
+return v___x_334_;
+}
+}
+static lean_object* _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__5(void){
+_start:
+{
+lean_object* v___x_335_; lean_object* v___x_336_; lean_object* v___x_337_; 
+v___x_335_ = lean_box(0);
+v___x_336_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__4, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__4_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__4);
+v___x_337_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_337_, 0, v___x_336_);
+lean_ctor_set(v___x_337_, 1, v___x_335_);
+return v___x_337_;
 }
 }
 LEAN_EXPORT lean_object* l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1(lean_object* v_x_338_, lean_object* v_a_339_, lean_object* v_a_340_){
 _start:
 {
 lean_object* v___x_341_; uint8_t v___x_342_; 
-v___x_341_ = ((lean_object*)(l_BitVec_term_____x23_x27_____00__closed__1));
+v___x_341_ = lean_obj_once(&l_BitVec_term_____x23_x27_____00__closed__1, &l_BitVec_term_____x23_x27_____00__closed__1_once, _init_l_BitVec_term_____x23_x27_____00__closed__1);
 lean_inc(v_x_338_);
 v___x_342_ = l_Lean_Syntax_isOfKind(v_x_338_, v___x_341_);
 if (v___x_342_ == 0)
@@ -1098,20 +1583,20 @@ v___x_351_ = l_Lean_Syntax_getArg(v_x_338_, v___x_350_);
 lean_dec(v_x_338_);
 v___x_352_ = 0;
 v___x_353_ = l_Lean_SourceInfo_fromRef(v_ref_347_, v___x_352_);
-v___x_354_ = ((lean_object*)(l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4));
+v___x_354_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4);
 v___x_355_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__1, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__1_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__1);
-v___x_356_ = ((lean_object*)(l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__3));
+v___x_356_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__3, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__3_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__3);
 lean_inc(v_currMacroScope_346_);
 lean_inc(v_quotContext_345_);
 v___x_357_ = l_Lean_addMacroScope(v_quotContext_345_, v___x_356_, v_currMacroScope_346_);
-v___x_358_ = ((lean_object*)(l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__5));
+v___x_358_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__5, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__5_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23_x27______1___closed__5);
 lean_inc_n(v___x_353_, 2);
 v___x_359_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_359_, 0, v___x_353_);
 lean_ctor_set(v___x_359_, 1, v___x_355_);
 lean_ctor_set(v___x_359_, 2, v___x_357_);
 lean_ctor_set(v___x_359_, 3, v___x_358_);
-v___x_360_ = ((lean_object*)(l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__12));
+v___x_360_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__12, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__12_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__12);
 v___x_361_ = l_Lean_Syntax_node2(v___x_353_, v___x_360_, v___x_349_, v___x_351_);
 v___x_362_ = l_Lean_Syntax_node2(v___x_353_, v___x_354_, v___x_359_, v___x_361_);
 v___x_363_ = lean_alloc_ctor(0, 2, 0);
@@ -1134,7 +1619,7 @@ LEAN_EXPORT lean_object* l_BitVec_unexpandBitVecOfNatLt(lean_object* v_x_368_, l
 _start:
 {
 lean_object* v___x_371_; uint8_t v___x_372_; 
-v___x_371_ = ((lean_object*)(l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4));
+v___x_371_ = lean_obj_once(&l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4, &l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4_once, _init_l_BitVec___aux__Init__Data__BitVec__Basic______macroRules__BitVec__term_____x23______1___closed__4);
 lean_inc(v_x_368_);
 v___x_372_ = l_Lean_Syntax_isOfKind(v_x_368_, v___x_371_);
 if (v___x_372_ == 0)
@@ -1175,8 +1660,8 @@ v___x_383_ = l_Lean_Syntax_getArg(v___x_376_, v___x_375_);
 lean_dec(v___x_376_);
 v___x_384_ = 0;
 v___x_385_ = l_Lean_SourceInfo_fromRef(v_a_369_, v___x_384_);
-v___x_386_ = ((lean_object*)(l_BitVec_term_____x23_x27_____00__closed__1));
-v___x_387_ = ((lean_object*)(l_BitVec_term_____x23_x27_____00__closed__2));
+v___x_386_ = lean_obj_once(&l_BitVec_term_____x23_x27_____00__closed__1, &l_BitVec_term_____x23_x27_____00__closed__1_once, _init_l_BitVec_term_____x23_x27_____00__closed__1);
+v___x_387_ = lean_obj_once(&l_BitVec_term_____x23_x27_____00__closed__2, &l_BitVec_term_____x23_x27_____00__closed__2_once, _init_l_BitVec_term_____x23_x27_____00__closed__2);
 lean_inc(v___x_385_);
 v___x_388_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_388_, 0, v___x_385_);
@@ -1241,18 +1726,46 @@ lean_dec(v_n_412_);
 return v_res_414_;
 }
 }
+static lean_object* _init_l_BitVec_repr___closed__0(void){
+_start:
+{
+lean_object* v___x_415_; 
+v___x_415_ = lean_mk_string_unchecked("0x", 2, 2);
+return v___x_415_;
+}
+}
+static lean_object* _init_l_BitVec_repr___closed__1(void){
+_start:
+{
+lean_object* v___x_416_; lean_object* v___x_417_; 
+v___x_416_ = lean_obj_once(&l_BitVec_repr___closed__0, &l_BitVec_repr___closed__0_once, _init_l_BitVec_repr___closed__0);
+v___x_417_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_417_, 0, v___x_416_);
+return v___x_417_;
+}
+}
+static lean_object* _init_l_BitVec_repr___closed__2(void){
+_start:
+{
+lean_object* v___x_418_; lean_object* v___x_419_; 
+v___x_418_ = lean_obj_once(&l_BitVec_term_____x23_____00__closed__12, &l_BitVec_term_____x23_____00__closed__12_once, _init_l_BitVec_term_____x23_____00__closed__12);
+v___x_419_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_419_, 0, v___x_418_);
+return v___x_419_;
+}
+}
 LEAN_EXPORT lean_object* l_BitVec_repr(lean_object* v_n_420_, lean_object* v_a_421_){
 _start:
 {
 lean_object* v___x_422_; lean_object* v___x_423_; lean_object* v___x_424_; lean_object* v___x_425_; lean_object* v___x_426_; lean_object* v___x_427_; lean_object* v___x_428_; lean_object* v___x_429_; lean_object* v___x_430_; 
-v___x_422_ = ((lean_object*)(l_BitVec_repr___closed__1));
+v___x_422_ = lean_obj_once(&l_BitVec_repr___closed__1, &l_BitVec_repr___closed__1_once, _init_l_BitVec_repr___closed__1);
 v___x_423_ = l_BitVec_toHex(v_n_420_, v_a_421_);
 v___x_424_ = lean_alloc_ctor(3, 1, 0);
 lean_ctor_set(v___x_424_, 0, v___x_423_);
 v___x_425_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_425_, 0, v___x_422_);
 lean_ctor_set(v___x_425_, 1, v___x_424_);
-v___x_426_ = ((lean_object*)(l_BitVec_repr___closed__2));
+v___x_426_ = lean_obj_once(&l_BitVec_repr___closed__2, &l_BitVec_repr___closed__2_once, _init_l_BitVec_repr___closed__2);
 v___x_427_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_427_, 0, v___x_425_);
 lean_ctor_set(v___x_427_, 1, v___x_426_);
@@ -2902,11 +3415,19 @@ lean_dec(v_n_1006_);
 return v_res_1007_;
 }
 }
+static lean_object* _init_l_BitVec_instHShiftRight___closed__0(void){
+_start:
+{
+lean_object* v___f_1008_; 
+v___f_1008_ = lean_alloc_closure((void*)(l_Nat_shiftRight___boxed), 2, 0);
+return v___f_1008_;
+}
+}
 LEAN_EXPORT lean_object* l_BitVec_instHShiftRight(lean_object* v_m_1009_, lean_object* v_n_1010_){
 _start:
 {
 lean_object* v___f_1011_; 
-v___f_1011_ = ((lean_object*)(l_BitVec_instHShiftRight___closed__0));
+v___f_1011_ = lean_obj_once(&l_BitVec_instHShiftRight___closed__0, &l_BitVec_instHShiftRight___closed__0_once, _init_l_BitVec_instHShiftRight___closed__0);
 return v___f_1011_;
 }
 }
@@ -3990,6 +4511,10 @@ LEAN_EXPORT lean_object* meta_initialize_Init_Data_BitVec_Basic(uint8_t builtin)
 lean_object * res;
 if (_G_meta_initialized) return lean_io_result_mk_ok(lean_box(0));
 _G_meta_initialized = true;
+l_BitVec_term_____x23____ = _init_l_BitVec_term_____x23____();
+lean_mark_persistent(l_BitVec_term_____x23____);
+l_BitVec_term_____x23_x27____ = _init_l_BitVec_term_____x23_x27____();
+lean_mark_persistent(l_BitVec_term_____x23_x27____);
 return lean_io_result_mk_ok(lean_box(0));
 }
 lean_object* initialize_Init_Data_Int_Bitwise_Basic(uint8_t builtin);

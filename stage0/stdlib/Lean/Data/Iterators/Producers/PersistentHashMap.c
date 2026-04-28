@@ -45,8 +45,8 @@ LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_Zipper_prependNode(lean_object
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_Zipper_step___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_Zipper_step(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_instIterator___lam__0(lean_object*);
-static const lean_closure_object l_Lean_PersistentHashMap_instIterator___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_PersistentHashMap_instIterator___lam__0, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_PersistentHashMap_instIterator___closed__0 = (const lean_object*)&l_Lean_PersistentHashMap_instIterator___closed__0_value;
+static lean_once_cell_t l_Lean_PersistentHashMap_instIterator___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_PersistentHashMap_instIterator___closed__0;
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_instIterator(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Data_Iterators_Producers_PersistentHashMap_0__Lean_PersistentHashMap_Node_measure_measureEntries___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_Node_measure___redArg(lean_object*);
@@ -70,8 +70,8 @@ LEAN_EXPORT lean_object* l_List_sum___at___00Lean_PersistentHashMap_subarrayMeas
 LEAN_EXPORT lean_object* l_List_sum___at___00Lean_PersistentHashMap_subarrayMeasure_spec__2___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_List_mapTR_loop___at___00Lean_PersistentHashMap_subarrayMeasure_spec__1___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lean_PersistentHashMap_subarrayMeasure_spec__0___redArg(lean_object*, lean_object*);
-static const lean_array_object l_Lean_PersistentHashMap_subarrayMeasure___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Lean_PersistentHashMap_subarrayMeasure___redArg___closed__0 = (const lean_object*)&l_Lean_PersistentHashMap_subarrayMeasure___redArg___closed__0_value;
+static lean_once_cell_t l_Lean_PersistentHashMap_subarrayMeasure___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_PersistentHashMap_subarrayMeasure___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_subarrayMeasure___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_subarrayMeasure(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lean_PersistentHashMap_subarrayMeasure_spec__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -1098,11 +1098,19 @@ return v___x_278_;
 }
 }
 }
+static lean_object* _init_l_Lean_PersistentHashMap_instIterator___closed__0(void){
+_start:
+{
+lean_object* v___f_281_; 
+v___f_281_ = lean_alloc_closure((void*)(l_Lean_PersistentHashMap_instIterator___lam__0), 1, 0);
+return v___f_281_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_instIterator(lean_object* v_00_u03b1_282_, lean_object* v_00_u03b2_283_){
 _start:
 {
 lean_object* v___f_284_; 
-v___f_284_ = ((lean_object*)(l_Lean_PersistentHashMap_instIterator___closed__0));
+v___f_284_ = lean_obj_once(&l_Lean_PersistentHashMap_instIterator___closed__0, &l_Lean_PersistentHashMap_instIterator___closed__0_once, _init_l_Lean_PersistentHashMap_instIterator___closed__0);
 return v___f_284_;
 }
 }
@@ -1592,11 +1600,20 @@ goto _start;
 }
 }
 }
+static lean_object* _init_l_Lean_PersistentHashMap_subarrayMeasure___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_435_; lean_object* v___x_436_; 
+v___x_435_ = lean_unsigned_to_nat(0u);
+v___x_436_ = lean_mk_empty_array_with_capacity(v___x_435_);
+return v___x_436_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_subarrayMeasure___redArg(lean_object* v_es_437_){
 _start:
 {
 lean_object* v___x_438_; lean_object* v___x_439_; lean_object* v___x_440_; lean_object* v___x_441_; lean_object* v___x_442_; lean_object* v___x_443_; 
-v___x_438_ = ((lean_object*)(l_Lean_PersistentHashMap_subarrayMeasure___redArg___closed__0));
+v___x_438_ = lean_obj_once(&l_Lean_PersistentHashMap_subarrayMeasure___redArg___closed__0, &l_Lean_PersistentHashMap_subarrayMeasure___redArg___closed__0_once, _init_l_Lean_PersistentHashMap_subarrayMeasure___redArg___closed__0);
 v___x_439_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lean_PersistentHashMap_subarrayMeasure_spec__0___redArg(v_es_437_, v___x_438_);
 v___x_440_ = lean_array_to_list(v___x_439_);
 v___x_441_ = lean_box(0);

@@ -15,9 +15,9 @@ extern "C" {
 #endif
 lean_object* lean_string_mk(lean_object*);
 LEAN_EXPORT lean_object* l_String_instOfNatRaw;
-static const lean_string_object l_String_instInhabited___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 1, .m_capacity = 1, .m_length = 0, .m_data = ""};
-static const lean_object* l_String_instInhabited___closed__0 = (const lean_object*)&l_String_instInhabited___closed__0_value;
-LEAN_EXPORT const lean_object* l_String_instInhabited = (const lean_object*)&l_String_instInhabited___closed__0_value;
+static lean_once_cell_t l_String_instInhabited___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_instInhabited___closed__0;
+LEAN_EXPORT lean_object* l_String_instInhabited;
 lean_object* lean_string_push(lean_object*, uint32_t);
 LEAN_EXPORT lean_object* l_String_push___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_singleton(uint32_t);
@@ -103,6 +103,22 @@ v___x_1_ = lean_unsigned_to_nat(0u);
 return v___x_1_;
 }
 }
+static lean_object* _init_l_String_instInhabited___closed__0(void){
+_start:
+{
+lean_object* v___x_2_; 
+v___x_2_ = lean_mk_string_unchecked("", 0, 0);
+return v___x_2_;
+}
+}
+static lean_object* _init_l_String_instInhabited(void){
+_start:
+{
+lean_object* v___x_3_; 
+v___x_3_ = lean_obj_once(&l_String_instInhabited___closed__0, &l_String_instInhabited___closed__0_once, _init_l_String_instInhabited___closed__0);
+return v___x_3_;
+}
+}
 LEAN_EXPORT lean_object* l_String_push___boxed(lean_object* v_a_00___x40___internal___hyg_6_, lean_object* v_a_00___x40___internal___hyg_7_){
 _start:
 {
@@ -117,7 +133,7 @@ LEAN_EXPORT lean_object* l_String_singleton(uint32_t v_c_10_){
 _start:
 {
 lean_object* v___x_11_; lean_object* v___x_12_; 
-v___x_11_ = ((lean_object*)(l_String_instInhabited___closed__0));
+v___x_11_ = lean_obj_once(&l_String_instInhabited___closed__0, &l_String_instInhabited___closed__0_once, _init_l_String_instInhabited___closed__0);
 v___x_12_ = lean_string_push(v___x_11_, v_c_10_);
 return v___x_12_;
 }
@@ -455,7 +471,7 @@ LEAN_EXPORT lean_object* l_Char_toString(uint32_t v_c_203_){
 _start:
 {
 lean_object* v___x_204_; lean_object* v___x_205_; 
-v___x_204_ = ((lean_object*)(l_String_instInhabited___closed__0));
+v___x_204_ = lean_obj_once(&l_String_instInhabited___closed__0, &l_String_instInhabited___closed__0_once, _init_l_String_instInhabited___closed__0);
 v___x_205_ = lean_string_push(v___x_204_, v_c_203_);
 return v___x_205_;
 }
@@ -485,6 +501,8 @@ if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 l_String_instOfNatRaw = _init_l_String_instOfNatRaw();
 lean_mark_persistent(l_String_instOfNatRaw);
+l_String_instInhabited = _init_l_String_instInhabited();
+lean_mark_persistent(l_String_instInhabited);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

@@ -26,8 +26,8 @@ uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* l_Array_append___redArg(lean_object*, lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
-static const lean_array_object l_Std_Sat_AIG_RefVec_empty___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Std_Sat_AIG_RefVec_empty___closed__0 = (const lean_object*)&l_Std_Sat_AIG_RefVec_empty___closed__0_value;
+static lean_once_cell_t l_Std_Sat_AIG_RefVec_empty___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Sat_AIG_RefVec_empty___closed__0;
 LEAN_EXPORT lean_object* l_Std_Sat_AIG_RefVec_empty(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Sat_AIG_RefVec_empty___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Sat_AIG_RefVec_emptyWithCapacity___redArg(lean_object*);
@@ -77,11 +77,20 @@ LEAN_EXPORT lean_object* l_Std_Sat_AIG_BinaryRefVec_cast___boxed(lean_object*, l
 LEAN_EXPORT lean_object* l___private_Std_Sat_AIG_RefVec_0__Std_Sat_AIG_BinaryRefVec_cast_match__1_splitter___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Sat_AIG_RefVec_0__Std_Sat_AIG_BinaryRefVec_cast_match__1_splitter(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Sat_AIG_RefVec_0__Std_Sat_AIG_BinaryRefVec_cast_match__1_splitter___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+static lean_object* _init_l_Std_Sat_AIG_RefVec_empty___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; lean_object* v___x_2_; 
+v___x_1_ = lean_unsigned_to_nat(0u);
+v___x_2_ = lean_mk_empty_array_with_capacity(v___x_1_);
+return v___x_2_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Sat_AIG_RefVec_empty(lean_object* v_00_u03b1_3_, lean_object* v_inst_4_, lean_object* v_inst_5_, lean_object* v_aig_6_){
 _start:
 {
 lean_object* v___x_7_; 
-v___x_7_ = ((lean_object*)(l_Std_Sat_AIG_RefVec_empty___closed__0));
+v___x_7_ = lean_obj_once(&l_Std_Sat_AIG_RefVec_empty___closed__0, &l_Std_Sat_AIG_RefVec_empty___closed__0_once, _init_l_Std_Sat_AIG_RefVec_empty___closed__0);
 return v___x_7_;
 }
 }

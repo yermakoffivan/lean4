@@ -42,26 +42,26 @@ LEAN_EXPORT lean_object* l_Array_attach___redArg___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Array_attach(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_attach___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_pmapImpl___redArg___lam__0(lean_object*, lean_object*);
-static const lean_closure_object l_Array_pmapImpl___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__0, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Array_pmapImpl___redArg___closed__0 = (const lean_object*)&l_Array_pmapImpl___redArg___closed__0_value;
-static const lean_closure_object l_Array_pmapImpl___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__1___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Array_pmapImpl___redArg___closed__1 = (const lean_object*)&l_Array_pmapImpl___redArg___closed__1_value;
-static const lean_closure_object l_Array_pmapImpl___redArg___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__2___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Array_pmapImpl___redArg___closed__2 = (const lean_object*)&l_Array_pmapImpl___redArg___closed__2_value;
-static const lean_closure_object l_Array_pmapImpl___redArg___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__3, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Array_pmapImpl___redArg___closed__3 = (const lean_object*)&l_Array_pmapImpl___redArg___closed__3_value;
-static const lean_closure_object l_Array_pmapImpl___redArg___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__4___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Array_pmapImpl___redArg___closed__4 = (const lean_object*)&l_Array_pmapImpl___redArg___closed__4_value;
-static const lean_closure_object l_Array_pmapImpl___redArg___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__5___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Array_pmapImpl___redArg___closed__5 = (const lean_object*)&l_Array_pmapImpl___redArg___closed__5_value;
-static const lean_closure_object l_Array_pmapImpl___redArg___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__6, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Array_pmapImpl___redArg___closed__6 = (const lean_object*)&l_Array_pmapImpl___redArg___closed__6_value;
-static const lean_ctor_object l_Array_pmapImpl___redArg___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_Array_pmapImpl___redArg___closed__0_value),((lean_object*)&l_Array_pmapImpl___redArg___closed__1_value)}};
-static const lean_object* l_Array_pmapImpl___redArg___closed__7 = (const lean_object*)&l_Array_pmapImpl___redArg___closed__7_value;
-static const lean_ctor_object l_Array_pmapImpl___redArg___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*5 + 0, .m_other = 5, .m_tag = 0}, .m_objs = {((lean_object*)&l_Array_pmapImpl___redArg___closed__7_value),((lean_object*)&l_Array_pmapImpl___redArg___closed__2_value),((lean_object*)&l_Array_pmapImpl___redArg___closed__3_value),((lean_object*)&l_Array_pmapImpl___redArg___closed__4_value),((lean_object*)&l_Array_pmapImpl___redArg___closed__5_value)}};
-static const lean_object* l_Array_pmapImpl___redArg___closed__8 = (const lean_object*)&l_Array_pmapImpl___redArg___closed__8_value;
-static const lean_ctor_object l_Array_pmapImpl___redArg___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_Array_pmapImpl___redArg___closed__8_value),((lean_object*)&l_Array_pmapImpl___redArg___closed__6_value)}};
-static const lean_object* l_Array_pmapImpl___redArg___closed__9 = (const lean_object*)&l_Array_pmapImpl___redArg___closed__9_value;
+static lean_once_cell_t l_Array_pmapImpl___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_pmapImpl___redArg___closed__0;
+static lean_once_cell_t l_Array_pmapImpl___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_pmapImpl___redArg___closed__1;
+static lean_once_cell_t l_Array_pmapImpl___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_pmapImpl___redArg___closed__2;
+static lean_once_cell_t l_Array_pmapImpl___redArg___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_pmapImpl___redArg___closed__3;
+static lean_once_cell_t l_Array_pmapImpl___redArg___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_pmapImpl___redArg___closed__4;
+static lean_once_cell_t l_Array_pmapImpl___redArg___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_pmapImpl___redArg___closed__5;
+static lean_once_cell_t l_Array_pmapImpl___redArg___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_pmapImpl___redArg___closed__6;
+static lean_once_cell_t l_Array_pmapImpl___redArg___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_pmapImpl___redArg___closed__7;
+static lean_once_cell_t l_Array_pmapImpl___redArg___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_pmapImpl___redArg___closed__8;
+static lean_once_cell_t l_Array_pmapImpl___redArg___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_pmapImpl___redArg___closed__9;
 LEAN_EXPORT lean_object* l_Array_pmapImpl___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_pmapImpl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_unattach_spec__0___redArg(size_t, size_t, lean_object*);
@@ -231,13 +231,111 @@ v___x_57_ = lean_apply_2(v_f_55_, v_x_56_, lean_box(0));
 return v___x_57_;
 }
 }
+static lean_object* _init_l_Array_pmapImpl___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_58_; 
+v___f_58_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__0), 4, 0);
+return v___f_58_;
+}
+}
+static lean_object* _init_l_Array_pmapImpl___redArg___closed__1(void){
+_start:
+{
+lean_object* v___f_59_; 
+v___f_59_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__1___boxed), 4, 0);
+return v___f_59_;
+}
+}
+static lean_object* _init_l_Array_pmapImpl___redArg___closed__2(void){
+_start:
+{
+lean_object* v___f_60_; 
+v___f_60_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__2___boxed), 2, 0);
+return v___f_60_;
+}
+}
+static lean_object* _init_l_Array_pmapImpl___redArg___closed__3(void){
+_start:
+{
+lean_object* v___f_61_; 
+v___f_61_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__3), 4, 0);
+return v___f_61_;
+}
+}
+static lean_object* _init_l_Array_pmapImpl___redArg___closed__4(void){
+_start:
+{
+lean_object* v___f_62_; 
+v___f_62_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__4___boxed), 4, 0);
+return v___f_62_;
+}
+}
+static lean_object* _init_l_Array_pmapImpl___redArg___closed__5(void){
+_start:
+{
+lean_object* v___f_63_; 
+v___f_63_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__5___boxed), 4, 0);
+return v___f_63_;
+}
+}
+static lean_object* _init_l_Array_pmapImpl___redArg___closed__6(void){
+_start:
+{
+lean_object* v___f_64_; 
+v___f_64_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__6), 4, 0);
+return v___f_64_;
+}
+}
+static lean_object* _init_l_Array_pmapImpl___redArg___closed__7(void){
+_start:
+{
+lean_object* v___f_65_; lean_object* v___f_66_; lean_object* v___x_67_; 
+v___f_65_ = lean_obj_once(&l_Array_pmapImpl___redArg___closed__1, &l_Array_pmapImpl___redArg___closed__1_once, _init_l_Array_pmapImpl___redArg___closed__1);
+v___f_66_ = lean_obj_once(&l_Array_pmapImpl___redArg___closed__0, &l_Array_pmapImpl___redArg___closed__0_once, _init_l_Array_pmapImpl___redArg___closed__0);
+v___x_67_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_67_, 0, v___f_66_);
+lean_ctor_set(v___x_67_, 1, v___f_65_);
+return v___x_67_;
+}
+}
+static lean_object* _init_l_Array_pmapImpl___redArg___closed__8(void){
+_start:
+{
+lean_object* v___f_68_; lean_object* v___f_69_; lean_object* v___f_70_; lean_object* v___f_71_; lean_object* v___x_72_; lean_object* v___x_73_; 
+v___f_68_ = lean_obj_once(&l_Array_pmapImpl___redArg___closed__5, &l_Array_pmapImpl___redArg___closed__5_once, _init_l_Array_pmapImpl___redArg___closed__5);
+v___f_69_ = lean_obj_once(&l_Array_pmapImpl___redArg___closed__4, &l_Array_pmapImpl___redArg___closed__4_once, _init_l_Array_pmapImpl___redArg___closed__4);
+v___f_70_ = lean_obj_once(&l_Array_pmapImpl___redArg___closed__3, &l_Array_pmapImpl___redArg___closed__3_once, _init_l_Array_pmapImpl___redArg___closed__3);
+v___f_71_ = lean_obj_once(&l_Array_pmapImpl___redArg___closed__2, &l_Array_pmapImpl___redArg___closed__2_once, _init_l_Array_pmapImpl___redArg___closed__2);
+v___x_72_ = lean_obj_once(&l_Array_pmapImpl___redArg___closed__7, &l_Array_pmapImpl___redArg___closed__7_once, _init_l_Array_pmapImpl___redArg___closed__7);
+v___x_73_ = lean_alloc_ctor(0, 5, 0);
+lean_ctor_set(v___x_73_, 0, v___x_72_);
+lean_ctor_set(v___x_73_, 1, v___f_71_);
+lean_ctor_set(v___x_73_, 2, v___f_70_);
+lean_ctor_set(v___x_73_, 3, v___f_69_);
+lean_ctor_set(v___x_73_, 4, v___f_68_);
+return v___x_73_;
+}
+}
+static lean_object* _init_l_Array_pmapImpl___redArg___closed__9(void){
+_start:
+{
+lean_object* v___f_74_; lean_object* v___x_75_; lean_object* v___x_76_; 
+v___f_74_ = lean_obj_once(&l_Array_pmapImpl___redArg___closed__6, &l_Array_pmapImpl___redArg___closed__6_once, _init_l_Array_pmapImpl___redArg___closed__6);
+v___x_75_ = lean_obj_once(&l_Array_pmapImpl___redArg___closed__8, &l_Array_pmapImpl___redArg___closed__8_once, _init_l_Array_pmapImpl___redArg___closed__8);
+v___x_76_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_76_, 0, v___x_75_);
+lean_ctor_set(v___x_76_, 1, v___f_74_);
+return v___x_76_;
+}
+}
 LEAN_EXPORT lean_object* l_Array_pmapImpl___redArg(lean_object* v_f_77_, lean_object* v_xs_78_){
 _start:
 {
 lean_object* v___f_79_; lean_object* v___x_80_; size_t v_sz_81_; size_t v___x_82_; lean_object* v___x_83_; 
 v___f_79_ = lean_alloc_closure((void*)(l_Array_pmapImpl___redArg___lam__0), 2, 1);
 lean_closure_set(v___f_79_, 0, v_f_77_);
-v___x_80_ = ((lean_object*)(l_Array_pmapImpl___redArg___closed__9));
+v___x_80_ = lean_obj_once(&l_Array_pmapImpl___redArg___closed__9, &l_Array_pmapImpl___redArg___closed__9_once, _init_l_Array_pmapImpl___redArg___closed__9);
 v_sz_81_ = lean_array_size(v_xs_78_);
 v___x_82_ = ((size_t)0ULL);
 v___x_83_ = l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map(lean_box(0), lean_box(0), lean_box(0), v___x_80_, v___f_79_, v_sz_81_, v___x_82_, v_xs_78_);
@@ -250,7 +348,7 @@ _start:
 lean_object* v___f_90_; lean_object* v___x_91_; size_t v_sz_92_; size_t v___x_93_; lean_object* v___x_94_; 
 v___f_90_ = lean_alloc_closure((void*)(l_Array_pmapImpl___redArg___lam__0), 2, 1);
 lean_closure_set(v___f_90_, 0, v_f_87_);
-v___x_91_ = ((lean_object*)(l_Array_pmapImpl___redArg___closed__9));
+v___x_91_ = lean_obj_once(&l_Array_pmapImpl___redArg___closed__9, &l_Array_pmapImpl___redArg___closed__9_once, _init_l_Array_pmapImpl___redArg___closed__9);
 v_sz_92_ = lean_array_size(v_xs_88_);
 v___x_93_ = ((size_t)0ULL);
 v___x_94_ = l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map(lean_box(0), lean_box(0), lean_box(0), v___x_91_, v___f_90_, v_sz_92_, v___x_93_, v_xs_88_);

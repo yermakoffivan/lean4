@@ -29,21 +29,21 @@ lean_object* lean_nat_shiftl(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Nat_shiftLeft___boxed(lean_object*, lean_object*);
 lean_object* lean_nat_shiftr(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Nat_shiftRight___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Nat_instAndOp___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Nat_land___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Nat_instAndOp___closed__0 = (const lean_object*)&l_Nat_instAndOp___closed__0_value;
-LEAN_EXPORT const lean_object* l_Nat_instAndOp = (const lean_object*)&l_Nat_instAndOp___closed__0_value;
-static const lean_closure_object l_Nat_instOrOp___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Nat_lor___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Nat_instOrOp___closed__0 = (const lean_object*)&l_Nat_instOrOp___closed__0_value;
-LEAN_EXPORT const lean_object* l_Nat_instOrOp = (const lean_object*)&l_Nat_instOrOp___closed__0_value;
-static const lean_closure_object l_Nat_instXorOp___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Nat_xor___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Nat_instXorOp___closed__0 = (const lean_object*)&l_Nat_instXorOp___closed__0_value;
-LEAN_EXPORT const lean_object* l_Nat_instXorOp = (const lean_object*)&l_Nat_instXorOp___closed__0_value;
-static const lean_closure_object l_Nat_instShiftLeft___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Nat_shiftLeft___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Nat_instShiftLeft___closed__0 = (const lean_object*)&l_Nat_instShiftLeft___closed__0_value;
-LEAN_EXPORT const lean_object* l_Nat_instShiftLeft = (const lean_object*)&l_Nat_instShiftLeft___closed__0_value;
-static const lean_closure_object l_Nat_instShiftRight___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Nat_shiftRight___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Nat_instShiftRight___closed__0 = (const lean_object*)&l_Nat_instShiftRight___closed__0_value;
-LEAN_EXPORT const lean_object* l_Nat_instShiftRight = (const lean_object*)&l_Nat_instShiftRight___closed__0_value;
+static lean_once_cell_t l_Nat_instAndOp___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Nat_instAndOp___closed__0;
+LEAN_EXPORT lean_object* l_Nat_instAndOp;
+static lean_once_cell_t l_Nat_instOrOp___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Nat_instOrOp___closed__0;
+LEAN_EXPORT lean_object* l_Nat_instOrOp;
+static lean_once_cell_t l_Nat_instXorOp___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Nat_instXorOp___closed__0;
+LEAN_EXPORT lean_object* l_Nat_instXorOp;
+static lean_once_cell_t l_Nat_instShiftLeft___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Nat_instShiftLeft___closed__0;
+LEAN_EXPORT lean_object* l_Nat_instShiftLeft;
+static lean_once_cell_t l_Nat_instShiftRight___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Nat_instShiftRight___closed__0;
+LEAN_EXPORT lean_object* l_Nat_instShiftRight;
 LEAN_EXPORT uint8_t l_Nat_testBit(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Nat_testBit___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Nat_bitwise(lean_object* v_f_1_, lean_object* v_n_2_, lean_object* v_m_3_){
@@ -192,6 +192,86 @@ lean_dec(v_a_00___x40___internal___hyg_58_);
 return v_res_60_;
 }
 }
+static lean_object* _init_l_Nat_instAndOp___closed__0(void){
+_start:
+{
+lean_object* v___x_61_; 
+v___x_61_ = lean_alloc_closure((void*)(l_Nat_land___boxed), 2, 0);
+return v___x_61_;
+}
+}
+static lean_object* _init_l_Nat_instAndOp(void){
+_start:
+{
+lean_object* v___x_62_; 
+v___x_62_ = lean_obj_once(&l_Nat_instAndOp___closed__0, &l_Nat_instAndOp___closed__0_once, _init_l_Nat_instAndOp___closed__0);
+return v___x_62_;
+}
+}
+static lean_object* _init_l_Nat_instOrOp___closed__0(void){
+_start:
+{
+lean_object* v___x_63_; 
+v___x_63_ = lean_alloc_closure((void*)(l_Nat_lor___boxed), 2, 0);
+return v___x_63_;
+}
+}
+static lean_object* _init_l_Nat_instOrOp(void){
+_start:
+{
+lean_object* v___x_64_; 
+v___x_64_ = lean_obj_once(&l_Nat_instOrOp___closed__0, &l_Nat_instOrOp___closed__0_once, _init_l_Nat_instOrOp___closed__0);
+return v___x_64_;
+}
+}
+static lean_object* _init_l_Nat_instXorOp___closed__0(void){
+_start:
+{
+lean_object* v___x_65_; 
+v___x_65_ = lean_alloc_closure((void*)(l_Nat_xor___boxed), 2, 0);
+return v___x_65_;
+}
+}
+static lean_object* _init_l_Nat_instXorOp(void){
+_start:
+{
+lean_object* v___x_66_; 
+v___x_66_ = lean_obj_once(&l_Nat_instXorOp___closed__0, &l_Nat_instXorOp___closed__0_once, _init_l_Nat_instXorOp___closed__0);
+return v___x_66_;
+}
+}
+static lean_object* _init_l_Nat_instShiftLeft___closed__0(void){
+_start:
+{
+lean_object* v___x_67_; 
+v___x_67_ = lean_alloc_closure((void*)(l_Nat_shiftLeft___boxed), 2, 0);
+return v___x_67_;
+}
+}
+static lean_object* _init_l_Nat_instShiftLeft(void){
+_start:
+{
+lean_object* v___x_68_; 
+v___x_68_ = lean_obj_once(&l_Nat_instShiftLeft___closed__0, &l_Nat_instShiftLeft___closed__0_once, _init_l_Nat_instShiftLeft___closed__0);
+return v___x_68_;
+}
+}
+static lean_object* _init_l_Nat_instShiftRight___closed__0(void){
+_start:
+{
+lean_object* v___x_69_; 
+v___x_69_ = lean_alloc_closure((void*)(l_Nat_shiftRight___boxed), 2, 0);
+return v___x_69_;
+}
+}
+static lean_object* _init_l_Nat_instShiftRight(void){
+_start:
+{
+lean_object* v___x_70_; 
+v___x_70_ = lean_obj_once(&l_Nat_instShiftRight___closed__0, &l_Nat_instShiftRight___closed__0_once, _init_l_Nat_instShiftRight___closed__0);
+return v___x_70_;
+}
+}
 LEAN_EXPORT uint8_t l_Nat_testBit(lean_object* v_m_71_, lean_object* v_n_72_){
 _start:
 {
@@ -245,6 +325,16 @@ lean_dec_ref(res);
 res = runtime_initialize_Init_WFTactics(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Nat_instAndOp = _init_l_Nat_instAndOp();
+lean_mark_persistent(l_Nat_instAndOp);
+l_Nat_instOrOp = _init_l_Nat_instOrOp();
+lean_mark_persistent(l_Nat_instOrOp);
+l_Nat_instXorOp = _init_l_Nat_instXorOp();
+lean_mark_persistent(l_Nat_instXorOp);
+l_Nat_instShiftLeft = _init_l_Nat_instShiftLeft();
+lean_mark_persistent(l_Nat_instShiftLeft);
+l_Nat_instShiftRight = _init_l_Nat_instShiftRight();
+lean_mark_persistent(l_Nat_instShiftRight);
 return lean_io_result_mk_ok(lean_box(0));
 }
 lean_object* runtime_initialize_Init_MetaTypes(uint8_t builtin);

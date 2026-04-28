@@ -14,21 +14,88 @@
 extern "C" {
 #endif
 lean_object* l_Lean_Name_mkStr3(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Order_monotonicity___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Lean"};
-static const lean_object* l_Lean_Order_monotonicity___closed__0 = (const lean_object*)&l_Lean_Order_monotonicity___closed__0_value;
-static const lean_string_object l_Lean_Order_monotonicity___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "Order"};
-static const lean_object* l_Lean_Order_monotonicity___closed__1 = (const lean_object*)&l_Lean_Order_monotonicity___closed__1_value;
-static const lean_string_object l_Lean_Order_monotonicity___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "monotonicity"};
-static const lean_object* l_Lean_Order_monotonicity___closed__2 = (const lean_object*)&l_Lean_Order_monotonicity___closed__2_value;
-static const lean_ctor_object l_Lean_Order_monotonicity___closed__3_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Order_monotonicity___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Order_monotonicity___closed__3_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Order_monotonicity___closed__3_value_aux_0),((lean_object*)&l_Lean_Order_monotonicity___closed__1_value),LEAN_SCALAR_PTR_LITERAL(47, 93, 74, 241, 117, 210, 202, 6)}};
-static const lean_ctor_object l_Lean_Order_monotonicity___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Order_monotonicity___closed__3_value_aux_1),((lean_object*)&l_Lean_Order_monotonicity___closed__2_value),LEAN_SCALAR_PTR_LITERAL(76, 245, 3, 217, 93, 200, 5, 81)}};
-static const lean_object* l_Lean_Order_monotonicity___closed__3 = (const lean_object*)&l_Lean_Order_monotonicity___closed__3_value;
-static const lean_ctor_object l_Lean_Order_monotonicity___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 8, .m_other = 1, .m_tag = 6}, .m_objs = {((lean_object*)&l_Lean_Order_monotonicity___closed__2_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Lean_Order_monotonicity___closed__4 = (const lean_object*)&l_Lean_Order_monotonicity___closed__4_value;
-static const lean_ctor_object l_Lean_Order_monotonicity___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Order_monotonicity___closed__3_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_Lean_Order_monotonicity___closed__4_value)}};
-static const lean_object* l_Lean_Order_monotonicity___closed__5 = (const lean_object*)&l_Lean_Order_monotonicity___closed__5_value;
-LEAN_EXPORT const lean_object* l_Lean_Order_monotonicity = (const lean_object*)&l_Lean_Order_monotonicity___closed__5_value;
+static lean_once_cell_t l_Lean_Order_monotonicity___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Order_monotonicity___closed__0;
+static lean_once_cell_t l_Lean_Order_monotonicity___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Order_monotonicity___closed__1;
+static lean_once_cell_t l_Lean_Order_monotonicity___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Order_monotonicity___closed__2;
+static lean_once_cell_t l_Lean_Order_monotonicity___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Order_monotonicity___closed__3;
+static lean_once_cell_t l_Lean_Order_monotonicity___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Order_monotonicity___closed__4;
+static lean_once_cell_t l_Lean_Order_monotonicity___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Order_monotonicity___closed__5;
+LEAN_EXPORT lean_object* l_Lean_Order_monotonicity;
+static lean_object* _init_l_Lean_Order_monotonicity___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; 
+v___x_1_ = lean_mk_string_unchecked("Lean", 4, 4);
+return v___x_1_;
+}
+}
+static lean_object* _init_l_Lean_Order_monotonicity___closed__1(void){
+_start:
+{
+lean_object* v___x_2_; 
+v___x_2_ = lean_mk_string_unchecked("Order", 5, 5);
+return v___x_2_;
+}
+}
+static lean_object* _init_l_Lean_Order_monotonicity___closed__2(void){
+_start:
+{
+lean_object* v___x_3_; 
+v___x_3_ = lean_mk_string_unchecked("monotonicity", 12, 12);
+return v___x_3_;
+}
+}
+static lean_object* _init_l_Lean_Order_monotonicity___closed__3(void){
+_start:
+{
+lean_object* v___x_4_; lean_object* v___x_5_; lean_object* v___x_6_; lean_object* v___x_7_; 
+v___x_4_ = lean_obj_once(&l_Lean_Order_monotonicity___closed__2, &l_Lean_Order_monotonicity___closed__2_once, _init_l_Lean_Order_monotonicity___closed__2);
+v___x_5_ = lean_obj_once(&l_Lean_Order_monotonicity___closed__1, &l_Lean_Order_monotonicity___closed__1_once, _init_l_Lean_Order_monotonicity___closed__1);
+v___x_6_ = lean_obj_once(&l_Lean_Order_monotonicity___closed__0, &l_Lean_Order_monotonicity___closed__0_once, _init_l_Lean_Order_monotonicity___closed__0);
+v___x_7_ = l_Lean_Name_mkStr3(v___x_6_, v___x_5_, v___x_4_);
+return v___x_7_;
+}
+}
+static lean_object* _init_l_Lean_Order_monotonicity___closed__4(void){
+_start:
+{
+uint8_t v___x_8_; lean_object* v___x_9_; lean_object* v___x_10_; 
+v___x_8_ = 0;
+v___x_9_ = lean_obj_once(&l_Lean_Order_monotonicity___closed__2, &l_Lean_Order_monotonicity___closed__2_once, _init_l_Lean_Order_monotonicity___closed__2);
+v___x_10_ = lean_alloc_ctor(6, 1, 1);
+lean_ctor_set(v___x_10_, 0, v___x_9_);
+lean_ctor_set_uint8(v___x_10_, sizeof(void*)*1, v___x_8_);
+return v___x_10_;
+}
+}
+static lean_object* _init_l_Lean_Order_monotonicity___closed__5(void){
+_start:
+{
+lean_object* v___x_11_; lean_object* v___x_12_; lean_object* v___x_13_; lean_object* v___x_14_; 
+v___x_11_ = lean_obj_once(&l_Lean_Order_monotonicity___closed__4, &l_Lean_Order_monotonicity___closed__4_once, _init_l_Lean_Order_monotonicity___closed__4);
+v___x_12_ = lean_unsigned_to_nat(1024u);
+v___x_13_ = lean_obj_once(&l_Lean_Order_monotonicity___closed__3, &l_Lean_Order_monotonicity___closed__3_once, _init_l_Lean_Order_monotonicity___closed__3);
+v___x_14_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_14_, 0, v___x_13_);
+lean_ctor_set(v___x_14_, 1, v___x_12_);
+lean_ctor_set(v___x_14_, 2, v___x_11_);
+return v___x_14_;
+}
+}
+static lean_object* _init_l_Lean_Order_monotonicity(void){
+_start:
+{
+lean_object* v___x_15_; 
+v___x_15_ = lean_obj_once(&l_Lean_Order_monotonicity___closed__5, &l_Lean_Order_monotonicity___closed__5_once, _init_l_Lean_Order_monotonicity___closed__5);
+return v___x_15_;
+}
+}
 lean_object* runtime_initialize_Init_Notation(uint8_t builtin);
 static bool _G_runtime_initialized = false;
 LEAN_EXPORT lean_object* runtime_initialize_Init_Internal_Order_Tactic(uint8_t builtin) {
@@ -45,6 +112,8 @@ LEAN_EXPORT lean_object* meta_initialize_Init_Internal_Order_Tactic(uint8_t buil
 lean_object * res;
 if (_G_meta_initialized) return lean_io_result_mk_ok(lean_box(0));
 _G_meta_initialized = true;
+l_Lean_Order_monotonicity = _init_l_Lean_Order_monotonicity();
+lean_mark_persistent(l_Lean_Order_monotonicity);
 return lean_io_result_mk_ok(lean_box(0));
 }
 lean_object* initialize_Init_Notation(uint8_t builtin);

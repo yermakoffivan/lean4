@@ -29,14 +29,14 @@ LEAN_EXPORT lean_object* l_Fin_instLeast_x3fOfNeZeroNat(lean_object*, lean_objec
 LEAN_EXPORT lean_object* l_Fin_instLeast_x3fOfNeZeroNat___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Fin_instHasSize___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Fin_instHasSize___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Fin_instHasSize___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Fin_instHasSize___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Fin_instHasSize___closed__0 = (const lean_object*)&l_Fin_instHasSize___closed__0_value;
+static lean_once_cell_t l_Fin_instHasSize___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Fin_instHasSize___closed__0;
 LEAN_EXPORT lean_object* l_Fin_instHasSize(lean_object*);
 LEAN_EXPORT lean_object* l_Fin_instHasSize___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Fin_instHasSize__1___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Fin_instHasSize__1___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Fin_instHasSize__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Fin_instHasSize__1___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Fin_instHasSize__1___closed__0 = (const lean_object*)&l_Fin_instHasSize__1___closed__0_value;
+static lean_once_cell_t l_Fin_instHasSize__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Fin_instHasSize__1___closed__0;
 LEAN_EXPORT lean_object* l_Fin_instHasSize__1(lean_object*);
 LEAN_EXPORT lean_object* l_Fin_instHasSize__1___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Fin_instHasSize__2___lam__0(lean_object*, lean_object*);
@@ -189,11 +189,19 @@ lean_dec(v_lo_44_);
 return v_res_46_;
 }
 }
+static lean_object* _init_l_Fin_instHasSize___closed__0(void){
+_start:
+{
+lean_object* v___f_47_; 
+v___f_47_ = lean_alloc_closure((void*)(l_Fin_instHasSize___lam__0___boxed), 2, 0);
+return v___f_47_;
+}
+}
 LEAN_EXPORT lean_object* l_Fin_instHasSize(lean_object* v_n_48_){
 _start:
 {
 lean_object* v___f_49_; 
-v___f_49_ = ((lean_object*)(l_Fin_instHasSize___closed__0));
+v___f_49_ = lean_obj_once(&l_Fin_instHasSize___closed__0, &l_Fin_instHasSize___closed__0_once, _init_l_Fin_instHasSize___closed__0);
 return v___f_49_;
 }
 }
@@ -229,11 +237,19 @@ lean_dec(v_lo_58_);
 return v_res_60_;
 }
 }
+static lean_object* _init_l_Fin_instHasSize__1___closed__0(void){
+_start:
+{
+lean_object* v___f_61_; 
+v___f_61_ = lean_alloc_closure((void*)(l_Fin_instHasSize__1___lam__0___boxed), 2, 0);
+return v___f_61_;
+}
+}
 LEAN_EXPORT lean_object* l_Fin_instHasSize__1(lean_object* v_n_62_){
 _start:
 {
 lean_object* v___f_63_; 
-v___f_63_ = ((lean_object*)(l_Fin_instHasSize__1___closed__0));
+v___f_63_ = lean_obj_once(&l_Fin_instHasSize__1___closed__0, &l_Fin_instHasSize__1___closed__0_once, _init_l_Fin_instHasSize__1___closed__0);
 return v___f_63_;
 }
 }

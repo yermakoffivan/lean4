@@ -28,16 +28,16 @@ LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_AssocList_get_x3f___at___00Std_
 LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_AssocList_get_x3f___at___00Std_DHashMap_Internal_Raw_u2080_Const_get_x3f___at___00Lean_Grind_AC_Seq_renameVars_spec__0_spec__0___redArg___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_Raw_u2080_Const_get_x3f___at___00Lean_Grind_AC_Seq_renameVars_spec__0___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_Raw_u2080_Const_get_x3f___at___00Lean_Grind_AC_Seq_renameVars_spec__0___redArg___boxed(lean_object*, lean_object*);
-static const lean_ctor_object l_Lean_Grind_AC_Seq_renameVars___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lean_Grind_AC_Seq_renameVars___closed__0 = (const lean_object*)&l_Lean_Grind_AC_Seq_renameVars___closed__0_value;
+static lean_once_cell_t l_Lean_Grind_AC_Seq_renameVars___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Grind_AC_Seq_renameVars___closed__0;
 LEAN_EXPORT lean_object* l_Lean_Grind_AC_Seq_renameVars(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Grind_AC_Seq_renameVars___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_Raw_u2080_Const_get_x3f___at___00Lean_Grind_AC_Seq_renameVars_spec__0(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_Raw_u2080_Const_get_x3f___at___00Lean_Grind_AC_Seq_renameVars_spec__0___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_AssocList_get_x3f___at___00Std_DHashMap_Internal_Raw_u2080_Const_get_x3f___at___00Lean_Grind_AC_Seq_renameVars_spec__0_spec__0(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_AssocList_get_x3f___at___00Std_DHashMap_Internal_Raw_u2080_Const_get_x3f___at___00Lean_Grind_AC_Seq_renameVars_spec__0_spec__0___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Lean_Grind_AC_Expr_renameVars___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lean_Grind_AC_Expr_renameVars___closed__0 = (const lean_object*)&l_Lean_Grind_AC_Expr_renameVars___closed__0_value;
+static lean_once_cell_t l_Lean_Grind_AC_Expr_renameVars___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Grind_AC_Expr_renameVars___closed__0;
 LEAN_EXPORT lean_object* l_Lean_Grind_AC_Expr_renameVars(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Grind_AC_Expr_renameVars___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Grind_AC_Seq_collectVars(lean_object*, lean_object*);
@@ -117,6 +117,16 @@ lean_dec_ref(v_m_31_);
 return v_res_33_;
 }
 }
+static lean_object* _init_l_Lean_Grind_AC_Seq_renameVars___closed__0(void){
+_start:
+{
+lean_object* v___x_34_; lean_object* v___x_35_; 
+v___x_34_ = lean_unsigned_to_nat(0u);
+v___x_35_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_35_, 0, v___x_34_);
+return v___x_35_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Grind_AC_Seq_renameVars(lean_object* v_s_36_, lean_object* v_f_37_){
 _start:
 {
@@ -148,7 +158,7 @@ if (lean_obj_tag(v___x_42_) == 0)
 {
 lean_object* v___x_43_; 
 lean_del_object(v___x_40_);
-v___x_43_ = ((lean_object*)(l_Lean_Grind_AC_Seq_renameVars___closed__0));
+v___x_43_ = lean_obj_once(&l_Lean_Grind_AC_Seq_renameVars___closed__0, &l_Lean_Grind_AC_Seq_renameVars___closed__0_once, _init_l_Lean_Grind_AC_Seq_renameVars___closed__0);
 return v___x_43_;
 }
 else
@@ -294,6 +304,16 @@ lean_dec(v_a_80_);
 return v_res_82_;
 }
 }
+static lean_object* _init_l_Lean_Grind_AC_Expr_renameVars___closed__0(void){
+_start:
+{
+lean_object* v___x_83_; lean_object* v___x_84_; 
+v___x_83_ = lean_unsigned_to_nat(0u);
+v___x_84_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_84_, 0, v___x_83_);
+return v___x_84_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Grind_AC_Expr_renameVars(lean_object* v_e_85_, lean_object* v_f_86_){
 _start:
 {
@@ -325,7 +345,7 @@ if (lean_obj_tag(v___x_91_) == 0)
 {
 lean_object* v___x_92_; 
 lean_del_object(v___x_89_);
-v___x_92_ = ((lean_object*)(l_Lean_Grind_AC_Expr_renameVars___closed__0));
+v___x_92_ = lean_obj_once(&l_Lean_Grind_AC_Expr_renameVars___closed__0, &l_Lean_Grind_AC_Expr_renameVars___closed__0_once, _init_l_Lean_Grind_AC_Expr_renameVars___closed__0);
 return v___x_92_;
 }
 else

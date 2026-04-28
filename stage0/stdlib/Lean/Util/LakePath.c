@@ -16,21 +16,53 @@ extern "C" {
 lean_object* lean_io_getenv(lean_object*);
 lean_object* l_IO_appDir();
 lean_object* l_System_FilePath_join(lean_object*, lean_object*);
-static const lean_string_object l_Lean_determineLakePath___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "LAKE"};
-static const lean_object* l_Lean_determineLakePath___closed__0 = (const lean_object*)&l_Lean_determineLakePath___closed__0_value;
-static const lean_string_object l_Lean_determineLakePath___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "LEAN_SYSROOT"};
-static const lean_object* l_Lean_determineLakePath___closed__1 = (const lean_object*)&l_Lean_determineLakePath___closed__1_value;
-static const lean_string_object l_Lean_determineLakePath___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "lake"};
-static const lean_object* l_Lean_determineLakePath___closed__2 = (const lean_object*)&l_Lean_determineLakePath___closed__2_value;
-static const lean_string_object l_Lean_determineLakePath___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "bin"};
-static const lean_object* l_Lean_determineLakePath___closed__3 = (const lean_object*)&l_Lean_determineLakePath___closed__3_value;
+static lean_once_cell_t l_Lean_determineLakePath___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_determineLakePath___closed__0;
+static lean_once_cell_t l_Lean_determineLakePath___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_determineLakePath___closed__1;
+static lean_once_cell_t l_Lean_determineLakePath___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_determineLakePath___closed__2;
+static lean_once_cell_t l_Lean_determineLakePath___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_determineLakePath___closed__3;
 LEAN_EXPORT lean_object* l_Lean_determineLakePath();
 LEAN_EXPORT lean_object* l_Lean_determineLakePath___boxed(lean_object*);
+static lean_object* _init_l_Lean_determineLakePath___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; 
+v___x_1_ = lean_mk_string_unchecked("LAKE", 4, 4);
+return v___x_1_;
+}
+}
+static lean_object* _init_l_Lean_determineLakePath___closed__1(void){
+_start:
+{
+lean_object* v___x_2_; 
+v___x_2_ = lean_mk_string_unchecked("LEAN_SYSROOT", 12, 12);
+return v___x_2_;
+}
+}
+static lean_object* _init_l_Lean_determineLakePath___closed__2(void){
+_start:
+{
+lean_object* v___x_3_; 
+v___x_3_ = lean_mk_string_unchecked("lake", 4, 4);
+return v___x_3_;
+}
+}
+static lean_object* _init_l_Lean_determineLakePath___closed__3(void){
+_start:
+{
+lean_object* v___x_4_; 
+v___x_4_ = lean_mk_string_unchecked("bin", 3, 3);
+return v___x_4_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_determineLakePath(){
 _start:
 {
 lean_object* v___x_6_; lean_object* v___x_7_; 
-v___x_6_ = ((lean_object*)(l_Lean_determineLakePath___closed__0));
+v___x_6_ = lean_obj_once(&l_Lean_determineLakePath___closed__0, &l_Lean_determineLakePath___closed__0_once, _init_l_Lean_determineLakePath___closed__0);
 v___x_7_ = lean_io_getenv(v___x_6_);
 if (lean_obj_tag(v___x_7_) == 1)
 {
@@ -78,7 +110,7 @@ else
 {
 lean_object* v___x_16_; lean_object* v___x_17_; 
 lean_dec(v___x_7_);
-v___x_16_ = ((lean_object*)(l_Lean_determineLakePath___closed__1));
+v___x_16_ = lean_obj_once(&l_Lean_determineLakePath___closed__1, &l_Lean_determineLakePath___closed__1_once, _init_l_Lean_determineLakePath___closed__1);
 v___x_17_ = lean_io_getenv(v___x_16_);
 if (lean_obj_tag(v___x_17_) == 0)
 {
@@ -106,7 +138,7 @@ goto v_resetjp_20_;
 v_resetjp_20_:
 {
 lean_object* v___x_23_; lean_object* v___x_24_; lean_object* v___x_26_; 
-v___x_23_ = ((lean_object*)(l_Lean_determineLakePath___closed__2));
+v___x_23_ = lean_obj_once(&l_Lean_determineLakePath___closed__2, &l_Lean_determineLakePath___closed__2_once, _init_l_Lean_determineLakePath___closed__2);
 v___x_24_ = l_System_FilePath_join(v_a_19_, v___x_23_);
 if (v_isShared_22_ == 0)
 {
@@ -155,9 +187,9 @@ goto v_resetjp_30_;
 v_resetjp_30_:
 {
 lean_object* v___x_33_; lean_object* v___x_34_; lean_object* v___x_35_; lean_object* v___x_36_; lean_object* v___x_38_; 
-v___x_33_ = ((lean_object*)(l_Lean_determineLakePath___closed__3));
+v___x_33_ = lean_obj_once(&l_Lean_determineLakePath___closed__3, &l_Lean_determineLakePath___closed__3_once, _init_l_Lean_determineLakePath___closed__3);
 v___x_34_ = l_System_FilePath_join(v_val_29_, v___x_33_);
-v___x_35_ = ((lean_object*)(l_Lean_determineLakePath___closed__2));
+v___x_35_ = lean_obj_once(&l_Lean_determineLakePath___closed__2, &l_Lean_determineLakePath___closed__2_once, _init_l_Lean_determineLakePath___closed__2);
 v___x_36_ = l_System_FilePath_join(v___x_34_, v___x_35_);
 if (v_isShared_32_ == 0)
 {

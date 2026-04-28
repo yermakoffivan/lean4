@@ -34,18 +34,18 @@ static lean_once_cell_t l_Lean_Meta_Sym_mkSimprocFor___closed__1_once = LEAN_ONC
 static lean_object* l_Lean_Meta_Sym_mkSimprocFor___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_mkSimprocFor(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_mkSimprocFor___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Lean_Meta_Sym_mkMethods___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*0 + 8, .m_other = 0, .m_tag = 0}, .m_objs = {LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Lean_Meta_Sym_mkMethods___lam__0___closed__0 = (const lean_object*)&l_Lean_Meta_Sym_mkMethods___lam__0___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Sym_mkMethods___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_mkMethods___lam__0___closed__0;
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_mkMethods___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_mkMethods___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Lean_Meta_Sym_mkMethods___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Sym_Simp_dischargeNone___boxed, .m_arity = 11, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Sym_mkMethods___closed__0 = (const lean_object*)&l_Lean_Meta_Sym_mkMethods___closed__0_value;
-static const lean_closure_object l_Lean_Meta_Sym_mkMethods___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Sym_mkMethods___lam__0___boxed, .m_arity = 11, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Sym_mkMethods___closed__1 = (const lean_object*)&l_Lean_Meta_Sym_mkMethods___closed__1_value;
+static lean_once_cell_t l_Lean_Meta_Sym_mkMethods___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_mkMethods___closed__0;
+static lean_once_cell_t l_Lean_Meta_Sym_mkMethods___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_mkMethods___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_mkMethods(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_mkMethods___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Lean_Meta_Sym_simpGoalUsing___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(100000) << 1) | 1)),((lean_object*)(((size_t)(2) << 1) | 1))}};
-static const lean_object* l_Lean_Meta_Sym_simpGoalUsing___lam__0___closed__0 = (const lean_object*)&l_Lean_Meta_Sym_simpGoalUsing___lam__0___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Sym_simpGoalUsing___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_simpGoalUsing___lam__0___closed__0;
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_simpGoalUsing___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_simpGoalUsing___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_simpGoalUsing(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -271,11 +271,22 @@ lean_dec_ref(v_declNames_70_);
 return v_res_77_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Sym_mkMethods___lam__0___closed__0(void){
+_start:
+{
+uint8_t v___x_78_; lean_object* v___x_79_; 
+v___x_78_ = 0;
+v___x_79_ = lean_alloc_ctor(0, 0, 2);
+lean_ctor_set_uint8(v___x_79_, 0, v___x_78_);
+lean_ctor_set_uint8(v___x_79_, 1, v___x_78_);
+return v___x_79_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_mkMethods___lam__0(lean_object* v_x_80_, lean_object* v___y_81_, lean_object* v___y_82_, lean_object* v___y_83_, lean_object* v___y_84_, lean_object* v___y_85_, lean_object* v___y_86_, lean_object* v___y_87_, lean_object* v___y_88_, lean_object* v___y_89_){
 _start:
 {
 lean_object* v___x_91_; lean_object* v___x_92_; 
-v___x_91_ = ((lean_object*)(l_Lean_Meta_Sym_mkMethods___lam__0___closed__0));
+v___x_91_ = lean_obj_once(&l_Lean_Meta_Sym_mkMethods___lam__0___closed__0, &l_Lean_Meta_Sym_mkMethods___lam__0___closed__0_once, _init_l_Lean_Meta_Sym_mkMethods___lam__0___closed__0);
 v___x_92_ = lean_alloc_ctor(0, 1, 0);
 lean_ctor_set(v___x_92_, 0, v___x_91_);
 return v___x_92_;
@@ -299,11 +310,27 @@ lean_dec_ref(v_x_93_);
 return v_res_104_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Sym_mkMethods___closed__0(void){
+_start:
+{
+lean_object* v___x_105_; 
+v___x_105_ = lean_alloc_closure((void*)(l_Lean_Meta_Sym_Simp_dischargeNone___boxed), 11, 0);
+return v___x_105_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Sym_mkMethods___closed__1(void){
+_start:
+{
+lean_object* v___f_106_; 
+v___f_106_ = lean_alloc_closure((void*)(l_Lean_Meta_Sym_mkMethods___lam__0___boxed), 11, 0);
+return v___f_106_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_mkMethods(lean_object* v_declNames_107_, lean_object* v_a_108_, lean_object* v_a_109_, lean_object* v_a_110_, lean_object* v_a_111_){
 _start:
 {
 lean_object* v___x_113_; lean_object* v___x_114_; 
-v___x_113_ = ((lean_object*)(l_Lean_Meta_Sym_mkMethods___closed__0));
+v___x_113_ = lean_obj_once(&l_Lean_Meta_Sym_mkMethods___closed__0, &l_Lean_Meta_Sym_mkMethods___closed__0_once, _init_l_Lean_Meta_Sym_mkMethods___closed__0);
 v___x_114_ = l_Lean_Meta_Sym_mkSimprocFor(v_declNames_107_, v___x_113_, v_a_108_, v_a_109_, v_a_110_, v_a_111_);
 if (lean_obj_tag(v___x_114_) == 0)
 {
@@ -327,7 +354,7 @@ goto v_resetjp_116_;
 v_resetjp_116_:
 {
 lean_object* v___f_119_; lean_object* v___x_120_; lean_object* v___x_122_; 
-v___f_119_ = ((lean_object*)(l_Lean_Meta_Sym_mkMethods___closed__1));
+v___f_119_ = lean_obj_once(&l_Lean_Meta_Sym_mkMethods___closed__1, &l_Lean_Meta_Sym_mkMethods___closed__1_once, _init_l_Lean_Meta_Sym_mkMethods___closed__1);
 v___x_120_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_120_, 0, v___f_119_);
 lean_ctor_set(v___x_120_, 1, v_a_115_);
@@ -407,6 +434,18 @@ lean_dec_ref(v_declNames_133_);
 return v_res_139_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Sym_simpGoalUsing___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_140_; lean_object* v___x_141_; lean_object* v___x_142_; 
+v___x_140_ = lean_unsigned_to_nat(2u);
+v___x_141_ = lean_unsigned_to_nat(100000u);
+v___x_142_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_142_, 0, v___x_141_);
+lean_ctor_set(v___x_142_, 1, v___x_140_);
+return v___x_142_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_simpGoalUsing___lam__0(lean_object* v_declNames_143_, lean_object* v_mvarId_144_, lean_object* v___y_145_, lean_object* v___y_146_, lean_object* v___y_147_, lean_object* v___y_148_, lean_object* v___y_149_, lean_object* v___y_150_){
 _start:
 {
@@ -425,7 +464,7 @@ lean_object* v_a_155_; lean_object* v___x_156_; lean_object* v___x_157_;
 v_a_155_ = lean_ctor_get(v___x_154_, 0);
 lean_inc(v_a_155_);
 lean_dec_ref(v___x_154_);
-v___x_156_ = ((lean_object*)(l_Lean_Meta_Sym_simpGoalUsing___lam__0___closed__0));
+v___x_156_ = lean_obj_once(&l_Lean_Meta_Sym_simpGoalUsing___lam__0___closed__0, &l_Lean_Meta_Sym_simpGoalUsing___lam__0___closed__0_once, _init_l_Lean_Meta_Sym_simpGoalUsing___lam__0___closed__0);
 v___x_157_ = l_Lean_Meta_Sym_simpGoal(v_a_155_, v_a_153_, v___x_156_, v___y_145_, v___y_146_, v___y_147_, v___y_148_, v___y_149_, v___y_150_);
 if (lean_obj_tag(v___x_157_) == 0)
 {

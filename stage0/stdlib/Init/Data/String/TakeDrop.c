@@ -112,8 +112,8 @@ LEAN_EXPORT lean_object* l_String_Pos_revSkip_x3f___boxed(lean_object*, lean_obj
 LEAN_EXPORT lean_object* l_String_Pos_revSkipWhile___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_Pos_revSkipWhile(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_Pos_revSkipWhile___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_String_trimAsciiEnd___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Char_isWhitespace___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_String_trimAsciiEnd___closed__0 = (const lean_object*)&l_String_trimAsciiEnd___closed__0_value;
+static lean_once_cell_t l_String_trimAsciiEnd___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_trimAsciiEnd___closed__0;
 static lean_once_cell_t l_String_trimAsciiEnd___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_String_trimAsciiEnd___closed__1;
 LEAN_EXPORT lean_object* l_String_trimAsciiEnd(lean_object*);
@@ -2363,11 +2363,19 @@ lean_dec(v_pat_719_);
 return v_res_721_;
 }
 }
+static lean_object* _init_l_String_trimAsciiEnd___closed__0(void){
+_start:
+{
+lean_object* v___x_722_; 
+v___x_722_ = lean_alloc_closure((void*)(l_Char_isWhitespace___boxed), 1, 0);
+return v___x_722_;
+}
+}
 static lean_object* _init_l_String_trimAsciiEnd___closed__1(void){
 _start:
 {
 lean_object* v___x_723_; lean_object* v___x_724_; 
-v___x_723_ = ((lean_object*)(l_String_trimAsciiEnd___closed__0));
+v___x_723_ = lean_obj_once(&l_String_trimAsciiEnd___closed__0, &l_String_trimAsciiEnd___closed__0_once, _init_l_String_trimAsciiEnd___closed__0);
 v___x_724_ = l_String_Slice_Pattern_CharPred_instBackwardPatternForallCharBool(v___x_723_);
 return v___x_724_;
 }
@@ -2590,7 +2598,7 @@ static lean_object* _init_l_String_trimAsciiStart___closed__0(void){
 _start:
 {
 lean_object* v___x_787_; lean_object* v___x_788_; 
-v___x_787_ = ((lean_object*)(l_String_trimAsciiEnd___closed__0));
+v___x_787_ = lean_obj_once(&l_String_trimAsciiEnd___closed__0, &l_String_trimAsciiEnd___closed__0_once, _init_l_String_trimAsciiEnd___closed__0);
 v___x_788_ = l_String_Slice_Pattern_CharPred_instForwardPatternForallCharBool(v___x_787_);
 return v___x_788_;
 }

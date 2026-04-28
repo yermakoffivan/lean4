@@ -27,11 +27,11 @@ lean_object* l_ExceptT_bind(lean_object*, lean_object*, lean_object*, lean_objec
 uint8_t l_List_elem___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* l_List_partition_loop___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* l_List_appendTR___redArg(lean_object*, lean_object*);
-static const lean_string_object l_Lake_formatCycle___redArg___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "  "};
-static const lean_object* l_Lake_formatCycle___redArg___lam__0___closed__0 = (const lean_object*)&l_Lake_formatCycle___redArg___lam__0___closed__0_value;
+static lean_once_cell_t l_Lake_formatCycle___redArg___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_formatCycle___redArg___lam__0___closed__0;
 LEAN_EXPORT lean_object* l_Lake_formatCycle___redArg___lam__0(lean_object*, lean_object*);
-static const lean_string_object l_Lake_formatCycle___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "\n"};
-static const lean_object* l_Lake_formatCycle___redArg___closed__0 = (const lean_object*)&l_Lake_formatCycle___redArg___closed__0_value;
+static lean_once_cell_t l_Lake_formatCycle___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_formatCycle___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Lake_formatCycle___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_formatCycle(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_instMonadCallStackOfMonadCallStackOf___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*);
@@ -51,8 +51,8 @@ LEAN_EXPORT lean_object* l_Lake_inhabitedOfMonadCycle___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Lake_inhabitedOfMonadCycle(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_instMonadCallStackOfCallStackTOfMonad___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_instMonadCallStackOfCallStackTOfMonad___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Lake_instMonadCallStackOfCallStackTOfMonad___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lake_instMonadCallStackOfCallStackTOfMonad___redArg___lam__0___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lake_instMonadCallStackOfCallStackTOfMonad___redArg___closed__0 = (const lean_object*)&l_Lake_instMonadCallStackOfCallStackTOfMonad___redArg___closed__0_value;
+static lean_once_cell_t l_Lake_instMonadCallStackOfCallStackTOfMonad___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_instMonadCallStackOfCallStackTOfMonad___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Lake_instMonadCallStackOfCallStackTOfMonad___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Lake_instMonadCallStackOfCallStackTOfMonad(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_instMonadCycleOfCycleTOfMonad___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*);
@@ -61,20 +61,36 @@ LEAN_EXPORT lean_object* l_Lake_instMonadCycleOfCycleTOfMonad___redArg(lean_obje
 LEAN_EXPORT lean_object* l_Lake_instMonadCycleOfCycleTOfMonad(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Lake_guardCycle___redArg___lam__0(lean_object*, lean_object*, uint8_t, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_guardCycle___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Lake_guardCycle___redArg___lam__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lake_guardCycle___redArg___lam__1___closed__0 = (const lean_object*)&l_Lake_guardCycle___redArg___lam__1___closed__0_value;
+static lean_once_cell_t l_Lake_guardCycle___redArg___lam__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_guardCycle___redArg___lam__1___closed__0;
 LEAN_EXPORT lean_object* l_Lake_guardCycle___redArg___lam__1(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_guardCycle___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_guardCycle(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+static lean_object* _init_l_Lake_formatCycle___redArg___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; 
+v___x_1_ = lean_mk_string_unchecked("  ", 2, 2);
+return v___x_1_;
+}
+}
 LEAN_EXPORT lean_object* l_Lake_formatCycle___redArg___lam__0(lean_object* v_inst_2_, lean_object* v_x_3_){
 _start:
 {
 lean_object* v___x_4_; lean_object* v___x_5_; lean_object* v___x_6_; 
-v___x_4_ = ((lean_object*)(l_Lake_formatCycle___redArg___lam__0___closed__0));
+v___x_4_ = lean_obj_once(&l_Lake_formatCycle___redArg___lam__0___closed__0, &l_Lake_formatCycle___redArg___lam__0___closed__0_once, _init_l_Lake_formatCycle___redArg___lam__0___closed__0);
 v___x_5_ = lean_apply_1(v_inst_2_, v_x_3_);
 v___x_6_ = lean_string_append(v___x_4_, v___x_5_);
 lean_dec_ref(v___x_5_);
 return v___x_6_;
+}
+}
+static lean_object* _init_l_Lake_formatCycle___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_7_; 
+v___x_7_ = lean_mk_string_unchecked("\n", 1, 1);
+return v___x_7_;
 }
 }
 LEAN_EXPORT lean_object* l_Lake_formatCycle___redArg(lean_object* v_inst_8_, lean_object* v_cycle_9_){
@@ -83,7 +99,7 @@ _start:
 lean_object* v___f_10_; lean_object* v___x_11_; lean_object* v___x_12_; lean_object* v___x_13_; lean_object* v___x_14_; 
 v___f_10_ = lean_alloc_closure((void*)(l_Lake_formatCycle___redArg___lam__0), 2, 1);
 lean_closure_set(v___f_10_, 0, v_inst_8_);
-v___x_11_ = ((lean_object*)(l_Lake_formatCycle___redArg___closed__0));
+v___x_11_ = lean_obj_once(&l_Lake_formatCycle___redArg___closed__0, &l_Lake_formatCycle___redArg___closed__0_once, _init_l_Lake_formatCycle___redArg___closed__0);
 v___x_12_ = lean_box(0);
 v___x_13_ = l_List_mapTR_loop___redArg(v___f_10_, v_cycle_9_, v___x_12_);
 v___x_14_ = l_String_intercalate(v___x_11_, v___x_13_);
@@ -416,11 +432,19 @@ lean_dec(v___y_136_);
 return v_res_137_;
 }
 }
+static lean_object* _init_l_Lake_instMonadCallStackOfCallStackTOfMonad___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_138_; 
+v___f_138_ = lean_alloc_closure((void*)(l_Lake_instMonadCallStackOfCallStackTOfMonad___redArg___lam__0___boxed), 4, 0);
+return v___f_138_;
+}
+}
 LEAN_EXPORT lean_object* l_Lake_instMonadCallStackOfCallStackTOfMonad___redArg(lean_object* v_inst_139_){
 _start:
 {
 lean_object* v___f_140_; lean_object* v___x_141_; lean_object* v___x_142_; 
-v___f_140_ = ((lean_object*)(l_Lake_instMonadCallStackOfCallStackTOfMonad___redArg___closed__0));
+v___f_140_ = lean_obj_once(&l_Lake_instMonadCallStackOfCallStackTOfMonad___redArg___closed__0, &l_Lake_instMonadCallStackOfCallStackTOfMonad___redArg___closed__0_once, _init_l_Lake_instMonadCallStackOfCallStackTOfMonad___redArg___closed__0);
 v___x_141_ = lean_alloc_closure((void*)(l_ReaderT_read___boxed), 4, 3);
 lean_closure_set(v___x_141_, 0, lean_box(0));
 lean_closure_set(v___x_141_, 1, lean_box(0));
@@ -546,6 +570,17 @@ v_r_191_ = lean_box(v_res_190_);
 return v_r_191_;
 }
 }
+static lean_object* _init_l_Lake_guardCycle___redArg___lam__1___closed__0(void){
+_start:
+{
+lean_object* v___x_192_; lean_object* v___x_193_; 
+v___x_192_ = lean_box(0);
+v___x_193_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_193_, 0, v___x_192_);
+lean_ctor_set(v___x_193_, 1, v___x_192_);
+return v___x_193_;
+}
+}
 LEAN_EXPORT lean_object* l_Lake_guardCycle___redArg___lam__1(lean_object* v_inst_194_, lean_object* v_key_195_, lean_object* v_withCallStack_196_, lean_object* v_act_197_, lean_object* v_throwCycle_198_, lean_object* v_parents_199_){
 _start:
 {
@@ -577,7 +612,7 @@ lean_closure_set(v___f_204_, 0, v_inst_194_);
 lean_closure_set(v___f_204_, 1, v_key_195_);
 lean_closure_set(v___f_204_, 2, v___x_203_);
 v___x_205_ = lean_box(0);
-v___x_206_ = ((lean_object*)(l_Lake_guardCycle___redArg___lam__1___closed__0));
+v___x_206_ = lean_obj_once(&l_Lake_guardCycle___redArg___lam__1___closed__0, &l_Lake_guardCycle___redArg___lam__1___closed__0_once, _init_l_Lake_guardCycle___redArg___lam__1___closed__0);
 v___x_207_ = l_List_partition_loop___redArg(v___f_204_, v_parents_199_, v___x_206_);
 v_fst_208_ = lean_ctor_get(v___x_207_, 0);
 v_isSharedCheck_218_ = !lean_is_exclusive(v___x_207_);

@@ -33,20 +33,20 @@ LEAN_EXPORT lean_object* l_dbgStackTraceIf(lean_object*, uint8_t, lean_object*);
 LEAN_EXPORT lean_object* l_dbgStackTraceIf___boxed(lean_object*, lean_object*, lean_object*);
 lean_object* lean_dbg_sleep(uint32_t, lean_object*);
 LEAN_EXPORT lean_object* l_dbgSleep___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_mkPanicMessage___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "PANIC at "};
-static const lean_object* l_mkPanicMessage___closed__0 = (const lean_object*)&l_mkPanicMessage___closed__0_value;
-static const lean_string_object l_mkPanicMessage___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = ":"};
-static const lean_object* l_mkPanicMessage___closed__1 = (const lean_object*)&l_mkPanicMessage___closed__1_value;
-static const lean_string_object l_mkPanicMessage___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = ": "};
-static const lean_object* l_mkPanicMessage___closed__2 = (const lean_object*)&l_mkPanicMessage___closed__2_value;
+static lean_once_cell_t l_mkPanicMessage___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_mkPanicMessage___closed__0;
+static lean_once_cell_t l_mkPanicMessage___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_mkPanicMessage___closed__1;
+static lean_once_cell_t l_mkPanicMessage___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_mkPanicMessage___closed__2;
 LEAN_EXPORT lean_object* l_mkPanicMessage(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_mkPanicMessage___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_panicWithPos___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_panicWithPos___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_panicWithPos(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_panicWithPos___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_mkPanicMessageWithDecl___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = " "};
-static const lean_object* l_mkPanicMessageWithDecl___closed__0 = (const lean_object*)&l_mkPanicMessageWithDecl___closed__0_value;
+static lean_once_cell_t l_mkPanicMessageWithDecl___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_mkPanicMessageWithDecl___closed__0;
 LEAN_EXPORT lean_object* l_mkPanicMessageWithDecl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_mkPanicMessageWithDecl___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_panicWithPosWithDecl___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -191,13 +191,37 @@ v_res_59_ = lean_dbg_sleep(v_ms_boxed_58_, v_f_57_);
 return v_res_59_;
 }
 }
+static lean_object* _init_l_mkPanicMessage___closed__0(void){
+_start:
+{
+lean_object* v___x_60_; 
+v___x_60_ = lean_mk_string_unchecked("PANIC at ", 9, 9);
+return v___x_60_;
+}
+}
+static lean_object* _init_l_mkPanicMessage___closed__1(void){
+_start:
+{
+lean_object* v___x_61_; 
+v___x_61_ = lean_mk_string_unchecked(":", 1, 1);
+return v___x_61_;
+}
+}
+static lean_object* _init_l_mkPanicMessage___closed__2(void){
+_start:
+{
+lean_object* v___x_62_; 
+v___x_62_ = lean_mk_string_unchecked(": ", 2, 2);
+return v___x_62_;
+}
+}
 LEAN_EXPORT lean_object* l_mkPanicMessage(lean_object* v_modName_63_, lean_object* v_line_64_, lean_object* v_col_65_, lean_object* v_msg_66_){
 _start:
 {
 lean_object* v___x_67_; lean_object* v___x_68_; lean_object* v___x_69_; lean_object* v___x_70_; lean_object* v___x_71_; lean_object* v___x_72_; lean_object* v___x_73_; lean_object* v___x_74_; lean_object* v___x_75_; lean_object* v___x_76_; lean_object* v___x_77_; lean_object* v___x_78_; 
-v___x_67_ = ((lean_object*)(l_mkPanicMessage___closed__0));
+v___x_67_ = lean_obj_once(&l_mkPanicMessage___closed__0, &l_mkPanicMessage___closed__0_once, _init_l_mkPanicMessage___closed__0);
 v___x_68_ = lean_string_append(v___x_67_, v_modName_63_);
-v___x_69_ = ((lean_object*)(l_mkPanicMessage___closed__1));
+v___x_69_ = lean_obj_once(&l_mkPanicMessage___closed__1, &l_mkPanicMessage___closed__1_once, _init_l_mkPanicMessage___closed__1);
 v___x_70_ = lean_string_append(v___x_68_, v___x_69_);
 v___x_71_ = l_Nat_reprFast(v_line_64_);
 v___x_72_ = lean_string_append(v___x_70_, v___x_71_);
@@ -206,7 +230,7 @@ v___x_73_ = lean_string_append(v___x_72_, v___x_69_);
 v___x_74_ = l_Nat_reprFast(v_col_65_);
 v___x_75_ = lean_string_append(v___x_73_, v___x_74_);
 lean_dec_ref(v___x_74_);
-v___x_76_ = ((lean_object*)(l_mkPanicMessage___closed__2));
+v___x_76_ = lean_obj_once(&l_mkPanicMessage___closed__2, &l_mkPanicMessage___closed__2_once, _init_l_mkPanicMessage___closed__2);
 v___x_77_ = lean_string_append(v___x_75_, v___x_76_);
 v___x_78_ = lean_string_append(v___x_77_, v_msg_66_);
 return v___x_78_;
@@ -262,16 +286,24 @@ lean_dec(v_inst_106_);
 return v_res_111_;
 }
 }
+static lean_object* _init_l_mkPanicMessageWithDecl___closed__0(void){
+_start:
+{
+lean_object* v___x_112_; 
+v___x_112_ = lean_mk_string_unchecked(" ", 1, 1);
+return v___x_112_;
+}
+}
 LEAN_EXPORT lean_object* l_mkPanicMessageWithDecl(lean_object* v_modName_113_, lean_object* v_declName_114_, lean_object* v_line_115_, lean_object* v_col_116_, lean_object* v_msg_117_){
 _start:
 {
 lean_object* v___x_118_; lean_object* v___x_119_; lean_object* v___x_120_; lean_object* v___x_121_; lean_object* v___x_122_; lean_object* v___x_123_; lean_object* v___x_124_; lean_object* v___x_125_; lean_object* v___x_126_; lean_object* v___x_127_; lean_object* v___x_128_; lean_object* v___x_129_; lean_object* v___x_130_; lean_object* v___x_131_; lean_object* v___x_132_; 
-v___x_118_ = ((lean_object*)(l_mkPanicMessage___closed__0));
+v___x_118_ = lean_obj_once(&l_mkPanicMessage___closed__0, &l_mkPanicMessage___closed__0_once, _init_l_mkPanicMessage___closed__0);
 v___x_119_ = lean_string_append(v___x_118_, v_declName_114_);
-v___x_120_ = ((lean_object*)(l_mkPanicMessageWithDecl___closed__0));
+v___x_120_ = lean_obj_once(&l_mkPanicMessageWithDecl___closed__0, &l_mkPanicMessageWithDecl___closed__0_once, _init_l_mkPanicMessageWithDecl___closed__0);
 v___x_121_ = lean_string_append(v___x_119_, v___x_120_);
 v___x_122_ = lean_string_append(v___x_121_, v_modName_113_);
-v___x_123_ = ((lean_object*)(l_mkPanicMessage___closed__1));
+v___x_123_ = lean_obj_once(&l_mkPanicMessage___closed__1, &l_mkPanicMessage___closed__1_once, _init_l_mkPanicMessage___closed__1);
 v___x_124_ = lean_string_append(v___x_122_, v___x_123_);
 v___x_125_ = l_Nat_reprFast(v_line_115_);
 v___x_126_ = lean_string_append(v___x_124_, v___x_125_);
@@ -280,7 +312,7 @@ v___x_127_ = lean_string_append(v___x_126_, v___x_123_);
 v___x_128_ = l_Nat_reprFast(v_col_116_);
 v___x_129_ = lean_string_append(v___x_127_, v___x_128_);
 lean_dec_ref(v___x_128_);
-v___x_130_ = ((lean_object*)(l_mkPanicMessage___closed__2));
+v___x_130_ = lean_obj_once(&l_mkPanicMessage___closed__2, &l_mkPanicMessage___closed__2_once, _init_l_mkPanicMessage___closed__2);
 v___x_131_ = lean_string_append(v___x_129_, v___x_130_);
 v___x_132_ = lean_string_append(v___x_131_, v_msg_117_);
 return v___x_132_;

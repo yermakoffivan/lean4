@@ -20,8 +20,8 @@ LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Arith_instMonadCanonOfMonadLift___redAr
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Arith_instMonadCanonOfMonadLift___redArg___lam__1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Arith_instMonadCanonOfMonadLift___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Arith_instMonadCanonOfMonadLift(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Sym_Arith_MonadCanon_synthInstance___redArg___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 24, .m_capacity = 24, .m_length = 23, .m_data = "failed to find instance"};
-static const lean_object* l_Lean_Meta_Sym_Arith_MonadCanon_synthInstance___redArg___lam__0___closed__0 = (const lean_object*)&l_Lean_Meta_Sym_Arith_MonadCanon_synthInstance___redArg___lam__0___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Sym_Arith_MonadCanon_synthInstance___redArg___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_Arith_MonadCanon_synthInstance___redArg___lam__0___closed__0;
 static lean_once_cell_t l_Lean_Meta_Sym_Arith_MonadCanon_synthInstance___redArg___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Sym_Arith_MonadCanon_synthInstance___redArg___lam__0___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Arith_MonadCanon_synthInstance___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -87,11 +87,19 @@ lean_ctor_set(v___x_24_, 1, v___f_23_);
 return v___x_24_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Sym_Arith_MonadCanon_synthInstance___redArg___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_25_; 
+v___x_25_ = lean_mk_string_unchecked("failed to find instance", 23, 23);
+return v___x_25_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Sym_Arith_MonadCanon_synthInstance___redArg___lam__0___closed__1(void){
 _start:
 {
 lean_object* v___x_26_; lean_object* v___x_27_; 
-v___x_26_ = ((lean_object*)(l_Lean_Meta_Sym_Arith_MonadCanon_synthInstance___redArg___lam__0___closed__0));
+v___x_26_ = lean_obj_once(&l_Lean_Meta_Sym_Arith_MonadCanon_synthInstance___redArg___lam__0___closed__0, &l_Lean_Meta_Sym_Arith_MonadCanon_synthInstance___redArg___lam__0___closed__0_once, _init_l_Lean_Meta_Sym_Arith_MonadCanon_synthInstance___redArg___lam__0___closed__0);
 v___x_27_ = l_Lean_stringToMessageData(v___x_26_);
 return v___x_27_;
 }

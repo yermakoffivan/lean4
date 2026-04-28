@@ -44,35 +44,35 @@ LEAN_EXPORT lean_object* l_Std_AnyAsyncStream_getSelector___redArg(lean_object*)
 LEAN_EXPORT lean_object* l_Std_AnyAsyncStream_getSelector(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_instCoeDepAnyAsyncStreamOfAsyncStream___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_instCoeDepAnyAsyncStreamOfAsyncStream(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_array_object l_Std_StreamMap_empty___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Std_StreamMap_empty___closed__0 = (const lean_object*)&l_Std_StreamMap_empty___closed__0_value;
+static lean_once_cell_t l_Std_StreamMap_empty___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_StreamMap_empty___closed__0;
 LEAN_EXPORT lean_object* l_Std_StreamMap_empty(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_StreamMap_register___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_StreamMap_register___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__0, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_StreamMap_register___redArg___closed__0 = (const lean_object*)&l_Std_StreamMap_register___redArg___closed__0_value;
-static const lean_closure_object l_Std_StreamMap_register___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__1___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_StreamMap_register___redArg___closed__1 = (const lean_object*)&l_Std_StreamMap_register___redArg___closed__1_value;
-static const lean_closure_object l_Std_StreamMap_register___redArg___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__2___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_StreamMap_register___redArg___closed__2 = (const lean_object*)&l_Std_StreamMap_register___redArg___closed__2_value;
-static const lean_closure_object l_Std_StreamMap_register___redArg___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__3, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_StreamMap_register___redArg___closed__3 = (const lean_object*)&l_Std_StreamMap_register___redArg___closed__3_value;
-static const lean_closure_object l_Std_StreamMap_register___redArg___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__4___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_StreamMap_register___redArg___closed__4 = (const lean_object*)&l_Std_StreamMap_register___redArg___closed__4_value;
-static const lean_closure_object l_Std_StreamMap_register___redArg___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__5___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_StreamMap_register___redArg___closed__5 = (const lean_object*)&l_Std_StreamMap_register___redArg___closed__5_value;
-static const lean_closure_object l_Std_StreamMap_register___redArg___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__6, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_StreamMap_register___redArg___closed__6 = (const lean_object*)&l_Std_StreamMap_register___redArg___closed__6_value;
-static const lean_ctor_object l_Std_StreamMap_register___redArg___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_StreamMap_register___redArg___closed__0_value),((lean_object*)&l_Std_StreamMap_register___redArg___closed__1_value)}};
-static const lean_object* l_Std_StreamMap_register___redArg___closed__7 = (const lean_object*)&l_Std_StreamMap_register___redArg___closed__7_value;
-static const lean_ctor_object l_Std_StreamMap_register___redArg___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*5 + 0, .m_other = 5, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_StreamMap_register___redArg___closed__7_value),((lean_object*)&l_Std_StreamMap_register___redArg___closed__2_value),((lean_object*)&l_Std_StreamMap_register___redArg___closed__3_value),((lean_object*)&l_Std_StreamMap_register___redArg___closed__4_value),((lean_object*)&l_Std_StreamMap_register___redArg___closed__5_value)}};
-static const lean_object* l_Std_StreamMap_register___redArg___closed__8 = (const lean_object*)&l_Std_StreamMap_register___redArg___closed__8_value;
-static const lean_ctor_object l_Std_StreamMap_register___redArg___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_StreamMap_register___redArg___closed__8_value),((lean_object*)&l_Std_StreamMap_register___redArg___closed__6_value)}};
-static const lean_object* l_Std_StreamMap_register___redArg___closed__9 = (const lean_object*)&l_Std_StreamMap_register___redArg___closed__9_value;
+static lean_once_cell_t l_Std_StreamMap_register___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_StreamMap_register___redArg___closed__0;
+static lean_once_cell_t l_Std_StreamMap_register___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_StreamMap_register___redArg___closed__1;
+static lean_once_cell_t l_Std_StreamMap_register___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_StreamMap_register___redArg___closed__2;
+static lean_once_cell_t l_Std_StreamMap_register___redArg___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_StreamMap_register___redArg___closed__3;
+static lean_once_cell_t l_Std_StreamMap_register___redArg___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_StreamMap_register___redArg___closed__4;
+static lean_once_cell_t l_Std_StreamMap_register___redArg___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_StreamMap_register___redArg___closed__5;
+static lean_once_cell_t l_Std_StreamMap_register___redArg___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_StreamMap_register___redArg___closed__6;
+static lean_once_cell_t l_Std_StreamMap_register___redArg___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_StreamMap_register___redArg___closed__7;
+static lean_once_cell_t l_Std_StreamMap_register___redArg___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_StreamMap_register___redArg___closed__8;
+static lean_once_cell_t l_Std_StreamMap_register___redArg___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_StreamMap_register___redArg___closed__9;
 LEAN_EXPORT lean_object* l_Std_StreamMap_register___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_StreamMap_register(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_StreamMap_ofArray___redArg___lam__0(lean_object*);
-static const lean_closure_object l_Std_StreamMap_ofArray___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_StreamMap_ofArray___redArg___lam__0, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_StreamMap_ofArray___redArg___closed__0 = (const lean_object*)&l_Std_StreamMap_ofArray___redArg___closed__0_value;
+static lean_once_cell_t l_Std_StreamMap_ofArray___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_StreamMap_ofArray___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Std_StreamMap_ofArray___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Std_StreamMap_ofArray(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_StreamMap_ofArray___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
@@ -118,8 +118,8 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_m
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Std_StreamMap_keys_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_StreamMap_get_x3f___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_StreamMap_get_x3f___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Std_StreamMap_get_x3f___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_StreamMap_get_x3f___redArg___closed__0 = (const lean_object*)&l_Std_StreamMap_get_x3f___redArg___closed__0_value;
+static lean_once_cell_t l_Std_StreamMap_get_x3f___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_StreamMap_get_x3f___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Std_StreamMap_get_x3f___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_StreamMap_get_x3f(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Std_StreamMap_filterByName_spec__0___redArg(lean_object*, lean_object*, size_t, size_t, lean_object*);
@@ -228,11 +228,20 @@ lean_ctor_set(v___x_25_, 1, v_x_23_);
 return v___x_25_;
 }
 }
+static lean_object* _init_l_Std_StreamMap_empty___closed__0(void){
+_start:
+{
+lean_object* v___x_26_; lean_object* v___x_27_; 
+v___x_26_ = lean_unsigned_to_nat(0u);
+v___x_27_ = lean_mk_empty_array_with_capacity(v___x_26_);
+return v___x_27_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_StreamMap_empty(lean_object* v_00_u03b2_28_, lean_object* v_00_u03b1_29_){
 _start:
 {
 lean_object* v___x_30_; 
-v___x_30_ = ((lean_object*)(l_Std_StreamMap_empty___closed__0));
+v___x_30_ = lean_obj_once(&l_Std_StreamMap_empty___closed__0, &l_Std_StreamMap_empty___closed__0_once, _init_l_Std_StreamMap_empty___closed__0);
 return v___x_30_;
 }
 }
@@ -255,6 +264,104 @@ else
 lean_dec_ref(v_x2_34_);
 return v_x1_33_;
 }
+}
+}
+static lean_object* _init_l_Std_StreamMap_register___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_39_; 
+v___f_39_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__0), 4, 0);
+return v___f_39_;
+}
+}
+static lean_object* _init_l_Std_StreamMap_register___redArg___closed__1(void){
+_start:
+{
+lean_object* v___f_40_; 
+v___f_40_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__1___boxed), 4, 0);
+return v___f_40_;
+}
+}
+static lean_object* _init_l_Std_StreamMap_register___redArg___closed__2(void){
+_start:
+{
+lean_object* v___f_41_; 
+v___f_41_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__2___boxed), 2, 0);
+return v___f_41_;
+}
+}
+static lean_object* _init_l_Std_StreamMap_register___redArg___closed__3(void){
+_start:
+{
+lean_object* v___f_42_; 
+v___f_42_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__3), 4, 0);
+return v___f_42_;
+}
+}
+static lean_object* _init_l_Std_StreamMap_register___redArg___closed__4(void){
+_start:
+{
+lean_object* v___f_43_; 
+v___f_43_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__4___boxed), 4, 0);
+return v___f_43_;
+}
+}
+static lean_object* _init_l_Std_StreamMap_register___redArg___closed__5(void){
+_start:
+{
+lean_object* v___f_44_; 
+v___f_44_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__5___boxed), 4, 0);
+return v___f_44_;
+}
+}
+static lean_object* _init_l_Std_StreamMap_register___redArg___closed__6(void){
+_start:
+{
+lean_object* v___f_45_; 
+v___f_45_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__6), 4, 0);
+return v___f_45_;
+}
+}
+static lean_object* _init_l_Std_StreamMap_register___redArg___closed__7(void){
+_start:
+{
+lean_object* v___f_46_; lean_object* v___f_47_; lean_object* v___x_48_; 
+v___f_46_ = lean_obj_once(&l_Std_StreamMap_register___redArg___closed__1, &l_Std_StreamMap_register___redArg___closed__1_once, _init_l_Std_StreamMap_register___redArg___closed__1);
+v___f_47_ = lean_obj_once(&l_Std_StreamMap_register___redArg___closed__0, &l_Std_StreamMap_register___redArg___closed__0_once, _init_l_Std_StreamMap_register___redArg___closed__0);
+v___x_48_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_48_, 0, v___f_47_);
+lean_ctor_set(v___x_48_, 1, v___f_46_);
+return v___x_48_;
+}
+}
+static lean_object* _init_l_Std_StreamMap_register___redArg___closed__8(void){
+_start:
+{
+lean_object* v___f_49_; lean_object* v___f_50_; lean_object* v___f_51_; lean_object* v___f_52_; lean_object* v___x_53_; lean_object* v___x_54_; 
+v___f_49_ = lean_obj_once(&l_Std_StreamMap_register___redArg___closed__5, &l_Std_StreamMap_register___redArg___closed__5_once, _init_l_Std_StreamMap_register___redArg___closed__5);
+v___f_50_ = lean_obj_once(&l_Std_StreamMap_register___redArg___closed__4, &l_Std_StreamMap_register___redArg___closed__4_once, _init_l_Std_StreamMap_register___redArg___closed__4);
+v___f_51_ = lean_obj_once(&l_Std_StreamMap_register___redArg___closed__3, &l_Std_StreamMap_register___redArg___closed__3_once, _init_l_Std_StreamMap_register___redArg___closed__3);
+v___f_52_ = lean_obj_once(&l_Std_StreamMap_register___redArg___closed__2, &l_Std_StreamMap_register___redArg___closed__2_once, _init_l_Std_StreamMap_register___redArg___closed__2);
+v___x_53_ = lean_obj_once(&l_Std_StreamMap_register___redArg___closed__7, &l_Std_StreamMap_register___redArg___closed__7_once, _init_l_Std_StreamMap_register___redArg___closed__7);
+v___x_54_ = lean_alloc_ctor(0, 5, 0);
+lean_ctor_set(v___x_54_, 0, v___x_53_);
+lean_ctor_set(v___x_54_, 1, v___f_52_);
+lean_ctor_set(v___x_54_, 2, v___f_51_);
+lean_ctor_set(v___x_54_, 3, v___f_50_);
+lean_ctor_set(v___x_54_, 4, v___f_49_);
+return v___x_54_;
+}
+}
+static lean_object* _init_l_Std_StreamMap_register___redArg___closed__9(void){
+_start:
+{
+lean_object* v___f_55_; lean_object* v___x_56_; lean_object* v___x_57_; 
+v___f_55_ = lean_obj_once(&l_Std_StreamMap_register___redArg___closed__6, &l_Std_StreamMap_register___redArg___closed__6_once, _init_l_Std_StreamMap_register___redArg___closed__6);
+v___x_56_ = lean_obj_once(&l_Std_StreamMap_register___redArg___closed__8, &l_Std_StreamMap_register___redArg___closed__8_once, _init_l_Std_StreamMap_register___redArg___closed__8);
+v___x_57_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_57_, 0, v___x_56_);
+lean_ctor_set(v___x_57_, 1, v___f_55_);
+return v___x_57_;
 }
 }
 LEAN_EXPORT lean_object* l_Std_StreamMap_register___redArg(lean_object* v_inst_58_, lean_object* v_inst_59_, lean_object* v_sm_60_, lean_object* v_name_61_, lean_object* v_reader_62_){
@@ -286,8 +393,8 @@ lean_inc(v_reader_62_);
 v_newSelector_68_ = lean_apply_1(v_next_63_, v_reader_62_);
 v___x_77_ = lean_unsigned_to_nat(0u);
 v___x_78_ = lean_array_get_size(v_sm_60_);
-v___x_79_ = ((lean_object*)(l_Std_StreamMap_empty___closed__0));
-v___x_80_ = ((lean_object*)(l_Std_StreamMap_register___redArg___closed__9));
+v___x_79_ = lean_obj_once(&l_Std_StreamMap_empty___closed__0, &l_Std_StreamMap_empty___closed__0_once, _init_l_Std_StreamMap_empty___closed__0);
+v___x_80_ = lean_obj_once(&l_Std_StreamMap_register___redArg___closed__9, &l_Std_StreamMap_register___redArg___closed__9_once, _init_l_Std_StreamMap_register___redArg___closed__9);
 v___x_81_ = lean_nat_dec_lt(v___x_77_, v___x_78_);
 if (v___x_81_ == 0)
 {
@@ -422,12 +529,20 @@ return v___x_108_;
 }
 }
 }
+static lean_object* _init_l_Std_StreamMap_ofArray___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_111_; 
+v___f_111_ = lean_alloc_closure((void*)(l_Std_StreamMap_ofArray___redArg___lam__0), 1, 0);
+return v___f_111_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_StreamMap_ofArray___redArg(lean_object* v_streams_112_){
 _start:
 {
 lean_object* v___f_113_; lean_object* v___x_114_; size_t v_sz_115_; size_t v___x_116_; lean_object* v_arrayOfSelectors_117_; 
-v___f_113_ = ((lean_object*)(l_Std_StreamMap_ofArray___redArg___closed__0));
-v___x_114_ = ((lean_object*)(l_Std_StreamMap_register___redArg___closed__9));
+v___f_113_ = lean_obj_once(&l_Std_StreamMap_ofArray___redArg___closed__0, &l_Std_StreamMap_ofArray___redArg___closed__0_once, _init_l_Std_StreamMap_ofArray___redArg___closed__0);
+v___x_114_ = lean_obj_once(&l_Std_StreamMap_register___redArg___closed__9, &l_Std_StreamMap_register___redArg___closed__9_once, _init_l_Std_StreamMap_register___redArg___closed__9);
 v_sz_115_ = lean_array_size(v_streams_112_);
 v___x_116_ = ((size_t)0ULL);
 v_arrayOfSelectors_117_ = l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map(lean_box(0), lean_box(0), lean_box(0), v___x_114_, v___f_113_, v_sz_115_, v___x_116_, v_streams_112_);
@@ -780,8 +895,8 @@ _start:
 lean_object* v___x_260_; lean_object* v___x_261_; lean_object* v___x_262_; lean_object* v___x_263_; uint8_t v___x_264_; 
 v___x_260_ = lean_unsigned_to_nat(0u);
 v___x_261_ = lean_array_get_size(v_sm_258_);
-v___x_262_ = ((lean_object*)(l_Std_StreamMap_empty___closed__0));
-v___x_263_ = ((lean_object*)(l_Std_StreamMap_register___redArg___closed__9));
+v___x_262_ = lean_obj_once(&l_Std_StreamMap_empty___closed__0, &l_Std_StreamMap_empty___closed__0_once, _init_l_Std_StreamMap_empty___closed__0);
+v___x_263_ = lean_obj_once(&l_Std_StreamMap_register___redArg___closed__9, &l_Std_StreamMap_register___redArg___closed__9_once, _init_l_Std_StreamMap_register___redArg___closed__9);
 v___x_264_ = lean_nat_dec_lt(v___x_260_, v___x_261_);
 if (v___x_264_ == 0)
 {
@@ -860,7 +975,7 @@ _start:
 lean_object* v___x_293_; lean_object* v___x_294_; lean_object* v___x_295_; uint8_t v___x_296_; 
 v___x_293_ = lean_unsigned_to_nat(0u);
 v___x_294_ = lean_array_get_size(v_sm_291_);
-v___x_295_ = ((lean_object*)(l_Std_StreamMap_register___redArg___closed__9));
+v___x_295_ = lean_obj_once(&l_Std_StreamMap_register___redArg___closed__9, &l_Std_StreamMap_register___redArg___closed__9_once, _init_l_Std_StreamMap_register___redArg___closed__9);
 v___x_296_ = lean_nat_dec_lt(v___x_293_, v___x_294_);
 if (v___x_296_ == 0)
 {
@@ -1110,14 +1225,26 @@ lean_dec_ref(v___y_409_);
 return v_res_410_;
 }
 }
+static lean_object* _init_l_Std_StreamMap_get_x3f___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_411_; lean_object* v___x_412_; lean_object* v___x_413_; 
+v___x_411_ = lean_box(0);
+v___x_412_ = lean_box(0);
+v___x_413_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_413_, 0, v___x_412_);
+lean_ctor_set(v___x_413_, 1, v___x_411_);
+return v___x_413_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_StreamMap_get_x3f___redArg(lean_object* v_inst_414_, lean_object* v_sm_415_, lean_object* v_name_416_){
 _start:
 {
 lean_object* v___x_417_; lean_object* v___x_418_; lean_object* v___x_419_; lean_object* v___x_420_; lean_object* v___f_421_; size_t v_sz_422_; size_t v___x_423_; lean_object* v___x_424_; lean_object* v_fst_425_; 
-v___x_417_ = ((lean_object*)(l_Std_StreamMap_register___redArg___closed__9));
+v___x_417_ = lean_obj_once(&l_Std_StreamMap_register___redArg___closed__9, &l_Std_StreamMap_register___redArg___closed__9_once, _init_l_Std_StreamMap_register___redArg___closed__9);
 v___x_418_ = lean_box(0);
 v___x_419_ = lean_box(0);
-v___x_420_ = ((lean_object*)(l_Std_StreamMap_get_x3f___redArg___closed__0));
+v___x_420_ = lean_obj_once(&l_Std_StreamMap_get_x3f___redArg___closed__0, &l_Std_StreamMap_get_x3f___redArg___closed__0_once, _init_l_Std_StreamMap_get_x3f___redArg___closed__0);
 v___f_421_ = lean_alloc_closure((void*)(l_Std_StreamMap_get_x3f___redArg___lam__0___boxed), 7, 4);
 lean_closure_set(v___f_421_, 0, v_inst_414_);
 lean_closure_set(v___f_421_, 1, v_name_416_);
@@ -1265,7 +1392,7 @@ _start:
 lean_object* v___x_469_; lean_object* v___x_470_; lean_object* v___x_471_; uint8_t v___x_472_; 
 v___x_469_ = lean_unsigned_to_nat(0u);
 v___x_470_ = lean_array_get_size(v_sm_467_);
-v___x_471_ = ((lean_object*)(l_Std_StreamMap_empty___closed__0));
+v___x_471_ = lean_obj_once(&l_Std_StreamMap_empty___closed__0, &l_Std_StreamMap_empty___closed__0_once, _init_l_Std_StreamMap_empty___closed__0);
 v___x_472_ = lean_nat_dec_lt(v___x_469_, v___x_470_);
 if (v___x_472_ == 0)
 {

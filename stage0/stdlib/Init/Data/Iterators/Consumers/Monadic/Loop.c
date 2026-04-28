@@ -80,8 +80,8 @@ LEAN_EXPORT lean_object* l_Std_instForMTotalOfIteratorLoopOfMonadOfMonadLiftTOfF
 LEAN_EXPORT lean_object* l_Std_instForMTotalOfIteratorLoopOfMonadOfMonadLiftTOfFinite___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_IterM_foldM___redArg___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Std_IterM_foldM___redArg___lam__3(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_IterM_foldM___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_IterM_foldM___redArg___lam__0, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_IterM_foldM___redArg___closed__0 = (const lean_object*)&l_Std_IterM_foldM___redArg___closed__0_value;
+static lean_once_cell_t l_Std_IterM_foldM___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IterM_foldM___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Std_IterM_foldM___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_IterM_foldM(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_IterM_foldM___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -214,8 +214,8 @@ LEAN_EXPORT lean_object* l_Std_IterM_first_x3f___boxed(lean_object*, lean_object
 LEAN_EXPORT lean_object* l_Std_IterM_Total_first_x3f___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_IterM_Total_first_x3f(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_IterM_Total_first_x3f___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Std_IterM_isEmpty___redArg___lam__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_IterM_isEmpty___redArg___lam__1___closed__0 = (const lean_object*)&l_Std_IterM_isEmpty___redArg___lam__1___closed__0_value;
+static lean_once_cell_t l_Std_IterM_isEmpty___redArg___lam__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IterM_isEmpty___redArg___lam__1___closed__0;
 LEAN_EXPORT lean_object* l_Std_IterM_isEmpty___redArg___lam__1(lean_object*, lean_object*, lean_object*, uint8_t);
 LEAN_EXPORT lean_object* l_Std_IterM_isEmpty___redArg___lam__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_IterM_isEmpty___redArg(lean_object*, lean_object*, lean_object*);
@@ -1373,6 +1373,14 @@ v___x_640_ = lean_apply_4(v_toBind_632_, lean_box(0), lean_box(0), v___x_639_, v
 return v___x_640_;
 }
 }
+static lean_object* _init_l_Std_IterM_foldM___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_641_; 
+v___f_641_ = lean_alloc_closure((void*)(l_Std_IterM_foldM___redArg___lam__0), 1, 0);
+return v___f_641_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_IterM_foldM___redArg(lean_object* v_inst_642_, lean_object* v_inst_643_, lean_object* v_inst_644_, lean_object* v_f_645_, lean_object* v_init_646_, lean_object* v_it_647_){
 _start:
 {
@@ -1387,7 +1395,7 @@ lean_inc_ref(v_toFunctor_650_);
 v_toPure_651_ = lean_ctor_get(v_toApplicative_648_, 1);
 lean_inc(v_toPure_651_);
 lean_dec_ref(v_toApplicative_648_);
-v___f_652_ = ((lean_object*)(l_Std_IterM_foldM___redArg___closed__0));
+v___f_652_ = lean_obj_once(&l_Std_IterM_foldM___redArg___closed__0, &l_Std_IterM_foldM___redArg___closed__0_once, _init_l_Std_IterM_foldM___redArg___closed__0);
 v___f_653_ = lean_alloc_closure((void*)(l_Std_IterM_instForIn_x27___redArg___lam__0), 6, 2);
 lean_closure_set(v___f_653_, 0, v_inst_644_);
 lean_closure_set(v___f_653_, 1, v_toBind_649_);
@@ -1417,7 +1425,7 @@ lean_inc_ref(v_toFunctor_671_);
 v_toPure_672_ = lean_ctor_get(v_toApplicative_669_, 1);
 lean_inc(v_toPure_672_);
 lean_dec_ref(v_toApplicative_669_);
-v___f_673_ = ((lean_object*)(l_Std_IterM_foldM___redArg___closed__0));
+v___f_673_ = lean_obj_once(&l_Std_IterM_foldM___redArg___closed__0, &l_Std_IterM_foldM___redArg___closed__0_once, _init_l_Std_IterM_foldM___redArg___closed__0);
 v___f_674_ = lean_alloc_closure((void*)(l_Std_IterM_instForIn_x27___redArg___lam__0), 6, 2);
 lean_closure_set(v___f_674_, 0, v_inst_665_);
 lean_closure_set(v___f_674_, 1, v_toBind_670_);
@@ -1456,7 +1464,7 @@ lean_inc_ref(v_toFunctor_699_);
 v_toPure_700_ = lean_ctor_get(v_toApplicative_697_, 1);
 lean_inc(v_toPure_700_);
 lean_dec_ref(v_toApplicative_697_);
-v___f_701_ = ((lean_object*)(l_Std_IterM_foldM___redArg___closed__0));
+v___f_701_ = lean_obj_once(&l_Std_IterM_foldM___redArg___closed__0, &l_Std_IterM_foldM___redArg___closed__0_once, _init_l_Std_IterM_foldM___redArg___closed__0);
 v___f_702_ = lean_alloc_closure((void*)(l_Std_IterM_instForIn_x27___redArg___lam__0), 6, 2);
 lean_closure_set(v___f_702_, 0, v_inst_693_);
 lean_closure_set(v___f_702_, 1, v_toBind_698_);
@@ -1486,7 +1494,7 @@ lean_inc_ref(v_toFunctor_720_);
 v_toPure_721_ = lean_ctor_get(v_toApplicative_718_, 1);
 lean_inc(v_toPure_721_);
 lean_dec_ref(v_toApplicative_718_);
-v___f_722_ = ((lean_object*)(l_Std_IterM_foldM___redArg___closed__0));
+v___f_722_ = lean_obj_once(&l_Std_IterM_foldM___redArg___closed__0, &l_Std_IterM_foldM___redArg___closed__0_once, _init_l_Std_IterM_foldM___redArg___closed__0);
 v___f_723_ = lean_alloc_closure((void*)(l_Std_IterM_instForIn_x27___redArg___lam__0), 6, 2);
 lean_closure_set(v___f_723_, 0, v_inst_714_);
 lean_closure_set(v___f_723_, 1, v_toBind_719_);
@@ -1525,7 +1533,7 @@ lean_inc_ref(v_toFunctor_748_);
 v_toPure_749_ = lean_ctor_get(v_toApplicative_746_, 1);
 lean_inc(v_toPure_749_);
 lean_dec_ref(v_toApplicative_746_);
-v___f_750_ = ((lean_object*)(l_Std_IterM_foldM___redArg___closed__0));
+v___f_750_ = lean_obj_once(&l_Std_IterM_foldM___redArg___closed__0, &l_Std_IterM_foldM___redArg___closed__0_once, _init_l_Std_IterM_foldM___redArg___closed__0);
 v___f_751_ = lean_alloc_closure((void*)(l_Std_IterM_instForIn_x27___redArg___lam__0), 6, 2);
 lean_closure_set(v___f_751_, 0, v_inst_742_);
 lean_closure_set(v___f_751_, 1, v_toBind_747_);
@@ -1555,7 +1563,7 @@ lean_inc_ref(v_toFunctor_770_);
 v_toPure_771_ = lean_ctor_get(v_toApplicative_768_, 1);
 lean_inc(v_toPure_771_);
 lean_dec_ref(v_toApplicative_768_);
-v___f_772_ = ((lean_object*)(l_Std_IterM_foldM___redArg___closed__0));
+v___f_772_ = lean_obj_once(&l_Std_IterM_foldM___redArg___closed__0, &l_Std_IterM_foldM___redArg___closed__0_once, _init_l_Std_IterM_foldM___redArg___closed__0);
 v___f_773_ = lean_alloc_closure((void*)(l_Std_IterM_instForIn_x27___redArg___lam__0), 6, 2);
 lean_closure_set(v___f_773_, 0, v_inst_763_);
 lean_closure_set(v___f_773_, 1, v_toBind_769_);
@@ -3621,11 +3629,22 @@ lean_dec(v_inst_2127_);
 return v_res_2131_;
 }
 }
+static lean_object* _init_l_Std_IterM_isEmpty___redArg___lam__1___closed__0(void){
+_start:
+{
+uint8_t v___x_2132_; lean_object* v___x_2133_; lean_object* v___x_2134_; 
+v___x_2132_ = 0;
+v___x_2133_ = lean_box(v___x_2132_);
+v___x_2134_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_2134_, 0, v___x_2133_);
+return v___x_2134_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_IterM_isEmpty___redArg___lam__1(lean_object* v_toPure_2135_, lean_object* v_x_2136_, lean_object* v_x_2137_, uint8_t v_x_2138_){
 _start:
 {
 lean_object* v___x_2139_; lean_object* v___x_2140_; 
-v___x_2139_ = ((lean_object*)(l_Std_IterM_isEmpty___redArg___lam__1___closed__0));
+v___x_2139_ = lean_obj_once(&l_Std_IterM_isEmpty___redArg___lam__1___closed__0, &l_Std_IterM_isEmpty___redArg___lam__1___closed__0_once, _init_l_Std_IterM_isEmpty___redArg___lam__1___closed__0);
 v___x_2140_ = lean_apply_2(v_toPure_2135_, lean_box(0), v___x_2139_);
 return v___x_2140_;
 }

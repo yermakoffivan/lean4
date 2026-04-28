@@ -47,10 +47,10 @@ LEAN_EXPORT lean_object* l_Sum_map___redArg(lean_object*, lean_object*, lean_obj
 LEAN_EXPORT lean_object* l_Sum_map(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Sum_swap___redArg___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Sum_swap___redArg___lam__1(lean_object*);
-static const lean_closure_object l_Sum_swap___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Sum_swap___redArg___lam__0, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Sum_swap___redArg___closed__0 = (const lean_object*)&l_Sum_swap___redArg___closed__0_value;
-static const lean_closure_object l_Sum_swap___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Sum_swap___redArg___lam__1, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Sum_swap___redArg___closed__1 = (const lean_object*)&l_Sum_swap___redArg___closed__1_value;
+static lean_once_cell_t l_Sum_swap___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Sum_swap___redArg___closed__0;
+static lean_once_cell_t l_Sum_swap___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Sum_swap___redArg___closed__1;
 LEAN_EXPORT lean_object* l_Sum_swap___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Sum_swap(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Sum_instDecidableLiftRel___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
@@ -544,12 +544,28 @@ lean_ctor_set(v___x_169_, 0, v_val_168_);
 return v___x_169_;
 }
 }
+static lean_object* _init_l_Sum_swap___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_170_; 
+v___f_170_ = lean_alloc_closure((void*)(l_Sum_swap___redArg___lam__0), 1, 0);
+return v___f_170_;
+}
+}
+static lean_object* _init_l_Sum_swap___redArg___closed__1(void){
+_start:
+{
+lean_object* v___f_171_; 
+v___f_171_ = lean_alloc_closure((void*)(l_Sum_swap___redArg___lam__1), 1, 0);
+return v___f_171_;
+}
+}
 LEAN_EXPORT lean_object* l_Sum_swap___redArg(lean_object* v_a_172_){
 _start:
 {
 lean_object* v___f_173_; lean_object* v___f_174_; lean_object* v___x_175_; 
-v___f_173_ = ((lean_object*)(l_Sum_swap___redArg___closed__0));
-v___f_174_ = ((lean_object*)(l_Sum_swap___redArg___closed__1));
+v___f_173_ = lean_obj_once(&l_Sum_swap___redArg___closed__0, &l_Sum_swap___redArg___closed__0_once, _init_l_Sum_swap___redArg___closed__0);
+v___f_174_ = lean_obj_once(&l_Sum_swap___redArg___closed__1, &l_Sum_swap___redArg___closed__1_once, _init_l_Sum_swap___redArg___closed__1);
 v___x_175_ = l_Sum_elim___redArg(v___f_173_, v___f_174_, v_a_172_);
 return v___x_175_;
 }

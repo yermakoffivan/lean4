@@ -21,35 +21,35 @@ uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_instHSubRaw___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_instHSubRaw___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_String_instHSubRaw___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_String_instHSubRaw___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_String_instHSubRaw___closed__0 = (const lean_object*)&l_String_instHSubRaw___closed__0_value;
-LEAN_EXPORT const lean_object* l_String_instHSubRaw = (const lean_object*)&l_String_instHSubRaw___closed__0_value;
+static lean_once_cell_t l_String_instHSubRaw___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_instHSubRaw___closed__0;
+LEAN_EXPORT lean_object* l_String_instHSubRaw;
 LEAN_EXPORT lean_object* l_String_instHSubRawChar___lam__0(lean_object*, uint32_t);
 LEAN_EXPORT lean_object* l_String_instHSubRawChar___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_String_instHSubRawChar___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_String_instHSubRawChar___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_String_instHSubRawChar___closed__0 = (const lean_object*)&l_String_instHSubRawChar___closed__0_value;
-LEAN_EXPORT const lean_object* l_String_instHSubRawChar = (const lean_object*)&l_String_instHSubRawChar___closed__0_value;
+static lean_once_cell_t l_String_instHSubRawChar___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_instHSubRawChar___closed__0;
+LEAN_EXPORT lean_object* l_String_instHSubRawChar;
 LEAN_EXPORT lean_object* lean_string_pos_sub(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_instHAddRawChar___lam__0(lean_object*, uint32_t);
 LEAN_EXPORT lean_object* l_String_instHAddRawChar___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_String_instHAddRawChar___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_String_instHAddRawChar___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_String_instHAddRawChar___closed__0 = (const lean_object*)&l_String_instHAddRawChar___closed__0_value;
-LEAN_EXPORT const lean_object* l_String_instHAddRawChar = (const lean_object*)&l_String_instHAddRawChar___closed__0_value;
+static lean_once_cell_t l_String_instHAddRawChar___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_instHAddRawChar___closed__0;
+LEAN_EXPORT lean_object* l_String_instHAddRawChar;
 LEAN_EXPORT lean_object* l_String_instHAddCharRaw___lam__0(uint32_t, lean_object*);
 LEAN_EXPORT lean_object* l_String_instHAddCharRaw___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_String_instHAddCharRaw___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_String_instHAddCharRaw___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_String_instHAddCharRaw___closed__0 = (const lean_object*)&l_String_instHAddCharRaw___closed__0_value;
-LEAN_EXPORT const lean_object* l_String_instHAddCharRaw = (const lean_object*)&l_String_instHAddCharRaw___closed__0_value;
+static lean_once_cell_t l_String_instHAddCharRaw___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_instHAddCharRaw___closed__0;
+LEAN_EXPORT lean_object* l_String_instHAddCharRaw;
 LEAN_EXPORT lean_object* l_String_instHAddRaw___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_instHAddRaw___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_String_instHAddRaw___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_String_instHAddRaw___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_String_instHAddRaw___closed__0 = (const lean_object*)&l_String_instHAddRaw___closed__0_value;
-LEAN_EXPORT const lean_object* l_String_instHAddRaw = (const lean_object*)&l_String_instHAddRaw___closed__0_value;
+static lean_once_cell_t l_String_instHAddRaw___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_instHAddRaw___closed__0;
+LEAN_EXPORT lean_object* l_String_instHAddRaw;
 LEAN_EXPORT lean_object* l_String_instHAddRaw__1___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_instHAddRaw__1___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_String_instHAddRaw__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_String_instHAddRaw__1___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_String_instHAddRaw__1___closed__0 = (const lean_object*)&l_String_instHAddRaw__1___closed__0_value;
-LEAN_EXPORT const lean_object* l_String_instHAddRaw__1 = (const lean_object*)&l_String_instHAddRaw__1___closed__0_value;
+static lean_once_cell_t l_String_instHAddRaw__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_instHAddRaw__1___closed__0;
+LEAN_EXPORT lean_object* l_String_instHAddRaw__1;
 LEAN_EXPORT lean_object* l_String_instLERaw;
 LEAN_EXPORT lean_object* l_String_instLTRaw;
 LEAN_EXPORT uint8_t l_String_instDecidableLeRaw(lean_object*, lean_object*);
@@ -96,6 +96,22 @@ lean_dec(v_p_5_);
 return v_res_7_;
 }
 }
+static lean_object* _init_l_String_instHSubRaw___closed__0(void){
+_start:
+{
+lean_object* v___f_8_; 
+v___f_8_ = lean_alloc_closure((void*)(l_String_instHSubRaw___lam__0___boxed), 2, 0);
+return v___f_8_;
+}
+}
+static lean_object* _init_l_String_instHSubRaw(void){
+_start:
+{
+lean_object* v___f_9_; 
+v___f_9_ = lean_obj_once(&l_String_instHSubRaw___closed__0, &l_String_instHSubRaw___closed__0_once, _init_l_String_instHSubRaw___closed__0);
+return v___f_9_;
+}
+}
 LEAN_EXPORT lean_object* l_String_instHSubRawChar___lam__0(lean_object* v_p_10_, uint32_t v_c_11_){
 _start:
 {
@@ -115,6 +131,22 @@ lean_dec(v_c_15_);
 v_res_17_ = l_String_instHSubRawChar___lam__0(v_p_14_, v_c_boxed_16_);
 lean_dec(v_p_14_);
 return v_res_17_;
+}
+}
+static lean_object* _init_l_String_instHSubRawChar___closed__0(void){
+_start:
+{
+lean_object* v___f_18_; 
+v___f_18_ = lean_alloc_closure((void*)(l_String_instHSubRawChar___lam__0___boxed), 2, 0);
+return v___f_18_;
+}
+}
+static lean_object* _init_l_String_instHSubRawChar(void){
+_start:
+{
+lean_object* v___f_19_; 
+v___f_19_ = lean_obj_once(&l_String_instHSubRawChar___closed__0, &l_String_instHSubRawChar___closed__0_once, _init_l_String_instHSubRawChar___closed__0);
+return v___f_19_;
 }
 }
 LEAN_EXPORT lean_object* lean_string_pos_sub(lean_object* v_p_u2081_20_, lean_object* v_p_u2082_21_){
@@ -148,6 +180,22 @@ lean_dec(v_p_27_);
 return v_res_30_;
 }
 }
+static lean_object* _init_l_String_instHAddRawChar___closed__0(void){
+_start:
+{
+lean_object* v___f_31_; 
+v___f_31_ = lean_alloc_closure((void*)(l_String_instHAddRawChar___lam__0___boxed), 2, 0);
+return v___f_31_;
+}
+}
+static lean_object* _init_l_String_instHAddRawChar(void){
+_start:
+{
+lean_object* v___f_32_; 
+v___f_32_ = lean_obj_once(&l_String_instHAddRawChar___closed__0, &l_String_instHAddRawChar___closed__0_once, _init_l_String_instHAddRawChar___closed__0);
+return v___f_32_;
+}
+}
 LEAN_EXPORT lean_object* l_String_instHAddCharRaw___lam__0(uint32_t v_c_33_, lean_object* v_p_34_){
 _start:
 {
@@ -169,6 +217,22 @@ lean_dec(v_p_38_);
 return v_res_40_;
 }
 }
+static lean_object* _init_l_String_instHAddCharRaw___closed__0(void){
+_start:
+{
+lean_object* v___f_41_; 
+v___f_41_ = lean_alloc_closure((void*)(l_String_instHAddCharRaw___lam__0___boxed), 2, 0);
+return v___f_41_;
+}
+}
+static lean_object* _init_l_String_instHAddCharRaw(void){
+_start:
+{
+lean_object* v___f_42_; 
+v___f_42_ = lean_obj_once(&l_String_instHAddCharRaw___closed__0, &l_String_instHAddCharRaw___closed__0_once, _init_l_String_instHAddCharRaw___closed__0);
+return v___f_42_;
+}
+}
 LEAN_EXPORT lean_object* l_String_instHAddRaw___lam__0(lean_object* v_s_43_, lean_object* v_p_44_){
 _start:
 {
@@ -188,6 +252,22 @@ lean_dec_ref(v_s_47_);
 return v_res_49_;
 }
 }
+static lean_object* _init_l_String_instHAddRaw___closed__0(void){
+_start:
+{
+lean_object* v___f_50_; 
+v___f_50_ = lean_alloc_closure((void*)(l_String_instHAddRaw___lam__0___boxed), 2, 0);
+return v___f_50_;
+}
+}
+static lean_object* _init_l_String_instHAddRaw(void){
+_start:
+{
+lean_object* v___f_51_; 
+v___f_51_ = lean_obj_once(&l_String_instHAddRaw___closed__0, &l_String_instHAddRaw___closed__0_once, _init_l_String_instHAddRaw___closed__0);
+return v___f_51_;
+}
+}
 LEAN_EXPORT lean_object* l_String_instHAddRaw__1___lam__0(lean_object* v_p_52_, lean_object* v_s_53_){
 _start:
 {
@@ -205,6 +285,22 @@ v_res_58_ = l_String_instHAddRaw__1___lam__0(v_p_56_, v_s_57_);
 lean_dec_ref(v_s_57_);
 lean_dec(v_p_56_);
 return v_res_58_;
+}
+}
+static lean_object* _init_l_String_instHAddRaw__1___closed__0(void){
+_start:
+{
+lean_object* v___f_59_; 
+v___f_59_ = lean_alloc_closure((void*)(l_String_instHAddRaw__1___lam__0___boxed), 2, 0);
+return v___f_59_;
+}
+}
+static lean_object* _init_l_String_instHAddRaw__1(void){
+_start:
+{
+lean_object* v___f_60_; 
+v___f_60_ = lean_obj_once(&l_String_instHAddRaw__1___closed__0, &l_String_instHAddRaw__1___closed__0_once, _init_l_String_instHAddRaw__1___closed__0);
+return v___f_60_;
 }
 }
 static lean_object* _init_l_String_instLERaw(void){
@@ -467,6 +563,18 @@ lean_dec_ref(res);
 res = runtime_initialize_Init_Omega(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_String_instHSubRaw = _init_l_String_instHSubRaw();
+lean_mark_persistent(l_String_instHSubRaw);
+l_String_instHSubRawChar = _init_l_String_instHSubRawChar();
+lean_mark_persistent(l_String_instHSubRawChar);
+l_String_instHAddRawChar = _init_l_String_instHAddRawChar();
+lean_mark_persistent(l_String_instHAddRawChar);
+l_String_instHAddCharRaw = _init_l_String_instHAddCharRaw();
+lean_mark_persistent(l_String_instHAddCharRaw);
+l_String_instHAddRaw = _init_l_String_instHAddRaw();
+lean_mark_persistent(l_String_instHAddRaw);
+l_String_instHAddRaw__1 = _init_l_String_instHAddRaw__1();
+lean_mark_persistent(l_String_instHAddRaw__1);
 l_String_instLERaw = _init_l_String_instLERaw();
 lean_mark_persistent(l_String_instLERaw);
 l_String_instLTRaw = _init_l_String_instLTRaw();

@@ -115,10 +115,10 @@ LEAN_EXPORT lean_object* l_Lean_MVarId_assign___at___00Lean_MVarId_assert_spec__
 LEAN_EXPORT lean_object* l_Lean_MVarId_assign___at___00Lean_MVarId_assert_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MVarId_assert___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MVarId_assert___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_MVarId_assert___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "assert"};
-static const lean_object* l_Lean_MVarId_assert___closed__0 = (const lean_object*)&l_Lean_MVarId_assert___closed__0_value;
-static const lean_ctor_object l_Lean_MVarId_assert___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_MVarId_assert___closed__0_value),LEAN_SCALAR_PTR_LITERAL(17, 243, 163, 93, 35, 220, 207, 86)}};
-static const lean_object* l_Lean_MVarId_assert___closed__1 = (const lean_object*)&l_Lean_MVarId_assert___closed__1_value;
+static lean_once_cell_t l_Lean_MVarId_assert___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_MVarId_assert___closed__0;
+static lean_once_cell_t l_Lean_MVarId_assert___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_MVarId_assert___closed__1;
 LEAN_EXPORT lean_object* l_Lean_MVarId_assert(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MVarId_assert___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MVarId_assign___at___00Lean_MVarId_assert_spec__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -134,16 +134,16 @@ LEAN_EXPORT lean_object* l_Lean_MVarId_note(lean_object*, lean_object*, lean_obj
 LEAN_EXPORT lean_object* l_Lean_MVarId_note___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MVarId_define___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MVarId_define___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_MVarId_define___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "define"};
-static const lean_object* l_Lean_MVarId_define___closed__0 = (const lean_object*)&l_Lean_MVarId_define___closed__0_value;
-static const lean_ctor_object l_Lean_MVarId_define___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_MVarId_define___closed__0_value),LEAN_SCALAR_PTR_LITERAL(211, 225, 179, 252, 13, 73, 16, 168)}};
-static const lean_object* l_Lean_MVarId_define___closed__1 = (const lean_object*)&l_Lean_MVarId_define___closed__1_value;
+static lean_once_cell_t l_Lean_MVarId_define___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_MVarId_define___closed__0;
+static lean_once_cell_t l_Lean_MVarId_define___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_MVarId_define___closed__1;
 LEAN_EXPORT lean_object* l_Lean_MVarId_define(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MVarId_define___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_MVarId_assertExt___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "Eq"};
-static const lean_object* l_Lean_MVarId_assertExt___lam__0___closed__0 = (const lean_object*)&l_Lean_MVarId_assertExt___lam__0___closed__0_value;
-static const lean_ctor_object l_Lean_MVarId_assertExt___lam__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_MVarId_assertExt___lam__0___closed__0_value),LEAN_SCALAR_PTR_LITERAL(143, 37, 101, 248, 9, 246, 191, 223)}};
-static const lean_object* l_Lean_MVarId_assertExt___lam__0___closed__1 = (const lean_object*)&l_Lean_MVarId_assertExt___lam__0___closed__1_value;
+static lean_once_cell_t l_Lean_MVarId_assertExt___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_MVarId_assertExt___lam__0___closed__0;
+static lean_once_cell_t l_Lean_MVarId_assertExt___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_MVarId_assertExt___lam__0___closed__1;
 static lean_once_cell_t l_Lean_MVarId_assertExt___lam__0___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_MVarId_assertExt___lam__0___closed__2;
 LEAN_EXPORT lean_object* l_Lean_MVarId_assertExt___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -152,10 +152,10 @@ LEAN_EXPORT lean_object* l_Lean_MVarId_assertExt(lean_object*, lean_object*, lea
 LEAN_EXPORT lean_object* l_Lean_MVarId_assertExt___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Lean_MVarId_assertAfter_spec__0___redArg(lean_object*, size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Lean_MVarId_assertAfter_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_MVarId_assertAfter___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "assertAfter"};
-static const lean_object* l_Lean_MVarId_assertAfter___closed__0 = (const lean_object*)&l_Lean_MVarId_assertAfter___closed__0_value;
-static const lean_ctor_object l_Lean_MVarId_assertAfter___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_MVarId_assertAfter___closed__0_value),LEAN_SCALAR_PTR_LITERAL(39, 174, 1, 90, 222, 201, 211, 92)}};
-static const lean_object* l_Lean_MVarId_assertAfter___closed__1 = (const lean_object*)&l_Lean_MVarId_assertAfter___closed__1_value;
+static lean_once_cell_t l_Lean_MVarId_assertAfter___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_MVarId_assertAfter___closed__0;
+static lean_once_cell_t l_Lean_MVarId_assertAfter___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_MVarId_assertAfter___closed__1;
 LEAN_EXPORT lean_object* l_Lean_MVarId_assertAfter(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MVarId_assertAfter___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Lean_MVarId_assertAfter_spec__0(lean_object*, size_t, size_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -174,12 +174,12 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lean_MVarId_assertHypotheses_spec__2___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MVarId_assertHypotheses___lam__1(lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MVarId_assertHypotheses___lam__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_MVarId_assertHypotheses___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 17, .m_capacity = 17, .m_length = 16, .m_data = "assertHypotheses"};
-static const lean_object* l_Lean_MVarId_assertHypotheses___closed__0 = (const lean_object*)&l_Lean_MVarId_assertHypotheses___closed__0_value;
-static const lean_ctor_object l_Lean_MVarId_assertHypotheses___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_MVarId_assertHypotheses___closed__0_value),LEAN_SCALAR_PTR_LITERAL(61, 34, 150, 130, 103, 166, 191, 222)}};
-static const lean_object* l_Lean_MVarId_assertHypotheses___closed__1 = (const lean_object*)&l_Lean_MVarId_assertHypotheses___closed__1_value;
-static const lean_array_object l_Lean_MVarId_assertHypotheses___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Lean_MVarId_assertHypotheses___closed__2 = (const lean_object*)&l_Lean_MVarId_assertHypotheses___closed__2_value;
+static lean_once_cell_t l_Lean_MVarId_assertHypotheses___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_MVarId_assertHypotheses___closed__0;
+static lean_once_cell_t l_Lean_MVarId_assertHypotheses___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_MVarId_assertHypotheses___closed__1;
+static lean_once_cell_t l_Lean_MVarId_assertHypotheses___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_MVarId_assertHypotheses___closed__2;
 LEAN_EXPORT lean_object* l_Lean_MVarId_assertHypotheses(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MVarId_assertHypotheses___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_WellFounded_opaqueFix_u2083___at___00Lean_MVarId_assertHypotheses_spec__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -203,8 +203,8 @@ static lean_once_cell_t l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_repla
 static lean_object* l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar___closed__0;
 static lean_once_cell_t l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar___closed__1;
-static const lean_closure_object l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar___lam__0___boxed, .m_arity = 7, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar___closed__2 = (const lean_object*)&l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar___closed__2_value;
+static lean_once_cell_t l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar___closed__2;
 LEAN_EXPORT lean_object* l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_Raw_u2080_Const_get_x3f___at___00Lean_ForEachExpr_visit___at___00__private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar_spec__0_spec__0(lean_object*, lean_object*, lean_object*);
@@ -1265,11 +1265,28 @@ lean_dec_ref(v___y_318_);
 return v_res_323_;
 }
 }
+static lean_object* _init_l_Lean_MVarId_assert___closed__0(void){
+_start:
+{
+lean_object* v___x_324_; 
+v___x_324_ = lean_mk_string_unchecked("assert", 6, 6);
+return v___x_324_;
+}
+}
+static lean_object* _init_l_Lean_MVarId_assert___closed__1(void){
+_start:
+{
+lean_object* v___x_325_; lean_object* v___x_326_; 
+v___x_325_ = lean_obj_once(&l_Lean_MVarId_assert___closed__0, &l_Lean_MVarId_assert___closed__0_once, _init_l_Lean_MVarId_assert___closed__0);
+v___x_326_ = l_Lean_Name_mkStr1(v___x_325_);
+return v___x_326_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_MVarId_assert(lean_object* v_mvarId_327_, lean_object* v_name_328_, lean_object* v_type_329_, lean_object* v_val_330_, lean_object* v_a_331_, lean_object* v_a_332_, lean_object* v_a_333_, lean_object* v_a_334_){
 _start:
 {
 lean_object* v___x_336_; lean_object* v___f_337_; lean_object* v___x_338_; 
-v___x_336_ = ((lean_object*)(l_Lean_MVarId_assert___closed__1));
+v___x_336_ = lean_obj_once(&l_Lean_MVarId_assert___closed__1, &l_Lean_MVarId_assert___closed__1_once, _init_l_Lean_MVarId_assert___closed__1);
 lean_inc(v_mvarId_327_);
 v___f_337_ = lean_alloc_closure((void*)(l_Lean_MVarId_assert___lam__0___boxed), 10, 5);
 lean_closure_set(v___f_337_, 0, v_mvarId_327_);
@@ -1796,11 +1813,28 @@ lean_dec_ref(v___y_524_);
 return v_res_529_;
 }
 }
+static lean_object* _init_l_Lean_MVarId_define___closed__0(void){
+_start:
+{
+lean_object* v___x_530_; 
+v___x_530_ = lean_mk_string_unchecked("define", 6, 6);
+return v___x_530_;
+}
+}
+static lean_object* _init_l_Lean_MVarId_define___closed__1(void){
+_start:
+{
+lean_object* v___x_531_; lean_object* v___x_532_; 
+v___x_531_ = lean_obj_once(&l_Lean_MVarId_define___closed__0, &l_Lean_MVarId_define___closed__0_once, _init_l_Lean_MVarId_define___closed__0);
+v___x_532_ = l_Lean_Name_mkStr1(v___x_531_);
+return v___x_532_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_MVarId_define(lean_object* v_mvarId_533_, lean_object* v_name_534_, lean_object* v_type_535_, lean_object* v_val_536_, lean_object* v_a_537_, lean_object* v_a_538_, lean_object* v_a_539_, lean_object* v_a_540_){
 _start:
 {
 lean_object* v___x_542_; lean_object* v___f_543_; lean_object* v___x_544_; 
-v___x_542_ = ((lean_object*)(l_Lean_MVarId_define___closed__1));
+v___x_542_ = lean_obj_once(&l_Lean_MVarId_define___closed__1, &l_Lean_MVarId_define___closed__1_once, _init_l_Lean_MVarId_define___closed__1);
 lean_inc(v_mvarId_533_);
 v___f_543_ = lean_alloc_closure((void*)(l_Lean_MVarId_define___lam__0___boxed), 10, 5);
 lean_closure_set(v___f_543_, 0, v_mvarId_533_);
@@ -1822,6 +1856,23 @@ lean_dec_ref(v_a_551_);
 lean_dec(v_a_550_);
 lean_dec_ref(v_a_549_);
 return v_res_554_;
+}
+}
+static lean_object* _init_l_Lean_MVarId_assertExt___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_555_; 
+v___x_555_ = lean_mk_string_unchecked("Eq", 2, 2);
+return v___x_555_;
+}
+}
+static lean_object* _init_l_Lean_MVarId_assertExt___lam__0___closed__1(void){
+_start:
+{
+lean_object* v___x_556_; lean_object* v___x_557_; 
+v___x_556_ = lean_obj_once(&l_Lean_MVarId_assertExt___lam__0___closed__0, &l_Lean_MVarId_assertExt___lam__0___closed__0_once, _init_l_Lean_MVarId_assertExt___lam__0___closed__0);
+v___x_557_ = l_Lean_Name_mkStr1(v___x_556_);
+return v___x_557_;
 }
 }
 static lean_object* _init_l_Lean_MVarId_assertExt___lam__0___closed__2(void){
@@ -1867,7 +1918,7 @@ lean_object* v_a_577_; lean_object* v___x_578_; lean_object* v___x_579_; lean_ob
 v_a_577_ = lean_ctor_get(v___x_576_, 0);
 lean_inc(v_a_577_);
 lean_dec_ref(v___x_576_);
-v___x_578_ = ((lean_object*)(l_Lean_MVarId_assertExt___lam__0___closed__1));
+v___x_578_ = lean_obj_once(&l_Lean_MVarId_assertExt___lam__0___closed__1, &l_Lean_MVarId_assertExt___lam__0___closed__1_once, _init_l_Lean_MVarId_assertExt___lam__0___closed__1);
 v___x_579_ = lean_box(0);
 v___x_580_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_580_, 0, v_a_577_);
@@ -2237,7 +2288,7 @@ LEAN_EXPORT lean_object* l_Lean_MVarId_assertExt(lean_object* v_mvarId_662_, lea
 _start:
 {
 lean_object* v___x_672_; lean_object* v___f_673_; lean_object* v___x_674_; 
-v___x_672_ = ((lean_object*)(l_Lean_MVarId_assert___closed__1));
+v___x_672_ = lean_obj_once(&l_Lean_MVarId_assert___closed__1, &l_Lean_MVarId_assert___closed__1_once, _init_l_Lean_MVarId_assert___closed__1);
 lean_inc(v_mvarId_662_);
 v___f_673_ = lean_alloc_closure((void*)(l_Lean_MVarId_assertExt___lam__0___boxed), 11, 6);
 lean_closure_set(v___f_673_, 0, v_mvarId_662_);
@@ -2429,11 +2480,28 @@ lean_dec_ref(v_as_729_);
 return v_res_736_;
 }
 }
+static lean_object* _init_l_Lean_MVarId_assertAfter___closed__0(void){
+_start:
+{
+lean_object* v___x_737_; 
+v___x_737_ = lean_mk_string_unchecked("assertAfter", 11, 11);
+return v___x_737_;
+}
+}
+static lean_object* _init_l_Lean_MVarId_assertAfter___closed__1(void){
+_start:
+{
+lean_object* v___x_738_; lean_object* v___x_739_; 
+v___x_738_ = lean_obj_once(&l_Lean_MVarId_assertAfter___closed__0, &l_Lean_MVarId_assertAfter___closed__0_once, _init_l_Lean_MVarId_assertAfter___closed__0);
+v___x_739_ = l_Lean_Name_mkStr1(v___x_738_);
+return v___x_739_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_MVarId_assertAfter(lean_object* v_mvarId_740_, lean_object* v_fvarId_741_, lean_object* v_userName_742_, lean_object* v_type_743_, lean_object* v_val_744_, lean_object* v_a_745_, lean_object* v_a_746_, lean_object* v_a_747_, lean_object* v_a_748_){
 _start:
 {
 lean_object* v___x_750_; lean_object* v___x_751_; 
-v___x_750_ = ((lean_object*)(l_Lean_MVarId_assertAfter___closed__1));
+v___x_750_ = lean_obj_once(&l_Lean_MVarId_assertAfter___closed__1, &l_Lean_MVarId_assertAfter___closed__1_once, _init_l_Lean_MVarId_assertAfter___closed__1);
 lean_inc(v_mvarId_740_);
 v___x_751_ = l_Lean_MVarId_checkNotAssigned(v_mvarId_740_, v___x_750_, v_a_745_, v_a_746_, v_a_747_, v_a_748_);
 if (lean_obj_tag(v___x_751_) == 0)
@@ -3516,6 +3584,32 @@ lean_dec_ref(v___y_1087_);
 return v_res_1093_;
 }
 }
+static lean_object* _init_l_Lean_MVarId_assertHypotheses___closed__0(void){
+_start:
+{
+lean_object* v___x_1094_; 
+v___x_1094_ = lean_mk_string_unchecked("assertHypotheses", 16, 16);
+return v___x_1094_;
+}
+}
+static lean_object* _init_l_Lean_MVarId_assertHypotheses___closed__1(void){
+_start:
+{
+lean_object* v___x_1095_; lean_object* v___x_1096_; 
+v___x_1095_ = lean_obj_once(&l_Lean_MVarId_assertHypotheses___closed__0, &l_Lean_MVarId_assertHypotheses___closed__0_once, _init_l_Lean_MVarId_assertHypotheses___closed__0);
+v___x_1096_ = l_Lean_Name_mkStr1(v___x_1095_);
+return v___x_1096_;
+}
+}
+static lean_object* _init_l_Lean_MVarId_assertHypotheses___closed__2(void){
+_start:
+{
+lean_object* v___x_1097_; lean_object* v___x_1098_; 
+v___x_1097_ = lean_unsigned_to_nat(0u);
+v___x_1098_ = lean_mk_empty_array_with_capacity(v___x_1097_);
+return v___x_1098_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_MVarId_assertHypotheses(lean_object* v_mvarId_1099_, lean_object* v_hs_1100_, lean_object* v_a_1101_, lean_object* v_a_1102_, lean_object* v_a_1103_, lean_object* v_a_1104_){
 _start:
 {
@@ -3526,7 +3620,7 @@ v___x_1108_ = lean_nat_dec_eq(v___x_1106_, v___x_1107_);
 if (v___x_1108_ == 0)
 {
 lean_object* v___x_1109_; lean_object* v___x_1110_; lean_object* v___f_1111_; lean_object* v___x_1112_; 
-v___x_1109_ = ((lean_object*)(l_Lean_MVarId_assertHypotheses___closed__1));
+v___x_1109_ = lean_obj_once(&l_Lean_MVarId_assertHypotheses___closed__1, &l_Lean_MVarId_assertHypotheses___closed__1_once, _init_l_Lean_MVarId_assertHypotheses___closed__1);
 v___x_1110_ = lean_box(v___x_1108_);
 lean_inc(v_mvarId_1099_);
 v___f_1111_ = lean_alloc_closure((void*)(l_Lean_MVarId_assertHypotheses___lam__1___boxed), 11, 6);
@@ -3543,7 +3637,7 @@ else
 {
 lean_object* v___x_1113_; lean_object* v___x_1114_; lean_object* v___x_1115_; 
 lean_dec_ref(v_hs_1100_);
-v___x_1113_ = ((lean_object*)(l_Lean_MVarId_assertHypotheses___closed__2));
+v___x_1113_ = lean_obj_once(&l_Lean_MVarId_assertHypotheses___closed__2, &l_Lean_MVarId_assertHypotheses___closed__2_once, _init_l_Lean_MVarId_assertHypotheses___closed__2);
 v___x_1114_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_1114_, 0, v___x_1113_);
 lean_ctor_set(v___x_1114_, 1, v_mvarId_1099_);
@@ -4522,13 +4616,21 @@ lean_ctor_set(v___x_1428_, 1, v___x_1426_);
 return v___x_1428_;
 }
 }
+static lean_object* _init_l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar___closed__2(void){
+_start:
+{
+lean_object* v___f_1429_; 
+v___f_1429_ = lean_alloc_closure((void*)(l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar___lam__0___boxed), 7, 0);
+return v___f_1429_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar(lean_object* v_e_1430_, lean_object* v_a_1431_, lean_object* v_a_1432_, lean_object* v_a_1433_, lean_object* v_a_1434_, lean_object* v_a_1435_){
 _start:
 {
 lean_object* v___x_1437_; lean_object* v___x_1438_; lean_object* v___f_1439_; lean_object* v___x_1440_; 
 v___x_1437_ = lean_obj_once(&l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar___closed__1, &l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar___closed__1_once, _init_l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar___closed__1);
 v___x_1438_ = lean_st_mk_ref(v___x_1437_);
-v___f_1439_ = ((lean_object*)(l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar___closed__2));
+v___f_1439_ = lean_obj_once(&l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar___closed__2, &l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar___closed__2_once, _init_l___private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar___closed__2);
 v___x_1440_ = l_Lean_ForEachExpr_visit___at___00__private_Lean_Meta_Tactic_Assert_0__Lean_MVarId_replace_findMaxFVar_spec__0(v___f_1439_, v_e_1430_, v___x_1438_, v_a_1431_, v_a_1432_, v_a_1433_, v_a_1434_, v_a_1435_);
 if (lean_obj_tag(v___x_1440_) == 0)
 {

@@ -61,9 +61,9 @@ lean_object* lean_st_ref_take(lean_object*);
 lean_object* lean_st_ref_set(lean_object*, lean_object*);
 lean_object* l_Lean_Expr_mvarId_x21(lean_object*);
 uint8_t lean_string_dec_eq(lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "__grind_mark"};
-static const lean_object* l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark___closed__0 = (const lean_object*)&l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark___closed__0_value;
-LEAN_EXPORT const lean_object* l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark = (const lean_object*)&l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark___closed__0_value;
+static lean_once_cell_t l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark___closed__0;
+LEAN_EXPORT lean_object* l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark;
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_getOriginalName_x3f(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_getOriginalName_x3f___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_markGrindName(lean_object*);
@@ -105,18 +105,34 @@ LEAN_EXPORT lean_object* l___private_Lean_Data_PersistentHashMap_0__Lean_Persist
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_insertAtCollisionNodeAux___at___00Lean_PersistentHashMap_insertAtCollisionNode___at___00Lean_PersistentHashMap_insertAux___at___00Lean_PersistentHashMap_insert___at___00Lean_MVarId_assign___at___00Lean_MVarId_markAccessible_spec__0_spec__0_spec__2_spec__4_spec__5(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Lean_MVarId_revertAll_spec__0___redArg(lean_object*, size_t, size_t, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Lean_MVarId_revertAll_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_array_object l_Lean_MVarId_revertAll___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Lean_MVarId_revertAll___lam__0___closed__0 = (const lean_object*)&l_Lean_MVarId_revertAll___lam__0___closed__0_value;
+static lean_once_cell_t l_Lean_MVarId_revertAll___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_MVarId_revertAll___lam__0___closed__0;
 LEAN_EXPORT lean_object* l_Lean_MVarId_revertAll___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MVarId_revertAll___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_MVarId_revertAll___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "revertAll"};
-static const lean_object* l_Lean_MVarId_revertAll___closed__0 = (const lean_object*)&l_Lean_MVarId_revertAll___closed__0_value;
-static const lean_ctor_object l_Lean_MVarId_revertAll___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_MVarId_revertAll___closed__0_value),LEAN_SCALAR_PTR_LITERAL(176, 62, 121, 47, 113, 229, 251, 224)}};
-static const lean_object* l_Lean_MVarId_revertAll___closed__1 = (const lean_object*)&l_Lean_MVarId_revertAll___closed__1_value;
+static lean_once_cell_t l_Lean_MVarId_revertAll___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_MVarId_revertAll___closed__0;
+static lean_once_cell_t l_Lean_MVarId_revertAll___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_MVarId_revertAll___closed__1;
 LEAN_EXPORT lean_object* l_Lean_MVarId_revertAll(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MVarId_revertAll___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Lean_MVarId_revertAll_spec__0(lean_object*, size_t, size_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Lean_MVarId_revertAll_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+static lean_object* _init_l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; 
+v___x_1_ = lean_mk_string_unchecked("__grind_mark", 12, 12);
+return v___x_1_;
+}
+}
+static lean_object* _init_l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark(void){
+_start:
+{
+lean_object* v___x_2_; 
+v___x_2_ = lean_obj_once(&l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark___closed__0, &l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark___closed__0_once, _init_l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark___closed__0);
+return v___x_2_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_getOriginalName_x3f(lean_object* v_name_3_){
 _start:
 {
@@ -125,7 +141,7 @@ if (lean_obj_tag(v_name_3_) == 1)
 lean_object* v_pre_4_; lean_object* v_str_5_; lean_object* v___x_6_; uint8_t v___x_7_; 
 v_pre_4_ = lean_ctor_get(v_name_3_, 0);
 v_str_5_ = lean_ctor_get(v_name_3_, 1);
-v___x_6_ = ((lean_object*)(l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark___closed__0));
+v___x_6_ = lean_obj_once(&l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark___closed__0, &l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark___closed__0_once, _init_l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark___closed__0);
 v___x_7_ = lean_string_dec_eq(v_str_5_, v___x_6_);
 if (v___x_7_ == 0)
 {
@@ -163,7 +179,7 @@ LEAN_EXPORT lean_object* l_Lean_Meta_Grind_markGrindName(lean_object* v_userName
 _start:
 {
 lean_object* v___x_14_; lean_object* v___x_15_; 
-v___x_14_ = ((lean_object*)(l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark___closed__0));
+v___x_14_ = lean_obj_once(&l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark___closed__0, &l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark___closed__0_once, _init_l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark___closed__0);
 v___x_15_ = l_Lean_Name_str___override(v_userName_13_, v___x_14_);
 return v___x_15_;
 }
@@ -1487,6 +1503,15 @@ lean_dec_ref(v_as_489_);
 return v_res_499_;
 }
 }
+static lean_object* _init_l_Lean_MVarId_revertAll___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_500_; lean_object* v___x_501_; 
+v___x_500_ = lean_unsigned_to_nat(0u);
+v___x_501_ = lean_mk_empty_array_with_capacity(v___x_500_);
+return v___x_501_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_MVarId_revertAll___lam__0(lean_object* v_mvarId_502_, lean_object* v___x_503_, lean_object* v___y_504_, lean_object* v___y_505_, lean_object* v___y_506_, lean_object* v___y_507_){
 _start:
 {
@@ -1498,7 +1523,7 @@ if (lean_obj_tag(v___x_509_) == 0)
 lean_object* v_lctx_510_; lean_object* v___x_511_; lean_object* v___x_512_; size_t v_sz_513_; size_t v___x_514_; lean_object* v___x_515_; 
 lean_dec_ref(v___x_509_);
 v_lctx_510_ = lean_ctor_get(v___y_504_, 2);
-v___x_511_ = ((lean_object*)(l_Lean_MVarId_revertAll___lam__0___closed__0));
+v___x_511_ = lean_obj_once(&l_Lean_MVarId_revertAll___lam__0___closed__0, &l_Lean_MVarId_revertAll___lam__0___closed__0_once, _init_l_Lean_MVarId_revertAll___lam__0___closed__0);
 v___x_512_ = l_Lean_LocalContext_getFVarIds(v_lctx_510_);
 v_sz_513_ = lean_array_size(v___x_512_);
 v___x_514_ = ((size_t)0ULL);
@@ -1749,11 +1774,28 @@ lean_dec_ref(v___y_564_);
 return v_res_569_;
 }
 }
+static lean_object* _init_l_Lean_MVarId_revertAll___closed__0(void){
+_start:
+{
+lean_object* v___x_570_; 
+v___x_570_ = lean_mk_string_unchecked("revertAll", 9, 9);
+return v___x_570_;
+}
+}
+static lean_object* _init_l_Lean_MVarId_revertAll___closed__1(void){
+_start:
+{
+lean_object* v___x_571_; lean_object* v___x_572_; 
+v___x_571_ = lean_obj_once(&l_Lean_MVarId_revertAll___closed__0, &l_Lean_MVarId_revertAll___closed__0_once, _init_l_Lean_MVarId_revertAll___closed__0);
+v___x_572_ = l_Lean_Name_mkStr1(v___x_571_);
+return v___x_572_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_MVarId_revertAll(lean_object* v_mvarId_573_, lean_object* v_a_574_, lean_object* v_a_575_, lean_object* v_a_576_, lean_object* v_a_577_){
 _start:
 {
 lean_object* v___x_579_; lean_object* v___f_580_; lean_object* v___x_581_; 
-v___x_579_ = ((lean_object*)(l_Lean_MVarId_revertAll___closed__1));
+v___x_579_ = lean_obj_once(&l_Lean_MVarId_revertAll___closed__1, &l_Lean_MVarId_revertAll___closed__1_once, _init_l_Lean_MVarId_revertAll___closed__1);
 lean_inc(v_mvarId_573_);
 v___f_580_ = lean_alloc_closure((void*)(l_Lean_MVarId_revertAll___lam__0___boxed), 7, 2);
 lean_closure_set(v___f_580_, 0, v_mvarId_573_);
@@ -1812,6 +1854,8 @@ lean_dec_ref(res);
 res = runtime_initialize_Init_Data_Range_Polymorphic_Iterators(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark = _init_l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark();
+lean_mark_persistent(l___private_Lean_Meta_Tactic_Grind_RevertAll_0__Lean_Meta_Grind_grindMark);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

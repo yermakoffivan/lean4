@@ -40,8 +40,8 @@ LEAN_EXPORT lean_object* l___private_Init_Data_String_Pattern_String_0__String_S
 LEAN_EXPORT lean_object* l___private_Init_Data_String_Pattern_String_0__String_Slice_Pattern_ForwardSliceSearcher_buildTable_go___redArg___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_String_Pattern_String_0__String_Slice_Pattern_ForwardSliceSearcher_buildTable_go(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_String_Pattern_String_0__String_Slice_Pattern_ForwardSliceSearcher_buildTable_go___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_array_object l_String_Slice_Pattern_ForwardSliceSearcher_buildTable___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_String_Slice_Pattern_ForwardSliceSearcher_buildTable___closed__0 = (const lean_object*)&l_String_Slice_Pattern_ForwardSliceSearcher_buildTable___closed__0_value;
+static lean_once_cell_t l_String_Slice_Pattern_ForwardSliceSearcher_buildTable___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Slice_Pattern_ForwardSliceSearcher_buildTable___closed__0;
 LEAN_EXPORT lean_object* l_String_Slice_Pattern_ForwardSliceSearcher_buildTable(lean_object*);
 LEAN_EXPORT lean_object* l_String_Slice_Pattern_ForwardSliceSearcher_buildTable___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_String_Slice_Pattern_ForwardSliceSearcher_ctorIdx___redArg(lean_object*);
@@ -63,8 +63,8 @@ LEAN_EXPORT lean_object* l_String_Slice_Pattern_ForwardSliceSearcher_proper_elim
 LEAN_EXPORT lean_object* l_String_Slice_Pattern_ForwardSliceSearcher_atEnd_elim___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_Slice_Pattern_ForwardSliceSearcher_atEnd_elim(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_Slice_Pattern_ForwardSliceSearcher_atEnd_elim___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited_default___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited_default___closed__0 = (const lean_object*)&l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited_default___closed__0_value;
+static lean_once_cell_t l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited_default___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited_default___closed__0;
 LEAN_EXPORT lean_object* l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited_default(lean_object*);
 LEAN_EXPORT lean_object* l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited_default___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited(lean_object*);
@@ -241,6 +241,15 @@ lean_dec_ref(v_pat_66_);
 return v_res_71_;
 }
 }
+static lean_object* _init_l_String_Slice_Pattern_ForwardSliceSearcher_buildTable___closed__0(void){
+_start:
+{
+lean_object* v___x_72_; lean_object* v___x_73_; 
+v___x_72_ = lean_unsigned_to_nat(0u);
+v___x_73_ = lean_mk_empty_array_with_capacity(v___x_72_);
+return v___x_73_;
+}
+}
 LEAN_EXPORT lean_object* l_String_Slice_Pattern_ForwardSliceSearcher_buildTable(lean_object* v_pat_74_){
 _start:
 {
@@ -263,7 +272,7 @@ else
 {
 lean_object* v___x_83_; 
 lean_dec(v___x_77_);
-v___x_83_ = ((lean_object*)(l_String_Slice_Pattern_ForwardSliceSearcher_buildTable___closed__0));
+v___x_83_ = lean_obj_once(&l_String_Slice_Pattern_ForwardSliceSearcher_buildTable___closed__0, &l_String_Slice_Pattern_ForwardSliceSearcher_buildTable___closed__0_once, _init_l_String_Slice_Pattern_ForwardSliceSearcher_buildTable___closed__0);
 return v___x_83_;
 }
 }
@@ -499,11 +508,21 @@ lean_dec_ref(v_s_178_);
 return v_res_183_;
 }
 }
+static lean_object* _init_l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited_default___closed__0(void){
+_start:
+{
+lean_object* v___x_184_; lean_object* v___x_185_; 
+v___x_184_ = lean_unsigned_to_nat(0u);
+v___x_185_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_185_, 0, v___x_184_);
+return v___x_185_;
+}
+}
 LEAN_EXPORT lean_object* l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited_default(lean_object* v_s_186_){
 _start:
 {
 lean_object* v___x_187_; 
-v___x_187_ = ((lean_object*)(l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited_default___closed__0));
+v___x_187_ = lean_obj_once(&l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited_default___closed__0, &l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited_default___closed__0_once, _init_l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited_default___closed__0);
 return v___x_187_;
 }
 }
@@ -558,7 +577,7 @@ else
 {
 lean_object* v___x_202_; 
 lean_dec_ref(v_pat_194_);
-v___x_202_ = ((lean_object*)(l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited_default___closed__0));
+v___x_202_ = lean_obj_once(&l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited_default___closed__0, &l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited_default___closed__0_once, _init_l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited_default___closed__0);
 return v___x_202_;
 }
 }
@@ -588,7 +607,7 @@ else
 {
 lean_object* v___x_212_; 
 lean_dec_ref(v_pat_203_);
-v___x_212_ = ((lean_object*)(l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited_default___closed__0));
+v___x_212_ = lean_obj_once(&l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited_default___closed__0, &l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited_default___closed__0_once, _init_l_String_Slice_Pattern_ForwardSliceSearcher_instInhabited_default___closed__0);
 return v___x_212_;
 }
 }

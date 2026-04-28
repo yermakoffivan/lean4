@@ -53,12 +53,12 @@ LEAN_EXPORT lean_object* l_Lean_addMessageContextPartial___at___00Lean_throwErro
 LEAN_EXPORT lean_object* l_Lean_addMessageContextPartial___at___00Lean_throwError___at___00Lean_Meta_Grind_validateExtAttr_spec__0_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00Lean_Meta_Grind_validateExtAttr_spec__0___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00Lean_Meta_Grind_validateExtAttr_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Grind_validateExtAttr___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "invalid `[grind ext]`, `"};
-static const lean_object* l_Lean_Meta_Grind_validateExtAttr___closed__0 = (const lean_object*)&l_Lean_Meta_Grind_validateExtAttr___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Grind_validateExtAttr___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_validateExtAttr___closed__0;
 static lean_once_cell_t l_Lean_Meta_Grind_validateExtAttr___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_validateExtAttr___closed__1;
-static const lean_string_object l_Lean_Meta_Grind_validateExtAttr___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 52, .m_capacity = 52, .m_length = 51, .m_data = "` is neither tagged with `[ext]` nor is a structure"};
-static const lean_object* l_Lean_Meta_Grind_validateExtAttr___closed__2 = (const lean_object*)&l_Lean_Meta_Grind_validateExtAttr___closed__2_value;
+static lean_once_cell_t l_Lean_Meta_Grind_validateExtAttr___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_validateExtAttr___closed__2;
 static lean_once_cell_t l_Lean_Meta_Grind_validateExtAttr___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_validateExtAttr___closed__3;
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_validateExtAttr(lean_object*, lean_object*, lean_object*);
@@ -85,12 +85,12 @@ LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_eraseAux___at___00Lean_Persist
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_eraseAux___at___00Lean_PersistentHashMap_erase___at___00Lean_Meta_Grind_ExtTheorems_eraseDecl_spec__1_spec__2___redArg___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_erase___at___00Lean_Meta_Grind_ExtTheorems_eraseDecl_spec__1___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_erase___at___00Lean_Meta_Grind_ExtTheorems_eraseDecl_spec__1___redArg___boxed(lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "`"};
-static const lean_object* l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__0 = (const lean_object*)&l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__0;
 static lean_once_cell_t l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__1;
-static const lean_string_object l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 49, .m_capacity = 49, .m_length = 48, .m_data = "` is not marked with the `[grind ext]` attribute"};
-static const lean_object* l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__2 = (const lean_object*)&l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__2_value;
+static lean_once_cell_t l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__2;
 static lean_once_cell_t l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__3;
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_ExtTheorems_eraseDecl(lean_object*, lean_object*, lean_object*, lean_object*);
@@ -282,20 +282,36 @@ lean_dec_ref(v___y_53_);
 return v_res_56_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Grind_validateExtAttr___closed__0(void){
+_start:
+{
+lean_object* v___x_57_; 
+v___x_57_ = lean_mk_string_unchecked("invalid `[grind ext]`, `", 24, 24);
+return v___x_57_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Grind_validateExtAttr___closed__1(void){
 _start:
 {
 lean_object* v___x_58_; lean_object* v___x_59_; 
-v___x_58_ = ((lean_object*)(l_Lean_Meta_Grind_validateExtAttr___closed__0));
+v___x_58_ = lean_obj_once(&l_Lean_Meta_Grind_validateExtAttr___closed__0, &l_Lean_Meta_Grind_validateExtAttr___closed__0_once, _init_l_Lean_Meta_Grind_validateExtAttr___closed__0);
 v___x_59_ = l_Lean_stringToMessageData(v___x_58_);
 return v___x_59_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Grind_validateExtAttr___closed__2(void){
+_start:
+{
+lean_object* v___x_60_; 
+v___x_60_ = lean_mk_string_unchecked("` is neither tagged with `[ext]` nor is a structure", 51, 51);
+return v___x_60_;
 }
 }
 static lean_object* _init_l_Lean_Meta_Grind_validateExtAttr___closed__3(void){
 _start:
 {
 lean_object* v___x_61_; lean_object* v___x_62_; 
-v___x_61_ = ((lean_object*)(l_Lean_Meta_Grind_validateExtAttr___closed__2));
+v___x_61_ = lean_obj_once(&l_Lean_Meta_Grind_validateExtAttr___closed__2, &l_Lean_Meta_Grind_validateExtAttr___closed__2_once, _init_l_Lean_Meta_Grind_validateExtAttr___closed__2);
 v___x_62_ = l_Lean_stringToMessageData(v___x_61_);
 return v___x_62_;
 }
@@ -1089,20 +1105,36 @@ lean_dec(v_x_285_);
 return v_res_286_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__0(void){
+_start:
+{
+lean_object* v___x_287_; 
+v___x_287_ = lean_mk_string_unchecked("`", 1, 1);
+return v___x_287_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__1(void){
 _start:
 {
 lean_object* v___x_288_; lean_object* v___x_289_; 
-v___x_288_ = ((lean_object*)(l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__0));
+v___x_288_ = lean_obj_once(&l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__0, &l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__0_once, _init_l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__0);
 v___x_289_ = l_Lean_stringToMessageData(v___x_288_);
 return v___x_289_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__2(void){
+_start:
+{
+lean_object* v___x_290_; 
+v___x_290_ = lean_mk_string_unchecked("` is not marked with the `[grind ext]` attribute", 48, 48);
+return v___x_290_;
 }
 }
 static lean_object* _init_l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__3(void){
 _start:
 {
 lean_object* v___x_291_; lean_object* v___x_292_; 
-v___x_291_ = ((lean_object*)(l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__2));
+v___x_291_ = lean_obj_once(&l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__2, &l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__2_once, _init_l_Lean_Meta_Grind_ExtTheorems_eraseDecl___closed__2);
 v___x_292_ = l_Lean_stringToMessageData(v___x_291_);
 return v___x_292_;
 }

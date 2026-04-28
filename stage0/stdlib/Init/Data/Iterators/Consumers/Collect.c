@@ -18,8 +18,8 @@ lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* lean_array_to_list(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Iter_toArray___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_array_object l_Std_Iter_toArray___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Std_Iter_toArray___redArg___closed__0 = (const lean_object*)&l_Std_Iter_toArray___redArg___closed__0_value;
+static lean_once_cell_t l_Std_Iter_toArray___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Iter_toArray___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Std_Iter_toArray___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Iter_toArray(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Iter_Partial_toArray___redArg(lean_object*, lean_object*);
@@ -75,13 +75,22 @@ return v_acc_3_;
 }
 }
 }
+static lean_object* _init_l_Std_Iter_toArray___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_12_; lean_object* v___x_13_; 
+v___x_12_ = lean_unsigned_to_nat(0u);
+v___x_13_ = lean_mk_empty_array_with_capacity(v___x_12_);
+return v___x_13_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Iter_toArray___redArg(lean_object* v_inst_14_, lean_object* v_it_15_){
 _start:
 {
 lean_object* v___f_16_; lean_object* v___x_17_; lean_object* v___x_18_; 
 v___f_16_ = lean_alloc_closure((void*)(l_Std_Iter_toArray___redArg___lam__0), 4, 1);
 lean_closure_set(v___f_16_, 0, v_inst_14_);
-v___x_17_ = ((lean_object*)(l_Std_Iter_toArray___redArg___closed__0));
+v___x_17_ = lean_obj_once(&l_Std_Iter_toArray___redArg___closed__0, &l_Std_Iter_toArray___redArg___closed__0_once, _init_l_Std_Iter_toArray___redArg___closed__0);
 v___x_18_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_16_, v_it_15_, v___x_17_);
 return v___x_18_;
 }
@@ -92,7 +101,7 @@ _start:
 lean_object* v___f_23_; lean_object* v___x_24_; lean_object* v___x_25_; 
 v___f_23_ = lean_alloc_closure((void*)(l_Std_Iter_toArray___redArg___lam__0), 4, 1);
 lean_closure_set(v___f_23_, 0, v_inst_21_);
-v___x_24_ = ((lean_object*)(l_Std_Iter_toArray___redArg___closed__0));
+v___x_24_ = lean_obj_once(&l_Std_Iter_toArray___redArg___closed__0, &l_Std_Iter_toArray___redArg___closed__0_once, _init_l_Std_Iter_toArray___redArg___closed__0);
 v___x_25_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_23_, v_it_22_, v___x_24_);
 return v___x_25_;
 }
@@ -103,7 +112,7 @@ _start:
 lean_object* v___f_28_; lean_object* v___x_29_; lean_object* v___x_30_; 
 v___f_28_ = lean_alloc_closure((void*)(l_Std_Iter_toArray___redArg___lam__0), 4, 1);
 lean_closure_set(v___f_28_, 0, v_inst_26_);
-v___x_29_ = ((lean_object*)(l_Std_Iter_toArray___redArg___closed__0));
+v___x_29_ = lean_obj_once(&l_Std_Iter_toArray___redArg___closed__0, &l_Std_Iter_toArray___redArg___closed__0_once, _init_l_Std_Iter_toArray___redArg___closed__0);
 v___x_30_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_28_, v_it_27_, v___x_29_);
 return v___x_30_;
 }
@@ -114,7 +123,7 @@ _start:
 lean_object* v___f_35_; lean_object* v___x_36_; lean_object* v___x_37_; 
 v___f_35_ = lean_alloc_closure((void*)(l_Std_Iter_toArray___redArg___lam__0), 4, 1);
 lean_closure_set(v___f_35_, 0, v_inst_33_);
-v___x_36_ = ((lean_object*)(l_Std_Iter_toArray___redArg___closed__0));
+v___x_36_ = lean_obj_once(&l_Std_Iter_toArray___redArg___closed__0, &l_Std_Iter_toArray___redArg___closed__0_once, _init_l_Std_Iter_toArray___redArg___closed__0);
 v___x_37_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_35_, v_it_34_, v___x_36_);
 return v___x_37_;
 }
@@ -125,7 +134,7 @@ _start:
 lean_object* v___f_40_; lean_object* v___x_41_; lean_object* v___x_42_; 
 v___f_40_ = lean_alloc_closure((void*)(l_Std_Iter_toArray___redArg___lam__0), 4, 1);
 lean_closure_set(v___f_40_, 0, v_inst_38_);
-v___x_41_ = ((lean_object*)(l_Std_Iter_toArray___redArg___closed__0));
+v___x_41_ = lean_obj_once(&l_Std_Iter_toArray___redArg___closed__0, &l_Std_Iter_toArray___redArg___closed__0_once, _init_l_Std_Iter_toArray___redArg___closed__0);
 v___x_42_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_40_, v_it_39_, v___x_41_);
 return v___x_42_;
 }
@@ -136,7 +145,7 @@ _start:
 lean_object* v___f_48_; lean_object* v___x_49_; lean_object* v___x_50_; 
 v___f_48_ = lean_alloc_closure((void*)(l_Std_Iter_toArray___redArg___lam__0), 4, 1);
 lean_closure_set(v___f_48_, 0, v_inst_45_);
-v___x_49_ = ((lean_object*)(l_Std_Iter_toArray___redArg___closed__0));
+v___x_49_ = lean_obj_once(&l_Std_Iter_toArray___redArg___closed__0, &l_Std_Iter_toArray___redArg___closed__0_once, _init_l_Std_Iter_toArray___redArg___closed__0);
 v___x_50_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_48_, v_it_47_, v___x_49_);
 return v___x_50_;
 }
@@ -286,7 +295,7 @@ _start:
 lean_object* v___f_107_; lean_object* v___x_108_; lean_object* v___x_109_; lean_object* v___x_110_; 
 v___f_107_ = lean_alloc_closure((void*)(l_Std_Iter_toArray___redArg___lam__0), 4, 1);
 lean_closure_set(v___f_107_, 0, v_inst_105_);
-v___x_108_ = ((lean_object*)(l_Std_Iter_toArray___redArg___closed__0));
+v___x_108_ = lean_obj_once(&l_Std_Iter_toArray___redArg___closed__0, &l_Std_Iter_toArray___redArg___closed__0_once, _init_l_Std_Iter_toArray___redArg___closed__0);
 v___x_109_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_107_, v_it_106_, v___x_108_);
 v___x_110_ = lean_array_to_list(v___x_109_);
 return v___x_110_;
@@ -298,7 +307,7 @@ _start:
 lean_object* v___f_115_; lean_object* v___x_116_; lean_object* v___x_117_; lean_object* v___x_118_; 
 v___f_115_ = lean_alloc_closure((void*)(l_Std_Iter_toArray___redArg___lam__0), 4, 1);
 lean_closure_set(v___f_115_, 0, v_inst_113_);
-v___x_116_ = ((lean_object*)(l_Std_Iter_toArray___redArg___closed__0));
+v___x_116_ = lean_obj_once(&l_Std_Iter_toArray___redArg___closed__0, &l_Std_Iter_toArray___redArg___closed__0_once, _init_l_Std_Iter_toArray___redArg___closed__0);
 v___x_117_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_115_, v_it_114_, v___x_116_);
 v___x_118_ = lean_array_to_list(v___x_117_);
 return v___x_118_;
@@ -310,7 +319,7 @@ _start:
 lean_object* v___f_121_; lean_object* v___x_122_; lean_object* v___x_123_; lean_object* v___x_124_; 
 v___f_121_ = lean_alloc_closure((void*)(l_Std_Iter_toArray___redArg___lam__0), 4, 1);
 lean_closure_set(v___f_121_, 0, v_inst_119_);
-v___x_122_ = ((lean_object*)(l_Std_Iter_toArray___redArg___closed__0));
+v___x_122_ = lean_obj_once(&l_Std_Iter_toArray___redArg___closed__0, &l_Std_Iter_toArray___redArg___closed__0_once, _init_l_Std_Iter_toArray___redArg___closed__0);
 v___x_123_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_121_, v_it_120_, v___x_122_);
 v___x_124_ = lean_array_to_list(v___x_123_);
 return v___x_124_;
@@ -322,7 +331,7 @@ _start:
 lean_object* v___f_129_; lean_object* v___x_130_; lean_object* v___x_131_; lean_object* v___x_132_; 
 v___f_129_ = lean_alloc_closure((void*)(l_Std_Iter_toArray___redArg___lam__0), 4, 1);
 lean_closure_set(v___f_129_, 0, v_inst_127_);
-v___x_130_ = ((lean_object*)(l_Std_Iter_toArray___redArg___closed__0));
+v___x_130_ = lean_obj_once(&l_Std_Iter_toArray___redArg___closed__0, &l_Std_Iter_toArray___redArg___closed__0_once, _init_l_Std_Iter_toArray___redArg___closed__0);
 v___x_131_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_129_, v_it_128_, v___x_130_);
 v___x_132_ = lean_array_to_list(v___x_131_);
 return v___x_132_;
@@ -334,7 +343,7 @@ _start:
 lean_object* v___f_135_; lean_object* v___x_136_; lean_object* v___x_137_; lean_object* v___x_138_; 
 v___f_135_ = lean_alloc_closure((void*)(l_Std_Iter_toArray___redArg___lam__0), 4, 1);
 lean_closure_set(v___f_135_, 0, v_inst_133_);
-v___x_136_ = ((lean_object*)(l_Std_Iter_toArray___redArg___closed__0));
+v___x_136_ = lean_obj_once(&l_Std_Iter_toArray___redArg___closed__0, &l_Std_Iter_toArray___redArg___closed__0_once, _init_l_Std_Iter_toArray___redArg___closed__0);
 v___x_137_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_135_, v_it_134_, v___x_136_);
 v___x_138_ = lean_array_to_list(v___x_137_);
 return v___x_138_;
@@ -346,7 +355,7 @@ _start:
 lean_object* v___f_144_; lean_object* v___x_145_; lean_object* v___x_146_; lean_object* v___x_147_; 
 v___f_144_ = lean_alloc_closure((void*)(l_Std_Iter_toArray___redArg___lam__0), 4, 1);
 lean_closure_set(v___f_144_, 0, v_inst_141_);
-v___x_145_ = ((lean_object*)(l_Std_Iter_toArray___redArg___closed__0));
+v___x_145_ = lean_obj_once(&l_Std_Iter_toArray___redArg___closed__0, &l_Std_Iter_toArray___redArg___closed__0_once, _init_l_Std_Iter_toArray___redArg___closed__0);
 v___x_146_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_144_, v_it_143_, v___x_145_);
 v___x_147_ = lean_array_to_list(v___x_146_);
 return v___x_147_;

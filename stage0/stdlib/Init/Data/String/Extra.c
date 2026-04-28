@@ -62,8 +62,8 @@ LEAN_EXPORT lean_object* l___private_Init_Data_String_Extra_0__String_removeNumL
 LEAN_EXPORT lean_object* l___private_Init_Data_String_Extra_0__String_removeNumLeadingSpaces_consumeSpaces_match__1_splitter___redArg___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_String_Extra_0__String_removeNumLeadingSpaces_consumeSpaces_match__1_splitter(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_String_Extra_0__String_removeNumLeadingSpaces_consumeSpaces_match__1_splitter___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Init_Data_String_Extra_0__String_removeNumLeadingSpaces___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 1, .m_capacity = 1, .m_length = 0, .m_data = ""};
-static const lean_object* l___private_Init_Data_String_Extra_0__String_removeNumLeadingSpaces___closed__0 = (const lean_object*)&l___private_Init_Data_String_Extra_0__String_removeNumLeadingSpaces___closed__0_value;
+static lean_once_cell_t l___private_Init_Data_String_Extra_0__String_removeNumLeadingSpaces___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_String_Extra_0__String_removeNumLeadingSpaces___closed__0;
 LEAN_EXPORT lean_object* l___private_Init_Data_String_Extra_0__String_removeNumLeadingSpaces(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_String_Extra_0__String_removeNumLeadingSpaces___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_removeLeadingSpaces(lean_object*);
@@ -893,12 +893,20 @@ lean_dec(v_n_310_);
 return v_res_313_;
 }
 }
+static lean_object* _init_l___private_Init_Data_String_Extra_0__String_removeNumLeadingSpaces___closed__0(void){
+_start:
+{
+lean_object* v___x_314_; 
+v___x_314_ = lean_mk_string_unchecked("", 0, 0);
+return v___x_314_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Init_Data_String_Extra_0__String_removeNumLeadingSpaces(lean_object* v_n_315_, lean_object* v_s_316_){
 _start:
 {
 lean_object* v___x_317_; lean_object* v___x_318_; lean_object* v___x_319_; 
 v___x_317_ = lean_unsigned_to_nat(0u);
-v___x_318_ = ((lean_object*)(l___private_Init_Data_String_Extra_0__String_removeNumLeadingSpaces___closed__0));
+v___x_318_ = lean_obj_once(&l___private_Init_Data_String_Extra_0__String_removeNumLeadingSpaces___closed__0, &l___private_Init_Data_String_Extra_0__String_removeNumLeadingSpaces___closed__0_once, _init_l___private_Init_Data_String_Extra_0__String_removeNumLeadingSpaces___closed__0);
 lean_inc(v_n_315_);
 v___x_319_ = l___private_Init_Data_String_Extra_0__String_removeNumLeadingSpaces_consumeSpaces(v_n_315_, v_n_315_, v_s_316_, v___x_317_, v___x_318_);
 return v___x_319_;
@@ -1042,7 +1050,7 @@ LEAN_EXPORT lean_object* l_String_crlfToLf(lean_object* v_text_358_){
 _start:
 {
 lean_object* v___x_359_; lean_object* v___x_360_; lean_object* v___x_361_; 
-v___x_359_ = ((lean_object*)(l___private_Init_Data_String_Extra_0__String_removeNumLeadingSpaces___closed__0));
+v___x_359_ = lean_obj_once(&l___private_Init_Data_String_Extra_0__String_removeNumLeadingSpaces___closed__0, &l___private_Init_Data_String_Extra_0__String_removeNumLeadingSpaces___closed__0_once, _init_l___private_Init_Data_String_Extra_0__String_removeNumLeadingSpaces___closed__0);
 v___x_360_ = lean_unsigned_to_nat(0u);
 v___x_361_ = l___private_Init_Data_String_Extra_0__String_crlfToLf_go(v_text_358_, v___x_359_, v___x_360_, v___x_360_);
 return v___x_361_;

@@ -40,14 +40,14 @@ LEAN_EXPORT lean_object* l___private_Init_While_0__Lean_Loop_forIn_loop___at___0
 LEAN_EXPORT lean_object* l___private_Init_While_0__Lean_Loop_forIn_loop___at___00Lean_EditDistance_levenshtein_spec__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l___private_Init_Data_Array_Basic_0__Array_anyMUnsafe_any___at___00Lean_EditDistance_levenshtein_spec__2(lean_object*, lean_object*, size_t, size_t);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_anyMUnsafe_any___at___00Lean_EditDistance_levenshtein_spec__2___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Init_While_0__Lean_Loop_forIn_loop___at___00Lean_EditDistance_levenshtein_spec__3_spec__3___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Init_While_0__Lean_Loop_forIn_loop___at___00Lean_EditDistance_levenshtein_spec__3_spec__3___closed__0 = (const lean_object*)&l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Init_While_0__Lean_Loop_forIn_loop___at___00Lean_EditDistance_levenshtein_spec__3_spec__3___closed__0_value;
+static lean_once_cell_t l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Init_While_0__Lean_Loop_forIn_loop___at___00Lean_EditDistance_levenshtein_spec__3_spec__3___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Init_While_0__Lean_Loop_forIn_loop___at___00Lean_EditDistance_levenshtein_spec__3_spec__3___closed__0;
 LEAN_EXPORT lean_object* l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Init_While_0__Lean_Loop_forIn_loop___at___00Lean_EditDistance_levenshtein_spec__3_spec__3(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Init_While_0__Lean_Loop_forIn_loop___at___00Lean_EditDistance_levenshtein_spec__3_spec__3___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_While_0__Lean_Loop_forIn_loop___at___00Lean_EditDistance_levenshtein_spec__3(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_While_0__Lean_Loop_forIn_loop___at___00Lean_EditDistance_levenshtein_spec__3___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Lean_EditDistance_levenshtein___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lean_EditDistance_levenshtein___closed__0 = (const lean_object*)&l_Lean_EditDistance_levenshtein___closed__0_value;
+static lean_once_cell_t l_Lean_EditDistance_levenshtein___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_EditDistance_levenshtein___closed__0;
 LEAN_EXPORT lean_object* l_Lean_EditDistance_levenshtein(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_EditDistance_levenshtein___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Range_Basic_0__Std_Legacy_Range_forIn_x27_loop___at___00Lean_EditDistance_levenshtein_spec__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -363,6 +363,16 @@ v_r_97_ = lean_box(v_res_96_);
 return v_r_97_;
 }
 }
+static lean_object* _init_l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Init_While_0__Lean_Loop_forIn_loop___at___00Lean_EditDistance_levenshtein_spec__3_spec__3___closed__0(void){
+_start:
+{
+lean_object* v___x_98_; lean_object* v___x_99_; 
+v___x_98_ = lean_box(0);
+v___x_99_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_99_, 0, v___x_98_);
+return v___x_99_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Init_While_0__Lean_Loop_forIn_loop___at___00Lean_EditDistance_levenshtein_spec__3_spec__3(lean_object* v_str1_100_, lean_object* v___x_101_, lean_object* v_str2_102_, lean_object* v_cutoff_103_, lean_object* v_b_104_){
 _start:
 {
@@ -584,7 +594,7 @@ goto _start;
 v___jp_142_:
 {
 lean_object* v___x_143_; lean_object* v___x_145_; 
-v___x_143_ = ((lean_object*)(l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Init_While_0__Lean_Loop_forIn_loop___at___00Lean_EditDistance_levenshtein_spec__3_spec__3___closed__0));
+v___x_143_ = lean_obj_once(&l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Init_While_0__Lean_Loop_forIn_loop___at___00Lean_EditDistance_levenshtein_spec__3_spec__3___closed__0, &l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Init_While_0__Lean_Loop_forIn_loop___at___00Lean_EditDistance_levenshtein_spec__3_spec__3___closed__0_once, _init_l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Init_While_0__Lean_Loop_forIn_loop___at___00Lean_EditDistance_levenshtein_spec__3_spec__3___closed__0);
 if (v_isShared_140_ == 0)
 {
 lean_ctor_set(v___x_139_, 1, v___x_129_);
@@ -973,7 +983,7 @@ return v___x_256_;
 v___jp_235_:
 {
 lean_object* v___x_236_; lean_object* v___x_238_; 
-v___x_236_ = ((lean_object*)(l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Init_While_0__Lean_Loop_forIn_loop___at___00Lean_EditDistance_levenshtein_spec__3_spec__3___closed__0));
+v___x_236_ = lean_obj_once(&l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Init_While_0__Lean_Loop_forIn_loop___at___00Lean_EditDistance_levenshtein_spec__3_spec__3___closed__0, &l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Init_While_0__Lean_Loop_forIn_loop___at___00Lean_EditDistance_levenshtein_spec__3_spec__3___closed__0_once, _init_l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Init_While_0__Lean_Loop_forIn_loop___at___00Lean_EditDistance_levenshtein_spec__3_spec__3___closed__0);
 if (v_isShared_233_ == 0)
 {
 lean_ctor_set(v___x_232_, 1, v___x_222_);
@@ -1141,6 +1151,17 @@ lean_dec_ref(v_str2_280_);
 return v_res_285_;
 }
 }
+static lean_object* _init_l_Lean_EditDistance_levenshtein___closed__0(void){
+_start:
+{
+lean_object* v_i_286_; lean_object* v___x_287_; 
+v_i_286_ = lean_unsigned_to_nat(0u);
+v___x_287_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_287_, 0, v_i_286_);
+lean_ctor_set(v___x_287_, 1, v_i_286_);
+return v___x_287_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_EditDistance_levenshtein(lean_object* v_str1_288_, lean_object* v_str2_289_, lean_object* v_cutoff_290_){
 _start:
 {
@@ -1182,7 +1203,7 @@ lean_inc_ref(v_v1_301_);
 v___x_303_ = l___private_Init_Data_Range_Basic_0__Std_Legacy_Range_forIn_x27_loop___at___00Lean_EditDistance_levenshtein_spec__0___redArg(v___x_302_, v_v1_301_, v_i_300_);
 lean_dec_ref(v___x_302_);
 v___x_304_ = lean_box(0);
-v___x_305_ = ((lean_object*)(l_Lean_EditDistance_levenshtein___closed__0));
+v___x_305_ = lean_obj_once(&l_Lean_EditDistance_levenshtein___closed__0, &l_Lean_EditDistance_levenshtein___closed__0_once, _init_l_Lean_EditDistance_levenshtein___closed__0);
 v___x_306_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_306_, 0, v_v1_301_);
 lean_ctor_set(v___x_306_, 1, v___x_305_);

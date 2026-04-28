@@ -41,17 +41,17 @@ LEAN_EXPORT uint8_t l_Std_Tactic_BVDecide_LRAT_Internal_Result_ofNat(lean_object
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_Result_ofNat___boxed(lean_object*);
 LEAN_EXPORT uint8_t l_Std_Tactic_BVDecide_LRAT_Internal_instDecidableEqResult(uint8_t, uint8_t);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_instDecidableEqResult___boxed(lean_object*, lean_object*);
-static const lean_string_object l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "success"};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__0 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__0_value;
-static const lean_string_object l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "out of proof"};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__1 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__1_value;
-static const lean_string_object l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "rup failure"};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__2 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__2_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__0;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__1;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__2;
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0(uint8_t);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___boxed(lean_object*);
-static const lean_closure_object l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___closed__0 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___closed__0_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___closed__0;
+LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult;
 LEAN_EXPORT uint8_t l_Std_Tactic_BVDecide_LRAT_Internal_lratChecker___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_lratChecker___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Std_Tactic_BVDecide_LRAT_Internal_lratChecker(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -322,6 +322,30 @@ v_r_90_ = lean_box(v_res_89_);
 return v_r_90_;
 }
 }
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_91_; 
+v___x_91_ = lean_mk_string_unchecked("success", 7, 7);
+return v___x_91_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__1(void){
+_start:
+{
+lean_object* v___x_92_; 
+v___x_92_ = lean_mk_string_unchecked("out of proof", 12, 12);
+return v___x_92_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__2(void){
+_start:
+{
+lean_object* v___x_93_; 
+v___x_93_ = lean_mk_string_unchecked("rup failure", 11, 11);
+return v___x_93_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0(uint8_t v_x_94_){
 _start:
 {
@@ -330,19 +354,19 @@ switch(v_x_94_)
 case 0:
 {
 lean_object* v___x_95_; 
-v___x_95_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__0));
+v___x_95_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__0, &l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__0_once, _init_l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__0);
 return v___x_95_;
 }
 case 1:
 {
 lean_object* v___x_96_; 
-v___x_96_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__1));
+v___x_96_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__1, &l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__1);
 return v___x_96_;
 }
 default: 
 {
 lean_object* v___x_97_; 
-v___x_97_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__2));
+v___x_97_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__2, &l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__2_once, _init_l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___closed__2);
 return v___x_97_;
 }
 }
@@ -355,6 +379,22 @@ uint8_t v_x_36__boxed_99_; lean_object* v_res_100_;
 v_x_36__boxed_99_ = lean_unbox(v_x_98_);
 v_res_100_ = l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0(v_x_36__boxed_99_);
 return v_res_100_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___closed__0(void){
+_start:
+{
+lean_object* v___f_101_; 
+v___f_101_ = lean_alloc_closure((void*)(l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___lam__0___boxed), 1, 0);
+return v___f_101_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult(void){
+_start:
+{
+lean_object* v___f_102_; 
+v___f_102_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___closed__0, &l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___closed__0_once, _init_l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult___closed__0);
+return v___f_102_;
 }
 }
 LEAN_EXPORT uint8_t l_Std_Tactic_BVDecide_LRAT_Internal_lratChecker___redArg(lean_object* v_inst_103_, lean_object* v_inst_104_, lean_object* v_f_105_, lean_object* v_prf_106_){
@@ -552,6 +592,8 @@ if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 l_Std_Tactic_BVDecide_LRAT_Internal_instInhabitedResult_default = _init_l_Std_Tactic_BVDecide_LRAT_Internal_instInhabitedResult_default();
 l_Std_Tactic_BVDecide_LRAT_Internal_instInhabitedResult = _init_l_Std_Tactic_BVDecide_LRAT_Internal_instInhabitedResult();
+l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult = _init_l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult();
+lean_mark_persistent(l_Std_Tactic_BVDecide_LRAT_Internal_instToStringResult);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

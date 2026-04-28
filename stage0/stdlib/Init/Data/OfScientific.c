@@ -44,9 +44,9 @@ static lean_once_cell_t l_Float_ofScientific___closed__1_once = LEAN_ONCE_CELL_I
 static lean_object* l_Float_ofScientific___closed__1;
 LEAN_EXPORT double l_Float_ofScientific(lean_object*, uint8_t, lean_object*);
 LEAN_EXPORT lean_object* l_Float_ofScientific___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_instOfScientificFloat___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Float_ofScientific___boxed, .m_arity = 3, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instOfScientificFloat___closed__0 = (const lean_object*)&l_instOfScientificFloat___closed__0_value;
-LEAN_EXPORT const lean_object* l_instOfScientificFloat = (const lean_object*)&l_instOfScientificFloat___closed__0_value;
+static lean_once_cell_t l_instOfScientificFloat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instOfScientificFloat___closed__0;
+LEAN_EXPORT lean_object* l_instOfScientificFloat;
 LEAN_EXPORT double lean_float_of_nat(lean_object*);
 LEAN_EXPORT lean_object* l_Float_ofNat___boxed(lean_object*);
 static lean_once_cell_t l_Float_ofInt___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -61,9 +61,9 @@ LEAN_EXPORT float l_Float32_ofBinaryScientific(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Float32_ofBinaryScientific___boxed(lean_object*, lean_object*);
 LEAN_EXPORT float l_Float32_ofScientific(lean_object*, uint8_t, lean_object*);
 LEAN_EXPORT lean_object* l_Float32_ofScientific___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_instOfScientificFloat32___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Float32_ofScientific___boxed, .m_arity = 3, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instOfScientificFloat32___closed__0 = (const lean_object*)&l_instOfScientificFloat32___closed__0_value;
-LEAN_EXPORT const lean_object* l_instOfScientificFloat32 = (const lean_object*)&l_instOfScientificFloat32___closed__0_value;
+static lean_once_cell_t l_instOfScientificFloat32___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instOfScientificFloat32___closed__0;
+LEAN_EXPORT lean_object* l_instOfScientificFloat32;
 LEAN_EXPORT float lean_float32_of_nat(lean_object*);
 LEAN_EXPORT lean_object* l_Float32_ofNat___boxed(lean_object*);
 LEAN_EXPORT float l_Float32_ofInt(lean_object*);
@@ -187,6 +187,22 @@ v_res_50_ = l_Float_ofScientific(v_m_46_, v_s_boxed_49_, v_e_48_);
 lean_dec(v_m_46_);
 v_r_51_ = lean_box_float(v_res_50_);
 return v_r_51_;
+}
+}
+static lean_object* _init_l_instOfScientificFloat___closed__0(void){
+_start:
+{
+lean_object* v___x_52_; 
+v___x_52_ = lean_alloc_closure((void*)(l_Float_ofScientific___boxed), 3, 0);
+return v___x_52_;
+}
+}
+static lean_object* _init_l_instOfScientificFloat(void){
+_start:
+{
+lean_object* v___x_53_; 
+v___x_53_ = lean_obj_once(&l_instOfScientificFloat___closed__0, &l_instOfScientificFloat___closed__0_once, _init_l_instOfScientificFloat___closed__0);
+return v___x_53_;
 }
 }
 LEAN_EXPORT double lean_float_of_nat(lean_object* v_n_54_){
@@ -381,6 +397,22 @@ v_r_131_ = lean_box_float32(v_res_130_);
 return v_r_131_;
 }
 }
+static lean_object* _init_l_instOfScientificFloat32___closed__0(void){
+_start:
+{
+lean_object* v___x_132_; 
+v___x_132_ = lean_alloc_closure((void*)(l_Float32_ofScientific___boxed), 3, 0);
+return v___x_132_;
+}
+}
+static lean_object* _init_l_instOfScientificFloat32(void){
+_start:
+{
+lean_object* v___x_133_; 
+v___x_133_ = lean_obj_once(&l_instOfScientificFloat32___closed__0, &l_instOfScientificFloat32___closed__0_once, _init_l_instOfScientificFloat32___closed__0);
+return v___x_133_;
+}
+}
 LEAN_EXPORT float lean_float32_of_nat(lean_object* v_n_134_){
 _start:
 {
@@ -490,6 +522,10 @@ lean_dec_ref(res);
 res = runtime_initialize_Init_Meta(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_instOfScientificFloat = _init_l_instOfScientificFloat();
+lean_mark_persistent(l_instOfScientificFloat);
+l_instOfScientificFloat32 = _init_l_instOfScientificFloat32();
+lean_mark_persistent(l_instOfScientificFloat32);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

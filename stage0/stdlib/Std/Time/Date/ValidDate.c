@@ -72,8 +72,8 @@ LEAN_EXPORT uint8_t l_Std_Time_instDecidableEqValidDate(uint8_t, lean_object*, l
 LEAN_EXPORT lean_object* l_Std_Time_instDecidableEqValidDate___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Std_Time_instOrdValidDate___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_instOrdValidDate___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Time_instOrdValidDate___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Time_instOrdValidDate___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Time_instOrdValidDate___closed__0 = (const lean_object*)&l_Std_Time_instOrdValidDate___closed__0_value;
+static lean_once_cell_t l_Std_Time_instOrdValidDate___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_instOrdValidDate___closed__0;
 LEAN_EXPORT lean_object* l_Std_Time_instOrdValidDate(uint8_t);
 LEAN_EXPORT lean_object* l_Std_Time_instOrdValidDate___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_ValidDate_dayOfYear(uint8_t, lean_object*);
@@ -411,11 +411,19 @@ v_r_96_ = lean_box(v_res_95_);
 return v_r_96_;
 }
 }
+static lean_object* _init_l_Std_Time_instOrdValidDate___closed__0(void){
+_start:
+{
+lean_object* v___f_97_; 
+v___f_97_ = lean_alloc_closure((void*)(l_Std_Time_instOrdValidDate___lam__0___boxed), 2, 0);
+return v___f_97_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Time_instOrdValidDate(uint8_t v_leap_98_){
 _start:
 {
 lean_object* v___f_99_; 
-v___f_99_ = ((lean_object*)(l_Std_Time_instOrdValidDate___closed__0));
+v___f_99_ = lean_obj_once(&l_Std_Time_instOrdValidDate___closed__0, &l_Std_Time_instOrdValidDate___closed__0_once, _init_l_Std_Time_instOrdValidDate___closed__0);
 return v___f_99_;
 }
 }

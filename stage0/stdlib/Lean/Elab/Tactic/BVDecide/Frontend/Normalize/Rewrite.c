@@ -65,12 +65,12 @@ LEAN_EXPORT uint8_t l_Std_DHashMap_Internal_Raw_u2080_contains___at___00__privat
 LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_Raw_u2080_contains___at___00__private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps_spec__0___redArg___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps_spec__1___redArg(lean_object*, size_t, size_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps_spec__1___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_array_object l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___lam__0___closed__0 = (const lean_object*)&l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___lam__0___closed__0_value;
+static lean_once_cell_t l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___lam__0___closed__0;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___lam__0___boxed, .m_arity = 7, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___closed__0 = (const lean_object*)&l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___closed__0_value;
+static lean_once_cell_t l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___closed__0;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Std_DHashMap_Internal_Raw_u2080_contains___at___00__private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps_spec__0(lean_object*, lean_object*, lean_object*);
@@ -101,19 +101,19 @@ static lean_once_cell_t l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRu
 static lean_object* l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___lam__1___closed__5;
 static lean_once_cell_t l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___lam__1___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___lam__1___closed__6;
-static const lean_closure_object l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___lam__1___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___lam__0___boxed, .m_arity = 8, .m_num_fixed = 1, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))} };
-static const lean_object* l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___lam__1___closed__7 = (const lean_object*)&l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___lam__1___closed__7_value;
+static lean_once_cell_t l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___lam__1___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___lam__1___closed__7;
 LEAN_EXPORT lean_object* l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___lam__1(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___lam__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___lam__1___boxed, .m_arity = 8, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__0 = (const lean_object*)&l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__0_value;
-static const lean_string_object l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "rewriteRules"};
-static const lean_object* l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__1 = (const lean_object*)&l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__1_value;
-static const lean_ctor_object l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__1_value),LEAN_SCALAR_PTR_LITERAL(39, 217, 1, 104, 84, 94, 139, 227)}};
-static const lean_object* l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__2 = (const lean_object*)&l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__2_value;
-static const lean_ctor_object l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__2_value),((lean_object*)&l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__0_value)}};
-static const lean_object* l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__3 = (const lean_object*)&l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__3_value;
-LEAN_EXPORT const lean_object* l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass = (const lean_object*)&l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__3_value;
+static lean_once_cell_t l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__0;
+static lean_once_cell_t l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__1;
+static lean_once_cell_t l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__2;
+static lean_once_cell_t l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__3;
+LEAN_EXPORT lean_object* l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass;
 LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_Raw_u2080_insertIfNew___at___00Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_spec__0(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_spec__1(lean_object*, size_t, size_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_spec__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -367,6 +367,15 @@ lean_dec_ref(v_as_121_);
 return v_res_129_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_130_; lean_object* v___x_131_; 
+v___x_130_ = lean_unsigned_to_nat(0u);
+v___x_131_ = lean_mk_empty_array_with_capacity(v___x_130_);
+return v___x_131_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___lam__0(lean_object* v___y_132_, lean_object* v___y_133_, lean_object* v___y_134_, lean_object* v___y_135_, lean_object* v___y_136_, lean_object* v___y_137_){
 _start:
 {
@@ -396,7 +405,7 @@ v_resetjp_141_:
 lean_object* v___x_144_; lean_object* v___x_145_; lean_object* v___x_146_; uint8_t v___x_147_; 
 v___x_144_ = lean_unsigned_to_nat(0u);
 v___x_145_ = lean_array_get_size(v_a_140_);
-v___x_146_ = ((lean_object*)(l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___lam__0___closed__0));
+v___x_146_ = lean_obj_once(&l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___lam__0___closed__0, &l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___lam__0___closed__0_once, _init_l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___lam__0___closed__0);
 v___x_147_ = lean_nat_dec_lt(v___x_144_, v___x_145_);
 if (v___x_147_ == 0)
 {
@@ -494,11 +503,19 @@ lean_dec_ref(v___y_162_);
 return v_res_169_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___closed__0(void){
+_start:
+{
+lean_object* v___f_170_; 
+v___f_170_ = lean_alloc_closure((void*)(l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___lam__0___boxed), 7, 0);
+return v___f_170_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps(lean_object* v_goal_171_, lean_object* v_a_172_, lean_object* v_a_173_, lean_object* v_a_174_, lean_object* v_a_175_, lean_object* v_a_176_, lean_object* v_a_177_){
 _start:
 {
 lean_object* v___f_179_; lean_object* v___x_180_; 
-v___f_179_ = ((lean_object*)(l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___closed__0));
+v___f_179_ = lean_obj_once(&l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___closed__0, &l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___closed__0_once, _init_l___private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps___closed__0);
 v___x_180_ = l_Lean_MVarId_withContext___at___00__private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps_spec__2___redArg(v_goal_171_, v___f_179_, v_a_172_, v_a_173_, v_a_174_, v_a_175_, v_a_176_, v_a_177_);
 return v___x_180_;
 }
@@ -1161,6 +1178,16 @@ lean_ctor_set(v___x_427_, 1, v___x_425_);
 return v___x_427_;
 }
 }
+static lean_object* _init_l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___lam__1___closed__7(void){
+_start:
+{
+lean_object* v___x_428_; lean_object* v___f_429_; 
+v___x_428_ = lean_unsigned_to_nat(0u);
+v___f_429_ = lean_alloc_closure((void*)(l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___lam__0___boxed), 8, 1);
+lean_closure_set(v___f_429_, 0, v___x_428_);
+return v___f_429_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___lam__1(lean_object* v_goal_430_, lean_object* v___y_431_, lean_object* v___y_432_, lean_object* v___y_433_, lean_object* v___y_434_, lean_object* v___y_435_, lean_object* v___y_436_){
 _start:
 {
@@ -1339,7 +1366,7 @@ lean_object* v_snd_483_; lean_object* v___f_484_; lean_object* v___x_485_;
 v_snd_483_ = lean_ctor_get(v_val_479_, 1);
 lean_inc_n(v_snd_483_, 2);
 lean_dec(v_val_479_);
-v___f_484_ = ((lean_object*)(l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___lam__1___closed__7));
+v___f_484_ = lean_obj_once(&l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___lam__1___closed__7, &l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___lam__1___closed__7_once, _init_l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___lam__1___closed__7);
 v___x_485_ = l_Lean_MVarId_withContext___at___00__private_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Rewrite_0__Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_getHyps_spec__2___redArg(v_snd_483_, v___f_484_, v___y_431_, v___y_432_, v___y_433_, v___y_434_, v___y_435_, v___y_436_);
 if (lean_obj_tag(v___x_485_) == 0)
 {
@@ -1878,6 +1905,51 @@ lean_dec_ref(v___y_580_);
 return v_res_587_;
 }
 }
+static lean_object* _init_l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__0(void){
+_start:
+{
+lean_object* v___f_588_; 
+v___f_588_ = lean_alloc_closure((void*)(l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___lam__1___boxed), 8, 0);
+return v___f_588_;
+}
+}
+static lean_object* _init_l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__1(void){
+_start:
+{
+lean_object* v___x_589_; 
+v___x_589_ = lean_mk_string_unchecked("rewriteRules", 12, 12);
+return v___x_589_;
+}
+}
+static lean_object* _init_l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__2(void){
+_start:
+{
+lean_object* v___x_590_; lean_object* v___x_591_; 
+v___x_590_ = lean_obj_once(&l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__1, &l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__1_once, _init_l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__1);
+v___x_591_ = l_Lean_Name_mkStr1(v___x_590_);
+return v___x_591_;
+}
+}
+static lean_object* _init_l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__3(void){
+_start:
+{
+lean_object* v___f_592_; lean_object* v___x_593_; lean_object* v___x_594_; 
+v___f_592_ = lean_obj_once(&l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__0, &l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__0_once, _init_l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__0);
+v___x_593_ = lean_obj_once(&l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__2, &l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__2_once, _init_l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__2);
+v___x_594_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_594_, 0, v___x_593_);
+lean_ctor_set(v___x_594_, 1, v___f_592_);
+return v___x_594_;
+}
+}
+static lean_object* _init_l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass(void){
+_start:
+{
+lean_object* v___x_595_; 
+v___x_595_ = lean_obj_once(&l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__3, &l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__3_once, _init_l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass___closed__3);
+return v___x_595_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_Raw_u2080_insertIfNew___at___00Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass_spec__0(lean_object* v_00_u03b2_596_, lean_object* v_m_597_, lean_object* v_a_598_, lean_object* v_b_599_){
 _start:
 {
@@ -1946,6 +2018,8 @@ _G_runtime_initialized = true;
 res = runtime_initialize_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_Basic(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass = _init_l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass();
+lean_mark_persistent(l_Lean_Elab_Tactic_BVDecide_Frontend_Normalize_rewriteRulesPass);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

@@ -37,8 +37,8 @@ LEAN_EXPORT lean_object* l_List_max_x3f___at___00Std_Sat_CNF_Clause_maxLiteral_s
 LEAN_EXPORT lean_object* l_Std_Sat_CNF_Clause_maxLiteral(lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Array_filterMapM___at___00Std_Sat_CNF_maxLiteral_spec__0_spec__0(lean_object*, size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Array_filterMapM___at___00Std_Sat_CNF_maxLiteral_spec__0_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_array_object l_Array_filterMapM___at___00Std_Sat_CNF_maxLiteral_spec__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Array_filterMapM___at___00Std_Sat_CNF_maxLiteral_spec__0___closed__0 = (const lean_object*)&l_Array_filterMapM___at___00Std_Sat_CNF_maxLiteral_spec__0___closed__0_value;
+static lean_once_cell_t l_Array_filterMapM___at___00Std_Sat_CNF_maxLiteral_spec__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_filterMapM___at___00Std_Sat_CNF_maxLiteral_spec__0___closed__0;
 LEAN_EXPORT lean_object* l_Array_filterMapM___at___00Std_Sat_CNF_maxLiteral_spec__0(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_filterMapM___at___00Std_Sat_CNF_maxLiteral_spec__0___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Array_max___at___00Array_max_x3f___at___00Std_Sat_CNF_maxLiteral_spec__1_spec__2_spec__3(lean_object*, size_t, size_t, lean_object*);
@@ -254,11 +254,20 @@ lean_dec_ref(v_as_51_);
 return v_res_57_;
 }
 }
+static lean_object* _init_l_Array_filterMapM___at___00Std_Sat_CNF_maxLiteral_spec__0___closed__0(void){
+_start:
+{
+lean_object* v___x_58_; lean_object* v___x_59_; 
+v___x_58_ = lean_unsigned_to_nat(0u);
+v___x_59_ = lean_mk_empty_array_with_capacity(v___x_58_);
+return v___x_59_;
+}
+}
 LEAN_EXPORT lean_object* l_Array_filterMapM___at___00Std_Sat_CNF_maxLiteral_spec__0(lean_object* v_as_60_, lean_object* v_start_61_, lean_object* v_stop_62_){
 _start:
 {
 lean_object* v___x_63_; uint8_t v___x_64_; 
-v___x_63_ = ((lean_object*)(l_Array_filterMapM___at___00Std_Sat_CNF_maxLiteral_spec__0___closed__0));
+v___x_63_ = lean_obj_once(&l_Array_filterMapM___at___00Std_Sat_CNF_maxLiteral_spec__0___closed__0, &l_Array_filterMapM___at___00Std_Sat_CNF_maxLiteral_spec__0___closed__0_once, _init_l_Array_filterMapM___at___00Std_Sat_CNF_maxLiteral_spec__0___closed__0);
 v___x_64_ = lean_nat_dec_lt(v_start_61_, v_stop_62_);
 if (v___x_64_ == 0)
 {

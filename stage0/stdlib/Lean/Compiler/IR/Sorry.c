@@ -32,12 +32,12 @@ size_t lean_array_size(lean_object*);
 uint8_t lean_usize_dec_lt(size_t, size_t);
 lean_object* lean_array_uget(lean_object*, size_t);
 lean_object* lean_array_uset(lean_object*, size_t, lean_object*);
-static const lean_string_object l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "sorryAx"};
-static const lean_object* l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__0 = (const lean_object*)&l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__0_value;
-static const lean_ctor_object l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__0_value),LEAN_SCALAR_PTR_LITERAL(196, 190, 164, 146, 38, 179, 69, 72)}};
-static const lean_object* l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__1 = (const lean_object*)&l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__1_value;
-static const lean_ctor_object l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2 = (const lean_object*)&l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2_value;
+static lean_once_cell_t l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__0;
+static lean_once_cell_t l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__1;
+static lean_once_cell_t l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2;
 LEAN_EXPORT lean_object* l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f(lean_object*, lean_object*, lean_object*, lean_object*);
@@ -58,15 +58,42 @@ LEAN_EXPORT lean_object* l_Lean_IR_Sorry_collect(lean_object*, lean_object*, lea
 LEAN_EXPORT lean_object* l_Lean_IR_Sorry_collect___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_IR_updateSorryDep_spec__0(lean_object*, size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_IR_updateSorryDep_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Lean_IR_updateSorryDep___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 8, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(1) << 1) | 1)),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Lean_IR_updateSorryDep___closed__0 = (const lean_object*)&l_Lean_IR_updateSorryDep___closed__0_value;
+static lean_once_cell_t l_Lean_IR_updateSorryDep___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_IR_updateSorryDep___closed__0;
 LEAN_EXPORT lean_object* l_Lean_IR_updateSorryDep(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_IR_updateSorryDep___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
+static lean_object* _init_l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; 
+v___x_1_ = lean_mk_string_unchecked("sorryAx", 7, 7);
+return v___x_1_;
+}
+}
+static lean_object* _init_l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_2_; lean_object* v___x_3_; 
+v___x_2_ = lean_obj_once(&l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__0, &l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__0_once, _init_l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__0);
+v___x_3_ = l_Lean_Name_mkStr1(v___x_2_);
+return v___x_3_;
+}
+}
+static lean_object* _init_l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2(void){
+_start:
+{
+lean_object* v___x_4_; lean_object* v___x_5_; 
+v___x_4_ = lean_box(0);
+v___x_5_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_5_, 0, v___x_4_);
+return v___x_5_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg(lean_object* v_f_6_, lean_object* v_a_7_, lean_object* v_a_8_){
 _start:
 {
 lean_object* v_g_11_; lean_object* v___y_12_; lean_object* v___x_21_; uint8_t v___x_22_; 
-v___x_21_ = ((lean_object*)(l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__1));
+v___x_21_ = lean_obj_once(&l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__1, &l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__1_once, _init_l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__1);
 v___x_22_ = lean_name_eq(v_f_6_, v___x_21_);
 if (v___x_22_ == 0)
 {
@@ -160,7 +187,7 @@ goto v___jp_31_;
 v___jp_31_:
 {
 lean_object* v___x_33_; lean_object* v___x_34_; lean_object* v___x_36_; 
-v___x_33_ = ((lean_object*)(l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2));
+v___x_33_ = lean_obj_once(&l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2, &l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2_once, _init_l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2);
 v___x_34_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_34_, 0, v___x_33_);
 lean_ctor_set(v___x_34_, 1, v___y_32_);
@@ -245,7 +272,7 @@ return v___x_52_;
 v___jp_10_:
 {
 lean_object* v___x_13_; uint8_t v___x_14_; 
-v___x_13_ = ((lean_object*)(l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__1));
+v___x_13_ = lean_obj_once(&l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__1, &l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__1_once, _init_l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__1);
 v___x_14_ = lean_name_eq(v_g_11_, v___x_13_);
 if (v___x_14_ == 0)
 {
@@ -330,7 +357,7 @@ default:
 {
 lean_object* v___x_78_; lean_object* v___x_79_; lean_object* v___x_80_; 
 lean_dec_ref(v_x_70_);
-v___x_78_ = ((lean_object*)(l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2));
+v___x_78_ = lean_obj_once(&l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2, &l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2_once, _init_l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2);
 v___x_79_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_79_, 0, v___x_78_);
 lean_ctor_set(v___x_79_, 1, v_a_71_);
@@ -465,7 +492,7 @@ if (v___x_121_ == 0)
 {
 lean_object* v___x_122_; lean_object* v___x_123_; lean_object* v___x_124_; 
 lean_dec_ref(v_cs_117_);
-v___x_122_ = ((lean_object*)(l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2));
+v___x_122_ = lean_obj_once(&l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2, &l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2_once, _init_l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2);
 v___x_123_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_123_, 0, v___x_122_);
 lean_ctor_set(v___x_123_, 1, v_a_99_);
@@ -483,7 +510,7 @@ if (v___x_121_ == 0)
 {
 lean_object* v___x_126_; lean_object* v___x_127_; lean_object* v___x_128_; 
 lean_dec_ref(v_cs_117_);
-v___x_126_ = ((lean_object*)(l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2));
+v___x_126_ = lean_obj_once(&l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2, &l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2_once, _init_l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2);
 v___x_127_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_127_, 0, v___x_126_);
 lean_ctor_set(v___x_127_, 1, v_a_99_);
@@ -528,7 +555,7 @@ else
 {
 lean_object* v___x_138_; lean_object* v___x_139_; lean_object* v___x_140_; 
 lean_dec(v_b_98_);
-v___x_138_ = ((lean_object*)(l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2));
+v___x_138_ = lean_obj_once(&l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2, &l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2_once, _init_l___private_Lean_Compiler_IR_Sorry_0__Lean_IR_Sorry_visitExpr_getSorryDepFor_x3f___redArg___closed__2);
 v___x_139_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_139_, 0, v___x_138_);
 lean_ctor_set(v___x_139_, 1, v_a_99_);
@@ -1281,11 +1308,23 @@ lean_dec_ref(v_snd_364_);
 return v_res_370_;
 }
 }
+static lean_object* _init_l_Lean_IR_updateSorryDep___closed__0(void){
+_start:
+{
+uint8_t v___x_371_; lean_object* v___x_372_; lean_object* v___x_373_; 
+v___x_371_ = 0;
+v___x_372_ = lean_box(1);
+v___x_373_ = lean_alloc_ctor(0, 1, 1);
+lean_ctor_set(v___x_373_, 0, v___x_372_);
+lean_ctor_set_uint8(v___x_373_, sizeof(void*)*1, v___x_371_);
+return v___x_373_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_IR_updateSorryDep(lean_object* v_decls_374_, lean_object* v_a_375_, lean_object* v_a_376_){
 _start:
 {
 lean_object* v___x_378_; lean_object* v___x_379_; 
-v___x_378_ = ((lean_object*)(l_Lean_IR_updateSorryDep___closed__0));
+v___x_378_ = lean_obj_once(&l_Lean_IR_updateSorryDep___closed__0, &l_Lean_IR_updateSorryDep___closed__0_once, _init_l_Lean_IR_updateSorryDep___closed__0);
 v___x_379_ = l_Lean_IR_Sorry_collect(v_decls_374_, v___x_378_, v_a_375_, v_a_376_);
 if (lean_obj_tag(v___x_379_) == 0)
 {

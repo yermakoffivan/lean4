@@ -47,22 +47,22 @@ LEAN_EXPORT uint8_t l_Std_Tactic_BVDecide_LRAT_Internal_instDecidableEqAssignmen
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_instDecidableEqAssignment___boxed(lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Std_Tactic_BVDecide_LRAT_Internal_instBEqAssignment_beq(uint8_t, uint8_t);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_instBEqAssignment_beq___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Tactic_BVDecide_LRAT_Internal_instBEqAssignment___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Tactic_BVDecide_LRAT_Internal_instBEqAssignment_beq___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_instBEqAssignment___closed__0 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Internal_instBEqAssignment___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_instBEqAssignment = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Internal_instBEqAssignment___closed__0_value;
-static const lean_string_object l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "pos"};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__0 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__0_value;
-static const lean_string_object l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "neg"};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__1 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__1_value;
-static const lean_string_object l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "both"};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__2 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__2_value;
-static const lean_string_object l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "unassigned"};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__3 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__3_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Internal_instBEqAssignment___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_instBEqAssignment___closed__0;
+LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_instBEqAssignment;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__0;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__1;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__2;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__3;
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0(uint8_t);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___boxed(lean_object*);
-static const lean_closure_object l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___closed__0 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___closed__0_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___closed__0;
+LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString;
 LEAN_EXPORT uint8_t l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_hasPosAssignment(uint8_t);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_hasPosAssignment___boxed(lean_object*);
 LEAN_EXPORT uint8_t l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_hasNegAssignment(uint8_t);
@@ -427,6 +427,54 @@ v_r_118_ = lean_box(v_res_117_);
 return v_r_118_;
 }
 }
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Internal_instBEqAssignment___closed__0(void){
+_start:
+{
+lean_object* v___x_119_; 
+v___x_119_ = lean_alloc_closure((void*)(l_Std_Tactic_BVDecide_LRAT_Internal_instBEqAssignment_beq___boxed), 2, 0);
+return v___x_119_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Internal_instBEqAssignment(void){
+_start:
+{
+lean_object* v___x_120_; 
+v___x_120_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Internal_instBEqAssignment___closed__0, &l_Std_Tactic_BVDecide_LRAT_Internal_instBEqAssignment___closed__0_once, _init_l_Std_Tactic_BVDecide_LRAT_Internal_instBEqAssignment___closed__0);
+return v___x_120_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_121_; 
+v___x_121_ = lean_mk_string_unchecked("pos", 3, 3);
+return v___x_121_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__1(void){
+_start:
+{
+lean_object* v___x_122_; 
+v___x_122_ = lean_mk_string_unchecked("neg", 3, 3);
+return v___x_122_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__2(void){
+_start:
+{
+lean_object* v___x_123_; 
+v___x_123_ = lean_mk_string_unchecked("both", 4, 4);
+return v___x_123_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__3(void){
+_start:
+{
+lean_object* v___x_124_; 
+v___x_124_ = lean_mk_string_unchecked("unassigned", 10, 10);
+return v___x_124_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0(uint8_t v_a_125_){
 _start:
 {
@@ -435,25 +483,25 @@ switch(v_a_125_)
 case 0:
 {
 lean_object* v___x_126_; 
-v___x_126_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__0));
+v___x_126_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__0, &l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__0_once, _init_l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__0);
 return v___x_126_;
 }
 case 1:
 {
 lean_object* v___x_127_; 
-v___x_127_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__1));
+v___x_127_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__1, &l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__1);
 return v___x_127_;
 }
 case 2:
 {
 lean_object* v___x_128_; 
-v___x_128_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__2));
+v___x_128_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__2, &l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__2_once, _init_l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__2);
 return v___x_128_;
 }
 default: 
 {
 lean_object* v___x_129_; 
-v___x_129_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__3));
+v___x_129_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__3, &l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__3_once, _init_l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___closed__3);
 return v___x_129_;
 }
 }
@@ -466,6 +514,22 @@ uint8_t v_a_boxed_131_; lean_object* v_res_132_;
 v_a_boxed_131_ = lean_unbox(v_a_130_);
 v_res_132_ = l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0(v_a_boxed_131_);
 return v_res_132_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___closed__0(void){
+_start:
+{
+lean_object* v___f_133_; 
+v___f_133_ = lean_alloc_closure((void*)(l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___lam__0___boxed), 1, 0);
+return v___f_133_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString(void){
+_start:
+{
+lean_object* v___f_134_; 
+v___f_134_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___closed__0, &l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___closed__0_once, _init_l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString___closed__0);
+return v___f_134_;
 }
 }
 LEAN_EXPORT uint8_t l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_hasPosAssignment(uint8_t v_assignment_135_){
@@ -1006,6 +1070,10 @@ if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 l_Std_Tactic_BVDecide_LRAT_Internal_instInhabitedAssignment_default = _init_l_Std_Tactic_BVDecide_LRAT_Internal_instInhabitedAssignment_default();
 l_Std_Tactic_BVDecide_LRAT_Internal_instInhabitedAssignment = _init_l_Std_Tactic_BVDecide_LRAT_Internal_instInhabitedAssignment();
+l_Std_Tactic_BVDecide_LRAT_Internal_instBEqAssignment = _init_l_Std_Tactic_BVDecide_LRAT_Internal_instBEqAssignment();
+lean_mark_persistent(l_Std_Tactic_BVDecide_LRAT_Internal_instBEqAssignment);
+l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString = _init_l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString();
+lean_mark_persistent(l_Std_Tactic_BVDecide_LRAT_Internal_Assignment_instToString);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

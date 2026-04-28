@@ -85,10 +85,10 @@ LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Internal_instMonadShareCommonOfMonadLif
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Internal_instMonadShareCommonOfMonadLift___redArg___lam__1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Internal_instMonadShareCommonOfMonadLift___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Internal_instMonadShareCommonOfMonadLift(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "__dummy__"};
-static const lean_object* l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__0 = (const lean_object*)&l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__0_value;
-static const lean_ctor_object l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__0_value),LEAN_SCALAR_PTR_LITERAL(182, 141, 137, 132, 208, 124, 31, 129)}};
-static const lean_object* l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__1 = (const lean_object*)&l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__1_value;
+static lean_once_cell_t l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__0;
+static lean_once_cell_t l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__1;
 static lean_once_cell_t l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__2;
 LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy;
@@ -128,29 +128,29 @@ static lean_once_cell_t l_panic___at___00Lean_Meta_Sym_Internal_Sym_assertShared
 static lean_object* l_panic___at___00Lean_Meta_Sym_Internal_Sym_assertShared_spec__0___closed__0;
 LEAN_EXPORT lean_object* l_panic___at___00Lean_Meta_Sym_Internal_Sym_assertShared_spec__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_panic___at___00Lean_Meta_Sym_Internal_Sym_assertShared_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 32, .m_capacity = 32, .m_length = 31, .m_data = "Lean.Meta.Sym.AlphaShareBuilder"};
-static const lean_object* l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0 = (const lean_object*)&l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0_value;
-static const lean_string_object l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 40, .m_capacity = 40, .m_length = 39, .m_data = "Lean.Meta.Sym.Internal.Sym.assertShared"};
-static const lean_object* l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__1 = (const lean_object*)&l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__1_value;
-static const lean_string_object l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 46, .m_capacity = 46, .m_length = 45, .m_data = "assertion violation: isSameExpr prev.expr e\n\n"};
-static const lean_object* l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__2 = (const lean_object*)&l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__2_value;
+static lean_once_cell_t l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0;
+static lean_once_cell_t l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__1;
+static lean_once_cell_t l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__2;
 static lean_once_cell_t l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__3;
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Internal_Sym_assertShared(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Internal_Sym_assertShared___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Sym_Internal_Sym_share1___boxed, .m_arity = 8, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__0 = (const lean_object*)&l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__0_value;
-static const lean_closure_object l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Sym_Internal_Sym_assertShared___boxed, .m_arity = 8, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__1 = (const lean_object*)&l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__1_value;
-static const lean_closure_object l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Sym_isDebugEnabled___boxed, .m_arity = 7, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__2 = (const lean_object*)&l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__2_value;
-static const lean_ctor_object l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__0_value),((lean_object*)&l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__1_value),((lean_object*)&l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__2_value)}};
-static const lean_object* l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__3 = (const lean_object*)&l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__3_value;
-LEAN_EXPORT const lean_object* l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM = (const lean_object*)&l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__3_value;
-static const lean_closure_object l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l___private_Lean_Meta_Sym_AlphaShareCommon_0__Lean_Meta_Sym_alphaEq___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__0 = (const lean_object*)&l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__0_value;
-static const lean_closure_object l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l___private_Lean_Meta_Sym_AlphaShareCommon_0__Lean_Meta_Sym_alphaHash___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__1 = (const lean_object*)&l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__1_value;
+static lean_once_cell_t l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__0;
+static lean_once_cell_t l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__1;
+static lean_once_cell_t l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__2;
+static lean_once_cell_t l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__3;
+LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM;
+static lean_once_cell_t l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__0;
+static lean_once_cell_t l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__1;
 static lean_once_cell_t l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__2;
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Internal_liftBuilderM___redArg(lean_object*, lean_object*);
@@ -160,20 +160,20 @@ LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Internal_liftBuilderM___boxed(lean_obje
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Internal_Builder_share1___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Internal_Builder_share1(lean_object*, uint8_t, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Internal_Builder_share1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__0, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__0 = (const lean_object*)&l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__0_value;
-static const lean_closure_object l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__1___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__1 = (const lean_object*)&l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__1_value;
-static const lean_closure_object l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__2___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__2 = (const lean_object*)&l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__2_value;
-static const lean_closure_object l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__3, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__3 = (const lean_object*)&l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__3_value;
-static const lean_closure_object l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__4___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__4 = (const lean_object*)&l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__4_value;
-static const lean_closure_object l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__5___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__5 = (const lean_object*)&l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__5_value;
-static const lean_closure_object l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__6, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__6 = (const lean_object*)&l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__6_value;
+static lean_once_cell_t l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__0;
+static lean_once_cell_t l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__1;
+static lean_once_cell_t l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__2;
+static lean_once_cell_t l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__3;
+static lean_once_cell_t l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__4;
+static lean_once_cell_t l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__5;
+static lean_once_cell_t l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__6;
 LEAN_EXPORT lean_object* l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1(lean_object*, uint8_t, lean_object*);
 LEAN_EXPORT lean_object* l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Lean_PersistentHashMap_containsAtAux___at___00Lean_PersistentHashMap_containsAux___at___00Lean_PersistentHashMap_contains___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__0_spec__0_spec__2___redArg(lean_object*, lean_object*, lean_object*);
@@ -182,10 +182,10 @@ LEAN_EXPORT uint8_t l_Lean_PersistentHashMap_containsAux___at___00Lean_Persisten
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_containsAux___at___00Lean_PersistentHashMap_contains___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__0_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Lean_PersistentHashMap_contains___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__0___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_contains___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__0___redArg___boxed(lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 44, .m_capacity = 44, .m_length = 43, .m_data = "Lean.Meta.Sym.Internal.Builder.assertShared"};
-static const lean_object* l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__0 = (const lean_object*)&l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__0_value;
-static const lean_string_object l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 121, .m_capacity = 121, .m_length = 116, .m_data = "assertion violation: ( __do_lift._@.Lean.Meta.Sym.AlphaShareBuilder.3401574005._hygCtx._hyg.9.0 ).set.contains ⟨e⟩\n\n"};
-static const lean_object* l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__1 = (const lean_object*)&l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__1_value;
+static lean_once_cell_t l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__0;
+static lean_once_cell_t l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__1;
 static lean_once_cell_t l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__2;
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Internal_Builder_assertShared(lean_object*, uint8_t, lean_object*);
@@ -196,10 +196,10 @@ LEAN_EXPORT uint8_t l_Lean_PersistentHashMap_containsAux___at___00Lean_Persisten
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_containsAux___at___00Lean_PersistentHashMap_contains___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__0_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Lean_PersistentHashMap_containsAtAux___at___00Lean_PersistentHashMap_containsAux___at___00Lean_PersistentHashMap_contains___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__0_spec__0_spec__2(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_containsAtAux___at___00Lean_PersistentHashMap_containsAux___at___00Lean_PersistentHashMap_contains___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__0_spec__0_spec__2___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Sym_Internal_Builder_share1___boxed, .m_arity = 3, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM___closed__0 = (const lean_object*)&l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM___closed__0_value;
-static const lean_closure_object l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Sym_Internal_Builder_assertShared___boxed, .m_arity = 3, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM___closed__1 = (const lean_object*)&l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM___closed__1_value;
+static lean_once_cell_t l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM___closed__0;
+static lean_once_cell_t l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM;
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Internal_mkLitS___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Internal_mkLitS(lean_object*, lean_object*, lean_object*);
@@ -257,50 +257,50 @@ LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Internal_mkLetS___boxed(lean_object*, l
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Internal_mkHaveS___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Internal_mkHaveS___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Internal_mkHaveS(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Expr_updateAppS_x21___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 22, .m_capacity = 22, .m_length = 21, .m_data = "Lean.Expr.updateAppS!"};
-static const lean_object* l_Lean_Expr_updateAppS_x21___redArg___closed__0 = (const lean_object*)&l_Lean_Expr_updateAppS_x21___redArg___closed__0_value;
-static const lean_string_object l_Lean_Expr_updateAppS_x21___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 21, .m_capacity = 21, .m_length = 20, .m_data = "application expected"};
-static const lean_object* l_Lean_Expr_updateAppS_x21___redArg___closed__1 = (const lean_object*)&l_Lean_Expr_updateAppS_x21___redArg___closed__1_value;
+static lean_once_cell_t l_Lean_Expr_updateAppS_x21___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_updateAppS_x21___redArg___closed__0;
+static lean_once_cell_t l_Lean_Expr_updateAppS_x21___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_updateAppS_x21___redArg___closed__1;
 static lean_once_cell_t l_Lean_Expr_updateAppS_x21___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Expr_updateAppS_x21___redArg___closed__2;
 LEAN_EXPORT lean_object* l_Lean_Expr_updateAppS_x21___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Expr_updateAppS_x21(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Expr_updateMDataS_x21___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 24, .m_capacity = 24, .m_length = 23, .m_data = "Lean.Expr.updateMDataS!"};
-static const lean_object* l_Lean_Expr_updateMDataS_x21___redArg___closed__0 = (const lean_object*)&l_Lean_Expr_updateMDataS_x21___redArg___closed__0_value;
-static const lean_string_object l_Lean_Expr_updateMDataS_x21___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "mdata expected"};
-static const lean_object* l_Lean_Expr_updateMDataS_x21___redArg___closed__1 = (const lean_object*)&l_Lean_Expr_updateMDataS_x21___redArg___closed__1_value;
+static lean_once_cell_t l_Lean_Expr_updateMDataS_x21___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_updateMDataS_x21___redArg___closed__0;
+static lean_once_cell_t l_Lean_Expr_updateMDataS_x21___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_updateMDataS_x21___redArg___closed__1;
 static lean_once_cell_t l_Lean_Expr_updateMDataS_x21___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Expr_updateMDataS_x21___redArg___closed__2;
 LEAN_EXPORT lean_object* l_Lean_Expr_updateMDataS_x21___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Expr_updateMDataS_x21(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Expr_updateProjS_x21___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 23, .m_capacity = 23, .m_length = 22, .m_data = "Lean.Expr.updateProjS!"};
-static const lean_object* l_Lean_Expr_updateProjS_x21___redArg___closed__0 = (const lean_object*)&l_Lean_Expr_updateProjS_x21___redArg___closed__0_value;
-static const lean_string_object l_Lean_Expr_updateProjS_x21___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "proj expected"};
-static const lean_object* l_Lean_Expr_updateProjS_x21___redArg___closed__1 = (const lean_object*)&l_Lean_Expr_updateProjS_x21___redArg___closed__1_value;
+static lean_once_cell_t l_Lean_Expr_updateProjS_x21___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_updateProjS_x21___redArg___closed__0;
+static lean_once_cell_t l_Lean_Expr_updateProjS_x21___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_updateProjS_x21___redArg___closed__1;
 static lean_once_cell_t l_Lean_Expr_updateProjS_x21___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Expr_updateProjS_x21___redArg___closed__2;
 LEAN_EXPORT lean_object* l_Lean_Expr_updateProjS_x21___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Expr_updateProjS_x21(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Expr_updateForallS_x21___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "Lean.Expr.updateForallS!"};
-static const lean_object* l_Lean_Expr_updateForallS_x21___redArg___closed__0 = (const lean_object*)&l_Lean_Expr_updateForallS_x21___redArg___closed__0_value;
-static const lean_string_object l_Lean_Expr_updateForallS_x21___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "forall expected"};
-static const lean_object* l_Lean_Expr_updateForallS_x21___redArg___closed__1 = (const lean_object*)&l_Lean_Expr_updateForallS_x21___redArg___closed__1_value;
+static lean_once_cell_t l_Lean_Expr_updateForallS_x21___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_updateForallS_x21___redArg___closed__0;
+static lean_once_cell_t l_Lean_Expr_updateForallS_x21___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_updateForallS_x21___redArg___closed__1;
 static lean_once_cell_t l_Lean_Expr_updateForallS_x21___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Expr_updateForallS_x21___redArg___closed__2;
 LEAN_EXPORT lean_object* l_Lean_Expr_updateForallS_x21___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Expr_updateForallS_x21(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Expr_updateLambdaS_x21___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "Lean.Expr.updateLambdaS!"};
-static const lean_object* l_Lean_Expr_updateLambdaS_x21___redArg___closed__0 = (const lean_object*)&l_Lean_Expr_updateLambdaS_x21___redArg___closed__0_value;
-static const lean_string_object l_Lean_Expr_updateLambdaS_x21___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "lambda expected"};
-static const lean_object* l_Lean_Expr_updateLambdaS_x21___redArg___closed__1 = (const lean_object*)&l_Lean_Expr_updateLambdaS_x21___redArg___closed__1_value;
+static lean_once_cell_t l_Lean_Expr_updateLambdaS_x21___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_updateLambdaS_x21___redArg___closed__0;
+static lean_once_cell_t l_Lean_Expr_updateLambdaS_x21___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_updateLambdaS_x21___redArg___closed__1;
 static lean_once_cell_t l_Lean_Expr_updateLambdaS_x21___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Expr_updateLambdaS_x21___redArg___closed__2;
 LEAN_EXPORT lean_object* l_Lean_Expr_updateLambdaS_x21___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Expr_updateLambdaS_x21(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Expr_updateLetS_x21___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 22, .m_capacity = 22, .m_length = 21, .m_data = "Lean.Expr.updateLetS!"};
-static const lean_object* l_Lean_Expr_updateLetS_x21___redArg___closed__0 = (const lean_object*)&l_Lean_Expr_updateLetS_x21___redArg___closed__0_value;
-static const lean_string_object l_Lean_Expr_updateLetS_x21___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 24, .m_capacity = 24, .m_length = 23, .m_data = "let expression expected"};
-static const lean_object* l_Lean_Expr_updateLetS_x21___redArg___closed__1 = (const lean_object*)&l_Lean_Expr_updateLetS_x21___redArg___closed__1_value;
+static lean_once_cell_t l_Lean_Expr_updateLetS_x21___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_updateLetS_x21___redArg___closed__0;
+static lean_once_cell_t l_Lean_Expr_updateLetS_x21___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_updateLetS_x21___redArg___closed__1;
 static lean_once_cell_t l_Lean_Expr_updateLetS_x21___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Expr_updateLetS_x21___redArg___closed__2;
 LEAN_EXPORT lean_object* l_Lean_Expr_updateLetS_x21___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -493,12 +493,29 @@ return v___x_40_;
 }
 }
 }
+static lean_object* _init_l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__0(void){
+_start:
+{
+lean_object* v___x_43_; 
+v___x_43_ = lean_mk_string_unchecked("__dummy__", 9, 9);
+return v___x_43_;
+}
+}
+static lean_object* _init_l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__1(void){
+_start:
+{
+lean_object* v___x_44_; lean_object* v___x_45_; 
+v___x_44_ = lean_obj_once(&l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__0, &l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__0_once, _init_l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__0);
+v___x_45_ = l_Lean_Name_mkStr1(v___x_44_);
+return v___x_45_;
+}
+}
 static lean_object* _init_l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__2(void){
 _start:
 {
 lean_object* v___x_46_; lean_object* v___x_47_; lean_object* v___x_48_; 
 v___x_46_ = lean_box(0);
-v___x_47_ = ((lean_object*)(l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__1));
+v___x_47_ = lean_obj_once(&l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__1, &l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__1_once, _init_l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy___closed__1);
 v___x_48_ = l_Lean_mkConst(v___x_47_, v___x_46_);
 return v___x_48_;
 }
@@ -1427,15 +1444,39 @@ lean_dec_ref(v___y_395_);
 return v_res_402_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0(void){
+_start:
+{
+lean_object* v___x_403_; 
+v___x_403_ = lean_mk_string_unchecked("Lean.Meta.Sym.AlphaShareBuilder", 31, 31);
+return v___x_403_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__1(void){
+_start:
+{
+lean_object* v___x_404_; 
+v___x_404_ = lean_mk_string_unchecked("Lean.Meta.Sym.Internal.Sym.assertShared", 39, 39);
+return v___x_404_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__2(void){
+_start:
+{
+lean_object* v___x_405_; 
+v___x_405_ = lean_mk_string_unchecked("assertion violation: isSameExpr prev.expr e\n\n", 45, 45);
+return v___x_405_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__3(void){
 _start:
 {
 lean_object* v___x_406_; lean_object* v___x_407_; lean_object* v___x_408_; lean_object* v___x_409_; lean_object* v___x_410_; lean_object* v___x_411_; 
-v___x_406_ = ((lean_object*)(l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__2));
+v___x_406_ = lean_obj_once(&l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__2, &l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__2_once, _init_l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__2);
 v___x_407_ = lean_unsigned_to_nat(2u);
 v___x_408_ = lean_unsigned_to_nat(42u);
-v___x_409_ = ((lean_object*)(l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__1));
-v___x_410_ = ((lean_object*)(l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0));
+v___x_409_ = lean_obj_once(&l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__1, &l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__1_once, _init_l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__1);
+v___x_410_ = lean_obj_once(&l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0, &l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0_once, _init_l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0);
 v___x_411_ = l_mkPanicMessageWithDecl(v___x_410_, v___x_409_, v___x_408_, v___x_407_, v___x_406_);
 return v___x_411_;
 }
@@ -1487,12 +1528,74 @@ lean_dec_ref(v_a_432_);
 return v_res_439_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__0(void){
+_start:
+{
+lean_object* v___x_440_; 
+v___x_440_ = lean_alloc_closure((void*)(l_Lean_Meta_Sym_Internal_Sym_share1___boxed), 8, 0);
+return v___x_440_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__1(void){
+_start:
+{
+lean_object* v___x_441_; 
+v___x_441_ = lean_alloc_closure((void*)(l_Lean_Meta_Sym_Internal_Sym_assertShared___boxed), 8, 0);
+return v___x_441_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__2(void){
+_start:
+{
+lean_object* v___x_442_; 
+v___x_442_ = lean_alloc_closure((void*)(l_Lean_Meta_Sym_isDebugEnabled___boxed), 7, 0);
+return v___x_442_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__3(void){
+_start:
+{
+lean_object* v___x_443_; lean_object* v___x_444_; lean_object* v___x_445_; lean_object* v___x_446_; 
+v___x_443_ = lean_obj_once(&l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__2, &l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__2_once, _init_l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__2);
+v___x_444_ = lean_obj_once(&l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__1, &l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__1_once, _init_l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__1);
+v___x_445_ = lean_obj_once(&l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__0, &l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__0_once, _init_l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__0);
+v___x_446_ = lean_alloc_ctor(0, 3, 0);
+lean_ctor_set(v___x_446_, 0, v___x_445_);
+lean_ctor_set(v___x_446_, 1, v___x_444_);
+lean_ctor_set(v___x_446_, 2, v___x_443_);
+return v___x_446_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM(void){
+_start:
+{
+lean_object* v___x_447_; 
+v___x_447_ = lean_obj_once(&l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__3, &l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__3_once, _init_l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM___closed__3);
+return v___x_447_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_448_; 
+v___f_448_ = lean_alloc_closure((void*)(l___private_Lean_Meta_Sym_AlphaShareCommon_0__Lean_Meta_Sym_alphaEq___boxed), 2, 0);
+return v___f_448_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__1(void){
+_start:
+{
+lean_object* v___f_449_; 
+v___f_449_ = lean_alloc_closure((void*)(l___private_Lean_Meta_Sym_AlphaShareCommon_0__Lean_Meta_Sym_alphaHash___boxed), 1, 0);
+return v___f_449_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__2(void){
 _start:
 {
 lean_object* v___f_450_; lean_object* v___f_451_; lean_object* v___x_452_; 
-v___f_450_ = ((lean_object*)(l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__1));
-v___f_451_ = ((lean_object*)(l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__0));
+v___f_450_ = lean_obj_once(&l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__1, &l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__1_once, _init_l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__1);
+v___f_451_ = lean_obj_once(&l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__0, &l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__0_once, _init_l_Lean_Meta_Sym_Internal_liftBuilderM___redArg___closed__0);
 v___x_452_ = l_Lean_PersistentHashMap_empty(lean_box(0), lean_box(0), v___f_451_, v___f_450_);
 return v___x_452_;
 }
@@ -1889,17 +1992,73 @@ v_res_594_ = l_Lean_Meta_Sym_Internal_Builder_share1(v_e_590_, v_a_boxed_593_, v
 return v_res_594_;
 }
 }
+static lean_object* _init_l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__0(void){
+_start:
+{
+lean_object* v___f_595_; 
+v___f_595_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__0), 4, 0);
+return v___f_595_;
+}
+}
+static lean_object* _init_l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__1(void){
+_start:
+{
+lean_object* v___f_596_; 
+v___f_596_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__1___boxed), 4, 0);
+return v___f_596_;
+}
+}
+static lean_object* _init_l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__2(void){
+_start:
+{
+lean_object* v___f_597_; 
+v___f_597_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__2___boxed), 2, 0);
+return v___f_597_;
+}
+}
+static lean_object* _init_l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__3(void){
+_start:
+{
+lean_object* v___f_598_; 
+v___f_598_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__3), 4, 0);
+return v___f_598_;
+}
+}
+static lean_object* _init_l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__4(void){
+_start:
+{
+lean_object* v___f_599_; 
+v___f_599_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__4___boxed), 4, 0);
+return v___f_599_;
+}
+}
+static lean_object* _init_l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__5(void){
+_start:
+{
+lean_object* v___f_600_; 
+v___f_600_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__5___boxed), 4, 0);
+return v___f_600_;
+}
+}
+static lean_object* _init_l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__6(void){
+_start:
+{
+lean_object* v___f_601_; 
+v___f_601_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__6), 4, 0);
+return v___f_601_;
+}
+}
 LEAN_EXPORT lean_object* l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1(lean_object* v_msg_602_, uint8_t v___y_603_, lean_object* v___y_604_){
 _start:
 {
 lean_object* v___f_605_; lean_object* v___f_606_; lean_object* v___f_607_; lean_object* v___f_608_; lean_object* v___f_609_; lean_object* v___f_610_; lean_object* v___f_611_; lean_object* v___x_612_; lean_object* v___x_613_; lean_object* v___x_614_; lean_object* v___f_615_; lean_object* v___f_616_; lean_object* v___f_617_; lean_object* v___f_618_; lean_object* v___x_619_; lean_object* v___x_620_; lean_object* v___x_621_; lean_object* v___x_622_; lean_object* v___x_623_; lean_object* v___x_624_; lean_object* v___x_625_; lean_object* v___x_626_; lean_object* v___f_627_; lean_object* v___x_692__overap_628_; lean_object* v___x_629_; lean_object* v___x_630_; 
-v___f_605_ = ((lean_object*)(l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__0));
-v___f_606_ = ((lean_object*)(l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__1));
-v___f_607_ = ((lean_object*)(l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__2));
-v___f_608_ = ((lean_object*)(l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__3));
-v___f_609_ = ((lean_object*)(l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__4));
-v___f_610_ = ((lean_object*)(l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__5));
-v___f_611_ = ((lean_object*)(l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__6));
+v___f_605_ = lean_obj_once(&l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__0, &l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__0_once, _init_l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__0);
+v___f_606_ = lean_obj_once(&l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__1, &l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__1_once, _init_l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__1);
+v___f_607_ = lean_obj_once(&l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__2, &l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__2_once, _init_l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__2);
+v___f_608_ = lean_obj_once(&l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__3, &l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__3_once, _init_l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__3);
+v___f_609_ = lean_obj_once(&l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__4, &l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__4_once, _init_l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__4);
+v___f_610_ = lean_obj_once(&l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__5, &l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__5_once, _init_l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__5);
+v___f_611_ = lean_obj_once(&l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__6, &l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__6_once, _init_l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__6);
 v___x_612_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_612_, 0, v___f_605_);
 lean_ctor_set(v___x_612_, 1, v___f_606_);
@@ -2103,15 +2262,31 @@ v_r_684_ = lean_box(v_res_683_);
 return v_r_684_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__0(void){
+_start:
+{
+lean_object* v___x_685_; 
+v___x_685_ = lean_mk_string_unchecked("Lean.Meta.Sym.Internal.Builder.assertShared", 43, 43);
+return v___x_685_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__1(void){
+_start:
+{
+lean_object* v___x_686_; 
+v___x_686_ = lean_mk_string_unchecked("assertion violation: ( __do_lift._@.Lean.Meta.Sym.AlphaShareBuilder.3401574005._hygCtx._hyg.9.0 ).set.contains ⟨e⟩\n\n", 120, 116);
+return v___x_686_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__2(void){
 _start:
 {
 lean_object* v___x_687_; lean_object* v___x_688_; lean_object* v___x_689_; lean_object* v___x_690_; lean_object* v___x_691_; lean_object* v___x_692_; 
-v___x_687_ = ((lean_object*)(l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__1));
+v___x_687_ = lean_obj_once(&l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__1, &l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__1_once, _init_l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__1);
 v___x_688_ = lean_unsigned_to_nat(2u);
 v___x_689_ = lean_unsigned_to_nat(74u);
-v___x_690_ = ((lean_object*)(l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__0));
-v___x_691_ = ((lean_object*)(l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0));
+v___x_690_ = lean_obj_once(&l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__0, &l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__0_once, _init_l_Lean_Meta_Sym_Internal_Builder_assertShared___closed__0);
+v___x_691_ = lean_obj_once(&l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0, &l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0_once, _init_l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0);
 v___x_692_ = l_mkPanicMessageWithDecl(v___x_691_, v___x_690_, v___x_689_, v___x_688_, v___x_687_);
 return v___x_692_;
 }
@@ -2204,17 +2379,33 @@ v_r_741_ = lean_box(v_res_740_);
 return v_r_741_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM___closed__0(void){
+_start:
+{
+lean_object* v___x_742_; 
+v___x_742_ = lean_alloc_closure((void*)(l_Lean_Meta_Sym_Internal_Builder_share1___boxed), 3, 0);
+return v___x_742_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM___closed__1(void){
+_start:
+{
+lean_object* v___x_743_; 
+v___x_743_ = lean_alloc_closure((void*)(l_Lean_Meta_Sym_Internal_Builder_assertShared___boxed), 3, 0);
+return v___x_743_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM(void){
 _start:
 {
 lean_object* v___f_744_; lean_object* v___f_745_; lean_object* v___f_746_; lean_object* v___f_747_; lean_object* v___f_748_; lean_object* v___f_749_; lean_object* v___f_750_; lean_object* v___x_751_; lean_object* v___x_752_; lean_object* v___x_753_; lean_object* v___f_754_; lean_object* v___f_755_; lean_object* v___f_756_; lean_object* v___f_757_; lean_object* v___x_758_; lean_object* v___x_759_; lean_object* v___x_760_; lean_object* v___x_761_; lean_object* v___x_762_; lean_object* v___x_763_; lean_object* v___x_764_; lean_object* v___x_765_; lean_object* v___x_766_; lean_object* v___x_767_; 
-v___f_744_ = ((lean_object*)(l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__0));
-v___f_745_ = ((lean_object*)(l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__1));
-v___f_746_ = ((lean_object*)(l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__2));
-v___f_747_ = ((lean_object*)(l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__3));
-v___f_748_ = ((lean_object*)(l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__4));
-v___f_749_ = ((lean_object*)(l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__5));
-v___f_750_ = ((lean_object*)(l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__6));
+v___f_744_ = lean_obj_once(&l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__0, &l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__0_once, _init_l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__0);
+v___f_745_ = lean_obj_once(&l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__1, &l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__1_once, _init_l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__1);
+v___f_746_ = lean_obj_once(&l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__2, &l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__2_once, _init_l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__2);
+v___f_747_ = lean_obj_once(&l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__3, &l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__3_once, _init_l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__3);
+v___f_748_ = lean_obj_once(&l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__4, &l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__4_once, _init_l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__4);
+v___f_749_ = lean_obj_once(&l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__5, &l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__5_once, _init_l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__5);
+v___f_750_ = lean_obj_once(&l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__6, &l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__6_once, _init_l_panic___at___00Lean_Meta_Sym_Internal_Builder_assertShared_spec__1___closed__6);
 v___x_751_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_751_, 0, v___f_744_);
 lean_ctor_set(v___x_751_, 1, v___f_745_);
@@ -2260,8 +2451,8 @@ lean_closure_set(v___x_762_, 2, v___x_753_);
 v___x_763_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_763_, 0, v___x_761_);
 lean_ctor_set(v___x_763_, 1, v___x_762_);
-v___x_764_ = ((lean_object*)(l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM___closed__0));
-v___x_765_ = ((lean_object*)(l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM___closed__1));
+v___x_764_ = lean_obj_once(&l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM___closed__0, &l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM___closed__0_once, _init_l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM___closed__0);
+v___x_765_ = lean_obj_once(&l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM___closed__1, &l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM___closed__1_once, _init_l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM___closed__1);
 v___x_766_ = lean_alloc_closure((void*)(l_ReaderT_read___boxed), 4, 3);
 lean_closure_set(v___x_766_, 0, lean_box(0));
 lean_closure_set(v___x_766_, 1, lean_box(0));
@@ -3075,15 +3266,31 @@ v___x_1229_ = l_Lean_Meta_Sym_Internal_mkHaveS___redArg(v_inst_1223_, v_inst_122
 return v___x_1229_;
 }
 }
+static lean_object* _init_l_Lean_Expr_updateAppS_x21___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_1230_; 
+v___x_1230_ = lean_mk_string_unchecked("Lean.Expr.updateAppS!", 21, 21);
+return v___x_1230_;
+}
+}
+static lean_object* _init_l_Lean_Expr_updateAppS_x21___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_1231_; 
+v___x_1231_ = lean_mk_string_unchecked("application expected", 20, 20);
+return v___x_1231_;
+}
+}
 static lean_object* _init_l_Lean_Expr_updateAppS_x21___redArg___closed__2(void){
 _start:
 {
 lean_object* v___x_1232_; lean_object* v___x_1233_; lean_object* v___x_1234_; lean_object* v___x_1235_; lean_object* v___x_1236_; lean_object* v___x_1237_; 
-v___x_1232_ = ((lean_object*)(l_Lean_Expr_updateAppS_x21___redArg___closed__1));
+v___x_1232_ = lean_obj_once(&l_Lean_Expr_updateAppS_x21___redArg___closed__1, &l_Lean_Expr_updateAppS_x21___redArg___closed__1_once, _init_l_Lean_Expr_updateAppS_x21___redArg___closed__1);
 v___x_1233_ = lean_unsigned_to_nat(25u);
 v___x_1234_ = lean_unsigned_to_nat(148u);
-v___x_1235_ = ((lean_object*)(l_Lean_Expr_updateAppS_x21___redArg___closed__0));
-v___x_1236_ = ((lean_object*)(l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0));
+v___x_1235_ = lean_obj_once(&l_Lean_Expr_updateAppS_x21___redArg___closed__0, &l_Lean_Expr_updateAppS_x21___redArg___closed__0_once, _init_l_Lean_Expr_updateAppS_x21___redArg___closed__0);
+v___x_1236_ = lean_obj_once(&l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0, &l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0_once, _init_l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0);
 v___x_1237_ = l_mkPanicMessageWithDecl(v___x_1236_, v___x_1235_, v___x_1234_, v___x_1233_, v___x_1232_);
 return v___x_1237_;
 }
@@ -3216,15 +3423,31 @@ return v___x_1268_;
 }
 }
 }
+static lean_object* _init_l_Lean_Expr_updateMDataS_x21___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_1277_; 
+v___x_1277_ = lean_mk_string_unchecked("Lean.Expr.updateMDataS!", 23, 23);
+return v___x_1277_;
+}
+}
+static lean_object* _init_l_Lean_Expr_updateMDataS_x21___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_1278_; 
+v___x_1278_ = lean_mk_string_unchecked("mdata expected", 14, 14);
+return v___x_1278_;
+}
+}
 static lean_object* _init_l_Lean_Expr_updateMDataS_x21___redArg___closed__2(void){
 _start:
 {
 lean_object* v___x_1279_; lean_object* v___x_1280_; lean_object* v___x_1281_; lean_object* v___x_1282_; lean_object* v___x_1283_; lean_object* v___x_1284_; 
-v___x_1279_ = ((lean_object*)(l_Lean_Expr_updateMDataS_x21___redArg___closed__1));
+v___x_1279_ = lean_obj_once(&l_Lean_Expr_updateMDataS_x21___redArg___closed__1, &l_Lean_Expr_updateMDataS_x21___redArg___closed__1_once, _init_l_Lean_Expr_updateMDataS_x21___redArg___closed__1);
 v___x_1280_ = lean_unsigned_to_nat(24u);
 v___x_1281_ = lean_unsigned_to_nat(152u);
-v___x_1282_ = ((lean_object*)(l_Lean_Expr_updateMDataS_x21___redArg___closed__0));
-v___x_1283_ = ((lean_object*)(l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0));
+v___x_1282_ = lean_obj_once(&l_Lean_Expr_updateMDataS_x21___redArg___closed__0, &l_Lean_Expr_updateMDataS_x21___redArg___closed__0_once, _init_l_Lean_Expr_updateMDataS_x21___redArg___closed__0);
+v___x_1283_ = lean_obj_once(&l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0, &l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0_once, _init_l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0);
 v___x_1284_ = l_mkPanicMessageWithDecl(v___x_1283_, v___x_1282_, v___x_1281_, v___x_1280_, v___x_1279_);
 return v___x_1284_;
 }
@@ -3323,15 +3546,31 @@ return v___x_1315_;
 }
 }
 }
+static lean_object* _init_l_Lean_Expr_updateProjS_x21___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_1316_; 
+v___x_1316_ = lean_mk_string_unchecked("Lean.Expr.updateProjS!", 22, 22);
+return v___x_1316_;
+}
+}
+static lean_object* _init_l_Lean_Expr_updateProjS_x21___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_1317_; 
+v___x_1317_ = lean_mk_string_unchecked("proj expected", 13, 13);
+return v___x_1317_;
+}
+}
 static lean_object* _init_l_Lean_Expr_updateProjS_x21___redArg___closed__2(void){
 _start:
 {
 lean_object* v___x_1318_; lean_object* v___x_1319_; lean_object* v___x_1320_; lean_object* v___x_1321_; lean_object* v___x_1322_; lean_object* v___x_1323_; 
-v___x_1318_ = ((lean_object*)(l_Lean_Expr_updateProjS_x21___redArg___closed__1));
+v___x_1318_ = lean_obj_once(&l_Lean_Expr_updateProjS_x21___redArg___closed__1, &l_Lean_Expr_updateProjS_x21___redArg___closed__1_once, _init_l_Lean_Expr_updateProjS_x21___redArg___closed__1);
 v___x_1319_ = lean_unsigned_to_nat(25u);
 v___x_1320_ = lean_unsigned_to_nat(156u);
-v___x_1321_ = ((lean_object*)(l_Lean_Expr_updateProjS_x21___redArg___closed__0));
-v___x_1322_ = ((lean_object*)(l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0));
+v___x_1321_ = lean_obj_once(&l_Lean_Expr_updateProjS_x21___redArg___closed__0, &l_Lean_Expr_updateProjS_x21___redArg___closed__0_once, _init_l_Lean_Expr_updateProjS_x21___redArg___closed__0);
+v___x_1322_ = lean_obj_once(&l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0, &l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0_once, _init_l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0);
 v___x_1323_ = l_mkPanicMessageWithDecl(v___x_1322_, v___x_1321_, v___x_1320_, v___x_1319_, v___x_1318_);
 return v___x_1323_;
 }
@@ -3434,15 +3673,31 @@ return v___x_1356_;
 }
 }
 }
+static lean_object* _init_l_Lean_Expr_updateForallS_x21___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_1357_; 
+v___x_1357_ = lean_mk_string_unchecked("Lean.Expr.updateForallS!", 24, 24);
+return v___x_1357_;
+}
+}
+static lean_object* _init_l_Lean_Expr_updateForallS_x21___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_1358_; 
+v___x_1358_ = lean_mk_string_unchecked("forall expected", 15, 15);
+return v___x_1358_;
+}
+}
 static lean_object* _init_l_Lean_Expr_updateForallS_x21___redArg___closed__2(void){
 _start:
 {
 lean_object* v___x_1359_; lean_object* v___x_1360_; lean_object* v___x_1361_; lean_object* v___x_1362_; lean_object* v___x_1363_; lean_object* v___x_1364_; 
-v___x_1359_ = ((lean_object*)(l_Lean_Expr_updateForallS_x21___redArg___closed__1));
+v___x_1359_ = lean_obj_once(&l_Lean_Expr_updateForallS_x21___redArg___closed__1, &l_Lean_Expr_updateForallS_x21___redArg___closed__1_once, _init_l_Lean_Expr_updateForallS_x21___redArg___closed__1);
 v___x_1360_ = lean_unsigned_to_nat(31u);
 v___x_1361_ = lean_unsigned_to_nat(160u);
-v___x_1362_ = ((lean_object*)(l_Lean_Expr_updateForallS_x21___redArg___closed__0));
-v___x_1363_ = ((lean_object*)(l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0));
+v___x_1362_ = lean_obj_once(&l_Lean_Expr_updateForallS_x21___redArg___closed__0, &l_Lean_Expr_updateForallS_x21___redArg___closed__0_once, _init_l_Lean_Expr_updateForallS_x21___redArg___closed__0);
+v___x_1363_ = lean_obj_once(&l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0, &l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0_once, _init_l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0);
 v___x_1364_ = l_mkPanicMessageWithDecl(v___x_1363_, v___x_1362_, v___x_1361_, v___x_1360_, v___x_1359_);
 return v___x_1364_;
 }
@@ -3579,15 +3834,31 @@ return v___x_1407_;
 }
 }
 }
+static lean_object* _init_l_Lean_Expr_updateLambdaS_x21___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_1408_; 
+v___x_1408_ = lean_mk_string_unchecked("Lean.Expr.updateLambdaS!", 24, 24);
+return v___x_1408_;
+}
+}
+static lean_object* _init_l_Lean_Expr_updateLambdaS_x21___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_1409_; 
+v___x_1409_ = lean_mk_string_unchecked("lambda expected", 15, 15);
+return v___x_1409_;
+}
+}
 static lean_object* _init_l_Lean_Expr_updateLambdaS_x21___redArg___closed__2(void){
 _start:
 {
 lean_object* v___x_1410_; lean_object* v___x_1411_; lean_object* v___x_1412_; lean_object* v___x_1413_; lean_object* v___x_1414_; lean_object* v___x_1415_; 
-v___x_1410_ = ((lean_object*)(l_Lean_Expr_updateLambdaS_x21___redArg___closed__1));
+v___x_1410_ = lean_obj_once(&l_Lean_Expr_updateLambdaS_x21___redArg___closed__1, &l_Lean_Expr_updateLambdaS_x21___redArg___closed__1_once, _init_l_Lean_Expr_updateLambdaS_x21___redArg___closed__1);
 v___x_1411_ = lean_unsigned_to_nat(27u);
 v___x_1412_ = lean_unsigned_to_nat(167u);
-v___x_1413_ = ((lean_object*)(l_Lean_Expr_updateLambdaS_x21___redArg___closed__0));
-v___x_1414_ = ((lean_object*)(l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0));
+v___x_1413_ = lean_obj_once(&l_Lean_Expr_updateLambdaS_x21___redArg___closed__0, &l_Lean_Expr_updateLambdaS_x21___redArg___closed__0_once, _init_l_Lean_Expr_updateLambdaS_x21___redArg___closed__0);
+v___x_1414_ = lean_obj_once(&l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0, &l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0_once, _init_l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0);
 v___x_1415_ = l_mkPanicMessageWithDecl(v___x_1414_, v___x_1413_, v___x_1412_, v___x_1411_, v___x_1410_);
 return v___x_1415_;
 }
@@ -3724,15 +3995,31 @@ return v___x_1458_;
 }
 }
 }
+static lean_object* _init_l_Lean_Expr_updateLetS_x21___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_1459_; 
+v___x_1459_ = lean_mk_string_unchecked("Lean.Expr.updateLetS!", 21, 21);
+return v___x_1459_;
+}
+}
+static lean_object* _init_l_Lean_Expr_updateLetS_x21___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_1460_; 
+v___x_1460_ = lean_mk_string_unchecked("let expression expected", 23, 23);
+return v___x_1460_;
+}
+}
 static lean_object* _init_l_Lean_Expr_updateLetS_x21___redArg___closed__2(void){
 _start:
 {
 lean_object* v___x_1461_; lean_object* v___x_1462_; lean_object* v___x_1463_; lean_object* v___x_1464_; lean_object* v___x_1465_; lean_object* v___x_1466_; 
-v___x_1461_ = ((lean_object*)(l_Lean_Expr_updateLetS_x21___redArg___closed__1));
+v___x_1461_ = lean_obj_once(&l_Lean_Expr_updateLetS_x21___redArg___closed__1, &l_Lean_Expr_updateLetS_x21___redArg___closed__1_once, _init_l_Lean_Expr_updateLetS_x21___redArg___closed__1);
 v___x_1462_ = lean_unsigned_to_nat(34u);
 v___x_1463_ = lean_unsigned_to_nat(174u);
-v___x_1464_ = ((lean_object*)(l_Lean_Expr_updateLetS_x21___redArg___closed__0));
-v___x_1465_ = ((lean_object*)(l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0));
+v___x_1464_ = lean_obj_once(&l_Lean_Expr_updateLetS_x21___redArg___closed__0, &l_Lean_Expr_updateLetS_x21___redArg___closed__0_once, _init_l_Lean_Expr_updateLetS_x21___redArg___closed__0);
+v___x_1465_ = lean_obj_once(&l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0, &l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0_once, _init_l_Lean_Meta_Sym_Internal_Sym_assertShared___closed__0);
 v___x_1466_ = l_mkPanicMessageWithDecl(v___x_1465_, v___x_1464_, v___x_1463_, v___x_1462_, v___x_1461_);
 return v___x_1466_;
 }
@@ -4491,6 +4778,8 @@ if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy = _init_l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy();
 lean_mark_persistent(l___private_Lean_Meta_Sym_AlphaShareBuilder_0__Lean_Meta_Sym_Internal_dummy);
+l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM = _init_l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM();
+lean_mark_persistent(l_Lean_Meta_Sym_Internal_instMonadShareCommonSymM);
 l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM = _init_l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM();
 lean_mark_persistent(l_Lean_Meta_Sym_Internal_instMonadShareCommonAlphaShareBuilderM);
 return lean_io_result_mk_ok(lean_box(0));

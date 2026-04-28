@@ -17,9 +17,9 @@ uint64_t lean_uint64_of_nat(lean_object*);
 uint64_t lean_uint64_mix_hash(uint64_t, uint64_t);
 LEAN_EXPORT uint64_t l_String_instHashableRaw_hash(lean_object*);
 LEAN_EXPORT lean_object* l_String_instHashableRaw_hash___boxed(lean_object*);
-static const lean_closure_object l_String_instHashableRaw___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_String_instHashableRaw_hash___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_String_instHashableRaw___closed__0 = (const lean_object*)&l_String_instHashableRaw___closed__0_value;
-LEAN_EXPORT const lean_object* l_String_instHashableRaw = (const lean_object*)&l_String_instHashableRaw___closed__0_value;
+static lean_once_cell_t l_String_instHashableRaw___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_instHashableRaw___closed__0;
+LEAN_EXPORT lean_object* l_String_instHashableRaw;
 LEAN_EXPORT uint64_t l_String_instHashablePos_hash___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_String_instHashablePos_hash___redArg___boxed(lean_object*);
 LEAN_EXPORT uint64_t l_String_instHashablePos_hash(lean_object*, lean_object*);
@@ -48,6 +48,22 @@ v_res_6_ = l_String_instHashableRaw_hash(v_x_5_);
 lean_dec(v_x_5_);
 v_r_7_ = lean_box_uint64(v_res_6_);
 return v_r_7_;
+}
+}
+static lean_object* _init_l_String_instHashableRaw___closed__0(void){
+_start:
+{
+lean_object* v___x_8_; 
+v___x_8_ = lean_alloc_closure((void*)(l_String_instHashableRaw_hash___boxed), 1, 0);
+return v___x_8_;
+}
+}
+static lean_object* _init_l_String_instHashableRaw(void){
+_start:
+{
+lean_object* v___x_9_; 
+v___x_9_ = lean_obj_once(&l_String_instHashableRaw___closed__0, &l_String_instHashableRaw___closed__0_once, _init_l_String_instHashableRaw___closed__0);
+return v___x_9_;
 }
 }
 LEAN_EXPORT uint64_t l_String_instHashablePos_hash___redArg(lean_object* v_x_10_){
@@ -161,6 +177,8 @@ lean_dec_ref(res);
 res = runtime_initialize_Init_Data_String_Defs(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_String_instHashableRaw = _init_l_String_instHashableRaw();
+lean_mark_persistent(l_String_instHashableRaw);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

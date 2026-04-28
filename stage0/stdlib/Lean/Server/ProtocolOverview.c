@@ -45,636 +45,587 @@ LEAN_EXPORT lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server
 LEAN_EXPORT lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_MessageOverview_rpcRequest_elim(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_MessageOverview_notification_elim___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_MessageOverview_notification_elim(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Lean"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Widget"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 31, .m_capacity = 31, .m_length = 30, .m_data = "lazyTraceChildrenToInteractive"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__2 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__2_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__3_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__3_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__3_value_aux_0),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_value),LEAN_SCALAR_PTR_LITERAL(242, 47, 106, 136, 147, 253, 78, 115)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__3_value_aux_1),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__2_value),LEAN_SCALAR_PTR_LITERAL(159, 130, 120, 1, 150, 16, 102, 224)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__3 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__3_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 72, .m_capacity = 72, .m_length = 71, .m_data = "Emitted in VS Code when unfolding a lazy trace message in the InfoView."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__4 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__4_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__3_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__4_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__5 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__5_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__5_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__6 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__6_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 17, .m_capacity = 17, .m_length = 16, .m_data = "highlightMatches"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__7 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__7_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__8_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__8_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__8_value_aux_0),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_value),LEAN_SCALAR_PTR_LITERAL(242, 47, 106, 136, 147, 253, 78, 115)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__8_value_aux_1),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__7_value),LEAN_SCALAR_PTR_LITERAL(26, 88, 118, 23, 234, 101, 22, 30)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__8 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__8_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 64, .m_capacity = 64, .m_length = 63, .m_data = "Emitted in VS Code when using the trace search in the InfoView."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__9 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__9_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__8_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__9_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__10 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__10_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__10_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__11 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__11_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "getWidgetSource"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__12 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__12_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__13_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__13_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__13_value_aux_0),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_value),LEAN_SCALAR_PTR_LITERAL(242, 47, 106, 136, 147, 253, 78, 115)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__13_value_aux_1),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__12_value),LEAN_SCALAR_PTR_LITERAL(119, 105, 173, 159, 3, 254, 1, 84)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__13 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__13_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 66, .m_capacity = 66, .m_length = 65, .m_data = "Emitted in VS Code when a widget is imported from another widget."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__14 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__14_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__13_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__14_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__15 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__15_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__15_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__16 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__16_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__17_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 23, .m_capacity = 23, .m_length = 22, .m_data = "InteractiveDiagnostics"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__17 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__17_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__18_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 17, .m_capacity = 17, .m_length = 16, .m_data = "msgToInteractive"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__18 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__18_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__19_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__19_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__19_value_aux_0),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_value),LEAN_SCALAR_PTR_LITERAL(242, 47, 106, 136, 147, 253, 78, 115)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__19_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__19_value_aux_1),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__17_value),LEAN_SCALAR_PTR_LITERAL(58, 49, 5, 23, 81, 95, 242, 98)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__19_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__19_value_aux_2),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__18_value),LEAN_SCALAR_PTR_LITERAL(90, 184, 129, 222, 243, 194, 186, 241)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__19 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__19_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__20_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 92, .m_capacity = 92, .m_length = 91, .m_data = "Emitted in VS Code in some widgets to convert non-interactive messages to interactive ones."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__20 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__20_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__21_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__19_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__20_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__21 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__21_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__22_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__21_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__22 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__22_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__23_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 23, .m_capacity = 23, .m_length = 22, .m_data = "getInteractiveTermGoal"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__23 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__23_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__24_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__24_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__24_value_aux_0),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_value),LEAN_SCALAR_PTR_LITERAL(242, 47, 106, 136, 147, 253, 78, 115)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__24_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__24_value_aux_1),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__23_value),LEAN_SCALAR_PTR_LITERAL(254, 68, 179, 220, 244, 80, 3, 127)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__24 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__24_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 147, .m_capacity = 147, .m_length = 146, .m_data = "Emitted in VS Code when the text cursor is moved, the set of diagnostics at the cursor position changes or the file starts or finishes processing."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__26_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__24_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__26 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__26_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__27_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__26_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__27 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__27_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__28_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "getWidgets"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__28 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__28_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__29_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__29_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__29_value_aux_0),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_value),LEAN_SCALAR_PTR_LITERAL(242, 47, 106, 136, 147, 253, 78, 115)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__29_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__29_value_aux_1),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__28_value),LEAN_SCALAR_PTR_LITERAL(92, 94, 165, 187, 253, 193, 202, 121)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__29 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__29_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__30_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__29_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__30 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__30_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__31_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__30_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__31 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__31_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__32_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 18, .m_capacity = 18, .m_length = 17, .m_data = "infoToInteractive"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__32 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__32_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__33_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__33_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__33_value_aux_0),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_value),LEAN_SCALAR_PTR_LITERAL(242, 47, 106, 136, 147, 253, 78, 115)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__33_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__33_value_aux_1),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__17_value),LEAN_SCALAR_PTR_LITERAL(58, 49, 5, 23, 81, 95, 242, 98)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__33_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__33_value_aux_2),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__32_value),LEAN_SCALAR_PTR_LITERAL(75, 174, 186, 23, 176, 15, 185, 28)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__33 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__33_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__34_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 61, .m_capacity = 61, .m_length = 60, .m_data = "Emitted in VS Code when hovering over terms in the InfoView."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__34 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__34_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__35_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__33_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__34_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__35 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__35_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__36_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__35_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__36 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__36_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__37_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "getGoToLocation"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__37 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__37_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__38_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__38_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__38_value_aux_0),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_value),LEAN_SCALAR_PTR_LITERAL(242, 47, 106, 136, 147, 253, 78, 115)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__38_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__38_value_aux_1),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__37_value),LEAN_SCALAR_PTR_LITERAL(46, 251, 83, 122, 1, 138, 193, 194)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__38 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__38_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__39_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 125, .m_capacity = 125, .m_length = 124, .m_data = "Emitted in VS Code when clicking 'Go to Definition' in the context menu of the InfoView or using Ctrl+Click in the InfoView."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__39 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__39_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__40_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__38_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__39_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__40 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__40_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__41_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__40_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__41 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__41_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__42_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 21, .m_capacity = 21, .m_length = 20, .m_data = "$/lean/waitForILeans"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__42 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__42_value;
-static const lean_array_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 246}, .m_size = 1, .m_capacity = 1, .m_data = {((lean_object*)(((size_t)(1) << 1) | 1))}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__44_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 139, .m_capacity = 139, .m_length = 138, .m_data = "Not used in the editor. Emitted in interactive tests to wait for all .ileans in the project and the .ilean of the given file to be loaded."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__44 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__44_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__45_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__42_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__44_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__45 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__45_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__46_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__45_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__46 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__46_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__47_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 19, .m_capacity = 19, .m_length = 18, .m_data = "$/lean/rpc/connect"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__47 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__47_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__48_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 87, .m_capacity = 87, .m_length = 86, .m_data = "Emitted in VS Code when an RPC session for InfoView interactivity is initially set up."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__48 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__48_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__49_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__47_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__48_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__49 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__49_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__50_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__49_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__50 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__50_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__51_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 19, .m_capacity = 19, .m_length = 18, .m_data = "$/lean/rpc/release"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__51 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__51_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__52_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 126, .m_capacity = 126, .m_length = 125, .m_data = "Emitted in VS Code when an RPC object in the server (the lifecycle of which is managed by the client) is freed by the client."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__52 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__52_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__53_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__51_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__52_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__53 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__53_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__54_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 2}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__53_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__54 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__54_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__55_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 21, .m_capacity = 21, .m_length = 20, .m_data = "$/lean/rpc/keepAlive"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__55 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__55_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__56_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 118, .m_capacity = 118, .m_length = 117, .m_data = "Emitted periodically in VS Code to signal that the RPC client has not disconnected yet to keep the RPC session alive."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__56 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__56_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__57_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__55_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__56_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__57 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__57_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__58_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 2}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__57_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__58 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__58_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__59_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "$/lean/rpc/call"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__59 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__59_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__60_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 277, .m_capacity = 277, .m_length = 276, .m_data = "Emitted in VS Code when an RPC method is called. `RpcCallParams.method` and `RpcCallParams.params` can be any of the builtin `.rpcRequest`s described in this overview or any custom RPC methods tagged with `@[server_rpc_method]` that can be set up for use in the widget system."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__60 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__60_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__61_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__59_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__60_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__61 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__61_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__62_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__61_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__62 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__62_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__63_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 26, .m_capacity = 26, .m_length = 25, .m_data = "getInteractiveDiagnostics"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__63 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__63_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__64_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__64_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__64_value_aux_0),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_value),LEAN_SCALAR_PTR_LITERAL(242, 47, 106, 136, 147, 253, 78, 115)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__64_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__64_value_aux_1),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__63_value),LEAN_SCALAR_PTR_LITERAL(229, 70, 171, 161, 219, 214, 144, 57)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__64 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__64_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__65_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__64_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__65 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__65_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__66_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__65_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__66 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__66_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__67_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 20, .m_capacity = 20, .m_length = 19, .m_data = "getInteractiveGoals"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__67 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__67_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__68_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__68_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__68_value_aux_0),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_value),LEAN_SCALAR_PTR_LITERAL(242, 47, 106, 136, 147, 253, 78, 115)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__68_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__68_value_aux_1),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__67_value),LEAN_SCALAR_PTR_LITERAL(26, 139, 27, 5, 99, 157, 46, 110)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__68 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__68_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__69_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__68_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__69 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__69_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__70_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__69_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__70 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__70_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__71_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 17, .m_capacity = 17, .m_length = 16, .m_data = "workspace/symbol"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__71 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__71_value;
-static const lean_array_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 246}, .m_size = 1, .m_capacity = 1, .m_data = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__73_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 100, .m_capacity = 100, .m_length = 99, .m_data = "Emitted in VS Code when opening the command prompt and entering a `#` prefix with a query after it."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__73 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__73_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__74_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__71_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__73_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__74 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__74_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__75_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__74_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__75 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__75_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__76_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 17, .m_capacity = 17, .m_length = 16, .m_data = "$/lean/plainGoal"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__76 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__76_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__77_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 120, .m_capacity = 120, .m_length = 119, .m_data = "Not used in VS Code. Emitted in editors that do not support an interactive InfoView (e.g. Emacs) and interactive tests."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__77 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__77_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__78_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__76_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__77_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__78 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__78_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__79_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__78_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__79 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__79_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__80_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 21, .m_capacity = 21, .m_length = 20, .m_data = "$/lean/plainTermGoal"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__80 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__80_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__81_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__80_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__77_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__81 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__81_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__82_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__81_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__82 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__82_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__83_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 32, .m_capacity = 32, .m_length = 31, .m_data = "textDocument/waitForDiagnostics"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__83 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__83_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__84_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 102, .m_capacity = 102, .m_length = 101, .m_data = "Not used in the editor. Emitted in interactive tests to wait for all diagnostics up to a given point."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__84 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__84_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__85_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__83_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__84_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__85 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__85_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__86_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__85_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__86 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__86_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__87_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 31, .m_capacity = 31, .m_length = 30, .m_data = "$/lean/moduleHierarchy/imports"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__87 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__87_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__88_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 66, .m_capacity = 66, .m_length = 65, .m_data = "Emitted in VS Code when expanding a node in the module hierarchy."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__88 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__88_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__89_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__87_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__88_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__89 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__89_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__90_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__89_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__90 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__90_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__91_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 34, .m_capacity = 34, .m_length = 33, .m_data = "$/lean/moduleHierarchy/importedBy"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__91 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__91_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__92_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 74, .m_capacity = 74, .m_length = 73, .m_data = "Emitted in VS Code when expanding a node in the inverse module hierarchy."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__92 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__92_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__93_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__91_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__92_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__93 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__93_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__94_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__93_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__94 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__94_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__95_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 27, .m_capacity = 27, .m_length = 26, .m_data = "textDocument/prepareRename"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__95 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__95_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__96_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 70, .m_capacity = 70, .m_length = 69, .m_data = "Emitted in VS Code when clicking 'Rename Symbol' in the context menu."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__96 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__96_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__97_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__95_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__96_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__97 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__97_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__98_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__97_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__98 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__98_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__99_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 20, .m_capacity = 20, .m_length = 19, .m_data = "textDocument/rename"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__99 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__99_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__100_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 99, .m_capacity = 99, .m_length = 98, .m_data = "Emitted in VS Code when entering an identifier after clicking 'Rename Symbol' in the context menu."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__100 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__100_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__101_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__99_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__100_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__101 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__101_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__102_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__101_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__102 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__102_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__103_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "textDocument/declaration"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__103 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__103_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__104_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 74, .m_capacity = 74, .m_length = 73, .m_data = "Emitted in VS Code when clicking 'Go to Declaration' in the context menu."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__104 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__104_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__105_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__103_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__104_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__105 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__105_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__106_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__105_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__106 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__106_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__107_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 28, .m_capacity = 28, .m_length = 27, .m_data = "textDocument/typeDefinition"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__107 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__107_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__108_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 78, .m_capacity = 78, .m_length = 77, .m_data = "Emitted in VS Code when clicking 'Go to Type Definition' in the context menu."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__108 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__108_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__109_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__107_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__108_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__109 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__109_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__110_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__109_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__110 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__110_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__111_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 24, .m_capacity = 24, .m_length = 23, .m_data = "textDocument/references"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__111 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__111_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__112_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 98, .m_capacity = 98, .m_length = 97, .m_data = "Emitted in VS Code when clicking 'Find All References' or 'Go to References' in the context menu."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__112 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__112_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__113_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__111_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__112_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__113 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__113_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__114_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__113_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__114 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__114_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__115_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 34, .m_capacity = 34, .m_length = 33, .m_data = "textDocument/prepareCallHierarchy"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__115 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__115_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__116_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 76, .m_capacity = 76, .m_length = 75, .m_data = "Emitted in VS Code when clicking 'Show Call Hierarchy' in the context menu."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__116 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__116_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__117_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__115_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__116_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__117 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__117_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__118_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__117_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__118 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__118_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__119_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 28, .m_capacity = 28, .m_length = 27, .m_data = "callHierarchy/incomingCalls"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__119 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__119_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__120_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 89, .m_capacity = 89, .m_length = 88, .m_data = "Emitted in VS Code when expanding a node in the call hierarchy in 'incoming calls' mode."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__120 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__120_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__121_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__119_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__120_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__121 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__121_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__122_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__121_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__122 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__122_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__123_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 28, .m_capacity = 28, .m_length = 27, .m_data = "callHierarchy/outgoingCalls"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__123 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__123_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__124_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 89, .m_capacity = 89, .m_length = 88, .m_data = "Emitted in VS Code when expanding a node in the call hierarchy in 'outgoing calls' mode."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__124 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__124_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__125_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__123_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__124_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__125 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__125_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__126_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__125_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__126 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__126_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__127_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 30, .m_capacity = 30, .m_length = 29, .m_data = "$/lean/prepareModuleHierarchy"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__127 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__127_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__128_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 113, .m_capacity = 113, .m_length = 112, .m_data = "Emitted in VS Code when clicking 'Show Module Hierarchy' or 'Show Inverse Module Hierarchy' in the context menu."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__128 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__128_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__129_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__127_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__128_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__129 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__129_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__130_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__129_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__130 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__130_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__131_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 33, .m_capacity = 33, .m_length = 32, .m_data = "workspace/semanticTokens/refresh"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__131 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__131_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__132_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 110, .m_capacity = 110, .m_length = 109, .m_data = "Emitted by the language server to request another `textDocument/semanticTokens/full` request from the client."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__132 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__132_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__133_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__131_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__132_value),LEAN_SCALAR_PTR_LITERAL(1, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__133 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__133_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__134_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__133_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__134 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__134_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__135_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 23, .m_capacity = 23, .m_length = 22, .m_data = "textDocument/inlayHint"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__135 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__135_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__136_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 587, .m_capacity = 587, .m_length = 586, .m_data = "Instead of reporting the full inlay hints for the full file as specified by LSP, the Lean language server will only report the inlay hints for the part of the file that has been processed so far. If the response is incomplete, the language server periodically emits `workspace/inlayHint/refresh` to request another `textDocument/inlayHint` request from the client. This process is repeated until the file has been fully processed and all inlay hints have been reported. We use this trick to stream inlay hints to VS Code, despite the fact that VS Code does not support result streaming."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__136 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__136_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__137_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__136_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__137 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__137_value;
-static const lean_array_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__138_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 246}, .m_size = 1, .m_capacity = 1, .m_data = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__137_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__138 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__138_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__139_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 149, .m_capacity = 149, .m_length = 148, .m_data = "Emitted in VS Code when a file is first opened, when it is changed or when VS Code receives a `workspace/inlayHint/refresh` request from the server."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__139 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__139_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__140_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__135_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__138_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__139_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__140 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__140_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__141_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__140_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__141 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__141_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__142_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 28, .m_capacity = 28, .m_length = 27, .m_data = "workspace/inlayHint/refresh"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__142 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__142_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__143_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 100, .m_capacity = 100, .m_length = 99, .m_data = "Emitted by the language server to request another `textDocument/inlayHint` request from the client."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__143 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__143_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__144_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__142_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__143_value),LEAN_SCALAR_PTR_LITERAL(1, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__144 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__144_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__145_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__144_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__145 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__145_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__146_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 24, .m_capacity = 24, .m_length = 23, .m_data = "textDocument/definition"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__146 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__146_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__147_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 93, .m_capacity = 93, .m_length = 92, .m_data = "Emitted in VS Code when clicking 'Go to Definition' in the context menu or using Ctrl+Click."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__147 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__147_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__148_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__146_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__147_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__148 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__148_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__149_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__148_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__149 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__149_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__150_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 26, .m_capacity = 26, .m_length = 25, .m_data = "textDocument/foldingRange"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__150 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__150_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__151_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 70, .m_capacity = 70, .m_length = 69, .m_data = "Emitted in VS Code when a file is first opened or when it is changed."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__151 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__151_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__152_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__150_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__151_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__152 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__152_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__153_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__152_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__153 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__153_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__154_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 27, .m_capacity = 27, .m_length = 26, .m_data = "textDocument/documentColor"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__154 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__154_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__155_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 188, .m_capacity = 188, .m_length = 187, .m_data = "Emitted in VS Code when a file is first opened or when it is changed. The language server defines this handler to override the default document color handler of VS Code with an empty one."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__155 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__155_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__156_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__154_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__155_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__156 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__156_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__157_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__156_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__157 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__157_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__158_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 34, .m_capacity = 34, .m_length = 33, .m_data = "textDocument/semanticTokens/range"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__158 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__158_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__159_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 43, .m_capacity = 43, .m_length = 42, .m_data = "Emitted in VS Code when a file is changed."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__159 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__159_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__160_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__158_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__159_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__160 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__160_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__161_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__160_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__161 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__161_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__162_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 33, .m_capacity = 33, .m_length = 32, .m_data = "textDocument/semanticTokens/full"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__162 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__162_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__163_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 618, .m_capacity = 618, .m_length = 617, .m_data = "Instead of reporting the full semantic tokens for the full file as specified by LSP, the Lean language server will only report the semantic tokens for the part of the file that has been processed so far. If the response is incomplete, the language server periodically emits `workspace/semanticTokens/refresh` to request another `textDocument/semanticTokens/full` request from the client. This process is repeated until the file has been fully processed and all semantic tokens have been reported. We use this trick to stream semantic tokens to VS Code, despite the fact that VS Code does not support result streaming."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__163 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__163_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__164_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__163_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__164 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__164_value;
-static const lean_array_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__165_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 246}, .m_size = 1, .m_capacity = 1, .m_data = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__164_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__165 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__165_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__166_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 154, .m_capacity = 154, .m_length = 153, .m_data = "Emitted in VS Code when a file is first opened, when it is changed or when VS Code receives a `workspace/semanticTokens/refresh` request from the server."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__166 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__166_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__167_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__162_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__165_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__166_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__167 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__167_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__168_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__167_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__168 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__168_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__169_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 23, .m_capacity = 23, .m_length = 22, .m_data = "completionItem/resolve"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__169 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__169_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__170_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 62, .m_capacity = 62, .m_length = 61, .m_data = "Emitted in VS Code when an auto-completion entry is selected."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__170 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__170_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__171_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__169_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__170_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__171 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__171_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__172_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__171_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__172 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__172_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__173_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 24, .m_capacity = 24, .m_length = 23, .m_data = "textDocument/codeAction"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__173 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__173_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__174_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 144, .m_capacity = 144, .m_length = 143, .m_data = "Emitted in VS Code when code actions are triggered, e.g. automatically while typing, moving the text cursor or when hovering over a diagnostic."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__174 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__174_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__175_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__173_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__174_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__175 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__175_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__176_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__175_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__176 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__176_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__177_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 19, .m_capacity = 19, .m_length = 18, .m_data = "codeAction/resolve"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__177 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__177_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__178_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 74, .m_capacity = 74, .m_length = 73, .m_data = "Emitted in VS Code when a code action in the light bulb menu is selected."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__178 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__178_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__179_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__177_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__178_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__179 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__179_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__180_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__179_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__180 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__180_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__181_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 27, .m_capacity = 27, .m_length = 26, .m_data = "textDocument/signatureHelp"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__181 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__181_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__182_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 124, .m_capacity = 124, .m_length = 123, .m_data = "Emitted in VS Code when the signature help is triggered, e.g. automatically while typing or after hitting Ctrl+Shift+Space."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__182 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__182_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__183_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__181_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__182_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__183 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__183_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__184_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__183_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__184 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__184_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__185_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 19, .m_capacity = 19, .m_length = 18, .m_data = "textDocument/hover"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__185 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__185_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__186_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 67, .m_capacity = 67, .m_length = 66, .m_data = "Emitted in VS Code when hovering over an identifier in the editor."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__186 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__186_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__187_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__185_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__186_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__187 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__187_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__188_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__187_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__188 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__188_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__189_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 31, .m_capacity = 31, .m_length = 30, .m_data = "textDocument/documentHighlight"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__189 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__189_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__190_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 61, .m_capacity = 61, .m_length = 60, .m_data = "Emitted in VS Code when the text cursor is on an identifier."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__190 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__190_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__191_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__189_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__190_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__191 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__191_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__192_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__191_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__192 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__192_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__193_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 28, .m_capacity = 28, .m_length = 27, .m_data = "textDocument/documentSymbol"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__193 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__193_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__194_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__193_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__151_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__194 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__194_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__195_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__194_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__195 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__195_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__196_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 22, .m_capacity = 22, .m_length = 21, .m_data = "textDocument/didClose"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__196 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__196_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__197_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 141, .m_capacity = 141, .m_length = 140, .m_data = "Emitted in VS Code when a text document is closed. VS Code may sometimes emit this notification for files that were not opened in an editor."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__197 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__197_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__198_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__196_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__197_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__198 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__198_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__199_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 2}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__198_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__199 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__199_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__200_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 23, .m_capacity = 23, .m_length = 22, .m_data = "textDocument/didChange"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__200 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__200_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__201_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 51, .m_capacity = 51, .m_length = 50, .m_data = "Emitted in VS Code when a text document is edited."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__201 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__201_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__202_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__200_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__201_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__202 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__202_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__203_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 2}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__202_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__203 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__203_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__204_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 21, .m_capacity = 21, .m_length = 20, .m_data = "textDocument/didSave"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__204 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__204_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__205_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 50, .m_capacity = 50, .m_length = 49, .m_data = "Emitted in VS Code when a text document is saved."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__205 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__205_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__206_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__204_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__205_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__206 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__206_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__207_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 2}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__206_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__207 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__207_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__208_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 32, .m_capacity = 32, .m_length = 31, .m_data = "workspace/didChangeWatchedFiles"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__208 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__208_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__209_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 105, .m_capacity = 105, .m_length = 104, .m_data = "Emitted in VS Code when one of the files that the language server registered a file watcher for changes."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__209 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__209_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__210_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__208_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__209_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__210 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__210_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__211_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 2}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__210_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__211 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__211_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__212_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 32, .m_capacity = 32, .m_length = 31, .m_data = "textDocument/publishDiagnostics"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__212 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__212_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "Lsp"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__214_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "PublishDiagnosticsParams"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__214 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__214_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__215_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "isIncremental\?"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__215 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__215_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__216_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__216_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__216_value_aux_0),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213_value),LEAN_SCALAR_PTR_LITERAL(210, 104, 224, 237, 184, 44, 1, 94)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__216_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__216_value_aux_1),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__214_value),LEAN_SCALAR_PTR_LITERAL(28, 161, 220, 51, 147, 166, 27, 251)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__216_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__216_value_aux_2),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__215_value),LEAN_SCALAR_PTR_LITERAL(38, 154, 100, 7, 36, 151, 229, 248)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__216 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__216_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__217_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "diagnostics"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__217 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__217_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__218_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__218_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__218_value_aux_0),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213_value),LEAN_SCALAR_PTR_LITERAL(210, 104, 224, 237, 184, 44, 1, 94)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__218_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__218_value_aux_1),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__214_value),LEAN_SCALAR_PTR_LITERAL(28, 161, 220, 51, 147, 166, 27, 251)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__218_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__218_value_aux_2),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__217_value),LEAN_SCALAR_PTR_LITERAL(55, 163, 94, 227, 214, 131, 172, 9)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__218 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__218_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__219_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "DiagnosticWith"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__219 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__219_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__220_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "fullRange\?"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__220 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__220_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__221_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__221_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__221_value_aux_0),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213_value),LEAN_SCALAR_PTR_LITERAL(210, 104, 224, 237, 184, 44, 1, 94)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__221_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__221_value_aux_1),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__219_value),LEAN_SCALAR_PTR_LITERAL(215, 36, 183, 1, 15, 160, 190, 39)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__221_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__221_value_aux_2),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__220_value),LEAN_SCALAR_PTR_LITERAL(176, 125, 112, 16, 36, 43, 12, 46)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__221 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__221_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__222_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "isSilent\?"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__222 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__222_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__223_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__223_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__223_value_aux_0),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213_value),LEAN_SCALAR_PTR_LITERAL(210, 104, 224, 237, 184, 44, 1, 94)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__223_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__223_value_aux_1),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__219_value),LEAN_SCALAR_PTR_LITERAL(215, 36, 183, 1, 15, 160, 190, 39)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__223_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__223_value_aux_2),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__222_value),LEAN_SCALAR_PTR_LITERAL(28, 165, 75, 228, 32, 85, 141, 114)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__223 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__223_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__224_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "leanTags\?"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__224 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__224_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__225_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__225_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__225_value_aux_0),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213_value),LEAN_SCALAR_PTR_LITERAL(210, 104, 224, 237, 184, 44, 1, 94)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__225_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__225_value_aux_1),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__219_value),LEAN_SCALAR_PTR_LITERAL(215, 36, 183, 1, 15, 160, 190, 39)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__225_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__225_value_aux_2),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__224_value),LEAN_SCALAR_PTR_LITERAL(102, 20, 67, 151, 102, 247, 180, 104)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__225 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__225_value;
-static const lean_array_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__226_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*5, .m_other = 0, .m_tag = 246}, .m_size = 5, .m_capacity = 5, .m_data = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__216_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__218_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__221_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__223_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__225_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__226 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__226_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__227_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 2}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__226_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__227 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__227_value;
-static const lean_array_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__228_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 246}, .m_size = 1, .m_capacity = 1, .m_data = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__227_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__228 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__228_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__229_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 508, .m_capacity = 508, .m_length = 507, .m_data = "Emitted by the language server whenever a new set of diagnostics becomes available for a file. Unlike most language servers, the Lean language server emits this notification incrementally while processing the file, not only when the full file has been processed. If the client sets `LeanClientCapabilities.incrementalDiagnosticSupport` and `isIncremental` is `true`, the diagnostics in the notification should be appended to the existing diagnostics for the same document version rather than replacing them."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__229 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__229_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__230_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__212_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__228_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__229_value),LEAN_SCALAR_PTR_LITERAL(1, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__230 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__230_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__231_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 2}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__230_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__231 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__231_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__232_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 20, .m_capacity = 20, .m_length = 19, .m_data = "$/lean/fileProgress"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__232 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__232_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__233_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 84, .m_capacity = 84, .m_length = 83, .m_data = "Emitted by the language server whenever the elaboration progress of a file changes."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__233 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__233_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__234_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__232_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__233_value),LEAN_SCALAR_PTR_LITERAL(1, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__234 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__234_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__235_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 2}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__234_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__235 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__235_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__236_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 24, .m_capacity = 24, .m_length = 23, .m_data = "textDocument/completion"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__236 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__236_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__237_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 115, .m_capacity = 115, .m_length = 114, .m_data = "Emitted in VS Code when auto-completion is triggered, e.g. automatically while typing or after hitting Ctrl+Space."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__237 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__237_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__238_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__236_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__237_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__238 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__238_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__239_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__238_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__239 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__239_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__240_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "$/cancelRequest"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__240 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__240_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__241_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 98, .m_capacity = 98, .m_length = 97, .m_data = "Emitted in VS Code when a running request is cancelled, e.g. when the document state has changed."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__241 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__241_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__242_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__240_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__241_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__242 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__242_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__243_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 2}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__242_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__243 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__243_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__244_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "initialize"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__244 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__244_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__245_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 138, .m_capacity = 138, .m_length = 137, .m_data = "The Lean language server currently ignores almost all standard client capabilities and expects clients to be sufficiently fully-featured."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__245 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__245_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__246_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__245_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__246 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__246_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__247_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 131, .m_capacity = 131, .m_length = 130, .m_data = "The `InitializeParams.rootUri\?` field is not used by the language server - it instead uses the cwd of the language server process."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__247 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__247_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__248_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__247_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__248 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__248_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__249_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 17, .m_capacity = 17, .m_length = 16, .m_data = "InitializeParams"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__249 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__249_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__250_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 23, .m_capacity = 23, .m_length = 22, .m_data = "initializationOptions\?"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__250 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__250_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__251_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__251_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__251_value_aux_0),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213_value),LEAN_SCALAR_PTR_LITERAL(210, 104, 224, 237, 184, 44, 1, 94)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__251_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__251_value_aux_1),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__249_value),LEAN_SCALAR_PTR_LITERAL(210, 129, 109, 238, 39, 173, 28, 33)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__251_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__251_value_aux_2),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__250_value),LEAN_SCALAR_PTR_LITERAL(178, 92, 178, 210, 73, 240, 30, 53)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__251 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__251_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__252_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "capabilities"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__252 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__252_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__253_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__253_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__253_value_aux_0),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213_value),LEAN_SCALAR_PTR_LITERAL(210, 104, 224, 237, 184, 44, 1, 94)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__253_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__253_value_aux_1),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__249_value),LEAN_SCALAR_PTR_LITERAL(210, 129, 109, 238, 39, 173, 28, 33)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__253_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__253_value_aux_2),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__252_value),LEAN_SCALAR_PTR_LITERAL(111, 129, 20, 50, 246, 137, 58, 110)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__253 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__253_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__254_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 19, .m_capacity = 19, .m_length = 18, .m_data = "ClientCapabilities"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__254 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__254_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__255_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "lean\?"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__255 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__255_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__256_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__256_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__256_value_aux_0),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213_value),LEAN_SCALAR_PTR_LITERAL(210, 104, 224, 237, 184, 44, 1, 94)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__256_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__256_value_aux_1),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__254_value),LEAN_SCALAR_PTR_LITERAL(129, 225, 118, 144, 36, 222, 122, 79)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__256_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__256_value_aux_2),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__255_value),LEAN_SCALAR_PTR_LITERAL(163, 215, 246, 177, 170, 103, 94, 175)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__256 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__256_value;
-static const lean_array_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__257_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*3, .m_other = 0, .m_tag = 246}, .m_size = 3, .m_capacity = 3, .m_data = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__251_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__253_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__256_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__257 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__257_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__258_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 2}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__257_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__258 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__258_value;
-static const lean_array_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__259_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*3, .m_other = 0, .m_tag = 246}, .m_size = 3, .m_capacity = 3, .m_data = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__246_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__248_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__258_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__259 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__259_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__260_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 160, .m_capacity = 160, .m_length = 159, .m_data = "Emitted when the language server is being initialized. The server is only started once an `initialized` notification is emitted after the `initialize` request."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__260 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__260_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__261_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__244_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__259_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__260_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__261 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__261_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__262_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__261_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__262 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__262_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__263_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "initialized"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__263 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__263_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__264_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 74, .m_capacity = 74, .m_length = 73, .m_data = "Emitted after a response to the `initialize` request to start the server."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__264 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__264_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__265_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__263_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__264_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__265 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__265_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__266_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 2}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__265_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__266 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__266_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__267_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "shutdown"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__267 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__267_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__268_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 109, .m_capacity = 109, .m_length = 108, .m_data = "Emitted when the language server is being asked to shut down and deliver responses for all pending requests."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__268 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__268_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__269_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__267_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__268_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__269 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__269_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__270_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__269_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__270 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__270_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__271_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "exit"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__271 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__271_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__272_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 78, .m_capacity = 78, .m_length = 77, .m_data = "Emitted once the language server should shut down after a `shutdown` request."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__272 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__272_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__273_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__271_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__272_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__273 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__273_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__274_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 2}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__273_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__274 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__274_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__275_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 26, .m_capacity = 26, .m_length = 25, .m_data = "client/registerCapability"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__275 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__275_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__276_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 193, .m_capacity = 193, .m_length = 192, .m_data = "Emitted by the language server after receiving the `initialized` notification to register file watchers for `.lean` and `.ilean` files using the `workspace/didChangeWatchedFiles` registration."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__276 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__276_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__277_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__275_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__276_value),LEAN_SCALAR_PTR_LITERAL(1, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__277 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__277_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__278_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__277_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__278 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__278_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__279_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 21, .m_capacity = 21, .m_length = 20, .m_data = "textDocument/didOpen"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__279 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__279_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__280_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 30, .m_capacity = 30, .m_length = 29, .m_data = "LeanDidOpenTextDocumentParams"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__280 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__280_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__281_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 21, .m_capacity = 21, .m_length = 20, .m_data = "dependencyBuildMode\?"};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__281 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__281_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__282_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__282_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__282_value_aux_0),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213_value),LEAN_SCALAR_PTR_LITERAL(210, 104, 224, 237, 184, 44, 1, 94)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__282_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__282_value_aux_1),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__280_value),LEAN_SCALAR_PTR_LITERAL(68, 229, 182, 177, 131, 116, 103, 58)}};
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__282_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__282_value_aux_2),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__281_value),LEAN_SCALAR_PTR_LITERAL(72, 185, 210, 155, 150, 217, 135, 8)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__282 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__282_value;
-static const lean_array_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__283_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 246}, .m_size = 1, .m_capacity = 1, .m_data = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__282_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__283 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__283_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__284_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 2}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__283_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__284 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__284_value;
-static const lean_array_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__285_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 246}, .m_size = 1, .m_capacity = 1, .m_data = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__284_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__285 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__285_value;
-static const lean_string_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__286_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 141, .m_capacity = 141, .m_length = 140, .m_data = "Emitted in VS Code when a text document is opened. VS Code may sometimes emit this notification for files that were not opened in an editor."};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__286 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__286_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__287_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__279_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__285_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__286_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__287 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__287_value;
-static const lean_ctor_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__288_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 2}, .m_objs = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__287_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__288 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__288_value;
-static const lean_array_object l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__289_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*59, .m_other = 0, .m_tag = 246}, .m_size = 59, .m_capacity = 59, .m_data = {((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__243_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__262_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__266_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__270_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__274_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__278_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__288_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__199_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__203_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__207_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__211_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__231_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__235_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__239_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__172_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__176_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__180_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__184_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__188_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__192_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__195_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__153_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__157_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__161_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__168_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__134_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__141_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__145_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__149_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__106_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__110_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__114_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__118_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__122_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__126_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__130_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__90_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__94_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__98_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__102_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__75_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__79_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__82_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__86_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__46_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__50_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__54_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__58_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__62_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__66_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__70_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__27_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__31_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__36_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__41_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__6_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__11_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__16_value),((lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__22_value)}};
-static const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__289 = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__289_value;
-LEAN_EXPORT const lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview = (const lean_object*)&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__289_value;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__2;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__3;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__4;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__5;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__6;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__7;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__8;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__9;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__10;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__11;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__12;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__13;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__14;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__15;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__16;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__17;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__18;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__19;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__20_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__20;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__21_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__21;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__22_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__22;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__23_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__23;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__24_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__24;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__26_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__26;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__27_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__27;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__28_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__28;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__29_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__29;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__30_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__30;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__31_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__31;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__32_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__32;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__33_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__33;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__34_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__34;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__35_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__35;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__36_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__36;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__37_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__37;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__38_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__38;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__39_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__39;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__40_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__40;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__41_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__41;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__42_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__42;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__44_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__44;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__45_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__45;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__46_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__46;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__47_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__47;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__48_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__48;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__49_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__49;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__50_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__50;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__51_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__51;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__52_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__52;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__53_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__53;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__54_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__54;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__55_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__55;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__56_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__56;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__57_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__57;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__58_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__58;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__59_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__59;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__60_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__60;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__61_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__61;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__62_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__62;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__63_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__63;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__64_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__64;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__65_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__65;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__66_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__66;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__67_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__67;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__68_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__68;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__69_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__69;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__70_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__70;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__71_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__71;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__73_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__73;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__74_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__74;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__75_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__75;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__76_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__76;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__77_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__77;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__78_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__78;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__79_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__79;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__80_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__80;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__81_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__81;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__82_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__82;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__83_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__83;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__84_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__84;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__85_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__85;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__86_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__86;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__87_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__87;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__88_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__88;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__89_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__89;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__90_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__90;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__91_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__91;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__92_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__92;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__93_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__93;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__94_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__94;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__95_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__95;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__96_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__96;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__97_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__97;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__98_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__98;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__99_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__99;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__100_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__100;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__101_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__101;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__102_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__102;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__103_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__103;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__104_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__104;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__105_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__105;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__106_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__106;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__107_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__107;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__108_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__108;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__109_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__109;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__110_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__110;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__111_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__111;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__112_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__112;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__113_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__113;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__114_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__114;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__115_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__115;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__116_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__116;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__117_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__117;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__118_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__118;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__119_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__119;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__120_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__120;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__121_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__121;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__122_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__122;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__123_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__123;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__124_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__124;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__125_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__125;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__126_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__126;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__127_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__127;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__128_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__128;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__129_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__129;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__130_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__130;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__131_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__131;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__132_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__132;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__133_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__133;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__134_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__134;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__135_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__135;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__136_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__136;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__137_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__137;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__138_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__138;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__139_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__139;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__140_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__140;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__141_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__141;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__142_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__142;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__143_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__143;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__144_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__144;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__145_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__145;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__146_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__146;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__147_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__147;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__148_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__148;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__149_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__149;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__150_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__150;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__151_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__151;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__152_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__152;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__153_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__153;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__154_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__154;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__155_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__155;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__156_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__156;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__157_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__157;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__158_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__158;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__159_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__159;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__160_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__160;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__161_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__161;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__162_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__162;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__163_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__163;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__164_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__164;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__165_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__165;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__166_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__166;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__167_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__167;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__168_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__168;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__169_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__169;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__170_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__170;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__171_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__171;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__172_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__172;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__173_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__173;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__174_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__174;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__175_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__175;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__176_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__176;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__177_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__177;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__178_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__178;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__179_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__179;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__180_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__180;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__181_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__181;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__182_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__182;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__183_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__183;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__184_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__184;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__185_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__185;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__186_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__186;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__187_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__187;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__188_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__188;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__189_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__189;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__190_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__190;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__191_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__191;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__192_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__192;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__193_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__193;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__194_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__194;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__195_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__195;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__196_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__196;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__197_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__197;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__198_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__198;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__199_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__199;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__200_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__200;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__201_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__201;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__202_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__202;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__203_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__203;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__204_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__204;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__205_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__205;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__206_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__206;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__207_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__207;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__208_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__208;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__209_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__209;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__210_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__210;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__211_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__211;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__212_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__212;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__214_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__214;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__215_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__215;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__216_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__216;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__217_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__217;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__218_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__218;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__219_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__219;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__220_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__220;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__221_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__221;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__222_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__222;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__223_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__223;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__224_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__224;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__225_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__225;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__226_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__226;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__227_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__227;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__228_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__228;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__229_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__229;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__230_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__230;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__231_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__231;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__232_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__232;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__233_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__233;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__234_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__234;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__235_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__235;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__236_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__236;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__237_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__237;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__238_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__238;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__239_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__239;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__240_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__240;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__241_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__241;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__242_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__242;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__243_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__243;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__244_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__244;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__245_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__245;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__246_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__246;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__247_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__247;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__248_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__248;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__249_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__249;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__250_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__250;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__251_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__251;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__252_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__252;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__253_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__253;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__254_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__254;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__255_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__255;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__256_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__256;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__257_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__257;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__258_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__258;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__259_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__259;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__260_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__260;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__261_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__261;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__262_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__262;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__263_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__263;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__264_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__264;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__265_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__265;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__266_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__266;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__267_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__267;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__268_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__268;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__269_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__269;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__270_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__270;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__271_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__271;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__272_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__272;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__273_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__273;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__274_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__274;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__275_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__275;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__276_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__276;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__277_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__277;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__278_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__278;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__279_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__279;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__280_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__280;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__281_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__281;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__282_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__282;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__283_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__283;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__284_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__284;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__285_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__285;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__286_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__286;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__287_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__287;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__288_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__288;
+static lean_once_cell_t l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__289_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__289;
+LEAN_EXPORT lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview;
 LEAN_EXPORT lean_object* l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_ProtocolExtensionKind_ctorIdx(lean_object* v_x_1_){
 _start:
 {
@@ -1003,6 +954,3131 @@ v___x_126_ = l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_Me
 return v___x_126_;
 }
 }
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0(void){
+_start:
+{
+lean_object* v___x_127_; 
+v___x_127_ = lean_mk_string_unchecked("Lean", 4, 4);
+return v___x_127_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1(void){
+_start:
+{
+lean_object* v___x_128_; 
+v___x_128_ = lean_mk_string_unchecked("Widget", 6, 6);
+return v___x_128_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__2(void){
+_start:
+{
+lean_object* v___x_129_; 
+v___x_129_ = lean_mk_string_unchecked("lazyTraceChildrenToInteractive", 30, 30);
+return v___x_129_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__3(void){
+_start:
+{
+lean_object* v___x_130_; lean_object* v___x_131_; lean_object* v___x_132_; lean_object* v___x_133_; 
+v___x_130_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__2, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__2_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__2);
+v___x_131_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1);
+v___x_132_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0);
+v___x_133_ = l_Lean_Name_mkStr3(v___x_132_, v___x_131_, v___x_130_);
+return v___x_133_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__4(void){
+_start:
+{
+lean_object* v___x_134_; 
+v___x_134_ = lean_mk_string_unchecked("Emitted in VS Code when unfolding a lazy trace message in the InfoView.", 71, 71);
+return v___x_134_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__5(void){
+_start:
+{
+lean_object* v___x_135_; lean_object* v___x_136_; lean_object* v___x_137_; 
+v___x_135_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__4, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__4_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__4);
+v___x_136_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__3, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__3_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__3);
+v___x_137_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_137_, 0, v___x_136_);
+lean_ctor_set(v___x_137_, 1, v___x_135_);
+return v___x_137_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__6(void){
+_start:
+{
+lean_object* v___x_138_; lean_object* v___x_139_; 
+v___x_138_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__5, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__5_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__5);
+v___x_139_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_139_, 0, v___x_138_);
+return v___x_139_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__7(void){
+_start:
+{
+lean_object* v___x_140_; 
+v___x_140_ = lean_mk_string_unchecked("highlightMatches", 16, 16);
+return v___x_140_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__8(void){
+_start:
+{
+lean_object* v___x_141_; lean_object* v___x_142_; lean_object* v___x_143_; lean_object* v___x_144_; 
+v___x_141_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__7, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__7_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__7);
+v___x_142_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1);
+v___x_143_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0);
+v___x_144_ = l_Lean_Name_mkStr3(v___x_143_, v___x_142_, v___x_141_);
+return v___x_144_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__9(void){
+_start:
+{
+lean_object* v___x_145_; 
+v___x_145_ = lean_mk_string_unchecked("Emitted in VS Code when using the trace search in the InfoView.", 63, 63);
+return v___x_145_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__10(void){
+_start:
+{
+lean_object* v___x_146_; lean_object* v___x_147_; lean_object* v___x_148_; 
+v___x_146_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__9, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__9_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__9);
+v___x_147_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__8, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__8_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__8);
+v___x_148_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_148_, 0, v___x_147_);
+lean_ctor_set(v___x_148_, 1, v___x_146_);
+return v___x_148_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__11(void){
+_start:
+{
+lean_object* v___x_149_; lean_object* v___x_150_; 
+v___x_149_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__10, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__10_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__10);
+v___x_150_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_150_, 0, v___x_149_);
+return v___x_150_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__12(void){
+_start:
+{
+lean_object* v___x_151_; 
+v___x_151_ = lean_mk_string_unchecked("getWidgetSource", 15, 15);
+return v___x_151_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__13(void){
+_start:
+{
+lean_object* v___x_152_; lean_object* v___x_153_; lean_object* v___x_154_; lean_object* v___x_155_; 
+v___x_152_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__12, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__12_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__12);
+v___x_153_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1);
+v___x_154_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0);
+v___x_155_ = l_Lean_Name_mkStr3(v___x_154_, v___x_153_, v___x_152_);
+return v___x_155_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__14(void){
+_start:
+{
+lean_object* v___x_156_; 
+v___x_156_ = lean_mk_string_unchecked("Emitted in VS Code when a widget is imported from another widget.", 65, 65);
+return v___x_156_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__15(void){
+_start:
+{
+lean_object* v___x_157_; lean_object* v___x_158_; lean_object* v___x_159_; 
+v___x_157_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__14, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__14_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__14);
+v___x_158_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__13, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__13_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__13);
+v___x_159_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_159_, 0, v___x_158_);
+lean_ctor_set(v___x_159_, 1, v___x_157_);
+return v___x_159_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__16(void){
+_start:
+{
+lean_object* v___x_160_; lean_object* v___x_161_; 
+v___x_160_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__15, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__15_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__15);
+v___x_161_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_161_, 0, v___x_160_);
+return v___x_161_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__17(void){
+_start:
+{
+lean_object* v___x_162_; 
+v___x_162_ = lean_mk_string_unchecked("InteractiveDiagnostics", 22, 22);
+return v___x_162_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__18(void){
+_start:
+{
+lean_object* v___x_163_; 
+v___x_163_ = lean_mk_string_unchecked("msgToInteractive", 16, 16);
+return v___x_163_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__19(void){
+_start:
+{
+lean_object* v___x_164_; lean_object* v___x_165_; lean_object* v___x_166_; lean_object* v___x_167_; lean_object* v___x_168_; 
+v___x_164_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__18, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__18_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__18);
+v___x_165_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__17, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__17_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__17);
+v___x_166_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1);
+v___x_167_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0);
+v___x_168_ = l_Lean_Name_mkStr4(v___x_167_, v___x_166_, v___x_165_, v___x_164_);
+return v___x_168_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__20(void){
+_start:
+{
+lean_object* v___x_169_; 
+v___x_169_ = lean_mk_string_unchecked("Emitted in VS Code in some widgets to convert non-interactive messages to interactive ones.", 91, 91);
+return v___x_169_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__21(void){
+_start:
+{
+lean_object* v___x_170_; lean_object* v___x_171_; lean_object* v___x_172_; 
+v___x_170_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__20, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__20_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__20);
+v___x_171_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__19, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__19_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__19);
+v___x_172_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_172_, 0, v___x_171_);
+lean_ctor_set(v___x_172_, 1, v___x_170_);
+return v___x_172_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__22(void){
+_start:
+{
+lean_object* v___x_173_; lean_object* v___x_174_; 
+v___x_173_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__21, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__21_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__21);
+v___x_174_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_174_, 0, v___x_173_);
+return v___x_174_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__23(void){
+_start:
+{
+lean_object* v___x_175_; 
+v___x_175_ = lean_mk_string_unchecked("getInteractiveTermGoal", 22, 22);
+return v___x_175_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__24(void){
+_start:
+{
+lean_object* v___x_176_; lean_object* v___x_177_; lean_object* v___x_178_; lean_object* v___x_179_; 
+v___x_176_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__23, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__23_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__23);
+v___x_177_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1);
+v___x_178_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0);
+v___x_179_ = l_Lean_Name_mkStr3(v___x_178_, v___x_177_, v___x_176_);
+return v___x_179_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25(void){
+_start:
+{
+lean_object* v___x_180_; 
+v___x_180_ = lean_mk_string_unchecked("Emitted in VS Code when the text cursor is moved, the set of diagnostics at the cursor position changes or the file starts or finishes processing.", 146, 146);
+return v___x_180_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__26(void){
+_start:
+{
+lean_object* v___x_181_; lean_object* v___x_182_; lean_object* v___x_183_; 
+v___x_181_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25);
+v___x_182_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__24, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__24_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__24);
+v___x_183_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_183_, 0, v___x_182_);
+lean_ctor_set(v___x_183_, 1, v___x_181_);
+return v___x_183_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__27(void){
+_start:
+{
+lean_object* v___x_184_; lean_object* v___x_185_; 
+v___x_184_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__26, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__26_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__26);
+v___x_185_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_185_, 0, v___x_184_);
+return v___x_185_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__28(void){
+_start:
+{
+lean_object* v___x_186_; 
+v___x_186_ = lean_mk_string_unchecked("getWidgets", 10, 10);
+return v___x_186_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__29(void){
+_start:
+{
+lean_object* v___x_187_; lean_object* v___x_188_; lean_object* v___x_189_; lean_object* v___x_190_; 
+v___x_187_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__28, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__28_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__28);
+v___x_188_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1);
+v___x_189_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0);
+v___x_190_ = l_Lean_Name_mkStr3(v___x_189_, v___x_188_, v___x_187_);
+return v___x_190_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__30(void){
+_start:
+{
+lean_object* v___x_191_; lean_object* v___x_192_; lean_object* v___x_193_; 
+v___x_191_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25);
+v___x_192_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__29, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__29_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__29);
+v___x_193_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_193_, 0, v___x_192_);
+lean_ctor_set(v___x_193_, 1, v___x_191_);
+return v___x_193_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__31(void){
+_start:
+{
+lean_object* v___x_194_; lean_object* v___x_195_; 
+v___x_194_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__30, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__30_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__30);
+v___x_195_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_195_, 0, v___x_194_);
+return v___x_195_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__32(void){
+_start:
+{
+lean_object* v___x_196_; 
+v___x_196_ = lean_mk_string_unchecked("infoToInteractive", 17, 17);
+return v___x_196_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__33(void){
+_start:
+{
+lean_object* v___x_197_; lean_object* v___x_198_; lean_object* v___x_199_; lean_object* v___x_200_; lean_object* v___x_201_; 
+v___x_197_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__32, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__32_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__32);
+v___x_198_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__17, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__17_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__17);
+v___x_199_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1);
+v___x_200_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0);
+v___x_201_ = l_Lean_Name_mkStr4(v___x_200_, v___x_199_, v___x_198_, v___x_197_);
+return v___x_201_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__34(void){
+_start:
+{
+lean_object* v___x_202_; 
+v___x_202_ = lean_mk_string_unchecked("Emitted in VS Code when hovering over terms in the InfoView.", 60, 60);
+return v___x_202_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__35(void){
+_start:
+{
+lean_object* v___x_203_; lean_object* v___x_204_; lean_object* v___x_205_; 
+v___x_203_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__34, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__34_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__34);
+v___x_204_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__33, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__33_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__33);
+v___x_205_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_205_, 0, v___x_204_);
+lean_ctor_set(v___x_205_, 1, v___x_203_);
+return v___x_205_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__36(void){
+_start:
+{
+lean_object* v___x_206_; lean_object* v___x_207_; 
+v___x_206_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__35, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__35_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__35);
+v___x_207_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_207_, 0, v___x_206_);
+return v___x_207_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__37(void){
+_start:
+{
+lean_object* v___x_208_; 
+v___x_208_ = lean_mk_string_unchecked("getGoToLocation", 15, 15);
+return v___x_208_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__38(void){
+_start:
+{
+lean_object* v___x_209_; lean_object* v___x_210_; lean_object* v___x_211_; lean_object* v___x_212_; 
+v___x_209_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__37, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__37_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__37);
+v___x_210_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1);
+v___x_211_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0);
+v___x_212_ = l_Lean_Name_mkStr3(v___x_211_, v___x_210_, v___x_209_);
+return v___x_212_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__39(void){
+_start:
+{
+lean_object* v___x_213_; 
+v___x_213_ = lean_mk_string_unchecked("Emitted in VS Code when clicking 'Go to Definition' in the context menu of the InfoView or using Ctrl+Click in the InfoView.", 124, 124);
+return v___x_213_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__40(void){
+_start:
+{
+lean_object* v___x_214_; lean_object* v___x_215_; lean_object* v___x_216_; 
+v___x_214_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__39, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__39_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__39);
+v___x_215_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__38, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__38_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__38);
+v___x_216_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_216_, 0, v___x_215_);
+lean_ctor_set(v___x_216_, 1, v___x_214_);
+return v___x_216_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__41(void){
+_start:
+{
+lean_object* v___x_217_; lean_object* v___x_218_; 
+v___x_217_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__40, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__40_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__40);
+v___x_218_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_218_, 0, v___x_217_);
+return v___x_218_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__42(void){
+_start:
+{
+lean_object* v___x_219_; 
+v___x_219_ = lean_mk_string_unchecked("$/lean/waitForILeans", 20, 20);
+return v___x_219_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43(void){
+_start:
+{
+lean_object* v___x_220_; lean_object* v___x_221_; lean_object* v___x_222_; lean_object* v___x_223_; 
+v___x_220_ = lean_box(1);
+v___x_221_ = lean_unsigned_to_nat(1u);
+v___x_222_ = lean_mk_empty_array_with_capacity(v___x_221_);
+v___x_223_ = lean_array_push(v___x_222_, v___x_220_);
+return v___x_223_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__44(void){
+_start:
+{
+lean_object* v___x_224_; 
+v___x_224_ = lean_mk_string_unchecked("Not used in the editor. Emitted in interactive tests to wait for all .ileans in the project and the .ilean of the given file to be loaded.", 138, 138);
+return v___x_224_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__45(void){
+_start:
+{
+lean_object* v___x_225_; lean_object* v___x_226_; uint8_t v___x_227_; lean_object* v___x_228_; lean_object* v___x_229_; 
+v___x_225_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__44, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__44_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__44);
+v___x_226_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43);
+v___x_227_ = 0;
+v___x_228_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__42, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__42_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__42);
+v___x_229_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_229_, 0, v___x_228_);
+lean_ctor_set(v___x_229_, 1, v___x_226_);
+lean_ctor_set(v___x_229_, 2, v___x_225_);
+lean_ctor_set_uint8(v___x_229_, sizeof(void*)*3, v___x_227_);
+return v___x_229_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__46(void){
+_start:
+{
+lean_object* v___x_230_; lean_object* v___x_231_; 
+v___x_230_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__45, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__45_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__45);
+v___x_231_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_231_, 0, v___x_230_);
+return v___x_231_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__47(void){
+_start:
+{
+lean_object* v___x_232_; 
+v___x_232_ = lean_mk_string_unchecked("$/lean/rpc/connect", 18, 18);
+return v___x_232_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__48(void){
+_start:
+{
+lean_object* v___x_233_; 
+v___x_233_ = lean_mk_string_unchecked("Emitted in VS Code when an RPC session for InfoView interactivity is initially set up.", 86, 86);
+return v___x_233_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__49(void){
+_start:
+{
+lean_object* v___x_234_; lean_object* v___x_235_; uint8_t v___x_236_; lean_object* v___x_237_; lean_object* v___x_238_; 
+v___x_234_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__48, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__48_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__48);
+v___x_235_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43);
+v___x_236_ = 0;
+v___x_237_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__47, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__47_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__47);
+v___x_238_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_238_, 0, v___x_237_);
+lean_ctor_set(v___x_238_, 1, v___x_235_);
+lean_ctor_set(v___x_238_, 2, v___x_234_);
+lean_ctor_set_uint8(v___x_238_, sizeof(void*)*3, v___x_236_);
+return v___x_238_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__50(void){
+_start:
+{
+lean_object* v___x_239_; lean_object* v___x_240_; 
+v___x_239_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__49, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__49_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__49);
+v___x_240_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_240_, 0, v___x_239_);
+return v___x_240_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__51(void){
+_start:
+{
+lean_object* v___x_241_; 
+v___x_241_ = lean_mk_string_unchecked("$/lean/rpc/release", 18, 18);
+return v___x_241_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__52(void){
+_start:
+{
+lean_object* v___x_242_; 
+v___x_242_ = lean_mk_string_unchecked("Emitted in VS Code when an RPC object in the server (the lifecycle of which is managed by the client) is freed by the client.", 125, 125);
+return v___x_242_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__53(void){
+_start:
+{
+lean_object* v___x_243_; lean_object* v___x_244_; uint8_t v___x_245_; lean_object* v___x_246_; lean_object* v___x_247_; 
+v___x_243_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__52, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__52_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__52);
+v___x_244_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43);
+v___x_245_ = 0;
+v___x_246_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__51, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__51_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__51);
+v___x_247_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_247_, 0, v___x_246_);
+lean_ctor_set(v___x_247_, 1, v___x_244_);
+lean_ctor_set(v___x_247_, 2, v___x_243_);
+lean_ctor_set_uint8(v___x_247_, sizeof(void*)*3, v___x_245_);
+return v___x_247_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__54(void){
+_start:
+{
+lean_object* v___x_248_; lean_object* v___x_249_; 
+v___x_248_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__53, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__53_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__53);
+v___x_249_ = lean_alloc_ctor(2, 1, 0);
+lean_ctor_set(v___x_249_, 0, v___x_248_);
+return v___x_249_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__55(void){
+_start:
+{
+lean_object* v___x_250_; 
+v___x_250_ = lean_mk_string_unchecked("$/lean/rpc/keepAlive", 20, 20);
+return v___x_250_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__56(void){
+_start:
+{
+lean_object* v___x_251_; 
+v___x_251_ = lean_mk_string_unchecked("Emitted periodically in VS Code to signal that the RPC client has not disconnected yet to keep the RPC session alive.", 117, 117);
+return v___x_251_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__57(void){
+_start:
+{
+lean_object* v___x_252_; lean_object* v___x_253_; uint8_t v___x_254_; lean_object* v___x_255_; lean_object* v___x_256_; 
+v___x_252_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__56, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__56_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__56);
+v___x_253_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43);
+v___x_254_ = 0;
+v___x_255_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__55, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__55_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__55);
+v___x_256_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_256_, 0, v___x_255_);
+lean_ctor_set(v___x_256_, 1, v___x_253_);
+lean_ctor_set(v___x_256_, 2, v___x_252_);
+lean_ctor_set_uint8(v___x_256_, sizeof(void*)*3, v___x_254_);
+return v___x_256_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__58(void){
+_start:
+{
+lean_object* v___x_257_; lean_object* v___x_258_; 
+v___x_257_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__57, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__57_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__57);
+v___x_258_ = lean_alloc_ctor(2, 1, 0);
+lean_ctor_set(v___x_258_, 0, v___x_257_);
+return v___x_258_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__59(void){
+_start:
+{
+lean_object* v___x_259_; 
+v___x_259_ = lean_mk_string_unchecked("$/lean/rpc/call", 15, 15);
+return v___x_259_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__60(void){
+_start:
+{
+lean_object* v___x_260_; 
+v___x_260_ = lean_mk_string_unchecked("Emitted in VS Code when an RPC method is called. `RpcCallParams.method` and `RpcCallParams.params` can be any of the builtin `.rpcRequest`s described in this overview or any custom RPC methods tagged with `@[server_rpc_method]` that can be set up for use in the widget system.", 276, 276);
+return v___x_260_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__61(void){
+_start:
+{
+lean_object* v___x_261_; lean_object* v___x_262_; uint8_t v___x_263_; lean_object* v___x_264_; lean_object* v___x_265_; 
+v___x_261_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__60, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__60_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__60);
+v___x_262_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43);
+v___x_263_ = 0;
+v___x_264_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__59, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__59_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__59);
+v___x_265_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_265_, 0, v___x_264_);
+lean_ctor_set(v___x_265_, 1, v___x_262_);
+lean_ctor_set(v___x_265_, 2, v___x_261_);
+lean_ctor_set_uint8(v___x_265_, sizeof(void*)*3, v___x_263_);
+return v___x_265_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__62(void){
+_start:
+{
+lean_object* v___x_266_; lean_object* v___x_267_; 
+v___x_266_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__61, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__61_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__61);
+v___x_267_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_267_, 0, v___x_266_);
+return v___x_267_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__63(void){
+_start:
+{
+lean_object* v___x_268_; 
+v___x_268_ = lean_mk_string_unchecked("getInteractiveDiagnostics", 25, 25);
+return v___x_268_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__64(void){
+_start:
+{
+lean_object* v___x_269_; lean_object* v___x_270_; lean_object* v___x_271_; lean_object* v___x_272_; 
+v___x_269_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__63, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__63_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__63);
+v___x_270_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1);
+v___x_271_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0);
+v___x_272_ = l_Lean_Name_mkStr3(v___x_271_, v___x_270_, v___x_269_);
+return v___x_272_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__65(void){
+_start:
+{
+lean_object* v___x_273_; lean_object* v___x_274_; lean_object* v___x_275_; 
+v___x_273_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25);
+v___x_274_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__64, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__64_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__64);
+v___x_275_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_275_, 0, v___x_274_);
+lean_ctor_set(v___x_275_, 1, v___x_273_);
+return v___x_275_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__66(void){
+_start:
+{
+lean_object* v___x_276_; lean_object* v___x_277_; 
+v___x_276_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__65, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__65_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__65);
+v___x_277_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_277_, 0, v___x_276_);
+return v___x_277_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__67(void){
+_start:
+{
+lean_object* v___x_278_; 
+v___x_278_ = lean_mk_string_unchecked("getInteractiveGoals", 19, 19);
+return v___x_278_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__68(void){
+_start:
+{
+lean_object* v___x_279_; lean_object* v___x_280_; lean_object* v___x_281_; lean_object* v___x_282_; 
+v___x_279_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__67, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__67_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__67);
+v___x_280_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__1);
+v___x_281_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0);
+v___x_282_ = l_Lean_Name_mkStr3(v___x_281_, v___x_280_, v___x_279_);
+return v___x_282_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__69(void){
+_start:
+{
+lean_object* v___x_283_; lean_object* v___x_284_; lean_object* v___x_285_; 
+v___x_283_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__25);
+v___x_284_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__68, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__68_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__68);
+v___x_285_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_285_, 0, v___x_284_);
+lean_ctor_set(v___x_285_, 1, v___x_283_);
+return v___x_285_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__70(void){
+_start:
+{
+lean_object* v___x_286_; lean_object* v___x_287_; 
+v___x_286_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__69, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__69_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__69);
+v___x_287_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_287_, 0, v___x_286_);
+return v___x_287_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__71(void){
+_start:
+{
+lean_object* v___x_288_; 
+v___x_288_ = lean_mk_string_unchecked("workspace/symbol", 16, 16);
+return v___x_288_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72(void){
+_start:
+{
+lean_object* v___x_289_; lean_object* v___x_290_; lean_object* v___x_291_; lean_object* v___x_292_; 
+v___x_289_ = lean_box(0);
+v___x_290_ = lean_unsigned_to_nat(1u);
+v___x_291_ = lean_mk_empty_array_with_capacity(v___x_290_);
+v___x_292_ = lean_array_push(v___x_291_, v___x_289_);
+return v___x_292_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__73(void){
+_start:
+{
+lean_object* v___x_293_; 
+v___x_293_ = lean_mk_string_unchecked("Emitted in VS Code when opening the command prompt and entering a `#` prefix with a query after it.", 99, 99);
+return v___x_293_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__74(void){
+_start:
+{
+lean_object* v___x_294_; lean_object* v___x_295_; uint8_t v___x_296_; lean_object* v___x_297_; lean_object* v___x_298_; 
+v___x_294_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__73, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__73_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__73);
+v___x_295_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_296_ = 0;
+v___x_297_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__71, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__71_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__71);
+v___x_298_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_298_, 0, v___x_297_);
+lean_ctor_set(v___x_298_, 1, v___x_295_);
+lean_ctor_set(v___x_298_, 2, v___x_294_);
+lean_ctor_set_uint8(v___x_298_, sizeof(void*)*3, v___x_296_);
+return v___x_298_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__75(void){
+_start:
+{
+lean_object* v___x_299_; lean_object* v___x_300_; 
+v___x_299_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__74, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__74_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__74);
+v___x_300_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_300_, 0, v___x_299_);
+return v___x_300_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__76(void){
+_start:
+{
+lean_object* v___x_301_; 
+v___x_301_ = lean_mk_string_unchecked("$/lean/plainGoal", 16, 16);
+return v___x_301_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__77(void){
+_start:
+{
+lean_object* v___x_302_; 
+v___x_302_ = lean_mk_string_unchecked("Not used in VS Code. Emitted in editors that do not support an interactive InfoView (e.g. Emacs) and interactive tests.", 119, 119);
+return v___x_302_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__78(void){
+_start:
+{
+lean_object* v___x_303_; lean_object* v___x_304_; uint8_t v___x_305_; lean_object* v___x_306_; lean_object* v___x_307_; 
+v___x_303_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__77, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__77_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__77);
+v___x_304_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43);
+v___x_305_ = 0;
+v___x_306_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__76, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__76_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__76);
+v___x_307_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_307_, 0, v___x_306_);
+lean_ctor_set(v___x_307_, 1, v___x_304_);
+lean_ctor_set(v___x_307_, 2, v___x_303_);
+lean_ctor_set_uint8(v___x_307_, sizeof(void*)*3, v___x_305_);
+return v___x_307_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__79(void){
+_start:
+{
+lean_object* v___x_308_; lean_object* v___x_309_; 
+v___x_308_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__78, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__78_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__78);
+v___x_309_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_309_, 0, v___x_308_);
+return v___x_309_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__80(void){
+_start:
+{
+lean_object* v___x_310_; 
+v___x_310_ = lean_mk_string_unchecked("$/lean/plainTermGoal", 20, 20);
+return v___x_310_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__81(void){
+_start:
+{
+lean_object* v___x_311_; lean_object* v___x_312_; uint8_t v___x_313_; lean_object* v___x_314_; lean_object* v___x_315_; 
+v___x_311_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__77, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__77_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__77);
+v___x_312_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43);
+v___x_313_ = 0;
+v___x_314_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__80, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__80_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__80);
+v___x_315_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_315_, 0, v___x_314_);
+lean_ctor_set(v___x_315_, 1, v___x_312_);
+lean_ctor_set(v___x_315_, 2, v___x_311_);
+lean_ctor_set_uint8(v___x_315_, sizeof(void*)*3, v___x_313_);
+return v___x_315_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__82(void){
+_start:
+{
+lean_object* v___x_316_; lean_object* v___x_317_; 
+v___x_316_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__81, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__81_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__81);
+v___x_317_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_317_, 0, v___x_316_);
+return v___x_317_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__83(void){
+_start:
+{
+lean_object* v___x_318_; 
+v___x_318_ = lean_mk_string_unchecked("textDocument/waitForDiagnostics", 31, 31);
+return v___x_318_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__84(void){
+_start:
+{
+lean_object* v___x_319_; 
+v___x_319_ = lean_mk_string_unchecked("Not used in the editor. Emitted in interactive tests to wait for all diagnostics up to a given point.", 101, 101);
+return v___x_319_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__85(void){
+_start:
+{
+lean_object* v___x_320_; lean_object* v___x_321_; uint8_t v___x_322_; lean_object* v___x_323_; lean_object* v___x_324_; 
+v___x_320_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__84, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__84_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__84);
+v___x_321_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43);
+v___x_322_ = 0;
+v___x_323_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__83, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__83_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__83);
+v___x_324_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_324_, 0, v___x_323_);
+lean_ctor_set(v___x_324_, 1, v___x_321_);
+lean_ctor_set(v___x_324_, 2, v___x_320_);
+lean_ctor_set_uint8(v___x_324_, sizeof(void*)*3, v___x_322_);
+return v___x_324_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__86(void){
+_start:
+{
+lean_object* v___x_325_; lean_object* v___x_326_; 
+v___x_325_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__85, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__85_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__85);
+v___x_326_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_326_, 0, v___x_325_);
+return v___x_326_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__87(void){
+_start:
+{
+lean_object* v___x_327_; 
+v___x_327_ = lean_mk_string_unchecked("$/lean/moduleHierarchy/imports", 30, 30);
+return v___x_327_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__88(void){
+_start:
+{
+lean_object* v___x_328_; 
+v___x_328_ = lean_mk_string_unchecked("Emitted in VS Code when expanding a node in the module hierarchy.", 65, 65);
+return v___x_328_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__89(void){
+_start:
+{
+lean_object* v___x_329_; lean_object* v___x_330_; uint8_t v___x_331_; lean_object* v___x_332_; lean_object* v___x_333_; 
+v___x_329_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__88, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__88_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__88);
+v___x_330_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43);
+v___x_331_ = 0;
+v___x_332_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__87, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__87_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__87);
+v___x_333_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_333_, 0, v___x_332_);
+lean_ctor_set(v___x_333_, 1, v___x_330_);
+lean_ctor_set(v___x_333_, 2, v___x_329_);
+lean_ctor_set_uint8(v___x_333_, sizeof(void*)*3, v___x_331_);
+return v___x_333_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__90(void){
+_start:
+{
+lean_object* v___x_334_; lean_object* v___x_335_; 
+v___x_334_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__89, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__89_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__89);
+v___x_335_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_335_, 0, v___x_334_);
+return v___x_335_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__91(void){
+_start:
+{
+lean_object* v___x_336_; 
+v___x_336_ = lean_mk_string_unchecked("$/lean/moduleHierarchy/importedBy", 33, 33);
+return v___x_336_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__92(void){
+_start:
+{
+lean_object* v___x_337_; 
+v___x_337_ = lean_mk_string_unchecked("Emitted in VS Code when expanding a node in the inverse module hierarchy.", 73, 73);
+return v___x_337_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__93(void){
+_start:
+{
+lean_object* v___x_338_; lean_object* v___x_339_; uint8_t v___x_340_; lean_object* v___x_341_; lean_object* v___x_342_; 
+v___x_338_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__92, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__92_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__92);
+v___x_339_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43);
+v___x_340_ = 0;
+v___x_341_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__91, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__91_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__91);
+v___x_342_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_342_, 0, v___x_341_);
+lean_ctor_set(v___x_342_, 1, v___x_339_);
+lean_ctor_set(v___x_342_, 2, v___x_338_);
+lean_ctor_set_uint8(v___x_342_, sizeof(void*)*3, v___x_340_);
+return v___x_342_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__94(void){
+_start:
+{
+lean_object* v___x_343_; lean_object* v___x_344_; 
+v___x_343_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__93, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__93_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__93);
+v___x_344_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_344_, 0, v___x_343_);
+return v___x_344_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__95(void){
+_start:
+{
+lean_object* v___x_345_; 
+v___x_345_ = lean_mk_string_unchecked("textDocument/prepareRename", 26, 26);
+return v___x_345_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__96(void){
+_start:
+{
+lean_object* v___x_346_; 
+v___x_346_ = lean_mk_string_unchecked("Emitted in VS Code when clicking 'Rename Symbol' in the context menu.", 69, 69);
+return v___x_346_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__97(void){
+_start:
+{
+lean_object* v___x_347_; lean_object* v___x_348_; uint8_t v___x_349_; lean_object* v___x_350_; lean_object* v___x_351_; 
+v___x_347_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__96, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__96_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__96);
+v___x_348_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_349_ = 0;
+v___x_350_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__95, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__95_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__95);
+v___x_351_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_351_, 0, v___x_350_);
+lean_ctor_set(v___x_351_, 1, v___x_348_);
+lean_ctor_set(v___x_351_, 2, v___x_347_);
+lean_ctor_set_uint8(v___x_351_, sizeof(void*)*3, v___x_349_);
+return v___x_351_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__98(void){
+_start:
+{
+lean_object* v___x_352_; lean_object* v___x_353_; 
+v___x_352_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__97, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__97_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__97);
+v___x_353_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_353_, 0, v___x_352_);
+return v___x_353_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__99(void){
+_start:
+{
+lean_object* v___x_354_; 
+v___x_354_ = lean_mk_string_unchecked("textDocument/rename", 19, 19);
+return v___x_354_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__100(void){
+_start:
+{
+lean_object* v___x_355_; 
+v___x_355_ = lean_mk_string_unchecked("Emitted in VS Code when entering an identifier after clicking 'Rename Symbol' in the context menu.", 98, 98);
+return v___x_355_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__101(void){
+_start:
+{
+lean_object* v___x_356_; lean_object* v___x_357_; uint8_t v___x_358_; lean_object* v___x_359_; lean_object* v___x_360_; 
+v___x_356_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__100, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__100_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__100);
+v___x_357_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_358_ = 0;
+v___x_359_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__99, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__99_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__99);
+v___x_360_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_360_, 0, v___x_359_);
+lean_ctor_set(v___x_360_, 1, v___x_357_);
+lean_ctor_set(v___x_360_, 2, v___x_356_);
+lean_ctor_set_uint8(v___x_360_, sizeof(void*)*3, v___x_358_);
+return v___x_360_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__102(void){
+_start:
+{
+lean_object* v___x_361_; lean_object* v___x_362_; 
+v___x_361_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__101, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__101_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__101);
+v___x_362_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_362_, 0, v___x_361_);
+return v___x_362_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__103(void){
+_start:
+{
+lean_object* v___x_363_; 
+v___x_363_ = lean_mk_string_unchecked("textDocument/declaration", 24, 24);
+return v___x_363_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__104(void){
+_start:
+{
+lean_object* v___x_364_; 
+v___x_364_ = lean_mk_string_unchecked("Emitted in VS Code when clicking 'Go to Declaration' in the context menu.", 73, 73);
+return v___x_364_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__105(void){
+_start:
+{
+lean_object* v___x_365_; lean_object* v___x_366_; uint8_t v___x_367_; lean_object* v___x_368_; lean_object* v___x_369_; 
+v___x_365_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__104, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__104_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__104);
+v___x_366_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_367_ = 0;
+v___x_368_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__103, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__103_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__103);
+v___x_369_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_369_, 0, v___x_368_);
+lean_ctor_set(v___x_369_, 1, v___x_366_);
+lean_ctor_set(v___x_369_, 2, v___x_365_);
+lean_ctor_set_uint8(v___x_369_, sizeof(void*)*3, v___x_367_);
+return v___x_369_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__106(void){
+_start:
+{
+lean_object* v___x_370_; lean_object* v___x_371_; 
+v___x_370_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__105, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__105_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__105);
+v___x_371_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_371_, 0, v___x_370_);
+return v___x_371_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__107(void){
+_start:
+{
+lean_object* v___x_372_; 
+v___x_372_ = lean_mk_string_unchecked("textDocument/typeDefinition", 27, 27);
+return v___x_372_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__108(void){
+_start:
+{
+lean_object* v___x_373_; 
+v___x_373_ = lean_mk_string_unchecked("Emitted in VS Code when clicking 'Go to Type Definition' in the context menu.", 77, 77);
+return v___x_373_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__109(void){
+_start:
+{
+lean_object* v___x_374_; lean_object* v___x_375_; uint8_t v___x_376_; lean_object* v___x_377_; lean_object* v___x_378_; 
+v___x_374_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__108, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__108_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__108);
+v___x_375_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_376_ = 0;
+v___x_377_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__107, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__107_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__107);
+v___x_378_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_378_, 0, v___x_377_);
+lean_ctor_set(v___x_378_, 1, v___x_375_);
+lean_ctor_set(v___x_378_, 2, v___x_374_);
+lean_ctor_set_uint8(v___x_378_, sizeof(void*)*3, v___x_376_);
+return v___x_378_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__110(void){
+_start:
+{
+lean_object* v___x_379_; lean_object* v___x_380_; 
+v___x_379_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__109, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__109_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__109);
+v___x_380_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_380_, 0, v___x_379_);
+return v___x_380_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__111(void){
+_start:
+{
+lean_object* v___x_381_; 
+v___x_381_ = lean_mk_string_unchecked("textDocument/references", 23, 23);
+return v___x_381_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__112(void){
+_start:
+{
+lean_object* v___x_382_; 
+v___x_382_ = lean_mk_string_unchecked("Emitted in VS Code when clicking 'Find All References' or 'Go to References' in the context menu.", 97, 97);
+return v___x_382_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__113(void){
+_start:
+{
+lean_object* v___x_383_; lean_object* v___x_384_; uint8_t v___x_385_; lean_object* v___x_386_; lean_object* v___x_387_; 
+v___x_383_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__112, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__112_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__112);
+v___x_384_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_385_ = 0;
+v___x_386_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__111, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__111_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__111);
+v___x_387_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_387_, 0, v___x_386_);
+lean_ctor_set(v___x_387_, 1, v___x_384_);
+lean_ctor_set(v___x_387_, 2, v___x_383_);
+lean_ctor_set_uint8(v___x_387_, sizeof(void*)*3, v___x_385_);
+return v___x_387_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__114(void){
+_start:
+{
+lean_object* v___x_388_; lean_object* v___x_389_; 
+v___x_388_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__113, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__113_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__113);
+v___x_389_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_389_, 0, v___x_388_);
+return v___x_389_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__115(void){
+_start:
+{
+lean_object* v___x_390_; 
+v___x_390_ = lean_mk_string_unchecked("textDocument/prepareCallHierarchy", 33, 33);
+return v___x_390_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__116(void){
+_start:
+{
+lean_object* v___x_391_; 
+v___x_391_ = lean_mk_string_unchecked("Emitted in VS Code when clicking 'Show Call Hierarchy' in the context menu.", 75, 75);
+return v___x_391_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__117(void){
+_start:
+{
+lean_object* v___x_392_; lean_object* v___x_393_; uint8_t v___x_394_; lean_object* v___x_395_; lean_object* v___x_396_; 
+v___x_392_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__116, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__116_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__116);
+v___x_393_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_394_ = 0;
+v___x_395_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__115, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__115_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__115);
+v___x_396_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_396_, 0, v___x_395_);
+lean_ctor_set(v___x_396_, 1, v___x_393_);
+lean_ctor_set(v___x_396_, 2, v___x_392_);
+lean_ctor_set_uint8(v___x_396_, sizeof(void*)*3, v___x_394_);
+return v___x_396_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__118(void){
+_start:
+{
+lean_object* v___x_397_; lean_object* v___x_398_; 
+v___x_397_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__117, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__117_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__117);
+v___x_398_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_398_, 0, v___x_397_);
+return v___x_398_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__119(void){
+_start:
+{
+lean_object* v___x_399_; 
+v___x_399_ = lean_mk_string_unchecked("callHierarchy/incomingCalls", 27, 27);
+return v___x_399_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__120(void){
+_start:
+{
+lean_object* v___x_400_; 
+v___x_400_ = lean_mk_string_unchecked("Emitted in VS Code when expanding a node in the call hierarchy in 'incoming calls' mode.", 88, 88);
+return v___x_400_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__121(void){
+_start:
+{
+lean_object* v___x_401_; lean_object* v___x_402_; uint8_t v___x_403_; lean_object* v___x_404_; lean_object* v___x_405_; 
+v___x_401_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__120, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__120_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__120);
+v___x_402_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_403_ = 0;
+v___x_404_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__119, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__119_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__119);
+v___x_405_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_405_, 0, v___x_404_);
+lean_ctor_set(v___x_405_, 1, v___x_402_);
+lean_ctor_set(v___x_405_, 2, v___x_401_);
+lean_ctor_set_uint8(v___x_405_, sizeof(void*)*3, v___x_403_);
+return v___x_405_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__122(void){
+_start:
+{
+lean_object* v___x_406_; lean_object* v___x_407_; 
+v___x_406_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__121, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__121_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__121);
+v___x_407_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_407_, 0, v___x_406_);
+return v___x_407_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__123(void){
+_start:
+{
+lean_object* v___x_408_; 
+v___x_408_ = lean_mk_string_unchecked("callHierarchy/outgoingCalls", 27, 27);
+return v___x_408_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__124(void){
+_start:
+{
+lean_object* v___x_409_; 
+v___x_409_ = lean_mk_string_unchecked("Emitted in VS Code when expanding a node in the call hierarchy in 'outgoing calls' mode.", 88, 88);
+return v___x_409_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__125(void){
+_start:
+{
+lean_object* v___x_410_; lean_object* v___x_411_; uint8_t v___x_412_; lean_object* v___x_413_; lean_object* v___x_414_; 
+v___x_410_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__124, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__124_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__124);
+v___x_411_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_412_ = 0;
+v___x_413_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__123, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__123_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__123);
+v___x_414_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_414_, 0, v___x_413_);
+lean_ctor_set(v___x_414_, 1, v___x_411_);
+lean_ctor_set(v___x_414_, 2, v___x_410_);
+lean_ctor_set_uint8(v___x_414_, sizeof(void*)*3, v___x_412_);
+return v___x_414_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__126(void){
+_start:
+{
+lean_object* v___x_415_; lean_object* v___x_416_; 
+v___x_415_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__125, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__125_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__125);
+v___x_416_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_416_, 0, v___x_415_);
+return v___x_416_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__127(void){
+_start:
+{
+lean_object* v___x_417_; 
+v___x_417_ = lean_mk_string_unchecked("$/lean/prepareModuleHierarchy", 29, 29);
+return v___x_417_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__128(void){
+_start:
+{
+lean_object* v___x_418_; 
+v___x_418_ = lean_mk_string_unchecked("Emitted in VS Code when clicking 'Show Module Hierarchy' or 'Show Inverse Module Hierarchy' in the context menu.", 112, 112);
+return v___x_418_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__129(void){
+_start:
+{
+lean_object* v___x_419_; lean_object* v___x_420_; uint8_t v___x_421_; lean_object* v___x_422_; lean_object* v___x_423_; 
+v___x_419_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__128, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__128_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__128);
+v___x_420_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43);
+v___x_421_ = 0;
+v___x_422_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__127, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__127_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__127);
+v___x_423_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_423_, 0, v___x_422_);
+lean_ctor_set(v___x_423_, 1, v___x_420_);
+lean_ctor_set(v___x_423_, 2, v___x_419_);
+lean_ctor_set_uint8(v___x_423_, sizeof(void*)*3, v___x_421_);
+return v___x_423_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__130(void){
+_start:
+{
+lean_object* v___x_424_; lean_object* v___x_425_; 
+v___x_424_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__129, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__129_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__129);
+v___x_425_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_425_, 0, v___x_424_);
+return v___x_425_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__131(void){
+_start:
+{
+lean_object* v___x_426_; 
+v___x_426_ = lean_mk_string_unchecked("workspace/semanticTokens/refresh", 32, 32);
+return v___x_426_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__132(void){
+_start:
+{
+lean_object* v___x_427_; 
+v___x_427_ = lean_mk_string_unchecked("Emitted by the language server to request another `textDocument/semanticTokens/full` request from the client.", 109, 109);
+return v___x_427_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__133(void){
+_start:
+{
+lean_object* v___x_428_; lean_object* v___x_429_; uint8_t v___x_430_; lean_object* v___x_431_; lean_object* v___x_432_; 
+v___x_428_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__132, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__132_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__132);
+v___x_429_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_430_ = 1;
+v___x_431_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__131, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__131_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__131);
+v___x_432_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_432_, 0, v___x_431_);
+lean_ctor_set(v___x_432_, 1, v___x_429_);
+lean_ctor_set(v___x_432_, 2, v___x_428_);
+lean_ctor_set_uint8(v___x_432_, sizeof(void*)*3, v___x_430_);
+return v___x_432_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__134(void){
+_start:
+{
+lean_object* v___x_433_; lean_object* v___x_434_; 
+v___x_433_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__133, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__133_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__133);
+v___x_434_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_434_, 0, v___x_433_);
+return v___x_434_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__135(void){
+_start:
+{
+lean_object* v___x_435_; 
+v___x_435_ = lean_mk_string_unchecked("textDocument/inlayHint", 22, 22);
+return v___x_435_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__136(void){
+_start:
+{
+lean_object* v___x_436_; 
+v___x_436_ = lean_mk_string_unchecked("Instead of reporting the full inlay hints for the full file as specified by LSP, the Lean language server will only report the inlay hints for the part of the file that has been processed so far. If the response is incomplete, the language server periodically emits `workspace/inlayHint/refresh` to request another `textDocument/inlayHint` request from the client. This process is repeated until the file has been fully processed and all inlay hints have been reported. We use this trick to stream inlay hints to VS Code, despite the fact that VS Code does not support result streaming.", 586, 586);
+return v___x_436_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__137(void){
+_start:
+{
+lean_object* v___x_437_; lean_object* v___x_438_; 
+v___x_437_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__136, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__136_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__136);
+v___x_438_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_438_, 0, v___x_437_);
+return v___x_438_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__138(void){
+_start:
+{
+lean_object* v___x_439_; lean_object* v___x_440_; lean_object* v___x_441_; lean_object* v___x_442_; 
+v___x_439_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__137, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__137_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__137);
+v___x_440_ = lean_unsigned_to_nat(1u);
+v___x_441_ = lean_mk_empty_array_with_capacity(v___x_440_);
+v___x_442_ = lean_array_push(v___x_441_, v___x_439_);
+return v___x_442_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__139(void){
+_start:
+{
+lean_object* v___x_443_; 
+v___x_443_ = lean_mk_string_unchecked("Emitted in VS Code when a file is first opened, when it is changed or when VS Code receives a `workspace/inlayHint/refresh` request from the server.", 148, 148);
+return v___x_443_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__140(void){
+_start:
+{
+lean_object* v___x_444_; lean_object* v___x_445_; uint8_t v___x_446_; lean_object* v___x_447_; lean_object* v___x_448_; 
+v___x_444_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__139, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__139_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__139);
+v___x_445_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__138, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__138_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__138);
+v___x_446_ = 0;
+v___x_447_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__135, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__135_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__135);
+v___x_448_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_448_, 0, v___x_447_);
+lean_ctor_set(v___x_448_, 1, v___x_445_);
+lean_ctor_set(v___x_448_, 2, v___x_444_);
+lean_ctor_set_uint8(v___x_448_, sizeof(void*)*3, v___x_446_);
+return v___x_448_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__141(void){
+_start:
+{
+lean_object* v___x_449_; lean_object* v___x_450_; 
+v___x_449_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__140, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__140_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__140);
+v___x_450_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_450_, 0, v___x_449_);
+return v___x_450_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__142(void){
+_start:
+{
+lean_object* v___x_451_; 
+v___x_451_ = lean_mk_string_unchecked("workspace/inlayHint/refresh", 27, 27);
+return v___x_451_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__143(void){
+_start:
+{
+lean_object* v___x_452_; 
+v___x_452_ = lean_mk_string_unchecked("Emitted by the language server to request another `textDocument/inlayHint` request from the client.", 99, 99);
+return v___x_452_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__144(void){
+_start:
+{
+lean_object* v___x_453_; lean_object* v___x_454_; uint8_t v___x_455_; lean_object* v___x_456_; lean_object* v___x_457_; 
+v___x_453_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__143, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__143_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__143);
+v___x_454_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_455_ = 1;
+v___x_456_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__142, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__142_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__142);
+v___x_457_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_457_, 0, v___x_456_);
+lean_ctor_set(v___x_457_, 1, v___x_454_);
+lean_ctor_set(v___x_457_, 2, v___x_453_);
+lean_ctor_set_uint8(v___x_457_, sizeof(void*)*3, v___x_455_);
+return v___x_457_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__145(void){
+_start:
+{
+lean_object* v___x_458_; lean_object* v___x_459_; 
+v___x_458_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__144, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__144_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__144);
+v___x_459_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_459_, 0, v___x_458_);
+return v___x_459_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__146(void){
+_start:
+{
+lean_object* v___x_460_; 
+v___x_460_ = lean_mk_string_unchecked("textDocument/definition", 23, 23);
+return v___x_460_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__147(void){
+_start:
+{
+lean_object* v___x_461_; 
+v___x_461_ = lean_mk_string_unchecked("Emitted in VS Code when clicking 'Go to Definition' in the context menu or using Ctrl+Click.", 92, 92);
+return v___x_461_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__148(void){
+_start:
+{
+lean_object* v___x_462_; lean_object* v___x_463_; uint8_t v___x_464_; lean_object* v___x_465_; lean_object* v___x_466_; 
+v___x_462_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__147, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__147_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__147);
+v___x_463_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_464_ = 0;
+v___x_465_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__146, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__146_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__146);
+v___x_466_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_466_, 0, v___x_465_);
+lean_ctor_set(v___x_466_, 1, v___x_463_);
+lean_ctor_set(v___x_466_, 2, v___x_462_);
+lean_ctor_set_uint8(v___x_466_, sizeof(void*)*3, v___x_464_);
+return v___x_466_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__149(void){
+_start:
+{
+lean_object* v___x_467_; lean_object* v___x_468_; 
+v___x_467_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__148, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__148_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__148);
+v___x_468_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_468_, 0, v___x_467_);
+return v___x_468_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__150(void){
+_start:
+{
+lean_object* v___x_469_; 
+v___x_469_ = lean_mk_string_unchecked("textDocument/foldingRange", 25, 25);
+return v___x_469_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__151(void){
+_start:
+{
+lean_object* v___x_470_; 
+v___x_470_ = lean_mk_string_unchecked("Emitted in VS Code when a file is first opened or when it is changed.", 69, 69);
+return v___x_470_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__152(void){
+_start:
+{
+lean_object* v___x_471_; lean_object* v___x_472_; uint8_t v___x_473_; lean_object* v___x_474_; lean_object* v___x_475_; 
+v___x_471_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__151, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__151_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__151);
+v___x_472_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_473_ = 0;
+v___x_474_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__150, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__150_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__150);
+v___x_475_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_475_, 0, v___x_474_);
+lean_ctor_set(v___x_475_, 1, v___x_472_);
+lean_ctor_set(v___x_475_, 2, v___x_471_);
+lean_ctor_set_uint8(v___x_475_, sizeof(void*)*3, v___x_473_);
+return v___x_475_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__153(void){
+_start:
+{
+lean_object* v___x_476_; lean_object* v___x_477_; 
+v___x_476_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__152, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__152_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__152);
+v___x_477_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_477_, 0, v___x_476_);
+return v___x_477_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__154(void){
+_start:
+{
+lean_object* v___x_478_; 
+v___x_478_ = lean_mk_string_unchecked("textDocument/documentColor", 26, 26);
+return v___x_478_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__155(void){
+_start:
+{
+lean_object* v___x_479_; 
+v___x_479_ = lean_mk_string_unchecked("Emitted in VS Code when a file is first opened or when it is changed. The language server defines this handler to override the default document color handler of VS Code with an empty one.", 187, 187);
+return v___x_479_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__156(void){
+_start:
+{
+lean_object* v___x_480_; lean_object* v___x_481_; uint8_t v___x_482_; lean_object* v___x_483_; lean_object* v___x_484_; 
+v___x_480_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__155, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__155_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__155);
+v___x_481_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_482_ = 0;
+v___x_483_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__154, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__154_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__154);
+v___x_484_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_484_, 0, v___x_483_);
+lean_ctor_set(v___x_484_, 1, v___x_481_);
+lean_ctor_set(v___x_484_, 2, v___x_480_);
+lean_ctor_set_uint8(v___x_484_, sizeof(void*)*3, v___x_482_);
+return v___x_484_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__157(void){
+_start:
+{
+lean_object* v___x_485_; lean_object* v___x_486_; 
+v___x_485_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__156, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__156_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__156);
+v___x_486_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_486_, 0, v___x_485_);
+return v___x_486_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__158(void){
+_start:
+{
+lean_object* v___x_487_; 
+v___x_487_ = lean_mk_string_unchecked("textDocument/semanticTokens/range", 33, 33);
+return v___x_487_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__159(void){
+_start:
+{
+lean_object* v___x_488_; 
+v___x_488_ = lean_mk_string_unchecked("Emitted in VS Code when a file is changed.", 42, 42);
+return v___x_488_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__160(void){
+_start:
+{
+lean_object* v___x_489_; lean_object* v___x_490_; uint8_t v___x_491_; lean_object* v___x_492_; lean_object* v___x_493_; 
+v___x_489_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__159, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__159_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__159);
+v___x_490_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_491_ = 0;
+v___x_492_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__158, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__158_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__158);
+v___x_493_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_493_, 0, v___x_492_);
+lean_ctor_set(v___x_493_, 1, v___x_490_);
+lean_ctor_set(v___x_493_, 2, v___x_489_);
+lean_ctor_set_uint8(v___x_493_, sizeof(void*)*3, v___x_491_);
+return v___x_493_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__161(void){
+_start:
+{
+lean_object* v___x_494_; lean_object* v___x_495_; 
+v___x_494_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__160, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__160_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__160);
+v___x_495_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_495_, 0, v___x_494_);
+return v___x_495_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__162(void){
+_start:
+{
+lean_object* v___x_496_; 
+v___x_496_ = lean_mk_string_unchecked("textDocument/semanticTokens/full", 32, 32);
+return v___x_496_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__163(void){
+_start:
+{
+lean_object* v___x_497_; 
+v___x_497_ = lean_mk_string_unchecked("Instead of reporting the full semantic tokens for the full file as specified by LSP, the Lean language server will only report the semantic tokens for the part of the file that has been processed so far. If the response is incomplete, the language server periodically emits `workspace/semanticTokens/refresh` to request another `textDocument/semanticTokens/full` request from the client. This process is repeated until the file has been fully processed and all semantic tokens have been reported. We use this trick to stream semantic tokens to VS Code, despite the fact that VS Code does not support result streaming.", 617, 617);
+return v___x_497_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__164(void){
+_start:
+{
+lean_object* v___x_498_; lean_object* v___x_499_; 
+v___x_498_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__163, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__163_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__163);
+v___x_499_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_499_, 0, v___x_498_);
+return v___x_499_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__165(void){
+_start:
+{
+lean_object* v___x_500_; lean_object* v___x_501_; lean_object* v___x_502_; lean_object* v___x_503_; 
+v___x_500_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__164, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__164_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__164);
+v___x_501_ = lean_unsigned_to_nat(1u);
+v___x_502_ = lean_mk_empty_array_with_capacity(v___x_501_);
+v___x_503_ = lean_array_push(v___x_502_, v___x_500_);
+return v___x_503_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__166(void){
+_start:
+{
+lean_object* v___x_504_; 
+v___x_504_ = lean_mk_string_unchecked("Emitted in VS Code when a file is first opened, when it is changed or when VS Code receives a `workspace/semanticTokens/refresh` request from the server.", 153, 153);
+return v___x_504_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__167(void){
+_start:
+{
+lean_object* v___x_505_; lean_object* v___x_506_; uint8_t v___x_507_; lean_object* v___x_508_; lean_object* v___x_509_; 
+v___x_505_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__166, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__166_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__166);
+v___x_506_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__165, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__165_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__165);
+v___x_507_ = 0;
+v___x_508_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__162, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__162_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__162);
+v___x_509_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_509_, 0, v___x_508_);
+lean_ctor_set(v___x_509_, 1, v___x_506_);
+lean_ctor_set(v___x_509_, 2, v___x_505_);
+lean_ctor_set_uint8(v___x_509_, sizeof(void*)*3, v___x_507_);
+return v___x_509_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__168(void){
+_start:
+{
+lean_object* v___x_510_; lean_object* v___x_511_; 
+v___x_510_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__167, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__167_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__167);
+v___x_511_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_511_, 0, v___x_510_);
+return v___x_511_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__169(void){
+_start:
+{
+lean_object* v___x_512_; 
+v___x_512_ = lean_mk_string_unchecked("completionItem/resolve", 22, 22);
+return v___x_512_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__170(void){
+_start:
+{
+lean_object* v___x_513_; 
+v___x_513_ = lean_mk_string_unchecked("Emitted in VS Code when an auto-completion entry is selected.", 61, 61);
+return v___x_513_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__171(void){
+_start:
+{
+lean_object* v___x_514_; lean_object* v___x_515_; uint8_t v___x_516_; lean_object* v___x_517_; lean_object* v___x_518_; 
+v___x_514_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__170, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__170_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__170);
+v___x_515_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_516_ = 0;
+v___x_517_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__169, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__169_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__169);
+v___x_518_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_518_, 0, v___x_517_);
+lean_ctor_set(v___x_518_, 1, v___x_515_);
+lean_ctor_set(v___x_518_, 2, v___x_514_);
+lean_ctor_set_uint8(v___x_518_, sizeof(void*)*3, v___x_516_);
+return v___x_518_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__172(void){
+_start:
+{
+lean_object* v___x_519_; lean_object* v___x_520_; 
+v___x_519_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__171, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__171_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__171);
+v___x_520_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_520_, 0, v___x_519_);
+return v___x_520_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__173(void){
+_start:
+{
+lean_object* v___x_521_; 
+v___x_521_ = lean_mk_string_unchecked("textDocument/codeAction", 23, 23);
+return v___x_521_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__174(void){
+_start:
+{
+lean_object* v___x_522_; 
+v___x_522_ = lean_mk_string_unchecked("Emitted in VS Code when code actions are triggered, e.g. automatically while typing, moving the text cursor or when hovering over a diagnostic.", 143, 143);
+return v___x_522_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__175(void){
+_start:
+{
+lean_object* v___x_523_; lean_object* v___x_524_; uint8_t v___x_525_; lean_object* v___x_526_; lean_object* v___x_527_; 
+v___x_523_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__174, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__174_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__174);
+v___x_524_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_525_ = 0;
+v___x_526_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__173, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__173_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__173);
+v___x_527_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_527_, 0, v___x_526_);
+lean_ctor_set(v___x_527_, 1, v___x_524_);
+lean_ctor_set(v___x_527_, 2, v___x_523_);
+lean_ctor_set_uint8(v___x_527_, sizeof(void*)*3, v___x_525_);
+return v___x_527_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__176(void){
+_start:
+{
+lean_object* v___x_528_; lean_object* v___x_529_; 
+v___x_528_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__175, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__175_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__175);
+v___x_529_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_529_, 0, v___x_528_);
+return v___x_529_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__177(void){
+_start:
+{
+lean_object* v___x_530_; 
+v___x_530_ = lean_mk_string_unchecked("codeAction/resolve", 18, 18);
+return v___x_530_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__178(void){
+_start:
+{
+lean_object* v___x_531_; 
+v___x_531_ = lean_mk_string_unchecked("Emitted in VS Code when a code action in the light bulb menu is selected.", 73, 73);
+return v___x_531_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__179(void){
+_start:
+{
+lean_object* v___x_532_; lean_object* v___x_533_; uint8_t v___x_534_; lean_object* v___x_535_; lean_object* v___x_536_; 
+v___x_532_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__178, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__178_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__178);
+v___x_533_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_534_ = 0;
+v___x_535_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__177, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__177_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__177);
+v___x_536_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_536_, 0, v___x_535_);
+lean_ctor_set(v___x_536_, 1, v___x_533_);
+lean_ctor_set(v___x_536_, 2, v___x_532_);
+lean_ctor_set_uint8(v___x_536_, sizeof(void*)*3, v___x_534_);
+return v___x_536_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__180(void){
+_start:
+{
+lean_object* v___x_537_; lean_object* v___x_538_; 
+v___x_537_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__179, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__179_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__179);
+v___x_538_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_538_, 0, v___x_537_);
+return v___x_538_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__181(void){
+_start:
+{
+lean_object* v___x_539_; 
+v___x_539_ = lean_mk_string_unchecked("textDocument/signatureHelp", 26, 26);
+return v___x_539_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__182(void){
+_start:
+{
+lean_object* v___x_540_; 
+v___x_540_ = lean_mk_string_unchecked("Emitted in VS Code when the signature help is triggered, e.g. automatically while typing or after hitting Ctrl+Shift+Space.", 123, 123);
+return v___x_540_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__183(void){
+_start:
+{
+lean_object* v___x_541_; lean_object* v___x_542_; uint8_t v___x_543_; lean_object* v___x_544_; lean_object* v___x_545_; 
+v___x_541_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__182, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__182_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__182);
+v___x_542_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_543_ = 0;
+v___x_544_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__181, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__181_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__181);
+v___x_545_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_545_, 0, v___x_544_);
+lean_ctor_set(v___x_545_, 1, v___x_542_);
+lean_ctor_set(v___x_545_, 2, v___x_541_);
+lean_ctor_set_uint8(v___x_545_, sizeof(void*)*3, v___x_543_);
+return v___x_545_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__184(void){
+_start:
+{
+lean_object* v___x_546_; lean_object* v___x_547_; 
+v___x_546_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__183, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__183_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__183);
+v___x_547_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_547_, 0, v___x_546_);
+return v___x_547_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__185(void){
+_start:
+{
+lean_object* v___x_548_; 
+v___x_548_ = lean_mk_string_unchecked("textDocument/hover", 18, 18);
+return v___x_548_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__186(void){
+_start:
+{
+lean_object* v___x_549_; 
+v___x_549_ = lean_mk_string_unchecked("Emitted in VS Code when hovering over an identifier in the editor.", 66, 66);
+return v___x_549_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__187(void){
+_start:
+{
+lean_object* v___x_550_; lean_object* v___x_551_; uint8_t v___x_552_; lean_object* v___x_553_; lean_object* v___x_554_; 
+v___x_550_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__186, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__186_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__186);
+v___x_551_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_552_ = 0;
+v___x_553_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__185, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__185_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__185);
+v___x_554_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_554_, 0, v___x_553_);
+lean_ctor_set(v___x_554_, 1, v___x_551_);
+lean_ctor_set(v___x_554_, 2, v___x_550_);
+lean_ctor_set_uint8(v___x_554_, sizeof(void*)*3, v___x_552_);
+return v___x_554_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__188(void){
+_start:
+{
+lean_object* v___x_555_; lean_object* v___x_556_; 
+v___x_555_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__187, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__187_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__187);
+v___x_556_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_556_, 0, v___x_555_);
+return v___x_556_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__189(void){
+_start:
+{
+lean_object* v___x_557_; 
+v___x_557_ = lean_mk_string_unchecked("textDocument/documentHighlight", 30, 30);
+return v___x_557_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__190(void){
+_start:
+{
+lean_object* v___x_558_; 
+v___x_558_ = lean_mk_string_unchecked("Emitted in VS Code when the text cursor is on an identifier.", 60, 60);
+return v___x_558_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__191(void){
+_start:
+{
+lean_object* v___x_559_; lean_object* v___x_560_; uint8_t v___x_561_; lean_object* v___x_562_; lean_object* v___x_563_; 
+v___x_559_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__190, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__190_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__190);
+v___x_560_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_561_ = 0;
+v___x_562_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__189, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__189_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__189);
+v___x_563_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_563_, 0, v___x_562_);
+lean_ctor_set(v___x_563_, 1, v___x_560_);
+lean_ctor_set(v___x_563_, 2, v___x_559_);
+lean_ctor_set_uint8(v___x_563_, sizeof(void*)*3, v___x_561_);
+return v___x_563_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__192(void){
+_start:
+{
+lean_object* v___x_564_; lean_object* v___x_565_; 
+v___x_564_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__191, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__191_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__191);
+v___x_565_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_565_, 0, v___x_564_);
+return v___x_565_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__193(void){
+_start:
+{
+lean_object* v___x_566_; 
+v___x_566_ = lean_mk_string_unchecked("textDocument/documentSymbol", 27, 27);
+return v___x_566_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__194(void){
+_start:
+{
+lean_object* v___x_567_; lean_object* v___x_568_; uint8_t v___x_569_; lean_object* v___x_570_; lean_object* v___x_571_; 
+v___x_567_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__151, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__151_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__151);
+v___x_568_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_569_ = 0;
+v___x_570_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__193, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__193_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__193);
+v___x_571_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_571_, 0, v___x_570_);
+lean_ctor_set(v___x_571_, 1, v___x_568_);
+lean_ctor_set(v___x_571_, 2, v___x_567_);
+lean_ctor_set_uint8(v___x_571_, sizeof(void*)*3, v___x_569_);
+return v___x_571_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__195(void){
+_start:
+{
+lean_object* v___x_572_; lean_object* v___x_573_; 
+v___x_572_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__194, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__194_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__194);
+v___x_573_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_573_, 0, v___x_572_);
+return v___x_573_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__196(void){
+_start:
+{
+lean_object* v___x_574_; 
+v___x_574_ = lean_mk_string_unchecked("textDocument/didClose", 21, 21);
+return v___x_574_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__197(void){
+_start:
+{
+lean_object* v___x_575_; 
+v___x_575_ = lean_mk_string_unchecked("Emitted in VS Code when a text document is closed. VS Code may sometimes emit this notification for files that were not opened in an editor.", 140, 140);
+return v___x_575_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__198(void){
+_start:
+{
+lean_object* v___x_576_; lean_object* v___x_577_; uint8_t v___x_578_; lean_object* v___x_579_; lean_object* v___x_580_; 
+v___x_576_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__197, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__197_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__197);
+v___x_577_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_578_ = 0;
+v___x_579_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__196, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__196_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__196);
+v___x_580_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_580_, 0, v___x_579_);
+lean_ctor_set(v___x_580_, 1, v___x_577_);
+lean_ctor_set(v___x_580_, 2, v___x_576_);
+lean_ctor_set_uint8(v___x_580_, sizeof(void*)*3, v___x_578_);
+return v___x_580_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__199(void){
+_start:
+{
+lean_object* v___x_581_; lean_object* v___x_582_; 
+v___x_581_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__198, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__198_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__198);
+v___x_582_ = lean_alloc_ctor(2, 1, 0);
+lean_ctor_set(v___x_582_, 0, v___x_581_);
+return v___x_582_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__200(void){
+_start:
+{
+lean_object* v___x_583_; 
+v___x_583_ = lean_mk_string_unchecked("textDocument/didChange", 22, 22);
+return v___x_583_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__201(void){
+_start:
+{
+lean_object* v___x_584_; 
+v___x_584_ = lean_mk_string_unchecked("Emitted in VS Code when a text document is edited.", 50, 50);
+return v___x_584_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__202(void){
+_start:
+{
+lean_object* v___x_585_; lean_object* v___x_586_; uint8_t v___x_587_; lean_object* v___x_588_; lean_object* v___x_589_; 
+v___x_585_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__201, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__201_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__201);
+v___x_586_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_587_ = 0;
+v___x_588_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__200, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__200_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__200);
+v___x_589_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_589_, 0, v___x_588_);
+lean_ctor_set(v___x_589_, 1, v___x_586_);
+lean_ctor_set(v___x_589_, 2, v___x_585_);
+lean_ctor_set_uint8(v___x_589_, sizeof(void*)*3, v___x_587_);
+return v___x_589_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__203(void){
+_start:
+{
+lean_object* v___x_590_; lean_object* v___x_591_; 
+v___x_590_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__202, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__202_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__202);
+v___x_591_ = lean_alloc_ctor(2, 1, 0);
+lean_ctor_set(v___x_591_, 0, v___x_590_);
+return v___x_591_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__204(void){
+_start:
+{
+lean_object* v___x_592_; 
+v___x_592_ = lean_mk_string_unchecked("textDocument/didSave", 20, 20);
+return v___x_592_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__205(void){
+_start:
+{
+lean_object* v___x_593_; 
+v___x_593_ = lean_mk_string_unchecked("Emitted in VS Code when a text document is saved.", 49, 49);
+return v___x_593_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__206(void){
+_start:
+{
+lean_object* v___x_594_; lean_object* v___x_595_; uint8_t v___x_596_; lean_object* v___x_597_; lean_object* v___x_598_; 
+v___x_594_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__205, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__205_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__205);
+v___x_595_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_596_ = 0;
+v___x_597_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__204, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__204_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__204);
+v___x_598_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_598_, 0, v___x_597_);
+lean_ctor_set(v___x_598_, 1, v___x_595_);
+lean_ctor_set(v___x_598_, 2, v___x_594_);
+lean_ctor_set_uint8(v___x_598_, sizeof(void*)*3, v___x_596_);
+return v___x_598_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__207(void){
+_start:
+{
+lean_object* v___x_599_; lean_object* v___x_600_; 
+v___x_599_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__206, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__206_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__206);
+v___x_600_ = lean_alloc_ctor(2, 1, 0);
+lean_ctor_set(v___x_600_, 0, v___x_599_);
+return v___x_600_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__208(void){
+_start:
+{
+lean_object* v___x_601_; 
+v___x_601_ = lean_mk_string_unchecked("workspace/didChangeWatchedFiles", 31, 31);
+return v___x_601_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__209(void){
+_start:
+{
+lean_object* v___x_602_; 
+v___x_602_ = lean_mk_string_unchecked("Emitted in VS Code when one of the files that the language server registered a file watcher for changes.", 104, 104);
+return v___x_602_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__210(void){
+_start:
+{
+lean_object* v___x_603_; lean_object* v___x_604_; uint8_t v___x_605_; lean_object* v___x_606_; lean_object* v___x_607_; 
+v___x_603_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__209, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__209_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__209);
+v___x_604_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_605_ = 0;
+v___x_606_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__208, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__208_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__208);
+v___x_607_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_607_, 0, v___x_606_);
+lean_ctor_set(v___x_607_, 1, v___x_604_);
+lean_ctor_set(v___x_607_, 2, v___x_603_);
+lean_ctor_set_uint8(v___x_607_, sizeof(void*)*3, v___x_605_);
+return v___x_607_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__211(void){
+_start:
+{
+lean_object* v___x_608_; lean_object* v___x_609_; 
+v___x_608_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__210, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__210_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__210);
+v___x_609_ = lean_alloc_ctor(2, 1, 0);
+lean_ctor_set(v___x_609_, 0, v___x_608_);
+return v___x_609_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__212(void){
+_start:
+{
+lean_object* v___x_610_; 
+v___x_610_ = lean_mk_string_unchecked("textDocument/publishDiagnostics", 31, 31);
+return v___x_610_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213(void){
+_start:
+{
+lean_object* v___x_611_; 
+v___x_611_ = lean_mk_string_unchecked("Lsp", 3, 3);
+return v___x_611_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__214(void){
+_start:
+{
+lean_object* v___x_612_; 
+v___x_612_ = lean_mk_string_unchecked("PublishDiagnosticsParams", 24, 24);
+return v___x_612_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__215(void){
+_start:
+{
+lean_object* v___x_613_; 
+v___x_613_ = lean_mk_string_unchecked("isIncremental\?", 14, 14);
+return v___x_613_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__216(void){
+_start:
+{
+lean_object* v___x_614_; lean_object* v___x_615_; lean_object* v___x_616_; lean_object* v___x_617_; lean_object* v___x_618_; 
+v___x_614_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__215, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__215_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__215);
+v___x_615_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__214, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__214_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__214);
+v___x_616_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213);
+v___x_617_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0);
+v___x_618_ = l_Lean_Name_mkStr4(v___x_617_, v___x_616_, v___x_615_, v___x_614_);
+return v___x_618_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__217(void){
+_start:
+{
+lean_object* v___x_619_; 
+v___x_619_ = lean_mk_string_unchecked("diagnostics", 11, 11);
+return v___x_619_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__218(void){
+_start:
+{
+lean_object* v___x_620_; lean_object* v___x_621_; lean_object* v___x_622_; lean_object* v___x_623_; lean_object* v___x_624_; 
+v___x_620_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__217, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__217_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__217);
+v___x_621_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__214, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__214_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__214);
+v___x_622_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213);
+v___x_623_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0);
+v___x_624_ = l_Lean_Name_mkStr4(v___x_623_, v___x_622_, v___x_621_, v___x_620_);
+return v___x_624_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__219(void){
+_start:
+{
+lean_object* v___x_625_; 
+v___x_625_ = lean_mk_string_unchecked("DiagnosticWith", 14, 14);
+return v___x_625_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__220(void){
+_start:
+{
+lean_object* v___x_626_; 
+v___x_626_ = lean_mk_string_unchecked("fullRange\?", 10, 10);
+return v___x_626_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__221(void){
+_start:
+{
+lean_object* v___x_627_; lean_object* v___x_628_; lean_object* v___x_629_; lean_object* v___x_630_; lean_object* v___x_631_; 
+v___x_627_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__220, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__220_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__220);
+v___x_628_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__219, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__219_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__219);
+v___x_629_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213);
+v___x_630_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0);
+v___x_631_ = l_Lean_Name_mkStr4(v___x_630_, v___x_629_, v___x_628_, v___x_627_);
+return v___x_631_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__222(void){
+_start:
+{
+lean_object* v___x_632_; 
+v___x_632_ = lean_mk_string_unchecked("isSilent\?", 9, 9);
+return v___x_632_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__223(void){
+_start:
+{
+lean_object* v___x_633_; lean_object* v___x_634_; lean_object* v___x_635_; lean_object* v___x_636_; lean_object* v___x_637_; 
+v___x_633_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__222, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__222_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__222);
+v___x_634_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__219, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__219_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__219);
+v___x_635_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213);
+v___x_636_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0);
+v___x_637_ = l_Lean_Name_mkStr4(v___x_636_, v___x_635_, v___x_634_, v___x_633_);
+return v___x_637_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__224(void){
+_start:
+{
+lean_object* v___x_638_; 
+v___x_638_ = lean_mk_string_unchecked("leanTags\?", 9, 9);
+return v___x_638_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__225(void){
+_start:
+{
+lean_object* v___x_639_; lean_object* v___x_640_; lean_object* v___x_641_; lean_object* v___x_642_; lean_object* v___x_643_; 
+v___x_639_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__224, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__224_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__224);
+v___x_640_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__219, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__219_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__219);
+v___x_641_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213);
+v___x_642_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0);
+v___x_643_ = l_Lean_Name_mkStr4(v___x_642_, v___x_641_, v___x_640_, v___x_639_);
+return v___x_643_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__226(void){
+_start:
+{
+lean_object* v___x_644_; lean_object* v___x_645_; lean_object* v___x_646_; lean_object* v___x_647_; lean_object* v___x_648_; lean_object* v___x_649_; lean_object* v___x_650_; lean_object* v___x_651_; lean_object* v___x_652_; lean_object* v___x_653_; lean_object* v___x_654_; lean_object* v___x_655_; 
+v___x_644_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__225, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__225_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__225);
+v___x_645_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__223, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__223_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__223);
+v___x_646_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__221, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__221_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__221);
+v___x_647_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__218, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__218_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__218);
+v___x_648_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__216, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__216_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__216);
+v___x_649_ = lean_unsigned_to_nat(5u);
+v___x_650_ = lean_mk_empty_array_with_capacity(v___x_649_);
+v___x_651_ = lean_array_push(v___x_650_, v___x_648_);
+v___x_652_ = lean_array_push(v___x_651_, v___x_647_);
+v___x_653_ = lean_array_push(v___x_652_, v___x_646_);
+v___x_654_ = lean_array_push(v___x_653_, v___x_645_);
+v___x_655_ = lean_array_push(v___x_654_, v___x_644_);
+return v___x_655_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__227(void){
+_start:
+{
+lean_object* v___x_656_; lean_object* v___x_657_; 
+v___x_656_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__226, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__226_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__226);
+v___x_657_ = lean_alloc_ctor(2, 1, 0);
+lean_ctor_set(v___x_657_, 0, v___x_656_);
+return v___x_657_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__228(void){
+_start:
+{
+lean_object* v___x_658_; lean_object* v___x_659_; lean_object* v___x_660_; lean_object* v___x_661_; 
+v___x_658_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__227, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__227_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__227);
+v___x_659_ = lean_unsigned_to_nat(1u);
+v___x_660_ = lean_mk_empty_array_with_capacity(v___x_659_);
+v___x_661_ = lean_array_push(v___x_660_, v___x_658_);
+return v___x_661_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__229(void){
+_start:
+{
+lean_object* v___x_662_; 
+v___x_662_ = lean_mk_string_unchecked("Emitted by the language server whenever a new set of diagnostics becomes available for a file. Unlike most language servers, the Lean language server emits this notification incrementally while processing the file, not only when the full file has been processed. If the client sets `LeanClientCapabilities.incrementalDiagnosticSupport` and `isIncremental` is `true`, the diagnostics in the notification should be appended to the existing diagnostics for the same document version rather than replacing them.", 507, 507);
+return v___x_662_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__230(void){
+_start:
+{
+lean_object* v___x_663_; lean_object* v___x_664_; uint8_t v___x_665_; lean_object* v___x_666_; lean_object* v___x_667_; 
+v___x_663_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__229, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__229_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__229);
+v___x_664_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__228, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__228_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__228);
+v___x_665_ = 1;
+v___x_666_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__212, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__212_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__212);
+v___x_667_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_667_, 0, v___x_666_);
+lean_ctor_set(v___x_667_, 1, v___x_664_);
+lean_ctor_set(v___x_667_, 2, v___x_663_);
+lean_ctor_set_uint8(v___x_667_, sizeof(void*)*3, v___x_665_);
+return v___x_667_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__231(void){
+_start:
+{
+lean_object* v___x_668_; lean_object* v___x_669_; 
+v___x_668_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__230, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__230_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__230);
+v___x_669_ = lean_alloc_ctor(2, 1, 0);
+lean_ctor_set(v___x_669_, 0, v___x_668_);
+return v___x_669_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__232(void){
+_start:
+{
+lean_object* v___x_670_; 
+v___x_670_ = lean_mk_string_unchecked("$/lean/fileProgress", 19, 19);
+return v___x_670_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__233(void){
+_start:
+{
+lean_object* v___x_671_; 
+v___x_671_ = lean_mk_string_unchecked("Emitted by the language server whenever the elaboration progress of a file changes.", 83, 83);
+return v___x_671_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__234(void){
+_start:
+{
+lean_object* v___x_672_; lean_object* v___x_673_; uint8_t v___x_674_; lean_object* v___x_675_; lean_object* v___x_676_; 
+v___x_672_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__233, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__233_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__233);
+v___x_673_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__43);
+v___x_674_ = 1;
+v___x_675_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__232, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__232_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__232);
+v___x_676_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_676_, 0, v___x_675_);
+lean_ctor_set(v___x_676_, 1, v___x_673_);
+lean_ctor_set(v___x_676_, 2, v___x_672_);
+lean_ctor_set_uint8(v___x_676_, sizeof(void*)*3, v___x_674_);
+return v___x_676_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__235(void){
+_start:
+{
+lean_object* v___x_677_; lean_object* v___x_678_; 
+v___x_677_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__234, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__234_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__234);
+v___x_678_ = lean_alloc_ctor(2, 1, 0);
+lean_ctor_set(v___x_678_, 0, v___x_677_);
+return v___x_678_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__236(void){
+_start:
+{
+lean_object* v___x_679_; 
+v___x_679_ = lean_mk_string_unchecked("textDocument/completion", 23, 23);
+return v___x_679_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__237(void){
+_start:
+{
+lean_object* v___x_680_; 
+v___x_680_ = lean_mk_string_unchecked("Emitted in VS Code when auto-completion is triggered, e.g. automatically while typing or after hitting Ctrl+Space.", 114, 114);
+return v___x_680_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__238(void){
+_start:
+{
+lean_object* v___x_681_; lean_object* v___x_682_; uint8_t v___x_683_; lean_object* v___x_684_; lean_object* v___x_685_; 
+v___x_681_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__237, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__237_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__237);
+v___x_682_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_683_ = 0;
+v___x_684_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__236, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__236_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__236);
+v___x_685_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_685_, 0, v___x_684_);
+lean_ctor_set(v___x_685_, 1, v___x_682_);
+lean_ctor_set(v___x_685_, 2, v___x_681_);
+lean_ctor_set_uint8(v___x_685_, sizeof(void*)*3, v___x_683_);
+return v___x_685_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__239(void){
+_start:
+{
+lean_object* v___x_686_; lean_object* v___x_687_; 
+v___x_686_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__238, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__238_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__238);
+v___x_687_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_687_, 0, v___x_686_);
+return v___x_687_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__240(void){
+_start:
+{
+lean_object* v___x_688_; 
+v___x_688_ = lean_mk_string_unchecked("$/cancelRequest", 15, 15);
+return v___x_688_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__241(void){
+_start:
+{
+lean_object* v___x_689_; 
+v___x_689_ = lean_mk_string_unchecked("Emitted in VS Code when a running request is cancelled, e.g. when the document state has changed.", 97, 97);
+return v___x_689_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__242(void){
+_start:
+{
+lean_object* v___x_690_; lean_object* v___x_691_; uint8_t v___x_692_; lean_object* v___x_693_; lean_object* v___x_694_; 
+v___x_690_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__241, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__241_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__241);
+v___x_691_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_692_ = 0;
+v___x_693_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__240, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__240_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__240);
+v___x_694_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_694_, 0, v___x_693_);
+lean_ctor_set(v___x_694_, 1, v___x_691_);
+lean_ctor_set(v___x_694_, 2, v___x_690_);
+lean_ctor_set_uint8(v___x_694_, sizeof(void*)*3, v___x_692_);
+return v___x_694_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__243(void){
+_start:
+{
+lean_object* v___x_695_; lean_object* v___x_696_; 
+v___x_695_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__242, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__242_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__242);
+v___x_696_ = lean_alloc_ctor(2, 1, 0);
+lean_ctor_set(v___x_696_, 0, v___x_695_);
+return v___x_696_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__244(void){
+_start:
+{
+lean_object* v___x_697_; 
+v___x_697_ = lean_mk_string_unchecked("initialize", 10, 10);
+return v___x_697_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__245(void){
+_start:
+{
+lean_object* v___x_698_; 
+v___x_698_ = lean_mk_string_unchecked("The Lean language server currently ignores almost all standard client capabilities and expects clients to be sufficiently fully-featured.", 137, 137);
+return v___x_698_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__246(void){
+_start:
+{
+lean_object* v___x_699_; lean_object* v___x_700_; 
+v___x_699_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__245, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__245_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__245);
+v___x_700_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_700_, 0, v___x_699_);
+return v___x_700_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__247(void){
+_start:
+{
+lean_object* v___x_701_; 
+v___x_701_ = lean_mk_string_unchecked("The `InitializeParams.rootUri\?` field is not used by the language server - it instead uses the cwd of the language server process.", 130, 130);
+return v___x_701_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__248(void){
+_start:
+{
+lean_object* v___x_702_; lean_object* v___x_703_; 
+v___x_702_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__247, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__247_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__247);
+v___x_703_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_703_, 0, v___x_702_);
+return v___x_703_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__249(void){
+_start:
+{
+lean_object* v___x_704_; 
+v___x_704_ = lean_mk_string_unchecked("InitializeParams", 16, 16);
+return v___x_704_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__250(void){
+_start:
+{
+lean_object* v___x_705_; 
+v___x_705_ = lean_mk_string_unchecked("initializationOptions\?", 22, 22);
+return v___x_705_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__251(void){
+_start:
+{
+lean_object* v___x_706_; lean_object* v___x_707_; lean_object* v___x_708_; lean_object* v___x_709_; lean_object* v___x_710_; 
+v___x_706_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__250, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__250_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__250);
+v___x_707_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__249, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__249_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__249);
+v___x_708_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213);
+v___x_709_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0);
+v___x_710_ = l_Lean_Name_mkStr4(v___x_709_, v___x_708_, v___x_707_, v___x_706_);
+return v___x_710_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__252(void){
+_start:
+{
+lean_object* v___x_711_; 
+v___x_711_ = lean_mk_string_unchecked("capabilities", 12, 12);
+return v___x_711_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__253(void){
+_start:
+{
+lean_object* v___x_712_; lean_object* v___x_713_; lean_object* v___x_714_; lean_object* v___x_715_; lean_object* v___x_716_; 
+v___x_712_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__252, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__252_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__252);
+v___x_713_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__249, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__249_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__249);
+v___x_714_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213);
+v___x_715_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0);
+v___x_716_ = l_Lean_Name_mkStr4(v___x_715_, v___x_714_, v___x_713_, v___x_712_);
+return v___x_716_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__254(void){
+_start:
+{
+lean_object* v___x_717_; 
+v___x_717_ = lean_mk_string_unchecked("ClientCapabilities", 18, 18);
+return v___x_717_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__255(void){
+_start:
+{
+lean_object* v___x_718_; 
+v___x_718_ = lean_mk_string_unchecked("lean\?", 5, 5);
+return v___x_718_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__256(void){
+_start:
+{
+lean_object* v___x_719_; lean_object* v___x_720_; lean_object* v___x_721_; lean_object* v___x_722_; lean_object* v___x_723_; 
+v___x_719_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__255, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__255_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__255);
+v___x_720_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__254, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__254_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__254);
+v___x_721_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213);
+v___x_722_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0);
+v___x_723_ = l_Lean_Name_mkStr4(v___x_722_, v___x_721_, v___x_720_, v___x_719_);
+return v___x_723_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__257(void){
+_start:
+{
+lean_object* v___x_724_; lean_object* v___x_725_; lean_object* v___x_726_; lean_object* v___x_727_; lean_object* v___x_728_; lean_object* v___x_729_; lean_object* v___x_730_; lean_object* v___x_731_; 
+v___x_724_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__256, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__256_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__256);
+v___x_725_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__253, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__253_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__253);
+v___x_726_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__251, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__251_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__251);
+v___x_727_ = lean_unsigned_to_nat(3u);
+v___x_728_ = lean_mk_empty_array_with_capacity(v___x_727_);
+v___x_729_ = lean_array_push(v___x_728_, v___x_726_);
+v___x_730_ = lean_array_push(v___x_729_, v___x_725_);
+v___x_731_ = lean_array_push(v___x_730_, v___x_724_);
+return v___x_731_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__258(void){
+_start:
+{
+lean_object* v___x_732_; lean_object* v___x_733_; 
+v___x_732_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__257, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__257_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__257);
+v___x_733_ = lean_alloc_ctor(2, 1, 0);
+lean_ctor_set(v___x_733_, 0, v___x_732_);
+return v___x_733_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__259(void){
+_start:
+{
+lean_object* v___x_734_; lean_object* v___x_735_; lean_object* v___x_736_; lean_object* v___x_737_; lean_object* v___x_738_; lean_object* v___x_739_; lean_object* v___x_740_; lean_object* v___x_741_; 
+v___x_734_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__258, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__258_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__258);
+v___x_735_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__248, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__248_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__248);
+v___x_736_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__246, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__246_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__246);
+v___x_737_ = lean_unsigned_to_nat(3u);
+v___x_738_ = lean_mk_empty_array_with_capacity(v___x_737_);
+v___x_739_ = lean_array_push(v___x_738_, v___x_736_);
+v___x_740_ = lean_array_push(v___x_739_, v___x_735_);
+v___x_741_ = lean_array_push(v___x_740_, v___x_734_);
+return v___x_741_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__260(void){
+_start:
+{
+lean_object* v___x_742_; 
+v___x_742_ = lean_mk_string_unchecked("Emitted when the language server is being initialized. The server is only started once an `initialized` notification is emitted after the `initialize` request.", 159, 159);
+return v___x_742_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__261(void){
+_start:
+{
+lean_object* v___x_743_; lean_object* v___x_744_; uint8_t v___x_745_; lean_object* v___x_746_; lean_object* v___x_747_; 
+v___x_743_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__260, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__260_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__260);
+v___x_744_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__259, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__259_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__259);
+v___x_745_ = 0;
+v___x_746_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__244, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__244_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__244);
+v___x_747_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_747_, 0, v___x_746_);
+lean_ctor_set(v___x_747_, 1, v___x_744_);
+lean_ctor_set(v___x_747_, 2, v___x_743_);
+lean_ctor_set_uint8(v___x_747_, sizeof(void*)*3, v___x_745_);
+return v___x_747_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__262(void){
+_start:
+{
+lean_object* v___x_748_; lean_object* v___x_749_; 
+v___x_748_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__261, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__261_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__261);
+v___x_749_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_749_, 0, v___x_748_);
+return v___x_749_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__263(void){
+_start:
+{
+lean_object* v___x_750_; 
+v___x_750_ = lean_mk_string_unchecked("initialized", 11, 11);
+return v___x_750_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__264(void){
+_start:
+{
+lean_object* v___x_751_; 
+v___x_751_ = lean_mk_string_unchecked("Emitted after a response to the `initialize` request to start the server.", 73, 73);
+return v___x_751_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__265(void){
+_start:
+{
+lean_object* v___x_752_; lean_object* v___x_753_; uint8_t v___x_754_; lean_object* v___x_755_; lean_object* v___x_756_; 
+v___x_752_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__264, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__264_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__264);
+v___x_753_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_754_ = 0;
+v___x_755_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__263, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__263_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__263);
+v___x_756_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_756_, 0, v___x_755_);
+lean_ctor_set(v___x_756_, 1, v___x_753_);
+lean_ctor_set(v___x_756_, 2, v___x_752_);
+lean_ctor_set_uint8(v___x_756_, sizeof(void*)*3, v___x_754_);
+return v___x_756_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__266(void){
+_start:
+{
+lean_object* v___x_757_; lean_object* v___x_758_; 
+v___x_757_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__265, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__265_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__265);
+v___x_758_ = lean_alloc_ctor(2, 1, 0);
+lean_ctor_set(v___x_758_, 0, v___x_757_);
+return v___x_758_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__267(void){
+_start:
+{
+lean_object* v___x_759_; 
+v___x_759_ = lean_mk_string_unchecked("shutdown", 8, 8);
+return v___x_759_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__268(void){
+_start:
+{
+lean_object* v___x_760_; 
+v___x_760_ = lean_mk_string_unchecked("Emitted when the language server is being asked to shut down and deliver responses for all pending requests.", 108, 108);
+return v___x_760_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__269(void){
+_start:
+{
+lean_object* v___x_761_; lean_object* v___x_762_; uint8_t v___x_763_; lean_object* v___x_764_; lean_object* v___x_765_; 
+v___x_761_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__268, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__268_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__268);
+v___x_762_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_763_ = 0;
+v___x_764_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__267, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__267_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__267);
+v___x_765_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_765_, 0, v___x_764_);
+lean_ctor_set(v___x_765_, 1, v___x_762_);
+lean_ctor_set(v___x_765_, 2, v___x_761_);
+lean_ctor_set_uint8(v___x_765_, sizeof(void*)*3, v___x_763_);
+return v___x_765_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__270(void){
+_start:
+{
+lean_object* v___x_766_; lean_object* v___x_767_; 
+v___x_766_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__269, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__269_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__269);
+v___x_767_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_767_, 0, v___x_766_);
+return v___x_767_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__271(void){
+_start:
+{
+lean_object* v___x_768_; 
+v___x_768_ = lean_mk_string_unchecked("exit", 4, 4);
+return v___x_768_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__272(void){
+_start:
+{
+lean_object* v___x_769_; 
+v___x_769_ = lean_mk_string_unchecked("Emitted once the language server should shut down after a `shutdown` request.", 77, 77);
+return v___x_769_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__273(void){
+_start:
+{
+lean_object* v___x_770_; lean_object* v___x_771_; uint8_t v___x_772_; lean_object* v___x_773_; lean_object* v___x_774_; 
+v___x_770_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__272, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__272_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__272);
+v___x_771_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_772_ = 0;
+v___x_773_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__271, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__271_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__271);
+v___x_774_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_774_, 0, v___x_773_);
+lean_ctor_set(v___x_774_, 1, v___x_771_);
+lean_ctor_set(v___x_774_, 2, v___x_770_);
+lean_ctor_set_uint8(v___x_774_, sizeof(void*)*3, v___x_772_);
+return v___x_774_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__274(void){
+_start:
+{
+lean_object* v___x_775_; lean_object* v___x_776_; 
+v___x_775_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__273, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__273_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__273);
+v___x_776_ = lean_alloc_ctor(2, 1, 0);
+lean_ctor_set(v___x_776_, 0, v___x_775_);
+return v___x_776_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__275(void){
+_start:
+{
+lean_object* v___x_777_; 
+v___x_777_ = lean_mk_string_unchecked("client/registerCapability", 25, 25);
+return v___x_777_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__276(void){
+_start:
+{
+lean_object* v___x_778_; 
+v___x_778_ = lean_mk_string_unchecked("Emitted by the language server after receiving the `initialized` notification to register file watchers for `.lean` and `.ilean` files using the `workspace/didChangeWatchedFiles` registration.", 192, 192);
+return v___x_778_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__277(void){
+_start:
+{
+lean_object* v___x_779_; lean_object* v___x_780_; uint8_t v___x_781_; lean_object* v___x_782_; lean_object* v___x_783_; 
+v___x_779_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__276, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__276_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__276);
+v___x_780_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__72);
+v___x_781_ = 1;
+v___x_782_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__275, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__275_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__275);
+v___x_783_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_783_, 0, v___x_782_);
+lean_ctor_set(v___x_783_, 1, v___x_780_);
+lean_ctor_set(v___x_783_, 2, v___x_779_);
+lean_ctor_set_uint8(v___x_783_, sizeof(void*)*3, v___x_781_);
+return v___x_783_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__278(void){
+_start:
+{
+lean_object* v___x_784_; lean_object* v___x_785_; 
+v___x_784_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__277, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__277_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__277);
+v___x_785_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_785_, 0, v___x_784_);
+return v___x_785_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__279(void){
+_start:
+{
+lean_object* v___x_786_; 
+v___x_786_ = lean_mk_string_unchecked("textDocument/didOpen", 20, 20);
+return v___x_786_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__280(void){
+_start:
+{
+lean_object* v___x_787_; 
+v___x_787_ = lean_mk_string_unchecked("LeanDidOpenTextDocumentParams", 29, 29);
+return v___x_787_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__281(void){
+_start:
+{
+lean_object* v___x_788_; 
+v___x_788_ = lean_mk_string_unchecked("dependencyBuildMode\?", 20, 20);
+return v___x_788_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__282(void){
+_start:
+{
+lean_object* v___x_789_; lean_object* v___x_790_; lean_object* v___x_791_; lean_object* v___x_792_; lean_object* v___x_793_; 
+v___x_789_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__281, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__281_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__281);
+v___x_790_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__280, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__280_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__280);
+v___x_791_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__213);
+v___x_792_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__0);
+v___x_793_ = l_Lean_Name_mkStr4(v___x_792_, v___x_791_, v___x_790_, v___x_789_);
+return v___x_793_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__283(void){
+_start:
+{
+lean_object* v___x_794_; lean_object* v___x_795_; lean_object* v___x_796_; lean_object* v___x_797_; 
+v___x_794_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__282, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__282_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__282);
+v___x_795_ = lean_unsigned_to_nat(1u);
+v___x_796_ = lean_mk_empty_array_with_capacity(v___x_795_);
+v___x_797_ = lean_array_push(v___x_796_, v___x_794_);
+return v___x_797_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__284(void){
+_start:
+{
+lean_object* v___x_798_; lean_object* v___x_799_; 
+v___x_798_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__283, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__283_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__283);
+v___x_799_ = lean_alloc_ctor(2, 1, 0);
+lean_ctor_set(v___x_799_, 0, v___x_798_);
+return v___x_799_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__285(void){
+_start:
+{
+lean_object* v___x_800_; lean_object* v___x_801_; lean_object* v___x_802_; lean_object* v___x_803_; 
+v___x_800_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__284, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__284_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__284);
+v___x_801_ = lean_unsigned_to_nat(1u);
+v___x_802_ = lean_mk_empty_array_with_capacity(v___x_801_);
+v___x_803_ = lean_array_push(v___x_802_, v___x_800_);
+return v___x_803_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__286(void){
+_start:
+{
+lean_object* v___x_804_; 
+v___x_804_ = lean_mk_string_unchecked("Emitted in VS Code when a text document is opened. VS Code may sometimes emit this notification for files that were not opened in an editor.", 140, 140);
+return v___x_804_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__287(void){
+_start:
+{
+lean_object* v___x_805_; lean_object* v___x_806_; uint8_t v___x_807_; lean_object* v___x_808_; lean_object* v___x_809_; 
+v___x_805_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__286, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__286_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__286);
+v___x_806_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__285, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__285_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__285);
+v___x_807_ = 0;
+v___x_808_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__279, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__279_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__279);
+v___x_809_ = lean_alloc_ctor(0, 3, 1);
+lean_ctor_set(v___x_809_, 0, v___x_808_);
+lean_ctor_set(v___x_809_, 1, v___x_806_);
+lean_ctor_set(v___x_809_, 2, v___x_805_);
+lean_ctor_set_uint8(v___x_809_, sizeof(void*)*3, v___x_807_);
+return v___x_809_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__288(void){
+_start:
+{
+lean_object* v___x_810_; lean_object* v___x_811_; 
+v___x_810_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__287, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__287_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__287);
+v___x_811_ = lean_alloc_ctor(2, 1, 0);
+lean_ctor_set(v___x_811_, 0, v___x_810_);
+return v___x_811_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__289(void){
+_start:
+{
+lean_object* v___x_812_; lean_object* v___x_813_; lean_object* v___x_814_; lean_object* v___x_815_; lean_object* v___x_816_; lean_object* v___x_817_; lean_object* v___x_818_; lean_object* v___x_819_; lean_object* v___x_820_; lean_object* v___x_821_; lean_object* v___x_822_; lean_object* v___x_823_; lean_object* v___x_824_; lean_object* v___x_825_; lean_object* v___x_826_; lean_object* v___x_827_; lean_object* v___x_828_; lean_object* v___x_829_; lean_object* v___x_830_; lean_object* v___x_831_; lean_object* v___x_832_; lean_object* v___x_833_; lean_object* v___x_834_; lean_object* v___x_835_; lean_object* v___x_836_; lean_object* v___x_837_; lean_object* v___x_838_; lean_object* v___x_839_; lean_object* v___x_840_; lean_object* v___x_841_; lean_object* v___x_842_; lean_object* v___x_843_; lean_object* v___x_844_; lean_object* v___x_845_; lean_object* v___x_846_; lean_object* v___x_847_; lean_object* v___x_848_; lean_object* v___x_849_; lean_object* v___x_850_; lean_object* v___x_851_; lean_object* v___x_852_; lean_object* v___x_853_; lean_object* v___x_854_; lean_object* v___x_855_; lean_object* v___x_856_; lean_object* v___x_857_; lean_object* v___x_858_; lean_object* v___x_859_; lean_object* v___x_860_; lean_object* v___x_861_; lean_object* v___x_862_; lean_object* v___x_863_; lean_object* v___x_864_; lean_object* v___x_865_; lean_object* v___x_866_; lean_object* v___x_867_; lean_object* v___x_868_; lean_object* v___x_869_; lean_object* v___x_870_; lean_object* v___x_871_; lean_object* v___x_872_; lean_object* v___x_873_; lean_object* v___x_874_; lean_object* v___x_875_; lean_object* v___x_876_; lean_object* v___x_877_; lean_object* v___x_878_; lean_object* v___x_879_; lean_object* v___x_880_; lean_object* v___x_881_; lean_object* v___x_882_; lean_object* v___x_883_; lean_object* v___x_884_; lean_object* v___x_885_; lean_object* v___x_886_; lean_object* v___x_887_; lean_object* v___x_888_; lean_object* v___x_889_; lean_object* v___x_890_; lean_object* v___x_891_; lean_object* v___x_892_; lean_object* v___x_893_; lean_object* v___x_894_; lean_object* v___x_895_; lean_object* v___x_896_; lean_object* v___x_897_; lean_object* v___x_898_; lean_object* v___x_899_; lean_object* v___x_900_; lean_object* v___x_901_; lean_object* v___x_902_; lean_object* v___x_903_; lean_object* v___x_904_; lean_object* v___x_905_; lean_object* v___x_906_; lean_object* v___x_907_; lean_object* v___x_908_; lean_object* v___x_909_; lean_object* v___x_910_; lean_object* v___x_911_; lean_object* v___x_912_; lean_object* v___x_913_; lean_object* v___x_914_; lean_object* v___x_915_; lean_object* v___x_916_; lean_object* v___x_917_; lean_object* v___x_918_; lean_object* v___x_919_; lean_object* v___x_920_; lean_object* v___x_921_; lean_object* v___x_922_; lean_object* v___x_923_; lean_object* v___x_924_; lean_object* v___x_925_; lean_object* v___x_926_; lean_object* v___x_927_; lean_object* v___x_928_; lean_object* v___x_929_; lean_object* v___x_930_; lean_object* v___x_931_; 
+v___x_812_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__22, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__22_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__22);
+v___x_813_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__16, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__16_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__16);
+v___x_814_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__11, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__11_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__11);
+v___x_815_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__6, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__6_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__6);
+v___x_816_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__41, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__41_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__41);
+v___x_817_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__36, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__36_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__36);
+v___x_818_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__31, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__31_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__31);
+v___x_819_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__27, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__27_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__27);
+v___x_820_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__70, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__70_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__70);
+v___x_821_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__66, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__66_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__66);
+v___x_822_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__62, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__62_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__62);
+v___x_823_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__58, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__58_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__58);
+v___x_824_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__54, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__54_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__54);
+v___x_825_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__50, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__50_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__50);
+v___x_826_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__46, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__46_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__46);
+v___x_827_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__86, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__86_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__86);
+v___x_828_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__82, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__82_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__82);
+v___x_829_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__79, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__79_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__79);
+v___x_830_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__75, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__75_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__75);
+v___x_831_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__102, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__102_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__102);
+v___x_832_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__98, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__98_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__98);
+v___x_833_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__94, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__94_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__94);
+v___x_834_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__90, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__90_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__90);
+v___x_835_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__130, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__130_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__130);
+v___x_836_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__126, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__126_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__126);
+v___x_837_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__122, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__122_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__122);
+v___x_838_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__118, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__118_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__118);
+v___x_839_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__114, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__114_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__114);
+v___x_840_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__110, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__110_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__110);
+v___x_841_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__106, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__106_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__106);
+v___x_842_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__149, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__149_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__149);
+v___x_843_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__145, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__145_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__145);
+v___x_844_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__141, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__141_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__141);
+v___x_845_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__134, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__134_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__134);
+v___x_846_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__168, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__168_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__168);
+v___x_847_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__161, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__161_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__161);
+v___x_848_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__157, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__157_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__157);
+v___x_849_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__153, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__153_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__153);
+v___x_850_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__195, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__195_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__195);
+v___x_851_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__192, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__192_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__192);
+v___x_852_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__188, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__188_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__188);
+v___x_853_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__184, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__184_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__184);
+v___x_854_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__180, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__180_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__180);
+v___x_855_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__176, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__176_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__176);
+v___x_856_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__172, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__172_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__172);
+v___x_857_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__239, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__239_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__239);
+v___x_858_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__235, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__235_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__235);
+v___x_859_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__231, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__231_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__231);
+v___x_860_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__211, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__211_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__211);
+v___x_861_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__207, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__207_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__207);
+v___x_862_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__203, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__203_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__203);
+v___x_863_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__199, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__199_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__199);
+v___x_864_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__288, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__288_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__288);
+v___x_865_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__278, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__278_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__278);
+v___x_866_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__274, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__274_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__274);
+v___x_867_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__270, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__270_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__270);
+v___x_868_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__266, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__266_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__266);
+v___x_869_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__262, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__262_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__262);
+v___x_870_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__243, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__243_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__243);
+v___x_871_ = lean_unsigned_to_nat(59u);
+v___x_872_ = lean_mk_empty_array_with_capacity(v___x_871_);
+v___x_873_ = lean_array_push(v___x_872_, v___x_870_);
+v___x_874_ = lean_array_push(v___x_873_, v___x_869_);
+v___x_875_ = lean_array_push(v___x_874_, v___x_868_);
+v___x_876_ = lean_array_push(v___x_875_, v___x_867_);
+v___x_877_ = lean_array_push(v___x_876_, v___x_866_);
+v___x_878_ = lean_array_push(v___x_877_, v___x_865_);
+v___x_879_ = lean_array_push(v___x_878_, v___x_864_);
+v___x_880_ = lean_array_push(v___x_879_, v___x_863_);
+v___x_881_ = lean_array_push(v___x_880_, v___x_862_);
+v___x_882_ = lean_array_push(v___x_881_, v___x_861_);
+v___x_883_ = lean_array_push(v___x_882_, v___x_860_);
+v___x_884_ = lean_array_push(v___x_883_, v___x_859_);
+v___x_885_ = lean_array_push(v___x_884_, v___x_858_);
+v___x_886_ = lean_array_push(v___x_885_, v___x_857_);
+v___x_887_ = lean_array_push(v___x_886_, v___x_856_);
+v___x_888_ = lean_array_push(v___x_887_, v___x_855_);
+v___x_889_ = lean_array_push(v___x_888_, v___x_854_);
+v___x_890_ = lean_array_push(v___x_889_, v___x_853_);
+v___x_891_ = lean_array_push(v___x_890_, v___x_852_);
+v___x_892_ = lean_array_push(v___x_891_, v___x_851_);
+v___x_893_ = lean_array_push(v___x_892_, v___x_850_);
+v___x_894_ = lean_array_push(v___x_893_, v___x_849_);
+v___x_895_ = lean_array_push(v___x_894_, v___x_848_);
+v___x_896_ = lean_array_push(v___x_895_, v___x_847_);
+v___x_897_ = lean_array_push(v___x_896_, v___x_846_);
+v___x_898_ = lean_array_push(v___x_897_, v___x_845_);
+v___x_899_ = lean_array_push(v___x_898_, v___x_844_);
+v___x_900_ = lean_array_push(v___x_899_, v___x_843_);
+v___x_901_ = lean_array_push(v___x_900_, v___x_842_);
+v___x_902_ = lean_array_push(v___x_901_, v___x_841_);
+v___x_903_ = lean_array_push(v___x_902_, v___x_840_);
+v___x_904_ = lean_array_push(v___x_903_, v___x_839_);
+v___x_905_ = lean_array_push(v___x_904_, v___x_838_);
+v___x_906_ = lean_array_push(v___x_905_, v___x_837_);
+v___x_907_ = lean_array_push(v___x_906_, v___x_836_);
+v___x_908_ = lean_array_push(v___x_907_, v___x_835_);
+v___x_909_ = lean_array_push(v___x_908_, v___x_834_);
+v___x_910_ = lean_array_push(v___x_909_, v___x_833_);
+v___x_911_ = lean_array_push(v___x_910_, v___x_832_);
+v___x_912_ = lean_array_push(v___x_911_, v___x_831_);
+v___x_913_ = lean_array_push(v___x_912_, v___x_830_);
+v___x_914_ = lean_array_push(v___x_913_, v___x_829_);
+v___x_915_ = lean_array_push(v___x_914_, v___x_828_);
+v___x_916_ = lean_array_push(v___x_915_, v___x_827_);
+v___x_917_ = lean_array_push(v___x_916_, v___x_826_);
+v___x_918_ = lean_array_push(v___x_917_, v___x_825_);
+v___x_919_ = lean_array_push(v___x_918_, v___x_824_);
+v___x_920_ = lean_array_push(v___x_919_, v___x_823_);
+v___x_921_ = lean_array_push(v___x_920_, v___x_822_);
+v___x_922_ = lean_array_push(v___x_921_, v___x_821_);
+v___x_923_ = lean_array_push(v___x_922_, v___x_820_);
+v___x_924_ = lean_array_push(v___x_923_, v___x_819_);
+v___x_925_ = lean_array_push(v___x_924_, v___x_818_);
+v___x_926_ = lean_array_push(v___x_925_, v___x_817_);
+v___x_927_ = lean_array_push(v___x_926_, v___x_816_);
+v___x_928_ = lean_array_push(v___x_927_, v___x_815_);
+v___x_929_ = lean_array_push(v___x_928_, v___x_814_);
+v___x_930_ = lean_array_push(v___x_929_, v___x_813_);
+v___x_931_ = lean_array_push(v___x_930_, v___x_812_);
+return v___x_931_;
+}
+}
+static lean_object* _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview(void){
+_start:
+{
+lean_object* v___x_932_; 
+v___x_932_ = lean_obj_once(&l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__289, &l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__289_once, _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview___closed__289);
+return v___x_932_;
+}
+}
 lean_object* runtime_initialize_Lean_Server_FileWorker_WidgetRequests(uint8_t builtin);
 lean_object* runtime_initialize_Lean_Widget_UserWidget(uint8_t builtin);
 static bool _G_runtime_initialized = false;
@@ -1016,6 +4092,8 @@ lean_dec_ref(res);
 res = runtime_initialize_Lean_Widget_UserWidget(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview = _init_l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview();
+lean_mark_persistent(l___private_Lean_Server_ProtocolOverview_0__Lean_Server_Overview_protocolOverview);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

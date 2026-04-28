@@ -20,13 +20,12 @@ lean_object* l_Lean_mkConst(lean_object*, lean_object*);
 lean_object* l_Lean_mkApp6(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Lean_Meta_Sym_Simp_Result_isRfl(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Simp_Result_isRfl___boxed(lean_object*);
-static const lean_string_object l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "Eq"};
-static const lean_object* l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__0 = (const lean_object*)&l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__0_value;
-static const lean_string_object l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "trans"};
-static const lean_object* l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__1 = (const lean_object*)&l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__1_value;
-static const lean_ctor_object l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__2_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__0_value),LEAN_SCALAR_PTR_LITERAL(143, 37, 101, 248, 9, 246, 191, 223)}};
-static const lean_ctor_object l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__2_value_aux_0),((lean_object*)&l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__1_value),LEAN_SCALAR_PTR_LITERAL(157, 40, 198, 234, 16, 168, 79, 243)}};
-static const lean_object* l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__2 = (const lean_object*)&l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__2_value;
+static lean_once_cell_t l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__0;
+static lean_once_cell_t l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__1;
+static lean_once_cell_t l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__2;
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Simp_mkEqTrans___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Simp_mkEqTrans(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -76,6 +75,32 @@ v_r_8_ = lean_box(v_res_7_);
 return v_r_8_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_9_; 
+v___x_9_ = lean_mk_string_unchecked("Eq", 2, 2);
+return v___x_9_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_10_; 
+v___x_10_ = lean_mk_string_unchecked("trans", 5, 5);
+return v___x_10_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__2(void){
+_start:
+{
+lean_object* v___x_11_; lean_object* v___x_12_; lean_object* v___x_13_; 
+v___x_11_ = lean_obj_once(&l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__1, &l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__1_once, _init_l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__1);
+v___x_12_ = lean_obj_once(&l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__0, &l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__0_once, _init_l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__0);
+v___x_13_ = l_Lean_Name_mkStr2(v___x_12_, v___x_11_);
+return v___x_13_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Simp_mkEqTrans___redArg(lean_object* v_e_u2081_14_, lean_object* v_e_u2082_15_, lean_object* v_h_u2081_16_, lean_object* v_e_u2083_17_, lean_object* v_h_u2082_18_, lean_object* v_a_19_, lean_object* v_a_20_, lean_object* v_a_21_, lean_object* v_a_22_, lean_object* v_a_23_){
 _start:
 {
@@ -111,7 +136,7 @@ goto v_resetjp_29_;
 v_resetjp_29_:
 {
 lean_object* v___x_32_; lean_object* v___x_33_; lean_object* v___x_34_; lean_object* v___x_35_; lean_object* v___x_36_; lean_object* v___x_38_; 
-v___x_32_ = ((lean_object*)(l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__2));
+v___x_32_ = lean_obj_once(&l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__2, &l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__2_once, _init_l_Lean_Meta_Sym_Simp_mkEqTrans___redArg___closed__2);
 v___x_33_ = lean_box(0);
 v___x_34_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_34_, 0, v_a_28_);

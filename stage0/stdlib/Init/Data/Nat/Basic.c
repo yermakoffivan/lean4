@@ -52,9 +52,9 @@ LEAN_EXPORT lean_object* l_Nat_min(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Nat_min___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Nat_instMax___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Nat_instMax___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Nat_instMax___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Nat_instMax___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Nat_instMax___closed__0 = (const lean_object*)&l_Nat_instMax___closed__0_value;
-LEAN_EXPORT const lean_object* l_Nat_instMax = (const lean_object*)&l_Nat_instMax___closed__0_value;
+static lean_once_cell_t l_Nat_instMax___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Nat_instMax___closed__0;
+LEAN_EXPORT lean_object* l_Nat_instMax;
 LEAN_EXPORT lean_object* l_Nat_max(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Nat_max___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Nat_Basic_0__Nat_repeat_match__1_splitter___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
@@ -556,6 +556,22 @@ lean_dec(v_x_192_);
 return v_res_194_;
 }
 }
+static lean_object* _init_l_Nat_instMax___closed__0(void){
+_start:
+{
+lean_object* v___f_195_; 
+v___f_195_ = lean_alloc_closure((void*)(l_Nat_instMax___lam__0___boxed), 2, 0);
+return v___f_195_;
+}
+}
+static lean_object* _init_l_Nat_instMax(void){
+_start:
+{
+lean_object* v___f_196_; 
+v___f_196_ = lean_obj_once(&l_Nat_instMax___closed__0, &l_Nat_instMax___closed__0_once, _init_l_Nat_instMax___closed__0);
+return v___f_196_;
+}
+}
 LEAN_EXPORT lean_object* l_Nat_max(lean_object* v_n_197_, lean_object* v_m_198_){
 _start:
 {
@@ -670,6 +686,8 @@ l_Nat_instTransLt = _init_l_Nat_instTransLt();
 l_Nat_instTransLe = _init_l_Nat_instTransLe();
 l_Nat_instTransLtLe = _init_l_Nat_instTransLtLe();
 l_Nat_instTransLeLt = _init_l_Nat_instTransLeLt();
+l_Nat_instMax = _init_l_Nat_instMax();
+lean_mark_persistent(l_Nat_instMax);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

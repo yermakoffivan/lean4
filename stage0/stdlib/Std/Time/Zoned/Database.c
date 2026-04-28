@@ -30,38 +30,50 @@ lean_object* lean_mk_io_user_error(lean_object*);
 lean_object* l_Std_Time_Database_Windows_getZoneRules(lean_object*);
 lean_object* l_Std_Time_Database_TZdb_localRules(lean_object*);
 lean_object* lean_get_windows_local_timezone_id_at(uint64_t);
-static const lean_ctor_object l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Time_Database_defaultGetZoneRules_spec__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Time_Database_defaultGetZoneRules_spec__0___closed__0 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Time_Database_defaultGetZoneRules_spec__0___closed__0_value;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Time_Database_defaultGetZoneRules_spec__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Time_Database_defaultGetZoneRules_spec__0___closed__0;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Time_Database_defaultGetZoneRules_spec__0(lean_object*, lean_object*, size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Time_Database_defaultGetZoneRules_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std_Time_Database_defaultGetZoneRules___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "TZDIR"};
-static const lean_object* l_Std_Time_Database_defaultGetZoneRules___closed__0 = (const lean_object*)&l_Std_Time_Database_defaultGetZoneRules___closed__0_value;
-static const lean_string_object l_Std_Time_Database_defaultGetZoneRules___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 20, .m_capacity = 20, .m_length = 19, .m_data = "/usr/share/zoneinfo"};
-static const lean_object* l_Std_Time_Database_defaultGetZoneRules___closed__1 = (const lean_object*)&l_Std_Time_Database_defaultGetZoneRules___closed__1_value;
-static const lean_string_object l_Std_Time_Database_defaultGetZoneRules___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "/share/zoneinfo"};
-static const lean_object* l_Std_Time_Database_defaultGetZoneRules___closed__2 = (const lean_object*)&l_Std_Time_Database_defaultGetZoneRules___closed__2_value;
-static const lean_string_object l_Std_Time_Database_defaultGetZoneRules___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "/etc/zoneinfo"};
-static const lean_object* l_Std_Time_Database_defaultGetZoneRules___closed__3 = (const lean_object*)&l_Std_Time_Database_defaultGetZoneRules___closed__3_value;
-static const lean_string_object l_Std_Time_Database_defaultGetZoneRules___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 24, .m_capacity = 24, .m_length = 23, .m_data = "/usr/share/lib/zoneinfo"};
-static const lean_object* l_Std_Time_Database_defaultGetZoneRules___closed__4 = (const lean_object*)&l_Std_Time_Database_defaultGetZoneRules___closed__4_value;
-static const lean_array_object l_Std_Time_Database_defaultGetZoneRules___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*4, .m_other = 0, .m_tag = 246}, .m_size = 4, .m_capacity = 4, .m_data = {((lean_object*)&l_Std_Time_Database_defaultGetZoneRules___closed__1_value),((lean_object*)&l_Std_Time_Database_defaultGetZoneRules___closed__2_value),((lean_object*)&l_Std_Time_Database_defaultGetZoneRules___closed__3_value),((lean_object*)&l_Std_Time_Database_defaultGetZoneRules___closed__4_value)}};
-static const lean_object* l_Std_Time_Database_defaultGetZoneRules___closed__5 = (const lean_object*)&l_Std_Time_Database_defaultGetZoneRules___closed__5_value;
+static lean_once_cell_t l_Std_Time_Database_defaultGetZoneRules___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Database_defaultGetZoneRules___closed__0;
+static lean_once_cell_t l_Std_Time_Database_defaultGetZoneRules___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Database_defaultGetZoneRules___closed__1;
+static lean_once_cell_t l_Std_Time_Database_defaultGetZoneRules___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Database_defaultGetZoneRules___closed__2;
+static lean_once_cell_t l_Std_Time_Database_defaultGetZoneRules___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Database_defaultGetZoneRules___closed__3;
+static lean_once_cell_t l_Std_Time_Database_defaultGetZoneRules___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Database_defaultGetZoneRules___closed__4;
+static lean_once_cell_t l_Std_Time_Database_defaultGetZoneRules___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Database_defaultGetZoneRules___closed__5;
 static lean_once_cell_t l_Std_Time_Database_defaultGetZoneRules___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
 static size_t l_Std_Time_Database_defaultGetZoneRules___closed__6;
-static const lean_string_object l_Std_Time_Database_defaultGetZoneRules___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "cannot find "};
-static const lean_object* l_Std_Time_Database_defaultGetZoneRules___closed__7 = (const lean_object*)&l_Std_Time_Database_defaultGetZoneRules___closed__7_value;
-static const lean_string_object l_Std_Time_Database_defaultGetZoneRules___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 32, .m_capacity = 32, .m_length = 31, .m_data = " in the local timezone database"};
-static const lean_object* l_Std_Time_Database_defaultGetZoneRules___closed__8 = (const lean_object*)&l_Std_Time_Database_defaultGetZoneRules___closed__8_value;
+static lean_once_cell_t l_Std_Time_Database_defaultGetZoneRules___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Database_defaultGetZoneRules___closed__7;
+static lean_once_cell_t l_Std_Time_Database_defaultGetZoneRules___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Database_defaultGetZoneRules___closed__8;
 LEAN_EXPORT lean_object* l_Std_Time_Database_defaultGetZoneRules(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Database_defaultGetZoneRules___boxed(lean_object*, lean_object*);
-static const lean_string_object l_Std_Time_Database_defaultGetLocalZoneRules___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "/etc/localtime"};
-static const lean_object* l_Std_Time_Database_defaultGetLocalZoneRules___closed__0 = (const lean_object*)&l_Std_Time_Database_defaultGetLocalZoneRules___closed__0_value;
+static lean_once_cell_t l_Std_Time_Database_defaultGetLocalZoneRules___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Database_defaultGetLocalZoneRules___closed__0;
 static lean_once_cell_t l_Std_Time_Database_defaultGetLocalZoneRules___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static uint64_t l_Std_Time_Database_defaultGetLocalZoneRules___closed__1;
 static lean_once_cell_t l_Std_Time_Database_defaultGetLocalZoneRules___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static uint64_t l_Std_Time_Database_defaultGetLocalZoneRules___closed__2;
 LEAN_EXPORT lean_object* l_Std_Time_Database_defaultGetLocalZoneRules();
 LEAN_EXPORT lean_object* l_Std_Time_Database_defaultGetLocalZoneRules___boxed(lean_object*);
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Time_Database_defaultGetZoneRules_spec__0___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; lean_object* v___x_2_; lean_object* v___x_3_; 
+v___x_1_ = lean_box(0);
+v___x_2_ = lean_box(0);
+v___x_3_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_3_, 0, v___x_2_);
+lean_ctor_set(v___x_3_, 1, v___x_1_);
+return v___x_3_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Time_Database_defaultGetZoneRules_spec__0(lean_object* v_a_4_, lean_object* v_as_5_, size_t v_sz_6_, size_t v_i_7_, lean_object* v_b_8_){
 _start:
 {
@@ -85,7 +97,7 @@ v___x_14_ = lean_box(0);
 if (v___x_13_ == 0)
 {
 lean_object* v___x_15_; size_t v___x_16_; size_t v___x_17_; 
-v___x_15_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Time_Database_defaultGetZoneRules_spec__0___closed__0));
+v___x_15_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Time_Database_defaultGetZoneRules_spec__0___closed__0, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Time_Database_defaultGetZoneRules_spec__0___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Time_Database_defaultGetZoneRules_spec__0___closed__0);
 v___x_16_ = ((size_t)1ULL);
 v___x_17_ = lean_usize_add(v_i_7_, v___x_16_);
 v_i_7_ = v___x_17_;
@@ -202,13 +214,86 @@ lean_dec_ref(v_as_39_);
 return v_res_46_;
 }
 }
+static lean_object* _init_l_Std_Time_Database_defaultGetZoneRules___closed__0(void){
+_start:
+{
+lean_object* v___x_47_; 
+v___x_47_ = lean_mk_string_unchecked("TZDIR", 5, 5);
+return v___x_47_;
+}
+}
+static lean_object* _init_l_Std_Time_Database_defaultGetZoneRules___closed__1(void){
+_start:
+{
+lean_object* v___x_48_; 
+v___x_48_ = lean_mk_string_unchecked("/usr/share/zoneinfo", 19, 19);
+return v___x_48_;
+}
+}
+static lean_object* _init_l_Std_Time_Database_defaultGetZoneRules___closed__2(void){
+_start:
+{
+lean_object* v___x_49_; 
+v___x_49_ = lean_mk_string_unchecked("/share/zoneinfo", 15, 15);
+return v___x_49_;
+}
+}
+static lean_object* _init_l_Std_Time_Database_defaultGetZoneRules___closed__3(void){
+_start:
+{
+lean_object* v___x_50_; 
+v___x_50_ = lean_mk_string_unchecked("/etc/zoneinfo", 13, 13);
+return v___x_50_;
+}
+}
+static lean_object* _init_l_Std_Time_Database_defaultGetZoneRules___closed__4(void){
+_start:
+{
+lean_object* v___x_51_; 
+v___x_51_ = lean_mk_string_unchecked("/usr/share/lib/zoneinfo", 23, 23);
+return v___x_51_;
+}
+}
+static lean_object* _init_l_Std_Time_Database_defaultGetZoneRules___closed__5(void){
+_start:
+{
+lean_object* v___x_52_; lean_object* v___x_53_; lean_object* v___x_54_; lean_object* v___x_55_; lean_object* v___x_56_; lean_object* v___x_57_; lean_object* v___x_58_; lean_object* v___x_59_; lean_object* v___x_60_; lean_object* v___x_61_; 
+v___x_52_ = lean_obj_once(&l_Std_Time_Database_defaultGetZoneRules___closed__4, &l_Std_Time_Database_defaultGetZoneRules___closed__4_once, _init_l_Std_Time_Database_defaultGetZoneRules___closed__4);
+v___x_53_ = lean_obj_once(&l_Std_Time_Database_defaultGetZoneRules___closed__3, &l_Std_Time_Database_defaultGetZoneRules___closed__3_once, _init_l_Std_Time_Database_defaultGetZoneRules___closed__3);
+v___x_54_ = lean_obj_once(&l_Std_Time_Database_defaultGetZoneRules___closed__2, &l_Std_Time_Database_defaultGetZoneRules___closed__2_once, _init_l_Std_Time_Database_defaultGetZoneRules___closed__2);
+v___x_55_ = lean_obj_once(&l_Std_Time_Database_defaultGetZoneRules___closed__1, &l_Std_Time_Database_defaultGetZoneRules___closed__1_once, _init_l_Std_Time_Database_defaultGetZoneRules___closed__1);
+v___x_56_ = lean_unsigned_to_nat(4u);
+v___x_57_ = lean_mk_empty_array_with_capacity(v___x_56_);
+v___x_58_ = lean_array_push(v___x_57_, v___x_55_);
+v___x_59_ = lean_array_push(v___x_58_, v___x_54_);
+v___x_60_ = lean_array_push(v___x_59_, v___x_53_);
+v___x_61_ = lean_array_push(v___x_60_, v___x_52_);
+return v___x_61_;
+}
+}
 static size_t _init_l_Std_Time_Database_defaultGetZoneRules___closed__6(void){
 _start:
 {
 lean_object* v___x_62_; size_t v_sz_63_; 
-v___x_62_ = ((lean_object*)(l_Std_Time_Database_defaultGetZoneRules___closed__5));
+v___x_62_ = lean_obj_once(&l_Std_Time_Database_defaultGetZoneRules___closed__5, &l_Std_Time_Database_defaultGetZoneRules___closed__5_once, _init_l_Std_Time_Database_defaultGetZoneRules___closed__5);
 v_sz_63_ = lean_array_size(v___x_62_);
 return v_sz_63_;
+}
+}
+static lean_object* _init_l_Std_Time_Database_defaultGetZoneRules___closed__7(void){
+_start:
+{
+lean_object* v___x_64_; 
+v___x_64_ = lean_mk_string_unchecked("cannot find ", 12, 12);
+return v___x_64_;
+}
+}
+static lean_object* _init_l_Std_Time_Database_defaultGetZoneRules___closed__8(void){
+_start:
+{
+lean_object* v___x_65_; 
+v___x_65_ = lean_mk_string_unchecked(" in the local timezone database", 31, 31);
+return v___x_65_;
 }
 }
 LEAN_EXPORT lean_object* l_Std_Time_Database_defaultGetZoneRules(lean_object* v_a_66_){
@@ -219,7 +304,7 @@ v___x_68_ = l_System_Platform_isWindows;
 if (v___x_68_ == 0)
 {
 lean_object* v___x_69_; lean_object* v___x_70_; 
-v___x_69_ = ((lean_object*)(l_Std_Time_Database_defaultGetZoneRules___closed__0));
+v___x_69_ = lean_obj_once(&l_Std_Time_Database_defaultGetZoneRules___closed__0, &l_Std_Time_Database_defaultGetZoneRules___closed__0_once, _init_l_Std_Time_Database_defaultGetZoneRules___closed__0);
 v___x_70_ = lean_io_getenv(v___x_69_);
 if (lean_obj_tag(v___x_70_) == 1)
 {
@@ -234,8 +319,8 @@ else
 {
 lean_object* v___x_73_; lean_object* v___x_74_; size_t v_sz_75_; size_t v___x_76_; lean_object* v___x_77_; 
 lean_dec(v___x_70_);
-v___x_73_ = ((lean_object*)(l_Std_Time_Database_defaultGetZoneRules___closed__5));
-v___x_74_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Time_Database_defaultGetZoneRules_spec__0___closed__0));
+v___x_73_ = lean_obj_once(&l_Std_Time_Database_defaultGetZoneRules___closed__5, &l_Std_Time_Database_defaultGetZoneRules___closed__5_once, _init_l_Std_Time_Database_defaultGetZoneRules___closed__5);
+v___x_74_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Time_Database_defaultGetZoneRules_spec__0___closed__0, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Time_Database_defaultGetZoneRules_spec__0___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Time_Database_defaultGetZoneRules_spec__0___closed__0);
 v_sz_75_ = lean_usize_once(&l_Std_Time_Database_defaultGetZoneRules___closed__6, &l_Std_Time_Database_defaultGetZoneRules___closed__6_once, _init_l_Std_Time_Database_defaultGetZoneRules___closed__6);
 v___x_76_ = ((size_t)0ULL);
 lean_inc_ref(v_a_66_);
@@ -268,10 +353,10 @@ lean_dec(v_a_78_);
 if (lean_obj_tag(v_fst_82_) == 0)
 {
 lean_object* v___x_83_; lean_object* v___x_84_; lean_object* v___x_85_; lean_object* v___x_86_; lean_object* v___x_87_; lean_object* v___x_89_; 
-v___x_83_ = ((lean_object*)(l_Std_Time_Database_defaultGetZoneRules___closed__7));
+v___x_83_ = lean_obj_once(&l_Std_Time_Database_defaultGetZoneRules___closed__7, &l_Std_Time_Database_defaultGetZoneRules___closed__7_once, _init_l_Std_Time_Database_defaultGetZoneRules___closed__7);
 v___x_84_ = lean_string_append(v___x_83_, v_a_66_);
 lean_dec_ref(v_a_66_);
-v___x_85_ = ((lean_object*)(l_Std_Time_Database_defaultGetZoneRules___closed__8));
+v___x_85_ = lean_obj_once(&l_Std_Time_Database_defaultGetZoneRules___closed__8, &l_Std_Time_Database_defaultGetZoneRules___closed__8_once, _init_l_Std_Time_Database_defaultGetZoneRules___closed__8);
 v___x_86_ = lean_string_append(v___x_84_, v___x_85_);
 v___x_87_ = lean_mk_io_user_error(v___x_86_);
 if (v_isShared_81_ == 0)
@@ -383,6 +468,14 @@ v_res_107_ = l_Std_Time_Database_defaultGetZoneRules(v_a_105_);
 return v_res_107_;
 }
 }
+static lean_object* _init_l_Std_Time_Database_defaultGetLocalZoneRules___closed__0(void){
+_start:
+{
+lean_object* v___x_108_; 
+v___x_108_ = lean_mk_string_unchecked("/etc/localtime", 14, 14);
+return v___x_108_;
+}
+}
 static uint64_t _init_l_Std_Time_Database_defaultGetLocalZoneRules___closed__1(void){
 _start:
 {
@@ -409,7 +502,7 @@ v___x_114_ = l_System_Platform_isWindows;
 if (v___x_114_ == 0)
 {
 lean_object* v___x_115_; lean_object* v___x_116_; 
-v___x_115_ = ((lean_object*)(l_Std_Time_Database_defaultGetLocalZoneRules___closed__0));
+v___x_115_ = lean_obj_once(&l_Std_Time_Database_defaultGetLocalZoneRules___closed__0, &l_Std_Time_Database_defaultGetLocalZoneRules___closed__0_once, _init_l_Std_Time_Database_defaultGetLocalZoneRules___closed__0);
 v___x_116_ = l_Std_Time_Database_TZdb_localRules(v___x_115_);
 return v___x_116_;
 }

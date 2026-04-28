@@ -25,18 +25,18 @@ uint64_t lean_uint64_lor(uint64_t, uint64_t);
 LEAN_EXPORT lean_object* l_panic___at___00ByteArray_toUInt64LE_x21_spec__0___boxed__const__1;
 LEAN_EXPORT uint64_t l_panic___at___00ByteArray_toUInt64LE_x21_spec__0(lean_object*);
 LEAN_EXPORT lean_object* l_panic___at___00ByteArray_toUInt64LE_x21_spec__0___boxed(lean_object*);
-static const lean_string_object l_ByteArray_toUInt64LE_x21___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 26, .m_capacity = 26, .m_length = 25, .m_data = "Init.Data.ByteArray.Extra"};
-static const lean_object* l_ByteArray_toUInt64LE_x21___closed__0 = (const lean_object*)&l_ByteArray_toUInt64LE_x21___closed__0_value;
-static const lean_string_object l_ByteArray_toUInt64LE_x21___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 22, .m_capacity = 22, .m_length = 21, .m_data = "ByteArray.toUInt64LE!"};
-static const lean_object* l_ByteArray_toUInt64LE_x21___closed__1 = (const lean_object*)&l_ByteArray_toUInt64LE_x21___closed__1_value;
-static const lean_string_object l_ByteArray_toUInt64LE_x21___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 37, .m_capacity = 37, .m_length = 36, .m_data = "assertion violation: bs.size == 8\n  "};
-static const lean_object* l_ByteArray_toUInt64LE_x21___closed__2 = (const lean_object*)&l_ByteArray_toUInt64LE_x21___closed__2_value;
+static lean_once_cell_t l_ByteArray_toUInt64LE_x21___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_ByteArray_toUInt64LE_x21___closed__0;
+static lean_once_cell_t l_ByteArray_toUInt64LE_x21___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_ByteArray_toUInt64LE_x21___closed__1;
+static lean_once_cell_t l_ByteArray_toUInt64LE_x21___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_ByteArray_toUInt64LE_x21___closed__2;
 static lean_once_cell_t l_ByteArray_toUInt64LE_x21___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_ByteArray_toUInt64LE_x21___closed__3;
 LEAN_EXPORT uint64_t l_ByteArray_toUInt64LE_x21(lean_object*);
 LEAN_EXPORT lean_object* l_ByteArray_toUInt64LE_x21___boxed(lean_object*);
-static const lean_string_object l_ByteArray_toUInt64BE_x21___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 22, .m_capacity = 22, .m_length = 21, .m_data = "ByteArray.toUInt64BE!"};
-static const lean_object* l_ByteArray_toUInt64BE_x21___closed__0 = (const lean_object*)&l_ByteArray_toUInt64BE_x21___closed__0_value;
+static lean_once_cell_t l_ByteArray_toUInt64BE_x21___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_ByteArray_toUInt64BE_x21___closed__0;
 static lean_once_cell_t l_ByteArray_toUInt64BE_x21___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_ByteArray_toUInt64BE_x21___closed__1;
 LEAN_EXPORT uint64_t l_ByteArray_toUInt64BE_x21(lean_object*);
@@ -70,15 +70,39 @@ v_r_9_ = lean_box_uint64(v_res_8_);
 return v_r_9_;
 }
 }
+static lean_object* _init_l_ByteArray_toUInt64LE_x21___closed__0(void){
+_start:
+{
+lean_object* v___x_10_; 
+v___x_10_ = lean_mk_string_unchecked("Init.Data.ByteArray.Extra", 25, 25);
+return v___x_10_;
+}
+}
+static lean_object* _init_l_ByteArray_toUInt64LE_x21___closed__1(void){
+_start:
+{
+lean_object* v___x_11_; 
+v___x_11_ = lean_mk_string_unchecked("ByteArray.toUInt64LE!", 21, 21);
+return v___x_11_;
+}
+}
+static lean_object* _init_l_ByteArray_toUInt64LE_x21___closed__2(void){
+_start:
+{
+lean_object* v___x_12_; 
+v___x_12_ = lean_mk_string_unchecked("assertion violation: bs.size == 8\n  ", 36, 36);
+return v___x_12_;
+}
+}
 static lean_object* _init_l_ByteArray_toUInt64LE_x21___closed__3(void){
 _start:
 {
 lean_object* v___x_13_; lean_object* v___x_14_; lean_object* v___x_15_; lean_object* v___x_16_; lean_object* v___x_17_; lean_object* v___x_18_; 
-v___x_13_ = ((lean_object*)(l_ByteArray_toUInt64LE_x21___closed__2));
+v___x_13_ = lean_obj_once(&l_ByteArray_toUInt64LE_x21___closed__2, &l_ByteArray_toUInt64LE_x21___closed__2_once, _init_l_ByteArray_toUInt64LE_x21___closed__2);
 v___x_14_ = lean_unsigned_to_nat(2u);
 v___x_15_ = lean_unsigned_to_nat(21u);
-v___x_16_ = ((lean_object*)(l_ByteArray_toUInt64LE_x21___closed__1));
-v___x_17_ = ((lean_object*)(l_ByteArray_toUInt64LE_x21___closed__0));
+v___x_16_ = lean_obj_once(&l_ByteArray_toUInt64LE_x21___closed__1, &l_ByteArray_toUInt64LE_x21___closed__1_once, _init_l_ByteArray_toUInt64LE_x21___closed__1);
+v___x_17_ = lean_obj_once(&l_ByteArray_toUInt64LE_x21___closed__0, &l_ByteArray_toUInt64LE_x21___closed__0_once, _init_l_ByteArray_toUInt64LE_x21___closed__0);
 v___x_18_ = l_mkPanicMessageWithDecl(v___x_17_, v___x_16_, v___x_15_, v___x_14_, v___x_13_);
 return v___x_18_;
 }
@@ -159,15 +183,23 @@ v_r_72_ = lean_box_uint64(v_res_71_);
 return v_r_72_;
 }
 }
+static lean_object* _init_l_ByteArray_toUInt64BE_x21___closed__0(void){
+_start:
+{
+lean_object* v___x_73_; 
+v___x_73_ = lean_mk_string_unchecked("ByteArray.toUInt64BE!", 21, 21);
+return v___x_73_;
+}
+}
 static lean_object* _init_l_ByteArray_toUInt64BE_x21___closed__1(void){
 _start:
 {
 lean_object* v___x_74_; lean_object* v___x_75_; lean_object* v___x_76_; lean_object* v___x_77_; lean_object* v___x_78_; lean_object* v___x_79_; 
-v___x_74_ = ((lean_object*)(l_ByteArray_toUInt64LE_x21___closed__2));
+v___x_74_ = lean_obj_once(&l_ByteArray_toUInt64LE_x21___closed__2, &l_ByteArray_toUInt64LE_x21___closed__2_once, _init_l_ByteArray_toUInt64LE_x21___closed__2);
 v___x_75_ = lean_unsigned_to_nat(2u);
 v___x_76_ = lean_unsigned_to_nat(37u);
-v___x_77_ = ((lean_object*)(l_ByteArray_toUInt64BE_x21___closed__0));
-v___x_78_ = ((lean_object*)(l_ByteArray_toUInt64LE_x21___closed__0));
+v___x_77_ = lean_obj_once(&l_ByteArray_toUInt64BE_x21___closed__0, &l_ByteArray_toUInt64BE_x21___closed__0_once, _init_l_ByteArray_toUInt64BE_x21___closed__0);
+v___x_78_ = lean_obj_once(&l_ByteArray_toUInt64LE_x21___closed__0, &l_ByteArray_toUInt64LE_x21___closed__0_once, _init_l_ByteArray_toUInt64LE_x21___closed__0);
 v___x_79_ = l_mkPanicMessageWithDecl(v___x_78_, v___x_77_, v___x_76_, v___x_75_, v___x_74_);
 return v___x_79_;
 }

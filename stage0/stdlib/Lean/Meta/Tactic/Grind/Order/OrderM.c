@@ -51,8 +51,8 @@ LEAN_EXPORT lean_object* l_Lean_addMessageContextFull___at___00Lean_throwError__
 LEAN_EXPORT lean_object* l_Lean_addMessageContextFull___at___00Lean_throwError___at___00Lean_Meta_Grind_Order_getStruct_spec__0_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00Lean_Meta_Grind_Order_getStruct_spec__0___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00Lean_Meta_Grind_Order_getStruct_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Grind_Order_getStruct___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 51, .m_capacity = 51, .m_length = 50, .m_data = "`grind` internal error, invalid order structure id"};
-static const lean_object* l_Lean_Meta_Grind_Order_getStruct___closed__0 = (const lean_object*)&l_Lean_Meta_Grind_Order_getStruct___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Grind_Order_getStruct___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_Order_getStruct___closed__0;
 static lean_once_cell_t l_Lean_Meta_Grind_Order_getStruct___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Order_getStruct___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Order_getStruct(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -85,8 +85,8 @@ LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_findAux___at___00Lean_Persiste
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_findAux___at___00Lean_PersistentHashMap_find_x3f___at___00Lean_Meta_Grind_Order_getNodeId_spec__0_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_find_x3f___at___00Lean_Meta_Grind_Order_getNodeId_spec__0___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_find_x3f___at___00Lean_Meta_Grind_Order_getNodeId_spec__0___redArg___boxed(lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Grind_Order_getNodeId___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 71, .m_capacity = 71, .m_length = 70, .m_data = "internal `grind` error, term has not been internalized by order module"};
-static const lean_object* l_Lean_Meta_Grind_Order_getNodeId___closed__0 = (const lean_object*)&l_Lean_Meta_Grind_Order_getNodeId___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Grind_Order_getNodeId___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_Order_getNodeId___closed__0;
 static lean_once_cell_t l_Lean_Meta_Grind_Order_getNodeId___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Order_getNodeId___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Order_getNodeId(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -97,12 +97,12 @@ LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_findAux___at___00Lean_Persiste
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_findAux___at___00Lean_PersistentHashMap_find_x3f___at___00Lean_Meta_Grind_Order_getNodeId_spec__0_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_findAtAux___at___00Lean_PersistentHashMap_findAux___at___00Lean_PersistentHashMap_find_x3f___at___00Lean_Meta_Grind_Order_getNodeId_spec__0_spec__0_spec__1(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_findAtAux___at___00Lean_PersistentHashMap_findAux___at___00Lean_PersistentHashMap_find_x3f___at___00Lean_Meta_Grind_Order_getNodeId_spec__0_spec__0_spec__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Grind_Order_getProof___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 54, .m_capacity = 54, .m_length = 53, .m_data = "internal `grind` error, failed to construct proof for"};
-static const lean_object* l_Lean_Meta_Grind_Order_getProof___closed__0 = (const lean_object*)&l_Lean_Meta_Grind_Order_getProof___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Grind_Order_getProof___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_Order_getProof___closed__0;
 static lean_once_cell_t l_Lean_Meta_Grind_Order_getProof___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Order_getProof___closed__1;
-static const lean_string_object l_Lean_Meta_Grind_Order_getProof___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "\nand"};
-static const lean_object* l_Lean_Meta_Grind_Order_getProof___closed__2 = (const lean_object*)&l_Lean_Meta_Grind_Order_getProof___closed__2_value;
+static lean_once_cell_t l_Lean_Meta_Grind_Order_getProof___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Grind_Order_getProof___closed__2;
 static lean_once_cell_t l_Lean_Meta_Grind_Order_getProof___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Grind_Order_getProof___closed__3;
 LEAN_EXPORT lean_object* l_Lean_Meta_Grind_Order_getProof(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -343,11 +343,19 @@ lean_dec_ref(v___y_131_);
 return v_res_136_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Grind_Order_getStruct___closed__0(void){
+_start:
+{
+lean_object* v___x_137_; 
+v___x_137_ = lean_mk_string_unchecked("`grind` internal error, invalid order structure id", 50, 50);
+return v___x_137_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Grind_Order_getStruct___closed__1(void){
 _start:
 {
 lean_object* v___x_138_; lean_object* v___x_139_; 
-v___x_138_ = ((lean_object*)(l_Lean_Meta_Grind_Order_getStruct___closed__0));
+v___x_138_ = lean_obj_once(&l_Lean_Meta_Grind_Order_getStruct___closed__0, &l_Lean_Meta_Grind_Order_getStruct___closed__0_once, _init_l_Lean_Meta_Grind_Order_getStruct___closed__0);
 v___x_139_ = l_Lean_stringToMessageData(v___x_138_);
 return v___x_139_;
 }
@@ -1302,11 +1310,19 @@ lean_dec_ref(v_x_530_);
 return v_res_532_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Grind_Order_getNodeId___closed__0(void){
+_start:
+{
+lean_object* v___x_533_; 
+v___x_533_ = lean_mk_string_unchecked("internal `grind` error, term has not been internalized by order module", 70, 70);
+return v___x_533_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Grind_Order_getNodeId___closed__1(void){
 _start:
 {
 lean_object* v___x_534_; lean_object* v___x_535_; 
-v___x_534_ = ((lean_object*)(l_Lean_Meta_Grind_Order_getNodeId___closed__0));
+v___x_534_ = lean_obj_once(&l_Lean_Meta_Grind_Order_getNodeId___closed__0, &l_Lean_Meta_Grind_Order_getNodeId___closed__0_once, _init_l_Lean_Meta_Grind_Order_getNodeId___closed__0);
 v___x_535_ = l_Lean_stringToMessageData(v___x_534_);
 return v___x_535_;
 }
@@ -1504,20 +1520,36 @@ lean_dec_ref(v_keys_614_);
 return v_res_619_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Grind_Order_getProof___closed__0(void){
+_start:
+{
+lean_object* v___x_620_; 
+v___x_620_ = lean_mk_string_unchecked("internal `grind` error, failed to construct proof for", 53, 53);
+return v___x_620_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Grind_Order_getProof___closed__1(void){
 _start:
 {
 lean_object* v___x_621_; lean_object* v___x_622_; 
-v___x_621_ = ((lean_object*)(l_Lean_Meta_Grind_Order_getProof___closed__0));
+v___x_621_ = lean_obj_once(&l_Lean_Meta_Grind_Order_getProof___closed__0, &l_Lean_Meta_Grind_Order_getProof___closed__0_once, _init_l_Lean_Meta_Grind_Order_getProof___closed__0);
 v___x_622_ = l_Lean_stringToMessageData(v___x_621_);
 return v___x_622_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Grind_Order_getProof___closed__2(void){
+_start:
+{
+lean_object* v___x_623_; 
+v___x_623_ = lean_mk_string_unchecked("\nand", 4, 4);
+return v___x_623_;
 }
 }
 static lean_object* _init_l_Lean_Meta_Grind_Order_getProof___closed__3(void){
 _start:
 {
 lean_object* v___x_624_; lean_object* v___x_625_; 
-v___x_624_ = ((lean_object*)(l_Lean_Meta_Grind_Order_getProof___closed__2));
+v___x_624_ = lean_obj_once(&l_Lean_Meta_Grind_Order_getProof___closed__2, &l_Lean_Meta_Grind_Order_getProof___closed__2_once, _init_l_Lean_Meta_Grind_Order_getProof___closed__2);
 v___x_625_ = l_Lean_stringToMessageData(v___x_624_);
 return v___x_625_;
 }

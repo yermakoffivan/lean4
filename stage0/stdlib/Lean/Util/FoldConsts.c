@@ -76,14 +76,14 @@ static lean_object* l_Lean_Expr_FoldConstsImpl_foldUnsafe___redArg___closed__3;
 LEAN_EXPORT lean_object* l_Lean_Expr_FoldConstsImpl_foldUnsafe___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Expr_FoldConstsImpl_foldUnsafe(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Expr_getUsedConstants___lam__0(lean_object*, lean_object*);
-static const lean_closure_object l_Lean_Expr_getUsedConstants___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Expr_getUsedConstants___lam__0, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Expr_getUsedConstants___closed__0 = (const lean_object*)&l_Lean_Expr_getUsedConstants___closed__0_value;
-static const lean_array_object l_Lean_Expr_getUsedConstants___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Lean_Expr_getUsedConstants___closed__1 = (const lean_object*)&l_Lean_Expr_getUsedConstants___closed__1_value;
+static lean_once_cell_t l_Lean_Expr_getUsedConstants___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_getUsedConstants___closed__0;
+static lean_once_cell_t l_Lean_Expr_getUsedConstants___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_getUsedConstants___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Expr_getUsedConstants(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Expr_getUsedConstantsAsSet___lam__0(lean_object*, lean_object*);
-static const lean_closure_object l_Lean_Expr_getUsedConstantsAsSet___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Expr_getUsedConstantsAsSet___lam__0, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Expr_getUsedConstantsAsSet___closed__0 = (const lean_object*)&l_Lean_Expr_getUsedConstantsAsSet___closed__0_value;
+static lean_once_cell_t l_Lean_Expr_getUsedConstantsAsSet___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_getUsedConstantsAsSet___closed__0;
 LEAN_EXPORT lean_object* l_Lean_Expr_getUsedConstantsAsSet(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_ConstantInfo_getUsedConstantsAsSet(lean_object*);
 LEAN_EXPORT uint8_t l_Std_DHashMap_Internal_AssocList_contains___at___00Std_DHashMap_Internal_Raw_u2080_contains___at___00__private_Lean_Util_FoldConsts_0__Lean_Expr_FoldConstsImpl_fold_visit_spec__0_spec__0___redArg(lean_object* v_a_1_, lean_object* v_x_2_){
@@ -823,12 +823,29 @@ v___x_273_ = lean_array_push(v_cs_272_, v_c_271_);
 return v___x_273_;
 }
 }
+static lean_object* _init_l_Lean_Expr_getUsedConstants___closed__0(void){
+_start:
+{
+lean_object* v___f_274_; 
+v___f_274_ = lean_alloc_closure((void*)(l_Lean_Expr_getUsedConstants___lam__0), 2, 0);
+return v___f_274_;
+}
+}
+static lean_object* _init_l_Lean_Expr_getUsedConstants___closed__1(void){
+_start:
+{
+lean_object* v___x_275_; lean_object* v___x_276_; 
+v___x_275_ = lean_unsigned_to_nat(0u);
+v___x_276_ = lean_mk_empty_array_with_capacity(v___x_275_);
+return v___x_276_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Expr_getUsedConstants(lean_object* v_e_277_){
 _start:
 {
 lean_object* v___f_278_; lean_object* v___x_279_; lean_object* v___x_280_; lean_object* v___x_281_; lean_object* v_fst_282_; 
-v___f_278_ = ((lean_object*)(l_Lean_Expr_getUsedConstants___closed__0));
-v___x_279_ = ((lean_object*)(l_Lean_Expr_getUsedConstants___closed__1));
+v___f_278_ = lean_obj_once(&l_Lean_Expr_getUsedConstants___closed__0, &l_Lean_Expr_getUsedConstants___closed__0_once, _init_l_Lean_Expr_getUsedConstants___closed__0);
+v___x_279_ = lean_obj_once(&l_Lean_Expr_getUsedConstants___closed__1, &l_Lean_Expr_getUsedConstants___closed__1_once, _init_l_Lean_Expr_getUsedConstants___closed__1);
 v___x_280_ = lean_obj_once(&l_Lean_Expr_FoldConstsImpl_foldUnsafe___redArg___closed__3, &l_Lean_Expr_FoldConstsImpl_foldUnsafe___redArg___closed__3_once, _init_l_Lean_Expr_FoldConstsImpl_foldUnsafe___redArg___closed__3);
 v___x_281_ = l___private_Lean_Util_FoldConsts_0__Lean_Expr_FoldConstsImpl_fold_visit___redArg(v___f_278_, v_e_277_, v___x_279_, v___x_280_);
 v_fst_282_ = lean_ctor_get(v___x_281_, 0);
@@ -845,11 +862,19 @@ v___x_285_ = l_Lean_NameSet_insert(v_cs_284_, v_c_283_);
 return v___x_285_;
 }
 }
+static lean_object* _init_l_Lean_Expr_getUsedConstantsAsSet___closed__0(void){
+_start:
+{
+lean_object* v___f_286_; 
+v___f_286_ = lean_alloc_closure((void*)(l_Lean_Expr_getUsedConstantsAsSet___lam__0), 2, 0);
+return v___f_286_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Expr_getUsedConstantsAsSet(lean_object* v_e_287_){
 _start:
 {
 lean_object* v___f_288_; lean_object* v___x_289_; lean_object* v___x_290_; lean_object* v___x_291_; lean_object* v_fst_292_; 
-v___f_288_ = ((lean_object*)(l_Lean_Expr_getUsedConstantsAsSet___closed__0));
+v___f_288_ = lean_obj_once(&l_Lean_Expr_getUsedConstantsAsSet___closed__0, &l_Lean_Expr_getUsedConstantsAsSet___closed__0_once, _init_l_Lean_Expr_getUsedConstantsAsSet___closed__0);
 v___x_289_ = l_Lean_NameSet_empty;
 v___x_290_ = lean_obj_once(&l_Lean_Expr_FoldConstsImpl_foldUnsafe___redArg___closed__3, &l_Lean_Expr_FoldConstsImpl_foldUnsafe___redArg___closed__3_once, _init_l_Lean_Expr_FoldConstsImpl_foldUnsafe___redArg___closed__3);
 v___x_291_ = l___private_Lean_Util_FoldConsts_0__Lean_Expr_FoldConstsImpl_fold_visit___redArg(v___f_288_, v_e_287_, v___x_289_, v___x_290_);

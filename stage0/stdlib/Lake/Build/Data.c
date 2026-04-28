@@ -66,593 +66,514 @@ LEAN_EXPORT lean_object* l_Lake_OptDataKind_instOfDataKind(lean_object*, lean_ob
 LEAN_EXPORT lean_object* l_Lake_OptDataKind_instOfDataKind___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_OptDataKind_instCoeOutName___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Lake_OptDataKind_instCoeOutName___lam__0___boxed(lean_object*);
-static const lean_closure_object l_Lake_OptDataKind_instCoeOutName___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lake_OptDataKind_instCoeOutName___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lake_OptDataKind_instCoeOutName___closed__0 = (const lean_object*)&l_Lake_OptDataKind_instCoeOutName___closed__0_value;
+static lean_once_cell_t l_Lake_OptDataKind_instCoeOutName___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_OptDataKind_instCoeOutName___closed__0;
 LEAN_EXPORT lean_object* l_Lake_OptDataKind_instCoeOutName(lean_object*);
 LEAN_EXPORT lean_object* l_Lake_OptDataKind_instToString___lam__0(lean_object*);
-static const lean_closure_object l_Lake_OptDataKind_instToString___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lake_OptDataKind_instToString___lam__0, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lake_OptDataKind_instToString___closed__0 = (const lean_object*)&l_Lake_OptDataKind_instToString___closed__0_value;
+static lean_once_cell_t l_Lake_OptDataKind_instToString___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_OptDataKind_instToString___closed__0;
 LEAN_EXPORT lean_object* l_Lake_OptDataKind_instToString(lean_object*);
-static const lean_string_object l_Lake_dataTypeDecl___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Lake"};
-static const lean_object* l_Lake_dataTypeDecl___closed__0 = (const lean_object*)&l_Lake_dataTypeDecl___closed__0_value;
-static const lean_string_object l_Lake_dataTypeDecl___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "dataTypeDecl"};
-static const lean_object* l_Lake_dataTypeDecl___closed__1 = (const lean_object*)&l_Lake_dataTypeDecl___closed__1_value;
-static const lean_ctor_object l_Lake_dataTypeDecl___closed__2_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_dataTypeDecl___closed__0_value),LEAN_SCALAR_PTR_LITERAL(111, 69, 182, 10, 108, 181, 149, 180)}};
-static const lean_ctor_object l_Lake_dataTypeDecl___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__2_value_aux_0),((lean_object*)&l_Lake_dataTypeDecl___closed__1_value),LEAN_SCALAR_PTR_LITERAL(143, 208, 230, 96, 184, 13, 30, 26)}};
-static const lean_object* l_Lake_dataTypeDecl___closed__2 = (const lean_object*)&l_Lake_dataTypeDecl___closed__2_value;
-static const lean_string_object l_Lake_dataTypeDecl___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "andthen"};
-static const lean_object* l_Lake_dataTypeDecl___closed__3 = (const lean_object*)&l_Lake_dataTypeDecl___closed__3_value;
-static const lean_ctor_object l_Lake_dataTypeDecl___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_dataTypeDecl___closed__3_value),LEAN_SCALAR_PTR_LITERAL(40, 255, 78, 30, 143, 119, 117, 174)}};
-static const lean_object* l_Lake_dataTypeDecl___closed__4 = (const lean_object*)&l_Lake_dataTypeDecl___closed__4_value;
-static const lean_string_object l_Lake_dataTypeDecl___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "optional"};
-static const lean_object* l_Lake_dataTypeDecl___closed__5 = (const lean_object*)&l_Lake_dataTypeDecl___closed__5_value;
-static const lean_ctor_object l_Lake_dataTypeDecl___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_dataTypeDecl___closed__5_value),LEAN_SCALAR_PTR_LITERAL(233, 141, 154, 50, 143, 135, 42, 252)}};
-static const lean_object* l_Lake_dataTypeDecl___closed__6 = (const lean_object*)&l_Lake_dataTypeDecl___closed__6_value;
-static const lean_string_object l_Lake_dataTypeDecl___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "docComment"};
-static const lean_object* l_Lake_dataTypeDecl___closed__7 = (const lean_object*)&l_Lake_dataTypeDecl___closed__7_value;
-static const lean_ctor_object l_Lake_dataTypeDecl___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_dataTypeDecl___closed__7_value),LEAN_SCALAR_PTR_LITERAL(229, 56, 215, 222, 243, 187, 251, 54)}};
-static const lean_object* l_Lake_dataTypeDecl___closed__8 = (const lean_object*)&l_Lake_dataTypeDecl___closed__8_value;
-static const lean_ctor_object l_Lake_dataTypeDecl___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__8_value)}};
-static const lean_object* l_Lake_dataTypeDecl___closed__9 = (const lean_object*)&l_Lake_dataTypeDecl___closed__9_value;
-static const lean_ctor_object l_Lake_dataTypeDecl___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__6_value),((lean_object*)&l_Lake_dataTypeDecl___closed__9_value)}};
-static const lean_object* l_Lake_dataTypeDecl___closed__10 = (const lean_object*)&l_Lake_dataTypeDecl___closed__10_value;
-static const lean_string_object l_Lake_dataTypeDecl___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "data_type "};
-static const lean_object* l_Lake_dataTypeDecl___closed__11 = (const lean_object*)&l_Lake_dataTypeDecl___closed__11_value;
-static const lean_ctor_object l_Lake_dataTypeDecl___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__11_value)}};
-static const lean_object* l_Lake_dataTypeDecl___closed__12 = (const lean_object*)&l_Lake_dataTypeDecl___closed__12_value;
-static const lean_ctor_object l_Lake_dataTypeDecl___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_dataTypeDecl___closed__10_value),((lean_object*)&l_Lake_dataTypeDecl___closed__12_value)}};
-static const lean_object* l_Lake_dataTypeDecl___closed__13 = (const lean_object*)&l_Lake_dataTypeDecl___closed__13_value;
-static const lean_string_object l_Lake_dataTypeDecl___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "ident"};
-static const lean_object* l_Lake_dataTypeDecl___closed__14 = (const lean_object*)&l_Lake_dataTypeDecl___closed__14_value;
-static const lean_ctor_object l_Lake_dataTypeDecl___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_dataTypeDecl___closed__14_value),LEAN_SCALAR_PTR_LITERAL(52, 159, 208, 51, 14, 60, 6, 71)}};
-static const lean_object* l_Lake_dataTypeDecl___closed__15 = (const lean_object*)&l_Lake_dataTypeDecl___closed__15_value;
-static const lean_ctor_object l_Lake_dataTypeDecl___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__15_value)}};
-static const lean_object* l_Lake_dataTypeDecl___closed__16 = (const lean_object*)&l_Lake_dataTypeDecl___closed__16_value;
-static const lean_ctor_object l_Lake_dataTypeDecl___closed__17_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_dataTypeDecl___closed__13_value),((lean_object*)&l_Lake_dataTypeDecl___closed__16_value)}};
-static const lean_object* l_Lake_dataTypeDecl___closed__17 = (const lean_object*)&l_Lake_dataTypeDecl___closed__17_value;
-static const lean_string_object l_Lake_dataTypeDecl___closed__18_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = " : "};
-static const lean_object* l_Lake_dataTypeDecl___closed__18 = (const lean_object*)&l_Lake_dataTypeDecl___closed__18_value;
-static const lean_ctor_object l_Lake_dataTypeDecl___closed__19_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__18_value)}};
-static const lean_object* l_Lake_dataTypeDecl___closed__19 = (const lean_object*)&l_Lake_dataTypeDecl___closed__19_value;
-static const lean_ctor_object l_Lake_dataTypeDecl___closed__20_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_dataTypeDecl___closed__17_value),((lean_object*)&l_Lake_dataTypeDecl___closed__19_value)}};
-static const lean_object* l_Lake_dataTypeDecl___closed__20 = (const lean_object*)&l_Lake_dataTypeDecl___closed__20_value;
-static const lean_string_object l_Lake_dataTypeDecl___closed__21_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "term"};
-static const lean_object* l_Lake_dataTypeDecl___closed__21 = (const lean_object*)&l_Lake_dataTypeDecl___closed__21_value;
-static const lean_ctor_object l_Lake_dataTypeDecl___closed__22_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_dataTypeDecl___closed__21_value),LEAN_SCALAR_PTR_LITERAL(187, 230, 181, 162, 253, 146, 122, 119)}};
-static const lean_object* l_Lake_dataTypeDecl___closed__22 = (const lean_object*)&l_Lake_dataTypeDecl___closed__22_value;
-static const lean_ctor_object l_Lake_dataTypeDecl___closed__23_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 7}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__22_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lake_dataTypeDecl___closed__23 = (const lean_object*)&l_Lake_dataTypeDecl___closed__23_value;
-static const lean_ctor_object l_Lake_dataTypeDecl___closed__24_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_dataTypeDecl___closed__20_value),((lean_object*)&l_Lake_dataTypeDecl___closed__23_value)}};
-static const lean_object* l_Lake_dataTypeDecl___closed__24 = (const lean_object*)&l_Lake_dataTypeDecl___closed__24_value;
-static const lean_ctor_object l_Lake_dataTypeDecl___closed__25_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__2_value),((lean_object*)(((size_t)(1022) << 1) | 1)),((lean_object*)&l_Lake_dataTypeDecl___closed__24_value)}};
-static const lean_object* l_Lake_dataTypeDecl___closed__25 = (const lean_object*)&l_Lake_dataTypeDecl___closed__25_value;
-LEAN_EXPORT const lean_object* l_Lake_dataTypeDecl = (const lean_object*)&l_Lake_dataTypeDecl___closed__25_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "family_def"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = ":"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = ":="};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Lean"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Parser"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "Command"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "declaration"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__6 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__6_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5_value),LEAN_SCALAR_PTR_LITERAL(214, 208, 105, 11, 221, 56, 173, 240)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7_value_aux_2),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__6_value),LEAN_SCALAR_PTR_LITERAL(157, 246, 223, 221, 242, 35, 238, 117)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "declModifiers"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__8 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__8_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5_value),LEAN_SCALAR_PTR_LITERAL(214, 208, 105, 11, 221, 56, 173, 240)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9_value_aux_2),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(0, 165, 146, 53, 36, 89, 7, 202)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "public"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__11_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__11_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__11_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__11_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__11_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5_value),LEAN_SCALAR_PTR_LITERAL(214, 208, 105, 11, 221, 56, 173, 240)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__11_value_aux_2),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10_value),LEAN_SCALAR_PTR_LITERAL(99, 134, 241, 204, 211, 206, 124, 144)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__11 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__11_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "instance"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__13_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__13_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__13_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__13_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__13_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5_value),LEAN_SCALAR_PTR_LITERAL(214, 208, 105, 11, 221, 56, 173, 240)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__13_value_aux_2),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12_value),LEAN_SCALAR_PTR_LITERAL(37, 156, 84, 218, 244, 57, 142, 153)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__13 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__13_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Term"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "attrKind"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__15 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__15_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__16_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__16_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__16_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__16_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__16_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_value),LEAN_SCALAR_PTR_LITERAL(75, 170, 162, 138, 136, 204, 251, 229)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__16_value_aux_2),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__15_value),LEAN_SCALAR_PTR_LITERAL(32, 164, 20, 104, 12, 221, 204, 110)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__16 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__16_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__17_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "declSig"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__17 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__17_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__18_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__18_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__18_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__18_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__18_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5_value),LEAN_SCALAR_PTR_LITERAL(214, 208, 105, 11, 221, 56, 173, 240)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__18_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__18_value_aux_2),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__17_value),LEAN_SCALAR_PTR_LITERAL(22, 101, 130, 251, 183, 19, 113, 82)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__18 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__18_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__19_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "typeSpec"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__19 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__19_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__20_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__20_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__20_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__20_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__20_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_value),LEAN_SCALAR_PTR_LITERAL(75, 170, 162, 138, 136, 204, 251, 229)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__20_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__20_value_aux_2),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__19_value),LEAN_SCALAR_PTR_LITERAL(77, 126, 241, 117, 174, 189, 108, 62)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__20 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__20_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__21_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "app"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__21 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__21_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__22_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__22_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__22_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__22_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__22_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_value),LEAN_SCALAR_PTR_LITERAL(75, 170, 162, 138, 136, 204, 251, 229)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__22_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__22_value_aux_2),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__21_value),LEAN_SCALAR_PTR_LITERAL(69, 118, 10, 41, 220, 156, 243, 179)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__22 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__22_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__23_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "DataKind"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__23 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__23_value;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__0;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__1;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__2;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__3;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__4;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__5;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__6;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__7;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__8;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__9;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__10;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__11;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__12;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__13;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__14;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__15;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__16;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__17;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__18;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__19;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__20_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__20;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__21_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__21;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__22_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__22;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__23_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__23;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__24_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__24;
+static lean_once_cell_t l_Lake_dataTypeDecl___closed__25_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_dataTypeDecl___closed__25;
+LEAN_EXPORT lean_object* l_Lake_dataTypeDecl;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__6;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__8;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__11;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__13;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__15;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__16;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__17;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__18;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__19;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__20_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__20;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__21_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__21;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__22_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__22;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__23_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__23;
 static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__24_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__24;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__25_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__23_value),LEAN_SCALAR_PTR_LITERAL(85, 248, 95, 223, 234, 189, 212, 227)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__25 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__25_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__26_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_dataTypeDecl___closed__0_value),LEAN_SCALAR_PTR_LITERAL(111, 69, 182, 10, 108, 181, 149, 180)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__26_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__26_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__23_value),LEAN_SCALAR_PTR_LITERAL(57, 137, 77, 253, 49, 4, 64, 32)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__26 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__26_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__27_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__26_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__27 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__27_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__28_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__26_value)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__28 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__28_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__29_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__28_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__29 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__29_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__30_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__27_value),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__29_value)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__30 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__30_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__31_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "declValSimple"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__31 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__31_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__32_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__32_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__32_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__32_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__32_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5_value),LEAN_SCALAR_PTR_LITERAL(214, 208, 105, 11, 221, 56, 173, 240)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__32_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__32_value_aux_2),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__31_value),LEAN_SCALAR_PTR_LITERAL(228, 117, 47, 248, 145, 185, 135, 188)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__32 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__32_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__33_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "anonymousCtor"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__33 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__33_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__34_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__34_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__34_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__34_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__34_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_value),LEAN_SCALAR_PTR_LITERAL(75, 170, 162, 138, 136, 204, 251, 229)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__34_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__34_value_aux_2),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__33_value),LEAN_SCALAR_PTR_LITERAL(56, 53, 154, 97, 179, 232, 94, 186)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__34 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__34_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__35_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 1, .m_data = "⟨"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__35 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__35_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__36_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = ","};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__36 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__36_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__37_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "byTactic"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__37 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__37_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__38_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__38_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__38_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__38_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__38_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_value),LEAN_SCALAR_PTR_LITERAL(75, 170, 162, 138, 136, 204, 251, 229)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__38_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__38_value_aux_2),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__37_value),LEAN_SCALAR_PTR_LITERAL(187, 150, 238, 148, 228, 221, 116, 224)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__38 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__38_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__39_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "by"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__39 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__39_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Tactic"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__41_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "tacticSeq"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__41 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__41_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__42_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__42_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__42_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__42_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__42_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__42_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__42_value_aux_2),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__41_value),LEAN_SCALAR_PTR_LITERAL(212, 140, 85, 215, 241, 69, 7, 118)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__42 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__42_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__43_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 19, .m_capacity = 19, .m_length = 18, .m_data = "tacticSeq1Indented"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__43 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__43_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__44_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__44_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__44_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__44_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__44_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__44_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__44_value_aux_2),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__43_value),LEAN_SCALAR_PTR_LITERAL(223, 90, 160, 238, 133, 180, 23, 239)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__44 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__44_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__45_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "simp"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__45 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__45_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__46_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__46_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__46_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__46_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__46_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__46_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__46_value_aux_2),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__45_value),LEAN_SCALAR_PTR_LITERAL(50, 13, 241, 145, 67, 153, 105, 177)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__46 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__46_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__47_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "optConfig"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__47 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__47_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__48_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__48_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__48_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__48_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__48_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__48_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__48_value_aux_2),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__47_value),LEAN_SCALAR_PTR_LITERAL(137, 208, 10, 74, 108, 50, 106, 48)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__48 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__48_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__49_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "["};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__49 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__49_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__50_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "simpLemma"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__50 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__50_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__51_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__51_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__51_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__51_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__51_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__51_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__51_value_aux_2),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__50_value),LEAN_SCALAR_PTR_LITERAL(38, 215, 101, 250, 181, 108, 118, 102)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__51 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__51_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__52_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 34, .m_capacity = 34, .m_length = 33, .m_data = "Name.isAnonymous_iff_eq_anonymous"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__52 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__52_value;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__25_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__25;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__26_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__26;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__27_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__27;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__28_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__28;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__29_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__29;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__30_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__30;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__31_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__31;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__32_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__32;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__33_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__33;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__34_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__34;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__35_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__35;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__36_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__36;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__37_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__37;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__38_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__38;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__39_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__39;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__41_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__41;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__42_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__42;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__43_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__43;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__44_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__44;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__45_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__45;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__46_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__46;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__47_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__47;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__48_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__48;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__49_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__49;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__50_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__50;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__51_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__51;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__52_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__52;
 static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__53_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__53;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__54_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Name"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__54 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__54_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__55_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 29, .m_capacity = 29, .m_length = 28, .m_data = "isAnonymous_iff_eq_anonymous"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__55 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__55_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__56_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__54_value),LEAN_SCALAR_PTR_LITERAL(154, 178, 141, 167, 199, 52, 205, 105)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__56_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__56_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__55_value),LEAN_SCALAR_PTR_LITERAL(10, 45, 172, 138, 28, 252, 34, 255)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__56 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__56_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__57_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_dataTypeDecl___closed__0_value),LEAN_SCALAR_PTR_LITERAL(111, 69, 182, 10, 108, 181, 149, 180)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__57_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__57_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__54_value),LEAN_SCALAR_PTR_LITERAL(94, 175, 90, 84, 80, 182, 246, 68)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__57_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__57_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__55_value),LEAN_SCALAR_PTR_LITERAL(158, 41, 113, 154, 180, 181, 171, 218)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__57 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__57_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__58_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__57_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__58 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__58_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__59_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__58_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__59 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__59_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__60_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "]"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__60 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__60_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__61_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 1, .m_data = "⟩"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__61 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__61_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__62_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "Termination"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__62 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__62_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__63_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "suffix"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__63 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__63_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__64_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__64_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__64_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__64_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__64_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__62_value),LEAN_SCALAR_PTR_LITERAL(128, 225, 226, 49, 186, 161, 212, 105)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__64_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__64_value_aux_2),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__63_value),LEAN_SCALAR_PTR_LITERAL(245, 187, 99, 45, 217, 244, 244, 120)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__64 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__64_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__65_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "DataType"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__65 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__65_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__66_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_dataTypeDecl___closed__0_value),LEAN_SCALAR_PTR_LITERAL(111, 69, 182, 10, 108, 181, 149, 180)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__66_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__66_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__65_value),LEAN_SCALAR_PTR_LITERAL(33, 68, 121, 193, 122, 109, 136, 152)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__66 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__66_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__67_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "null"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__67 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__67_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__67_value),LEAN_SCALAR_PTR_LITERAL(24, 58, 49, 223, 146, 207, 197, 136)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__69_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "familyDef"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__69 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__69_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__70_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_dataTypeDecl___closed__0_value),LEAN_SCALAR_PTR_LITERAL(111, 69, 182, 10, 108, 181, 149, 180)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__70_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__70_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__69_value),LEAN_SCALAR_PTR_LITERAL(59, 240, 138, 11, 51, 35, 78, 153)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__70 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__70_value;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__54_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__54;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__55_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__55;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__56_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__56;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__57_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__57;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__58_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__58;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__59_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__59;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__60_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__60;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__61_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__61;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__62_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__62;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__63_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__63;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__64_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__64;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__65_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__65;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__66_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__66;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__67_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__67;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__69_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__69;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__70_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__70;
 static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71;
-static const lean_array_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72_value;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72;
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lake_instDataKindUnit___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "unit"};
-static const lean_object* l_Lake_instDataKindUnit___closed__0 = (const lean_object*)&l_Lake_instDataKindUnit___closed__0_value;
-static const lean_ctor_object l_Lake_instDataKindUnit___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_instDataKindUnit___closed__0_value),LEAN_SCALAR_PTR_LITERAL(94, 16, 7, 142, 223, 189, 92, 152)}};
-static const lean_object* l_Lake_instDataKindUnit___closed__1 = (const lean_object*)&l_Lake_instDataKindUnit___closed__1_value;
-LEAN_EXPORT const lean_object* l_Lake_instDataKindUnit = (const lean_object*)&l_Lake_instDataKindUnit___closed__1_value;
-static const lean_string_object l_Lake_instDataKindBool___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "bool"};
-static const lean_object* l_Lake_instDataKindBool___closed__0 = (const lean_object*)&l_Lake_instDataKindBool___closed__0_value;
-static const lean_ctor_object l_Lake_instDataKindBool___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_instDataKindBool___closed__0_value),LEAN_SCALAR_PTR_LITERAL(196, 123, 29, 106, 21, 111, 175, 162)}};
-static const lean_object* l_Lake_instDataKindBool___closed__1 = (const lean_object*)&l_Lake_instDataKindBool___closed__1_value;
-LEAN_EXPORT const lean_object* l_Lake_instDataKindBool = (const lean_object*)&l_Lake_instDataKindBool___closed__1_value;
-static const lean_string_object l_Lake_instDataKindFilePath___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "filepath"};
-static const lean_object* l_Lake_instDataKindFilePath___closed__0 = (const lean_object*)&l_Lake_instDataKindFilePath___closed__0_value;
-static const lean_ctor_object l_Lake_instDataKindFilePath___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_instDataKindFilePath___closed__0_value),LEAN_SCALAR_PTR_LITERAL(174, 79, 67, 231, 21, 24, 25, 253)}};
-static const lean_object* l_Lake_instDataKindFilePath___closed__1 = (const lean_object*)&l_Lake_instDataKindFilePath___closed__1_value;
-LEAN_EXPORT const lean_object* l_Lake_instDataKindFilePath = (const lean_object*)&l_Lake_instDataKindFilePath___closed__1_value;
-static const lean_string_object l_Lake_instDataKindDynlib___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "dynlib"};
-static const lean_object* l_Lake_instDataKindDynlib___closed__0 = (const lean_object*)&l_Lake_instDataKindDynlib___closed__0_value;
-static const lean_ctor_object l_Lake_instDataKindDynlib___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_instDataKindDynlib___closed__0_value),LEAN_SCALAR_PTR_LITERAL(96, 146, 131, 63, 203, 243, 150, 200)}};
-static const lean_object* l_Lake_instDataKindDynlib___closed__1 = (const lean_object*)&l_Lake_instDataKindDynlib___closed__1_value;
-LEAN_EXPORT const lean_object* l_Lake_instDataKindDynlib = (const lean_object*)&l_Lake_instDataKindDynlib___closed__1_value;
-static const lean_string_object l_Lake_builtinFacetCommand___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 20, .m_capacity = 20, .m_length = 19, .m_data = "builtinFacetCommand"};
-static const lean_object* l_Lake_builtinFacetCommand___closed__0 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__0_value;
-static const lean_ctor_object l_Lake_builtinFacetCommand___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_dataTypeDecl___closed__0_value),LEAN_SCALAR_PTR_LITERAL(111, 69, 182, 10, 108, 181, 149, 180)}};
-static const lean_ctor_object l_Lake_builtinFacetCommand___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake_builtinFacetCommand___closed__1_value_aux_0),((lean_object*)&l_Lake_builtinFacetCommand___closed__0_value),LEAN_SCALAR_PTR_LITERAL(140, 118, 124, 184, 192, 242, 254, 60)}};
-static const lean_object* l_Lake_builtinFacetCommand___closed__1 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__1_value;
-static const lean_string_object l_Lake_builtinFacetCommand___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "builtin_facet "};
-static const lean_object* l_Lake_builtinFacetCommand___closed__2 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__2_value;
-static const lean_ctor_object l_Lake_builtinFacetCommand___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lake_builtinFacetCommand___closed__2_value)}};
-static const lean_object* l_Lake_builtinFacetCommand___closed__3 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__3_value;
-static const lean_ctor_object l_Lake_builtinFacetCommand___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_dataTypeDecl___closed__10_value),((lean_object*)&l_Lake_builtinFacetCommand___closed__3_value)}};
-static const lean_object* l_Lake_builtinFacetCommand___closed__4 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__4_value;
-static const lean_string_object l_Lake_builtinFacetCommand___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "atomic"};
-static const lean_object* l_Lake_builtinFacetCommand___closed__5 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__5_value;
-static const lean_ctor_object l_Lake_builtinFacetCommand___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_builtinFacetCommand___closed__5_value),LEAN_SCALAR_PTR_LITERAL(56, 145, 113, 208, 127, 167, 216, 55)}};
-static const lean_object* l_Lake_builtinFacetCommand___closed__6 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__6_value;
-static const lean_string_object l_Lake_builtinFacetCommand___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "group"};
-static const lean_object* l_Lake_builtinFacetCommand___closed__7 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__7_value;
-static const lean_ctor_object l_Lake_builtinFacetCommand___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_builtinFacetCommand___closed__7_value),LEAN_SCALAR_PTR_LITERAL(206, 113, 20, 57, 188, 177, 187, 30)}};
-static const lean_object* l_Lake_builtinFacetCommand___closed__8 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__8_value;
-static const lean_string_object l_Lake_builtinFacetCommand___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = " @ "};
-static const lean_object* l_Lake_builtinFacetCommand___closed__9 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__9_value;
-static const lean_ctor_object l_Lake_builtinFacetCommand___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lake_builtinFacetCommand___closed__9_value)}};
-static const lean_object* l_Lake_builtinFacetCommand___closed__10 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__10_value;
-static const lean_ctor_object l_Lake_builtinFacetCommand___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_dataTypeDecl___closed__16_value),((lean_object*)&l_Lake_builtinFacetCommand___closed__10_value)}};
-static const lean_object* l_Lake_builtinFacetCommand___closed__11 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__11_value;
-static const lean_ctor_object l_Lake_builtinFacetCommand___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake_builtinFacetCommand___closed__8_value),((lean_object*)&l_Lake_builtinFacetCommand___closed__11_value)}};
-static const lean_object* l_Lake_builtinFacetCommand___closed__12 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__12_value;
-static const lean_ctor_object l_Lake_builtinFacetCommand___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake_builtinFacetCommand___closed__6_value),((lean_object*)&l_Lake_builtinFacetCommand___closed__12_value)}};
-static const lean_object* l_Lake_builtinFacetCommand___closed__13 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__13_value;
-static const lean_ctor_object l_Lake_builtinFacetCommand___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__6_value),((lean_object*)&l_Lake_builtinFacetCommand___closed__13_value)}};
-static const lean_object* l_Lake_builtinFacetCommand___closed__14 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__14_value;
-static const lean_ctor_object l_Lake_builtinFacetCommand___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_builtinFacetCommand___closed__4_value),((lean_object*)&l_Lake_builtinFacetCommand___closed__14_value)}};
-static const lean_object* l_Lake_builtinFacetCommand___closed__15 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__15_value;
-static const lean_ctor_object l_Lake_builtinFacetCommand___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_builtinFacetCommand___closed__15_value),((lean_object*)&l_Lake_dataTypeDecl___closed__16_value)}};
-static const lean_object* l_Lake_builtinFacetCommand___closed__16 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__16_value;
-static const lean_ctor_object l_Lake_builtinFacetCommand___closed__17_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_builtinFacetCommand___closed__16_value),((lean_object*)&l_Lake_dataTypeDecl___closed__19_value)}};
-static const lean_object* l_Lake_builtinFacetCommand___closed__17 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__17_value;
-static const lean_ctor_object l_Lake_builtinFacetCommand___closed__18_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_builtinFacetCommand___closed__17_value),((lean_object*)&l_Lake_dataTypeDecl___closed__16_value)}};
-static const lean_object* l_Lake_builtinFacetCommand___closed__18 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__18_value;
-static const lean_string_object l_Lake_builtinFacetCommand___closed__19_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = " => "};
-static const lean_object* l_Lake_builtinFacetCommand___closed__19 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__19_value;
-static const lean_ctor_object l_Lake_builtinFacetCommand___closed__20_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lake_builtinFacetCommand___closed__19_value)}};
-static const lean_object* l_Lake_builtinFacetCommand___closed__20 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__20_value;
-static const lean_ctor_object l_Lake_builtinFacetCommand___closed__21_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_builtinFacetCommand___closed__18_value),((lean_object*)&l_Lake_builtinFacetCommand___closed__20_value)}};
-static const lean_object* l_Lake_builtinFacetCommand___closed__21 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__21_value;
-static const lean_ctor_object l_Lake_builtinFacetCommand___closed__22_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_builtinFacetCommand___closed__21_value),((lean_object*)&l_Lake_dataTypeDecl___closed__23_value)}};
-static const lean_object* l_Lake_builtinFacetCommand___closed__22 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__22_value;
-static const lean_ctor_object l_Lake_builtinFacetCommand___closed__23_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lake_builtinFacetCommand___closed__1_value),((lean_object*)(((size_t)(1022) << 1) | 1)),((lean_object*)&l_Lake_builtinFacetCommand___closed__22_value)}};
-static const lean_object* l_Lake_builtinFacetCommand___closed__23 = (const lean_object*)&l_Lake_builtinFacetCommand___closed__23_value;
-LEAN_EXPORT const lean_object* l_Lake_builtinFacetCommand = (const lean_object*)&l_Lake_builtinFacetCommand___closed__23_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "attributes"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__0 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__0_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "@["};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__1 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__1_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "attrInstance"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__2 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__2_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Attr"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__3 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__3_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "simple"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__4 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__4_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "reducible"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__5 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__5_value;
+static lean_once_cell_t l_Lake_instDataKindUnit___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_instDataKindUnit___closed__0;
+static lean_once_cell_t l_Lake_instDataKindUnit___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_instDataKindUnit___closed__1;
+LEAN_EXPORT lean_object* l_Lake_instDataKindUnit;
+static lean_once_cell_t l_Lake_instDataKindBool___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_instDataKindBool___closed__0;
+static lean_once_cell_t l_Lake_instDataKindBool___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_instDataKindBool___closed__1;
+LEAN_EXPORT lean_object* l_Lake_instDataKindBool;
+static lean_once_cell_t l_Lake_instDataKindFilePath___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_instDataKindFilePath___closed__0;
+static lean_once_cell_t l_Lake_instDataKindFilePath___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_instDataKindFilePath___closed__1;
+LEAN_EXPORT lean_object* l_Lake_instDataKindFilePath;
+static lean_once_cell_t l_Lake_instDataKindDynlib___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_instDataKindDynlib___closed__0;
+static lean_once_cell_t l_Lake_instDataKindDynlib___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_instDataKindDynlib___closed__1;
+LEAN_EXPORT lean_object* l_Lake_instDataKindDynlib;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__0;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__1;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__2;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__3;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__4;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__5;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__6;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__7;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__8;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__9;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__10;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__11;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__12;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__13;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__14;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__15;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__16;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__17;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__18;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__19;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__20_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__20;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__21_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__21;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__22_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__22;
+static lean_once_cell_t l_Lake_builtinFacetCommand___closed__23_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_builtinFacetCommand___closed__23;
+LEAN_EXPORT lean_object* l_Lake_builtinFacetCommand;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__0;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__1;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__2;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__3;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__4;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__5;
 static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__6;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__5_value),LEAN_SCALAR_PTR_LITERAL(29, 67, 225, 118, 155, 2, 197, 97)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__7 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__7_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "expose"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__8 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__8_value;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__7;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__8;
 static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__9;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__8_value),LEAN_SCALAR_PTR_LITERAL(170, 113, 233, 77, 243, 78, 243, 129)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__10 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__10_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "definition"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__11 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__11_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "def"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__12 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__12_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "declId"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__13 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__13_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "optDeclSig"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__14 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__14_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "FamilyDef"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15_value;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__10;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__11;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__12;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__13;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__14;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15;
 static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__16;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__17_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15_value),LEAN_SCALAR_PTR_LITERAL(149, 240, 255, 22, 138, 196, 41, 195)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__17 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__17_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__18_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "paren"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__18 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__18_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__19_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "hygienicLParen"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__19 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__19_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__20_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "("};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__20 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__20_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__21_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "hygieneInfo"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__21 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__21_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__22_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__21_value),LEAN_SCALAR_PTR_LITERAL(27, 64, 36, 144, 170, 151, 255, 136)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__22 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__22_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__23_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 1, .m_capacity = 1, .m_length = 0, .m_data = ""};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__23 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__23_value;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__17;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__18;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__19;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__20_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__20;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__21_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__21;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__22_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__22;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__23_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__23;
 static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__24_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__24;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__25_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "term_++_"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__25 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__25_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__26_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__25_value),LEAN_SCALAR_PTR_LITERAL(90, 69, 86, 178, 149, 48, 216, 23)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__26 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__26_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__27_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "++"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__27 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__27_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__28_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = ")"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__28 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__28_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__29_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "inferInstanceAs"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__29 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__29_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__30_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 55, .m_capacity = 55, .m_length = 54, .m_data = "cannot generate facet declaration name from facet name"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__30 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__30_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__31_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "Facet"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__31 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__31_value;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__25_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__25;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__26_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__26;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__27_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__27;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__28_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__28;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__29_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__29;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__30_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__30;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__31_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__31;
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___boxed(lean_object**);
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "FacetOut"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__0 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__0_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_dataTypeDecl___closed__0_value),LEAN_SCALAR_PTR_LITERAL(111, 69, 182, 10, 108, 181, 149, 180)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__1_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 147, 236, 126, 195, 124, 217, 255)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__1 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__1_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 27, .m_capacity = 27, .m_length = 26, .m_data = "unknown target namespace `"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__2 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__2_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "`"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__3 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__3_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 40, .m_capacity = 40, .m_length = 39, .m_data = "unknown or ambiguous target namespace `"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__4 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__4_value;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__0;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__1;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__2;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__3;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__4;
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lake_facetDataDecl___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "facetDataDecl"};
-static const lean_object* l_Lake_facetDataDecl___closed__0 = (const lean_object*)&l_Lake_facetDataDecl___closed__0_value;
-static const lean_ctor_object l_Lake_facetDataDecl___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_dataTypeDecl___closed__0_value),LEAN_SCALAR_PTR_LITERAL(111, 69, 182, 10, 108, 181, 149, 180)}};
-static const lean_ctor_object l_Lake_facetDataDecl___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake_facetDataDecl___closed__1_value_aux_0),((lean_object*)&l_Lake_facetDataDecl___closed__0_value),LEAN_SCALAR_PTR_LITERAL(122, 4, 106, 30, 217, 73, 248, 83)}};
-static const lean_object* l_Lake_facetDataDecl___closed__1 = (const lean_object*)&l_Lake_facetDataDecl___closed__1_value;
-static const lean_string_object l_Lake_facetDataDecl___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "facet_data "};
-static const lean_object* l_Lake_facetDataDecl___closed__2 = (const lean_object*)&l_Lake_facetDataDecl___closed__2_value;
-static const lean_ctor_object l_Lake_facetDataDecl___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lake_facetDataDecl___closed__2_value)}};
-static const lean_object* l_Lake_facetDataDecl___closed__3 = (const lean_object*)&l_Lake_facetDataDecl___closed__3_value;
-static const lean_ctor_object l_Lake_facetDataDecl___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_dataTypeDecl___closed__10_value),((lean_object*)&l_Lake_facetDataDecl___closed__3_value)}};
-static const lean_object* l_Lake_facetDataDecl___closed__4 = (const lean_object*)&l_Lake_facetDataDecl___closed__4_value;
-static const lean_ctor_object l_Lake_facetDataDecl___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_facetDataDecl___closed__4_value),((lean_object*)&l_Lake_dataTypeDecl___closed__16_value)}};
-static const lean_object* l_Lake_facetDataDecl___closed__5 = (const lean_object*)&l_Lake_facetDataDecl___closed__5_value;
-static const lean_ctor_object l_Lake_facetDataDecl___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_facetDataDecl___closed__5_value),((lean_object*)&l_Lake_dataTypeDecl___closed__16_value)}};
-static const lean_object* l_Lake_facetDataDecl___closed__6 = (const lean_object*)&l_Lake_facetDataDecl___closed__6_value;
-static const lean_ctor_object l_Lake_facetDataDecl___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_facetDataDecl___closed__6_value),((lean_object*)&l_Lake_dataTypeDecl___closed__19_value)}};
-static const lean_object* l_Lake_facetDataDecl___closed__7 = (const lean_object*)&l_Lake_facetDataDecl___closed__7_value;
-static const lean_ctor_object l_Lake_facetDataDecl___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_facetDataDecl___closed__7_value),((lean_object*)&l_Lake_dataTypeDecl___closed__23_value)}};
-static const lean_object* l_Lake_facetDataDecl___closed__8 = (const lean_object*)&l_Lake_facetDataDecl___closed__8_value;
-static const lean_ctor_object l_Lake_facetDataDecl___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lake_facetDataDecl___closed__1_value),((lean_object*)(((size_t)(1022) << 1) | 1)),((lean_object*)&l_Lake_facetDataDecl___closed__8_value)}};
-static const lean_object* l_Lake_facetDataDecl___closed__9 = (const lean_object*)&l_Lake_facetDataDecl___closed__9_value;
-LEAN_EXPORT const lean_object* l_Lake_facetDataDecl = (const lean_object*)&l_Lake_facetDataDecl___closed__9_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__0_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_dataTypeDecl___closed__0_value),LEAN_SCALAR_PTR_LITERAL(111, 69, 182, 10, 108, 181, 149, 180)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__0_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15_value),LEAN_SCALAR_PTR_LITERAL(249, 224, 215, 22, 102, 9, 211, 189)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__0 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__0_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__0_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__1 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__1_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__0_value)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__2 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__2_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__2_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__3 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__3_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__1_value),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__3_value)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__4 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__4_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__5_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__5_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__5_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__5_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__5_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_value),LEAN_SCALAR_PTR_LITERAL(75, 170, 162, 138, 136, 204, 251, 229)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__5_value_aux_2),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__18_value),LEAN_SCALAR_PTR_LITERAL(124, 9, 161, 194, 227, 100, 20, 110)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__5 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__5_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__6_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__6_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__6_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__6_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__6_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_value),LEAN_SCALAR_PTR_LITERAL(75, 170, 162, 138, 136, 204, 251, 229)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__6_value_aux_2),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__19_value),LEAN_SCALAR_PTR_LITERAL(41, 104, 206, 51, 21, 254, 100, 101)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__6 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__6_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_dataTypeDecl___closed__0_value),LEAN_SCALAR_PTR_LITERAL(111, 69, 182, 10, 108, 181, 149, 180)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__7 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__7_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__7_value)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__8 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__8_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__9 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__9_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__9_value)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__10 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__10_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__10_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__11 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__11_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__8_value),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__11_value)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__12 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__12_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__13_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__13_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__13_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__13_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__13_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_value),LEAN_SCALAR_PTR_LITERAL(75, 170, 162, 138, 136, 204, 251, 229)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__13_value_aux_2),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__29_value),LEAN_SCALAR_PTR_LITERAL(136, 71, 28, 207, 18, 40, 68, 73)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__13 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__13_value;
+static lean_once_cell_t l_Lake_facetDataDecl___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_facetDataDecl___closed__0;
+static lean_once_cell_t l_Lake_facetDataDecl___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_facetDataDecl___closed__1;
+static lean_once_cell_t l_Lake_facetDataDecl___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_facetDataDecl___closed__2;
+static lean_once_cell_t l_Lake_facetDataDecl___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_facetDataDecl___closed__3;
+static lean_once_cell_t l_Lake_facetDataDecl___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_facetDataDecl___closed__4;
+static lean_once_cell_t l_Lake_facetDataDecl___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_facetDataDecl___closed__5;
+static lean_once_cell_t l_Lake_facetDataDecl___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_facetDataDecl___closed__6;
+static lean_once_cell_t l_Lake_facetDataDecl___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_facetDataDecl___closed__7;
+static lean_once_cell_t l_Lake_facetDataDecl___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_facetDataDecl___closed__8;
+static lean_once_cell_t l_Lake_facetDataDecl___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_facetDataDecl___closed__9;
+LEAN_EXPORT lean_object* l_Lake_facetDataDecl;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__0;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__1;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__2;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__3;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__4;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__5;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__6;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__7;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__8;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__9;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__10;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__11;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__12;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__13;
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lake_packageDataDecl___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "packageDataDecl"};
-static const lean_object* l_Lake_packageDataDecl___closed__0 = (const lean_object*)&l_Lake_packageDataDecl___closed__0_value;
-static const lean_ctor_object l_Lake_packageDataDecl___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_dataTypeDecl___closed__0_value),LEAN_SCALAR_PTR_LITERAL(111, 69, 182, 10, 108, 181, 149, 180)}};
-static const lean_ctor_object l_Lake_packageDataDecl___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake_packageDataDecl___closed__1_value_aux_0),((lean_object*)&l_Lake_packageDataDecl___closed__0_value),LEAN_SCALAR_PTR_LITERAL(147, 160, 98, 6, 154, 122, 231, 28)}};
-static const lean_object* l_Lake_packageDataDecl___closed__1 = (const lean_object*)&l_Lake_packageDataDecl___closed__1_value;
-static const lean_string_object l_Lake_packageDataDecl___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "package_data "};
-static const lean_object* l_Lake_packageDataDecl___closed__2 = (const lean_object*)&l_Lake_packageDataDecl___closed__2_value;
-static const lean_ctor_object l_Lake_packageDataDecl___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lake_packageDataDecl___closed__2_value)}};
-static const lean_object* l_Lake_packageDataDecl___closed__3 = (const lean_object*)&l_Lake_packageDataDecl___closed__3_value;
-static const lean_ctor_object l_Lake_packageDataDecl___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_dataTypeDecl___closed__10_value),((lean_object*)&l_Lake_packageDataDecl___closed__3_value)}};
-static const lean_object* l_Lake_packageDataDecl___closed__4 = (const lean_object*)&l_Lake_packageDataDecl___closed__4_value;
-static const lean_ctor_object l_Lake_packageDataDecl___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_packageDataDecl___closed__4_value),((lean_object*)&l_Lake_dataTypeDecl___closed__16_value)}};
-static const lean_object* l_Lake_packageDataDecl___closed__5 = (const lean_object*)&l_Lake_packageDataDecl___closed__5_value;
-static const lean_ctor_object l_Lake_packageDataDecl___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_packageDataDecl___closed__5_value),((lean_object*)&l_Lake_dataTypeDecl___closed__19_value)}};
-static const lean_object* l_Lake_packageDataDecl___closed__6 = (const lean_object*)&l_Lake_packageDataDecl___closed__6_value;
-static const lean_ctor_object l_Lake_packageDataDecl___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_packageDataDecl___closed__6_value),((lean_object*)&l_Lake_dataTypeDecl___closed__23_value)}};
-static const lean_object* l_Lake_packageDataDecl___closed__7 = (const lean_object*)&l_Lake_packageDataDecl___closed__7_value;
-static const lean_ctor_object l_Lake_packageDataDecl___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lake_packageDataDecl___closed__1_value),((lean_object*)(((size_t)(1022) << 1) | 1)),((lean_object*)&l_Lake_packageDataDecl___closed__7_value)}};
-static const lean_object* l_Lake_packageDataDecl___closed__8 = (const lean_object*)&l_Lake_packageDataDecl___closed__8_value;
-LEAN_EXPORT const lean_object* l_Lake_packageDataDecl = (const lean_object*)&l_Lake_packageDataDecl___closed__8_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__packageDataDecl__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "facet_data"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__packageDataDecl__1___closed__0 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__packageDataDecl__1___closed__0_value;
+static lean_once_cell_t l_Lake_packageDataDecl___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_packageDataDecl___closed__0;
+static lean_once_cell_t l_Lake_packageDataDecl___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_packageDataDecl___closed__1;
+static lean_once_cell_t l_Lake_packageDataDecl___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_packageDataDecl___closed__2;
+static lean_once_cell_t l_Lake_packageDataDecl___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_packageDataDecl___closed__3;
+static lean_once_cell_t l_Lake_packageDataDecl___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_packageDataDecl___closed__4;
+static lean_once_cell_t l_Lake_packageDataDecl___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_packageDataDecl___closed__5;
+static lean_once_cell_t l_Lake_packageDataDecl___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_packageDataDecl___closed__6;
+static lean_once_cell_t l_Lake_packageDataDecl___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_packageDataDecl___closed__7;
+static lean_once_cell_t l_Lake_packageDataDecl___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_packageDataDecl___closed__8;
+LEAN_EXPORT lean_object* l_Lake_packageDataDecl;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__packageDataDecl__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__packageDataDecl__1___closed__0;
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__packageDataDecl__1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__packageDataDecl__1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lake_moduleDataDecl___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "moduleDataDecl"};
-static const lean_object* l_Lake_moduleDataDecl___closed__0 = (const lean_object*)&l_Lake_moduleDataDecl___closed__0_value;
-static const lean_ctor_object l_Lake_moduleDataDecl___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_dataTypeDecl___closed__0_value),LEAN_SCALAR_PTR_LITERAL(111, 69, 182, 10, 108, 181, 149, 180)}};
-static const lean_ctor_object l_Lake_moduleDataDecl___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake_moduleDataDecl___closed__1_value_aux_0),((lean_object*)&l_Lake_moduleDataDecl___closed__0_value),LEAN_SCALAR_PTR_LITERAL(186, 236, 99, 131, 4, 228, 74, 185)}};
-static const lean_object* l_Lake_moduleDataDecl___closed__1 = (const lean_object*)&l_Lake_moduleDataDecl___closed__1_value;
-static const lean_string_object l_Lake_moduleDataDecl___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "module_data "};
-static const lean_object* l_Lake_moduleDataDecl___closed__2 = (const lean_object*)&l_Lake_moduleDataDecl___closed__2_value;
-static const lean_ctor_object l_Lake_moduleDataDecl___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lake_moduleDataDecl___closed__2_value)}};
-static const lean_object* l_Lake_moduleDataDecl___closed__3 = (const lean_object*)&l_Lake_moduleDataDecl___closed__3_value;
-static const lean_ctor_object l_Lake_moduleDataDecl___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_dataTypeDecl___closed__10_value),((lean_object*)&l_Lake_moduleDataDecl___closed__3_value)}};
-static const lean_object* l_Lake_moduleDataDecl___closed__4 = (const lean_object*)&l_Lake_moduleDataDecl___closed__4_value;
-static const lean_ctor_object l_Lake_moduleDataDecl___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_moduleDataDecl___closed__4_value),((lean_object*)&l_Lake_dataTypeDecl___closed__16_value)}};
-static const lean_object* l_Lake_moduleDataDecl___closed__5 = (const lean_object*)&l_Lake_moduleDataDecl___closed__5_value;
-static const lean_ctor_object l_Lake_moduleDataDecl___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_moduleDataDecl___closed__5_value),((lean_object*)&l_Lake_dataTypeDecl___closed__19_value)}};
-static const lean_object* l_Lake_moduleDataDecl___closed__6 = (const lean_object*)&l_Lake_moduleDataDecl___closed__6_value;
-static const lean_ctor_object l_Lake_moduleDataDecl___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_moduleDataDecl___closed__6_value),((lean_object*)&l_Lake_dataTypeDecl___closed__23_value)}};
-static const lean_object* l_Lake_moduleDataDecl___closed__7 = (const lean_object*)&l_Lake_moduleDataDecl___closed__7_value;
-static const lean_ctor_object l_Lake_moduleDataDecl___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lake_moduleDataDecl___closed__1_value),((lean_object*)(((size_t)(1022) << 1) | 1)),((lean_object*)&l_Lake_moduleDataDecl___closed__7_value)}};
-static const lean_object* l_Lake_moduleDataDecl___closed__8 = (const lean_object*)&l_Lake_moduleDataDecl___closed__8_value;
-LEAN_EXPORT const lean_object* l_Lake_moduleDataDecl = (const lean_object*)&l_Lake_moduleDataDecl___closed__8_value;
+static lean_once_cell_t l_Lake_moduleDataDecl___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_moduleDataDecl___closed__0;
+static lean_once_cell_t l_Lake_moduleDataDecl___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_moduleDataDecl___closed__1;
+static lean_once_cell_t l_Lake_moduleDataDecl___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_moduleDataDecl___closed__2;
+static lean_once_cell_t l_Lake_moduleDataDecl___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_moduleDataDecl___closed__3;
+static lean_once_cell_t l_Lake_moduleDataDecl___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_moduleDataDecl___closed__4;
+static lean_once_cell_t l_Lake_moduleDataDecl___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_moduleDataDecl___closed__5;
+static lean_once_cell_t l_Lake_moduleDataDecl___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_moduleDataDecl___closed__6;
+static lean_once_cell_t l_Lake_moduleDataDecl___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_moduleDataDecl___closed__7;
+static lean_once_cell_t l_Lake_moduleDataDecl___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_moduleDataDecl___closed__8;
+LEAN_EXPORT lean_object* l_Lake_moduleDataDecl;
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__moduleDataDecl__1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__moduleDataDecl__1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lake_libraryDataDecl___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "libraryDataDecl"};
-static const lean_object* l_Lake_libraryDataDecl___closed__0 = (const lean_object*)&l_Lake_libraryDataDecl___closed__0_value;
-static const lean_ctor_object l_Lake_libraryDataDecl___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_dataTypeDecl___closed__0_value),LEAN_SCALAR_PTR_LITERAL(111, 69, 182, 10, 108, 181, 149, 180)}};
-static const lean_ctor_object l_Lake_libraryDataDecl___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake_libraryDataDecl___closed__1_value_aux_0),((lean_object*)&l_Lake_libraryDataDecl___closed__0_value),LEAN_SCALAR_PTR_LITERAL(95, 126, 44, 46, 121, 159, 210, 189)}};
-static const lean_object* l_Lake_libraryDataDecl___closed__1 = (const lean_object*)&l_Lake_libraryDataDecl___closed__1_value;
-static const lean_string_object l_Lake_libraryDataDecl___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "library_data "};
-static const lean_object* l_Lake_libraryDataDecl___closed__2 = (const lean_object*)&l_Lake_libraryDataDecl___closed__2_value;
-static const lean_ctor_object l_Lake_libraryDataDecl___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lake_libraryDataDecl___closed__2_value)}};
-static const lean_object* l_Lake_libraryDataDecl___closed__3 = (const lean_object*)&l_Lake_libraryDataDecl___closed__3_value;
-static const lean_ctor_object l_Lake_libraryDataDecl___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_dataTypeDecl___closed__10_value),((lean_object*)&l_Lake_libraryDataDecl___closed__3_value)}};
-static const lean_object* l_Lake_libraryDataDecl___closed__4 = (const lean_object*)&l_Lake_libraryDataDecl___closed__4_value;
-static const lean_ctor_object l_Lake_libraryDataDecl___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_libraryDataDecl___closed__4_value),((lean_object*)&l_Lake_dataTypeDecl___closed__16_value)}};
-static const lean_object* l_Lake_libraryDataDecl___closed__5 = (const lean_object*)&l_Lake_libraryDataDecl___closed__5_value;
-static const lean_ctor_object l_Lake_libraryDataDecl___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_libraryDataDecl___closed__5_value),((lean_object*)&l_Lake_dataTypeDecl___closed__19_value)}};
-static const lean_object* l_Lake_libraryDataDecl___closed__6 = (const lean_object*)&l_Lake_libraryDataDecl___closed__6_value;
-static const lean_ctor_object l_Lake_libraryDataDecl___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_libraryDataDecl___closed__6_value),((lean_object*)&l_Lake_dataTypeDecl___closed__23_value)}};
-static const lean_object* l_Lake_libraryDataDecl___closed__7 = (const lean_object*)&l_Lake_libraryDataDecl___closed__7_value;
-static const lean_ctor_object l_Lake_libraryDataDecl___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lake_libraryDataDecl___closed__1_value),((lean_object*)(((size_t)(1022) << 1) | 1)),((lean_object*)&l_Lake_libraryDataDecl___closed__7_value)}};
-static const lean_object* l_Lake_libraryDataDecl___closed__8 = (const lean_object*)&l_Lake_libraryDataDecl___closed__8_value;
-LEAN_EXPORT const lean_object* l_Lake_libraryDataDecl = (const lean_object*)&l_Lake_libraryDataDecl___closed__8_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "lean_lib"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1___closed__0 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1___closed__0_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(99, 123, 8, 14, 20, 41, 164, 170)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1___closed__1 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1___closed__1_value;
+static lean_once_cell_t l_Lake_libraryDataDecl___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_libraryDataDecl___closed__0;
+static lean_once_cell_t l_Lake_libraryDataDecl___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_libraryDataDecl___closed__1;
+static lean_once_cell_t l_Lake_libraryDataDecl___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_libraryDataDecl___closed__2;
+static lean_once_cell_t l_Lake_libraryDataDecl___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_libraryDataDecl___closed__3;
+static lean_once_cell_t l_Lake_libraryDataDecl___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_libraryDataDecl___closed__4;
+static lean_once_cell_t l_Lake_libraryDataDecl___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_libraryDataDecl___closed__5;
+static lean_once_cell_t l_Lake_libraryDataDecl___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_libraryDataDecl___closed__6;
+static lean_once_cell_t l_Lake_libraryDataDecl___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_libraryDataDecl___closed__7;
+static lean_once_cell_t l_Lake_libraryDataDecl___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_libraryDataDecl___closed__8;
+LEAN_EXPORT lean_object* l_Lake_libraryDataDecl;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1___closed__0;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1___closed__1;
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lake_customDataDecl___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "customDataDecl"};
-static const lean_object* l_Lake_customDataDecl___closed__0 = (const lean_object*)&l_Lake_customDataDecl___closed__0_value;
-static const lean_ctor_object l_Lake_customDataDecl___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_dataTypeDecl___closed__0_value),LEAN_SCALAR_PTR_LITERAL(111, 69, 182, 10, 108, 181, 149, 180)}};
-static const lean_ctor_object l_Lake_customDataDecl___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake_customDataDecl___closed__1_value_aux_0),((lean_object*)&l_Lake_customDataDecl___closed__0_value),LEAN_SCALAR_PTR_LITERAL(34, 51, 251, 114, 214, 40, 109, 65)}};
-static const lean_object* l_Lake_customDataDecl___closed__1 = (const lean_object*)&l_Lake_customDataDecl___closed__1_value;
-static const lean_string_object l_Lake_customDataDecl___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "custom_data "};
-static const lean_object* l_Lake_customDataDecl___closed__2 = (const lean_object*)&l_Lake_customDataDecl___closed__2_value;
-static const lean_ctor_object l_Lake_customDataDecl___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lake_customDataDecl___closed__2_value)}};
-static const lean_object* l_Lake_customDataDecl___closed__3 = (const lean_object*)&l_Lake_customDataDecl___closed__3_value;
-static const lean_ctor_object l_Lake_customDataDecl___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_dataTypeDecl___closed__10_value),((lean_object*)&l_Lake_customDataDecl___closed__3_value)}};
-static const lean_object* l_Lake_customDataDecl___closed__4 = (const lean_object*)&l_Lake_customDataDecl___closed__4_value;
-static const lean_ctor_object l_Lake_customDataDecl___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_customDataDecl___closed__4_value),((lean_object*)&l_Lake_dataTypeDecl___closed__16_value)}};
-static const lean_object* l_Lake_customDataDecl___closed__5 = (const lean_object*)&l_Lake_customDataDecl___closed__5_value;
-static const lean_ctor_object l_Lake_customDataDecl___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_customDataDecl___closed__5_value),((lean_object*)&l_Lake_dataTypeDecl___closed__16_value)}};
-static const lean_object* l_Lake_customDataDecl___closed__6 = (const lean_object*)&l_Lake_customDataDecl___closed__6_value;
-static const lean_ctor_object l_Lake_customDataDecl___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_customDataDecl___closed__6_value),((lean_object*)&l_Lake_dataTypeDecl___closed__19_value)}};
-static const lean_object* l_Lake_customDataDecl___closed__7 = (const lean_object*)&l_Lake_customDataDecl___closed__7_value;
-static const lean_ctor_object l_Lake_customDataDecl___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lake_dataTypeDecl___closed__4_value),((lean_object*)&l_Lake_customDataDecl___closed__7_value),((lean_object*)&l_Lake_dataTypeDecl___closed__23_value)}};
-static const lean_object* l_Lake_customDataDecl___closed__8 = (const lean_object*)&l_Lake_customDataDecl___closed__8_value;
-static const lean_ctor_object l_Lake_customDataDecl___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lake_customDataDecl___closed__1_value),((lean_object*)(((size_t)(1022) << 1) | 1)),((lean_object*)&l_Lake_customDataDecl___closed__8_value)}};
-static const lean_object* l_Lake_customDataDecl___closed__9 = (const lean_object*)&l_Lake_customDataDecl___closed__9_value;
-LEAN_EXPORT const lean_object* l_Lake_customDataDecl = (const lean_object*)&l_Lake_customDataDecl___closed__9_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "tuple"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__0 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__0_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__1_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__1_value_aux_1),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_value),LEAN_SCALAR_PTR_LITERAL(75, 170, 162, 138, 136, 204, 251, 229)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__1_value_aux_2),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(191, 24, 88, 245, 200, 250, 27, 217)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__1 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__1_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__10_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__2 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__2_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__8_value),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__2_value)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__3 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__3_value;
-static const lean_string_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "CustomOut"};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__4 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__4_value;
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__5_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lake_dataTypeDecl___closed__0_value),LEAN_SCALAR_PTR_LITERAL(111, 69, 182, 10, 108, 181, 149, 180)}};
-static const lean_ctor_object l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__5_value_aux_0),((lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(104, 189, 225, 248, 232, 79, 182, 148)}};
-static const lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__5 = (const lean_object*)&l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__5_value;
+static lean_once_cell_t l_Lake_customDataDecl___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_customDataDecl___closed__0;
+static lean_once_cell_t l_Lake_customDataDecl___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_customDataDecl___closed__1;
+static lean_once_cell_t l_Lake_customDataDecl___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_customDataDecl___closed__2;
+static lean_once_cell_t l_Lake_customDataDecl___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_customDataDecl___closed__3;
+static lean_once_cell_t l_Lake_customDataDecl___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_customDataDecl___closed__4;
+static lean_once_cell_t l_Lake_customDataDecl___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_customDataDecl___closed__5;
+static lean_once_cell_t l_Lake_customDataDecl___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_customDataDecl___closed__6;
+static lean_once_cell_t l_Lake_customDataDecl___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_customDataDecl___closed__7;
+static lean_once_cell_t l_Lake_customDataDecl___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_customDataDecl___closed__8;
+static lean_once_cell_t l_Lake_customDataDecl___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_customDataDecl___closed__9;
+LEAN_EXPORT lean_object* l_Lake_customDataDecl;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__0;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__1;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__2;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__3;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__4;
+static lean_once_cell_t l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__5;
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_OptDataKind_anonymous(lean_object* v_00_u03b1_1_){
@@ -755,11 +676,19 @@ lean_dec(v_x_26_);
 return v_res_27_;
 }
 }
+static lean_object* _init_l_Lake_OptDataKind_instCoeOutName___closed__0(void){
+_start:
+{
+lean_object* v___f_28_; 
+v___f_28_ = lean_alloc_closure((void*)(l_Lake_OptDataKind_instCoeOutName___lam__0___boxed), 1, 0);
+return v___f_28_;
+}
+}
 LEAN_EXPORT lean_object* l_Lake_OptDataKind_instCoeOutName(lean_object* v_00_u03b1_29_){
 _start:
 {
 lean_object* v___f_30_; 
-v___f_30_ = ((lean_object*)(l_Lake_OptDataKind_instCoeOutName___closed__0));
+v___f_30_ = lean_obj_once(&l_Lake_OptDataKind_instCoeOutName___closed__0, &l_Lake_OptDataKind_instCoeOutName___closed__0_once, _init_l_Lake_OptDataKind_instCoeOutName___closed__0);
 return v___f_30_;
 }
 }
@@ -772,30 +701,962 @@ v___x_33_ = l_Lean_Name_toString(v_x_31_, v___x_32_);
 return v___x_33_;
 }
 }
+static lean_object* _init_l_Lake_OptDataKind_instToString___closed__0(void){
+_start:
+{
+lean_object* v___f_34_; 
+v___f_34_ = lean_alloc_closure((void*)(l_Lake_OptDataKind_instToString___lam__0), 1, 0);
+return v___f_34_;
+}
+}
 LEAN_EXPORT lean_object* l_Lake_OptDataKind_instToString(lean_object* v_00_u03b1_35_){
 _start:
 {
 lean_object* v___f_36_; 
-v___f_36_ = ((lean_object*)(l_Lake_OptDataKind_instToString___closed__0));
+v___f_36_ = lean_obj_once(&l_Lake_OptDataKind_instToString___closed__0, &l_Lake_OptDataKind_instToString___closed__0_once, _init_l_Lake_OptDataKind_instToString___closed__0);
 return v___f_36_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__0(void){
+_start:
+{
+lean_object* v___x_37_; 
+v___x_37_ = lean_mk_string_unchecked("Lake", 4, 4);
+return v___x_37_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__1(void){
+_start:
+{
+lean_object* v___x_38_; 
+v___x_38_ = lean_mk_string_unchecked("dataTypeDecl", 12, 12);
+return v___x_38_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__2(void){
+_start:
+{
+lean_object* v___x_39_; lean_object* v___x_40_; lean_object* v___x_41_; 
+v___x_39_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__1, &l_Lake_dataTypeDecl___closed__1_once, _init_l_Lake_dataTypeDecl___closed__1);
+v___x_40_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__0, &l_Lake_dataTypeDecl___closed__0_once, _init_l_Lake_dataTypeDecl___closed__0);
+v___x_41_ = l_Lean_Name_mkStr2(v___x_40_, v___x_39_);
+return v___x_41_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__3(void){
+_start:
+{
+lean_object* v___x_42_; 
+v___x_42_ = lean_mk_string_unchecked("andthen", 7, 7);
+return v___x_42_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__4(void){
+_start:
+{
+lean_object* v___x_43_; lean_object* v___x_44_; 
+v___x_43_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__3, &l_Lake_dataTypeDecl___closed__3_once, _init_l_Lake_dataTypeDecl___closed__3);
+v___x_44_ = l_Lean_Name_mkStr1(v___x_43_);
+return v___x_44_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__5(void){
+_start:
+{
+lean_object* v___x_45_; 
+v___x_45_ = lean_mk_string_unchecked("optional", 8, 8);
+return v___x_45_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__6(void){
+_start:
+{
+lean_object* v___x_46_; lean_object* v___x_47_; 
+v___x_46_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__5, &l_Lake_dataTypeDecl___closed__5_once, _init_l_Lake_dataTypeDecl___closed__5);
+v___x_47_ = l_Lean_Name_mkStr1(v___x_46_);
+return v___x_47_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__7(void){
+_start:
+{
+lean_object* v___x_48_; 
+v___x_48_ = lean_mk_string_unchecked("docComment", 10, 10);
+return v___x_48_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__8(void){
+_start:
+{
+lean_object* v___x_49_; lean_object* v___x_50_; 
+v___x_49_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__7, &l_Lake_dataTypeDecl___closed__7_once, _init_l_Lake_dataTypeDecl___closed__7);
+v___x_50_ = l_Lean_Name_mkStr1(v___x_49_);
+return v___x_50_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__9(void){
+_start:
+{
+lean_object* v___x_51_; lean_object* v___x_52_; 
+v___x_51_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__8, &l_Lake_dataTypeDecl___closed__8_once, _init_l_Lake_dataTypeDecl___closed__8);
+v___x_52_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_52_, 0, v___x_51_);
+return v___x_52_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__10(void){
+_start:
+{
+lean_object* v___x_53_; lean_object* v___x_54_; lean_object* v___x_55_; 
+v___x_53_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__9, &l_Lake_dataTypeDecl___closed__9_once, _init_l_Lake_dataTypeDecl___closed__9);
+v___x_54_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__6, &l_Lake_dataTypeDecl___closed__6_once, _init_l_Lake_dataTypeDecl___closed__6);
+v___x_55_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_55_, 0, v___x_54_);
+lean_ctor_set(v___x_55_, 1, v___x_53_);
+return v___x_55_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__11(void){
+_start:
+{
+lean_object* v___x_56_; 
+v___x_56_ = lean_mk_string_unchecked("data_type ", 10, 10);
+return v___x_56_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__12(void){
+_start:
+{
+lean_object* v___x_57_; lean_object* v___x_58_; 
+v___x_57_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__11, &l_Lake_dataTypeDecl___closed__11_once, _init_l_Lake_dataTypeDecl___closed__11);
+v___x_58_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_58_, 0, v___x_57_);
+return v___x_58_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__13(void){
+_start:
+{
+lean_object* v___x_59_; lean_object* v___x_60_; lean_object* v___x_61_; lean_object* v___x_62_; 
+v___x_59_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__12, &l_Lake_dataTypeDecl___closed__12_once, _init_l_Lake_dataTypeDecl___closed__12);
+v___x_60_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__10, &l_Lake_dataTypeDecl___closed__10_once, _init_l_Lake_dataTypeDecl___closed__10);
+v___x_61_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_62_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_62_, 0, v___x_61_);
+lean_ctor_set(v___x_62_, 1, v___x_60_);
+lean_ctor_set(v___x_62_, 2, v___x_59_);
+return v___x_62_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__14(void){
+_start:
+{
+lean_object* v___x_63_; 
+v___x_63_ = lean_mk_string_unchecked("ident", 5, 5);
+return v___x_63_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__15(void){
+_start:
+{
+lean_object* v___x_64_; lean_object* v___x_65_; 
+v___x_64_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__14, &l_Lake_dataTypeDecl___closed__14_once, _init_l_Lake_dataTypeDecl___closed__14);
+v___x_65_ = l_Lean_Name_mkStr1(v___x_64_);
+return v___x_65_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__16(void){
+_start:
+{
+lean_object* v___x_66_; lean_object* v___x_67_; 
+v___x_66_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__15, &l_Lake_dataTypeDecl___closed__15_once, _init_l_Lake_dataTypeDecl___closed__15);
+v___x_67_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_67_, 0, v___x_66_);
+return v___x_67_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__17(void){
+_start:
+{
+lean_object* v___x_68_; lean_object* v___x_69_; lean_object* v___x_70_; lean_object* v___x_71_; 
+v___x_68_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__16, &l_Lake_dataTypeDecl___closed__16_once, _init_l_Lake_dataTypeDecl___closed__16);
+v___x_69_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__13, &l_Lake_dataTypeDecl___closed__13_once, _init_l_Lake_dataTypeDecl___closed__13);
+v___x_70_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_71_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_71_, 0, v___x_70_);
+lean_ctor_set(v___x_71_, 1, v___x_69_);
+lean_ctor_set(v___x_71_, 2, v___x_68_);
+return v___x_71_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__18(void){
+_start:
+{
+lean_object* v___x_72_; 
+v___x_72_ = lean_mk_string_unchecked(" : ", 3, 3);
+return v___x_72_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__19(void){
+_start:
+{
+lean_object* v___x_73_; lean_object* v___x_74_; 
+v___x_73_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__18, &l_Lake_dataTypeDecl___closed__18_once, _init_l_Lake_dataTypeDecl___closed__18);
+v___x_74_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_74_, 0, v___x_73_);
+return v___x_74_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__20(void){
+_start:
+{
+lean_object* v___x_75_; lean_object* v___x_76_; lean_object* v___x_77_; lean_object* v___x_78_; 
+v___x_75_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__19, &l_Lake_dataTypeDecl___closed__19_once, _init_l_Lake_dataTypeDecl___closed__19);
+v___x_76_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__17, &l_Lake_dataTypeDecl___closed__17_once, _init_l_Lake_dataTypeDecl___closed__17);
+v___x_77_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_78_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_78_, 0, v___x_77_);
+lean_ctor_set(v___x_78_, 1, v___x_76_);
+lean_ctor_set(v___x_78_, 2, v___x_75_);
+return v___x_78_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__21(void){
+_start:
+{
+lean_object* v___x_79_; 
+v___x_79_ = lean_mk_string_unchecked("term", 4, 4);
+return v___x_79_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__22(void){
+_start:
+{
+lean_object* v___x_80_; lean_object* v___x_81_; 
+v___x_80_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__21, &l_Lake_dataTypeDecl___closed__21_once, _init_l_Lake_dataTypeDecl___closed__21);
+v___x_81_ = l_Lean_Name_mkStr1(v___x_80_);
+return v___x_81_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__23(void){
+_start:
+{
+lean_object* v___x_82_; lean_object* v___x_83_; lean_object* v___x_84_; 
+v___x_82_ = lean_unsigned_to_nat(0u);
+v___x_83_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__22, &l_Lake_dataTypeDecl___closed__22_once, _init_l_Lake_dataTypeDecl___closed__22);
+v___x_84_ = lean_alloc_ctor(7, 2, 0);
+lean_ctor_set(v___x_84_, 0, v___x_83_);
+lean_ctor_set(v___x_84_, 1, v___x_82_);
+return v___x_84_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__24(void){
+_start:
+{
+lean_object* v___x_85_; lean_object* v___x_86_; lean_object* v___x_87_; lean_object* v___x_88_; 
+v___x_85_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__23, &l_Lake_dataTypeDecl___closed__23_once, _init_l_Lake_dataTypeDecl___closed__23);
+v___x_86_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__20, &l_Lake_dataTypeDecl___closed__20_once, _init_l_Lake_dataTypeDecl___closed__20);
+v___x_87_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_88_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_88_, 0, v___x_87_);
+lean_ctor_set(v___x_88_, 1, v___x_86_);
+lean_ctor_set(v___x_88_, 2, v___x_85_);
+return v___x_88_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl___closed__25(void){
+_start:
+{
+lean_object* v___x_89_; lean_object* v___x_90_; lean_object* v___x_91_; lean_object* v___x_92_; 
+v___x_89_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__24, &l_Lake_dataTypeDecl___closed__24_once, _init_l_Lake_dataTypeDecl___closed__24);
+v___x_90_ = lean_unsigned_to_nat(1022u);
+v___x_91_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__2, &l_Lake_dataTypeDecl___closed__2_once, _init_l_Lake_dataTypeDecl___closed__2);
+v___x_92_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_92_, 0, v___x_91_);
+lean_ctor_set(v___x_92_, 1, v___x_90_);
+lean_ctor_set(v___x_92_, 2, v___x_89_);
+return v___x_92_;
+}
+}
+static lean_object* _init_l_Lake_dataTypeDecl(void){
+_start:
+{
+lean_object* v___x_93_; 
+v___x_93_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__25, &l_Lake_dataTypeDecl___closed__25_once, _init_l_Lake_dataTypeDecl___closed__25);
+return v___x_93_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0(void){
+_start:
+{
+lean_object* v___x_94_; 
+v___x_94_ = lean_mk_string_unchecked("family_def", 10, 10);
+return v___x_94_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1(void){
+_start:
+{
+lean_object* v___x_95_; 
+v___x_95_ = lean_mk_string_unchecked(":", 1, 1);
+return v___x_95_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2(void){
+_start:
+{
+lean_object* v___x_96_; 
+v___x_96_ = lean_mk_string_unchecked(":=", 2, 2);
+return v___x_96_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3(void){
+_start:
+{
+lean_object* v___x_97_; 
+v___x_97_ = lean_mk_string_unchecked("Lean", 4, 4);
+return v___x_97_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4(void){
+_start:
+{
+lean_object* v___x_98_; 
+v___x_98_ = lean_mk_string_unchecked("Parser", 6, 6);
+return v___x_98_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5(void){
+_start:
+{
+lean_object* v___x_99_; 
+v___x_99_ = lean_mk_string_unchecked("Command", 7, 7);
+return v___x_99_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__6(void){
+_start:
+{
+lean_object* v___x_100_; 
+v___x_100_ = lean_mk_string_unchecked("declaration", 11, 11);
+return v___x_100_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7(void){
+_start:
+{
+lean_object* v___x_101_; lean_object* v___x_102_; lean_object* v___x_103_; lean_object* v___x_104_; lean_object* v___x_105_; 
+v___x_101_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__6, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__6_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__6);
+v___x_102_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5);
+v___x_103_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_104_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_105_ = l_Lean_Name_mkStr4(v___x_104_, v___x_103_, v___x_102_, v___x_101_);
+return v___x_105_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__8(void){
+_start:
+{
+lean_object* v___x_106_; 
+v___x_106_ = lean_mk_string_unchecked("declModifiers", 13, 13);
+return v___x_106_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9(void){
+_start:
+{
+lean_object* v___x_107_; lean_object* v___x_108_; lean_object* v___x_109_; lean_object* v___x_110_; lean_object* v___x_111_; 
+v___x_107_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__8, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__8_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__8);
+v___x_108_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5);
+v___x_109_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_110_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_111_ = l_Lean_Name_mkStr4(v___x_110_, v___x_109_, v___x_108_, v___x_107_);
+return v___x_111_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10(void){
+_start:
+{
+lean_object* v___x_112_; 
+v___x_112_ = lean_mk_string_unchecked("public", 6, 6);
+return v___x_112_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__11(void){
+_start:
+{
+lean_object* v___x_113_; lean_object* v___x_114_; lean_object* v___x_115_; lean_object* v___x_116_; lean_object* v___x_117_; 
+v___x_113_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10);
+v___x_114_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5);
+v___x_115_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_116_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_117_ = l_Lean_Name_mkStr4(v___x_116_, v___x_115_, v___x_114_, v___x_113_);
+return v___x_117_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12(void){
+_start:
+{
+lean_object* v___x_118_; 
+v___x_118_ = lean_mk_string_unchecked("instance", 8, 8);
+return v___x_118_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__13(void){
+_start:
+{
+lean_object* v___x_119_; lean_object* v___x_120_; lean_object* v___x_121_; lean_object* v___x_122_; lean_object* v___x_123_; 
+v___x_119_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12);
+v___x_120_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5);
+v___x_121_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_122_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_123_ = l_Lean_Name_mkStr4(v___x_122_, v___x_121_, v___x_120_, v___x_119_);
+return v___x_123_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14(void){
+_start:
+{
+lean_object* v___x_124_; 
+v___x_124_ = lean_mk_string_unchecked("Term", 4, 4);
+return v___x_124_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__15(void){
+_start:
+{
+lean_object* v___x_125_; 
+v___x_125_ = lean_mk_string_unchecked("attrKind", 8, 8);
+return v___x_125_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__16(void){
+_start:
+{
+lean_object* v___x_126_; lean_object* v___x_127_; lean_object* v___x_128_; lean_object* v___x_129_; lean_object* v___x_130_; 
+v___x_126_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__15, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__15_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__15);
+v___x_127_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14);
+v___x_128_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_129_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_130_ = l_Lean_Name_mkStr4(v___x_129_, v___x_128_, v___x_127_, v___x_126_);
+return v___x_130_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__17(void){
+_start:
+{
+lean_object* v___x_131_; 
+v___x_131_ = lean_mk_string_unchecked("declSig", 7, 7);
+return v___x_131_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__18(void){
+_start:
+{
+lean_object* v___x_132_; lean_object* v___x_133_; lean_object* v___x_134_; lean_object* v___x_135_; lean_object* v___x_136_; 
+v___x_132_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__17, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__17_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__17);
+v___x_133_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5);
+v___x_134_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_135_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_136_ = l_Lean_Name_mkStr4(v___x_135_, v___x_134_, v___x_133_, v___x_132_);
+return v___x_136_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__19(void){
+_start:
+{
+lean_object* v___x_137_; 
+v___x_137_ = lean_mk_string_unchecked("typeSpec", 8, 8);
+return v___x_137_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__20(void){
+_start:
+{
+lean_object* v___x_138_; lean_object* v___x_139_; lean_object* v___x_140_; lean_object* v___x_141_; lean_object* v___x_142_; 
+v___x_138_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__19, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__19_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__19);
+v___x_139_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14);
+v___x_140_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_141_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_142_ = l_Lean_Name_mkStr4(v___x_141_, v___x_140_, v___x_139_, v___x_138_);
+return v___x_142_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__21(void){
+_start:
+{
+lean_object* v___x_143_; 
+v___x_143_ = lean_mk_string_unchecked("app", 3, 3);
+return v___x_143_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__22(void){
+_start:
+{
+lean_object* v___x_144_; lean_object* v___x_145_; lean_object* v___x_146_; lean_object* v___x_147_; lean_object* v___x_148_; 
+v___x_144_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__21, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__21_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__21);
+v___x_145_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14);
+v___x_146_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_147_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_148_ = l_Lean_Name_mkStr4(v___x_147_, v___x_146_, v___x_145_, v___x_144_);
+return v___x_148_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__23(void){
+_start:
+{
+lean_object* v___x_149_; 
+v___x_149_ = lean_mk_string_unchecked("DataKind", 8, 8);
+return v___x_149_;
 }
 }
 static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__24(void){
 _start:
 {
 lean_object* v___x_150_; lean_object* v___x_151_; 
-v___x_150_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__23));
+v___x_150_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__23, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__23_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__23);
 v___x_151_ = l_String_toRawSubstring_x27(v___x_150_);
 return v___x_151_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__25(void){
+_start:
+{
+lean_object* v___x_152_; lean_object* v___x_153_; 
+v___x_152_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__23, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__23_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__23);
+v___x_153_ = l_Lean_Name_mkStr1(v___x_152_);
+return v___x_153_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__26(void){
+_start:
+{
+lean_object* v___x_154_; lean_object* v___x_155_; lean_object* v___x_156_; 
+v___x_154_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__23, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__23_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__23);
+v___x_155_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__0, &l_Lake_dataTypeDecl___closed__0_once, _init_l_Lake_dataTypeDecl___closed__0);
+v___x_156_ = l_Lean_Name_mkStr2(v___x_155_, v___x_154_);
+return v___x_156_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__27(void){
+_start:
+{
+lean_object* v___x_157_; lean_object* v___x_158_; lean_object* v___x_159_; 
+v___x_157_ = lean_box(0);
+v___x_158_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__26, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__26_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__26);
+v___x_159_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_159_, 0, v___x_158_);
+lean_ctor_set(v___x_159_, 1, v___x_157_);
+return v___x_159_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__28(void){
+_start:
+{
+lean_object* v___x_160_; lean_object* v___x_161_; 
+v___x_160_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__26, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__26_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__26);
+v___x_161_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_161_, 0, v___x_160_);
+return v___x_161_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__29(void){
+_start:
+{
+lean_object* v___x_162_; lean_object* v___x_163_; lean_object* v___x_164_; 
+v___x_162_ = lean_box(0);
+v___x_163_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__28, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__28_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__28);
+v___x_164_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_164_, 0, v___x_163_);
+lean_ctor_set(v___x_164_, 1, v___x_162_);
+return v___x_164_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__30(void){
+_start:
+{
+lean_object* v___x_165_; lean_object* v___x_166_; lean_object* v___x_167_; 
+v___x_165_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__29, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__29_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__29);
+v___x_166_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__27, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__27_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__27);
+v___x_167_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_167_, 0, v___x_166_);
+lean_ctor_set(v___x_167_, 1, v___x_165_);
+return v___x_167_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__31(void){
+_start:
+{
+lean_object* v___x_168_; 
+v___x_168_ = lean_mk_string_unchecked("declValSimple", 13, 13);
+return v___x_168_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__32(void){
+_start:
+{
+lean_object* v___x_169_; lean_object* v___x_170_; lean_object* v___x_171_; lean_object* v___x_172_; lean_object* v___x_173_; 
+v___x_169_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__31, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__31_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__31);
+v___x_170_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5);
+v___x_171_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_172_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_173_ = l_Lean_Name_mkStr4(v___x_172_, v___x_171_, v___x_170_, v___x_169_);
+return v___x_173_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__33(void){
+_start:
+{
+lean_object* v___x_174_; 
+v___x_174_ = lean_mk_string_unchecked("anonymousCtor", 13, 13);
+return v___x_174_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__34(void){
+_start:
+{
+lean_object* v___x_175_; lean_object* v___x_176_; lean_object* v___x_177_; lean_object* v___x_178_; lean_object* v___x_179_; 
+v___x_175_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__33, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__33_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__33);
+v___x_176_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14);
+v___x_177_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_178_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_179_ = l_Lean_Name_mkStr4(v___x_178_, v___x_177_, v___x_176_, v___x_175_);
+return v___x_179_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__35(void){
+_start:
+{
+lean_object* v___x_180_; 
+v___x_180_ = lean_mk_string_unchecked("⟨", 3, 1);
+return v___x_180_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__36(void){
+_start:
+{
+lean_object* v___x_181_; 
+v___x_181_ = lean_mk_string_unchecked(",", 1, 1);
+return v___x_181_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__37(void){
+_start:
+{
+lean_object* v___x_182_; 
+v___x_182_ = lean_mk_string_unchecked("byTactic", 8, 8);
+return v___x_182_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__38(void){
+_start:
+{
+lean_object* v___x_183_; lean_object* v___x_184_; lean_object* v___x_185_; lean_object* v___x_186_; lean_object* v___x_187_; 
+v___x_183_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__37, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__37_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__37);
+v___x_184_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14);
+v___x_185_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_186_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_187_ = l_Lean_Name_mkStr4(v___x_186_, v___x_185_, v___x_184_, v___x_183_);
+return v___x_187_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__39(void){
+_start:
+{
+lean_object* v___x_188_; 
+v___x_188_ = lean_mk_string_unchecked("by", 2, 2);
+return v___x_188_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40(void){
+_start:
+{
+lean_object* v___x_189_; 
+v___x_189_ = lean_mk_string_unchecked("Tactic", 6, 6);
+return v___x_189_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__41(void){
+_start:
+{
+lean_object* v___x_190_; 
+v___x_190_ = lean_mk_string_unchecked("tacticSeq", 9, 9);
+return v___x_190_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__42(void){
+_start:
+{
+lean_object* v___x_191_; lean_object* v___x_192_; lean_object* v___x_193_; lean_object* v___x_194_; lean_object* v___x_195_; 
+v___x_191_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__41, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__41_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__41);
+v___x_192_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40);
+v___x_193_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_194_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_195_ = l_Lean_Name_mkStr4(v___x_194_, v___x_193_, v___x_192_, v___x_191_);
+return v___x_195_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__43(void){
+_start:
+{
+lean_object* v___x_196_; 
+v___x_196_ = lean_mk_string_unchecked("tacticSeq1Indented", 18, 18);
+return v___x_196_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__44(void){
+_start:
+{
+lean_object* v___x_197_; lean_object* v___x_198_; lean_object* v___x_199_; lean_object* v___x_200_; lean_object* v___x_201_; 
+v___x_197_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__43, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__43_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__43);
+v___x_198_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40);
+v___x_199_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_200_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_201_ = l_Lean_Name_mkStr4(v___x_200_, v___x_199_, v___x_198_, v___x_197_);
+return v___x_201_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__45(void){
+_start:
+{
+lean_object* v___x_202_; 
+v___x_202_ = lean_mk_string_unchecked("simp", 4, 4);
+return v___x_202_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__46(void){
+_start:
+{
+lean_object* v___x_203_; lean_object* v___x_204_; lean_object* v___x_205_; lean_object* v___x_206_; lean_object* v___x_207_; 
+v___x_203_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__45, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__45_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__45);
+v___x_204_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40);
+v___x_205_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_206_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_207_ = l_Lean_Name_mkStr4(v___x_206_, v___x_205_, v___x_204_, v___x_203_);
+return v___x_207_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__47(void){
+_start:
+{
+lean_object* v___x_208_; 
+v___x_208_ = lean_mk_string_unchecked("optConfig", 9, 9);
+return v___x_208_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__48(void){
+_start:
+{
+lean_object* v___x_209_; lean_object* v___x_210_; lean_object* v___x_211_; lean_object* v___x_212_; lean_object* v___x_213_; 
+v___x_209_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__47, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__47_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__47);
+v___x_210_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40);
+v___x_211_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_212_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_213_ = l_Lean_Name_mkStr4(v___x_212_, v___x_211_, v___x_210_, v___x_209_);
+return v___x_213_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__49(void){
+_start:
+{
+lean_object* v___x_214_; 
+v___x_214_ = lean_mk_string_unchecked("[", 1, 1);
+return v___x_214_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__50(void){
+_start:
+{
+lean_object* v___x_215_; 
+v___x_215_ = lean_mk_string_unchecked("simpLemma", 9, 9);
+return v___x_215_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__51(void){
+_start:
+{
+lean_object* v___x_216_; lean_object* v___x_217_; lean_object* v___x_218_; lean_object* v___x_219_; lean_object* v___x_220_; 
+v___x_216_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__50, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__50_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__50);
+v___x_217_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__40);
+v___x_218_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_219_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_220_ = l_Lean_Name_mkStr4(v___x_219_, v___x_218_, v___x_217_, v___x_216_);
+return v___x_220_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__52(void){
+_start:
+{
+lean_object* v___x_221_; 
+v___x_221_ = lean_mk_string_unchecked("Name.isAnonymous_iff_eq_anonymous", 33, 33);
+return v___x_221_;
 }
 }
 static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__53(void){
 _start:
 {
 lean_object* v___x_222_; lean_object* v___x_223_; 
-v___x_222_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__52));
+v___x_222_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__52, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__52_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__52);
 v___x_223_ = l_String_toRawSubstring_x27(v___x_222_);
 return v___x_223_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__54(void){
+_start:
+{
+lean_object* v___x_224_; 
+v___x_224_ = lean_mk_string_unchecked("Name", 4, 4);
+return v___x_224_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__55(void){
+_start:
+{
+lean_object* v___x_225_; 
+v___x_225_ = lean_mk_string_unchecked("isAnonymous_iff_eq_anonymous", 28, 28);
+return v___x_225_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__56(void){
+_start:
+{
+lean_object* v___x_226_; lean_object* v___x_227_; lean_object* v___x_228_; 
+v___x_226_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__55, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__55_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__55);
+v___x_227_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__54, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__54_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__54);
+v___x_228_ = l_Lean_Name_mkStr2(v___x_227_, v___x_226_);
+return v___x_228_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__57(void){
+_start:
+{
+lean_object* v___x_229_; lean_object* v___x_230_; lean_object* v___x_231_; lean_object* v___x_232_; 
+v___x_229_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__55, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__55_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__55);
+v___x_230_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__54, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__54_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__54);
+v___x_231_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__0, &l_Lake_dataTypeDecl___closed__0_once, _init_l_Lake_dataTypeDecl___closed__0);
+v___x_232_ = l_Lean_Name_mkStr3(v___x_231_, v___x_230_, v___x_229_);
+return v___x_232_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__58(void){
+_start:
+{
+lean_object* v___x_233_; lean_object* v___x_234_; lean_object* v___x_235_; 
+v___x_233_ = lean_box(0);
+v___x_234_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__57, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__57_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__57);
+v___x_235_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_235_, 0, v___x_234_);
+lean_ctor_set(v___x_235_, 1, v___x_233_);
+return v___x_235_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__59(void){
+_start:
+{
+lean_object* v___x_236_; lean_object* v___x_237_; lean_object* v___x_238_; 
+v___x_236_ = lean_box(0);
+v___x_237_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__58, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__58_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__58);
+v___x_238_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_238_, 0, v___x_237_);
+lean_ctor_set(v___x_238_, 1, v___x_236_);
+return v___x_238_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__60(void){
+_start:
+{
+lean_object* v___x_239_; 
+v___x_239_ = lean_mk_string_unchecked("]", 1, 1);
+return v___x_239_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__61(void){
+_start:
+{
+lean_object* v___x_240_; 
+v___x_240_ = lean_mk_string_unchecked("⟩", 3, 1);
+return v___x_240_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__62(void){
+_start:
+{
+lean_object* v___x_241_; 
+v___x_241_ = lean_mk_string_unchecked("Termination", 11, 11);
+return v___x_241_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__63(void){
+_start:
+{
+lean_object* v___x_242_; 
+v___x_242_ = lean_mk_string_unchecked("suffix", 6, 6);
+return v___x_242_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__64(void){
+_start:
+{
+lean_object* v___x_243_; lean_object* v___x_244_; lean_object* v___x_245_; lean_object* v___x_246_; lean_object* v___x_247_; 
+v___x_243_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__63, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__63_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__63);
+v___x_244_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__62, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__62_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__62);
+v___x_245_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_246_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_247_ = l_Lean_Name_mkStr4(v___x_246_, v___x_245_, v___x_244_, v___x_243_);
+return v___x_247_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__65(void){
+_start:
+{
+lean_object* v___x_248_; 
+v___x_248_ = lean_mk_string_unchecked("DataType", 8, 8);
+return v___x_248_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__66(void){
+_start:
+{
+lean_object* v___x_249_; lean_object* v___x_250_; lean_object* v___x_251_; 
+v___x_249_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__65, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__65_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__65);
+v___x_250_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__0, &l_Lake_dataTypeDecl___closed__0_once, _init_l_Lake_dataTypeDecl___closed__0);
+v___x_251_ = l_Lean_Name_mkStr2(v___x_250_, v___x_249_);
+return v___x_251_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__67(void){
+_start:
+{
+lean_object* v___x_252_; 
+v___x_252_ = lean_mk_string_unchecked("null", 4, 4);
+return v___x_252_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68(void){
+_start:
+{
+lean_object* v___x_253_; lean_object* v___x_254_; 
+v___x_253_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__67, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__67_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__67);
+v___x_254_ = l_Lean_Name_mkStr1(v___x_253_);
+return v___x_254_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__69(void){
+_start:
+{
+lean_object* v___x_255_; 
+v___x_255_ = lean_mk_string_unchecked("familyDef", 9, 9);
+return v___x_255_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__70(void){
+_start:
+{
+lean_object* v___x_256_; lean_object* v___x_257_; lean_object* v___x_258_; 
+v___x_256_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__69, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__69_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__69);
+v___x_257_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__0, &l_Lake_dataTypeDecl___closed__0_once, _init_l_Lake_dataTypeDecl___closed__0);
+v___x_258_ = l_Lean_Name_mkStr2(v___x_257_, v___x_256_);
+return v___x_258_;
 }
 }
 static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71(void){
@@ -806,11 +1667,20 @@ v___x_259_ = l_Array_mkArray0(lean_box(0));
 return v___x_259_;
 }
 }
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72(void){
+_start:
+{
+lean_object* v___x_260_; lean_object* v___x_261_; 
+v___x_260_ = lean_unsigned_to_nat(0u);
+v___x_261_ = lean_mk_empty_array_with_capacity(v___x_260_);
+return v___x_261_;
+}
+}
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1(lean_object* v_x_262_, lean_object* v_a_263_, lean_object* v_a_264_){
 _start:
 {
 lean_object* v___x_265_; uint8_t v___x_266_; 
-v___x_265_ = ((lean_object*)(l_Lake_dataTypeDecl___closed__2));
+v___x_265_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__2, &l_Lake_dataTypeDecl___closed__2_once, _init_l_Lake_dataTypeDecl___closed__2);
 lean_inc(v_x_262_);
 v___x_266_ = l_Lean_Syntax_isOfKind(v_x_262_, v___x_265_);
 if (v___x_266_ == 0)
@@ -896,15 +1766,15 @@ v___x_286_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_286_, 0, v___y_280_);
 lean_ctor_set(v___x_286_, 1, v___y_281_);
 lean_ctor_set(v___x_286_, 2, v___x_285_);
-v___x_287_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0));
+v___x_287_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0);
 v___x_288_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_288_, 0, v___y_280_);
 lean_ctor_set(v___x_288_, 1, v___x_287_);
-v___x_289_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1));
+v___x_289_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1);
 v___x_290_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_290_, 0, v___y_280_);
 lean_ctor_set(v___x_290_, 1, v___x_289_);
-v___x_291_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2));
+v___x_291_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2);
 v___x_292_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_292_, 0, v___y_280_);
 lean_ctor_set(v___x_292_, 1, v___x_291_);
@@ -914,14 +1784,14 @@ lean_inc(v___y_277_);
 lean_inc_ref(v___x_290_);
 lean_inc(v___y_282_);
 v___x_293_ = l_Lean_Syntax_node8(v___y_280_, v___y_282_, v___x_286_, v___x_288_, v_kind_272_, v___x_290_, v___y_278_, v___y_277_, v___x_292_, v___x_274_);
-v___x_294_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7));
-v___x_295_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9));
+v___x_294_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7);
+v___x_295_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9);
 v___x_296_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_296_, 0, v___y_280_);
 lean_ctor_set(v___x_296_, 1, v___y_281_);
 lean_ctor_set(v___x_296_, 2, v___y_283_);
-v___x_297_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10));
-v___x_298_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__11));
+v___x_297_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10);
+v___x_298_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__11, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__11_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__11);
 v___x_299_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_299_, 0, v___y_280_);
 lean_ctor_set(v___x_299_, 1, v___x_297_);
@@ -929,22 +1799,22 @@ v___x_300_ = l_Lean_Syntax_node1(v___y_280_, v___x_298_, v___x_299_);
 v___x_301_ = l_Lean_Syntax_node1(v___y_280_, v___y_281_, v___x_300_);
 lean_inc_ref_n(v___x_296_, 18);
 v___x_302_ = l_Lean_Syntax_node7(v___y_280_, v___x_295_, v___x_296_, v___x_296_, v___x_301_, v___x_296_, v___x_296_, v___x_296_, v___x_296_);
-v___x_303_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12));
-v___x_304_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__13));
-v___x_305_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__16));
+v___x_303_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12);
+v___x_304_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__13, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__13_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__13);
+v___x_305_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__16, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__16_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__16);
 v___x_306_ = l_Lean_Syntax_node1(v___y_280_, v___x_305_, v___x_296_);
 v___x_307_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_307_, 0, v___y_280_);
 lean_ctor_set(v___x_307_, 1, v___x_303_);
-v___x_308_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__18));
-v___x_309_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__20));
-v___x_310_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__22));
+v___x_308_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__18, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__18_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__18);
+v___x_309_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__20, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__20_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__20);
+v___x_310_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__22, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__22_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__22);
 v___x_311_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__24, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__24_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__24);
-v___x_312_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__25));
+v___x_312_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__25, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__25_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__25);
 lean_inc_n(v___y_276_, 2);
 lean_inc_n(v___y_279_, 2);
 v___x_313_ = l_Lean_addMacroScope(v___y_279_, v___x_312_, v___y_276_);
-v___x_314_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__30));
+v___x_314_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__30, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__30_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__30);
 v___x_315_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_315_, 0, v___y_280_);
 lean_ctor_set(v___x_315_, 1, v___x_311_);
@@ -954,39 +1824,39 @@ v___x_316_ = l_Lean_Syntax_node1(v___y_280_, v___y_281_, v___x_274_);
 v___x_317_ = l_Lean_Syntax_node2(v___y_280_, v___x_310_, v___x_315_, v___x_316_);
 v___x_318_ = l_Lean_Syntax_node2(v___y_280_, v___x_309_, v___x_290_, v___x_317_);
 v___x_319_ = l_Lean_Syntax_node2(v___y_280_, v___x_308_, v___x_296_, v___x_318_);
-v___x_320_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__32));
-v___x_321_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__34));
-v___x_322_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__35));
+v___x_320_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__32, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__32_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__32);
+v___x_321_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__34, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__34_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__34);
+v___x_322_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__35, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__35_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__35);
 v___x_323_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_323_, 0, v___y_280_);
 lean_ctor_set(v___x_323_, 1, v___x_322_);
-v___x_324_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__36));
+v___x_324_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__36, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__36_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__36);
 v___x_325_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_325_, 0, v___y_280_);
 lean_ctor_set(v___x_325_, 1, v___x_324_);
-v___x_326_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__38));
-v___x_327_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__39));
+v___x_326_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__38, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__38_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__38);
+v___x_327_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__39, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__39_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__39);
 v___x_328_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_328_, 0, v___y_280_);
 lean_ctor_set(v___x_328_, 1, v___x_327_);
-v___x_329_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__42));
-v___x_330_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__44));
-v___x_331_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__45));
-v___x_332_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__46));
+v___x_329_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__42, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__42_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__42);
+v___x_330_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__44, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__44_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__44);
+v___x_331_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__45, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__45_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__45);
+v___x_332_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__46, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__46_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__46);
 v___x_333_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_333_, 0, v___y_280_);
 lean_ctor_set(v___x_333_, 1, v___x_331_);
-v___x_334_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__48));
+v___x_334_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__48, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__48_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__48);
 v___x_335_ = l_Lean_Syntax_node1(v___y_280_, v___x_334_, v___x_296_);
-v___x_336_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__49));
+v___x_336_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__49, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__49_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__49);
 v___x_337_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_337_, 0, v___y_280_);
 lean_ctor_set(v___x_337_, 1, v___x_336_);
-v___x_338_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__51));
+v___x_338_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__51, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__51_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__51);
 v___x_339_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__53, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__53_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__53);
-v___x_340_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__56));
+v___x_340_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__56, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__56_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__56);
 v___x_341_ = l_Lean_addMacroScope(v___y_279_, v___x_340_, v___y_276_);
-v___x_342_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__59));
+v___x_342_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__59, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__59_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__59);
 v___x_343_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_343_, 0, v___y_280_);
 lean_ctor_set(v___x_343_, 1, v___x_339_);
@@ -994,7 +1864,7 @@ lean_ctor_set(v___x_343_, 2, v___x_341_);
 lean_ctor_set(v___x_343_, 3, v___x_342_);
 v___x_344_ = l_Lean_Syntax_node3(v___y_280_, v___x_338_, v___x_296_, v___x_296_, v___x_343_);
 v___x_345_ = l_Lean_Syntax_node1(v___y_280_, v___y_281_, v___x_344_);
-v___x_346_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__60));
+v___x_346_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__60, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__60_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__60);
 v___x_347_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_347_, 0, v___y_280_);
 lean_ctor_set(v___x_347_, 1, v___x_346_);
@@ -1005,12 +1875,12 @@ v___x_351_ = l_Lean_Syntax_node1(v___y_280_, v___x_330_, v___x_350_);
 v___x_352_ = l_Lean_Syntax_node1(v___y_280_, v___x_329_, v___x_351_);
 v___x_353_ = l_Lean_Syntax_node2(v___y_280_, v___x_326_, v___x_328_, v___x_352_);
 v___x_354_ = l_Lean_Syntax_node3(v___y_280_, v___y_281_, v___y_277_, v___x_325_, v___x_353_);
-v___x_355_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__61));
+v___x_355_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__61, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__61_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__61);
 v___x_356_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_356_, 0, v___y_280_);
 lean_ctor_set(v___x_356_, 1, v___x_355_);
 v___x_357_ = l_Lean_Syntax_node3(v___y_280_, v___x_321_, v___x_323_, v___x_354_, v___x_356_);
-v___x_358_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__64));
+v___x_358_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__64, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__64_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__64);
 v___x_359_ = l_Lean_Syntax_node2(v___y_280_, v___x_358_, v___x_296_, v___x_296_);
 v___x_360_ = l_Lean_Syntax_node4(v___y_280_, v___x_320_, v___x_292_, v___x_357_, v___x_359_, v___x_296_);
 v___x_361_ = l_Lean_Syntax_node6(v___y_280_, v___x_304_, v___x_306_, v___x_307_, v___x_296_, v___x_296_, v___x_319_, v___x_360_);
@@ -1027,15 +1897,15 @@ lean_object* v_quotContext_367_; lean_object* v_currMacroScope_368_; lean_object
 v_quotContext_367_ = lean_ctor_get(v_a_263_, 1);
 v_currMacroScope_368_ = lean_ctor_get(v_a_263_, 2);
 v_ref_369_ = lean_ctor_get(v_a_263_, 5);
-v___x_370_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__66));
+v___x_370_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__66, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__66_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__66);
 v___x_371_ = 0;
 v___x_372_ = l_Lean_mkCIdentFrom(v_ref_369_, v___x_370_, v___x_371_);
 v___x_373_ = l_Lean_TSyntax_getId(v_kind_272_);
 lean_inc(v_kind_272_);
 v___x_374_ = l_Lake_Name_quoteFrom(v_kind_272_, v___x_373_, v___x_371_);
 v___x_375_ = l_Lean_SourceInfo_fromRef(v_ref_369_, v___x_371_);
-v___x_376_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68));
-v___x_377_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__70));
+v___x_376_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68);
+v___x_377_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__70, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__70_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__70);
 v___x_378_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71);
 if (lean_obj_tag(v___y_366_) == 1)
 {
@@ -1059,7 +1929,7 @@ else
 {
 lean_object* v___x_381_; 
 lean_dec(v___y_366_);
-v___x_381_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72));
+v___x_381_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72);
 v___y_276_ = v_currMacroScope_368_;
 v___y_277_ = v___x_374_;
 v___y_278_ = v___x_372_;
@@ -1084,40 +1954,645 @@ lean_dec_ref(v_a_393_);
 return v_res_395_;
 }
 }
+static lean_object* _init_l_Lake_instDataKindUnit___closed__0(void){
+_start:
+{
+lean_object* v___x_396_; 
+v___x_396_ = lean_mk_string_unchecked("unit", 4, 4);
+return v___x_396_;
+}
+}
+static lean_object* _init_l_Lake_instDataKindUnit___closed__1(void){
+_start:
+{
+lean_object* v___x_397_; lean_object* v___x_398_; 
+v___x_397_ = lean_obj_once(&l_Lake_instDataKindUnit___closed__0, &l_Lake_instDataKindUnit___closed__0_once, _init_l_Lake_instDataKindUnit___closed__0);
+v___x_398_ = l_Lean_Name_mkStr1(v___x_397_);
+return v___x_398_;
+}
+}
+static lean_object* _init_l_Lake_instDataKindUnit(void){
+_start:
+{
+lean_object* v___x_399_; 
+v___x_399_ = lean_obj_once(&l_Lake_instDataKindUnit___closed__1, &l_Lake_instDataKindUnit___closed__1_once, _init_l_Lake_instDataKindUnit___closed__1);
+return v___x_399_;
+}
+}
+static lean_object* _init_l_Lake_instDataKindBool___closed__0(void){
+_start:
+{
+lean_object* v___x_400_; 
+v___x_400_ = lean_mk_string_unchecked("bool", 4, 4);
+return v___x_400_;
+}
+}
+static lean_object* _init_l_Lake_instDataKindBool___closed__1(void){
+_start:
+{
+lean_object* v___x_401_; lean_object* v___x_402_; 
+v___x_401_ = lean_obj_once(&l_Lake_instDataKindBool___closed__0, &l_Lake_instDataKindBool___closed__0_once, _init_l_Lake_instDataKindBool___closed__0);
+v___x_402_ = l_Lean_Name_mkStr1(v___x_401_);
+return v___x_402_;
+}
+}
+static lean_object* _init_l_Lake_instDataKindBool(void){
+_start:
+{
+lean_object* v___x_403_; 
+v___x_403_ = lean_obj_once(&l_Lake_instDataKindBool___closed__1, &l_Lake_instDataKindBool___closed__1_once, _init_l_Lake_instDataKindBool___closed__1);
+return v___x_403_;
+}
+}
+static lean_object* _init_l_Lake_instDataKindFilePath___closed__0(void){
+_start:
+{
+lean_object* v___x_404_; 
+v___x_404_ = lean_mk_string_unchecked("filepath", 8, 8);
+return v___x_404_;
+}
+}
+static lean_object* _init_l_Lake_instDataKindFilePath___closed__1(void){
+_start:
+{
+lean_object* v___x_405_; lean_object* v___x_406_; 
+v___x_405_ = lean_obj_once(&l_Lake_instDataKindFilePath___closed__0, &l_Lake_instDataKindFilePath___closed__0_once, _init_l_Lake_instDataKindFilePath___closed__0);
+v___x_406_ = l_Lean_Name_mkStr1(v___x_405_);
+return v___x_406_;
+}
+}
+static lean_object* _init_l_Lake_instDataKindFilePath(void){
+_start:
+{
+lean_object* v___x_407_; 
+v___x_407_ = lean_obj_once(&l_Lake_instDataKindFilePath___closed__1, &l_Lake_instDataKindFilePath___closed__1_once, _init_l_Lake_instDataKindFilePath___closed__1);
+return v___x_407_;
+}
+}
+static lean_object* _init_l_Lake_instDataKindDynlib___closed__0(void){
+_start:
+{
+lean_object* v___x_408_; 
+v___x_408_ = lean_mk_string_unchecked("dynlib", 6, 6);
+return v___x_408_;
+}
+}
+static lean_object* _init_l_Lake_instDataKindDynlib___closed__1(void){
+_start:
+{
+lean_object* v___x_409_; lean_object* v___x_410_; 
+v___x_409_ = lean_obj_once(&l_Lake_instDataKindDynlib___closed__0, &l_Lake_instDataKindDynlib___closed__0_once, _init_l_Lake_instDataKindDynlib___closed__0);
+v___x_410_ = l_Lean_Name_mkStr1(v___x_409_);
+return v___x_410_;
+}
+}
+static lean_object* _init_l_Lake_instDataKindDynlib(void){
+_start:
+{
+lean_object* v___x_411_; 
+v___x_411_ = lean_obj_once(&l_Lake_instDataKindDynlib___closed__1, &l_Lake_instDataKindDynlib___closed__1_once, _init_l_Lake_instDataKindDynlib___closed__1);
+return v___x_411_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__0(void){
+_start:
+{
+lean_object* v___x_412_; 
+v___x_412_ = lean_mk_string_unchecked("builtinFacetCommand", 19, 19);
+return v___x_412_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__1(void){
+_start:
+{
+lean_object* v___x_413_; lean_object* v___x_414_; lean_object* v___x_415_; 
+v___x_413_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__0, &l_Lake_builtinFacetCommand___closed__0_once, _init_l_Lake_builtinFacetCommand___closed__0);
+v___x_414_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__0, &l_Lake_dataTypeDecl___closed__0_once, _init_l_Lake_dataTypeDecl___closed__0);
+v___x_415_ = l_Lean_Name_mkStr2(v___x_414_, v___x_413_);
+return v___x_415_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__2(void){
+_start:
+{
+lean_object* v___x_416_; 
+v___x_416_ = lean_mk_string_unchecked("builtin_facet ", 14, 14);
+return v___x_416_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__3(void){
+_start:
+{
+lean_object* v___x_417_; lean_object* v___x_418_; 
+v___x_417_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__2, &l_Lake_builtinFacetCommand___closed__2_once, _init_l_Lake_builtinFacetCommand___closed__2);
+v___x_418_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_418_, 0, v___x_417_);
+return v___x_418_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__4(void){
+_start:
+{
+lean_object* v___x_419_; lean_object* v___x_420_; lean_object* v___x_421_; lean_object* v___x_422_; 
+v___x_419_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__3, &l_Lake_builtinFacetCommand___closed__3_once, _init_l_Lake_builtinFacetCommand___closed__3);
+v___x_420_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__10, &l_Lake_dataTypeDecl___closed__10_once, _init_l_Lake_dataTypeDecl___closed__10);
+v___x_421_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_422_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_422_, 0, v___x_421_);
+lean_ctor_set(v___x_422_, 1, v___x_420_);
+lean_ctor_set(v___x_422_, 2, v___x_419_);
+return v___x_422_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__5(void){
+_start:
+{
+lean_object* v___x_423_; 
+v___x_423_ = lean_mk_string_unchecked("atomic", 6, 6);
+return v___x_423_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__6(void){
+_start:
+{
+lean_object* v___x_424_; lean_object* v___x_425_; 
+v___x_424_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__5, &l_Lake_builtinFacetCommand___closed__5_once, _init_l_Lake_builtinFacetCommand___closed__5);
+v___x_425_ = l_Lean_Name_mkStr1(v___x_424_);
+return v___x_425_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__7(void){
+_start:
+{
+lean_object* v___x_426_; 
+v___x_426_ = lean_mk_string_unchecked("group", 5, 5);
+return v___x_426_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__8(void){
+_start:
+{
+lean_object* v___x_427_; lean_object* v___x_428_; 
+v___x_427_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__7, &l_Lake_builtinFacetCommand___closed__7_once, _init_l_Lake_builtinFacetCommand___closed__7);
+v___x_428_ = l_Lean_Name_mkStr1(v___x_427_);
+return v___x_428_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__9(void){
+_start:
+{
+lean_object* v___x_429_; 
+v___x_429_ = lean_mk_string_unchecked(" @ ", 3, 3);
+return v___x_429_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__10(void){
+_start:
+{
+lean_object* v___x_430_; lean_object* v___x_431_; 
+v___x_430_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__9, &l_Lake_builtinFacetCommand___closed__9_once, _init_l_Lake_builtinFacetCommand___closed__9);
+v___x_431_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_431_, 0, v___x_430_);
+return v___x_431_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__11(void){
+_start:
+{
+lean_object* v___x_432_; lean_object* v___x_433_; lean_object* v___x_434_; lean_object* v___x_435_; 
+v___x_432_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__10, &l_Lake_builtinFacetCommand___closed__10_once, _init_l_Lake_builtinFacetCommand___closed__10);
+v___x_433_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__16, &l_Lake_dataTypeDecl___closed__16_once, _init_l_Lake_dataTypeDecl___closed__16);
+v___x_434_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_435_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_435_, 0, v___x_434_);
+lean_ctor_set(v___x_435_, 1, v___x_433_);
+lean_ctor_set(v___x_435_, 2, v___x_432_);
+return v___x_435_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__12(void){
+_start:
+{
+lean_object* v___x_436_; lean_object* v___x_437_; lean_object* v___x_438_; 
+v___x_436_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__11, &l_Lake_builtinFacetCommand___closed__11_once, _init_l_Lake_builtinFacetCommand___closed__11);
+v___x_437_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__8, &l_Lake_builtinFacetCommand___closed__8_once, _init_l_Lake_builtinFacetCommand___closed__8);
+v___x_438_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_438_, 0, v___x_437_);
+lean_ctor_set(v___x_438_, 1, v___x_436_);
+return v___x_438_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__13(void){
+_start:
+{
+lean_object* v___x_439_; lean_object* v___x_440_; lean_object* v___x_441_; 
+v___x_439_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__12, &l_Lake_builtinFacetCommand___closed__12_once, _init_l_Lake_builtinFacetCommand___closed__12);
+v___x_440_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__6, &l_Lake_builtinFacetCommand___closed__6_once, _init_l_Lake_builtinFacetCommand___closed__6);
+v___x_441_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_441_, 0, v___x_440_);
+lean_ctor_set(v___x_441_, 1, v___x_439_);
+return v___x_441_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__14(void){
+_start:
+{
+lean_object* v___x_442_; lean_object* v___x_443_; lean_object* v___x_444_; 
+v___x_442_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__13, &l_Lake_builtinFacetCommand___closed__13_once, _init_l_Lake_builtinFacetCommand___closed__13);
+v___x_443_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__6, &l_Lake_dataTypeDecl___closed__6_once, _init_l_Lake_dataTypeDecl___closed__6);
+v___x_444_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_444_, 0, v___x_443_);
+lean_ctor_set(v___x_444_, 1, v___x_442_);
+return v___x_444_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__15(void){
+_start:
+{
+lean_object* v___x_445_; lean_object* v___x_446_; lean_object* v___x_447_; lean_object* v___x_448_; 
+v___x_445_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__14, &l_Lake_builtinFacetCommand___closed__14_once, _init_l_Lake_builtinFacetCommand___closed__14);
+v___x_446_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__4, &l_Lake_builtinFacetCommand___closed__4_once, _init_l_Lake_builtinFacetCommand___closed__4);
+v___x_447_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_448_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_448_, 0, v___x_447_);
+lean_ctor_set(v___x_448_, 1, v___x_446_);
+lean_ctor_set(v___x_448_, 2, v___x_445_);
+return v___x_448_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__16(void){
+_start:
+{
+lean_object* v___x_449_; lean_object* v___x_450_; lean_object* v___x_451_; lean_object* v___x_452_; 
+v___x_449_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__16, &l_Lake_dataTypeDecl___closed__16_once, _init_l_Lake_dataTypeDecl___closed__16);
+v___x_450_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__15, &l_Lake_builtinFacetCommand___closed__15_once, _init_l_Lake_builtinFacetCommand___closed__15);
+v___x_451_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_452_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_452_, 0, v___x_451_);
+lean_ctor_set(v___x_452_, 1, v___x_450_);
+lean_ctor_set(v___x_452_, 2, v___x_449_);
+return v___x_452_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__17(void){
+_start:
+{
+lean_object* v___x_453_; lean_object* v___x_454_; lean_object* v___x_455_; lean_object* v___x_456_; 
+v___x_453_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__19, &l_Lake_dataTypeDecl___closed__19_once, _init_l_Lake_dataTypeDecl___closed__19);
+v___x_454_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__16, &l_Lake_builtinFacetCommand___closed__16_once, _init_l_Lake_builtinFacetCommand___closed__16);
+v___x_455_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_456_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_456_, 0, v___x_455_);
+lean_ctor_set(v___x_456_, 1, v___x_454_);
+lean_ctor_set(v___x_456_, 2, v___x_453_);
+return v___x_456_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__18(void){
+_start:
+{
+lean_object* v___x_457_; lean_object* v___x_458_; lean_object* v___x_459_; lean_object* v___x_460_; 
+v___x_457_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__16, &l_Lake_dataTypeDecl___closed__16_once, _init_l_Lake_dataTypeDecl___closed__16);
+v___x_458_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__17, &l_Lake_builtinFacetCommand___closed__17_once, _init_l_Lake_builtinFacetCommand___closed__17);
+v___x_459_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_460_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_460_, 0, v___x_459_);
+lean_ctor_set(v___x_460_, 1, v___x_458_);
+lean_ctor_set(v___x_460_, 2, v___x_457_);
+return v___x_460_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__19(void){
+_start:
+{
+lean_object* v___x_461_; 
+v___x_461_ = lean_mk_string_unchecked(" => ", 4, 4);
+return v___x_461_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__20(void){
+_start:
+{
+lean_object* v___x_462_; lean_object* v___x_463_; 
+v___x_462_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__19, &l_Lake_builtinFacetCommand___closed__19_once, _init_l_Lake_builtinFacetCommand___closed__19);
+v___x_463_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_463_, 0, v___x_462_);
+return v___x_463_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__21(void){
+_start:
+{
+lean_object* v___x_464_; lean_object* v___x_465_; lean_object* v___x_466_; lean_object* v___x_467_; 
+v___x_464_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__20, &l_Lake_builtinFacetCommand___closed__20_once, _init_l_Lake_builtinFacetCommand___closed__20);
+v___x_465_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__18, &l_Lake_builtinFacetCommand___closed__18_once, _init_l_Lake_builtinFacetCommand___closed__18);
+v___x_466_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_467_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_467_, 0, v___x_466_);
+lean_ctor_set(v___x_467_, 1, v___x_465_);
+lean_ctor_set(v___x_467_, 2, v___x_464_);
+return v___x_467_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__22(void){
+_start:
+{
+lean_object* v___x_468_; lean_object* v___x_469_; lean_object* v___x_470_; lean_object* v___x_471_; 
+v___x_468_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__23, &l_Lake_dataTypeDecl___closed__23_once, _init_l_Lake_dataTypeDecl___closed__23);
+v___x_469_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__21, &l_Lake_builtinFacetCommand___closed__21_once, _init_l_Lake_builtinFacetCommand___closed__21);
+v___x_470_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_471_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_471_, 0, v___x_470_);
+lean_ctor_set(v___x_471_, 1, v___x_469_);
+lean_ctor_set(v___x_471_, 2, v___x_468_);
+return v___x_471_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand___closed__23(void){
+_start:
+{
+lean_object* v___x_472_; lean_object* v___x_473_; lean_object* v___x_474_; lean_object* v___x_475_; 
+v___x_472_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__22, &l_Lake_builtinFacetCommand___closed__22_once, _init_l_Lake_builtinFacetCommand___closed__22);
+v___x_473_ = lean_unsigned_to_nat(1022u);
+v___x_474_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__1, &l_Lake_builtinFacetCommand___closed__1_once, _init_l_Lake_builtinFacetCommand___closed__1);
+v___x_475_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_475_, 0, v___x_474_);
+lean_ctor_set(v___x_475_, 1, v___x_473_);
+lean_ctor_set(v___x_475_, 2, v___x_472_);
+return v___x_475_;
+}
+}
+static lean_object* _init_l_Lake_builtinFacetCommand(void){
+_start:
+{
+lean_object* v___x_476_; 
+v___x_476_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__23, &l_Lake_builtinFacetCommand___closed__23_once, _init_l_Lake_builtinFacetCommand___closed__23);
+return v___x_476_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_477_; 
+v___x_477_ = lean_mk_string_unchecked("attributes", 10, 10);
+return v___x_477_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__1(void){
+_start:
+{
+lean_object* v___x_478_; 
+v___x_478_ = lean_mk_string_unchecked("@[", 2, 2);
+return v___x_478_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__2(void){
+_start:
+{
+lean_object* v___x_479_; 
+v___x_479_ = lean_mk_string_unchecked("attrInstance", 12, 12);
+return v___x_479_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__3(void){
+_start:
+{
+lean_object* v___x_480_; 
+v___x_480_ = lean_mk_string_unchecked("Attr", 4, 4);
+return v___x_480_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__4(void){
+_start:
+{
+lean_object* v___x_481_; 
+v___x_481_ = lean_mk_string_unchecked("simple", 6, 6);
+return v___x_481_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__5(void){
+_start:
+{
+lean_object* v___x_482_; 
+v___x_482_ = lean_mk_string_unchecked("reducible", 9, 9);
+return v___x_482_;
+}
+}
 static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__6(void){
 _start:
 {
 lean_object* v___x_483_; lean_object* v___x_484_; 
-v___x_483_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__5));
+v___x_483_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__5, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__5_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__5);
 v___x_484_ = l_String_toRawSubstring_x27(v___x_483_);
 return v___x_484_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__7(void){
+_start:
+{
+lean_object* v___x_485_; lean_object* v___x_486_; 
+v___x_485_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__5, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__5_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__5);
+v___x_486_ = l_Lean_Name_mkStr1(v___x_485_);
+return v___x_486_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__8(void){
+_start:
+{
+lean_object* v___x_487_; 
+v___x_487_ = lean_mk_string_unchecked("expose", 6, 6);
+return v___x_487_;
 }
 }
 static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__9(void){
 _start:
 {
 lean_object* v___x_488_; lean_object* v___x_489_; 
-v___x_488_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__8));
+v___x_488_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__8, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__8_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__8);
 v___x_489_ = l_String_toRawSubstring_x27(v___x_488_);
 return v___x_489_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__10(void){
+_start:
+{
+lean_object* v___x_490_; lean_object* v___x_491_; 
+v___x_490_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__8, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__8_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__8);
+v___x_491_ = l_Lean_Name_mkStr1(v___x_490_);
+return v___x_491_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__11(void){
+_start:
+{
+lean_object* v___x_492_; 
+v___x_492_ = lean_mk_string_unchecked("definition", 10, 10);
+return v___x_492_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__12(void){
+_start:
+{
+lean_object* v___x_493_; 
+v___x_493_ = lean_mk_string_unchecked("def", 3, 3);
+return v___x_493_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__13(void){
+_start:
+{
+lean_object* v___x_494_; 
+v___x_494_ = lean_mk_string_unchecked("declId", 6, 6);
+return v___x_494_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__14(void){
+_start:
+{
+lean_object* v___x_495_; 
+v___x_495_ = lean_mk_string_unchecked("optDeclSig", 10, 10);
+return v___x_495_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15(void){
+_start:
+{
+lean_object* v___x_496_; 
+v___x_496_ = lean_mk_string_unchecked("FamilyDef", 9, 9);
+return v___x_496_;
 }
 }
 static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__16(void){
 _start:
 {
 lean_object* v___x_497_; lean_object* v___x_498_; 
-v___x_497_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15));
+v___x_497_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15);
 v___x_498_ = l_String_toRawSubstring_x27(v___x_497_);
 return v___x_498_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__17(void){
+_start:
+{
+lean_object* v___x_499_; lean_object* v___x_500_; 
+v___x_499_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15);
+v___x_500_ = l_Lean_Name_mkStr1(v___x_499_);
+return v___x_500_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__18(void){
+_start:
+{
+lean_object* v___x_501_; 
+v___x_501_ = lean_mk_string_unchecked("paren", 5, 5);
+return v___x_501_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__19(void){
+_start:
+{
+lean_object* v___x_502_; 
+v___x_502_ = lean_mk_string_unchecked("hygienicLParen", 14, 14);
+return v___x_502_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__20(void){
+_start:
+{
+lean_object* v___x_503_; 
+v___x_503_ = lean_mk_string_unchecked("(", 1, 1);
+return v___x_503_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__21(void){
+_start:
+{
+lean_object* v___x_504_; 
+v___x_504_ = lean_mk_string_unchecked("hygieneInfo", 11, 11);
+return v___x_504_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__22(void){
+_start:
+{
+lean_object* v___x_505_; lean_object* v___x_506_; 
+v___x_505_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__21, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__21_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__21);
+v___x_506_ = l_Lean_Name_mkStr1(v___x_505_);
+return v___x_506_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__23(void){
+_start:
+{
+lean_object* v___x_507_; 
+v___x_507_ = lean_mk_string_unchecked("", 0, 0);
+return v___x_507_;
 }
 }
 static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__24(void){
 _start:
 {
 lean_object* v___x_508_; lean_object* v___x_509_; 
-v___x_508_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__23));
+v___x_508_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__23, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__23_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__23);
 v___x_509_ = l_String_toRawSubstring_x27(v___x_508_);
 return v___x_509_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__25(void){
+_start:
+{
+lean_object* v___x_510_; 
+v___x_510_ = lean_mk_string_unchecked("term_++_", 8, 8);
+return v___x_510_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__26(void){
+_start:
+{
+lean_object* v___x_511_; lean_object* v___x_512_; 
+v___x_511_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__25, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__25_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__25);
+v___x_512_ = l_Lean_Name_mkStr1(v___x_511_);
+return v___x_512_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__27(void){
+_start:
+{
+lean_object* v___x_513_; 
+v___x_513_ = lean_mk_string_unchecked("++", 2, 2);
+return v___x_513_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__28(void){
+_start:
+{
+lean_object* v___x_514_; 
+v___x_514_ = lean_mk_string_unchecked(")", 1, 1);
+return v___x_514_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__29(void){
+_start:
+{
+lean_object* v___x_515_; 
+v___x_515_ = lean_mk_string_unchecked("inferInstanceAs", 15, 15);
+return v___x_515_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__30(void){
+_start:
+{
+lean_object* v___x_516_; 
+v___x_516_ = lean_mk_string_unchecked("cannot generate facet declaration name from facet name", 54, 54);
+return v___x_516_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__31(void){
+_start:
+{
+lean_object* v___x_517_; 
+v___x_517_ = lean_mk_string_unchecked("Facet", 5, 5);
+return v___x_517_;
 }
 }
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0(lean_object* v___x_518_, lean_object* v___x_519_, lean_object* v___x_520_, lean_object* v_fam_521_, lean_object* v___x_522_, lean_object* v___x_523_, lean_object* v___x_524_, uint8_t v___x_525_, lean_object* v___y_526_, lean_object* v_name_527_, lean_object* v_ns_528_, lean_object* v___x_529_, uint8_t v___x_530_, lean_object* v_tk_531_, lean_object* v___y_532_, lean_object* v___x_533_, lean_object* v_____r_534_, lean_object* v___y_535_, lean_object* v___y_536_){
@@ -1147,18 +2622,18 @@ v___x_556_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_556_, 0, v___y_551_);
 lean_ctor_set(v___x_556_, 1, v___y_549_);
 lean_ctor_set(v___x_556_, 2, v___x_555_);
-v___x_557_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14));
-v___x_558_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__0));
+v___x_557_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14);
+v___x_558_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__0, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__0_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__0);
 lean_inc_ref_n(v___y_539_, 17);
 lean_inc_ref_n(v___y_546_, 18);
 v___x_559_ = l_Lean_Name_mkStr4(v___y_546_, v___y_539_, v___x_557_, v___x_558_);
-v___x_560_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__1));
+v___x_560_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__1, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__1_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__1);
 v___x_561_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_561_, 0, v___y_551_);
 lean_ctor_set(v___x_561_, 1, v___x_560_);
-v___x_562_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__2));
+v___x_562_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__2, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__2_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__2);
 v___x_563_ = l_Lean_Name_mkStr4(v___y_546_, v___y_539_, v___x_557_, v___x_562_);
-v___x_564_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__15));
+v___x_564_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__15, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__15_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__15);
 v___x_565_ = l_Lean_Name_mkStr4(v___y_546_, v___y_539_, v___x_557_, v___x_564_);
 v___x_566_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_566_, 0, v___y_551_);
@@ -1166,11 +2641,11 @@ lean_ctor_set(v___x_566_, 1, v___y_549_);
 lean_ctor_set(v___x_566_, 2, v___y_545_);
 lean_inc_ref_n(v___x_566_, 23);
 v___x_567_ = l_Lean_Syntax_node1(v___y_551_, v___x_565_, v___x_566_);
-v___x_568_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__3));
-v___x_569_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__4));
+v___x_568_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__3);
+v___x_569_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__4);
 v___x_570_ = l_Lean_Name_mkStr4(v___y_546_, v___y_539_, v___x_568_, v___x_569_);
 v___x_571_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__6, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__6_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__6);
-v___x_572_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__7));
+v___x_572_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__7, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__7_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__7);
 lean_inc_n(v___y_541_, 5);
 lean_inc_n(v___y_538_, 5);
 v___x_573_ = l_Lean_addMacroScope(v___y_538_, v___x_572_, v___y_541_);
@@ -1185,12 +2660,12 @@ v___x_576_ = l_Lean_Syntax_node2(v___y_551_, v___x_570_, v___x_575_, v___x_566_)
 lean_inc_n(v___x_567_, 2);
 lean_inc(v___x_563_);
 v___x_577_ = l_Lean_Syntax_node2(v___y_551_, v___x_563_, v___x_567_, v___x_576_);
-v___x_578_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__36));
+v___x_578_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__36, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__36_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__36);
 v___x_579_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_579_, 0, v___y_551_);
 lean_ctor_set(v___x_579_, 1, v___x_578_);
 v___x_580_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__9, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__9_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__9);
-v___x_581_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__10));
+v___x_581_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__10, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__10_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__10);
 v___x_582_ = l_Lean_addMacroScope(v___y_538_, v___x_581_, v___y_541_);
 v___x_583_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_583_, 0, v___y_551_);
@@ -1200,13 +2675,13 @@ lean_ctor_set(v___x_583_, 3, v___x_574_);
 v___x_584_ = l_Lean_Syntax_node2(v___y_551_, v___x_570_, v___x_583_, v___x_566_);
 v___x_585_ = l_Lean_Syntax_node2(v___y_551_, v___x_563_, v___x_567_, v___x_584_);
 v___x_586_ = l_Lean_Syntax_node3(v___y_551_, v___y_549_, v___x_577_, v___x_579_, v___x_585_);
-v___x_587_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__60));
+v___x_587_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__60, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__60_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__60);
 v___x_588_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_588_, 0, v___y_551_);
 lean_ctor_set(v___x_588_, 1, v___x_587_);
 v___x_589_ = l_Lean_Syntax_node3(v___y_551_, v___x_559_, v___x_561_, v___x_586_, v___x_588_);
 v___x_590_ = l_Lean_Syntax_node1(v___y_551_, v___y_549_, v___x_589_);
-v___x_591_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10));
+v___x_591_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10);
 lean_inc_ref_n(v___y_548_, 7);
 v___x_592_ = l_Lean_Name_mkStr4(v___y_546_, v___y_539_, v___y_548_, v___x_591_);
 v___x_593_ = lean_alloc_ctor(2, 2, 0);
@@ -1217,13 +2692,13 @@ v___x_595_ = l_Lean_Syntax_node1(v___y_551_, v___y_549_, v___x_594_);
 lean_inc(v___x_595_);
 lean_inc_n(v___y_553_, 2);
 v___x_596_ = l_Lean_Syntax_node7(v___y_551_, v___y_553_, v___x_556_, v___x_590_, v___x_595_, v___x_566_, v___x_566_, v___x_566_, v___x_566_);
-v___x_597_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__11));
+v___x_597_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__11, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__11_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__11);
 v___x_598_ = l_Lean_Name_mkStr4(v___y_546_, v___y_539_, v___y_548_, v___x_597_);
-v___x_599_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__12));
+v___x_599_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__12, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__12_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__12);
 v___x_600_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_600_, 0, v___y_551_);
 lean_ctor_set(v___x_600_, 1, v___x_599_);
-v___x_601_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__13));
+v___x_601_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__13, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__13_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__13);
 v___x_602_ = l_Lean_Name_mkStr4(v___y_546_, v___y_539_, v___y_548_, v___x_601_);
 v___x_603_ = lean_mk_empty_array_with_capacity(v___x_518_);
 v___x_604_ = lean_box(2);
@@ -1238,17 +2713,17 @@ v___x_609_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_609_, 0, v___x_604_);
 lean_ctor_set(v___x_609_, 1, v___x_602_);
 lean_ctor_set(v___x_609_, 2, v___x_608_);
-v___x_610_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__14));
+v___x_610_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__14, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__14_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__14);
 v___x_611_ = l_Lean_Name_mkStr4(v___y_546_, v___y_539_, v___y_548_, v___x_610_);
 v___x_612_ = l_Lean_Syntax_node2(v___y_551_, v___x_611_, v___x_566_, v___x_566_);
-v___x_613_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__31));
+v___x_613_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__31, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__31_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__31);
 v___x_614_ = l_Lean_Name_mkStr4(v___y_546_, v___y_539_, v___y_548_, v___x_613_);
-v___x_615_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2));
+v___x_615_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2);
 v___x_616_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_616_, 0, v___y_551_);
 lean_ctor_set(v___x_616_, 1, v___x_615_);
-v___x_617_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__62));
-v___x_618_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__63));
+v___x_617_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__62, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__62_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__62);
+v___x_618_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__63, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__63_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__63);
 v___x_619_ = l_Lean_Name_mkStr4(v___y_546_, v___y_539_, v___x_617_, v___x_618_);
 v___x_620_ = l_Lean_Syntax_node2(v___y_551_, v___x_619_, v___x_566_, v___x_566_);
 lean_inc(v___x_620_);
@@ -1259,14 +2734,14 @@ v___x_621_ = l_Lean_Syntax_node4(v___y_551_, v___x_614_, v___x_616_, v___y_542_,
 v___x_622_ = l_Lean_Syntax_node5(v___y_551_, v___x_598_, v___x_600_, v___x_609_, v___x_612_, v___x_621_, v___x_566_);
 lean_inc_n(v___y_540_, 2);
 v___x_623_ = l_Lean_Syntax_node2(v___y_551_, v___y_540_, v___x_596_, v___x_622_);
-v___x_624_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__69));
+v___x_624_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__69, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__69_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__69);
 lean_inc_ref_n(v___x_520_, 2);
 v___x_625_ = l_Lean_Name_mkStr2(v___x_520_, v___x_624_);
-v___x_626_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0));
+v___x_626_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0);
 v___x_627_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_627_, 0, v___y_551_);
 lean_ctor_set(v___x_627_, 1, v___x_626_);
-v___x_628_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1));
+v___x_628_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1);
 v___x_629_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_629_, 0, v___y_551_);
 lean_ctor_set(v___x_629_, 1, v___x_628_);
@@ -1274,20 +2749,20 @@ lean_inc_n(v___x_522_, 2);
 lean_inc_ref(v___x_629_);
 v___x_630_ = l_Lean_Syntax_node8(v___y_551_, v___x_625_, v___x_566_, v___x_627_, v___y_544_, v___x_629_, v_fam_521_, v___y_542_, v___x_616_, v___x_522_);
 v___x_631_ = l_Lean_Syntax_node7(v___y_551_, v___y_553_, v___x_566_, v___x_566_, v___x_595_, v___x_566_, v___x_566_, v___x_566_, v___x_566_);
-v___x_632_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12));
+v___x_632_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12);
 v___x_633_ = l_Lean_Name_mkStr4(v___y_546_, v___y_539_, v___y_548_, v___x_632_);
 v___x_634_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_634_, 0, v___y_551_);
 lean_ctor_set(v___x_634_, 1, v___x_632_);
-v___x_635_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__17));
+v___x_635_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__17, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__17_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__17);
 v___x_636_ = l_Lean_Name_mkStr4(v___y_546_, v___y_539_, v___y_548_, v___x_635_);
-v___x_637_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__19));
+v___x_637_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__19, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__19_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__19);
 v___x_638_ = l_Lean_Name_mkStr4(v___y_546_, v___y_539_, v___x_557_, v___x_637_);
-v___x_639_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__21));
+v___x_639_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__21, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__21_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__21);
 v___x_640_ = l_Lean_Name_mkStr4(v___y_546_, v___y_539_, v___x_557_, v___x_639_);
-v___x_641_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15));
+v___x_641_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15);
 v___x_642_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__16, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__16_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__16);
-v___x_643_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__17));
+v___x_643_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__17, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__17_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__17);
 v___x_644_ = l_Lean_addMacroScope(v___y_538_, v___x_643_, v___y_541_);
 v___x_645_ = l_Lean_Name_mkStr2(v___x_520_, v___x_641_);
 lean_inc(v___x_645_);
@@ -1322,15 +2797,15 @@ lean_ctor_set(v___x_656_, 0, v___y_551_);
 lean_ctor_set(v___x_656_, 1, v___x_651_);
 lean_ctor_set(v___x_656_, 2, v___x_653_);
 lean_ctor_set(v___x_656_, 3, v___x_655_);
-v___x_657_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__18));
+v___x_657_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__18, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__18_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__18);
 v___x_658_ = l_Lean_Name_mkStr4(v___y_546_, v___y_539_, v___x_557_, v___x_657_);
-v___x_659_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__19));
+v___x_659_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__19, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__19_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__19);
 v___x_660_ = l_Lean_Name_mkStr4(v___y_546_, v___y_539_, v___x_557_, v___x_659_);
-v___x_661_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__20));
+v___x_661_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__20, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__20_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__20);
 v___x_662_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_662_, 0, v___y_551_);
 lean_ctor_set(v___x_662_, 1, v___x_661_);
-v___x_663_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__22));
+v___x_663_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__22, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__22_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__22);
 v___x_664_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__24, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__24_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__24);
 v___x_665_ = lean_box(0);
 v___x_666_ = l_Lean_addMacroScope(v___y_538_, v___x_665_, v___y_541_);
@@ -1353,13 +2828,13 @@ lean_ctor_set(v___x_673_, 2, v___x_666_);
 lean_ctor_set(v___x_673_, 3, v___x_672_);
 v___x_674_ = l_Lean_Syntax_node1(v___y_551_, v___x_663_, v___x_673_);
 v___x_675_ = l_Lean_Syntax_node2(v___y_551_, v___x_660_, v___x_662_, v___x_674_);
-v___x_676_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__26));
-v___x_677_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__27));
+v___x_676_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__26, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__26_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__26);
+v___x_677_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__27, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__27_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__27);
 v___x_678_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_678_, 0, v___y_551_);
 lean_ctor_set(v___x_678_, 1, v___x_677_);
 v___x_679_ = l_Lean_Syntax_node3(v___y_551_, v___x_676_, v___y_552_, v___x_678_, v___y_550_);
-v___x_680_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__28));
+v___x_680_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__28, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__28_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__28);
 v___x_681_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_681_, 0, v___y_551_);
 lean_ctor_set(v___x_681_, 1, v___x_680_);
@@ -1374,7 +2849,7 @@ lean_inc(v___x_640_);
 v___x_684_ = l_Lean_Syntax_node2(v___y_551_, v___x_640_, v___x_650_, v___x_683_);
 v___x_685_ = l_Lean_Syntax_node2(v___y_551_, v___x_638_, v___x_629_, v___x_684_);
 v___x_686_ = l_Lean_Syntax_node2(v___y_551_, v___x_636_, v___x_566_, v___x_685_);
-v___x_687_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__29));
+v___x_687_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__29, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__29_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__29);
 v___x_688_ = l_Lean_Name_mkStr4(v___y_546_, v___y_539_, v___x_557_, v___x_687_);
 v___x_689_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_689_, 0, v___y_551_);
@@ -1399,12 +2874,12 @@ v_quotContext_707_ = lean_ctor_get(v___y_705_, 1);
 v_currMacroScope_708_ = lean_ctor_get(v___y_705_, 2);
 v_ref_709_ = lean_ctor_get(v___y_705_, 5);
 v___x_710_ = l_Lean_SourceInfo_fromRef(v_ref_709_, v___x_525_);
-v___x_711_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68));
-v___x_712_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3));
-v___x_713_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4));
-v___x_714_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5));
-v___x_715_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7));
-v___x_716_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9));
+v___x_711_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68);
+v___x_712_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_713_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_714_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__5);
+v___x_715_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7);
+v___x_716_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9);
 v___x_717_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71);
 if (lean_obj_tag(v___y_526_) == 1)
 {
@@ -1460,7 +2935,7 @@ goto v___jp_537_;
 v___jp_721_:
 {
 lean_object* v___x_726_; lean_object* v___x_727_; 
-v___x_726_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__30));
+v___x_726_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__30, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__30_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__30);
 v___x_727_ = l_Lean_Macro_throwErrorAt___redArg(v_name_527_, v___x_726_, v___y_535_, v___y_536_);
 lean_dec(v_name_527_);
 if (lean_obj_tag(v___x_727_) == 0)
@@ -1540,7 +3015,7 @@ lean_object* v_str_744_; lean_object* v___x_745_; lean_object* v___x_746_; lean_
 v_str_744_ = lean_ctor_get(v___x_730_, 1);
 lean_inc_ref(v_str_744_);
 lean_dec_ref(v___x_730_);
-v___x_745_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__31));
+v___x_745_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__31, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__31_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__31);
 v___x_746_ = lean_string_append(v_str_744_, v___x_745_);
 v___x_747_ = l_Lean_Name_str___override(v___x_533_, v___x_746_);
 v___x_748_ = l_Lean_mkIdentFrom(v_name_527_, v___x_747_, v___x_530_);
@@ -1613,12 +3088,54 @@ lean_dec(v___x_749_);
 return v_res_770_;
 }
 }
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__0(void){
+_start:
+{
+lean_object* v___x_771_; 
+v___x_771_ = lean_mk_string_unchecked("FacetOut", 8, 8);
+return v___x_771_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__1(void){
+_start:
+{
+lean_object* v___x_772_; lean_object* v___x_773_; lean_object* v___x_774_; 
+v___x_772_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__0, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__0_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__0);
+v___x_773_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__0, &l_Lake_dataTypeDecl___closed__0_once, _init_l_Lake_dataTypeDecl___closed__0);
+v___x_774_ = l_Lean_Name_mkStr2(v___x_773_, v___x_772_);
+return v___x_774_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__2(void){
+_start:
+{
+lean_object* v___x_775_; 
+v___x_775_ = lean_mk_string_unchecked("unknown target namespace `", 26, 26);
+return v___x_775_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__3(void){
+_start:
+{
+lean_object* v___x_776_; 
+v___x_776_ = lean_mk_string_unchecked("`", 1, 1);
+return v___x_776_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__4(void){
+_start:
+{
+lean_object* v___x_777_; 
+v___x_777_ = lean_mk_string_unchecked("unknown or ambiguous target namespace `", 39, 39);
+return v___x_777_;
+}
+}
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1(lean_object* v_x_778_, lean_object* v_a_779_, lean_object* v_a_780_){
 _start:
 {
 lean_object* v___y_782_; lean_object* v___x_801_; lean_object* v___x_802_; uint8_t v___x_803_; 
-v___x_801_ = ((lean_object*)(l_Lake_dataTypeDecl___closed__0));
-v___x_802_ = ((lean_object*)(l_Lake_builtinFacetCommand___closed__1));
+v___x_801_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__0, &l_Lake_dataTypeDecl___closed__0_once, _init_l_Lake_dataTypeDecl___closed__0);
+v___x_802_ = lean_obj_once(&l_Lake_builtinFacetCommand___closed__1, &l_Lake_builtinFacetCommand___closed__1_once, _init_l_Lake_builtinFacetCommand___closed__1);
 lean_inc(v_x_778_);
 v___x_803_ = l_Lean_Syntax_isOfKind(v_x_778_, v___x_802_);
 if (v___x_803_ == 0)
@@ -1737,8 +3254,8 @@ lean_dec_ref(v___x_830_);
 v_head_833_ = lean_ctor_get(v_a_831_, 0);
 lean_inc(v_head_833_);
 lean_dec_ref(v_a_831_);
-v___x_834_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__0));
-v___x_835_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__1));
+v___x_834_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__0, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__0_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__0);
+v___x_835_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__1, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__1_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__1);
 v___x_836_ = 0;
 v_fam_837_ = l_Lean_mkCIdentFrom(v_tk_809_, v___x_835_, v___x_836_);
 v___x_838_ = l___private_Lake_Config_Kinds_0__Lake_facetKindForNamespace(v_head_833_);
@@ -1757,12 +3274,12 @@ goto v___jp_781_;
 else
 {
 lean_object* v___x_842_; lean_object* v___x_843_; lean_object* v___x_844_; lean_object* v___x_845_; lean_object* v___x_846_; lean_object* v___x_847_; 
-v___x_842_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__2));
+v___x_842_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__2, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__2_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__2);
 lean_inc(v___x_827_);
 v___x_843_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_827_, v___x_839_);
 v___x_844_ = lean_string_append(v___x_842_, v___x_843_);
 lean_dec_ref(v___x_843_);
-v___x_845_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__3));
+v___x_845_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__3);
 v___x_846_ = lean_string_append(v___x_844_, v___x_845_);
 v___x_847_ = l_Lean_Macro_throwErrorAt___redArg(v_ns_815_, v___x_846_, v___x_829_, v_a_832_);
 if (lean_obj_tag(v___x_847_) == 0)
@@ -1847,11 +3364,11 @@ lean_dec(v_tk_809_);
 v_a_860_ = lean_ctor_get(v___x_830_, 1);
 lean_inc(v_a_860_);
 lean_dec_ref(v___x_830_);
-v___x_861_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__4));
+v___x_861_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__4);
 v___x_862_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_827_, v___x_803_);
 v___x_863_ = lean_string_append(v___x_861_, v___x_862_);
 lean_dec_ref(v___x_862_);
-v___x_864_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__3));
+v___x_864_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__3);
 v___x_865_ = lean_string_append(v___x_863_, v___x_864_);
 v___x_866_ = l_Lean_Macro_throwErrorAt___redArg(v_ns_815_, v___x_865_, v___x_829_, v_a_860_);
 lean_dec_ref(v___x_829_);
@@ -2073,11 +3590,293 @@ lean_dec_ref(v_a_899_);
 return v_res_901_;
 }
 }
+static lean_object* _init_l_Lake_facetDataDecl___closed__0(void){
+_start:
+{
+lean_object* v___x_902_; 
+v___x_902_ = lean_mk_string_unchecked("facetDataDecl", 13, 13);
+return v___x_902_;
+}
+}
+static lean_object* _init_l_Lake_facetDataDecl___closed__1(void){
+_start:
+{
+lean_object* v___x_903_; lean_object* v___x_904_; lean_object* v___x_905_; 
+v___x_903_ = lean_obj_once(&l_Lake_facetDataDecl___closed__0, &l_Lake_facetDataDecl___closed__0_once, _init_l_Lake_facetDataDecl___closed__0);
+v___x_904_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__0, &l_Lake_dataTypeDecl___closed__0_once, _init_l_Lake_dataTypeDecl___closed__0);
+v___x_905_ = l_Lean_Name_mkStr2(v___x_904_, v___x_903_);
+return v___x_905_;
+}
+}
+static lean_object* _init_l_Lake_facetDataDecl___closed__2(void){
+_start:
+{
+lean_object* v___x_906_; 
+v___x_906_ = lean_mk_string_unchecked("facet_data ", 11, 11);
+return v___x_906_;
+}
+}
+static lean_object* _init_l_Lake_facetDataDecl___closed__3(void){
+_start:
+{
+lean_object* v___x_907_; lean_object* v___x_908_; 
+v___x_907_ = lean_obj_once(&l_Lake_facetDataDecl___closed__2, &l_Lake_facetDataDecl___closed__2_once, _init_l_Lake_facetDataDecl___closed__2);
+v___x_908_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_908_, 0, v___x_907_);
+return v___x_908_;
+}
+}
+static lean_object* _init_l_Lake_facetDataDecl___closed__4(void){
+_start:
+{
+lean_object* v___x_909_; lean_object* v___x_910_; lean_object* v___x_911_; lean_object* v___x_912_; 
+v___x_909_ = lean_obj_once(&l_Lake_facetDataDecl___closed__3, &l_Lake_facetDataDecl___closed__3_once, _init_l_Lake_facetDataDecl___closed__3);
+v___x_910_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__10, &l_Lake_dataTypeDecl___closed__10_once, _init_l_Lake_dataTypeDecl___closed__10);
+v___x_911_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_912_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_912_, 0, v___x_911_);
+lean_ctor_set(v___x_912_, 1, v___x_910_);
+lean_ctor_set(v___x_912_, 2, v___x_909_);
+return v___x_912_;
+}
+}
+static lean_object* _init_l_Lake_facetDataDecl___closed__5(void){
+_start:
+{
+lean_object* v___x_913_; lean_object* v___x_914_; lean_object* v___x_915_; lean_object* v___x_916_; 
+v___x_913_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__16, &l_Lake_dataTypeDecl___closed__16_once, _init_l_Lake_dataTypeDecl___closed__16);
+v___x_914_ = lean_obj_once(&l_Lake_facetDataDecl___closed__4, &l_Lake_facetDataDecl___closed__4_once, _init_l_Lake_facetDataDecl___closed__4);
+v___x_915_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_916_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_916_, 0, v___x_915_);
+lean_ctor_set(v___x_916_, 1, v___x_914_);
+lean_ctor_set(v___x_916_, 2, v___x_913_);
+return v___x_916_;
+}
+}
+static lean_object* _init_l_Lake_facetDataDecl___closed__6(void){
+_start:
+{
+lean_object* v___x_917_; lean_object* v___x_918_; lean_object* v___x_919_; lean_object* v___x_920_; 
+v___x_917_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__16, &l_Lake_dataTypeDecl___closed__16_once, _init_l_Lake_dataTypeDecl___closed__16);
+v___x_918_ = lean_obj_once(&l_Lake_facetDataDecl___closed__5, &l_Lake_facetDataDecl___closed__5_once, _init_l_Lake_facetDataDecl___closed__5);
+v___x_919_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_920_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_920_, 0, v___x_919_);
+lean_ctor_set(v___x_920_, 1, v___x_918_);
+lean_ctor_set(v___x_920_, 2, v___x_917_);
+return v___x_920_;
+}
+}
+static lean_object* _init_l_Lake_facetDataDecl___closed__7(void){
+_start:
+{
+lean_object* v___x_921_; lean_object* v___x_922_; lean_object* v___x_923_; lean_object* v___x_924_; 
+v___x_921_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__19, &l_Lake_dataTypeDecl___closed__19_once, _init_l_Lake_dataTypeDecl___closed__19);
+v___x_922_ = lean_obj_once(&l_Lake_facetDataDecl___closed__6, &l_Lake_facetDataDecl___closed__6_once, _init_l_Lake_facetDataDecl___closed__6);
+v___x_923_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_924_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_924_, 0, v___x_923_);
+lean_ctor_set(v___x_924_, 1, v___x_922_);
+lean_ctor_set(v___x_924_, 2, v___x_921_);
+return v___x_924_;
+}
+}
+static lean_object* _init_l_Lake_facetDataDecl___closed__8(void){
+_start:
+{
+lean_object* v___x_925_; lean_object* v___x_926_; lean_object* v___x_927_; lean_object* v___x_928_; 
+v___x_925_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__23, &l_Lake_dataTypeDecl___closed__23_once, _init_l_Lake_dataTypeDecl___closed__23);
+v___x_926_ = lean_obj_once(&l_Lake_facetDataDecl___closed__7, &l_Lake_facetDataDecl___closed__7_once, _init_l_Lake_facetDataDecl___closed__7);
+v___x_927_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_928_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_928_, 0, v___x_927_);
+lean_ctor_set(v___x_928_, 1, v___x_926_);
+lean_ctor_set(v___x_928_, 2, v___x_925_);
+return v___x_928_;
+}
+}
+static lean_object* _init_l_Lake_facetDataDecl___closed__9(void){
+_start:
+{
+lean_object* v___x_929_; lean_object* v___x_930_; lean_object* v___x_931_; lean_object* v___x_932_; 
+v___x_929_ = lean_obj_once(&l_Lake_facetDataDecl___closed__8, &l_Lake_facetDataDecl___closed__8_once, _init_l_Lake_facetDataDecl___closed__8);
+v___x_930_ = lean_unsigned_to_nat(1022u);
+v___x_931_ = lean_obj_once(&l_Lake_facetDataDecl___closed__1, &l_Lake_facetDataDecl___closed__1_once, _init_l_Lake_facetDataDecl___closed__1);
+v___x_932_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_932_, 0, v___x_931_);
+lean_ctor_set(v___x_932_, 1, v___x_930_);
+lean_ctor_set(v___x_932_, 2, v___x_929_);
+return v___x_932_;
+}
+}
+static lean_object* _init_l_Lake_facetDataDecl(void){
+_start:
+{
+lean_object* v___x_933_; 
+v___x_933_ = lean_obj_once(&l_Lake_facetDataDecl___closed__9, &l_Lake_facetDataDecl___closed__9_once, _init_l_Lake_facetDataDecl___closed__9);
+return v___x_933_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__0(void){
+_start:
+{
+lean_object* v___x_934_; lean_object* v___x_935_; lean_object* v___x_936_; 
+v___x_934_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__15);
+v___x_935_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__0, &l_Lake_dataTypeDecl___closed__0_once, _init_l_Lake_dataTypeDecl___closed__0);
+v___x_936_ = l_Lean_Name_mkStr2(v___x_935_, v___x_934_);
+return v___x_936_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__1(void){
+_start:
+{
+lean_object* v___x_937_; lean_object* v___x_938_; lean_object* v___x_939_; 
+v___x_937_ = lean_box(0);
+v___x_938_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__0, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__0_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__0);
+v___x_939_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_939_, 0, v___x_938_);
+lean_ctor_set(v___x_939_, 1, v___x_937_);
+return v___x_939_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__2(void){
+_start:
+{
+lean_object* v___x_940_; lean_object* v___x_941_; 
+v___x_940_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__0, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__0_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__0);
+v___x_941_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_941_, 0, v___x_940_);
+return v___x_941_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__3(void){
+_start:
+{
+lean_object* v___x_942_; lean_object* v___x_943_; lean_object* v___x_944_; 
+v___x_942_ = lean_box(0);
+v___x_943_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__2, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__2_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__2);
+v___x_944_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_944_, 0, v___x_943_);
+lean_ctor_set(v___x_944_, 1, v___x_942_);
+return v___x_944_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__4(void){
+_start:
+{
+lean_object* v___x_945_; lean_object* v___x_946_; lean_object* v___x_947_; 
+v___x_945_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__3);
+v___x_946_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__1, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__1_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__1);
+v___x_947_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_947_, 0, v___x_946_);
+lean_ctor_set(v___x_947_, 1, v___x_945_);
+return v___x_947_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__5(void){
+_start:
+{
+lean_object* v___x_948_; lean_object* v___x_949_; lean_object* v___x_950_; lean_object* v___x_951_; lean_object* v___x_952_; 
+v___x_948_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__18, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__18_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__18);
+v___x_949_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14);
+v___x_950_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_951_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_952_ = l_Lean_Name_mkStr4(v___x_951_, v___x_950_, v___x_949_, v___x_948_);
+return v___x_952_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__6(void){
+_start:
+{
+lean_object* v___x_953_; lean_object* v___x_954_; lean_object* v___x_955_; lean_object* v___x_956_; lean_object* v___x_957_; 
+v___x_953_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__19, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__19_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__19);
+v___x_954_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14);
+v___x_955_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_956_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_957_ = l_Lean_Name_mkStr4(v___x_956_, v___x_955_, v___x_954_, v___x_953_);
+return v___x_957_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__7(void){
+_start:
+{
+lean_object* v___x_958_; lean_object* v___x_959_; 
+v___x_958_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__0, &l_Lake_dataTypeDecl___closed__0_once, _init_l_Lake_dataTypeDecl___closed__0);
+v___x_959_ = l_Lean_Name_mkStr1(v___x_958_);
+return v___x_959_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__8(void){
+_start:
+{
+lean_object* v___x_960_; lean_object* v___x_961_; 
+v___x_960_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__7, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__7_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__7);
+v___x_961_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_961_, 0, v___x_960_);
+return v___x_961_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__9(void){
+_start:
+{
+lean_object* v___x_962_; lean_object* v___x_963_; 
+v___x_962_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_963_ = l_Lean_Name_mkStr1(v___x_962_);
+return v___x_963_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__10(void){
+_start:
+{
+lean_object* v___x_964_; lean_object* v___x_965_; 
+v___x_964_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__9, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__9_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__9);
+v___x_965_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_965_, 0, v___x_964_);
+return v___x_965_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__11(void){
+_start:
+{
+lean_object* v___x_966_; lean_object* v___x_967_; lean_object* v___x_968_; 
+v___x_966_ = lean_box(0);
+v___x_967_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__10, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__10_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__10);
+v___x_968_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_968_, 0, v___x_967_);
+lean_ctor_set(v___x_968_, 1, v___x_966_);
+return v___x_968_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__12(void){
+_start:
+{
+lean_object* v___x_969_; lean_object* v___x_970_; lean_object* v___x_971_; 
+v___x_969_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__11, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__11_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__11);
+v___x_970_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__8, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__8_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__8);
+v___x_971_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_971_, 0, v___x_970_);
+lean_ctor_set(v___x_971_, 1, v___x_969_);
+return v___x_971_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__13(void){
+_start:
+{
+lean_object* v___x_972_; lean_object* v___x_973_; lean_object* v___x_974_; lean_object* v___x_975_; lean_object* v___x_976_; 
+v___x_972_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__29, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__29_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__29);
+v___x_973_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14);
+v___x_974_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_975_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_976_ = l_Lean_Name_mkStr4(v___x_975_, v___x_974_, v___x_973_, v___x_972_);
+return v___x_976_;
+}
+}
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1(lean_object* v_x_977_, lean_object* v_a_978_, lean_object* v_a_979_){
 _start:
 {
 lean_object* v___x_980_; uint8_t v___x_981_; 
-v___x_980_ = ((lean_object*)(l_Lake_facetDataDecl___closed__1));
+v___x_980_ = lean_obj_once(&l_Lake_facetDataDecl___closed__1, &l_Lake_facetDataDecl___closed__1_once, _init_l_Lake_facetDataDecl___closed__1);
 lean_inc(v_x_977_);
 v___x_981_ = l_Lean_Syntax_isOfKind(v_x_977_, v___x_980_);
 if (v___x_981_ == 0)
@@ -2167,15 +3966,15 @@ v___x_1010_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_1010_, 0, v___y_995_);
 lean_ctor_set(v___x_1010_, 1, v___y_999_);
 lean_ctor_set(v___x_1010_, 2, v___x_1009_);
-v___x_1011_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0));
+v___x_1011_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0);
 v___x_1012_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_1012_, 0, v___y_995_);
 lean_ctor_set(v___x_1012_, 1, v___x_1011_);
-v___x_1013_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1));
+v___x_1013_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1);
 v___x_1014_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_1014_, 0, v___y_995_);
 lean_ctor_set(v___x_1014_, 1, v___x_1013_);
-v___x_1015_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2));
+v___x_1015_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2);
 v___x_1016_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_1016_, 0, v___y_995_);
 lean_ctor_set(v___x_1016_, 1, v___x_1015_);
@@ -2185,14 +3984,14 @@ lean_inc(v___y_998_);
 lean_inc_ref(v___x_1014_);
 lean_inc(v___y_1007_);
 v___x_1017_ = l_Lean_Syntax_node8(v___y_995_, v___y_1007_, v___x_1010_, v___x_1012_, v___y_1004_, v___x_1014_, v___y_1003_, v___y_998_, v___x_1016_, v___x_993_);
-v___x_1018_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7));
-v___x_1019_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9));
+v___x_1018_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__7);
+v___x_1019_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__9);
 v___x_1020_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_1020_, 0, v___y_995_);
 lean_ctor_set(v___x_1020_, 1, v___y_999_);
 lean_ctor_set(v___x_1020_, 2, v___y_1006_);
-v___x_1021_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10));
-v___x_1022_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__11));
+v___x_1021_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__10);
+v___x_1022_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__11, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__11_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__11);
 v___x_1023_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_1023_, 0, v___y_995_);
 lean_ctor_set(v___x_1023_, 1, v___x_1021_);
@@ -2200,23 +3999,23 @@ v___x_1024_ = l_Lean_Syntax_node1(v___y_995_, v___x_1022_, v___x_1023_);
 v___x_1025_ = l_Lean_Syntax_node1(v___y_995_, v___y_999_, v___x_1024_);
 lean_inc_ref_n(v___x_1020_, 12);
 v___x_1026_ = l_Lean_Syntax_node7(v___y_995_, v___x_1019_, v___x_1020_, v___x_1020_, v___x_1025_, v___x_1020_, v___x_1020_, v___x_1020_, v___x_1020_);
-v___x_1027_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12));
-v___x_1028_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__13));
-v___x_1029_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__16));
+v___x_1027_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__12);
+v___x_1028_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__13, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__13_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__13);
+v___x_1029_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__16, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__16_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__16);
 v___x_1030_ = l_Lean_Syntax_node1(v___y_995_, v___x_1029_, v___x_1020_);
 v___x_1031_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_1031_, 0, v___y_995_);
 lean_ctor_set(v___x_1031_, 1, v___x_1027_);
-v___x_1032_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__18));
-v___x_1033_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__20));
-v___x_1034_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__22));
+v___x_1032_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__18, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__18_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__18);
+v___x_1033_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__20, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__20_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__20);
+v___x_1034_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__22, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__22_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__22);
 v___x_1035_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__16, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__16_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__16);
-v___x_1036_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__17));
+v___x_1036_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__17, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__17_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__17);
 lean_inc_n(v___y_996_, 3);
 lean_inc_n(v___y_997_, 3);
 v___x_1037_ = l_Lean_addMacroScope(v___y_997_, v___x_1036_, v___y_996_);
 v___x_1038_ = lean_box(0);
-v___x_1039_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__4));
+v___x_1039_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__4);
 v___x_1040_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_1040_, 0, v___y_995_);
 lean_ctor_set(v___x_1040_, 1, v___x_1035_);
@@ -2237,17 +4036,17 @@ lean_ctor_set(v___x_1046_, 0, v___y_995_);
 lean_ctor_set(v___x_1046_, 1, v___x_1041_);
 lean_ctor_set(v___x_1046_, 2, v___x_1043_);
 lean_ctor_set(v___x_1046_, 3, v___x_1045_);
-v___x_1047_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__5));
-v___x_1048_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__6));
-v___x_1049_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__20));
+v___x_1047_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__5, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__5_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__5);
+v___x_1048_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__6, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__6_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__6);
+v___x_1049_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__20, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__20_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__20);
 v___x_1050_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_1050_, 0, v___y_995_);
 lean_ctor_set(v___x_1050_, 1, v___x_1049_);
-v___x_1051_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__22));
+v___x_1051_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__22, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__22_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__22);
 v___x_1052_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__24, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__24_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__24);
 v___x_1053_ = lean_box(0);
 v___x_1054_ = l_Lean_addMacroScope(v___y_997_, v___x_1053_, v___y_996_);
-v___x_1055_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__12));
+v___x_1055_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__12, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__12_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__12);
 v___x_1056_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_1056_, 0, v___y_995_);
 lean_ctor_set(v___x_1056_, 1, v___x_1052_);
@@ -2255,13 +4054,13 @@ lean_ctor_set(v___x_1056_, 2, v___x_1054_);
 lean_ctor_set(v___x_1056_, 3, v___x_1055_);
 v___x_1057_ = l_Lean_Syntax_node1(v___y_995_, v___x_1051_, v___x_1056_);
 v___x_1058_ = l_Lean_Syntax_node2(v___y_995_, v___x_1048_, v___x_1050_, v___x_1057_);
-v___x_1059_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__26));
-v___x_1060_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__27));
+v___x_1059_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__26, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__26_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__26);
+v___x_1060_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__27, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__27_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__27);
 v___x_1061_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_1061_, 0, v___y_995_);
 lean_ctor_set(v___x_1061_, 1, v___x_1060_);
 v___x_1062_ = l_Lean_Syntax_node3(v___y_995_, v___x_1059_, v___y_1000_, v___x_1061_, v___y_1005_);
-v___x_1063_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__28));
+v___x_1063_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__28, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__28_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__28);
 v___x_1064_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_1064_, 0, v___y_995_);
 lean_ctor_set(v___x_1064_, 1, v___x_1063_);
@@ -2274,9 +4073,9 @@ lean_inc_ref(v___x_1040_);
 v___x_1067_ = l_Lean_Syntax_node2(v___y_995_, v___x_1034_, v___x_1040_, v___x_1066_);
 v___x_1068_ = l_Lean_Syntax_node2(v___y_995_, v___x_1033_, v___x_1014_, v___x_1067_);
 v___x_1069_ = l_Lean_Syntax_node2(v___y_995_, v___x_1032_, v___x_1020_, v___x_1068_);
-v___x_1070_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__32));
-v___x_1071_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__29));
-v___x_1072_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__13));
+v___x_1070_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__32, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__32_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__32);
+v___x_1071_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__29, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__29_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__29);
+v___x_1072_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__13, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__13_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__13);
 v___x_1073_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_1073_, 0, v___y_995_);
 lean_ctor_set(v___x_1073_, 1, v___x_1071_);
@@ -2284,7 +4083,7 @@ v___x_1074_ = l_Lean_Syntax_node3(v___y_995_, v___y_999_, v___x_1046_, v___y_998
 v___x_1075_ = l_Lean_Syntax_node2(v___y_995_, v___x_1034_, v___x_1040_, v___x_1074_);
 v___x_1076_ = l_Lean_Syntax_node3(v___y_995_, v___x_1047_, v___x_1058_, v___x_1075_, v___x_1064_);
 v___x_1077_ = l_Lean_Syntax_node2(v___y_995_, v___x_1072_, v___x_1073_, v___x_1076_);
-v___x_1078_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__64));
+v___x_1078_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__64, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__64_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__64);
 v___x_1079_ = l_Lean_Syntax_node2(v___y_995_, v___x_1078_, v___x_1020_, v___x_1020_);
 v___x_1080_ = l_Lean_Syntax_node4(v___y_995_, v___x_1070_, v___x_1016_, v___x_1077_, v___x_1079_, v___x_1020_);
 v___x_1081_ = l_Lean_Syntax_node6(v___y_995_, v___x_1028_, v___x_1030_, v___x_1031_, v___x_1020_, v___x_1020_, v___x_1069_, v___x_1080_);
@@ -2298,8 +4097,8 @@ return v___x_1084_;
 v___jp_1085_:
 {
 lean_object* v___x_1087_; lean_object* v___x_1088_; uint8_t v___x_1089_; lean_object* v_fam_1090_; lean_object* v___x_1091_; lean_object* v_kindLit_1092_; lean_object* v___x_1093_; lean_object* v_nameLit_1094_; lean_object* v_quotContext_1095_; lean_object* v_currMacroScope_1096_; lean_object* v_ref_1097_; lean_object* v_facet_1098_; lean_object* v_facetLit_1099_; lean_object* v_id_1100_; lean_object* v_ref_1101_; lean_object* v___x_1102_; lean_object* v___x_1103_; lean_object* v___x_1104_; lean_object* v___x_1105_; 
-v___x_1087_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__0));
-v___x_1088_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__1));
+v___x_1087_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__0, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__0_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__0);
+v___x_1088_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__1, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__1_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___closed__1);
 v___x_1089_ = 0;
 v_fam_1090_ = l_Lean_mkCIdentFrom(v_tk_987_, v___x_1088_, v___x_1089_);
 v___x_1091_ = l_Lean_TSyntax_getId(v_kind_989_);
@@ -2320,8 +4119,8 @@ v_ref_1101_ = l_Lean_replaceRef(v_tk_987_, v_ref_1097_);
 lean_dec(v_tk_987_);
 v___x_1102_ = l_Lean_SourceInfo_fromRef(v_ref_1101_, v___x_1089_);
 lean_dec(v_ref_1101_);
-v___x_1103_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68));
-v___x_1104_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__70));
+v___x_1103_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68);
+v___x_1104_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__70, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__70_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__70);
 v___x_1105_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71);
 if (lean_obj_tag(v___y_1086_) == 1)
 {
@@ -2350,7 +4149,7 @@ else
 {
 lean_object* v___x_1108_; 
 lean_dec(v___y_1086_);
-v___x_1108_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72));
+v___x_1108_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72);
 v___y_995_ = v___x_1102_;
 v___y_996_ = v_currMacroScope_1096_;
 v___y_997_ = v_quotContext_1095_;
@@ -2380,11 +4179,133 @@ lean_dec_ref(v_a_1120_);
 return v_res_1122_;
 }
 }
+static lean_object* _init_l_Lake_packageDataDecl___closed__0(void){
+_start:
+{
+lean_object* v___x_1123_; 
+v___x_1123_ = lean_mk_string_unchecked("packageDataDecl", 15, 15);
+return v___x_1123_;
+}
+}
+static lean_object* _init_l_Lake_packageDataDecl___closed__1(void){
+_start:
+{
+lean_object* v___x_1124_; lean_object* v___x_1125_; lean_object* v___x_1126_; 
+v___x_1124_ = lean_obj_once(&l_Lake_packageDataDecl___closed__0, &l_Lake_packageDataDecl___closed__0_once, _init_l_Lake_packageDataDecl___closed__0);
+v___x_1125_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__0, &l_Lake_dataTypeDecl___closed__0_once, _init_l_Lake_dataTypeDecl___closed__0);
+v___x_1126_ = l_Lean_Name_mkStr2(v___x_1125_, v___x_1124_);
+return v___x_1126_;
+}
+}
+static lean_object* _init_l_Lake_packageDataDecl___closed__2(void){
+_start:
+{
+lean_object* v___x_1127_; 
+v___x_1127_ = lean_mk_string_unchecked("package_data ", 13, 13);
+return v___x_1127_;
+}
+}
+static lean_object* _init_l_Lake_packageDataDecl___closed__3(void){
+_start:
+{
+lean_object* v___x_1128_; lean_object* v___x_1129_; 
+v___x_1128_ = lean_obj_once(&l_Lake_packageDataDecl___closed__2, &l_Lake_packageDataDecl___closed__2_once, _init_l_Lake_packageDataDecl___closed__2);
+v___x_1129_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_1129_, 0, v___x_1128_);
+return v___x_1129_;
+}
+}
+static lean_object* _init_l_Lake_packageDataDecl___closed__4(void){
+_start:
+{
+lean_object* v___x_1130_; lean_object* v___x_1131_; lean_object* v___x_1132_; lean_object* v___x_1133_; 
+v___x_1130_ = lean_obj_once(&l_Lake_packageDataDecl___closed__3, &l_Lake_packageDataDecl___closed__3_once, _init_l_Lake_packageDataDecl___closed__3);
+v___x_1131_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__10, &l_Lake_dataTypeDecl___closed__10_once, _init_l_Lake_dataTypeDecl___closed__10);
+v___x_1132_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_1133_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_1133_, 0, v___x_1132_);
+lean_ctor_set(v___x_1133_, 1, v___x_1131_);
+lean_ctor_set(v___x_1133_, 2, v___x_1130_);
+return v___x_1133_;
+}
+}
+static lean_object* _init_l_Lake_packageDataDecl___closed__5(void){
+_start:
+{
+lean_object* v___x_1134_; lean_object* v___x_1135_; lean_object* v___x_1136_; lean_object* v___x_1137_; 
+v___x_1134_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__16, &l_Lake_dataTypeDecl___closed__16_once, _init_l_Lake_dataTypeDecl___closed__16);
+v___x_1135_ = lean_obj_once(&l_Lake_packageDataDecl___closed__4, &l_Lake_packageDataDecl___closed__4_once, _init_l_Lake_packageDataDecl___closed__4);
+v___x_1136_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_1137_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_1137_, 0, v___x_1136_);
+lean_ctor_set(v___x_1137_, 1, v___x_1135_);
+lean_ctor_set(v___x_1137_, 2, v___x_1134_);
+return v___x_1137_;
+}
+}
+static lean_object* _init_l_Lake_packageDataDecl___closed__6(void){
+_start:
+{
+lean_object* v___x_1138_; lean_object* v___x_1139_; lean_object* v___x_1140_; lean_object* v___x_1141_; 
+v___x_1138_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__19, &l_Lake_dataTypeDecl___closed__19_once, _init_l_Lake_dataTypeDecl___closed__19);
+v___x_1139_ = lean_obj_once(&l_Lake_packageDataDecl___closed__5, &l_Lake_packageDataDecl___closed__5_once, _init_l_Lake_packageDataDecl___closed__5);
+v___x_1140_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_1141_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_1141_, 0, v___x_1140_);
+lean_ctor_set(v___x_1141_, 1, v___x_1139_);
+lean_ctor_set(v___x_1141_, 2, v___x_1138_);
+return v___x_1141_;
+}
+}
+static lean_object* _init_l_Lake_packageDataDecl___closed__7(void){
+_start:
+{
+lean_object* v___x_1142_; lean_object* v___x_1143_; lean_object* v___x_1144_; lean_object* v___x_1145_; 
+v___x_1142_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__23, &l_Lake_dataTypeDecl___closed__23_once, _init_l_Lake_dataTypeDecl___closed__23);
+v___x_1143_ = lean_obj_once(&l_Lake_packageDataDecl___closed__6, &l_Lake_packageDataDecl___closed__6_once, _init_l_Lake_packageDataDecl___closed__6);
+v___x_1144_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_1145_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_1145_, 0, v___x_1144_);
+lean_ctor_set(v___x_1145_, 1, v___x_1143_);
+lean_ctor_set(v___x_1145_, 2, v___x_1142_);
+return v___x_1145_;
+}
+}
+static lean_object* _init_l_Lake_packageDataDecl___closed__8(void){
+_start:
+{
+lean_object* v___x_1146_; lean_object* v___x_1147_; lean_object* v___x_1148_; lean_object* v___x_1149_; 
+v___x_1146_ = lean_obj_once(&l_Lake_packageDataDecl___closed__7, &l_Lake_packageDataDecl___closed__7_once, _init_l_Lake_packageDataDecl___closed__7);
+v___x_1147_ = lean_unsigned_to_nat(1022u);
+v___x_1148_ = lean_obj_once(&l_Lake_packageDataDecl___closed__1, &l_Lake_packageDataDecl___closed__1_once, _init_l_Lake_packageDataDecl___closed__1);
+v___x_1149_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_1149_, 0, v___x_1148_);
+lean_ctor_set(v___x_1149_, 1, v___x_1147_);
+lean_ctor_set(v___x_1149_, 2, v___x_1146_);
+return v___x_1149_;
+}
+}
+static lean_object* _init_l_Lake_packageDataDecl(void){
+_start:
+{
+lean_object* v___x_1150_; 
+v___x_1150_ = lean_obj_once(&l_Lake_packageDataDecl___closed__8, &l_Lake_packageDataDecl___closed__8_once, _init_l_Lake_packageDataDecl___closed__8);
+return v___x_1150_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__packageDataDecl__1___closed__0(void){
+_start:
+{
+lean_object* v___x_1151_; 
+v___x_1151_ = lean_mk_string_unchecked("facet_data", 10, 10);
+return v___x_1151_;
+}
+}
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__packageDataDecl__1(lean_object* v_x_1152_, lean_object* v_a_1153_, lean_object* v_a_1154_){
 _start:
 {
 lean_object* v___x_1155_; uint8_t v___x_1156_; 
-v___x_1155_ = ((lean_object*)(l_Lake_packageDataDecl___closed__1));
+v___x_1155_ = lean_obj_once(&l_Lake_packageDataDecl___closed__1, &l_Lake_packageDataDecl___closed__1_once, _init_l_Lake_packageDataDecl___closed__1);
 lean_inc(v_x_1152_);
 v___x_1156_ = l_Lean_Syntax_isOfKind(v_x_1152_, v___x_1155_);
 if (v___x_1156_ == 0)
@@ -2473,14 +4394,14 @@ lean_ctor_set(v___x_1175_, 0, v___y_1170_);
 lean_ctor_set(v___x_1175_, 1, v___y_1168_);
 lean_ctor_set(v___x_1175_, 2, v___x_1174_);
 v___x_1176_ = l_Lean_SourceInfo_fromRef(v_tk_1162_, v___x_1156_);
-v___x_1177_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__packageDataDecl__1___closed__0));
+v___x_1177_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__packageDataDecl__1___closed__0, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__packageDataDecl__1___closed__0_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__packageDataDecl__1___closed__0);
 v___x_1178_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_1178_, 0, v___x_1176_);
 lean_ctor_set(v___x_1178_, 1, v___x_1177_);
 v___x_1179_ = l_Lake_Package_keyword;
 v___x_1180_ = l_Lean_mkIdentFrom(v_tk_1162_, v___x_1179_, v___y_1169_);
 lean_dec(v_tk_1162_);
-v___x_1181_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1));
+v___x_1181_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1);
 v___x_1182_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_1182_, 0, v___y_1170_);
 lean_ctor_set(v___x_1182_, 1, v___x_1181_);
@@ -2497,8 +4418,8 @@ lean_object* v_ref_1187_; uint8_t v___x_1188_; lean_object* v___x_1189_; lean_ob
 v_ref_1187_ = lean_ctor_get(v_a_1153_, 5);
 v___x_1188_ = 0;
 v___x_1189_ = l_Lean_SourceInfo_fromRef(v_ref_1187_, v___x_1188_);
-v___x_1190_ = ((lean_object*)(l_Lake_facetDataDecl___closed__1));
-v___x_1191_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68));
+v___x_1190_ = lean_obj_once(&l_Lake_facetDataDecl___closed__1, &l_Lake_facetDataDecl___closed__1_once, _init_l_Lake_facetDataDecl___closed__1);
+v___x_1191_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68);
 v___x_1192_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71);
 if (lean_obj_tag(v___y_1186_) == 1)
 {
@@ -2519,7 +4440,7 @@ else
 {
 lean_object* v___x_1195_; 
 lean_dec(v___y_1186_);
-v___x_1195_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72));
+v___x_1195_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72);
 v___y_1168_ = v___x_1191_;
 v___y_1169_ = v___x_1188_;
 v___y_1170_ = v___x_1189_;
@@ -2541,11 +4462,125 @@ lean_dec_ref(v_a_1207_);
 return v_res_1209_;
 }
 }
+static lean_object* _init_l_Lake_moduleDataDecl___closed__0(void){
+_start:
+{
+lean_object* v___x_1210_; 
+v___x_1210_ = lean_mk_string_unchecked("moduleDataDecl", 14, 14);
+return v___x_1210_;
+}
+}
+static lean_object* _init_l_Lake_moduleDataDecl___closed__1(void){
+_start:
+{
+lean_object* v___x_1211_; lean_object* v___x_1212_; lean_object* v___x_1213_; 
+v___x_1211_ = lean_obj_once(&l_Lake_moduleDataDecl___closed__0, &l_Lake_moduleDataDecl___closed__0_once, _init_l_Lake_moduleDataDecl___closed__0);
+v___x_1212_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__0, &l_Lake_dataTypeDecl___closed__0_once, _init_l_Lake_dataTypeDecl___closed__0);
+v___x_1213_ = l_Lean_Name_mkStr2(v___x_1212_, v___x_1211_);
+return v___x_1213_;
+}
+}
+static lean_object* _init_l_Lake_moduleDataDecl___closed__2(void){
+_start:
+{
+lean_object* v___x_1214_; 
+v___x_1214_ = lean_mk_string_unchecked("module_data ", 12, 12);
+return v___x_1214_;
+}
+}
+static lean_object* _init_l_Lake_moduleDataDecl___closed__3(void){
+_start:
+{
+lean_object* v___x_1215_; lean_object* v___x_1216_; 
+v___x_1215_ = lean_obj_once(&l_Lake_moduleDataDecl___closed__2, &l_Lake_moduleDataDecl___closed__2_once, _init_l_Lake_moduleDataDecl___closed__2);
+v___x_1216_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_1216_, 0, v___x_1215_);
+return v___x_1216_;
+}
+}
+static lean_object* _init_l_Lake_moduleDataDecl___closed__4(void){
+_start:
+{
+lean_object* v___x_1217_; lean_object* v___x_1218_; lean_object* v___x_1219_; lean_object* v___x_1220_; 
+v___x_1217_ = lean_obj_once(&l_Lake_moduleDataDecl___closed__3, &l_Lake_moduleDataDecl___closed__3_once, _init_l_Lake_moduleDataDecl___closed__3);
+v___x_1218_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__10, &l_Lake_dataTypeDecl___closed__10_once, _init_l_Lake_dataTypeDecl___closed__10);
+v___x_1219_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_1220_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_1220_, 0, v___x_1219_);
+lean_ctor_set(v___x_1220_, 1, v___x_1218_);
+lean_ctor_set(v___x_1220_, 2, v___x_1217_);
+return v___x_1220_;
+}
+}
+static lean_object* _init_l_Lake_moduleDataDecl___closed__5(void){
+_start:
+{
+lean_object* v___x_1221_; lean_object* v___x_1222_; lean_object* v___x_1223_; lean_object* v___x_1224_; 
+v___x_1221_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__16, &l_Lake_dataTypeDecl___closed__16_once, _init_l_Lake_dataTypeDecl___closed__16);
+v___x_1222_ = lean_obj_once(&l_Lake_moduleDataDecl___closed__4, &l_Lake_moduleDataDecl___closed__4_once, _init_l_Lake_moduleDataDecl___closed__4);
+v___x_1223_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_1224_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_1224_, 0, v___x_1223_);
+lean_ctor_set(v___x_1224_, 1, v___x_1222_);
+lean_ctor_set(v___x_1224_, 2, v___x_1221_);
+return v___x_1224_;
+}
+}
+static lean_object* _init_l_Lake_moduleDataDecl___closed__6(void){
+_start:
+{
+lean_object* v___x_1225_; lean_object* v___x_1226_; lean_object* v___x_1227_; lean_object* v___x_1228_; 
+v___x_1225_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__19, &l_Lake_dataTypeDecl___closed__19_once, _init_l_Lake_dataTypeDecl___closed__19);
+v___x_1226_ = lean_obj_once(&l_Lake_moduleDataDecl___closed__5, &l_Lake_moduleDataDecl___closed__5_once, _init_l_Lake_moduleDataDecl___closed__5);
+v___x_1227_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_1228_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_1228_, 0, v___x_1227_);
+lean_ctor_set(v___x_1228_, 1, v___x_1226_);
+lean_ctor_set(v___x_1228_, 2, v___x_1225_);
+return v___x_1228_;
+}
+}
+static lean_object* _init_l_Lake_moduleDataDecl___closed__7(void){
+_start:
+{
+lean_object* v___x_1229_; lean_object* v___x_1230_; lean_object* v___x_1231_; lean_object* v___x_1232_; 
+v___x_1229_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__23, &l_Lake_dataTypeDecl___closed__23_once, _init_l_Lake_dataTypeDecl___closed__23);
+v___x_1230_ = lean_obj_once(&l_Lake_moduleDataDecl___closed__6, &l_Lake_moduleDataDecl___closed__6_once, _init_l_Lake_moduleDataDecl___closed__6);
+v___x_1231_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_1232_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_1232_, 0, v___x_1231_);
+lean_ctor_set(v___x_1232_, 1, v___x_1230_);
+lean_ctor_set(v___x_1232_, 2, v___x_1229_);
+return v___x_1232_;
+}
+}
+static lean_object* _init_l_Lake_moduleDataDecl___closed__8(void){
+_start:
+{
+lean_object* v___x_1233_; lean_object* v___x_1234_; lean_object* v___x_1235_; lean_object* v___x_1236_; 
+v___x_1233_ = lean_obj_once(&l_Lake_moduleDataDecl___closed__7, &l_Lake_moduleDataDecl___closed__7_once, _init_l_Lake_moduleDataDecl___closed__7);
+v___x_1234_ = lean_unsigned_to_nat(1022u);
+v___x_1235_ = lean_obj_once(&l_Lake_moduleDataDecl___closed__1, &l_Lake_moduleDataDecl___closed__1_once, _init_l_Lake_moduleDataDecl___closed__1);
+v___x_1236_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_1236_, 0, v___x_1235_);
+lean_ctor_set(v___x_1236_, 1, v___x_1234_);
+lean_ctor_set(v___x_1236_, 2, v___x_1233_);
+return v___x_1236_;
+}
+}
+static lean_object* _init_l_Lake_moduleDataDecl(void){
+_start:
+{
+lean_object* v___x_1237_; 
+v___x_1237_ = lean_obj_once(&l_Lake_moduleDataDecl___closed__8, &l_Lake_moduleDataDecl___closed__8_once, _init_l_Lake_moduleDataDecl___closed__8);
+return v___x_1237_;
+}
+}
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__moduleDataDecl__1(lean_object* v_x_1238_, lean_object* v_a_1239_, lean_object* v_a_1240_){
 _start:
 {
 lean_object* v___x_1241_; uint8_t v___x_1242_; 
-v___x_1241_ = ((lean_object*)(l_Lake_moduleDataDecl___closed__1));
+v___x_1241_ = lean_obj_once(&l_Lake_moduleDataDecl___closed__1, &l_Lake_moduleDataDecl___closed__1_once, _init_l_Lake_moduleDataDecl___closed__1);
 lean_inc(v_x_1238_);
 v___x_1242_ = l_Lean_Syntax_isOfKind(v_x_1238_, v___x_1241_);
 if (v___x_1242_ == 0)
@@ -2634,14 +4669,14 @@ lean_ctor_set(v___x_1261_, 0, v___y_1257_);
 lean_ctor_set(v___x_1261_, 1, v___y_1254_);
 lean_ctor_set(v___x_1261_, 2, v___x_1260_);
 v___x_1262_ = l_Lean_SourceInfo_fromRef(v_tk_1248_, v___x_1242_);
-v___x_1263_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__packageDataDecl__1___closed__0));
+v___x_1263_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__packageDataDecl__1___closed__0, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__packageDataDecl__1___closed__0_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__packageDataDecl__1___closed__0);
 v___x_1264_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_1264_, 0, v___x_1262_);
 lean_ctor_set(v___x_1264_, 1, v___x_1263_);
 v___x_1265_ = l_Lake_Module_keyword;
 v___x_1266_ = l_Lean_mkIdentFrom(v_tk_1248_, v___x_1265_, v___y_1256_);
 lean_dec(v_tk_1248_);
-v___x_1267_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1));
+v___x_1267_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1);
 v___x_1268_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_1268_, 0, v___y_1257_);
 lean_ctor_set(v___x_1268_, 1, v___x_1267_);
@@ -2658,8 +4693,8 @@ lean_object* v_ref_1273_; uint8_t v___x_1274_; lean_object* v___x_1275_; lean_ob
 v_ref_1273_ = lean_ctor_get(v_a_1239_, 5);
 v___x_1274_ = 0;
 v___x_1275_ = l_Lean_SourceInfo_fromRef(v_ref_1273_, v___x_1274_);
-v___x_1276_ = ((lean_object*)(l_Lake_facetDataDecl___closed__1));
-v___x_1277_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68));
+v___x_1276_ = lean_obj_once(&l_Lake_facetDataDecl___closed__1, &l_Lake_facetDataDecl___closed__1_once, _init_l_Lake_facetDataDecl___closed__1);
+v___x_1277_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68);
 v___x_1278_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71);
 if (lean_obj_tag(v___y_1272_) == 1)
 {
@@ -2680,7 +4715,7 @@ else
 {
 lean_object* v___x_1281_; 
 lean_dec(v___y_1272_);
-v___x_1281_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72));
+v___x_1281_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72);
 v___y_1254_ = v___x_1277_;
 v___y_1255_ = v___x_1276_;
 v___y_1256_ = v___x_1274_;
@@ -2702,11 +4737,142 @@ lean_dec_ref(v_a_1293_);
 return v_res_1295_;
 }
 }
+static lean_object* _init_l_Lake_libraryDataDecl___closed__0(void){
+_start:
+{
+lean_object* v___x_1296_; 
+v___x_1296_ = lean_mk_string_unchecked("libraryDataDecl", 15, 15);
+return v___x_1296_;
+}
+}
+static lean_object* _init_l_Lake_libraryDataDecl___closed__1(void){
+_start:
+{
+lean_object* v___x_1297_; lean_object* v___x_1298_; lean_object* v___x_1299_; 
+v___x_1297_ = lean_obj_once(&l_Lake_libraryDataDecl___closed__0, &l_Lake_libraryDataDecl___closed__0_once, _init_l_Lake_libraryDataDecl___closed__0);
+v___x_1298_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__0, &l_Lake_dataTypeDecl___closed__0_once, _init_l_Lake_dataTypeDecl___closed__0);
+v___x_1299_ = l_Lean_Name_mkStr2(v___x_1298_, v___x_1297_);
+return v___x_1299_;
+}
+}
+static lean_object* _init_l_Lake_libraryDataDecl___closed__2(void){
+_start:
+{
+lean_object* v___x_1300_; 
+v___x_1300_ = lean_mk_string_unchecked("library_data ", 13, 13);
+return v___x_1300_;
+}
+}
+static lean_object* _init_l_Lake_libraryDataDecl___closed__3(void){
+_start:
+{
+lean_object* v___x_1301_; lean_object* v___x_1302_; 
+v___x_1301_ = lean_obj_once(&l_Lake_libraryDataDecl___closed__2, &l_Lake_libraryDataDecl___closed__2_once, _init_l_Lake_libraryDataDecl___closed__2);
+v___x_1302_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_1302_, 0, v___x_1301_);
+return v___x_1302_;
+}
+}
+static lean_object* _init_l_Lake_libraryDataDecl___closed__4(void){
+_start:
+{
+lean_object* v___x_1303_; lean_object* v___x_1304_; lean_object* v___x_1305_; lean_object* v___x_1306_; 
+v___x_1303_ = lean_obj_once(&l_Lake_libraryDataDecl___closed__3, &l_Lake_libraryDataDecl___closed__3_once, _init_l_Lake_libraryDataDecl___closed__3);
+v___x_1304_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__10, &l_Lake_dataTypeDecl___closed__10_once, _init_l_Lake_dataTypeDecl___closed__10);
+v___x_1305_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_1306_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_1306_, 0, v___x_1305_);
+lean_ctor_set(v___x_1306_, 1, v___x_1304_);
+lean_ctor_set(v___x_1306_, 2, v___x_1303_);
+return v___x_1306_;
+}
+}
+static lean_object* _init_l_Lake_libraryDataDecl___closed__5(void){
+_start:
+{
+lean_object* v___x_1307_; lean_object* v___x_1308_; lean_object* v___x_1309_; lean_object* v___x_1310_; 
+v___x_1307_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__16, &l_Lake_dataTypeDecl___closed__16_once, _init_l_Lake_dataTypeDecl___closed__16);
+v___x_1308_ = lean_obj_once(&l_Lake_libraryDataDecl___closed__4, &l_Lake_libraryDataDecl___closed__4_once, _init_l_Lake_libraryDataDecl___closed__4);
+v___x_1309_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_1310_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_1310_, 0, v___x_1309_);
+lean_ctor_set(v___x_1310_, 1, v___x_1308_);
+lean_ctor_set(v___x_1310_, 2, v___x_1307_);
+return v___x_1310_;
+}
+}
+static lean_object* _init_l_Lake_libraryDataDecl___closed__6(void){
+_start:
+{
+lean_object* v___x_1311_; lean_object* v___x_1312_; lean_object* v___x_1313_; lean_object* v___x_1314_; 
+v___x_1311_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__19, &l_Lake_dataTypeDecl___closed__19_once, _init_l_Lake_dataTypeDecl___closed__19);
+v___x_1312_ = lean_obj_once(&l_Lake_libraryDataDecl___closed__5, &l_Lake_libraryDataDecl___closed__5_once, _init_l_Lake_libraryDataDecl___closed__5);
+v___x_1313_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_1314_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_1314_, 0, v___x_1313_);
+lean_ctor_set(v___x_1314_, 1, v___x_1312_);
+lean_ctor_set(v___x_1314_, 2, v___x_1311_);
+return v___x_1314_;
+}
+}
+static lean_object* _init_l_Lake_libraryDataDecl___closed__7(void){
+_start:
+{
+lean_object* v___x_1315_; lean_object* v___x_1316_; lean_object* v___x_1317_; lean_object* v___x_1318_; 
+v___x_1315_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__23, &l_Lake_dataTypeDecl___closed__23_once, _init_l_Lake_dataTypeDecl___closed__23);
+v___x_1316_ = lean_obj_once(&l_Lake_libraryDataDecl___closed__6, &l_Lake_libraryDataDecl___closed__6_once, _init_l_Lake_libraryDataDecl___closed__6);
+v___x_1317_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_1318_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_1318_, 0, v___x_1317_);
+lean_ctor_set(v___x_1318_, 1, v___x_1316_);
+lean_ctor_set(v___x_1318_, 2, v___x_1315_);
+return v___x_1318_;
+}
+}
+static lean_object* _init_l_Lake_libraryDataDecl___closed__8(void){
+_start:
+{
+lean_object* v___x_1319_; lean_object* v___x_1320_; lean_object* v___x_1321_; lean_object* v___x_1322_; 
+v___x_1319_ = lean_obj_once(&l_Lake_libraryDataDecl___closed__7, &l_Lake_libraryDataDecl___closed__7_once, _init_l_Lake_libraryDataDecl___closed__7);
+v___x_1320_ = lean_unsigned_to_nat(1022u);
+v___x_1321_ = lean_obj_once(&l_Lake_libraryDataDecl___closed__1, &l_Lake_libraryDataDecl___closed__1_once, _init_l_Lake_libraryDataDecl___closed__1);
+v___x_1322_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_1322_, 0, v___x_1321_);
+lean_ctor_set(v___x_1322_, 1, v___x_1320_);
+lean_ctor_set(v___x_1322_, 2, v___x_1319_);
+return v___x_1322_;
+}
+}
+static lean_object* _init_l_Lake_libraryDataDecl(void){
+_start:
+{
+lean_object* v___x_1323_; 
+v___x_1323_ = lean_obj_once(&l_Lake_libraryDataDecl___closed__8, &l_Lake_libraryDataDecl___closed__8_once, _init_l_Lake_libraryDataDecl___closed__8);
+return v___x_1323_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1___closed__0(void){
+_start:
+{
+lean_object* v___x_1324_; 
+v___x_1324_ = lean_mk_string_unchecked("lean_lib", 8, 8);
+return v___x_1324_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1___closed__1(void){
+_start:
+{
+lean_object* v___x_1325_; lean_object* v___x_1326_; 
+v___x_1325_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1___closed__0, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1___closed__0_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1___closed__0);
+v___x_1326_ = l_Lean_Name_mkStr1(v___x_1325_);
+return v___x_1326_;
+}
+}
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1(lean_object* v_x_1327_, lean_object* v_a_1328_, lean_object* v_a_1329_){
 _start:
 {
 lean_object* v___x_1330_; uint8_t v___x_1331_; 
-v___x_1330_ = ((lean_object*)(l_Lake_libraryDataDecl___closed__1));
+v___x_1330_ = lean_obj_once(&l_Lake_libraryDataDecl___closed__1, &l_Lake_libraryDataDecl___closed__1_once, _init_l_Lake_libraryDataDecl___closed__1);
 lean_inc(v_x_1327_);
 v___x_1331_ = l_Lean_Syntax_isOfKind(v_x_1327_, v___x_1330_);
 if (v___x_1331_ == 0)
@@ -2795,14 +4961,14 @@ lean_ctor_set(v___x_1350_, 0, v___y_1344_);
 lean_ctor_set(v___x_1350_, 1, v___y_1347_);
 lean_ctor_set(v___x_1350_, 2, v___x_1349_);
 v___x_1351_ = l_Lean_SourceInfo_fromRef(v_tk_1337_, v___x_1331_);
-v___x_1352_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__packageDataDecl__1___closed__0));
+v___x_1352_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__packageDataDecl__1___closed__0, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__packageDataDecl__1___closed__0_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__packageDataDecl__1___closed__0);
 v___x_1353_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_1353_, 0, v___x_1351_);
 lean_ctor_set(v___x_1353_, 1, v___x_1352_);
-v___x_1354_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1___closed__1));
+v___x_1354_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1___closed__1, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1___closed__1_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__libraryDataDecl__1___closed__1);
 v___x_1355_ = l_Lean_mkIdentFrom(v_tk_1337_, v___x_1354_, v___y_1346_);
 lean_dec(v_tk_1337_);
-v___x_1356_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1));
+v___x_1356_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1);
 v___x_1357_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_1357_, 0, v___y_1344_);
 lean_ctor_set(v___x_1357_, 1, v___x_1356_);
@@ -2819,8 +4985,8 @@ lean_object* v_ref_1362_; uint8_t v___x_1363_; lean_object* v___x_1364_; lean_ob
 v_ref_1362_ = lean_ctor_get(v_a_1328_, 5);
 v___x_1363_ = 0;
 v___x_1364_ = l_Lean_SourceInfo_fromRef(v_ref_1362_, v___x_1363_);
-v___x_1365_ = ((lean_object*)(l_Lake_facetDataDecl___closed__1));
-v___x_1366_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68));
+v___x_1365_ = lean_obj_once(&l_Lake_facetDataDecl___closed__1, &l_Lake_facetDataDecl___closed__1_once, _init_l_Lake_facetDataDecl___closed__1);
+v___x_1366_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68);
 v___x_1367_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71);
 if (lean_obj_tag(v___y_1361_) == 1)
 {
@@ -2841,7 +5007,7 @@ else
 {
 lean_object* v___x_1370_; 
 lean_dec(v___y_1361_);
-v___x_1370_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72));
+v___x_1370_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72);
 v___y_1343_ = v___x_1365_;
 v___y_1344_ = v___x_1364_;
 v___y_1345_ = v___x_1367_;
@@ -2863,11 +5029,201 @@ lean_dec_ref(v_a_1382_);
 return v_res_1384_;
 }
 }
+static lean_object* _init_l_Lake_customDataDecl___closed__0(void){
+_start:
+{
+lean_object* v___x_1385_; 
+v___x_1385_ = lean_mk_string_unchecked("customDataDecl", 14, 14);
+return v___x_1385_;
+}
+}
+static lean_object* _init_l_Lake_customDataDecl___closed__1(void){
+_start:
+{
+lean_object* v___x_1386_; lean_object* v___x_1387_; lean_object* v___x_1388_; 
+v___x_1386_ = lean_obj_once(&l_Lake_customDataDecl___closed__0, &l_Lake_customDataDecl___closed__0_once, _init_l_Lake_customDataDecl___closed__0);
+v___x_1387_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__0, &l_Lake_dataTypeDecl___closed__0_once, _init_l_Lake_dataTypeDecl___closed__0);
+v___x_1388_ = l_Lean_Name_mkStr2(v___x_1387_, v___x_1386_);
+return v___x_1388_;
+}
+}
+static lean_object* _init_l_Lake_customDataDecl___closed__2(void){
+_start:
+{
+lean_object* v___x_1389_; 
+v___x_1389_ = lean_mk_string_unchecked("custom_data ", 12, 12);
+return v___x_1389_;
+}
+}
+static lean_object* _init_l_Lake_customDataDecl___closed__3(void){
+_start:
+{
+lean_object* v___x_1390_; lean_object* v___x_1391_; 
+v___x_1390_ = lean_obj_once(&l_Lake_customDataDecl___closed__2, &l_Lake_customDataDecl___closed__2_once, _init_l_Lake_customDataDecl___closed__2);
+v___x_1391_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_1391_, 0, v___x_1390_);
+return v___x_1391_;
+}
+}
+static lean_object* _init_l_Lake_customDataDecl___closed__4(void){
+_start:
+{
+lean_object* v___x_1392_; lean_object* v___x_1393_; lean_object* v___x_1394_; lean_object* v___x_1395_; 
+v___x_1392_ = lean_obj_once(&l_Lake_customDataDecl___closed__3, &l_Lake_customDataDecl___closed__3_once, _init_l_Lake_customDataDecl___closed__3);
+v___x_1393_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__10, &l_Lake_dataTypeDecl___closed__10_once, _init_l_Lake_dataTypeDecl___closed__10);
+v___x_1394_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_1395_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_1395_, 0, v___x_1394_);
+lean_ctor_set(v___x_1395_, 1, v___x_1393_);
+lean_ctor_set(v___x_1395_, 2, v___x_1392_);
+return v___x_1395_;
+}
+}
+static lean_object* _init_l_Lake_customDataDecl___closed__5(void){
+_start:
+{
+lean_object* v___x_1396_; lean_object* v___x_1397_; lean_object* v___x_1398_; lean_object* v___x_1399_; 
+v___x_1396_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__16, &l_Lake_dataTypeDecl___closed__16_once, _init_l_Lake_dataTypeDecl___closed__16);
+v___x_1397_ = lean_obj_once(&l_Lake_customDataDecl___closed__4, &l_Lake_customDataDecl___closed__4_once, _init_l_Lake_customDataDecl___closed__4);
+v___x_1398_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_1399_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_1399_, 0, v___x_1398_);
+lean_ctor_set(v___x_1399_, 1, v___x_1397_);
+lean_ctor_set(v___x_1399_, 2, v___x_1396_);
+return v___x_1399_;
+}
+}
+static lean_object* _init_l_Lake_customDataDecl___closed__6(void){
+_start:
+{
+lean_object* v___x_1400_; lean_object* v___x_1401_; lean_object* v___x_1402_; lean_object* v___x_1403_; 
+v___x_1400_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__16, &l_Lake_dataTypeDecl___closed__16_once, _init_l_Lake_dataTypeDecl___closed__16);
+v___x_1401_ = lean_obj_once(&l_Lake_customDataDecl___closed__5, &l_Lake_customDataDecl___closed__5_once, _init_l_Lake_customDataDecl___closed__5);
+v___x_1402_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_1403_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_1403_, 0, v___x_1402_);
+lean_ctor_set(v___x_1403_, 1, v___x_1401_);
+lean_ctor_set(v___x_1403_, 2, v___x_1400_);
+return v___x_1403_;
+}
+}
+static lean_object* _init_l_Lake_customDataDecl___closed__7(void){
+_start:
+{
+lean_object* v___x_1404_; lean_object* v___x_1405_; lean_object* v___x_1406_; lean_object* v___x_1407_; 
+v___x_1404_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__19, &l_Lake_dataTypeDecl___closed__19_once, _init_l_Lake_dataTypeDecl___closed__19);
+v___x_1405_ = lean_obj_once(&l_Lake_customDataDecl___closed__6, &l_Lake_customDataDecl___closed__6_once, _init_l_Lake_customDataDecl___closed__6);
+v___x_1406_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_1407_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_1407_, 0, v___x_1406_);
+lean_ctor_set(v___x_1407_, 1, v___x_1405_);
+lean_ctor_set(v___x_1407_, 2, v___x_1404_);
+return v___x_1407_;
+}
+}
+static lean_object* _init_l_Lake_customDataDecl___closed__8(void){
+_start:
+{
+lean_object* v___x_1408_; lean_object* v___x_1409_; lean_object* v___x_1410_; lean_object* v___x_1411_; 
+v___x_1408_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__23, &l_Lake_dataTypeDecl___closed__23_once, _init_l_Lake_dataTypeDecl___closed__23);
+v___x_1409_ = lean_obj_once(&l_Lake_customDataDecl___closed__7, &l_Lake_customDataDecl___closed__7_once, _init_l_Lake_customDataDecl___closed__7);
+v___x_1410_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__4, &l_Lake_dataTypeDecl___closed__4_once, _init_l_Lake_dataTypeDecl___closed__4);
+v___x_1411_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_1411_, 0, v___x_1410_);
+lean_ctor_set(v___x_1411_, 1, v___x_1409_);
+lean_ctor_set(v___x_1411_, 2, v___x_1408_);
+return v___x_1411_;
+}
+}
+static lean_object* _init_l_Lake_customDataDecl___closed__9(void){
+_start:
+{
+lean_object* v___x_1412_; lean_object* v___x_1413_; lean_object* v___x_1414_; lean_object* v___x_1415_; 
+v___x_1412_ = lean_obj_once(&l_Lake_customDataDecl___closed__8, &l_Lake_customDataDecl___closed__8_once, _init_l_Lake_customDataDecl___closed__8);
+v___x_1413_ = lean_unsigned_to_nat(1022u);
+v___x_1414_ = lean_obj_once(&l_Lake_customDataDecl___closed__1, &l_Lake_customDataDecl___closed__1_once, _init_l_Lake_customDataDecl___closed__1);
+v___x_1415_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_1415_, 0, v___x_1414_);
+lean_ctor_set(v___x_1415_, 1, v___x_1413_);
+lean_ctor_set(v___x_1415_, 2, v___x_1412_);
+return v___x_1415_;
+}
+}
+static lean_object* _init_l_Lake_customDataDecl(void){
+_start:
+{
+lean_object* v___x_1416_; 
+v___x_1416_ = lean_obj_once(&l_Lake_customDataDecl___closed__9, &l_Lake_customDataDecl___closed__9_once, _init_l_Lake_customDataDecl___closed__9);
+return v___x_1416_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__0(void){
+_start:
+{
+lean_object* v___x_1417_; 
+v___x_1417_ = lean_mk_string_unchecked("tuple", 5, 5);
+return v___x_1417_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__1(void){
+_start:
+{
+lean_object* v___x_1418_; lean_object* v___x_1419_; lean_object* v___x_1420_; lean_object* v___x_1421_; lean_object* v___x_1422_; 
+v___x_1418_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__0, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__0_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__0);
+v___x_1419_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__14);
+v___x_1420_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__4);
+v___x_1421_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__3);
+v___x_1422_ = l_Lean_Name_mkStr4(v___x_1421_, v___x_1420_, v___x_1419_, v___x_1418_);
+return v___x_1422_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__2(void){
+_start:
+{
+lean_object* v___x_1423_; lean_object* v___x_1424_; lean_object* v___x_1425_; 
+v___x_1423_ = lean_box(0);
+v___x_1424_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__10, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__10_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__10);
+v___x_1425_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_1425_, 0, v___x_1424_);
+lean_ctor_set(v___x_1425_, 1, v___x_1423_);
+return v___x_1425_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__3(void){
+_start:
+{
+lean_object* v___x_1426_; lean_object* v___x_1427_; lean_object* v___x_1428_; 
+v___x_1426_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__2, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__2_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__2);
+v___x_1427_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__8, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__8_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__8);
+v___x_1428_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_1428_, 0, v___x_1427_);
+lean_ctor_set(v___x_1428_, 1, v___x_1426_);
+return v___x_1428_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__4(void){
+_start:
+{
+lean_object* v___x_1429_; 
+v___x_1429_ = lean_mk_string_unchecked("CustomOut", 9, 9);
+return v___x_1429_;
+}
+}
+static lean_object* _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__5(void){
+_start:
+{
+lean_object* v___x_1430_; lean_object* v___x_1431_; lean_object* v___x_1432_; 
+v___x_1430_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__4, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__4_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__4);
+v___x_1431_ = lean_obj_once(&l_Lake_dataTypeDecl___closed__0, &l_Lake_dataTypeDecl___closed__0_once, _init_l_Lake_dataTypeDecl___closed__0);
+v___x_1432_ = l_Lean_Name_mkStr2(v___x_1431_, v___x_1430_);
+return v___x_1432_;
+}
+}
 LEAN_EXPORT lean_object* l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1(lean_object* v_x_1433_, lean_object* v_a_1434_, lean_object* v_a_1435_){
 _start:
 {
 lean_object* v___x_1436_; uint8_t v___x_1437_; 
-v___x_1436_ = ((lean_object*)(l_Lake_customDataDecl___closed__1));
+v___x_1436_ = lean_obj_once(&l_Lake_customDataDecl___closed__1, &l_Lake_customDataDecl___closed__1_once, _init_l_Lake_customDataDecl___closed__1);
 lean_inc(v_x_1433_);
 v___x_1437_ = l_Lean_Syntax_isOfKind(v_x_1433_, v___x_1436_);
 if (v___x_1437_ == 0)
@@ -2957,27 +5313,27 @@ v___x_1463_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_1463_, 0, v___y_1456_);
 lean_ctor_set(v___x_1463_, 1, v___y_1455_);
 lean_ctor_set(v___x_1463_, 2, v___x_1462_);
-v___x_1464_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0));
+v___x_1464_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__0);
 v___x_1465_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_1465_, 0, v___y_1456_);
 lean_ctor_set(v___x_1465_, 1, v___x_1464_);
-v___x_1466_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1));
+v___x_1466_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__1);
 v___x_1467_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_1467_, 0, v___y_1456_);
 lean_ctor_set(v___x_1467_, 1, v___x_1466_);
-v___x_1468_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__1));
-v___x_1469_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__6));
-v___x_1470_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__20));
+v___x_1468_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__1, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__1_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__1);
+v___x_1469_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__6, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__6_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__facetDataDecl__1___closed__6);
+v___x_1470_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__20, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__20_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__20);
 v___x_1471_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_1471_, 0, v___y_1456_);
 lean_ctor_set(v___x_1471_, 1, v___x_1470_);
-v___x_1472_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__22));
+v___x_1472_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__22, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__22_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__22);
 v___x_1473_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__24, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__24_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__24);
 v___x_1474_ = lean_box(0);
 lean_inc(v___y_1452_);
 lean_inc(v___y_1454_);
 v___x_1475_ = l_Lean_addMacroScope(v___y_1454_, v___x_1474_, v___y_1452_);
-v___x_1476_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__3));
+v___x_1476_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__3, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__3_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__3);
 v___x_1477_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_1477_, 0, v___y_1456_);
 lean_ctor_set(v___x_1477_, 1, v___x_1473_);
@@ -2985,18 +5341,18 @@ lean_ctor_set(v___x_1477_, 2, v___x_1475_);
 lean_ctor_set(v___x_1477_, 3, v___x_1476_);
 v___x_1478_ = l_Lean_Syntax_node1(v___y_1456_, v___x_1472_, v___x_1477_);
 v___x_1479_ = l_Lean_Syntax_node2(v___y_1456_, v___x_1469_, v___x_1471_, v___x_1478_);
-v___x_1480_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__36));
+v___x_1480_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__36, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__36_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__36);
 v___x_1481_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_1481_, 0, v___y_1456_);
 lean_ctor_set(v___x_1481_, 1, v___x_1480_);
 v___x_1482_ = l_Lean_Syntax_node1(v___y_1456_, v___y_1455_, v___y_1458_);
 v___x_1483_ = l_Lean_Syntax_node3(v___y_1456_, v___y_1455_, v___y_1460_, v___x_1481_, v___x_1482_);
-v___x_1484_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__28));
+v___x_1484_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__28, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__28_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__builtinFacetCommand__1___lam__0___closed__28);
 v___x_1485_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_1485_, 0, v___y_1456_);
 lean_ctor_set(v___x_1485_, 1, v___x_1484_);
 v___x_1486_ = l_Lean_Syntax_node3(v___y_1456_, v___x_1468_, v___x_1479_, v___x_1483_, v___x_1485_);
-v___x_1487_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2));
+v___x_1487_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__2);
 v___x_1488_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_1488_, 0, v___y_1456_);
 lean_ctor_set(v___x_1488_, 1, v___x_1487_);
@@ -3015,7 +5371,7 @@ v_currMacroScope_1494_ = lean_ctor_get(v_a_1434_, 2);
 v_ref_1495_ = lean_ctor_get(v_a_1434_, 5);
 v_ref_1496_ = l_Lean_replaceRef(v_tk_1443_, v_ref_1495_);
 lean_dec(v_tk_1443_);
-v___x_1497_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__5));
+v___x_1497_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__5, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__5_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__customDataDecl__1___closed__5);
 v___x_1498_ = 0;
 v___x_1499_ = l_Lean_mkCIdentFrom(v_ref_1496_, v___x_1497_, v___x_1498_);
 v___x_1500_ = l_Lean_TSyntax_getId(v_pkg_1445_);
@@ -3030,8 +5386,8 @@ lean_inc(v___x_1504_);
 v___x_1505_ = l_Lake_Name_quoteFrom(v___x_1504_, v___x_1501_, v___x_1498_);
 v___x_1506_ = l_Lean_SourceInfo_fromRef(v_ref_1496_, v___x_1498_);
 lean_dec(v_ref_1496_);
-v___x_1507_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__70));
-v___x_1508_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68));
+v___x_1507_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__70, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__70_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__70);
+v___x_1508_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__68);
 v___x_1509_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__71);
 if (lean_obj_tag(v___y_1492_) == 1)
 {
@@ -3057,7 +5413,7 @@ else
 {
 lean_object* v___x_1512_; 
 lean_dec(v___y_1492_);
-v___x_1512_ = ((lean_object*)(l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72));
+v___x_1512_ = lean_obj_once(&l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72, &l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72_once, _init_l_Lake___aux__Lake__Build__Data______macroRules__Lake__dataTypeDecl__1___closed__72);
 v___y_1451_ = v___x_1503_;
 v___y_1452_ = v_currMacroScope_1494_;
 v___y_1453_ = v___x_1499_;
@@ -3113,6 +5469,14 @@ lean_dec_ref(res);
 res = runtime_initialize_Lake_Util_Name(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Lake_instDataKindUnit = _init_l_Lake_instDataKindUnit();
+lean_mark_persistent(l_Lake_instDataKindUnit);
+l_Lake_instDataKindBool = _init_l_Lake_instDataKindBool();
+lean_mark_persistent(l_Lake_instDataKindBool);
+l_Lake_instDataKindFilePath = _init_l_Lake_instDataKindFilePath();
+lean_mark_persistent(l_Lake_instDataKindFilePath);
+l_Lake_instDataKindDynlib = _init_l_Lake_instDataKindDynlib();
+lean_mark_persistent(l_Lake_instDataKindDynlib);
 return lean_io_result_mk_ok(lean_box(0));
 }
 lean_object* runtime_initialize_Lake_Config_Kinds(uint8_t builtin);
@@ -3128,6 +5492,20 @@ lean_dec_ref(res);
 res = runtime_initialize_Lake_Util_Name(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Lake_dataTypeDecl = _init_l_Lake_dataTypeDecl();
+lean_mark_persistent(l_Lake_dataTypeDecl);
+l_Lake_builtinFacetCommand = _init_l_Lake_builtinFacetCommand();
+lean_mark_persistent(l_Lake_builtinFacetCommand);
+l_Lake_facetDataDecl = _init_l_Lake_facetDataDecl();
+lean_mark_persistent(l_Lake_facetDataDecl);
+l_Lake_packageDataDecl = _init_l_Lake_packageDataDecl();
+lean_mark_persistent(l_Lake_packageDataDecl);
+l_Lake_moduleDataDecl = _init_l_Lake_moduleDataDecl();
+lean_mark_persistent(l_Lake_moduleDataDecl);
+l_Lake_libraryDataDecl = _init_l_Lake_libraryDataDecl();
+lean_mark_persistent(l_Lake_libraryDataDecl);
+l_Lake_customDataDecl = _init_l_Lake_customDataDecl();
+lean_mark_persistent(l_Lake_customDataDecl);
 return lean_io_result_mk_ok(lean_box(0));
 }
 lean_object* initialize_Lake_Build_Key(uint8_t builtin);

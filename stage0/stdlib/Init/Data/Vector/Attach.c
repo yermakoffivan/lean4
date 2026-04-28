@@ -43,26 +43,26 @@ LEAN_EXPORT lean_object* l_Vector_attach___redArg___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Vector_attach(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Vector_attach___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Vector_pmapImpl___redArg___lam__0(lean_object*, lean_object*);
-static const lean_closure_object l_Vector_pmapImpl___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__0, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Vector_pmapImpl___redArg___closed__0 = (const lean_object*)&l_Vector_pmapImpl___redArg___closed__0_value;
-static const lean_closure_object l_Vector_pmapImpl___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__1___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Vector_pmapImpl___redArg___closed__1 = (const lean_object*)&l_Vector_pmapImpl___redArg___closed__1_value;
-static const lean_closure_object l_Vector_pmapImpl___redArg___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__2___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Vector_pmapImpl___redArg___closed__2 = (const lean_object*)&l_Vector_pmapImpl___redArg___closed__2_value;
-static const lean_closure_object l_Vector_pmapImpl___redArg___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__3, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Vector_pmapImpl___redArg___closed__3 = (const lean_object*)&l_Vector_pmapImpl___redArg___closed__3_value;
-static const lean_closure_object l_Vector_pmapImpl___redArg___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__4___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Vector_pmapImpl___redArg___closed__4 = (const lean_object*)&l_Vector_pmapImpl___redArg___closed__4_value;
-static const lean_closure_object l_Vector_pmapImpl___redArg___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__5___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Vector_pmapImpl___redArg___closed__5 = (const lean_object*)&l_Vector_pmapImpl___redArg___closed__5_value;
-static const lean_closure_object l_Vector_pmapImpl___redArg___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__6, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Vector_pmapImpl___redArg___closed__6 = (const lean_object*)&l_Vector_pmapImpl___redArg___closed__6_value;
-static const lean_ctor_object l_Vector_pmapImpl___redArg___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_Vector_pmapImpl___redArg___closed__0_value),((lean_object*)&l_Vector_pmapImpl___redArg___closed__1_value)}};
-static const lean_object* l_Vector_pmapImpl___redArg___closed__7 = (const lean_object*)&l_Vector_pmapImpl___redArg___closed__7_value;
-static const lean_ctor_object l_Vector_pmapImpl___redArg___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*5 + 0, .m_other = 5, .m_tag = 0}, .m_objs = {((lean_object*)&l_Vector_pmapImpl___redArg___closed__7_value),((lean_object*)&l_Vector_pmapImpl___redArg___closed__2_value),((lean_object*)&l_Vector_pmapImpl___redArg___closed__3_value),((lean_object*)&l_Vector_pmapImpl___redArg___closed__4_value),((lean_object*)&l_Vector_pmapImpl___redArg___closed__5_value)}};
-static const lean_object* l_Vector_pmapImpl___redArg___closed__8 = (const lean_object*)&l_Vector_pmapImpl___redArg___closed__8_value;
-static const lean_ctor_object l_Vector_pmapImpl___redArg___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_Vector_pmapImpl___redArg___closed__8_value),((lean_object*)&l_Vector_pmapImpl___redArg___closed__6_value)}};
-static const lean_object* l_Vector_pmapImpl___redArg___closed__9 = (const lean_object*)&l_Vector_pmapImpl___redArg___closed__9_value;
+static lean_once_cell_t l_Vector_pmapImpl___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Vector_pmapImpl___redArg___closed__0;
+static lean_once_cell_t l_Vector_pmapImpl___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Vector_pmapImpl___redArg___closed__1;
+static lean_once_cell_t l_Vector_pmapImpl___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Vector_pmapImpl___redArg___closed__2;
+static lean_once_cell_t l_Vector_pmapImpl___redArg___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Vector_pmapImpl___redArg___closed__3;
+static lean_once_cell_t l_Vector_pmapImpl___redArg___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Vector_pmapImpl___redArg___closed__4;
+static lean_once_cell_t l_Vector_pmapImpl___redArg___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Vector_pmapImpl___redArg___closed__5;
+static lean_once_cell_t l_Vector_pmapImpl___redArg___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Vector_pmapImpl___redArg___closed__6;
+static lean_once_cell_t l_Vector_pmapImpl___redArg___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Vector_pmapImpl___redArg___closed__7;
+static lean_once_cell_t l_Vector_pmapImpl___redArg___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Vector_pmapImpl___redArg___closed__8;
+static lean_once_cell_t l_Vector_pmapImpl___redArg___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Vector_pmapImpl___redArg___closed__9;
 LEAN_EXPORT lean_object* l_Vector_pmapImpl___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Vector_pmapImpl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Vector_pmapImpl___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -229,13 +229,111 @@ v___x_84_ = lean_apply_2(v_f_82_, v_x_83_, lean_box(0));
 return v___x_84_;
 }
 }
+static lean_object* _init_l_Vector_pmapImpl___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_85_; 
+v___f_85_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__0), 4, 0);
+return v___f_85_;
+}
+}
+static lean_object* _init_l_Vector_pmapImpl___redArg___closed__1(void){
+_start:
+{
+lean_object* v___f_86_; 
+v___f_86_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__1___boxed), 4, 0);
+return v___f_86_;
+}
+}
+static lean_object* _init_l_Vector_pmapImpl___redArg___closed__2(void){
+_start:
+{
+lean_object* v___f_87_; 
+v___f_87_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__2___boxed), 2, 0);
+return v___f_87_;
+}
+}
+static lean_object* _init_l_Vector_pmapImpl___redArg___closed__3(void){
+_start:
+{
+lean_object* v___f_88_; 
+v___f_88_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__3), 4, 0);
+return v___f_88_;
+}
+}
+static lean_object* _init_l_Vector_pmapImpl___redArg___closed__4(void){
+_start:
+{
+lean_object* v___f_89_; 
+v___f_89_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__4___boxed), 4, 0);
+return v___f_89_;
+}
+}
+static lean_object* _init_l_Vector_pmapImpl___redArg___closed__5(void){
+_start:
+{
+lean_object* v___f_90_; 
+v___f_90_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__5___boxed), 4, 0);
+return v___f_90_;
+}
+}
+static lean_object* _init_l_Vector_pmapImpl___redArg___closed__6(void){
+_start:
+{
+lean_object* v___f_91_; 
+v___f_91_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__6), 4, 0);
+return v___f_91_;
+}
+}
+static lean_object* _init_l_Vector_pmapImpl___redArg___closed__7(void){
+_start:
+{
+lean_object* v___f_92_; lean_object* v___f_93_; lean_object* v___x_94_; 
+v___f_92_ = lean_obj_once(&l_Vector_pmapImpl___redArg___closed__1, &l_Vector_pmapImpl___redArg___closed__1_once, _init_l_Vector_pmapImpl___redArg___closed__1);
+v___f_93_ = lean_obj_once(&l_Vector_pmapImpl___redArg___closed__0, &l_Vector_pmapImpl___redArg___closed__0_once, _init_l_Vector_pmapImpl___redArg___closed__0);
+v___x_94_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_94_, 0, v___f_93_);
+lean_ctor_set(v___x_94_, 1, v___f_92_);
+return v___x_94_;
+}
+}
+static lean_object* _init_l_Vector_pmapImpl___redArg___closed__8(void){
+_start:
+{
+lean_object* v___f_95_; lean_object* v___f_96_; lean_object* v___f_97_; lean_object* v___f_98_; lean_object* v___x_99_; lean_object* v___x_100_; 
+v___f_95_ = lean_obj_once(&l_Vector_pmapImpl___redArg___closed__5, &l_Vector_pmapImpl___redArg___closed__5_once, _init_l_Vector_pmapImpl___redArg___closed__5);
+v___f_96_ = lean_obj_once(&l_Vector_pmapImpl___redArg___closed__4, &l_Vector_pmapImpl___redArg___closed__4_once, _init_l_Vector_pmapImpl___redArg___closed__4);
+v___f_97_ = lean_obj_once(&l_Vector_pmapImpl___redArg___closed__3, &l_Vector_pmapImpl___redArg___closed__3_once, _init_l_Vector_pmapImpl___redArg___closed__3);
+v___f_98_ = lean_obj_once(&l_Vector_pmapImpl___redArg___closed__2, &l_Vector_pmapImpl___redArg___closed__2_once, _init_l_Vector_pmapImpl___redArg___closed__2);
+v___x_99_ = lean_obj_once(&l_Vector_pmapImpl___redArg___closed__7, &l_Vector_pmapImpl___redArg___closed__7_once, _init_l_Vector_pmapImpl___redArg___closed__7);
+v___x_100_ = lean_alloc_ctor(0, 5, 0);
+lean_ctor_set(v___x_100_, 0, v___x_99_);
+lean_ctor_set(v___x_100_, 1, v___f_98_);
+lean_ctor_set(v___x_100_, 2, v___f_97_);
+lean_ctor_set(v___x_100_, 3, v___f_96_);
+lean_ctor_set(v___x_100_, 4, v___f_95_);
+return v___x_100_;
+}
+}
+static lean_object* _init_l_Vector_pmapImpl___redArg___closed__9(void){
+_start:
+{
+lean_object* v___f_101_; lean_object* v___x_102_; lean_object* v___x_103_; 
+v___f_101_ = lean_obj_once(&l_Vector_pmapImpl___redArg___closed__6, &l_Vector_pmapImpl___redArg___closed__6_once, _init_l_Vector_pmapImpl___redArg___closed__6);
+v___x_102_ = lean_obj_once(&l_Vector_pmapImpl___redArg___closed__8, &l_Vector_pmapImpl___redArg___closed__8_once, _init_l_Vector_pmapImpl___redArg___closed__8);
+v___x_103_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_103_, 0, v___x_102_);
+lean_ctor_set(v___x_103_, 1, v___f_101_);
+return v___x_103_;
+}
+}
 LEAN_EXPORT lean_object* l_Vector_pmapImpl___redArg(lean_object* v_f_104_, lean_object* v_xs_105_){
 _start:
 {
 lean_object* v___f_106_; lean_object* v___x_107_; size_t v_sz_108_; size_t v___x_109_; lean_object* v___x_110_; 
 v___f_106_ = lean_alloc_closure((void*)(l_Vector_pmapImpl___redArg___lam__0), 2, 1);
 lean_closure_set(v___f_106_, 0, v_f_104_);
-v___x_107_ = ((lean_object*)(l_Vector_pmapImpl___redArg___closed__9));
+v___x_107_ = lean_obj_once(&l_Vector_pmapImpl___redArg___closed__9, &l_Vector_pmapImpl___redArg___closed__9_once, _init_l_Vector_pmapImpl___redArg___closed__9);
 v_sz_108_ = lean_array_size(v_xs_105_);
 v___x_109_ = ((size_t)0ULL);
 v___x_110_ = l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map(lean_box(0), lean_box(0), lean_box(0), v___x_107_, v___f_106_, v_sz_108_, v___x_109_, v_xs_105_);
@@ -248,7 +346,7 @@ _start:
 lean_object* v___f_118_; lean_object* v___x_119_; size_t v_sz_120_; size_t v___x_121_; lean_object* v___x_122_; 
 v___f_118_ = lean_alloc_closure((void*)(l_Vector_pmapImpl___redArg___lam__0), 2, 1);
 lean_closure_set(v___f_118_, 0, v_f_115_);
-v___x_119_ = ((lean_object*)(l_Vector_pmapImpl___redArg___closed__9));
+v___x_119_ = lean_obj_once(&l_Vector_pmapImpl___redArg___closed__9, &l_Vector_pmapImpl___redArg___closed__9_once, _init_l_Vector_pmapImpl___redArg___closed__9);
 v_sz_120_ = lean_array_size(v_xs_116_);
 v___x_121_ = ((size_t)0ULL);
 v___x_122_ = l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map(lean_box(0), lean_box(0), lean_box(0), v___x_119_, v___f_118_, v_sz_120_, v___x_121_, v_xs_116_);

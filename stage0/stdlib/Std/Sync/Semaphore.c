@@ -40,26 +40,26 @@ LEAN_EXPORT lean_object* l_Std_Mutex_atomically___at___00Std_Semaphore_acquire_s
 LEAN_EXPORT lean_object* l_Std_Mutex_atomically___at___00Std_Semaphore_acquire_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Semaphore_acquire___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Semaphore_acquire___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Semaphore_acquire___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Semaphore_acquire___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Semaphore_acquire___closed__0 = (const lean_object*)&l_Std_Semaphore_acquire___closed__0_value;
+static lean_once_cell_t l_Std_Semaphore_acquire___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Semaphore_acquire___closed__0;
 LEAN_EXPORT lean_object* l_Std_Semaphore_acquire(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Semaphore_acquire___boxed(lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Std_Semaphore_tryAcquire___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Semaphore_tryAcquire___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Semaphore_tryAcquire___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Semaphore_tryAcquire___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Semaphore_tryAcquire___closed__0 = (const lean_object*)&l_Std_Semaphore_tryAcquire___closed__0_value;
+static lean_once_cell_t l_Std_Semaphore_tryAcquire___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Semaphore_tryAcquire___closed__0;
 LEAN_EXPORT uint8_t l_Std_Semaphore_tryAcquire(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Semaphore_tryAcquire___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Semaphore_release___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Semaphore_release___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Semaphore_release___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Semaphore_release___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Semaphore_release___closed__0 = (const lean_object*)&l_Std_Semaphore_release___closed__0_value;
+static lean_once_cell_t l_Std_Semaphore_release___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Semaphore_release___closed__0;
 LEAN_EXPORT lean_object* l_Std_Semaphore_release(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Semaphore_release___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Semaphore_availablePermits___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Semaphore_availablePermits___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Semaphore_availablePermits___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Semaphore_availablePermits___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Semaphore_availablePermits___closed__0 = (const lean_object*)&l_Std_Semaphore_availablePermits___closed__0_value;
+static lean_once_cell_t l_Std_Semaphore_availablePermits___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Semaphore_availablePermits___closed__0;
 LEAN_EXPORT lean_object* l_Std_Semaphore_availablePermits(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Semaphore_availablePermits___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Sync_Semaphore_0__Std_mkResolvedPromise___redArg(lean_object* v_a_1_){
@@ -261,11 +261,19 @@ lean_dec(v___y_76_);
 return v_res_78_;
 }
 }
+static lean_object* _init_l_Std_Semaphore_acquire___closed__0(void){
+_start:
+{
+lean_object* v___f_79_; 
+v___f_79_ = lean_alloc_closure((void*)(l_Std_Semaphore_acquire___lam__0___boxed), 2, 0);
+return v___f_79_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Semaphore_acquire(lean_object* v_sem_80_){
 _start:
 {
 lean_object* v___f_82_; lean_object* v___x_83_; 
-v___f_82_ = ((lean_object*)(l_Std_Semaphore_acquire___closed__0));
+v___f_82_ = lean_obj_once(&l_Std_Semaphore_acquire___closed__0, &l_Std_Semaphore_acquire___closed__0_once, _init_l_Std_Semaphore_acquire___closed__0);
 v___x_83_ = l_Std_Mutex_atomically___at___00Std_Semaphore_acquire_spec__0___redArg(v_sem_80_, v___f_82_);
 return v___x_83_;
 }
@@ -354,11 +362,19 @@ v_r_107_ = lean_box(v_res_106_);
 return v_r_107_;
 }
 }
+static lean_object* _init_l_Std_Semaphore_tryAcquire___closed__0(void){
+_start:
+{
+lean_object* v___f_108_; 
+v___f_108_ = lean_alloc_closure((void*)(l_Std_Semaphore_tryAcquire___lam__0___boxed), 2, 0);
+return v___f_108_;
+}
+}
 LEAN_EXPORT uint8_t l_Std_Semaphore_tryAcquire(lean_object* v_sem_109_){
 _start:
 {
 lean_object* v___f_111_; lean_object* v___x_112_; uint8_t v___x_113_; 
-v___f_111_ = ((lean_object*)(l_Std_Semaphore_tryAcquire___closed__0));
+v___f_111_ = lean_obj_once(&l_Std_Semaphore_tryAcquire___closed__0, &l_Std_Semaphore_tryAcquire___closed__0_once, _init_l_Std_Semaphore_tryAcquire___closed__0);
 v___x_112_ = l_Std_Mutex_atomically___at___00Std_Semaphore_acquire_spec__0___redArg(v_sem_109_, v___f_111_);
 v___x_113_ = lean_unbox(v___x_112_);
 lean_dec(v___x_112_);
@@ -511,11 +527,19 @@ lean_dec(v___y_149_);
 return v_res_151_;
 }
 }
+static lean_object* _init_l_Std_Semaphore_release___closed__0(void){
+_start:
+{
+lean_object* v___f_152_; 
+v___f_152_ = lean_alloc_closure((void*)(l_Std_Semaphore_release___lam__0___boxed), 2, 0);
+return v___f_152_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Semaphore_release(lean_object* v_sem_153_){
 _start:
 {
 lean_object* v___f_155_; lean_object* v___x_156_; 
-v___f_155_ = ((lean_object*)(l_Std_Semaphore_release___closed__0));
+v___f_155_ = lean_obj_once(&l_Std_Semaphore_release___closed__0, &l_Std_Semaphore_release___closed__0_once, _init_l_Std_Semaphore_release___closed__0);
 v___x_156_ = l_Std_Mutex_atomically___at___00Std_Semaphore_acquire_spec__0___redArg(v_sem_153_, v___f_155_);
 if (lean_obj_tag(v___x_156_) == 1)
 {
@@ -565,11 +589,19 @@ lean_dec(v___y_168_);
 return v_res_170_;
 }
 }
+static lean_object* _init_l_Std_Semaphore_availablePermits___closed__0(void){
+_start:
+{
+lean_object* v___f_171_; 
+v___f_171_ = lean_alloc_closure((void*)(l_Std_Semaphore_availablePermits___lam__0___boxed), 2, 0);
+return v___f_171_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Semaphore_availablePermits(lean_object* v_sem_172_){
 _start:
 {
 lean_object* v___f_174_; lean_object* v___x_175_; 
-v___f_174_ = ((lean_object*)(l_Std_Semaphore_availablePermits___closed__0));
+v___f_174_ = lean_obj_once(&l_Std_Semaphore_availablePermits___closed__0, &l_Std_Semaphore_availablePermits___closed__0_once, _init_l_Std_Semaphore_availablePermits___closed__0);
 v___x_175_ = l_Std_Mutex_atomically___at___00Std_Semaphore_acquire_spec__0___redArg(v_sem_172_, v___f_174_);
 return v___x_175_;
 }

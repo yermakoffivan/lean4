@@ -53,8 +53,8 @@ LEAN_EXPORT lean_object* l_Array_filterPairsM___redArg(lean_object*, lean_object
 LEAN_EXPORT lean_object* l_Array_filterPairsM(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Array_mask_spec__0___redArg(lean_object*, size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Array_mask_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_array_object l_Array_mask___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Array_mask___redArg___closed__0 = (const lean_object*)&l_Array_mask___redArg___closed__0_value;
+static lean_once_cell_t l_Array_mask___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_mask___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Array_mask___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_mask___redArg___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_mask(lean_object*, lean_object*, lean_object*);
@@ -63,10 +63,10 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Uns
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Array_mask_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Array_zipMasked_spec__0___redArg(lean_object*, lean_object*, lean_object*, size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Array_zipMasked_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Array_zipMasked___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Array_mask___redArg___closed__0_value)}};
-static const lean_object* l_Array_zipMasked___redArg___closed__0 = (const lean_object*)&l_Array_zipMasked___redArg___closed__0_value;
-static const lean_ctor_object l_Array_zipMasked___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Array_zipMasked___redArg___closed__0_value)}};
-static const lean_object* l_Array_zipMasked___redArg___closed__1 = (const lean_object*)&l_Array_zipMasked___redArg___closed__1_value;
+static lean_once_cell_t l_Array_zipMasked___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_zipMasked___redArg___closed__0;
+static lean_once_cell_t l_Array_zipMasked___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_zipMasked___redArg___closed__1;
 LEAN_EXPORT lean_object* l_Array_zipMasked___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_zipMasked___redArg___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_zipMasked(lean_object*, lean_object*, lean_object*, lean_object*);
@@ -1047,12 +1047,21 @@ lean_dec_ref(v_as_368_);
 return v_res_374_;
 }
 }
+static lean_object* _init_l_Array_mask___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_375_; lean_object* v_ys_376_; 
+v___x_375_ = lean_unsigned_to_nat(0u);
+v_ys_376_ = lean_mk_empty_array_with_capacity(v___x_375_);
+return v_ys_376_;
+}
+}
 LEAN_EXPORT lean_object* l_Array_mask___redArg(lean_object* v_mask_377_, lean_object* v_xs_378_){
 _start:
 {
 lean_object* v___x_379_; lean_object* v_ys_380_; lean_object* v___x_381_; lean_object* v___x_382_; lean_object* v___x_383_; size_t v_sz_384_; size_t v___x_385_; lean_object* v___x_386_; lean_object* v_fst_387_; 
 v___x_379_ = lean_unsigned_to_nat(0u);
-v_ys_380_ = ((lean_object*)(l_Array_mask___redArg___closed__0));
+v_ys_380_ = lean_obj_once(&l_Array_mask___redArg___closed__0, &l_Array_mask___redArg___closed__0_once, _init_l_Array_mask___redArg___closed__0);
 v___x_381_ = lean_array_get_size(v_xs_378_);
 v___x_382_ = l_Array_toSubarray___redArg(v_xs_378_, v___x_379_, v___x_381_);
 v___x_383_ = lean_alloc_ctor(0, 2, 0);
@@ -1395,11 +1404,35 @@ lean_dec_ref(v_xs_475_);
 return v_res_483_;
 }
 }
+static lean_object* _init_l_Array_zipMasked___redArg___closed__0(void){
+_start:
+{
+lean_object* v_zs_484_; lean_object* v_i_485_; lean_object* v___x_486_; 
+v_zs_484_ = lean_obj_once(&l_Array_mask___redArg___closed__0, &l_Array_mask___redArg___closed__0_once, _init_l_Array_mask___redArg___closed__0);
+v_i_485_ = lean_unsigned_to_nat(0u);
+v___x_486_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_486_, 0, v_i_485_);
+lean_ctor_set(v___x_486_, 1, v_zs_484_);
+return v___x_486_;
+}
+}
+static lean_object* _init_l_Array_zipMasked___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_487_; lean_object* v_i_488_; lean_object* v___x_489_; 
+v___x_487_ = lean_obj_once(&l_Array_zipMasked___redArg___closed__0, &l_Array_zipMasked___redArg___closed__0_once, _init_l_Array_zipMasked___redArg___closed__0);
+v_i_488_ = lean_unsigned_to_nat(0u);
+v___x_489_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_489_, 0, v_i_488_);
+lean_ctor_set(v___x_489_, 1, v___x_487_);
+return v___x_489_;
+}
+}
 LEAN_EXPORT lean_object* l_Array_zipMasked___redArg(lean_object* v_mask_490_, lean_object* v_xs_491_, lean_object* v_ys_492_){
 _start:
 {
 lean_object* v___x_493_; size_t v_sz_494_; size_t v___x_495_; lean_object* v___x_496_; lean_object* v_snd_497_; lean_object* v_snd_498_; 
-v___x_493_ = ((lean_object*)(l_Array_zipMasked___redArg___closed__1));
+v___x_493_ = lean_obj_once(&l_Array_zipMasked___redArg___closed__1, &l_Array_zipMasked___redArg___closed__1_once, _init_l_Array_zipMasked___redArg___closed__1);
 v_sz_494_ = lean_array_size(v_mask_490_);
 v___x_495_ = ((size_t)0ULL);
 v___x_496_ = l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Array_zipMasked_spec__0___redArg(v_xs_491_, v_ys_492_, v_mask_490_, v_sz_494_, v___x_495_, v___x_493_);

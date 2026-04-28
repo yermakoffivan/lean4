@@ -47,87 +47,87 @@ LEAN_EXPORT lean_object* l_Std_Http_Version_v30_elim___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Version_v30_elim___redArg___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Version_v30_elim(lean_object*, uint8_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Version_v30_elim___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std_Http_instReprVersion_repr___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 21, .m_capacity = 21, .m_length = 20, .m_data = "Std.Http.Version.v10"};
-static const lean_object* l_Std_Http_instReprVersion_repr___closed__0 = (const lean_object*)&l_Std_Http_instReprVersion_repr___closed__0_value;
-static const lean_ctor_object l_Std_Http_instReprVersion_repr___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_instReprVersion_repr___closed__0_value)}};
-static const lean_object* l_Std_Http_instReprVersion_repr___closed__1 = (const lean_object*)&l_Std_Http_instReprVersion_repr___closed__1_value;
-static const lean_string_object l_Std_Http_instReprVersion_repr___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 21, .m_capacity = 21, .m_length = 20, .m_data = "Std.Http.Version.v11"};
-static const lean_object* l_Std_Http_instReprVersion_repr___closed__2 = (const lean_object*)&l_Std_Http_instReprVersion_repr___closed__2_value;
-static const lean_ctor_object l_Std_Http_instReprVersion_repr___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_instReprVersion_repr___closed__2_value)}};
-static const lean_object* l_Std_Http_instReprVersion_repr___closed__3 = (const lean_object*)&l_Std_Http_instReprVersion_repr___closed__3_value;
-static const lean_string_object l_Std_Http_instReprVersion_repr___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 21, .m_capacity = 21, .m_length = 20, .m_data = "Std.Http.Version.v20"};
-static const lean_object* l_Std_Http_instReprVersion_repr___closed__4 = (const lean_object*)&l_Std_Http_instReprVersion_repr___closed__4_value;
-static const lean_ctor_object l_Std_Http_instReprVersion_repr___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_instReprVersion_repr___closed__4_value)}};
-static const lean_object* l_Std_Http_instReprVersion_repr___closed__5 = (const lean_object*)&l_Std_Http_instReprVersion_repr___closed__5_value;
-static const lean_string_object l_Std_Http_instReprVersion_repr___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 21, .m_capacity = 21, .m_length = 20, .m_data = "Std.Http.Version.v30"};
-static const lean_object* l_Std_Http_instReprVersion_repr___closed__6 = (const lean_object*)&l_Std_Http_instReprVersion_repr___closed__6_value;
-static const lean_ctor_object l_Std_Http_instReprVersion_repr___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_instReprVersion_repr___closed__6_value)}};
-static const lean_object* l_Std_Http_instReprVersion_repr___closed__7 = (const lean_object*)&l_Std_Http_instReprVersion_repr___closed__7_value;
+static lean_once_cell_t l_Std_Http_instReprVersion_repr___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_instReprVersion_repr___closed__0;
+static lean_once_cell_t l_Std_Http_instReprVersion_repr___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_instReprVersion_repr___closed__1;
+static lean_once_cell_t l_Std_Http_instReprVersion_repr___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_instReprVersion_repr___closed__2;
+static lean_once_cell_t l_Std_Http_instReprVersion_repr___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_instReprVersion_repr___closed__3;
+static lean_once_cell_t l_Std_Http_instReprVersion_repr___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_instReprVersion_repr___closed__4;
+static lean_once_cell_t l_Std_Http_instReprVersion_repr___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_instReprVersion_repr___closed__5;
+static lean_once_cell_t l_Std_Http_instReprVersion_repr___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_instReprVersion_repr___closed__6;
+static lean_once_cell_t l_Std_Http_instReprVersion_repr___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_instReprVersion_repr___closed__7;
 static lean_once_cell_t l_Std_Http_instReprVersion_repr___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Http_instReprVersion_repr___closed__8;
 static lean_once_cell_t l_Std_Http_instReprVersion_repr___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Http_instReprVersion_repr___closed__9;
 LEAN_EXPORT lean_object* l_Std_Http_instReprVersion_repr(uint8_t, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_instReprVersion_repr___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Http_instReprVersion___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_instReprVersion_repr___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_instReprVersion___closed__0 = (const lean_object*)&l_Std_Http_instReprVersion___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Http_instReprVersion = (const lean_object*)&l_Std_Http_instReprVersion___closed__0_value;
+static lean_once_cell_t l_Std_Http_instReprVersion___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_instReprVersion___closed__0;
+LEAN_EXPORT lean_object* l_Std_Http_instReprVersion;
 LEAN_EXPORT uint8_t l_Std_Http_instInhabitedVersion_default;
 LEAN_EXPORT uint8_t l_Std_Http_instInhabitedVersion;
 LEAN_EXPORT uint8_t l_Std_Http_instBEqVersion_beq(uint8_t, uint8_t);
 LEAN_EXPORT lean_object* l_Std_Http_instBEqVersion_beq___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Http_instBEqVersion___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_instBEqVersion_beq___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_instBEqVersion___closed__0 = (const lean_object*)&l_Std_Http_instBEqVersion___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Http_instBEqVersion = (const lean_object*)&l_Std_Http_instBEqVersion___closed__0_value;
+static lean_once_cell_t l_Std_Http_instBEqVersion___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_instBEqVersion___closed__0;
+LEAN_EXPORT lean_object* l_Std_Http_instBEqVersion;
 LEAN_EXPORT uint8_t l_Std_Http_Version_ofNat(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Version_ofNat___boxed(lean_object*);
 LEAN_EXPORT uint8_t l_Std_Http_instDecidableEqVersion(uint8_t, uint8_t);
 LEAN_EXPORT lean_object* l_Std_Http_instDecidableEqVersion___boxed(lean_object*, lean_object*);
-static const lean_ctor_object l_Std_Http_Version_ofNumber_x3f___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(3) << 1) | 1))}};
-static const lean_object* l_Std_Http_Version_ofNumber_x3f___closed__0 = (const lean_object*)&l_Std_Http_Version_ofNumber_x3f___closed__0_value;
-static const lean_ctor_object l_Std_Http_Version_ofNumber_x3f___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(2) << 1) | 1))}};
-static const lean_object* l_Std_Http_Version_ofNumber_x3f___closed__1 = (const lean_object*)&l_Std_Http_Version_ofNumber_x3f___closed__1_value;
-static const lean_ctor_object l_Std_Http_Version_ofNumber_x3f___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(1) << 1) | 1))}};
-static const lean_object* l_Std_Http_Version_ofNumber_x3f___closed__2 = (const lean_object*)&l_Std_Http_Version_ofNumber_x3f___closed__2_value;
-static const lean_ctor_object l_Std_Http_Version_ofNumber_x3f___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_Http_Version_ofNumber_x3f___closed__3 = (const lean_object*)&l_Std_Http_Version_ofNumber_x3f___closed__3_value;
+static lean_once_cell_t l_Std_Http_Version_ofNumber_x3f___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Version_ofNumber_x3f___closed__0;
+static lean_once_cell_t l_Std_Http_Version_ofNumber_x3f___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Version_ofNumber_x3f___closed__1;
+static lean_once_cell_t l_Std_Http_Version_ofNumber_x3f___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Version_ofNumber_x3f___closed__2;
+static lean_once_cell_t l_Std_Http_Version_ofNumber_x3f___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Version_ofNumber_x3f___closed__3;
 LEAN_EXPORT lean_object* l_Std_Http_Version_ofNumber_x3f(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Version_ofNumber_x3f___boxed(lean_object*, lean_object*);
-static const lean_string_object l_Std_Http_Version_ofString_x3f___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "HTTP/1.0"};
-static const lean_object* l_Std_Http_Version_ofString_x3f___closed__0 = (const lean_object*)&l_Std_Http_Version_ofString_x3f___closed__0_value;
-static const lean_string_object l_Std_Http_Version_ofString_x3f___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "HTTP/1.1"};
-static const lean_object* l_Std_Http_Version_ofString_x3f___closed__1 = (const lean_object*)&l_Std_Http_Version_ofString_x3f___closed__1_value;
-static const lean_string_object l_Std_Http_Version_ofString_x3f___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "HTTP/2.0"};
-static const lean_object* l_Std_Http_Version_ofString_x3f___closed__2 = (const lean_object*)&l_Std_Http_Version_ofString_x3f___closed__2_value;
-static const lean_string_object l_Std_Http_Version_ofString_x3f___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "HTTP/3.0"};
-static const lean_object* l_Std_Http_Version_ofString_x3f___closed__3 = (const lean_object*)&l_Std_Http_Version_ofString_x3f___closed__3_value;
+static lean_once_cell_t l_Std_Http_Version_ofString_x3f___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Version_ofString_x3f___closed__0;
+static lean_once_cell_t l_Std_Http_Version_ofString_x3f___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Version_ofString_x3f___closed__1;
+static lean_once_cell_t l_Std_Http_Version_ofString_x3f___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Version_ofString_x3f___closed__2;
+static lean_once_cell_t l_Std_Http_Version_ofString_x3f___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Version_ofString_x3f___closed__3;
 LEAN_EXPORT lean_object* l_Std_Http_Version_ofString_x3f(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Version_ofString_x3f___boxed(lean_object*);
 LEAN_EXPORT uint8_t l_panic___at___00Std_Http_Version_ofString_x21_spec__0(lean_object*);
 LEAN_EXPORT lean_object* l_panic___at___00Std_Http_Version_ofString_x21_spec__0___boxed(lean_object*);
-static const lean_string_object l_Std_Http_Version_ofString_x21___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 22, .m_capacity = 22, .m_length = 21, .m_data = "Std.Http.Data.Version"};
-static const lean_object* l_Std_Http_Version_ofString_x21___closed__0 = (const lean_object*)&l_Std_Http_Version_ofString_x21___closed__0_value;
-static const lean_string_object l_Std_Http_Version_ofString_x21___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 27, .m_capacity = 27, .m_length = 26, .m_data = "Std.Http.Version.ofString!"};
-static const lean_object* l_Std_Http_Version_ofString_x21___closed__1 = (const lean_object*)&l_Std_Http_Version_ofString_x21___closed__1_value;
-static const lean_string_object l_Std_Http_Version_ofString_x21___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 23, .m_capacity = 23, .m_length = 22, .m_data = "invalid HTTP version: "};
-static const lean_object* l_Std_Http_Version_ofString_x21___closed__2 = (const lean_object*)&l_Std_Http_Version_ofString_x21___closed__2_value;
+static lean_once_cell_t l_Std_Http_Version_ofString_x21___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Version_ofString_x21___closed__0;
+static lean_once_cell_t l_Std_Http_Version_ofString_x21___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Version_ofString_x21___closed__1;
+static lean_once_cell_t l_Std_Http_Version_ofString_x21___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Version_ofString_x21___closed__2;
 LEAN_EXPORT uint8_t l_Std_Http_Version_ofString_x21(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Version_ofString_x21___boxed(lean_object*);
-static const lean_ctor_object l_Std_Http_Version_toNumber___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(1) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_Http_Version_toNumber___closed__0 = (const lean_object*)&l_Std_Http_Version_toNumber___closed__0_value;
-static const lean_ctor_object l_Std_Http_Version_toNumber___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(1) << 1) | 1)),((lean_object*)(((size_t)(1) << 1) | 1))}};
-static const lean_object* l_Std_Http_Version_toNumber___closed__1 = (const lean_object*)&l_Std_Http_Version_toNumber___closed__1_value;
-static const lean_ctor_object l_Std_Http_Version_toNumber___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(2) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_Http_Version_toNumber___closed__2 = (const lean_object*)&l_Std_Http_Version_toNumber___closed__2_value;
-static const lean_ctor_object l_Std_Http_Version_toNumber___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(3) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_Http_Version_toNumber___closed__3 = (const lean_object*)&l_Std_Http_Version_toNumber___closed__3_value;
+static lean_once_cell_t l_Std_Http_Version_toNumber___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Version_toNumber___closed__0;
+static lean_once_cell_t l_Std_Http_Version_toNumber___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Version_toNumber___closed__1;
+static lean_once_cell_t l_Std_Http_Version_toNumber___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Version_toNumber___closed__2;
+static lean_once_cell_t l_Std_Http_Version_toNumber___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Version_toNumber___closed__3;
 LEAN_EXPORT lean_object* l_Std_Http_Version_toNumber(uint8_t);
 LEAN_EXPORT lean_object* l_Std_Http_Version_toNumber___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Version_instToString___lam__0(uint8_t);
 LEAN_EXPORT lean_object* l_Std_Http_Version_instToString___lam__0___boxed(lean_object*);
-static const lean_closure_object l_Std_Http_Version_instToString___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Version_instToString___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Version_instToString___closed__0 = (const lean_object*)&l_Std_Http_Version_instToString___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Http_Version_instToString = (const lean_object*)&l_Std_Http_Version_instToString___closed__0_value;
+static lean_once_cell_t l_Std_Http_Version_instToString___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Version_instToString___closed__0;
+LEAN_EXPORT lean_object* l_Std_Http_Version_instToString;
 LEAN_EXPORT lean_object* l_Std_Http_Version_ctorIdx(uint8_t v_x_1_){
 _start:
 {
@@ -352,6 +352,78 @@ lean_dec(v_v30_78_);
 return v_res_80_;
 }
 }
+static lean_object* _init_l_Std_Http_instReprVersion_repr___closed__0(void){
+_start:
+{
+lean_object* v___x_81_; 
+v___x_81_ = lean_mk_string_unchecked("Std.Http.Version.v10", 20, 20);
+return v___x_81_;
+}
+}
+static lean_object* _init_l_Std_Http_instReprVersion_repr___closed__1(void){
+_start:
+{
+lean_object* v___x_82_; lean_object* v___x_83_; 
+v___x_82_ = lean_obj_once(&l_Std_Http_instReprVersion_repr___closed__0, &l_Std_Http_instReprVersion_repr___closed__0_once, _init_l_Std_Http_instReprVersion_repr___closed__0);
+v___x_83_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_83_, 0, v___x_82_);
+return v___x_83_;
+}
+}
+static lean_object* _init_l_Std_Http_instReprVersion_repr___closed__2(void){
+_start:
+{
+lean_object* v___x_84_; 
+v___x_84_ = lean_mk_string_unchecked("Std.Http.Version.v11", 20, 20);
+return v___x_84_;
+}
+}
+static lean_object* _init_l_Std_Http_instReprVersion_repr___closed__3(void){
+_start:
+{
+lean_object* v___x_85_; lean_object* v___x_86_; 
+v___x_85_ = lean_obj_once(&l_Std_Http_instReprVersion_repr___closed__2, &l_Std_Http_instReprVersion_repr___closed__2_once, _init_l_Std_Http_instReprVersion_repr___closed__2);
+v___x_86_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_86_, 0, v___x_85_);
+return v___x_86_;
+}
+}
+static lean_object* _init_l_Std_Http_instReprVersion_repr___closed__4(void){
+_start:
+{
+lean_object* v___x_87_; 
+v___x_87_ = lean_mk_string_unchecked("Std.Http.Version.v20", 20, 20);
+return v___x_87_;
+}
+}
+static lean_object* _init_l_Std_Http_instReprVersion_repr___closed__5(void){
+_start:
+{
+lean_object* v___x_88_; lean_object* v___x_89_; 
+v___x_88_ = lean_obj_once(&l_Std_Http_instReprVersion_repr___closed__4, &l_Std_Http_instReprVersion_repr___closed__4_once, _init_l_Std_Http_instReprVersion_repr___closed__4);
+v___x_89_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_89_, 0, v___x_88_);
+return v___x_89_;
+}
+}
+static lean_object* _init_l_Std_Http_instReprVersion_repr___closed__6(void){
+_start:
+{
+lean_object* v___x_90_; 
+v___x_90_ = lean_mk_string_unchecked("Std.Http.Version.v30", 20, 20);
+return v___x_90_;
+}
+}
+static lean_object* _init_l_Std_Http_instReprVersion_repr___closed__7(void){
+_start:
+{
+lean_object* v___x_91_; lean_object* v___x_92_; 
+v___x_91_ = lean_obj_once(&l_Std_Http_instReprVersion_repr___closed__6, &l_Std_Http_instReprVersion_repr___closed__6_once, _init_l_Std_Http_instReprVersion_repr___closed__6);
+v___x_92_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_92_, 0, v___x_91_);
+return v___x_92_;
+}
+}
 static lean_object* _init_l_Std_Http_instReprVersion_repr___closed__8(void){
 _start:
 {
@@ -460,7 +532,7 @@ goto v___jp_120_;
 v___jp_99_:
 {
 lean_object* v___x_101_; lean_object* v___x_102_; uint8_t v___x_103_; lean_object* v___x_104_; lean_object* v___x_105_; 
-v___x_101_ = ((lean_object*)(l_Std_Http_instReprVersion_repr___closed__1));
+v___x_101_ = lean_obj_once(&l_Std_Http_instReprVersion_repr___closed__1, &l_Std_Http_instReprVersion_repr___closed__1_once, _init_l_Std_Http_instReprVersion_repr___closed__1);
 lean_inc(v___y_100_);
 v___x_102_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_102_, 0, v___y_100_);
@@ -475,7 +547,7 @@ return v___x_105_;
 v___jp_106_:
 {
 lean_object* v___x_108_; lean_object* v___x_109_; uint8_t v___x_110_; lean_object* v___x_111_; lean_object* v___x_112_; 
-v___x_108_ = ((lean_object*)(l_Std_Http_instReprVersion_repr___closed__3));
+v___x_108_ = lean_obj_once(&l_Std_Http_instReprVersion_repr___closed__3, &l_Std_Http_instReprVersion_repr___closed__3_once, _init_l_Std_Http_instReprVersion_repr___closed__3);
 lean_inc(v___y_107_);
 v___x_109_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_109_, 0, v___y_107_);
@@ -490,7 +562,7 @@ return v___x_112_;
 v___jp_113_:
 {
 lean_object* v___x_115_; lean_object* v___x_116_; uint8_t v___x_117_; lean_object* v___x_118_; lean_object* v___x_119_; 
-v___x_115_ = ((lean_object*)(l_Std_Http_instReprVersion_repr___closed__5));
+v___x_115_ = lean_obj_once(&l_Std_Http_instReprVersion_repr___closed__5, &l_Std_Http_instReprVersion_repr___closed__5_once, _init_l_Std_Http_instReprVersion_repr___closed__5);
 lean_inc(v___y_114_);
 v___x_116_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_116_, 0, v___y_114_);
@@ -505,7 +577,7 @@ return v___x_119_;
 v___jp_120_:
 {
 lean_object* v___x_122_; lean_object* v___x_123_; uint8_t v___x_124_; lean_object* v___x_125_; lean_object* v___x_126_; 
-v___x_122_ = ((lean_object*)(l_Std_Http_instReprVersion_repr___closed__7));
+v___x_122_ = lean_obj_once(&l_Std_Http_instReprVersion_repr___closed__7, &l_Std_Http_instReprVersion_repr___closed__7_once, _init_l_Std_Http_instReprVersion_repr___closed__7);
 lean_inc(v___y_121_);
 v___x_123_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_123_, 0, v___y_121_);
@@ -527,6 +599,22 @@ v_x_233__boxed_145_ = lean_unbox(v_x_143_);
 v_res_146_ = l_Std_Http_instReprVersion_repr(v_x_233__boxed_145_, v_prec_144_);
 lean_dec(v_prec_144_);
 return v_res_146_;
+}
+}
+static lean_object* _init_l_Std_Http_instReprVersion___closed__0(void){
+_start:
+{
+lean_object* v___x_147_; 
+v___x_147_ = lean_alloc_closure((void*)(l_Std_Http_instReprVersion_repr___boxed), 2, 0);
+return v___x_147_;
+}
+}
+static lean_object* _init_l_Std_Http_instReprVersion(void){
+_start:
+{
+lean_object* v___x_148_; 
+v___x_148_ = lean_obj_once(&l_Std_Http_instReprVersion___closed__0, &l_Std_Http_instReprVersion___closed__0_once, _init_l_Std_Http_instReprVersion___closed__0);
+return v___x_148_;
 }
 }
 static uint8_t _init_l_Std_Http_instInhabitedVersion_default(void){
@@ -566,6 +654,22 @@ v_y_18__boxed_159_ = lean_unbox(v_y_157_);
 v_res_160_ = l_Std_Http_instBEqVersion_beq(v_x_17__boxed_158_, v_y_18__boxed_159_);
 v_r_161_ = lean_box(v_res_160_);
 return v_r_161_;
+}
+}
+static lean_object* _init_l_Std_Http_instBEqVersion___closed__0(void){
+_start:
+{
+lean_object* v___x_162_; 
+v___x_162_ = lean_alloc_closure((void*)(l_Std_Http_instBEqVersion_beq___boxed), 2, 0);
+return v___x_162_;
+}
+}
+static lean_object* _init_l_Std_Http_instBEqVersion(void){
+_start:
+{
+lean_object* v___x_163_; 
+v___x_163_ = lean_obj_once(&l_Std_Http_instBEqVersion___closed__0, &l_Std_Http_instBEqVersion___closed__0_once, _init_l_Std_Http_instBEqVersion___closed__0);
+return v___x_163_;
 }
 }
 LEAN_EXPORT uint8_t l_Std_Http_Version_ofNat(lean_object* v_n_164_){
@@ -645,6 +749,50 @@ v_r_188_ = lean_box(v_res_187_);
 return v_r_188_;
 }
 }
+static lean_object* _init_l_Std_Http_Version_ofNumber_x3f___closed__0(void){
+_start:
+{
+uint8_t v___x_189_; lean_object* v___x_190_; lean_object* v___x_191_; 
+v___x_189_ = 3;
+v___x_190_ = lean_box(v___x_189_);
+v___x_191_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_191_, 0, v___x_190_);
+return v___x_191_;
+}
+}
+static lean_object* _init_l_Std_Http_Version_ofNumber_x3f___closed__1(void){
+_start:
+{
+uint8_t v___x_192_; lean_object* v___x_193_; lean_object* v___x_194_; 
+v___x_192_ = 2;
+v___x_193_ = lean_box(v___x_192_);
+v___x_194_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_194_, 0, v___x_193_);
+return v___x_194_;
+}
+}
+static lean_object* _init_l_Std_Http_Version_ofNumber_x3f___closed__2(void){
+_start:
+{
+uint8_t v___x_195_; lean_object* v___x_196_; lean_object* v___x_197_; 
+v___x_195_ = 1;
+v___x_196_ = lean_box(v___x_195_);
+v___x_197_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_197_, 0, v___x_196_);
+return v___x_197_;
+}
+}
+static lean_object* _init_l_Std_Http_Version_ofNumber_x3f___closed__3(void){
+_start:
+{
+uint8_t v___x_198_; lean_object* v___x_199_; lean_object* v___x_200_; 
+v___x_198_ = 0;
+v___x_199_ = lean_box(v___x_198_);
+v___x_200_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_200_, 0, v___x_199_);
+return v___x_200_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Http_Version_ofNumber_x3f(lean_object* v_x_201_, lean_object* v_x_202_){
 _start:
 {
@@ -681,7 +829,7 @@ return v___x_212_;
 else
 {
 lean_object* v___x_213_; 
-v___x_213_ = ((lean_object*)(l_Std_Http_Version_ofNumber_x3f___closed__0));
+v___x_213_ = lean_obj_once(&l_Std_Http_Version_ofNumber_x3f___closed__0, &l_Std_Http_Version_ofNumber_x3f___closed__0_once, _init_l_Std_Http_Version_ofNumber_x3f___closed__0);
 return v___x_213_;
 }
 }
@@ -700,7 +848,7 @@ return v___x_216_;
 else
 {
 lean_object* v___x_217_; 
-v___x_217_ = ((lean_object*)(l_Std_Http_Version_ofNumber_x3f___closed__1));
+v___x_217_ = lean_obj_once(&l_Std_Http_Version_ofNumber_x3f___closed__1, &l_Std_Http_Version_ofNumber_x3f___closed__1_once, _init_l_Std_Http_Version_ofNumber_x3f___closed__1);
 return v___x_217_;
 }
 }
@@ -723,14 +871,14 @@ return v___x_221_;
 else
 {
 lean_object* v___x_222_; 
-v___x_222_ = ((lean_object*)(l_Std_Http_Version_ofNumber_x3f___closed__2));
+v___x_222_ = lean_obj_once(&l_Std_Http_Version_ofNumber_x3f___closed__2, &l_Std_Http_Version_ofNumber_x3f___closed__2_once, _init_l_Std_Http_Version_ofNumber_x3f___closed__2);
 return v___x_222_;
 }
 }
 else
 {
 lean_object* v___x_223_; 
-v___x_223_ = ((lean_object*)(l_Std_Http_Version_ofNumber_x3f___closed__3));
+v___x_223_ = lean_obj_once(&l_Std_Http_Version_ofNumber_x3f___closed__3, &l_Std_Http_Version_ofNumber_x3f___closed__3_once, _init_l_Std_Http_Version_ofNumber_x3f___closed__3);
 return v___x_223_;
 }
 }
@@ -746,26 +894,58 @@ lean_dec(v_x_224_);
 return v_res_226_;
 }
 }
+static lean_object* _init_l_Std_Http_Version_ofString_x3f___closed__0(void){
+_start:
+{
+lean_object* v___x_227_; 
+v___x_227_ = lean_mk_string_unchecked("HTTP/1.0", 8, 8);
+return v___x_227_;
+}
+}
+static lean_object* _init_l_Std_Http_Version_ofString_x3f___closed__1(void){
+_start:
+{
+lean_object* v___x_228_; 
+v___x_228_ = lean_mk_string_unchecked("HTTP/1.1", 8, 8);
+return v___x_228_;
+}
+}
+static lean_object* _init_l_Std_Http_Version_ofString_x3f___closed__2(void){
+_start:
+{
+lean_object* v___x_229_; 
+v___x_229_ = lean_mk_string_unchecked("HTTP/2.0", 8, 8);
+return v___x_229_;
+}
+}
+static lean_object* _init_l_Std_Http_Version_ofString_x3f___closed__3(void){
+_start:
+{
+lean_object* v___x_230_; 
+v___x_230_ = lean_mk_string_unchecked("HTTP/3.0", 8, 8);
+return v___x_230_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Http_Version_ofString_x3f(lean_object* v_x_231_){
 _start:
 {
 lean_object* v___x_232_; uint8_t v___x_233_; 
-v___x_232_ = ((lean_object*)(l_Std_Http_Version_ofString_x3f___closed__0));
+v___x_232_ = lean_obj_once(&l_Std_Http_Version_ofString_x3f___closed__0, &l_Std_Http_Version_ofString_x3f___closed__0_once, _init_l_Std_Http_Version_ofString_x3f___closed__0);
 v___x_233_ = lean_string_dec_eq(v_x_231_, v___x_232_);
 if (v___x_233_ == 0)
 {
 lean_object* v___x_234_; uint8_t v___x_235_; 
-v___x_234_ = ((lean_object*)(l_Std_Http_Version_ofString_x3f___closed__1));
+v___x_234_ = lean_obj_once(&l_Std_Http_Version_ofString_x3f___closed__1, &l_Std_Http_Version_ofString_x3f___closed__1_once, _init_l_Std_Http_Version_ofString_x3f___closed__1);
 v___x_235_ = lean_string_dec_eq(v_x_231_, v___x_234_);
 if (v___x_235_ == 0)
 {
 lean_object* v___x_236_; uint8_t v___x_237_; 
-v___x_236_ = ((lean_object*)(l_Std_Http_Version_ofString_x3f___closed__2));
+v___x_236_ = lean_obj_once(&l_Std_Http_Version_ofString_x3f___closed__2, &l_Std_Http_Version_ofString_x3f___closed__2_once, _init_l_Std_Http_Version_ofString_x3f___closed__2);
 v___x_237_ = lean_string_dec_eq(v_x_231_, v___x_236_);
 if (v___x_237_ == 0)
 {
 lean_object* v___x_238_; uint8_t v___x_239_; 
-v___x_238_ = ((lean_object*)(l_Std_Http_Version_ofString_x3f___closed__3));
+v___x_238_ = lean_obj_once(&l_Std_Http_Version_ofString_x3f___closed__3, &l_Std_Http_Version_ofString_x3f___closed__3_once, _init_l_Std_Http_Version_ofString_x3f___closed__3);
 v___x_239_ = lean_string_dec_eq(v_x_231_, v___x_238_);
 if (v___x_239_ == 0)
 {
@@ -776,28 +956,28 @@ return v___x_240_;
 else
 {
 lean_object* v___x_241_; 
-v___x_241_ = ((lean_object*)(l_Std_Http_Version_ofNumber_x3f___closed__0));
+v___x_241_ = lean_obj_once(&l_Std_Http_Version_ofNumber_x3f___closed__0, &l_Std_Http_Version_ofNumber_x3f___closed__0_once, _init_l_Std_Http_Version_ofNumber_x3f___closed__0);
 return v___x_241_;
 }
 }
 else
 {
 lean_object* v___x_242_; 
-v___x_242_ = ((lean_object*)(l_Std_Http_Version_ofNumber_x3f___closed__1));
+v___x_242_ = lean_obj_once(&l_Std_Http_Version_ofNumber_x3f___closed__1, &l_Std_Http_Version_ofNumber_x3f___closed__1_once, _init_l_Std_Http_Version_ofNumber_x3f___closed__1);
 return v___x_242_;
 }
 }
 else
 {
 lean_object* v___x_243_; 
-v___x_243_ = ((lean_object*)(l_Std_Http_Version_ofNumber_x3f___closed__2));
+v___x_243_ = lean_obj_once(&l_Std_Http_Version_ofNumber_x3f___closed__2, &l_Std_Http_Version_ofNumber_x3f___closed__2_once, _init_l_Std_Http_Version_ofNumber_x3f___closed__2);
 return v___x_243_;
 }
 }
 else
 {
 lean_object* v___x_244_; 
-v___x_244_ = ((lean_object*)(l_Std_Http_Version_ofNumber_x3f___closed__3));
+v___x_244_ = lean_obj_once(&l_Std_Http_Version_ofNumber_x3f___closed__3, &l_Std_Http_Version_ofNumber_x3f___closed__3_once, _init_l_Std_Http_Version_ofNumber_x3f___closed__3);
 return v___x_244_;
 }
 }
@@ -833,6 +1013,30 @@ v_r_254_ = lean_box(v_res_253_);
 return v_r_254_;
 }
 }
+static lean_object* _init_l_Std_Http_Version_ofString_x21___closed__0(void){
+_start:
+{
+lean_object* v___x_255_; 
+v___x_255_ = lean_mk_string_unchecked("Std.Http.Data.Version", 21, 21);
+return v___x_255_;
+}
+}
+static lean_object* _init_l_Std_Http_Version_ofString_x21___closed__1(void){
+_start:
+{
+lean_object* v___x_256_; 
+v___x_256_ = lean_mk_string_unchecked("Std.Http.Version.ofString!", 26, 26);
+return v___x_256_;
+}
+}
+static lean_object* _init_l_Std_Http_Version_ofString_x21___closed__2(void){
+_start:
+{
+lean_object* v___x_257_; 
+v___x_257_ = lean_mk_string_unchecked("invalid HTTP version: ", 22, 22);
+return v___x_257_;
+}
+}
 LEAN_EXPORT uint8_t l_Std_Http_Version_ofString_x21(lean_object* v_s_258_){
 _start:
 {
@@ -841,11 +1045,11 @@ v___x_259_ = l_Std_Http_Version_ofString_x3f(v_s_258_);
 if (lean_obj_tag(v___x_259_) == 0)
 {
 lean_object* v___x_260_; lean_object* v___x_261_; lean_object* v___x_262_; lean_object* v___x_263_; lean_object* v___x_264_; lean_object* v___x_265_; lean_object* v___x_266_; lean_object* v___x_267_; uint8_t v___x_268_; 
-v___x_260_ = ((lean_object*)(l_Std_Http_Version_ofString_x21___closed__0));
-v___x_261_ = ((lean_object*)(l_Std_Http_Version_ofString_x21___closed__1));
+v___x_260_ = lean_obj_once(&l_Std_Http_Version_ofString_x21___closed__0, &l_Std_Http_Version_ofString_x21___closed__0_once, _init_l_Std_Http_Version_ofString_x21___closed__0);
+v___x_261_ = lean_obj_once(&l_Std_Http_Version_ofString_x21___closed__1, &l_Std_Http_Version_ofString_x21___closed__1_once, _init_l_Std_Http_Version_ofString_x21___closed__1);
 v___x_262_ = lean_unsigned_to_nat(81u);
 v___x_263_ = lean_unsigned_to_nat(12u);
-v___x_264_ = ((lean_object*)(l_Std_Http_Version_ofString_x21___closed__2));
+v___x_264_ = lean_obj_once(&l_Std_Http_Version_ofString_x21___closed__2, &l_Std_Http_Version_ofString_x21___closed__2_once, _init_l_Std_Http_Version_ofString_x21___closed__2);
 v___x_265_ = l_String_quote(v_s_258_);
 v___x_266_ = lean_string_append(v___x_264_, v___x_265_);
 lean_dec_ref(v___x_265_);
@@ -876,6 +1080,53 @@ v_r_273_ = lean_box(v_res_272_);
 return v_r_273_;
 }
 }
+static lean_object* _init_l_Std_Http_Version_toNumber___closed__0(void){
+_start:
+{
+lean_object* v___x_274_; lean_object* v___x_275_; lean_object* v___x_276_; 
+v___x_274_ = lean_unsigned_to_nat(0u);
+v___x_275_ = lean_unsigned_to_nat(1u);
+v___x_276_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_276_, 0, v___x_275_);
+lean_ctor_set(v___x_276_, 1, v___x_274_);
+return v___x_276_;
+}
+}
+static lean_object* _init_l_Std_Http_Version_toNumber___closed__1(void){
+_start:
+{
+lean_object* v___x_277_; lean_object* v___x_278_; 
+v___x_277_ = lean_unsigned_to_nat(1u);
+v___x_278_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_278_, 0, v___x_277_);
+lean_ctor_set(v___x_278_, 1, v___x_277_);
+return v___x_278_;
+}
+}
+static lean_object* _init_l_Std_Http_Version_toNumber___closed__2(void){
+_start:
+{
+lean_object* v___x_279_; lean_object* v___x_280_; lean_object* v___x_281_; 
+v___x_279_ = lean_unsigned_to_nat(0u);
+v___x_280_ = lean_unsigned_to_nat(2u);
+v___x_281_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_281_, 0, v___x_280_);
+lean_ctor_set(v___x_281_, 1, v___x_279_);
+return v___x_281_;
+}
+}
+static lean_object* _init_l_Std_Http_Version_toNumber___closed__3(void){
+_start:
+{
+lean_object* v___x_282_; lean_object* v___x_283_; lean_object* v___x_284_; 
+v___x_282_ = lean_unsigned_to_nat(0u);
+v___x_283_ = lean_unsigned_to_nat(3u);
+v___x_284_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_284_, 0, v___x_283_);
+lean_ctor_set(v___x_284_, 1, v___x_282_);
+return v___x_284_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Http_Version_toNumber(uint8_t v_x_285_){
 _start:
 {
@@ -884,25 +1135,25 @@ switch(v_x_285_)
 case 0:
 {
 lean_object* v___x_286_; 
-v___x_286_ = ((lean_object*)(l_Std_Http_Version_toNumber___closed__0));
+v___x_286_ = lean_obj_once(&l_Std_Http_Version_toNumber___closed__0, &l_Std_Http_Version_toNumber___closed__0_once, _init_l_Std_Http_Version_toNumber___closed__0);
 return v___x_286_;
 }
 case 1:
 {
 lean_object* v___x_287_; 
-v___x_287_ = ((lean_object*)(l_Std_Http_Version_toNumber___closed__1));
+v___x_287_ = lean_obj_once(&l_Std_Http_Version_toNumber___closed__1, &l_Std_Http_Version_toNumber___closed__1_once, _init_l_Std_Http_Version_toNumber___closed__1);
 return v___x_287_;
 }
 case 2:
 {
 lean_object* v___x_288_; 
-v___x_288_ = ((lean_object*)(l_Std_Http_Version_toNumber___closed__2));
+v___x_288_ = lean_obj_once(&l_Std_Http_Version_toNumber___closed__2, &l_Std_Http_Version_toNumber___closed__2_once, _init_l_Std_Http_Version_toNumber___closed__2);
 return v___x_288_;
 }
 default: 
 {
 lean_object* v___x_289_; 
-v___x_289_ = ((lean_object*)(l_Std_Http_Version_toNumber___closed__3));
+v___x_289_ = lean_obj_once(&l_Std_Http_Version_toNumber___closed__3, &l_Std_Http_Version_toNumber___closed__3_once, _init_l_Std_Http_Version_toNumber___closed__3);
 return v___x_289_;
 }
 }
@@ -925,25 +1176,25 @@ switch(v_x_293_)
 case 0:
 {
 lean_object* v___x_294_; 
-v___x_294_ = ((lean_object*)(l_Std_Http_Version_ofString_x3f___closed__0));
+v___x_294_ = lean_obj_once(&l_Std_Http_Version_ofString_x3f___closed__0, &l_Std_Http_Version_ofString_x3f___closed__0_once, _init_l_Std_Http_Version_ofString_x3f___closed__0);
 return v___x_294_;
 }
 case 1:
 {
 lean_object* v___x_295_; 
-v___x_295_ = ((lean_object*)(l_Std_Http_Version_ofString_x3f___closed__1));
+v___x_295_ = lean_obj_once(&l_Std_Http_Version_ofString_x3f___closed__1, &l_Std_Http_Version_ofString_x3f___closed__1_once, _init_l_Std_Http_Version_ofString_x3f___closed__1);
 return v___x_295_;
 }
 case 2:
 {
 lean_object* v___x_296_; 
-v___x_296_ = ((lean_object*)(l_Std_Http_Version_ofString_x3f___closed__2));
+v___x_296_ = lean_obj_once(&l_Std_Http_Version_ofString_x3f___closed__2, &l_Std_Http_Version_ofString_x3f___closed__2_once, _init_l_Std_Http_Version_ofString_x3f___closed__2);
 return v___x_296_;
 }
 default: 
 {
 lean_object* v___x_297_; 
-v___x_297_ = ((lean_object*)(l_Std_Http_Version_ofString_x3f___closed__3));
+v___x_297_ = lean_obj_once(&l_Std_Http_Version_ofString_x3f___closed__3, &l_Std_Http_Version_ofString_x3f___closed__3_once, _init_l_Std_Http_Version_ofString_x3f___closed__3);
 return v___x_297_;
 }
 }
@@ -956,6 +1207,22 @@ uint8_t v_x_42__boxed_299_; lean_object* v_res_300_;
 v_x_42__boxed_299_ = lean_unbox(v_x_298_);
 v_res_300_ = l_Std_Http_Version_instToString___lam__0(v_x_42__boxed_299_);
 return v_res_300_;
+}
+}
+static lean_object* _init_l_Std_Http_Version_instToString___closed__0(void){
+_start:
+{
+lean_object* v___f_301_; 
+v___f_301_ = lean_alloc_closure((void*)(l_Std_Http_Version_instToString___lam__0___boxed), 1, 0);
+return v___f_301_;
+}
+}
+static lean_object* _init_l_Std_Http_Version_instToString(void){
+_start:
+{
+lean_object* v___f_302_; 
+v___f_302_ = lean_obj_once(&l_Std_Http_Version_instToString___closed__0, &l_Std_Http_Version_instToString___closed__0_once, _init_l_Std_Http_Version_instToString___closed__0);
+return v___f_302_;
 }
 }
 lean_object* runtime_initialize_Init_Data_ToString(uint8_t builtin);
@@ -971,8 +1238,14 @@ lean_dec_ref(res);
 res = runtime_initialize_Init_Data_String_Basic(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Std_Http_instReprVersion = _init_l_Std_Http_instReprVersion();
+lean_mark_persistent(l_Std_Http_instReprVersion);
 l_Std_Http_instInhabitedVersion_default = _init_l_Std_Http_instInhabitedVersion_default();
 l_Std_Http_instInhabitedVersion = _init_l_Std_Http_instInhabitedVersion();
+l_Std_Http_instBEqVersion = _init_l_Std_Http_instBEqVersion();
+lean_mark_persistent(l_Std_Http_instBEqVersion);
+l_Std_Http_Version_instToString = _init_l_Std_Http_Version_instToString();
+lean_mark_persistent(l_Std_Http_Version_instToString);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

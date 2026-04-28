@@ -76,20 +76,20 @@ LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_Raw_u2080_Const_get_x3f___at___
 LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_Raw_u2080_Const_get_x3f___at___00Lean_ShareCommon_objectFactory___elam__1_spec__1___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_ShareCommon_objectFactory___elam__1(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_ShareCommon_objectFactory___elam__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Lean_ShareCommon_objectFactory___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_ShareCommon_objectFactory___elam__0___boxed, .m_arity = 5, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_ShareCommon_objectFactory___closed__0 = (const lean_object*)&l_Lean_ShareCommon_objectFactory___closed__0_value;
-static const lean_closure_object l_Lean_ShareCommon_objectFactory___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_ShareCommon_objectFactory___elam__1___boxed, .m_arity = 6, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_ShareCommon_objectFactory___closed__1 = (const lean_object*)&l_Lean_ShareCommon_objectFactory___closed__1_value;
-static const lean_closure_object l_Lean_ShareCommon_objectFactory___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_ShareCommon_objectFactory___elam__2, .m_arity = 7, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_ShareCommon_objectFactory___closed__2 = (const lean_object*)&l_Lean_ShareCommon_objectFactory___closed__2_value;
-static const lean_closure_object l_Lean_ShareCommon_objectFactory___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_ShareCommon_objectFactory___elam__3___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_ShareCommon_objectFactory___closed__3 = (const lean_object*)&l_Lean_ShareCommon_objectFactory___closed__3_value;
-static const lean_closure_object l_Lean_ShareCommon_objectFactory___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_ShareCommon_objectFactory___elam__4___boxed, .m_arity = 5, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_ShareCommon_objectFactory___closed__4 = (const lean_object*)&l_Lean_ShareCommon_objectFactory___closed__4_value;
-static const lean_closure_object l_Lean_ShareCommon_objectFactory___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_ShareCommon_objectFactory___elam__5, .m_arity = 5, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_ShareCommon_objectFactory___closed__5 = (const lean_object*)&l_Lean_ShareCommon_objectFactory___closed__5_value;
-static const lean_ctor_object l_Lean_ShareCommon_objectFactory___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*6 + 0, .m_other = 6, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lean_ShareCommon_objectFactory___closed__0_value),((lean_object*)&l_Lean_ShareCommon_objectFactory___closed__1_value),((lean_object*)&l_Lean_ShareCommon_objectFactory___closed__2_value),((lean_object*)&l_Lean_ShareCommon_objectFactory___closed__3_value),((lean_object*)&l_Lean_ShareCommon_objectFactory___closed__4_value),((lean_object*)&l_Lean_ShareCommon_objectFactory___closed__5_value)}};
-static const lean_object* l_Lean_ShareCommon_objectFactory___closed__6 = (const lean_object*)&l_Lean_ShareCommon_objectFactory___closed__6_value;
+static lean_once_cell_t l_Lean_ShareCommon_objectFactory___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_ShareCommon_objectFactory___closed__0;
+static lean_once_cell_t l_Lean_ShareCommon_objectFactory___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_ShareCommon_objectFactory___closed__1;
+static lean_once_cell_t l_Lean_ShareCommon_objectFactory___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_ShareCommon_objectFactory___closed__2;
+static lean_once_cell_t l_Lean_ShareCommon_objectFactory___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_ShareCommon_objectFactory___closed__3;
+static lean_once_cell_t l_Lean_ShareCommon_objectFactory___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_ShareCommon_objectFactory___closed__4;
+static lean_once_cell_t l_Lean_ShareCommon_objectFactory___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_ShareCommon_objectFactory___closed__5;
+static lean_once_cell_t l_Lean_ShareCommon_objectFactory___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_ShareCommon_objectFactory___closed__6;
 static lean_once_cell_t l_Lean_ShareCommon_objectFactory___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_ShareCommon_objectFactory___closed__7;
 LEAN_EXPORT lean_object* l_Lean_ShareCommon_objectFactory;
@@ -156,20 +156,20 @@ LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_insert___at___00Lean_ShareComm
 LEAN_EXPORT lean_object* l_Lean_ShareCommon_persistentObjectFactory___elam__2(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_ShareCommon_persistentObjectFactory___elam__5___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_ShareCommon_persistentObjectFactory___elam__5(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Lean_ShareCommon_persistentObjectFactory___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_ShareCommon_persistentObjectFactory___elam__0___boxed, .m_arity = 5, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_ShareCommon_persistentObjectFactory___closed__0 = (const lean_object*)&l_Lean_ShareCommon_persistentObjectFactory___closed__0_value;
-static const lean_closure_object l_Lean_ShareCommon_persistentObjectFactory___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_ShareCommon_persistentObjectFactory___elam__1___boxed, .m_arity = 6, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_ShareCommon_persistentObjectFactory___closed__1 = (const lean_object*)&l_Lean_ShareCommon_persistentObjectFactory___closed__1_value;
-static const lean_closure_object l_Lean_ShareCommon_persistentObjectFactory___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_ShareCommon_persistentObjectFactory___elam__2, .m_arity = 7, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_ShareCommon_persistentObjectFactory___closed__2 = (const lean_object*)&l_Lean_ShareCommon_persistentObjectFactory___closed__2_value;
-static const lean_closure_object l_Lean_ShareCommon_persistentObjectFactory___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_ShareCommon_persistentObjectFactory___elam__3___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_ShareCommon_persistentObjectFactory___closed__3 = (const lean_object*)&l_Lean_ShareCommon_persistentObjectFactory___closed__3_value;
-static const lean_closure_object l_Lean_ShareCommon_persistentObjectFactory___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_ShareCommon_persistentObjectFactory___elam__4___boxed, .m_arity = 5, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_ShareCommon_persistentObjectFactory___closed__4 = (const lean_object*)&l_Lean_ShareCommon_persistentObjectFactory___closed__4_value;
-static const lean_closure_object l_Lean_ShareCommon_persistentObjectFactory___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_ShareCommon_persistentObjectFactory___elam__5, .m_arity = 5, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_ShareCommon_persistentObjectFactory___closed__5 = (const lean_object*)&l_Lean_ShareCommon_persistentObjectFactory___closed__5_value;
-static const lean_ctor_object l_Lean_ShareCommon_persistentObjectFactory___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*6 + 0, .m_other = 6, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lean_ShareCommon_persistentObjectFactory___closed__0_value),((lean_object*)&l_Lean_ShareCommon_persistentObjectFactory___closed__1_value),((lean_object*)&l_Lean_ShareCommon_persistentObjectFactory___closed__2_value),((lean_object*)&l_Lean_ShareCommon_persistentObjectFactory___closed__3_value),((lean_object*)&l_Lean_ShareCommon_persistentObjectFactory___closed__4_value),((lean_object*)&l_Lean_ShareCommon_persistentObjectFactory___closed__5_value)}};
-static const lean_object* l_Lean_ShareCommon_persistentObjectFactory___closed__6 = (const lean_object*)&l_Lean_ShareCommon_persistentObjectFactory___closed__6_value;
+static lean_once_cell_t l_Lean_ShareCommon_persistentObjectFactory___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_ShareCommon_persistentObjectFactory___closed__0;
+static lean_once_cell_t l_Lean_ShareCommon_persistentObjectFactory___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_ShareCommon_persistentObjectFactory___closed__1;
+static lean_once_cell_t l_Lean_ShareCommon_persistentObjectFactory___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_ShareCommon_persistentObjectFactory___closed__2;
+static lean_once_cell_t l_Lean_ShareCommon_persistentObjectFactory___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_ShareCommon_persistentObjectFactory___closed__3;
+static lean_once_cell_t l_Lean_ShareCommon_persistentObjectFactory___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_ShareCommon_persistentObjectFactory___closed__4;
+static lean_once_cell_t l_Lean_ShareCommon_persistentObjectFactory___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_ShareCommon_persistentObjectFactory___closed__5;
+static lean_once_cell_t l_Lean_ShareCommon_persistentObjectFactory___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_ShareCommon_persistentObjectFactory___closed__6;
 static lean_once_cell_t l_Lean_ShareCommon_persistentObjectFactory___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_ShareCommon_persistentObjectFactory___closed__7;
 LEAN_EXPORT lean_object* l_Lean_ShareCommon_persistentObjectFactory;
@@ -211,8 +211,8 @@ LEAN_EXPORT lean_object* l_Lean_ShareCommon_PShareCommonT_monadShareCommon___red
 LEAN_EXPORT lean_object* l_Lean_ShareCommon_PShareCommonT_monadShareCommon(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_ShareCommon_ShareCommonT_run___redArg___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_ShareCommon_ShareCommonT_run___redArg___lam__0___boxed(lean_object*);
-static const lean_closure_object l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_ShareCommon_ShareCommonT_run___redArg___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0 = (const lean_object*)&l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0_value;
+static lean_once_cell_t l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0;
 static lean_once_cell_t l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__1;
 LEAN_EXPORT lean_object* l_Lean_ShareCommon_ShareCommonT_run___redArg(lean_object*, lean_object*);
@@ -1101,11 +1101,79 @@ lean_dec_ref(v_x_352_);
 return v_res_354_;
 }
 }
+static lean_object* _init_l_Lean_ShareCommon_objectFactory___closed__0(void){
+_start:
+{
+lean_object* v___f_355_; 
+v___f_355_ = lean_alloc_closure((void*)(l_Lean_ShareCommon_objectFactory___elam__0___boxed), 5, 0);
+return v___f_355_;
+}
+}
+static lean_object* _init_l_Lean_ShareCommon_objectFactory___closed__1(void){
+_start:
+{
+lean_object* v___f_356_; 
+v___f_356_ = lean_alloc_closure((void*)(l_Lean_ShareCommon_objectFactory___elam__1___boxed), 6, 0);
+return v___f_356_;
+}
+}
+static lean_object* _init_l_Lean_ShareCommon_objectFactory___closed__2(void){
+_start:
+{
+lean_object* v___f_357_; 
+v___f_357_ = lean_alloc_closure((void*)(l_Lean_ShareCommon_objectFactory___elam__2), 7, 0);
+return v___f_357_;
+}
+}
+static lean_object* _init_l_Lean_ShareCommon_objectFactory___closed__3(void){
+_start:
+{
+lean_object* v___f_358_; 
+v___f_358_ = lean_alloc_closure((void*)(l_Lean_ShareCommon_objectFactory___elam__3___boxed), 4, 0);
+return v___f_358_;
+}
+}
+static lean_object* _init_l_Lean_ShareCommon_objectFactory___closed__4(void){
+_start:
+{
+lean_object* v___f_359_; 
+v___f_359_ = lean_alloc_closure((void*)(l_Lean_ShareCommon_objectFactory___elam__4___boxed), 5, 0);
+return v___f_359_;
+}
+}
+static lean_object* _init_l_Lean_ShareCommon_objectFactory___closed__5(void){
+_start:
+{
+lean_object* v___f_360_; 
+v___f_360_ = lean_alloc_closure((void*)(l_Lean_ShareCommon_objectFactory___elam__5), 5, 0);
+return v___f_360_;
+}
+}
+static lean_object* _init_l_Lean_ShareCommon_objectFactory___closed__6(void){
+_start:
+{
+lean_object* v___f_361_; lean_object* v___f_362_; lean_object* v___f_363_; lean_object* v___f_364_; lean_object* v___f_365_; lean_object* v___f_366_; lean_object* v___x_367_; 
+v___f_361_ = lean_obj_once(&l_Lean_ShareCommon_objectFactory___closed__5, &l_Lean_ShareCommon_objectFactory___closed__5_once, _init_l_Lean_ShareCommon_objectFactory___closed__5);
+v___f_362_ = lean_obj_once(&l_Lean_ShareCommon_objectFactory___closed__4, &l_Lean_ShareCommon_objectFactory___closed__4_once, _init_l_Lean_ShareCommon_objectFactory___closed__4);
+v___f_363_ = lean_obj_once(&l_Lean_ShareCommon_objectFactory___closed__3, &l_Lean_ShareCommon_objectFactory___closed__3_once, _init_l_Lean_ShareCommon_objectFactory___closed__3);
+v___f_364_ = lean_obj_once(&l_Lean_ShareCommon_objectFactory___closed__2, &l_Lean_ShareCommon_objectFactory___closed__2_once, _init_l_Lean_ShareCommon_objectFactory___closed__2);
+v___f_365_ = lean_obj_once(&l_Lean_ShareCommon_objectFactory___closed__1, &l_Lean_ShareCommon_objectFactory___closed__1_once, _init_l_Lean_ShareCommon_objectFactory___closed__1);
+v___f_366_ = lean_obj_once(&l_Lean_ShareCommon_objectFactory___closed__0, &l_Lean_ShareCommon_objectFactory___closed__0_once, _init_l_Lean_ShareCommon_objectFactory___closed__0);
+v___x_367_ = lean_alloc_ctor(0, 6, 0);
+lean_ctor_set(v___x_367_, 0, v___f_366_);
+lean_ctor_set(v___x_367_, 1, v___f_365_);
+lean_ctor_set(v___x_367_, 2, v___f_364_);
+lean_ctor_set(v___x_367_, 3, v___f_363_);
+lean_ctor_set(v___x_367_, 4, v___f_362_);
+lean_ctor_set(v___x_367_, 5, v___f_361_);
+return v___x_367_;
+}
+}
 static lean_object* _init_l_Lean_ShareCommon_objectFactory___closed__7(void){
 _start:
 {
 lean_object* v___x_368_; lean_object* v___x_369_; 
-v___x_368_ = ((lean_object*)(l_Lean_ShareCommon_objectFactory___closed__6));
+v___x_368_ = lean_obj_once(&l_Lean_ShareCommon_objectFactory___closed__6, &l_Lean_ShareCommon_objectFactory___closed__6_once, _init_l_Lean_ShareCommon_objectFactory___closed__6);
 v___x_369_ = l_ShareCommon_StateFactory_mkImpl(v___x_368_);
 return v___x_369_;
 }
@@ -2362,11 +2430,79 @@ v___x_898_ = l_Lean_ShareCommon_persistentObjectFactory___elam__5___redArg(v_ins
 return v___x_898_;
 }
 }
+static lean_object* _init_l_Lean_ShareCommon_persistentObjectFactory___closed__0(void){
+_start:
+{
+lean_object* v___f_899_; 
+v___f_899_ = lean_alloc_closure((void*)(l_Lean_ShareCommon_persistentObjectFactory___elam__0___boxed), 5, 0);
+return v___f_899_;
+}
+}
+static lean_object* _init_l_Lean_ShareCommon_persistentObjectFactory___closed__1(void){
+_start:
+{
+lean_object* v___f_900_; 
+v___f_900_ = lean_alloc_closure((void*)(l_Lean_ShareCommon_persistentObjectFactory___elam__1___boxed), 6, 0);
+return v___f_900_;
+}
+}
+static lean_object* _init_l_Lean_ShareCommon_persistentObjectFactory___closed__2(void){
+_start:
+{
+lean_object* v___f_901_; 
+v___f_901_ = lean_alloc_closure((void*)(l_Lean_ShareCommon_persistentObjectFactory___elam__2), 7, 0);
+return v___f_901_;
+}
+}
+static lean_object* _init_l_Lean_ShareCommon_persistentObjectFactory___closed__3(void){
+_start:
+{
+lean_object* v___f_902_; 
+v___f_902_ = lean_alloc_closure((void*)(l_Lean_ShareCommon_persistentObjectFactory___elam__3___boxed), 4, 0);
+return v___f_902_;
+}
+}
+static lean_object* _init_l_Lean_ShareCommon_persistentObjectFactory___closed__4(void){
+_start:
+{
+lean_object* v___f_903_; 
+v___f_903_ = lean_alloc_closure((void*)(l_Lean_ShareCommon_persistentObjectFactory___elam__4___boxed), 5, 0);
+return v___f_903_;
+}
+}
+static lean_object* _init_l_Lean_ShareCommon_persistentObjectFactory___closed__5(void){
+_start:
+{
+lean_object* v___f_904_; 
+v___f_904_ = lean_alloc_closure((void*)(l_Lean_ShareCommon_persistentObjectFactory___elam__5), 5, 0);
+return v___f_904_;
+}
+}
+static lean_object* _init_l_Lean_ShareCommon_persistentObjectFactory___closed__6(void){
+_start:
+{
+lean_object* v___f_905_; lean_object* v___f_906_; lean_object* v___f_907_; lean_object* v___f_908_; lean_object* v___f_909_; lean_object* v___f_910_; lean_object* v___x_911_; 
+v___f_905_ = lean_obj_once(&l_Lean_ShareCommon_persistentObjectFactory___closed__5, &l_Lean_ShareCommon_persistentObjectFactory___closed__5_once, _init_l_Lean_ShareCommon_persistentObjectFactory___closed__5);
+v___f_906_ = lean_obj_once(&l_Lean_ShareCommon_persistentObjectFactory___closed__4, &l_Lean_ShareCommon_persistentObjectFactory___closed__4_once, _init_l_Lean_ShareCommon_persistentObjectFactory___closed__4);
+v___f_907_ = lean_obj_once(&l_Lean_ShareCommon_persistentObjectFactory___closed__3, &l_Lean_ShareCommon_persistentObjectFactory___closed__3_once, _init_l_Lean_ShareCommon_persistentObjectFactory___closed__3);
+v___f_908_ = lean_obj_once(&l_Lean_ShareCommon_persistentObjectFactory___closed__2, &l_Lean_ShareCommon_persistentObjectFactory___closed__2_once, _init_l_Lean_ShareCommon_persistentObjectFactory___closed__2);
+v___f_909_ = lean_obj_once(&l_Lean_ShareCommon_persistentObjectFactory___closed__1, &l_Lean_ShareCommon_persistentObjectFactory___closed__1_once, _init_l_Lean_ShareCommon_persistentObjectFactory___closed__1);
+v___f_910_ = lean_obj_once(&l_Lean_ShareCommon_persistentObjectFactory___closed__0, &l_Lean_ShareCommon_persistentObjectFactory___closed__0_once, _init_l_Lean_ShareCommon_persistentObjectFactory___closed__0);
+v___x_911_ = lean_alloc_ctor(0, 6, 0);
+lean_ctor_set(v___x_911_, 0, v___f_910_);
+lean_ctor_set(v___x_911_, 1, v___f_909_);
+lean_ctor_set(v___x_911_, 2, v___f_908_);
+lean_ctor_set(v___x_911_, 3, v___f_907_);
+lean_ctor_set(v___x_911_, 4, v___f_906_);
+lean_ctor_set(v___x_911_, 5, v___f_905_);
+return v___x_911_;
+}
+}
 static lean_object* _init_l_Lean_ShareCommon_persistentObjectFactory___closed__7(void){
 _start:
 {
 lean_object* v___x_912_; lean_object* v___x_913_; 
-v___x_912_ = ((lean_object*)(l_Lean_ShareCommon_persistentObjectFactory___closed__6));
+v___x_912_ = lean_obj_once(&l_Lean_ShareCommon_persistentObjectFactory___closed__6, &l_Lean_ShareCommon_persistentObjectFactory___closed__6_once, _init_l_Lean_ShareCommon_persistentObjectFactory___closed__6);
 v___x_913_ = l_ShareCommon_StateFactory_mkImpl(v___x_912_);
 return v___x_913_;
 }
@@ -2732,6 +2868,14 @@ lean_dec_ref(v_x_1155_);
 return v_res_1156_;
 }
 }
+static lean_object* _init_l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_1157_; 
+v___f_1157_ = lean_alloc_closure((void*)(l_Lean_ShareCommon_ShareCommonT_run___redArg___lam__0___boxed), 1, 0);
+return v___f_1157_;
+}
+}
 static lean_object* _init_l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__1(void){
 _start:
 {
@@ -2754,7 +2898,7 @@ lean_dec_ref(v_toApplicative_1162_);
 v_map_1164_ = lean_ctor_get(v_toFunctor_1163_, 0);
 lean_inc(v_map_1164_);
 lean_dec_ref(v_toFunctor_1163_);
-v___f_1165_ = ((lean_object*)(l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0));
+v___f_1165_ = lean_obj_once(&l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0, &l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0_once, _init_l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0);
 v___x_1166_ = lean_obj_once(&l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__1, &l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__1_once, _init_l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__1);
 v___x_1167_ = lean_apply_1(v_x_1161_, v___x_1166_);
 v___x_1168_ = lean_apply_4(v_map_1164_, lean_box(0), lean_box(0), v___f_1165_, v___x_1167_);
@@ -2774,7 +2918,7 @@ lean_dec_ref(v_toApplicative_1173_);
 v_map_1175_ = lean_ctor_get(v_toFunctor_1174_, 0);
 lean_inc(v_map_1175_);
 lean_dec_ref(v_toFunctor_1174_);
-v___f_1176_ = ((lean_object*)(l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0));
+v___f_1176_ = lean_obj_once(&l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0, &l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0_once, _init_l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0);
 v___x_1177_ = lean_obj_once(&l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__1, &l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__1_once, _init_l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__1);
 v___x_1178_ = lean_apply_1(v_x_1172_, v___x_1177_);
 v___x_1179_ = lean_apply_4(v_map_1175_, lean_box(0), lean_box(0), v___f_1176_, v___x_1178_);
@@ -2803,7 +2947,7 @@ lean_dec_ref(v_toApplicative_1184_);
 v_map_1186_ = lean_ctor_get(v_toFunctor_1185_, 0);
 lean_inc(v_map_1186_);
 lean_dec_ref(v_toFunctor_1185_);
-v___f_1187_ = ((lean_object*)(l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0));
+v___f_1187_ = lean_obj_once(&l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0, &l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0_once, _init_l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0);
 v___x_1188_ = lean_obj_once(&l_Lean_ShareCommon_PShareCommonT_run___redArg___closed__0, &l_Lean_ShareCommon_PShareCommonT_run___redArg___closed__0_once, _init_l_Lean_ShareCommon_PShareCommonT_run___redArg___closed__0);
 v___x_1189_ = lean_apply_1(v_x_1183_, v___x_1188_);
 v___x_1190_ = lean_apply_4(v_map_1186_, lean_box(0), lean_box(0), v___f_1187_, v___x_1189_);
@@ -2823,7 +2967,7 @@ lean_dec_ref(v_toApplicative_1195_);
 v_map_1197_ = lean_ctor_get(v_toFunctor_1196_, 0);
 lean_inc(v_map_1197_);
 lean_dec_ref(v_toFunctor_1196_);
-v___f_1198_ = ((lean_object*)(l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0));
+v___f_1198_ = lean_obj_once(&l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0, &l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0_once, _init_l_Lean_ShareCommon_ShareCommonT_run___redArg___closed__0);
 v___x_1199_ = lean_obj_once(&l_Lean_ShareCommon_PShareCommonT_run___redArg___closed__0, &l_Lean_ShareCommon_PShareCommonT_run___redArg___closed__0_once, _init_l_Lean_ShareCommon_PShareCommonT_run___redArg___closed__0);
 v___x_1200_ = lean_apply_1(v_x_1194_, v___x_1199_);
 v___x_1201_ = lean_apply_4(v_map_1197_, lean_box(0), lean_box(0), v___f_1198_, v___x_1200_);

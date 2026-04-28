@@ -41,38 +41,32 @@ LEAN_EXPORT lean_object* l_List_Cursor_begin___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_List_Cursor_begin(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_List_Cursor_end___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_List_Cursor_end(lean_object*, lean_object*);
-static const lean_string_object l_List_Cursor_current___auto__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Lean"};
-static const lean_object* l_List_Cursor_current___auto__1___closed__0 = (const lean_object*)&l_List_Cursor_current___auto__1___closed__0_value;
-static const lean_string_object l_List_Cursor_current___auto__1___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Parser"};
-static const lean_object* l_List_Cursor_current___auto__1___closed__1 = (const lean_object*)&l_List_Cursor_current___auto__1___closed__1_value;
-static const lean_string_object l_List_Cursor_current___auto__1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Tactic"};
-static const lean_object* l_List_Cursor_current___auto__1___closed__2 = (const lean_object*)&l_List_Cursor_current___auto__1___closed__2_value;
-static const lean_string_object l_List_Cursor_current___auto__1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "tacticSeq"};
-static const lean_object* l_List_Cursor_current___auto__1___closed__3 = (const lean_object*)&l_List_Cursor_current___auto__1___closed__3_value;
-static const lean_ctor_object l_List_Cursor_current___auto__1___closed__4_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_List_Cursor_current___auto__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_List_Cursor_current___auto__1___closed__4_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_List_Cursor_current___auto__1___closed__4_value_aux_0),((lean_object*)&l_List_Cursor_current___auto__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_List_Cursor_current___auto__1___closed__4_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_List_Cursor_current___auto__1___closed__4_value_aux_1),((lean_object*)&l_List_Cursor_current___auto__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_List_Cursor_current___auto__1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_List_Cursor_current___auto__1___closed__4_value_aux_2),((lean_object*)&l_List_Cursor_current___auto__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(212, 140, 85, 215, 241, 69, 7, 118)}};
-static const lean_object* l_List_Cursor_current___auto__1___closed__4 = (const lean_object*)&l_List_Cursor_current___auto__1___closed__4_value;
-static const lean_array_object l_List_Cursor_current___auto__1___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_List_Cursor_current___auto__1___closed__5 = (const lean_object*)&l_List_Cursor_current___auto__1___closed__5_value;
-static const lean_string_object l_List_Cursor_current___auto__1___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 19, .m_capacity = 19, .m_length = 18, .m_data = "tacticSeq1Indented"};
-static const lean_object* l_List_Cursor_current___auto__1___closed__6 = (const lean_object*)&l_List_Cursor_current___auto__1___closed__6_value;
-static const lean_ctor_object l_List_Cursor_current___auto__1___closed__7_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_List_Cursor_current___auto__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_List_Cursor_current___auto__1___closed__7_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_List_Cursor_current___auto__1___closed__7_value_aux_0),((lean_object*)&l_List_Cursor_current___auto__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_List_Cursor_current___auto__1___closed__7_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_List_Cursor_current___auto__1___closed__7_value_aux_1),((lean_object*)&l_List_Cursor_current___auto__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_List_Cursor_current___auto__1___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_List_Cursor_current___auto__1___closed__7_value_aux_2),((lean_object*)&l_List_Cursor_current___auto__1___closed__6_value),LEAN_SCALAR_PTR_LITERAL(223, 90, 160, 238, 133, 180, 23, 239)}};
-static const lean_object* l_List_Cursor_current___auto__1___closed__7 = (const lean_object*)&l_List_Cursor_current___auto__1___closed__7_value;
-static const lean_string_object l_List_Cursor_current___auto__1___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "null"};
-static const lean_object* l_List_Cursor_current___auto__1___closed__8 = (const lean_object*)&l_List_Cursor_current___auto__1___closed__8_value;
-static const lean_ctor_object l_List_Cursor_current___auto__1___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_List_Cursor_current___auto__1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(24, 58, 49, 223, 146, 207, 197, 136)}};
-static const lean_object* l_List_Cursor_current___auto__1___closed__9 = (const lean_object*)&l_List_Cursor_current___auto__1___closed__9_value;
-static const lean_string_object l_List_Cursor_current___auto__1___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 22, .m_capacity = 22, .m_length = 21, .m_data = "tacticGet_elem_tactic"};
-static const lean_object* l_List_Cursor_current___auto__1___closed__10 = (const lean_object*)&l_List_Cursor_current___auto__1___closed__10_value;
-static const lean_ctor_object l_List_Cursor_current___auto__1___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_List_Cursor_current___auto__1___closed__10_value),LEAN_SCALAR_PTR_LITERAL(141, 31, 109, 153, 11, 229, 201, 51)}};
-static const lean_object* l_List_Cursor_current___auto__1___closed__11 = (const lean_object*)&l_List_Cursor_current___auto__1___closed__11_value;
-static const lean_string_object l_List_Cursor_current___auto__1___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "get_elem_tactic"};
-static const lean_object* l_List_Cursor_current___auto__1___closed__12 = (const lean_object*)&l_List_Cursor_current___auto__1___closed__12_value;
+static lean_once_cell_t l_List_Cursor_current___auto__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_List_Cursor_current___auto__1___closed__0;
+static lean_once_cell_t l_List_Cursor_current___auto__1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_List_Cursor_current___auto__1___closed__1;
+static lean_once_cell_t l_List_Cursor_current___auto__1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_List_Cursor_current___auto__1___closed__2;
+static lean_once_cell_t l_List_Cursor_current___auto__1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_List_Cursor_current___auto__1___closed__3;
+static lean_once_cell_t l_List_Cursor_current___auto__1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_List_Cursor_current___auto__1___closed__4;
+static lean_once_cell_t l_List_Cursor_current___auto__1___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_List_Cursor_current___auto__1___closed__5;
+static lean_once_cell_t l_List_Cursor_current___auto__1___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_List_Cursor_current___auto__1___closed__6;
+static lean_once_cell_t l_List_Cursor_current___auto__1___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_List_Cursor_current___auto__1___closed__7;
+static lean_once_cell_t l_List_Cursor_current___auto__1___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_List_Cursor_current___auto__1___closed__8;
+static lean_once_cell_t l_List_Cursor_current___auto__1___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_List_Cursor_current___auto__1___closed__9;
+static lean_once_cell_t l_List_Cursor_current___auto__1___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_List_Cursor_current___auto__1___closed__10;
+static lean_once_cell_t l_List_Cursor_current___auto__1___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_List_Cursor_current___auto__1___closed__11;
+static lean_once_cell_t l_List_Cursor_current___auto__1___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_List_Cursor_current___auto__1___closed__12;
 static lean_once_cell_t l_List_Cursor_current___auto__1___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_List_Cursor_current___auto__1___closed__13;
 static lean_once_cell_t l_List_Cursor_current___auto__1___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -227,11 +221,126 @@ v___x_38_ = l_List_Cursor_at___redArg(v_l_36_, v___x_37_);
 return v___x_38_;
 }
 }
+static lean_object* _init_l_List_Cursor_current___auto__1___closed__0(void){
+_start:
+{
+lean_object* v___x_39_; 
+v___x_39_ = lean_mk_string_unchecked("Lean", 4, 4);
+return v___x_39_;
+}
+}
+static lean_object* _init_l_List_Cursor_current___auto__1___closed__1(void){
+_start:
+{
+lean_object* v___x_40_; 
+v___x_40_ = lean_mk_string_unchecked("Parser", 6, 6);
+return v___x_40_;
+}
+}
+static lean_object* _init_l_List_Cursor_current___auto__1___closed__2(void){
+_start:
+{
+lean_object* v___x_41_; 
+v___x_41_ = lean_mk_string_unchecked("Tactic", 6, 6);
+return v___x_41_;
+}
+}
+static lean_object* _init_l_List_Cursor_current___auto__1___closed__3(void){
+_start:
+{
+lean_object* v___x_42_; 
+v___x_42_ = lean_mk_string_unchecked("tacticSeq", 9, 9);
+return v___x_42_;
+}
+}
+static lean_object* _init_l_List_Cursor_current___auto__1___closed__4(void){
+_start:
+{
+lean_object* v___x_43_; lean_object* v___x_44_; lean_object* v___x_45_; lean_object* v___x_46_; lean_object* v___x_47_; 
+v___x_43_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__3, &l_List_Cursor_current___auto__1___closed__3_once, _init_l_List_Cursor_current___auto__1___closed__3);
+v___x_44_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__2, &l_List_Cursor_current___auto__1___closed__2_once, _init_l_List_Cursor_current___auto__1___closed__2);
+v___x_45_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__1, &l_List_Cursor_current___auto__1___closed__1_once, _init_l_List_Cursor_current___auto__1___closed__1);
+v___x_46_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__0, &l_List_Cursor_current___auto__1___closed__0_once, _init_l_List_Cursor_current___auto__1___closed__0);
+v___x_47_ = l_Lean_Name_mkStr4(v___x_46_, v___x_45_, v___x_44_, v___x_43_);
+return v___x_47_;
+}
+}
+static lean_object* _init_l_List_Cursor_current___auto__1___closed__5(void){
+_start:
+{
+lean_object* v___x_48_; lean_object* v___x_49_; 
+v___x_48_ = lean_unsigned_to_nat(0u);
+v___x_49_ = lean_mk_empty_array_with_capacity(v___x_48_);
+return v___x_49_;
+}
+}
+static lean_object* _init_l_List_Cursor_current___auto__1___closed__6(void){
+_start:
+{
+lean_object* v___x_50_; 
+v___x_50_ = lean_mk_string_unchecked("tacticSeq1Indented", 18, 18);
+return v___x_50_;
+}
+}
+static lean_object* _init_l_List_Cursor_current___auto__1___closed__7(void){
+_start:
+{
+lean_object* v___x_51_; lean_object* v___x_52_; lean_object* v___x_53_; lean_object* v___x_54_; lean_object* v___x_55_; 
+v___x_51_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__6, &l_List_Cursor_current___auto__1___closed__6_once, _init_l_List_Cursor_current___auto__1___closed__6);
+v___x_52_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__2, &l_List_Cursor_current___auto__1___closed__2_once, _init_l_List_Cursor_current___auto__1___closed__2);
+v___x_53_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__1, &l_List_Cursor_current___auto__1___closed__1_once, _init_l_List_Cursor_current___auto__1___closed__1);
+v___x_54_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__0, &l_List_Cursor_current___auto__1___closed__0_once, _init_l_List_Cursor_current___auto__1___closed__0);
+v___x_55_ = l_Lean_Name_mkStr4(v___x_54_, v___x_53_, v___x_52_, v___x_51_);
+return v___x_55_;
+}
+}
+static lean_object* _init_l_List_Cursor_current___auto__1___closed__8(void){
+_start:
+{
+lean_object* v___x_56_; 
+v___x_56_ = lean_mk_string_unchecked("null", 4, 4);
+return v___x_56_;
+}
+}
+static lean_object* _init_l_List_Cursor_current___auto__1___closed__9(void){
+_start:
+{
+lean_object* v___x_57_; lean_object* v___x_58_; 
+v___x_57_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__8, &l_List_Cursor_current___auto__1___closed__8_once, _init_l_List_Cursor_current___auto__1___closed__8);
+v___x_58_ = l_Lean_Name_mkStr1(v___x_57_);
+return v___x_58_;
+}
+}
+static lean_object* _init_l_List_Cursor_current___auto__1___closed__10(void){
+_start:
+{
+lean_object* v___x_59_; 
+v___x_59_ = lean_mk_string_unchecked("tacticGet_elem_tactic", 21, 21);
+return v___x_59_;
+}
+}
+static lean_object* _init_l_List_Cursor_current___auto__1___closed__11(void){
+_start:
+{
+lean_object* v___x_60_; lean_object* v___x_61_; 
+v___x_60_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__10, &l_List_Cursor_current___auto__1___closed__10_once, _init_l_List_Cursor_current___auto__1___closed__10);
+v___x_61_ = l_Lean_Name_mkStr1(v___x_60_);
+return v___x_61_;
+}
+}
+static lean_object* _init_l_List_Cursor_current___auto__1___closed__12(void){
+_start:
+{
+lean_object* v___x_62_; 
+v___x_62_ = lean_mk_string_unchecked("get_elem_tactic", 15, 15);
+return v___x_62_;
+}
+}
 static lean_object* _init_l_List_Cursor_current___auto__1___closed__13(void){
 _start:
 {
 lean_object* v___x_63_; lean_object* v___x_64_; 
-v___x_63_ = ((lean_object*)(l_List_Cursor_current___auto__1___closed__12));
+v___x_63_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__12, &l_List_Cursor_current___auto__1___closed__12_once, _init_l_List_Cursor_current___auto__1___closed__12);
 v___x_64_ = l_Lean_mkAtom(v___x_63_);
 return v___x_64_;
 }
@@ -241,7 +350,7 @@ _start:
 {
 lean_object* v___x_65_; lean_object* v___x_66_; lean_object* v___x_67_; 
 v___x_65_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__13, &l_List_Cursor_current___auto__1___closed__13_once, _init_l_List_Cursor_current___auto__1___closed__13);
-v___x_66_ = ((lean_object*)(l_List_Cursor_current___auto__1___closed__5));
+v___x_66_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__5, &l_List_Cursor_current___auto__1___closed__5_once, _init_l_List_Cursor_current___auto__1___closed__5);
 v___x_67_ = lean_array_push(v___x_66_, v___x_65_);
 return v___x_67_;
 }
@@ -251,7 +360,7 @@ _start:
 {
 lean_object* v___x_68_; lean_object* v___x_69_; lean_object* v___x_70_; lean_object* v___x_71_; 
 v___x_68_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__14, &l_List_Cursor_current___auto__1___closed__14_once, _init_l_List_Cursor_current___auto__1___closed__14);
-v___x_69_ = ((lean_object*)(l_List_Cursor_current___auto__1___closed__11));
+v___x_69_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__11, &l_List_Cursor_current___auto__1___closed__11_once, _init_l_List_Cursor_current___auto__1___closed__11);
 v___x_70_ = lean_box(2);
 v___x_71_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_71_, 0, v___x_70_);
@@ -265,7 +374,7 @@ _start:
 {
 lean_object* v___x_72_; lean_object* v___x_73_; lean_object* v___x_74_; 
 v___x_72_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__15, &l_List_Cursor_current___auto__1___closed__15_once, _init_l_List_Cursor_current___auto__1___closed__15);
-v___x_73_ = ((lean_object*)(l_List_Cursor_current___auto__1___closed__5));
+v___x_73_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__5, &l_List_Cursor_current___auto__1___closed__5_once, _init_l_List_Cursor_current___auto__1___closed__5);
 v___x_74_ = lean_array_push(v___x_73_, v___x_72_);
 return v___x_74_;
 }
@@ -275,7 +384,7 @@ _start:
 {
 lean_object* v___x_75_; lean_object* v___x_76_; lean_object* v___x_77_; lean_object* v___x_78_; 
 v___x_75_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__16, &l_List_Cursor_current___auto__1___closed__16_once, _init_l_List_Cursor_current___auto__1___closed__16);
-v___x_76_ = ((lean_object*)(l_List_Cursor_current___auto__1___closed__9));
+v___x_76_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__9, &l_List_Cursor_current___auto__1___closed__9_once, _init_l_List_Cursor_current___auto__1___closed__9);
 v___x_77_ = lean_box(2);
 v___x_78_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_78_, 0, v___x_77_);
@@ -289,7 +398,7 @@ _start:
 {
 lean_object* v___x_79_; lean_object* v___x_80_; lean_object* v___x_81_; 
 v___x_79_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__17, &l_List_Cursor_current___auto__1___closed__17_once, _init_l_List_Cursor_current___auto__1___closed__17);
-v___x_80_ = ((lean_object*)(l_List_Cursor_current___auto__1___closed__5));
+v___x_80_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__5, &l_List_Cursor_current___auto__1___closed__5_once, _init_l_List_Cursor_current___auto__1___closed__5);
 v___x_81_ = lean_array_push(v___x_80_, v___x_79_);
 return v___x_81_;
 }
@@ -299,7 +408,7 @@ _start:
 {
 lean_object* v___x_82_; lean_object* v___x_83_; lean_object* v___x_84_; lean_object* v___x_85_; 
 v___x_82_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__18, &l_List_Cursor_current___auto__1___closed__18_once, _init_l_List_Cursor_current___auto__1___closed__18);
-v___x_83_ = ((lean_object*)(l_List_Cursor_current___auto__1___closed__7));
+v___x_83_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__7, &l_List_Cursor_current___auto__1___closed__7_once, _init_l_List_Cursor_current___auto__1___closed__7);
 v___x_84_ = lean_box(2);
 v___x_85_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_85_, 0, v___x_84_);
@@ -313,7 +422,7 @@ _start:
 {
 lean_object* v___x_86_; lean_object* v___x_87_; lean_object* v___x_88_; 
 v___x_86_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__19, &l_List_Cursor_current___auto__1___closed__19_once, _init_l_List_Cursor_current___auto__1___closed__19);
-v___x_87_ = ((lean_object*)(l_List_Cursor_current___auto__1___closed__5));
+v___x_87_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__5, &l_List_Cursor_current___auto__1___closed__5_once, _init_l_List_Cursor_current___auto__1___closed__5);
 v___x_88_ = lean_array_push(v___x_87_, v___x_86_);
 return v___x_88_;
 }
@@ -323,7 +432,7 @@ _start:
 {
 lean_object* v___x_89_; lean_object* v___x_90_; lean_object* v___x_91_; lean_object* v___x_92_; 
 v___x_89_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__20, &l_List_Cursor_current___auto__1___closed__20_once, _init_l_List_Cursor_current___auto__1___closed__20);
-v___x_90_ = ((lean_object*)(l_List_Cursor_current___auto__1___closed__4));
+v___x_90_ = lean_obj_once(&l_List_Cursor_current___auto__1___closed__4, &l_List_Cursor_current___auto__1___closed__4_once, _init_l_List_Cursor_current___auto__1___closed__4);
 v___x_91_ = lean_box(2);
 v___x_92_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_92_, 0, v___x_91_);

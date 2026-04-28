@@ -15,9 +15,9 @@ extern "C" {
 #endif
 LEAN_EXPORT lean_object* l_instNatCastNat___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_instNatCastNat___lam__0___boxed(lean_object*);
-static const lean_closure_object l_instNatCastNat___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instNatCastNat___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instNatCastNat___closed__0 = (const lean_object*)&l_instNatCastNat___closed__0_value;
-LEAN_EXPORT const lean_object* l_instNatCastNat = (const lean_object*)&l_instNatCastNat___closed__0_value;
+static lean_once_cell_t l_instNatCastNat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instNatCastNat___closed__0;
+LEAN_EXPORT lean_object* l_instNatCastNat;
 LEAN_EXPORT lean_object* l_Nat_cast___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Nat_cast(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instCoeTailNatOfNatCast___redArg(lean_object*);
@@ -38,6 +38,22 @@ lean_object* v_res_3_;
 v_res_3_ = l_instNatCastNat___lam__0(v_n_2_);
 lean_dec(v_n_2_);
 return v_res_3_;
+}
+}
+static lean_object* _init_l_instNatCastNat___closed__0(void){
+_start:
+{
+lean_object* v___f_4_; 
+v___f_4_ = lean_alloc_closure((void*)(l_instNatCastNat___lam__0___boxed), 1, 0);
+return v___f_4_;
+}
+}
+static lean_object* _init_l_instNatCastNat(void){
+_start:
+{
+lean_object* v___f_5_; 
+v___f_5_ = lean_obj_once(&l_instNatCastNat___closed__0, &l_instNatCastNat___closed__0_once, _init_l_instNatCastNat___closed__0);
+return v___f_5_;
 }
 }
 LEAN_EXPORT lean_object* l_Nat_cast___redArg(lean_object* v_inst_6_, lean_object* v_a_7_){
@@ -105,6 +121,8 @@ _G_runtime_initialized = true;
 res = runtime_initialize_Init_Coe(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_instNatCastNat = _init_l_instNatCastNat();
+lean_mark_persistent(l_instNatCastNat);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

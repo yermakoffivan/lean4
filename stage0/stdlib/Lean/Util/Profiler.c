@@ -107,87 +107,85 @@ static lean_once_cell_t l_Lean_Firefox_instCoeFloatMilliseconds___lam__0___close
 static double l_Lean_Firefox_instCoeFloatMilliseconds___lam__0___closed__0;
 LEAN_EXPORT double l_Lean_Firefox_instCoeFloatMilliseconds___lam__0(double);
 LEAN_EXPORT lean_object* l_Lean_Firefox_instCoeFloatMilliseconds___lam__0___boxed(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instCoeFloatMilliseconds___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instCoeFloatMilliseconds___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instCoeFloatMilliseconds___closed__0 = (const lean_object*)&l_Lean_Firefox_instCoeFloatMilliseconds___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instCoeFloatMilliseconds = (const lean_object*)&l_Lean_Firefox_instCoeFloatMilliseconds___closed__0_value;
-static const lean_closure_object l_Lean_Firefox_instOfScientificMilliseconds___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Float_ofScientific___boxed, .m_arity = 3, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instOfScientificMilliseconds___closed__0 = (const lean_object*)&l_Lean_Firefox_instOfScientificMilliseconds___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instOfScientificMilliseconds = (const lean_object*)&l_Lean_Firefox_instOfScientificMilliseconds___closed__0_value;
-static const lean_closure_object l_Lean_Firefox_instToJsonMilliseconds___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Float_toJson___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instToJsonMilliseconds___closed__0 = (const lean_object*)&l_Lean_Firefox_instToJsonMilliseconds___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instToJsonMilliseconds = (const lean_object*)&l_Lean_Firefox_instToJsonMilliseconds___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instCoeFloatMilliseconds___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instCoeFloatMilliseconds___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instCoeFloatMilliseconds;
+static lean_once_cell_t l_Lean_Firefox_instOfScientificMilliseconds___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instOfScientificMilliseconds___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instOfScientificMilliseconds;
+static lean_once_cell_t l_Lean_Firefox_instToJsonMilliseconds___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instToJsonMilliseconds___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonMilliseconds;
 LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonMilliseconds___lam__0(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instFromJsonMilliseconds___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instFromJsonMilliseconds___lam__0, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instFromJsonMilliseconds___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonMilliseconds___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instFromJsonMilliseconds = (const lean_object*)&l_Lean_Firefox_instFromJsonMilliseconds___closed__0_value;
-static const lean_closure_object l_Lean_Firefox_instAddMilliseconds___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Float_add___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instAddMilliseconds___closed__0 = (const lean_object*)&l_Lean_Firefox_instAddMilliseconds___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instAddMilliseconds = (const lean_object*)&l_Lean_Firefox_instAddMilliseconds___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonMilliseconds___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonMilliseconds___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonMilliseconds;
+static lean_once_cell_t l_Lean_Firefox_instAddMilliseconds___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instAddMilliseconds___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instAddMilliseconds;
 static lean_once_cell_t l_Lean_Firefox_instCoeFloatMicroseconds___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static double l_Lean_Firefox_instCoeFloatMicroseconds___lam__0___closed__0;
 LEAN_EXPORT double l_Lean_Firefox_instCoeFloatMicroseconds___lam__0(double);
 LEAN_EXPORT lean_object* l_Lean_Firefox_instCoeFloatMicroseconds___lam__0___boxed(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instCoeFloatMicroseconds___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instCoeFloatMicroseconds___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instCoeFloatMicroseconds___closed__0 = (const lean_object*)&l_Lean_Firefox_instCoeFloatMicroseconds___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instCoeFloatMicroseconds = (const lean_object*)&l_Lean_Firefox_instCoeFloatMicroseconds___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instOfScientificMicroseconds = (const lean_object*)&l_Lean_Firefox_instOfScientificMilliseconds___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instToJsonMicroseconds = (const lean_object*)&l_Lean_Firefox_instToJsonMilliseconds___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instFromJsonMicroseconds = (const lean_object*)&l_Lean_Firefox_instFromJsonMilliseconds___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instCoeFloatMicroseconds___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instCoeFloatMicroseconds___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instCoeFloatMicroseconds;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instOfScientificMicroseconds;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonMicroseconds;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonMicroseconds;
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__0___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__1___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2_spec__3(size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2_spec__3___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 27, .m_capacity = 27, .m_length = 26, .m_data = "expected JSON array, got '"};
-static const lean_object* l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0 = (const lean_object*)&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0_value;
-static const lean_string_object l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "'"};
-static const lean_object* l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1 = (const lean_object*)&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1_value;
+static lean_once_cell_t l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0;
+static lean_once_cell_t l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1;
 LEAN_EXPORT lean_object* l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2___boxed(lean_object*, lean_object*);
-static const lean_string_object l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "name"};
-static const lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0_value;
-static const lean_string_object l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Lean"};
-static const lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1 = (const lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_value;
-static const lean_string_object l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "Firefox"};
-static const lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2 = (const lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_value;
-static const lean_string_object l_Lean_Firefox_instFromJsonCategory_fromJson___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "Category"};
-static const lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__3 = (const lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__3_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonCategory_fromJson___closed__4_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonCategory_fromJson___closed__4_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__4_value_aux_0),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_value),LEAN_SCALAR_PTR_LITERAL(1, 221, 142, 98, 103, 73, 209, 133)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonCategory_fromJson___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__4_value_aux_1),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__3_value),LEAN_SCALAR_PTR_LITERAL(218, 120, 30, 24, 139, 24, 153, 254)}};
-static const lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__4 = (const lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__4_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__3;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__4;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__5;
-static const lean_string_object l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "."};
-static const lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6 = (const lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__7;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonCategory_fromJson___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0_value),LEAN_SCALAR_PTR_LITERAL(84, 246, 234, 130, 97, 205, 144, 82)}};
-static const lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__8 = (const lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__8_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__8;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__9;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__10;
-static const lean_string_object l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = ": "};
-static const lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11 = (const lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__12;
-static const lean_string_object l_Lean_Firefox_instFromJsonCategory_fromJson___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "color"};
-static const lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__13 = (const lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__13_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonCategory_fromJson___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__13_value),LEAN_SCALAR_PTR_LITERAL(203, 195, 165, 168, 25, 61, 235, 188)}};
-static const lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__14 = (const lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__14_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__13;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__14;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__15;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__16;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__17;
-static const lean_string_object l_Lean_Firefox_instFromJsonCategory_fromJson___closed__18_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "subcategories"};
-static const lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__18 = (const lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__18_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonCategory_fromJson___closed__19_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__18_value),LEAN_SCALAR_PTR_LITERAL(185, 42, 176, 165, 28, 119, 142, 51)}};
-static const lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__19 = (const lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__19_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__18;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__19;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__20_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__20;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__21_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -195,53 +193,51 @@ static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__21;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory_fromJson___closed__22_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson___closed__22;
 LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instFromJsonCategory___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instFromJsonCategory_fromJson, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instFromJsonCategory___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonCategory___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instFromJsonCategory = (const lean_object*)&l_Lean_Firefox_instFromJsonCategory___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonCategory___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonCategory___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonCategory;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonCategory_toJson_spec__0_spec__0(size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonCategory_toJson_spec__0_spec__0___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_toJson___at___00Lean_Firefox_instToJsonCategory_toJson_spec__0(lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_List_Impl_0__List_flatMapTR_go___at___00Lean_Firefox_instToJsonCategory_toJson_spec__1(lean_object*, lean_object*);
-static const lean_array_object l_Lean_Firefox_instToJsonCategory_toJson___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Lean_Firefox_instToJsonCategory_toJson___closed__0 = (const lean_object*)&l_Lean_Firefox_instToJsonCategory_toJson___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instToJsonCategory_toJson___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instToJsonCategory_toJson___closed__0;
 LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonCategory_toJson(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instToJsonCategory___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instToJsonCategory_toJson, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instToJsonCategory___closed__0 = (const lean_object*)&l_Lean_Firefox_instToJsonCategory___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instToJsonCategory = (const lean_object*)&l_Lean_Firefox_instToJsonCategory___closed__0_value;
-static const lean_string_object l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "time"};
-static const lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0_value;
-static const lean_string_object l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "SampleUnits"};
-static const lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__1 = (const lean_object*)&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__1_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__2_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__2_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__2_value_aux_0),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_value),LEAN_SCALAR_PTR_LITERAL(1, 221, 142, 98, 103, 73, 209, 133)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__2_value_aux_1),((lean_object*)&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__1_value),LEAN_SCALAR_PTR_LITERAL(97, 0, 104, 60, 59, 103, 69, 138)}};
-static const lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__2 = (const lean_object*)&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__2_value;
+static lean_once_cell_t l_Lean_Firefox_instToJsonCategory___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instToJsonCategory___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonCategory;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__1;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__2;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__3;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__4;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0_value),LEAN_SCALAR_PTR_LITERAL(56, 112, 168, 204, 144, 87, 251, 76)}};
-static const lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__5 = (const lean_object*)&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__5_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__5;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__6;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__7;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__8;
-static const lean_string_object l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "eventDelay"};
-static const lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__9 = (const lean_object*)&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__9_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__9_value),LEAN_SCALAR_PTR_LITERAL(54, 151, 14, 109, 104, 160, 110, 2)}};
-static const lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__10 = (const lean_object*)&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__10_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__9;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__10;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__11;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__12;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__13;
-static const lean_string_object l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "threadCPUDelta"};
-static const lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14 = (const lean_object*)&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14_value),LEAN_SCALAR_PTR_LITERAL(51, 96, 195, 43, 254, 127, 7, 124)}};
-static const lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__15 = (const lean_object*)&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__15_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__15;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__16;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -249,14 +245,14 @@ static lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__17
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__18;
 LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instFromJsonSampleUnits___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instFromJsonSampleUnits_fromJson, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instFromJsonSampleUnits___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonSampleUnits___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instFromJsonSampleUnits = (const lean_object*)&l_Lean_Firefox_instFromJsonSampleUnits___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonSampleUnits___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonSampleUnits___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonSampleUnits;
 LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonSampleUnits_toJson(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonSampleUnits_toJson___boxed(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instToJsonSampleUnits___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instToJsonSampleUnits_toJson___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instToJsonSampleUnits___closed__0 = (const lean_object*)&l_Lean_Firefox_instToJsonSampleUnits___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instToJsonSampleUnits = (const lean_object*)&l_Lean_Firefox_instToJsonSampleUnits___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instToJsonSampleUnits___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instToJsonSampleUnits___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonSampleUnits;
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__0___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__2(lean_object*, lean_object*);
@@ -273,90 +269,88 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_m
 LEAN_EXPORT lean_object* l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__3_spec__4(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__3(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__3___boxed(lean_object*, lean_object*);
-static const lean_string_object l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "interval"};
-static const lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__0_value;
-static const lean_string_object l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "ProfileMeta"};
-static const lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__1 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__1_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__2_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__2_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__2_value_aux_0),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_value),LEAN_SCALAR_PTR_LITERAL(1, 221, 142, 98, 103, 73, 209, 133)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__2_value_aux_1),((lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__1_value),LEAN_SCALAR_PTR_LITERAL(148, 18, 28, 145, 40, 39, 105, 36)}};
-static const lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__2 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__2_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__0;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__1;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__2;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__3;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__4;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__0_value),LEAN_SCALAR_PTR_LITERAL(21, 2, 108, 181, 46, 130, 183, 240)}};
-static const lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__5 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__5_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__5;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__6;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__7;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__8;
-static const lean_string_object l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "startTime"};
-static const lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__9 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__9_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__9_value),LEAN_SCALAR_PTR_LITERAL(130, 175, 170, 8, 182, 39, 106, 12)}};
-static const lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__10 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__10_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__9;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__10;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__11;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__12;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__13;
-static const lean_string_object l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "categories"};
-static const lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__14 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__14_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__14_value),LEAN_SCALAR_PTR_LITERAL(193, 246, 48, 243, 86, 12, 99, 82)}};
-static const lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__15 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__15_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__14;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__15;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__16;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__17;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__18;
-static const lean_string_object l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "processType"};
-static const lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__20_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19_value),LEAN_SCALAR_PTR_LITERAL(137, 102, 121, 51, 14, 126, 128, 169)}};
-static const lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__20 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__20_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__20_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__20;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__21_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__21;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__22_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__22;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__23_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__23;
-static const lean_string_object l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__24_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "product"};
-static const lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__24 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__24_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__25_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__24_value),LEAN_SCALAR_PTR_LITERAL(237, 49, 235, 171, 3, 189, 139, 77)}};
-static const lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__25 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__25_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__24_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__24;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__25_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__25;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__26_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__26;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__27_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__27;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__28_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__28;
-static const lean_string_object l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__29_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 27, .m_capacity = 27, .m_length = 26, .m_data = "preprocessedProfileVersion"};
-static const lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__29 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__29_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__30_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__29_value),LEAN_SCALAR_PTR_LITERAL(22, 49, 187, 208, 115, 222, 145, 76)}};
-static const lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__30 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__30_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__29_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__29;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__30_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__30;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__31_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__31;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__32_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__32;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__33_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__33;
-static const lean_string_object l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__34_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "markerSchema"};
-static const lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__34 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__34_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__35_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__34_value),LEAN_SCALAR_PTR_LITERAL(28, 255, 227, 193, 2, 100, 254, 75)}};
-static const lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__35 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__35_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__34_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__34;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__35_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__35;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__36_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__36;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__37_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__37;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__38_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__38;
-static const lean_string_object l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__39_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "sampleUnits"};
-static const lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__39 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__39_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__40_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__39_value),LEAN_SCALAR_PTR_LITERAL(7, 111, 95, 112, 159, 182, 115, 44)}};
-static const lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__40 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__40_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__39_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__39;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__40_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__40;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__41_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__41;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__42_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -364,9 +358,9 @@ static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__42
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__43_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__43;
 LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instFromJsonProfileMeta___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instFromJsonProfileMeta_fromJson, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instFromJsonProfileMeta___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instFromJsonProfileMeta = (const lean_object*)&l_Lean_Firefox_instFromJsonProfileMeta___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfileMeta___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfileMeta___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonProfileMeta;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonProfileMeta_toJson_spec__1_spec__2(size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonProfileMeta_toJson_spec__1_spec__2___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_toJson___at___00Lean_Firefox_instToJsonProfileMeta_toJson_spec__1(lean_object*);
@@ -374,76 +368,74 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_m
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonProfileMeta_toJson_spec__0_spec__0___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_toJson___at___00Lean_Firefox_instToJsonProfileMeta_toJson_spec__0(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonProfileMeta_toJson(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instToJsonProfileMeta___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instToJsonProfileMeta_toJson, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instToJsonProfileMeta___closed__0 = (const lean_object*)&l_Lean_Firefox_instToJsonProfileMeta___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instToJsonProfileMeta = (const lean_object*)&l_Lean_Firefox_instToJsonProfileMeta___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instToJsonProfileMeta___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instToJsonProfileMeta___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonProfileMeta;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__0_spec__0_spec__1(size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__0_spec__0_spec__1___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__0_spec__0(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__0___boxed(lean_object*, lean_object*);
-static const lean_ctor_object l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1_spec__2_spec__4___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1_spec__2_spec__4___closed__0 = (const lean_object*)&l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1_spec__2_spec__4___closed__0_value;
+static lean_once_cell_t l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1_spec__2_spec__4___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1_spec__2_spec__4___closed__0;
 LEAN_EXPORT lean_object* l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1_spec__2_spec__4(lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1_spec__2_spec__5(size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1_spec__2_spec__5___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1_spec__2(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1___boxed(lean_object*, lean_object*);
-static const lean_string_object l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "frame"};
-static const lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__0_value;
-static const lean_string_object l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "StackTable"};
-static const lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__1 = (const lean_object*)&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__1_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__2_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__2_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__2_value_aux_0),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_value),LEAN_SCALAR_PTR_LITERAL(1, 221, 142, 98, 103, 73, 209, 133)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__2_value_aux_1),((lean_object*)&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__1_value),LEAN_SCALAR_PTR_LITERAL(158, 161, 145, 27, 82, 18, 188, 76)}};
-static const lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__2 = (const lean_object*)&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__2_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__0;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__1;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__2;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__3;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__4;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__0_value),LEAN_SCALAR_PTR_LITERAL(106, 118, 70, 30, 4, 236, 86, 167)}};
-static const lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__5 = (const lean_object*)&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__5_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__5;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__6;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__7;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__8;
-static const lean_string_object l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "category"};
-static const lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9 = (const lean_object*)&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9_value),LEAN_SCALAR_PTR_LITERAL(76, 206, 219, 5, 172, 192, 191, 198)}};
-static const lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__10 = (const lean_object*)&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__10_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__10;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__11;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__12;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__13;
-static const lean_string_object l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "subcategory"};
-static const lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14 = (const lean_object*)&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14_value),LEAN_SCALAR_PTR_LITERAL(19, 41, 37, 173, 49, 225, 74, 139)}};
-static const lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__15 = (const lean_object*)&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__15_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__15;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__16;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__17;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__18;
-static const lean_string_object l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__19_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "prefix"};
-static const lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__19 = (const lean_object*)&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__19_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__20_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__19_value),LEAN_SCALAR_PTR_LITERAL(230, 205, 224, 142, 140, 162, 83, 182)}};
-static const lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__20 = (const lean_object*)&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__20_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__19;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__20_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__20;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__21_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__21;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__22_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__22;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__23_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__23;
-static const lean_string_object l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "length"};
-static const lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24 = (const lean_object*)&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__25_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24_value),LEAN_SCALAR_PTR_LITERAL(69, 96, 6, 102, 8, 206, 152, 82)}};
-static const lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__25 = (const lean_object*)&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__25_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__25_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__25;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__26_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__26;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__27_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -451,9 +443,9 @@ static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__27;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__28_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__28;
 LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instFromJsonStackTable___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instFromJsonStackTable_fromJson, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instFromJsonStackTable___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonStackTable___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instFromJsonStackTable = (const lean_object*)&l_Lean_Firefox_instFromJsonStackTable___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonStackTable___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonStackTable___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonStackTable;
 LEAN_EXPORT lean_object* l_Option_toJson___at___00Array_toJson___at___00Lean_Firefox_instToJsonStackTable_toJson_spec__1_spec__2(lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonStackTable_toJson_spec__1_spec__3(size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonStackTable_toJson_spec__1_spec__3___boxed(lean_object*, lean_object*, lean_object*);
@@ -462,9 +454,9 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_m
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonStackTable_toJson_spec__0_spec__0___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_toJson___at___00Lean_Firefox_instToJsonStackTable_toJson_spec__0(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonStackTable_toJson(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instToJsonStackTable___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instToJsonStackTable_toJson, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instToJsonStackTable___closed__0 = (const lean_object*)&l_Lean_Firefox_instToJsonStackTable___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instToJsonStackTable = (const lean_object*)&l_Lean_Firefox_instToJsonStackTable___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instToJsonStackTable___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instToJsonStackTable___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonStackTable;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonSamplesTable_fromJson_spec__0_spec__0_spec__1(size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonSamplesTable_fromJson_spec__0_spec__0_spec__1___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonSamplesTable_fromJson_spec__0_spec__0(lean_object*);
@@ -475,20 +467,18 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_m
 LEAN_EXPORT lean_object* l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonSamplesTable_fromJson_spec__1_spec__2(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonSamplesTable_fromJson_spec__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonSamplesTable_fromJson_spec__1___boxed(lean_object*, lean_object*);
-static const lean_string_object l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "stack"};
-static const lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__0_value;
-static const lean_string_object l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "SamplesTable"};
-static const lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__1 = (const lean_object*)&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__1_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__2_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__2_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__2_value_aux_0),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_value),LEAN_SCALAR_PTR_LITERAL(1, 221, 142, 98, 103, 73, 209, 133)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__2_value_aux_1),((lean_object*)&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__1_value),LEAN_SCALAR_PTR_LITERAL(215, 187, 138, 176, 228, 207, 154, 117)}};
-static const lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__2 = (const lean_object*)&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__2_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__0;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__1;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__2;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__3;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__4;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__0_value),LEAN_SCALAR_PTR_LITERAL(208, 89, 157, 61, 238, 50, 135, 16)}};
-static const lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__5 = (const lean_object*)&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__5_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__5;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__6;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -499,20 +489,20 @@ static lean_once_cell_t l_Lean_Firefox_instFromJsonSamplesTable_fromJson___close
 static lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__9;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__10;
-static const lean_string_object l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "weight"};
-static const lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__11 = (const lean_object*)&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__11_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__11_value),LEAN_SCALAR_PTR_LITERAL(10, 75, 125, 35, 37, 138, 19, 132)}};
-static const lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__12 = (const lean_object*)&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__12_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__11;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__12;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__13;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__14;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__15;
-static const lean_string_object l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "weightType"};
-static const lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__16 = (const lean_object*)&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__16_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__17_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__16_value),LEAN_SCALAR_PTR_LITERAL(21, 163, 213, 144, 102, 150, 168, 101)}};
-static const lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__17 = (const lean_object*)&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__17_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__16;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__17;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__18;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -528,9 +518,9 @@ static lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__2
 static lean_once_cell_t l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__24_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__24;
 LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instFromJsonSamplesTable___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instFromJsonSamplesTable_fromJson, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instFromJsonSamplesTable___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonSamplesTable___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instFromJsonSamplesTable = (const lean_object*)&l_Lean_Firefox_instFromJsonSamplesTable___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonSamplesTable___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonSamplesTable___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonSamplesTable;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonSamplesTable_toJson_spec__1_spec__2(size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonSamplesTable_toJson_spec__1_spec__2___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_toJson___at___00Lean_Firefox_instToJsonSamplesTable_toJson_spec__1(lean_object*);
@@ -538,20 +528,18 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_m
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonSamplesTable_toJson_spec__0_spec__0___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_toJson___at___00Lean_Firefox_instToJsonSamplesTable_toJson_spec__0(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonSamplesTable_toJson(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instToJsonSamplesTable___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instToJsonSamplesTable_toJson, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instToJsonSamplesTable___closed__0 = (const lean_object*)&l_Lean_Firefox_instToJsonSamplesTable___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instToJsonSamplesTable = (const lean_object*)&l_Lean_Firefox_instToJsonSamplesTable___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instToJsonSamplesTable___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instToJsonSamplesTable___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonSamplesTable;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFuncTable_fromJson_spec__0_spec__0_spec__1(size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFuncTable_fromJson_spec__0_spec__0_spec__1___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFuncTable_fromJson_spec__0_spec__0(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFuncTable_fromJson_spec__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFuncTable_fromJson_spec__0___boxed(lean_object*, lean_object*);
-static const lean_string_object l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "FuncTable"};
-static const lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__0_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__1_value_aux_0),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_value),LEAN_SCALAR_PTR_LITERAL(1, 221, 142, 98, 103, 73, 209, 133)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__1_value_aux_1),((lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__0_value),LEAN_SCALAR_PTR_LITERAL(214, 233, 34, 52, 182, 124, 102, 23)}};
-static const lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__1 = (const lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__1_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__0;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__1;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__2;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -560,60 +548,60 @@ static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__
 static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__4;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__5;
-static const lean_string_object l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "isJS"};
-static const lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__6 = (const lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__6_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__6_value),LEAN_SCALAR_PTR_LITERAL(130, 83, 250, 199, 244, 244, 102, 159)}};
-static const lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__7 = (const lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__7_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__6;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__7;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__8;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__9;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__10;
-static const lean_string_object l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "relevantForJS"};
-static const lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__11 = (const lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__11_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__11_value),LEAN_SCALAR_PTR_LITERAL(64, 11, 154, 43, 140, 238, 177, 24)}};
-static const lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__12 = (const lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__12_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__11;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__12;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__13;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__14;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__15;
-static const lean_string_object l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "resource"};
-static const lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__16 = (const lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__16_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__17_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__16_value),LEAN_SCALAR_PTR_LITERAL(162, 161, 163, 104, 166, 98, 163, 194)}};
-static const lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__17 = (const lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__17_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__16;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__17;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__18;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__19;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__20_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__20;
-static const lean_string_object l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__21_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "fileName"};
-static const lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__21 = (const lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__21_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__22_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__21_value),LEAN_SCALAR_PTR_LITERAL(67, 201, 140, 230, 1, 55, 95, 217)}};
-static const lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__22 = (const lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__22_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__21_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__21;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__22_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__22;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__23_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__23;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__24_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__24;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__25_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__25;
-static const lean_string_object l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__26_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "lineNumber"};
-static const lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__26 = (const lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__26_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__27_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__26_value),LEAN_SCALAR_PTR_LITERAL(183, 13, 154, 50, 174, 163, 169, 40)}};
-static const lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__27 = (const lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__27_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__26_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__26;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__27_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__27;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__28_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__28;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__29_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__29;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__30_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__30;
-static const lean_string_object l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__31_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "columnNumber"};
-static const lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__31 = (const lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__31_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__32_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__31_value),LEAN_SCALAR_PTR_LITERAL(120, 32, 111, 252, 150, 51, 74, 187)}};
-static const lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__32 = (const lean_object*)&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__32_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__31_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__31;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__32_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__32;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__33_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__33;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__34_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -625,48 +613,46 @@ static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__36;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__37_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__37;
 LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instFromJsonFuncTable___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instFromJsonFuncTable_fromJson, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instFromJsonFuncTable___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonFuncTable___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instFromJsonFuncTable = (const lean_object*)&l_Lean_Firefox_instFromJsonFuncTable___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFuncTable___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFuncTable___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonFuncTable;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonFuncTable_toJson_spec__0_spec__0(size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonFuncTable_toJson_spec__0_spec__0___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_toJson___at___00Lean_Firefox_instToJsonFuncTable_toJson_spec__0(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonFuncTable_toJson(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instToJsonFuncTable___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instToJsonFuncTable_toJson, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instToJsonFuncTable___closed__0 = (const lean_object*)&l_Lean_Firefox_instToJsonFuncTable___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instToJsonFuncTable = (const lean_object*)&l_Lean_Firefox_instToJsonFuncTable___closed__0_value;
-static const lean_ctor_object l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFrameTable_fromJson_spec__0_spec__0_spec__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFrameTable_fromJson_spec__0_spec__0_spec__1___closed__0 = (const lean_object*)&l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFrameTable_fromJson_spec__0_spec__0_spec__1___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instToJsonFuncTable___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instToJsonFuncTable___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonFuncTable;
+static lean_once_cell_t l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFrameTable_fromJson_spec__0_spec__0_spec__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFrameTable_fromJson_spec__0_spec__0_spec__1___closed__0;
 LEAN_EXPORT lean_object* l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFrameTable_fromJson_spec__0_spec__0_spec__1(lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFrameTable_fromJson_spec__0_spec__0_spec__2(size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFrameTable_fromJson_spec__0_spec__0_spec__2___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFrameTable_fromJson_spec__0_spec__0(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFrameTable_fromJson_spec__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFrameTable_fromJson_spec__0___boxed(lean_object*, lean_object*);
-static const lean_string_object l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "address"};
-static const lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__0_value;
-static const lean_string_object l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "FrameTable"};
-static const lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__1 = (const lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__1_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__2_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__2_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__2_value_aux_0),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_value),LEAN_SCALAR_PTR_LITERAL(1, 221, 142, 98, 103, 73, 209, 133)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__2_value_aux_1),((lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__1_value),LEAN_SCALAR_PTR_LITERAL(65, 156, 69, 76, 30, 113, 79, 38)}};
-static const lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__2 = (const lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__2_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__0;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__1;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__2;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__3;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__4;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__0_value),LEAN_SCALAR_PTR_LITERAL(99, 127, 29, 74, 107, 134, 8, 23)}};
-static const lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__5 = (const lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__5_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__5;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__6;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__7;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__8;
-static const lean_string_object l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "inlineDepth"};
-static const lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__9 = (const lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__9_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__9_value),LEAN_SCALAR_PTR_LITERAL(185, 130, 4, 176, 140, 3, 27, 251)}};
-static const lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__10 = (const lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__10_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__9;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__10;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__11;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -681,60 +667,60 @@ static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed_
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__16;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__17;
-static const lean_string_object l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__18_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "func"};
-static const lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__18 = (const lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__18_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__19_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__18_value),LEAN_SCALAR_PTR_LITERAL(126, 207, 36, 56, 147, 187, 96, 81)}};
-static const lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__19 = (const lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__19_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__18;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__19;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__20_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__20;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__21_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__21;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__22_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__22;
-static const lean_string_object l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__23_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "nativeSymbol"};
-static const lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__23 = (const lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__23_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__24_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__23_value),LEAN_SCALAR_PTR_LITERAL(84, 184, 220, 224, 193, 85, 192, 101)}};
-static const lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__24 = (const lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__24_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__23_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__23;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__24_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__24;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__25_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__25;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__26_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__26;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__27_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__27;
-static const lean_string_object l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__28_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "innerWindowID"};
-static const lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__28 = (const lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__28_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__29_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__28_value),LEAN_SCALAR_PTR_LITERAL(97, 40, 5, 206, 248, 148, 179, 42)}};
-static const lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__29 = (const lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__29_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__28_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__28;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__29_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__29;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__30_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__30;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__31_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__31;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__32_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__32;
-static const lean_string_object l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__33_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "implementation"};
-static const lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__33 = (const lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__33_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__34_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__33_value),LEAN_SCALAR_PTR_LITERAL(186, 135, 102, 9, 143, 52, 86, 15)}};
-static const lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__34 = (const lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__34_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__33_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__33;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__34_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__34;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__35_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__35;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__36_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__36;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__37_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__37;
-static const lean_string_object l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__38_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "line"};
-static const lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__38 = (const lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__38_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__39_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__38_value),LEAN_SCALAR_PTR_LITERAL(45, 20, 170, 234, 25, 144, 248, 101)}};
-static const lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__39 = (const lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__39_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__38_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__38;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__39_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__39;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__40_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__40;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__41_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__41;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__42_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__42;
-static const lean_string_object l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__43_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "column"};
-static const lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__43 = (const lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__43_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__44_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__43_value),LEAN_SCALAR_PTR_LITERAL(177, 41, 36, 97, 84, 61, 112, 119)}};
-static const lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__44 = (const lean_object*)&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__44_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__43_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__43;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__44_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__44;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__45_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__45;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__46_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -746,39 +732,37 @@ static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__48;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__49_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__49;
 LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instFromJsonFrameTable___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instFromJsonFrameTable_fromJson, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instFromJsonFrameTable___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonFrameTable___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instFromJsonFrameTable = (const lean_object*)&l_Lean_Firefox_instFromJsonFrameTable___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonFrameTable___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonFrameTable___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonFrameTable;
 LEAN_EXPORT lean_object* l_Option_toJson___at___00Array_toJson___at___00Lean_Firefox_instToJsonFrameTable_toJson_spec__0_spec__0(lean_object*);
 LEAN_EXPORT lean_object* l_Option_toJson___at___00Array_toJson___at___00Lean_Firefox_instToJsonFrameTable_toJson_spec__0_spec__0___boxed(lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonFrameTable_toJson_spec__0_spec__1(size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonFrameTable_toJson_spec__0_spec__1___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_toJson___at___00Lean_Firefox_instToJsonFrameTable_toJson_spec__0(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonFrameTable_toJson(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instToJsonFrameTable___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instToJsonFrameTable_toJson, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instToJsonFrameTable___closed__0 = (const lean_object*)&l_Lean_Firefox_instToJsonFrameTable___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instToJsonFrameTable = (const lean_object*)&l_Lean_Firefox_instToJsonFrameTable___closed__0_value;
-static const lean_array_object l_Lean_Firefox_instInhabitedFrameTable_default___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Lean_Firefox_instInhabitedFrameTable_default___closed__0 = (const lean_object*)&l_Lean_Firefox_instInhabitedFrameTable_default___closed__0_value;
-static const lean_ctor_object l_Lean_Firefox_instInhabitedFrameTable_default___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*11 + 0, .m_other = 11, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lean_Firefox_instInhabitedFrameTable_default___closed__0_value),((lean_object*)&l_Lean_Firefox_instInhabitedFrameTable_default___closed__0_value),((lean_object*)&l_Lean_Firefox_instInhabitedFrameTable_default___closed__0_value),((lean_object*)&l_Lean_Firefox_instInhabitedFrameTable_default___closed__0_value),((lean_object*)&l_Lean_Firefox_instInhabitedFrameTable_default___closed__0_value),((lean_object*)&l_Lean_Firefox_instInhabitedFrameTable_default___closed__0_value),((lean_object*)&l_Lean_Firefox_instInhabitedFrameTable_default___closed__0_value),((lean_object*)&l_Lean_Firefox_instInhabitedFrameTable_default___closed__0_value),((lean_object*)&l_Lean_Firefox_instInhabitedFrameTable_default___closed__0_value),((lean_object*)&l_Lean_Firefox_instInhabitedFrameTable_default___closed__0_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lean_Firefox_instInhabitedFrameTable_default___closed__1 = (const lean_object*)&l_Lean_Firefox_instInhabitedFrameTable_default___closed__1_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instInhabitedFrameTable_default = (const lean_object*)&l_Lean_Firefox_instInhabitedFrameTable_default___closed__1_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instInhabitedFrameTable = (const lean_object*)&l_Lean_Firefox_instInhabitedFrameTable_default___closed__1_value;
+static lean_once_cell_t l_Lean_Firefox_instToJsonFrameTable___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instToJsonFrameTable___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonFrameTable;
+static lean_once_cell_t l_Lean_Firefox_instInhabitedFrameTable_default___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instInhabitedFrameTable_default___closed__0;
+static lean_once_cell_t l_Lean_Firefox_instInhabitedFrameTable_default___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instInhabitedFrameTable_default___closed__1;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instInhabitedFrameTable_default;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instInhabitedFrameTable;
 LEAN_EXPORT lean_object* l_Lean_Firefox_FrameTable_push(lean_object*, lean_object*);
-static const lean_string_object l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "data"};
-static const lean_object* l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__0_value;
-static const lean_string_object l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "RawMarkerTable"};
-static const lean_object* l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__1 = (const lean_object*)&l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__1_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__2_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__2_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__2_value_aux_0),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_value),LEAN_SCALAR_PTR_LITERAL(1, 221, 142, 98, 103, 73, 209, 133)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__2_value_aux_1),((lean_object*)&l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__1_value),LEAN_SCALAR_PTR_LITERAL(217, 129, 183, 157, 11, 43, 22, 62)}};
-static const lean_object* l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__2 = (const lean_object*)&l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__2_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__0;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__1;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__2;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__3;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__4;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__0_value),LEAN_SCALAR_PTR_LITERAL(157, 185, 242, 82, 251, 25, 14, 198)}};
-static const lean_object* l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__5 = (const lean_object*)&l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__5_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__5;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__6;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -794,27 +778,25 @@ static lean_object* l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed_
 static lean_once_cell_t l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__12;
 LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instFromJsonRawMarkerTable___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instFromJsonRawMarkerTable___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonRawMarkerTable___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instFromJsonRawMarkerTable = (const lean_object*)&l_Lean_Firefox_instFromJsonRawMarkerTable___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonRawMarkerTable___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonRawMarkerTable___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonRawMarkerTable;
 LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonRawMarkerTable_toJson(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instToJsonRawMarkerTable___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instToJsonRawMarkerTable_toJson, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instToJsonRawMarkerTable___closed__0 = (const lean_object*)&l_Lean_Firefox_instToJsonRawMarkerTable___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instToJsonRawMarkerTable = (const lean_object*)&l_Lean_Firefox_instToJsonRawMarkerTable___closed__0_value;
-static const lean_string_object l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "type"};
-static const lean_object* l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__0_value;
-static const lean_string_object l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "ResourceTable"};
-static const lean_object* l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__1 = (const lean_object*)&l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__1_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__2_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__2_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__2_value_aux_0),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_value),LEAN_SCALAR_PTR_LITERAL(1, 221, 142, 98, 103, 73, 209, 133)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__2_value_aux_1),((lean_object*)&l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__1_value),LEAN_SCALAR_PTR_LITERAL(247, 23, 36, 141, 162, 189, 23, 177)}};
-static const lean_object* l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__2 = (const lean_object*)&l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__2_value;
+static lean_once_cell_t l_Lean_Firefox_instToJsonRawMarkerTable___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instToJsonRawMarkerTable___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonRawMarkerTable;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__0;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__1;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__2;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__3;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__4;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__0_value),LEAN_SCALAR_PTR_LITERAL(112, 109, 54, 158, 248, 169, 165, 159)}};
-static const lean_object* l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__5 = (const lean_object*)&l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__5_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__5;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__6;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -826,13 +808,13 @@ static lean_object* l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__
 static lean_once_cell_t l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__10;
 LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonResourceTable_fromJson(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instFromJsonResourceTable___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instFromJsonResourceTable_fromJson, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instFromJsonResourceTable___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonResourceTable___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instFromJsonResourceTable = (const lean_object*)&l_Lean_Firefox_instFromJsonResourceTable___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonResourceTable___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonResourceTable___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonResourceTable;
 LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonResourceTable_toJson(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instToJsonResourceTable___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instToJsonResourceTable_toJson, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instToJsonResourceTable___closed__0 = (const lean_object*)&l_Lean_Firefox_instToJsonResourceTable___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instToJsonResourceTable = (const lean_object*)&l_Lean_Firefox_instToJsonResourceTable___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instToJsonResourceTable___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instToJsonResourceTable___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonResourceTable;
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonThread_fromJson_spec__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonThread_fromJson_spec__0___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonThread_fromJson_spec__1(lean_object*, lean_object*);
@@ -847,12 +829,10 @@ LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instF
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonThread_fromJson_spec__5___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonThread_fromJson_spec__6(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonThread_fromJson_spec__6___boxed(lean_object*, lean_object*);
-static const lean_string_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Thread"};
-static const lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__0_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__1_value_aux_0),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_value),LEAN_SCALAR_PTR_LITERAL(1, 221, 142, 98, 103, 73, 209, 133)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__1_value_aux_1),((lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__0_value),LEAN_SCALAR_PTR_LITERAL(2, 102, 6, 129, 193, 205, 127, 161)}};
-static const lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__1 = (const lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__1_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__0;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__1;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__2;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -865,90 +845,90 @@ static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__6_o
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__6;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__7;
-static const lean_string_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "isMainThread"};
-static const lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__8 = (const lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__8_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__8_value),LEAN_SCALAR_PTR_LITERAL(111, 97, 248, 33, 147, 201, 64, 71)}};
-static const lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__9 = (const lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__9_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__8;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__9;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__10;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__11;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__12;
-static const lean_string_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "samples"};
-static const lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__13 = (const lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__13_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__13_value),LEAN_SCALAR_PTR_LITERAL(126, 40, 150, 76, 5, 209, 190, 90)}};
-static const lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__14 = (const lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__14_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__13;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__14;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__15;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__16;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__17;
-static const lean_string_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__18_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "markers"};
-static const lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__18 = (const lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__18_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__19_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__18_value),LEAN_SCALAR_PTR_LITERAL(131, 132, 127, 199, 77, 56, 4, 153)}};
-static const lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__19 = (const lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__19_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__18;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__19;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__20_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__20;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__21_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__21;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__22_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__22;
-static const lean_string_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__23_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "stackTable"};
-static const lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__23 = (const lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__23_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__24_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__23_value),LEAN_SCALAR_PTR_LITERAL(43, 131, 212, 86, 108, 53, 35, 9)}};
-static const lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__24 = (const lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__24_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__23_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__23;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__24_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__24;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__25_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__25;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__26_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__26;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__27_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__27;
-static const lean_string_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__28_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "frameTable"};
-static const lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__28 = (const lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__28_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__29_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__28_value),LEAN_SCALAR_PTR_LITERAL(220, 91, 176, 170, 52, 10, 14, 104)}};
-static const lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__29 = (const lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__29_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__28_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__28;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__29_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__29;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__30_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__30;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__31_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__31;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__32_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__32;
-static const lean_string_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__33_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "resourceTable"};
-static const lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__33 = (const lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__33_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__34_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__33_value),LEAN_SCALAR_PTR_LITERAL(254, 105, 116, 50, 84, 52, 124, 155)}};
-static const lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__34 = (const lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__34_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__33_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__33;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__34_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__34;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__35_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__35;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__36_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__36;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__37_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__37;
-static const lean_string_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__38_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "nativeSymbols"};
-static const lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__38 = (const lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__38_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__39_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__38_value),LEAN_SCALAR_PTR_LITERAL(136, 149, 38, 186, 185, 69, 38, 51)}};
-static const lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__39 = (const lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__39_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__38_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__38;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__39_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__39;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__40_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__40;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__41_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__41;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__42_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__42;
-static const lean_string_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__43_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "stringArray"};
-static const lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__43 = (const lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__43_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__44_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__43_value),LEAN_SCALAR_PTR_LITERAL(148, 127, 137, 97, 195, 143, 28, 68)}};
-static const lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__44 = (const lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__44_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__43_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__43;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__44_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__44;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__45_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__45;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__46_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__46;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__47_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__47;
-static const lean_string_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__48_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "funcTable"};
-static const lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__48 = (const lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__48_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonThread_fromJson___closed__49_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__48_value),LEAN_SCALAR_PTR_LITERAL(140, 176, 103, 103, 70, 114, 135, 204)}};
-static const lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__49 = (const lean_object*)&l_Lean_Firefox_instFromJsonThread_fromJson___closed__49_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__48_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__48;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__49_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__49;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__50_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__50;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__51_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -956,13 +936,13 @@ static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__51;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonThread_fromJson___closed__52_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonThread_fromJson___closed__52;
 LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonThread_fromJson(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instFromJsonThread___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instFromJsonThread_fromJson, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instFromJsonThread___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonThread___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instFromJsonThread = (const lean_object*)&l_Lean_Firefox_instFromJsonThread___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonThread___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonThread___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonThread;
 LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonThread_toJson(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instToJsonThread___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instToJsonThread_toJson, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instToJsonThread___closed__0 = (const lean_object*)&l_Lean_Firefox_instToJsonThread___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instToJsonThread = (const lean_object*)&l_Lean_Firefox_instToJsonThread___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instToJsonThread___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instToJsonThread___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonThread;
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfile_fromJson_spec__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfile_fromJson_spec__0___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfile_fromJson_spec__1_spec__1_spec__2(size_t, size_t, lean_object*);
@@ -970,40 +950,38 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_m
 LEAN_EXPORT lean_object* l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfile_fromJson_spec__1_spec__1(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfile_fromJson_spec__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfile_fromJson_spec__1___boxed(lean_object*, lean_object*);
-static const lean_string_object l_Lean_Firefox_instFromJsonProfile_fromJson___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "meta"};
-static const lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__0_value;
-static const lean_string_object l_Lean_Firefox_instFromJsonProfile_fromJson___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "Profile"};
-static const lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__1 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__1_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonProfile_fromJson___closed__2_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonProfile_fromJson___closed__2_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__2_value_aux_0),((lean_object*)&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_value),LEAN_SCALAR_PTR_LITERAL(1, 221, 142, 98, 103, 73, 209, 133)}};
-static const lean_ctor_object l_Lean_Firefox_instFromJsonProfile_fromJson___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__2_value_aux_1),((lean_object*)&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__1_value),LEAN_SCALAR_PTR_LITERAL(154, 231, 246, 101, 43, 72, 102, 2)}};
-static const lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__2 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__2_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfile_fromJson___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__0;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfile_fromJson___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__1;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfile_fromJson___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__2;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfile_fromJson___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__3;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfile_fromJson___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__4;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonProfile_fromJson___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__0_value),LEAN_SCALAR_PTR_LITERAL(245, 159, 21, 79, 192, 127, 97, 20)}};
-static const lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__5 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__5_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfile_fromJson___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__5;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfile_fromJson___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__6;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfile_fromJson___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__7;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfile_fromJson___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__8;
-static const lean_string_object l_Lean_Firefox_instFromJsonProfile_fromJson___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "libs"};
-static const lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__9 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__9_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonProfile_fromJson___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__9_value),LEAN_SCALAR_PTR_LITERAL(49, 117, 173, 12, 162, 111, 95, 96)}};
-static const lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__10 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__10_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfile_fromJson___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__9;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfile_fromJson___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__10;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfile_fromJson___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__11;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfile_fromJson___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__12;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfile_fromJson___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__13;
-static const lean_string_object l_Lean_Firefox_instFromJsonProfile_fromJson___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "threads"};
-static const lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__14 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__14_value;
-static const lean_ctor_object l_Lean_Firefox_instFromJsonProfile_fromJson___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__14_value),LEAN_SCALAR_PTR_LITERAL(201, 78, 72, 66, 196, 97, 111, 153)}};
-static const lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__15 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__15_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfile_fromJson___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__14;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfile_fromJson___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__15;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfile_fromJson___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__16;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfile_fromJson___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -1011,71 +989,69 @@ static lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__17;
 static lean_once_cell_t l_Lean_Firefox_instFromJsonProfile_fromJson___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson___closed__18;
 LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instFromJsonProfile___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instFromJsonProfile_fromJson, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instFromJsonProfile___closed__0 = (const lean_object*)&l_Lean_Firefox_instFromJsonProfile___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instFromJsonProfile = (const lean_object*)&l_Lean_Firefox_instFromJsonProfile___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instFromJsonProfile___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instFromJsonProfile___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonProfile;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonProfile_toJson_spec__0_spec__0(size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonProfile_toJson_spec__0_spec__0___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_toJson___at___00Lean_Firefox_instToJsonProfile_toJson_spec__0(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonProfile_toJson(lean_object*);
-static const lean_closure_object l_Lean_Firefox_instToJsonProfile___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_instToJsonProfile_toJson, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_instToJsonProfile___closed__0 = (const lean_object*)&l_Lean_Firefox_instToJsonProfile___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_instToJsonProfile = (const lean_object*)&l_Lean_Firefox_instToJsonProfile___closed__0_value;
-static const lean_string_object l_Lean_Firefox_categories___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "Other"};
-static const lean_object* l_Lean_Firefox_categories___closed__0 = (const lean_object*)&l_Lean_Firefox_categories___closed__0_value;
-static const lean_ctor_object l_Lean_Firefox_categories___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_categories___closed__0_value),LEAN_SCALAR_PTR_LITERAL(118, 176, 148, 210, 57, 145, 59, 135)}};
-static const lean_object* l_Lean_Firefox_categories___closed__1 = (const lean_object*)&l_Lean_Firefox_categories___closed__1_value;
-static const lean_string_object l_Lean_Firefox_categories___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "gray"};
-static const lean_object* l_Lean_Firefox_categories___closed__2 = (const lean_object*)&l_Lean_Firefox_categories___closed__2_value;
-static const lean_array_object l_Lean_Firefox_categories___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Lean_Firefox_categories___closed__3 = (const lean_object*)&l_Lean_Firefox_categories___closed__3_value;
-static const lean_ctor_object l_Lean_Firefox_categories___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lean_Firefox_categories___closed__1_value),((lean_object*)&l_Lean_Firefox_categories___closed__2_value),((lean_object*)&l_Lean_Firefox_categories___closed__3_value)}};
-static const lean_object* l_Lean_Firefox_categories___closed__4 = (const lean_object*)&l_Lean_Firefox_categories___closed__4_value;
-static const lean_string_object l_Lean_Firefox_categories___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Elab"};
-static const lean_object* l_Lean_Firefox_categories___closed__5 = (const lean_object*)&l_Lean_Firefox_categories___closed__5_value;
-static const lean_string_object l_Lean_Firefox_categories___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "async"};
-static const lean_object* l_Lean_Firefox_categories___closed__6 = (const lean_object*)&l_Lean_Firefox_categories___closed__6_value;
-static const lean_ctor_object l_Lean_Firefox_categories___closed__7_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_categories___closed__5_value),LEAN_SCALAR_PTR_LITERAL(13, 84, 199, 228, 250, 36, 60, 178)}};
-static const lean_ctor_object l_Lean_Firefox_categories___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_categories___closed__7_value_aux_0),((lean_object*)&l_Lean_Firefox_categories___closed__6_value),LEAN_SCALAR_PTR_LITERAL(6, 0, 36, 68, 138, 2, 151, 20)}};
-static const lean_object* l_Lean_Firefox_categories___closed__7 = (const lean_object*)&l_Lean_Firefox_categories___closed__7_value;
-static const lean_ctor_object l_Lean_Firefox_categories___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lean_Firefox_categories___closed__7_value),((lean_object*)&l_Lean_Firefox_categories___closed__2_value),((lean_object*)&l_Lean_Firefox_categories___closed__3_value)}};
-static const lean_object* l_Lean_Firefox_categories___closed__8 = (const lean_object*)&l_Lean_Firefox_categories___closed__8_value;
-static const lean_string_object l_Lean_Firefox_categories___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "block"};
-static const lean_object* l_Lean_Firefox_categories___closed__9 = (const lean_object*)&l_Lean_Firefox_categories___closed__9_value;
-static const lean_ctor_object l_Lean_Firefox_categories___closed__10_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_categories___closed__5_value),LEAN_SCALAR_PTR_LITERAL(13, 84, 199, 228, 250, 36, 60, 178)}};
-static const lean_ctor_object l_Lean_Firefox_categories___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Firefox_categories___closed__10_value_aux_0),((lean_object*)&l_Lean_Firefox_categories___closed__9_value),LEAN_SCALAR_PTR_LITERAL(93, 203, 205, 48, 20, 104, 179, 229)}};
-static const lean_object* l_Lean_Firefox_categories___closed__10 = (const lean_object*)&l_Lean_Firefox_categories___closed__10_value;
-static const lean_string_object l_Lean_Firefox_categories___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "brown"};
-static const lean_object* l_Lean_Firefox_categories___closed__11 = (const lean_object*)&l_Lean_Firefox_categories___closed__11_value;
-static const lean_ctor_object l_Lean_Firefox_categories___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lean_Firefox_categories___closed__10_value),((lean_object*)&l_Lean_Firefox_categories___closed__11_value),((lean_object*)&l_Lean_Firefox_categories___closed__3_value)}};
-static const lean_object* l_Lean_Firefox_categories___closed__12 = (const lean_object*)&l_Lean_Firefox_categories___closed__12_value;
-static const lean_ctor_object l_Lean_Firefox_categories___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_categories___closed__5_value),LEAN_SCALAR_PTR_LITERAL(13, 84, 199, 228, 250, 36, 60, 178)}};
-static const lean_object* l_Lean_Firefox_categories___closed__13 = (const lean_object*)&l_Lean_Firefox_categories___closed__13_value;
-static const lean_string_object l_Lean_Firefox_categories___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "red"};
-static const lean_object* l_Lean_Firefox_categories___closed__14 = (const lean_object*)&l_Lean_Firefox_categories___closed__14_value;
-static const lean_ctor_object l_Lean_Firefox_categories___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lean_Firefox_categories___closed__13_value),((lean_object*)&l_Lean_Firefox_categories___closed__14_value),((lean_object*)&l_Lean_Firefox_categories___closed__3_value)}};
-static const lean_object* l_Lean_Firefox_categories___closed__15 = (const lean_object*)&l_Lean_Firefox_categories___closed__15_value;
-static const lean_string_object l_Lean_Firefox_categories___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Meta"};
-static const lean_object* l_Lean_Firefox_categories___closed__16 = (const lean_object*)&l_Lean_Firefox_categories___closed__16_value;
-static const lean_ctor_object l_Lean_Firefox_categories___closed__17_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_categories___closed__16_value),LEAN_SCALAR_PTR_LITERAL(211, 174, 49, 251, 64, 24, 251, 1)}};
-static const lean_object* l_Lean_Firefox_categories___closed__17 = (const lean_object*)&l_Lean_Firefox_categories___closed__17_value;
-static const lean_string_object l_Lean_Firefox_categories___closed__18_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "yellow"};
-static const lean_object* l_Lean_Firefox_categories___closed__18 = (const lean_object*)&l_Lean_Firefox_categories___closed__18_value;
-static const lean_ctor_object l_Lean_Firefox_categories___closed__19_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lean_Firefox_categories___closed__17_value),((lean_object*)&l_Lean_Firefox_categories___closed__18_value),((lean_object*)&l_Lean_Firefox_categories___closed__3_value)}};
-static const lean_object* l_Lean_Firefox_categories___closed__19 = (const lean_object*)&l_Lean_Firefox_categories___closed__19_value;
-static const lean_string_object l_Lean_Firefox_categories___closed__20_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Kernel"};
-static const lean_object* l_Lean_Firefox_categories___closed__20 = (const lean_object*)&l_Lean_Firefox_categories___closed__20_value;
-static const lean_ctor_object l_Lean_Firefox_categories___closed__21_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Firefox_categories___closed__20_value),LEAN_SCALAR_PTR_LITERAL(213, 59, 86, 63, 192, 192, 9, 44)}};
-static const lean_object* l_Lean_Firefox_categories___closed__21 = (const lean_object*)&l_Lean_Firefox_categories___closed__21_value;
-static const lean_string_object l_Lean_Firefox_categories___closed__22_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "green"};
-static const lean_object* l_Lean_Firefox_categories___closed__22 = (const lean_object*)&l_Lean_Firefox_categories___closed__22_value;
-static const lean_ctor_object l_Lean_Firefox_categories___closed__23_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lean_Firefox_categories___closed__21_value),((lean_object*)&l_Lean_Firefox_categories___closed__22_value),((lean_object*)&l_Lean_Firefox_categories___closed__3_value)}};
-static const lean_object* l_Lean_Firefox_categories___closed__23 = (const lean_object*)&l_Lean_Firefox_categories___closed__23_value;
-static const lean_array_object l_Lean_Firefox_categories___closed__24_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*6, .m_other = 0, .m_tag = 246}, .m_size = 6, .m_capacity = 6, .m_data = {((lean_object*)&l_Lean_Firefox_categories___closed__4_value),((lean_object*)&l_Lean_Firefox_categories___closed__8_value),((lean_object*)&l_Lean_Firefox_categories___closed__12_value),((lean_object*)&l_Lean_Firefox_categories___closed__15_value),((lean_object*)&l_Lean_Firefox_categories___closed__19_value),((lean_object*)&l_Lean_Firefox_categories___closed__23_value)}};
-static const lean_object* l_Lean_Firefox_categories___closed__24 = (const lean_object*)&l_Lean_Firefox_categories___closed__24_value;
-LEAN_EXPORT const lean_object* l_Lean_Firefox_categories = (const lean_object*)&l_Lean_Firefox_categories___closed__24_value;
-static const lean_ctor_object l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_getFirstStart_x3f_spec__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_getFirstStart_x3f_spec__0___closed__0 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_getFirstStart_x3f_spec__0___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_instToJsonProfile___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_instToJsonProfile___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonProfile;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__0;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__1;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__2;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__3;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__4;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__5;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__6;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__7;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__8;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__9;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__10;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__11;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__12;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__13;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__14;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__15;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__16;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__17;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__18;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__19;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__20_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__20;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__21_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__21;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__22_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__22;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__23_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__23;
+static lean_once_cell_t l_Lean_Firefox_categories___closed__24_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_categories___closed__24;
+LEAN_EXPORT lean_object* l_Lean_Firefox_categories;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_getFirstStart_x3f_spec__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_getFirstStart_x3f_spec__0___closed__0;
 static lean_once_cell_t l___private_Lean_Util_Profiler_0__Lean_Firefox_getFirstStart_x3f___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static double l___private_Lean_Util_Profiler_0__Lean_Firefox_getFirstStart_x3f___closed__0;
 LEAN_EXPORT lean_object* l___private_Lean_Util_Profiler_0__Lean_Firefox_getFirstStart_x3f(lean_object*);
@@ -1119,8 +1095,8 @@ LEAN_EXPORT uint8_t l_Std_DHashMap_Internal_AssocList_contains___at___00Std_DHas
 LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_AssocList_contains___at___00Std_DHashMap_Internal_Raw_u2080_insert___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__4_spec__9___redArg___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_AssocList_replace___at___00Std_DHashMap_Internal_Raw_u2080_insert___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__4_spec__11___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_Raw_u2080_insert___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__4___redArg(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "tracing-ms"};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0_value;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0;
 static lean_once_cell_t l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static double l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__0;
 LEAN_EXPORT lean_object* l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___boxed__const__1;
@@ -1128,8 +1104,8 @@ static lean_once_cell_t l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_
 static lean_object* l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__1;
 static lean_once_cell_t l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__2;
-static const lean_array_object l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__3 = (const lean_object*)&l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__3_value;
+static lean_once_cell_t l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__3;
 LEAN_EXPORT lean_object* l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go(uint8_t, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0(lean_object*, uint8_t, lean_object*, lean_object*, size_t, size_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -1169,20 +1145,20 @@ LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_AssocList_foldlM___at___00__pri
 LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_AssocList_foldlM___at___00__private_Std_Data_DHashMap_Internal_Defs_0__Std_DHashMap_Internal_Raw_u2080_expand_go___at___00Std_DHashMap_Internal_Raw_u2080_expand___at___00Std_DHashMap_Internal_Raw_u2080_insert___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__7_spec__17_spec__21_spec__24(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace(uint8_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Firefox_Thread_new___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "default"};
-static const lean_object* l_Lean_Firefox_Thread_new___closed__0 = (const lean_object*)&l_Lean_Firefox_Thread_new___closed__0_value;
-static const lean_array_object l_Lean_Firefox_Thread_new___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Lean_Firefox_Thread_new___closed__1 = (const lean_object*)&l_Lean_Firefox_Thread_new___closed__1_value;
-static const lean_ctor_object l_Lean_Firefox_Thread_new___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*6 + 0, .m_other = 6, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lean_Firefox_Thread_new___closed__1_value),((lean_object*)&l_Lean_Firefox_Thread_new___closed__1_value),((lean_object*)&l_Lean_Firefox_Thread_new___closed__1_value),((lean_object*)&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0_value),((lean_object*)&l_Lean_Firefox_Thread_new___closed__1_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lean_Firefox_Thread_new___closed__2 = (const lean_object*)&l_Lean_Firefox_Thread_new___closed__2_value;
-static const lean_ctor_object l_Lean_Firefox_Thread_new___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lean_Firefox_Thread_new___closed__1_value),((lean_object*)&l_Lean_Firefox_Thread_new___closed__1_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lean_Firefox_Thread_new___closed__3 = (const lean_object*)&l_Lean_Firefox_Thread_new___closed__3_value;
-static const lean_ctor_object l_Lean_Firefox_Thread_new___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*5 + 0, .m_other = 5, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lean_Firefox_Thread_new___closed__1_value),((lean_object*)&l_Lean_Firefox_Thread_new___closed__1_value),((lean_object*)&l_Lean_Firefox_Thread_new___closed__1_value),((lean_object*)&l_Lean_Firefox_Thread_new___closed__1_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lean_Firefox_Thread_new___closed__4 = (const lean_object*)&l_Lean_Firefox_Thread_new___closed__4_value;
-static const lean_ctor_object l_Lean_Firefox_Thread_new___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lean_Firefox_Thread_new___closed__1_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lean_Firefox_Thread_new___closed__5 = (const lean_object*)&l_Lean_Firefox_Thread_new___closed__5_value;
-static const lean_ctor_object l_Lean_Firefox_Thread_new___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*8 + 0, .m_other = 8, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lean_Firefox_Thread_new___closed__1_value),((lean_object*)&l_Lean_Firefox_Thread_new___closed__1_value),((lean_object*)&l_Lean_Firefox_Thread_new___closed__1_value),((lean_object*)&l_Lean_Firefox_Thread_new___closed__1_value),((lean_object*)&l_Lean_Firefox_Thread_new___closed__1_value),((lean_object*)&l_Lean_Firefox_Thread_new___closed__1_value),((lean_object*)&l_Lean_Firefox_Thread_new___closed__1_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lean_Firefox_Thread_new___closed__6 = (const lean_object*)&l_Lean_Firefox_Thread_new___closed__6_value;
+static lean_once_cell_t l_Lean_Firefox_Thread_new___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_Thread_new___closed__0;
+static lean_once_cell_t l_Lean_Firefox_Thread_new___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_Thread_new___closed__1;
+static lean_once_cell_t l_Lean_Firefox_Thread_new___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_Thread_new___closed__2;
+static lean_once_cell_t l_Lean_Firefox_Thread_new___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_Thread_new___closed__3;
+static lean_once_cell_t l_Lean_Firefox_Thread_new___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_Thread_new___closed__4;
+static lean_once_cell_t l_Lean_Firefox_Thread_new___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_Thread_new___closed__5;
+static lean_once_cell_t l_Lean_Firefox_Thread_new___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_Thread_new___closed__6;
 LEAN_EXPORT lean_object* l_Lean_Firefox_Thread_new(lean_object*);
 LEAN_EXPORT uint8_t l_Lean_Option_get___at___00Lean_Firefox_Profile_export_spec__2(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Option_get___at___00Lean_Firefox_Profile_export_spec__2___boxed(lean_object*, lean_object*);
@@ -1207,18 +1183,18 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_QSort_Basic_0__Array_qsort_
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_QSort_Basic_0__Array_qsort_sort___at___00Lean_Firefox_Profile_export_spec__6___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Lean_Firefox_Profile_export_spec__3(lean_object*, lean_object*, size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Lean_Firefox_Profile_export_spec__3___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "runFrontend"};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__0 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__0_value;
-static const lean_ctor_object l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__0_value),LEAN_SCALAR_PTR_LITERAL(29, 26, 219, 1, 125, 130, 35, 132)}};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__1 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__1_value;
-static const lean_string_object l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 1, .m_capacity = 1, .m_length = 0, .m_data = ""};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__2 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__2_value;
-static const lean_ctor_object l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__2_value)}};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__3 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__3_value;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__0;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__1;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__2;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__3;
 static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__4;
-static const lean_array_object l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__5 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__5_value;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__5;
 static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__6;
 static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -1227,8 +1203,8 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_m
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Std_DHashMap_Internal_AssocList_contains___at___00Std_DHashMap_Internal_Raw_u2080_Const_alter___at___00Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0_spec__0_spec__2___redArg(uint64_t, lean_object*);
 LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_AssocList_contains___at___00Std_DHashMap_Internal_Raw_u2080_Const_alter___at___00Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0_spec__0_spec__2___redArg___boxed(lean_object*, lean_object*);
-static const lean_array_object l_Std_DHashMap_Internal_AssocList_Const_alter___at___00Std_DHashMap_Internal_Raw_u2080_Const_alter___at___00Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0_spec__0_spec__4___redArg___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Std_DHashMap_Internal_AssocList_Const_alter___at___00Std_DHashMap_Internal_Raw_u2080_Const_alter___at___00Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0_spec__0_spec__4___redArg___lam__0___closed__0 = (const lean_object*)&l_Std_DHashMap_Internal_AssocList_Const_alter___at___00Std_DHashMap_Internal_Raw_u2080_Const_alter___at___00Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0_spec__0_spec__4___redArg___lam__0___closed__0_value;
+static lean_once_cell_t l_Std_DHashMap_Internal_AssocList_Const_alter___at___00Std_DHashMap_Internal_Raw_u2080_Const_alter___at___00Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0_spec__0_spec__4___redArg___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_DHashMap_Internal_AssocList_Const_alter___at___00Std_DHashMap_Internal_Raw_u2080_Const_alter___at___00Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0_spec__0_spec__4___redArg___lam__0___closed__0;
 LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_AssocList_Const_alter___at___00Std_DHashMap_Internal_Raw_u2080_Const_alter___at___00Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0_spec__0_spec__4___redArg___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_AssocList_Const_alter___at___00Std_DHashMap_Internal_Raw_u2080_Const_alter___at___00Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0_spec__0_spec__4___redArg(lean_object*, uint64_t, lean_object*);
 LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_AssocList_Const_alter___at___00Std_DHashMap_Internal_Raw_u2080_Const_alter___at___00Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0_spec__0_spec__4___redArg___boxed(lean_object*, lean_object*, lean_object*);
@@ -1257,18 +1233,18 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lean_Firefox_Profile_export_spec__11___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__8(size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__8___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Lean_Firefox_Profile_export___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Firefox_Profile_export___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Firefox_Profile_export___closed__0 = (const lean_object*)&l_Lean_Firefox_Profile_export___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_Profile_export___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_Profile_export___closed__0;
 static lean_once_cell_t l_Lean_Firefox_Profile_export___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static double l_Lean_Firefox_Profile_export___closed__1;
-static const lean_string_object l_Lean_Firefox_Profile_export___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "lean"};
-static const lean_object* l_Lean_Firefox_Profile_export___closed__2 = (const lean_object*)&l_Lean_Firefox_Profile_export___closed__2_value;
-static const lean_string_object l_Lean_Firefox_Profile_export___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "ms"};
-static const lean_object* l_Lean_Firefox_Profile_export___closed__3 = (const lean_object*)&l_Lean_Firefox_Profile_export___closed__3_value;
-static const lean_string_object l_Lean_Firefox_Profile_export___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 2, .m_data = "µs"};
-static const lean_object* l_Lean_Firefox_Profile_export___closed__4 = (const lean_object*)&l_Lean_Firefox_Profile_export___closed__4_value;
-static const lean_ctor_object l_Lean_Firefox_Profile_export___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lean_Firefox_Profile_export___closed__3_value),((lean_object*)&l_Lean_Firefox_Profile_export___closed__3_value),((lean_object*)&l_Lean_Firefox_Profile_export___closed__4_value)}};
-static const lean_object* l_Lean_Firefox_Profile_export___closed__5 = (const lean_object*)&l_Lean_Firefox_Profile_export___closed__5_value;
+static lean_once_cell_t l_Lean_Firefox_Profile_export___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_Profile_export___closed__2;
+static lean_once_cell_t l_Lean_Firefox_Profile_export___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_Profile_export___closed__3;
+static lean_once_cell_t l_Lean_Firefox_Profile_export___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_Profile_export___closed__4;
+static lean_once_cell_t l_Lean_Firefox_Profile_export___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_Profile_export___closed__5;
 LEAN_EXPORT lean_object* l_Lean_Firefox_Profile_export(lean_object*, double, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Firefox_Profile_export___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0(lean_object*, lean_object*, lean_object*);
@@ -1310,16 +1286,16 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lean_Firefox_Profile_collide_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lean_Firefox_Profile_collide_spec__2(lean_object*, size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lean_Firefox_Profile_collide_spec__2___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Firefox_Profile_collide___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "collided"};
-static const lean_object* l_Lean_Firefox_Profile_collide___closed__0 = (const lean_object*)&l_Lean_Firefox_Profile_collide___closed__0_value;
+static lean_once_cell_t l_Lean_Firefox_Profile_collide___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_Profile_collide___closed__0;
 static lean_once_cell_t l_Lean_Firefox_Profile_collide___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_Profile_collide___closed__1;
 static lean_once_cell_t l_Lean_Firefox_Profile_collide___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_Profile_collide___closed__2;
 static lean_once_cell_t l_Lean_Firefox_Profile_collide___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Firefox_Profile_collide___closed__3;
-static const lean_array_object l_Lean_Firefox_Profile_collide___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Lean_Firefox_Profile_collide___closed__4 = (const lean_object*)&l_Lean_Firefox_Profile_collide___closed__4_value;
+static lean_once_cell_t l_Lean_Firefox_Profile_collide___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Firefox_Profile_collide___closed__4;
 LEAN_EXPORT lean_object* l_Lean_Firefox_Profile_collide(lean_object*);
 static double _init_l_Lean_Firefox_instInhabitedMilliseconds_default___closed__0(void){
 _start:
@@ -1373,6 +1349,54 @@ lean_dec_ref(v_s_10_);
 v_res_12_ = l_Lean_Firefox_instCoeFloatMilliseconds___lam__0(v_s_boxed_11_);
 v_r_13_ = lean_box_float(v_res_12_);
 return v_r_13_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instCoeFloatMilliseconds___closed__0(void){
+_start:
+{
+lean_object* v___f_14_; 
+v___f_14_ = lean_alloc_closure((void*)(l_Lean_Firefox_instCoeFloatMilliseconds___lam__0___boxed), 1, 0);
+return v___f_14_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instCoeFloatMilliseconds(void){
+_start:
+{
+lean_object* v___f_15_; 
+v___f_15_ = lean_obj_once(&l_Lean_Firefox_instCoeFloatMilliseconds___closed__0, &l_Lean_Firefox_instCoeFloatMilliseconds___closed__0_once, _init_l_Lean_Firefox_instCoeFloatMilliseconds___closed__0);
+return v___f_15_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instOfScientificMilliseconds___closed__0(void){
+_start:
+{
+lean_object* v___f_16_; 
+v___f_16_ = lean_alloc_closure((void*)(l_Float_ofScientific___boxed), 3, 0);
+return v___f_16_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instOfScientificMilliseconds(void){
+_start:
+{
+lean_object* v___f_17_; 
+v___f_17_ = lean_obj_once(&l_Lean_Firefox_instOfScientificMilliseconds___closed__0, &l_Lean_Firefox_instOfScientificMilliseconds___closed__0_once, _init_l_Lean_Firefox_instOfScientificMilliseconds___closed__0);
+return v___f_17_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonMilliseconds___closed__0(void){
+_start:
+{
+lean_object* v___f_18_; 
+v___f_18_ = lean_alloc_closure((void*)(l_Float_toJson___boxed), 1, 0);
+return v___f_18_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonMilliseconds(void){
+_start:
+{
+lean_object* v___f_19_; 
+v___f_19_ = lean_obj_once(&l_Lean_Firefox_instToJsonMilliseconds___closed__0, &l_Lean_Firefox_instToJsonMilliseconds___closed__0_once, _init_l_Lean_Firefox_instToJsonMilliseconds___closed__0);
+return v___f_19_;
 }
 }
 LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonMilliseconds___lam__0(lean_object* v_j_20_){
@@ -1464,6 +1488,38 @@ return v___x_35_;
 }
 }
 }
+static lean_object* _init_l_Lean_Firefox_instFromJsonMilliseconds___closed__0(void){
+_start:
+{
+lean_object* v___f_38_; 
+v___f_38_ = lean_alloc_closure((void*)(l_Lean_Firefox_instFromJsonMilliseconds___lam__0), 1, 0);
+return v___f_38_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonMilliseconds(void){
+_start:
+{
+lean_object* v___f_39_; 
+v___f_39_ = lean_obj_once(&l_Lean_Firefox_instFromJsonMilliseconds___closed__0, &l_Lean_Firefox_instFromJsonMilliseconds___closed__0_once, _init_l_Lean_Firefox_instFromJsonMilliseconds___closed__0);
+return v___f_39_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instAddMilliseconds___closed__0(void){
+_start:
+{
+lean_object* v___f_40_; 
+v___f_40_ = lean_alloc_closure((void*)(l_Float_add___boxed), 2, 0);
+return v___f_40_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instAddMilliseconds(void){
+_start:
+{
+lean_object* v___f_41_; 
+v___f_41_ = lean_obj_once(&l_Lean_Firefox_instAddMilliseconds___closed__0, &l_Lean_Firefox_instAddMilliseconds___closed__0_once, _init_l_Lean_Firefox_instAddMilliseconds___closed__0);
+return v___f_41_;
+}
+}
 static double _init_l_Lean_Firefox_instCoeFloatMicroseconds___lam__0___closed__0(void){
 _start:
 {
@@ -1491,6 +1547,46 @@ lean_dec_ref(v_s_47_);
 v_res_49_ = l_Lean_Firefox_instCoeFloatMicroseconds___lam__0(v_s_boxed_48_);
 v_r_50_ = lean_box_float(v_res_49_);
 return v_r_50_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instCoeFloatMicroseconds___closed__0(void){
+_start:
+{
+lean_object* v___f_51_; 
+v___f_51_ = lean_alloc_closure((void*)(l_Lean_Firefox_instCoeFloatMicroseconds___lam__0___boxed), 1, 0);
+return v___f_51_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instCoeFloatMicroseconds(void){
+_start:
+{
+lean_object* v___f_52_; 
+v___f_52_ = lean_obj_once(&l_Lean_Firefox_instCoeFloatMicroseconds___closed__0, &l_Lean_Firefox_instCoeFloatMicroseconds___closed__0_once, _init_l_Lean_Firefox_instCoeFloatMicroseconds___closed__0);
+return v___f_52_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instOfScientificMicroseconds(void){
+_start:
+{
+lean_object* v___f_53_; 
+v___f_53_ = lean_obj_once(&l_Lean_Firefox_instOfScientificMilliseconds___closed__0, &l_Lean_Firefox_instOfScientificMilliseconds___closed__0_once, _init_l_Lean_Firefox_instOfScientificMilliseconds___closed__0);
+return v___f_53_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonMicroseconds(void){
+_start:
+{
+lean_object* v___f_54_; 
+v___f_54_ = lean_obj_once(&l_Lean_Firefox_instToJsonMilliseconds___closed__0, &l_Lean_Firefox_instToJsonMilliseconds___closed__0_once, _init_l_Lean_Firefox_instToJsonMilliseconds___closed__0);
+return v___f_54_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonMicroseconds(void){
+_start:
+{
+lean_object* v___f_55_; 
+v___f_55_ = lean_obj_once(&l_Lean_Firefox_instFromJsonMilliseconds___closed__0, &l_Lean_Firefox_instFromJsonMilliseconds___closed__0_once, _init_l_Lean_Firefox_instFromJsonMilliseconds___closed__0);
+return v___f_55_;
 }
 }
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__0(lean_object* v_j_56_, lean_object* v_k_57_){
@@ -1619,6 +1715,22 @@ v_res_97_ = l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00A
 return v_res_97_;
 }
 }
+static lean_object* _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0(void){
+_start:
+{
+lean_object* v___x_98_; 
+v___x_98_ = lean_mk_string_unchecked("expected JSON array, got '", 26, 26);
+return v___x_98_;
+}
+}
+static lean_object* _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1(void){
+_start:
+{
+lean_object* v___x_99_; 
+v___x_99_ = lean_mk_string_unchecked("'", 1, 1);
+return v___x_99_;
+}
+}
 LEAN_EXPORT lean_object* l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2(lean_object* v_x_100_){
 _start:
 {
@@ -1636,12 +1748,12 @@ return v___x_104_;
 else
 {
 lean_object* v___x_105_; lean_object* v___x_106_; lean_object* v___x_107_; lean_object* v___x_108_; lean_object* v___x_109_; lean_object* v___x_110_; lean_object* v___x_111_; 
-v___x_105_ = ((lean_object*)(l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0));
+v___x_105_ = lean_obj_once(&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0, &l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0_once, _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0);
 v___x_106_ = lean_unsigned_to_nat(80u);
 v___x_107_ = l_Lean_Json_pretty(v_x_100_, v___x_106_);
 v___x_108_ = lean_string_append(v___x_105_, v___x_107_);
 lean_dec_ref(v___x_107_);
-v___x_109_ = ((lean_object*)(l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1));
+v___x_109_ = lean_obj_once(&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1, &l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1_once, _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1);
 v___x_110_ = lean_string_append(v___x_108_, v___x_109_);
 v___x_111_ = lean_alloc_ctor(0, 1, 0);
 lean_ctor_set(v___x_111_, 0, v___x_110_);
@@ -1667,24 +1779,84 @@ lean_dec_ref(v_k_117_);
 return v_res_118_;
 }
 }
+static lean_object* _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0(void){
+_start:
+{
+lean_object* v___x_119_; 
+v___x_119_ = lean_mk_string_unchecked("name", 4, 4);
+return v___x_119_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1(void){
+_start:
+{
+lean_object* v___x_120_; 
+v___x_120_ = lean_mk_string_unchecked("Lean", 4, 4);
+return v___x_120_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2(void){
+_start:
+{
+lean_object* v___x_121_; 
+v___x_121_ = lean_mk_string_unchecked("Firefox", 7, 7);
+return v___x_121_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__3(void){
+_start:
+{
+lean_object* v___x_122_; 
+v___x_122_ = lean_mk_string_unchecked("Category", 8, 8);
+return v___x_122_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__4(void){
+_start:
+{
+lean_object* v___x_123_; lean_object* v___x_124_; lean_object* v___x_125_; lean_object* v___x_126_; 
+v___x_123_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__3, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__3_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__3);
+v___x_124_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2);
+v___x_125_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1);
+v___x_126_ = l_Lean_Name_mkStr3(v___x_125_, v___x_124_, v___x_123_);
+return v___x_126_;
+}
+}
 static lean_object* _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__5(void){
 _start:
 {
 uint8_t v___x_127_; lean_object* v___x_128_; lean_object* v___x_129_; 
 v___x_127_ = 1;
-v___x_128_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__4));
+v___x_128_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__4, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__4_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__4);
 v___x_129_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_128_, v___x_127_);
 return v___x_129_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6(void){
+_start:
+{
+lean_object* v___x_130_; 
+v___x_130_ = lean_mk_string_unchecked(".", 1, 1);
+return v___x_130_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__7(void){
 _start:
 {
 lean_object* v___x_131_; lean_object* v___x_132_; lean_object* v___x_133_; 
-v___x_131_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6));
+v___x_131_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6);
 v___x_132_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__5, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__5_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__5);
 v___x_133_ = lean_string_append(v___x_132_, v___x_131_);
 return v___x_133_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__8(void){
+_start:
+{
+lean_object* v___x_134_; lean_object* v___x_135_; 
+v___x_134_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0);
+v___x_135_ = l_Lean_Name_mkStr1(v___x_134_);
+return v___x_135_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__9(void){
@@ -1692,7 +1864,7 @@ _start:
 {
 uint8_t v___x_136_; lean_object* v___x_137_; lean_object* v___x_138_; 
 v___x_136_ = 1;
-v___x_137_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__8));
+v___x_137_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__8, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__8_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__8);
 v___x_138_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_137_, v___x_136_);
 return v___x_138_;
 }
@@ -1707,14 +1879,39 @@ v___x_141_ = lean_string_append(v___x_140_, v___x_139_);
 return v___x_141_;
 }
 }
+static lean_object* _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11(void){
+_start:
+{
+lean_object* v___x_142_; 
+v___x_142_ = lean_mk_string_unchecked(": ", 2, 2);
+return v___x_142_;
+}
+}
 static lean_object* _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__12(void){
 _start:
 {
 lean_object* v___x_143_; lean_object* v___x_144_; lean_object* v___x_145_; 
-v___x_143_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_143_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_144_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__10, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__10_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__10);
 v___x_145_ = lean_string_append(v___x_144_, v___x_143_);
 return v___x_145_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__13(void){
+_start:
+{
+lean_object* v___x_146_; 
+v___x_146_ = lean_mk_string_unchecked("color", 5, 5);
+return v___x_146_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__14(void){
+_start:
+{
+lean_object* v___x_147_; lean_object* v___x_148_; 
+v___x_147_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__13, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__13_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__13);
+v___x_148_ = l_Lean_Name_mkStr1(v___x_147_);
+return v___x_148_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__15(void){
@@ -1722,7 +1919,7 @@ _start:
 {
 uint8_t v___x_149_; lean_object* v___x_150_; lean_object* v___x_151_; 
 v___x_149_ = 1;
-v___x_150_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__14));
+v___x_150_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__14, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__14_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__14);
 v___x_151_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_150_, v___x_149_);
 return v___x_151_;
 }
@@ -1741,10 +1938,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed_
 _start:
 {
 lean_object* v___x_155_; lean_object* v___x_156_; lean_object* v___x_157_; 
-v___x_155_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_155_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_156_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__16, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__16_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__16);
 v___x_157_ = lean_string_append(v___x_156_, v___x_155_);
 return v___x_157_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__18(void){
+_start:
+{
+lean_object* v___x_158_; 
+v___x_158_ = lean_mk_string_unchecked("subcategories", 13, 13);
+return v___x_158_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__19(void){
+_start:
+{
+lean_object* v___x_159_; lean_object* v___x_160_; 
+v___x_159_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__18, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__18_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__18);
+v___x_160_ = l_Lean_Name_mkStr1(v___x_159_);
+return v___x_160_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__20(void){
@@ -1752,7 +1966,7 @@ _start:
 {
 uint8_t v___x_161_; lean_object* v___x_162_; lean_object* v___x_163_; 
 v___x_161_ = 1;
-v___x_162_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__19));
+v___x_162_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__19, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__19_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__19);
 v___x_163_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_162_, v___x_161_);
 return v___x_163_;
 }
@@ -1771,7 +1985,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed_
 _start:
 {
 lean_object* v___x_167_; lean_object* v___x_168_; lean_object* v___x_169_; 
-v___x_167_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_167_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_168_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__21, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__21_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__21);
 v___x_169_ = lean_string_append(v___x_168_, v___x_167_);
 return v___x_169_;
@@ -1781,7 +1995,7 @@ LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonCategory_fromJson(lean_objec
 _start:
 {
 lean_object* v___x_171_; lean_object* v___x_172_; 
-v___x_171_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0));
+v___x_171_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0);
 lean_inc(v_json_170_);
 v___x_172_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__0(v_json_170_, v___x_171_);
 if (lean_obj_tag(v___x_172_) == 0)
@@ -1881,7 +2095,7 @@ lean_object* v_a_191_; lean_object* v___x_192_; lean_object* v___x_193_;
 v_a_191_ = lean_ctor_get(v___x_172_, 0);
 lean_inc(v_a_191_);
 lean_dec_ref(v___x_172_);
-v___x_192_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__13));
+v___x_192_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__13, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__13_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__13);
 lean_inc(v_json_170_);
 v___x_193_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__1(v_json_170_, v___x_192_);
 if (lean_obj_tag(v___x_193_) == 0)
@@ -1983,7 +2197,7 @@ lean_object* v_a_212_; lean_object* v___x_213_; lean_object* v___x_214_;
 v_a_212_ = lean_ctor_get(v___x_193_, 0);
 lean_inc(v_a_212_);
 lean_dec_ref(v___x_193_);
-v___x_213_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__18));
+v___x_213_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__18, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__18_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__18);
 v___x_214_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2(v_json_170_, v___x_213_);
 if (lean_obj_tag(v___x_214_) == 0)
 {
@@ -2131,6 +2345,22 @@ return v___x_239_;
 }
 }
 }
+static lean_object* _init_l_Lean_Firefox_instFromJsonCategory___closed__0(void){
+_start:
+{
+lean_object* v___x_242_; 
+v___x_242_ = lean_alloc_closure((void*)(l_Lean_Firefox_instFromJsonCategory_fromJson), 1, 0);
+return v___x_242_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonCategory(void){
+_start:
+{
+lean_object* v___x_243_; 
+v___x_243_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory___closed__0, &l_Lean_Firefox_instFromJsonCategory___closed__0_once, _init_l_Lean_Firefox_instFromJsonCategory___closed__0);
+return v___x_243_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonCategory_toJson_spec__0_spec__0(size_t v_sz_244_, size_t v_i_245_, lean_object* v_bs_246_){
 _start:
 {
@@ -2205,6 +2435,15 @@ goto _start;
 }
 }
 }
+static lean_object* _init_l_Lean_Firefox_instToJsonCategory_toJson___closed__0(void){
+_start:
+{
+lean_object* v___x_274_; lean_object* v___x_275_; 
+v___x_274_ = lean_unsigned_to_nat(0u);
+v___x_275_ = lean_mk_empty_array_with_capacity(v___x_274_);
+return v___x_275_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonCategory_toJson(lean_object* v_x_276_){
 _start:
 {
@@ -2216,7 +2455,7 @@ lean_inc_ref(v_color_278_);
 v_subcategories_279_ = lean_ctor_get(v_x_276_, 2);
 lean_inc_ref(v_subcategories_279_);
 lean_dec_ref(v_x_276_);
-v___x_280_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0));
+v___x_280_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0);
 v___x_281_ = 1;
 v___x_282_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v_name_277_, v___x_281_);
 v___x_283_ = lean_alloc_ctor(3, 1, 0);
@@ -2228,7 +2467,7 @@ v___x_285_ = lean_box(0);
 v___x_286_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_286_, 0, v___x_284_);
 lean_ctor_set(v___x_286_, 1, v___x_285_);
-v___x_287_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__13));
+v___x_287_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__13, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__13_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__13);
 v___x_288_ = lean_alloc_ctor(3, 1, 0);
 lean_ctor_set(v___x_288_, 0, v_color_278_);
 v___x_289_ = lean_alloc_ctor(0, 2, 0);
@@ -2237,7 +2476,7 @@ lean_ctor_set(v___x_289_, 1, v___x_288_);
 v___x_290_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_290_, 0, v___x_289_);
 lean_ctor_set(v___x_290_, 1, v___x_285_);
-v___x_291_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__18));
+v___x_291_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__18, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__18_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__18);
 v___x_292_ = l_Array_toJson___at___00Lean_Firefox_instToJsonCategory_toJson_spec__0(v_subcategories_279_);
 v___x_293_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_293_, 0, v___x_291_);
@@ -2254,11 +2493,54 @@ lean_ctor_set(v___x_296_, 1, v___x_295_);
 v___x_297_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_297_, 0, v___x_286_);
 lean_ctor_set(v___x_297_, 1, v___x_296_);
-v___x_298_ = ((lean_object*)(l_Lean_Firefox_instToJsonCategory_toJson___closed__0));
+v___x_298_ = lean_obj_once(&l_Lean_Firefox_instToJsonCategory_toJson___closed__0, &l_Lean_Firefox_instToJsonCategory_toJson___closed__0_once, _init_l_Lean_Firefox_instToJsonCategory_toJson___closed__0);
 v___x_299_ = l___private_Init_Data_List_Impl_0__List_flatMapTR_go___at___00Lean_Firefox_instToJsonCategory_toJson_spec__1(v___x_297_, v___x_298_);
 v___x_300_ = l_Lean_Json_mkObj(v___x_299_);
 lean_dec(v___x_299_);
 return v___x_300_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonCategory___closed__0(void){
+_start:
+{
+lean_object* v___x_301_; 
+v___x_301_ = lean_alloc_closure((void*)(l_Lean_Firefox_instToJsonCategory_toJson), 1, 0);
+return v___x_301_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonCategory(void){
+_start:
+{
+lean_object* v___x_302_; 
+v___x_302_ = lean_obj_once(&l_Lean_Firefox_instToJsonCategory___closed__0, &l_Lean_Firefox_instToJsonCategory___closed__0_once, _init_l_Lean_Firefox_instToJsonCategory___closed__0);
+return v___x_302_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0(void){
+_start:
+{
+lean_object* v___x_303_; 
+v___x_303_ = lean_mk_string_unchecked("time", 4, 4);
+return v___x_303_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__1(void){
+_start:
+{
+lean_object* v___x_304_; 
+v___x_304_ = lean_mk_string_unchecked("SampleUnits", 11, 11);
+return v___x_304_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__2(void){
+_start:
+{
+lean_object* v___x_305_; lean_object* v___x_306_; lean_object* v___x_307_; lean_object* v___x_308_; 
+v___x_305_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__1, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__1_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__1);
+v___x_306_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2);
+v___x_307_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1);
+v___x_308_ = l_Lean_Name_mkStr3(v___x_307_, v___x_306_, v___x_305_);
+return v___x_308_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__3(void){
@@ -2266,7 +2548,7 @@ _start:
 {
 uint8_t v___x_309_; lean_object* v___x_310_; lean_object* v___x_311_; 
 v___x_309_ = 1;
-v___x_310_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__2));
+v___x_310_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__2, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__2_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__2);
 v___x_311_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_310_, v___x_309_);
 return v___x_311_;
 }
@@ -2275,10 +2557,19 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___clos
 _start:
 {
 lean_object* v___x_312_; lean_object* v___x_313_; lean_object* v___x_314_; 
-v___x_312_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6));
+v___x_312_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6);
 v___x_313_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__3, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__3_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__3);
 v___x_314_ = lean_string_append(v___x_313_, v___x_312_);
 return v___x_314_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__5(void){
+_start:
+{
+lean_object* v___x_315_; lean_object* v___x_316_; 
+v___x_315_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0);
+v___x_316_ = l_Lean_Name_mkStr1(v___x_315_);
+return v___x_316_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__6(void){
@@ -2286,7 +2577,7 @@ _start:
 {
 uint8_t v___x_317_; lean_object* v___x_318_; lean_object* v___x_319_; 
 v___x_317_ = 1;
-v___x_318_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__5));
+v___x_318_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__5, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__5_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__5);
 v___x_319_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_318_, v___x_317_);
 return v___x_319_;
 }
@@ -2305,10 +2596,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___clos
 _start:
 {
 lean_object* v___x_323_; lean_object* v___x_324_; lean_object* v___x_325_; 
-v___x_323_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_323_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_324_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__7, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__7_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__7);
 v___x_325_ = lean_string_append(v___x_324_, v___x_323_);
 return v___x_325_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__9(void){
+_start:
+{
+lean_object* v___x_326_; 
+v___x_326_ = lean_mk_string_unchecked("eventDelay", 10, 10);
+return v___x_326_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__10(void){
+_start:
+{
+lean_object* v___x_327_; lean_object* v___x_328_; 
+v___x_327_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__9, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__9);
+v___x_328_ = l_Lean_Name_mkStr1(v___x_327_);
+return v___x_328_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__11(void){
@@ -2316,7 +2624,7 @@ _start:
 {
 uint8_t v___x_329_; lean_object* v___x_330_; lean_object* v___x_331_; 
 v___x_329_ = 1;
-v___x_330_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__10));
+v___x_330_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__10, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__10_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__10);
 v___x_331_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_330_, v___x_329_);
 return v___x_331_;
 }
@@ -2335,10 +2643,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___clos
 _start:
 {
 lean_object* v___x_335_; lean_object* v___x_336_; lean_object* v___x_337_; 
-v___x_335_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_335_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_336_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__12, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__12_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__12);
 v___x_337_ = lean_string_append(v___x_336_, v___x_335_);
 return v___x_337_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14(void){
+_start:
+{
+lean_object* v___x_338_; 
+v___x_338_ = lean_mk_string_unchecked("threadCPUDelta", 14, 14);
+return v___x_338_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__15(void){
+_start:
+{
+lean_object* v___x_339_; lean_object* v___x_340_; 
+v___x_339_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14);
+v___x_340_ = l_Lean_Name_mkStr1(v___x_339_);
+return v___x_340_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__16(void){
@@ -2346,7 +2671,7 @@ _start:
 {
 uint8_t v___x_341_; lean_object* v___x_342_; lean_object* v___x_343_; 
 v___x_341_ = 1;
-v___x_342_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__15));
+v___x_342_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__15, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__15_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__15);
 v___x_343_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_342_, v___x_341_);
 return v___x_343_;
 }
@@ -2365,7 +2690,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___clos
 _start:
 {
 lean_object* v___x_347_; lean_object* v___x_348_; lean_object* v___x_349_; 
-v___x_347_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_347_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_348_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__17, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__17_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__17);
 v___x_349_ = lean_string_append(v___x_348_, v___x_347_);
 return v___x_349_;
@@ -2375,7 +2700,7 @@ LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonSampleUnits_fromJson(lean_ob
 _start:
 {
 lean_object* v___x_351_; lean_object* v___x_352_; 
-v___x_351_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0));
+v___x_351_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0);
 lean_inc(v_json_350_);
 v___x_352_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__1(v_json_350_, v___x_351_);
 if (lean_obj_tag(v___x_352_) == 0)
@@ -2475,7 +2800,7 @@ lean_object* v_a_371_; lean_object* v___x_372_; lean_object* v___x_373_;
 v_a_371_ = lean_ctor_get(v___x_352_, 0);
 lean_inc(v_a_371_);
 lean_dec_ref(v___x_352_);
-v___x_372_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__9));
+v___x_372_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__9, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__9);
 lean_inc(v_json_350_);
 v___x_373_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__1(v_json_350_, v___x_372_);
 if (lean_obj_tag(v___x_373_) == 0)
@@ -2577,7 +2902,7 @@ lean_object* v_a_392_; lean_object* v___x_393_; lean_object* v___x_394_;
 v_a_392_ = lean_ctor_get(v___x_373_, 0);
 lean_inc(v_a_392_);
 lean_dec_ref(v___x_373_);
-v___x_393_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14));
+v___x_393_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14);
 v___x_394_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__1(v_json_350_, v___x_393_);
 if (lean_obj_tag(v___x_394_) == 0)
 {
@@ -2725,6 +3050,22 @@ return v___x_419_;
 }
 }
 }
+static lean_object* _init_l_Lean_Firefox_instFromJsonSampleUnits___closed__0(void){
+_start:
+{
+lean_object* v___x_422_; 
+v___x_422_ = lean_alloc_closure((void*)(l_Lean_Firefox_instFromJsonSampleUnits_fromJson), 1, 0);
+return v___x_422_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonSampleUnits(void){
+_start:
+{
+lean_object* v___x_423_; 
+v___x_423_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits___closed__0, &l_Lean_Firefox_instFromJsonSampleUnits___closed__0_once, _init_l_Lean_Firefox_instFromJsonSampleUnits___closed__0);
+return v___x_423_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonSampleUnits_toJson(lean_object* v_x_424_){
 _start:
 {
@@ -2732,7 +3073,7 @@ lean_object* v_time_425_; lean_object* v_eventDelay_426_; lean_object* v_threadC
 v_time_425_ = lean_ctor_get(v_x_424_, 0);
 v_eventDelay_426_ = lean_ctor_get(v_x_424_, 1);
 v_threadCPUDelta_427_ = lean_ctor_get(v_x_424_, 2);
-v___x_428_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0));
+v___x_428_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0);
 lean_inc_ref(v_time_425_);
 v___x_429_ = lean_alloc_ctor(3, 1, 0);
 lean_ctor_set(v___x_429_, 0, v_time_425_);
@@ -2743,7 +3084,7 @@ v___x_431_ = lean_box(0);
 v___x_432_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_432_, 0, v___x_430_);
 lean_ctor_set(v___x_432_, 1, v___x_431_);
-v___x_433_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__9));
+v___x_433_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__9, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__9);
 lean_inc_ref(v_eventDelay_426_);
 v___x_434_ = lean_alloc_ctor(3, 1, 0);
 lean_ctor_set(v___x_434_, 0, v_eventDelay_426_);
@@ -2753,7 +3094,7 @@ lean_ctor_set(v___x_435_, 1, v___x_434_);
 v___x_436_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_436_, 0, v___x_435_);
 lean_ctor_set(v___x_436_, 1, v___x_431_);
-v___x_437_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14));
+v___x_437_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14);
 lean_inc_ref(v_threadCPUDelta_427_);
 v___x_438_ = lean_alloc_ctor(3, 1, 0);
 lean_ctor_set(v___x_438_, 0, v_threadCPUDelta_427_);
@@ -2772,7 +3113,7 @@ lean_ctor_set(v___x_442_, 1, v___x_441_);
 v___x_443_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_443_, 0, v___x_432_);
 lean_ctor_set(v___x_443_, 1, v___x_442_);
-v___x_444_ = ((lean_object*)(l_Lean_Firefox_instToJsonCategory_toJson___closed__0));
+v___x_444_ = lean_obj_once(&l_Lean_Firefox_instToJsonCategory_toJson___closed__0, &l_Lean_Firefox_instToJsonCategory_toJson___closed__0_once, _init_l_Lean_Firefox_instToJsonCategory_toJson___closed__0);
 v___x_445_ = l___private_Init_Data_List_Impl_0__List_flatMapTR_go___at___00Lean_Firefox_instToJsonCategory_toJson_spec__1(v___x_443_, v___x_444_);
 v___x_446_ = l_Lean_Json_mkObj(v___x_445_);
 lean_dec(v___x_445_);
@@ -2786,6 +3127,22 @@ lean_object* v_res_448_;
 v_res_448_ = l_Lean_Firefox_instToJsonSampleUnits_toJson(v_x_447_);
 lean_dec_ref(v_x_447_);
 return v_res_448_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonSampleUnits___closed__0(void){
+_start:
+{
+lean_object* v___x_449_; 
+v___x_449_ = lean_alloc_closure((void*)(l_Lean_Firefox_instToJsonSampleUnits_toJson___boxed), 1, 0);
+return v___x_449_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonSampleUnits(void){
+_start:
+{
+lean_object* v___x_450_; 
+v___x_450_ = lean_obj_once(&l_Lean_Firefox_instToJsonSampleUnits___closed__0, &l_Lean_Firefox_instToJsonSampleUnits___closed__0_once, _init_l_Lean_Firefox_instToJsonSampleUnits___closed__0);
+return v___x_450_;
 }
 }
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__0(lean_object* v_j_451_, lean_object* v_k_452_){
@@ -3030,12 +3387,12 @@ return v___x_520_;
 else
 {
 lean_object* v___x_521_; lean_object* v___x_522_; lean_object* v___x_523_; lean_object* v___x_524_; lean_object* v___x_525_; lean_object* v___x_526_; lean_object* v___x_527_; 
-v___x_521_ = ((lean_object*)(l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0));
+v___x_521_ = lean_obj_once(&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0, &l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0_once, _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0);
 v___x_522_ = lean_unsigned_to_nat(80u);
 v___x_523_ = l_Lean_Json_pretty(v_x_516_, v___x_522_);
 v___x_524_ = lean_string_append(v___x_521_, v___x_523_);
 lean_dec_ref(v___x_523_);
-v___x_525_ = ((lean_object*)(l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1));
+v___x_525_ = lean_obj_once(&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1, &l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1_once, _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1);
 v___x_526_ = lean_string_append(v___x_524_, v___x_525_);
 v___x_527_ = lean_alloc_ctor(0, 1, 0);
 lean_ctor_set(v___x_527_, 0, v___x_526_);
@@ -3117,12 +3474,12 @@ return v___x_557_;
 else
 {
 lean_object* v___x_558_; lean_object* v___x_559_; lean_object* v___x_560_; lean_object* v___x_561_; lean_object* v___x_562_; lean_object* v___x_563_; lean_object* v___x_564_; 
-v___x_558_ = ((lean_object*)(l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0));
+v___x_558_ = lean_obj_once(&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0, &l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0_once, _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0);
 v___x_559_ = lean_unsigned_to_nat(80u);
 v___x_560_ = l_Lean_Json_pretty(v_x_553_, v___x_559_);
 v___x_561_ = lean_string_append(v___x_558_, v___x_560_);
 lean_dec_ref(v___x_560_);
-v___x_562_ = ((lean_object*)(l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1));
+v___x_562_ = lean_obj_once(&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1, &l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1_once, _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1);
 v___x_563_ = lean_string_append(v___x_561_, v___x_562_);
 v___x_564_ = lean_alloc_ctor(0, 1, 0);
 lean_ctor_set(v___x_564_, 0, v___x_563_);
@@ -3148,12 +3505,39 @@ lean_dec_ref(v_k_570_);
 return v_res_571_;
 }
 }
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__0(void){
+_start:
+{
+lean_object* v___x_572_; 
+v___x_572_ = lean_mk_string_unchecked("interval", 8, 8);
+return v___x_572_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__1(void){
+_start:
+{
+lean_object* v___x_573_; 
+v___x_573_ = lean_mk_string_unchecked("ProfileMeta", 11, 11);
+return v___x_573_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__2(void){
+_start:
+{
+lean_object* v___x_574_; lean_object* v___x_575_; lean_object* v___x_576_; lean_object* v___x_577_; 
+v___x_574_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__1, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__1_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__1);
+v___x_575_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2);
+v___x_576_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1);
+v___x_577_ = l_Lean_Name_mkStr3(v___x_576_, v___x_575_, v___x_574_);
+return v___x_577_;
+}
+}
 static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__3(void){
 _start:
 {
 uint8_t v___x_578_; lean_object* v___x_579_; lean_object* v___x_580_; 
 v___x_578_ = 1;
-v___x_579_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__2));
+v___x_579_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__2, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__2_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__2);
 v___x_580_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_579_, v___x_578_);
 return v___x_580_;
 }
@@ -3162,10 +3546,19 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___clos
 _start:
 {
 lean_object* v___x_581_; lean_object* v___x_582_; lean_object* v___x_583_; 
-v___x_581_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6));
+v___x_581_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6);
 v___x_582_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__3, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__3_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__3);
 v___x_583_ = lean_string_append(v___x_582_, v___x_581_);
 return v___x_583_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__5(void){
+_start:
+{
+lean_object* v___x_584_; lean_object* v___x_585_; 
+v___x_584_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__0, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__0);
+v___x_585_ = l_Lean_Name_mkStr1(v___x_584_);
+return v___x_585_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__6(void){
@@ -3173,7 +3566,7 @@ _start:
 {
 uint8_t v___x_586_; lean_object* v___x_587_; lean_object* v___x_588_; 
 v___x_586_ = 1;
-v___x_587_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__5));
+v___x_587_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__5, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__5_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__5);
 v___x_588_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_587_, v___x_586_);
 return v___x_588_;
 }
@@ -3192,10 +3585,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___clos
 _start:
 {
 lean_object* v___x_592_; lean_object* v___x_593_; lean_object* v___x_594_; 
-v___x_592_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_592_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_593_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__7, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__7_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__7);
 v___x_594_ = lean_string_append(v___x_593_, v___x_592_);
 return v___x_594_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__9(void){
+_start:
+{
+lean_object* v___x_595_; 
+v___x_595_ = lean_mk_string_unchecked("startTime", 9, 9);
+return v___x_595_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__10(void){
+_start:
+{
+lean_object* v___x_596_; lean_object* v___x_597_; 
+v___x_596_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__9, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__9);
+v___x_597_ = l_Lean_Name_mkStr1(v___x_596_);
+return v___x_597_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__11(void){
@@ -3203,7 +3613,7 @@ _start:
 {
 uint8_t v___x_598_; lean_object* v___x_599_; lean_object* v___x_600_; 
 v___x_598_ = 1;
-v___x_599_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__10));
+v___x_599_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__10, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__10_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__10);
 v___x_600_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_599_, v___x_598_);
 return v___x_600_;
 }
@@ -3222,10 +3632,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___clos
 _start:
 {
 lean_object* v___x_604_; lean_object* v___x_605_; lean_object* v___x_606_; 
-v___x_604_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_604_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_605_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__12, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__12_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__12);
 v___x_606_ = lean_string_append(v___x_605_, v___x_604_);
 return v___x_606_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__14(void){
+_start:
+{
+lean_object* v___x_607_; 
+v___x_607_ = lean_mk_string_unchecked("categories", 10, 10);
+return v___x_607_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__15(void){
+_start:
+{
+lean_object* v___x_608_; lean_object* v___x_609_; 
+v___x_608_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__14, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__14_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__14);
+v___x_609_ = l_Lean_Name_mkStr1(v___x_608_);
+return v___x_609_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__16(void){
@@ -3233,7 +3660,7 @@ _start:
 {
 uint8_t v___x_610_; lean_object* v___x_611_; lean_object* v___x_612_; 
 v___x_610_ = 1;
-v___x_611_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__15));
+v___x_611_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__15, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__15_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__15);
 v___x_612_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_611_, v___x_610_);
 return v___x_612_;
 }
@@ -3252,10 +3679,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___clos
 _start:
 {
 lean_object* v___x_616_; lean_object* v___x_617_; lean_object* v___x_618_; 
-v___x_616_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_616_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_617_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__17, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__17_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__17);
 v___x_618_ = lean_string_append(v___x_617_, v___x_616_);
 return v___x_618_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19(void){
+_start:
+{
+lean_object* v___x_619_; 
+v___x_619_ = lean_mk_string_unchecked("processType", 11, 11);
+return v___x_619_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__20(void){
+_start:
+{
+lean_object* v___x_620_; lean_object* v___x_621_; 
+v___x_620_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19);
+v___x_621_ = l_Lean_Name_mkStr1(v___x_620_);
+return v___x_621_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__21(void){
@@ -3263,7 +3707,7 @@ _start:
 {
 uint8_t v___x_622_; lean_object* v___x_623_; lean_object* v___x_624_; 
 v___x_622_ = 1;
-v___x_623_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__20));
+v___x_623_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__20, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__20_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__20);
 v___x_624_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_623_, v___x_622_);
 return v___x_624_;
 }
@@ -3282,10 +3726,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___clos
 _start:
 {
 lean_object* v___x_628_; lean_object* v___x_629_; lean_object* v___x_630_; 
-v___x_628_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_628_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_629_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__22, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__22_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__22);
 v___x_630_ = lean_string_append(v___x_629_, v___x_628_);
 return v___x_630_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__24(void){
+_start:
+{
+lean_object* v___x_631_; 
+v___x_631_ = lean_mk_string_unchecked("product", 7, 7);
+return v___x_631_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__25(void){
+_start:
+{
+lean_object* v___x_632_; lean_object* v___x_633_; 
+v___x_632_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__24, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__24_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__24);
+v___x_633_ = l_Lean_Name_mkStr1(v___x_632_);
+return v___x_633_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__26(void){
@@ -3293,7 +3754,7 @@ _start:
 {
 uint8_t v___x_634_; lean_object* v___x_635_; lean_object* v___x_636_; 
 v___x_634_ = 1;
-v___x_635_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__25));
+v___x_635_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__25, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__25_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__25);
 v___x_636_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_635_, v___x_634_);
 return v___x_636_;
 }
@@ -3312,10 +3773,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___clos
 _start:
 {
 lean_object* v___x_640_; lean_object* v___x_641_; lean_object* v___x_642_; 
-v___x_640_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_640_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_641_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__27, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__27_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__27);
 v___x_642_ = lean_string_append(v___x_641_, v___x_640_);
 return v___x_642_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__29(void){
+_start:
+{
+lean_object* v___x_643_; 
+v___x_643_ = lean_mk_string_unchecked("preprocessedProfileVersion", 26, 26);
+return v___x_643_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__30(void){
+_start:
+{
+lean_object* v___x_644_; lean_object* v___x_645_; 
+v___x_644_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__29, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__29_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__29);
+v___x_645_ = l_Lean_Name_mkStr1(v___x_644_);
+return v___x_645_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__31(void){
@@ -3323,7 +3801,7 @@ _start:
 {
 uint8_t v___x_646_; lean_object* v___x_647_; lean_object* v___x_648_; 
 v___x_646_ = 1;
-v___x_647_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__30));
+v___x_647_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__30, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__30_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__30);
 v___x_648_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_647_, v___x_646_);
 return v___x_648_;
 }
@@ -3342,10 +3820,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___clos
 _start:
 {
 lean_object* v___x_652_; lean_object* v___x_653_; lean_object* v___x_654_; 
-v___x_652_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_652_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_653_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__32, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__32_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__32);
 v___x_654_ = lean_string_append(v___x_653_, v___x_652_);
 return v___x_654_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__34(void){
+_start:
+{
+lean_object* v___x_655_; 
+v___x_655_ = lean_mk_string_unchecked("markerSchema", 12, 12);
+return v___x_655_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__35(void){
+_start:
+{
+lean_object* v___x_656_; lean_object* v___x_657_; 
+v___x_656_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__34, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__34_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__34);
+v___x_657_ = l_Lean_Name_mkStr1(v___x_656_);
+return v___x_657_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__36(void){
@@ -3353,7 +3848,7 @@ _start:
 {
 uint8_t v___x_658_; lean_object* v___x_659_; lean_object* v___x_660_; 
 v___x_658_ = 1;
-v___x_659_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__35));
+v___x_659_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__35, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__35_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__35);
 v___x_660_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_659_, v___x_658_);
 return v___x_660_;
 }
@@ -3372,10 +3867,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___clos
 _start:
 {
 lean_object* v___x_664_; lean_object* v___x_665_; lean_object* v___x_666_; 
-v___x_664_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_664_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_665_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__37, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__37_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__37);
 v___x_666_ = lean_string_append(v___x_665_, v___x_664_);
 return v___x_666_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__39(void){
+_start:
+{
+lean_object* v___x_667_; 
+v___x_667_ = lean_mk_string_unchecked("sampleUnits", 11, 11);
+return v___x_667_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__40(void){
+_start:
+{
+lean_object* v___x_668_; lean_object* v___x_669_; 
+v___x_668_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__39, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__39_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__39);
+v___x_669_ = l_Lean_Name_mkStr1(v___x_668_);
+return v___x_669_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__41(void){
@@ -3383,7 +3895,7 @@ _start:
 {
 uint8_t v___x_670_; lean_object* v___x_671_; lean_object* v___x_672_; 
 v___x_670_ = 1;
-v___x_671_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__40));
+v___x_671_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__40, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__40_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__40);
 v___x_672_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_671_, v___x_670_);
 return v___x_672_;
 }
@@ -3402,7 +3914,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___clos
 _start:
 {
 lean_object* v___x_676_; lean_object* v___x_677_; lean_object* v___x_678_; 
-v___x_676_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_676_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_677_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__42, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__42_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__42);
 v___x_678_ = lean_string_append(v___x_677_, v___x_676_);
 return v___x_678_;
@@ -3412,7 +3924,7 @@ LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonProfileMeta_fromJson(lean_ob
 _start:
 {
 lean_object* v___x_680_; lean_object* v___x_681_; 
-v___x_680_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__0));
+v___x_680_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__0, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__0);
 lean_inc(v_json_679_);
 v___x_681_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__0(v_json_679_, v___x_680_);
 if (lean_obj_tag(v___x_681_) == 0)
@@ -3512,7 +4024,7 @@ lean_object* v_a_700_; lean_object* v___x_701_; lean_object* v___x_702_;
 v_a_700_ = lean_ctor_get(v___x_681_, 0);
 lean_inc(v_a_700_);
 lean_dec_ref(v___x_681_);
-v___x_701_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__9));
+v___x_701_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__9, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__9);
 lean_inc(v_json_679_);
 v___x_702_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__0(v_json_679_, v___x_701_);
 if (lean_obj_tag(v___x_702_) == 0)
@@ -3614,7 +4126,7 @@ lean_object* v_a_721_; lean_object* v___x_722_; lean_object* v___x_723_;
 v_a_721_ = lean_ctor_get(v___x_702_, 0);
 lean_inc(v_a_721_);
 lean_dec_ref(v___x_702_);
-v___x_722_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__14));
+v___x_722_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__14, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__14_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__14);
 lean_inc(v_json_679_);
 v___x_723_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__1(v_json_679_, v___x_722_);
 if (lean_obj_tag(v___x_723_) == 0)
@@ -3718,7 +4230,7 @@ lean_object* v_a_742_; lean_object* v___x_743_; lean_object* v___x_744_;
 v_a_742_ = lean_ctor_get(v___x_723_, 0);
 lean_inc(v_a_742_);
 lean_dec_ref(v___x_723_);
-v___x_743_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19));
+v___x_743_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19);
 lean_inc(v_json_679_);
 v___x_744_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__2(v_json_679_, v___x_743_);
 if (lean_obj_tag(v___x_744_) == 0)
@@ -3824,7 +4336,7 @@ lean_object* v_a_763_; lean_object* v___x_764_; lean_object* v___x_765_;
 v_a_763_ = lean_ctor_get(v___x_744_, 0);
 lean_inc(v_a_763_);
 lean_dec_ref(v___x_744_);
-v___x_764_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__24));
+v___x_764_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__24, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__24_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__24);
 lean_inc(v_json_679_);
 v___x_765_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__1(v_json_679_, v___x_764_);
 if (lean_obj_tag(v___x_765_) == 0)
@@ -3932,7 +4444,7 @@ lean_object* v_a_784_; lean_object* v___x_785_; lean_object* v___x_786_;
 v_a_784_ = lean_ctor_get(v___x_765_, 0);
 lean_inc(v_a_784_);
 lean_dec_ref(v___x_765_);
-v___x_785_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__29));
+v___x_785_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__29, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__29_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__29);
 lean_inc(v_json_679_);
 v___x_786_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__2(v_json_679_, v___x_785_);
 if (lean_obj_tag(v___x_786_) == 0)
@@ -4042,7 +4554,7 @@ lean_object* v_a_805_; lean_object* v___x_806_; lean_object* v___x_807_;
 v_a_805_ = lean_ctor_get(v___x_786_, 0);
 lean_inc(v_a_805_);
 lean_dec_ref(v___x_786_);
-v___x_806_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__34));
+v___x_806_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__34, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__34_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__34);
 lean_inc(v_json_679_);
 v___x_807_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__3(v_json_679_, v___x_806_);
 if (lean_obj_tag(v___x_807_) == 0)
@@ -4154,7 +4666,7 @@ lean_object* v_a_826_; lean_object* v___x_827_; lean_object* v___x_828_;
 v_a_826_ = lean_ctor_get(v___x_807_, 0);
 lean_inc(v_a_826_);
 lean_dec_ref(v___x_807_);
-v___x_827_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__39));
+v___x_827_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__39, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__39_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__39);
 v___x_828_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__4(v_json_679_, v___x_827_);
 if (lean_obj_tag(v___x_828_) == 0)
 {
@@ -4331,6 +4843,22 @@ return v___x_855_;
 }
 }
 }
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta___closed__0(void){
+_start:
+{
+lean_object* v___x_858_; 
+v___x_858_ = lean_alloc_closure((void*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson), 1, 0);
+return v___x_858_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfileMeta(void){
+_start:
+{
+lean_object* v___x_859_; 
+v___x_859_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta___closed__0, &l_Lean_Firefox_instFromJsonProfileMeta___closed__0_once, _init_l_Lean_Firefox_instFromJsonProfileMeta___closed__0);
+return v___x_859_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonProfileMeta_toJson_spec__1_spec__2(size_t v_sz_860_, size_t v_i_861_, lean_object* v_bs_862_){
 _start:
 {
@@ -4447,7 +4975,7 @@ lean_inc_ref(v_markerSchema_912_);
 v_sampleUnits_913_ = lean_ctor_get(v_x_905_, 5);
 lean_inc_ref(v_sampleUnits_913_);
 lean_dec_ref(v_x_905_);
-v___x_914_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__0));
+v___x_914_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__0, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__0);
 v___x_915_ = l_Float_toJson(v_interval_906_);
 v___x_916_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_916_, 0, v___x_914_);
@@ -4456,7 +4984,7 @@ v___x_917_ = lean_box(0);
 v___x_918_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_918_, 0, v___x_916_);
 lean_ctor_set(v___x_918_, 1, v___x_917_);
-v___x_919_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__9));
+v___x_919_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__9, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__9);
 v___x_920_ = l_Float_toJson(v_startTime_907_);
 v___x_921_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_921_, 0, v___x_919_);
@@ -4464,7 +4992,7 @@ lean_ctor_set(v___x_921_, 1, v___x_920_);
 v___x_922_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_922_, 0, v___x_921_);
 lean_ctor_set(v___x_922_, 1, v___x_917_);
-v___x_923_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__14));
+v___x_923_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__14, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__14_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__14);
 v___x_924_ = l_Array_toJson___at___00Lean_Firefox_instToJsonProfileMeta_toJson_spec__0(v_categories_908_);
 v___x_925_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_925_, 0, v___x_923_);
@@ -4472,7 +5000,7 @@ lean_ctor_set(v___x_925_, 1, v___x_924_);
 v___x_926_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_926_, 0, v___x_925_);
 lean_ctor_set(v___x_926_, 1, v___x_917_);
-v___x_927_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19));
+v___x_927_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19);
 v___x_928_ = l_Lean_JsonNumber_fromNat(v_processType_909_);
 v___x_929_ = lean_alloc_ctor(2, 1, 0);
 lean_ctor_set(v___x_929_, 0, v___x_928_);
@@ -4482,7 +5010,7 @@ lean_ctor_set(v___x_930_, 1, v___x_929_);
 v___x_931_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_931_, 0, v___x_930_);
 lean_ctor_set(v___x_931_, 1, v___x_917_);
-v___x_932_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__24));
+v___x_932_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__24, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__24_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__24);
 v___x_933_ = lean_alloc_ctor(3, 1, 0);
 lean_ctor_set(v___x_933_, 0, v_product_910_);
 v___x_934_ = lean_alloc_ctor(0, 2, 0);
@@ -4491,7 +5019,7 @@ lean_ctor_set(v___x_934_, 1, v___x_933_);
 v___x_935_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_935_, 0, v___x_934_);
 lean_ctor_set(v___x_935_, 1, v___x_917_);
-v___x_936_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__29));
+v___x_936_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__29, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__29_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__29);
 v___x_937_ = l_Lean_JsonNumber_fromNat(v_preprocessedProfileVersion_911_);
 v___x_938_ = lean_alloc_ctor(2, 1, 0);
 lean_ctor_set(v___x_938_, 0, v___x_937_);
@@ -4501,7 +5029,7 @@ lean_ctor_set(v___x_939_, 1, v___x_938_);
 v___x_940_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_940_, 0, v___x_939_);
 lean_ctor_set(v___x_940_, 1, v___x_917_);
-v___x_941_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__34));
+v___x_941_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__34, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__34_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__34);
 v___x_942_ = l_Array_toJson___at___00Lean_Firefox_instToJsonProfileMeta_toJson_spec__1(v_markerSchema_912_);
 v___x_943_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_943_, 0, v___x_941_);
@@ -4509,7 +5037,7 @@ lean_ctor_set(v___x_943_, 1, v___x_942_);
 v___x_944_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_944_, 0, v___x_943_);
 lean_ctor_set(v___x_944_, 1, v___x_917_);
-v___x_945_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__39));
+v___x_945_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__39, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__39_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__39);
 v___x_946_ = l_Lean_Firefox_instToJsonSampleUnits_toJson(v_sampleUnits_913_);
 lean_dec_ref(v_sampleUnits_913_);
 v___x_947_ = lean_alloc_ctor(0, 2, 0);
@@ -4542,11 +5070,27 @@ lean_ctor_set(v___x_955_, 1, v___x_954_);
 v___x_956_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_956_, 0, v___x_918_);
 lean_ctor_set(v___x_956_, 1, v___x_955_);
-v___x_957_ = ((lean_object*)(l_Lean_Firefox_instToJsonCategory_toJson___closed__0));
+v___x_957_ = lean_obj_once(&l_Lean_Firefox_instToJsonCategory_toJson___closed__0, &l_Lean_Firefox_instToJsonCategory_toJson___closed__0_once, _init_l_Lean_Firefox_instToJsonCategory_toJson___closed__0);
 v___x_958_ = l___private_Init_Data_List_Impl_0__List_flatMapTR_go___at___00Lean_Firefox_instToJsonCategory_toJson_spec__1(v___x_956_, v___x_957_);
 v___x_959_ = l_Lean_Json_mkObj(v___x_958_);
 lean_dec(v___x_958_);
 return v___x_959_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonProfileMeta___closed__0(void){
+_start:
+{
+lean_object* v___x_960_; 
+v___x_960_ = lean_alloc_closure((void*)(l_Lean_Firefox_instToJsonProfileMeta_toJson), 1, 0);
+return v___x_960_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonProfileMeta(void){
+_start:
+{
+lean_object* v___x_961_; 
+v___x_961_ = lean_obj_once(&l_Lean_Firefox_instToJsonProfileMeta___closed__0, &l_Lean_Firefox_instToJsonProfileMeta___closed__0_once, _init_l_Lean_Firefox_instToJsonProfileMeta___closed__0);
+return v___x_961_;
 }
 }
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__0_spec__0_spec__1(size_t v_sz_962_, size_t v_i_963_, lean_object* v_bs_964_){
@@ -4656,12 +5200,12 @@ return v___x_994_;
 else
 {
 lean_object* v___x_995_; lean_object* v___x_996_; lean_object* v___x_997_; lean_object* v___x_998_; lean_object* v___x_999_; lean_object* v___x_1000_; lean_object* v___x_1001_; 
-v___x_995_ = ((lean_object*)(l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0));
+v___x_995_ = lean_obj_once(&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0, &l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0_once, _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0);
 v___x_996_ = lean_unsigned_to_nat(80u);
 v___x_997_ = l_Lean_Json_pretty(v_x_990_, v___x_996_);
 v___x_998_ = lean_string_append(v___x_995_, v___x_997_);
 lean_dec_ref(v___x_997_);
-v___x_999_ = ((lean_object*)(l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1));
+v___x_999_ = lean_obj_once(&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1, &l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1_once, _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1);
 v___x_1000_ = lean_string_append(v___x_998_, v___x_999_);
 v___x_1001_ = lean_alloc_ctor(0, 1, 0);
 lean_ctor_set(v___x_1001_, 0, v___x_1000_);
@@ -4687,13 +5231,23 @@ lean_dec_ref(v_k_1007_);
 return v_res_1008_;
 }
 }
+static lean_object* _init_l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1_spec__2_spec__4___closed__0(void){
+_start:
+{
+lean_object* v___x_1009_; lean_object* v___x_1010_; 
+v___x_1009_ = lean_box(0);
+v___x_1010_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_1010_, 0, v___x_1009_);
+return v___x_1010_;
+}
+}
 LEAN_EXPORT lean_object* l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1_spec__2_spec__4(lean_object* v_x_1011_){
 _start:
 {
 if (lean_obj_tag(v_x_1011_) == 0)
 {
 lean_object* v___x_1012_; 
-v___x_1012_ = ((lean_object*)(l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1_spec__2_spec__4___closed__0));
+v___x_1012_ = lean_obj_once(&l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1_spec__2_spec__4___closed__0, &l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1_spec__2_spec__4___closed__0_once, _init_l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1_spec__2_spec__4___closed__0);
 return v___x_1012_;
 }
 else
@@ -4895,12 +5449,12 @@ return v___x_1063_;
 else
 {
 lean_object* v___x_1064_; lean_object* v___x_1065_; lean_object* v___x_1066_; lean_object* v___x_1067_; lean_object* v___x_1068_; lean_object* v___x_1069_; lean_object* v___x_1070_; 
-v___x_1064_ = ((lean_object*)(l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0));
+v___x_1064_ = lean_obj_once(&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0, &l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0_once, _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0);
 v___x_1065_ = lean_unsigned_to_nat(80u);
 v___x_1066_ = l_Lean_Json_pretty(v_x_1059_, v___x_1065_);
 v___x_1067_ = lean_string_append(v___x_1064_, v___x_1066_);
 lean_dec_ref(v___x_1066_);
-v___x_1068_ = ((lean_object*)(l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1));
+v___x_1068_ = lean_obj_once(&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1, &l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1_once, _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1);
 v___x_1069_ = lean_string_append(v___x_1067_, v___x_1068_);
 v___x_1070_ = lean_alloc_ctor(0, 1, 0);
 lean_ctor_set(v___x_1070_, 0, v___x_1069_);
@@ -4926,12 +5480,39 @@ lean_dec_ref(v_k_1076_);
 return v_res_1077_;
 }
 }
+static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__0(void){
+_start:
+{
+lean_object* v___x_1078_; 
+v___x_1078_ = lean_mk_string_unchecked("frame", 5, 5);
+return v___x_1078_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__1(void){
+_start:
+{
+lean_object* v___x_1079_; 
+v___x_1079_ = lean_mk_string_unchecked("StackTable", 10, 10);
+return v___x_1079_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__2(void){
+_start:
+{
+lean_object* v___x_1080_; lean_object* v___x_1081_; lean_object* v___x_1082_; lean_object* v___x_1083_; 
+v___x_1080_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__1, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__1_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__1);
+v___x_1081_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2);
+v___x_1082_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1);
+v___x_1083_ = l_Lean_Name_mkStr3(v___x_1082_, v___x_1081_, v___x_1080_);
+return v___x_1083_;
+}
+}
 static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__3(void){
 _start:
 {
 uint8_t v___x_1084_; lean_object* v___x_1085_; lean_object* v___x_1086_; 
 v___x_1084_ = 1;
-v___x_1085_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__2));
+v___x_1085_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__2, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__2_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__2);
 v___x_1086_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_1085_, v___x_1084_);
 return v___x_1086_;
 }
@@ -4940,10 +5521,19 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___close
 _start:
 {
 lean_object* v___x_1087_; lean_object* v___x_1088_; lean_object* v___x_1089_; 
-v___x_1087_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6));
+v___x_1087_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6);
 v___x_1088_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__3, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__3_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__3);
 v___x_1089_ = lean_string_append(v___x_1088_, v___x_1087_);
 return v___x_1089_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__5(void){
+_start:
+{
+lean_object* v___x_1090_; lean_object* v___x_1091_; 
+v___x_1090_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__0, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__0);
+v___x_1091_ = l_Lean_Name_mkStr1(v___x_1090_);
+return v___x_1091_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__6(void){
@@ -4951,7 +5541,7 @@ _start:
 {
 uint8_t v___x_1092_; lean_object* v___x_1093_; lean_object* v___x_1094_; 
 v___x_1092_ = 1;
-v___x_1093_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__5));
+v___x_1093_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__5, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__5_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__5);
 v___x_1094_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_1093_, v___x_1092_);
 return v___x_1094_;
 }
@@ -4970,10 +5560,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___close
 _start:
 {
 lean_object* v___x_1098_; lean_object* v___x_1099_; lean_object* v___x_1100_; 
-v___x_1098_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_1098_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_1099_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__7, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__7_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__7);
 v___x_1100_ = lean_string_append(v___x_1099_, v___x_1098_);
 return v___x_1100_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9(void){
+_start:
+{
+lean_object* v___x_1101_; 
+v___x_1101_ = lean_mk_string_unchecked("category", 8, 8);
+return v___x_1101_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__10(void){
+_start:
+{
+lean_object* v___x_1102_; lean_object* v___x_1103_; 
+v___x_1102_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9);
+v___x_1103_ = l_Lean_Name_mkStr1(v___x_1102_);
+return v___x_1103_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__11(void){
@@ -4981,7 +5588,7 @@ _start:
 {
 uint8_t v___x_1104_; lean_object* v___x_1105_; lean_object* v___x_1106_; 
 v___x_1104_ = 1;
-v___x_1105_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__10));
+v___x_1105_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__10, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__10_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__10);
 v___x_1106_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_1105_, v___x_1104_);
 return v___x_1106_;
 }
@@ -5000,10 +5607,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___close
 _start:
 {
 lean_object* v___x_1110_; lean_object* v___x_1111_; lean_object* v___x_1112_; 
-v___x_1110_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_1110_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_1111_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__12, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__12_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__12);
 v___x_1112_ = lean_string_append(v___x_1111_, v___x_1110_);
 return v___x_1112_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14(void){
+_start:
+{
+lean_object* v___x_1113_; 
+v___x_1113_ = lean_mk_string_unchecked("subcategory", 11, 11);
+return v___x_1113_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__15(void){
+_start:
+{
+lean_object* v___x_1114_; lean_object* v___x_1115_; 
+v___x_1114_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14);
+v___x_1115_ = l_Lean_Name_mkStr1(v___x_1114_);
+return v___x_1115_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__16(void){
@@ -5011,7 +5635,7 @@ _start:
 {
 uint8_t v___x_1116_; lean_object* v___x_1117_; lean_object* v___x_1118_; 
 v___x_1116_ = 1;
-v___x_1117_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__15));
+v___x_1117_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__15, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__15_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__15);
 v___x_1118_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_1117_, v___x_1116_);
 return v___x_1118_;
 }
@@ -5030,10 +5654,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___close
 _start:
 {
 lean_object* v___x_1122_; lean_object* v___x_1123_; lean_object* v___x_1124_; 
-v___x_1122_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_1122_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_1123_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__17, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__17_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__17);
 v___x_1124_ = lean_string_append(v___x_1123_, v___x_1122_);
 return v___x_1124_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__19(void){
+_start:
+{
+lean_object* v___x_1125_; 
+v___x_1125_ = lean_mk_string_unchecked("prefix", 6, 6);
+return v___x_1125_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__20(void){
+_start:
+{
+lean_object* v___x_1126_; lean_object* v___x_1127_; 
+v___x_1126_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__19, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__19_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__19);
+v___x_1127_ = l_Lean_Name_mkStr1(v___x_1126_);
+return v___x_1127_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__21(void){
@@ -5041,7 +5682,7 @@ _start:
 {
 uint8_t v___x_1128_; lean_object* v___x_1129_; lean_object* v___x_1130_; 
 v___x_1128_ = 1;
-v___x_1129_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__20));
+v___x_1129_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__20, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__20_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__20);
 v___x_1130_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_1129_, v___x_1128_);
 return v___x_1130_;
 }
@@ -5060,10 +5701,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___close
 _start:
 {
 lean_object* v___x_1134_; lean_object* v___x_1135_; lean_object* v___x_1136_; 
-v___x_1134_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_1134_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_1135_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__22, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__22_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__22);
 v___x_1136_ = lean_string_append(v___x_1135_, v___x_1134_);
 return v___x_1136_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24(void){
+_start:
+{
+lean_object* v___x_1137_; 
+v___x_1137_ = lean_mk_string_unchecked("length", 6, 6);
+return v___x_1137_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__25(void){
+_start:
+{
+lean_object* v___x_1138_; lean_object* v___x_1139_; 
+v___x_1138_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24);
+v___x_1139_ = l_Lean_Name_mkStr1(v___x_1138_);
+return v___x_1139_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__26(void){
@@ -5071,7 +5729,7 @@ _start:
 {
 uint8_t v___x_1140_; lean_object* v___x_1141_; lean_object* v___x_1142_; 
 v___x_1140_ = 1;
-v___x_1141_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__25));
+v___x_1141_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__25, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__25_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__25);
 v___x_1142_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_1141_, v___x_1140_);
 return v___x_1142_;
 }
@@ -5090,7 +5748,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___close
 _start:
 {
 lean_object* v___x_1146_; lean_object* v___x_1147_; lean_object* v___x_1148_; 
-v___x_1146_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_1146_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_1147_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__27, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__27_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__27);
 v___x_1148_ = lean_string_append(v___x_1147_, v___x_1146_);
 return v___x_1148_;
@@ -5100,7 +5758,7 @@ LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonStackTable_fromJson(lean_obj
 _start:
 {
 lean_object* v___x_1150_; lean_object* v___x_1151_; 
-v___x_1150_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__0));
+v___x_1150_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__0, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__0);
 lean_inc(v_json_1149_);
 v___x_1151_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__0(v_json_1149_, v___x_1150_);
 if (lean_obj_tag(v___x_1151_) == 0)
@@ -5200,7 +5858,7 @@ lean_object* v_a_1170_; lean_object* v___x_1171_; lean_object* v___x_1172_;
 v_a_1170_ = lean_ctor_get(v___x_1151_, 0);
 lean_inc(v_a_1170_);
 lean_dec_ref(v___x_1151_);
-v___x_1171_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9));
+v___x_1171_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9);
 lean_inc(v_json_1149_);
 v___x_1172_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__0(v_json_1149_, v___x_1171_);
 if (lean_obj_tag(v___x_1172_) == 0)
@@ -5302,7 +5960,7 @@ lean_object* v_a_1191_; lean_object* v___x_1192_; lean_object* v___x_1193_;
 v_a_1191_ = lean_ctor_get(v___x_1172_, 0);
 lean_inc(v_a_1191_);
 lean_dec_ref(v___x_1172_);
-v___x_1192_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14));
+v___x_1192_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14);
 lean_inc(v_json_1149_);
 v___x_1193_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__0(v_json_1149_, v___x_1192_);
 if (lean_obj_tag(v___x_1193_) == 0)
@@ -5406,7 +6064,7 @@ lean_object* v_a_1212_; lean_object* v___x_1213_; lean_object* v___x_1214_;
 v_a_1212_ = lean_ctor_get(v___x_1193_, 0);
 lean_inc(v_a_1212_);
 lean_dec_ref(v___x_1193_);
-v___x_1213_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__19));
+v___x_1213_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__19, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__19_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__19);
 lean_inc(v_json_1149_);
 v___x_1214_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1(v_json_1149_, v___x_1213_);
 if (lean_obj_tag(v___x_1214_) == 0)
@@ -5512,7 +6170,7 @@ lean_object* v_a_1233_; lean_object* v___x_1234_; lean_object* v___x_1235_;
 v_a_1233_ = lean_ctor_get(v___x_1214_, 0);
 lean_inc(v_a_1233_);
 lean_dec_ref(v___x_1214_);
-v___x_1234_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24));
+v___x_1234_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24);
 v___x_1235_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__2(v_json_1149_, v___x_1234_);
 if (lean_obj_tag(v___x_1235_) == 0)
 {
@@ -5668,6 +6326,22 @@ return v___x_1260_;
 }
 }
 }
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable___closed__0(void){
+_start:
+{
+lean_object* v___x_1263_; 
+v___x_1263_ = lean_alloc_closure((void*)(l_Lean_Firefox_instFromJsonStackTable_fromJson), 1, 0);
+return v___x_1263_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonStackTable(void){
+_start:
+{
+lean_object* v___x_1264_; 
+v___x_1264_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable___closed__0, &l_Lean_Firefox_instFromJsonStackTable___closed__0_once, _init_l_Lean_Firefox_instFromJsonStackTable___closed__0);
+return v___x_1264_;
 }
 }
 LEAN_EXPORT lean_object* l_Option_toJson___at___00Array_toJson___at___00Lean_Firefox_instToJsonStackTable_toJson_spec__1_spec__2(lean_object* v_x_1265_){
@@ -5840,7 +6514,7 @@ lean_inc_ref(v_prefix_1327_);
 v_length_1328_ = lean_ctor_get(v_x_1323_, 4);
 lean_inc(v_length_1328_);
 lean_dec_ref(v_x_1323_);
-v___x_1329_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__0));
+v___x_1329_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__0, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__0);
 v___x_1330_ = l_Array_toJson___at___00Lean_Firefox_instToJsonStackTable_toJson_spec__0(v_frame_1324_);
 v___x_1331_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_1331_, 0, v___x_1329_);
@@ -5849,7 +6523,7 @@ v___x_1332_ = lean_box(0);
 v___x_1333_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_1333_, 0, v___x_1331_);
 lean_ctor_set(v___x_1333_, 1, v___x_1332_);
-v___x_1334_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9));
+v___x_1334_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9);
 v___x_1335_ = l_Array_toJson___at___00Lean_Firefox_instToJsonStackTable_toJson_spec__0(v_category_1325_);
 v___x_1336_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_1336_, 0, v___x_1334_);
@@ -5857,7 +6531,7 @@ lean_ctor_set(v___x_1336_, 1, v___x_1335_);
 v___x_1337_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_1337_, 0, v___x_1336_);
 lean_ctor_set(v___x_1337_, 1, v___x_1332_);
-v___x_1338_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14));
+v___x_1338_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14);
 v___x_1339_ = l_Array_toJson___at___00Lean_Firefox_instToJsonStackTable_toJson_spec__0(v_subcategory_1326_);
 v___x_1340_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_1340_, 0, v___x_1338_);
@@ -5865,7 +6539,7 @@ lean_ctor_set(v___x_1340_, 1, v___x_1339_);
 v___x_1341_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_1341_, 0, v___x_1340_);
 lean_ctor_set(v___x_1341_, 1, v___x_1332_);
-v___x_1342_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__19));
+v___x_1342_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__19, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__19_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__19);
 v___x_1343_ = l_Array_toJson___at___00Lean_Firefox_instToJsonStackTable_toJson_spec__1(v_prefix_1327_);
 v___x_1344_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_1344_, 0, v___x_1342_);
@@ -5873,7 +6547,7 @@ lean_ctor_set(v___x_1344_, 1, v___x_1343_);
 v___x_1345_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_1345_, 0, v___x_1344_);
 lean_ctor_set(v___x_1345_, 1, v___x_1332_);
-v___x_1346_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24));
+v___x_1346_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24);
 v___x_1347_ = l_Lean_JsonNumber_fromNat(v_length_1328_);
 v___x_1348_ = lean_alloc_ctor(2, 1, 0);
 lean_ctor_set(v___x_1348_, 0, v___x_1347_);
@@ -5898,11 +6572,27 @@ lean_ctor_set(v___x_1354_, 1, v___x_1353_);
 v___x_1355_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_1355_, 0, v___x_1333_);
 lean_ctor_set(v___x_1355_, 1, v___x_1354_);
-v___x_1356_ = ((lean_object*)(l_Lean_Firefox_instToJsonCategory_toJson___closed__0));
+v___x_1356_ = lean_obj_once(&l_Lean_Firefox_instToJsonCategory_toJson___closed__0, &l_Lean_Firefox_instToJsonCategory_toJson___closed__0_once, _init_l_Lean_Firefox_instToJsonCategory_toJson___closed__0);
 v___x_1357_ = l___private_Init_Data_List_Impl_0__List_flatMapTR_go___at___00Lean_Firefox_instToJsonCategory_toJson_spec__1(v___x_1355_, v___x_1356_);
 v___x_1358_ = l_Lean_Json_mkObj(v___x_1357_);
 lean_dec(v___x_1357_);
 return v___x_1358_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonStackTable___closed__0(void){
+_start:
+{
+lean_object* v___x_1359_; 
+v___x_1359_ = lean_alloc_closure((void*)(l_Lean_Firefox_instToJsonStackTable_toJson), 1, 0);
+return v___x_1359_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonStackTable(void){
+_start:
+{
+lean_object* v___x_1360_; 
+v___x_1360_ = lean_obj_once(&l_Lean_Firefox_instToJsonStackTable___closed__0, &l_Lean_Firefox_instToJsonStackTable___closed__0_once, _init_l_Lean_Firefox_instToJsonStackTable___closed__0);
+return v___x_1360_;
 }
 }
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonSamplesTable_fromJson_spec__0_spec__0_spec__1(size_t v_sz_1361_, size_t v_i_1362_, lean_object* v_bs_1363_){
@@ -6012,12 +6702,12 @@ return v___x_1393_;
 else
 {
 lean_object* v___x_1394_; lean_object* v___x_1395_; lean_object* v___x_1396_; lean_object* v___x_1397_; lean_object* v___x_1398_; lean_object* v___x_1399_; lean_object* v___x_1400_; 
-v___x_1394_ = ((lean_object*)(l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0));
+v___x_1394_ = lean_obj_once(&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0, &l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0_once, _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0);
 v___x_1395_ = lean_unsigned_to_nat(80u);
 v___x_1396_ = l_Lean_Json_pretty(v_x_1389_, v___x_1395_);
 v___x_1397_ = lean_string_append(v___x_1394_, v___x_1396_);
 lean_dec_ref(v___x_1396_);
-v___x_1398_ = ((lean_object*)(l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1));
+v___x_1398_ = lean_obj_once(&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1, &l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1_once, _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1);
 v___x_1399_ = lean_string_append(v___x_1397_, v___x_1398_);
 v___x_1400_ = lean_alloc_ctor(0, 1, 0);
 lean_ctor_set(v___x_1400_, 0, v___x_1399_);
@@ -6150,12 +6840,12 @@ return v___x_1440_;
 else
 {
 lean_object* v___x_1441_; lean_object* v___x_1442_; lean_object* v___x_1443_; lean_object* v___x_1444_; lean_object* v___x_1445_; lean_object* v___x_1446_; lean_object* v___x_1447_; 
-v___x_1441_ = ((lean_object*)(l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0));
+v___x_1441_ = lean_obj_once(&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0, &l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0_once, _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0);
 v___x_1442_ = lean_unsigned_to_nat(80u);
 v___x_1443_ = l_Lean_Json_pretty(v_x_1436_, v___x_1442_);
 v___x_1444_ = lean_string_append(v___x_1441_, v___x_1443_);
 lean_dec_ref(v___x_1443_);
-v___x_1445_ = ((lean_object*)(l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1));
+v___x_1445_ = lean_obj_once(&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1, &l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1_once, _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1);
 v___x_1446_ = lean_string_append(v___x_1444_, v___x_1445_);
 v___x_1447_ = lean_alloc_ctor(0, 1, 0);
 lean_ctor_set(v___x_1447_, 0, v___x_1446_);
@@ -6181,12 +6871,39 @@ lean_dec_ref(v_k_1453_);
 return v_res_1454_;
 }
 }
+static lean_object* _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__0(void){
+_start:
+{
+lean_object* v___x_1455_; 
+v___x_1455_ = lean_mk_string_unchecked("stack", 5, 5);
+return v___x_1455_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__1(void){
+_start:
+{
+lean_object* v___x_1456_; 
+v___x_1456_ = lean_mk_string_unchecked("SamplesTable", 12, 12);
+return v___x_1456_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__2(void){
+_start:
+{
+lean_object* v___x_1457_; lean_object* v___x_1458_; lean_object* v___x_1459_; lean_object* v___x_1460_; 
+v___x_1457_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__1, &l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__1_once, _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__1);
+v___x_1458_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2);
+v___x_1459_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1);
+v___x_1460_ = l_Lean_Name_mkStr3(v___x_1459_, v___x_1458_, v___x_1457_);
+return v___x_1460_;
+}
+}
 static lean_object* _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__3(void){
 _start:
 {
 uint8_t v___x_1461_; lean_object* v___x_1462_; lean_object* v___x_1463_; 
 v___x_1461_ = 1;
-v___x_1462_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__2));
+v___x_1462_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__2, &l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__2_once, _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__2);
 v___x_1463_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_1462_, v___x_1461_);
 return v___x_1463_;
 }
@@ -6195,10 +6912,19 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___clo
 _start:
 {
 lean_object* v___x_1464_; lean_object* v___x_1465_; lean_object* v___x_1466_; 
-v___x_1464_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6));
+v___x_1464_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6);
 v___x_1465_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__3, &l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__3_once, _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__3);
 v___x_1466_ = lean_string_append(v___x_1465_, v___x_1464_);
 return v___x_1466_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__5(void){
+_start:
+{
+lean_object* v___x_1467_; lean_object* v___x_1468_; 
+v___x_1467_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__0, &l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__0);
+v___x_1468_ = l_Lean_Name_mkStr1(v___x_1467_);
+return v___x_1468_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__6(void){
@@ -6206,7 +6932,7 @@ _start:
 {
 uint8_t v___x_1469_; lean_object* v___x_1470_; lean_object* v___x_1471_; 
 v___x_1469_ = 1;
-v___x_1470_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__5));
+v___x_1470_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__5, &l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__5_once, _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__5);
 v___x_1471_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_1470_, v___x_1469_);
 return v___x_1471_;
 }
@@ -6225,7 +6951,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___clo
 _start:
 {
 lean_object* v___x_1475_; lean_object* v___x_1476_; lean_object* v___x_1477_; 
-v___x_1475_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_1475_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_1476_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__7, &l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__7_once, _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__7);
 v___x_1477_ = lean_string_append(v___x_1476_, v___x_1475_);
 return v___x_1477_;
@@ -6245,10 +6971,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___clo
 _start:
 {
 lean_object* v___x_1481_; lean_object* v___x_1482_; lean_object* v___x_1483_; 
-v___x_1481_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_1481_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_1482_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__9, &l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__9);
 v___x_1483_ = lean_string_append(v___x_1482_, v___x_1481_);
 return v___x_1483_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__11(void){
+_start:
+{
+lean_object* v___x_1484_; 
+v___x_1484_ = lean_mk_string_unchecked("weight", 6, 6);
+return v___x_1484_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__12(void){
+_start:
+{
+lean_object* v___x_1485_; lean_object* v___x_1486_; 
+v___x_1485_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__11, &l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__11);
+v___x_1486_ = l_Lean_Name_mkStr1(v___x_1485_);
+return v___x_1486_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__13(void){
@@ -6256,7 +6999,7 @@ _start:
 {
 uint8_t v___x_1487_; lean_object* v___x_1488_; lean_object* v___x_1489_; 
 v___x_1487_ = 1;
-v___x_1488_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__12));
+v___x_1488_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__12, &l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__12_once, _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__12);
 v___x_1489_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_1488_, v___x_1487_);
 return v___x_1489_;
 }
@@ -6275,10 +7018,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___clo
 _start:
 {
 lean_object* v___x_1493_; lean_object* v___x_1494_; lean_object* v___x_1495_; 
-v___x_1493_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_1493_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_1494_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__14, &l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__14_once, _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__14);
 v___x_1495_ = lean_string_append(v___x_1494_, v___x_1493_);
 return v___x_1495_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__16(void){
+_start:
+{
+lean_object* v___x_1496_; 
+v___x_1496_ = lean_mk_string_unchecked("weightType", 10, 10);
+return v___x_1496_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__17(void){
+_start:
+{
+lean_object* v___x_1497_; lean_object* v___x_1498_; 
+v___x_1497_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__16, &l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__16_once, _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__16);
+v___x_1498_ = l_Lean_Name_mkStr1(v___x_1497_);
+return v___x_1498_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__18(void){
@@ -6286,7 +7046,7 @@ _start:
 {
 uint8_t v___x_1499_; lean_object* v___x_1500_; lean_object* v___x_1501_; 
 v___x_1499_ = 1;
-v___x_1500_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__17));
+v___x_1500_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__17, &l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__17_once, _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__17);
 v___x_1501_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_1500_, v___x_1499_);
 return v___x_1501_;
 }
@@ -6305,7 +7065,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___clo
 _start:
 {
 lean_object* v___x_1505_; lean_object* v___x_1506_; lean_object* v___x_1507_; 
-v___x_1505_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_1505_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_1506_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__19, &l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__19_once, _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__19);
 v___x_1507_ = lean_string_append(v___x_1506_, v___x_1505_);
 return v___x_1507_;
@@ -6325,7 +7085,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___clo
 _start:
 {
 lean_object* v___x_1511_; lean_object* v___x_1512_; lean_object* v___x_1513_; 
-v___x_1511_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_1511_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_1512_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__21, &l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__21_once, _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__21);
 v___x_1513_ = lean_string_append(v___x_1512_, v___x_1511_);
 return v___x_1513_;
@@ -6345,7 +7105,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___clo
 _start:
 {
 lean_object* v___x_1517_; lean_object* v___x_1518_; lean_object* v___x_1519_; 
-v___x_1517_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_1517_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_1518_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__23, &l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__23_once, _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__23);
 v___x_1519_ = lean_string_append(v___x_1518_, v___x_1517_);
 return v___x_1519_;
@@ -6355,7 +7115,7 @@ LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonSamplesTable_fromJson(lean_o
 _start:
 {
 lean_object* v___x_1521_; lean_object* v___x_1522_; 
-v___x_1521_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__0));
+v___x_1521_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__0, &l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__0);
 lean_inc(v_json_1520_);
 v___x_1522_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__0(v_json_1520_, v___x_1521_);
 if (lean_obj_tag(v___x_1522_) == 0)
@@ -6455,7 +7215,7 @@ lean_object* v_a_1541_; lean_object* v___x_1542_; lean_object* v___x_1543_;
 v_a_1541_ = lean_ctor_get(v___x_1522_, 0);
 lean_inc(v_a_1541_);
 lean_dec_ref(v___x_1522_);
-v___x_1542_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0));
+v___x_1542_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0);
 lean_inc(v_json_1520_);
 v___x_1543_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonSamplesTable_fromJson_spec__0(v_json_1520_, v___x_1542_);
 if (lean_obj_tag(v___x_1543_) == 0)
@@ -6557,7 +7317,7 @@ lean_object* v_a_1562_; lean_object* v___x_1563_; lean_object* v___x_1564_;
 v_a_1562_ = lean_ctor_get(v___x_1543_, 0);
 lean_inc(v_a_1562_);
 lean_dec_ref(v___x_1543_);
-v___x_1563_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__11));
+v___x_1563_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__11, &l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__11);
 lean_inc(v_json_1520_);
 v___x_1564_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonSamplesTable_fromJson_spec__0(v_json_1520_, v___x_1563_);
 if (lean_obj_tag(v___x_1564_) == 0)
@@ -6661,7 +7421,7 @@ lean_object* v_a_1583_; lean_object* v___x_1584_; lean_object* v___x_1585_;
 v_a_1583_ = lean_ctor_get(v___x_1564_, 0);
 lean_inc(v_a_1583_);
 lean_dec_ref(v___x_1564_);
-v___x_1584_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__16));
+v___x_1584_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__16, &l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__16_once, _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__16);
 lean_inc(v_json_1520_);
 v___x_1585_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__1(v_json_1520_, v___x_1584_);
 if (lean_obj_tag(v___x_1585_) == 0)
@@ -6767,7 +7527,7 @@ lean_object* v_a_1604_; lean_object* v___x_1605_; lean_object* v___x_1606_;
 v_a_1604_ = lean_ctor_get(v___x_1585_, 0);
 lean_inc(v_a_1604_);
 lean_dec_ref(v___x_1585_);
-v___x_1605_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14));
+v___x_1605_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14);
 lean_inc(v_json_1520_);
 v___x_1606_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonSamplesTable_fromJson_spec__1(v_json_1520_, v___x_1605_);
 if (lean_obj_tag(v___x_1606_) == 0)
@@ -6875,7 +7635,7 @@ lean_object* v_a_1625_; lean_object* v___x_1626_; lean_object* v___x_1627_;
 v_a_1625_ = lean_ctor_get(v___x_1606_, 0);
 lean_inc(v_a_1625_);
 lean_dec_ref(v___x_1606_);
-v___x_1626_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24));
+v___x_1626_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24);
 v___x_1627_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__2(v_json_1520_, v___x_1626_);
 if (lean_obj_tag(v___x_1627_) == 0)
 {
@@ -7038,6 +7798,22 @@ return v___x_1652_;
 }
 }
 }
+static lean_object* _init_l_Lean_Firefox_instFromJsonSamplesTable___closed__0(void){
+_start:
+{
+lean_object* v___x_1655_; 
+v___x_1655_ = lean_alloc_closure((void*)(l_Lean_Firefox_instFromJsonSamplesTable_fromJson), 1, 0);
+return v___x_1655_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonSamplesTable(void){
+_start:
+{
+lean_object* v___x_1656_; 
+v___x_1656_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable___closed__0, &l_Lean_Firefox_instFromJsonSamplesTable___closed__0_once, _init_l_Lean_Firefox_instFromJsonSamplesTable___closed__0);
+return v___x_1656_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonSamplesTable_toJson_spec__1_spec__2(size_t v_sz_1657_, size_t v_i_1658_, lean_object* v_bs_1659_){
 _start:
 {
@@ -7157,7 +7933,7 @@ lean_inc_ref(v_threadCPUDelta_1710_);
 v_length_1711_ = lean_ctor_get(v_x_1705_, 5);
 lean_inc(v_length_1711_);
 lean_dec_ref(v_x_1705_);
-v___x_1712_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__0));
+v___x_1712_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__0, &l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__0);
 v___x_1713_ = l_Array_toJson___at___00Lean_Firefox_instToJsonStackTable_toJson_spec__0(v_stack_1706_);
 v___x_1714_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_1714_, 0, v___x_1712_);
@@ -7166,7 +7942,7 @@ v___x_1715_ = lean_box(0);
 v___x_1716_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_1716_, 0, v___x_1714_);
 lean_ctor_set(v___x_1716_, 1, v___x_1715_);
-v___x_1717_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0));
+v___x_1717_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__0);
 v___x_1718_ = l_Array_toJson___at___00Lean_Firefox_instToJsonSamplesTable_toJson_spec__0(v_time_1707_);
 v___x_1719_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_1719_, 0, v___x_1717_);
@@ -7174,7 +7950,7 @@ lean_ctor_set(v___x_1719_, 1, v___x_1718_);
 v___x_1720_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_1720_, 0, v___x_1719_);
 lean_ctor_set(v___x_1720_, 1, v___x_1715_);
-v___x_1721_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__11));
+v___x_1721_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__11, &l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__11);
 v___x_1722_ = l_Array_toJson___at___00Lean_Firefox_instToJsonSamplesTable_toJson_spec__0(v_weight_1708_);
 v___x_1723_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_1723_, 0, v___x_1721_);
@@ -7182,7 +7958,7 @@ lean_ctor_set(v___x_1723_, 1, v___x_1722_);
 v___x_1724_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_1724_, 0, v___x_1723_);
 lean_ctor_set(v___x_1724_, 1, v___x_1715_);
-v___x_1725_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__16));
+v___x_1725_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__16, &l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__16_once, _init_l_Lean_Firefox_instFromJsonSamplesTable_fromJson___closed__16);
 v___x_1726_ = lean_alloc_ctor(3, 1, 0);
 lean_ctor_set(v___x_1726_, 0, v_weightType_1709_);
 v___x_1727_ = lean_alloc_ctor(0, 2, 0);
@@ -7191,7 +7967,7 @@ lean_ctor_set(v___x_1727_, 1, v___x_1726_);
 v___x_1728_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_1728_, 0, v___x_1727_);
 lean_ctor_set(v___x_1728_, 1, v___x_1715_);
-v___x_1729_ = ((lean_object*)(l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14));
+v___x_1729_ = lean_obj_once(&l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14, &l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14_once, _init_l_Lean_Firefox_instFromJsonSampleUnits_fromJson___closed__14);
 v___x_1730_ = l_Array_toJson___at___00Lean_Firefox_instToJsonSamplesTable_toJson_spec__1(v_threadCPUDelta_1710_);
 v___x_1731_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_1731_, 0, v___x_1729_);
@@ -7199,7 +7975,7 @@ lean_ctor_set(v___x_1731_, 1, v___x_1730_);
 v___x_1732_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_1732_, 0, v___x_1731_);
 lean_ctor_set(v___x_1732_, 1, v___x_1715_);
-v___x_1733_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24));
+v___x_1733_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24);
 v___x_1734_ = l_Lean_JsonNumber_fromNat(v_length_1711_);
 v___x_1735_ = lean_alloc_ctor(2, 1, 0);
 lean_ctor_set(v___x_1735_, 0, v___x_1734_);
@@ -7227,11 +8003,27 @@ lean_ctor_set(v___x_1742_, 1, v___x_1741_);
 v___x_1743_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_1743_, 0, v___x_1716_);
 lean_ctor_set(v___x_1743_, 1, v___x_1742_);
-v___x_1744_ = ((lean_object*)(l_Lean_Firefox_instToJsonCategory_toJson___closed__0));
+v___x_1744_ = lean_obj_once(&l_Lean_Firefox_instToJsonCategory_toJson___closed__0, &l_Lean_Firefox_instToJsonCategory_toJson___closed__0_once, _init_l_Lean_Firefox_instToJsonCategory_toJson___closed__0);
 v___x_1745_ = l___private_Init_Data_List_Impl_0__List_flatMapTR_go___at___00Lean_Firefox_instToJsonCategory_toJson_spec__1(v___x_1743_, v___x_1744_);
 v___x_1746_ = l_Lean_Json_mkObj(v___x_1745_);
 lean_dec(v___x_1745_);
 return v___x_1746_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonSamplesTable___closed__0(void){
+_start:
+{
+lean_object* v___x_1747_; 
+v___x_1747_ = lean_alloc_closure((void*)(l_Lean_Firefox_instToJsonSamplesTable_toJson), 1, 0);
+return v___x_1747_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonSamplesTable(void){
+_start:
+{
+lean_object* v___x_1748_; 
+v___x_1748_ = lean_obj_once(&l_Lean_Firefox_instToJsonSamplesTable___closed__0, &l_Lean_Firefox_instToJsonSamplesTable___closed__0_once, _init_l_Lean_Firefox_instToJsonSamplesTable___closed__0);
+return v___x_1748_;
 }
 }
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFuncTable_fromJson_spec__0_spec__0_spec__1(size_t v_sz_1749_, size_t v_i_1750_, lean_object* v_bs_1751_){
@@ -7341,12 +8133,12 @@ return v___x_1781_;
 else
 {
 lean_object* v___x_1782_; lean_object* v___x_1783_; lean_object* v___x_1784_; lean_object* v___x_1785_; lean_object* v___x_1786_; lean_object* v___x_1787_; lean_object* v___x_1788_; 
-v___x_1782_ = ((lean_object*)(l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0));
+v___x_1782_ = lean_obj_once(&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0, &l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0_once, _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0);
 v___x_1783_ = lean_unsigned_to_nat(80u);
 v___x_1784_ = l_Lean_Json_pretty(v_x_1777_, v___x_1783_);
 v___x_1785_ = lean_string_append(v___x_1782_, v___x_1784_);
 lean_dec_ref(v___x_1784_);
-v___x_1786_ = ((lean_object*)(l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1));
+v___x_1786_ = lean_obj_once(&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1, &l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1_once, _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1);
 v___x_1787_ = lean_string_append(v___x_1785_, v___x_1786_);
 v___x_1788_ = lean_alloc_ctor(0, 1, 0);
 lean_ctor_set(v___x_1788_, 0, v___x_1787_);
@@ -7372,12 +8164,31 @@ lean_dec_ref(v_k_1794_);
 return v_res_1795_;
 }
 }
+static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__0(void){
+_start:
+{
+lean_object* v___x_1796_; 
+v___x_1796_ = lean_mk_string_unchecked("FuncTable", 9, 9);
+return v___x_1796_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__1(void){
+_start:
+{
+lean_object* v___x_1797_; lean_object* v___x_1798_; lean_object* v___x_1799_; lean_object* v___x_1800_; 
+v___x_1797_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__0, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__0);
+v___x_1798_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2);
+v___x_1799_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1);
+v___x_1800_ = l_Lean_Name_mkStr3(v___x_1799_, v___x_1798_, v___x_1797_);
+return v___x_1800_;
+}
+}
 static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__2(void){
 _start:
 {
 uint8_t v___x_1801_; lean_object* v___x_1802_; lean_object* v___x_1803_; 
 v___x_1801_ = 1;
-v___x_1802_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__1));
+v___x_1802_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__1, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__1_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__1);
 v___x_1803_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_1802_, v___x_1801_);
 return v___x_1803_;
 }
@@ -7386,7 +8197,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed
 _start:
 {
 lean_object* v___x_1804_; lean_object* v___x_1805_; lean_object* v___x_1806_; 
-v___x_1804_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6));
+v___x_1804_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6);
 v___x_1805_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__2, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__2_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__2);
 v___x_1806_ = lean_string_append(v___x_1805_, v___x_1804_);
 return v___x_1806_;
@@ -7406,10 +8217,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed
 _start:
 {
 lean_object* v___x_1810_; lean_object* v___x_1811_; lean_object* v___x_1812_; 
-v___x_1810_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_1810_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_1811_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__4, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__4_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__4);
 v___x_1812_ = lean_string_append(v___x_1811_, v___x_1810_);
 return v___x_1812_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__6(void){
+_start:
+{
+lean_object* v___x_1813_; 
+v___x_1813_ = lean_mk_string_unchecked("isJS", 4, 4);
+return v___x_1813_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__7(void){
+_start:
+{
+lean_object* v___x_1814_; lean_object* v___x_1815_; 
+v___x_1814_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__6, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__6_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__6);
+v___x_1815_ = l_Lean_Name_mkStr1(v___x_1814_);
+return v___x_1815_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__8(void){
@@ -7417,7 +8245,7 @@ _start:
 {
 uint8_t v___x_1816_; lean_object* v___x_1817_; lean_object* v___x_1818_; 
 v___x_1816_ = 1;
-v___x_1817_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__7));
+v___x_1817_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__7, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__7_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__7);
 v___x_1818_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_1817_, v___x_1816_);
 return v___x_1818_;
 }
@@ -7436,10 +8264,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed
 _start:
 {
 lean_object* v___x_1822_; lean_object* v___x_1823_; lean_object* v___x_1824_; 
-v___x_1822_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_1822_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_1823_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__9, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__9);
 v___x_1824_ = lean_string_append(v___x_1823_, v___x_1822_);
 return v___x_1824_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__11(void){
+_start:
+{
+lean_object* v___x_1825_; 
+v___x_1825_ = lean_mk_string_unchecked("relevantForJS", 13, 13);
+return v___x_1825_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__12(void){
+_start:
+{
+lean_object* v___x_1826_; lean_object* v___x_1827_; 
+v___x_1826_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__11, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__11);
+v___x_1827_ = l_Lean_Name_mkStr1(v___x_1826_);
+return v___x_1827_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__13(void){
@@ -7447,7 +8292,7 @@ _start:
 {
 uint8_t v___x_1828_; lean_object* v___x_1829_; lean_object* v___x_1830_; 
 v___x_1828_ = 1;
-v___x_1829_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__12));
+v___x_1829_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__12, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__12_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__12);
 v___x_1830_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_1829_, v___x_1828_);
 return v___x_1830_;
 }
@@ -7466,10 +8311,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed
 _start:
 {
 lean_object* v___x_1834_; lean_object* v___x_1835_; lean_object* v___x_1836_; 
-v___x_1834_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_1834_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_1835_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__14, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__14_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__14);
 v___x_1836_ = lean_string_append(v___x_1835_, v___x_1834_);
 return v___x_1836_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__16(void){
+_start:
+{
+lean_object* v___x_1837_; 
+v___x_1837_ = lean_mk_string_unchecked("resource", 8, 8);
+return v___x_1837_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__17(void){
+_start:
+{
+lean_object* v___x_1838_; lean_object* v___x_1839_; 
+v___x_1838_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__16, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__16_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__16);
+v___x_1839_ = l_Lean_Name_mkStr1(v___x_1838_);
+return v___x_1839_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__18(void){
@@ -7477,7 +8339,7 @@ _start:
 {
 uint8_t v___x_1840_; lean_object* v___x_1841_; lean_object* v___x_1842_; 
 v___x_1840_ = 1;
-v___x_1841_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__17));
+v___x_1841_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__17, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__17_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__17);
 v___x_1842_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_1841_, v___x_1840_);
 return v___x_1842_;
 }
@@ -7496,10 +8358,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed
 _start:
 {
 lean_object* v___x_1846_; lean_object* v___x_1847_; lean_object* v___x_1848_; 
-v___x_1846_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_1846_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_1847_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__19, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__19_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__19);
 v___x_1848_ = lean_string_append(v___x_1847_, v___x_1846_);
 return v___x_1848_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__21(void){
+_start:
+{
+lean_object* v___x_1849_; 
+v___x_1849_ = lean_mk_string_unchecked("fileName", 8, 8);
+return v___x_1849_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__22(void){
+_start:
+{
+lean_object* v___x_1850_; lean_object* v___x_1851_; 
+v___x_1850_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__21, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__21_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__21);
+v___x_1851_ = l_Lean_Name_mkStr1(v___x_1850_);
+return v___x_1851_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__23(void){
@@ -7507,7 +8386,7 @@ _start:
 {
 uint8_t v___x_1852_; lean_object* v___x_1853_; lean_object* v___x_1854_; 
 v___x_1852_ = 1;
-v___x_1853_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__22));
+v___x_1853_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__22, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__22_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__22);
 v___x_1854_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_1853_, v___x_1852_);
 return v___x_1854_;
 }
@@ -7526,10 +8405,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed
 _start:
 {
 lean_object* v___x_1858_; lean_object* v___x_1859_; lean_object* v___x_1860_; 
-v___x_1858_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_1858_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_1859_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__24, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__24_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__24);
 v___x_1860_ = lean_string_append(v___x_1859_, v___x_1858_);
 return v___x_1860_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__26(void){
+_start:
+{
+lean_object* v___x_1861_; 
+v___x_1861_ = lean_mk_string_unchecked("lineNumber", 10, 10);
+return v___x_1861_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__27(void){
+_start:
+{
+lean_object* v___x_1862_; lean_object* v___x_1863_; 
+v___x_1862_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__26, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__26_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__26);
+v___x_1863_ = l_Lean_Name_mkStr1(v___x_1862_);
+return v___x_1863_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__28(void){
@@ -7537,7 +8433,7 @@ _start:
 {
 uint8_t v___x_1864_; lean_object* v___x_1865_; lean_object* v___x_1866_; 
 v___x_1864_ = 1;
-v___x_1865_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__27));
+v___x_1865_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__27, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__27_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__27);
 v___x_1866_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_1865_, v___x_1864_);
 return v___x_1866_;
 }
@@ -7556,10 +8452,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed
 _start:
 {
 lean_object* v___x_1870_; lean_object* v___x_1871_; lean_object* v___x_1872_; 
-v___x_1870_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_1870_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_1871_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__29, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__29_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__29);
 v___x_1872_ = lean_string_append(v___x_1871_, v___x_1870_);
 return v___x_1872_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__31(void){
+_start:
+{
+lean_object* v___x_1873_; 
+v___x_1873_ = lean_mk_string_unchecked("columnNumber", 12, 12);
+return v___x_1873_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__32(void){
+_start:
+{
+lean_object* v___x_1874_; lean_object* v___x_1875_; 
+v___x_1874_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__31, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__31_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__31);
+v___x_1875_ = l_Lean_Name_mkStr1(v___x_1874_);
+return v___x_1875_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__33(void){
@@ -7567,7 +8480,7 @@ _start:
 {
 uint8_t v___x_1876_; lean_object* v___x_1877_; lean_object* v___x_1878_; 
 v___x_1876_ = 1;
-v___x_1877_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__32));
+v___x_1877_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__32, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__32_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__32);
 v___x_1878_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_1877_, v___x_1876_);
 return v___x_1878_;
 }
@@ -7586,7 +8499,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed
 _start:
 {
 lean_object* v___x_1882_; lean_object* v___x_1883_; lean_object* v___x_1884_; 
-v___x_1882_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_1882_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_1883_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__34, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__34_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__34);
 v___x_1884_ = lean_string_append(v___x_1883_, v___x_1882_);
 return v___x_1884_;
@@ -7606,7 +8519,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed
 _start:
 {
 lean_object* v___x_1888_; lean_object* v___x_1889_; lean_object* v___x_1890_; 
-v___x_1888_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_1888_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_1889_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__36, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__36_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__36);
 v___x_1890_ = lean_string_append(v___x_1889_, v___x_1888_);
 return v___x_1890_;
@@ -7616,7 +8529,7 @@ LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonFuncTable_fromJson(lean_obje
 _start:
 {
 lean_object* v___x_1892_; lean_object* v___x_1893_; 
-v___x_1892_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0));
+v___x_1892_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0);
 lean_inc(v_json_1891_);
 v___x_1893_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__0(v_json_1891_, v___x_1892_);
 if (lean_obj_tag(v___x_1893_) == 0)
@@ -7716,7 +8629,7 @@ lean_object* v_a_1912_; lean_object* v___x_1913_; lean_object* v___x_1914_;
 v_a_1912_ = lean_ctor_get(v___x_1893_, 0);
 lean_inc(v_a_1912_);
 lean_dec_ref(v___x_1893_);
-v___x_1913_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__6));
+v___x_1913_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__6, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__6_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__6);
 lean_inc(v_json_1891_);
 v___x_1914_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__3(v_json_1891_, v___x_1913_);
 if (lean_obj_tag(v___x_1914_) == 0)
@@ -7818,7 +8731,7 @@ lean_object* v_a_1933_; lean_object* v___x_1934_; lean_object* v___x_1935_;
 v_a_1933_ = lean_ctor_get(v___x_1914_, 0);
 lean_inc(v_a_1933_);
 lean_dec_ref(v___x_1914_);
-v___x_1934_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__11));
+v___x_1934_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__11, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__11);
 lean_inc(v_json_1891_);
 v___x_1935_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__3(v_json_1891_, v___x_1934_);
 if (lean_obj_tag(v___x_1935_) == 0)
@@ -7922,7 +8835,7 @@ lean_object* v_a_1954_; lean_object* v___x_1955_; lean_object* v___x_1956_;
 v_a_1954_ = lean_ctor_get(v___x_1935_, 0);
 lean_inc(v_a_1954_);
 lean_dec_ref(v___x_1935_);
-v___x_1955_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__16));
+v___x_1955_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__16, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__16_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__16);
 lean_inc(v_json_1891_);
 v___x_1956_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFuncTable_fromJson_spec__0(v_json_1891_, v___x_1955_);
 if (lean_obj_tag(v___x_1956_) == 0)
@@ -8028,7 +8941,7 @@ lean_object* v_a_1975_; lean_object* v___x_1976_; lean_object* v___x_1977_;
 v_a_1975_ = lean_ctor_get(v___x_1956_, 0);
 lean_inc(v_a_1975_);
 lean_dec_ref(v___x_1956_);
-v___x_1976_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__21));
+v___x_1976_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__21, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__21_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__21);
 lean_inc(v_json_1891_);
 v___x_1977_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1(v_json_1891_, v___x_1976_);
 if (lean_obj_tag(v___x_1977_) == 0)
@@ -8136,7 +9049,7 @@ lean_object* v_a_1996_; lean_object* v___x_1997_; lean_object* v___x_1998_;
 v_a_1996_ = lean_ctor_get(v___x_1977_, 0);
 lean_inc(v_a_1996_);
 lean_dec_ref(v___x_1977_);
-v___x_1997_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__26));
+v___x_1997_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__26, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__26_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__26);
 lean_inc(v_json_1891_);
 v___x_1998_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1(v_json_1891_, v___x_1997_);
 if (lean_obj_tag(v___x_1998_) == 0)
@@ -8246,7 +9159,7 @@ lean_object* v_a_2017_; lean_object* v___x_2018_; lean_object* v___x_2019_;
 v_a_2017_ = lean_ctor_get(v___x_1998_, 0);
 lean_inc(v_a_2017_);
 lean_dec_ref(v___x_1998_);
-v___x_2018_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__31));
+v___x_2018_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__31, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__31_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__31);
 lean_inc(v_json_1891_);
 v___x_2019_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1(v_json_1891_, v___x_2018_);
 if (lean_obj_tag(v___x_2019_) == 0)
@@ -8358,7 +9271,7 @@ lean_object* v_a_2038_; lean_object* v___x_2039_; lean_object* v___x_2040_;
 v_a_2038_ = lean_ctor_get(v___x_2019_, 0);
 lean_inc(v_a_2038_);
 lean_dec_ref(v___x_2019_);
-v___x_2039_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24));
+v___x_2039_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24);
 v___x_2040_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__2(v_json_1891_, v___x_2039_);
 if (lean_obj_tag(v___x_2040_) == 0)
 {
@@ -8531,6 +9444,22 @@ return v___x_2065_;
 }
 }
 }
+static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable___closed__0(void){
+_start:
+{
+lean_object* v___x_2068_; 
+v___x_2068_ = lean_alloc_closure((void*)(l_Lean_Firefox_instFromJsonFuncTable_fromJson), 1, 0);
+return v___x_2068_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFuncTable(void){
+_start:
+{
+lean_object* v___x_2069_; 
+v___x_2069_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable___closed__0, &l_Lean_Firefox_instFromJsonFuncTable___closed__0_once, _init_l_Lean_Firefox_instFromJsonFuncTable___closed__0);
+return v___x_2069_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonFuncTable_toJson_spec__0_spec__0(size_t v_sz_2070_, size_t v_i_2071_, lean_object* v_bs_2072_){
 _start:
 {
@@ -8603,7 +9532,7 @@ lean_inc_ref(v_columnNumber_2101_);
 v_length_2102_ = lean_ctor_get(v_x_2094_, 7);
 lean_inc(v_length_2102_);
 lean_dec_ref(v_x_2094_);
-v___x_2103_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0));
+v___x_2103_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0);
 v___x_2104_ = l_Array_toJson___at___00Lean_Firefox_instToJsonStackTable_toJson_spec__0(v_name_2095_);
 v___x_2105_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_2105_, 0, v___x_2103_);
@@ -8612,7 +9541,7 @@ v___x_2106_ = lean_box(0);
 v___x_2107_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2107_, 0, v___x_2105_);
 lean_ctor_set(v___x_2107_, 1, v___x_2106_);
-v___x_2108_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__6));
+v___x_2108_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__6, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__6_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__6);
 v___x_2109_ = l_Array_toJson___at___00Lean_Firefox_instToJsonProfileMeta_toJson_spec__1(v_isJS_2096_);
 v___x_2110_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_2110_, 0, v___x_2108_);
@@ -8620,7 +9549,7 @@ lean_ctor_set(v___x_2110_, 1, v___x_2109_);
 v___x_2111_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2111_, 0, v___x_2110_);
 lean_ctor_set(v___x_2111_, 1, v___x_2106_);
-v___x_2112_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__11));
+v___x_2112_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__11, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__11);
 v___x_2113_ = l_Array_toJson___at___00Lean_Firefox_instToJsonProfileMeta_toJson_spec__1(v_relevantForJS_2097_);
 v___x_2114_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_2114_, 0, v___x_2112_);
@@ -8628,7 +9557,7 @@ lean_ctor_set(v___x_2114_, 1, v___x_2113_);
 v___x_2115_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2115_, 0, v___x_2114_);
 lean_ctor_set(v___x_2115_, 1, v___x_2106_);
-v___x_2116_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__16));
+v___x_2116_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__16, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__16_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__16);
 v___x_2117_ = l_Array_toJson___at___00Lean_Firefox_instToJsonFuncTable_toJson_spec__0(v_resource_2098_);
 v___x_2118_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_2118_, 0, v___x_2116_);
@@ -8636,7 +9565,7 @@ lean_ctor_set(v___x_2118_, 1, v___x_2117_);
 v___x_2119_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2119_, 0, v___x_2118_);
 lean_ctor_set(v___x_2119_, 1, v___x_2106_);
-v___x_2120_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__21));
+v___x_2120_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__21, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__21_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__21);
 v___x_2121_ = l_Array_toJson___at___00Lean_Firefox_instToJsonStackTable_toJson_spec__1(v_fileName_2099_);
 v___x_2122_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_2122_, 0, v___x_2120_);
@@ -8644,7 +9573,7 @@ lean_ctor_set(v___x_2122_, 1, v___x_2121_);
 v___x_2123_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2123_, 0, v___x_2122_);
 lean_ctor_set(v___x_2123_, 1, v___x_2106_);
-v___x_2124_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__26));
+v___x_2124_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__26, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__26_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__26);
 v___x_2125_ = l_Array_toJson___at___00Lean_Firefox_instToJsonStackTable_toJson_spec__1(v_lineNumber_2100_);
 v___x_2126_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_2126_, 0, v___x_2124_);
@@ -8652,7 +9581,7 @@ lean_ctor_set(v___x_2126_, 1, v___x_2125_);
 v___x_2127_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2127_, 0, v___x_2126_);
 lean_ctor_set(v___x_2127_, 1, v___x_2106_);
-v___x_2128_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__31));
+v___x_2128_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__31, &l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__31_once, _init_l_Lean_Firefox_instFromJsonFuncTable_fromJson___closed__31);
 v___x_2129_ = l_Array_toJson___at___00Lean_Firefox_instToJsonStackTable_toJson_spec__1(v_columnNumber_2101_);
 v___x_2130_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_2130_, 0, v___x_2128_);
@@ -8660,7 +9589,7 @@ lean_ctor_set(v___x_2130_, 1, v___x_2129_);
 v___x_2131_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2131_, 0, v___x_2130_);
 lean_ctor_set(v___x_2131_, 1, v___x_2106_);
-v___x_2132_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24));
+v___x_2132_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24);
 v___x_2133_ = l_Lean_JsonNumber_fromNat(v_length_2102_);
 v___x_2134_ = lean_alloc_ctor(2, 1, 0);
 lean_ctor_set(v___x_2134_, 0, v___x_2133_);
@@ -8694,11 +9623,37 @@ lean_ctor_set(v___x_2143_, 1, v___x_2142_);
 v___x_2144_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2144_, 0, v___x_2107_);
 lean_ctor_set(v___x_2144_, 1, v___x_2143_);
-v___x_2145_ = ((lean_object*)(l_Lean_Firefox_instToJsonCategory_toJson___closed__0));
+v___x_2145_ = lean_obj_once(&l_Lean_Firefox_instToJsonCategory_toJson___closed__0, &l_Lean_Firefox_instToJsonCategory_toJson___closed__0_once, _init_l_Lean_Firefox_instToJsonCategory_toJson___closed__0);
 v___x_2146_ = l___private_Init_Data_List_Impl_0__List_flatMapTR_go___at___00Lean_Firefox_instToJsonCategory_toJson_spec__1(v___x_2144_, v___x_2145_);
 v___x_2147_ = l_Lean_Json_mkObj(v___x_2146_);
 lean_dec(v___x_2146_);
 return v___x_2147_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonFuncTable___closed__0(void){
+_start:
+{
+lean_object* v___x_2148_; 
+v___x_2148_ = lean_alloc_closure((void*)(l_Lean_Firefox_instToJsonFuncTable_toJson), 1, 0);
+return v___x_2148_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonFuncTable(void){
+_start:
+{
+lean_object* v___x_2149_; 
+v___x_2149_ = lean_obj_once(&l_Lean_Firefox_instToJsonFuncTable___closed__0, &l_Lean_Firefox_instToJsonFuncTable___closed__0_once, _init_l_Lean_Firefox_instToJsonFuncTable___closed__0);
+return v___x_2149_;
+}
+}
+static lean_object* _init_l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFrameTable_fromJson_spec__0_spec__0_spec__1___closed__0(void){
+_start:
+{
+lean_object* v___x_2150_; lean_object* v___x_2151_; 
+v___x_2150_ = lean_box(0);
+v___x_2151_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_2151_, 0, v___x_2150_);
+return v___x_2151_;
 }
 }
 LEAN_EXPORT lean_object* l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFrameTable_fromJson_spec__0_spec__0_spec__1(lean_object* v_x_2152_){
@@ -8707,7 +9662,7 @@ _start:
 if (lean_obj_tag(v_x_2152_) == 0)
 {
 lean_object* v___x_2153_; 
-v___x_2153_ = ((lean_object*)(l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFrameTable_fromJson_spec__0_spec__0_spec__1___closed__0));
+v___x_2153_ = lean_obj_once(&l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFrameTable_fromJson_spec__0_spec__0_spec__1___closed__0, &l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFrameTable_fromJson_spec__0_spec__0_spec__1___closed__0_once, _init_l_Option_fromJson_x3f___at___00Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFrameTable_fromJson_spec__0_spec__0_spec__1___closed__0);
 return v___x_2153_;
 }
 else
@@ -8828,12 +9783,12 @@ return v___x_2188_;
 else
 {
 lean_object* v___x_2189_; lean_object* v___x_2190_; lean_object* v___x_2191_; lean_object* v___x_2192_; lean_object* v___x_2193_; lean_object* v___x_2194_; lean_object* v___x_2195_; 
-v___x_2189_ = ((lean_object*)(l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0));
+v___x_2189_ = lean_obj_once(&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0, &l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0_once, _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0);
 v___x_2190_ = lean_unsigned_to_nat(80u);
 v___x_2191_ = l_Lean_Json_pretty(v_x_2184_, v___x_2190_);
 v___x_2192_ = lean_string_append(v___x_2189_, v___x_2191_);
 lean_dec_ref(v___x_2191_);
-v___x_2193_ = ((lean_object*)(l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1));
+v___x_2193_ = lean_obj_once(&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1, &l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1_once, _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1);
 v___x_2194_ = lean_string_append(v___x_2192_, v___x_2193_);
 v___x_2195_ = lean_alloc_ctor(0, 1, 0);
 lean_ctor_set(v___x_2195_, 0, v___x_2194_);
@@ -8859,12 +9814,39 @@ lean_dec_ref(v_k_2201_);
 return v_res_2202_;
 }
 }
+static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__0(void){
+_start:
+{
+lean_object* v___x_2203_; 
+v___x_2203_ = lean_mk_string_unchecked("address", 7, 7);
+return v___x_2203_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__1(void){
+_start:
+{
+lean_object* v___x_2204_; 
+v___x_2204_ = lean_mk_string_unchecked("FrameTable", 10, 10);
+return v___x_2204_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__2(void){
+_start:
+{
+lean_object* v___x_2205_; lean_object* v___x_2206_; lean_object* v___x_2207_; lean_object* v___x_2208_; 
+v___x_2205_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__1, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__1_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__1);
+v___x_2206_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2);
+v___x_2207_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1);
+v___x_2208_ = l_Lean_Name_mkStr3(v___x_2207_, v___x_2206_, v___x_2205_);
+return v___x_2208_;
+}
+}
 static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__3(void){
 _start:
 {
 uint8_t v___x_2209_; lean_object* v___x_2210_; lean_object* v___x_2211_; 
 v___x_2209_ = 1;
-v___x_2210_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__2));
+v___x_2210_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__2, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__2_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__2);
 v___x_2211_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_2210_, v___x_2209_);
 return v___x_2211_;
 }
@@ -8873,10 +9855,19 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___close
 _start:
 {
 lean_object* v___x_2212_; lean_object* v___x_2213_; lean_object* v___x_2214_; 
-v___x_2212_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6));
+v___x_2212_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6);
 v___x_2213_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__3, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__3_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__3);
 v___x_2214_ = lean_string_append(v___x_2213_, v___x_2212_);
 return v___x_2214_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__5(void){
+_start:
+{
+lean_object* v___x_2215_; lean_object* v___x_2216_; 
+v___x_2215_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__0, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__0);
+v___x_2216_ = l_Lean_Name_mkStr1(v___x_2215_);
+return v___x_2216_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__6(void){
@@ -8884,7 +9875,7 @@ _start:
 {
 uint8_t v___x_2217_; lean_object* v___x_2218_; lean_object* v___x_2219_; 
 v___x_2217_ = 1;
-v___x_2218_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__5));
+v___x_2218_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__5, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__5_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__5);
 v___x_2219_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_2218_, v___x_2217_);
 return v___x_2219_;
 }
@@ -8903,10 +9894,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___close
 _start:
 {
 lean_object* v___x_2223_; lean_object* v___x_2224_; lean_object* v___x_2225_; 
-v___x_2223_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_2223_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_2224_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__7, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__7_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__7);
 v___x_2225_ = lean_string_append(v___x_2224_, v___x_2223_);
 return v___x_2225_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__9(void){
+_start:
+{
+lean_object* v___x_2226_; 
+v___x_2226_ = lean_mk_string_unchecked("inlineDepth", 11, 11);
+return v___x_2226_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__10(void){
+_start:
+{
+lean_object* v___x_2227_; lean_object* v___x_2228_; 
+v___x_2227_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__9, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__9);
+v___x_2228_ = l_Lean_Name_mkStr1(v___x_2227_);
+return v___x_2228_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__11(void){
@@ -8914,7 +9922,7 @@ _start:
 {
 uint8_t v___x_2229_; lean_object* v___x_2230_; lean_object* v___x_2231_; 
 v___x_2229_ = 1;
-v___x_2230_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__10));
+v___x_2230_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__10, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__10_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__10);
 v___x_2231_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_2230_, v___x_2229_);
 return v___x_2231_;
 }
@@ -8933,7 +9941,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___close
 _start:
 {
 lean_object* v___x_2235_; lean_object* v___x_2236_; lean_object* v___x_2237_; 
-v___x_2235_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_2235_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_2236_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__12, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__12_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__12);
 v___x_2237_ = lean_string_append(v___x_2236_, v___x_2235_);
 return v___x_2237_;
@@ -8953,7 +9961,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___close
 _start:
 {
 lean_object* v___x_2241_; lean_object* v___x_2242_; lean_object* v___x_2243_; 
-v___x_2241_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_2241_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_2242_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__14, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__14_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__14);
 v___x_2243_ = lean_string_append(v___x_2242_, v___x_2241_);
 return v___x_2243_;
@@ -8973,10 +9981,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___close
 _start:
 {
 lean_object* v___x_2247_; lean_object* v___x_2248_; lean_object* v___x_2249_; 
-v___x_2247_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_2247_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_2248_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__16, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__16_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__16);
 v___x_2249_ = lean_string_append(v___x_2248_, v___x_2247_);
 return v___x_2249_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__18(void){
+_start:
+{
+lean_object* v___x_2250_; 
+v___x_2250_ = lean_mk_string_unchecked("func", 4, 4);
+return v___x_2250_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__19(void){
+_start:
+{
+lean_object* v___x_2251_; lean_object* v___x_2252_; 
+v___x_2251_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__18, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__18_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__18);
+v___x_2252_ = l_Lean_Name_mkStr1(v___x_2251_);
+return v___x_2252_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__20(void){
@@ -8984,7 +10009,7 @@ _start:
 {
 uint8_t v___x_2253_; lean_object* v___x_2254_; lean_object* v___x_2255_; 
 v___x_2253_ = 1;
-v___x_2254_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__19));
+v___x_2254_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__19, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__19_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__19);
 v___x_2255_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_2254_, v___x_2253_);
 return v___x_2255_;
 }
@@ -9003,10 +10028,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___close
 _start:
 {
 lean_object* v___x_2259_; lean_object* v___x_2260_; lean_object* v___x_2261_; 
-v___x_2259_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_2259_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_2260_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__21, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__21_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__21);
 v___x_2261_ = lean_string_append(v___x_2260_, v___x_2259_);
 return v___x_2261_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__23(void){
+_start:
+{
+lean_object* v___x_2262_; 
+v___x_2262_ = lean_mk_string_unchecked("nativeSymbol", 12, 12);
+return v___x_2262_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__24(void){
+_start:
+{
+lean_object* v___x_2263_; lean_object* v___x_2264_; 
+v___x_2263_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__23, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__23_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__23);
+v___x_2264_ = l_Lean_Name_mkStr1(v___x_2263_);
+return v___x_2264_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__25(void){
@@ -9014,7 +10056,7 @@ _start:
 {
 uint8_t v___x_2265_; lean_object* v___x_2266_; lean_object* v___x_2267_; 
 v___x_2265_ = 1;
-v___x_2266_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__24));
+v___x_2266_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__24, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__24_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__24);
 v___x_2267_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_2266_, v___x_2265_);
 return v___x_2267_;
 }
@@ -9033,10 +10075,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___close
 _start:
 {
 lean_object* v___x_2271_; lean_object* v___x_2272_; lean_object* v___x_2273_; 
-v___x_2271_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_2271_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_2272_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__26, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__26_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__26);
 v___x_2273_ = lean_string_append(v___x_2272_, v___x_2271_);
 return v___x_2273_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__28(void){
+_start:
+{
+lean_object* v___x_2274_; 
+v___x_2274_ = lean_mk_string_unchecked("innerWindowID", 13, 13);
+return v___x_2274_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__29(void){
+_start:
+{
+lean_object* v___x_2275_; lean_object* v___x_2276_; 
+v___x_2275_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__28, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__28_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__28);
+v___x_2276_ = l_Lean_Name_mkStr1(v___x_2275_);
+return v___x_2276_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__30(void){
@@ -9044,7 +10103,7 @@ _start:
 {
 uint8_t v___x_2277_; lean_object* v___x_2278_; lean_object* v___x_2279_; 
 v___x_2277_ = 1;
-v___x_2278_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__29));
+v___x_2278_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__29, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__29_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__29);
 v___x_2279_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_2278_, v___x_2277_);
 return v___x_2279_;
 }
@@ -9063,10 +10122,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___close
 _start:
 {
 lean_object* v___x_2283_; lean_object* v___x_2284_; lean_object* v___x_2285_; 
-v___x_2283_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_2283_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_2284_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__31, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__31_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__31);
 v___x_2285_ = lean_string_append(v___x_2284_, v___x_2283_);
 return v___x_2285_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__33(void){
+_start:
+{
+lean_object* v___x_2286_; 
+v___x_2286_ = lean_mk_string_unchecked("implementation", 14, 14);
+return v___x_2286_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__34(void){
+_start:
+{
+lean_object* v___x_2287_; lean_object* v___x_2288_; 
+v___x_2287_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__33, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__33_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__33);
+v___x_2288_ = l_Lean_Name_mkStr1(v___x_2287_);
+return v___x_2288_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__35(void){
@@ -9074,7 +10150,7 @@ _start:
 {
 uint8_t v___x_2289_; lean_object* v___x_2290_; lean_object* v___x_2291_; 
 v___x_2289_ = 1;
-v___x_2290_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__34));
+v___x_2290_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__34, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__34_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__34);
 v___x_2291_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_2290_, v___x_2289_);
 return v___x_2291_;
 }
@@ -9093,10 +10169,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___close
 _start:
 {
 lean_object* v___x_2295_; lean_object* v___x_2296_; lean_object* v___x_2297_; 
-v___x_2295_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_2295_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_2296_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__36, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__36_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__36);
 v___x_2297_ = lean_string_append(v___x_2296_, v___x_2295_);
 return v___x_2297_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__38(void){
+_start:
+{
+lean_object* v___x_2298_; 
+v___x_2298_ = lean_mk_string_unchecked("line", 4, 4);
+return v___x_2298_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__39(void){
+_start:
+{
+lean_object* v___x_2299_; lean_object* v___x_2300_; 
+v___x_2299_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__38, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__38_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__38);
+v___x_2300_ = l_Lean_Name_mkStr1(v___x_2299_);
+return v___x_2300_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__40(void){
@@ -9104,7 +10197,7 @@ _start:
 {
 uint8_t v___x_2301_; lean_object* v___x_2302_; lean_object* v___x_2303_; 
 v___x_2301_ = 1;
-v___x_2302_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__39));
+v___x_2302_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__39, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__39_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__39);
 v___x_2303_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_2302_, v___x_2301_);
 return v___x_2303_;
 }
@@ -9123,10 +10216,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___close
 _start:
 {
 lean_object* v___x_2307_; lean_object* v___x_2308_; lean_object* v___x_2309_; 
-v___x_2307_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_2307_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_2308_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__41, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__41_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__41);
 v___x_2309_ = lean_string_append(v___x_2308_, v___x_2307_);
 return v___x_2309_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__43(void){
+_start:
+{
+lean_object* v___x_2310_; 
+v___x_2310_ = lean_mk_string_unchecked("column", 6, 6);
+return v___x_2310_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__44(void){
+_start:
+{
+lean_object* v___x_2311_; lean_object* v___x_2312_; 
+v___x_2311_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__43, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__43_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__43);
+v___x_2312_ = l_Lean_Name_mkStr1(v___x_2311_);
+return v___x_2312_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__45(void){
@@ -9134,7 +10244,7 @@ _start:
 {
 uint8_t v___x_2313_; lean_object* v___x_2314_; lean_object* v___x_2315_; 
 v___x_2313_ = 1;
-v___x_2314_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__44));
+v___x_2314_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__44, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__44_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__44);
 v___x_2315_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_2314_, v___x_2313_);
 return v___x_2315_;
 }
@@ -9153,7 +10263,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___close
 _start:
 {
 lean_object* v___x_2319_; lean_object* v___x_2320_; lean_object* v___x_2321_; 
-v___x_2319_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_2319_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_2320_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__46, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__46_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__46);
 v___x_2321_ = lean_string_append(v___x_2320_, v___x_2319_);
 return v___x_2321_;
@@ -9173,7 +10283,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___close
 _start:
 {
 lean_object* v___x_2325_; lean_object* v___x_2326_; lean_object* v___x_2327_; 
-v___x_2325_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_2325_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_2326_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__48, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__48_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__48);
 v___x_2327_ = lean_string_append(v___x_2326_, v___x_2325_);
 return v___x_2327_;
@@ -9183,7 +10293,7 @@ LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonFrameTable_fromJson(lean_obj
 _start:
 {
 lean_object* v___x_2329_; lean_object* v___x_2330_; 
-v___x_2329_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__0));
+v___x_2329_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__0, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__0);
 lean_inc(v_json_2328_);
 v___x_2330_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFuncTable_fromJson_spec__0(v_json_2328_, v___x_2329_);
 if (lean_obj_tag(v___x_2330_) == 0)
@@ -9283,7 +10393,7 @@ lean_object* v_a_2349_; lean_object* v___x_2350_; lean_object* v___x_2351_;
 v_a_2349_ = lean_ctor_get(v___x_2330_, 0);
 lean_inc(v_a_2349_);
 lean_dec_ref(v___x_2330_);
-v___x_2350_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__9));
+v___x_2350_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__9, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__9);
 lean_inc(v_json_2328_);
 v___x_2351_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__0(v_json_2328_, v___x_2350_);
 if (lean_obj_tag(v___x_2351_) == 0)
@@ -9385,7 +10495,7 @@ lean_object* v_a_2370_; lean_object* v___x_2371_; lean_object* v___x_2372_;
 v_a_2370_ = lean_ctor_get(v___x_2351_, 0);
 lean_inc(v_a_2370_);
 lean_dec_ref(v___x_2351_);
-v___x_2371_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9));
+v___x_2371_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9);
 lean_inc(v_json_2328_);
 v___x_2372_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1(v_json_2328_, v___x_2371_);
 if (lean_obj_tag(v___x_2372_) == 0)
@@ -9489,7 +10599,7 @@ lean_object* v_a_2391_; lean_object* v___x_2392_; lean_object* v___x_2393_;
 v_a_2391_ = lean_ctor_get(v___x_2372_, 0);
 lean_inc(v_a_2391_);
 lean_dec_ref(v___x_2372_);
-v___x_2392_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14));
+v___x_2392_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14);
 lean_inc(v_json_2328_);
 v___x_2393_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1(v_json_2328_, v___x_2392_);
 if (lean_obj_tag(v___x_2393_) == 0)
@@ -9595,7 +10705,7 @@ lean_object* v_a_2412_; lean_object* v___x_2413_; lean_object* v___x_2414_;
 v_a_2412_ = lean_ctor_get(v___x_2393_, 0);
 lean_inc(v_a_2412_);
 lean_dec_ref(v___x_2393_);
-v___x_2413_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__18));
+v___x_2413_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__18, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__18_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__18);
 lean_inc(v_json_2328_);
 v___x_2414_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__0(v_json_2328_, v___x_2413_);
 if (lean_obj_tag(v___x_2414_) == 0)
@@ -9703,7 +10813,7 @@ lean_object* v_a_2433_; lean_object* v___x_2434_; lean_object* v___x_2435_;
 v_a_2433_ = lean_ctor_get(v___x_2414_, 0);
 lean_inc(v_a_2433_);
 lean_dec_ref(v___x_2414_);
-v___x_2434_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__23));
+v___x_2434_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__23, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__23_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__23);
 lean_inc(v_json_2328_);
 v___x_2435_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFrameTable_fromJson_spec__0(v_json_2328_, v___x_2434_);
 if (lean_obj_tag(v___x_2435_) == 0)
@@ -9813,7 +10923,7 @@ lean_object* v_a_2454_; lean_object* v___x_2455_; lean_object* v___x_2456_;
 v_a_2454_ = lean_ctor_get(v___x_2435_, 0);
 lean_inc(v_a_2454_);
 lean_dec_ref(v___x_2435_);
-v___x_2455_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__28));
+v___x_2455_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__28, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__28_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__28);
 lean_inc(v_json_2328_);
 v___x_2456_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFrameTable_fromJson_spec__0(v_json_2328_, v___x_2455_);
 if (lean_obj_tag(v___x_2456_) == 0)
@@ -9925,7 +11035,7 @@ lean_object* v_a_2475_; lean_object* v___x_2476_; lean_object* v___x_2477_;
 v_a_2475_ = lean_ctor_get(v___x_2456_, 0);
 lean_inc(v_a_2475_);
 lean_dec_ref(v___x_2456_);
-v___x_2476_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__33));
+v___x_2476_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__33, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__33_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__33);
 lean_inc(v_json_2328_);
 v___x_2477_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonFrameTable_fromJson_spec__0(v_json_2328_, v___x_2476_);
 if (lean_obj_tag(v___x_2477_) == 0)
@@ -10039,7 +11149,7 @@ lean_object* v_a_2496_; lean_object* v___x_2497_; lean_object* v___x_2498_;
 v_a_2496_ = lean_ctor_get(v___x_2477_, 0);
 lean_inc(v_a_2496_);
 lean_dec_ref(v___x_2477_);
-v___x_2497_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__38));
+v___x_2497_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__38, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__38_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__38);
 lean_inc(v_json_2328_);
 v___x_2498_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1(v_json_2328_, v___x_2497_);
 if (lean_obj_tag(v___x_2498_) == 0)
@@ -10155,7 +11265,7 @@ lean_object* v_a_2517_; lean_object* v___x_2518_; lean_object* v___x_2519_;
 v_a_2517_ = lean_ctor_get(v___x_2498_, 0);
 lean_inc(v_a_2517_);
 lean_dec_ref(v___x_2498_);
-v___x_2518_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__43));
+v___x_2518_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__43, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__43_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__43);
 lean_inc(v_json_2328_);
 v___x_2519_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonStackTable_fromJson_spec__1(v_json_2328_, v___x_2518_);
 if (lean_obj_tag(v___x_2519_) == 0)
@@ -10273,7 +11383,7 @@ lean_object* v_a_2538_; lean_object* v___x_2539_; lean_object* v___x_2540_;
 v_a_2538_ = lean_ctor_get(v___x_2519_, 0);
 lean_inc(v_a_2538_);
 lean_dec_ref(v___x_2519_);
-v___x_2539_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24));
+v___x_2539_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24);
 v___x_2540_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__2(v_json_2328_, v___x_2539_);
 if (lean_obj_tag(v___x_2540_) == 0)
 {
@@ -10461,6 +11571,22 @@ return v___x_2565_;
 }
 }
 }
+static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable___closed__0(void){
+_start:
+{
+lean_object* v___x_2568_; 
+v___x_2568_ = lean_alloc_closure((void*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson), 1, 0);
+return v___x_2568_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonFrameTable(void){
+_start:
+{
+lean_object* v___x_2569_; 
+v___x_2569_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable___closed__0, &l_Lean_Firefox_instFromJsonFrameTable___closed__0_once, _init_l_Lean_Firefox_instFromJsonFrameTable___closed__0);
+return v___x_2569_;
+}
+}
 LEAN_EXPORT lean_object* l_Option_toJson___at___00Array_toJson___at___00Lean_Firefox_instToJsonFrameTable_toJson_spec__0_spec__0(lean_object* v_x_2570_){
 _start:
 {
@@ -10565,7 +11691,7 @@ lean_inc_ref(v_column_2608_);
 v_length_2609_ = lean_ctor_get(v_x_2598_, 10);
 lean_inc(v_length_2609_);
 lean_dec_ref(v_x_2598_);
-v___x_2610_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__0));
+v___x_2610_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__0, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__0);
 v___x_2611_ = l_Array_toJson___at___00Lean_Firefox_instToJsonFuncTable_toJson_spec__0(v_address_2599_);
 v___x_2612_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_2612_, 0, v___x_2610_);
@@ -10574,7 +11700,7 @@ v___x_2613_ = lean_box(0);
 v___x_2614_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2614_, 0, v___x_2612_);
 lean_ctor_set(v___x_2614_, 1, v___x_2613_);
-v___x_2615_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__9));
+v___x_2615_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__9, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__9);
 v___x_2616_ = l_Array_toJson___at___00Lean_Firefox_instToJsonStackTable_toJson_spec__0(v_inlineDepth_2600_);
 v___x_2617_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_2617_, 0, v___x_2615_);
@@ -10582,7 +11708,7 @@ lean_ctor_set(v___x_2617_, 1, v___x_2616_);
 v___x_2618_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2618_, 0, v___x_2617_);
 lean_ctor_set(v___x_2618_, 1, v___x_2613_);
-v___x_2619_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9));
+v___x_2619_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__9);
 v___x_2620_ = l_Array_toJson___at___00Lean_Firefox_instToJsonStackTable_toJson_spec__1(v_category_2601_);
 v___x_2621_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_2621_, 0, v___x_2619_);
@@ -10590,7 +11716,7 @@ lean_ctor_set(v___x_2621_, 1, v___x_2620_);
 v___x_2622_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2622_, 0, v___x_2621_);
 lean_ctor_set(v___x_2622_, 1, v___x_2613_);
-v___x_2623_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14));
+v___x_2623_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__14);
 v___x_2624_ = l_Array_toJson___at___00Lean_Firefox_instToJsonStackTable_toJson_spec__1(v_subcategory_2602_);
 v___x_2625_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_2625_, 0, v___x_2623_);
@@ -10598,7 +11724,7 @@ lean_ctor_set(v___x_2625_, 1, v___x_2624_);
 v___x_2626_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2626_, 0, v___x_2625_);
 lean_ctor_set(v___x_2626_, 1, v___x_2613_);
-v___x_2627_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__18));
+v___x_2627_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__18, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__18_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__18);
 v___x_2628_ = l_Array_toJson___at___00Lean_Firefox_instToJsonStackTable_toJson_spec__0(v_func_2603_);
 v___x_2629_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_2629_, 0, v___x_2627_);
@@ -10606,7 +11732,7 @@ lean_ctor_set(v___x_2629_, 1, v___x_2628_);
 v___x_2630_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2630_, 0, v___x_2629_);
 lean_ctor_set(v___x_2630_, 1, v___x_2613_);
-v___x_2631_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__23));
+v___x_2631_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__23, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__23_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__23);
 v___x_2632_ = l_Array_toJson___at___00Lean_Firefox_instToJsonFrameTable_toJson_spec__0(v_nativeSymbol_2604_);
 v___x_2633_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_2633_, 0, v___x_2631_);
@@ -10614,7 +11740,7 @@ lean_ctor_set(v___x_2633_, 1, v___x_2632_);
 v___x_2634_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2634_, 0, v___x_2633_);
 lean_ctor_set(v___x_2634_, 1, v___x_2613_);
-v___x_2635_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__28));
+v___x_2635_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__28, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__28_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__28);
 v___x_2636_ = l_Array_toJson___at___00Lean_Firefox_instToJsonFrameTable_toJson_spec__0(v_innerWindowID_2605_);
 v___x_2637_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_2637_, 0, v___x_2635_);
@@ -10622,7 +11748,7 @@ lean_ctor_set(v___x_2637_, 1, v___x_2636_);
 v___x_2638_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2638_, 0, v___x_2637_);
 lean_ctor_set(v___x_2638_, 1, v___x_2613_);
-v___x_2639_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__33));
+v___x_2639_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__33, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__33_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__33);
 v___x_2640_ = l_Array_toJson___at___00Lean_Firefox_instToJsonFrameTable_toJson_spec__0(v_implementation_2606_);
 v___x_2641_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_2641_, 0, v___x_2639_);
@@ -10630,7 +11756,7 @@ lean_ctor_set(v___x_2641_, 1, v___x_2640_);
 v___x_2642_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2642_, 0, v___x_2641_);
 lean_ctor_set(v___x_2642_, 1, v___x_2613_);
-v___x_2643_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__38));
+v___x_2643_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__38, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__38_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__38);
 v___x_2644_ = l_Array_toJson___at___00Lean_Firefox_instToJsonStackTable_toJson_spec__1(v_line_2607_);
 v___x_2645_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_2645_, 0, v___x_2643_);
@@ -10638,7 +11764,7 @@ lean_ctor_set(v___x_2645_, 1, v___x_2644_);
 v___x_2646_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2646_, 0, v___x_2645_);
 lean_ctor_set(v___x_2646_, 1, v___x_2613_);
-v___x_2647_ = ((lean_object*)(l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__43));
+v___x_2647_ = lean_obj_once(&l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__43, &l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__43_once, _init_l_Lean_Firefox_instFromJsonFrameTable_fromJson___closed__43);
 v___x_2648_ = l_Array_toJson___at___00Lean_Firefox_instToJsonStackTable_toJson_spec__1(v_column_2608_);
 v___x_2649_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_2649_, 0, v___x_2647_);
@@ -10646,7 +11772,7 @@ lean_ctor_set(v___x_2649_, 1, v___x_2648_);
 v___x_2650_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2650_, 0, v___x_2649_);
 lean_ctor_set(v___x_2650_, 1, v___x_2613_);
-v___x_2651_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24));
+v___x_2651_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24);
 v___x_2652_ = l_Lean_JsonNumber_fromNat(v_length_2609_);
 v___x_2653_ = lean_alloc_ctor(2, 1, 0);
 lean_ctor_set(v___x_2653_, 0, v___x_2652_);
@@ -10689,11 +11815,73 @@ lean_ctor_set(v___x_2665_, 1, v___x_2664_);
 v___x_2666_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2666_, 0, v___x_2614_);
 lean_ctor_set(v___x_2666_, 1, v___x_2665_);
-v___x_2667_ = ((lean_object*)(l_Lean_Firefox_instToJsonCategory_toJson___closed__0));
+v___x_2667_ = lean_obj_once(&l_Lean_Firefox_instToJsonCategory_toJson___closed__0, &l_Lean_Firefox_instToJsonCategory_toJson___closed__0_once, _init_l_Lean_Firefox_instToJsonCategory_toJson___closed__0);
 v___x_2668_ = l___private_Init_Data_List_Impl_0__List_flatMapTR_go___at___00Lean_Firefox_instToJsonCategory_toJson_spec__1(v___x_2666_, v___x_2667_);
 v___x_2669_ = l_Lean_Json_mkObj(v___x_2668_);
 lean_dec(v___x_2668_);
 return v___x_2669_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonFrameTable___closed__0(void){
+_start:
+{
+lean_object* v___x_2670_; 
+v___x_2670_ = lean_alloc_closure((void*)(l_Lean_Firefox_instToJsonFrameTable_toJson), 1, 0);
+return v___x_2670_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonFrameTable(void){
+_start:
+{
+lean_object* v___x_2671_; 
+v___x_2671_ = lean_obj_once(&l_Lean_Firefox_instToJsonFrameTable___closed__0, &l_Lean_Firefox_instToJsonFrameTable___closed__0_once, _init_l_Lean_Firefox_instToJsonFrameTable___closed__0);
+return v___x_2671_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instInhabitedFrameTable_default___closed__0(void){
+_start:
+{
+lean_object* v___x_2672_; lean_object* v___x_2673_; 
+v___x_2672_ = lean_unsigned_to_nat(0u);
+v___x_2673_ = lean_mk_empty_array_with_capacity(v___x_2672_);
+return v___x_2673_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instInhabitedFrameTable_default___closed__1(void){
+_start:
+{
+lean_object* v___x_2674_; lean_object* v___x_2675_; lean_object* v___x_2676_; 
+v___x_2674_ = lean_unsigned_to_nat(0u);
+v___x_2675_ = lean_obj_once(&l_Lean_Firefox_instInhabitedFrameTable_default___closed__0, &l_Lean_Firefox_instInhabitedFrameTable_default___closed__0_once, _init_l_Lean_Firefox_instInhabitedFrameTable_default___closed__0);
+v___x_2676_ = lean_alloc_ctor(0, 11, 0);
+lean_ctor_set(v___x_2676_, 0, v___x_2675_);
+lean_ctor_set(v___x_2676_, 1, v___x_2675_);
+lean_ctor_set(v___x_2676_, 2, v___x_2675_);
+lean_ctor_set(v___x_2676_, 3, v___x_2675_);
+lean_ctor_set(v___x_2676_, 4, v___x_2675_);
+lean_ctor_set(v___x_2676_, 5, v___x_2675_);
+lean_ctor_set(v___x_2676_, 6, v___x_2675_);
+lean_ctor_set(v___x_2676_, 7, v___x_2675_);
+lean_ctor_set(v___x_2676_, 8, v___x_2675_);
+lean_ctor_set(v___x_2676_, 9, v___x_2675_);
+lean_ctor_set(v___x_2676_, 10, v___x_2674_);
+return v___x_2676_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instInhabitedFrameTable_default(void){
+_start:
+{
+lean_object* v___x_2677_; 
+v___x_2677_ = lean_obj_once(&l_Lean_Firefox_instInhabitedFrameTable_default___closed__1, &l_Lean_Firefox_instInhabitedFrameTable_default___closed__1_once, _init_l_Lean_Firefox_instInhabitedFrameTable_default___closed__1);
+return v___x_2677_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instInhabitedFrameTable(void){
+_start:
+{
+lean_object* v___x_2678_; 
+v___x_2678_ = l_Lean_Firefox_instInhabitedFrameTable_default;
+return v___x_2678_;
 }
 }
 LEAN_EXPORT lean_object* l_Lean_Firefox_FrameTable_push(lean_object* v_t_2679_, lean_object* v_e_2680_){
@@ -10814,12 +12002,39 @@ return v___x_2718_;
 }
 }
 }
+static lean_object* _init_l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__0(void){
+_start:
+{
+lean_object* v___x_2721_; 
+v___x_2721_ = lean_mk_string_unchecked("data", 4, 4);
+return v___x_2721_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__1(void){
+_start:
+{
+lean_object* v___x_2722_; 
+v___x_2722_ = lean_mk_string_unchecked("RawMarkerTable", 14, 14);
+return v___x_2722_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__2(void){
+_start:
+{
+lean_object* v___x_2723_; lean_object* v___x_2724_; lean_object* v___x_2725_; lean_object* v___x_2726_; 
+v___x_2723_ = lean_obj_once(&l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__1, &l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__1_once, _init_l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__1);
+v___x_2724_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2);
+v___x_2725_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1);
+v___x_2726_ = l_Lean_Name_mkStr3(v___x_2725_, v___x_2724_, v___x_2723_);
+return v___x_2726_;
+}
+}
 static lean_object* _init_l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__3(void){
 _start:
 {
 uint8_t v___x_2727_; lean_object* v___x_2728_; lean_object* v___x_2729_; 
 v___x_2727_ = 1;
-v___x_2728_ = ((lean_object*)(l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__2));
+v___x_2728_ = lean_obj_once(&l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__2, &l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__2_once, _init_l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__2);
 v___x_2729_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_2728_, v___x_2727_);
 return v___x_2729_;
 }
@@ -10828,10 +12043,19 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___c
 _start:
 {
 lean_object* v___x_2730_; lean_object* v___x_2731_; lean_object* v___x_2732_; 
-v___x_2730_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6));
+v___x_2730_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6);
 v___x_2731_ = lean_obj_once(&l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__3, &l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__3_once, _init_l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__3);
 v___x_2732_ = lean_string_append(v___x_2731_, v___x_2730_);
 return v___x_2732_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__5(void){
+_start:
+{
+lean_object* v___x_2733_; lean_object* v___x_2734_; 
+v___x_2733_ = lean_obj_once(&l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__0, &l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__0);
+v___x_2734_ = l_Lean_Name_mkStr1(v___x_2733_);
+return v___x_2734_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__6(void){
@@ -10839,7 +12063,7 @@ _start:
 {
 uint8_t v___x_2735_; lean_object* v___x_2736_; lean_object* v___x_2737_; 
 v___x_2735_ = 1;
-v___x_2736_ = ((lean_object*)(l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__5));
+v___x_2736_ = lean_obj_once(&l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__5, &l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__5_once, _init_l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__5);
 v___x_2737_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_2736_, v___x_2735_);
 return v___x_2737_;
 }
@@ -10858,7 +12082,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___c
 _start:
 {
 lean_object* v___x_2741_; lean_object* v___x_2742_; lean_object* v___x_2743_; 
-v___x_2741_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_2741_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_2742_ = lean_obj_once(&l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__7, &l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__7_once, _init_l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__7);
 v___x_2743_ = lean_string_append(v___x_2742_, v___x_2741_);
 return v___x_2743_;
@@ -10878,7 +12102,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___c
 _start:
 {
 lean_object* v___x_2747_; lean_object* v___x_2748_; lean_object* v___x_2749_; 
-v___x_2747_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_2747_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_2748_ = lean_obj_once(&l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__9, &l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__9);
 v___x_2749_ = lean_string_append(v___x_2748_, v___x_2747_);
 return v___x_2749_;
@@ -10898,7 +12122,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___c
 _start:
 {
 lean_object* v___x_2753_; lean_object* v___x_2754_; lean_object* v___x_2755_; 
-v___x_2753_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_2753_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_2754_ = lean_obj_once(&l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__11, &l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__11);
 v___x_2755_ = lean_string_append(v___x_2754_, v___x_2753_);
 return v___x_2755_;
@@ -10908,7 +12132,7 @@ LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson(lean
 _start:
 {
 lean_object* v___x_2757_; lean_object* v___x_2758_; 
-v___x_2757_ = ((lean_object*)(l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__0));
+v___x_2757_ = lean_obj_once(&l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__0, &l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__0);
 lean_inc(v_json_2756_);
 v___x_2758_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__3(v_json_2756_, v___x_2757_);
 if (lean_obj_tag(v___x_2758_) == 0)
@@ -11008,7 +12232,7 @@ lean_object* v_a_2777_; lean_object* v___x_2778_; lean_object* v___x_2779_;
 v_a_2777_ = lean_ctor_get(v___x_2758_, 0);
 lean_inc(v_a_2777_);
 lean_dec_ref(v___x_2758_);
-v___x_2778_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0));
+v___x_2778_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0);
 lean_inc(v_json_2756_);
 v___x_2779_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__3(v_json_2756_, v___x_2778_);
 if (lean_obj_tag(v___x_2779_) == 0)
@@ -11110,7 +12334,7 @@ lean_object* v_a_2798_; lean_object* v___x_2799_; lean_object* v___x_2800_;
 v_a_2798_ = lean_ctor_get(v___x_2779_, 0);
 lean_inc(v_a_2798_);
 lean_dec_ref(v___x_2779_);
-v___x_2799_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24));
+v___x_2799_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24);
 v___x_2800_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__2(v_json_2756_, v___x_2799_);
 if (lean_obj_tag(v___x_2800_) == 0)
 {
@@ -11258,6 +12482,22 @@ return v___x_2825_;
 }
 }
 }
+static lean_object* _init_l_Lean_Firefox_instFromJsonRawMarkerTable___closed__0(void){
+_start:
+{
+lean_object* v___x_2828_; 
+v___x_2828_ = lean_alloc_closure((void*)(l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson), 1, 0);
+return v___x_2828_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonRawMarkerTable(void){
+_start:
+{
+lean_object* v___x_2829_; 
+v___x_2829_ = lean_obj_once(&l_Lean_Firefox_instFromJsonRawMarkerTable___closed__0, &l_Lean_Firefox_instFromJsonRawMarkerTable___closed__0_once, _init_l_Lean_Firefox_instFromJsonRawMarkerTable___closed__0);
+return v___x_2829_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonRawMarkerTable_toJson(lean_object* v_x_2830_){
 _start:
 {
@@ -11269,7 +12509,7 @@ lean_inc_ref(v_name_2832_);
 v_length_2833_ = lean_ctor_get(v_x_2830_, 2);
 lean_inc(v_length_2833_);
 lean_dec_ref(v_x_2830_);
-v___x_2834_ = ((lean_object*)(l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__0));
+v___x_2834_ = lean_obj_once(&l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__0, &l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonRawMarkerTable_fromJson___closed__0);
 v___x_2835_ = l_Array_toJson___at___00Lean_Firefox_instToJsonProfileMeta_toJson_spec__1(v_data_2831_);
 v___x_2836_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_2836_, 0, v___x_2834_);
@@ -11278,7 +12518,7 @@ v___x_2837_ = lean_box(0);
 v___x_2838_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2838_, 0, v___x_2836_);
 lean_ctor_set(v___x_2838_, 1, v___x_2837_);
-v___x_2839_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0));
+v___x_2839_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0);
 v___x_2840_ = l_Array_toJson___at___00Lean_Firefox_instToJsonProfileMeta_toJson_spec__1(v_name_2832_);
 v___x_2841_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_2841_, 0, v___x_2839_);
@@ -11286,7 +12526,7 @@ lean_ctor_set(v___x_2841_, 1, v___x_2840_);
 v___x_2842_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2842_, 0, v___x_2841_);
 lean_ctor_set(v___x_2842_, 1, v___x_2837_);
-v___x_2843_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24));
+v___x_2843_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24);
 v___x_2844_ = l_Lean_JsonNumber_fromNat(v_length_2833_);
 v___x_2845_ = lean_alloc_ctor(2, 1, 0);
 lean_ctor_set(v___x_2845_, 0, v___x_2844_);
@@ -11305,11 +12545,54 @@ lean_ctor_set(v___x_2849_, 1, v___x_2848_);
 v___x_2850_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2850_, 0, v___x_2838_);
 lean_ctor_set(v___x_2850_, 1, v___x_2849_);
-v___x_2851_ = ((lean_object*)(l_Lean_Firefox_instToJsonCategory_toJson___closed__0));
+v___x_2851_ = lean_obj_once(&l_Lean_Firefox_instToJsonCategory_toJson___closed__0, &l_Lean_Firefox_instToJsonCategory_toJson___closed__0_once, _init_l_Lean_Firefox_instToJsonCategory_toJson___closed__0);
 v___x_2852_ = l___private_Init_Data_List_Impl_0__List_flatMapTR_go___at___00Lean_Firefox_instToJsonCategory_toJson_spec__1(v___x_2850_, v___x_2851_);
 v___x_2853_ = l_Lean_Json_mkObj(v___x_2852_);
 lean_dec(v___x_2852_);
 return v___x_2853_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonRawMarkerTable___closed__0(void){
+_start:
+{
+lean_object* v___x_2854_; 
+v___x_2854_ = lean_alloc_closure((void*)(l_Lean_Firefox_instToJsonRawMarkerTable_toJson), 1, 0);
+return v___x_2854_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonRawMarkerTable(void){
+_start:
+{
+lean_object* v___x_2855_; 
+v___x_2855_ = lean_obj_once(&l_Lean_Firefox_instToJsonRawMarkerTable___closed__0, &l_Lean_Firefox_instToJsonRawMarkerTable___closed__0_once, _init_l_Lean_Firefox_instToJsonRawMarkerTable___closed__0);
+return v___x_2855_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__0(void){
+_start:
+{
+lean_object* v___x_2856_; 
+v___x_2856_ = lean_mk_string_unchecked("type", 4, 4);
+return v___x_2856_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__1(void){
+_start:
+{
+lean_object* v___x_2857_; 
+v___x_2857_ = lean_mk_string_unchecked("ResourceTable", 13, 13);
+return v___x_2857_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__2(void){
+_start:
+{
+lean_object* v___x_2858_; lean_object* v___x_2859_; lean_object* v___x_2860_; lean_object* v___x_2861_; 
+v___x_2858_ = lean_obj_once(&l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__1, &l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__1_once, _init_l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__1);
+v___x_2859_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2);
+v___x_2860_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1);
+v___x_2861_ = l_Lean_Name_mkStr3(v___x_2860_, v___x_2859_, v___x_2858_);
+return v___x_2861_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__3(void){
@@ -11317,7 +12600,7 @@ _start:
 {
 uint8_t v___x_2862_; lean_object* v___x_2863_; lean_object* v___x_2864_; 
 v___x_2862_ = 1;
-v___x_2863_ = ((lean_object*)(l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__2));
+v___x_2863_ = lean_obj_once(&l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__2, &l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__2_once, _init_l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__2);
 v___x_2864_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_2863_, v___x_2862_);
 return v___x_2864_;
 }
@@ -11326,10 +12609,19 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonResourceTable_fromJson___cl
 _start:
 {
 lean_object* v___x_2865_; lean_object* v___x_2866_; lean_object* v___x_2867_; 
-v___x_2865_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6));
+v___x_2865_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6);
 v___x_2866_ = lean_obj_once(&l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__3, &l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__3_once, _init_l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__3);
 v___x_2867_ = lean_string_append(v___x_2866_, v___x_2865_);
 return v___x_2867_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__5(void){
+_start:
+{
+lean_object* v___x_2868_; lean_object* v___x_2869_; 
+v___x_2868_ = lean_obj_once(&l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__0, &l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__0);
+v___x_2869_ = l_Lean_Name_mkStr1(v___x_2868_);
+return v___x_2869_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__6(void){
@@ -11337,7 +12629,7 @@ _start:
 {
 uint8_t v___x_2870_; lean_object* v___x_2871_; lean_object* v___x_2872_; 
 v___x_2870_ = 1;
-v___x_2871_ = ((lean_object*)(l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__5));
+v___x_2871_ = lean_obj_once(&l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__5, &l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__5_once, _init_l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__5);
 v___x_2872_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_2871_, v___x_2870_);
 return v___x_2872_;
 }
@@ -11356,7 +12648,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonResourceTable_fromJson___cl
 _start:
 {
 lean_object* v___x_2876_; lean_object* v___x_2877_; lean_object* v___x_2878_; 
-v___x_2876_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_2876_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_2877_ = lean_obj_once(&l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__7, &l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__7_once, _init_l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__7);
 v___x_2878_ = lean_string_append(v___x_2877_, v___x_2876_);
 return v___x_2878_;
@@ -11376,7 +12668,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonResourceTable_fromJson___cl
 _start:
 {
 lean_object* v___x_2882_; lean_object* v___x_2883_; lean_object* v___x_2884_; 
-v___x_2882_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_2882_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_2883_ = lean_obj_once(&l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__9, &l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__9);
 v___x_2884_ = lean_string_append(v___x_2883_, v___x_2882_);
 return v___x_2884_;
@@ -11386,7 +12678,7 @@ LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonResourceTable_fromJson(lean_
 _start:
 {
 lean_object* v___x_2886_; lean_object* v___x_2887_; 
-v___x_2886_ = ((lean_object*)(l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__0));
+v___x_2886_ = lean_obj_once(&l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__0, &l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__0);
 lean_inc(v_json_2885_);
 v___x_2887_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__3(v_json_2885_, v___x_2886_);
 if (lean_obj_tag(v___x_2887_) == 0)
@@ -11486,7 +12778,7 @@ lean_object* v_a_2906_; lean_object* v___x_2907_; lean_object* v___x_2908_;
 v_a_2906_ = lean_ctor_get(v___x_2887_, 0);
 lean_inc(v_a_2906_);
 lean_dec_ref(v___x_2887_);
-v___x_2907_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24));
+v___x_2907_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24);
 v___x_2908_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__2(v_json_2885_, v___x_2907_);
 if (lean_obj_tag(v___x_2908_) == 0)
 {
@@ -11629,6 +12921,22 @@ return v___x_2933_;
 }
 }
 }
+static lean_object* _init_l_Lean_Firefox_instFromJsonResourceTable___closed__0(void){
+_start:
+{
+lean_object* v___x_2936_; 
+v___x_2936_ = lean_alloc_closure((void*)(l_Lean_Firefox_instFromJsonResourceTable_fromJson), 1, 0);
+return v___x_2936_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonResourceTable(void){
+_start:
+{
+lean_object* v___x_2937_; 
+v___x_2937_ = lean_obj_once(&l_Lean_Firefox_instFromJsonResourceTable___closed__0, &l_Lean_Firefox_instFromJsonResourceTable___closed__0_once, _init_l_Lean_Firefox_instFromJsonResourceTable___closed__0);
+return v___x_2937_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonResourceTable_toJson(lean_object* v_x_2938_){
 _start:
 {
@@ -11654,7 +12962,7 @@ goto v_resetjp_2941_;
 v_resetjp_2941_:
 {
 lean_object* v___x_2944_; lean_object* v___x_2945_; lean_object* v___x_2947_; 
-v___x_2944_ = ((lean_object*)(l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__0));
+v___x_2944_ = lean_obj_once(&l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__0, &l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonResourceTable_fromJson___closed__0);
 v___x_2945_ = l_Array_toJson___at___00Lean_Firefox_instToJsonProfileMeta_toJson_spec__1(v_type_2939_);
 if (v_isShared_2943_ == 0)
 {
@@ -11679,7 +12987,7 @@ v___x_2948_ = lean_box(0);
 v___x_2949_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2949_, 0, v___x_2947_);
 lean_ctor_set(v___x_2949_, 1, v___x_2948_);
-v___x_2950_ = ((lean_object*)(l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24));
+v___x_2950_ = lean_obj_once(&l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24, &l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24_once, _init_l_Lean_Firefox_instFromJsonStackTable_fromJson___closed__24);
 v___x_2951_ = l_Lean_JsonNumber_fromNat(v_length_2940_);
 v___x_2952_ = lean_alloc_ctor(2, 1, 0);
 lean_ctor_set(v___x_2952_, 0, v___x_2951_);
@@ -11695,13 +13003,29 @@ lean_ctor_set(v___x_2955_, 1, v___x_2948_);
 v___x_2956_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_2956_, 0, v___x_2949_);
 lean_ctor_set(v___x_2956_, 1, v___x_2955_);
-v___x_2957_ = ((lean_object*)(l_Lean_Firefox_instToJsonCategory_toJson___closed__0));
+v___x_2957_ = lean_obj_once(&l_Lean_Firefox_instToJsonCategory_toJson___closed__0, &l_Lean_Firefox_instToJsonCategory_toJson___closed__0_once, _init_l_Lean_Firefox_instToJsonCategory_toJson___closed__0);
 v___x_2958_ = l___private_Init_Data_List_Impl_0__List_flatMapTR_go___at___00Lean_Firefox_instToJsonCategory_toJson_spec__1(v___x_2956_, v___x_2957_);
 v___x_2959_ = l_Lean_Json_mkObj(v___x_2958_);
 lean_dec(v___x_2958_);
 return v___x_2959_;
 }
 }
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonResourceTable___closed__0(void){
+_start:
+{
+lean_object* v___x_2962_; 
+v___x_2962_ = lean_alloc_closure((void*)(l_Lean_Firefox_instToJsonResourceTable_toJson), 1, 0);
+return v___x_2962_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonResourceTable(void){
+_start:
+{
+lean_object* v___x_2963_; 
+v___x_2963_ = lean_obj_once(&l_Lean_Firefox_instToJsonResourceTable___closed__0, &l_Lean_Firefox_instToJsonResourceTable___closed__0_once, _init_l_Lean_Firefox_instToJsonResourceTable___closed__0);
+return v___x_2963_;
 }
 }
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonThread_fromJson_spec__0(lean_object* v_j_2964_, lean_object* v_k_2965_){
@@ -11831,12 +13155,31 @@ lean_dec_ref(v_k_3011_);
 return v_res_3012_;
 }
 }
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__0(void){
+_start:
+{
+lean_object* v___x_3013_; 
+v___x_3013_ = lean_mk_string_unchecked("Thread", 6, 6);
+return v___x_3013_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__1(void){
+_start:
+{
+lean_object* v___x_3014_; lean_object* v___x_3015_; lean_object* v___x_3016_; lean_object* v___x_3017_; 
+v___x_3014_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__0, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__0);
+v___x_3015_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2);
+v___x_3016_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1);
+v___x_3017_ = l_Lean_Name_mkStr3(v___x_3016_, v___x_3015_, v___x_3014_);
+return v___x_3017_;
+}
+}
 static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__2(void){
 _start:
 {
 uint8_t v___x_3018_; lean_object* v___x_3019_; lean_object* v___x_3020_; 
 v___x_3018_ = 1;
-v___x_3019_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__1));
+v___x_3019_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__1, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__1_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__1);
 v___x_3020_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_3019_, v___x_3018_);
 return v___x_3020_;
 }
@@ -11845,7 +13188,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__3
 _start:
 {
 lean_object* v___x_3021_; lean_object* v___x_3022_; lean_object* v___x_3023_; 
-v___x_3021_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6));
+v___x_3021_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6);
 v___x_3022_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__2, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__2_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__2);
 v___x_3023_ = lean_string_append(v___x_3022_, v___x_3021_);
 return v___x_3023_;
@@ -11865,7 +13208,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__5
 _start:
 {
 lean_object* v___x_3027_; lean_object* v___x_3028_; lean_object* v___x_3029_; 
-v___x_3027_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_3027_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_3028_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__4, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__4_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__4);
 v___x_3029_ = lean_string_append(v___x_3028_, v___x_3027_);
 return v___x_3029_;
@@ -11885,10 +13228,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__7
 _start:
 {
 lean_object* v___x_3033_; lean_object* v___x_3034_; lean_object* v___x_3035_; 
-v___x_3033_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_3033_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_3034_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__6, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__6_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__6);
 v___x_3035_ = lean_string_append(v___x_3034_, v___x_3033_);
 return v___x_3035_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__8(void){
+_start:
+{
+lean_object* v___x_3036_; 
+v___x_3036_ = lean_mk_string_unchecked("isMainThread", 12, 12);
+return v___x_3036_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__9(void){
+_start:
+{
+lean_object* v___x_3037_; lean_object* v___x_3038_; 
+v___x_3037_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__8, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__8_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__8);
+v___x_3038_ = l_Lean_Name_mkStr1(v___x_3037_);
+return v___x_3038_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__10(void){
@@ -11896,7 +13256,7 @@ _start:
 {
 uint8_t v___x_3039_; lean_object* v___x_3040_; lean_object* v___x_3041_; 
 v___x_3039_ = 1;
-v___x_3040_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__9));
+v___x_3040_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__9, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__9);
 v___x_3041_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_3040_, v___x_3039_);
 return v___x_3041_;
 }
@@ -11915,10 +13275,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__1
 _start:
 {
 lean_object* v___x_3045_; lean_object* v___x_3046_; lean_object* v___x_3047_; 
-v___x_3045_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_3045_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_3046_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__11, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__11);
 v___x_3047_ = lean_string_append(v___x_3046_, v___x_3045_);
 return v___x_3047_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__13(void){
+_start:
+{
+lean_object* v___x_3048_; 
+v___x_3048_ = lean_mk_string_unchecked("samples", 7, 7);
+return v___x_3048_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__14(void){
+_start:
+{
+lean_object* v___x_3049_; lean_object* v___x_3050_; 
+v___x_3049_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__13, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__13_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__13);
+v___x_3050_ = l_Lean_Name_mkStr1(v___x_3049_);
+return v___x_3050_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__15(void){
@@ -11926,7 +13303,7 @@ _start:
 {
 uint8_t v___x_3051_; lean_object* v___x_3052_; lean_object* v___x_3053_; 
 v___x_3051_ = 1;
-v___x_3052_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__14));
+v___x_3052_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__14, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__14_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__14);
 v___x_3053_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_3052_, v___x_3051_);
 return v___x_3053_;
 }
@@ -11945,10 +13322,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__1
 _start:
 {
 lean_object* v___x_3057_; lean_object* v___x_3058_; lean_object* v___x_3059_; 
-v___x_3057_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_3057_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_3058_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__16, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__16_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__16);
 v___x_3059_ = lean_string_append(v___x_3058_, v___x_3057_);
 return v___x_3059_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__18(void){
+_start:
+{
+lean_object* v___x_3060_; 
+v___x_3060_ = lean_mk_string_unchecked("markers", 7, 7);
+return v___x_3060_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__19(void){
+_start:
+{
+lean_object* v___x_3061_; lean_object* v___x_3062_; 
+v___x_3061_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__18, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__18_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__18);
+v___x_3062_ = l_Lean_Name_mkStr1(v___x_3061_);
+return v___x_3062_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__20(void){
@@ -11956,7 +13350,7 @@ _start:
 {
 uint8_t v___x_3063_; lean_object* v___x_3064_; lean_object* v___x_3065_; 
 v___x_3063_ = 1;
-v___x_3064_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__19));
+v___x_3064_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__19, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__19_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__19);
 v___x_3065_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_3064_, v___x_3063_);
 return v___x_3065_;
 }
@@ -11975,10 +13369,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__2
 _start:
 {
 lean_object* v___x_3069_; lean_object* v___x_3070_; lean_object* v___x_3071_; 
-v___x_3069_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_3069_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_3070_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__21, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__21_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__21);
 v___x_3071_ = lean_string_append(v___x_3070_, v___x_3069_);
 return v___x_3071_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__23(void){
+_start:
+{
+lean_object* v___x_3072_; 
+v___x_3072_ = lean_mk_string_unchecked("stackTable", 10, 10);
+return v___x_3072_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__24(void){
+_start:
+{
+lean_object* v___x_3073_; lean_object* v___x_3074_; 
+v___x_3073_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__23, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__23_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__23);
+v___x_3074_ = l_Lean_Name_mkStr1(v___x_3073_);
+return v___x_3074_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__25(void){
@@ -11986,7 +13397,7 @@ _start:
 {
 uint8_t v___x_3075_; lean_object* v___x_3076_; lean_object* v___x_3077_; 
 v___x_3075_ = 1;
-v___x_3076_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__24));
+v___x_3076_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__24, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__24_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__24);
 v___x_3077_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_3076_, v___x_3075_);
 return v___x_3077_;
 }
@@ -12005,10 +13416,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__2
 _start:
 {
 lean_object* v___x_3081_; lean_object* v___x_3082_; lean_object* v___x_3083_; 
-v___x_3081_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_3081_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_3082_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__26, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__26_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__26);
 v___x_3083_ = lean_string_append(v___x_3082_, v___x_3081_);
 return v___x_3083_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__28(void){
+_start:
+{
+lean_object* v___x_3084_; 
+v___x_3084_ = lean_mk_string_unchecked("frameTable", 10, 10);
+return v___x_3084_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__29(void){
+_start:
+{
+lean_object* v___x_3085_; lean_object* v___x_3086_; 
+v___x_3085_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__28, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__28_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__28);
+v___x_3086_ = l_Lean_Name_mkStr1(v___x_3085_);
+return v___x_3086_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__30(void){
@@ -12016,7 +13444,7 @@ _start:
 {
 uint8_t v___x_3087_; lean_object* v___x_3088_; lean_object* v___x_3089_; 
 v___x_3087_ = 1;
-v___x_3088_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__29));
+v___x_3088_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__29, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__29_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__29);
 v___x_3089_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_3088_, v___x_3087_);
 return v___x_3089_;
 }
@@ -12035,10 +13463,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__3
 _start:
 {
 lean_object* v___x_3093_; lean_object* v___x_3094_; lean_object* v___x_3095_; 
-v___x_3093_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_3093_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_3094_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__31, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__31_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__31);
 v___x_3095_ = lean_string_append(v___x_3094_, v___x_3093_);
 return v___x_3095_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__33(void){
+_start:
+{
+lean_object* v___x_3096_; 
+v___x_3096_ = lean_mk_string_unchecked("resourceTable", 13, 13);
+return v___x_3096_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__34(void){
+_start:
+{
+lean_object* v___x_3097_; lean_object* v___x_3098_; 
+v___x_3097_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__33, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__33_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__33);
+v___x_3098_ = l_Lean_Name_mkStr1(v___x_3097_);
+return v___x_3098_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__35(void){
@@ -12046,7 +13491,7 @@ _start:
 {
 uint8_t v___x_3099_; lean_object* v___x_3100_; lean_object* v___x_3101_; 
 v___x_3099_ = 1;
-v___x_3100_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__34));
+v___x_3100_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__34, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__34_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__34);
 v___x_3101_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_3100_, v___x_3099_);
 return v___x_3101_;
 }
@@ -12065,10 +13510,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__3
 _start:
 {
 lean_object* v___x_3105_; lean_object* v___x_3106_; lean_object* v___x_3107_; 
-v___x_3105_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_3105_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_3106_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__36, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__36_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__36);
 v___x_3107_ = lean_string_append(v___x_3106_, v___x_3105_);
 return v___x_3107_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__38(void){
+_start:
+{
+lean_object* v___x_3108_; 
+v___x_3108_ = lean_mk_string_unchecked("nativeSymbols", 13, 13);
+return v___x_3108_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__39(void){
+_start:
+{
+lean_object* v___x_3109_; lean_object* v___x_3110_; 
+v___x_3109_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__38, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__38_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__38);
+v___x_3110_ = l_Lean_Name_mkStr1(v___x_3109_);
+return v___x_3110_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__40(void){
@@ -12076,7 +13538,7 @@ _start:
 {
 uint8_t v___x_3111_; lean_object* v___x_3112_; lean_object* v___x_3113_; 
 v___x_3111_ = 1;
-v___x_3112_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__39));
+v___x_3112_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__39, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__39_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__39);
 v___x_3113_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_3112_, v___x_3111_);
 return v___x_3113_;
 }
@@ -12095,10 +13557,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__4
 _start:
 {
 lean_object* v___x_3117_; lean_object* v___x_3118_; lean_object* v___x_3119_; 
-v___x_3117_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_3117_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_3118_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__41, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__41_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__41);
 v___x_3119_ = lean_string_append(v___x_3118_, v___x_3117_);
 return v___x_3119_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__43(void){
+_start:
+{
+lean_object* v___x_3120_; 
+v___x_3120_ = lean_mk_string_unchecked("stringArray", 11, 11);
+return v___x_3120_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__44(void){
+_start:
+{
+lean_object* v___x_3121_; lean_object* v___x_3122_; 
+v___x_3121_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__43, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__43_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__43);
+v___x_3122_ = l_Lean_Name_mkStr1(v___x_3121_);
+return v___x_3122_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__45(void){
@@ -12106,7 +13585,7 @@ _start:
 {
 uint8_t v___x_3123_; lean_object* v___x_3124_; lean_object* v___x_3125_; 
 v___x_3123_ = 1;
-v___x_3124_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__44));
+v___x_3124_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__44, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__44_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__44);
 v___x_3125_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_3124_, v___x_3123_);
 return v___x_3125_;
 }
@@ -12125,10 +13604,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__4
 _start:
 {
 lean_object* v___x_3129_; lean_object* v___x_3130_; lean_object* v___x_3131_; 
-v___x_3129_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_3129_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_3130_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__46, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__46_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__46);
 v___x_3131_ = lean_string_append(v___x_3130_, v___x_3129_);
 return v___x_3131_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__48(void){
+_start:
+{
+lean_object* v___x_3132_; 
+v___x_3132_ = lean_mk_string_unchecked("funcTable", 9, 9);
+return v___x_3132_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__49(void){
+_start:
+{
+lean_object* v___x_3133_; lean_object* v___x_3134_; 
+v___x_3133_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__48, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__48_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__48);
+v___x_3134_ = l_Lean_Name_mkStr1(v___x_3133_);
+return v___x_3134_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__50(void){
@@ -12136,7 +13632,7 @@ _start:
 {
 uint8_t v___x_3135_; lean_object* v___x_3136_; lean_object* v___x_3137_; 
 v___x_3135_ = 1;
-v___x_3136_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__49));
+v___x_3136_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__49, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__49_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__49);
 v___x_3137_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_3136_, v___x_3135_);
 return v___x_3137_;
 }
@@ -12155,7 +13651,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__5
 _start:
 {
 lean_object* v___x_3141_; lean_object* v___x_3142_; lean_object* v___x_3143_; 
-v___x_3141_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_3141_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_3142_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__51, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__51_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__51);
 v___x_3143_ = lean_string_append(v___x_3142_, v___x_3141_);
 return v___x_3143_;
@@ -12165,7 +13661,7 @@ LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonThread_fromJson(lean_object*
 _start:
 {
 lean_object* v___x_3145_; lean_object* v___x_3146_; 
-v___x_3145_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0));
+v___x_3145_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0);
 lean_inc(v_json_3144_);
 v___x_3146_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__1(v_json_3144_, v___x_3145_);
 if (lean_obj_tag(v___x_3146_) == 0)
@@ -12265,7 +13761,7 @@ lean_object* v_a_3165_; lean_object* v___x_3166_; lean_object* v___x_3167_;
 v_a_3165_ = lean_ctor_get(v___x_3146_, 0);
 lean_inc(v_a_3165_);
 lean_dec_ref(v___x_3146_);
-v___x_3166_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19));
+v___x_3166_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19);
 lean_inc(v_json_3144_);
 v___x_3167_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__1(v_json_3144_, v___x_3166_);
 if (lean_obj_tag(v___x_3167_) == 0)
@@ -12367,7 +13863,7 @@ lean_object* v_a_3186_; lean_object* v___x_3187_; lean_object* v___x_3188_;
 v_a_3186_ = lean_ctor_get(v___x_3167_, 0);
 lean_inc(v_a_3186_);
 lean_dec_ref(v___x_3167_);
-v___x_3187_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__8));
+v___x_3187_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__8, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__8_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__8);
 lean_inc(v_json_3144_);
 v___x_3188_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonThread_fromJson_spec__0(v_json_3144_, v___x_3187_);
 if (lean_obj_tag(v___x_3188_) == 0)
@@ -12471,7 +13967,7 @@ lean_object* v_a_3207_; lean_object* v___x_3208_; lean_object* v___x_3209_;
 v_a_3207_ = lean_ctor_get(v___x_3188_, 0);
 lean_inc(v_a_3207_);
 lean_dec_ref(v___x_3188_);
-v___x_3208_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__13));
+v___x_3208_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__13, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__13_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__13);
 lean_inc(v_json_3144_);
 v___x_3209_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonThread_fromJson_spec__1(v_json_3144_, v___x_3208_);
 if (lean_obj_tag(v___x_3209_) == 0)
@@ -12577,7 +14073,7 @@ lean_object* v_a_3228_; lean_object* v___x_3229_; lean_object* v___x_3230_;
 v_a_3228_ = lean_ctor_get(v___x_3209_, 0);
 lean_inc(v_a_3228_);
 lean_dec_ref(v___x_3209_);
-v___x_3229_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__18));
+v___x_3229_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__18, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__18_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__18);
 lean_inc(v_json_3144_);
 v___x_3230_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonThread_fromJson_spec__2(v_json_3144_, v___x_3229_);
 if (lean_obj_tag(v___x_3230_) == 0)
@@ -12685,7 +14181,7 @@ lean_object* v_a_3249_; lean_object* v___x_3250_; lean_object* v___x_3251_;
 v_a_3249_ = lean_ctor_get(v___x_3230_, 0);
 lean_inc(v_a_3249_);
 lean_dec_ref(v___x_3230_);
-v___x_3250_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__23));
+v___x_3250_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__23, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__23_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__23);
 lean_inc(v_json_3144_);
 v___x_3251_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonThread_fromJson_spec__3(v_json_3144_, v___x_3250_);
 if (lean_obj_tag(v___x_3251_) == 0)
@@ -12795,7 +14291,7 @@ lean_object* v_a_3270_; lean_object* v___x_3271_; lean_object* v___x_3272_;
 v_a_3270_ = lean_ctor_get(v___x_3251_, 0);
 lean_inc(v_a_3270_);
 lean_dec_ref(v___x_3251_);
-v___x_3271_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__28));
+v___x_3271_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__28, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__28_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__28);
 lean_inc(v_json_3144_);
 v___x_3272_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonThread_fromJson_spec__4(v_json_3144_, v___x_3271_);
 if (lean_obj_tag(v___x_3272_) == 0)
@@ -12907,7 +14403,7 @@ lean_object* v_a_3291_; lean_object* v___x_3292_; lean_object* v___x_3293_;
 v_a_3291_ = lean_ctor_get(v___x_3272_, 0);
 lean_inc(v_a_3291_);
 lean_dec_ref(v___x_3272_);
-v___x_3292_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__33));
+v___x_3292_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__33, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__33_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__33);
 lean_inc(v_json_3144_);
 v___x_3293_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonThread_fromJson_spec__5(v_json_3144_, v___x_3292_);
 if (lean_obj_tag(v___x_3293_) == 0)
@@ -13021,7 +14517,7 @@ lean_object* v_a_3312_; lean_object* v___x_3313_; lean_object* v___x_3314_;
 v_a_3312_ = lean_ctor_get(v___x_3293_, 0);
 lean_inc(v_a_3312_);
 lean_dec_ref(v___x_3293_);
-v___x_3313_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__38));
+v___x_3313_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__38, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__38_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__38);
 lean_inc(v_json_3144_);
 v___x_3314_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonThread_fromJson_spec__5(v_json_3144_, v___x_3313_);
 if (lean_obj_tag(v___x_3314_) == 0)
@@ -13137,7 +14633,7 @@ lean_object* v_a_3333_; lean_object* v___x_3334_; lean_object* v___x_3335_;
 v_a_3333_ = lean_ctor_get(v___x_3314_, 0);
 lean_inc(v_a_3333_);
 lean_dec_ref(v___x_3314_);
-v___x_3334_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__43));
+v___x_3334_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__43, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__43_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__43);
 lean_inc(v_json_3144_);
 v___x_3335_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2(v_json_3144_, v___x_3334_);
 if (lean_obj_tag(v___x_3335_) == 0)
@@ -13255,7 +14751,7 @@ lean_object* v_a_3354_; lean_object* v___x_3355_; lean_object* v___x_3356_;
 v_a_3354_ = lean_ctor_get(v___x_3335_, 0);
 lean_inc(v_a_3354_);
 lean_dec_ref(v___x_3335_);
-v___x_3355_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__48));
+v___x_3355_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__48, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__48_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__48);
 v___x_3356_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonThread_fromJson_spec__6(v_json_3144_, v___x_3355_);
 if (lean_obj_tag(v___x_3356_) == 0)
 {
@@ -13445,6 +14941,22 @@ return v___x_3382_;
 }
 }
 }
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread___closed__0(void){
+_start:
+{
+lean_object* v___x_3385_; 
+v___x_3385_ = lean_alloc_closure((void*)(l_Lean_Firefox_instFromJsonThread_fromJson), 1, 0);
+return v___x_3385_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonThread(void){
+_start:
+{
+lean_object* v___x_3386_; 
+v___x_3386_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread___closed__0, &l_Lean_Firefox_instFromJsonThread___closed__0_once, _init_l_Lean_Firefox_instFromJsonThread___closed__0);
+return v___x_3386_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Firefox_instToJsonThread_toJson(lean_object* v_x_3387_){
 _start:
 {
@@ -13471,7 +14983,7 @@ lean_inc_ref(v_stringArray_3397_);
 v_funcTable_3398_ = lean_ctor_get(v_x_3387_, 9);
 lean_inc_ref(v_funcTable_3398_);
 lean_dec_ref(v_x_3387_);
-v___x_3399_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0));
+v___x_3399_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__0);
 v___x_3400_ = lean_alloc_ctor(3, 1, 0);
 lean_ctor_set(v___x_3400_, 0, v_name_3388_);
 v___x_3401_ = lean_alloc_ctor(0, 2, 0);
@@ -13481,7 +14993,7 @@ v___x_3402_ = lean_box(0);
 v___x_3403_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_3403_, 0, v___x_3401_);
 lean_ctor_set(v___x_3403_, 1, v___x_3402_);
-v___x_3404_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19));
+v___x_3404_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19, &l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19_once, _init_l_Lean_Firefox_instFromJsonProfileMeta_fromJson___closed__19);
 v___x_3405_ = lean_alloc_ctor(3, 1, 0);
 lean_ctor_set(v___x_3405_, 0, v_processType_3389_);
 v___x_3406_ = lean_alloc_ctor(0, 2, 0);
@@ -13490,7 +15002,7 @@ lean_ctor_set(v___x_3406_, 1, v___x_3405_);
 v___x_3407_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_3407_, 0, v___x_3406_);
 lean_ctor_set(v___x_3407_, 1, v___x_3402_);
-v___x_3408_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__8));
+v___x_3408_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__8, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__8_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__8);
 v___x_3409_ = lean_alloc_ctor(1, 0, 1);
 lean_ctor_set_uint8(v___x_3409_, 0, v_isMainThread_3390_);
 v___x_3410_ = lean_alloc_ctor(0, 2, 0);
@@ -13499,7 +15011,7 @@ lean_ctor_set(v___x_3410_, 1, v___x_3409_);
 v___x_3411_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_3411_, 0, v___x_3410_);
 lean_ctor_set(v___x_3411_, 1, v___x_3402_);
-v___x_3412_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__13));
+v___x_3412_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__13, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__13_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__13);
 v___x_3413_ = l_Lean_Firefox_instToJsonSamplesTable_toJson(v_samples_3391_);
 v___x_3414_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_3414_, 0, v___x_3412_);
@@ -13507,7 +15019,7 @@ lean_ctor_set(v___x_3414_, 1, v___x_3413_);
 v___x_3415_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_3415_, 0, v___x_3414_);
 lean_ctor_set(v___x_3415_, 1, v___x_3402_);
-v___x_3416_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__18));
+v___x_3416_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__18, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__18_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__18);
 v___x_3417_ = l_Lean_Firefox_instToJsonRawMarkerTable_toJson(v_markers_3392_);
 v___x_3418_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_3418_, 0, v___x_3416_);
@@ -13515,7 +15027,7 @@ lean_ctor_set(v___x_3418_, 1, v___x_3417_);
 v___x_3419_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_3419_, 0, v___x_3418_);
 lean_ctor_set(v___x_3419_, 1, v___x_3402_);
-v___x_3420_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__23));
+v___x_3420_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__23, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__23_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__23);
 v___x_3421_ = l_Lean_Firefox_instToJsonStackTable_toJson(v_stackTable_3393_);
 v___x_3422_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_3422_, 0, v___x_3420_);
@@ -13523,7 +15035,7 @@ lean_ctor_set(v___x_3422_, 1, v___x_3421_);
 v___x_3423_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_3423_, 0, v___x_3422_);
 lean_ctor_set(v___x_3423_, 1, v___x_3402_);
-v___x_3424_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__28));
+v___x_3424_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__28, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__28_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__28);
 v___x_3425_ = l_Lean_Firefox_instToJsonFrameTable_toJson(v_frameTable_3394_);
 v___x_3426_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_3426_, 0, v___x_3424_);
@@ -13531,7 +15043,7 @@ lean_ctor_set(v___x_3426_, 1, v___x_3425_);
 v___x_3427_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_3427_, 0, v___x_3426_);
 lean_ctor_set(v___x_3427_, 1, v___x_3402_);
-v___x_3428_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__33));
+v___x_3428_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__33, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__33_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__33);
 v___x_3429_ = l_Lean_Firefox_instToJsonResourceTable_toJson(v_resourceTable_3395_);
 v___x_3430_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_3430_, 0, v___x_3428_);
@@ -13539,7 +15051,7 @@ lean_ctor_set(v___x_3430_, 1, v___x_3429_);
 v___x_3431_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_3431_, 0, v___x_3430_);
 lean_ctor_set(v___x_3431_, 1, v___x_3402_);
-v___x_3432_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__38));
+v___x_3432_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__38, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__38_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__38);
 v___x_3433_ = l_Lean_Firefox_instToJsonResourceTable_toJson(v_nativeSymbols_3396_);
 v___x_3434_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_3434_, 0, v___x_3432_);
@@ -13547,7 +15059,7 @@ lean_ctor_set(v___x_3434_, 1, v___x_3433_);
 v___x_3435_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_3435_, 0, v___x_3434_);
 lean_ctor_set(v___x_3435_, 1, v___x_3402_);
-v___x_3436_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__43));
+v___x_3436_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__43, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__43_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__43);
 v___x_3437_ = l_Array_toJson___at___00Lean_Firefox_instToJsonCategory_toJson_spec__0(v_stringArray_3397_);
 v___x_3438_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_3438_, 0, v___x_3436_);
@@ -13555,7 +15067,7 @@ lean_ctor_set(v___x_3438_, 1, v___x_3437_);
 v___x_3439_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_3439_, 0, v___x_3438_);
 lean_ctor_set(v___x_3439_, 1, v___x_3402_);
-v___x_3440_ = ((lean_object*)(l_Lean_Firefox_instFromJsonThread_fromJson___closed__48));
+v___x_3440_ = lean_obj_once(&l_Lean_Firefox_instFromJsonThread_fromJson___closed__48, &l_Lean_Firefox_instFromJsonThread_fromJson___closed__48_once, _init_l_Lean_Firefox_instFromJsonThread_fromJson___closed__48);
 v___x_3441_ = l_Lean_Firefox_instToJsonFuncTable_toJson(v_funcTable_3398_);
 v___x_3442_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_3442_, 0, v___x_3440_);
@@ -13596,11 +15108,27 @@ lean_ctor_set(v___x_3453_, 1, v___x_3452_);
 v___x_3454_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_3454_, 0, v___x_3403_);
 lean_ctor_set(v___x_3454_, 1, v___x_3453_);
-v___x_3455_ = ((lean_object*)(l_Lean_Firefox_instToJsonCategory_toJson___closed__0));
+v___x_3455_ = lean_obj_once(&l_Lean_Firefox_instToJsonCategory_toJson___closed__0, &l_Lean_Firefox_instToJsonCategory_toJson___closed__0_once, _init_l_Lean_Firefox_instToJsonCategory_toJson___closed__0);
 v___x_3456_ = l___private_Init_Data_List_Impl_0__List_flatMapTR_go___at___00Lean_Firefox_instToJsonCategory_toJson_spec__1(v___x_3454_, v___x_3455_);
 v___x_3457_ = l_Lean_Json_mkObj(v___x_3456_);
 lean_dec(v___x_3456_);
 return v___x_3457_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonThread___closed__0(void){
+_start:
+{
+lean_object* v___x_3458_; 
+v___x_3458_ = lean_alloc_closure((void*)(l_Lean_Firefox_instToJsonThread_toJson), 1, 0);
+return v___x_3458_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonThread(void){
+_start:
+{
+lean_object* v___x_3459_; 
+v___x_3459_ = lean_obj_once(&l_Lean_Firefox_instToJsonThread___closed__0, &l_Lean_Firefox_instToJsonThread___closed__0_once, _init_l_Lean_Firefox_instToJsonThread___closed__0);
+return v___x_3459_;
 }
 }
 LEAN_EXPORT lean_object* l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfile_fromJson_spec__0(lean_object* v_j_3460_, lean_object* v_k_3461_){
@@ -13728,12 +15256,12 @@ return v___x_3499_;
 else
 {
 lean_object* v___x_3500_; lean_object* v___x_3501_; lean_object* v___x_3502_; lean_object* v___x_3503_; lean_object* v___x_3504_; lean_object* v___x_3505_; lean_object* v___x_3506_; 
-v___x_3500_ = ((lean_object*)(l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0));
+v___x_3500_ = lean_obj_once(&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0, &l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0_once, _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__0);
 v___x_3501_ = lean_unsigned_to_nat(80u);
 v___x_3502_ = l_Lean_Json_pretty(v_x_3495_, v___x_3501_);
 v___x_3503_ = lean_string_append(v___x_3500_, v___x_3502_);
 lean_dec_ref(v___x_3502_);
-v___x_3504_ = ((lean_object*)(l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1));
+v___x_3504_ = lean_obj_once(&l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1, &l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1_once, _init_l_Array_fromJson_x3f___at___00Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonCategory_fromJson_spec__2_spec__2___closed__1);
 v___x_3505_ = lean_string_append(v___x_3503_, v___x_3504_);
 v___x_3506_ = lean_alloc_ctor(0, 1, 0);
 lean_ctor_set(v___x_3506_, 0, v___x_3505_);
@@ -13759,12 +15287,39 @@ lean_dec_ref(v_k_3512_);
 return v_res_3513_;
 }
 }
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__0(void){
+_start:
+{
+lean_object* v___x_3514_; 
+v___x_3514_ = lean_mk_string_unchecked("meta", 4, 4);
+return v___x_3514_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__1(void){
+_start:
+{
+lean_object* v___x_3515_; 
+v___x_3515_ = lean_mk_string_unchecked("Profile", 7, 7);
+return v___x_3515_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__2(void){
+_start:
+{
+lean_object* v___x_3516_; lean_object* v___x_3517_; lean_object* v___x_3518_; lean_object* v___x_3519_; 
+v___x_3516_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__1, &l_Lean_Firefox_instFromJsonProfile_fromJson___closed__1_once, _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__1);
+v___x_3517_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__2);
+v___x_3518_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__1);
+v___x_3519_ = l_Lean_Name_mkStr3(v___x_3518_, v___x_3517_, v___x_3516_);
+return v___x_3519_;
+}
+}
 static lean_object* _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__3(void){
 _start:
 {
 uint8_t v___x_3520_; lean_object* v___x_3521_; lean_object* v___x_3522_; 
 v___x_3520_ = 1;
-v___x_3521_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfile_fromJson___closed__2));
+v___x_3521_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__2, &l_Lean_Firefox_instFromJsonProfile_fromJson___closed__2_once, _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__2);
 v___x_3522_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_3521_, v___x_3520_);
 return v___x_3522_;
 }
@@ -13773,10 +15328,19 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__
 _start:
 {
 lean_object* v___x_3523_; lean_object* v___x_3524_; lean_object* v___x_3525_; 
-v___x_3523_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6));
+v___x_3523_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__6);
 v___x_3524_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__3, &l_Lean_Firefox_instFromJsonProfile_fromJson___closed__3_once, _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__3);
 v___x_3525_ = lean_string_append(v___x_3524_, v___x_3523_);
 return v___x_3525_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__5(void){
+_start:
+{
+lean_object* v___x_3526_; lean_object* v___x_3527_; 
+v___x_3526_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__0, &l_Lean_Firefox_instFromJsonProfile_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__0);
+v___x_3527_ = l_Lean_Name_mkStr1(v___x_3526_);
+return v___x_3527_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__6(void){
@@ -13784,7 +15348,7 @@ _start:
 {
 uint8_t v___x_3528_; lean_object* v___x_3529_; lean_object* v___x_3530_; 
 v___x_3528_ = 1;
-v___x_3529_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfile_fromJson___closed__5));
+v___x_3529_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__5, &l_Lean_Firefox_instFromJsonProfile_fromJson___closed__5_once, _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__5);
 v___x_3530_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_3529_, v___x_3528_);
 return v___x_3530_;
 }
@@ -13803,10 +15367,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__
 _start:
 {
 lean_object* v___x_3534_; lean_object* v___x_3535_; lean_object* v___x_3536_; 
-v___x_3534_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_3534_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_3535_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__7, &l_Lean_Firefox_instFromJsonProfile_fromJson___closed__7_once, _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__7);
 v___x_3536_ = lean_string_append(v___x_3535_, v___x_3534_);
 return v___x_3536_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__9(void){
+_start:
+{
+lean_object* v___x_3537_; 
+v___x_3537_ = lean_mk_string_unchecked("libs", 4, 4);
+return v___x_3537_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__10(void){
+_start:
+{
+lean_object* v___x_3538_; lean_object* v___x_3539_; 
+v___x_3538_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__9, &l_Lean_Firefox_instFromJsonProfile_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__9);
+v___x_3539_ = l_Lean_Name_mkStr1(v___x_3538_);
+return v___x_3539_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__11(void){
@@ -13814,7 +15395,7 @@ _start:
 {
 uint8_t v___x_3540_; lean_object* v___x_3541_; lean_object* v___x_3542_; 
 v___x_3540_ = 1;
-v___x_3541_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfile_fromJson___closed__10));
+v___x_3541_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__10, &l_Lean_Firefox_instFromJsonProfile_fromJson___closed__10_once, _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__10);
 v___x_3542_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_3541_, v___x_3540_);
 return v___x_3542_;
 }
@@ -13833,10 +15414,27 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__
 _start:
 {
 lean_object* v___x_3546_; lean_object* v___x_3547_; lean_object* v___x_3548_; 
-v___x_3546_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_3546_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_3547_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__12, &l_Lean_Firefox_instFromJsonProfile_fromJson___closed__12_once, _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__12);
 v___x_3548_ = lean_string_append(v___x_3547_, v___x_3546_);
 return v___x_3548_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__14(void){
+_start:
+{
+lean_object* v___x_3549_; 
+v___x_3549_ = lean_mk_string_unchecked("threads", 7, 7);
+return v___x_3549_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__15(void){
+_start:
+{
+lean_object* v___x_3550_; lean_object* v___x_3551_; 
+v___x_3550_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__14, &l_Lean_Firefox_instFromJsonProfile_fromJson___closed__14_once, _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__14);
+v___x_3551_ = l_Lean_Name_mkStr1(v___x_3550_);
+return v___x_3551_;
 }
 }
 static lean_object* _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__16(void){
@@ -13844,7 +15442,7 @@ _start:
 {
 uint8_t v___x_3552_; lean_object* v___x_3553_; lean_object* v___x_3554_; 
 v___x_3552_ = 1;
-v___x_3553_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfile_fromJson___closed__15));
+v___x_3553_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__15, &l_Lean_Firefox_instFromJsonProfile_fromJson___closed__15_once, _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__15);
 v___x_3554_ = l_Lean_Name_toStringWithToken___at___00Lean_Name_toString_spec__0(v___x_3553_, v___x_3552_);
 return v___x_3554_;
 }
@@ -13863,7 +15461,7 @@ static lean_object* _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__
 _start:
 {
 lean_object* v___x_3558_; lean_object* v___x_3559_; lean_object* v___x_3560_; 
-v___x_3558_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_3558_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_3559_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__17, &l_Lean_Firefox_instFromJsonProfile_fromJson___closed__17_once, _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__17);
 v___x_3560_ = lean_string_append(v___x_3559_, v___x_3558_);
 return v___x_3560_;
@@ -13873,7 +15471,7 @@ LEAN_EXPORT lean_object* l_Lean_Firefox_instFromJsonProfile_fromJson(lean_object
 _start:
 {
 lean_object* v___x_3562_; lean_object* v___x_3563_; 
-v___x_3562_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfile_fromJson___closed__0));
+v___x_3562_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__0, &l_Lean_Firefox_instFromJsonProfile_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__0);
 lean_inc(v_json_3561_);
 v___x_3563_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfile_fromJson_spec__0(v_json_3561_, v___x_3562_);
 if (lean_obj_tag(v___x_3563_) == 0)
@@ -13973,7 +15571,7 @@ lean_object* v_a_3582_; lean_object* v___x_3583_; lean_object* v___x_3584_;
 v_a_3582_ = lean_ctor_get(v___x_3563_, 0);
 lean_inc(v_a_3582_);
 lean_dec_ref(v___x_3563_);
-v___x_3583_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfile_fromJson___closed__9));
+v___x_3583_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__9, &l_Lean_Firefox_instFromJsonProfile_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__9);
 lean_inc(v_json_3561_);
 v___x_3584_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfileMeta_fromJson_spec__3(v_json_3561_, v___x_3583_);
 if (lean_obj_tag(v___x_3584_) == 0)
@@ -14075,7 +15673,7 @@ lean_object* v_a_3603_; lean_object* v___x_3604_; lean_object* v___x_3605_;
 v_a_3603_ = lean_ctor_get(v___x_3584_, 0);
 lean_inc(v_a_3603_);
 lean_dec_ref(v___x_3584_);
-v___x_3604_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfile_fromJson___closed__14));
+v___x_3604_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__14, &l_Lean_Firefox_instFromJsonProfile_fromJson___closed__14_once, _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__14);
 v___x_3605_ = l_Lean_Json_getObjValAs_x3f___at___00Lean_Firefox_instFromJsonProfile_fromJson_spec__1(v_json_3561_, v___x_3604_);
 if (lean_obj_tag(v___x_3605_) == 0)
 {
@@ -14223,6 +15821,22 @@ return v___x_3630_;
 }
 }
 }
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfile___closed__0(void){
+_start:
+{
+lean_object* v___x_3633_; 
+v___x_3633_ = lean_alloc_closure((void*)(l_Lean_Firefox_instFromJsonProfile_fromJson), 1, 0);
+return v___x_3633_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instFromJsonProfile(void){
+_start:
+{
+lean_object* v___x_3634_; 
+v___x_3634_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfile___closed__0, &l_Lean_Firefox_instFromJsonProfile___closed__0_once, _init_l_Lean_Firefox_instFromJsonProfile___closed__0);
+return v___x_3634_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Array_toJson___at___00Lean_Firefox_instToJsonProfile_toJson_spec__0_spec__0(size_t v_sz_3635_, size_t v_i_3636_, lean_object* v_bs_3637_){
 _start:
 {
@@ -14283,7 +15897,7 @@ lean_inc_ref(v_libs_3660_);
 v_threads_3661_ = lean_ctor_get(v_x_3658_, 2);
 lean_inc_ref(v_threads_3661_);
 lean_dec_ref(v_x_3658_);
-v___x_3662_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfile_fromJson___closed__0));
+v___x_3662_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__0, &l_Lean_Firefox_instFromJsonProfile_fromJson___closed__0_once, _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__0);
 v___x_3663_ = l_Lean_Firefox_instToJsonProfileMeta_toJson(v_meta_3659_);
 v___x_3664_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_3664_, 0, v___x_3662_);
@@ -14292,7 +15906,7 @@ v___x_3665_ = lean_box(0);
 v___x_3666_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_3666_, 0, v___x_3664_);
 lean_ctor_set(v___x_3666_, 1, v___x_3665_);
-v___x_3667_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfile_fromJson___closed__9));
+v___x_3667_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__9, &l_Lean_Firefox_instFromJsonProfile_fromJson___closed__9_once, _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__9);
 v___x_3668_ = l_Array_toJson___at___00Lean_Firefox_instToJsonProfileMeta_toJson_spec__1(v_libs_3660_);
 v___x_3669_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_3669_, 0, v___x_3667_);
@@ -14300,7 +15914,7 @@ lean_ctor_set(v___x_3669_, 1, v___x_3668_);
 v___x_3670_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_3670_, 0, v___x_3669_);
 lean_ctor_set(v___x_3670_, 1, v___x_3665_);
-v___x_3671_ = ((lean_object*)(l_Lean_Firefox_instFromJsonProfile_fromJson___closed__14));
+v___x_3671_ = lean_obj_once(&l_Lean_Firefox_instFromJsonProfile_fromJson___closed__14, &l_Lean_Firefox_instFromJsonProfile_fromJson___closed__14_once, _init_l_Lean_Firefox_instFromJsonProfile_fromJson___closed__14);
 v___x_3672_ = l_Array_toJson___at___00Lean_Firefox_instToJsonProfile_toJson_spec__0(v_threads_3661_);
 v___x_3673_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_3673_, 0, v___x_3671_);
@@ -14317,11 +15931,305 @@ lean_ctor_set(v___x_3676_, 1, v___x_3675_);
 v___x_3677_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_3677_, 0, v___x_3666_);
 lean_ctor_set(v___x_3677_, 1, v___x_3676_);
-v___x_3678_ = ((lean_object*)(l_Lean_Firefox_instToJsonCategory_toJson___closed__0));
+v___x_3678_ = lean_obj_once(&l_Lean_Firefox_instToJsonCategory_toJson___closed__0, &l_Lean_Firefox_instToJsonCategory_toJson___closed__0_once, _init_l_Lean_Firefox_instToJsonCategory_toJson___closed__0);
 v___x_3679_ = l___private_Init_Data_List_Impl_0__List_flatMapTR_go___at___00Lean_Firefox_instToJsonCategory_toJson_spec__1(v___x_3677_, v___x_3678_);
 v___x_3680_ = l_Lean_Json_mkObj(v___x_3679_);
 lean_dec(v___x_3679_);
 return v___x_3680_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonProfile___closed__0(void){
+_start:
+{
+lean_object* v___x_3681_; 
+v___x_3681_ = lean_alloc_closure((void*)(l_Lean_Firefox_instToJsonProfile_toJson), 1, 0);
+return v___x_3681_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_instToJsonProfile(void){
+_start:
+{
+lean_object* v___x_3682_; 
+v___x_3682_ = lean_obj_once(&l_Lean_Firefox_instToJsonProfile___closed__0, &l_Lean_Firefox_instToJsonProfile___closed__0_once, _init_l_Lean_Firefox_instToJsonProfile___closed__0);
+return v___x_3682_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__0(void){
+_start:
+{
+lean_object* v___x_3683_; 
+v___x_3683_ = lean_mk_string_unchecked("Other", 5, 5);
+return v___x_3683_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__1(void){
+_start:
+{
+lean_object* v___x_3684_; lean_object* v___x_3685_; 
+v___x_3684_ = lean_obj_once(&l_Lean_Firefox_categories___closed__0, &l_Lean_Firefox_categories___closed__0_once, _init_l_Lean_Firefox_categories___closed__0);
+v___x_3685_ = l_Lean_Name_mkStr1(v___x_3684_);
+return v___x_3685_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__2(void){
+_start:
+{
+lean_object* v___x_3686_; 
+v___x_3686_ = lean_mk_string_unchecked("gray", 4, 4);
+return v___x_3686_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__3(void){
+_start:
+{
+lean_object* v___x_3687_; lean_object* v___x_3688_; 
+v___x_3687_ = lean_unsigned_to_nat(0u);
+v___x_3688_ = lean_mk_empty_array_with_capacity(v___x_3687_);
+return v___x_3688_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__4(void){
+_start:
+{
+lean_object* v___x_3689_; lean_object* v___x_3690_; lean_object* v___x_3691_; lean_object* v___x_3692_; 
+v___x_3689_ = lean_obj_once(&l_Lean_Firefox_categories___closed__3, &l_Lean_Firefox_categories___closed__3_once, _init_l_Lean_Firefox_categories___closed__3);
+v___x_3690_ = lean_obj_once(&l_Lean_Firefox_categories___closed__2, &l_Lean_Firefox_categories___closed__2_once, _init_l_Lean_Firefox_categories___closed__2);
+v___x_3691_ = lean_obj_once(&l_Lean_Firefox_categories___closed__1, &l_Lean_Firefox_categories___closed__1_once, _init_l_Lean_Firefox_categories___closed__1);
+v___x_3692_ = lean_alloc_ctor(0, 3, 0);
+lean_ctor_set(v___x_3692_, 0, v___x_3691_);
+lean_ctor_set(v___x_3692_, 1, v___x_3690_);
+lean_ctor_set(v___x_3692_, 2, v___x_3689_);
+return v___x_3692_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__5(void){
+_start:
+{
+lean_object* v___x_3693_; 
+v___x_3693_ = lean_mk_string_unchecked("Elab", 4, 4);
+return v___x_3693_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__6(void){
+_start:
+{
+lean_object* v___x_3694_; 
+v___x_3694_ = lean_mk_string_unchecked("async", 5, 5);
+return v___x_3694_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__7(void){
+_start:
+{
+lean_object* v___x_3695_; lean_object* v___x_3696_; lean_object* v___x_3697_; 
+v___x_3695_ = lean_obj_once(&l_Lean_Firefox_categories___closed__6, &l_Lean_Firefox_categories___closed__6_once, _init_l_Lean_Firefox_categories___closed__6);
+v___x_3696_ = lean_obj_once(&l_Lean_Firefox_categories___closed__5, &l_Lean_Firefox_categories___closed__5_once, _init_l_Lean_Firefox_categories___closed__5);
+v___x_3697_ = l_Lean_Name_mkStr2(v___x_3696_, v___x_3695_);
+return v___x_3697_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__8(void){
+_start:
+{
+lean_object* v___x_3698_; lean_object* v___x_3699_; lean_object* v___x_3700_; lean_object* v___x_3701_; 
+v___x_3698_ = lean_obj_once(&l_Lean_Firefox_categories___closed__3, &l_Lean_Firefox_categories___closed__3_once, _init_l_Lean_Firefox_categories___closed__3);
+v___x_3699_ = lean_obj_once(&l_Lean_Firefox_categories___closed__2, &l_Lean_Firefox_categories___closed__2_once, _init_l_Lean_Firefox_categories___closed__2);
+v___x_3700_ = lean_obj_once(&l_Lean_Firefox_categories___closed__7, &l_Lean_Firefox_categories___closed__7_once, _init_l_Lean_Firefox_categories___closed__7);
+v___x_3701_ = lean_alloc_ctor(0, 3, 0);
+lean_ctor_set(v___x_3701_, 0, v___x_3700_);
+lean_ctor_set(v___x_3701_, 1, v___x_3699_);
+lean_ctor_set(v___x_3701_, 2, v___x_3698_);
+return v___x_3701_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__9(void){
+_start:
+{
+lean_object* v___x_3702_; 
+v___x_3702_ = lean_mk_string_unchecked("block", 5, 5);
+return v___x_3702_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__10(void){
+_start:
+{
+lean_object* v___x_3703_; lean_object* v___x_3704_; lean_object* v___x_3705_; 
+v___x_3703_ = lean_obj_once(&l_Lean_Firefox_categories___closed__9, &l_Lean_Firefox_categories___closed__9_once, _init_l_Lean_Firefox_categories___closed__9);
+v___x_3704_ = lean_obj_once(&l_Lean_Firefox_categories___closed__5, &l_Lean_Firefox_categories___closed__5_once, _init_l_Lean_Firefox_categories___closed__5);
+v___x_3705_ = l_Lean_Name_mkStr2(v___x_3704_, v___x_3703_);
+return v___x_3705_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__11(void){
+_start:
+{
+lean_object* v___x_3706_; 
+v___x_3706_ = lean_mk_string_unchecked("brown", 5, 5);
+return v___x_3706_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__12(void){
+_start:
+{
+lean_object* v___x_3707_; lean_object* v___x_3708_; lean_object* v___x_3709_; lean_object* v___x_3710_; 
+v___x_3707_ = lean_obj_once(&l_Lean_Firefox_categories___closed__3, &l_Lean_Firefox_categories___closed__3_once, _init_l_Lean_Firefox_categories___closed__3);
+v___x_3708_ = lean_obj_once(&l_Lean_Firefox_categories___closed__11, &l_Lean_Firefox_categories___closed__11_once, _init_l_Lean_Firefox_categories___closed__11);
+v___x_3709_ = lean_obj_once(&l_Lean_Firefox_categories___closed__10, &l_Lean_Firefox_categories___closed__10_once, _init_l_Lean_Firefox_categories___closed__10);
+v___x_3710_ = lean_alloc_ctor(0, 3, 0);
+lean_ctor_set(v___x_3710_, 0, v___x_3709_);
+lean_ctor_set(v___x_3710_, 1, v___x_3708_);
+lean_ctor_set(v___x_3710_, 2, v___x_3707_);
+return v___x_3710_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__13(void){
+_start:
+{
+lean_object* v___x_3711_; lean_object* v___x_3712_; 
+v___x_3711_ = lean_obj_once(&l_Lean_Firefox_categories___closed__5, &l_Lean_Firefox_categories___closed__5_once, _init_l_Lean_Firefox_categories___closed__5);
+v___x_3712_ = l_Lean_Name_mkStr1(v___x_3711_);
+return v___x_3712_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__14(void){
+_start:
+{
+lean_object* v___x_3713_; 
+v___x_3713_ = lean_mk_string_unchecked("red", 3, 3);
+return v___x_3713_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__15(void){
+_start:
+{
+lean_object* v___x_3714_; lean_object* v___x_3715_; lean_object* v___x_3716_; lean_object* v___x_3717_; 
+v___x_3714_ = lean_obj_once(&l_Lean_Firefox_categories___closed__3, &l_Lean_Firefox_categories___closed__3_once, _init_l_Lean_Firefox_categories___closed__3);
+v___x_3715_ = lean_obj_once(&l_Lean_Firefox_categories___closed__14, &l_Lean_Firefox_categories___closed__14_once, _init_l_Lean_Firefox_categories___closed__14);
+v___x_3716_ = lean_obj_once(&l_Lean_Firefox_categories___closed__13, &l_Lean_Firefox_categories___closed__13_once, _init_l_Lean_Firefox_categories___closed__13);
+v___x_3717_ = lean_alloc_ctor(0, 3, 0);
+lean_ctor_set(v___x_3717_, 0, v___x_3716_);
+lean_ctor_set(v___x_3717_, 1, v___x_3715_);
+lean_ctor_set(v___x_3717_, 2, v___x_3714_);
+return v___x_3717_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__16(void){
+_start:
+{
+lean_object* v___x_3718_; 
+v___x_3718_ = lean_mk_string_unchecked("Meta", 4, 4);
+return v___x_3718_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__17(void){
+_start:
+{
+lean_object* v___x_3719_; lean_object* v___x_3720_; 
+v___x_3719_ = lean_obj_once(&l_Lean_Firefox_categories___closed__16, &l_Lean_Firefox_categories___closed__16_once, _init_l_Lean_Firefox_categories___closed__16);
+v___x_3720_ = l_Lean_Name_mkStr1(v___x_3719_);
+return v___x_3720_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__18(void){
+_start:
+{
+lean_object* v___x_3721_; 
+v___x_3721_ = lean_mk_string_unchecked("yellow", 6, 6);
+return v___x_3721_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__19(void){
+_start:
+{
+lean_object* v___x_3722_; lean_object* v___x_3723_; lean_object* v___x_3724_; lean_object* v___x_3725_; 
+v___x_3722_ = lean_obj_once(&l_Lean_Firefox_categories___closed__3, &l_Lean_Firefox_categories___closed__3_once, _init_l_Lean_Firefox_categories___closed__3);
+v___x_3723_ = lean_obj_once(&l_Lean_Firefox_categories___closed__18, &l_Lean_Firefox_categories___closed__18_once, _init_l_Lean_Firefox_categories___closed__18);
+v___x_3724_ = lean_obj_once(&l_Lean_Firefox_categories___closed__17, &l_Lean_Firefox_categories___closed__17_once, _init_l_Lean_Firefox_categories___closed__17);
+v___x_3725_ = lean_alloc_ctor(0, 3, 0);
+lean_ctor_set(v___x_3725_, 0, v___x_3724_);
+lean_ctor_set(v___x_3725_, 1, v___x_3723_);
+lean_ctor_set(v___x_3725_, 2, v___x_3722_);
+return v___x_3725_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__20(void){
+_start:
+{
+lean_object* v___x_3726_; 
+v___x_3726_ = lean_mk_string_unchecked("Kernel", 6, 6);
+return v___x_3726_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__21(void){
+_start:
+{
+lean_object* v___x_3727_; lean_object* v___x_3728_; 
+v___x_3727_ = lean_obj_once(&l_Lean_Firefox_categories___closed__20, &l_Lean_Firefox_categories___closed__20_once, _init_l_Lean_Firefox_categories___closed__20);
+v___x_3728_ = l_Lean_Name_mkStr1(v___x_3727_);
+return v___x_3728_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__22(void){
+_start:
+{
+lean_object* v___x_3729_; 
+v___x_3729_ = lean_mk_string_unchecked("green", 5, 5);
+return v___x_3729_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__23(void){
+_start:
+{
+lean_object* v___x_3730_; lean_object* v___x_3731_; lean_object* v___x_3732_; lean_object* v___x_3733_; 
+v___x_3730_ = lean_obj_once(&l_Lean_Firefox_categories___closed__3, &l_Lean_Firefox_categories___closed__3_once, _init_l_Lean_Firefox_categories___closed__3);
+v___x_3731_ = lean_obj_once(&l_Lean_Firefox_categories___closed__22, &l_Lean_Firefox_categories___closed__22_once, _init_l_Lean_Firefox_categories___closed__22);
+v___x_3732_ = lean_obj_once(&l_Lean_Firefox_categories___closed__21, &l_Lean_Firefox_categories___closed__21_once, _init_l_Lean_Firefox_categories___closed__21);
+v___x_3733_ = lean_alloc_ctor(0, 3, 0);
+lean_ctor_set(v___x_3733_, 0, v___x_3732_);
+lean_ctor_set(v___x_3733_, 1, v___x_3731_);
+lean_ctor_set(v___x_3733_, 2, v___x_3730_);
+return v___x_3733_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories___closed__24(void){
+_start:
+{
+lean_object* v___x_3734_; lean_object* v___x_3735_; lean_object* v___x_3736_; lean_object* v___x_3737_; lean_object* v___x_3738_; lean_object* v___x_3739_; lean_object* v___x_3740_; lean_object* v___x_3741_; lean_object* v___x_3742_; lean_object* v___x_3743_; lean_object* v___x_3744_; lean_object* v___x_3745_; lean_object* v___x_3746_; lean_object* v___x_3747_; 
+v___x_3734_ = lean_obj_once(&l_Lean_Firefox_categories___closed__23, &l_Lean_Firefox_categories___closed__23_once, _init_l_Lean_Firefox_categories___closed__23);
+v___x_3735_ = lean_obj_once(&l_Lean_Firefox_categories___closed__19, &l_Lean_Firefox_categories___closed__19_once, _init_l_Lean_Firefox_categories___closed__19);
+v___x_3736_ = lean_obj_once(&l_Lean_Firefox_categories___closed__15, &l_Lean_Firefox_categories___closed__15_once, _init_l_Lean_Firefox_categories___closed__15);
+v___x_3737_ = lean_obj_once(&l_Lean_Firefox_categories___closed__12, &l_Lean_Firefox_categories___closed__12_once, _init_l_Lean_Firefox_categories___closed__12);
+v___x_3738_ = lean_obj_once(&l_Lean_Firefox_categories___closed__8, &l_Lean_Firefox_categories___closed__8_once, _init_l_Lean_Firefox_categories___closed__8);
+v___x_3739_ = lean_obj_once(&l_Lean_Firefox_categories___closed__4, &l_Lean_Firefox_categories___closed__4_once, _init_l_Lean_Firefox_categories___closed__4);
+v___x_3740_ = lean_unsigned_to_nat(6u);
+v___x_3741_ = lean_mk_empty_array_with_capacity(v___x_3740_);
+v___x_3742_ = lean_array_push(v___x_3741_, v___x_3739_);
+v___x_3743_ = lean_array_push(v___x_3742_, v___x_3738_);
+v___x_3744_ = lean_array_push(v___x_3743_, v___x_3737_);
+v___x_3745_ = lean_array_push(v___x_3744_, v___x_3736_);
+v___x_3746_ = lean_array_push(v___x_3745_, v___x_3735_);
+v___x_3747_ = lean_array_push(v___x_3746_, v___x_3734_);
+return v___x_3747_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_categories(void){
+_start:
+{
+lean_object* v___x_3748_; 
+v___x_3748_ = lean_obj_once(&l_Lean_Firefox_categories___closed__24, &l_Lean_Firefox_categories___closed__24_once, _init_l_Lean_Firefox_categories___closed__24);
+return v___x_3748_;
+}
+}
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_getFirstStart_x3f_spec__0___closed__0(void){
+_start:
+{
+lean_object* v___x_3749_; lean_object* v___x_3750_; lean_object* v___x_3751_; 
+v___x_3749_ = lean_box(0);
+v___x_3750_ = lean_box(0);
+v___x_3751_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_3751_, 0, v___x_3750_);
+lean_ctor_set(v___x_3751_, 1, v___x_3749_);
+return v___x_3751_;
 }
 }
 static double _init_l___private_Lean_Util_Profiler_0__Lean_Firefox_getFirstStart_x3f___closed__0(void){
@@ -14358,7 +16266,7 @@ else
 {
 lean_object* v___x_3762_; lean_object* v___x_3763_; size_t v_sz_3764_; size_t v___x_3765_; lean_object* v___x_3766_; lean_object* v_fst_3767_; 
 v___x_3762_ = lean_box(0);
-v___x_3763_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_getFirstStart_x3f_spec__0___closed__0));
+v___x_3763_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_getFirstStart_x3f_spec__0___closed__0, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_getFirstStart_x3f_spec__0___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_getFirstStart_x3f_spec__0___closed__0);
 v_sz_3764_ = lean_array_size(v_children_3756_);
 v___x_3765_ = ((size_t)0ULL);
 v___x_3766_ = l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_getFirstStart_x3f_spec__0(v_children_3756_, v_sz_3764_, v___x_3765_, v___x_3763_);
@@ -14433,7 +16341,7 @@ else
 {
 lean_object* v___x_3782_; size_t v___x_3783_; size_t v___x_3784_; 
 lean_dec(v___x_3779_);
-v___x_3782_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_getFirstStart_x3f_spec__0___closed__0));
+v___x_3782_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_getFirstStart_x3f_spec__0___closed__0, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_getFirstStart_x3f_spec__0___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_getFirstStart_x3f_spec__0___closed__0);
 v___x_3783_ = ((size_t)1ULL);
 v___x_3784_ = lean_usize_add(v_i_3774_, v___x_3783_);
 v_i_3774_ = v___x_3784_;
@@ -16086,6 +17994,14 @@ return v___x_4346_;
 }
 }
 }
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0(void){
+_start:
+{
+lean_object* v___x_4349_; 
+v___x_4349_ = lean_mk_string_unchecked("tracing-ms", 10, 10);
+return v___x_4349_;
+}
+}
 static double _init_l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__0(void){
 _start:
 {
@@ -16122,6 +18038,15 @@ lean_object* v___x_4358_; lean_object* v___x_4359_;
 v___x_4358_ = lean_obj_once(&l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__1, &l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__1_once, _init_l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__1);
 v___x_4359_ = lean_int_neg(v___x_4358_);
 return v___x_4359_;
+}
+}
+static lean_object* _init_l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__3(void){
+_start:
+{
+lean_object* v___x_4360_; lean_object* v___x_4361_; 
+v___x_4360_ = lean_unsigned_to_nat(0u);
+v___x_4361_ = lean_mk_empty_array_with_capacity(v___x_4360_);
+return v___x_4361_;
 }
 }
 LEAN_EXPORT lean_object* l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go(uint8_t v_pp_4362_, lean_object* v_parentStackIdx_x3f_4363_, lean_object* v_ctx_x3f_4364_, lean_object* v_a_4365_, lean_object* v_a_4366_){
@@ -16350,7 +18275,7 @@ v___x_4439_ = lean_float_sub(v_stopTime_4373_, v_lastTime_4403_);
 v___x_4440_ = lean_float_mul(v___x_4439_, v___x_4430_);
 v___x_4441_ = lean_box_float(v___x_4440_);
 v___x_4442_ = lean_array_push(v___x_4438_, v___x_4441_);
-v___x_4443_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0));
+v___x_4443_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0);
 v___x_4444_ = l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___boxed__const__1;
 v___x_4445_ = lean_array_push(v_threadCPUDelta_4423_, v___x_4444_);
 v___x_4446_ = lean_float_once(&l_Lean_Firefox_instCoeFloatMicroseconds___lam__0___closed__0, &l_Lean_Firefox_instCoeFloatMicroseconds___lam__0___closed__0_once, _init_l_Lean_Firefox_instCoeFloatMicroseconds___lam__0___closed__0);
@@ -16790,7 +18715,7 @@ lean_object* v___x_4566_; lean_object* v___x_4567_; lean_object* v___x_4568_; le
 v___x_4566_ = l_Lean_Firefox_FrameTable_push(v_frameTable_4544_, v___x_4556_);
 lean_inc(v___y_4527_);
 v___x_4567_ = lean_array_push(v_name_4557_, v___y_4527_);
-v___x_4568_ = ((lean_object*)(l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__3));
+v___x_4568_ = lean_obj_once(&l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__3, &l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__3_once, _init_l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__3);
 v___x_4569_ = lean_array_push(v_resource_4558_, v___x_4553_);
 v___x_4570_ = lean_array_push(v_fileName_4559_, v___x_4555_);
 v___x_4571_ = lean_array_push(v_lineNumber_4560_, v___x_4555_);
@@ -16875,7 +18800,7 @@ goto v___jp_4476_;
 v___jp_4585_:
 {
 lean_object* v___x_4588_; lean_object* v___x_4589_; 
-v___x_4588_ = ((lean_object*)(l_Lean_Firefox_categories));
+v___x_4588_ = l_Lean_Firefox_categories;
 v___x_4589_ = l_Array_findIdx_x3f_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__5(v_cls_4371_, v___x_4588_, v___x_4375_);
 lean_dec(v_cls_4371_);
 if (lean_obj_tag(v___x_4589_) == 0)
@@ -17067,7 +18992,7 @@ else
 lean_object* v___x_4636_; lean_object* v___x_4637_; lean_object* v___x_4638_; lean_object* v___x_4639_; lean_object* v___x_4640_; lean_object* v___x_4641_; 
 lean_inc(v_ctx_x3f_4364_);
 v___x_4636_ = l_Lean_MessageData_format(v_msg_4369_, v_ctx_x3f_4364_);
-v___x_4637_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_4637_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_4638_ = lean_string_append(v_funcName_4634_, v___x_4637_);
 v___x_4639_ = l_Std_Format_defWidth;
 v___x_4640_ = l_Std_Format_pretty(v___x_4636_, v___x_4639_, v___x_4375_, v___x_4375_);
@@ -17081,7 +19006,7 @@ goto v___jp_4591_;
 v___jp_4643_:
 {
 lean_object* v___x_4644_; lean_object* v___x_4645_; lean_object* v_funcName_4646_; 
-v___x_4644_ = ((lean_object*)(l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11));
+v___x_4644_ = lean_obj_once(&l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11, &l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11_once, _init_l_Lean_Firefox_instFromJsonCategory_fromJson___closed__11);
 v___x_4645_ = lean_string_append(v_funcName_4642_, v___x_4644_);
 v_funcName_4646_ = lean_string_append(v___x_4645_, v_tag_4374_);
 lean_dec_ref(v_tag_4374_);
@@ -17307,7 +19232,7 @@ v___x_4730_ = lean_float_sub(v___x_4729_, v_lastTime_4689_);
 v___x_4731_ = lean_float_mul(v___x_4730_, v___x_4717_);
 v___x_4732_ = lean_box_float(v___x_4731_);
 v___x_4733_ = lean_array_push(v___x_4728_, v___x_4732_);
-v___x_4734_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0));
+v___x_4734_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0);
 v___x_4735_ = lean_box_float(v___x_4726_);
 v___x_4736_ = lean_array_push(v_threadCPUDelta_4709_, v___x_4735_);
 v___x_4737_ = lean_float_once(&l_Lean_Firefox_instCoeFloatMicroseconds___lam__0___closed__0, &l_Lean_Firefox_instCoeFloatMicroseconds___lam__0___closed__0_once, _init_l_Lean_Firefox_instCoeFloatMicroseconds___lam__0___closed__0);
@@ -17872,19 +19797,111 @@ v_res_4955_ = l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace(v_pp_boxed
 return v_res_4955_;
 }
 }
+static lean_object* _init_l_Lean_Firefox_Thread_new___closed__0(void){
+_start:
+{
+lean_object* v___x_4956_; 
+v___x_4956_ = lean_mk_string_unchecked("default", 7, 7);
+return v___x_4956_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_Thread_new___closed__1(void){
+_start:
+{
+lean_object* v___x_4957_; lean_object* v___x_4958_; 
+v___x_4957_ = lean_unsigned_to_nat(0u);
+v___x_4958_ = lean_mk_empty_array_with_capacity(v___x_4957_);
+return v___x_4958_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_Thread_new___closed__2(void){
+_start:
+{
+lean_object* v___x_4959_; lean_object* v___x_4960_; lean_object* v___x_4961_; lean_object* v___x_4962_; 
+v___x_4959_ = lean_unsigned_to_nat(0u);
+v___x_4960_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0);
+v___x_4961_ = lean_obj_once(&l_Lean_Firefox_Thread_new___closed__1, &l_Lean_Firefox_Thread_new___closed__1_once, _init_l_Lean_Firefox_Thread_new___closed__1);
+v___x_4962_ = lean_alloc_ctor(0, 6, 0);
+lean_ctor_set(v___x_4962_, 0, v___x_4961_);
+lean_ctor_set(v___x_4962_, 1, v___x_4961_);
+lean_ctor_set(v___x_4962_, 2, v___x_4961_);
+lean_ctor_set(v___x_4962_, 3, v___x_4960_);
+lean_ctor_set(v___x_4962_, 4, v___x_4961_);
+lean_ctor_set(v___x_4962_, 5, v___x_4959_);
+return v___x_4962_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_Thread_new___closed__3(void){
+_start:
+{
+lean_object* v___x_4963_; lean_object* v___x_4964_; lean_object* v___x_4965_; 
+v___x_4963_ = lean_unsigned_to_nat(0u);
+v___x_4964_ = lean_obj_once(&l_Lean_Firefox_Thread_new___closed__1, &l_Lean_Firefox_Thread_new___closed__1_once, _init_l_Lean_Firefox_Thread_new___closed__1);
+v___x_4965_ = lean_alloc_ctor(0, 3, 0);
+lean_ctor_set(v___x_4965_, 0, v___x_4964_);
+lean_ctor_set(v___x_4965_, 1, v___x_4964_);
+lean_ctor_set(v___x_4965_, 2, v___x_4963_);
+return v___x_4965_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_Thread_new___closed__4(void){
+_start:
+{
+lean_object* v___x_4966_; lean_object* v___x_4967_; lean_object* v___x_4968_; 
+v___x_4966_ = lean_unsigned_to_nat(0u);
+v___x_4967_ = lean_obj_once(&l_Lean_Firefox_Thread_new___closed__1, &l_Lean_Firefox_Thread_new___closed__1_once, _init_l_Lean_Firefox_Thread_new___closed__1);
+v___x_4968_ = lean_alloc_ctor(0, 5, 0);
+lean_ctor_set(v___x_4968_, 0, v___x_4967_);
+lean_ctor_set(v___x_4968_, 1, v___x_4967_);
+lean_ctor_set(v___x_4968_, 2, v___x_4967_);
+lean_ctor_set(v___x_4968_, 3, v___x_4967_);
+lean_ctor_set(v___x_4968_, 4, v___x_4966_);
+return v___x_4968_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_Thread_new___closed__5(void){
+_start:
+{
+lean_object* v___x_4969_; lean_object* v___x_4970_; lean_object* v___x_4971_; 
+v___x_4969_ = lean_unsigned_to_nat(0u);
+v___x_4970_ = lean_obj_once(&l_Lean_Firefox_Thread_new___closed__1, &l_Lean_Firefox_Thread_new___closed__1_once, _init_l_Lean_Firefox_Thread_new___closed__1);
+v___x_4971_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_4971_, 0, v___x_4970_);
+lean_ctor_set(v___x_4971_, 1, v___x_4969_);
+return v___x_4971_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_Thread_new___closed__6(void){
+_start:
+{
+lean_object* v___x_4972_; lean_object* v___x_4973_; lean_object* v___x_4974_; 
+v___x_4972_ = lean_unsigned_to_nat(0u);
+v___x_4973_ = lean_obj_once(&l_Lean_Firefox_Thread_new___closed__1, &l_Lean_Firefox_Thread_new___closed__1_once, _init_l_Lean_Firefox_Thread_new___closed__1);
+v___x_4974_ = lean_alloc_ctor(0, 8, 0);
+lean_ctor_set(v___x_4974_, 0, v___x_4973_);
+lean_ctor_set(v___x_4974_, 1, v___x_4973_);
+lean_ctor_set(v___x_4974_, 2, v___x_4973_);
+lean_ctor_set(v___x_4974_, 3, v___x_4973_);
+lean_ctor_set(v___x_4974_, 4, v___x_4973_);
+lean_ctor_set(v___x_4974_, 5, v___x_4973_);
+lean_ctor_set(v___x_4974_, 6, v___x_4973_);
+lean_ctor_set(v___x_4974_, 7, v___x_4972_);
+return v___x_4974_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Firefox_Thread_new(lean_object* v_name_4975_){
 _start:
 {
 lean_object* v___x_4976_; uint8_t v___x_4977_; lean_object* v___x_4978_; lean_object* v___x_4979_; lean_object* v___x_4980_; lean_object* v___x_4981_; lean_object* v___x_4982_; lean_object* v___x_4983_; lean_object* v___x_4984_; lean_object* v___x_4985_; 
-v___x_4976_ = ((lean_object*)(l_Lean_Firefox_Thread_new___closed__0));
+v___x_4976_ = lean_obj_once(&l_Lean_Firefox_Thread_new___closed__0, &l_Lean_Firefox_Thread_new___closed__0_once, _init_l_Lean_Firefox_Thread_new___closed__0);
 v___x_4977_ = 1;
-v___x_4978_ = ((lean_object*)(l_Lean_Firefox_Thread_new___closed__1));
-v___x_4979_ = ((lean_object*)(l_Lean_Firefox_Thread_new___closed__2));
-v___x_4980_ = ((lean_object*)(l_Lean_Firefox_Thread_new___closed__3));
-v___x_4981_ = ((lean_object*)(l_Lean_Firefox_Thread_new___closed__4));
-v___x_4982_ = ((lean_object*)(l_Lean_Firefox_instInhabitedFrameTable_default));
-v___x_4983_ = ((lean_object*)(l_Lean_Firefox_Thread_new___closed__5));
-v___x_4984_ = ((lean_object*)(l_Lean_Firefox_Thread_new___closed__6));
+v___x_4978_ = lean_obj_once(&l_Lean_Firefox_Thread_new___closed__1, &l_Lean_Firefox_Thread_new___closed__1_once, _init_l_Lean_Firefox_Thread_new___closed__1);
+v___x_4979_ = lean_obj_once(&l_Lean_Firefox_Thread_new___closed__2, &l_Lean_Firefox_Thread_new___closed__2_once, _init_l_Lean_Firefox_Thread_new___closed__2);
+v___x_4980_ = lean_obj_once(&l_Lean_Firefox_Thread_new___closed__3, &l_Lean_Firefox_Thread_new___closed__3_once, _init_l_Lean_Firefox_Thread_new___closed__3);
+v___x_4981_ = lean_obj_once(&l_Lean_Firefox_Thread_new___closed__4, &l_Lean_Firefox_Thread_new___closed__4_once, _init_l_Lean_Firefox_Thread_new___closed__4);
+v___x_4982_ = l_Lean_Firefox_instInhabitedFrameTable_default;
+v___x_4983_ = lean_obj_once(&l_Lean_Firefox_Thread_new___closed__5, &l_Lean_Firefox_Thread_new___closed__5_once, _init_l_Lean_Firefox_Thread_new___closed__5);
+v___x_4984_ = lean_obj_once(&l_Lean_Firefox_Thread_new___closed__6, &l_Lean_Firefox_Thread_new___closed__6_once, _init_l_Lean_Firefox_Thread_new___closed__6);
 v___x_4985_ = lean_alloc_ctor(0, 10, 1);
 lean_ctor_set(v___x_4985_, 0, v_name_4975_);
 lean_ctor_set(v___x_4985_, 1, v___x_4976_);
@@ -18510,7 +20527,7 @@ v___x_5226_ = lean_box_float(v___x_5187_);
 v___x_5227_ = lean_array_push(v_weight_5210_, v___x_5226_);
 v___x_5228_ = lean_box_float(v___x_5187_);
 v___x_5229_ = lean_array_push(v___x_5227_, v___x_5228_);
-v___x_5230_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0));
+v___x_5230_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0);
 v___x_5231_ = lean_box_float(v___x_5187_);
 v___x_5232_ = lean_array_push(v_threadCPUDelta_5211_, v___x_5231_);
 v___x_5233_ = lean_box_float(v___x_5187_);
@@ -18650,13 +20667,57 @@ lean_dec_ref(v_opts_5255_);
 return v_res_5263_;
 }
 }
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__0(void){
+_start:
+{
+lean_object* v___x_5264_; 
+v___x_5264_ = lean_mk_string_unchecked("runFrontend", 11, 11);
+return v___x_5264_;
+}
+}
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__1(void){
+_start:
+{
+lean_object* v___x_5265_; lean_object* v___x_5266_; 
+v___x_5265_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__0, &l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__0);
+v___x_5266_ = l_Lean_Name_mkStr1(v___x_5265_);
+return v___x_5266_;
+}
+}
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__2(void){
+_start:
+{
+lean_object* v___x_5267_; 
+v___x_5267_ = lean_mk_string_unchecked("", 0, 0);
+return v___x_5267_;
+}
+}
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__3(void){
+_start:
+{
+lean_object* v___x_5268_; lean_object* v___x_5269_; 
+v___x_5268_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__2, &l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__2_once, _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__2);
+v___x_5269_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_5269_, 0, v___x_5268_);
+return v___x_5269_;
+}
+}
 static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__4(void){
 _start:
 {
 lean_object* v___x_5270_; lean_object* v___x_5271_; 
-v___x_5270_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__3));
+v___x_5270_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__3, &l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__3_once, _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__3);
 v___x_5271_ = l_Lean_MessageData_ofFormat(v___x_5270_);
 return v___x_5271_;
+}
+}
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__5(void){
+_start:
+{
+lean_object* v___x_5272_; lean_object* v___x_5273_; 
+v___x_5272_ = lean_unsigned_to_nat(0u);
+v___x_5273_ = lean_mk_empty_array_with_capacity(v___x_5272_);
+return v___x_5273_;
 }
 }
 static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__6(void){
@@ -18802,9 +20863,9 @@ goto v___jp_5295_;
 else
 {
 lean_object* v___x_5324_; lean_object* v___x_5325_; lean_object* v___x_5326_; lean_object* v___x_5327_; lean_object* v___x_5328_; lean_object* v___x_5329_; lean_object* v___x_5330_; lean_object* v___x_5331_; 
-v___x_5324_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__1));
+v___x_5324_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__1, &l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__1_once, _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__1);
 v___x_5325_ = lean_box(0);
-v___x_5326_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__2));
+v___x_5326_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__2, &l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__2_once, _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__2);
 v___x_5327_ = lean_alloc_ctor(0, 3, 17);
 lean_ctor_set(v___x_5327_, 0, v___x_5324_);
 lean_ctor_set(v___x_5327_, 1, v___x_5325_);
@@ -18828,7 +20889,7 @@ goto v___jp_5295_;
 v___jp_5332_:
 {
 lean_object* v___x_5337_; lean_object* v___x_5338_; uint8_t v___x_5339_; 
-v___x_5337_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__5));
+v___x_5337_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__5, &l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__5_once, _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__5);
 v___x_5338_ = lean_array_get_size(v___y_5336_);
 v___x_5339_ = lean_nat_dec_lt(v___x_5293_, v___x_5338_);
 if (v___x_5339_ == 0)
@@ -19104,6 +21165,15 @@ v_r_5422_ = lean_box(v_res_5421_);
 return v_r_5422_;
 }
 }
+static lean_object* _init_l_Std_DHashMap_Internal_AssocList_Const_alter___at___00Std_DHashMap_Internal_Raw_u2080_Const_alter___at___00Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0_spec__0_spec__4___redArg___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_5423_; lean_object* v___x_5424_; 
+v___x_5423_ = lean_unsigned_to_nat(0u);
+v___x_5424_ = lean_mk_empty_array_with_capacity(v___x_5423_);
+return v___x_5424_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_DHashMap_Internal_AssocList_Const_alter___at___00Std_DHashMap_Internal_Raw_u2080_Const_alter___at___00Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0_spec__0_spec__4___redArg___lam__0(lean_object* v_a_5425_, lean_object* v_x_5426_){
 _start:
 {
@@ -19111,7 +21181,7 @@ lean_object* v___y_5428_;
 if (lean_obj_tag(v_x_5426_) == 0)
 {
 lean_object* v___x_5431_; 
-v___x_5431_ = ((lean_object*)(l_Std_DHashMap_Internal_AssocList_Const_alter___at___00Std_DHashMap_Internal_Raw_u2080_Const_alter___at___00Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0_spec__0_spec__4___redArg___lam__0___closed__0));
+v___x_5431_ = lean_obj_once(&l_Std_DHashMap_Internal_AssocList_Const_alter___at___00Std_DHashMap_Internal_Raw_u2080_Const_alter___at___00Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0_spec__0_spec__4___redArg___lam__0___closed__0, &l_Std_DHashMap_Internal_AssocList_Const_alter___at___00Std_DHashMap_Internal_Raw_u2080_Const_alter___at___00Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0_spec__0_spec__4___redArg___lam__0___closed__0_once, _init_l_Std_DHashMap_Internal_AssocList_Const_alter___at___00Std_DHashMap_Internal_Raw_u2080_Const_alter___at___00Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0_spec__0_spec__4___redArg___lam__0___closed__0);
 v___y_5428_ = v___x_5431_;
 goto v___jp_5427_;
 }
@@ -19414,7 +21484,7 @@ v___x_5536_ = l_Std_DHashMap_Internal_AssocList_contains___at___00Std_DHashMap_I
 if (v___x_5536_ == 0)
 {
 lean_object* v___x_5537_; lean_object* v___x_5538_; lean_object* v___x_5539_; lean_object* v_size_x27_5540_; lean_object* v___x_5541_; lean_object* v___x_5542_; lean_object* v_buckets_x27_5543_; lean_object* v___x_5544_; lean_object* v___x_5545_; lean_object* v___x_5546_; lean_object* v___x_5547_; lean_object* v___x_5548_; uint8_t v___x_5549_; 
-v___x_5537_ = ((lean_object*)(l_Std_DHashMap_Internal_AssocList_Const_alter___at___00Std_DHashMap_Internal_Raw_u2080_Const_alter___at___00Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0_spec__0_spec__4___redArg___lam__0___closed__0));
+v___x_5537_ = lean_obj_once(&l_Std_DHashMap_Internal_AssocList_Const_alter___at___00Std_DHashMap_Internal_Raw_u2080_Const_alter___at___00Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0_spec__0_spec__4___redArg___lam__0___closed__0, &l_Std_DHashMap_Internal_AssocList_Const_alter___at___00Std_DHashMap_Internal_Raw_u2080_Const_alter___at___00Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0_spec__0_spec__4___redArg___lam__0___closed__0_once, _init_l_Std_DHashMap_Internal_AssocList_Const_alter___at___00Std_DHashMap_Internal_Raw_u2080_Const_alter___at___00Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0_spec__0_spec__4___redArg___lam__0___closed__0);
 v___x_5538_ = lean_array_push(v___x_5537_, v_a_5515_);
 v___x_5539_ = lean_unsigned_to_nat(1u);
 v_size_x27_5540_ = lean_nat_add(v_size_5518_, v___x_5539_);
@@ -19934,6 +22004,14 @@ v_res_5735_ = l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___0
 return v_res_5735_;
 }
 }
+static lean_object* _init_l_Lean_Firefox_Profile_export___closed__0(void){
+_start:
+{
+lean_object* v___f_5736_; 
+v___f_5736_ = lean_alloc_closure((void*)(l_Lean_Firefox_Profile_export___lam__0___boxed), 1, 0);
+return v___f_5736_;
+}
+}
 static double _init_l_Lean_Firefox_Profile_export___closed__1(void){
 _start:
 {
@@ -19943,12 +22021,49 @@ v___x_5738_ = lean_float_of_nat(v___x_5737_);
 return v___x_5738_;
 }
 }
+static lean_object* _init_l_Lean_Firefox_Profile_export___closed__2(void){
+_start:
+{
+lean_object* v___x_5739_; 
+v___x_5739_ = lean_mk_string_unchecked("lean", 4, 4);
+return v___x_5739_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_Profile_export___closed__3(void){
+_start:
+{
+lean_object* v___x_5740_; 
+v___x_5740_ = lean_mk_string_unchecked("ms", 2, 2);
+return v___x_5740_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_Profile_export___closed__4(void){
+_start:
+{
+lean_object* v___x_5741_; 
+v___x_5741_ = lean_mk_string_unchecked("µs", 3, 2);
+return v___x_5741_;
+}
+}
+static lean_object* _init_l_Lean_Firefox_Profile_export___closed__5(void){
+_start:
+{
+lean_object* v___x_5742_; lean_object* v___x_5743_; lean_object* v___x_5744_; 
+v___x_5742_ = lean_obj_once(&l_Lean_Firefox_Profile_export___closed__4, &l_Lean_Firefox_Profile_export___closed__4_once, _init_l_Lean_Firefox_Profile_export___closed__4);
+v___x_5743_ = lean_obj_once(&l_Lean_Firefox_Profile_export___closed__3, &l_Lean_Firefox_Profile_export___closed__3_once, _init_l_Lean_Firefox_Profile_export___closed__3);
+v___x_5744_ = lean_alloc_ctor(0, 3, 0);
+lean_ctor_set(v___x_5744_, 0, v___x_5743_);
+lean_ctor_set(v___x_5744_, 1, v___x_5743_);
+lean_ctor_set(v___x_5744_, 2, v___x_5742_);
+return v___x_5744_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Firefox_Profile_export(lean_object* v_name_5745_, double v_startTime_5746_, lean_object* v_traceStates_5747_, lean_object* v_opts_5748_){
 _start:
 {
 lean_object* v___x_5750_; lean_object* v___f_5751_; lean_object* v_tids_5752_; lean_object* v_size_5753_; lean_object* v_buckets_5754_; double v___x_5755_; double v___x_5756_; double v___x_5757_; lean_object* v___y_5759_; lean_object* v___y_5760_; lean_object* v___y_5761_; lean_object* v___y_5795_; lean_object* v___y_5796_; lean_object* v___y_5797_; lean_object* v___y_5798_; lean_object* v___y_5799_; lean_object* v___y_5800_; lean_object* v___y_5803_; lean_object* v___y_5804_; lean_object* v___y_5805_; lean_object* v___y_5806_; lean_object* v___y_5807_; lean_object* v___y_5808_; lean_object* v___y_5811_; lean_object* v___x_5818_; lean_object* v___x_5819_; lean_object* v___x_5820_; uint8_t v___x_5821_; 
 v___x_5750_ = lean_io_mono_nanos_now();
-v___f_5751_ = ((lean_object*)(l_Lean_Firefox_Profile_export___closed__0));
+v___f_5751_ = lean_obj_once(&l_Lean_Firefox_Profile_export___closed__0, &l_Lean_Firefox_Profile_export___closed__0_once, _init_l_Lean_Firefox_Profile_export___closed__0);
 v_tids_5752_ = l_Array_groupByKey___at___00Lean_Firefox_Profile_export_spec__0___redArg(v___f_5751_, v_traceStates_5747_);
 v_size_5753_ = lean_ctor_get(v_tids_5752_, 0);
 lean_inc(v_size_5753_);
@@ -20035,11 +22150,11 @@ v___x_5769_ = 1;
 v___x_5770_ = l_Float_ofScientific(v___y_5760_, v___x_5769_, v___y_5759_);
 v___x_5771_ = lean_float_once(&l_Lean_Firefox_instCoeFloatMilliseconds___lam__0___closed__0, &l_Lean_Firefox_instCoeFloatMilliseconds___lam__0___closed__0_once, _init_l_Lean_Firefox_instCoeFloatMilliseconds___lam__0___closed__0);
 v___x_5772_ = lean_float_mul(v_startTime_5746_, v___x_5771_);
-v___x_5773_ = ((lean_object*)(l_Lean_Firefox_categories));
-v___x_5774_ = ((lean_object*)(l_Lean_Firefox_Profile_export___closed__2));
+v___x_5773_ = l_Lean_Firefox_categories;
+v___x_5774_ = lean_obj_once(&l_Lean_Firefox_Profile_export___closed__2, &l_Lean_Firefox_Profile_export___closed__2_once, _init_l_Lean_Firefox_Profile_export___closed__2);
 v___x_5775_ = lean_unsigned_to_nat(48u);
 v___x_5776_ = lean_mk_empty_array_with_capacity(v___y_5760_);
-v___x_5777_ = ((lean_object*)(l_Lean_Firefox_Profile_export___closed__5));
+v___x_5777_ = lean_obj_once(&l_Lean_Firefox_Profile_export___closed__5, &l_Lean_Firefox_Profile_export___closed__5_once, _init_l_Lean_Firefox_Profile_export___closed__5);
 lean_inc_ref(v___x_5776_);
 v___x_5778_ = lean_alloc_ctor(0, 6, 16);
 lean_ctor_set(v___x_5778_, 0, v___x_5773_);
@@ -20624,7 +22739,7 @@ v_subcategory_6043_ = lean_ctor_get(v_stackTable_6037_, 2);
 v_prefix_6044_ = lean_ctor_get(v_stackTable_6037_, 3);
 v___x_6045_ = lean_box(0);
 v___x_6046_ = lean_unsigned_to_nat(0u);
-v___x_6104_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__2));
+v___x_6104_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__2, &l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__2_once, _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_export_spec__7___closed__2);
 v_oldParentStackIdx_x3f_6188_ = lean_array_get(v___x_6045_, v_prefix_6044_, v_oldStackIdx_6035_);
 if (lean_obj_tag(v_oldParentStackIdx_x3f_6188_) == 0)
 {
@@ -21050,7 +23165,7 @@ lean_object* v___x_6159_; lean_object* v___x_6160_; lean_object* v___x_6161_; le
 v___x_6159_ = l_Lean_Firefox_FrameTable_push(v_frameTable_6139_, v___x_6149_);
 lean_inc(v_fst_6117_);
 v___x_6160_ = lean_array_push(v_name_6150_, v_fst_6117_);
-v___x_6161_ = ((lean_object*)(l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__3));
+v___x_6161_ = lean_obj_once(&l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__3, &l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__3_once, _init_l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___closed__3);
 v___x_6162_ = lean_array_push(v_resource_6151_, v___x_6148_);
 v___x_6163_ = lean_array_push(v_fileName_6152_, v___x_6045_);
 v___x_6164_ = lean_array_push(v_lineNumber_6153_, v___x_6045_);
@@ -21585,7 +23700,7 @@ v___x_6330_ = l_WellFounded_opaqueFix_u2083___at___00__private_Lean_Util_Profile
 v___x_6331_ = lean_array_get_borrowed(v___x_6330_, v_weight_6221_, v_a_6209_);
 lean_inc(v___x_6331_);
 v___x_6332_ = lean_array_push(v_weight_6316_, v___x_6331_);
-v___x_6333_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0));
+v___x_6333_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go_spec__0___closed__0);
 v___x_6334_ = lean_unsigned_to_nat(10u);
 v___x_6335_ = lean_unsigned_to_nat(1u);
 v___x_6336_ = l_Float_ofScientific(v___x_6334_, v___x_6218_, v___x_6335_);
@@ -21933,11 +24048,19 @@ lean_dec_ref(v_as_6458_);
 return v_res_6464_;
 }
 }
+static lean_object* _init_l_Lean_Firefox_Profile_collide___closed__0(void){
+_start:
+{
+lean_object* v___x_6465_; 
+v___x_6465_ = lean_mk_string_unchecked("collided", 8, 8);
+return v___x_6465_;
+}
+}
 static lean_object* _init_l_Lean_Firefox_Profile_collide___closed__1(void){
 _start:
 {
 lean_object* v___x_6466_; lean_object* v___x_6467_; 
-v___x_6466_ = ((lean_object*)(l_Lean_Firefox_Profile_collide___closed__0));
+v___x_6466_ = lean_obj_once(&l_Lean_Firefox_Profile_collide___closed__0, &l_Lean_Firefox_Profile_collide___closed__0_once, _init_l_Lean_Firefox_Profile_collide___closed__0);
 v___x_6467_ = l_Lean_Firefox_Thread_new(v___x_6466_);
 return v___x_6467_;
 }
@@ -21970,6 +24093,15 @@ lean_ctor_set(v___x_6474_, 1, v___x_6472_);
 return v___x_6474_;
 }
 }
+static lean_object* _init_l_Lean_Firefox_Profile_collide___closed__4(void){
+_start:
+{
+lean_object* v___x_6475_; lean_object* v___x_6476_; 
+v___x_6475_ = lean_unsigned_to_nat(0u);
+v___x_6476_ = lean_mk_empty_array_with_capacity(v___x_6475_);
+return v___x_6476_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Firefox_Profile_collide(lean_object* v_ps_6477_){
 _start:
 {
@@ -21992,7 +24124,7 @@ v___x_6501_ = lean_obj_once(&l_Lean_Firefox_Profile_collide___closed__3, &l_Lean
 v_sz_6513_ = lean_array_size(v_ps_6477_);
 v___x_6514_ = ((size_t)0ULL);
 v___x_6515_ = l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Firefox_Profile_collide_spec__1(v_sz_6513_, v___x_6514_, v_ps_6477_);
-v___x_6516_ = ((lean_object*)(l_Lean_Firefox_Profile_collide___closed__4));
+v___x_6516_ = lean_obj_once(&l_Lean_Firefox_Profile_collide___closed__4, &l_Lean_Firefox_Profile_collide___closed__4_once, _init_l_Lean_Firefox_Profile_collide___closed__4);
 v___x_6517_ = lean_array_get_size(v___x_6515_);
 v___x_6518_ = lean_nat_dec_lt(v___x_6478_, v___x_6517_);
 if (v___x_6518_ == 0)
@@ -22158,6 +24290,74 @@ if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 l_Lean_Firefox_instInhabitedMilliseconds_default = _init_l_Lean_Firefox_instInhabitedMilliseconds_default();
 l_Lean_Firefox_instInhabitedMilliseconds = _init_l_Lean_Firefox_instInhabitedMilliseconds();
+l_Lean_Firefox_instCoeFloatMilliseconds = _init_l_Lean_Firefox_instCoeFloatMilliseconds();
+lean_mark_persistent(l_Lean_Firefox_instCoeFloatMilliseconds);
+l_Lean_Firefox_instOfScientificMilliseconds = _init_l_Lean_Firefox_instOfScientificMilliseconds();
+lean_mark_persistent(l_Lean_Firefox_instOfScientificMilliseconds);
+l_Lean_Firefox_instToJsonMilliseconds = _init_l_Lean_Firefox_instToJsonMilliseconds();
+lean_mark_persistent(l_Lean_Firefox_instToJsonMilliseconds);
+l_Lean_Firefox_instFromJsonMilliseconds = _init_l_Lean_Firefox_instFromJsonMilliseconds();
+lean_mark_persistent(l_Lean_Firefox_instFromJsonMilliseconds);
+l_Lean_Firefox_instAddMilliseconds = _init_l_Lean_Firefox_instAddMilliseconds();
+lean_mark_persistent(l_Lean_Firefox_instAddMilliseconds);
+l_Lean_Firefox_instCoeFloatMicroseconds = _init_l_Lean_Firefox_instCoeFloatMicroseconds();
+lean_mark_persistent(l_Lean_Firefox_instCoeFloatMicroseconds);
+l_Lean_Firefox_instOfScientificMicroseconds = _init_l_Lean_Firefox_instOfScientificMicroseconds();
+lean_mark_persistent(l_Lean_Firefox_instOfScientificMicroseconds);
+l_Lean_Firefox_instToJsonMicroseconds = _init_l_Lean_Firefox_instToJsonMicroseconds();
+lean_mark_persistent(l_Lean_Firefox_instToJsonMicroseconds);
+l_Lean_Firefox_instFromJsonMicroseconds = _init_l_Lean_Firefox_instFromJsonMicroseconds();
+lean_mark_persistent(l_Lean_Firefox_instFromJsonMicroseconds);
+l_Lean_Firefox_instFromJsonCategory = _init_l_Lean_Firefox_instFromJsonCategory();
+lean_mark_persistent(l_Lean_Firefox_instFromJsonCategory);
+l_Lean_Firefox_instToJsonCategory = _init_l_Lean_Firefox_instToJsonCategory();
+lean_mark_persistent(l_Lean_Firefox_instToJsonCategory);
+l_Lean_Firefox_instFromJsonSampleUnits = _init_l_Lean_Firefox_instFromJsonSampleUnits();
+lean_mark_persistent(l_Lean_Firefox_instFromJsonSampleUnits);
+l_Lean_Firefox_instToJsonSampleUnits = _init_l_Lean_Firefox_instToJsonSampleUnits();
+lean_mark_persistent(l_Lean_Firefox_instToJsonSampleUnits);
+l_Lean_Firefox_instFromJsonProfileMeta = _init_l_Lean_Firefox_instFromJsonProfileMeta();
+lean_mark_persistent(l_Lean_Firefox_instFromJsonProfileMeta);
+l_Lean_Firefox_instToJsonProfileMeta = _init_l_Lean_Firefox_instToJsonProfileMeta();
+lean_mark_persistent(l_Lean_Firefox_instToJsonProfileMeta);
+l_Lean_Firefox_instFromJsonStackTable = _init_l_Lean_Firefox_instFromJsonStackTable();
+lean_mark_persistent(l_Lean_Firefox_instFromJsonStackTable);
+l_Lean_Firefox_instToJsonStackTable = _init_l_Lean_Firefox_instToJsonStackTable();
+lean_mark_persistent(l_Lean_Firefox_instToJsonStackTable);
+l_Lean_Firefox_instFromJsonSamplesTable = _init_l_Lean_Firefox_instFromJsonSamplesTable();
+lean_mark_persistent(l_Lean_Firefox_instFromJsonSamplesTable);
+l_Lean_Firefox_instToJsonSamplesTable = _init_l_Lean_Firefox_instToJsonSamplesTable();
+lean_mark_persistent(l_Lean_Firefox_instToJsonSamplesTable);
+l_Lean_Firefox_instFromJsonFuncTable = _init_l_Lean_Firefox_instFromJsonFuncTable();
+lean_mark_persistent(l_Lean_Firefox_instFromJsonFuncTable);
+l_Lean_Firefox_instToJsonFuncTable = _init_l_Lean_Firefox_instToJsonFuncTable();
+lean_mark_persistent(l_Lean_Firefox_instToJsonFuncTable);
+l_Lean_Firefox_instFromJsonFrameTable = _init_l_Lean_Firefox_instFromJsonFrameTable();
+lean_mark_persistent(l_Lean_Firefox_instFromJsonFrameTable);
+l_Lean_Firefox_instToJsonFrameTable = _init_l_Lean_Firefox_instToJsonFrameTable();
+lean_mark_persistent(l_Lean_Firefox_instToJsonFrameTable);
+l_Lean_Firefox_instInhabitedFrameTable_default = _init_l_Lean_Firefox_instInhabitedFrameTable_default();
+lean_mark_persistent(l_Lean_Firefox_instInhabitedFrameTable_default);
+l_Lean_Firefox_instInhabitedFrameTable = _init_l_Lean_Firefox_instInhabitedFrameTable();
+lean_mark_persistent(l_Lean_Firefox_instInhabitedFrameTable);
+l_Lean_Firefox_instFromJsonRawMarkerTable = _init_l_Lean_Firefox_instFromJsonRawMarkerTable();
+lean_mark_persistent(l_Lean_Firefox_instFromJsonRawMarkerTable);
+l_Lean_Firefox_instToJsonRawMarkerTable = _init_l_Lean_Firefox_instToJsonRawMarkerTable();
+lean_mark_persistent(l_Lean_Firefox_instToJsonRawMarkerTable);
+l_Lean_Firefox_instFromJsonResourceTable = _init_l_Lean_Firefox_instFromJsonResourceTable();
+lean_mark_persistent(l_Lean_Firefox_instFromJsonResourceTable);
+l_Lean_Firefox_instToJsonResourceTable = _init_l_Lean_Firefox_instToJsonResourceTable();
+lean_mark_persistent(l_Lean_Firefox_instToJsonResourceTable);
+l_Lean_Firefox_instFromJsonThread = _init_l_Lean_Firefox_instFromJsonThread();
+lean_mark_persistent(l_Lean_Firefox_instFromJsonThread);
+l_Lean_Firefox_instToJsonThread = _init_l_Lean_Firefox_instToJsonThread();
+lean_mark_persistent(l_Lean_Firefox_instToJsonThread);
+l_Lean_Firefox_instFromJsonProfile = _init_l_Lean_Firefox_instFromJsonProfile();
+lean_mark_persistent(l_Lean_Firefox_instFromJsonProfile);
+l_Lean_Firefox_instToJsonProfile = _init_l_Lean_Firefox_instToJsonProfile();
+lean_mark_persistent(l_Lean_Firefox_instToJsonProfile);
+l_Lean_Firefox_categories = _init_l_Lean_Firefox_categories();
+lean_mark_persistent(l_Lean_Firefox_categories);
 l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___boxed__const__1 = _init_l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___boxed__const__1();
 lean_mark_persistent(l___private_Lean_Util_Profiler_0__Lean_Firefox_addTrace_go___boxed__const__1);
 l___private_Init_Data_Array_QSort_Basic_0__Array_qsort_sort___at___00Lean_Firefox_Profile_export_spec__6___redArg___closed__0___boxed__const__1 = _init_l___private_Init_Data_Array_QSort_Basic_0__Array_qsort_sort___at___00Lean_Firefox_Profile_export_spec__6___redArg___closed__0___boxed__const__1();

@@ -37,10 +37,10 @@ LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastSh
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastShiftConcat___redArg___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastShiftConcat(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastShiftConcat___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 8, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__0 = (const lean_object*)&l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__0_value;
-static const lean_ctor_object l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 8, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),LEAN_SCALAR_PTR_LITERAL(1, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__1 = (const lean_object*)&l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__1_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__0;
+static lean_once_cell_t l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__1;
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -153,6 +153,30 @@ lean_dec_ref(v_inst_38_);
 return v_res_43_;
 }
 }
+static lean_object* _init_l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__0(void){
+_start:
+{
+uint8_t v___x_44_; lean_object* v___x_45_; lean_object* v_falseRef_46_; 
+v___x_44_ = 0;
+v___x_45_ = lean_unsigned_to_nat(0u);
+v_falseRef_46_ = lean_alloc_ctor(0, 1, 1);
+lean_ctor_set(v_falseRef_46_, 0, v___x_45_);
+lean_ctor_set_uint8(v_falseRef_46_, sizeof(void*)*1, v___x_44_);
+return v_falseRef_46_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__1(void){
+_start:
+{
+uint8_t v___x_47_; lean_object* v___x_48_; lean_object* v_trueRef_49_; 
+v___x_47_ = 1;
+v___x_48_ = lean_unsigned_to_nat(0u);
+v_trueRef_49_ = lean_alloc_ctor(0, 1, 1);
+lean_ctor_set(v_trueRef_49_, 0, v___x_48_);
+lean_ctor_set_uint8(v_trueRef_49_, sizeof(void*)*1, v___x_47_);
+return v_trueRef_49_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg(lean_object* v_inst_50_, lean_object* v_inst_51_, lean_object* v_w_52_, lean_object* v_aig_53_, lean_object* v_n_54_, lean_object* v_d_55_, lean_object* v_wn_56_, lean_object* v_wr_57_, lean_object* v_q_58_, lean_object* v_r_59_){
 _start:
 {
@@ -165,7 +189,7 @@ v___x_123_ = lean_nat_dec_lt(v_wn_61_, v_w_52_);
 if (v___x_123_ == 0)
 {
 lean_object* v_falseRef_124_; 
-v_falseRef_124_ = ((lean_object*)(l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__0));
+v_falseRef_124_ = lean_obj_once(&l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__0, &l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__0_once, _init_l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__0);
 v___y_65_ = v_falseRef_124_;
 goto v___jp_64_;
 }
@@ -225,7 +249,7 @@ goto v_resetjp_70_;
 v_resetjp_70_:
 {
 lean_object* v_falseRef_73_; lean_object* v___x_75_; 
-v_falseRef_73_ = ((lean_object*)(l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__0));
+v_falseRef_73_ = lean_obj_once(&l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__0, &l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__0_once, _init_l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__0);
 lean_inc_ref(v_q_58_);
 if (v_isShared_72_ == 0)
 {
@@ -268,7 +292,7 @@ goto v_resetjp_79_;
 v_resetjp_79_:
 {
 lean_object* v_trueRef_82_; lean_object* v___x_84_; 
-v_trueRef_82_ = ((lean_object*)(l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__1));
+v_trueRef_82_ = lean_obj_once(&l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__1, &l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__1_once, _init_l_Std_Tactic_BVDecide_BVExpr_bitblast_blastUdiv_blastDivSubtractShift___redArg___closed__1);
 if (v_isShared_81_ == 0)
 {
 lean_ctor_set(v___x_80_, 1, v_trueRef_82_);

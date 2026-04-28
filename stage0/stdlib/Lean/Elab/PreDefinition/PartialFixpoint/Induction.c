@@ -176,54 +176,46 @@ uint8_t lean_string_memcmp(lean_object*, lean_object*, lean_object*, lean_object
 lean_object* l_Lean_registerTraceClass(lean_object*, uint8_t, lean_object*);
 lean_object* l_Lean_registerReservedNamePredicate(lean_object*);
 lean_object* l_Lean_registerReservedNameAction(lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Lean"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "Order"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "admissible_and"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__2 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__2_value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__3_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__3_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__3_value_aux_0),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_value),LEAN_SCALAR_PTR_LITERAL(47, 93, 74, 241, 117, 210, 202, 6)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__3_value_aux_1),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__2_value),LEAN_SCALAR_PTR_LITERAL(254, 171, 253, 255, 31, 197, 49, 36)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__3 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__3_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__2;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__3;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_panic___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj_spec__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_instInhabitedMetaM___lam__0___boxed, .m_arity = 5, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_panic___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj_spec__1___closed__0 = (const lean_object*)&l_panic___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj_spec__1___closed__0_value;
+static lean_once_cell_t l_panic___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj_spec__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_panic___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj_spec__1___closed__0;
 LEAN_EXPORT lean_object* l_panic___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj_spec__1(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_panic___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj_spec__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_addMessageContextFull___at___00Lean_throwError___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj_spec__0_spec__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_addMessageContextFull___at___00Lean_throwError___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj_spec__0_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj_spec__0___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "instCCPOPProd"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__0_value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__1_value_aux_0),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_value),LEAN_SCALAR_PTR_LITERAL(47, 93, 74, 241, 117, 210, 202, 6)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__1_value_aux_1),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__0_value),LEAN_SCALAR_PTR_LITERAL(193, 223, 146, 139, 208, 109, 106, 240)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__1 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__1_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 32, .m_capacity = 32, .m_length = 31, .m_data = "mkAdmProj: unexpected instance "};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__2 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__2_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__0;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__1;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__2;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__3;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 21, .m_capacity = 21, .m_length = 20, .m_data = "admissible_pprod_snd"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__4 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__4_value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__5_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__5_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__5_value_aux_0),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_value),LEAN_SCALAR_PTR_LITERAL(47, 93, 74, 241, 117, 210, 202, 6)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__5_value_aux_1),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__4_value),LEAN_SCALAR_PTR_LITERAL(151, 90, 190, 201, 15, 167, 240, 87)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__5 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__5_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 21, .m_capacity = 21, .m_length = 20, .m_data = "admissible_pprod_fst"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__6 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__6_value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__7_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__7_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__7_value_aux_0),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_value),LEAN_SCALAR_PTR_LITERAL(47, 93, 74, 241, 117, 210, 202, 6)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__7_value_aux_1),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__6_value),LEAN_SCALAR_PTR_LITERAL(236, 12, 82, 69, 179, 4, 227, 50)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__7 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__7_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 50, .m_capacity = 50, .m_length = 49, .m_data = "Lean.Elab.PreDefinition.PartialFixpoint.Induction"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__8 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__8_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 97, .m_capacity = 97, .m_length = 96, .m_data = "_private.Lean.Elab.PreDefinition.PartialFixpoint.Induction.0.Lean.Elab.PartialFixpoint.mkAdmProj"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__9 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__9_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 33, .m_capacity = 33, .m_length = 32, .m_data = "assertion violation: i == 0\n    "};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__10 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__10_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__4;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__5;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__6;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__7;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__8;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__9;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__10;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__11;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -240,53 +232,53 @@ LEAN_EXPORT lean_object* l_Lean_Meta_forallTelescopeReducing___at___00__private_
 LEAN_EXPORT lean_object* l_Lean_Meta_forallTelescopeReducing___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_forallTelescopeReducing___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel_spec__0(lean_object*, lean_object*, lean_object*, uint8_t, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_forallTelescopeReducing___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 57, .m_capacity = 57, .m_length = 56, .m_data = "Cannot apply lattice induction to a non-lattice fixpoint"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___lam__0___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___lam__0___closed__0_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___lam__0___closed__0;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___lam__0___closed__1;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___lam__0(lean_object*, lean_object*, uint8_t, uint8_t, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "failed"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___closed__0_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___closed__0;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___closed__1;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel(lean_object*, lean_object*, lean_object*, uint8_t, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 static lean_once_cell_t l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static double l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__0;
-static const lean_string_object l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 1, .m_capacity = 1, .m_length = 0, .m_data = ""};
-static const lean_object* l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__1 = (const lean_object*)&l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__1_value;
-static const lean_array_object l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__2 = (const lean_object*)&l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__2_value;
+static lean_once_cell_t l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__1;
+static lean_once_cell_t l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__2;
 LEAN_EXPORT lean_object* l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_List_mapTR_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__3(lean_object*, lean_object*);
 static lean_once_cell_t l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__0;
-static const lean_closure_object l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Core_instMonadCoreM___lam__0___boxed, .m_arity = 5, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1 = (const lean_object*)&l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1_value;
-static const lean_closure_object l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Core_instMonadCoreM___lam__1___boxed, .m_arity = 7, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2 = (const lean_object*)&l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2_value;
-static const lean_closure_object l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_instMonadMetaM___lam__0___boxed, .m_arity = 7, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3 = (const lean_object*)&l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3_value;
-static const lean_closure_object l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_instMonadMetaM___lam__1___boxed, .m_arity = 9, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4 = (const lean_object*)&l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4_value;
+static lean_once_cell_t l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1;
+static lean_once_cell_t l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2;
+static lean_once_cell_t l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3;
+static lean_once_cell_t l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4;
 LEAN_EXPORT lean_object* l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "`"};
-static const lean_object* l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__0 = (const lean_object*)&l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__0_value;
+static lean_once_cell_t l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__0;
 static lean_once_cell_t l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__1;
-static const lean_string_object l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 22, .m_capacity = 22, .m_length = 21, .m_data = "` is not a definition"};
-static const lean_object* l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__2 = (const lean_object*)&l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__2_value;
+static lean_once_cell_t l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__2;
 static lean_once_cell_t l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__3;
-static const lean_string_object l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "Lean.MonadEnv"};
-static const lean_object* l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__4 = (const lean_object*)&l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__4_value;
-static const lean_string_object l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "Lean.isDefn\?"};
-static const lean_object* l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__5 = (const lean_object*)&l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__5_value;
-static const lean_string_object l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 34, .m_capacity = 34, .m_length = 33, .m_data = "unreachable code has been reached"};
-static const lean_object* l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__6 = (const lean_object*)&l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__6_value;
+static lean_once_cell_t l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__4;
+static lean_once_cell_t l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__5;
+static lean_once_cell_t l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__6;
 static lean_once_cell_t l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__7;
 LEAN_EXPORT lean_object* l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -295,40 +287,34 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_m
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__2___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__2___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 40, .m_capacity = 40, .m_length = 39, .m_data = " is not an application of partial order"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__0_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__0;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__1;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "PartialOrder"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__2 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__2_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "rel"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__3 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__3_value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__4_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__4_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__4_value_aux_0),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_value),LEAN_SCALAR_PTR_LITERAL(47, 93, 74, 241, 117, 210, 202, 6)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__4_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__4_value_aux_1),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__2_value),LEAN_SCALAR_PTR_LITERAL(179, 3, 218, 237, 219, 72, 94, 177)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__4_value_aux_2),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__3_value),LEAN_SCALAR_PTR_LITERAL(41, 174, 7, 105, 99, 77, 97, 125)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__4 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__4_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Elab"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "definition"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__6 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__6_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "partialFixpoint"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__7 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__7_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "induction"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8_value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5_value),LEAN_SCALAR_PTR_LITERAL(13, 84, 199, 228, 250, 36, 60, 178)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9_value_aux_0),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__6_value),LEAN_SCALAR_PTR_LITERAL(127, 238, 145, 63, 173, 125, 183, 95)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9_value_aux_1),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__7_value),LEAN_SCALAR_PTR_LITERAL(21, 214, 78, 192, 157, 92, 193, 45)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9_value_aux_2),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8_value),LEAN_SCALAR_PTR_LITERAL(152, 173, 218, 79, 164, 88, 9, 3)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "trace"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__10 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__10_value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__10_value),LEAN_SCALAR_PTR_LITERAL(212, 145, 141, 177, 67, 149, 127, 197)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__2;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__3;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__4;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__6;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__7;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__10;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__12;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "predTypes: "};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__13 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__13_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__13;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__14;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual(lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -337,16 +323,16 @@ LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_Pre
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__2___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_maskArray_spec__0___redArg(lean_object*, size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_maskArray_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_array_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_maskArray___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_maskArray___redArg___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_maskArray___redArg___closed__0_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_maskArray___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_maskArray___redArg___closed__0;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_maskArray___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_maskArray___redArg___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_maskArray(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_maskArray___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_maskArray_spec__0(lean_object*, lean_object*, size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_maskArray_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_numberNames___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "_"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_numberNames___lam__0___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_numberNames___lam__0___closed__0_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_numberNames___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_numberNames___lam__0___closed__0;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_numberNames___lam__0(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_numberNames___lam__0___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_numberNames(lean_object*, lean_object*);
@@ -354,32 +340,32 @@ LEAN_EXPORT lean_object* l_Array_findIdx_x3f_loop___at___00Array_idxOf___at___00
 LEAN_EXPORT lean_object* l_Array_findIdx_x3f_loop___at___00Array_idxOf___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix_spec__0_spec__0___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_idxOf___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix_spec__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_idxOf___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix_spec__0___boxed(lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "mutual_induct"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0_value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0_value),LEAN_SCALAR_PTR_LITERAL(37, 83, 25, 196, 5, 111, 46, 167)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__1 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__1_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 30, .m_capacity = 30, .m_length = 29, .m_data = "Cannot get fixpoint type for "};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__2 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__2_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__1;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__2;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__3;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "fixpoint_induct"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__4 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__4_value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__4_value),LEAN_SCALAR_PTR_LITERAL(240, 250, 85, 43, 175, 125, 191, 192)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__5 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__5_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 23, .m_capacity = 23, .m_length = 22, .m_data = "mutual_fixpoint_induct"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6_value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6_value),LEAN_SCALAR_PTR_LITERAL(138, 14, 184, 65, 6, 159, 28, 191)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__7 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__7_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "coinduct"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__8 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__8_value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__8_value),LEAN_SCALAR_PTR_LITERAL(65, 240, 113, 153, 84, 237, 79, 21)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__9 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__9_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "induct"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__10 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__10_value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__10_value),LEAN_SCALAR_PTR_LITERAL(157, 227, 157, 243, 169, 45, 185, 145)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__11 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__11_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 82, .m_capacity = 82, .m_length = 81, .m_data = " is not defined by partial_fixpoint, inductive_fixpoint, nor coinductive_fixpoint"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__12 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__12_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__4;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__5;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__7;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__8;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__9;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__10;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__11;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__12;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__13;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix(lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -406,12 +392,12 @@ LEAN_EXPORT lean_object* l_Lean_mkThmOrUnsafeDef___at___00__private_Lean_Elab_Pr
 LEAN_EXPORT lean_object* l_Lean_mkThmOrUnsafeDef___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__27___redArg___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_mkThmOrUnsafeDef___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__27(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_mkThmOrUnsafeDef___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__27___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 26, .m_capacity = 26, .m_length = 25, .m_data = "Unexpected function type "};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__0_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__0;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__1;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 41, .m_capacity = 41, .m_length = 40, .m_data = ", not an application of PartialOrder.rel"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__2 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__2_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__2;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__3;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -420,8 +406,8 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_m
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__3___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__1(lean_object*, lean_object*, uint8_t, size_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__2___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 47, .m_capacity = 47, .m_length = 46, .m_data = "Complete body of fixpoint induction principle:"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__2___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__2___closed__0_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__2___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__2___closed__0;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__2___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__2___closed__1;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__2(lean_object*, lean_object*, lean_object*, uint8_t, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -440,8 +426,8 @@ LEAN_EXPORT lean_object* l___private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls
 LEAN_EXPORT lean_object* l_Lean_Meta_withLocalDecl___at___00Lean_Meta_withLocalDeclD___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__18_spec__23___at___00__private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls_loop___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16_spec__36_spec__44___lam__0(lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_withLocalDecl___at___00Lean_Meta_withLocalDeclD___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__18_spec__23___at___00__private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls_loop___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16_spec__36_spec__44___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls_loop___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16_spec__36___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_array_object l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___closed__0 = (const lean_object*)&l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___closed__0;
 LEAN_EXPORT lean_object* l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16(lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__15(size_t, size_t, lean_object*);
@@ -452,8 +438,8 @@ LEAN_EXPORT lean_object* l_Lean_Meta_withLocalDeclsDND___at___00__private_Lean_E
 LEAN_EXPORT lean_object* l_Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__6(lean_object*, size_t, size_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__6___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__3___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "hyp"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__3___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__3___closed__0_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__3___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__3___closed__0;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__3(lean_object*, lean_object*, size_t, lean_object*, uint8_t, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__3___boxed(lean_object**);
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__12___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -472,10 +458,10 @@ LEAN_EXPORT lean_object* l_Lean_Meta_withLocalDecl___at___00Lean_Meta_withLocalD
 LEAN_EXPORT lean_object* l_Lean_Meta_withLocalDecl___at___00Lean_Meta_withLocalDeclD___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__18_spec__23___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_withLocalDeclD___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__18___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_withLocalDeclD___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__18___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "ih"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__0_value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__0_value),LEAN_SCALAR_PTR_LITERAL(179, 60, 57, 160, 49, 55, 75, 124)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__1 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__1_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__0;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__1;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, uint8_t, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwErrorAt___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__41___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -492,32 +478,32 @@ static lean_once_cell_t l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUn
 static lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__4;
 static lean_once_cell_t l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__5;
-static const lean_string_object l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 24, .m_capacity = 24, .m_length = 23, .m_data = "A private declaration `"};
-static const lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__6 = (const lean_object*)&l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__6_value;
+static lean_once_cell_t l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__6;
 static lean_once_cell_t l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__7;
-static const lean_string_object l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 79, .m_capacity = 79, .m_length = 78, .m_data = "` (from the current module) exists but would need to be public to access here."};
-static const lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__8 = (const lean_object*)&l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__8_value;
+static lean_once_cell_t l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__8;
 static lean_once_cell_t l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__9;
-static const lean_string_object l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 23, .m_capacity = 23, .m_length = 22, .m_data = "A public declaration `"};
-static const lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__10 = (const lean_object*)&l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__10_value;
+static lean_once_cell_t l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__10;
 static lean_once_cell_t l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__11;
-static const lean_string_object l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 68, .m_capacity = 68, .m_length = 67, .m_data = "` exists but is imported privately; consider adding `public import "};
-static const lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__12 = (const lean_object*)&l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__12_value;
+static lean_once_cell_t l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__12;
 static lean_once_cell_t l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__13;
-static const lean_string_object l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "`."};
-static const lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__14 = (const lean_object*)&l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__14_value;
+static lean_once_cell_t l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__14;
 static lean_once_cell_t l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__15;
-static const lean_string_object l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "` (from `"};
-static const lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__16 = (const lean_object*)&l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__16_value;
+static lean_once_cell_t l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__16;
 static lean_once_cell_t l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__17;
-static const lean_string_object l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__18_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 54, .m_capacity = 54, .m_length = 53, .m_data = "`) exists but would need to be public to access here."};
-static const lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__18 = (const lean_object*)&l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__18_value;
+static lean_once_cell_t l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__18;
 static lean_once_cell_t l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__19;
 LEAN_EXPORT lean_object* l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg(lean_object*, lean_object*, lean_object*);
@@ -526,8 +512,8 @@ LEAN_EXPORT lean_object* l_Lean_mkUnknownIdentifierMessage___at___00Lean_throwUn
 LEAN_EXPORT lean_object* l_Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 19, .m_capacity = 19, .m_length = 18, .m_data = "Unknown constant `"};
-static const lean_object* l_Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30___redArg___closed__0 = (const lean_object*)&l_Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30___redArg___closed__0_value;
+static lean_once_cell_t l_Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30___redArg___closed__0;
 static lean_once_cell_t l_Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30___redArg___closed__1;
 LEAN_EXPORT lean_object* l_Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -545,28 +531,28 @@ static lean_once_cell_t l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreD
 static lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__22___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__22___redArg(lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__22___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "approx"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__0_value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__0_value),LEAN_SCALAR_PTR_LITERAL(25, 7, 73, 97, 68, 25, 104, 39)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__1 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__1_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "fix_induct"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__2 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__2_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 19, .m_capacity = 19, .m_length = 18, .m_data = "packedConclusion: "};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__3 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__3_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__0;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__1;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__2;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__3;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__4;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = ", index is: "};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__5 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__5_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__5;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__6;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, uint8_t, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___boxed(lean_object**);
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__19___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__19___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "f"};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__0 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__0_value;
-static const lean_ctor_object l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__0_value),LEAN_SCALAR_PTR_LITERAL(29, 68, 183, 24, 128, 148, 178, 23)}};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__1 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__1_value;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__0;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__1;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13(size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__15___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -593,28 +579,25 @@ LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_Pre
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg___lam__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 static lean_once_cell_t l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg___closed__0;
-static const lean_ctor_object l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg___boxed__const__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*0 + sizeof(size_t)*1, .m_other = 0, .m_tag = 0}, .m_objs = {(lean_object*)(size_t)(0ULL)}};
-LEAN_EXPORT const lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg___boxed__const__1 = (const lean_object*)&l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg___boxed__const__1_value;
+LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg___boxed__const__1;
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg(lean_object*, lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__8___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "h"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__8___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__8___closed__0_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__8___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__8___closed__0;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__8(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__8___boxed(lean_object**);
-static const lean_string_object l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "admissible"};
-static const lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__0 = (const lean_object*)&l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__0_value;
-static const lean_ctor_object l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__1_value_aux_0),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_value),LEAN_SCALAR_PTR_LITERAL(47, 93, 74, 241, 117, 210, 202, 6)}};
-static const lean_ctor_object l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__1_value_aux_1),((lean_object*)&l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__0_value),LEAN_SCALAR_PTR_LITERAL(254, 149, 233, 132, 37, 111, 67, 182)}};
-static const lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__1 = (const lean_object*)&l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__1_value;
+static lean_once_cell_t l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__0;
+static lean_once_cell_t l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__1;
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "x"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__0_value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__0_value),LEAN_SCALAR_PTR_LITERAL(243, 101, 181, 186, 114, 114, 131, 189)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__1 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__1_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "adm"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__2 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__2_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__0;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__1;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__2;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9(lean_object*, lean_object*, lean_object*, uint8_t, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___boxed(lean_object**);
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__10___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -627,48 +610,42 @@ static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_ma
 static lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__11___redArg___closed__0;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__11___redArg(size_t, size_t, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__11___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 26, .m_capacity = 26, .m_length = 25, .m_data = "Unexpected function body "};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__0_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__0;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__1;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 37, .m_capacity = 37, .m_length = 36, .m_data = ", not an application of lfp_monotone"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__2 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__2_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__2;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__3;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 28, .m_capacity = 28, .m_length = 27, .m_data = ", not an application of fix"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__4 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__4_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__4;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__5;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "lfp_monotone"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__6 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__6_value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__7_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__7_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__7_value_aux_0),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_value),LEAN_SCALAR_PTR_LITERAL(47, 93, 74, 241, 117, 210, 202, 6)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__7_value_aux_1),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__6_value),LEAN_SCALAR_PTR_LITERAL(226, 115, 213, 20, 156, 86, 56, 31)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__7 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__7_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 22, .m_capacity = 22, .m_length = 21, .m_data = "lfp_le_of_le_monotone"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__8 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__8_value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__9_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__9_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__9_value_aux_0),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_value),LEAN_SCALAR_PTR_LITERAL(47, 93, 74, 241, 117, 210, 202, 6)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__9_value_aux_1),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__8_value),LEAN_SCALAR_PTR_LITERAL(79, 119, 83, 117, 75, 189, 70, 86)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__9 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__9_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__6;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__7;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__8;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__9;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__10;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "pred"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__11 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__11_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 35, .m_capacity = 35, .m_length = 34, .m_data = ", could not whnfUntil lfp_monotone"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__12 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__12_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__11;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__12;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__13;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "fix"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__14 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__14_value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__15_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__15_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__15_value_aux_0),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_value),LEAN_SCALAR_PTR_LITERAL(47, 93, 74, 241, 117, 210, 202, 6)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__15_value_aux_1),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__14_value),LEAN_SCALAR_PTR_LITERAL(18, 104, 23, 57, 110, 104, 99, 16)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__15 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__15_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "motive"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__16 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__16_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__17_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 26, .m_capacity = 26, .m_length = 25, .m_data = ", could not whnfUntil fix"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__17 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__17_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__14;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__15;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__16;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__17;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__18;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, size_t, lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -683,37 +660,35 @@ static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Indu
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__0;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__1;
-static const lean_array_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__2 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__2_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__2;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__3;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "eTyp last: "};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__4 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__4_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__4;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__5;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 36, .m_capacity = 36, .m_length = 35, .m_data = " is not defined by partial_fixpoint"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__6 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__6_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__6;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__7;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__12(lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 70, .m_capacity = 70, .m_length = 69, .m_data = "Cannot derive fixpoint induction principle (please report this issue)"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__0_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__0;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__1;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__2;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 28, .m_capacity = 28, .m_length = 27, .m_data = "Called deriveInduction for "};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__3 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__3_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__3;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__4;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___closed__0_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5_value),LEAN_SCALAR_PTR_LITERAL(13, 84, 199, 228, 250, 36, 60, 178)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___closed__0_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___closed__0_value_aux_0),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__6_value),LEAN_SCALAR_PTR_LITERAL(127, 238, 145, 63, 173, 125, 183, 95)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___closed__0_value_aux_1),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__7_value),LEAN_SCALAR_PTR_LITERAL(21, 214, 78, 192, 157, 92, 193, 45)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___closed__0_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___closed__0;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction(lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__2(uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -764,8 +739,8 @@ static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Indu
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__2_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__2_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_;
-static const lean_array_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2__value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__4_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__4_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__5_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
@@ -780,53 +755,47 @@ static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Indu
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__9_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2____boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isInductName___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2__value;
-static const lean_closure_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2____boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2__value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_();
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2____boxed(lean_object*);
 LEAN_EXPORT lean_object* l_panic___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__1(lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 104, .m_capacity = 104, .m_length = 103, .m_data = "_private.Lean.Elab.PreDefinition.PartialFixpoint.Induction.0.Lean.Elab.PartialFixpoint.isOptionFixpoint"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__0_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 36, .m_capacity = 36, .m_length = 35, .m_data = "isOptionFixpoint: unexpected value "};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__1 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__1_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__0;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__1;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___boxed(lean_object*, lean_object*);
-static const lean_string_object l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "instCCPOPi"};
-static const lean_object* l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__0 = (const lean_object*)&l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__0_value;
-static const lean_ctor_object l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__1_value_aux_0),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_value),LEAN_SCALAR_PTR_LITERAL(47, 93, 74, 241, 117, 210, 202, 6)}};
-static const lean_ctor_object l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__1_value_aux_1),((lean_object*)&l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__0_value),LEAN_SCALAR_PTR_LITERAL(202, 4, 22, 67, 25, 201, 243, 223)}};
-static const lean_object* l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__1 = (const lean_object*)&l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__1_value;
+static lean_once_cell_t l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__0;
+static lean_once_cell_t l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__1;
 LEAN_EXPORT lean_object* l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0(lean_object*);
-static const lean_string_object l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "instCCPOOption"};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__0 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__0_value;
-static const lean_ctor_object l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__1_value_aux_0),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_value),LEAN_SCALAR_PTR_LITERAL(47, 93, 74, 241, 117, 210, 202, 6)}};
-static const lean_ctor_object l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__1_value_aux_1),((lean_object*)&l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__0_value),LEAN_SCALAR_PTR_LITERAL(116, 85, 181, 162, 5, 15, 174, 164)}};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__1 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__1_value;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__0;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__1;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3(lean_object*, size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__2(lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 42, .m_capacity = 42, .m_length = 41, .m_data = "assertion violation: defnInfo.hasValue\n  "};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___closed__0_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___closed__0;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___closed__1;
 LEAN_EXPORT uint8_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___boxed(lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 20, .m_capacity = 20, .m_length = 19, .m_data = "partial_correctness"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__0_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 27, .m_capacity = 27, .m_length = 26, .m_data = "mutual_partial_correctness"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__1 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__1_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__0;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__1;
 LEAN_EXPORT uint8_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___boxed(lean_object*, lean_object*);
-static const lean_string_object l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 20, .m_capacity = 20, .m_length = 19, .m_data = "admissible_pi_apply"};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__0 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__0_value;
-static const lean_ctor_object l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__1_value_aux_0),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_value),LEAN_SCALAR_PTR_LITERAL(47, 93, 74, 241, 117, 210, 202, 6)}};
-static const lean_ctor_object l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__1_value_aux_1),((lean_object*)&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__0_value),LEAN_SCALAR_PTR_LITERAL(202, 111, 91, 234, 63, 187, 221, 152)}};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__1 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__1_value;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__0;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__1;
 static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__2;
 static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -837,30 +806,24 @@ static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsa
 static lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__5;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0(lean_object*, size_t, size_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Option"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__0_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 19, .m_capacity = 19, .m_length = 18, .m_data = "admissible_eq_some"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__1 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__1_value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__2_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__2_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__2_value_aux_0),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_value),LEAN_SCALAR_PTR_LITERAL(47, 93, 74, 241, 117, 210, 202, 6)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__2_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__2_value_aux_1),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__0_value),LEAN_SCALAR_PTR_LITERAL(131, 157, 117, 0, 224, 216, 87, 167)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__2_value_aux_2),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__1_value),LEAN_SCALAR_PTR_LITERAL(186, 120, 80, 76, 248, 129, 76, 205)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__2 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__2_value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "admissible_pi"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__3 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__3_value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__4_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__4_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__4_value_aux_0),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_value),LEAN_SCALAR_PTR_LITERAL(47, 93, 74, 241, 117, 210, 202, 6)}};
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__4_value_aux_1),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__3_value),LEAN_SCALAR_PTR_LITERAL(81, 191, 147, 155, 106, 82, 73, 23)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__4 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__4_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__0;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__1;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__2;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__3;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__4;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "some"};
-static const lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__0 = (const lean_object*)&l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__0_value;
-static const lean_ctor_object l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__0_value),LEAN_SCALAR_PTR_LITERAL(95, 234, 177, 188, 3, 226, 91, 252)}};
-static const lean_ctor_object l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__1_value_aux_0),((lean_object*)&l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__0_value),LEAN_SCALAR_PTR_LITERAL(89, 148, 40, 55, 221, 242, 231, 67)}};
-static const lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__1 = (const lean_object*)&l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__1_value;
+static lean_once_cell_t l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__0;
+static lean_once_cell_t l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__1;
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0(lean_object*, lean_object*, lean_object*, uint8_t, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__1(lean_object*, lean_object*, uint8_t, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -875,32 +838,32 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_m
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__2___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__0(lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 24, .m_capacity = 24, .m_length = 23, .m_data = "Expected `Option`, got:"};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__0 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__0_value;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__0;
 static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__1;
-static const lean_ctor_object l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__0_value),LEAN_SCALAR_PTR_LITERAL(95, 234, 177, 188, 3, 226, 91, 252)}};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__2 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__2_value;
-static const lean_string_object l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "r"};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__3 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__3_value;
-static const lean_ctor_object l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(201, 206, 29, 183, 206, 15, 98, 41)}};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__4 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__4_value;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__2;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__3;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__4;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1(lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3(size_t, size_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "motive_"};
-static const lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___closed__0 = (const lean_object*)&l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___closed__0_value;
-static const lean_ctor_object l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__16_value),LEAN_SCALAR_PTR_LITERAL(129, 10, 150, 230, 97, 79, 179, 234)}};
-static const lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___closed__1 = (const lean_object*)&l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___closed__1_value;
+static lean_once_cell_t l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___closed__0;
+static lean_once_cell_t l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___closed__1;
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls_loop___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16_spec__36___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__5_spec__5_spec__6___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 48, .m_capacity = 48, .m_length = 47, .m_data = "complete body of partial correctness principle:"};
-static const lean_object* l___private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls_loop___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16_spec__36___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__5_spec__5_spec__6___closed__0 = (const lean_object*)&l___private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls_loop___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16_spec__36___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__5_spec__5_spec__6___closed__0_value;
+static lean_once_cell_t l___private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls_loop___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16_spec__36___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__5_spec__5_spec__6___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls_loop___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16_spec__36___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__5_spec__5_spec__6___closed__0;
 static lean_once_cell_t l___private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls_loop___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16_spec__36___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__5_spec__5_spec__6___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls_loop___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16_spec__36___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__5_spec__5_spec__6___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Meta_withLocalDecl___at___00Lean_Meta_withLocalDeclD___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__18_spec__23___at___00__private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls_loop___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16_spec__36_spec__44___at___00__private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls_loop___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16_spec__36___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__5_spec__5_spec__6_spec__7___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -917,91 +880,126 @@ LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Ind
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___lam__1(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___lam__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___lam__3___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 69, .m_capacity = 69, .m_length = 68, .m_data = "Cannot derive partial correctness theorem (please report this issue)"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___lam__3___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___lam__3___closed__0_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___lam__3___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___lam__3___closed__0;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___lam__3___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___lam__3___closed__1;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___lam__3___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___lam__3___closed__2;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___lam__3(lean_object*, lean_object*, uint8_t, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___lam__3___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__0_value),LEAN_SCALAR_PTR_LITERAL(52, 124, 39, 217, 198, 168, 162, 152)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___closed__0 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___closed__0_value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__1_value),LEAN_SCALAR_PTR_LITERAL(214, 187, 211, 101, 43, 192, 199, 162)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___closed__1 = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___closed__1_value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___closed__0;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___closed__1;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness(lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "mutual"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2__value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_;
 static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2____boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2__value;
-static const lean_closure_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2____boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2__value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_();
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2____boxed(lean_object*);
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "_private"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),LEAN_SCALAR_PTR_LITERAL(103, 214, 75, 80, 34, 198, 193, 153)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__2_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_value),LEAN_SCALAR_PTR_LITERAL(90, 18, 126, 130, 18, 214, 172, 143)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__2_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__2_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__2_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5_value),LEAN_SCALAR_PTR_LITERAL(216, 59, 67, 7, 118, 215, 141, 75)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__4_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "PreDefinition"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__4_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__4_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__5_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__4_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),LEAN_SCALAR_PTR_LITERAL(7, 172, 242, 185, 134, 214, 81, 182)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__5_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__5_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__6_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "PartialFixpoint"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__6_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__6_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__7_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__5_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__6_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),LEAN_SCALAR_PTR_LITERAL(2, 13, 156, 207, 122, 14, 28, 133)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__7_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__7_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__8_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "Induction"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__8_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__8_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__9_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__7_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__8_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),LEAN_SCALAR_PTR_LITERAL(29, 211, 207, 56, 17, 170, 237, 149)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__9_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__9_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__10_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 2}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__9_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),((lean_object*)(((size_t)(0) << 1) | 1)),LEAN_SCALAR_PTR_LITERAL(40, 217, 229, 84, 174, 135, 41, 169)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__10_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__10_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__11_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "initFn"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__11_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__11_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__12_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__10_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__11_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),LEAN_SCALAR_PTR_LITERAL(197, 177, 28, 163, 210, 193, 32, 179)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__12_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__12_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__13_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "_@"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__13_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__13_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__14_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__12_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__13_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),LEAN_SCALAR_PTR_LITERAL(184, 109, 93, 1, 159, 203, 191, 18)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__14_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__14_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__15_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__14_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_value),LEAN_SCALAR_PTR_LITERAL(177, 202, 43, 139, 34, 66, 119, 182)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__15_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__15_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__16_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__15_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5_value),LEAN_SCALAR_PTR_LITERAL(143, 22, 129, 226, 29, 213, 56, 226)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__16_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__16_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__17_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__16_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__4_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),LEAN_SCALAR_PTR_LITERAL(44, 133, 157, 112, 180, 125, 148, 129)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__17_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__17_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__18_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__17_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__6_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),LEAN_SCALAR_PTR_LITERAL(37, 49, 40, 0, 130, 126, 144, 203)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__18_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__18_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__19_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__18_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__8_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),LEAN_SCALAR_PTR_LITERAL(102, 60, 247, 244, 213, 112, 227, 100)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__19_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__19_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__20_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 2}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__19_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),((lean_object*)(((size_t)(486719255) << 1) | 1)),LEAN_SCALAR_PTR_LITERAL(198, 70, 220, 53, 140, 50, 84, 91)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__20_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__20_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__21_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "_hygCtx"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__21_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__21_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__22_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__20_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__21_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),LEAN_SCALAR_PTR_LITERAL(193, 85, 238, 228, 76, 109, 141, 63)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__22_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__22_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_string_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__23_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "_hyg"};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__23_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__23_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__24_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__22_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__23_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),LEAN_SCALAR_PTR_LITERAL(185, 87, 151, 214, 66, 161, 203, 64)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__24_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__24_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
-static const lean_ctor_object l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__25_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 2}, .m_objs = {((lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__24_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value),((lean_object*)(((size_t)(2) << 1) | 1)),LEAN_SCALAR_PTR_LITERAL(36, 77, 163, 115, 130, 146, 99, 137)}};
-static const lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__25_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__25_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__value;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__2_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__2_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__4_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__4_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__5_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__5_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__6_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__6_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__7_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__7_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__8_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__8_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__9_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__9_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__10_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__10_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__11_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__11_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__12_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__12_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__13_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__13_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__14_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__14_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__15_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__15_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__16_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__16_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__17_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__17_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__18_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__18_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__19_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__19_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__20_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__20_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__21_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__21_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__22_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__22_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__23_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__23_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__24_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__24_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__25_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__25_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_;
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_();
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2____boxed(lean_object*);
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; 
+v___x_1_ = lean_mk_string_unchecked("Lean", 4, 4);
+return v___x_1_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1(void){
+_start:
+{
+lean_object* v___x_2_; 
+v___x_2_ = lean_mk_string_unchecked("Order", 5, 5);
+return v___x_2_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__2(void){
+_start:
+{
+lean_object* v___x_3_; 
+v___x_3_ = lean_mk_string_unchecked("admissible_and", 14, 14);
+return v___x_3_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__3(void){
+_start:
+{
+lean_object* v___x_4_; lean_object* v___x_5_; lean_object* v___x_6_; lean_object* v___x_7_; 
+v___x_4_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__2, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__2_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__2);
+v___x_5_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1);
+v___x_6_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0);
+v___x_7_ = l_Lean_Name_mkStr3(v___x_6_, v___x_5_, v___x_4_);
+return v___x_7_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd(lean_object* v_00_u03b1_8_, lean_object* v_inst_u03b1_9_, lean_object* v_adm_u2081_10_, lean_object* v_adm_u2082_11_, lean_object* v_a_12_, lean_object* v_a_13_, lean_object* v_a_14_, lean_object* v_a_15_){
 _start:
 {
 lean_object* v___x_17_; lean_object* v___x_18_; lean_object* v___x_19_; lean_object* v___x_20_; lean_object* v___x_21_; lean_object* v___x_22_; lean_object* v___x_23_; lean_object* v___x_24_; lean_object* v___x_25_; lean_object* v___x_26_; lean_object* v___x_27_; lean_object* v___x_28_; lean_object* v___x_29_; lean_object* v___x_30_; lean_object* v___x_31_; 
-v___x_17_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__3));
+v___x_17_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__3, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__3_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__3);
 v___x_18_ = lean_alloc_ctor(1, 1, 0);
 lean_ctor_set(v___x_18_, 0, v_00_u03b1_8_);
 v___x_19_ = lean_alloc_ctor(1, 1, 0);
@@ -1035,11 +1033,19 @@ lean_dec_ref(v_a_36_);
 return v_res_41_;
 }
 }
+static lean_object* _init_l_panic___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj_spec__1___closed__0(void){
+_start:
+{
+lean_object* v___f_42_; 
+v___f_42_ = lean_alloc_closure((void*)(l_Lean_Meta_instInhabitedMetaM___lam__0___boxed), 5, 0);
+return v___f_42_;
+}
+}
 LEAN_EXPORT lean_object* l_panic___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj_spec__1(lean_object* v_msg_43_, lean_object* v___y_44_, lean_object* v___y_45_, lean_object* v___y_46_, lean_object* v___y_47_){
 _start:
 {
 lean_object* v___f_49_; lean_object* v___x_2416__overap_50_; lean_object* v___x_51_; 
-v___f_49_ = ((lean_object*)(l_panic___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj_spec__1___closed__0));
+v___f_49_ = lean_obj_once(&l_panic___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj_spec__1___closed__0, &l_panic___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj_spec__1___closed__0_once, _init_l_panic___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj_spec__1___closed__0);
 v___x_2416__overap_50_ = lean_panic_fn_borrowed(v___f_49_, v_msg_43_);
 lean_inc(v___y_47_);
 lean_inc_ref(v___y_46_);
@@ -1165,24 +1171,113 @@ lean_dec_ref(v___y_99_);
 return v_res_104_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__0(void){
+_start:
+{
+lean_object* v___x_105_; 
+v___x_105_ = lean_mk_string_unchecked("instCCPOPProd", 13, 13);
+return v___x_105_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__1(void){
+_start:
+{
+lean_object* v___x_106_; lean_object* v___x_107_; lean_object* v___x_108_; lean_object* v___x_109_; 
+v___x_106_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__0);
+v___x_107_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1);
+v___x_108_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0);
+v___x_109_ = l_Lean_Name_mkStr3(v___x_108_, v___x_107_, v___x_106_);
+return v___x_109_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__2(void){
+_start:
+{
+lean_object* v___x_110_; 
+v___x_110_ = lean_mk_string_unchecked("mkAdmProj: unexpected instance ", 31, 31);
+return v___x_110_;
+}
+}
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__3(void){
 _start:
 {
 lean_object* v___x_111_; lean_object* v___x_112_; 
-v___x_111_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__2));
+v___x_111_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__2, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__2_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__2);
 v___x_112_ = l_Lean_stringToMessageData(v___x_111_);
 return v___x_112_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__4(void){
+_start:
+{
+lean_object* v___x_113_; 
+v___x_113_ = lean_mk_string_unchecked("admissible_pprod_snd", 20, 20);
+return v___x_113_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__5(void){
+_start:
+{
+lean_object* v___x_114_; lean_object* v___x_115_; lean_object* v___x_116_; lean_object* v___x_117_; 
+v___x_114_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__4, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__4_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__4);
+v___x_115_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1);
+v___x_116_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0);
+v___x_117_ = l_Lean_Name_mkStr3(v___x_116_, v___x_115_, v___x_114_);
+return v___x_117_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__6(void){
+_start:
+{
+lean_object* v___x_118_; 
+v___x_118_ = lean_mk_string_unchecked("admissible_pprod_fst", 20, 20);
+return v___x_118_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__7(void){
+_start:
+{
+lean_object* v___x_119_; lean_object* v___x_120_; lean_object* v___x_121_; lean_object* v___x_122_; 
+v___x_119_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__6, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__6_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__6);
+v___x_120_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1);
+v___x_121_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0);
+v___x_122_ = l_Lean_Name_mkStr3(v___x_121_, v___x_120_, v___x_119_);
+return v___x_122_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__8(void){
+_start:
+{
+lean_object* v___x_123_; 
+v___x_123_ = lean_mk_string_unchecked("Lean.Elab.PreDefinition.PartialFixpoint.Induction", 49, 49);
+return v___x_123_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__9(void){
+_start:
+{
+lean_object* v___x_124_; 
+v___x_124_ = lean_mk_string_unchecked("_private.Lean.Elab.PreDefinition.PartialFixpoint.Induction.0.Lean.Elab.PartialFixpoint.mkAdmProj", 96, 96);
+return v___x_124_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__10(void){
+_start:
+{
+lean_object* v___x_125_; 
+v___x_125_ = lean_mk_string_unchecked("assertion violation: i == 0\n    ", 32, 32);
+return v___x_125_;
 }
 }
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__11(void){
 _start:
 {
 lean_object* v___x_126_; lean_object* v___x_127_; lean_object* v___x_128_; lean_object* v___x_129_; lean_object* v___x_130_; lean_object* v___x_131_; 
-v___x_126_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__10));
+v___x_126_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__10, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__10_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__10);
 v___x_127_ = lean_unsigned_to_nat(4u);
 v___x_128_ = lean_unsigned_to_nat(33u);
-v___x_129_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__9));
-v___x_130_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__8));
+v___x_129_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__9, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__9_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__9);
+v___x_130_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__8, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__8_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__8);
 v___x_131_ = l_mkPanicMessageWithDecl(v___x_130_, v___x_129_, v___x_128_, v___x_127_, v___x_126_);
 return v___x_131_;
 }
@@ -1191,7 +1286,7 @@ LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Ind
 _start:
 {
 lean_object* v___x_140_; lean_object* v___x_141_; 
-v___x_140_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__1));
+v___x_140_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__1);
 v___x_141_ = l_Lean_Meta_whnfUntil(v_packedInst_132_, v___x_140_, v_a_135_, v_a_136_, v_a_137_, v_a_138_);
 if (lean_obj_tag(v___x_141_) == 0)
 {
@@ -1369,7 +1464,7 @@ goto v_resetjp_179_;
 v_resetjp_179_:
 {
 lean_object* v___x_182_; lean_object* v___x_184_; 
-v___x_182_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__5));
+v___x_182_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__5, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__5_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__5);
 if (v_isShared_149_ == 0)
 {
 lean_ctor_set(v___x_148_, 0, v_arg_170_);
@@ -1439,7 +1534,7 @@ return v___x_177_;
 else
 {
 lean_object* v___x_203_; lean_object* v___x_205_; 
-v___x_203_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__7));
+v___x_203_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__7, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__7_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__7);
 if (v_isShared_149_ == 0)
 {
 lean_ctor_set(v___x_148_, 0, v_arg_170_);
@@ -1682,7 +1777,7 @@ else
 {
 lean_object* v___x_285_; lean_object* v___x_286_; uint8_t v___x_287_; 
 v___x_285_ = l_Lean_Expr_appFnCleanup___redArg(v___x_282_);
-v___x_286_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__1));
+v___x_286_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__1);
 v___x_287_ = l_Lean_Expr_isConstOf(v___x_285_, v___x_286_);
 lean_dec_ref(v___x_285_);
 if (v___x_287_ == 0)
@@ -1887,11 +1982,19 @@ lean_dec_ref(v___y_378_);
 return v_res_385_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_386_; 
+v___x_386_ = lean_mk_string_unchecked("Cannot apply lattice induction to a non-lattice fixpoint", 56, 56);
+return v___x_386_;
+}
+}
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___lam__0___closed__1(void){
 _start:
 {
 lean_object* v___x_387_; lean_object* v___x_388_; 
-v___x_387_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___lam__0___closed__0));
+v___x_387_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___lam__0___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___lam__0___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___lam__0___closed__0);
 v___x_388_ = l_Lean_stringToMessageData(v___x_387_);
 return v___x_388_;
 }
@@ -2004,11 +2107,19 @@ lean_dec_ref(v_ts_424_);
 return v_res_434_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___closed__0(void){
+_start:
+{
+lean_object* v___x_435_; 
+v___x_435_ = lean_mk_string_unchecked("failed", 6, 6);
+return v___x_435_;
+}
+}
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___closed__1(void){
 _start:
 {
 lean_object* v___x_436_; lean_object* v___x_437_; 
-v___x_436_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___closed__0));
+v___x_436_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRel___closed__0);
 v___x_437_ = l_Lean_stringToMessageData(v___x_436_);
 return v___x_437_;
 }
@@ -2109,6 +2220,23 @@ v___x_481_ = lean_float_of_nat(v___x_480_);
 return v___x_481_;
 }
 }
+static lean_object* _init_l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__1(void){
+_start:
+{
+lean_object* v___x_482_; 
+v___x_482_ = lean_mk_string_unchecked("", 0, 0);
+return v___x_482_;
+}
+}
+static lean_object* _init_l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__2(void){
+_start:
+{
+lean_object* v___x_483_; lean_object* v___x_484_; 
+v___x_483_ = lean_unsigned_to_nat(0u);
+v___x_484_ = lean_mk_empty_array_with_capacity(v___x_483_);
+return v___x_484_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4(lean_object* v_cls_485_, lean_object* v_msg_486_, lean_object* v___y_487_, lean_object* v___y_488_, lean_object* v___y_489_, lean_object* v___y_490_){
 _start:
 {
@@ -2193,7 +2321,7 @@ lean_object* v___x_516_; double v___x_517_; uint8_t v___x_518_; lean_object* v__
 v___x_516_ = lean_box(0);
 v___x_517_ = lean_float_once(&l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__0, &l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__0_once, _init_l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__0);
 v___x_518_ = 0;
-v___x_519_ = ((lean_object*)(l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__1));
+v___x_519_ = lean_obj_once(&l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__1, &l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__1_once, _init_l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__1);
 v___x_520_ = lean_alloc_ctor(0, 3, 17);
 lean_ctor_set(v___x_520_, 0, v_cls_485_);
 lean_ctor_set(v___x_520_, 1, v___x_516_);
@@ -2201,7 +2329,7 @@ lean_ctor_set(v___x_520_, 2, v___x_519_);
 lean_ctor_set_float(v___x_520_, sizeof(void*)*3, v___x_517_);
 lean_ctor_set_float(v___x_520_, sizeof(void*)*3 + 8, v___x_517_);
 lean_ctor_set_uint8(v___x_520_, sizeof(void*)*3 + 16, v___x_518_);
-v___x_521_ = ((lean_object*)(l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__2));
+v___x_521_ = lean_obj_once(&l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__2, &l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__2_once, _init_l_Lean_addTrace___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__4___closed__2);
 v___x_522_ = lean_alloc_ctor(9, 3, 0);
 lean_ctor_set(v___x_522_, 0, v___x_520_);
 lean_ctor_set(v___x_522_, 1, v_a_494_);
@@ -2361,6 +2489,38 @@ v___x_561_ = l_instMonadEIO(lean_box(0));
 return v___x_561_;
 }
 }
+static lean_object* _init_l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1(void){
+_start:
+{
+lean_object* v___f_562_; 
+v___f_562_ = lean_alloc_closure((void*)(l_Lean_Core_instMonadCoreM___lam__0___boxed), 5, 0);
+return v___f_562_;
+}
+}
+static lean_object* _init_l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2(void){
+_start:
+{
+lean_object* v___f_563_; 
+v___f_563_ = lean_alloc_closure((void*)(l_Lean_Core_instMonadCoreM___lam__1___boxed), 7, 0);
+return v___f_563_;
+}
+}
+static lean_object* _init_l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3(void){
+_start:
+{
+lean_object* v___f_564_; 
+v___f_564_ = lean_alloc_closure((void*)(l_Lean_Meta_instMonadMetaM___lam__0___boxed), 7, 0);
+return v___f_564_;
+}
+}
+static lean_object* _init_l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4(void){
+_start:
+{
+lean_object* v___f_565_; 
+v___f_565_ = lean_alloc_closure((void*)(l_Lean_Meta_instMonadMetaM___lam__1___boxed), 9, 0);
+return v___f_565_;
+}
+}
 LEAN_EXPORT lean_object* l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0(lean_object* v_msg_566_, lean_object* v___y_567_, lean_object* v___y_568_, lean_object* v___y_569_, lean_object* v___y_570_){
 _start:
 {
@@ -2417,8 +2577,8 @@ goto v_resetjp_582_;
 v_resetjp_582_:
 {
 lean_object* v___f_585_; lean_object* v___f_586_; lean_object* v___f_587_; lean_object* v___f_588_; lean_object* v___x_589_; lean_object* v___f_590_; lean_object* v___f_591_; lean_object* v___f_592_; lean_object* v___x_594_; 
-v___f_585_ = ((lean_object*)(l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1));
-v___f_586_ = ((lean_object*)(l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2));
+v___f_585_ = lean_obj_once(&l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1, &l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1_once, _init_l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1);
+v___f_586_ = lean_obj_once(&l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2, &l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2_once, _init_l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2);
 lean_inc_ref(v_toFunctor_578_);
 v___f_587_ = lean_alloc_closure((void*)(l_ReaderT_instFunctorOfMonad___redArg___lam__0), 6, 1);
 lean_closure_set(v___f_587_, 0, v_toFunctor_578_);
@@ -2528,8 +2688,8 @@ goto v_resetjp_606_;
 v_resetjp_606_:
 {
 lean_object* v___f_609_; lean_object* v___f_610_; lean_object* v___f_611_; lean_object* v___f_612_; lean_object* v___x_613_; lean_object* v___f_614_; lean_object* v___f_615_; lean_object* v___f_616_; lean_object* v___x_618_; 
-v___f_609_ = ((lean_object*)(l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3));
-v___f_610_ = ((lean_object*)(l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4));
+v___f_609_ = lean_obj_once(&l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3, &l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3_once, _init_l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3);
+v___f_610_ = lean_obj_once(&l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4, &l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4_once, _init_l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4);
 lean_inc_ref(v_toFunctor_602_);
 v___f_611_ = lean_alloc_closure((void*)(l_ReaderT_instFunctorOfMonad___redArg___lam__0), 6, 1);
 lean_closure_set(v___f_611_, 0, v_toFunctor_602_);
@@ -2620,33 +2780,73 @@ lean_dec_ref(v___y_638_);
 return v_res_643_;
 }
 }
+static lean_object* _init_l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__0(void){
+_start:
+{
+lean_object* v___x_644_; 
+v___x_644_ = lean_mk_string_unchecked("`", 1, 1);
+return v___x_644_;
+}
+}
 static lean_object* _init_l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__1(void){
 _start:
 {
 lean_object* v___x_645_; lean_object* v___x_646_; 
-v___x_645_ = ((lean_object*)(l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__0));
+v___x_645_ = lean_obj_once(&l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__0, &l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__0_once, _init_l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__0);
 v___x_646_ = l_Lean_stringToMessageData(v___x_645_);
 return v___x_646_;
+}
+}
+static lean_object* _init_l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__2(void){
+_start:
+{
+lean_object* v___x_647_; 
+v___x_647_ = lean_mk_string_unchecked("` is not a definition", 21, 21);
+return v___x_647_;
 }
 }
 static lean_object* _init_l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__3(void){
 _start:
 {
 lean_object* v___x_648_; lean_object* v___x_649_; 
-v___x_648_ = ((lean_object*)(l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__2));
+v___x_648_ = lean_obj_once(&l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__2, &l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__2_once, _init_l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__2);
 v___x_649_ = l_Lean_stringToMessageData(v___x_648_);
 return v___x_649_;
+}
+}
+static lean_object* _init_l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__4(void){
+_start:
+{
+lean_object* v___x_650_; 
+v___x_650_ = lean_mk_string_unchecked("Lean.MonadEnv", 13, 13);
+return v___x_650_;
+}
+}
+static lean_object* _init_l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__5(void){
+_start:
+{
+lean_object* v___x_651_; 
+v___x_651_ = lean_mk_string_unchecked("Lean.isDefn\?", 12, 12);
+return v___x_651_;
+}
+}
+static lean_object* _init_l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__6(void){
+_start:
+{
+lean_object* v___x_652_; 
+v___x_652_ = lean_mk_string_unchecked("unreachable code has been reached", 33, 33);
+return v___x_652_;
 }
 }
 static lean_object* _init_l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__7(void){
 _start:
 {
 lean_object* v___x_653_; lean_object* v___x_654_; lean_object* v___x_655_; lean_object* v___x_656_; lean_object* v___x_657_; lean_object* v___x_658_; 
-v___x_653_ = ((lean_object*)(l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__6));
+v___x_653_ = lean_obj_once(&l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__6, &l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__6_once, _init_l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__6);
 v___x_654_ = lean_unsigned_to_nat(11u);
 v___x_655_ = lean_unsigned_to_nat(115u);
-v___x_656_ = ((lean_object*)(l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__5));
-v___x_657_ = ((lean_object*)(l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__4));
+v___x_656_ = lean_obj_once(&l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__5, &l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__5_once, _init_l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__5);
+v___x_657_ = lean_obj_once(&l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__4, &l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__4_once, _init_l_Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0___closed__4);
 v___x_658_ = l_mkPanicMessageWithDecl(v___x_657_, v___x_656_, v___x_655_, v___x_654_, v___x_653_);
 return v___x_658_;
 }
@@ -3115,30 +3315,135 @@ lean_dec(v___x_799_);
 return v_res_814_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__0(void){
+_start:
+{
+lean_object* v___x_815_; 
+v___x_815_ = lean_mk_string_unchecked(" is not an application of partial order", 39, 39);
+return v___x_815_;
+}
+}
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__1(void){
 _start:
 {
 lean_object* v___x_816_; lean_object* v___x_817_; 
-v___x_816_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__0));
+v___x_816_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__0);
 v___x_817_ = l_Lean_stringToMessageData(v___x_816_);
 return v___x_817_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__2(void){
+_start:
+{
+lean_object* v___x_818_; 
+v___x_818_ = lean_mk_string_unchecked("PartialOrder", 12, 12);
+return v___x_818_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__3(void){
+_start:
+{
+lean_object* v___x_819_; 
+v___x_819_ = lean_mk_string_unchecked("rel", 3, 3);
+return v___x_819_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__4(void){
+_start:
+{
+lean_object* v___x_820_; lean_object* v___x_821_; lean_object* v___x_822_; lean_object* v___x_823_; lean_object* v___x_824_; 
+v___x_820_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__3, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__3_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__3);
+v___x_821_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__2, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__2_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__2);
+v___x_822_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1);
+v___x_823_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0);
+v___x_824_ = l_Lean_Name_mkStr4(v___x_823_, v___x_822_, v___x_821_, v___x_820_);
+return v___x_824_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5(void){
+_start:
+{
+lean_object* v___x_825_; 
+v___x_825_ = lean_mk_string_unchecked("Elab", 4, 4);
+return v___x_825_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__6(void){
+_start:
+{
+lean_object* v___x_826_; 
+v___x_826_ = lean_mk_string_unchecked("definition", 10, 10);
+return v___x_826_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__7(void){
+_start:
+{
+lean_object* v___x_827_; 
+v___x_827_ = lean_mk_string_unchecked("partialFixpoint", 15, 15);
+return v___x_827_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8(void){
+_start:
+{
+lean_object* v___x_828_; 
+v___x_828_ = lean_mk_string_unchecked("induction", 9, 9);
+return v___x_828_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9(void){
+_start:
+{
+lean_object* v___x_829_; lean_object* v___x_830_; lean_object* v___x_831_; lean_object* v___x_832_; lean_object* v___x_833_; 
+v___x_829_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8);
+v___x_830_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__7, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__7_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__7);
+v___x_831_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__6, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__6_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__6);
+v___x_832_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5);
+v___x_833_ = l_Lean_Name_mkStr4(v___x_832_, v___x_831_, v___x_830_, v___x_829_);
+return v___x_833_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__10(void){
+_start:
+{
+lean_object* v___x_834_; 
+v___x_834_ = lean_mk_string_unchecked("trace", 5, 5);
+return v___x_834_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11(void){
+_start:
+{
+lean_object* v___x_835_; lean_object* v___x_836_; 
+v___x_835_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__10, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__10_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__10);
+v___x_836_ = l_Lean_Name_mkStr1(v___x_835_);
+return v___x_836_;
 }
 }
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__12(void){
 _start:
 {
 lean_object* v___x_837_; lean_object* v___x_838_; lean_object* v___x_839_; 
-v___x_837_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9));
-v___x_838_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11));
+v___x_837_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9);
+v___x_838_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11);
 v___x_839_ = l_Lean_Name_append(v___x_838_, v___x_837_);
 return v___x_839_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__13(void){
+_start:
+{
+lean_object* v___x_840_; 
+v___x_840_ = lean_mk_string_unchecked("predTypes: ", 11, 11);
+return v___x_840_;
 }
 }
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__14(void){
 _start:
 {
 lean_object* v___x_841_; lean_object* v___x_842_; 
-v___x_841_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__13));
+v___x_841_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__13, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__13_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__13);
 v___x_842_ = l_Lean_stringToMessageData(v___x_841_);
 return v___x_842_;
 }
@@ -3220,7 +3525,7 @@ lean_object* v_arg_870_; lean_object* v___x_871_; lean_object* v___x_872_; uint8
 v_arg_870_ = lean_ctor_get(v___x_868_, 1);
 lean_inc_ref(v_arg_870_);
 v___x_871_ = l_Lean_Expr_appFnCleanup___redArg(v___x_868_);
-v___x_872_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__4));
+v___x_872_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__4, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__4_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__4);
 v___x_873_ = l_Lean_Expr_isConstOf(v___x_871_, v___x_872_);
 lean_dec_ref(v___x_871_);
 if (v___x_873_ == 0)
@@ -3273,7 +3578,7 @@ else
 {
 lean_object* v_inheritedTraceOptions_892_; lean_object* v___x_893_; lean_object* v___x_894_; uint8_t v___x_895_; 
 v_inheritedTraceOptions_892_ = lean_ctor_get(v_a_848_, 13);
-v___x_893_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9));
+v___x_893_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9);
 v___x_894_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__12, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__12_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__12);
 v___x_895_ = l___private_Lean_Util_Trace_0__Lean_checkTraceOption_go(v_inheritedTraceOptions_892_, v_options_890_, v___x_894_);
 if (v___x_895_ == 0)
@@ -3667,12 +3972,21 @@ lean_dec_ref(v_as_1009_);
 return v_res_1015_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_maskArray___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_1016_; lean_object* v_ys_1017_; 
+v___x_1016_ = lean_unsigned_to_nat(0u);
+v_ys_1017_ = lean_mk_empty_array_with_capacity(v___x_1016_);
+return v_ys_1017_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_maskArray___redArg(lean_object* v_mask_1018_, lean_object* v_xs_1019_){
 _start:
 {
 lean_object* v___x_1020_; lean_object* v_ys_1021_; lean_object* v___x_1022_; lean_object* v___x_1023_; lean_object* v___x_1024_; size_t v_sz_1025_; size_t v___x_1026_; lean_object* v___x_1027_; lean_object* v_fst_1028_; 
 v___x_1020_ = lean_unsigned_to_nat(0u);
-v_ys_1021_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_maskArray___redArg___closed__0));
+v_ys_1021_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_maskArray___redArg___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_maskArray___redArg___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_maskArray___redArg___closed__0);
 v___x_1022_ = lean_array_get_size(v_xs_1019_);
 v___x_1023_ = l_Array_toSubarray___redArg(v_xs_1019_, v___x_1020_, v___x_1022_);
 v___x_1024_ = lean_alloc_ctor(0, 2, 0);
@@ -3734,6 +4048,14 @@ lean_dec_ref(v_as_1047_);
 return v_res_1053_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_numberNames___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_1054_; 
+v___x_1054_ = lean_mk_string_unchecked("_", 1, 1);
+return v___x_1054_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_numberNames___lam__0(lean_object* v_n_1055_, lean_object* v_base_1056_, lean_object* v_x_1057_){
 _start:
 {
@@ -3743,7 +4065,7 @@ v___x_1059_ = lean_nat_dec_eq(v_n_1055_, v___x_1058_);
 if (v___x_1059_ == 0)
 {
 lean_object* v___x_1060_; lean_object* v___x_1061_; lean_object* v___x_1062_; lean_object* v___x_1063_; lean_object* v___x_1064_; lean_object* v___x_1065_; lean_object* v___x_1066_; 
-v___x_1060_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_numberNames___lam__0___closed__0));
+v___x_1060_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_numberNames___lam__0___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_numberNames___lam__0___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_numberNames___lam__0___closed__0);
 v___x_1061_ = lean_string_append(v_base_1056_, v___x_1060_);
 v___x_1062_ = lean_nat_add(v_x_1057_, v___x_1058_);
 v___x_1063_ = l_Nat_reprFast(v___x_1062_);
@@ -3863,20 +4185,121 @@ lean_dec(v_a_1099_);
 return v_res_1101_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0(void){
+_start:
+{
+lean_object* v___x_1102_; 
+v___x_1102_ = lean_mk_string_unchecked("mutual_induct", 13, 13);
+return v___x_1102_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__1(void){
+_start:
+{
+lean_object* v___x_1103_; lean_object* v___x_1104_; 
+v___x_1103_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0);
+v___x_1104_ = l_Lean_Name_mkStr1(v___x_1103_);
+return v___x_1104_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__2(void){
+_start:
+{
+lean_object* v___x_1105_; 
+v___x_1105_ = lean_mk_string_unchecked("Cannot get fixpoint type for ", 29, 29);
+return v___x_1105_;
+}
+}
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__3(void){
 _start:
 {
 lean_object* v___x_1106_; lean_object* v___x_1107_; 
-v___x_1106_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__2));
+v___x_1106_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__2, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__2_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__2);
 v___x_1107_ = l_Lean_stringToMessageData(v___x_1106_);
 return v___x_1107_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__4(void){
+_start:
+{
+lean_object* v___x_1108_; 
+v___x_1108_ = lean_mk_string_unchecked("fixpoint_induct", 15, 15);
+return v___x_1108_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__5(void){
+_start:
+{
+lean_object* v___x_1109_; lean_object* v___x_1110_; 
+v___x_1109_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__4, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__4_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__4);
+v___x_1110_ = l_Lean_Name_mkStr1(v___x_1109_);
+return v___x_1110_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6(void){
+_start:
+{
+lean_object* v___x_1111_; 
+v___x_1111_ = lean_mk_string_unchecked("mutual_fixpoint_induct", 22, 22);
+return v___x_1111_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__7(void){
+_start:
+{
+lean_object* v___x_1112_; lean_object* v___x_1113_; 
+v___x_1112_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6);
+v___x_1113_ = l_Lean_Name_mkStr1(v___x_1112_);
+return v___x_1113_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__8(void){
+_start:
+{
+lean_object* v___x_1114_; 
+v___x_1114_ = lean_mk_string_unchecked("coinduct", 8, 8);
+return v___x_1114_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__9(void){
+_start:
+{
+lean_object* v___x_1115_; lean_object* v___x_1116_; 
+v___x_1115_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__8, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__8_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__8);
+v___x_1116_ = l_Lean_Name_mkStr1(v___x_1115_);
+return v___x_1116_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__10(void){
+_start:
+{
+lean_object* v___x_1117_; 
+v___x_1117_ = lean_mk_string_unchecked("induct", 6, 6);
+return v___x_1117_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__11(void){
+_start:
+{
+lean_object* v___x_1118_; lean_object* v___x_1119_; 
+v___x_1118_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__10, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__10_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__10);
+v___x_1119_ = l_Lean_Name_mkStr1(v___x_1118_);
+return v___x_1119_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__12(void){
+_start:
+{
+lean_object* v___x_1120_; 
+v___x_1120_ = lean_mk_string_unchecked(" is not defined by partial_fixpoint, inductive_fixpoint, nor coinductive_fixpoint", 81, 81);
+return v___x_1120_;
 }
 }
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__13(void){
 _start:
 {
 lean_object* v___x_1121_; lean_object* v___x_1122_; 
-v___x_1121_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__12));
+v___x_1121_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__12, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__12_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__12);
 v___x_1122_ = l_Lean_stringToMessageData(v___x_1121_);
 return v___x_1122_;
 }
@@ -3957,7 +4380,7 @@ case 0:
 if (v_isMutual_1124_ == 0)
 {
 lean_object* v___x_1156_; lean_object* v___x_1158_; 
-v___x_1156_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__5));
+v___x_1156_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__5, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__5_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__5);
 if (v_isShared_1144_ == 0)
 {
 lean_ctor_set_tag(v___x_1143_, 0);
@@ -3981,7 +4404,7 @@ return v___x_1158_;
 else
 {
 lean_object* v___x_1160_; lean_object* v___x_1162_; 
-v___x_1160_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__7));
+v___x_1160_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__7, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__7_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__7);
 if (v_isShared_1144_ == 0)
 {
 lean_ctor_set_tag(v___x_1143_, 0);
@@ -4008,7 +4431,7 @@ case 1:
 if (v_isMutual_1124_ == 0)
 {
 lean_object* v___x_1164_; lean_object* v___x_1166_; 
-v___x_1164_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__9));
+v___x_1164_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__9, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__9_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__9);
 if (v_isShared_1144_ == 0)
 {
 lean_ctor_set_tag(v___x_1143_, 0);
@@ -4040,7 +4463,7 @@ default:
 if (v_isMutual_1124_ == 0)
 {
 lean_object* v___x_1168_; lean_object* v___x_1170_; 
-v___x_1168_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__11));
+v___x_1168_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__11, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__11_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__11);
 if (v_isShared_1144_ == 0)
 {
 lean_ctor_set_tag(v___x_1143_, 0);
@@ -4086,7 +4509,7 @@ return v___x_1176_;
 v___jp_1130_:
 {
 lean_object* v___x_1131_; lean_object* v___x_1132_; 
-v___x_1131_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__1));
+v___x_1131_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__1);
 v___x_1132_ = lean_alloc_ctor(0, 1, 0);
 lean_ctor_set(v___x_1132_, 0, v___x_1131_);
 return v___x_1132_;
@@ -4711,20 +5134,36 @@ lean_dec_ref(v___y_1451_);
 return v_res_1456_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_1457_; 
+v___x_1457_ = lean_mk_string_unchecked("Unexpected function type ", 25, 25);
+return v___x_1457_;
+}
+}
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__1(void){
 _start:
 {
 lean_object* v___x_1458_; lean_object* v___x_1459_; 
-v___x_1458_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__0));
+v___x_1458_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__0);
 v___x_1459_ = l_Lean_stringToMessageData(v___x_1458_);
 return v___x_1459_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__2(void){
+_start:
+{
+lean_object* v___x_1460_; 
+v___x_1460_ = lean_mk_string_unchecked(", not an application of PartialOrder.rel", 40, 40);
+return v___x_1460_;
 }
 }
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__3(void){
 _start:
 {
 lean_object* v___x_1461_; lean_object* v___x_1462_; 
-v___x_1461_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__2));
+v___x_1461_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__2, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__2_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__0___closed__2);
 v___x_1462_ = l_Lean_stringToMessageData(v___x_1461_);
 return v___x_1462_;
 }
@@ -4805,8 +5244,8 @@ lean_object* v_arg_1494_; lean_object* v___x_1495_; lean_object* v___x_1496_; le
 v_arg_1494_ = lean_ctor_get(v___x_1492_, 1);
 lean_inc_ref(v_arg_1494_);
 v___x_1495_ = l_Lean_Expr_appFnCleanup___redArg(v___x_1492_);
-v___x_1496_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__2));
-v___x_1497_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__3));
+v___x_1496_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__2, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__2_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__2);
+v___x_1497_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__3, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__3_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__3);
 v___x_1498_ = l_Lean_Name_mkStr4(v___x_1463_, v___x_1464_, v___x_1496_, v___x_1497_);
 v___x_1499_ = l_Lean_Expr_isConstOf(v___x_1495_, v___x_1498_);
 lean_dec_ref(v___x_1495_);
@@ -5154,11 +5593,19 @@ lean_dec(v___x_1619_);
 return v_res_1632_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__2___closed__0(void){
+_start:
+{
+lean_object* v___x_1633_; 
+v___x_1633_ = lean_mk_string_unchecked("Complete body of fixpoint induction principle:", 46, 46);
+return v___x_1633_;
+}
+}
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__2___closed__1(void){
 _start:
 {
 lean_object* v___x_1634_; lean_object* v___x_1635_; 
-v___x_1634_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__2___closed__0));
+v___x_1634_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__2___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__2___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__2___closed__0);
 v___x_1635_ = l_Lean_stringToMessageData(v___x_1634_);
 return v___x_1635_;
 }
@@ -5325,9 +5772,9 @@ lean_object* v_a_1673_; lean_object* v_inheritedTraceOptions_1674_; lean_object*
 v_a_1673_ = lean_ctor_get(v___x_1670_, 0);
 lean_inc(v_a_1673_);
 v_inheritedTraceOptions_1674_ = lean_ctor_get(v___y_1660_, 13);
-v___x_1675_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8));
+v___x_1675_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8);
 v___x_1676_ = l_Lean_Name_mkStr4(v___x_1643_, v___x_1644_, v___x_1645_, v___x_1675_);
-v___x_1677_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11));
+v___x_1677_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11);
 lean_inc(v___x_1676_);
 v___x_1678_ = l_Lean_Name_append(v___x_1677_, v___x_1676_);
 v___x_1679_ = l___private_Lean_Util_Trace_0__Lean_checkTraceOption_go(v_inheritedTraceOptions_1674_, v_options_1671_, v___x_1678_);
@@ -5889,8 +6336,8 @@ goto v_resetjp_1899_;
 v_resetjp_1899_:
 {
 lean_object* v___f_1902_; lean_object* v___f_1903_; lean_object* v___f_1904_; lean_object* v___f_1905_; lean_object* v___x_1906_; lean_object* v___f_1907_; lean_object* v___f_1908_; lean_object* v___f_1909_; lean_object* v___x_1911_; 
-v___f_1902_ = ((lean_object*)(l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1));
-v___f_1903_ = ((lean_object*)(l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2));
+v___f_1902_ = lean_obj_once(&l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1, &l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1_once, _init_l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1);
+v___f_1903_ = lean_obj_once(&l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2, &l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2_once, _init_l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2);
 lean_inc_ref(v_toFunctor_1895_);
 v___f_1904_ = lean_alloc_closure((void*)(l_ReaderT_instFunctorOfMonad___redArg___lam__0), 6, 1);
 lean_closure_set(v___f_1904_, 0, v_toFunctor_1895_);
@@ -6000,8 +6447,8 @@ goto v_resetjp_1923_;
 v_resetjp_1923_:
 {
 lean_object* v___f_1926_; lean_object* v___f_1927_; lean_object* v___f_1928_; lean_object* v___f_1929_; lean_object* v___x_1930_; lean_object* v___f_1931_; lean_object* v___f_1932_; lean_object* v___f_1933_; lean_object* v___x_1935_; 
-v___f_1926_ = ((lean_object*)(l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3));
-v___f_1927_ = ((lean_object*)(l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4));
+v___f_1926_ = lean_obj_once(&l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3, &l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3_once, _init_l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3);
+v___f_1927_ = lean_obj_once(&l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4, &l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4_once, _init_l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4);
 lean_inc_ref(v_toFunctor_1919_);
 v___f_1928_ = lean_alloc_closure((void*)(l_ReaderT_instFunctorOfMonad___redArg___lam__0), 6, 1);
 lean_closure_set(v___f_1928_, 0, v_toFunctor_1919_);
@@ -6177,11 +6624,20 @@ lean_dec_ref(v___y_2003_);
 return v_res_2009_;
 }
 }
+static lean_object* _init_l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___closed__0(void){
+_start:
+{
+lean_object* v___x_2010_; lean_object* v___x_2011_; 
+v___x_2010_ = lean_unsigned_to_nat(0u);
+v___x_2011_ = lean_mk_empty_array_with_capacity(v___x_2010_);
+return v___x_2011_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16(lean_object* v_declInfos_2012_, lean_object* v_k_2013_, uint8_t v_kind_2014_, lean_object* v___y_2015_, lean_object* v___y_2016_, lean_object* v___y_2017_, lean_object* v___y_2018_){
 _start:
 {
 lean_object* v___x_2020_; lean_object* v___x_2021_; 
-v___x_2020_ = ((lean_object*)(l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___closed__0));
+v___x_2020_ = lean_obj_once(&l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___closed__0, &l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___closed__0_once, _init_l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___closed__0);
 v___x_2021_ = l___private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls_loop___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16_spec__36(v_declInfos_2012_, v_k_2013_, v_kind_2014_, v___x_2020_, v___y_2015_, v___y_2016_, v___y_2017_, v___y_2018_);
 return v___x_2021_;
 }
@@ -6430,6 +6886,14 @@ lean_dec_ref(v___y_2140_);
 return v_res_2147_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__3___closed__0(void){
+_start:
+{
+lean_object* v___x_2148_; 
+v___x_2148_ = lean_mk_string_unchecked("hyp", 3, 3);
+return v___x_2148_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__3(lean_object* v___x_2149_, lean_object* v_a_2150_, size_t v___x_2151_, lean_object* v_a_2152_, uint8_t v___x_2153_, uint8_t v___x_2154_, lean_object* v_xs_2155_, lean_object* v___x_2156_, lean_object* v___x_2157_, lean_object* v___x_2158_, uint8_t v_isMutual_2159_, lean_object* v_name_2160_, lean_object* v_declNames_2161_, lean_object* v___x_2162_, lean_object* v_predVars_2163_, lean_object* v___y_2164_, lean_object* v___y_2165_, lean_object* v___y_2166_, lean_object* v___y_2167_){
 _start:
 {
@@ -6479,7 +6943,7 @@ lean_closure_set(v___f_2181_, 10, v___x_2180_);
 lean_closure_set(v___f_2181_, 11, v_name_2160_);
 lean_closure_set(v___f_2181_, 12, v_declNames_2161_);
 lean_closure_set(v___f_2181_, 13, v___x_2162_);
-v___x_2182_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__3___closed__0));
+v___x_2182_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__3___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__3___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__3___closed__0);
 v___x_2183_ = l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_numberNames(v___x_2162_, v___x_2182_);
 v___x_2184_ = l_Array_zip___redArg(v___x_2183_, v_a_2177_);
 lean_dec(v_a_2177_);
@@ -7005,6 +7469,23 @@ lean_dec_ref(v___y_2441_);
 return v_res_2446_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__0(void){
+_start:
+{
+lean_object* v___x_2447_; 
+v___x_2447_ = lean_mk_string_unchecked("ih", 2, 2);
+return v___x_2447_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__1(void){
+_start:
+{
+lean_object* v___x_2448_; lean_object* v___x_2449_; 
+v___x_2448_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__0);
+v___x_2449_ = l_Lean_Name_mkStr1(v___x_2448_);
+return v___x_2449_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6(lean_object* v_a_2450_, lean_object* v_motives_2451_, lean_object* v_a_2452_, lean_object* v_hs_2453_, lean_object* v_snd_2454_, lean_object* v___x_2455_, lean_object* v___x_2456_, uint8_t v___x_2457_, uint8_t v___x_2458_, lean_object* v_approx_2459_, lean_object* v___y_2460_, lean_object* v___y_2461_, lean_object* v___y_2462_, lean_object* v___y_2463_){
 _start:
 {
@@ -7028,7 +7509,7 @@ lean_closure_set(v___f_2471_, 6, v___x_2455_);
 lean_closure_set(v___f_2471_, 7, v___x_2456_);
 lean_closure_set(v___f_2471_, 8, v___x_2469_);
 lean_closure_set(v___f_2471_, 9, v___x_2470_);
-v___x_2472_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__1));
+v___x_2472_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__1);
 v___x_2473_ = l_Lean_Meta_withLocalDeclD___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__18___redArg(v___x_2472_, v___x_2468_, v___f_2471_, v___y_2460_, v___y_2461_, v___y_2462_, v___y_2463_);
 return v___x_2473_;
 }
@@ -7197,65 +7678,121 @@ lean_ctor_set(v___x_2544_, 2, v___x_2541_);
 return v___x_2544_;
 }
 }
+static lean_object* _init_l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__6(void){
+_start:
+{
+lean_object* v___x_2545_; 
+v___x_2545_ = lean_mk_string_unchecked("A private declaration `", 23, 23);
+return v___x_2545_;
+}
+}
 static lean_object* _init_l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__7(void){
 _start:
 {
 lean_object* v___x_2546_; lean_object* v___x_2547_; 
-v___x_2546_ = ((lean_object*)(l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__6));
+v___x_2546_ = lean_obj_once(&l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__6, &l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__6_once, _init_l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__6);
 v___x_2547_ = l_Lean_stringToMessageData(v___x_2546_);
 return v___x_2547_;
+}
+}
+static lean_object* _init_l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__8(void){
+_start:
+{
+lean_object* v___x_2548_; 
+v___x_2548_ = lean_mk_string_unchecked("` (from the current module) exists but would need to be public to access here.", 78, 78);
+return v___x_2548_;
 }
 }
 static lean_object* _init_l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__9(void){
 _start:
 {
 lean_object* v___x_2549_; lean_object* v___x_2550_; 
-v___x_2549_ = ((lean_object*)(l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__8));
+v___x_2549_ = lean_obj_once(&l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__8, &l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__8_once, _init_l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__8);
 v___x_2550_ = l_Lean_stringToMessageData(v___x_2549_);
 return v___x_2550_;
+}
+}
+static lean_object* _init_l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__10(void){
+_start:
+{
+lean_object* v___x_2551_; 
+v___x_2551_ = lean_mk_string_unchecked("A public declaration `", 22, 22);
+return v___x_2551_;
 }
 }
 static lean_object* _init_l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__11(void){
 _start:
 {
 lean_object* v___x_2552_; lean_object* v___x_2553_; 
-v___x_2552_ = ((lean_object*)(l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__10));
+v___x_2552_ = lean_obj_once(&l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__10, &l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__10_once, _init_l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__10);
 v___x_2553_ = l_Lean_stringToMessageData(v___x_2552_);
 return v___x_2553_;
+}
+}
+static lean_object* _init_l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__12(void){
+_start:
+{
+lean_object* v___x_2554_; 
+v___x_2554_ = lean_mk_string_unchecked("` exists but is imported privately; consider adding `public import ", 67, 67);
+return v___x_2554_;
 }
 }
 static lean_object* _init_l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__13(void){
 _start:
 {
 lean_object* v___x_2555_; lean_object* v___x_2556_; 
-v___x_2555_ = ((lean_object*)(l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__12));
+v___x_2555_ = lean_obj_once(&l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__12, &l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__12_once, _init_l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__12);
 v___x_2556_ = l_Lean_stringToMessageData(v___x_2555_);
 return v___x_2556_;
+}
+}
+static lean_object* _init_l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__14(void){
+_start:
+{
+lean_object* v___x_2557_; 
+v___x_2557_ = lean_mk_string_unchecked("`.", 2, 2);
+return v___x_2557_;
 }
 }
 static lean_object* _init_l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__15(void){
 _start:
 {
 lean_object* v___x_2558_; lean_object* v___x_2559_; 
-v___x_2558_ = ((lean_object*)(l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__14));
+v___x_2558_ = lean_obj_once(&l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__14, &l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__14_once, _init_l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__14);
 v___x_2559_ = l_Lean_stringToMessageData(v___x_2558_);
 return v___x_2559_;
+}
+}
+static lean_object* _init_l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__16(void){
+_start:
+{
+lean_object* v___x_2560_; 
+v___x_2560_ = lean_mk_string_unchecked("` (from `", 9, 9);
+return v___x_2560_;
 }
 }
 static lean_object* _init_l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__17(void){
 _start:
 {
 lean_object* v___x_2561_; lean_object* v___x_2562_; 
-v___x_2561_ = ((lean_object*)(l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__16));
+v___x_2561_ = lean_obj_once(&l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__16, &l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__16_once, _init_l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__16);
 v___x_2562_ = l_Lean_stringToMessageData(v___x_2561_);
 return v___x_2562_;
+}
+}
+static lean_object* _init_l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__18(void){
+_start:
+{
+lean_object* v___x_2563_; 
+v___x_2563_ = lean_mk_string_unchecked("`) exists but would need to be public to access here.", 53, 53);
+return v___x_2563_;
 }
 }
 static lean_object* _init_l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__19(void){
 _start:
 {
 lean_object* v___x_2564_; lean_object* v___x_2565_; 
-v___x_2564_ = ((lean_object*)(l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__18));
+v___x_2564_ = lean_obj_once(&l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__18, &l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__18_once, _init_l_Lean_mkUnknownIdentifierMessageCore___at___00Lean_mkUnknownIdentifierMessage___at___00Lean_throwUnknownIdentifierAt___at___00Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30_spec__36_spec__40_spec__41___redArg___closed__18);
 v___x_2565_ = l_Lean_stringToMessageData(v___x_2564_);
 return v___x_2565_;
 }
@@ -7566,11 +8103,19 @@ lean_dec(v_ref_2671_);
 return v_res_2679_;
 }
 }
+static lean_object* _init_l_Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_2680_; 
+v___x_2680_ = lean_mk_string_unchecked("Unknown constant `", 18, 18);
+return v___x_2680_;
+}
+}
 static lean_object* _init_l_Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30___redArg___closed__1(void){
 _start:
 {
 lean_object* v___x_2681_; lean_object* v___x_2682_; 
-v___x_2681_ = ((lean_object*)(l_Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30___redArg___closed__0));
+v___x_2681_ = lean_obj_once(&l_Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30___redArg___closed__0, &l_Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30___redArg___closed__0_once, _init_l_Lean_throwUnknownConstantAt___at___00Lean_throwUnknownConstant___at___00Lean_getConstVal___at___00Lean_mkConstWithLevelParams___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__0_spec__0_spec__6_spec__30___redArg___closed__0);
 v___x_2682_ = l_Lean_stringToMessageData(v___x_2681_);
 return v___x_2682_;
 }
@@ -8077,20 +8622,61 @@ lean_dec_ref(v_a_2874_);
 return v_res_2888_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__0(void){
+_start:
+{
+lean_object* v___x_2889_; 
+v___x_2889_ = lean_mk_string_unchecked("approx", 6, 6);
+return v___x_2889_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__1(void){
+_start:
+{
+lean_object* v___x_2890_; lean_object* v___x_2891_; 
+v___x_2890_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__0);
+v___x_2891_ = l_Lean_Name_mkStr1(v___x_2890_);
+return v___x_2891_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__2(void){
+_start:
+{
+lean_object* v___x_2892_; 
+v___x_2892_ = lean_mk_string_unchecked("fix_induct", 10, 10);
+return v___x_2892_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__3(void){
+_start:
+{
+lean_object* v___x_2893_; 
+v___x_2893_ = lean_mk_string_unchecked("packedConclusion: ", 18, 18);
+return v___x_2893_;
+}
+}
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__4(void){
 _start:
 {
 lean_object* v___x_2894_; lean_object* v___x_2895_; 
-v___x_2894_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__3));
+v___x_2894_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__3, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__3_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__3);
 v___x_2895_ = l_Lean_stringToMessageData(v___x_2894_);
 return v___x_2895_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__5(void){
+_start:
+{
+lean_object* v___x_2896_; 
+v___x_2896_ = lean_mk_string_unchecked(", index is: ", 12, 12);
+return v___x_2896_;
 }
 }
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__6(void){
 _start:
 {
 lean_object* v___x_2897_; lean_object* v___x_2898_; 
-v___x_2897_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__5));
+v___x_2897_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__5, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__5_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__5);
 v___x_2898_ = l_Lean_stringToMessageData(v___x_2897_);
 return v___x_2898_;
 }
@@ -8117,7 +8703,7 @@ lean_closure_set(v___f_2933_, 5, v___x_2903_);
 lean_closure_set(v___f_2933_, 6, v___x_2904_);
 lean_closure_set(v___f_2933_, 7, v___x_2931_);
 lean_closure_set(v___f_2933_, 8, v___x_2932_);
-v___x_2934_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__1));
+v___x_2934_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__1);
 v___x_2935_ = l_Lean_Meta_withLocalDeclD___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__18___redArg(v___x_2934_, v_a_2901_, v___f_2933_, v___y_2926_, v___y_2927_, v___y_2928_, v___y_2929_);
 if (lean_obj_tag(v___x_2935_) == 0)
 {
@@ -8141,7 +8727,7 @@ goto v_resetjp_2937_;
 v_resetjp_2937_:
 {
 lean_object* v___x_2940_; lean_object* v___x_2941_; lean_object* v___x_2943_; 
-v___x_2940_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__2));
+v___x_2940_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__2, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__2_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__7___closed__2);
 v___x_2941_ = l_Lean_Name_mkStr3(v___x_2907_, v___x_2908_, v___x_2940_);
 if (v_isShared_2939_ == 0)
 {
@@ -8225,7 +8811,7 @@ v_resetjp_2968_:
 lean_object* v_inheritedTraceOptions_2971_; uint8_t v_hasTrace_2972_; lean_object* v___x_2973_; lean_object* v___x_2974_; lean_object* v_e_x27_2976_; lean_object* v___y_2977_; lean_object* v___y_2978_; lean_object* v___y_2979_; lean_object* v___y_2980_; lean_object* v___y_3020_; lean_object* v___y_3021_; lean_object* v___y_3022_; lean_object* v___y_3023_; 
 v_inheritedTraceOptions_2971_ = lean_ctor_get(v___y_2928_, 13);
 v_hasTrace_2972_ = lean_ctor_get_uint8(v_options_2966_, sizeof(void*)*1);
-v___x_2973_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8));
+v___x_2973_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8);
 v___x_2974_ = l_Lean_Name_mkStr4(v___x_2917_, v___x_2918_, v___x_2919_, v___x_2973_);
 if (v_hasTrace_2972_ == 0)
 {
@@ -8239,7 +8825,7 @@ goto v___jp_3019_;
 else
 {
 lean_object* v___x_3030_; lean_object* v___x_3031_; uint8_t v___x_3032_; 
-v___x_3030_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11));
+v___x_3030_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11);
 lean_inc(v___x_2974_);
 v___x_3031_ = l_Lean_Name_append(v___x_3030_, v___x_2974_);
 v___x_3032_ = l___private_Lean_Util_Trace_0__Lean_checkTraceOption_go(v_inheritedTraceOptions_2971_, v_options_2966_, v___x_3031_);
@@ -8401,7 +8987,7 @@ lean_object* v_a_2994_; lean_object* v_inheritedTraceOptions_2995_; lean_object*
 v_a_2994_ = lean_ctor_get(v___x_2991_, 0);
 lean_inc(v_a_2994_);
 v_inheritedTraceOptions_2995_ = lean_ctor_get(v___y_2979_, 13);
-v___x_2996_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11));
+v___x_2996_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11);
 lean_inc(v___x_2974_);
 v___x_2997_ = l_Lean_Name_append(v___x_2996_, v___x_2974_);
 v___x_2998_ = l___private_Lean_Util_Trace_0__Lean_checkTraceOption_go(v_inheritedTraceOptions_2995_, v_options_2992_, v___x_2997_);
@@ -8855,6 +9441,23 @@ lean_dec_ref(v_as_3131_);
 return v_res_3140_;
 }
 }
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__0(void){
+_start:
+{
+lean_object* v___x_3141_; 
+v___x_3141_ = lean_mk_string_unchecked("f", 1, 1);
+return v___x_3141_;
+}
+}
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__1(void){
+_start:
+{
+lean_object* v___x_3142_; lean_object* v___x_3143_; 
+v___x_3142_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__0, &l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__0);
+v___x_3143_ = l_Lean_Name_mkStr1(v___x_3142_);
+return v___x_3143_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13(size_t v_sz_3144_, size_t v_i_3145_, lean_object* v_bs_3146_){
 _start:
 {
@@ -8888,7 +9491,7 @@ else
 {
 lean_object* v___x_3162_; 
 lean_dec(v_name_3150_);
-v___x_3162_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__1));
+v___x_3162_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__1, &l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__1_once, _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__1);
 v___y_3154_ = v___x_3162_;
 goto v___jp_3153_;
 }
@@ -9403,8 +10006,8 @@ goto v_resetjp_3364_;
 v_resetjp_3364_:
 {
 lean_object* v___f_3367_; lean_object* v___f_3368_; lean_object* v___f_3369_; lean_object* v___f_3370_; lean_object* v___x_3371_; lean_object* v___f_3372_; lean_object* v___f_3373_; lean_object* v___f_3374_; lean_object* v___x_3376_; 
-v___f_3367_ = ((lean_object*)(l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1));
-v___f_3368_ = ((lean_object*)(l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2));
+v___f_3367_ = lean_obj_once(&l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1, &l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1_once, _init_l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1);
+v___f_3368_ = lean_obj_once(&l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2, &l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2_once, _init_l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2);
 lean_inc_ref(v_toFunctor_3360_);
 v___f_3369_ = lean_alloc_closure((void*)(l_ReaderT_instFunctorOfMonad___redArg___lam__0), 6, 1);
 lean_closure_set(v___f_3369_, 0, v_toFunctor_3360_);
@@ -9514,8 +10117,8 @@ goto v_resetjp_3388_;
 v_resetjp_3388_:
 {
 lean_object* v___f_3391_; lean_object* v___f_3392_; lean_object* v___f_3393_; lean_object* v___f_3394_; lean_object* v___x_3395_; lean_object* v___f_3396_; lean_object* v___f_3397_; lean_object* v___f_3398_; lean_object* v___x_3400_; 
-v___f_3391_ = ((lean_object*)(l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3));
-v___f_3392_ = ((lean_object*)(l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4));
+v___f_3391_ = lean_obj_once(&l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3, &l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3_once, _init_l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3);
+v___f_3392_ = lean_obj_once(&l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4, &l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4_once, _init_l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4);
 lean_inc_ref(v_toFunctor_3384_);
 v___f_3393_ = lean_alloc_closure((void*)(l_ReaderT_instFunctorOfMonad___redArg___lam__0), 6, 1);
 lean_closure_set(v___f_3393_, 0, v_toFunctor_3384_);
@@ -9732,7 +10335,7 @@ LEAN_EXPORT lean_object* l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocal
 _start:
 {
 lean_object* v___x_3491_; lean_object* v___x_3492_; 
-v___x_3491_ = ((lean_object*)(l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___closed__0));
+v___x_3491_ = lean_obj_once(&l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___closed__0, &l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___closed__0_once, _init_l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___closed__0);
 v___x_3492_ = l___private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls_loop___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__17_spec__21_spec__27_spec__39(v_declInfos_3483_, v_k_3484_, v_kind_3485_, v___x_3491_, v___y_3486_, v___y_3487_, v___y_3488_, v___y_3489_);
 return v___x_3492_;
 }
@@ -9813,7 +10416,7 @@ lean_object* v_v_3551_; lean_object* v___x_3552_; lean_object* v_bs_x27_3553_; l
 v_v_3551_ = lean_array_uget(v_bs_3549_, v_i_3548_);
 v___x_3552_ = lean_unsigned_to_nat(0u);
 v_bs_x27_3553_ = lean_array_uset(v_bs_3549_, v_i_3548_, v___x_3552_);
-v___x_3554_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__1));
+v___x_3554_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__6___closed__1);
 v___x_3555_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_3555_, 0, v___x_3554_);
 lean_ctor_set(v___x_3555_, 1, v_v_3551_);
@@ -9895,6 +10498,15 @@ v___x_3614_ = l_Lean_Level_ofNat(v_zero_3613_);
 return v___x_3614_;
 }
 }
+static lean_object* _init_l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg___boxed__const__1(void){
+_start:
+{
+size_t v___x_3615_; lean_object* v___x_3616_; 
+v___x_3615_ = ((size_t)0ULL);
+v___x_3616_ = lean_box_usize(v___x_3615_);
+return v___x_3616_;
+}
+}
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg(lean_object* v_a_3617_, lean_object* v___x_3618_, lean_object* v_motives_3619_, lean_object* v_a_3620_, uint8_t v___x_3621_, lean_object* v_a_3622_, lean_object* v_i_3623_, lean_object* v_j_3624_, lean_object* v_bs_3625_, lean_object* v___y_3626_, lean_object* v___y_3627_, lean_object* v___y_3628_, lean_object* v___y_3629_){
 _start:
 {
@@ -9921,7 +10533,7 @@ v___x_3634_ = l_Lean_instInhabitedExpr;
 v___x_3635_ = lean_obj_once(&l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg___closed__0, &l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg___closed__0_once, _init_l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg___closed__0);
 v_sz_3636_ = lean_array_size(v_a_3617_);
 v___x_3637_ = ((size_t)0ULL);
-v___x_3638_ = ((lean_object*)(l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg___boxed__const__1));
+v___x_3638_ = l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg___boxed__const__1;
 v___x_3639_ = lean_box(v_isZero_3632_);
 v___x_3640_ = lean_box(v___x_3621_);
 lean_inc_ref(v_a_3620_);
@@ -10027,6 +10639,14 @@ lean_dec_ref(v_a_3665_);
 return v_res_3675_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__8___closed__0(void){
+_start:
+{
+lean_object* v___x_3676_; 
+v___x_3676_ = lean_mk_string_unchecked("h", 1, 1);
+return v___x_3676_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__8(lean_object* v_arg_3677_, lean_object* v___x_3678_, lean_object* v_arg_3679_, lean_object* v___x_3680_, lean_object* v___x_3681_, lean_object* v_a_3682_, lean_object* v_arg_3683_, lean_object* v_motives_3684_, lean_object* v_a_3685_, uint8_t v___x_3686_, lean_object* v_a_3687_, lean_object* v_a_3688_, lean_object* v___x_3689_, uint8_t v___x_3690_, lean_object* v___x_3691_, lean_object* v___x_3692_, lean_object* v_arg_3693_, lean_object* v_perms_3694_, lean_object* v_xs_3695_, lean_object* v___x_3696_, lean_object* v___x_3697_, lean_object* v___x_3698_, uint8_t v_isMutual_3699_, lean_object* v_name_3700_, lean_object* v_declNames_3701_, lean_object* v_adms_3702_, lean_object* v___y_3703_, lean_object* v___y_3704_, lean_object* v___y_3705_, lean_object* v___y_3706_){
 _start:
 {
@@ -10106,7 +10726,7 @@ lean_closure_set(v___f_3724_, 22, v___x_3723_);
 lean_closure_set(v___f_3724_, 23, v_name_3700_);
 lean_closure_set(v___f_3724_, 24, v_declNames_3701_);
 lean_closure_set(v___f_3724_, 25, v___x_3681_);
-v___x_3725_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__8___closed__0));
+v___x_3725_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__8___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__8___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__8___closed__0);
 v___x_3726_ = l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_numberNames(v___x_3681_, v___x_3725_);
 v___x_3727_ = l_Array_zip___redArg(v___x_3726_, v_fst_3719_);
 lean_dec(v_fst_3719_);
@@ -10317,6 +10937,25 @@ lean_dec_ref(v___x_3749_);
 return v_res_3780_;
 }
 }
+static lean_object* _init_l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_3781_; 
+v___x_3781_ = lean_mk_string_unchecked("admissible", 10, 10);
+return v___x_3781_;
+}
+}
+static lean_object* _init_l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_3782_; lean_object* v___x_3783_; lean_object* v___x_3784_; lean_object* v___x_3785_; 
+v___x_3782_ = lean_obj_once(&l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__0, &l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__0_once, _init_l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__0);
+v___x_3783_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1);
+v___x_3784_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0);
+v___x_3785_ = l_Lean_Name_mkStr3(v___x_3784_, v___x_3783_, v___x_3782_);
+return v___x_3785_;
+}
+}
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg(lean_object* v_a_3786_, lean_object* v___x_3787_, lean_object* v_as_3788_, lean_object* v_i_3789_, lean_object* v_j_3790_, lean_object* v_bs_3791_, lean_object* v___y_3792_, lean_object* v___y_3793_, lean_object* v___y_3794_, lean_object* v___y_3795_){
 _start:
 {
@@ -10337,7 +10976,7 @@ else
 lean_object* v___x_3800_; lean_object* v___x_3801_; lean_object* v___x_3802_; lean_object* v___x_3803_; lean_object* v___x_3804_; lean_object* v___x_3805_; lean_object* v___x_3806_; lean_object* v___x_3807_; lean_object* v___x_3808_; lean_object* v___x_3809_; lean_object* v___x_3810_; lean_object* v___x_3811_; lean_object* v___x_3812_; lean_object* v___x_3813_; 
 v___x_3800_ = l_Lean_instInhabitedExpr;
 v___x_3801_ = lean_array_fget_borrowed(v_as_3788_, v_j_3790_);
-v___x_3802_ = ((lean_object*)(l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__1));
+v___x_3802_ = lean_obj_once(&l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__1, &l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__1_once, _init_l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__23___redArg___closed__1);
 v___x_3803_ = lean_array_get_borrowed(v___x_3800_, v_a_3786_, v_j_3790_);
 lean_inc(v___x_3803_);
 v___x_3804_ = lean_alloc_ctor(1, 1, 0);
@@ -10434,11 +11073,36 @@ lean_dec_ref(v_a_3828_);
 return v_res_3839_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__0(void){
+_start:
+{
+lean_object* v___x_3840_; 
+v___x_3840_ = lean_mk_string_unchecked("x", 1, 1);
+return v___x_3840_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__1(void){
+_start:
+{
+lean_object* v___x_3841_; lean_object* v___x_3842_; 
+v___x_3841_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__0);
+v___x_3842_ = l_Lean_Name_mkStr1(v___x_3841_);
+return v___x_3842_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__2(void){
+_start:
+{
+lean_object* v___x_3843_; 
+v___x_3843_ = lean_mk_string_unchecked("adm", 3, 3);
+return v___x_3843_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9(lean_object* v_a_3844_, lean_object* v___x_3845_, lean_object* v___x_3846_, uint8_t v___x_3847_, uint8_t v___x_3848_, lean_object* v_a_3849_, lean_object* v___x_3850_, lean_object* v_arg_3851_, lean_object* v_arg_3852_, lean_object* v___x_3853_, lean_object* v___x_3854_, lean_object* v_a_3855_, lean_object* v_arg_3856_, lean_object* v___x_3857_, lean_object* v___x_3858_, lean_object* v_arg_3859_, lean_object* v_perms_3860_, lean_object* v_xs_3861_, lean_object* v___x_3862_, lean_object* v___x_3863_, lean_object* v___x_3864_, uint8_t v_isMutual_3865_, lean_object* v_name_3866_, lean_object* v_declNames_3867_, lean_object* v_motives_3868_, lean_object* v___y_3869_, lean_object* v___y_3870_, lean_object* v___y_3871_, lean_object* v___y_3872_){
 _start:
 {
 lean_object* v___x_3874_; lean_object* v___x_3875_; 
-v___x_3874_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__1));
+v___x_3874_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__1);
 v___x_3875_ = l_Lean_Core_mkFreshUserName(v___x_3874_, v___y_3871_, v___y_3872_);
 if (lean_obj_tag(v___x_3875_) == 0)
 {
@@ -10506,7 +11170,7 @@ lean_closure_set(v___f_3889_, 22, v___x_3888_);
 lean_closure_set(v___f_3889_, 23, v_name_3866_);
 lean_closure_set(v___f_3889_, 24, v_declNames_3867_);
 v___x_3890_ = lean_array_get_size(v_a_3885_);
-v___x_3891_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__2));
+v___x_3891_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__2, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__2_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__9___closed__2);
 v___x_3892_ = l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_numberNames(v___x_3890_, v___x_3891_);
 v___x_3893_ = l_Array_zip___redArg(v___x_3892_, v_a_3885_);
 lean_dec(v_a_3885_);
@@ -11144,31 +11808,93 @@ lean_dec_ref(v___y_4105_);
 return v_res_4110_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__0(void){
+_start:
+{
+lean_object* v___x_4111_; 
+v___x_4111_ = lean_mk_string_unchecked("Unexpected function body ", 25, 25);
+return v___x_4111_;
+}
+}
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__1(void){
 _start:
 {
 lean_object* v___x_4112_; lean_object* v___x_4113_; 
-v___x_4112_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__0));
+v___x_4112_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__0);
 v___x_4113_ = l_Lean_stringToMessageData(v___x_4112_);
 return v___x_4113_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__2(void){
+_start:
+{
+lean_object* v___x_4114_; 
+v___x_4114_ = lean_mk_string_unchecked(", not an application of lfp_monotone", 36, 36);
+return v___x_4114_;
 }
 }
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__3(void){
 _start:
 {
 lean_object* v___x_4115_; lean_object* v___x_4116_; 
-v___x_4115_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__2));
+v___x_4115_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__2, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__2_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__2);
 v___x_4116_ = l_Lean_stringToMessageData(v___x_4115_);
 return v___x_4116_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__4(void){
+_start:
+{
+lean_object* v___x_4117_; 
+v___x_4117_ = lean_mk_string_unchecked(", not an application of fix", 27, 27);
+return v___x_4117_;
 }
 }
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__5(void){
 _start:
 {
 lean_object* v___x_4118_; lean_object* v___x_4119_; 
-v___x_4118_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__4));
+v___x_4118_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__4, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__4_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__4);
 v___x_4119_ = l_Lean_stringToMessageData(v___x_4118_);
 return v___x_4119_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__6(void){
+_start:
+{
+lean_object* v___x_4120_; 
+v___x_4120_ = lean_mk_string_unchecked("lfp_monotone", 12, 12);
+return v___x_4120_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__7(void){
+_start:
+{
+lean_object* v___x_4121_; lean_object* v___x_4122_; lean_object* v___x_4123_; lean_object* v___x_4124_; 
+v___x_4121_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__6, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__6_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__6);
+v___x_4122_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1);
+v___x_4123_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0);
+v___x_4124_ = l_Lean_Name_mkStr3(v___x_4123_, v___x_4122_, v___x_4121_);
+return v___x_4124_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__8(void){
+_start:
+{
+lean_object* v___x_4125_; 
+v___x_4125_ = lean_mk_string_unchecked("lfp_le_of_le_monotone", 21, 21);
+return v___x_4125_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__9(void){
+_start:
+{
+lean_object* v___x_4126_; lean_object* v___x_4127_; lean_object* v___x_4128_; lean_object* v___x_4129_; 
+v___x_4126_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__8, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__8_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__8);
+v___x_4127_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1);
+v___x_4128_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0);
+v___x_4129_ = l_Lean_Name_mkStr3(v___x_4128_, v___x_4127_, v___x_4126_);
+return v___x_4129_;
 }
 }
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__10(void){
@@ -11180,20 +11906,71 @@ v___x_4131_ = l_Lean_Level_ofNat(v___x_4130_);
 return v___x_4131_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__11(void){
+_start:
+{
+lean_object* v___x_4132_; 
+v___x_4132_ = lean_mk_string_unchecked("pred", 4, 4);
+return v___x_4132_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__12(void){
+_start:
+{
+lean_object* v___x_4133_; 
+v___x_4133_ = lean_mk_string_unchecked(", could not whnfUntil lfp_monotone", 34, 34);
+return v___x_4133_;
+}
+}
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__13(void){
 _start:
 {
 lean_object* v___x_4134_; lean_object* v___x_4135_; 
-v___x_4134_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__12));
+v___x_4134_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__12, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__12_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__12);
 v___x_4135_ = l_Lean_stringToMessageData(v___x_4134_);
 return v___x_4135_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__14(void){
+_start:
+{
+lean_object* v___x_4136_; 
+v___x_4136_ = lean_mk_string_unchecked("fix", 3, 3);
+return v___x_4136_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__15(void){
+_start:
+{
+lean_object* v___x_4137_; lean_object* v___x_4138_; lean_object* v___x_4139_; lean_object* v___x_4140_; 
+v___x_4137_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__14, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__14_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__14);
+v___x_4138_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1);
+v___x_4139_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0);
+v___x_4140_ = l_Lean_Name_mkStr3(v___x_4139_, v___x_4138_, v___x_4137_);
+return v___x_4140_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__16(void){
+_start:
+{
+lean_object* v___x_4141_; 
+v___x_4141_ = lean_mk_string_unchecked("motive", 6, 6);
+return v___x_4141_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__17(void){
+_start:
+{
+lean_object* v___x_4142_; 
+v___x_4142_ = lean_mk_string_unchecked(", could not whnfUntil fix", 25, 25);
+return v___x_4142_;
 }
 }
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__18(void){
 _start:
 {
 lean_object* v___x_4143_; lean_object* v___x_4144_; 
-v___x_4143_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__17));
+v___x_4143_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__17, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__17_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__17);
 v___x_4144_ = l_Lean_stringToMessageData(v___x_4143_);
 return v___x_4144_;
 }
@@ -11259,9 +12036,9 @@ else
 lean_object* v___x_4313_; lean_object* v___x_4314_; lean_object* v___x_4315_; lean_object* v___x_4316_; 
 lean_del_object(v___x_4169_);
 lean_dec_ref(v_val_4150_);
-v___x_4313_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0));
-v___x_4314_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1));
-v___x_4315_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__15));
+v___x_4313_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0);
+v___x_4314_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1);
+v___x_4315_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__15, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__15_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__15);
 lean_inc_ref(v___x_4183_);
 v___x_4316_ = l_Lean_Meta_whnfUntil(v___x_4183_, v___x_4315_, v___y_4160_, v___y_4161_, v___y_4162_, v___y_4163_);
 if (lean_obj_tag(v___x_4316_) == 0)
@@ -11444,7 +12221,7 @@ v___x_4343_ = 0;
 lean_inc_ref(v_arg_4327_);
 v___x_4344_ = l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_CCPOProdProjs(v___x_4333_, v_arg_4327_);
 v___x_4345_ = lean_array_get_size(v_a_4342_);
-v___x_4346_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__16));
+v___x_4346_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__16, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__16_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__16);
 v___x_4347_ = l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_numberNames(v___x_4345_, v___x_4346_);
 v___x_4348_ = l_Lean_instInhabitedExpr;
 v___x_4349_ = lean_box(v___x_4343_);
@@ -11735,9 +12512,9 @@ return v___x_4194_;
 v___jp_4195_:
 {
 lean_object* v___x_4196_; lean_object* v___x_4197_; lean_object* v___x_4198_; lean_object* v___x_4199_; 
-v___x_4196_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0));
-v___x_4197_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1));
-v___x_4198_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__7));
+v___x_4196_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0);
+v___x_4197_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1);
+v___x_4198_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__7, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__7_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__7);
 v___x_4199_ = l_Lean_Meta_whnfUntil(v___x_4183_, v___x_4198_, v___y_4160_, v___y_4161_, v___y_4162_, v___y_4163_);
 if (lean_obj_tag(v___x_4199_) == 0)
 {
@@ -11916,7 +12693,7 @@ else
 {
 lean_object* v___x_4219_; lean_object* v___x_4221_; 
 lean_dec(v_a_4167_);
-v___x_4219_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__9));
+v___x_4219_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__9, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__9_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__9);
 lean_inc_ref(v_arg_4216_);
 if (v_isShared_4204_ == 0)
 {
@@ -12071,7 +12848,7 @@ lean_closure_set(v___f_4262_, 10, v___x_4261_);
 lean_closure_set(v___f_4262_, 11, v_name_4156_);
 lean_closure_set(v___f_4262_, 12, v_declNames_4157_);
 lean_closure_set(v___f_4262_, 13, v___x_4234_);
-v___x_4263_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__11));
+v___x_4263_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__11, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__11_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__11);
 v___x_4264_ = l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_numberNames(v___x_4234_, v___x_4263_);
 v___x_4265_ = l_Array_zip___redArg(v___x_4264_, v_a_4257_);
 lean_dec(v_a_4257_);
@@ -12645,11 +13422,20 @@ lean_ctor_set(v___x_4466_, 1, v___x_4464_);
 return v___x_4466_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__2(void){
+_start:
+{
+lean_object* v___x_4467_; lean_object* v___x_4468_; 
+v___x_4467_ = lean_unsigned_to_nat(0u);
+v___x_4468_ = lean_mk_empty_array_with_capacity(v___x_4467_);
+return v___x_4468_;
+}
+}
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__3(void){
 _start:
 {
 lean_object* v___x_4469_; lean_object* v___x_4470_; lean_object* v___x_4471_; 
-v___x_4469_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__2));
+v___x_4469_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__2, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__2_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__2);
 v___x_4470_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__1);
 v___x_4471_ = lean_alloc_ctor(0, 3, 0);
 lean_ctor_set(v___x_4471_, 0, v___x_4470_);
@@ -12658,20 +13444,36 @@ lean_ctor_set(v___x_4471_, 2, v___x_4469_);
 return v___x_4471_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__4(void){
+_start:
+{
+lean_object* v___x_4472_; 
+v___x_4472_ = lean_mk_string_unchecked("eTyp last: ", 11, 11);
+return v___x_4472_;
+}
+}
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__5(void){
 _start:
 {
 lean_object* v___x_4473_; lean_object* v___x_4474_; 
-v___x_4473_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__4));
+v___x_4473_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__4, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__4_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__4);
 v___x_4474_ = l_Lean_stringToMessageData(v___x_4473_);
 return v___x_4474_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__6(void){
+_start:
+{
+lean_object* v___x_4475_; 
+v___x_4475_ = lean_mk_string_unchecked(" is not defined by partial_fixpoint", 35, 35);
+return v___x_4475_;
 }
 }
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__7(void){
 _start:
 {
 lean_object* v___x_4476_; lean_object* v___x_4477_; 
-v___x_4476_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__6));
+v___x_4476_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__6, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__6_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___closed__6);
 v___x_4477_ = l_Lean_stringToMessageData(v___x_4476_);
 return v___x_4477_;
 }
@@ -12741,7 +13543,7 @@ v_resetjp_4513_:
 {
 lean_object* v___x_4516_; lean_object* v___x_4517_; lean_object* v___x_4518_; lean_object* v___f_4519_; lean_object* v___x_4520_; 
 v___x_4516_ = lean_array_get(v___x_4481_, v_perms_4507_, v___x_4508_);
-v___x_4517_ = ((lean_object*)(l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg___boxed__const__1));
+v___x_4517_ = l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg___boxed__const__1;
 v___x_4518_ = lean_box(v_isMutual_4485_);
 lean_inc_ref(v___x_4484_);
 lean_inc_ref(v___x_4483_);
@@ -12797,9 +13599,9 @@ else
 {
 lean_object* v_inheritedTraceOptions_4563_; lean_object* v___x_4564_; lean_object* v___x_4565_; lean_object* v___x_4566_; lean_object* v___x_4567_; uint8_t v___x_4568_; 
 v_inheritedTraceOptions_4563_ = lean_ctor_get(v___y_4489_, 13);
-v___x_4564_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8));
+v___x_4564_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__8);
 v___x_4565_ = l_Lean_Name_mkStr4(v___x_4482_, v___x_4483_, v___x_4484_, v___x_4564_);
-v___x_4566_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11));
+v___x_4566_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11);
 lean_inc(v___x_4565_);
 v___x_4567_ = l_Lean_Name_append(v___x_4566_, v___x_4565_);
 v___x_4568_ = l___private_Lean_Util_Trace_0__Lean_checkTraceOption_go(v_inheritedTraceOptions_4563_, v_options_4561_, v___x_4567_);
@@ -13200,11 +14002,19 @@ lean_ctor_set(v___x_4622_, 1, v___x_4621_);
 return v___x_4622_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__0(void){
+_start:
+{
+lean_object* v___x_4623_; 
+v___x_4623_ = lean_mk_string_unchecked("Cannot derive fixpoint induction principle (please report this issue)", 69, 69);
+return v___x_4623_;
+}
+}
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__1(void){
 _start:
 {
 lean_object* v___x_4624_; lean_object* v___x_4625_; 
-v___x_4624_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__0));
+v___x_4624_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__0);
 v___x_4625_ = l_Lean_stringToMessageData(v___x_4624_);
 return v___x_4625_;
 }
@@ -13219,11 +14029,19 @@ lean_closure_set(v___f_4627_, 0, v___x_4626_);
 return v___f_4627_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__3(void){
+_start:
+{
+lean_object* v___x_4628_; 
+v___x_4628_ = lean_mk_string_unchecked("Called deriveInduction for ", 27, 27);
+return v___x_4628_;
+}
+}
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__4(void){
 _start:
 {
 lean_object* v___x_4629_; lean_object* v___x_4630_; 
-v___x_4629_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__3));
+v___x_4629_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__3, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__3_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___closed__3);
 v___x_4630_ = l_Lean_stringToMessageData(v___x_4629_);
 return v___x_4630_;
 }
@@ -13248,7 +14066,7 @@ else
 {
 lean_object* v_inheritedTraceOptions_4664_; lean_object* v___x_4665_; lean_object* v___x_4666_; uint8_t v___x_4667_; 
 v_inheritedTraceOptions_4664_ = lean_ctor_get(v___y_4636_, 13);
-v___x_4665_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11));
+v___x_4665_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__11);
 lean_inc(v___x_4632_);
 v___x_4666_ = l_Lean_Name_append(v___x_4665_, v___x_4632_);
 v___x_4667_ = l___private_Lean_Util_Trace_0__Lean_checkTraceOption_go(v_inheritedTraceOptions_4664_, v_options_4662_, v___x_4666_);
@@ -13390,6 +14208,17 @@ lean_dec_ref(v___y_4675_);
 return v_res_4680_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___closed__0(void){
+_start:
+{
+lean_object* v___x_4681_; lean_object* v___x_4682_; lean_object* v___x_4683_; lean_object* v___x_4684_; 
+v___x_4681_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__7, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__7_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__7);
+v___x_4682_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__6, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__6_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__6);
+v___x_4683_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5);
+v___x_4684_ = l_Lean_Name_mkStr3(v___x_4683_, v___x_4682_, v___x_4681_);
+return v___x_4684_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction(lean_object* v_name_4685_, uint8_t v_isMutual_4686_, lean_object* v_a_4687_, lean_object* v_a_4688_, lean_object* v_a_4689_, lean_object* v_a_4690_){
 _start:
 {
@@ -13407,9 +14236,9 @@ v___x_4695_ = l_Lean_instInhabitedDefinitionVal_default;
 v___x_4696_ = l_Lean_Elab_PartialFixpoint_instInhabitedEqnInfo_default;
 lean_inc_n(v_name_4685_, 2);
 v___x_4697_ = l_Lean_Name_append(v_name_4685_, v_a_4693_);
-v___x_4698_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5));
-v___x_4699_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__6));
-v___x_4700_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__7));
+v___x_4698_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5);
+v___x_4699_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__6, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__6_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__6);
+v___x_4700_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__7, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__7_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__7);
 v___x_4701_ = lean_box(v_isMutual_4686_);
 lean_inc_n(v___x_4697_, 2);
 v___f_4702_ = lean_alloc_closure((void*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__11___boxed), 14, 9);
@@ -13422,7 +14251,7 @@ lean_closure_set(v___f_4702_, 5, v___x_4699_);
 lean_closure_set(v___f_4702_, 6, v___x_4700_);
 lean_closure_set(v___f_4702_, 7, v___x_4701_);
 lean_closure_set(v___f_4702_, 8, v___x_4697_);
-v___x_4703_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___closed__0));
+v___x_4703_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___closed__0);
 v___f_4704_ = lean_alloc_closure((void*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__13___boxed), 8, 3);
 lean_closure_set(v___f_4704_, 0, v___f_4702_);
 lean_closure_set(v___f_4704_, 1, v___x_4703_);
@@ -14034,29 +14863,29 @@ v_str_5168_ = lean_ctor_get(v_name_5166_, 1);
 lean_inc_ref(v_str_5168_);
 lean_dec_ref(v_name_5166_);
 v___x_5169_ = l_Lean_Elab_PartialFixpoint_instInhabitedEqnInfo_default;
-v___x_5170_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__4));
+v___x_5170_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__4, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__4_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__4);
 v___x_5171_ = lean_string_dec_eq(v_str_5168_, v___x_5170_);
 if (v___x_5171_ == 0)
 {
 uint8_t v___x_5172_; lean_object* v___x_5173_; uint8_t v___x_5174_; 
 v___x_5172_ = 0;
-v___x_5173_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__8));
+v___x_5173_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__8, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__8_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__8);
 v___x_5174_ = lean_string_dec_eq(v_str_5168_, v___x_5173_);
 if (v___x_5174_ == 0)
 {
 lean_object* v___x_5175_; uint8_t v___x_5176_; 
-v___x_5175_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__10));
+v___x_5175_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__10, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__10_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__10);
 v___x_5176_ = lean_string_dec_eq(v_str_5168_, v___x_5175_);
 if (v___x_5176_ == 0)
 {
 lean_object* v___x_5177_; lean_object* v___x_5178_; uint8_t v___x_5179_; 
 v___x_5177_ = lean_box(0);
-v___x_5178_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0));
+v___x_5178_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0);
 v___x_5179_ = lean_string_dec_eq(v_str_5168_, v___x_5178_);
 if (v___x_5179_ == 0)
 {
 lean_object* v___x_5180_; uint8_t v___x_5181_; 
-v___x_5180_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6));
+v___x_5180_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6);
 v___x_5181_ = lean_string_dec_eq(v_str_5168_, v___x_5180_);
 lean_dec_ref(v_str_5168_);
 if (v___x_5181_ == 0)
@@ -14449,6 +15278,15 @@ lean_ctor_set(v___x_5278_, 2, v___x_5275_);
 return v___x_5278_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_5279_; lean_object* v___x_5280_; 
+v___x_5279_ = lean_unsigned_to_nat(0u);
+v___x_5280_ = lean_mk_empty_array_with_capacity(v___x_5279_);
+return v___x_5280_;
+}
+}
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__4_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_(void){
 _start:
 {
@@ -14520,7 +15358,7 @@ static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_In
 _start:
 {
 lean_object* v___x_5294_; lean_object* v___x_5295_; 
-v___x_5294_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6));
+v___x_5294_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6);
 v___x_5295_ = lean_string_utf8_byte_size(v___x_5294_);
 return v___x_5295_;
 }
@@ -14529,7 +15367,7 @@ static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_In
 _start:
 {
 lean_object* v___x_5296_; lean_object* v___x_5297_; 
-v___x_5296_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0));
+v___x_5296_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0);
 v___x_5297_ = lean_string_utf8_byte_size(v___x_5296_);
 return v___x_5297_;
 }
@@ -14563,7 +15401,7 @@ lean_inc(v_pre_5307_);
 v_str_5308_ = lean_ctor_get(v_name_5298_, 1);
 lean_inc_ref(v_str_5308_);
 lean_dec_ref(v_name_5298_);
-v___x_5363_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0));
+v___x_5363_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__0);
 v___x_5364_ = lean_string_utf8_byte_size(v_str_5308_);
 v___x_5365_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__9_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__9_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__9_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_);
 v___x_5366_ = lean_nat_dec_le(v___x_5365_, v___x_5364_);
@@ -14625,7 +15463,7 @@ lean_ctor_set_uint64(v___x_5317_, sizeof(void*)*1, v___x_5316_);
 v___x_5318_ = lean_box(1);
 v___x_5319_ = lean_unsigned_to_nat(0u);
 v___x_5320_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__2_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__2_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__2_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_);
-v___x_5321_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_));
+v___x_5321_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_);
 v___x_5322_ = lean_box(0);
 v___x_5323_ = lean_alloc_ctor(0, 7, 4);
 lean_ctor_set(v___x_5323_, 0, v___x_5317_);
@@ -14784,7 +15622,7 @@ return v___x_5351_;
 v___jp_5354_:
 {
 lean_object* v___x_5356_; lean_object* v___x_5357_; lean_object* v___x_5358_; uint8_t v___x_5359_; 
-v___x_5356_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6));
+v___x_5356_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__6);
 v___x_5357_ = lean_string_utf8_byte_size(v_str_5308_);
 v___x_5358_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__8_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__8_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__8_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_);
 v___x_5359_ = lean_nat_dec_le(v___x_5358_, v___x_5357_);
@@ -14830,17 +15668,33 @@ lean_dec_ref(v___y_5374_);
 return v_res_5377_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_5378_; 
+v___x_5378_ = lean_alloc_closure((void*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isInductName___boxed), 2, 0);
+return v___x_5378_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___f_5379_; 
+v___f_5379_ = lean_alloc_closure((void*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2____boxed), 4, 0);
+return v___f_5379_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_(){
 _start:
 {
 lean_object* v___x_5381_; lean_object* v___x_5382_; 
-v___x_5381_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_));
+v___x_5381_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_);
 v___x_5382_ = l_Lean_registerReservedNamePredicate(v___x_5381_);
 if (lean_obj_tag(v___x_5382_) == 0)
 {
 lean_object* v___f_5383_; lean_object* v___x_5384_; 
 lean_dec_ref(v___x_5382_);
-v___f_5383_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_));
+v___f_5383_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_);
 v___x_5384_ = l_Lean_registerReservedNameAction(v___f_5383_);
 return v___x_5384_;
 }
@@ -14867,15 +15721,31 @@ v___x_5389_ = lean_panic_fn_borrowed(v___x_5388_, v_msg_5387_);
 return v___x_5389_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_5390_; 
+v___x_5390_ = lean_mk_string_unchecked("_private.Lean.Elab.PreDefinition.PartialFixpoint.Induction.0.Lean.Elab.PartialFixpoint.isOptionFixpoint", 103, 103);
+return v___x_5390_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__1(void){
+_start:
+{
+lean_object* v___x_5391_; 
+v___x_5391_ = lean_mk_string_unchecked("isOptionFixpoint: unexpected value ", 35, 35);
+return v___x_5391_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0(lean_object* v_val_5392_, lean_object* v_x_5393_){
 _start:
 {
 lean_object* v___x_5394_; lean_object* v___x_5395_; lean_object* v___x_5396_; lean_object* v___x_5397_; lean_object* v___x_5398_; lean_object* v___x_5399_; lean_object* v___x_5400_; lean_object* v___x_5401_; lean_object* v___x_5402_; 
-v___x_5394_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__8));
-v___x_5395_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__0));
+v___x_5394_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__8, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__8_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__8);
+v___x_5395_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__0);
 v___x_5396_ = lean_unsigned_to_nat(327u);
 v___x_5397_ = lean_unsigned_to_nat(48u);
-v___x_5398_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__1));
+v___x_5398_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__1);
 v___x_5399_ = lean_expr_dbg_to_string(v_val_5392_);
 v___x_5400_ = lean_string_append(v___x_5398_, v___x_5399_);
 lean_dec_ref(v___x_5399_);
@@ -14894,11 +15764,30 @@ lean_dec_ref(v_val_5403_);
 return v_res_5405_;
 }
 }
+static lean_object* _init_l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__0(void){
+_start:
+{
+lean_object* v___x_5406_; 
+v___x_5406_ = lean_mk_string_unchecked("instCCPOPi", 10, 10);
+return v___x_5406_;
+}
+}
+static lean_object* _init_l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__1(void){
+_start:
+{
+lean_object* v___x_5407_; lean_object* v___x_5408_; lean_object* v___x_5409_; lean_object* v___x_5410_; 
+v___x_5407_ = lean_obj_once(&l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__0, &l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__0_once, _init_l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__0);
+v___x_5408_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1);
+v___x_5409_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0);
+v___x_5410_ = l_Lean_Name_mkStr3(v___x_5409_, v___x_5408_, v___x_5407_);
+return v___x_5410_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0(lean_object* v_b_5411_){
 _start:
 {
 lean_object* v___x_5412_; lean_object* v___x_5413_; uint8_t v___x_5414_; 
-v___x_5412_ = ((lean_object*)(l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__1));
+v___x_5412_ = lean_obj_once(&l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__1, &l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__1_once, _init_l___private_Init_While_0__Lean_Loop_forIn_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__0___closed__1);
 v___x_5413_ = lean_unsigned_to_nat(3u);
 v___x_5414_ = l_Lean_Expr_isAppOfArity(v_b_5411_, v___x_5412_, v___x_5413_);
 if (v___x_5414_ == 0)
@@ -14932,6 +15821,25 @@ goto _start;
 }
 }
 }
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__0(void){
+_start:
+{
+lean_object* v___x_5421_; 
+v___x_5421_ = lean_mk_string_unchecked("instCCPOOption", 14, 14);
+return v___x_5421_;
+}
+}
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__1(void){
+_start:
+{
+lean_object* v___x_5422_; lean_object* v___x_5423_; lean_object* v___x_5424_; lean_object* v___x_5425_; 
+v___x_5422_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__0, &l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__0);
+v___x_5423_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1);
+v___x_5424_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0);
+v___x_5425_ = l_Lean_Name_mkStr3(v___x_5424_, v___x_5423_, v___x_5422_);
+return v___x_5425_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3(lean_object* v_as_5426_, size_t v_i_5427_, size_t v_stop_5428_, lean_object* v_b_5429_){
 _start:
 {
@@ -14955,7 +15863,7 @@ lean_object* v_val_5434_; lean_object* v___x_5435_; lean_object* v___x_5436_; ui
 v_val_5434_ = lean_ctor_get(v___x_5432_, 0);
 lean_inc(v_val_5434_);
 lean_dec_ref(v___x_5432_);
-v___x_5435_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__1));
+v___x_5435_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__1, &l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__1_once, _init_l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint_spec__3___closed__1);
 v___x_5436_ = lean_unsigned_to_nat(1u);
 v___x_5437_ = l_Lean_Expr_isAppOfArity(v_val_5434_, v___x_5435_, v___x_5436_);
 lean_dec(v_val_5434_);
@@ -15021,15 +15929,23 @@ goto _start;
 }
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___closed__0(void){
+_start:
+{
+lean_object* v___x_5456_; 
+v___x_5456_ = lean_mk_string_unchecked("assertion violation: defnInfo.hasValue\n  ", 41, 41);
+return v___x_5456_;
+}
+}
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___closed__1(void){
 _start:
 {
 lean_object* v___x_5457_; lean_object* v___x_5458_; lean_object* v___x_5459_; lean_object* v___x_5460_; lean_object* v___x_5461_; lean_object* v___x_5462_; 
-v___x_5457_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___closed__0));
+v___x_5457_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___closed__0);
 v___x_5458_ = lean_unsigned_to_nat(2u);
 v___x_5459_ = lean_unsigned_to_nat(324u);
-v___x_5460_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__0));
-v___x_5461_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__8));
+v___x_5460_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isOptionFixpoint___lam__0___closed__0);
+v___x_5461_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__8, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__8_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmProj___closed__8);
 v___x_5462_ = l_mkPanicMessageWithDecl(v___x_5461_, v___x_5460_, v___x_5459_, v___x_5458_, v___x_5457_);
 return v___x_5462_;
 }
@@ -15189,7 +16105,7 @@ else
 {
 lean_object* v___x_5508_; lean_object* v___x_5509_; uint8_t v___x_5510_; 
 v___x_5508_ = l_Lean_Expr_appFnCleanup___redArg(v___x_5504_);
-v___x_5509_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__15));
+v___x_5509_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__15, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__15_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__15);
 v___x_5510_ = l_Lean_Expr_isConstOf(v___x_5508_, v___x_5509_);
 lean_dec_ref(v___x_5508_);
 if (v___x_5510_ == 0)
@@ -15286,6 +16202,22 @@ v_r_5528_ = lean_box(v_res_5527_);
 return v_r_5528_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__0(void){
+_start:
+{
+lean_object* v___x_5529_; 
+v___x_5529_ = lean_mk_string_unchecked("partial_correctness", 19, 19);
+return v___x_5529_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__1(void){
+_start:
+{
+lean_object* v___x_5530_; 
+v___x_5530_ = lean_mk_string_unchecked("mutual_partial_correctness", 26, 26);
+return v___x_5530_;
+}
+}
 LEAN_EXPORT uint8_t l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName(lean_object* v_env_5531_, lean_object* v_name_5532_){
 _start:
 {
@@ -15297,12 +16229,12 @@ lean_inc(v_pre_5533_);
 v_str_5534_ = lean_ctor_get(v_name_5532_, 1);
 lean_inc_ref(v_str_5534_);
 lean_dec_ref(v_name_5532_);
-v___x_5535_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__0));
+v___x_5535_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__0);
 v___x_5536_ = lean_string_dec_eq(v_str_5534_, v___x_5535_);
 if (v___x_5536_ == 0)
 {
 lean_object* v___x_5537_; uint8_t v___x_5538_; 
-v___x_5537_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__1));
+v___x_5537_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__1);
 v___x_5538_ = lean_string_dec_eq(v_str_5534_, v___x_5537_);
 lean_dec_ref(v_str_5534_);
 if (v___x_5538_ == 0)
@@ -15403,6 +16335,25 @@ v_r_5562_ = lean_box(v_res_5561_);
 return v_r_5562_;
 }
 }
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__0(void){
+_start:
+{
+lean_object* v___x_5563_; 
+v___x_5563_ = lean_mk_string_unchecked("admissible_pi_apply", 19, 19);
+return v___x_5563_;
+}
+}
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__1(void){
+_start:
+{
+lean_object* v___x_5564_; lean_object* v___x_5565_; lean_object* v___x_5566_; lean_object* v___x_5567_; 
+v___x_5564_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__0, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__0);
+v___x_5565_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1);
+v___x_5566_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0);
+v___x_5567_ = l_Lean_Name_mkStr3(v___x_5566_, v___x_5565_, v___x_5564_);
+return v___x_5567_;
+}
+}
 static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__2(void){
 _start:
 {
@@ -15490,7 +16441,7 @@ goto v_resetjp_5600_;
 v_resetjp_5600_:
 {
 lean_object* v___x_5603_; lean_object* v___x_5605_; 
-v___x_5603_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__1));
+v___x_5603_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__1, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__1_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm_spec__0___closed__1);
 if (v_isShared_5602_ == 0)
 {
 lean_ctor_set_tag(v___x_5601_, 1);
@@ -15554,6 +16505,53 @@ lean_dec_ref(v_as_5615_);
 return v_res_5626_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_5627_; 
+v___x_5627_ = lean_mk_string_unchecked("Option", 6, 6);
+return v___x_5627_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__1(void){
+_start:
+{
+lean_object* v___x_5628_; 
+v___x_5628_ = lean_mk_string_unchecked("admissible_eq_some", 18, 18);
+return v___x_5628_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__2(void){
+_start:
+{
+lean_object* v___x_5629_; lean_object* v___x_5630_; lean_object* v___x_5631_; lean_object* v___x_5632_; lean_object* v___x_5633_; 
+v___x_5629_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__1);
+v___x_5630_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__0);
+v___x_5631_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1);
+v___x_5632_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0);
+v___x_5633_ = l_Lean_Name_mkStr4(v___x_5632_, v___x_5631_, v___x_5630_, v___x_5629_);
+return v___x_5633_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__3(void){
+_start:
+{
+lean_object* v___x_5634_; 
+v___x_5634_ = lean_mk_string_unchecked("admissible_pi", 13, 13);
+return v___x_5634_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__4(void){
+_start:
+{
+lean_object* v___x_5635_; lean_object* v___x_5636_; lean_object* v___x_5637_; lean_object* v___x_5638_; 
+v___x_5635_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__3, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__3_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__3);
+v___x_5636_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__1);
+v___x_5637_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0);
+v___x_5638_ = l_Lean_Name_mkStr3(v___x_5637_, v___x_5636_, v___x_5635_);
+return v___x_5638_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0(lean_object* v_motive_5639_, lean_object* v___x_5640_, lean_object* v_ysr_5641_, lean_object* v_x_5642_, lean_object* v___y_5643_, lean_object* v___y_5644_, lean_object* v___y_5645_, lean_object* v___y_5646_){
 _start:
 {
@@ -15564,7 +16562,7 @@ v___x_5650_ = lean_unsigned_to_nat(1u);
 v___x_5651_ = lean_nat_sub(v___x_5649_, v___x_5650_);
 v___x_5652_ = lean_array_get_borrowed(v___x_5640_, v_ysr_5641_, v___x_5651_);
 lean_dec(v___x_5651_);
-v___x_5653_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__2));
+v___x_5653_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__2, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__2_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__2);
 v___x_5654_ = lean_unsigned_to_nat(2u);
 v___x_5655_ = lean_mk_empty_array_with_capacity(v___x_5654_);
 v___x_5656_ = lean_array_push(v___x_5655_, v___x_5648_);
@@ -15607,7 +16605,7 @@ goto v_resetjp_5667_;
 v_resetjp_5667_:
 {
 lean_object* v___x_5670_; lean_object* v___x_5672_; 
-v___x_5670_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__4));
+v___x_5670_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__4, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__4_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__4);
 if (v_isShared_5669_ == 0)
 {
 lean_ctor_set_tag(v___x_5668_, 1);
@@ -15720,6 +16718,24 @@ lean_dec_ref(v_a_5707_);
 return v_res_5712_;
 }
 }
+static lean_object* _init_l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_5713_; 
+v___x_5713_ = lean_mk_string_unchecked("some", 4, 4);
+return v___x_5713_;
+}
+}
+static lean_object* _init_l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__1(void){
+_start:
+{
+lean_object* v___x_5714_; lean_object* v___x_5715_; lean_object* v___x_5716_; 
+v___x_5714_ = lean_obj_once(&l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__0, &l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__0_once, _init_l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__0);
+v___x_5715_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__0);
+v___x_5716_ = l_Lean_Name_mkStr2(v___x_5715_, v___x_5714_);
+return v___x_5716_;
+}
+}
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0(lean_object* v___x_5717_, lean_object* v_f_5718_, lean_object* v___x_5719_, uint8_t v_isZero_5720_, uint8_t v___x_5721_, lean_object* v_ysr_5722_, lean_object* v_x_5723_, lean_object* v___y_5724_, lean_object* v___y_5725_, lean_object* v___y_5726_, lean_object* v___y_5727_){
 _start:
 {
@@ -15729,7 +16745,7 @@ v___x_5730_ = lean_unsigned_to_nat(1u);
 v___x_5731_ = lean_nat_sub(v___x_5729_, v___x_5730_);
 v___x_5732_ = lean_array_get_borrowed(v___x_5717_, v_ysr_5722_, v___x_5731_);
 lean_dec(v___x_5731_);
-v___x_5733_ = ((lean_object*)(l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__1));
+v___x_5733_ = lean_obj_once(&l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__1, &l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__1_once, _init_l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__0___redArg___lam__0___closed__1);
 v___x_5734_ = lean_mk_empty_array_with_capacity(v___x_5730_);
 lean_inc(v___x_5732_);
 lean_inc_ref(v___x_5734_);
@@ -15893,7 +16909,7 @@ return v___x_5806_;
 else
 {
 lean_object* v___x_5807_; lean_object* v___x_5808_; 
-v___x_5807_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__1));
+v___x_5807_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__1, &l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__1_once, _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__13___closed__1);
 v___x_5808_ = l_Lean_Core_mkFreshUserName(v___x_5807_, v___y_5801_, v___y_5802_);
 if (lean_obj_tag(v___x_5808_) == 0)
 {
@@ -16220,13 +17236,47 @@ lean_dec(v___x_5947_);
 return v_res_5956_;
 }
 }
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__0(void){
+_start:
+{
+lean_object* v___x_5957_; 
+v___x_5957_ = lean_mk_string_unchecked("Expected `Option`, got:", 23, 23);
+return v___x_5957_;
+}
+}
 static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__1(void){
 _start:
 {
 lean_object* v___x_5958_; lean_object* v___x_5959_; 
-v___x_5958_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__0));
+v___x_5958_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__0, &l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__0);
 v___x_5959_ = l_Lean_stringToMessageData(v___x_5958_);
 return v___x_5959_;
+}
+}
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__2(void){
+_start:
+{
+lean_object* v___x_5960_; lean_object* v___x_5961_; 
+v___x_5960_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkOptionAdm___lam__0___closed__0);
+v___x_5961_ = l_Lean_Name_mkStr1(v___x_5960_);
+return v___x_5961_;
+}
+}
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__3(void){
+_start:
+{
+lean_object* v___x_5962_; 
+v___x_5962_ = lean_mk_string_unchecked("r", 1, 1);
+return v___x_5962_;
+}
+}
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__4(void){
+_start:
+{
+lean_object* v___x_5963_; lean_object* v___x_5964_; 
+v___x_5963_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__3, &l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__3_once, _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__3);
+v___x_5964_ = l_Lean_Name_mkStr1(v___x_5963_);
+return v___x_5964_;
 }
 }
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1(lean_object* v___x_5965_, uint8_t v___x_5966_, lean_object* v_ys_5967_, lean_object* v_type_5968_, lean_object* v___y_5969_, lean_object* v___y_5970_, lean_object* v___y_5971_, lean_object* v___y_5972_){
@@ -16263,7 +17313,7 @@ lean_object* v_arg_5987_; lean_object* v___x_5988_; lean_object* v___x_5989_; ui
 v_arg_5987_ = lean_ctor_get(v___x_5985_, 1);
 lean_inc_ref(v_arg_5987_);
 v___x_5988_ = l_Lean_Expr_appFnCleanup___redArg(v___x_5985_);
-v___x_5989_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__2));
+v___x_5989_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__2, &l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__2_once, _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__2);
 v___x_5990_ = l_Lean_Expr_isConstOf(v___x_5988_, v___x_5989_);
 lean_dec_ref(v___x_5988_);
 if (v___x_5990_ == 0)
@@ -16281,7 +17331,7 @@ else
 {
 lean_object* v___x_5991_; lean_object* v___x_5992_; 
 lean_dec(v_a_5975_);
-v___x_5991_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__4));
+v___x_5991_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__4, &l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__4_once, _init_l___private_Init_Data_Array_Basic_0__Array_mapMUnsafe_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__3___lam__1___closed__4);
 v___x_5992_ = l_Lean_Core_mkFreshUserName(v___x_5991_, v___y_5971_, v___y_5972_);
 if (lean_obj_tag(v___x_5992_) == 0)
 {
@@ -16497,6 +17547,24 @@ lean_dec_ref(v_x_6066_);
 return v_res_6072_;
 }
 }
+static lean_object* _init_l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_6073_; 
+v___x_6073_ = lean_mk_string_unchecked("motive_", 7, 7);
+return v___x_6073_;
+}
+}
+static lean_object* _init_l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_6074_; lean_object* v___x_6075_; lean_object* v___x_6076_; 
+v___x_6074_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__16, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__16_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction___lam__10___closed__16);
+v___x_6075_ = lean_box(0);
+v___x_6076_ = l_Lean_Name_str___override(v___x_6075_, v___x_6074_);
+return v___x_6076_;
+}
+}
 LEAN_EXPORT lean_object* l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg(lean_object* v_a_6077_, lean_object* v_as_6078_, lean_object* v_i_6079_, lean_object* v_j_6080_, lean_object* v_bs_6081_){
 _start:
 {
@@ -16527,7 +17595,7 @@ v___x_6097_ = lean_nat_dec_eq(v___x_6096_, v_one_6086_);
 if (v___x_6097_ == 0)
 {
 lean_object* v___x_6098_; lean_object* v___x_6099_; lean_object* v___x_6100_; lean_object* v___x_6101_; lean_object* v___x_6102_; lean_object* v___x_6103_; 
-v___x_6098_ = ((lean_object*)(l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___closed__0));
+v___x_6098_ = lean_obj_once(&l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___closed__0, &l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___closed__0_once, _init_l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___closed__0);
 v___x_6099_ = lean_nat_add(v_j_6080_, v_one_6086_);
 v___x_6100_ = l_Nat_reprFast(v___x_6099_);
 v___x_6101_ = lean_string_append(v___x_6098_, v___x_6100_);
@@ -16540,7 +17608,7 @@ goto v___jp_6090_;
 else
 {
 lean_object* v___x_6104_; 
-v___x_6104_ = ((lean_object*)(l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___closed__1));
+v___x_6104_ = lean_obj_once(&l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___closed__1, &l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___closed__1_once, _init_l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__4___redArg___closed__1);
 v___y_6091_ = v___x_6104_;
 goto v___jp_6090_;
 }
@@ -16593,11 +17661,19 @@ lean_dec_ref(v_a_6124_);
 return v_res_6135_;
 }
 }
+static lean_object* _init_l___private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls_loop___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16_spec__36___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__5_spec__5_spec__6___closed__0(void){
+_start:
+{
+lean_object* v___x_6136_; 
+v___x_6136_ = lean_mk_string_unchecked("complete body of partial correctness principle:", 47, 47);
+return v___x_6136_;
+}
+}
 static lean_object* _init_l___private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls_loop___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16_spec__36___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__5_spec__5_spec__6___closed__1(void){
 _start:
 {
 lean_object* v___x_6137_; lean_object* v___x_6138_; 
-v___x_6137_ = ((lean_object*)(l___private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls_loop___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16_spec__36___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__5_spec__5_spec__6___closed__0));
+v___x_6137_ = lean_obj_once(&l___private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls_loop___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16_spec__36___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__5_spec__5_spec__6___closed__0, &l___private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls_loop___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16_spec__36___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__5_spec__5_spec__6___closed__0_once, _init_l___private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls_loop___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16_spec__36___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__5_spec__5_spec__6___closed__0);
 v___x_6138_ = l_Lean_stringToMessageData(v___x_6137_);
 return v___x_6138_;
 }
@@ -16768,8 +17844,8 @@ goto v_resetjp_6208_;
 v_resetjp_6208_:
 {
 lean_object* v___f_6211_; lean_object* v___f_6212_; lean_object* v___f_6213_; lean_object* v___f_6214_; lean_object* v___x_6215_; lean_object* v___f_6216_; lean_object* v___f_6217_; lean_object* v___f_6218_; lean_object* v___x_6220_; 
-v___f_6211_ = ((lean_object*)(l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1));
-v___f_6212_ = ((lean_object*)(l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2));
+v___f_6211_ = lean_obj_once(&l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1, &l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1_once, _init_l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__1);
+v___f_6212_ = lean_obj_once(&l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2, &l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2_once, _init_l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__2);
 lean_inc_ref(v_toFunctor_6204_);
 v___f_6213_ = lean_alloc_closure((void*)(l_ReaderT_instFunctorOfMonad___redArg___lam__0), 6, 1);
 lean_closure_set(v___f_6213_, 0, v_toFunctor_6204_);
@@ -16879,8 +17955,8 @@ goto v_resetjp_6232_;
 v_resetjp_6232_:
 {
 lean_object* v___f_6235_; lean_object* v___f_6236_; lean_object* v___f_6237_; lean_object* v___f_6238_; lean_object* v___x_6239_; lean_object* v___f_6240_; lean_object* v___f_6241_; lean_object* v___f_6242_; lean_object* v___x_6244_; 
-v___f_6235_ = ((lean_object*)(l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3));
-v___f_6236_ = ((lean_object*)(l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4));
+v___f_6235_ = lean_obj_once(&l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3, &l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3_once, _init_l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__3);
+v___f_6236_ = lean_obj_once(&l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4, &l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4_once, _init_l_panic___at___00Lean_getConstInfoDefn___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual_spec__0_spec__0___closed__4);
 lean_inc_ref(v_toFunctor_6228_);
 v___f_6237_ = lean_alloc_closure((void*)(l_ReaderT_instFunctorOfMonad___redArg___lam__0), 6, 1);
 lean_closure_set(v___f_6237_, 0, v_toFunctor_6228_);
@@ -17016,7 +18092,7 @@ lean_object* v_a_6274_; lean_object* v_inheritedTraceOptions_6275_; lean_object*
 v_a_6274_ = lean_ctor_get(v___x_6271_, 0);
 lean_inc(v_a_6274_);
 v_inheritedTraceOptions_6275_ = lean_ctor_get(v___y_6195_, 13);
-v___x_6276_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9));
+v___x_6276_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9);
 v___x_6277_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__12, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__12_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__12);
 v___x_6278_ = l___private_Lean_Util_Trace_0__Lean_checkTraceOption_go(v_inheritedTraceOptions_6275_, v_options_6272_, v___x_6277_);
 if (v___x_6278_ == 0)
@@ -17344,7 +18420,7 @@ LEAN_EXPORT lean_object* l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocal
 _start:
 {
 lean_object* v___x_6399_; lean_object* v___x_6400_; 
-v___x_6399_ = ((lean_object*)(l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___closed__0));
+v___x_6399_ = lean_obj_once(&l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___closed__0, &l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___closed__0_once, _init_l_Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___closed__0);
 v___x_6400_ = l___private_Lean_Meta_Basic_0__Lean_Meta_withLocalDecls_loop___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16_spec__36___at___00Lean_Meta_withLocalDecls___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11_spec__16___at___00Lean_Meta_withLocalDeclsD___at___00Lean_Meta_withLocalDeclsDND___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__8_spec__11___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness_spec__5_spec__5_spec__6(v_a_6389_, v_xs_6390_, v_fixpointInductThm_6391_, v_declInfos_6392_, v_kind_6393_, v___x_6399_, v___y_6394_, v___y_6395_, v___y_6396_, v___y_6397_);
 return v___x_6400_;
 }
@@ -17610,7 +18686,7 @@ goto v_resetjp_6526_;
 v_resetjp_6526_:
 {
 lean_object* v___x_6529_; lean_object* v___f_6530_; lean_object* v___x_6531_; lean_object* v___x_6532_; 
-v___x_6529_ = ((lean_object*)(l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg___boxed__const__1));
+v___x_6529_ = l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg___boxed__const__1;
 lean_inc_ref(v_perms_6520_);
 v___f_6530_ = lean_alloc_closure((void*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___lam__0___boxed), 11, 5);
 lean_closure_set(v___f_6530_, 0, v_a_6519_);
@@ -18032,11 +19108,19 @@ lean_dec_ref(v___x_6612_);
 return v_res_6621_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___lam__3___closed__0(void){
+_start:
+{
+lean_object* v___x_6622_; 
+v___x_6622_ = lean_mk_string_unchecked("Cannot derive partial correctness theorem (please report this issue)", 68, 68);
+return v___x_6622_;
+}
+}
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___lam__3___closed__1(void){
 _start:
 {
 lean_object* v___x_6623_; lean_object* v___x_6624_; 
-v___x_6623_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___lam__3___closed__0));
+v___x_6623_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___lam__3___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___lam__3___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___lam__3___closed__0);
 v___x_6624_ = l_Lean_stringToMessageData(v___x_6623_);
 return v___x_6624_;
 }
@@ -18192,6 +19276,24 @@ lean_dec_ref(v___y_6669_);
 return v_res_6676_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___closed__0(void){
+_start:
+{
+lean_object* v___x_6677_; lean_object* v___x_6678_; 
+v___x_6677_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__0);
+v___x_6678_ = l_Lean_Name_mkStr1(v___x_6677_);
+return v___x_6678_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___closed__1(void){
+_start:
+{
+lean_object* v___x_6679_; lean_object* v___x_6680_; 
+v___x_6679_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__1);
+v___x_6680_ = l_Lean_Name_mkStr1(v___x_6679_);
+return v___x_6680_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness(lean_object* v_name_6681_, uint8_t v_isConclusionMutual_6682_, lean_object* v_a_6683_, lean_object* v_a_6684_, lean_object* v_a_6685_, lean_object* v_a_6686_){
 _start:
 {
@@ -18203,14 +19305,14 @@ v___x_6691_ = 1;
 if (v_isConclusionMutual_6682_ == 0)
 {
 lean_object* v___x_6706_; 
-v___x_6706_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___closed__0));
+v___x_6706_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___closed__0);
 v___y_6702_ = v___x_6706_;
 goto v___jp_6701_;
 }
 else
 {
 lean_object* v___x_6707_; 
-v___x_6707_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___closed__1));
+v___x_6707_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_derivePartialCorrectness___closed__1);
 v___y_6702_ = v___x_6707_;
 goto v___jp_6701_;
 }
@@ -18249,7 +19351,7 @@ v_inductName_6703_ = l_Lean_Name_append(v_name_6681_, v___y_6702_);
 if (v_isConclusionMutual_6682_ == 0)
 {
 lean_object* v___x_6704_; 
-v___x_6704_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__5));
+v___x_6704_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__5, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__5_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__5);
 v___y_6693_ = v_inductName_6703_;
 v___y_6694_ = v___x_6704_;
 goto v___jp_6692_;
@@ -18257,7 +19359,7 @@ goto v___jp_6692_;
 else
 {
 lean_object* v___x_6705_; 
-v___x_6705_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__7));
+v___x_6705_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__7, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__7_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_getInductionPrinciplePostfix___closed__7);
 v___y_6693_ = v_inductName_6703_;
 v___y_6694_ = v___x_6705_;
 goto v___jp_6692_;
@@ -18278,11 +19380,19 @@ lean_dec_ref(v_a_6710_);
 return v_res_6716_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6717_; 
+v___x_6717_ = lean_mk_string_unchecked("mutual", 6, 6);
+return v___x_6717_;
+}
+}
 static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_(void){
 _start:
 {
 lean_object* v___x_6718_; lean_object* v___x_6719_; 
-v___x_6718_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_));
+v___x_6718_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_);
 v___x_6719_ = lean_string_utf8_byte_size(v___x_6718_);
 return v___x_6719_;
 }
@@ -18298,12 +19408,12 @@ lean_inc(v_pre_6724_);
 v_str_6725_ = lean_ctor_get(v_name_6720_, 1);
 lean_inc_ref(v_str_6725_);
 lean_dec_ref(v_name_6720_);
-v___x_6787_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__0));
+v___x_6787_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__0);
 v___x_6788_ = lean_string_dec_eq(v_str_6725_, v___x_6787_);
 if (v___x_6788_ == 0)
 {
 lean_object* v___x_6789_; uint8_t v___x_6790_; 
-v___x_6789_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__1));
+v___x_6789_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__1, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__1_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___closed__1);
 v___x_6790_ = lean_string_dec_eq(v_str_6725_, v___x_6789_);
 v___y_6773_ = v___x_6790_;
 goto v___jp_6772_;
@@ -18347,7 +19457,7 @@ lean_ctor_set_uint64(v___x_6735_, sizeof(void*)*1, v___x_6734_);
 v___x_6736_ = lean_box(1);
 v___x_6737_ = lean_unsigned_to_nat(0u);
 v___x_6738_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__2_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__2_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__2_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_);
-v___x_6739_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_));
+v___x_6739_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_);
 v___x_6740_ = lean_box(0);
 v___x_6741_ = lean_alloc_ctor(0, 7, 4);
 lean_ctor_set(v___x_6741_, 0, v___x_6735_);
@@ -18537,7 +19647,7 @@ return v___x_6780_;
 else
 {
 lean_object* v___x_6781_; lean_object* v___x_6782_; lean_object* v___x_6783_; uint8_t v___x_6784_; 
-v___x_6781_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_));
+v___x_6781_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_);
 v___x_6782_ = lean_string_utf8_byte_size(v_str_6725_);
 v___x_6783_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_);
 v___x_6784_ = lean_nat_dec_le(v___x_6783_, v___x_6782_);
@@ -18584,17 +19694,33 @@ lean_dec_ref(v___y_6795_);
 return v_res_6798_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6799_; 
+v___x_6799_ = lean_alloc_closure((void*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_isPartialCorrectnessName___boxed), 2, 0);
+return v___x_6799_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___f_6800_; 
+v___f_6800_ = lean_alloc_closure((void*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___lam__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2____boxed), 4, 0);
+return v___f_6800_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_(){
 _start:
 {
 lean_object* v___x_6802_; lean_object* v___x_6803_; 
-v___x_6802_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_));
+v___x_6802_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_);
 v___x_6803_ = l_Lean_registerReservedNamePredicate(v___x_6802_);
 if (lean_obj_tag(v___x_6803_) == 0)
 {
 lean_object* v___f_6804_; lean_object* v___x_6805_; 
 lean_dec_ref(v___x_6803_);
-v___f_6804_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_));
+v___f_6804_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_2457962117____hygCtx___hyg_2_);
 v___x_6805_ = l_Lean_registerReservedNameAction(v___f_6804_);
 return v___x_6805_;
 }
@@ -18612,13 +19738,257 @@ v_res_6807_ = l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__L
 return v_res_6807_;
 }
 }
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6808_; 
+v___x_6808_ = lean_mk_string_unchecked("_private", 8, 8);
+return v___x_6808_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6809_; lean_object* v___x_6810_; lean_object* v___x_6811_; 
+v___x_6809_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__0_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6810_ = lean_box(0);
+v___x_6811_ = l_Lean_Name_str___override(v___x_6810_, v___x_6809_);
+return v___x_6811_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__2_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6812_; lean_object* v___x_6813_; lean_object* v___x_6814_; 
+v___x_6812_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0);
+v___x_6813_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__1_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6814_ = l_Lean_Name_str___override(v___x_6813_, v___x_6812_);
+return v___x_6814_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6815_; lean_object* v___x_6816_; lean_object* v___x_6817_; 
+v___x_6815_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5);
+v___x_6816_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__2_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__2_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__2_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6817_ = l_Lean_Name_str___override(v___x_6816_, v___x_6815_);
+return v___x_6817_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__4_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6818_; 
+v___x_6818_ = lean_mk_string_unchecked("PreDefinition", 13, 13);
+return v___x_6818_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__5_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6819_; lean_object* v___x_6820_; lean_object* v___x_6821_; 
+v___x_6819_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__4_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__4_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__4_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6820_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__3_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6821_ = l_Lean_Name_str___override(v___x_6820_, v___x_6819_);
+return v___x_6821_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__6_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6822_; 
+v___x_6822_ = lean_mk_string_unchecked("PartialFixpoint", 15, 15);
+return v___x_6822_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__7_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6823_; lean_object* v___x_6824_; lean_object* v___x_6825_; 
+v___x_6823_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__6_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__6_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__6_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6824_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__5_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__5_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__5_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6825_ = l_Lean_Name_str___override(v___x_6824_, v___x_6823_);
+return v___x_6825_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__8_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6826_; 
+v___x_6826_ = lean_mk_string_unchecked("Induction", 9, 9);
+return v___x_6826_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__9_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6827_; lean_object* v___x_6828_; lean_object* v___x_6829_; 
+v___x_6827_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__8_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__8_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__8_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6828_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__7_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__7_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__7_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6829_ = l_Lean_Name_str___override(v___x_6828_, v___x_6827_);
+return v___x_6829_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__10_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6830_; lean_object* v___x_6831_; lean_object* v___x_6832_; 
+v___x_6830_ = lean_unsigned_to_nat(0u);
+v___x_6831_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__9_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__9_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__9_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6832_ = l_Lean_Name_num___override(v___x_6831_, v___x_6830_);
+return v___x_6832_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__11_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6833_; 
+v___x_6833_ = lean_mk_string_unchecked("initFn", 6, 6);
+return v___x_6833_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__12_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6834_; lean_object* v___x_6835_; lean_object* v___x_6836_; 
+v___x_6834_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__11_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__11_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__11_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6835_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__10_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__10_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__10_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6836_ = l_Lean_Name_str___override(v___x_6835_, v___x_6834_);
+return v___x_6836_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__13_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6837_; 
+v___x_6837_ = lean_mk_string_unchecked("_@", 2, 2);
+return v___x_6837_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__14_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6838_; lean_object* v___x_6839_; lean_object* v___x_6840_; 
+v___x_6838_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__13_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__13_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__13_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6839_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__12_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__12_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__12_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6840_ = l_Lean_Name_str___override(v___x_6839_, v___x_6838_);
+return v___x_6840_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__15_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6841_; lean_object* v___x_6842_; lean_object* v___x_6843_; 
+v___x_6841_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_mkAdmAnd___closed__0);
+v___x_6842_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__14_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__14_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__14_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6843_ = l_Lean_Name_str___override(v___x_6842_, v___x_6841_);
+return v___x_6843_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__16_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6844_; lean_object* v___x_6845_; lean_object* v___x_6846_; 
+v___x_6844_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__5);
+v___x_6845_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__15_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__15_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__15_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6846_ = l_Lean_Name_str___override(v___x_6845_, v___x_6844_);
+return v___x_6846_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__17_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6847_; lean_object* v___x_6848_; lean_object* v___x_6849_; 
+v___x_6847_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__4_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__4_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__4_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6848_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__16_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__16_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__16_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6849_ = l_Lean_Name_str___override(v___x_6848_, v___x_6847_);
+return v___x_6849_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__18_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6850_; lean_object* v___x_6851_; lean_object* v___x_6852_; 
+v___x_6850_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__6_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__6_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__6_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6851_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__17_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__17_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__17_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6852_ = l_Lean_Name_str___override(v___x_6851_, v___x_6850_);
+return v___x_6852_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__19_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6853_; lean_object* v___x_6854_; lean_object* v___x_6855_; 
+v___x_6853_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__8_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__8_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__8_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6854_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__18_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__18_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__18_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6855_ = l_Lean_Name_str___override(v___x_6854_, v___x_6853_);
+return v___x_6855_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__20_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6856_; lean_object* v___x_6857_; lean_object* v___x_6858_; 
+v___x_6856_ = lean_unsigned_to_nat(486719255u);
+v___x_6857_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__19_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__19_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__19_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6858_ = l_Lean_Name_num___override(v___x_6857_, v___x_6856_);
+return v___x_6858_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__21_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6859_; 
+v___x_6859_ = lean_mk_string_unchecked("_hygCtx", 7, 7);
+return v___x_6859_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__22_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6860_; lean_object* v___x_6861_; lean_object* v___x_6862_; 
+v___x_6860_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__21_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__21_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__21_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6861_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__20_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__20_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__20_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6862_ = l_Lean_Name_str___override(v___x_6861_, v___x_6860_);
+return v___x_6862_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__23_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6863_; 
+v___x_6863_ = lean_mk_string_unchecked("_hyg", 4, 4);
+return v___x_6863_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__24_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6864_; lean_object* v___x_6865_; lean_object* v___x_6866_; 
+v___x_6864_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__23_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__23_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__23_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6865_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__22_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__22_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__22_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6866_ = l_Lean_Name_str___override(v___x_6865_, v___x_6864_);
+return v___x_6866_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__25_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_6867_; lean_object* v___x_6868_; lean_object* v___x_6869_; 
+v___x_6867_ = lean_unsigned_to_nat(2u);
+v___x_6868_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__24_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__24_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__24_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
+v___x_6869_ = l_Lean_Name_num___override(v___x_6868_, v___x_6867_);
+return v___x_6869_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_(){
 _start:
 {
 lean_object* v___x_6871_; uint8_t v___x_6872_; lean_object* v___x_6873_; lean_object* v___x_6874_; 
-v___x_6871_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9));
+v___x_6871_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9_once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_unfoldPredRelMutual___closed__9);
 v___x_6872_ = 0;
-v___x_6873_ = ((lean_object*)(l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__25_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_));
+v___x_6873_ = lean_obj_once(&l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__25_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_, &l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__25_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2__once, _init_l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__initFn___closed__25_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_486719255____hygCtx___hyg_2_);
 v___x_6874_ = l_Lean_registerTraceClass(v___x_6871_, v___x_6872_, v___x_6873_);
 return v___x_6874_;
 }
@@ -18652,6 +20022,8 @@ lean_dec_ref(res);
 res = runtime_initialize_Lean_Meta_PProdN(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg___boxed__const__1 = _init_l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg___boxed__const__1();
+lean_mark_persistent(l_Array_mapFinIdxM_map___at___00__private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_deriveInduction_spec__20___redArg___boxed__const__1);
 res = l___private_Lean_Elab_PreDefinition_PartialFixpoint_Induction_0__Lean_Elab_PartialFixpoint_initFn_00___x40_Lean_Elab_PreDefinition_PartialFixpoint_Induction_583250807____hygCtx___hyg_2_();
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);

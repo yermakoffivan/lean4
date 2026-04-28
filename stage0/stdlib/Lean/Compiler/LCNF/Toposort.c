@@ -114,10 +114,10 @@ LEAN_EXPORT lean_object* l_Lean_Compiler_LCNF_toposortDecls(uint8_t, lean_object
 LEAN_EXPORT lean_object* l_Lean_Compiler_LCNF_toposortDecls___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Compiler_LCNF_toposortPass___lam__0(uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Compiler_LCNF_toposortPass___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Compiler_LCNF_toposortPass___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "toposort"};
-static const lean_object* l_Lean_Compiler_LCNF_toposortPass___closed__0 = (const lean_object*)&l_Lean_Compiler_LCNF_toposortPass___closed__0_value;
-static const lean_ctor_object l_Lean_Compiler_LCNF_toposortPass___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Compiler_LCNF_toposortPass___closed__0_value),LEAN_SCALAR_PTR_LITERAL(252, 7, 32, 82, 91, 245, 7, 246)}};
-static const lean_object* l_Lean_Compiler_LCNF_toposortPass___closed__1 = (const lean_object*)&l_Lean_Compiler_LCNF_toposortPass___closed__1_value;
+static lean_once_cell_t l_Lean_Compiler_LCNF_toposortPass___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Compiler_LCNF_toposortPass___closed__0;
+static lean_once_cell_t l_Lean_Compiler_LCNF_toposortPass___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Compiler_LCNF_toposortPass___closed__1;
 static lean_once_cell_t l_Lean_Compiler_LCNF_toposortPass___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static uint8_t l_Lean_Compiler_LCNF_toposortPass___closed__2;
 static lean_once_cell_t l_Lean_Compiler_LCNF_toposortPass___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -2174,6 +2174,23 @@ lean_dec_ref(v___y_827_);
 return v_res_833_;
 }
 }
+static lean_object* _init_l_Lean_Compiler_LCNF_toposortPass___closed__0(void){
+_start:
+{
+lean_object* v___x_834_; 
+v___x_834_ = lean_mk_string_unchecked("toposort", 8, 8);
+return v___x_834_;
+}
+}
+static lean_object* _init_l_Lean_Compiler_LCNF_toposortPass___closed__1(void){
+_start:
+{
+lean_object* v___x_835_; lean_object* v___x_836_; 
+v___x_835_ = lean_obj_once(&l_Lean_Compiler_LCNF_toposortPass___closed__0, &l_Lean_Compiler_LCNF_toposortPass___closed__0_once, _init_l_Lean_Compiler_LCNF_toposortPass___closed__0);
+v___x_836_ = l_Lean_Name_mkStr1(v___x_835_);
+return v___x_836_;
+}
+}
 static uint8_t _init_l_Lean_Compiler_LCNF_toposortPass___closed__2(void){
 _start:
 {
@@ -2199,7 +2216,7 @@ _start:
 {
 lean_object* v___f_842_; lean_object* v___x_843_; uint8_t v___x_844_; uint8_t v___x_845_; lean_object* v___x_846_; lean_object* v___x_847_; 
 v___f_842_ = lean_obj_once(&l_Lean_Compiler_LCNF_toposortPass___closed__3, &l_Lean_Compiler_LCNF_toposortPass___closed__3_once, _init_l_Lean_Compiler_LCNF_toposortPass___closed__3);
-v___x_843_ = ((lean_object*)(l_Lean_Compiler_LCNF_toposortPass___closed__1));
+v___x_843_ = lean_obj_once(&l_Lean_Compiler_LCNF_toposortPass___closed__1, &l_Lean_Compiler_LCNF_toposortPass___closed__1_once, _init_l_Lean_Compiler_LCNF_toposortPass___closed__1);
 v___x_844_ = 0;
 v___x_845_ = 2;
 v___x_846_ = lean_unsigned_to_nat(0u);

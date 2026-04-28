@@ -17,44 +17,44 @@ lean_object* lean_panic_fn_borrowed(lean_object*, lean_object*);
 lean_object* l_mkPanicMessageWithDecl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 uint8_t lean_string_dec_eq(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_panic___at___00Lean_IR_nameToIRType_spec__0(lean_object*);
-static const lean_string_object l_Lean_IR_nameToIRType___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 26, .m_capacity = 26, .m_length = 25, .m_data = "Lean.Compiler.IR.ToIRType"};
-static const lean_object* l_Lean_IR_nameToIRType___closed__0 = (const lean_object*)&l_Lean_IR_nameToIRType___closed__0_value;
-static const lean_string_object l_Lean_IR_nameToIRType___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 21, .m_capacity = 21, .m_length = 20, .m_data = "Lean.IR.nameToIRType"};
-static const lean_object* l_Lean_IR_nameToIRType___closed__1 = (const lean_object*)&l_Lean_IR_nameToIRType___closed__1_value;
-static const lean_string_object l_Lean_IR_nameToIRType___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 34, .m_capacity = 34, .m_length = 33, .m_data = "unreachable code has been reached"};
-static const lean_object* l_Lean_IR_nameToIRType___closed__2 = (const lean_object*)&l_Lean_IR_nameToIRType___closed__2_value;
+static lean_once_cell_t l_Lean_IR_nameToIRType___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_IR_nameToIRType___closed__0;
+static lean_once_cell_t l_Lean_IR_nameToIRType___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_IR_nameToIRType___closed__1;
+static lean_once_cell_t l_Lean_IR_nameToIRType___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_IR_nameToIRType___closed__2;
 static lean_once_cell_t l_Lean_IR_nameToIRType___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_IR_nameToIRType___closed__3;
-static const lean_string_object l_Lean_IR_nameToIRType___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "Float"};
-static const lean_object* l_Lean_IR_nameToIRType___closed__4 = (const lean_object*)&l_Lean_IR_nameToIRType___closed__4_value;
-static const lean_string_object l_Lean_IR_nameToIRType___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "Float32"};
-static const lean_object* l_Lean_IR_nameToIRType___closed__5 = (const lean_object*)&l_Lean_IR_nameToIRType___closed__5_value;
-static const lean_string_object l_Lean_IR_nameToIRType___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "UInt8"};
-static const lean_object* l_Lean_IR_nameToIRType___closed__6 = (const lean_object*)&l_Lean_IR_nameToIRType___closed__6_value;
-static const lean_string_object l_Lean_IR_nameToIRType___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "UInt16"};
-static const lean_object* l_Lean_IR_nameToIRType___closed__7 = (const lean_object*)&l_Lean_IR_nameToIRType___closed__7_value;
-static const lean_string_object l_Lean_IR_nameToIRType___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "UInt32"};
-static const lean_object* l_Lean_IR_nameToIRType___closed__8 = (const lean_object*)&l_Lean_IR_nameToIRType___closed__8_value;
-static const lean_string_object l_Lean_IR_nameToIRType___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "UInt64"};
-static const lean_object* l_Lean_IR_nameToIRType___closed__9 = (const lean_object*)&l_Lean_IR_nameToIRType___closed__9_value;
-static const lean_string_object l_Lean_IR_nameToIRType___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "lcErased"};
-static const lean_object* l_Lean_IR_nameToIRType___closed__10 = (const lean_object*)&l_Lean_IR_nameToIRType___closed__10_value;
-static const lean_string_object l_Lean_IR_nameToIRType___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "obj"};
-static const lean_object* l_Lean_IR_nameToIRType___closed__11 = (const lean_object*)&l_Lean_IR_nameToIRType___closed__11_value;
-static const lean_string_object l_Lean_IR_nameToIRType___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "tobj"};
-static const lean_object* l_Lean_IR_nameToIRType___closed__12 = (const lean_object*)&l_Lean_IR_nameToIRType___closed__12_value;
-static const lean_string_object l_Lean_IR_nameToIRType___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "tagged"};
-static const lean_object* l_Lean_IR_nameToIRType___closed__13 = (const lean_object*)&l_Lean_IR_nameToIRType___closed__13_value;
-static const lean_string_object l_Lean_IR_nameToIRType___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "lcVoid"};
-static const lean_object* l_Lean_IR_nameToIRType___closed__14 = (const lean_object*)&l_Lean_IR_nameToIRType___closed__14_value;
+static lean_once_cell_t l_Lean_IR_nameToIRType___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_IR_nameToIRType___closed__4;
+static lean_once_cell_t l_Lean_IR_nameToIRType___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_IR_nameToIRType___closed__5;
+static lean_once_cell_t l_Lean_IR_nameToIRType___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_IR_nameToIRType___closed__6;
+static lean_once_cell_t l_Lean_IR_nameToIRType___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_IR_nameToIRType___closed__7;
+static lean_once_cell_t l_Lean_IR_nameToIRType___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_IR_nameToIRType___closed__8;
+static lean_once_cell_t l_Lean_IR_nameToIRType___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_IR_nameToIRType___closed__9;
+static lean_once_cell_t l_Lean_IR_nameToIRType___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_IR_nameToIRType___closed__10;
+static lean_once_cell_t l_Lean_IR_nameToIRType___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_IR_nameToIRType___closed__11;
+static lean_once_cell_t l_Lean_IR_nameToIRType___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_IR_nameToIRType___closed__12;
+static lean_once_cell_t l_Lean_IR_nameToIRType___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_IR_nameToIRType___closed__13;
+static lean_once_cell_t l_Lean_IR_nameToIRType___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_IR_nameToIRType___closed__14;
 LEAN_EXPORT lean_object* l_Lean_IR_nameToIRType(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_IR_nameToIRType___boxed(lean_object*);
-static const lean_string_object l_Lean_IR_toIRType___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 17, .m_capacity = 17, .m_length = 16, .m_data = "Lean.IR.toIRType"};
-static const lean_object* l_Lean_IR_toIRType___closed__0 = (const lean_object*)&l_Lean_IR_toIRType___closed__0_value;
+static lean_once_cell_t l_Lean_IR_toIRType___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_IR_toIRType___closed__0;
 static lean_once_cell_t l_Lean_IR_toIRType___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_IR_toIRType___closed__1;
-static const lean_string_object l_Lean_IR_toIRType___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "USize"};
-static const lean_object* l_Lean_IR_toIRType___closed__2 = (const lean_object*)&l_Lean_IR_toIRType___closed__2_value;
+static lean_once_cell_t l_Lean_IR_toIRType___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_IR_toIRType___closed__2;
 LEAN_EXPORT lean_object* l_Lean_IR_toIRType(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_IR_toIRType___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_panic___at___00Lean_IR_nameToIRType_spec__0(lean_object* v_msg_1_){
@@ -66,17 +66,129 @@ v___x_3_ = lean_panic_fn_borrowed(v___x_2_, v_msg_1_);
 return v___x_3_;
 }
 }
+static lean_object* _init_l_Lean_IR_nameToIRType___closed__0(void){
+_start:
+{
+lean_object* v___x_4_; 
+v___x_4_ = lean_mk_string_unchecked("Lean.Compiler.IR.ToIRType", 25, 25);
+return v___x_4_;
+}
+}
+static lean_object* _init_l_Lean_IR_nameToIRType___closed__1(void){
+_start:
+{
+lean_object* v___x_5_; 
+v___x_5_ = lean_mk_string_unchecked("Lean.IR.nameToIRType", 20, 20);
+return v___x_5_;
+}
+}
+static lean_object* _init_l_Lean_IR_nameToIRType___closed__2(void){
+_start:
+{
+lean_object* v___x_6_; 
+v___x_6_ = lean_mk_string_unchecked("unreachable code has been reached", 33, 33);
+return v___x_6_;
+}
+}
 static lean_object* _init_l_Lean_IR_nameToIRType___closed__3(void){
 _start:
 {
 lean_object* v___x_7_; lean_object* v___x_8_; lean_object* v___x_9_; lean_object* v___x_10_; lean_object* v___x_11_; lean_object* v___x_12_; 
-v___x_7_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__2));
+v___x_7_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__2, &l_Lean_IR_nameToIRType___closed__2_once, _init_l_Lean_IR_nameToIRType___closed__2);
 v___x_8_ = lean_unsigned_to_nat(9u);
 v___x_9_ = lean_unsigned_to_nat(32u);
-v___x_10_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__1));
-v___x_11_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__0));
+v___x_10_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__1, &l_Lean_IR_nameToIRType___closed__1_once, _init_l_Lean_IR_nameToIRType___closed__1);
+v___x_11_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__0, &l_Lean_IR_nameToIRType___closed__0_once, _init_l_Lean_IR_nameToIRType___closed__0);
 v___x_12_ = l_mkPanicMessageWithDecl(v___x_11_, v___x_10_, v___x_9_, v___x_8_, v___x_7_);
 return v___x_12_;
+}
+}
+static lean_object* _init_l_Lean_IR_nameToIRType___closed__4(void){
+_start:
+{
+lean_object* v___x_13_; 
+v___x_13_ = lean_mk_string_unchecked("Float", 5, 5);
+return v___x_13_;
+}
+}
+static lean_object* _init_l_Lean_IR_nameToIRType___closed__5(void){
+_start:
+{
+lean_object* v___x_14_; 
+v___x_14_ = lean_mk_string_unchecked("Float32", 7, 7);
+return v___x_14_;
+}
+}
+static lean_object* _init_l_Lean_IR_nameToIRType___closed__6(void){
+_start:
+{
+lean_object* v___x_15_; 
+v___x_15_ = lean_mk_string_unchecked("UInt8", 5, 5);
+return v___x_15_;
+}
+}
+static lean_object* _init_l_Lean_IR_nameToIRType___closed__7(void){
+_start:
+{
+lean_object* v___x_16_; 
+v___x_16_ = lean_mk_string_unchecked("UInt16", 6, 6);
+return v___x_16_;
+}
+}
+static lean_object* _init_l_Lean_IR_nameToIRType___closed__8(void){
+_start:
+{
+lean_object* v___x_17_; 
+v___x_17_ = lean_mk_string_unchecked("UInt32", 6, 6);
+return v___x_17_;
+}
+}
+static lean_object* _init_l_Lean_IR_nameToIRType___closed__9(void){
+_start:
+{
+lean_object* v___x_18_; 
+v___x_18_ = lean_mk_string_unchecked("UInt64", 6, 6);
+return v___x_18_;
+}
+}
+static lean_object* _init_l_Lean_IR_nameToIRType___closed__10(void){
+_start:
+{
+lean_object* v___x_19_; 
+v___x_19_ = lean_mk_string_unchecked("lcErased", 8, 8);
+return v___x_19_;
+}
+}
+static lean_object* _init_l_Lean_IR_nameToIRType___closed__11(void){
+_start:
+{
+lean_object* v___x_20_; 
+v___x_20_ = lean_mk_string_unchecked("obj", 3, 3);
+return v___x_20_;
+}
+}
+static lean_object* _init_l_Lean_IR_nameToIRType___closed__12(void){
+_start:
+{
+lean_object* v___x_21_; 
+v___x_21_ = lean_mk_string_unchecked("tobj", 4, 4);
+return v___x_21_;
+}
+}
+static lean_object* _init_l_Lean_IR_nameToIRType___closed__13(void){
+_start:
+{
+lean_object* v___x_22_; 
+v___x_22_ = lean_mk_string_unchecked("tagged", 6, 6);
+return v___x_22_;
+}
+}
+static lean_object* _init_l_Lean_IR_nameToIRType___closed__14(void){
+_start:
+{
+lean_object* v___x_23_; 
+v___x_23_ = lean_mk_string_unchecked("lcVoid", 6, 6);
+return v___x_23_;
 }
 }
 LEAN_EXPORT lean_object* l_Lean_IR_nameToIRType(lean_object* v_n_24_){
@@ -90,57 +202,57 @@ if (lean_obj_tag(v_pre_28_) == 0)
 {
 lean_object* v_str_29_; lean_object* v___x_30_; uint8_t v___x_31_; 
 v_str_29_ = lean_ctor_get(v_n_24_, 1);
-v___x_30_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__4));
+v___x_30_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__4, &l_Lean_IR_nameToIRType___closed__4_once, _init_l_Lean_IR_nameToIRType___closed__4);
 v___x_31_ = lean_string_dec_eq(v_str_29_, v___x_30_);
 if (v___x_31_ == 0)
 {
 lean_object* v___x_32_; uint8_t v___x_33_; 
-v___x_32_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__5));
+v___x_32_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__5, &l_Lean_IR_nameToIRType___closed__5_once, _init_l_Lean_IR_nameToIRType___closed__5);
 v___x_33_ = lean_string_dec_eq(v_str_29_, v___x_32_);
 if (v___x_33_ == 0)
 {
 lean_object* v___x_34_; uint8_t v___x_35_; 
-v___x_34_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__6));
+v___x_34_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__6, &l_Lean_IR_nameToIRType___closed__6_once, _init_l_Lean_IR_nameToIRType___closed__6);
 v___x_35_ = lean_string_dec_eq(v_str_29_, v___x_34_);
 if (v___x_35_ == 0)
 {
 lean_object* v___x_36_; uint8_t v___x_37_; 
-v___x_36_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__7));
+v___x_36_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__7, &l_Lean_IR_nameToIRType___closed__7_once, _init_l_Lean_IR_nameToIRType___closed__7);
 v___x_37_ = lean_string_dec_eq(v_str_29_, v___x_36_);
 if (v___x_37_ == 0)
 {
 lean_object* v___x_38_; uint8_t v___x_39_; 
-v___x_38_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__8));
+v___x_38_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__8, &l_Lean_IR_nameToIRType___closed__8_once, _init_l_Lean_IR_nameToIRType___closed__8);
 v___x_39_ = lean_string_dec_eq(v_str_29_, v___x_38_);
 if (v___x_39_ == 0)
 {
 lean_object* v___x_40_; uint8_t v___x_41_; 
-v___x_40_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__9));
+v___x_40_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__9, &l_Lean_IR_nameToIRType___closed__9_once, _init_l_Lean_IR_nameToIRType___closed__9);
 v___x_41_ = lean_string_dec_eq(v_str_29_, v___x_40_);
 if (v___x_41_ == 0)
 {
 lean_object* v___x_42_; uint8_t v___x_43_; 
-v___x_42_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__10));
+v___x_42_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__10, &l_Lean_IR_nameToIRType___closed__10_once, _init_l_Lean_IR_nameToIRType___closed__10);
 v___x_43_ = lean_string_dec_eq(v_str_29_, v___x_42_);
 if (v___x_43_ == 0)
 {
 lean_object* v___x_44_; uint8_t v___x_45_; 
-v___x_44_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__11));
+v___x_44_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__11, &l_Lean_IR_nameToIRType___closed__11_once, _init_l_Lean_IR_nameToIRType___closed__11);
 v___x_45_ = lean_string_dec_eq(v_str_29_, v___x_44_);
 if (v___x_45_ == 0)
 {
 lean_object* v___x_46_; uint8_t v___x_47_; 
-v___x_46_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__12));
+v___x_46_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__12, &l_Lean_IR_nameToIRType___closed__12_once, _init_l_Lean_IR_nameToIRType___closed__12);
 v___x_47_ = lean_string_dec_eq(v_str_29_, v___x_46_);
 if (v___x_47_ == 0)
 {
 lean_object* v___x_48_; uint8_t v___x_49_; 
-v___x_48_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__13));
+v___x_48_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__13, &l_Lean_IR_nameToIRType___closed__13_once, _init_l_Lean_IR_nameToIRType___closed__13);
 v___x_49_ = lean_string_dec_eq(v_str_29_, v___x_48_);
 if (v___x_49_ == 0)
 {
 lean_object* v___x_50_; uint8_t v___x_51_; 
-v___x_50_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__14));
+v___x_50_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__14, &l_Lean_IR_nameToIRType___closed__14_once, _init_l_Lean_IR_nameToIRType___closed__14);
 v___x_51_ = lean_string_dec_eq(v_str_29_, v___x_50_);
 if (v___x_51_ == 0)
 {
@@ -250,17 +362,33 @@ lean_dec(v_n_63_);
 return v_res_64_;
 }
 }
+static lean_object* _init_l_Lean_IR_toIRType___closed__0(void){
+_start:
+{
+lean_object* v___x_65_; 
+v___x_65_ = lean_mk_string_unchecked("Lean.IR.toIRType", 16, 16);
+return v___x_65_;
+}
+}
 static lean_object* _init_l_Lean_IR_toIRType___closed__1(void){
 _start:
 {
 lean_object* v___x_66_; lean_object* v___x_67_; lean_object* v___x_68_; lean_object* v___x_69_; lean_object* v___x_70_; lean_object* v___x_71_; 
-v___x_66_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__2));
+v___x_66_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__2, &l_Lean_IR_nameToIRType___closed__2_once, _init_l_Lean_IR_nameToIRType___closed__2);
 v___x_67_ = lean_unsigned_to_nat(9u);
 v___x_68_ = lean_unsigned_to_nat(49u);
-v___x_69_ = ((lean_object*)(l_Lean_IR_toIRType___closed__0));
-v___x_70_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__0));
+v___x_69_ = lean_obj_once(&l_Lean_IR_toIRType___closed__0, &l_Lean_IR_toIRType___closed__0_once, _init_l_Lean_IR_toIRType___closed__0);
+v___x_70_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__0, &l_Lean_IR_nameToIRType___closed__0_once, _init_l_Lean_IR_nameToIRType___closed__0);
 v___x_71_ = l_mkPanicMessageWithDecl(v___x_70_, v___x_69_, v___x_68_, v___x_67_, v___x_66_);
 return v___x_71_;
+}
+}
+static lean_object* _init_l_Lean_IR_toIRType___closed__2(void){
+_start:
+{
+lean_object* v___x_72_; 
+v___x_72_ = lean_mk_string_unchecked("USize", 5, 5);
+return v___x_72_;
 }
 }
 LEAN_EXPORT lean_object* l_Lean_IR_toIRType(lean_object* v_type_73_){
@@ -279,62 +407,62 @@ if (lean_obj_tag(v_pre_78_) == 0)
 lean_object* v_us_79_; lean_object* v_str_80_; lean_object* v___x_81_; uint8_t v___x_82_; 
 v_us_79_ = lean_ctor_get(v_type_73_, 1);
 v_str_80_ = lean_ctor_get(v_declName_77_, 1);
-v___x_81_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__4));
+v___x_81_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__4, &l_Lean_IR_nameToIRType___closed__4_once, _init_l_Lean_IR_nameToIRType___closed__4);
 v___x_82_ = lean_string_dec_eq(v_str_80_, v___x_81_);
 if (v___x_82_ == 0)
 {
 lean_object* v___x_83_; uint8_t v___x_84_; 
-v___x_83_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__5));
+v___x_83_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__5, &l_Lean_IR_nameToIRType___closed__5_once, _init_l_Lean_IR_nameToIRType___closed__5);
 v___x_84_ = lean_string_dec_eq(v_str_80_, v___x_83_);
 if (v___x_84_ == 0)
 {
 lean_object* v___x_85_; uint8_t v___x_86_; 
-v___x_85_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__6));
+v___x_85_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__6, &l_Lean_IR_nameToIRType___closed__6_once, _init_l_Lean_IR_nameToIRType___closed__6);
 v___x_86_ = lean_string_dec_eq(v_str_80_, v___x_85_);
 if (v___x_86_ == 0)
 {
 lean_object* v___x_87_; uint8_t v___x_88_; 
-v___x_87_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__7));
+v___x_87_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__7, &l_Lean_IR_nameToIRType___closed__7_once, _init_l_Lean_IR_nameToIRType___closed__7);
 v___x_88_ = lean_string_dec_eq(v_str_80_, v___x_87_);
 if (v___x_88_ == 0)
 {
 lean_object* v___x_89_; uint8_t v___x_90_; 
-v___x_89_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__8));
+v___x_89_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__8, &l_Lean_IR_nameToIRType___closed__8_once, _init_l_Lean_IR_nameToIRType___closed__8);
 v___x_90_ = lean_string_dec_eq(v_str_80_, v___x_89_);
 if (v___x_90_ == 0)
 {
 lean_object* v___x_91_; uint8_t v___x_92_; 
-v___x_91_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__9));
+v___x_91_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__9, &l_Lean_IR_nameToIRType___closed__9_once, _init_l_Lean_IR_nameToIRType___closed__9);
 v___x_92_ = lean_string_dec_eq(v_str_80_, v___x_91_);
 if (v___x_92_ == 0)
 {
 lean_object* v___x_93_; uint8_t v___x_94_; 
-v___x_93_ = ((lean_object*)(l_Lean_IR_toIRType___closed__2));
+v___x_93_ = lean_obj_once(&l_Lean_IR_toIRType___closed__2, &l_Lean_IR_toIRType___closed__2_once, _init_l_Lean_IR_toIRType___closed__2);
 v___x_94_ = lean_string_dec_eq(v_str_80_, v___x_93_);
 if (v___x_94_ == 0)
 {
 lean_object* v___x_95_; uint8_t v___x_96_; 
-v___x_95_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__10));
+v___x_95_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__10, &l_Lean_IR_nameToIRType___closed__10_once, _init_l_Lean_IR_nameToIRType___closed__10);
 v___x_96_ = lean_string_dec_eq(v_str_80_, v___x_95_);
 if (v___x_96_ == 0)
 {
 lean_object* v___x_97_; uint8_t v___x_98_; 
-v___x_97_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__11));
+v___x_97_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__11, &l_Lean_IR_nameToIRType___closed__11_once, _init_l_Lean_IR_nameToIRType___closed__11);
 v___x_98_ = lean_string_dec_eq(v_str_80_, v___x_97_);
 if (v___x_98_ == 0)
 {
 lean_object* v___x_99_; uint8_t v___x_100_; 
-v___x_99_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__12));
+v___x_99_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__12, &l_Lean_IR_nameToIRType___closed__12_once, _init_l_Lean_IR_nameToIRType___closed__12);
 v___x_100_ = lean_string_dec_eq(v_str_80_, v___x_99_);
 if (v___x_100_ == 0)
 {
 lean_object* v___x_101_; uint8_t v___x_102_; 
-v___x_101_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__13));
+v___x_101_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__13, &l_Lean_IR_nameToIRType___closed__13_once, _init_l_Lean_IR_nameToIRType___closed__13);
 v___x_102_ = lean_string_dec_eq(v_str_80_, v___x_101_);
 if (v___x_102_ == 0)
 {
 lean_object* v___x_103_; uint8_t v___x_104_; 
-v___x_103_ = ((lean_object*)(l_Lean_IR_nameToIRType___closed__14));
+v___x_103_ = lean_obj_once(&l_Lean_IR_nameToIRType___closed__14, &l_Lean_IR_nameToIRType___closed__14_once, _init_l_Lean_IR_nameToIRType___closed__14);
 v___x_104_ = lean_string_dec_eq(v_str_80_, v___x_103_);
 if (v___x_104_ == 0)
 {

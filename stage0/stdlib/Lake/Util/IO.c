@@ -49,8 +49,8 @@ LEAN_EXPORT lean_object* l_Lake_removeDirAllIfExists___boxed(lean_object*, lean_
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Lake_removeDirAllIfExists_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_copyFile(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_copyFile___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lake_resolvePath___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 1, .m_capacity = 1, .m_length = 0, .m_data = ""};
-static const lean_object* l_Lake_resolvePath___closed__0 = (const lean_object*)&l_Lake_resolvePath___closed__0_value;
+static lean_once_cell_t l_Lake_resolvePath___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_resolvePath___closed__0;
 LEAN_EXPORT lean_object* l_Lake_resolvePath(lean_object*);
 LEAN_EXPORT lean_object* l_Lake_resolvePath___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_resolvePath_x3f(lean_object*);
@@ -734,6 +734,14 @@ lean_dec_ref(v_src_158_);
 return v_res_161_;
 }
 }
+static lean_object* _init_l_Lake_resolvePath___closed__0(void){
+_start:
+{
+lean_object* v___x_162_; 
+v___x_162_ = lean_mk_string_unchecked("", 0, 0);
+return v___x_162_;
+}
+}
 LEAN_EXPORT lean_object* l_Lake_resolvePath(lean_object* v_path_163_){
 _start:
 {
@@ -750,7 +758,7 @@ if (v___x_167_ == 0)
 {
 lean_object* v___x_168_; 
 lean_dec(v_a_166_);
-v___x_168_ = ((lean_object*)(l_Lake_resolvePath___closed__0));
+v___x_168_ = lean_obj_once(&l_Lake_resolvePath___closed__0, &l_Lake_resolvePath___closed__0_once, _init_l_Lake_resolvePath___closed__0);
 return v___x_168_;
 }
 else
@@ -764,7 +772,7 @@ else
 {
 lean_object* v___x_170_; 
 lean_dec_ref(v___x_165_);
-v___x_170_ = ((lean_object*)(l_Lake_resolvePath___closed__0));
+v___x_170_ = lean_obj_once(&l_Lake_resolvePath___closed__0, &l_Lake_resolvePath___closed__0_once, _init_l_Lake_resolvePath___closed__0);
 return v___x_170_;
 }
 }

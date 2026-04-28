@@ -62,22 +62,22 @@ LEAN_EXPORT lean_object* l_Dyadic_ofIntWithPrec(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Dyadic_ofIntWithPrec___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Dyadic_ofInt(lean_object*);
 LEAN_EXPORT lean_object* l_Dyadic_instOfNat(lean_object*);
-static const lean_closure_object l_Dyadic_instIntCast___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Dyadic_ofInt, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Dyadic_instIntCast___closed__0 = (const lean_object*)&l_Dyadic_instIntCast___closed__0_value;
-LEAN_EXPORT const lean_object* l_Dyadic_instIntCast = (const lean_object*)&l_Dyadic_instIntCast___closed__0_value;
+static lean_once_cell_t l_Dyadic_instIntCast___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Dyadic_instIntCast___closed__0;
+LEAN_EXPORT lean_object* l_Dyadic_instIntCast;
 LEAN_EXPORT lean_object* l_Dyadic_instNatCast___lam__0(lean_object*);
-static const lean_closure_object l_Dyadic_instNatCast___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Dyadic_instNatCast___lam__0, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Dyadic_instNatCast___closed__0 = (const lean_object*)&l_Dyadic_instNatCast___closed__0_value;
-LEAN_EXPORT const lean_object* l_Dyadic_instNatCast = (const lean_object*)&l_Dyadic_instNatCast___closed__0_value;
+static lean_once_cell_t l_Dyadic_instNatCast___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Dyadic_instNatCast___closed__0;
+LEAN_EXPORT lean_object* l_Dyadic_instNatCast;
 LEAN_EXPORT lean_object* l_Dyadic_add(lean_object*, lean_object*);
-static const lean_closure_object l_Dyadic_instAdd___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Dyadic_add, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Dyadic_instAdd___closed__0 = (const lean_object*)&l_Dyadic_instAdd___closed__0_value;
-LEAN_EXPORT const lean_object* l_Dyadic_instAdd = (const lean_object*)&l_Dyadic_instAdd___closed__0_value;
+static lean_once_cell_t l_Dyadic_instAdd___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Dyadic_instAdd___closed__0;
+LEAN_EXPORT lean_object* l_Dyadic_instAdd;
 LEAN_EXPORT lean_object* l_Dyadic_mul(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Dyadic_mul___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Dyadic_instMul___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Dyadic_mul___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Dyadic_instMul___closed__0 = (const lean_object*)&l_Dyadic_instMul___closed__0_value;
-LEAN_EXPORT const lean_object* l_Dyadic_instMul = (const lean_object*)&l_Dyadic_instMul___closed__0_value;
+static lean_once_cell_t l_Dyadic_instMul___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Dyadic_instMul___closed__0;
+LEAN_EXPORT lean_object* l_Dyadic_instMul;
 static lean_once_cell_t l_Dyadic_pow___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Dyadic_pow___closed__0;
 static lean_once_cell_t l_Dyadic_pow___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -85,35 +85,35 @@ static lean_object* l_Dyadic_pow___closed__1;
 static lean_once_cell_t l_Dyadic_pow___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Dyadic_pow___closed__2;
 LEAN_EXPORT lean_object* l_Dyadic_pow(lean_object*, lean_object*);
-static const lean_closure_object l_Dyadic_instPowNat___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Dyadic_pow, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Dyadic_instPowNat___closed__0 = (const lean_object*)&l_Dyadic_instPowNat___closed__0_value;
-LEAN_EXPORT const lean_object* l_Dyadic_instPowNat = (const lean_object*)&l_Dyadic_instPowNat___closed__0_value;
+static lean_once_cell_t l_Dyadic_instPowNat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Dyadic_instPowNat___closed__0;
+LEAN_EXPORT lean_object* l_Dyadic_instPowNat;
 LEAN_EXPORT lean_object* l_Dyadic_neg(lean_object*);
-static const lean_closure_object l_Dyadic_instNeg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Dyadic_neg, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Dyadic_instNeg___closed__0 = (const lean_object*)&l_Dyadic_instNeg___closed__0_value;
-LEAN_EXPORT const lean_object* l_Dyadic_instNeg = (const lean_object*)&l_Dyadic_instNeg___closed__0_value;
+static lean_once_cell_t l_Dyadic_instNeg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Dyadic_instNeg___closed__0;
+LEAN_EXPORT lean_object* l_Dyadic_instNeg;
 LEAN_EXPORT lean_object* l_Dyadic_sub(lean_object*, lean_object*);
-static const lean_closure_object l_Dyadic_instSub___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Dyadic_sub, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Dyadic_instSub___closed__0 = (const lean_object*)&l_Dyadic_instSub___closed__0_value;
-LEAN_EXPORT const lean_object* l_Dyadic_instSub = (const lean_object*)&l_Dyadic_instSub___closed__0_value;
+static lean_once_cell_t l_Dyadic_instSub___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Dyadic_instSub___closed__0;
+LEAN_EXPORT lean_object* l_Dyadic_instSub;
 LEAN_EXPORT lean_object* l_Dyadic_shiftLeft(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Dyadic_shiftLeft___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Dyadic_shiftRight(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Dyadic_shiftRight___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Dyadic_instHShiftLeftInt___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Dyadic_shiftLeft___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Dyadic_instHShiftLeftInt___closed__0 = (const lean_object*)&l_Dyadic_instHShiftLeftInt___closed__0_value;
-LEAN_EXPORT const lean_object* l_Dyadic_instHShiftLeftInt = (const lean_object*)&l_Dyadic_instHShiftLeftInt___closed__0_value;
-static const lean_closure_object l_Dyadic_instHShiftRightInt___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Dyadic_shiftRight___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Dyadic_instHShiftRightInt___closed__0 = (const lean_object*)&l_Dyadic_instHShiftRightInt___closed__0_value;
-LEAN_EXPORT const lean_object* l_Dyadic_instHShiftRightInt = (const lean_object*)&l_Dyadic_instHShiftRightInt___closed__0_value;
+static lean_once_cell_t l_Dyadic_instHShiftLeftInt___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Dyadic_instHShiftLeftInt___closed__0;
+LEAN_EXPORT lean_object* l_Dyadic_instHShiftLeftInt;
+static lean_once_cell_t l_Dyadic_instHShiftRightInt___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Dyadic_instHShiftRightInt___closed__0;
+LEAN_EXPORT lean_object* l_Dyadic_instHShiftRightInt;
 LEAN_EXPORT lean_object* l_Dyadic_instHShiftLeftNat___lam__0(lean_object*, lean_object*);
-static const lean_closure_object l_Dyadic_instHShiftLeftNat___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Dyadic_instHShiftLeftNat___lam__0, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Dyadic_instHShiftLeftNat___closed__0 = (const lean_object*)&l_Dyadic_instHShiftLeftNat___closed__0_value;
-LEAN_EXPORT const lean_object* l_Dyadic_instHShiftLeftNat = (const lean_object*)&l_Dyadic_instHShiftLeftNat___closed__0_value;
+static lean_once_cell_t l_Dyadic_instHShiftLeftNat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Dyadic_instHShiftLeftNat___closed__0;
+LEAN_EXPORT lean_object* l_Dyadic_instHShiftLeftNat;
 LEAN_EXPORT lean_object* l_Dyadic_instHShiftRightNat___lam__0(lean_object*, lean_object*);
-static const lean_closure_object l_Dyadic_instHShiftRightNat___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Dyadic_instHShiftRightNat___lam__0, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Dyadic_instHShiftRightNat___closed__0 = (const lean_object*)&l_Dyadic_instHShiftRightNat___closed__0_value;
-LEAN_EXPORT const lean_object* l_Dyadic_instHShiftRightNat = (const lean_object*)&l_Dyadic_instHShiftRightNat___closed__0_value;
+static lean_once_cell_t l_Dyadic_instHShiftRightNat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Dyadic_instHShiftRightNat___closed__0;
+LEAN_EXPORT lean_object* l_Dyadic_instHShiftRightNat;
 LEAN_EXPORT lean_object* l_Int_cast___at___00Dyadic_toRat_spec__1(lean_object*);
 LEAN_EXPORT lean_object* l_Nat_cast___at___00Dyadic_toRat_spec__0(lean_object*);
 static lean_once_cell_t l_Dyadic_toRat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -515,6 +515,22 @@ v___x_139_ = l_Dyadic_ofInt(v___x_138_);
 return v___x_139_;
 }
 }
+static lean_object* _init_l_Dyadic_instIntCast___closed__0(void){
+_start:
+{
+lean_object* v___x_140_; 
+v___x_140_ = lean_alloc_closure((void*)(l_Dyadic_ofInt), 1, 0);
+return v___x_140_;
+}
+}
+static lean_object* _init_l_Dyadic_instIntCast(void){
+_start:
+{
+lean_object* v___x_141_; 
+v___x_141_ = lean_obj_once(&l_Dyadic_instIntCast___closed__0, &l_Dyadic_instIntCast___closed__0_once, _init_l_Dyadic_instIntCast___closed__0);
+return v___x_141_;
+}
+}
 LEAN_EXPORT lean_object* l_Dyadic_instNatCast___lam__0(lean_object* v_x_142_){
 _start:
 {
@@ -522,6 +538,22 @@ lean_object* v___x_143_; lean_object* v___x_144_;
 v___x_143_ = lean_nat_to_int(v_x_142_);
 v___x_144_ = l_Dyadic_ofInt(v___x_143_);
 return v___x_144_;
+}
+}
+static lean_object* _init_l_Dyadic_instNatCast___closed__0(void){
+_start:
+{
+lean_object* v___f_145_; 
+v___f_145_ = lean_alloc_closure((void*)(l_Dyadic_instNatCast___lam__0), 1, 0);
+return v___f_145_;
+}
+}
+static lean_object* _init_l_Dyadic_instNatCast(void){
+_start:
+{
+lean_object* v___f_146_; 
+v___f_146_ = lean_obj_once(&l_Dyadic_instNatCast___closed__0, &l_Dyadic_instNatCast___closed__0_once, _init_l_Dyadic_instNatCast___closed__0);
+return v___f_146_;
 }
 }
 LEAN_EXPORT lean_object* l_Dyadic_add(lean_object* v_x_147_, lean_object* v_y_148_){
@@ -702,6 +734,22 @@ return v___x_185_;
 }
 }
 }
+static lean_object* _init_l_Dyadic_instAdd___closed__0(void){
+_start:
+{
+lean_object* v___x_188_; 
+v___x_188_ = lean_alloc_closure((void*)(l_Dyadic_add), 2, 0);
+return v___x_188_;
+}
+}
+static lean_object* _init_l_Dyadic_instAdd(void){
+_start:
+{
+lean_object* v___x_189_; 
+v___x_189_ = lean_obj_once(&l_Dyadic_instAdd___closed__0, &l_Dyadic_instAdd___closed__0_once, _init_l_Dyadic_instAdd___closed__0);
+return v___x_189_;
+}
+}
 LEAN_EXPORT lean_object* l_Dyadic_mul(lean_object* v_x_190_, lean_object* v_y_191_){
 _start:
 {
@@ -778,6 +826,22 @@ lean_object* v_res_207_;
 v_res_207_ = l_Dyadic_mul(v_x_205_, v_y_206_);
 lean_dec(v_x_205_);
 return v_res_207_;
+}
+}
+static lean_object* _init_l_Dyadic_instMul___closed__0(void){
+_start:
+{
+lean_object* v___x_208_; 
+v___x_208_ = lean_alloc_closure((void*)(l_Dyadic_mul___boxed), 2, 0);
+return v___x_208_;
+}
+}
+static lean_object* _init_l_Dyadic_instMul(void){
+_start:
+{
+lean_object* v___x_209_; 
+v___x_209_ = lean_obj_once(&l_Dyadic_instMul___closed__0, &l_Dyadic_instMul___closed__0_once, _init_l_Dyadic_instMul___closed__0);
+return v___x_209_;
 }
 }
 static lean_object* _init_l_Dyadic_pow___closed__0(void){
@@ -883,6 +947,22 @@ return v___x_231_;
 }
 }
 }
+static lean_object* _init_l_Dyadic_instPowNat___closed__0(void){
+_start:
+{
+lean_object* v___x_234_; 
+v___x_234_ = lean_alloc_closure((void*)(l_Dyadic_pow), 2, 0);
+return v___x_234_;
+}
+}
+static lean_object* _init_l_Dyadic_instPowNat(void){
+_start:
+{
+lean_object* v___x_235_; 
+v___x_235_ = lean_obj_once(&l_Dyadic_instPowNat___closed__0, &l_Dyadic_instPowNat___closed__0_once, _init_l_Dyadic_instPowNat___closed__0);
+return v___x_235_;
+}
+}
 LEAN_EXPORT lean_object* l_Dyadic_neg(lean_object* v_x_236_){
 _start:
 {
@@ -939,6 +1019,22 @@ return v___x_244_;
 }
 }
 }
+static lean_object* _init_l_Dyadic_instNeg___closed__0(void){
+_start:
+{
+lean_object* v___x_247_; 
+v___x_247_ = lean_alloc_closure((void*)(l_Dyadic_neg), 1, 0);
+return v___x_247_;
+}
+}
+static lean_object* _init_l_Dyadic_instNeg(void){
+_start:
+{
+lean_object* v___x_248_; 
+v___x_248_ = lean_obj_once(&l_Dyadic_instNeg___closed__0, &l_Dyadic_instNeg___closed__0_once, _init_l_Dyadic_instNeg___closed__0);
+return v___x_248_;
+}
+}
 LEAN_EXPORT lean_object* l_Dyadic_sub(lean_object* v_x_249_, lean_object* v_y_250_){
 _start:
 {
@@ -946,6 +1042,22 @@ lean_object* v___x_251_; lean_object* v___x_252_;
 v___x_251_ = l_Dyadic_neg(v_y_250_);
 v___x_252_ = l_Dyadic_add(v_x_249_, v___x_251_);
 return v___x_252_;
+}
+}
+static lean_object* _init_l_Dyadic_instSub___closed__0(void){
+_start:
+{
+lean_object* v___x_253_; 
+v___x_253_ = lean_alloc_closure((void*)(l_Dyadic_sub), 2, 0);
+return v___x_253_;
+}
+}
+static lean_object* _init_l_Dyadic_instSub(void){
+_start:
+{
+lean_object* v___x_254_; 
+v___x_254_ = lean_obj_once(&l_Dyadic_instSub___closed__0, &l_Dyadic_instSub___closed__0_once, _init_l_Dyadic_instSub___closed__0);
+return v___x_254_;
 }
 }
 LEAN_EXPORT lean_object* l_Dyadic_shiftLeft(lean_object* v_x_255_, lean_object* v_i_256_){
@@ -1078,6 +1190,38 @@ lean_dec(v_i_283_);
 return v_res_284_;
 }
 }
+static lean_object* _init_l_Dyadic_instHShiftLeftInt___closed__0(void){
+_start:
+{
+lean_object* v___x_285_; 
+v___x_285_ = lean_alloc_closure((void*)(l_Dyadic_shiftLeft___boxed), 2, 0);
+return v___x_285_;
+}
+}
+static lean_object* _init_l_Dyadic_instHShiftLeftInt(void){
+_start:
+{
+lean_object* v___x_286_; 
+v___x_286_ = lean_obj_once(&l_Dyadic_instHShiftLeftInt___closed__0, &l_Dyadic_instHShiftLeftInt___closed__0_once, _init_l_Dyadic_instHShiftLeftInt___closed__0);
+return v___x_286_;
+}
+}
+static lean_object* _init_l_Dyadic_instHShiftRightInt___closed__0(void){
+_start:
+{
+lean_object* v___x_287_; 
+v___x_287_ = lean_alloc_closure((void*)(l_Dyadic_shiftRight___boxed), 2, 0);
+return v___x_287_;
+}
+}
+static lean_object* _init_l_Dyadic_instHShiftRightInt(void){
+_start:
+{
+lean_object* v___x_288_; 
+v___x_288_ = lean_obj_once(&l_Dyadic_instHShiftRightInt___closed__0, &l_Dyadic_instHShiftRightInt___closed__0_once, _init_l_Dyadic_instHShiftRightInt___closed__0);
+return v___x_288_;
+}
+}
 LEAN_EXPORT lean_object* l_Dyadic_instHShiftLeftNat___lam__0(lean_object* v_x_289_, lean_object* v_y_290_){
 _start:
 {
@@ -1088,6 +1232,22 @@ lean_dec(v___x_291_);
 return v___x_292_;
 }
 }
+static lean_object* _init_l_Dyadic_instHShiftLeftNat___closed__0(void){
+_start:
+{
+lean_object* v___f_293_; 
+v___f_293_ = lean_alloc_closure((void*)(l_Dyadic_instHShiftLeftNat___lam__0), 2, 0);
+return v___f_293_;
+}
+}
+static lean_object* _init_l_Dyadic_instHShiftLeftNat(void){
+_start:
+{
+lean_object* v___f_294_; 
+v___f_294_ = lean_obj_once(&l_Dyadic_instHShiftLeftNat___closed__0, &l_Dyadic_instHShiftLeftNat___closed__0_once, _init_l_Dyadic_instHShiftLeftNat___closed__0);
+return v___f_294_;
+}
+}
 LEAN_EXPORT lean_object* l_Dyadic_instHShiftRightNat___lam__0(lean_object* v_x_295_, lean_object* v_y_296_){
 _start:
 {
@@ -1096,6 +1256,22 @@ v___x_297_ = lean_nat_to_int(v_y_296_);
 v___x_298_ = l_Dyadic_shiftRight(v_x_295_, v___x_297_);
 lean_dec(v___x_297_);
 return v___x_298_;
+}
+}
+static lean_object* _init_l_Dyadic_instHShiftRightNat___closed__0(void){
+_start:
+{
+lean_object* v___f_299_; 
+v___f_299_ = lean_alloc_closure((void*)(l_Dyadic_instHShiftRightNat___lam__0), 2, 0);
+return v___f_299_;
+}
+}
+static lean_object* _init_l_Dyadic_instHShiftRightNat(void){
+_start:
+{
+lean_object* v___f_300_; 
+v___f_300_ = lean_obj_once(&l_Dyadic_instHShiftRightNat___closed__0, &l_Dyadic_instHShiftRightNat___closed__0_once, _init_l_Dyadic_instHShiftRightNat___closed__0);
+return v___f_300_;
 }
 }
 LEAN_EXPORT lean_object* l_Int_cast___at___00Dyadic_toRat_spec__1(lean_object* v_a_301_){
@@ -2279,6 +2455,28 @@ lean_dec_ref(res);
 res = runtime_initialize_Init_Omega(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Dyadic_instIntCast = _init_l_Dyadic_instIntCast();
+lean_mark_persistent(l_Dyadic_instIntCast);
+l_Dyadic_instNatCast = _init_l_Dyadic_instNatCast();
+lean_mark_persistent(l_Dyadic_instNatCast);
+l_Dyadic_instAdd = _init_l_Dyadic_instAdd();
+lean_mark_persistent(l_Dyadic_instAdd);
+l_Dyadic_instMul = _init_l_Dyadic_instMul();
+lean_mark_persistent(l_Dyadic_instMul);
+l_Dyadic_instPowNat = _init_l_Dyadic_instPowNat();
+lean_mark_persistent(l_Dyadic_instPowNat);
+l_Dyadic_instNeg = _init_l_Dyadic_instNeg();
+lean_mark_persistent(l_Dyadic_instNeg);
+l_Dyadic_instSub = _init_l_Dyadic_instSub();
+lean_mark_persistent(l_Dyadic_instSub);
+l_Dyadic_instHShiftLeftInt = _init_l_Dyadic_instHShiftLeftInt();
+lean_mark_persistent(l_Dyadic_instHShiftLeftInt);
+l_Dyadic_instHShiftRightInt = _init_l_Dyadic_instHShiftRightInt();
+lean_mark_persistent(l_Dyadic_instHShiftRightInt);
+l_Dyadic_instHShiftLeftNat = _init_l_Dyadic_instHShiftLeftNat();
+lean_mark_persistent(l_Dyadic_instHShiftLeftNat);
+l_Dyadic_instHShiftRightNat = _init_l_Dyadic_instHShiftRightNat();
+lean_mark_persistent(l_Dyadic_instHShiftRightNat);
 l_Dyadic_instLT = _init_l_Dyadic_instLT();
 lean_mark_persistent(l_Dyadic_instLT);
 l_Dyadic_instLE = _init_l_Dyadic_instLE();

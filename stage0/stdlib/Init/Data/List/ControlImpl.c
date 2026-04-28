@@ -17,10 +17,10 @@ lean_object* l_List_reverse___redArg(lean_object*);
 lean_object* l_id___boxed(lean_object*, lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* l___private_Init_Data_List_Impl_0__List_flatMapTR_go(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_List_flatMapMTR_loop___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_id___boxed, .m_arity = 2, .m_num_fixed = 1, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))} };
-static const lean_object* l_List_flatMapMTR_loop___redArg___closed__0 = (const lean_object*)&l_List_flatMapMTR_loop___redArg___closed__0_value;
-static const lean_array_object l_List_flatMapMTR_loop___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_List_flatMapMTR_loop___redArg___closed__1 = (const lean_object*)&l_List_flatMapMTR_loop___redArg___closed__1_value;
+static lean_once_cell_t l_List_flatMapMTR_loop___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_List_flatMapMTR_loop___redArg___closed__0;
+static lean_once_cell_t l_List_flatMapMTR_loop___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_List_flatMapMTR_loop___redArg___closed__1;
 LEAN_EXPORT lean_object* l_List_flatMapMTR_loop___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_List_flatMapMTR_loop___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_List_flatMapMTR_loop(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -30,6 +30,24 @@ LEAN_EXPORT lean_object* l___private_Init_Data_List_ControlImpl_0__List_flatMapM
 LEAN_EXPORT lean_object* l___private_Init_Data_List_ControlImpl_0__List_flatMapM_match__1_splitter(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_List_ControlImpl_0__List_flatMapMTR_match__1_splitter___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_List_ControlImpl_0__List_flatMapMTR_match__1_splitter(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+static lean_object* _init_l_List_flatMapMTR_loop___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; 
+v___x_1_ = lean_alloc_closure((void*)(l_id___boxed), 2, 1);
+lean_closure_set(v___x_1_, 0, lean_box(0));
+return v___x_1_;
+}
+}
+static lean_object* _init_l_List_flatMapMTR_loop___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_2_; lean_object* v___x_3_; 
+v___x_2_ = lean_unsigned_to_nat(0u);
+v___x_3_ = lean_mk_empty_array_with_capacity(v___x_2_);
+return v___x_3_;
+}
+}
 LEAN_EXPORT lean_object* l_List_flatMapMTR_loop___redArg(lean_object* v_inst_4_, lean_object* v_f_5_, lean_object* v_x_6_, lean_object* v_x_7_){
 _start:
 {
@@ -44,8 +62,8 @@ v_toPure_9_ = lean_ctor_get(v_toApplicative_8_, 1);
 lean_inc(v_toPure_9_);
 lean_dec_ref(v_toApplicative_8_);
 v___x_10_ = l_List_reverse___redArg(v_x_7_);
-v___x_11_ = ((lean_object*)(l_List_flatMapMTR_loop___redArg___closed__0));
-v___x_12_ = ((lean_object*)(l_List_flatMapMTR_loop___redArg___closed__1));
+v___x_11_ = lean_obj_once(&l_List_flatMapMTR_loop___redArg___closed__0, &l_List_flatMapMTR_loop___redArg___closed__0_once, _init_l_List_flatMapMTR_loop___redArg___closed__0);
+v___x_12_ = lean_obj_once(&l_List_flatMapMTR_loop___redArg___closed__1, &l_List_flatMapMTR_loop___redArg___closed__1_once, _init_l_List_flatMapMTR_loop___redArg___closed__1);
 v___x_13_ = l___private_Init_Data_List_Impl_0__List_flatMapTR_go(lean_box(0), lean_box(0), v___x_11_, v___x_10_, v___x_12_);
 v___x_14_ = lean_apply_2(v_toPure_9_, lean_box(0), v___x_13_);
 return v___x_14_;

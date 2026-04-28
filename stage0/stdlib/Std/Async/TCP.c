@@ -67,20 +67,20 @@ LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_accept___lam__1(lean_obje
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_accept___lam__1___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_accept___lam__2(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_accept___lam__2___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_Async_TCP_Socket_Server_accept___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_TCP_Socket_Server_accept___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Async_TCP_Socket_Server_accept___closed__0 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_accept___closed__0_value;
-static const lean_string_object l_Std_Async_TCP_Socket_Server_accept___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 44, .m_capacity = 44, .m_length = 43, .m_data = "the promise linked to the Async was dropped"};
-static const lean_object* l_Std_Async_TCP_Socket_Server_accept___closed__1 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_accept___closed__1_value;
-static const lean_closure_object l_Std_Async_TCP_Socket_Server_accept___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_TCP_Socket_Server_accept___lam__1___boxed, .m_arity = 2, .m_num_fixed = 1, .m_objs = {((lean_object*)&l_Std_Async_TCP_Socket_Server_accept___closed__1_value)} };
-static const lean_object* l_Std_Async_TCP_Socket_Server_accept___closed__2 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_accept___closed__2_value;
-static const lean_closure_object l_Std_Async_TCP_Socket_Server_accept___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_TCP_Socket_Server_accept___lam__2___boxed, .m_arity = 3, .m_num_fixed = 1, .m_objs = {((lean_object*)&l_Std_Async_TCP_Socket_Server_accept___closed__2_value)} };
-static const lean_object* l_Std_Async_TCP_Socket_Server_accept___closed__3 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_accept___closed__3_value;
-static const lean_closure_object l_Std_Async_TCP_Socket_Server_accept___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*4, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Except_map, .m_arity = 5, .m_num_fixed = 4, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_Async_TCP_Socket_Server_accept___closed__0_value)} };
-static const lean_object* l_Std_Async_TCP_Socket_Server_accept___closed__4 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_accept___closed__4_value;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_accept___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_accept___closed__0;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_accept___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_accept___closed__1;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_accept___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_accept___closed__2;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_accept___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_accept___closed__3;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_accept___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_accept___closed__4;
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_accept(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_accept___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Async_TCP_Socket_Server_tryAccept___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)lean_io_error_to_string, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Async_TCP_Socket_Server_tryAccept___closed__0 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_tryAccept___closed__0_value;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_tryAccept___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_tryAccept___closed__0;
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_tryAccept(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_tryAccept___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_IO_ofExcept___at___00Std_Async_TCP_Socket_Server_acceptSelector_spec__0___redArg(lean_object*);
@@ -93,8 +93,8 @@ LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_acceptSelector___lam__0(l
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_acceptSelector___lam__0___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_acceptSelector___lam__1(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_acceptSelector___lam__1___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Async_TCP_Socket_Server_acceptSelector___lam__2___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_TCP_Socket_Server_acceptSelector___lam__1___boxed, .m_arity = 2, .m_num_fixed = 1, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))} };
-static const lean_object* l_Std_Async_TCP_Socket_Server_acceptSelector___lam__2___closed__0 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_acceptSelector___lam__2___closed__0_value;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_acceptSelector___lam__2___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_acceptSelector___lam__2___closed__0;
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_acceptSelector___lam__2(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_acceptSelector___lam__2___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_acceptSelector___lam__3(lean_object*, lean_object*);
@@ -108,52 +108,40 @@ LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_getSockName(lean_object*)
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_getSockName___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_noDelay(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_noDelay___boxed(lean_object*, lean_object*);
-static const lean_string_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Lean"};
-static const lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0_value;
-static const lean_string_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Parser"};
-static const lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1_value;
-static const lean_string_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Tactic"};
-static const lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2_value;
-static const lean_string_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "tacticSeq"};
-static const lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__3 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__3_value;
-static const lean_ctor_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__4_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__4_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__4_value_aux_0),((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__4_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__4_value_aux_1),((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__4_value_aux_2),((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(212, 140, 85, 215, 241, 69, 7, 118)}};
-static const lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__4 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__4_value;
-static const lean_array_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5_value;
-static const lean_string_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 19, .m_capacity = 19, .m_length = 18, .m_data = "tacticSeq1Indented"};
-static const lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__6 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__6_value;
-static const lean_ctor_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__7_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__7_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__7_value_aux_0),((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__7_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__7_value_aux_1),((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__7_value_aux_2),((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__6_value),LEAN_SCALAR_PTR_LITERAL(223, 90, 160, 238, 133, 180, 23, 239)}};
-static const lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__7 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__7_value;
-static const lean_string_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "null"};
-static const lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__8 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__8_value;
-static const lean_ctor_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(24, 58, 49, 223, 146, 207, 197, 136)}};
-static const lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__9 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__9_value;
-static const lean_string_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "decide"};
-static const lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__10 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__10_value;
-static const lean_ctor_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__11_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__11_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__11_value_aux_0),((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__11_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__11_value_aux_1),((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__11_value_aux_2),((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__10_value),LEAN_SCALAR_PTR_LITERAL(53, 158, 1, 232, 101, 200, 191, 197)}};
-static const lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__11 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__11_value;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__3;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__4;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__6;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__7;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__8;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__9;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__10;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__11;
 static lean_once_cell_t l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__12;
 static lean_once_cell_t l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__13;
-static const lean_string_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "optConfig"};
-static const lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__14 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__14_value;
-static const lean_ctor_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__15_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__15_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__15_value_aux_0),((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__15_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__15_value_aux_1),((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__15_value_aux_2),((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__14_value),LEAN_SCALAR_PTR_LITERAL(137, 208, 10, 74, 108, 50, 106, 48)}};
-static const lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__15 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__15_value;
-static const lean_ctor_object l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(2) << 1) | 1)),((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__9_value),((lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5_value)}};
-static const lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__16 = (const lean_object*)&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__16_value;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__14;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__15;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__16;
 static lean_once_cell_t l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__17;
 static lean_once_cell_t l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -187,10 +175,10 @@ LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_connect___lam__0(lean_obj
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_connect___lam__0___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_connect___lam__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_connect___lam__1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_Async_TCP_Socket_Client_connect___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_TCP_Socket_Client_connect___lam__0___boxed, .m_arity = 2, .m_num_fixed = 1, .m_objs = {((lean_object*)&l_Std_Async_TCP_Socket_Server_accept___closed__1_value)} };
-static const lean_object* l_Std_Async_TCP_Socket_Client_connect___closed__0 = (const lean_object*)&l_Std_Async_TCP_Socket_Client_connect___closed__0_value;
-static const lean_closure_object l_Std_Async_TCP_Socket_Client_connect___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_TCP_Socket_Client_connect___lam__1___boxed, .m_arity = 3, .m_num_fixed = 1, .m_objs = {((lean_object*)&l_Std_Async_TCP_Socket_Client_connect___closed__0_value)} };
-static const lean_object* l_Std_Async_TCP_Socket_Client_connect___closed__1 = (const lean_object*)&l_Std_Async_TCP_Socket_Client_connect___closed__1_value;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Client_connect___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Client_connect___closed__0;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Client_connect___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Client_connect___closed__1;
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_connect(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_connect___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_sendAll(lean_object*, lean_object*);
@@ -201,10 +189,10 @@ LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recv_x3f___lam__0(lean_ob
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recv_x3f___lam__0___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recv_x3f___lam__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recv_x3f___lam__1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_Async_TCP_Socket_Client_recv_x3f___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_TCP_Socket_Client_recv_x3f___lam__0___boxed, .m_arity = 2, .m_num_fixed = 1, .m_objs = {((lean_object*)&l_Std_Async_TCP_Socket_Server_accept___closed__1_value)} };
-static const lean_object* l_Std_Async_TCP_Socket_Client_recv_x3f___closed__0 = (const lean_object*)&l_Std_Async_TCP_Socket_Client_recv_x3f___closed__0_value;
-static const lean_closure_object l_Std_Async_TCP_Socket_Client_recv_x3f___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_TCP_Socket_Client_recv_x3f___lam__1___boxed, .m_arity = 3, .m_num_fixed = 1, .m_objs = {((lean_object*)&l_Std_Async_TCP_Socket_Client_recv_x3f___closed__0_value)} };
-static const lean_object* l_Std_Async_TCP_Socket_Client_recv_x3f___closed__1 = (const lean_object*)&l_Std_Async_TCP_Socket_Client_recv_x3f___closed__1_value;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Client_recv_x3f___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Client_recv_x3f___closed__0;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Client_recv_x3f___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Client_recv_x3f___closed__1;
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recv_x3f(lean_object*, uint64_t);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recv_x3f___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___lam__0(lean_object*);
@@ -212,26 +200,26 @@ LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_C
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___lam__2___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___lam__1(lean_object*, lean_object*, uint64_t);
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___lam__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___lam__0, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___closed__0 = (const lean_object*)&l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___closed__0_value;
+static lean_once_cell_t l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___closed__0;
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0(lean_object*, lean_object*, uint64_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__1(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__1___boxed(lean_object*, lean_object*);
-static const lean_ctor_object l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___closed__0 = (const lean_object*)&l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___closed__0_value;
-static const lean_ctor_object l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___closed__0_value)}};
-static const lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___closed__1 = (const lean_object*)&l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___closed__1_value;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___closed__0;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___closed__1;
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__2(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__2___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__4(lean_object*, uint64_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__4___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Std_Async_TCP_Socket_Client_recvSelector___lam__3___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__3___closed__0 = (const lean_object*)&l_Std_Async_TCP_Socket_Client_recvSelector___lam__3___closed__0_value;
-static const lean_ctor_object l_Std_Async_TCP_Socket_Client_recvSelector___lam__3___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Async_TCP_Socket_Client_recvSelector___lam__3___closed__0_value)}};
-static const lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__3___closed__1 = (const lean_object*)&l_Std_Async_TCP_Socket_Client_recvSelector___lam__3___closed__1_value;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Client_recvSelector___lam__3___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__3___closed__0;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Client_recvSelector___lam__3___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__3___closed__1;
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__3(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__3___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__5(lean_object*, uint64_t, lean_object*);
@@ -242,10 +230,10 @@ LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__6(lea
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__6___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__7(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__7___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_Async_TCP_Socket_Client_recvSelector___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_TCP_Socket_Client_recvSelector___lam__1___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___closed__0 = (const lean_object*)&l_Std_Async_TCP_Socket_Client_recvSelector___closed__0_value;
-static const lean_closure_object l_Std_Async_TCP_Socket_Client_recvSelector___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___closed__1 = (const lean_object*)&l_Std_Async_TCP_Socket_Client_recvSelector___closed__1_value;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Client_recvSelector___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___closed__0;
+static lean_once_cell_t l_Std_Async_TCP_Socket_Client_recvSelector___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___closed__1;
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recvSelector(lean_object*, uint64_t);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_shutdown(lean_object*);
@@ -566,11 +554,60 @@ v_res_80_ = l_Std_Async_TCP_Socket_Server_accept___lam__2(v___f_77_, v_x_78_);
 return v_res_80_;
 }
 }
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_accept___closed__0(void){
+_start:
+{
+lean_object* v___f_81_; 
+v___f_81_ = lean_alloc_closure((void*)(l_Std_Async_TCP_Socket_Server_accept___lam__0___boxed), 1, 0);
+return v___f_81_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_accept___closed__1(void){
+_start:
+{
+lean_object* v___x_82_; 
+v___x_82_ = lean_mk_string_unchecked("the promise linked to the Async was dropped", 43, 43);
+return v___x_82_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_accept___closed__2(void){
+_start:
+{
+lean_object* v___x_83_; lean_object* v___f_84_; 
+v___x_83_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_accept___closed__1, &l_Std_Async_TCP_Socket_Server_accept___closed__1_once, _init_l_Std_Async_TCP_Socket_Server_accept___closed__1);
+v___f_84_ = lean_alloc_closure((void*)(l_Std_Async_TCP_Socket_Server_accept___lam__1___boxed), 2, 1);
+lean_closure_set(v___f_84_, 0, v___x_83_);
+return v___f_84_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_accept___closed__3(void){
+_start:
+{
+lean_object* v___f_85_; lean_object* v___f_86_; 
+v___f_85_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_accept___closed__2, &l_Std_Async_TCP_Socket_Server_accept___closed__2_once, _init_l_Std_Async_TCP_Socket_Server_accept___closed__2);
+v___f_86_ = lean_alloc_closure((void*)(l_Std_Async_TCP_Socket_Server_accept___lam__2___boxed), 3, 1);
+lean_closure_set(v___f_86_, 0, v___f_85_);
+return v___f_86_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_accept___closed__4(void){
+_start:
+{
+lean_object* v___f_87_; lean_object* v___x_88_; 
+v___f_87_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_accept___closed__0, &l_Std_Async_TCP_Socket_Server_accept___closed__0_once, _init_l_Std_Async_TCP_Socket_Server_accept___closed__0);
+v___x_88_ = lean_alloc_closure((void*)(l_Except_map), 5, 4);
+lean_closure_set(v___x_88_, 0, lean_box(0));
+lean_closure_set(v___x_88_, 1, lean_box(0));
+lean_closure_set(v___x_88_, 2, lean_box(0));
+lean_closure_set(v___x_88_, 3, v___f_87_);
+return v___x_88_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_accept(lean_object* v_s_89_){
 _start:
 {
 lean_object* v___y_92_; lean_object* v___f_94_; lean_object* v_val_96_; lean_object* v___x_129_; 
-v___f_94_ = ((lean_object*)(l_Std_Async_TCP_Socket_Server_accept___closed__3));
+v___f_94_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_accept___closed__3, &l_Std_Async_TCP_Socket_Server_accept___closed__3_once, _init_l_Std_Async_TCP_Socket_Server_accept___closed__3);
 v___x_129_ = lean_uv_tcp_accept(v_s_89_);
 if (lean_obj_tag(v___x_129_) == 0)
 {
@@ -788,7 +825,7 @@ goto v_resetjp_120_;
 v_resetjp_120_:
 {
 lean_object* v___x_123_; lean_object* v___x_124_; lean_object* v___x_126_; 
-v___x_123_ = ((lean_object*)(l_Std_Async_TCP_Socket_Server_accept___closed__4));
+v___x_123_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_accept___closed__4, &l_Std_Async_TCP_Socket_Server_accept___closed__4_once, _init_l_Std_Async_TCP_Socket_Server_accept___closed__4);
 v___x_124_ = lean_task_map(v___x_123_, v_a_119_, v___x_99_, v___x_100_);
 if (v_isShared_122_ == 0)
 {
@@ -822,6 +859,14 @@ lean_dec(v_s_146_);
 return v_res_148_;
 }
 }
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_tryAccept___closed__0(void){
+_start:
+{
+lean_object* v___x_149_; 
+v___x_149_ = lean_alloc_closure((void*)(lean_io_error_to_string), 1, 0);
+return v___x_149_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_tryAccept(lean_object* v_s_150_){
 _start:
 {
@@ -833,7 +878,7 @@ lean_object* v_a_153_; lean_object* v___x_154_; lean_object* v___x_155_;
 v_a_153_ = lean_ctor_get(v___x_152_, 0);
 lean_inc(v_a_153_);
 lean_dec_ref(v___x_152_);
-v___x_154_ = ((lean_object*)(l_Std_Async_TCP_Socket_Server_tryAccept___closed__0));
+v___x_154_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_tryAccept___closed__0, &l_Std_Async_TCP_Socket_Server_tryAccept___closed__0_once, _init_l_Std_Async_TCP_Socket_Server_tryAccept___closed__0);
 v___x_155_ = l_IO_ofExcept___redArg(v___x_154_, v_a_153_);
 if (lean_obj_tag(v___x_155_) == 0)
 {
@@ -1466,6 +1511,16 @@ v_res_308_ = l_Std_Async_TCP_Socket_Server_acceptSelector___lam__1(v___x_306_);
 return v_res_308_;
 }
 }
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_acceptSelector___lam__2___closed__0(void){
+_start:
+{
+lean_object* v___x_309_; lean_object* v___f_310_; 
+v___x_309_ = lean_box(0);
+v___f_310_ = lean_alloc_closure((void*)(l_Std_Async_TCP_Socket_Server_acceptSelector___lam__1___boxed), 2, 1);
+lean_closure_set(v___f_310_, 0, v___x_309_);
+return v___f_310_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Server_acceptSelector___lam__2(lean_object* v_waiter_311_, lean_object* v_res_312_){
 _start:
 {
@@ -1483,7 +1538,7 @@ lean_object* v_val_316_; lean_object* v___f_317_; lean_object* v___x_318_;
 v_val_316_ = lean_ctor_get(v_res_312_, 0);
 lean_inc(v_val_316_);
 lean_dec_ref(v_res_312_);
-v___f_317_ = ((lean_object*)(l_Std_Async_TCP_Socket_Server_acceptSelector___lam__2___closed__0));
+v___f_317_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_acceptSelector___lam__2___closed__0, &l_Std_Async_TCP_Socket_Server_acceptSelector___lam__2___closed__0_once, _init_l_Std_Async_TCP_Socket_Server_acceptSelector___lam__2___closed__0);
 v___x_318_ = l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Server_acceptSelector_spec__1(v_val_316_, v_waiter_311_, v___f_317_);
 return v___x_318_;
 }
@@ -1923,11 +1978,121 @@ lean_dec(v_s_430_);
 return v_res_432_;
 }
 }
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0(void){
+_start:
+{
+lean_object* v___x_433_; 
+v___x_433_ = lean_mk_string_unchecked("Lean", 4, 4);
+return v___x_433_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1(void){
+_start:
+{
+lean_object* v___x_434_; 
+v___x_434_ = lean_mk_string_unchecked("Parser", 6, 6);
+return v___x_434_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2(void){
+_start:
+{
+lean_object* v___x_435_; 
+v___x_435_ = lean_mk_string_unchecked("Tactic", 6, 6);
+return v___x_435_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__3(void){
+_start:
+{
+lean_object* v___x_436_; 
+v___x_436_ = lean_mk_string_unchecked("tacticSeq", 9, 9);
+return v___x_436_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__4(void){
+_start:
+{
+lean_object* v___x_437_; lean_object* v___x_438_; lean_object* v___x_439_; lean_object* v___x_440_; lean_object* v___x_441_; 
+v___x_437_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__3, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__3_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__3);
+v___x_438_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2);
+v___x_439_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1);
+v___x_440_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0);
+v___x_441_ = l_Lean_Name_mkStr4(v___x_440_, v___x_439_, v___x_438_, v___x_437_);
+return v___x_441_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5(void){
+_start:
+{
+lean_object* v___x_442_; lean_object* v___x_443_; 
+v___x_442_ = lean_unsigned_to_nat(0u);
+v___x_443_ = lean_mk_empty_array_with_capacity(v___x_442_);
+return v___x_443_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__6(void){
+_start:
+{
+lean_object* v___x_444_; 
+v___x_444_ = lean_mk_string_unchecked("tacticSeq1Indented", 18, 18);
+return v___x_444_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__7(void){
+_start:
+{
+lean_object* v___x_445_; lean_object* v___x_446_; lean_object* v___x_447_; lean_object* v___x_448_; lean_object* v___x_449_; 
+v___x_445_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__6, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__6_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__6);
+v___x_446_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2);
+v___x_447_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1);
+v___x_448_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0);
+v___x_449_ = l_Lean_Name_mkStr4(v___x_448_, v___x_447_, v___x_446_, v___x_445_);
+return v___x_449_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__8(void){
+_start:
+{
+lean_object* v___x_450_; 
+v___x_450_ = lean_mk_string_unchecked("null", 4, 4);
+return v___x_450_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__9(void){
+_start:
+{
+lean_object* v___x_451_; lean_object* v___x_452_; 
+v___x_451_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__8, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__8_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__8);
+v___x_452_ = l_Lean_Name_mkStr1(v___x_451_);
+return v___x_452_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__10(void){
+_start:
+{
+lean_object* v___x_453_; 
+v___x_453_ = lean_mk_string_unchecked("decide", 6, 6);
+return v___x_453_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__11(void){
+_start:
+{
+lean_object* v___x_454_; lean_object* v___x_455_; lean_object* v___x_456_; lean_object* v___x_457_; lean_object* v___x_458_; 
+v___x_454_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__10, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__10_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__10);
+v___x_455_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2);
+v___x_456_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1);
+v___x_457_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0);
+v___x_458_ = l_Lean_Name_mkStr4(v___x_457_, v___x_456_, v___x_455_, v___x_454_);
+return v___x_458_;
+}
+}
 static lean_object* _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__12(void){
 _start:
 {
 lean_object* v___x_459_; lean_object* v___x_460_; 
-v___x_459_ = ((lean_object*)(l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__10));
+v___x_459_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__10, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__10_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__10);
 v___x_460_ = l_Lean_mkAtom(v___x_459_);
 return v___x_460_;
 }
@@ -1937,17 +2102,51 @@ _start:
 {
 lean_object* v___x_461_; lean_object* v___x_462_; lean_object* v___x_463_; 
 v___x_461_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__12, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__12_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__12);
-v___x_462_ = ((lean_object*)(l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5));
+v___x_462_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5);
 v___x_463_ = lean_array_push(v___x_462_, v___x_461_);
 return v___x_463_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__14(void){
+_start:
+{
+lean_object* v___x_464_; 
+v___x_464_ = lean_mk_string_unchecked("optConfig", 9, 9);
+return v___x_464_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__15(void){
+_start:
+{
+lean_object* v___x_465_; lean_object* v___x_466_; lean_object* v___x_467_; lean_object* v___x_468_; lean_object* v___x_469_; 
+v___x_465_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__14, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__14_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__14);
+v___x_466_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__2);
+v___x_467_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__1);
+v___x_468_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__0);
+v___x_469_ = l_Lean_Name_mkStr4(v___x_468_, v___x_467_, v___x_466_, v___x_465_);
+return v___x_469_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__16(void){
+_start:
+{
+lean_object* v___x_470_; lean_object* v___x_471_; lean_object* v___x_472_; lean_object* v___x_473_; 
+v___x_470_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5);
+v___x_471_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__9, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__9_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__9);
+v___x_472_ = lean_box(2);
+v___x_473_ = lean_alloc_ctor(1, 3, 0);
+lean_ctor_set(v___x_473_, 0, v___x_472_);
+lean_ctor_set(v___x_473_, 1, v___x_471_);
+lean_ctor_set(v___x_473_, 2, v___x_470_);
+return v___x_473_;
 }
 }
 static lean_object* _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__17(void){
 _start:
 {
 lean_object* v___x_474_; lean_object* v___x_475_; lean_object* v___x_476_; 
-v___x_474_ = ((lean_object*)(l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__16));
-v___x_475_ = ((lean_object*)(l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5));
+v___x_474_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__16, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__16_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__16);
+v___x_475_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5);
 v___x_476_ = lean_array_push(v___x_475_, v___x_474_);
 return v___x_476_;
 }
@@ -1957,7 +2156,7 @@ _start:
 {
 lean_object* v___x_477_; lean_object* v___x_478_; lean_object* v___x_479_; lean_object* v___x_480_; 
 v___x_477_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__17, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__17_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__17);
-v___x_478_ = ((lean_object*)(l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__15));
+v___x_478_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__15, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__15_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__15);
 v___x_479_ = lean_box(2);
 v___x_480_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_480_, 0, v___x_479_);
@@ -1981,7 +2180,7 @@ _start:
 {
 lean_object* v___x_484_; lean_object* v___x_485_; lean_object* v___x_486_; lean_object* v___x_487_; 
 v___x_484_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__19, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__19_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__19);
-v___x_485_ = ((lean_object*)(l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__11));
+v___x_485_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__11, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__11_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__11);
 v___x_486_ = lean_box(2);
 v___x_487_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_487_, 0, v___x_486_);
@@ -1995,7 +2194,7 @@ _start:
 {
 lean_object* v___x_488_; lean_object* v___x_489_; lean_object* v___x_490_; 
 v___x_488_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__20, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__20_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__20);
-v___x_489_ = ((lean_object*)(l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5));
+v___x_489_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5);
 v___x_490_ = lean_array_push(v___x_489_, v___x_488_);
 return v___x_490_;
 }
@@ -2005,7 +2204,7 @@ _start:
 {
 lean_object* v___x_491_; lean_object* v___x_492_; lean_object* v___x_493_; lean_object* v___x_494_; 
 v___x_491_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__21, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__21_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__21);
-v___x_492_ = ((lean_object*)(l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__9));
+v___x_492_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__9, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__9_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__9);
 v___x_493_ = lean_box(2);
 v___x_494_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_494_, 0, v___x_493_);
@@ -2019,7 +2218,7 @@ _start:
 {
 lean_object* v___x_495_; lean_object* v___x_496_; lean_object* v___x_497_; 
 v___x_495_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__22, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__22_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__22);
-v___x_496_ = ((lean_object*)(l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5));
+v___x_496_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5);
 v___x_497_ = lean_array_push(v___x_496_, v___x_495_);
 return v___x_497_;
 }
@@ -2029,7 +2228,7 @@ _start:
 {
 lean_object* v___x_498_; lean_object* v___x_499_; lean_object* v___x_500_; lean_object* v___x_501_; 
 v___x_498_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__23, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__23_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__23);
-v___x_499_ = ((lean_object*)(l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__7));
+v___x_499_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__7, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__7_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__7);
 v___x_500_ = lean_box(2);
 v___x_501_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_501_, 0, v___x_500_);
@@ -2043,7 +2242,7 @@ _start:
 {
 lean_object* v___x_502_; lean_object* v___x_503_; lean_object* v___x_504_; 
 v___x_502_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__24, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__24_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__24);
-v___x_503_ = ((lean_object*)(l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5));
+v___x_503_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__5);
 v___x_504_ = lean_array_push(v___x_503_, v___x_502_);
 return v___x_504_;
 }
@@ -2053,7 +2252,7 @@ _start:
 {
 lean_object* v___x_505_; lean_object* v___x_506_; lean_object* v___x_507_; lean_object* v___x_508_; 
 v___x_505_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__25, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__25_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__25);
-v___x_506_ = ((lean_object*)(l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__4));
+v___x_506_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__4, &l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__4_once, _init_l_Std_Async_TCP_Socket_Server_keepAlive___auto__1___closed__4);
 v___x_507_ = lean_box(2);
 v___x_508_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_508_, 0, v___x_507_);
@@ -2386,11 +2585,31 @@ v_res_607_ = l_Std_Async_TCP_Socket_Client_connect___lam__1(v___f_604_, v_x_605_
 return v_res_607_;
 }
 }
+static lean_object* _init_l_Std_Async_TCP_Socket_Client_connect___closed__0(void){
+_start:
+{
+lean_object* v___x_608_; lean_object* v___f_609_; 
+v___x_608_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_accept___closed__1, &l_Std_Async_TCP_Socket_Server_accept___closed__1_once, _init_l_Std_Async_TCP_Socket_Server_accept___closed__1);
+v___f_609_ = lean_alloc_closure((void*)(l_Std_Async_TCP_Socket_Client_connect___lam__0___boxed), 2, 1);
+lean_closure_set(v___f_609_, 0, v___x_608_);
+return v___f_609_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Client_connect___closed__1(void){
+_start:
+{
+lean_object* v___f_610_; lean_object* v___f_611_; 
+v___f_610_ = lean_obj_once(&l_Std_Async_TCP_Socket_Client_connect___closed__0, &l_Std_Async_TCP_Socket_Client_connect___closed__0_once, _init_l_Std_Async_TCP_Socket_Client_connect___closed__0);
+v___f_611_ = lean_alloc_closure((void*)(l_Std_Async_TCP_Socket_Client_connect___lam__1___boxed), 3, 1);
+lean_closure_set(v___f_611_, 0, v___f_610_);
+return v___f_611_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_connect(lean_object* v_s_612_, lean_object* v_addr_613_){
 _start:
 {
 lean_object* v___f_615_; lean_object* v_val_617_; lean_object* v___x_623_; 
-v___f_615_ = ((lean_object*)(l_Std_Async_TCP_Socket_Client_connect___closed__1));
+v___f_615_ = lean_obj_once(&l_Std_Async_TCP_Socket_Client_connect___closed__1, &l_Std_Async_TCP_Socket_Client_connect___closed__1_once, _init_l_Std_Async_TCP_Socket_Client_connect___closed__1);
 v___x_623_ = lean_uv_tcp_connect(v_s_612_, v_addr_613_);
 if (lean_obj_tag(v___x_623_) == 0)
 {
@@ -2506,7 +2725,7 @@ LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_sendAll(lean_object* v_s_
 _start:
 {
 lean_object* v___f_647_; lean_object* v_val_649_; lean_object* v___x_655_; 
-v___f_647_ = ((lean_object*)(l_Std_Async_TCP_Socket_Client_connect___closed__1));
+v___f_647_ = lean_obj_once(&l_Std_Async_TCP_Socket_Client_connect___closed__1, &l_Std_Async_TCP_Socket_Client_connect___closed__1_once, _init_l_Std_Async_TCP_Socket_Client_connect___closed__1);
 v___x_655_ = lean_uv_tcp_send(v_s_644_, v_data_645_);
 if (lean_obj_tag(v___x_655_) == 0)
 {
@@ -2624,7 +2843,7 @@ lean_object* v___x_679_; lean_object* v___x_680_; lean_object* v___x_681_; lean_
 v___x_679_ = lean_unsigned_to_nat(1u);
 v___x_680_ = lean_mk_empty_array_with_capacity(v___x_679_);
 v___x_681_ = lean_array_push(v___x_680_, v_data_677_);
-v___f_682_ = ((lean_object*)(l_Std_Async_TCP_Socket_Client_connect___closed__1));
+v___f_682_ = lean_obj_once(&l_Std_Async_TCP_Socket_Client_connect___closed__1, &l_Std_Async_TCP_Socket_Client_connect___closed__1_once, _init_l_Std_Async_TCP_Socket_Client_connect___closed__1);
 v___x_690_ = lean_uv_tcp_send(v_s_676_, v___x_681_);
 if (lean_obj_tag(v___x_690_) == 0)
 {
@@ -2890,11 +3109,31 @@ v_res_750_ = l_Std_Async_TCP_Socket_Client_recv_x3f___lam__1(v___f_747_, v_x_748
 return v_res_750_;
 }
 }
+static lean_object* _init_l_Std_Async_TCP_Socket_Client_recv_x3f___closed__0(void){
+_start:
+{
+lean_object* v___x_751_; lean_object* v___f_752_; 
+v___x_751_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_accept___closed__1, &l_Std_Async_TCP_Socket_Server_accept___closed__1_once, _init_l_Std_Async_TCP_Socket_Server_accept___closed__1);
+v___f_752_ = lean_alloc_closure((void*)(l_Std_Async_TCP_Socket_Client_recv_x3f___lam__0___boxed), 2, 1);
+lean_closure_set(v___f_752_, 0, v___x_751_);
+return v___f_752_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Client_recv_x3f___closed__1(void){
+_start:
+{
+lean_object* v___f_753_; lean_object* v___f_754_; 
+v___f_753_ = lean_obj_once(&l_Std_Async_TCP_Socket_Client_recv_x3f___closed__0, &l_Std_Async_TCP_Socket_Client_recv_x3f___closed__0_once, _init_l_Std_Async_TCP_Socket_Client_recv_x3f___closed__0);
+v___f_754_ = lean_alloc_closure((void*)(l_Std_Async_TCP_Socket_Client_recv_x3f___lam__1___boxed), 3, 1);
+lean_closure_set(v___f_754_, 0, v___f_753_);
+return v___f_754_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recv_x3f(lean_object* v_s_755_, uint64_t v_size_756_){
 _start:
 {
 lean_object* v___f_758_; lean_object* v_val_760_; lean_object* v___x_766_; 
-v___f_758_ = ((lean_object*)(l_Std_Async_TCP_Socket_Client_recv_x3f___closed__1));
+v___f_758_ = lean_obj_once(&l_Std_Async_TCP_Socket_Client_recv_x3f___closed__1, &l_Std_Async_TCP_Socket_Client_recv_x3f___closed__1_once, _init_l_Std_Async_TCP_Socket_Client_recv_x3f___closed__1);
 v___x_766_ = lean_uv_tcp_recv(v_s_755_, v_size_756_);
 if (lean_obj_tag(v___x_766_) == 0)
 {
@@ -3159,7 +3398,7 @@ LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_C
 _start:
 {
 lean_object* v___f_829_; lean_object* v___f_830_; lean_object* v_val_832_; lean_object* v___x_837_; 
-v___f_829_ = ((lean_object*)(l_Std_Async_TCP_Socket_Client_recv_x3f___closed__0));
+v___f_829_ = lean_obj_once(&l_Std_Async_TCP_Socket_Client_recv_x3f___closed__0, &l_Std_Async_TCP_Socket_Client_recv_x3f___closed__0_once, _init_l_Std_Async_TCP_Socket_Client_recv_x3f___closed__0);
 lean_inc(v___x_825_);
 v___f_830_ = lean_alloc_closure((void*)(l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___lam__2___boxed), 4, 2);
 lean_closure_set(v___f_830_, 0, v___f_829_);
@@ -3275,6 +3514,14 @@ lean_dec(v_s_855_);
 return v_res_859_;
 }
 }
+static lean_object* _init_l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___closed__0(void){
+_start:
+{
+lean_object* v___f_860_; 
+v___f_860_ = lean_alloc_closure((void*)(l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___lam__0), 1, 0);
+return v___f_860_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0(lean_object* v_val_861_, lean_object* v_s_862_, uint64_t v_size_863_, lean_object* v_w_864_, lean_object* v_lose_865_){
 _start:
 {
@@ -3282,7 +3529,7 @@ lean_object* v_finished_867_; lean_object* v_promise_868_; lean_object* v_a_870_
 v_finished_867_ = lean_ctor_get(v_w_864_, 0);
 v_promise_868_ = lean_ctor_get(v_w_864_, 1);
 v___x_874_ = lean_st_ref_take(v_finished_867_);
-v___f_875_ = ((lean_object*)(l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___closed__0));
+v___f_875_ = lean_obj_once(&l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___closed__0, &l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___closed__0_once, _init_l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___closed__0);
 v___x_900_ = lean_unbox(v___x_874_);
 lean_dec(v___x_874_);
 if (v___x_900_ == 0)
@@ -3524,6 +3771,26 @@ v_res_934_ = l_Std_Async_TCP_Socket_Client_recvSelector___lam__1(v_x_932_);
 return v_res_934_;
 }
 }
+static lean_object* _init_l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_935_; lean_object* v___x_936_; 
+v___x_935_ = lean_box(0);
+v___x_936_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_936_, 0, v___x_935_);
+return v___x_936_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___closed__1(void){
+_start:
+{
+lean_object* v___x_937_; lean_object* v___x_938_; 
+v___x_937_ = lean_obj_once(&l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___closed__0, &l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___closed__0_once, _init_l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___closed__0);
+v___x_938_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_938_, 0, v___x_937_);
+return v___x_938_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__0(lean_object* v_x_939_){
 _start:
 {
@@ -3575,7 +3842,7 @@ else
 {
 lean_object* v___x_950_; 
 lean_dec_ref(v_x_939_);
-v___x_950_ = ((lean_object*)(l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___closed__1));
+v___x_950_ = lean_obj_once(&l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___closed__1, &l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___closed__1_once, _init_l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___closed__1);
 return v___x_950_;
 }
 }
@@ -3715,7 +3982,7 @@ lean_object* v_val_988_; lean_object* v___f_989_; lean_object* v___x_990_;
 v_val_988_ = lean_ctor_get(v_a_982_, 0);
 lean_inc(v_val_988_);
 lean_dec_ref(v_a_982_);
-v___f_989_ = ((lean_object*)(l_Std_Async_TCP_Socket_Server_acceptSelector___lam__2___closed__0));
+v___f_989_ = lean_obj_once(&l_Std_Async_TCP_Socket_Server_acceptSelector___lam__2___closed__0, &l_Std_Async_TCP_Socket_Server_acceptSelector___lam__2___closed__0_once, _init_l_Std_Async_TCP_Socket_Server_acceptSelector___lam__2___closed__0);
 v___x_990_ = l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0(v_val_988_, v_s_979_, v_size_980_, v_waiter_981_, v___f_989_);
 if (lean_obj_tag(v___x_990_) == 0)
 {
@@ -3789,6 +4056,26 @@ lean_dec_ref(v_waiter_1002_);
 return v_res_1006_;
 }
 }
+static lean_object* _init_l_Std_Async_TCP_Socket_Client_recvSelector___lam__3___closed__0(void){
+_start:
+{
+lean_object* v___x_1007_; lean_object* v___x_1008_; 
+v___x_1007_ = lean_box(0);
+v___x_1008_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_1008_, 0, v___x_1007_);
+return v___x_1008_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Client_recvSelector___lam__3___closed__1(void){
+_start:
+{
+lean_object* v___x_1009_; lean_object* v___x_1010_; 
+v___x_1009_ = lean_obj_once(&l_Std_Async_TCP_Socket_Client_recvSelector___lam__3___closed__0, &l_Std_Async_TCP_Socket_Client_recvSelector___lam__3___closed__0_once, _init_l_Std_Async_TCP_Socket_Client_recvSelector___lam__3___closed__0);
+v___x_1010_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_1010_, 0, v___x_1009_);
+return v___x_1010_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recvSelector___lam__3(lean_object* v___f_1011_, lean_object* v_x_1012_){
 _start:
 {
@@ -3849,7 +4136,7 @@ v___x_1025_ = lean_unsigned_to_nat(0u);
 v___x_1026_ = 0;
 v___x_1027_ = lean_io_map_task(v___f_1011_, v___x_1024_, v___x_1025_, v___x_1026_);
 lean_dec_ref(v___x_1027_);
-v___x_1028_ = ((lean_object*)(l_Std_Async_TCP_Socket_Client_recvSelector___lam__3___closed__1));
+v___x_1028_ = lean_obj_once(&l_Std_Async_TCP_Socket_Client_recvSelector___lam__3___closed__1, &l_Std_Async_TCP_Socket_Client_recvSelector___lam__3___closed__1_once, _init_l_Std_Async_TCP_Socket_Client_recvSelector___lam__3___closed__1);
 return v___x_1028_;
 }
 }
@@ -4387,13 +4674,29 @@ lean_dec(v_s_1182_);
 return v_res_1184_;
 }
 }
+static lean_object* _init_l_Std_Async_TCP_Socket_Client_recvSelector___closed__0(void){
+_start:
+{
+lean_object* v___f_1185_; 
+v___f_1185_ = lean_alloc_closure((void*)(l_Std_Async_TCP_Socket_Client_recvSelector___lam__1___boxed), 2, 0);
+return v___f_1185_;
+}
+}
+static lean_object* _init_l_Std_Async_TCP_Socket_Client_recvSelector___closed__1(void){
+_start:
+{
+lean_object* v___f_1186_; 
+v___f_1186_ = lean_alloc_closure((void*)(l_Std_Async_TCP_Socket_Client_recvSelector___lam__0___boxed), 2, 0);
+return v___f_1186_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_recvSelector(lean_object* v_s_1187_, uint64_t v_size_1188_){
 _start:
 {
 lean_object* v___f_1189_; lean_object* v___f_1190_; lean_object* v___f_1191_; lean_object* v___f_1192_; lean_object* v___x_1193_; lean_object* v___f_1194_; lean_object* v___x_1195_; lean_object* v___f_1196_; lean_object* v___f_1197_; lean_object* v___f_1198_; lean_object* v___x_1199_; 
-v___f_1189_ = ((lean_object*)(l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___closed__0));
-v___f_1190_ = ((lean_object*)(l_Std_Async_TCP_Socket_Client_recvSelector___closed__0));
-v___f_1191_ = ((lean_object*)(l_Std_Async_TCP_Socket_Client_recvSelector___closed__1));
+v___f_1189_ = lean_obj_once(&l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___closed__0, &l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___closed__0_once, _init_l_Std_Async_Waiter_race___at___00Std_Async_TCP_Socket_Client_recvSelector_spec__0___closed__0);
+v___f_1190_ = lean_obj_once(&l_Std_Async_TCP_Socket_Client_recvSelector___closed__0, &l_Std_Async_TCP_Socket_Client_recvSelector___closed__0_once, _init_l_Std_Async_TCP_Socket_Client_recvSelector___closed__0);
+v___f_1191_ = lean_obj_once(&l_Std_Async_TCP_Socket_Client_recvSelector___closed__1, &l_Std_Async_TCP_Socket_Client_recvSelector___closed__1_once, _init_l_Std_Async_TCP_Socket_Client_recvSelector___closed__1);
 lean_inc_n(v_s_1187_, 3);
 v___f_1192_ = lean_alloc_closure((void*)(l_Std_Async_TCP_Socket_Client_recvSelector___lam__2___boxed), 2, 1);
 lean_closure_set(v___f_1192_, 0, v_s_1187_);
@@ -4434,7 +4737,7 @@ LEAN_EXPORT lean_object* l_Std_Async_TCP_Socket_Client_shutdown(lean_object* v_s
 _start:
 {
 lean_object* v___f_1206_; lean_object* v_val_1208_; lean_object* v___x_1214_; 
-v___f_1206_ = ((lean_object*)(l_Std_Async_TCP_Socket_Client_connect___closed__1));
+v___f_1206_ = lean_obj_once(&l_Std_Async_TCP_Socket_Client_connect___closed__1, &l_Std_Async_TCP_Socket_Client_connect___closed__1_once, _init_l_Std_Async_TCP_Socket_Client_connect___closed__1);
 v___x_1214_ = lean_uv_tcp_shutdown(v_s_1204_);
 if (lean_obj_tag(v___x_1214_) == 0)
 {

@@ -65,10 +65,10 @@ LEAN_EXPORT lean_object* l_Lean_MVarId_assign___at___00Lean_MVarId_rename_spec__
 LEAN_EXPORT lean_object* l_Lean_MVarId_assign___at___00Lean_MVarId_rename_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MVarId_rename___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MVarId_rename___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_MVarId_rename___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "rename"};
-static const lean_object* l_Lean_MVarId_rename___closed__0 = (const lean_object*)&l_Lean_MVarId_rename___closed__0_value;
-static const lean_ctor_object l_Lean_MVarId_rename___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_MVarId_rename___closed__0_value),LEAN_SCALAR_PTR_LITERAL(238, 15, 65, 59, 222, 175, 136, 225)}};
-static const lean_object* l_Lean_MVarId_rename___closed__1 = (const lean_object*)&l_Lean_MVarId_rename___closed__1_value;
+static lean_once_cell_t l_Lean_MVarId_rename___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_MVarId_rename___closed__0;
+static lean_once_cell_t l_Lean_MVarId_rename___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_MVarId_rename___closed__1;
 LEAN_EXPORT lean_object* l_Lean_MVarId_rename(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MVarId_rename___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MVarId_assign___at___00Lean_MVarId_rename_spec__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -1124,11 +1124,28 @@ lean_dec(v___y_319_);
 return v_res_323_;
 }
 }
+static lean_object* _init_l_Lean_MVarId_rename___closed__0(void){
+_start:
+{
+lean_object* v___x_324_; 
+v___x_324_ = lean_mk_string_unchecked("rename", 6, 6);
+return v___x_324_;
+}
+}
+static lean_object* _init_l_Lean_MVarId_rename___closed__1(void){
+_start:
+{
+lean_object* v___x_325_; lean_object* v___x_326_; 
+v___x_325_ = lean_obj_once(&l_Lean_MVarId_rename___closed__0, &l_Lean_MVarId_rename___closed__0_once, _init_l_Lean_MVarId_rename___closed__0);
+v___x_326_ = l_Lean_Name_mkStr1(v___x_325_);
+return v___x_326_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_MVarId_rename(lean_object* v_mvarId_327_, lean_object* v_fvarId_328_, lean_object* v_userNameNew_329_, lean_object* v_a_330_, lean_object* v_a_331_, lean_object* v_a_332_, lean_object* v_a_333_){
 _start:
 {
 lean_object* v___x_335_; lean_object* v___f_336_; lean_object* v___x_337_; 
-v___x_335_ = ((lean_object*)(l_Lean_MVarId_rename___closed__1));
+v___x_335_ = lean_obj_once(&l_Lean_MVarId_rename___closed__1, &l_Lean_MVarId_rename___closed__1_once, _init_l_Lean_MVarId_rename___closed__1);
 lean_inc(v_mvarId_327_);
 v___f_336_ = lean_alloc_closure((void*)(l_Lean_MVarId_rename___lam__0___boxed), 9, 4);
 lean_closure_set(v___f_336_, 0, v_mvarId_327_);

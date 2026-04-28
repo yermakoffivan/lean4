@@ -31,27 +31,38 @@ lean_object* lean_string_utf8_byte_size(lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* lean_array_to_list(lean_object*);
 lean_object* l_Lean_Name_str___override(lean_object*, lean_object*);
-static const lean_ctor_object l_String_Slice_splitToSubslice___at___00Lake_toUpperCamelCaseString_spec__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Slice_splitToSubslice___at___00Lake_toUpperCamelCaseString_spec__0___closed__0 = (const lean_object*)&l_String_Slice_splitToSubslice___at___00Lake_toUpperCamelCaseString_spec__0___closed__0_value;
+static lean_once_cell_t l_String_Slice_splitToSubslice___at___00Lake_toUpperCamelCaseString_spec__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Slice_splitToSubslice___at___00Lake_toUpperCamelCaseString_spec__0___closed__0;
 LEAN_EXPORT lean_object* l_String_Slice_splitToSubslice___at___00Lake_toUpperCamelCaseString_spec__0(lean_object*);
 LEAN_EXPORT lean_object* l_String_Slice_splitToSubslice___at___00Lake_toUpperCamelCaseString_spec__0___boxed(lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_toUpperCamelCaseString_spec__1___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_toUpperCamelCaseString_spec__1___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_List_foldl___at___00Lake_toUpperCamelCaseString_spec__2(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_List_foldl___at___00Lake_toUpperCamelCaseString_spec__2___boxed(lean_object*, lean_object*);
-static const lean_array_object l_Lake_toUpperCamelCaseString___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Lake_toUpperCamelCaseString___closed__0 = (const lean_object*)&l_Lake_toUpperCamelCaseString___closed__0_value;
-static const lean_string_object l_Lake_toUpperCamelCaseString___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 1, .m_capacity = 1, .m_length = 0, .m_data = ""};
-static const lean_object* l_Lake_toUpperCamelCaseString___closed__1 = (const lean_object*)&l_Lake_toUpperCamelCaseString___closed__1_value;
+static lean_once_cell_t l_Lake_toUpperCamelCaseString___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_toUpperCamelCaseString___closed__0;
+static lean_once_cell_t l_Lake_toUpperCamelCaseString___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_toUpperCamelCaseString___closed__1;
 LEAN_EXPORT lean_object* l_Lake_toUpperCamelCaseString(lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_toUpperCamelCaseString_spec__1(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_toUpperCamelCaseString_spec__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_toUpperCamelCase(lean_object*);
+static lean_object* _init_l_String_Slice_splitToSubslice___at___00Lake_toUpperCamelCaseString_spec__0___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; lean_object* v___x_2_; 
+v___x_1_ = lean_unsigned_to_nat(0u);
+v___x_2_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_2_, 0, v___x_1_);
+lean_ctor_set(v___x_2_, 1, v___x_1_);
+return v___x_2_;
+}
+}
 LEAN_EXPORT lean_object* l_String_Slice_splitToSubslice___at___00Lake_toUpperCamelCaseString_spec__0(lean_object* v_s_3_){
 _start:
 {
 lean_object* v___x_4_; 
-v___x_4_ = ((lean_object*)(l_String_Slice_splitToSubslice___at___00Lake_toUpperCamelCaseString_spec__0___closed__0));
+v___x_4_ = lean_obj_once(&l_String_Slice_splitToSubslice___at___00Lake_toUpperCamelCaseString_spec__0___closed__0, &l_String_Slice_splitToSubslice___at___00Lake_toUpperCamelCaseString_spec__0___closed__0_once, _init_l_String_Slice_splitToSubslice___at___00Lake_toUpperCamelCaseString_spec__0___closed__0);
 return v___x_4_;
 }
 }
@@ -295,6 +306,23 @@ lean_dec(v_x_78_);
 return v_res_79_;
 }
 }
+static lean_object* _init_l_Lake_toUpperCamelCaseString___closed__0(void){
+_start:
+{
+lean_object* v___x_80_; lean_object* v___x_81_; 
+v___x_80_ = lean_unsigned_to_nat(0u);
+v___x_81_ = lean_mk_empty_array_with_capacity(v___x_80_);
+return v___x_81_;
+}
+}
+static lean_object* _init_l_Lake_toUpperCamelCaseString___closed__1(void){
+_start:
+{
+lean_object* v___x_82_; 
+v___x_82_ = lean_mk_string_unchecked("", 0, 0);
+return v___x_82_;
+}
+}
 LEAN_EXPORT lean_object* l_Lake_toUpperCamelCaseString(lean_object* v_str_83_){
 _start:
 {
@@ -307,12 +335,12 @@ lean_ctor_set(v___x_86_, 0, v_str_83_);
 lean_ctor_set(v___x_86_, 1, v___x_84_);
 lean_ctor_set(v___x_86_, 2, v___x_85_);
 v_parts_87_ = l_String_Slice_splitToSubslice___at___00Lake_toUpperCamelCaseString_spec__0(v___x_86_);
-v___x_88_ = ((lean_object*)(l_Lake_toUpperCamelCaseString___closed__0));
+v___x_88_ = lean_obj_once(&l_Lake_toUpperCamelCaseString___closed__0, &l_Lake_toUpperCamelCaseString___closed__0_once, _init_l_Lake_toUpperCamelCaseString___closed__0);
 v___x_89_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Lake_toUpperCamelCaseString_spec__1___redArg(v_str_83_, v___x_86_, v___x_85_, v_parts_87_, v___x_88_);
 lean_dec_ref(v___x_86_);
 lean_dec_ref(v_str_83_);
 v___x_90_ = lean_array_to_list(v___x_89_);
-v___x_91_ = ((lean_object*)(l_Lake_toUpperCamelCaseString___closed__1));
+v___x_91_ = lean_obj_once(&l_Lake_toUpperCamelCaseString___closed__1, &l_Lake_toUpperCamelCaseString___closed__1_once, _init_l_Lake_toUpperCamelCaseString___closed__1);
 v___x_92_ = l_List_foldl___at___00Lake_toUpperCamelCaseString_spec__2(v___x_91_, v___x_90_);
 lean_dec(v___x_90_);
 return v___x_92_;

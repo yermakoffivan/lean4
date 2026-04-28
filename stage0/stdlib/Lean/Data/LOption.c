@@ -35,14 +35,14 @@ LEAN_EXPORT uint8_t l_Lean_instBEqLOption_beq(lean_object*, lean_object*, lean_o
 LEAN_EXPORT lean_object* l_Lean_instBEqLOption_beq___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_instBEqLOption___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_instBEqLOption(lean_object*, lean_object*);
-static const lean_string_object l_Lean_instToStringLOption___redArg___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "none"};
-static const lean_object* l_Lean_instToStringLOption___redArg___lam__0___closed__0 = (const lean_object*)&l_Lean_instToStringLOption___redArg___lam__0___closed__0_value;
-static const lean_string_object l_Lean_instToStringLOption___redArg___lam__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "(some "};
-static const lean_object* l_Lean_instToStringLOption___redArg___lam__0___closed__1 = (const lean_object*)&l_Lean_instToStringLOption___redArg___lam__0___closed__1_value;
-static const lean_string_object l_Lean_instToStringLOption___redArg___lam__0___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = ")"};
-static const lean_object* l_Lean_instToStringLOption___redArg___lam__0___closed__2 = (const lean_object*)&l_Lean_instToStringLOption___redArg___lam__0___closed__2_value;
-static const lean_string_object l_Lean_instToStringLOption___redArg___lam__0___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "undef"};
-static const lean_object* l_Lean_instToStringLOption___redArg___lam__0___closed__3 = (const lean_object*)&l_Lean_instToStringLOption___redArg___lam__0___closed__3_value;
+static lean_once_cell_t l_Lean_instToStringLOption___redArg___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_instToStringLOption___redArg___lam__0___closed__0;
+static lean_once_cell_t l_Lean_instToStringLOption___redArg___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_instToStringLOption___redArg___lam__0___closed__1;
+static lean_once_cell_t l_Lean_instToStringLOption___redArg___lam__0___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_instToStringLOption___redArg___lam__0___closed__2;
+static lean_once_cell_t l_Lean_instToStringLOption___redArg___lam__0___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_instToStringLOption___redArg___lam__0___closed__3;
 LEAN_EXPORT lean_object* l_Lean_instToStringLOption___redArg___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_instToStringLOption___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_instToStringLOption(lean_object*, lean_object*);
@@ -318,6 +318,38 @@ lean_closure_set(v___x_94_, 1, v_inst_93_);
 return v___x_94_;
 }
 }
+static lean_object* _init_l_Lean_instToStringLOption___redArg___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_95_; 
+v___x_95_ = lean_mk_string_unchecked("none", 4, 4);
+return v___x_95_;
+}
+}
+static lean_object* _init_l_Lean_instToStringLOption___redArg___lam__0___closed__1(void){
+_start:
+{
+lean_object* v___x_96_; 
+v___x_96_ = lean_mk_string_unchecked("(some ", 6, 6);
+return v___x_96_;
+}
+}
+static lean_object* _init_l_Lean_instToStringLOption___redArg___lam__0___closed__2(void){
+_start:
+{
+lean_object* v___x_97_; 
+v___x_97_ = lean_mk_string_unchecked(")", 1, 1);
+return v___x_97_;
+}
+}
+static lean_object* _init_l_Lean_instToStringLOption___redArg___lam__0___closed__3(void){
+_start:
+{
+lean_object* v___x_98_; 
+v___x_98_ = lean_mk_string_unchecked("undef", 5, 5);
+return v___x_98_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_instToStringLOption___redArg___lam__0(lean_object* v_inst_99_, lean_object* v_x_100_){
 _start:
 {
@@ -327,7 +359,7 @@ case 0:
 {
 lean_object* v___x_101_; 
 lean_dec_ref(v_inst_99_);
-v___x_101_ = ((lean_object*)(l_Lean_instToStringLOption___redArg___lam__0___closed__0));
+v___x_101_ = lean_obj_once(&l_Lean_instToStringLOption___redArg___lam__0___closed__0, &l_Lean_instToStringLOption___redArg___lam__0___closed__0_once, _init_l_Lean_instToStringLOption___redArg___lam__0___closed__0);
 return v___x_101_;
 }
 case 1:
@@ -336,11 +368,11 @@ lean_object* v_a_102_; lean_object* v___x_103_; lean_object* v___x_104_; lean_ob
 v_a_102_ = lean_ctor_get(v_x_100_, 0);
 lean_inc(v_a_102_);
 lean_dec_ref(v_x_100_);
-v___x_103_ = ((lean_object*)(l_Lean_instToStringLOption___redArg___lam__0___closed__1));
+v___x_103_ = lean_obj_once(&l_Lean_instToStringLOption___redArg___lam__0___closed__1, &l_Lean_instToStringLOption___redArg___lam__0___closed__1_once, _init_l_Lean_instToStringLOption___redArg___lam__0___closed__1);
 v___x_104_ = lean_apply_1(v_inst_99_, v_a_102_);
 v___x_105_ = lean_string_append(v___x_103_, v___x_104_);
 lean_dec_ref(v___x_104_);
-v___x_106_ = ((lean_object*)(l_Lean_instToStringLOption___redArg___lam__0___closed__2));
+v___x_106_ = lean_obj_once(&l_Lean_instToStringLOption___redArg___lam__0___closed__2, &l_Lean_instToStringLOption___redArg___lam__0___closed__2_once, _init_l_Lean_instToStringLOption___redArg___lam__0___closed__2);
 v___x_107_ = lean_string_append(v___x_105_, v___x_106_);
 return v___x_107_;
 }
@@ -348,7 +380,7 @@ default:
 {
 lean_object* v___x_108_; 
 lean_dec_ref(v_inst_99_);
-v___x_108_ = ((lean_object*)(l_Lean_instToStringLOption___redArg___lam__0___closed__3));
+v___x_108_ = lean_obj_once(&l_Lean_instToStringLOption___redArg___lam__0___closed__3, &l_Lean_instToStringLOption___redArg___lam__0___closed__3_once, _init_l_Lean_instToStringLOption___redArg___lam__0___closed__3);
 return v___x_108_;
 }
 }

@@ -31,8 +31,8 @@ LEAN_EXPORT lean_object* l_Lean_throwError___at___00Lean_Compiler_LCNF_getOtherD
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00Lean_Compiler_LCNF_getOtherDeclType_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00Lean_Compiler_LCNF_getOtherDeclType_spec__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00Lean_Compiler_LCNF_getOtherDeclType_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Compiler_LCNF_getOtherDeclType___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 40, .m_capacity = 40, .m_length = 39, .m_data = "getOtherDeclType unsupported for impure"};
-static const lean_object* l_Lean_Compiler_LCNF_getOtherDeclType___closed__0 = (const lean_object*)&l_Lean_Compiler_LCNF_getOtherDeclType___closed__0_value;
+static lean_once_cell_t l_Lean_Compiler_LCNF_getOtherDeclType___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Compiler_LCNF_getOtherDeclType___closed__0;
 static lean_once_cell_t l_Lean_Compiler_LCNF_getOtherDeclType___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Compiler_LCNF_getOtherDeclType___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Compiler_LCNF_getOtherDeclType(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -267,11 +267,19 @@ lean_dec_ref(v___y_66_);
 return v_res_71_;
 }
 }
+static lean_object* _init_l_Lean_Compiler_LCNF_getOtherDeclType___closed__0(void){
+_start:
+{
+lean_object* v___x_72_; 
+v___x_72_ = lean_mk_string_unchecked("getOtherDeclType unsupported for impure", 39, 39);
+return v___x_72_;
+}
+}
 static lean_object* _init_l_Lean_Compiler_LCNF_getOtherDeclType___closed__1(void){
 _start:
 {
 lean_object* v___x_73_; lean_object* v___x_74_; 
-v___x_73_ = ((lean_object*)(l_Lean_Compiler_LCNF_getOtherDeclType___closed__0));
+v___x_73_ = lean_obj_once(&l_Lean_Compiler_LCNF_getOtherDeclType___closed__0, &l_Lean_Compiler_LCNF_getOtherDeclType___closed__0_once, _init_l_Lean_Compiler_LCNF_getOtherDeclType___closed__0);
 v___x_74_ = l_Lean_stringToMessageData(v___x_73_);
 return v___x_74_;
 }

@@ -39,8 +39,8 @@ static lean_once_cell_t l_Lean_CollectMVars_instInhabitedState___closed__0_once 
 static lean_object* l_Lean_CollectMVars_instInhabitedState___closed__0;
 static lean_once_cell_t l_Lean_CollectMVars_instInhabitedState___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_CollectMVars_instInhabitedState___closed__1;
-static const lean_array_object l_Lean_CollectMVars_instInhabitedState___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Lean_CollectMVars_instInhabitedState___closed__2 = (const lean_object*)&l_Lean_CollectMVars_instInhabitedState___closed__2_value;
+static lean_once_cell_t l_Lean_CollectMVars_instInhabitedState___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_CollectMVars_instInhabitedState___closed__2;
 static lean_once_cell_t l_Lean_CollectMVars_instInhabitedState___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_CollectMVars_instInhabitedState___closed__3;
 LEAN_EXPORT lean_object* l_Lean_CollectMVars_instInhabitedState;
@@ -85,11 +85,20 @@ lean_ctor_set(v___x_6_, 1, v___x_4_);
 return v___x_6_;
 }
 }
+static lean_object* _init_l_Lean_CollectMVars_instInhabitedState___closed__2(void){
+_start:
+{
+lean_object* v___x_7_; lean_object* v___x_8_; 
+v___x_7_ = lean_unsigned_to_nat(0u);
+v___x_8_ = lean_mk_empty_array_with_capacity(v___x_7_);
+return v___x_8_;
+}
+}
 static lean_object* _init_l_Lean_CollectMVars_instInhabitedState___closed__3(void){
 _start:
 {
 lean_object* v___x_9_; lean_object* v___x_10_; lean_object* v___x_11_; 
-v___x_9_ = ((lean_object*)(l_Lean_CollectMVars_instInhabitedState___closed__2));
+v___x_9_ = lean_obj_once(&l_Lean_CollectMVars_instInhabitedState___closed__2, &l_Lean_CollectMVars_instInhabitedState___closed__2_once, _init_l_Lean_CollectMVars_instInhabitedState___closed__2);
 v___x_10_ = lean_obj_once(&l_Lean_CollectMVars_instInhabitedState___closed__1, &l_Lean_CollectMVars_instInhabitedState___closed__1_once, _init_l_Lean_CollectMVars_instInhabitedState___closed__1);
 v___x_11_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_11_, 0, v___x_10_);

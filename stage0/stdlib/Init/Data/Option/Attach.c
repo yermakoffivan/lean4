@@ -27,9 +27,9 @@ LEAN_EXPORT lean_object* l_Option_unattach___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Option_unattach(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Option_instMonadAttach___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Option_instMonadAttach___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Option_instMonadAttach___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Option_instMonadAttach___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Option_instMonadAttach___closed__0 = (const lean_object*)&l_Option_instMonadAttach___closed__0_value;
-LEAN_EXPORT const lean_object* l_Option_instMonadAttach = (const lean_object*)&l_Option_instMonadAttach___closed__0_value;
+static lean_once_cell_t l_Option_instMonadAttach___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Option_instMonadAttach___closed__0;
+LEAN_EXPORT lean_object* l_Option_instMonadAttach;
 LEAN_EXPORT lean_object* l___private_Init_Data_Option_Attach_0__OptionT_instMonadAttach_match__1_splitter___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Option_Attach_0__OptionT_instMonadAttach_match__1_splitter(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Option_Attach_0__OptionT_instMonadAttach_match__1_splitter___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -221,6 +221,22 @@ lean_dec(v_x_54_);
 return v_res_55_;
 }
 }
+static lean_object* _init_l_Option_instMonadAttach___closed__0(void){
+_start:
+{
+lean_object* v___f_56_; 
+v___f_56_ = lean_alloc_closure((void*)(l_Option_instMonadAttach___lam__0___boxed), 2, 0);
+return v___f_56_;
+}
+}
+static lean_object* _init_l_Option_instMonadAttach(void){
+_start:
+{
+lean_object* v___f_57_; 
+v___f_57_ = lean_obj_once(&l_Option_instMonadAttach___closed__0, &l_Option_instMonadAttach___closed__0_once, _init_l_Option_instMonadAttach___closed__0);
+return v___f_57_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Init_Data_Option_Attach_0__OptionT_instMonadAttach_match__1_splitter___redArg(lean_object* v_x_58_, lean_object* v_h__1_59_, lean_object* v_h__2_60_){
 _start:
 {
@@ -350,6 +366,8 @@ lean_dec_ref(res);
 res = runtime_initialize_Init_Data_Subtype_Basic(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Option_instMonadAttach = _init_l_Option_instMonadAttach();
+lean_mark_persistent(l_Option_instMonadAttach);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

@@ -27,8 +27,8 @@ LEAN_EXPORT lean_object* l_String_splitToList(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_splitToList___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_splitOnAux(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_splitOnAux___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_String_splitOn___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 1, .m_capacity = 1, .m_length = 0, .m_data = ""};
-static const lean_object* l_String_splitOn___closed__0 = (const lean_object*)&l_String_splitOn___closed__0_value;
+static lean_once_cell_t l_String_splitOn___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_splitOn___closed__0;
 LEAN_EXPORT lean_object* l_String_splitOn(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_splitOn___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_splitAux(lean_object* v_s_1_, lean_object* v_p_2_, lean_object* v_b_3_, lean_object* v_i_4_, lean_object* v_r_5_){
@@ -196,11 +196,19 @@ lean_dec_ref(v_s_60_);
 return v_res_66_;
 }
 }
+static lean_object* _init_l_String_splitOn___closed__0(void){
+_start:
+{
+lean_object* v___x_67_; 
+v___x_67_ = lean_mk_string_unchecked("", 0, 0);
+return v___x_67_;
+}
+}
 LEAN_EXPORT lean_object* l_String_splitOn(lean_object* v_s_68_, lean_object* v_sep_69_){
 _start:
 {
 lean_object* v___x_70_; uint8_t v___x_71_; 
-v___x_70_ = ((lean_object*)(l_String_splitOn___closed__0));
+v___x_70_ = lean_obj_once(&l_String_splitOn___closed__0, &l_String_splitOn___closed__0_once, _init_l_String_splitOn___closed__0);
 v___x_71_ = lean_string_dec_eq(v_sep_69_, v___x_70_);
 if (v___x_71_ == 0)
 {

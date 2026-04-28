@@ -30,12 +30,12 @@ LEAN_EXPORT lean_object* l_Std_Internal_List_getEntryD___redArg(lean_object*, le
 LEAN_EXPORT lean_object* l_Std_Internal_List_getEntryD___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Internal_List_getEntryD(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Internal_List_getEntryD___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std_Internal_List_getEntry_x21___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 35, .m_capacity = 35, .m_length = 34, .m_data = "Std.Data.Internal.List.Associative"};
-static const lean_object* l_Std_Internal_List_getEntry_x21___redArg___closed__0 = (const lean_object*)&l_Std_Internal_List_getEntry_x21___redArg___closed__0_value;
-static const lean_string_object l_Std_Internal_List_getEntry_x21___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 28, .m_capacity = 28, .m_length = 27, .m_data = "Std.Internal.List.getEntry!"};
-static const lean_object* l_Std_Internal_List_getEntry_x21___redArg___closed__1 = (const lean_object*)&l_Std_Internal_List_getEntry_x21___redArg___closed__1_value;
-static const lean_string_object l_Std_Internal_List_getEntry_x21___redArg___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 39, .m_capacity = 39, .m_length = 38, .m_data = "key is not present in associative list"};
-static const lean_object* l_Std_Internal_List_getEntry_x21___redArg___closed__2 = (const lean_object*)&l_Std_Internal_List_getEntry_x21___redArg___closed__2_value;
+static lean_once_cell_t l_Std_Internal_List_getEntry_x21___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Internal_List_getEntry_x21___redArg___closed__0;
+static lean_once_cell_t l_Std_Internal_List_getEntry_x21___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Internal_List_getEntry_x21___redArg___closed__1;
+static lean_once_cell_t l_Std_Internal_List_getEntry_x21___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Internal_List_getEntry_x21___redArg___closed__2;
 static lean_once_cell_t l_Std_Internal_List_getEntry_x21___redArg___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Internal_List_getEntry_x21___redArg___closed__3;
 LEAN_EXPORT lean_object* l_Std_Internal_List_getEntry_x21___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
@@ -86,12 +86,12 @@ LEAN_EXPORT lean_object* l_Std_Internal_List_getValueCastD___redArg(lean_object*
 LEAN_EXPORT lean_object* l_Std_Internal_List_getValueCastD___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Internal_List_getValueCastD(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Internal_List_getValueCastD___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std_Internal_List_getValueCast_x21___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 26, .m_capacity = 26, .m_length = 25, .m_data = "Init.Data.Option.BasicAux"};
-static const lean_object* l_Std_Internal_List_getValueCast_x21___redArg___closed__0 = (const lean_object*)&l_Std_Internal_List_getValueCast_x21___redArg___closed__0_value;
-static const lean_string_object l_Std_Internal_List_getValueCast_x21___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "Option.get!"};
-static const lean_object* l_Std_Internal_List_getValueCast_x21___redArg___closed__1 = (const lean_object*)&l_Std_Internal_List_getValueCast_x21___redArg___closed__1_value;
-static const lean_string_object l_Std_Internal_List_getValueCast_x21___redArg___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "value is none"};
-static const lean_object* l_Std_Internal_List_getValueCast_x21___redArg___closed__2 = (const lean_object*)&l_Std_Internal_List_getValueCast_x21___redArg___closed__2_value;
+static lean_once_cell_t l_Std_Internal_List_getValueCast_x21___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Internal_List_getValueCast_x21___redArg___closed__0;
+static lean_once_cell_t l_Std_Internal_List_getValueCast_x21___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Internal_List_getValueCast_x21___redArg___closed__1;
+static lean_once_cell_t l_Std_Internal_List_getValueCast_x21___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Internal_List_getValueCast_x21___redArg___closed__2;
 static lean_once_cell_t l_Std_Internal_List_getValueCast_x21___redArg___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Internal_List_getValueCast_x21___redArg___closed__3;
 LEAN_EXPORT lean_object* l_Std_Internal_List_getValueCast_x21___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
@@ -138,8 +138,8 @@ LEAN_EXPORT lean_object* l_Std_Internal_List_insertSmallerList___redArg(lean_obj
 LEAN_EXPORT lean_object* l_Std_Internal_List_insertSmallerList(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Internal_List_Prod_toSigma___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Internal_List_Prod_toSigma(lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_Internal_List_insertListConst___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*2, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Internal_List_Prod_toSigma, .m_arity = 3, .m_num_fixed = 2, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1))} };
-static const lean_object* l_Std_Internal_List_insertListConst___redArg___closed__0 = (const lean_object*)&l_Std_Internal_List_insertListConst___redArg___closed__0_value;
+static lean_once_cell_t l_Std_Internal_List_insertListConst___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Internal_List_insertListConst___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Std_Internal_List_insertListConst___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Internal_List_insertListConst(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Internal_List_insertListIfNewUnit___redArg(lean_object*, lean_object*, lean_object*);
@@ -336,15 +336,39 @@ lean_dec_ref(v_fallback_44_);
 return v_res_46_;
 }
 }
+static lean_object* _init_l_Std_Internal_List_getEntry_x21___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_47_; 
+v___x_47_ = lean_mk_string_unchecked("Std.Data.Internal.List.Associative", 34, 34);
+return v___x_47_;
+}
+}
+static lean_object* _init_l_Std_Internal_List_getEntry_x21___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_48_; 
+v___x_48_ = lean_mk_string_unchecked("Std.Internal.List.getEntry!", 27, 27);
+return v___x_48_;
+}
+}
+static lean_object* _init_l_Std_Internal_List_getEntry_x21___redArg___closed__2(void){
+_start:
+{
+lean_object* v___x_49_; 
+v___x_49_ = lean_mk_string_unchecked("key is not present in associative list", 38, 38);
+return v___x_49_;
+}
+}
 static lean_object* _init_l_Std_Internal_List_getEntry_x21___redArg___closed__3(void){
 _start:
 {
 lean_object* v___x_50_; lean_object* v___x_51_; lean_object* v___x_52_; lean_object* v___x_53_; lean_object* v___x_54_; lean_object* v___x_55_; 
-v___x_50_ = ((lean_object*)(l_Std_Internal_List_getEntry_x21___redArg___closed__2));
+v___x_50_ = lean_obj_once(&l_Std_Internal_List_getEntry_x21___redArg___closed__2, &l_Std_Internal_List_getEntry_x21___redArg___closed__2_once, _init_l_Std_Internal_List_getEntry_x21___redArg___closed__2);
 v___x_51_ = lean_unsigned_to_nat(10u);
 v___x_52_ = lean_unsigned_to_nat(67u);
-v___x_53_ = ((lean_object*)(l_Std_Internal_List_getEntry_x21___redArg___closed__1));
-v___x_54_ = ((lean_object*)(l_Std_Internal_List_getEntry_x21___redArg___closed__0));
+v___x_53_ = lean_obj_once(&l_Std_Internal_List_getEntry_x21___redArg___closed__1, &l_Std_Internal_List_getEntry_x21___redArg___closed__1_once, _init_l_Std_Internal_List_getEntry_x21___redArg___closed__1);
+v___x_54_ = lean_obj_once(&l_Std_Internal_List_getEntry_x21___redArg___closed__0, &l_Std_Internal_List_getEntry_x21___redArg___closed__0_once, _init_l_Std_Internal_List_getEntry_x21___redArg___closed__0);
 v___x_55_ = l_mkPanicMessageWithDecl(v___x_54_, v___x_53_, v___x_52_, v___x_51_, v___x_50_);
 return v___x_55_;
 }
@@ -1267,15 +1291,39 @@ lean_dec(v_fallback_457_);
 return v_res_458_;
 }
 }
+static lean_object* _init_l_Std_Internal_List_getValueCast_x21___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_459_; 
+v___x_459_ = lean_mk_string_unchecked("Init.Data.Option.BasicAux", 25, 25);
+return v___x_459_;
+}
+}
+static lean_object* _init_l_Std_Internal_List_getValueCast_x21___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_460_; 
+v___x_460_ = lean_mk_string_unchecked("Option.get!", 11, 11);
+return v___x_460_;
+}
+}
+static lean_object* _init_l_Std_Internal_List_getValueCast_x21___redArg___closed__2(void){
+_start:
+{
+lean_object* v___x_461_; 
+v___x_461_ = lean_mk_string_unchecked("value is none", 13, 13);
+return v___x_461_;
+}
+}
 static lean_object* _init_l_Std_Internal_List_getValueCast_x21___redArg___closed__3(void){
 _start:
 {
 lean_object* v___x_462_; lean_object* v___x_463_; lean_object* v___x_464_; lean_object* v___x_465_; lean_object* v___x_466_; lean_object* v___x_467_; 
-v___x_462_ = ((lean_object*)(l_Std_Internal_List_getValueCast_x21___redArg___closed__2));
+v___x_462_ = lean_obj_once(&l_Std_Internal_List_getValueCast_x21___redArg___closed__2, &l_Std_Internal_List_getValueCast_x21___redArg___closed__2_once, _init_l_Std_Internal_List_getValueCast_x21___redArg___closed__2);
 v___x_463_ = lean_unsigned_to_nat(14u);
 v___x_464_ = lean_unsigned_to_nat(22u);
-v___x_465_ = ((lean_object*)(l_Std_Internal_List_getValueCast_x21___redArg___closed__1));
-v___x_466_ = ((lean_object*)(l_Std_Internal_List_getValueCast_x21___redArg___closed__0));
+v___x_465_ = lean_obj_once(&l_Std_Internal_List_getValueCast_x21___redArg___closed__1, &l_Std_Internal_List_getValueCast_x21___redArg___closed__1_once, _init_l_Std_Internal_List_getValueCast_x21___redArg___closed__1);
+v___x_466_ = lean_obj_once(&l_Std_Internal_List_getValueCast_x21___redArg___closed__0, &l_Std_Internal_List_getValueCast_x21___redArg___closed__0_once, _init_l_Std_Internal_List_getValueCast_x21___redArg___closed__0);
 v___x_467_ = l_mkPanicMessageWithDecl(v___x_466_, v___x_465_, v___x_464_, v___x_463_, v___x_462_);
 return v___x_467_;
 }
@@ -2143,11 +2191,21 @@ v___x_808_ = l_Std_Internal_List_Prod_toSigma___redArg(v_p_807_);
 return v___x_808_;
 }
 }
+static lean_object* _init_l_Std_Internal_List_insertListConst___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_809_; 
+v___x_809_ = lean_alloc_closure((void*)(l_Std_Internal_List_Prod_toSigma), 3, 2);
+lean_closure_set(v___x_809_, 0, lean_box(0));
+lean_closure_set(v___x_809_, 1, lean_box(0));
+return v___x_809_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Internal_List_insertListConst___redArg(lean_object* v_inst_810_, lean_object* v_l_811_, lean_object* v_toInsert_812_){
 _start:
 {
 lean_object* v___x_813_; lean_object* v___x_814_; lean_object* v___x_815_; lean_object* v___x_816_; 
-v___x_813_ = ((lean_object*)(l_Std_Internal_List_insertListConst___redArg___closed__0));
+v___x_813_ = lean_obj_once(&l_Std_Internal_List_insertListConst___redArg___closed__0, &l_Std_Internal_List_insertListConst___redArg___closed__0_once, _init_l_Std_Internal_List_insertListConst___redArg___closed__0);
 v___x_814_ = lean_box(0);
 v___x_815_ = l_List_mapTR_loop___redArg(v___x_813_, v_toInsert_812_, v___x_814_);
 v___x_816_ = l_Std_Internal_List_insertList___redArg(v_inst_810_, v_l_811_, v___x_815_);

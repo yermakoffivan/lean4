@@ -15,27 +15,51 @@ extern "C" {
 #endif
 lean_object* l_mkPanicMessageWithDecl(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_panic___redArg(lean_object*, lean_object*);
-static const lean_string_object l_Option_get_x21___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 26, .m_capacity = 26, .m_length = 25, .m_data = "Init.Data.Option.BasicAux"};
-static const lean_object* l_Option_get_x21___redArg___closed__0 = (const lean_object*)&l_Option_get_x21___redArg___closed__0_value;
-static const lean_string_object l_Option_get_x21___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "Option.get!"};
-static const lean_object* l_Option_get_x21___redArg___closed__1 = (const lean_object*)&l_Option_get_x21___redArg___closed__1_value;
-static const lean_string_object l_Option_get_x21___redArg___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "value is none"};
-static const lean_object* l_Option_get_x21___redArg___closed__2 = (const lean_object*)&l_Option_get_x21___redArg___closed__2_value;
+static lean_once_cell_t l_Option_get_x21___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Option_get_x21___redArg___closed__0;
+static lean_once_cell_t l_Option_get_x21___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Option_get_x21___redArg___closed__1;
+static lean_once_cell_t l_Option_get_x21___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Option_get_x21___redArg___closed__2;
 static lean_once_cell_t l_Option_get_x21___redArg___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Option_get_x21___redArg___closed__3;
 LEAN_EXPORT lean_object* l_Option_get_x21___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Option_get_x21___redArg___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Option_get_x21(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Option_get_x21___boxed(lean_object*, lean_object*, lean_object*);
+static lean_object* _init_l_Option_get_x21___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; 
+v___x_1_ = lean_mk_string_unchecked("Init.Data.Option.BasicAux", 25, 25);
+return v___x_1_;
+}
+}
+static lean_object* _init_l_Option_get_x21___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_2_; 
+v___x_2_ = lean_mk_string_unchecked("Option.get!", 11, 11);
+return v___x_2_;
+}
+}
+static lean_object* _init_l_Option_get_x21___redArg___closed__2(void){
+_start:
+{
+lean_object* v___x_3_; 
+v___x_3_ = lean_mk_string_unchecked("value is none", 13, 13);
+return v___x_3_;
+}
+}
 static lean_object* _init_l_Option_get_x21___redArg___closed__3(void){
 _start:
 {
 lean_object* v___x_4_; lean_object* v___x_5_; lean_object* v___x_6_; lean_object* v___x_7_; lean_object* v___x_8_; lean_object* v___x_9_; 
-v___x_4_ = ((lean_object*)(l_Option_get_x21___redArg___closed__2));
+v___x_4_ = lean_obj_once(&l_Option_get_x21___redArg___closed__2, &l_Option_get_x21___redArg___closed__2_once, _init_l_Option_get_x21___redArg___closed__2);
 v___x_5_ = lean_unsigned_to_nat(14u);
 v___x_6_ = lean_unsigned_to_nat(22u);
-v___x_7_ = ((lean_object*)(l_Option_get_x21___redArg___closed__1));
-v___x_8_ = ((lean_object*)(l_Option_get_x21___redArg___closed__0));
+v___x_7_ = lean_obj_once(&l_Option_get_x21___redArg___closed__1, &l_Option_get_x21___redArg___closed__1_once, _init_l_Option_get_x21___redArg___closed__1);
+v___x_8_ = lean_obj_once(&l_Option_get_x21___redArg___closed__0, &l_Option_get_x21___redArg___closed__0_once, _init_l_Option_get_x21___redArg___closed__0);
 v___x_9_ = l_mkPanicMessageWithDecl(v___x_8_, v___x_7_, v___x_6_, v___x_5_, v___x_4_);
 return v___x_9_;
 }

@@ -59,12 +59,12 @@ LEAN_EXPORT lean_object* l_Lean_addMessageContextFull___at___00Lean_throwError__
 LEAN_EXPORT lean_object* l_Lean_addMessageContextFull___at___00Lean_throwError___at___00Lean_Meta_casesOnStuckLHS_spec__0_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00Lean_Meta_casesOnStuckLHS_spec__0___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00Lean_Meta_casesOnStuckLHS_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_casesOnStuckLHS___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "'casesOnStuckLHS' failed"};
-static const lean_object* l_Lean_Meta_casesOnStuckLHS___closed__0 = (const lean_object*)&l_Lean_Meta_casesOnStuckLHS___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_casesOnStuckLHS___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_casesOnStuckLHS___closed__0;
 static lean_once_cell_t l_Lean_Meta_casesOnStuckLHS___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_casesOnStuckLHS___closed__1;
-static const lean_array_object l_Lean_Meta_casesOnStuckLHS___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Lean_Meta_casesOnStuckLHS___closed__2 = (const lean_object*)&l_Lean_Meta_casesOnStuckLHS___closed__2_value;
+static lean_once_cell_t l_Lean_Meta_casesOnStuckLHS___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_casesOnStuckLHS___closed__2;
 LEAN_EXPORT lean_object* l_Lean_Meta_casesOnStuckLHS(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_casesOnStuckLHS___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00Lean_Meta_casesOnStuckLHS_spec__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -623,13 +623,30 @@ lean_dec_ref(v___y_174_);
 return v_res_179_;
 }
 }
+static lean_object* _init_l_Lean_Meta_casesOnStuckLHS___closed__0(void){
+_start:
+{
+lean_object* v___x_180_; 
+v___x_180_ = lean_mk_string_unchecked("'casesOnStuckLHS' failed", 24, 24);
+return v___x_180_;
+}
+}
 static lean_object* _init_l_Lean_Meta_casesOnStuckLHS___closed__1(void){
 _start:
 {
 lean_object* v___x_181_; lean_object* v___x_182_; 
-v___x_181_ = ((lean_object*)(l_Lean_Meta_casesOnStuckLHS___closed__0));
+v___x_181_ = lean_obj_once(&l_Lean_Meta_casesOnStuckLHS___closed__0, &l_Lean_Meta_casesOnStuckLHS___closed__0_once, _init_l_Lean_Meta_casesOnStuckLHS___closed__0);
 v___x_182_ = l_Lean_stringToMessageData(v___x_181_);
 return v___x_182_;
+}
+}
+static lean_object* _init_l_Lean_Meta_casesOnStuckLHS___closed__2(void){
+_start:
+{
+lean_object* v___x_183_; lean_object* v___x_184_; 
+v___x_183_ = lean_unsigned_to_nat(0u);
+v___x_184_ = lean_mk_empty_array_with_capacity(v___x_183_);
+return v___x_184_;
 }
 }
 LEAN_EXPORT lean_object* l_Lean_Meta_casesOnStuckLHS(lean_object* v_mvarId_185_, lean_object* v_a_186_, lean_object* v_a_187_, lean_object* v_a_188_, lean_object* v_a_189_){
@@ -673,7 +690,7 @@ lean_object* v_val_206_; lean_object* v___x_207_; uint8_t v___x_208_; lean_objec
 v_val_206_ = lean_ctor_get(v_a_205_, 0);
 lean_inc(v_val_206_);
 lean_dec_ref(v_a_205_);
-v___x_207_ = ((lean_object*)(l_Lean_Meta_casesOnStuckLHS___closed__2));
+v___x_207_ = lean_obj_once(&l_Lean_Meta_casesOnStuckLHS___closed__2, &l_Lean_Meta_casesOnStuckLHS___closed__2_once, _init_l_Lean_Meta_casesOnStuckLHS___closed__2);
 v___x_208_ = 0;
 v___x_209_ = lean_box(0);
 v___x_210_ = l_Lean_MVarId_cases(v_mvarId_185_, v_val_206_, v___x_207_, v___x_208_, v___x_209_, v_a_186_, v_a_187_, v_a_188_, v_a_189_);

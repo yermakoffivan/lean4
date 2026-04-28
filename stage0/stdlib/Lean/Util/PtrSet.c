@@ -27,13 +27,13 @@ lean_object* l_Std_DHashMap_Internal_Raw_u2080_insertIfNew___redArg(lean_object*
 lean_object* l_Std_DHashMap_Internal_Raw_u2080_insert___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT uint64_t l_Lean_instHashablePtr___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_instHashablePtr___lam__0___boxed(lean_object*);
-static const lean_closure_object l_Lean_instHashablePtr___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_instHashablePtr___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_instHashablePtr___closed__0 = (const lean_object*)&l_Lean_instHashablePtr___closed__0_value;
+static lean_once_cell_t l_Lean_instHashablePtr___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_instHashablePtr___closed__0;
 LEAN_EXPORT lean_object* l_Lean_instHashablePtr(lean_object*);
 LEAN_EXPORT uint8_t l_Lean_instBEqPtr___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_instBEqPtr___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Lean_instBEqPtr___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_instBEqPtr___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_instBEqPtr___closed__0 = (const lean_object*)&l_Lean_instBEqPtr___closed__0_value;
+static lean_once_cell_t l_Lean_instBEqPtr___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_instBEqPtr___closed__0;
 LEAN_EXPORT lean_object* l_Lean_instBEqPtr(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_mkPtrSet___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_mkPtrSet___redArg___boxed(lean_object*);
@@ -80,11 +80,19 @@ v_r_8_ = lean_box_uint64(v_res_7_);
 return v_r_8_;
 }
 }
+static lean_object* _init_l_Lean_instHashablePtr___closed__0(void){
+_start:
+{
+lean_object* v___f_9_; 
+v___f_9_ = lean_alloc_closure((void*)(l_Lean_instHashablePtr___lam__0___boxed), 1, 0);
+return v___f_9_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_instHashablePtr(lean_object* v_00_u03b1_10_){
 _start:
 {
 lean_object* v___f_11_; 
-v___f_11_ = ((lean_object*)(l_Lean_instHashablePtr___closed__0));
+v___f_11_ = lean_obj_once(&l_Lean_instHashablePtr___closed__0, &l_Lean_instHashablePtr___closed__0_once, _init_l_Lean_instHashablePtr___closed__0);
 return v___f_11_;
 }
 }
@@ -109,11 +117,19 @@ v_r_20_ = lean_box(v_res_19_);
 return v_r_20_;
 }
 }
+static lean_object* _init_l_Lean_instBEqPtr___closed__0(void){
+_start:
+{
+lean_object* v___f_21_; 
+v___f_21_ = lean_alloc_closure((void*)(l_Lean_instBEqPtr___lam__0___boxed), 2, 0);
+return v___f_21_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_instBEqPtr(lean_object* v_00_u03b1_22_){
 _start:
 {
 lean_object* v___f_23_; 
-v___f_23_ = ((lean_object*)(l_Lean_instBEqPtr___closed__0));
+v___f_23_ = lean_obj_once(&l_Lean_instBEqPtr___closed__0, &l_Lean_instBEqPtr___closed__0_once, _init_l_Lean_instBEqPtr___closed__0);
 return v___f_23_;
 }
 }
@@ -167,8 +183,8 @@ LEAN_EXPORT lean_object* l_Lean_PtrSet_insert___redArg(lean_object* v_s_42_, lea
 _start:
 {
 lean_object* v___f_44_; lean_object* v___f_45_; lean_object* v___x_46_; lean_object* v___x_47_; 
-v___f_44_ = ((lean_object*)(l_Lean_instBEqPtr___closed__0));
-v___f_45_ = ((lean_object*)(l_Lean_instHashablePtr___closed__0));
+v___f_44_ = lean_obj_once(&l_Lean_instBEqPtr___closed__0, &l_Lean_instBEqPtr___closed__0_once, _init_l_Lean_instBEqPtr___closed__0);
+v___f_45_ = lean_obj_once(&l_Lean_instHashablePtr___closed__0, &l_Lean_instHashablePtr___closed__0_once, _init_l_Lean_instHashablePtr___closed__0);
 v___x_46_ = lean_box(0);
 v___x_47_ = l_Std_DHashMap_Internal_Raw_u2080_insertIfNew___redArg(v___f_44_, v___f_45_, v_s_42_, v_a_43_, v___x_46_);
 return v___x_47_;
@@ -178,8 +194,8 @@ LEAN_EXPORT lean_object* l_Lean_PtrSet_insert(lean_object* v_00_u03b1_48_, lean_
 _start:
 {
 lean_object* v___f_51_; lean_object* v___f_52_; lean_object* v___x_53_; lean_object* v___x_54_; 
-v___f_51_ = ((lean_object*)(l_Lean_instBEqPtr___closed__0));
-v___f_52_ = ((lean_object*)(l_Lean_instHashablePtr___closed__0));
+v___f_51_ = lean_obj_once(&l_Lean_instBEqPtr___closed__0, &l_Lean_instBEqPtr___closed__0_once, _init_l_Lean_instBEqPtr___closed__0);
+v___f_52_ = lean_obj_once(&l_Lean_instHashablePtr___closed__0, &l_Lean_instHashablePtr___closed__0_once, _init_l_Lean_instHashablePtr___closed__0);
 v___x_53_ = lean_box(0);
 v___x_54_ = l_Std_DHashMap_Internal_Raw_u2080_insertIfNew___redArg(v___f_51_, v___f_52_, v_s_49_, v_a_50_, v___x_53_);
 return v___x_54_;
@@ -189,8 +205,8 @@ LEAN_EXPORT uint8_t l_Lean_PtrSet_contains___redArg(lean_object* v_s_55_, lean_o
 _start:
 {
 lean_object* v___f_57_; lean_object* v___f_58_; uint8_t v___x_59_; 
-v___f_57_ = ((lean_object*)(l_Lean_instBEqPtr___closed__0));
-v___f_58_ = ((lean_object*)(l_Lean_instHashablePtr___closed__0));
+v___f_57_ = lean_obj_once(&l_Lean_instBEqPtr___closed__0, &l_Lean_instBEqPtr___closed__0_once, _init_l_Lean_instBEqPtr___closed__0);
+v___f_58_ = lean_obj_once(&l_Lean_instHashablePtr___closed__0, &l_Lean_instHashablePtr___closed__0_once, _init_l_Lean_instHashablePtr___closed__0);
 v___x_59_ = l_Std_DHashMap_Internal_Raw_u2080_contains___redArg(v___f_57_, v___f_58_, v_s_55_, v_a_56_);
 return v___x_59_;
 }
@@ -209,8 +225,8 @@ LEAN_EXPORT uint8_t l_Lean_PtrSet_contains(lean_object* v_00_u03b1_64_, lean_obj
 _start:
 {
 lean_object* v___f_67_; lean_object* v___f_68_; uint8_t v___x_69_; 
-v___f_67_ = ((lean_object*)(l_Lean_instBEqPtr___closed__0));
-v___f_68_ = ((lean_object*)(l_Lean_instHashablePtr___closed__0));
+v___f_67_ = lean_obj_once(&l_Lean_instBEqPtr___closed__0, &l_Lean_instBEqPtr___closed__0_once, _init_l_Lean_instBEqPtr___closed__0);
+v___f_68_ = lean_obj_once(&l_Lean_instHashablePtr___closed__0, &l_Lean_instHashablePtr___closed__0_once, _init_l_Lean_instHashablePtr___closed__0);
 v___x_69_ = l_Std_DHashMap_Internal_Raw_u2080_contains___redArg(v___f_67_, v___f_68_, v_s_65_, v_a_66_);
 return v___x_69_;
 }
@@ -275,8 +291,8 @@ LEAN_EXPORT lean_object* l_Lean_PtrMap_insert___redArg(lean_object* v_s_95_, lea
 _start:
 {
 lean_object* v___f_98_; lean_object* v___f_99_; lean_object* v___x_100_; 
-v___f_98_ = ((lean_object*)(l_Lean_instBEqPtr___closed__0));
-v___f_99_ = ((lean_object*)(l_Lean_instHashablePtr___closed__0));
+v___f_98_ = lean_obj_once(&l_Lean_instBEqPtr___closed__0, &l_Lean_instBEqPtr___closed__0_once, _init_l_Lean_instBEqPtr___closed__0);
+v___f_99_ = lean_obj_once(&l_Lean_instHashablePtr___closed__0, &l_Lean_instHashablePtr___closed__0_once, _init_l_Lean_instHashablePtr___closed__0);
 v___x_100_ = l_Std_DHashMap_Internal_Raw_u2080_insert___redArg(v___f_98_, v___f_99_, v_s_95_, v_a_96_, v_b_97_);
 return v___x_100_;
 }
@@ -285,8 +301,8 @@ LEAN_EXPORT lean_object* l_Lean_PtrMap_insert(lean_object* v_00_u03b1_101_, lean
 _start:
 {
 lean_object* v___f_106_; lean_object* v___f_107_; lean_object* v___x_108_; 
-v___f_106_ = ((lean_object*)(l_Lean_instBEqPtr___closed__0));
-v___f_107_ = ((lean_object*)(l_Lean_instHashablePtr___closed__0));
+v___f_106_ = lean_obj_once(&l_Lean_instBEqPtr___closed__0, &l_Lean_instBEqPtr___closed__0_once, _init_l_Lean_instBEqPtr___closed__0);
+v___f_107_ = lean_obj_once(&l_Lean_instHashablePtr___closed__0, &l_Lean_instHashablePtr___closed__0_once, _init_l_Lean_instHashablePtr___closed__0);
 v___x_108_ = l_Std_DHashMap_Internal_Raw_u2080_insert___redArg(v___f_106_, v___f_107_, v_s_103_, v_a_104_, v_b_105_);
 return v___x_108_;
 }
@@ -295,8 +311,8 @@ LEAN_EXPORT uint8_t l_Lean_PtrMap_contains___redArg(lean_object* v_s_109_, lean_
 _start:
 {
 lean_object* v___f_111_; lean_object* v___f_112_; uint8_t v___x_113_; 
-v___f_111_ = ((lean_object*)(l_Lean_instBEqPtr___closed__0));
-v___f_112_ = ((lean_object*)(l_Lean_instHashablePtr___closed__0));
+v___f_111_ = lean_obj_once(&l_Lean_instBEqPtr___closed__0, &l_Lean_instBEqPtr___closed__0_once, _init_l_Lean_instBEqPtr___closed__0);
+v___f_112_ = lean_obj_once(&l_Lean_instHashablePtr___closed__0, &l_Lean_instHashablePtr___closed__0_once, _init_l_Lean_instHashablePtr___closed__0);
 v___x_113_ = l_Std_DHashMap_Internal_Raw_u2080_contains___redArg(v___f_111_, v___f_112_, v_s_109_, v_a_110_);
 return v___x_113_;
 }
@@ -315,8 +331,8 @@ LEAN_EXPORT uint8_t l_Lean_PtrMap_contains(lean_object* v_00_u03b1_118_, lean_ob
 _start:
 {
 lean_object* v___f_122_; lean_object* v___f_123_; uint8_t v___x_124_; 
-v___f_122_ = ((lean_object*)(l_Lean_instBEqPtr___closed__0));
-v___f_123_ = ((lean_object*)(l_Lean_instHashablePtr___closed__0));
+v___f_122_ = lean_obj_once(&l_Lean_instBEqPtr___closed__0, &l_Lean_instBEqPtr___closed__0_once, _init_l_Lean_instBEqPtr___closed__0);
+v___f_123_ = lean_obj_once(&l_Lean_instHashablePtr___closed__0, &l_Lean_instHashablePtr___closed__0_once, _init_l_Lean_instHashablePtr___closed__0);
 v___x_124_ = l_Std_DHashMap_Internal_Raw_u2080_contains___redArg(v___f_122_, v___f_123_, v_s_120_, v_a_121_);
 return v___x_124_;
 }
@@ -335,8 +351,8 @@ LEAN_EXPORT lean_object* l_Lean_PtrMap_find_x3f___redArg(lean_object* v_s_131_, 
 _start:
 {
 lean_object* v___f_133_; lean_object* v___f_134_; lean_object* v___x_135_; 
-v___f_133_ = ((lean_object*)(l_Lean_instBEqPtr___closed__0));
-v___f_134_ = ((lean_object*)(l_Lean_instHashablePtr___closed__0));
+v___f_133_ = lean_obj_once(&l_Lean_instBEqPtr___closed__0, &l_Lean_instBEqPtr___closed__0_once, _init_l_Lean_instBEqPtr___closed__0);
+v___f_134_ = lean_obj_once(&l_Lean_instHashablePtr___closed__0, &l_Lean_instHashablePtr___closed__0_once, _init_l_Lean_instHashablePtr___closed__0);
 v___x_135_ = l_Std_DHashMap_Internal_Raw_u2080_Const_get_x3f___redArg(v___f_133_, v___f_134_, v_s_131_, v_a_132_);
 return v___x_135_;
 }
@@ -354,8 +370,8 @@ LEAN_EXPORT lean_object* l_Lean_PtrMap_find_x3f(lean_object* v_00_u03b1_139_, le
 _start:
 {
 lean_object* v___f_143_; lean_object* v___f_144_; lean_object* v___x_145_; 
-v___f_143_ = ((lean_object*)(l_Lean_instBEqPtr___closed__0));
-v___f_144_ = ((lean_object*)(l_Lean_instHashablePtr___closed__0));
+v___f_143_ = lean_obj_once(&l_Lean_instBEqPtr___closed__0, &l_Lean_instBEqPtr___closed__0_once, _init_l_Lean_instBEqPtr___closed__0);
+v___f_144_ = lean_obj_once(&l_Lean_instHashablePtr___closed__0, &l_Lean_instHashablePtr___closed__0_once, _init_l_Lean_instHashablePtr___closed__0);
 v___x_145_ = l_Std_DHashMap_Internal_Raw_u2080_Const_get_x3f___redArg(v___f_143_, v___f_144_, v_s_141_, v_a_142_);
 return v___x_145_;
 }

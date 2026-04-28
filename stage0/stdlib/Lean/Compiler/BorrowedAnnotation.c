@@ -16,18 +16,35 @@ extern "C" {
 lean_object* l_Lean_Name_mkStr1(lean_object*);
 lean_object* l_Lean_mkAnnotation(lean_object*, lean_object*);
 lean_object* l_Lean_annotation_x3f(lean_object*, lean_object*);
-static const lean_string_object l_Lean_markBorrowed___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "borrowed"};
-static const lean_object* l_Lean_markBorrowed___closed__0 = (const lean_object*)&l_Lean_markBorrowed___closed__0_value;
-static const lean_ctor_object l_Lean_markBorrowed___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_markBorrowed___closed__0_value),LEAN_SCALAR_PTR_LITERAL(225, 236, 131, 74, 166, 247, 60, 76)}};
-static const lean_object* l_Lean_markBorrowed___closed__1 = (const lean_object*)&l_Lean_markBorrowed___closed__1_value;
+static lean_once_cell_t l_Lean_markBorrowed___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_markBorrowed___closed__0;
+static lean_once_cell_t l_Lean_markBorrowed___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_markBorrowed___closed__1;
 LEAN_EXPORT lean_object* l_Lean_markBorrowed(lean_object*);
 LEAN_EXPORT uint8_t l_Lean_isMarkedBorrowed(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_isMarkedBorrowed___boxed(lean_object*);
+static lean_object* _init_l_Lean_markBorrowed___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; 
+v___x_1_ = lean_mk_string_unchecked("borrowed", 8, 8);
+return v___x_1_;
+}
+}
+static lean_object* _init_l_Lean_markBorrowed___closed__1(void){
+_start:
+{
+lean_object* v___x_2_; lean_object* v___x_3_; 
+v___x_2_ = lean_obj_once(&l_Lean_markBorrowed___closed__0, &l_Lean_markBorrowed___closed__0_once, _init_l_Lean_markBorrowed___closed__0);
+v___x_3_ = l_Lean_Name_mkStr1(v___x_2_);
+return v___x_3_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_markBorrowed(lean_object* v_e_4_){
 _start:
 {
 lean_object* v___x_5_; lean_object* v___x_6_; 
-v___x_5_ = ((lean_object*)(l_Lean_markBorrowed___closed__1));
+v___x_5_ = lean_obj_once(&l_Lean_markBorrowed___closed__1, &l_Lean_markBorrowed___closed__1_once, _init_l_Lean_markBorrowed___closed__1);
 v___x_6_ = l_Lean_mkAnnotation(v___x_5_, v_e_4_);
 return v___x_6_;
 }
@@ -36,7 +53,7 @@ LEAN_EXPORT uint8_t l_Lean_isMarkedBorrowed(lean_object* v_e_7_){
 _start:
 {
 lean_object* v___x_8_; lean_object* v___x_9_; 
-v___x_8_ = ((lean_object*)(l_Lean_markBorrowed___closed__1));
+v___x_8_ = lean_obj_once(&l_Lean_markBorrowed___closed__1, &l_Lean_markBorrowed___closed__1_once, _init_l_Lean_markBorrowed___closed__1);
 v___x_9_ = l_Lean_annotation_x3f(v___x_8_, v_e_7_);
 if (lean_obj_tag(v___x_9_) == 0)
 {

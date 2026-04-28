@@ -20,8 +20,8 @@ lean_object* l_List_filterAuxM___redArg(lean_object*, lean_object*, lean_object*
 lean_object* lean_array_mk(lean_object*);
 lean_object* l_Array_reverse___redArg(lean_object*);
 lean_object* l_Array_append___redArg(lean_object*, lean_object*);
-static const lean_ctor_object l_Std_Queue_empty___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_Queue_empty___closed__0 = (const lean_object*)&l_Std_Queue_empty___closed__0_value;
+static lean_once_cell_t l_Std_Queue_empty___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Queue_empty___closed__0;
 LEAN_EXPORT lean_object* l_Std_Queue_empty(lean_object*);
 static lean_once_cell_t l_Std_Queue_instEmptyCollection___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Queue_instEmptyCollection___closed__0;
@@ -44,11 +44,22 @@ LEAN_EXPORT lean_object* l_Std_Queue_filterM___redArg___lam__1(lean_object*, lea
 LEAN_EXPORT lean_object* l_Std_Queue_filterM___redArg___lam__2(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Queue_filterM___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Queue_filterM(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+static lean_object* _init_l_Std_Queue_empty___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; lean_object* v___x_2_; 
+v___x_1_ = lean_box(0);
+v___x_2_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_2_, 0, v___x_1_);
+lean_ctor_set(v___x_2_, 1, v___x_1_);
+return v___x_2_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Queue_empty(lean_object* v_00_u03b1_3_){
 _start:
 {
 lean_object* v___x_4_; 
-v___x_4_ = ((lean_object*)(l_Std_Queue_empty___closed__0));
+v___x_4_ = lean_obj_once(&l_Std_Queue_empty___closed__0, &l_Std_Queue_empty___closed__0_once, _init_l_Std_Queue_empty___closed__0);
 return v___x_4_;
 }
 }

@@ -52,8 +52,8 @@ LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___redArg___lam__0(uint8_t);
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___redArg___lam__0___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___redArg___lam__1(lean_object*, lean_object*, lean_object*, uint8_t);
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___redArg___lam__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_Async_Waiter_race___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_Waiter_race___redArg___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Async_Waiter_race___redArg___closed__0 = (const lean_object*)&l_Std_Async_Waiter_race___redArg___closed__0_value;
+static lean_once_cell_t l_Std_Async_Waiter_race___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Waiter_race___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_checkFinished___redArg(lean_object*, lean_object*);
@@ -77,12 +77,12 @@ LEAN_EXPORT lean_object* l_Std_Async_Selectable_one___redArg___lam__0(lean_objec
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_one___redArg___lam__0___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_one___redArg___lam__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_one___redArg___lam__1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std_Async_Selectable_one___redArg___lam__2___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 44, .m_capacity = 44, .m_length = 43, .m_data = "the promise linked to the Async was dropped"};
-static const lean_object* l_Std_Async_Selectable_one___redArg___lam__2___closed__0 = (const lean_object*)&l_Std_Async_Selectable_one___redArg___lam__2___closed__0_value;
-static const lean_closure_object l_Std_Async_Selectable_one___redArg___lam__2___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_Selectable_one___redArg___lam__0___boxed, .m_arity = 2, .m_num_fixed = 1, .m_objs = {((lean_object*)&l_Std_Async_Selectable_one___redArg___lam__2___closed__0_value)} };
-static const lean_object* l_Std_Async_Selectable_one___redArg___lam__2___closed__1 = (const lean_object*)&l_Std_Async_Selectable_one___redArg___lam__2___closed__1_value;
-static const lean_closure_object l_Std_Async_Selectable_one___redArg___lam__2___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_Selectable_one___redArg___lam__1___boxed, .m_arity = 3, .m_num_fixed = 1, .m_objs = {((lean_object*)&l_Std_Async_Selectable_one___redArg___lam__2___closed__1_value)} };
-static const lean_object* l_Std_Async_Selectable_one___redArg___lam__2___closed__2 = (const lean_object*)&l_Std_Async_Selectable_one___redArg___lam__2___closed__2_value;
+static lean_once_cell_t l_Std_Async_Selectable_one___redArg___lam__2___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Selectable_one___redArg___lam__2___closed__0;
+static lean_once_cell_t l_Std_Async_Selectable_one___redArg___lam__2___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Selectable_one___redArg___lam__2___closed__1;
+static lean_once_cell_t l_Std_Async_Selectable_one___redArg___lam__2___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Selectable_one___redArg___lam__2___closed__2;
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_one___redArg___lam__2(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_one___redArg___lam__2___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_one___redArg___lam__3(lean_object*, lean_object*, lean_object*, lean_object*);
@@ -101,8 +101,8 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Uns
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___lam__3___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___lam__0___boxed, .m_arity = 3, .m_num_fixed = 1, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))} };
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0_value;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___lam__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg(uint8_t, lean_object*, size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___lam__1(size_t, uint8_t, lean_object*, size_t, lean_object*);
@@ -115,10 +115,10 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Uns
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___lam__7___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___lam__10(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___lam__10___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___lam__1, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___closed__0 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___closed__0_value;
-static const lean_closure_object l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___lam__4, .m_arity = 2, .m_num_fixed = 1, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))} };
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___closed__1 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___closed__1_value;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___closed__0;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___closed__1;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___lam__11___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___lam__11(size_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, size_t, lean_object*);
@@ -133,10 +133,10 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Uns
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___lam__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___lam__0___boxed, .m_arity = 3, .m_num_fixed = 1, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))} };
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__0 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__0_value;
-static const lean_ctor_object l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__1 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__1_value;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__0;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__1;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___lam__2___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg(lean_object*, size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___lam__2(size_t, lean_object*, size_t, lean_object*);
@@ -149,14 +149,14 @@ LEAN_EXPORT lean_object* l_Std_Async_Selectable_one___redArg___lam__9(lean_objec
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_one___redArg___lam__9___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_one___redArg___lam__10(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_one___redArg___lam__10___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std_Async_Selectable_one___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 48, .m_capacity = 48, .m_length = 47, .m_data = "Selectable.one requires at least one Selectable"};
-static const lean_object* l_Std_Async_Selectable_one___redArg___closed__0 = (const lean_object*)&l_Std_Async_Selectable_one___redArg___closed__0_value;
-static const lean_ctor_object l_Std_Async_Selectable_one___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 18}, .m_objs = {((lean_object*)&l_Std_Async_Selectable_one___redArg___closed__0_value)}};
-static const lean_object* l_Std_Async_Selectable_one___redArg___closed__1 = (const lean_object*)&l_Std_Async_Selectable_one___redArg___closed__1_value;
-static const lean_ctor_object l_Std_Async_Selectable_one___redArg___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Async_Selectable_one___redArg___closed__1_value)}};
-static const lean_object* l_Std_Async_Selectable_one___redArg___closed__2 = (const lean_object*)&l_Std_Async_Selectable_one___redArg___closed__2_value;
-static const lean_ctor_object l_Std_Async_Selectable_one___redArg___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Async_Selectable_one___redArg___closed__2_value)}};
-static const lean_object* l_Std_Async_Selectable_one___redArg___closed__3 = (const lean_object*)&l_Std_Async_Selectable_one___redArg___closed__3_value;
+static lean_once_cell_t l_Std_Async_Selectable_one___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Selectable_one___redArg___closed__0;
+static lean_once_cell_t l_Std_Async_Selectable_one___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Selectable_one___redArg___closed__1;
+static lean_once_cell_t l_Std_Async_Selectable_one___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Selectable_one___redArg___closed__2;
+static lean_once_cell_t l_Std_Async_Selectable_one___redArg___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Selectable_one___redArg___closed__3;
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_one___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_one___redArg___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_one(lean_object*, lean_object*);
@@ -167,28 +167,28 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Uns
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3(lean_object*, lean_object*, size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__0 = (const lean_object*)&l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__0_value;
-static const lean_ctor_object l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__0_value)}};
-static const lean_object* l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__1 = (const lean_object*)&l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__1_value;
+static lean_once_cell_t l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__0;
+static lean_once_cell_t l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__1;
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_tryOne___redArg___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_tryOne___redArg___lam__0___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___lam__1(lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___lam__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___lam__0___boxed, .m_arity = 3, .m_num_fixed = 1, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))} };
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__0 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__0_value;
-static const lean_ctor_object l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__1 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__1_value;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__0;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__1;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___lam__2___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg(lean_object*, lean_object*, size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___lam__2(size_t, lean_object*, lean_object*, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_tryOne___redArg___lam__1(lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_tryOne___redArg___lam__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_Async_Selectable_tryOne___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_Selectable_tryOne___redArg___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Async_Selectable_tryOne___redArg___closed__0 = (const lean_object*)&l_Std_Async_Selectable_tryOne___redArg___closed__0_value;
+static lean_once_cell_t l_Std_Async_Selectable_tryOne___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Selectable_tryOne___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_tryOne___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_tryOne___redArg___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_tryOne(lean_object*, lean_object*);
@@ -220,8 +220,8 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Uns
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_combine_spec__1___redArg___lam__8___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_combine_spec__1___redArg___lam__9(lean_object*, lean_object*, lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_combine_spec__1___redArg___lam__9___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_combine_spec__1___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_combine_spec__1___redArg___lam__0, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_combine_spec__1___redArg___closed__0 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_combine_spec__1___redArg___closed__0_value;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_combine_spec__1___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_combine_spec__1___redArg___closed__0;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_combine_spec__1___redArg___lam__10___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_combine_spec__1___redArg(lean_object*, lean_object*, lean_object*, lean_object*, size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_combine_spec__1___redArg___lam__10(size_t, lean_object*, lean_object*, lean_object*, lean_object*, size_t, lean_object*);
@@ -232,10 +232,9 @@ LEAN_EXPORT lean_object* l_Std_Async_Selectable_combine___redArg___lam__3(lean_o
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_combine___redArg___lam__3___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_combine___redArg___lam__2(lean_object*, lean_object*, size_t, size_t, lean_object*, lean_object*, uint8_t, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_combine___redArg___lam__2___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_Async_Selectable_combine___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_Selectable_combine___redArg___lam__1___boxed, .m_arity = 3, .m_num_fixed = 1, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))} };
-static const lean_object* l_Std_Async_Selectable_combine___redArg___closed__0 = (const lean_object*)&l_Std_Async_Selectable_combine___redArg___closed__0_value;
-static const lean_ctor_object l_Std_Async_Selectable_combine___redArg___boxed__const__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*0 + sizeof(size_t)*1, .m_other = 0, .m_tag = 0}, .m_objs = {(lean_object*)(size_t)(0ULL)}};
-LEAN_EXPORT const lean_object* l_Std_Async_Selectable_combine___redArg___boxed__const__1 = (const lean_object*)&l_Std_Async_Selectable_combine___redArg___boxed__const__1_value;
+static lean_once_cell_t l_Std_Async_Selectable_combine___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Selectable_combine___redArg___closed__0;
+LEAN_EXPORT lean_object* l_Std_Async_Selectable_combine___redArg___boxed__const__1;
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_combine___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_combine___redArg___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_combine(lean_object*, lean_object*);
@@ -408,6 +407,14 @@ lean_dec(v_lose_42_);
 return v_res_47_;
 }
 }
+static lean_object* _init_l_Std_Async_Waiter_race___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_48_; 
+v___f_48_ = lean_alloc_closure((void*)(l_Std_Async_Waiter_race___redArg___lam__0___boxed), 1, 0);
+return v___f_48_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___redArg(lean_object* v_inst_49_, lean_object* v_inst_50_, lean_object* v_w_51_, lean_object* v_lose_52_, lean_object* v_win_53_){
 _start:
 {
@@ -420,7 +427,7 @@ lean_inc(v_finished_55_);
 v_promise_56_ = lean_ctor_get(v_w_51_, 1);
 lean_inc(v_promise_56_);
 lean_dec_ref(v_w_51_);
-v___f_57_ = ((lean_object*)(l_Std_Async_Waiter_race___redArg___closed__0));
+v___f_57_ = lean_obj_once(&l_Std_Async_Waiter_race___redArg___closed__0, &l_Std_Async_Waiter_race___redArg___closed__0_once, _init_l_Std_Async_Waiter_race___redArg___closed__0);
 v___f_58_ = lean_alloc_closure((void*)(l_Std_Async_Waiter_race___redArg___lam__1___boxed), 4, 3);
 lean_closure_set(v___f_58_, 0, v_lose_52_);
 lean_closure_set(v___f_58_, 1, v_win_53_);
@@ -1039,6 +1046,34 @@ v_res_264_ = l_Std_Async_Selectable_one___redArg___lam__1(v___f_261_, v_x_262_);
 return v_res_264_;
 }
 }
+static lean_object* _init_l_Std_Async_Selectable_one___redArg___lam__2___closed__0(void){
+_start:
+{
+lean_object* v___x_265_; 
+v___x_265_ = lean_mk_string_unchecked("the promise linked to the Async was dropped", 43, 43);
+return v___x_265_;
+}
+}
+static lean_object* _init_l_Std_Async_Selectable_one___redArg___lam__2___closed__1(void){
+_start:
+{
+lean_object* v___x_266_; lean_object* v___f_267_; 
+v___x_266_ = lean_obj_once(&l_Std_Async_Selectable_one___redArg___lam__2___closed__0, &l_Std_Async_Selectable_one___redArg___lam__2___closed__0_once, _init_l_Std_Async_Selectable_one___redArg___lam__2___closed__0);
+v___f_267_ = lean_alloc_closure((void*)(l_Std_Async_Selectable_one___redArg___lam__0___boxed), 2, 1);
+lean_closure_set(v___f_267_, 0, v___x_266_);
+return v___f_267_;
+}
+}
+static lean_object* _init_l_Std_Async_Selectable_one___redArg___lam__2___closed__2(void){
+_start:
+{
+lean_object* v___f_268_; lean_object* v___f_269_; 
+v___f_268_ = lean_obj_once(&l_Std_Async_Selectable_one___redArg___lam__2___closed__1, &l_Std_Async_Selectable_one___redArg___lam__2___closed__1_once, _init_l_Std_Async_Selectable_one___redArg___lam__2___closed__1);
+v___f_269_ = lean_alloc_closure((void*)(l_Std_Async_Selectable_one___redArg___lam__1___boxed), 3, 1);
+lean_closure_set(v___f_269_, 0, v___f_268_);
+return v___f_269_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_one___redArg___lam__2(lean_object* v_x_270_, lean_object* v_x_271_){
 _start:
 {
@@ -1110,7 +1145,7 @@ goto v_resetjp_282_;
 v_resetjp_282_:
 {
 lean_object* v___f_285_; lean_object* v___x_287_; 
-v___f_285_ = ((lean_object*)(l_Std_Async_Selectable_one___redArg___lam__2___closed__2));
+v___f_285_ = lean_obj_once(&l_Std_Async_Selectable_one___redArg___lam__2___closed__2, &l_Std_Async_Selectable_one___redArg___lam__2___closed__2_once, _init_l_Std_Async_Selectable_one___redArg___lam__2___closed__2);
 if (v_isShared_284_ == 0)
 {
 lean_ctor_set(v___x_283_, 0, v_x_270_);
@@ -1873,6 +1908,16 @@ v_res_522_ = l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___a
 return v_res_522_;
 }
 }
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_523_; lean_object* v___f_524_; 
+v___x_523_ = lean_box(0);
+v___f_524_ = lean_alloc_closure((void*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___lam__0___boxed), 3, 1);
+lean_closure_set(v___f_524_, 0, v___x_523_);
+return v___f_524_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___lam__1___boxed(lean_object* v_i_525_, lean_object* v_a_526_, lean_object* v_as_527_, lean_object* v_sz_528_, lean_object* v_x_529_, lean_object* v___y_530_){
 _start:
 {
@@ -1909,7 +1954,7 @@ v_selector_545_ = lean_ctor_get(v_a_544_, 0);
 v_unregisterFn_546_ = lean_ctor_get(v_selector_545_, 2);
 lean_inc_ref(v_unregisterFn_546_);
 v___x_547_ = lean_apply_1(v_unregisterFn_546_, lean_box(0));
-v___f_548_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0));
+v___f_548_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0);
 v___x_549_ = lean_unsigned_to_nat(0u);
 v___x_550_ = l___private_Std_Async_Basic_0__Std_Async_BaseAsync_bind_bindAsyncTask(lean_box(0), lean_box(0), v___x_549_, v_a_535_, v___x_547_, v___f_548_);
 v___x_551_ = lean_box_usize(v_i_538_);
@@ -2539,6 +2584,24 @@ v_res_766_ = l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___a
 return v_res_766_;
 }
 }
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_767_; 
+v___f_767_ = lean_alloc_closure((void*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___lam__1), 1, 0);
+return v___f_767_;
+}
+}
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_768_; lean_object* v___f_769_; 
+v___x_768_ = lean_box(0);
+v___f_769_ = lean_alloc_closure((void*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___lam__4), 2, 1);
+lean_closure_set(v___f_769_, 0, v___x_768_);
+return v___f_769_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___lam__11___boxed(lean_object* v_i_770_, lean_object* v_a_771_, lean_object* v___x_772_, lean_object* v_a_773_, lean_object* v_a_774_, lean_object* v_as_775_, lean_object* v_sz_776_, lean_object* v_x_777_, lean_object* v___y_778_){
 _start:
 {
@@ -2577,12 +2640,12 @@ v___x_794_ = lean_st_ref_get(v_a_785_);
 lean_inc_n(v_a_782_, 2);
 v___f_795_ = lean_alloc_closure((void*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___lam__0___boxed), 3, 1);
 lean_closure_set(v___f_795_, 0, v_a_782_);
-v___f_796_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___closed__0));
+v___f_796_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___closed__0, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___closed__0);
 v___f_797_ = lean_alloc_closure((void*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___lam__2___boxed), 3, 1);
 lean_closure_set(v___f_797_, 0, v_a_782_);
 v___x_798_ = lean_box(0);
-v___f_799_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0));
-v___f_800_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___closed__1));
+v___f_799_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0);
+v___f_800_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___closed__1, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___closed__1_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__2___redArg___closed__1);
 v_a_801_ = lean_array_uget_borrowed(v_as_786_, v_i_788_);
 v___x_802_ = lean_box(v___x_791_);
 lean_inc(v_a_785_);
@@ -3399,6 +3462,28 @@ v_res_1033_ = l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___
 return v_res_1033_;
 }
 }
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_1034_; lean_object* v___f_1035_; 
+v___x_1034_ = lean_box(0);
+v___f_1035_ = lean_alloc_closure((void*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___lam__0___boxed), 3, 1);
+lean_closure_set(v___f_1035_, 0, v___x_1034_);
+return v___f_1035_;
+}
+}
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_1036_; lean_object* v___x_1037_; lean_object* v___x_1038_; 
+v___x_1036_ = lean_box(0);
+v___x_1037_ = lean_box(0);
+v___x_1038_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_1038_, 0, v___x_1037_);
+lean_ctor_set(v___x_1038_, 1, v___x_1036_);
+return v___x_1038_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___lam__2___boxed(lean_object* v_i_1039_, lean_object* v_as_1040_, lean_object* v_sz_1041_, lean_object* v_x_1042_, lean_object* v___y_1043_){
 _start:
 {
@@ -3435,8 +3520,8 @@ v_selector_1056_ = lean_ctor_get(v_a_1055_, 0);
 v_tryFn_1057_ = lean_ctor_get(v_selector_1056_, 0);
 lean_inc_ref(v_tryFn_1057_);
 v___x_1058_ = lean_apply_1(v_tryFn_1057_, lean_box(0));
-v___f_1059_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__0));
-v___x_1060_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__1));
+v___f_1059_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__0, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__0);
+v___x_1060_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__1, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__1_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__1);
 lean_inc(v_a_1055_);
 v___f_1061_ = lean_alloc_closure((void*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___lam__1___boxed), 5, 3);
 lean_closure_set(v___f_1061_, 0, v_a_1055_);
@@ -3669,7 +3754,7 @@ v_a_1123_ = lean_ctor_get(v_x_1112_, 0);
 lean_inc(v_a_1123_);
 lean_dec_ref(v_x_1112_);
 v___x_1124_ = lean_box(0);
-v___x_1125_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__1));
+v___x_1125_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__1, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__1_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__3___redArg___closed__1);
 v_sz_1126_ = lean_array_size(v___x_1111_);
 v___x_1127_ = ((size_t)0ULL);
 lean_inc_ref(v___x_1111_);
@@ -3989,6 +4074,44 @@ v_res_1220_ = l_Std_Async_Selectable_one___redArg___lam__10(v___f_1217_, v_x_121
 return v_res_1220_;
 }
 }
+static lean_object* _init_l_Std_Async_Selectable_one___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_1221_; 
+v___x_1221_ = lean_mk_string_unchecked("Selectable.one requires at least one Selectable", 47, 47);
+return v___x_1221_;
+}
+}
+static lean_object* _init_l_Std_Async_Selectable_one___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_1222_; lean_object* v___x_1223_; 
+v___x_1222_ = lean_obj_once(&l_Std_Async_Selectable_one___redArg___closed__0, &l_Std_Async_Selectable_one___redArg___closed__0_once, _init_l_Std_Async_Selectable_one___redArg___closed__0);
+v___x_1223_ = lean_alloc_ctor(18, 1, 0);
+lean_ctor_set(v___x_1223_, 0, v___x_1222_);
+return v___x_1223_;
+}
+}
+static lean_object* _init_l_Std_Async_Selectable_one___redArg___closed__2(void){
+_start:
+{
+lean_object* v___x_1224_; lean_object* v___x_1225_; 
+v___x_1224_ = lean_obj_once(&l_Std_Async_Selectable_one___redArg___closed__1, &l_Std_Async_Selectable_one___redArg___closed__1_once, _init_l_Std_Async_Selectable_one___redArg___closed__1);
+v___x_1225_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_1225_, 0, v___x_1224_);
+return v___x_1225_;
+}
+}
+static lean_object* _init_l_Std_Async_Selectable_one___redArg___closed__3(void){
+_start:
+{
+lean_object* v___x_1226_; lean_object* v___x_1227_; 
+v___x_1226_ = lean_obj_once(&l_Std_Async_Selectable_one___redArg___closed__2, &l_Std_Async_Selectable_one___redArg___closed__2_once, _init_l_Std_Async_Selectable_one___redArg___closed__2);
+v___x_1227_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_1227_, 0, v___x_1226_);
+return v___x_1227_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_one___redArg(lean_object* v_selectables_1228_){
 _start:
 {
@@ -4017,7 +4140,7 @@ lean_object* v___f_1237_; lean_object* v___x_1238_; uint8_t v___x_1239_; lean_ob
 lean_dec_ref(v___f_1230_);
 v___f_1237_ = lean_alloc_closure((void*)(l_Std_Async_Selectable_one___redArg___lam__10___boxed), 3, 1);
 lean_closure_set(v___f_1237_, 0, v___f_1231_);
-v___x_1238_ = ((lean_object*)(l_Std_Async_Selectable_one___redArg___closed__3));
+v___x_1238_ = lean_obj_once(&l_Std_Async_Selectable_one___redArg___closed__3, &l_Std_Async_Selectable_one___redArg___closed__3_once, _init_l_Std_Async_Selectable_one___redArg___closed__3);
 v___x_1239_ = 0;
 v___x_1240_ = l___private_Std_Async_Basic_0__Std_Async_BaseAsync_bind_bindAsyncTask(lean_box(0), lean_box(0), v___x_1233_, v___x_1239_, v___x_1238_, v___f_1237_);
 return v___x_1240_;
@@ -4109,6 +4232,26 @@ v_res_1310_ = l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___
 return v_res_1310_;
 }
 }
+static lean_object* _init_l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_1311_; lean_object* v___x_1312_; 
+v___x_1311_ = lean_box(0);
+v___x_1312_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_1312_, 0, v___x_1311_);
+return v___x_1312_;
+}
+}
+static lean_object* _init_l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__1(void){
+_start:
+{
+lean_object* v___x_1313_; lean_object* v___x_1314_; 
+v___x_1313_ = lean_obj_once(&l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__0, &l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__0_once, _init_l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__0);
+v___x_1314_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_1314_, 0, v___x_1313_);
+return v___x_1314_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_tryOne___redArg___lam__0(lean_object* v_x_1315_){
 _start:
 {
@@ -4185,7 +4328,7 @@ if (lean_obj_tag(v_fst_1330_) == 0)
 {
 lean_object* v___x_1331_; 
 lean_del_object(v___x_1328_);
-v___x_1331_ = ((lean_object*)(l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__1));
+v___x_1331_ = lean_obj_once(&l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__1, &l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__1_once, _init_l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__1);
 return v___x_1331_;
 }
 else
@@ -4503,6 +4646,28 @@ v_res_1414_ = l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___
 return v_res_1414_;
 }
 }
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_1415_; lean_object* v___f_1416_; 
+v___x_1415_ = lean_box(0);
+v___f_1416_ = lean_alloc_closure((void*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___lam__0___boxed), 3, 1);
+lean_closure_set(v___f_1416_, 0, v___x_1415_);
+return v___f_1416_;
+}
+}
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_1417_; lean_object* v___x_1418_; lean_object* v___x_1419_; 
+v___x_1417_ = lean_box(0);
+v___x_1418_ = lean_box(0);
+v___x_1419_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_1419_, 0, v___x_1418_);
+lean_ctor_set(v___x_1419_, 1, v___x_1417_);
+return v___x_1419_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___lam__2___boxed(lean_object* v_i_1420_, lean_object* v___x_1421_, lean_object* v_as_1422_, lean_object* v_sz_1423_, lean_object* v_x_1424_, lean_object* v___y_1425_){
 _start:
 {
@@ -4542,8 +4707,8 @@ lean_inc_ref(v_tryFn_1440_);
 v___x_1441_ = lean_apply_1(v_tryFn_1440_, lean_box(0));
 v___x_1442_ = lean_unsigned_to_nat(0u);
 v___x_1443_ = lean_nat_dec_eq(v___x_1429_, v___x_1442_);
-v___f_1444_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__0));
-v___x_1445_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__1));
+v___f_1444_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__0, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__0);
+v___x_1445_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__1, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__1_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__1);
 v___x_1446_ = lean_box(v___x_1443_);
 lean_inc(v_a_1438_);
 v___f_1447_ = lean_alloc_closure((void*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___lam__1___boxed), 7, 5);
@@ -4789,7 +4954,7 @@ v___x_1516_ = lean_uint64_to_nat(v___x_1515_);
 v___x_1517_ = l_mkStdGen(v___x_1516_);
 lean_dec(v___x_1516_);
 v___x_1518_ = l___private_Std_Async_Select_0__Std_Async_shuffleIt___redArg(v_selectables_1498_, v___x_1517_);
-v___x_1519_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__1));
+v___x_1519_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__1, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__1_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__1);
 v_sz_1520_ = lean_array_size(v___x_1518_);
 v___x_1521_ = ((size_t)0ULL);
 v___x_1522_ = l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg(v___x_1499_, v___x_1518_, v_sz_1520_, v___x_1521_, v___x_1519_);
@@ -4807,6 +4972,14 @@ v_res_1532_ = l_Std_Async_Selectable_tryOne___redArg___lam__1(v_selectables_1524
 return v_res_1532_;
 }
 }
+static lean_object* _init_l_Std_Async_Selectable_tryOne___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_1533_; 
+v___f_1533_ = lean_alloc_closure((void*)(l_Std_Async_Selectable_tryOne___redArg___lam__0___boxed), 2, 0);
+return v___f_1533_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_tryOne___redArg(lean_object* v_selectables_1534_){
 _start:
 {
@@ -4817,7 +4990,7 @@ v___x_1538_ = lean_nat_dec_eq(v___x_1536_, v___x_1537_);
 if (v___x_1538_ == 0)
 {
 lean_object* v___f_1539_; lean_object* v___x_1540_; lean_object* v___f_1541_; lean_object* v_val_1543_; size_t v___x_1546_; lean_object* v___x_1547_; 
-v___f_1539_ = ((lean_object*)(l_Std_Async_Selectable_tryOne___redArg___closed__0));
+v___f_1539_ = lean_obj_once(&l_Std_Async_Selectable_tryOne___redArg___closed__0, &l_Std_Async_Selectable_tryOne___redArg___closed__0_once, _init_l_Std_Async_Selectable_tryOne___redArg___closed__0);
 v___x_1540_ = lean_box(v___x_1538_);
 v___f_1541_ = lean_alloc_closure((void*)(l_Std_Async_Selectable_tryOne___redArg___lam__1___boxed), 7, 5);
 lean_closure_set(v___f_1541_, 0, v_selectables_1534_);
@@ -4926,7 +5099,7 @@ else
 {
 lean_object* v___x_1564_; 
 lean_dec_ref(v_selectables_1534_);
-v___x_1564_ = ((lean_object*)(l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__1));
+v___x_1564_ = lean_obj_once(&l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__1, &l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__1_once, _init_l_Std_Async_Selectable_tryOne___redArg___lam__0___closed__1);
 return v___x_1564_;
 }
 }
@@ -5345,7 +5518,7 @@ lean_inc_ref(v_unregisterFn_1715_);
 v___x_1716_ = lean_apply_1(v_unregisterFn_1715_, lean_box(0));
 v___x_1717_ = lean_unsigned_to_nat(0u);
 v___x_1718_ = lean_nat_dec_eq(v___x_1704_, v___x_1717_);
-v___f_1719_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0));
+v___f_1719_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0);
 v___x_1720_ = l___private_Std_Async_Basic_0__Std_Async_BaseAsync_bind_bindAsyncTask(lean_box(0), lean_box(0), v___x_1717_, v___x_1718_, v___x_1716_, v___f_1719_);
 v___x_1721_ = lean_box_usize(v_i_1707_);
 v___x_1722_ = lean_box_usize(v_sz_1706_);
@@ -6114,6 +6287,14 @@ v_res_1991_ = l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___
 return v_res_1991_;
 }
 }
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_combine_spec__1___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_1992_; 
+v___f_1992_ = lean_alloc_closure((void*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_combine_spec__1___redArg___lam__0), 1, 0);
+return v___f_1992_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_combine_spec__1___redArg___lam__10___boxed(lean_object* v_i_1993_, lean_object* v_waiter_1994_, lean_object* v___x_1995_, lean_object* v___x_1996_, lean_object* v_as_1997_, lean_object* v_sz_1998_, lean_object* v_x_1999_, lean_object* v___y_2000_){
 _start:
 {
@@ -6148,9 +6329,9 @@ else
 {
 lean_object* v___x_2015_; lean_object* v___f_2016_; lean_object* v___x_2017_; lean_object* v___f_2018_; lean_object* v___x_2019_; uint8_t v___x_2020_; lean_object* v_a_2021_; lean_object* v___x_2022_; lean_object* v___f_2023_; lean_object* v___x_2024_; lean_object* v___x_2025_; lean_object* v___x_2026_; lean_object* v___x_2027_; lean_object* v___x_2028_; lean_object* v___f_2029_; uint8_t v___x_2030_; lean_object* v___x_2031_; 
 v___x_2015_ = lean_io_promise_new();
-v___f_2016_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_combine_spec__1___redArg___closed__0));
+v___f_2016_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_combine_spec__1___redArg___closed__0, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_combine_spec__1___redArg___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_combine_spec__1___redArg___closed__0);
 v___x_2017_ = lean_box(0);
-v___f_2018_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0));
+v___f_2018_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_one_spec__0___redArg___closed__0);
 v___x_2019_ = lean_unsigned_to_nat(0u);
 v___x_2020_ = lean_nat_dec_eq(v___x_2005_, v___x_2019_);
 v_a_2021_ = lean_array_uget_borrowed(v_as_2007_, v_i_2009_);
@@ -6418,6 +6599,25 @@ v_res_2149_ = l_Std_Async_Selectable_combine___redArg___lam__2(v___x_2137_, v___
 return v_res_2149_;
 }
 }
+static lean_object* _init_l_Std_Async_Selectable_combine___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_2150_; lean_object* v___f_2151_; 
+v___x_2150_ = lean_box(0);
+v___f_2151_ = lean_alloc_closure((void*)(l_Std_Async_Selectable_combine___redArg___lam__1___boxed), 3, 1);
+lean_closure_set(v___f_2151_, 0, v___x_2150_);
+return v___f_2151_;
+}
+}
+static lean_object* _init_l_Std_Async_Selectable_combine___redArg___boxed__const__1(void){
+_start:
+{
+size_t v___x_2152_; lean_object* v___x_2153_; 
+v___x_2152_ = ((size_t)0ULL);
+v___x_2153_ = lean_box_usize(v___x_2152_);
+return v___x_2153_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_Selectable_combine___redArg(lean_object* v_selectables_2154_){
 _start:
 {
@@ -6452,7 +6652,7 @@ goto v_resetjp_2162_;
 v_resetjp_2162_:
 {
 lean_object* v___f_2165_; uint64_t v___x_2166_; lean_object* v___x_2167_; lean_object* v___x_2168_; lean_object* v___x_2169_; lean_object* v___x_2170_; lean_object* v___f_2171_; lean_object* v___x_2172_; lean_object* v___f_2173_; lean_object* v___x_2174_; size_t v_sz_2175_; lean_object* v___x_2176_; lean_object* v___x_2177_; lean_object* v___x_2178_; lean_object* v___f_2179_; lean_object* v___x_2180_; lean_object* v___x_2181_; lean_object* v___x_2182_; lean_object* v___f_2183_; lean_object* v___x_2184_; lean_object* v___x_2186_; 
-v___f_2165_ = ((lean_object*)(l_Std_Async_Selectable_tryOne___redArg___closed__0));
+v___f_2165_ = lean_obj_once(&l_Std_Async_Selectable_tryOne___redArg___closed__0, &l_Std_Async_Selectable_tryOne___redArg___closed__0_once, _init_l_Std_Async_Selectable_tryOne___redArg___closed__0);
 v___x_2166_ = l_ByteArray_toUInt64LE_x21(v_a_2161_);
 lean_dec(v_a_2161_);
 v___x_2167_ = lean_uint64_to_nat(v___x_2166_);
@@ -6460,7 +6660,7 @@ v___x_2168_ = l_mkStdGen(v___x_2167_);
 lean_dec(v___x_2167_);
 v___x_2169_ = l___private_Std_Async_Select_0__Std_Async_shuffleIt___redArg(v_selectables_2154_, v___x_2168_);
 v___x_2170_ = lean_box(0);
-v___f_2171_ = ((lean_object*)(l_Std_Async_Selectable_combine___redArg___closed__0));
+v___f_2171_ = lean_obj_once(&l_Std_Async_Selectable_combine___redArg___closed__0, &l_Std_Async_Selectable_combine___redArg___closed__0_once, _init_l_Std_Async_Selectable_combine___redArg___closed__0);
 v___x_2172_ = lean_box(v___x_2158_);
 lean_inc_ref_n(v___x_2169_, 2);
 v___f_2173_ = lean_alloc_closure((void*)(l_Std_Async_Selectable_combine___redArg___lam__0___boxed), 8, 6);
@@ -6470,10 +6670,10 @@ lean_closure_set(v___f_2173_, 2, v___x_2170_);
 lean_closure_set(v___f_2173_, 3, v___x_2157_);
 lean_closure_set(v___f_2173_, 4, v___x_2172_);
 lean_closure_set(v___f_2173_, 5, v___f_2171_);
-v___x_2174_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__1));
+v___x_2174_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__1, &l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__1_once, _init_l___private_Init_Data_Array_Basic_0__Array_forIn_x27Unsafe_loop___at___00Std_Async_Selectable_tryOne_spec__0___redArg___closed__1);
 v_sz_2175_ = lean_array_size(v___x_2169_);
 v___x_2176_ = lean_box_usize(v_sz_2175_);
-v___x_2177_ = ((lean_object*)(l_Std_Async_Selectable_combine___redArg___boxed__const__1));
+v___x_2177_ = l_Std_Async_Selectable_combine___redArg___boxed__const__1;
 v___x_2178_ = lean_box(v___x_2158_);
 v___f_2179_ = lean_alloc_closure((void*)(l_Std_Async_Selectable_combine___redArg___lam__3___boxed), 9, 8);
 lean_closure_set(v___f_2179_, 0, v___x_2156_);
@@ -6485,7 +6685,7 @@ lean_closure_set(v___f_2179_, 5, v___x_2157_);
 lean_closure_set(v___f_2179_, 6, v___x_2178_);
 lean_closure_set(v___f_2179_, 7, v___f_2171_);
 v___x_2180_ = lean_box_usize(v_sz_2175_);
-v___x_2181_ = ((lean_object*)(l_Std_Async_Selectable_combine___redArg___boxed__const__1));
+v___x_2181_ = l_Std_Async_Selectable_combine___redArg___boxed__const__1;
 v___x_2182_ = lean_box(v___x_2158_);
 v___f_2183_ = lean_alloc_closure((void*)(l_Std_Async_Selectable_combine___redArg___lam__2___boxed), 9, 8);
 lean_closure_set(v___f_2183_, 0, v___x_2156_);
@@ -6567,7 +6767,7 @@ else
 {
 lean_object* v___x_2197_; lean_object* v___x_2198_; 
 lean_dec_ref(v_selectables_2154_);
-v___x_2197_ = ((lean_object*)(l_Std_Async_Selectable_one___redArg___closed__1));
+v___x_2197_ = lean_obj_once(&l_Std_Async_Selectable_one___redArg___closed__1, &l_Std_Async_Selectable_one___redArg___closed__1_once, _init_l_Std_Async_Selectable_one___redArg___closed__1);
 v___x_2198_ = lean_alloc_ctor(1, 1, 0);
 lean_ctor_set(v___x_2198_, 0, v___x_2197_);
 return v___x_2198_;
@@ -6663,6 +6863,8 @@ lean_dec_ref(res);
 res = runtime_initialize_Init_Omega(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Std_Async_Selectable_combine___redArg___boxed__const__1 = _init_l_Std_Async_Selectable_combine___redArg___boxed__const__1();
+lean_mark_persistent(l_Std_Async_Selectable_combine___redArg___boxed__const__1);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

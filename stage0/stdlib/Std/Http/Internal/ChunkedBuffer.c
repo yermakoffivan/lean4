@@ -37,11 +37,11 @@ uint8_t lean_uint32_to_uint8(uint32_t);
 lean_object* lean_byte_array_mk(lean_object*);
 lean_object* lean_string_to_utf8(lean_object*);
 lean_object* l_Array_append___redArg(lean_object*, lean_object*);
-static const lean_array_object l_Std_Http_Internal_ChunkedBuffer_empty___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Std_Http_Internal_ChunkedBuffer_empty___closed__0 = (const lean_object*)&l_Std_Http_Internal_ChunkedBuffer_empty___closed__0_value;
-static const lean_ctor_object l_Std_Http_Internal_ChunkedBuffer_empty___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Http_Internal_ChunkedBuffer_empty___closed__0_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_Http_Internal_ChunkedBuffer_empty___closed__1 = (const lean_object*)&l_Std_Http_Internal_ChunkedBuffer_empty___closed__1_value;
-LEAN_EXPORT const lean_object* l_Std_Http_Internal_ChunkedBuffer_empty = (const lean_object*)&l_Std_Http_Internal_ChunkedBuffer_empty___closed__1_value;
+static lean_once_cell_t l_Std_Http_Internal_ChunkedBuffer_empty___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_ChunkedBuffer_empty___closed__0;
+static lean_once_cell_t l_Std_Http_Internal_ChunkedBuffer_empty___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_ChunkedBuffer_empty___closed__1;
+LEAN_EXPORT lean_object* l_Std_Http_Internal_ChunkedBuffer_empty;
 LEAN_EXPORT lean_object* l_Std_Http_Internal_ChunkedBuffer_push(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Internal_ChunkedBuffer_write(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Internal_ChunkedBuffer_append(lean_object*, lean_object*);
@@ -51,43 +51,72 @@ LEAN_EXPORT lean_object* l_Std_Http_Internal_ChunkedBuffer_writeString(lean_obje
 LEAN_EXPORT lean_object* l_Std_Http_Internal_ChunkedBuffer_writeString___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___lam__0(uint8_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___lam__0___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__0, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__0 = (const lean_object*)&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__0_value;
-static const lean_closure_object l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__1___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__1 = (const lean_object*)&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__1_value;
-static const lean_closure_object l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__2___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__2 = (const lean_object*)&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__2_value;
-static const lean_closure_object l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__3, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__3 = (const lean_object*)&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__3_value;
-static const lean_closure_object l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__4___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__4 = (const lean_object*)&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__4_value;
-static const lean_closure_object l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__5___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__5 = (const lean_object*)&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__5_value;
-static const lean_closure_object l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__6, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__6 = (const lean_object*)&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__6_value;
-static const lean_ctor_object l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__0_value),((lean_object*)&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__1_value)}};
-static const lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__7 = (const lean_object*)&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__7_value;
-static const lean_ctor_object l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*5 + 0, .m_other = 5, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__7_value),((lean_object*)&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__2_value),((lean_object*)&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__3_value),((lean_object*)&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__4_value),((lean_object*)&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__5_value)}};
-static const lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__8 = (const lean_object*)&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__8_value;
-static const lean_ctor_object l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__8_value),((lean_object*)&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__6_value)}};
-static const lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__9 = (const lean_object*)&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__9_value;
+static lean_once_cell_t l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__0;
+static lean_once_cell_t l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__1;
+static lean_once_cell_t l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__2;
+static lean_once_cell_t l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__3;
+static lean_once_cell_t l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__4;
+static lean_once_cell_t l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__5;
+static lean_once_cell_t l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__6;
+static lean_once_cell_t l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__7;
+static lean_once_cell_t l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__8;
+static lean_once_cell_t l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__9;
 LEAN_EXPORT lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Internal_ChunkedBuffer_ofByteArray(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Internal_ChunkedBuffer_ofArray___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Internal_ChunkedBuffer_ofArray___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Http_Internal_ChunkedBuffer_ofArray___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Internal_ChunkedBuffer_ofArray___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Internal_ChunkedBuffer_ofArray___closed__0 = (const lean_object*)&l_Std_Http_Internal_ChunkedBuffer_ofArray___closed__0_value;
+static lean_once_cell_t l_Std_Http_Internal_ChunkedBuffer_ofArray___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_ChunkedBuffer_ofArray___closed__0;
 LEAN_EXPORT lean_object* l_Std_Http_Internal_ChunkedBuffer_ofArray(lean_object*);
 LEAN_EXPORT uint8_t l_Std_Http_Internal_ChunkedBuffer_isEmpty(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Internal_ChunkedBuffer_isEmpty___boxed(lean_object*);
-LEAN_EXPORT const lean_object* l_Std_Http_Internal_ChunkedBuffer_instInhabited = (const lean_object*)&l_Std_Http_Internal_ChunkedBuffer_empty___closed__1_value;
-LEAN_EXPORT const lean_object* l_Std_Http_Internal_ChunkedBuffer_instEmptyCollection = (const lean_object*)&l_Std_Http_Internal_ChunkedBuffer_empty___closed__1_value;
-static const lean_closure_object l_Std_Http_Internal_ChunkedBuffer_instCoeByteArray___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Internal_ChunkedBuffer_ofByteArray, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Internal_ChunkedBuffer_instCoeByteArray___closed__0 = (const lean_object*)&l_Std_Http_Internal_ChunkedBuffer_instCoeByteArray___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Http_Internal_ChunkedBuffer_instCoeByteArray = (const lean_object*)&l_Std_Http_Internal_ChunkedBuffer_instCoeByteArray___closed__0_value;
-static const lean_closure_object l_Std_Http_Internal_ChunkedBuffer_instCoeArrayByteArray___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Internal_ChunkedBuffer_ofArray, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Internal_ChunkedBuffer_instCoeArrayByteArray___closed__0 = (const lean_object*)&l_Std_Http_Internal_ChunkedBuffer_instCoeArrayByteArray___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Http_Internal_ChunkedBuffer_instCoeArrayByteArray = (const lean_object*)&l_Std_Http_Internal_ChunkedBuffer_instCoeArrayByteArray___closed__0_value;
+LEAN_EXPORT lean_object* l_Std_Http_Internal_ChunkedBuffer_instInhabited;
+LEAN_EXPORT lean_object* l_Std_Http_Internal_ChunkedBuffer_instEmptyCollection;
+static lean_once_cell_t l_Std_Http_Internal_ChunkedBuffer_instCoeByteArray___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_ChunkedBuffer_instCoeByteArray___closed__0;
+LEAN_EXPORT lean_object* l_Std_Http_Internal_ChunkedBuffer_instCoeByteArray;
+static lean_once_cell_t l_Std_Http_Internal_ChunkedBuffer_instCoeArrayByteArray___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_ChunkedBuffer_instCoeArrayByteArray___closed__0;
+LEAN_EXPORT lean_object* l_Std_Http_Internal_ChunkedBuffer_instCoeArrayByteArray;
+static lean_object* _init_l_Std_Http_Internal_ChunkedBuffer_empty___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; lean_object* v___x_2_; 
+v___x_1_ = lean_unsigned_to_nat(0u);
+v___x_2_ = lean_mk_empty_array_with_capacity(v___x_1_);
+return v___x_2_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_ChunkedBuffer_empty___closed__1(void){
+_start:
+{
+lean_object* v___x_3_; lean_object* v___x_4_; lean_object* v___x_5_; 
+v___x_3_ = lean_unsigned_to_nat(0u);
+v___x_4_ = lean_obj_once(&l_Std_Http_Internal_ChunkedBuffer_empty___closed__0, &l_Std_Http_Internal_ChunkedBuffer_empty___closed__0_once, _init_l_Std_Http_Internal_ChunkedBuffer_empty___closed__0);
+v___x_5_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_5_, 0, v___x_4_);
+lean_ctor_set(v___x_5_, 1, v___x_3_);
+return v___x_5_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_ChunkedBuffer_empty(void){
+_start:
+{
+lean_object* v___x_6_; 
+v___x_6_ = lean_obj_once(&l_Std_Http_Internal_ChunkedBuffer_empty___closed__1, &l_Std_Http_Internal_ChunkedBuffer_empty___closed__1_once, _init_l_Std_Http_Internal_ChunkedBuffer_empty___closed__1);
+return v___x_6_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Http_Internal_ChunkedBuffer_push(lean_object* v_c_7_, lean_object* v_b_8_){
 _start:
 {
@@ -409,6 +438,104 @@ lean_dec_ref(v_x2_101_);
 return v_res_103_;
 }
 }
+static lean_object* _init_l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__0(void){
+_start:
+{
+lean_object* v___f_104_; 
+v___f_104_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__0), 4, 0);
+return v___f_104_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__1(void){
+_start:
+{
+lean_object* v___f_105_; 
+v___f_105_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__1___boxed), 4, 0);
+return v___f_105_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__2(void){
+_start:
+{
+lean_object* v___f_106_; 
+v___f_106_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__2___boxed), 2, 0);
+return v___f_106_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__3(void){
+_start:
+{
+lean_object* v___f_107_; 
+v___f_107_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__3), 4, 0);
+return v___f_107_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__4(void){
+_start:
+{
+lean_object* v___f_108_; 
+v___f_108_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__4___boxed), 4, 0);
+return v___f_108_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__5(void){
+_start:
+{
+lean_object* v___f_109_; 
+v___f_109_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__5___boxed), 4, 0);
+return v___f_109_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__6(void){
+_start:
+{
+lean_object* v___f_110_; 
+v___f_110_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__6), 4, 0);
+return v___f_110_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__7(void){
+_start:
+{
+lean_object* v___f_111_; lean_object* v___f_112_; lean_object* v___x_113_; 
+v___f_111_ = lean_obj_once(&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__1, &l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__1_once, _init_l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__1);
+v___f_112_ = lean_obj_once(&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__0, &l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__0_once, _init_l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__0);
+v___x_113_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_113_, 0, v___f_112_);
+lean_ctor_set(v___x_113_, 1, v___f_111_);
+return v___x_113_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__8(void){
+_start:
+{
+lean_object* v___f_114_; lean_object* v___f_115_; lean_object* v___f_116_; lean_object* v___f_117_; lean_object* v___x_118_; lean_object* v___x_119_; 
+v___f_114_ = lean_obj_once(&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__5, &l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__5_once, _init_l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__5);
+v___f_115_ = lean_obj_once(&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__4, &l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__4_once, _init_l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__4);
+v___f_116_ = lean_obj_once(&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__3, &l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__3_once, _init_l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__3);
+v___f_117_ = lean_obj_once(&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__2, &l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__2_once, _init_l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__2);
+v___x_118_ = lean_obj_once(&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__7, &l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__7_once, _init_l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__7);
+v___x_119_ = lean_alloc_ctor(0, 5, 0);
+lean_ctor_set(v___x_119_, 0, v___x_118_);
+lean_ctor_set(v___x_119_, 1, v___f_117_);
+lean_ctor_set(v___x_119_, 2, v___f_116_);
+lean_ctor_set(v___x_119_, 3, v___f_115_);
+lean_ctor_set(v___x_119_, 4, v___f_114_);
+return v___x_119_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__9(void){
+_start:
+{
+lean_object* v___f_120_; lean_object* v___x_121_; lean_object* v___x_122_; 
+v___f_120_ = lean_obj_once(&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__6, &l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__6_once, _init_l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__6);
+v___x_121_ = lean_obj_once(&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__8, &l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__8_once, _init_l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__8);
+v___x_122_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_122_, 0, v___x_121_);
+lean_ctor_set(v___x_122_, 1, v___f_120_);
+return v___x_122_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Http_Internal_ChunkedBuffer_toByteArray(lean_object* v_cb_123_){
 _start:
 {
@@ -427,7 +554,7 @@ lean_object* v___x_129_; lean_object* v___x_130_; lean_object* v___x_131_; uint8
 v___x_129_ = lean_mk_empty_byte_array(v_size_125_);
 lean_dec(v_size_125_);
 v___x_130_ = lean_unsigned_to_nat(0u);
-v___x_131_ = ((lean_object*)(l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__9));
+v___x_131_ = lean_obj_once(&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__9, &l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__9_once, _init_l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__9);
 v___x_132_ = lean_nat_dec_lt(v___x_130_, v___x_127_);
 if (v___x_132_ == 0)
 {
@@ -514,13 +641,21 @@ lean_dec(v_x1_154_);
 return v_res_156_;
 }
 }
+static lean_object* _init_l_Std_Http_Internal_ChunkedBuffer_ofArray___closed__0(void){
+_start:
+{
+lean_object* v___f_157_; 
+v___f_157_ = lean_alloc_closure((void*)(l_Std_Http_Internal_ChunkedBuffer_ofArray___lam__0___boxed), 2, 0);
+return v___f_157_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Http_Internal_ChunkedBuffer_ofArray(lean_object* v_bs_158_){
 _start:
 {
 lean_object* v___x_159_; lean_object* v___x_160_; lean_object* v___x_161_; uint8_t v___x_162_; 
 v___x_159_ = lean_unsigned_to_nat(0u);
 v___x_160_ = lean_array_get_size(v_bs_158_);
-v___x_161_ = ((lean_object*)(l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__9));
+v___x_161_ = lean_obj_once(&l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__9, &l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__9_once, _init_l_Std_Http_Internal_ChunkedBuffer_toByteArray___closed__9);
 v___x_162_ = lean_nat_dec_lt(v___x_159_, v___x_160_);
 if (v___x_162_ == 0)
 {
@@ -533,7 +668,7 @@ return v___x_163_;
 else
 {
 lean_object* v___f_164_; uint8_t v___x_165_; 
-v___f_164_ = ((lean_object*)(l_Std_Http_Internal_ChunkedBuffer_ofArray___closed__0));
+v___f_164_ = lean_obj_once(&l_Std_Http_Internal_ChunkedBuffer_ofArray___closed__0, &l_Std_Http_Internal_ChunkedBuffer_ofArray___closed__0_once, _init_l_Std_Http_Internal_ChunkedBuffer_ofArray___closed__0);
 v___x_165_ = lean_nat_dec_le(v___x_160_, v___x_160_);
 if (v___x_165_ == 0)
 {
@@ -593,6 +728,54 @@ v_r_181_ = lean_box(v_res_180_);
 return v_r_181_;
 }
 }
+static lean_object* _init_l_Std_Http_Internal_ChunkedBuffer_instInhabited(void){
+_start:
+{
+lean_object* v___x_182_; 
+v___x_182_ = lean_obj_once(&l_Std_Http_Internal_ChunkedBuffer_empty___closed__1, &l_Std_Http_Internal_ChunkedBuffer_empty___closed__1_once, _init_l_Std_Http_Internal_ChunkedBuffer_empty___closed__1);
+return v___x_182_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_ChunkedBuffer_instEmptyCollection(void){
+_start:
+{
+lean_object* v___x_183_; 
+v___x_183_ = lean_obj_once(&l_Std_Http_Internal_ChunkedBuffer_empty___closed__1, &l_Std_Http_Internal_ChunkedBuffer_empty___closed__1_once, _init_l_Std_Http_Internal_ChunkedBuffer_empty___closed__1);
+return v___x_183_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_ChunkedBuffer_instCoeByteArray___closed__0(void){
+_start:
+{
+lean_object* v___x_184_; 
+v___x_184_ = lean_alloc_closure((void*)(l_Std_Http_Internal_ChunkedBuffer_ofByteArray), 1, 0);
+return v___x_184_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_ChunkedBuffer_instCoeByteArray(void){
+_start:
+{
+lean_object* v___x_185_; 
+v___x_185_ = lean_obj_once(&l_Std_Http_Internal_ChunkedBuffer_instCoeByteArray___closed__0, &l_Std_Http_Internal_ChunkedBuffer_instCoeByteArray___closed__0_once, _init_l_Std_Http_Internal_ChunkedBuffer_instCoeByteArray___closed__0);
+return v___x_185_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_ChunkedBuffer_instCoeArrayByteArray___closed__0(void){
+_start:
+{
+lean_object* v___x_186_; 
+v___x_186_ = lean_alloc_closure((void*)(l_Std_Http_Internal_ChunkedBuffer_ofArray), 1, 0);
+return v___x_186_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_ChunkedBuffer_instCoeArrayByteArray(void){
+_start:
+{
+lean_object* v___x_187_; 
+v___x_187_ = lean_obj_once(&l_Std_Http_Internal_ChunkedBuffer_instCoeArrayByteArray___closed__0, &l_Std_Http_Internal_ChunkedBuffer_instCoeArrayByteArray___closed__0_once, _init_l_Std_Http_Internal_ChunkedBuffer_instCoeArrayByteArray___closed__0);
+return v___x_187_;
+}
+}
 lean_object* runtime_initialize_Init_Data_ToString(uint8_t builtin);
 lean_object* runtime_initialize_Init_Data_Array_Lemmas(uint8_t builtin);
 lean_object* runtime_initialize_Init_Data_String_Basic(uint8_t builtin);
@@ -614,6 +797,16 @@ lean_dec_ref(res);
 res = runtime_initialize_Init_Data_ByteArray(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Std_Http_Internal_ChunkedBuffer_empty = _init_l_Std_Http_Internal_ChunkedBuffer_empty();
+lean_mark_persistent(l_Std_Http_Internal_ChunkedBuffer_empty);
+l_Std_Http_Internal_ChunkedBuffer_instInhabited = _init_l_Std_Http_Internal_ChunkedBuffer_instInhabited();
+lean_mark_persistent(l_Std_Http_Internal_ChunkedBuffer_instInhabited);
+l_Std_Http_Internal_ChunkedBuffer_instEmptyCollection = _init_l_Std_Http_Internal_ChunkedBuffer_instEmptyCollection();
+lean_mark_persistent(l_Std_Http_Internal_ChunkedBuffer_instEmptyCollection);
+l_Std_Http_Internal_ChunkedBuffer_instCoeByteArray = _init_l_Std_Http_Internal_ChunkedBuffer_instCoeByteArray();
+lean_mark_persistent(l_Std_Http_Internal_ChunkedBuffer_instCoeByteArray);
+l_Std_Http_Internal_ChunkedBuffer_instCoeArrayByteArray = _init_l_Std_Http_Internal_ChunkedBuffer_instCoeArrayByteArray();
+lean_mark_persistent(l_Std_Http_Internal_ChunkedBuffer_instCoeArrayByteArray);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

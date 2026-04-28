@@ -19,8 +19,8 @@ LEAN_EXPORT lean_object* l_MonadAttach_pbind(lean_object*, lean_object*, lean_ob
 LEAN_EXPORT lean_object* l_MonadAttach_trivial___redArg___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_MonadAttach_trivial___redArg___lam__0___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_MonadAttach_trivial___redArg___lam__1(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_MonadAttach_trivial___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_MonadAttach_trivial___redArg___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_MonadAttach_trivial___redArg___closed__0 = (const lean_object*)&l_MonadAttach_trivial___redArg___closed__0_value;
+static lean_once_cell_t l_MonadAttach_trivial___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_MonadAttach_trivial___redArg___closed__0;
 LEAN_EXPORT lean_object* l_MonadAttach_trivial___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_MonadAttach_trivial(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_MonadAttach_pbind___redArg___lam__0(lean_object* v_f_1_, lean_object* v_x_2_){
@@ -80,6 +80,14 @@ v___x_28_ = lean_apply_4(v_map_27_, lean_box(0), lean_box(0), v___f_24_, v_x_26_
 return v___x_28_;
 }
 }
+static lean_object* _init_l_MonadAttach_trivial___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_29_; 
+v___f_29_ = lean_alloc_closure((void*)(l_MonadAttach_trivial___redArg___lam__0___boxed), 1, 0);
+return v___f_29_;
+}
+}
 LEAN_EXPORT lean_object* l_MonadAttach_trivial___redArg(lean_object* v_inst_30_){
 _start:
 {
@@ -90,7 +98,7 @@ lean_dec_ref(v_inst_30_);
 v_toFunctor_32_ = lean_ctor_get(v_toApplicative_31_, 0);
 lean_inc_ref(v_toFunctor_32_);
 lean_dec_ref(v_toApplicative_31_);
-v___f_33_ = ((lean_object*)(l_MonadAttach_trivial___redArg___closed__0));
+v___f_33_ = lean_obj_once(&l_MonadAttach_trivial___redArg___closed__0, &l_MonadAttach_trivial___redArg___closed__0_once, _init_l_MonadAttach_trivial___redArg___closed__0);
 v___f_34_ = lean_alloc_closure((void*)(l_MonadAttach_trivial___redArg___lam__1), 4, 2);
 lean_closure_set(v___f_34_, 0, v_toFunctor_32_);
 lean_closure_set(v___f_34_, 1, v___f_33_);

@@ -66,43 +66,43 @@ LEAN_EXPORT lean_object* l_Std_Time_Weekday_sunday_elim___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Weekday_sunday_elim___redArg___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Weekday_sunday_elim(lean_object*, uint8_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Weekday_sunday_elim___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std_Time_instReprWeekday_repr___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 24, .m_capacity = 24, .m_length = 23, .m_data = "Std.Time.Weekday.monday"};
-static const lean_object* l_Std_Time_instReprWeekday_repr___closed__0 = (const lean_object*)&l_Std_Time_instReprWeekday_repr___closed__0_value;
-static const lean_ctor_object l_Std_Time_instReprWeekday_repr___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Time_instReprWeekday_repr___closed__0_value)}};
-static const lean_object* l_Std_Time_instReprWeekday_repr___closed__1 = (const lean_object*)&l_Std_Time_instReprWeekday_repr___closed__1_value;
-static const lean_string_object l_Std_Time_instReprWeekday_repr___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "Std.Time.Weekday.tuesday"};
-static const lean_object* l_Std_Time_instReprWeekday_repr___closed__2 = (const lean_object*)&l_Std_Time_instReprWeekday_repr___closed__2_value;
-static const lean_ctor_object l_Std_Time_instReprWeekday_repr___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Time_instReprWeekday_repr___closed__2_value)}};
-static const lean_object* l_Std_Time_instReprWeekday_repr___closed__3 = (const lean_object*)&l_Std_Time_instReprWeekday_repr___closed__3_value;
-static const lean_string_object l_Std_Time_instReprWeekday_repr___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 27, .m_capacity = 27, .m_length = 26, .m_data = "Std.Time.Weekday.wednesday"};
-static const lean_object* l_Std_Time_instReprWeekday_repr___closed__4 = (const lean_object*)&l_Std_Time_instReprWeekday_repr___closed__4_value;
-static const lean_ctor_object l_Std_Time_instReprWeekday_repr___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Time_instReprWeekday_repr___closed__4_value)}};
-static const lean_object* l_Std_Time_instReprWeekday_repr___closed__5 = (const lean_object*)&l_Std_Time_instReprWeekday_repr___closed__5_value;
-static const lean_string_object l_Std_Time_instReprWeekday_repr___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 26, .m_capacity = 26, .m_length = 25, .m_data = "Std.Time.Weekday.thursday"};
-static const lean_object* l_Std_Time_instReprWeekday_repr___closed__6 = (const lean_object*)&l_Std_Time_instReprWeekday_repr___closed__6_value;
-static const lean_ctor_object l_Std_Time_instReprWeekday_repr___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Time_instReprWeekday_repr___closed__6_value)}};
-static const lean_object* l_Std_Time_instReprWeekday_repr___closed__7 = (const lean_object*)&l_Std_Time_instReprWeekday_repr___closed__7_value;
-static const lean_string_object l_Std_Time_instReprWeekday_repr___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 24, .m_capacity = 24, .m_length = 23, .m_data = "Std.Time.Weekday.friday"};
-static const lean_object* l_Std_Time_instReprWeekday_repr___closed__8 = (const lean_object*)&l_Std_Time_instReprWeekday_repr___closed__8_value;
-static const lean_ctor_object l_Std_Time_instReprWeekday_repr___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Time_instReprWeekday_repr___closed__8_value)}};
-static const lean_object* l_Std_Time_instReprWeekday_repr___closed__9 = (const lean_object*)&l_Std_Time_instReprWeekday_repr___closed__9_value;
-static const lean_string_object l_Std_Time_instReprWeekday_repr___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 26, .m_capacity = 26, .m_length = 25, .m_data = "Std.Time.Weekday.saturday"};
-static const lean_object* l_Std_Time_instReprWeekday_repr___closed__10 = (const lean_object*)&l_Std_Time_instReprWeekday_repr___closed__10_value;
-static const lean_ctor_object l_Std_Time_instReprWeekday_repr___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Time_instReprWeekday_repr___closed__10_value)}};
-static const lean_object* l_Std_Time_instReprWeekday_repr___closed__11 = (const lean_object*)&l_Std_Time_instReprWeekday_repr___closed__11_value;
-static const lean_string_object l_Std_Time_instReprWeekday_repr___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 24, .m_capacity = 24, .m_length = 23, .m_data = "Std.Time.Weekday.sunday"};
-static const lean_object* l_Std_Time_instReprWeekday_repr___closed__12 = (const lean_object*)&l_Std_Time_instReprWeekday_repr___closed__12_value;
-static const lean_ctor_object l_Std_Time_instReprWeekday_repr___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Time_instReprWeekday_repr___closed__12_value)}};
-static const lean_object* l_Std_Time_instReprWeekday_repr___closed__13 = (const lean_object*)&l_Std_Time_instReprWeekday_repr___closed__13_value;
+static lean_once_cell_t l_Std_Time_instReprWeekday_repr___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_instReprWeekday_repr___closed__0;
+static lean_once_cell_t l_Std_Time_instReprWeekday_repr___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_instReprWeekday_repr___closed__1;
+static lean_once_cell_t l_Std_Time_instReprWeekday_repr___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_instReprWeekday_repr___closed__2;
+static lean_once_cell_t l_Std_Time_instReprWeekday_repr___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_instReprWeekday_repr___closed__3;
+static lean_once_cell_t l_Std_Time_instReprWeekday_repr___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_instReprWeekday_repr___closed__4;
+static lean_once_cell_t l_Std_Time_instReprWeekday_repr___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_instReprWeekday_repr___closed__5;
+static lean_once_cell_t l_Std_Time_instReprWeekday_repr___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_instReprWeekday_repr___closed__6;
+static lean_once_cell_t l_Std_Time_instReprWeekday_repr___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_instReprWeekday_repr___closed__7;
+static lean_once_cell_t l_Std_Time_instReprWeekday_repr___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_instReprWeekday_repr___closed__8;
+static lean_once_cell_t l_Std_Time_instReprWeekday_repr___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_instReprWeekday_repr___closed__9;
+static lean_once_cell_t l_Std_Time_instReprWeekday_repr___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_instReprWeekday_repr___closed__10;
+static lean_once_cell_t l_Std_Time_instReprWeekday_repr___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_instReprWeekday_repr___closed__11;
+static lean_once_cell_t l_Std_Time_instReprWeekday_repr___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_instReprWeekday_repr___closed__12;
+static lean_once_cell_t l_Std_Time_instReprWeekday_repr___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_instReprWeekday_repr___closed__13;
 static lean_once_cell_t l_Std_Time_instReprWeekday_repr___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Time_instReprWeekday_repr___closed__14;
 static lean_once_cell_t l_Std_Time_instReprWeekday_repr___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Time_instReprWeekday_repr___closed__15;
 LEAN_EXPORT lean_object* l_Std_Time_instReprWeekday_repr(uint8_t, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_instReprWeekday_repr___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Time_instReprWeekday___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Time_instReprWeekday_repr___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Time_instReprWeekday___closed__0 = (const lean_object*)&l_Std_Time_instReprWeekday___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Time_instReprWeekday = (const lean_object*)&l_Std_Time_instReprWeekday___closed__0_value;
+static lean_once_cell_t l_Std_Time_instReprWeekday___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_instReprWeekday___closed__0;
+LEAN_EXPORT lean_object* l_Std_Time_instReprWeekday;
 LEAN_EXPORT uint8_t l_Std_Time_instInhabitedWeekday_default;
 LEAN_EXPORT uint8_t l_Std_Time_instInhabitedWeekday;
 LEAN_EXPORT uint8_t l_Std_Time_Weekday_ofNat(lean_object*);
@@ -115,9 +115,9 @@ LEAN_EXPORT lean_object* l_Std_Time_Weekday_instReprOrdinal___aux__1(lean_object
 LEAN_EXPORT lean_object* l_Std_Time_Weekday_instReprOrdinal___aux__1___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Weekday_instReprOrdinal___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Weekday_instReprOrdinal___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Time_Weekday_instReprOrdinal___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Time_Weekday_instReprOrdinal___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Time_Weekday_instReprOrdinal___closed__0 = (const lean_object*)&l_Std_Time_Weekday_instReprOrdinal___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Time_Weekday_instReprOrdinal = (const lean_object*)&l_Std_Time_Weekday_instReprOrdinal___closed__0_value;
+static lean_once_cell_t l_Std_Time_Weekday_instReprOrdinal___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Weekday_instReprOrdinal___closed__0;
+LEAN_EXPORT lean_object* l_Std_Time_Weekday_instReprOrdinal;
 LEAN_EXPORT uint8_t l_Std_Time_Weekday_instDecidableEqOrdinal___aux__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Weekday_instDecidableEqOrdinal___aux__1___boxed(lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Std_Time_Weekday_instDecidableEqOrdinal(lean_object*, lean_object*);
@@ -155,9 +155,9 @@ static lean_object* l_Std_Time_Weekday_instInhabitedOrdinal___closed__4;
 LEAN_EXPORT lean_object* l_Std_Time_Weekday_instInhabitedOrdinal;
 LEAN_EXPORT uint8_t l_Std_Time_Weekday_instOrdOrdinal___aux__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Weekday_instOrdOrdinal___aux__1___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Time_Weekday_instOrdOrdinal___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Time_Weekday_instOrdOrdinal___aux__1___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Time_Weekday_instOrdOrdinal___closed__0 = (const lean_object*)&l_Std_Time_Weekday_instOrdOrdinal___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Time_Weekday_instOrdOrdinal = (const lean_object*)&l_Std_Time_Weekday_instOrdOrdinal___closed__0_value;
+static lean_once_cell_t l_Std_Time_Weekday_instOrdOrdinal___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Weekday_instOrdOrdinal___closed__0;
+LEAN_EXPORT lean_object* l_Std_Time_Weekday_instOrdOrdinal;
 LEAN_EXPORT uint8_t l_Std_Time_Weekday_ofOrdinal(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Weekday_ofOrdinal___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Nat_cast___at___00Std_Time_Weekday_toOrdinal_spec__0(lean_object*);
@@ -247,39 +247,39 @@ static lean_once_cell_t l_Std_Time_Weekday_toOrdinal___closed__41_once = LEAN_ON
 static lean_object* l_Std_Time_Weekday_toOrdinal___closed__41;
 LEAN_EXPORT lean_object* l_Std_Time_Weekday_toOrdinal(uint8_t);
 LEAN_EXPORT lean_object* l_Std_Time_Weekday_toOrdinal___boxed(lean_object*);
-static const lean_closure_object l_Std_Time_Weekday_instOrd___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Time_Weekday_toOrdinal___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Time_Weekday_instOrd___closed__0 = (const lean_object*)&l_Std_Time_Weekday_instOrd___closed__0_value;
-static const lean_closure_object l_Std_Time_Weekday_instOrd___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*4, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_compareOn___boxed, .m_arity = 6, .m_num_fixed = 4, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_Time_Weekday_instOrdOrdinal___closed__0_value),((lean_object*)&l_Std_Time_Weekday_instOrd___closed__0_value)} };
-static const lean_object* l_Std_Time_Weekday_instOrd___closed__1 = (const lean_object*)&l_Std_Time_Weekday_instOrd___closed__1_value;
-LEAN_EXPORT const lean_object* l_Std_Time_Weekday_instOrd = (const lean_object*)&l_Std_Time_Weekday_instOrd___closed__1_value;
+static lean_once_cell_t l_Std_Time_Weekday_instOrd___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Weekday_instOrd___closed__0;
+static lean_once_cell_t l_Std_Time_Weekday_instOrd___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Weekday_instOrd___closed__1;
+LEAN_EXPORT lean_object* l_Std_Time_Weekday_instOrd;
 LEAN_EXPORT lean_object* l___private_Std_Time_Date_Unit_Weekday_0__Std_Time_instReprWeekday_repr_match__1_splitter___redArg(uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Time_Date_Unit_Weekday_0__Std_Time_instReprWeekday_repr_match__1_splitter___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Time_Date_Unit_Weekday_0__Std_Time_instReprWeekday_repr_match__1_splitter(lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Time_Date_Unit_Weekday_0__Std_Time_instReprWeekday_repr_match__1_splitter___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Weekday_toNat(uint8_t);
 LEAN_EXPORT lean_object* l_Std_Time_Weekday_toNat___boxed(lean_object*);
-static const lean_ctor_object l_Std_Time_Weekday_ofNat_x3f___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(6) << 1) | 1))}};
-static const lean_object* l_Std_Time_Weekday_ofNat_x3f___closed__0 = (const lean_object*)&l_Std_Time_Weekday_ofNat_x3f___closed__0_value;
-static const lean_ctor_object l_Std_Time_Weekday_ofNat_x3f___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(5) << 1) | 1))}};
-static const lean_object* l_Std_Time_Weekday_ofNat_x3f___closed__1 = (const lean_object*)&l_Std_Time_Weekday_ofNat_x3f___closed__1_value;
-static const lean_ctor_object l_Std_Time_Weekday_ofNat_x3f___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(4) << 1) | 1))}};
-static const lean_object* l_Std_Time_Weekday_ofNat_x3f___closed__2 = (const lean_object*)&l_Std_Time_Weekday_ofNat_x3f___closed__2_value;
-static const lean_ctor_object l_Std_Time_Weekday_ofNat_x3f___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(3) << 1) | 1))}};
-static const lean_object* l_Std_Time_Weekday_ofNat_x3f___closed__3 = (const lean_object*)&l_Std_Time_Weekday_ofNat_x3f___closed__3_value;
-static const lean_ctor_object l_Std_Time_Weekday_ofNat_x3f___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(2) << 1) | 1))}};
-static const lean_object* l_Std_Time_Weekday_ofNat_x3f___closed__4 = (const lean_object*)&l_Std_Time_Weekday_ofNat_x3f___closed__4_value;
-static const lean_ctor_object l_Std_Time_Weekday_ofNat_x3f___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(1) << 1) | 1))}};
-static const lean_object* l_Std_Time_Weekday_ofNat_x3f___closed__5 = (const lean_object*)&l_Std_Time_Weekday_ofNat_x3f___closed__5_value;
-static const lean_ctor_object l_Std_Time_Weekday_ofNat_x3f___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_Time_Weekday_ofNat_x3f___closed__6 = (const lean_object*)&l_Std_Time_Weekday_ofNat_x3f___closed__6_value;
+static lean_once_cell_t l_Std_Time_Weekday_ofNat_x3f___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Weekday_ofNat_x3f___closed__0;
+static lean_once_cell_t l_Std_Time_Weekday_ofNat_x3f___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Weekday_ofNat_x3f___closed__1;
+static lean_once_cell_t l_Std_Time_Weekday_ofNat_x3f___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Weekday_ofNat_x3f___closed__2;
+static lean_once_cell_t l_Std_Time_Weekday_ofNat_x3f___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Weekday_ofNat_x3f___closed__3;
+static lean_once_cell_t l_Std_Time_Weekday_ofNat_x3f___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Weekday_ofNat_x3f___closed__4;
+static lean_once_cell_t l_Std_Time_Weekday_ofNat_x3f___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Weekday_ofNat_x3f___closed__5;
+static lean_once_cell_t l_Std_Time_Weekday_ofNat_x3f___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Weekday_ofNat_x3f___closed__6;
 LEAN_EXPORT lean_object* l_Std_Time_Weekday_ofNat_x3f(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Weekday_ofNat_x3f___boxed(lean_object*);
-static const lean_string_object l_Std_Time_Weekday_ofNat_x21___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 27, .m_capacity = 27, .m_length = 26, .m_data = "Std.Time.Date.Unit.Weekday"};
-static const lean_object* l_Std_Time_Weekday_ofNat_x21___closed__0 = (const lean_object*)&l_Std_Time_Weekday_ofNat_x21___closed__0_value;
-static const lean_string_object l_Std_Time_Weekday_ofNat_x21___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 24, .m_capacity = 24, .m_length = 23, .m_data = "Std.Time.Weekday.ofNat!"};
-static const lean_object* l_Std_Time_Weekday_ofNat_x21___closed__1 = (const lean_object*)&l_Std_Time_Weekday_ofNat_x21___closed__1_value;
-static const lean_string_object l_Std_Time_Weekday_ofNat_x21___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "invalid weekday"};
-static const lean_object* l_Std_Time_Weekday_ofNat_x21___closed__2 = (const lean_object*)&l_Std_Time_Weekday_ofNat_x21___closed__2_value;
+static lean_once_cell_t l_Std_Time_Weekday_ofNat_x21___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Weekday_ofNat_x21___closed__0;
+static lean_once_cell_t l_Std_Time_Weekday_ofNat_x21___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Weekday_ofNat_x21___closed__1;
+static lean_once_cell_t l_Std_Time_Weekday_ofNat_x21___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Weekday_ofNat_x21___closed__2;
 static lean_once_cell_t l_Std_Time_Weekday_ofNat_x21___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Time_Weekday_ofNat_x21___closed__3;
 LEAN_EXPORT uint8_t l_Std_Time_Weekday_ofNat_x21(lean_object*);
@@ -629,6 +629,132 @@ lean_dec(v_sunday_120_);
 return v_res_122_;
 }
 }
+static lean_object* _init_l_Std_Time_instReprWeekday_repr___closed__0(void){
+_start:
+{
+lean_object* v___x_123_; 
+v___x_123_ = lean_mk_string_unchecked("Std.Time.Weekday.monday", 23, 23);
+return v___x_123_;
+}
+}
+static lean_object* _init_l_Std_Time_instReprWeekday_repr___closed__1(void){
+_start:
+{
+lean_object* v___x_124_; lean_object* v___x_125_; 
+v___x_124_ = lean_obj_once(&l_Std_Time_instReprWeekday_repr___closed__0, &l_Std_Time_instReprWeekday_repr___closed__0_once, _init_l_Std_Time_instReprWeekday_repr___closed__0);
+v___x_125_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_125_, 0, v___x_124_);
+return v___x_125_;
+}
+}
+static lean_object* _init_l_Std_Time_instReprWeekday_repr___closed__2(void){
+_start:
+{
+lean_object* v___x_126_; 
+v___x_126_ = lean_mk_string_unchecked("Std.Time.Weekday.tuesday", 24, 24);
+return v___x_126_;
+}
+}
+static lean_object* _init_l_Std_Time_instReprWeekday_repr___closed__3(void){
+_start:
+{
+lean_object* v___x_127_; lean_object* v___x_128_; 
+v___x_127_ = lean_obj_once(&l_Std_Time_instReprWeekday_repr___closed__2, &l_Std_Time_instReprWeekday_repr___closed__2_once, _init_l_Std_Time_instReprWeekday_repr___closed__2);
+v___x_128_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_128_, 0, v___x_127_);
+return v___x_128_;
+}
+}
+static lean_object* _init_l_Std_Time_instReprWeekday_repr___closed__4(void){
+_start:
+{
+lean_object* v___x_129_; 
+v___x_129_ = lean_mk_string_unchecked("Std.Time.Weekday.wednesday", 26, 26);
+return v___x_129_;
+}
+}
+static lean_object* _init_l_Std_Time_instReprWeekday_repr___closed__5(void){
+_start:
+{
+lean_object* v___x_130_; lean_object* v___x_131_; 
+v___x_130_ = lean_obj_once(&l_Std_Time_instReprWeekday_repr___closed__4, &l_Std_Time_instReprWeekday_repr___closed__4_once, _init_l_Std_Time_instReprWeekday_repr___closed__4);
+v___x_131_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_131_, 0, v___x_130_);
+return v___x_131_;
+}
+}
+static lean_object* _init_l_Std_Time_instReprWeekday_repr___closed__6(void){
+_start:
+{
+lean_object* v___x_132_; 
+v___x_132_ = lean_mk_string_unchecked("Std.Time.Weekday.thursday", 25, 25);
+return v___x_132_;
+}
+}
+static lean_object* _init_l_Std_Time_instReprWeekday_repr___closed__7(void){
+_start:
+{
+lean_object* v___x_133_; lean_object* v___x_134_; 
+v___x_133_ = lean_obj_once(&l_Std_Time_instReprWeekday_repr___closed__6, &l_Std_Time_instReprWeekday_repr___closed__6_once, _init_l_Std_Time_instReprWeekday_repr___closed__6);
+v___x_134_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_134_, 0, v___x_133_);
+return v___x_134_;
+}
+}
+static lean_object* _init_l_Std_Time_instReprWeekday_repr___closed__8(void){
+_start:
+{
+lean_object* v___x_135_; 
+v___x_135_ = lean_mk_string_unchecked("Std.Time.Weekday.friday", 23, 23);
+return v___x_135_;
+}
+}
+static lean_object* _init_l_Std_Time_instReprWeekday_repr___closed__9(void){
+_start:
+{
+lean_object* v___x_136_; lean_object* v___x_137_; 
+v___x_136_ = lean_obj_once(&l_Std_Time_instReprWeekday_repr___closed__8, &l_Std_Time_instReprWeekday_repr___closed__8_once, _init_l_Std_Time_instReprWeekday_repr___closed__8);
+v___x_137_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_137_, 0, v___x_136_);
+return v___x_137_;
+}
+}
+static lean_object* _init_l_Std_Time_instReprWeekday_repr___closed__10(void){
+_start:
+{
+lean_object* v___x_138_; 
+v___x_138_ = lean_mk_string_unchecked("Std.Time.Weekday.saturday", 25, 25);
+return v___x_138_;
+}
+}
+static lean_object* _init_l_Std_Time_instReprWeekday_repr___closed__11(void){
+_start:
+{
+lean_object* v___x_139_; lean_object* v___x_140_; 
+v___x_139_ = lean_obj_once(&l_Std_Time_instReprWeekday_repr___closed__10, &l_Std_Time_instReprWeekday_repr___closed__10_once, _init_l_Std_Time_instReprWeekday_repr___closed__10);
+v___x_140_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_140_, 0, v___x_139_);
+return v___x_140_;
+}
+}
+static lean_object* _init_l_Std_Time_instReprWeekday_repr___closed__12(void){
+_start:
+{
+lean_object* v___x_141_; 
+v___x_141_ = lean_mk_string_unchecked("Std.Time.Weekday.sunday", 23, 23);
+return v___x_141_;
+}
+}
+static lean_object* _init_l_Std_Time_instReprWeekday_repr___closed__13(void){
+_start:
+{
+lean_object* v___x_142_; lean_object* v___x_143_; 
+v___x_142_ = lean_obj_once(&l_Std_Time_instReprWeekday_repr___closed__12, &l_Std_Time_instReprWeekday_repr___closed__12_once, _init_l_Std_Time_instReprWeekday_repr___closed__12);
+v___x_143_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_143_, 0, v___x_142_);
+return v___x_143_;
+}
+}
 static lean_object* _init_l_Std_Time_instReprWeekday_repr___closed__14(void){
 _start:
 {
@@ -797,7 +923,7 @@ goto v___jp_192_;
 v___jp_150_:
 {
 lean_object* v___x_152_; lean_object* v___x_153_; uint8_t v___x_154_; lean_object* v___x_155_; lean_object* v___x_156_; 
-v___x_152_ = ((lean_object*)(l_Std_Time_instReprWeekday_repr___closed__1));
+v___x_152_ = lean_obj_once(&l_Std_Time_instReprWeekday_repr___closed__1, &l_Std_Time_instReprWeekday_repr___closed__1_once, _init_l_Std_Time_instReprWeekday_repr___closed__1);
 lean_inc(v___y_151_);
 v___x_153_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_153_, 0, v___y_151_);
@@ -812,7 +938,7 @@ return v___x_156_;
 v___jp_157_:
 {
 lean_object* v___x_159_; lean_object* v___x_160_; uint8_t v___x_161_; lean_object* v___x_162_; lean_object* v___x_163_; 
-v___x_159_ = ((lean_object*)(l_Std_Time_instReprWeekday_repr___closed__3));
+v___x_159_ = lean_obj_once(&l_Std_Time_instReprWeekday_repr___closed__3, &l_Std_Time_instReprWeekday_repr___closed__3_once, _init_l_Std_Time_instReprWeekday_repr___closed__3);
 lean_inc(v___y_158_);
 v___x_160_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_160_, 0, v___y_158_);
@@ -827,7 +953,7 @@ return v___x_163_;
 v___jp_164_:
 {
 lean_object* v___x_166_; lean_object* v___x_167_; uint8_t v___x_168_; lean_object* v___x_169_; lean_object* v___x_170_; 
-v___x_166_ = ((lean_object*)(l_Std_Time_instReprWeekday_repr___closed__5));
+v___x_166_ = lean_obj_once(&l_Std_Time_instReprWeekday_repr___closed__5, &l_Std_Time_instReprWeekday_repr___closed__5_once, _init_l_Std_Time_instReprWeekday_repr___closed__5);
 lean_inc(v___y_165_);
 v___x_167_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_167_, 0, v___y_165_);
@@ -842,7 +968,7 @@ return v___x_170_;
 v___jp_171_:
 {
 lean_object* v___x_173_; lean_object* v___x_174_; uint8_t v___x_175_; lean_object* v___x_176_; lean_object* v___x_177_; 
-v___x_173_ = ((lean_object*)(l_Std_Time_instReprWeekday_repr___closed__7));
+v___x_173_ = lean_obj_once(&l_Std_Time_instReprWeekday_repr___closed__7, &l_Std_Time_instReprWeekday_repr___closed__7_once, _init_l_Std_Time_instReprWeekday_repr___closed__7);
 lean_inc(v___y_172_);
 v___x_174_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_174_, 0, v___y_172_);
@@ -857,7 +983,7 @@ return v___x_177_;
 v___jp_178_:
 {
 lean_object* v___x_180_; lean_object* v___x_181_; uint8_t v___x_182_; lean_object* v___x_183_; lean_object* v___x_184_; 
-v___x_180_ = ((lean_object*)(l_Std_Time_instReprWeekday_repr___closed__9));
+v___x_180_ = lean_obj_once(&l_Std_Time_instReprWeekday_repr___closed__9, &l_Std_Time_instReprWeekday_repr___closed__9_once, _init_l_Std_Time_instReprWeekday_repr___closed__9);
 lean_inc(v___y_179_);
 v___x_181_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_181_, 0, v___y_179_);
@@ -872,7 +998,7 @@ return v___x_184_;
 v___jp_185_:
 {
 lean_object* v___x_187_; lean_object* v___x_188_; uint8_t v___x_189_; lean_object* v___x_190_; lean_object* v___x_191_; 
-v___x_187_ = ((lean_object*)(l_Std_Time_instReprWeekday_repr___closed__11));
+v___x_187_ = lean_obj_once(&l_Std_Time_instReprWeekday_repr___closed__11, &l_Std_Time_instReprWeekday_repr___closed__11_once, _init_l_Std_Time_instReprWeekday_repr___closed__11);
 lean_inc(v___y_186_);
 v___x_188_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_188_, 0, v___y_186_);
@@ -887,7 +1013,7 @@ return v___x_191_;
 v___jp_192_:
 {
 lean_object* v___x_194_; lean_object* v___x_195_; uint8_t v___x_196_; lean_object* v___x_197_; lean_object* v___x_198_; 
-v___x_194_ = ((lean_object*)(l_Std_Time_instReprWeekday_repr___closed__13));
+v___x_194_ = lean_obj_once(&l_Std_Time_instReprWeekday_repr___closed__13, &l_Std_Time_instReprWeekday_repr___closed__13_once, _init_l_Std_Time_instReprWeekday_repr___closed__13);
 lean_inc(v___y_193_);
 v___x_195_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_195_, 0, v___y_193_);
@@ -909,6 +1035,22 @@ v_x_401__boxed_229_ = lean_unbox(v_x_227_);
 v_res_230_ = l_Std_Time_instReprWeekday_repr(v_x_401__boxed_229_, v_prec_228_);
 lean_dec(v_prec_228_);
 return v_res_230_;
+}
+}
+static lean_object* _init_l_Std_Time_instReprWeekday___closed__0(void){
+_start:
+{
+lean_object* v___x_231_; 
+v___x_231_ = lean_alloc_closure((void*)(l_Std_Time_instReprWeekday_repr___boxed), 2, 0);
+return v___x_231_;
+}
+}
+static lean_object* _init_l_Std_Time_instReprWeekday(void){
+_start:
+{
+lean_object* v___x_232_; 
+v___x_232_ = lean_obj_once(&l_Std_Time_instReprWeekday___closed__0, &l_Std_Time_instReprWeekday___closed__0_once, _init_l_Std_Time_instReprWeekday___closed__0);
+return v___x_232_;
 }
 }
 static uint8_t _init_l_Std_Time_instInhabitedWeekday_default(void){
@@ -1117,6 +1259,22 @@ v_res_294_ = l_Std_Time_Weekday_instReprOrdinal___lam__0(v___y_292_, v___y_293_)
 lean_dec(v___y_293_);
 lean_dec(v___y_292_);
 return v_res_294_;
+}
+}
+static lean_object* _init_l_Std_Time_Weekday_instReprOrdinal___closed__0(void){
+_start:
+{
+lean_object* v___f_295_; 
+v___f_295_ = lean_alloc_closure((void*)(l_Std_Time_Weekday_instReprOrdinal___lam__0___boxed), 2, 0);
+return v___f_295_;
+}
+}
+static lean_object* _init_l_Std_Time_Weekday_instReprOrdinal(void){
+_start:
+{
+lean_object* v___f_296_; 
+v___f_296_ = lean_obj_once(&l_Std_Time_Weekday_instReprOrdinal___closed__0, &l_Std_Time_Weekday_instReprOrdinal___closed__0_once, _init_l_Std_Time_Weekday_instReprOrdinal___closed__0);
+return v___f_296_;
 }
 }
 LEAN_EXPORT uint8_t l_Std_Time_Weekday_instDecidableEqOrdinal___aux__1(lean_object* v_a_297_, lean_object* v_b_298_){
@@ -1424,6 +1582,22 @@ lean_dec(v_y_393_);
 lean_dec(v_x_392_);
 v_r_395_ = lean_box(v_res_394_);
 return v_r_395_;
+}
+}
+static lean_object* _init_l_Std_Time_Weekday_instOrdOrdinal___closed__0(void){
+_start:
+{
+lean_object* v___x_396_; 
+v___x_396_ = lean_alloc_closure((void*)(l_Std_Time_Weekday_instOrdOrdinal___aux__1___boxed), 2, 0);
+return v___x_396_;
+}
+}
+static lean_object* _init_l_Std_Time_Weekday_instOrdOrdinal(void){
+_start:
+{
+lean_object* v___x_397_; 
+v___x_397_ = lean_obj_once(&l_Std_Time_Weekday_instOrdOrdinal___closed__0, &l_Std_Time_Weekday_instOrdOrdinal___closed__0_once, _init_l_Std_Time_Weekday_instOrdOrdinal___closed__0);
+return v___x_397_;
 }
 }
 LEAN_EXPORT uint8_t l_Std_Time_Weekday_ofOrdinal(lean_object* v_x_398_){
@@ -2020,6 +2194,36 @@ v_res_562_ = l_Std_Time_Weekday_toOrdinal(v_x_576__boxed_561_);
 return v_res_562_;
 }
 }
+static lean_object* _init_l_Std_Time_Weekday_instOrd___closed__0(void){
+_start:
+{
+lean_object* v___x_563_; 
+v___x_563_ = lean_alloc_closure((void*)(l_Std_Time_Weekday_toOrdinal___boxed), 1, 0);
+return v___x_563_;
+}
+}
+static lean_object* _init_l_Std_Time_Weekday_instOrd___closed__1(void){
+_start:
+{
+lean_object* v___x_564_; lean_object* v___x_565_; lean_object* v___x_566_; 
+v___x_564_ = lean_obj_once(&l_Std_Time_Weekday_instOrd___closed__0, &l_Std_Time_Weekday_instOrd___closed__0_once, _init_l_Std_Time_Weekday_instOrd___closed__0);
+v___x_565_ = lean_obj_once(&l_Std_Time_Weekday_instOrdOrdinal___closed__0, &l_Std_Time_Weekday_instOrdOrdinal___closed__0_once, _init_l_Std_Time_Weekday_instOrdOrdinal___closed__0);
+v___x_566_ = lean_alloc_closure((void*)(l_compareOn___boxed), 6, 4);
+lean_closure_set(v___x_566_, 0, lean_box(0));
+lean_closure_set(v___x_566_, 1, lean_box(0));
+lean_closure_set(v___x_566_, 2, v___x_565_);
+lean_closure_set(v___x_566_, 3, v___x_564_);
+return v___x_566_;
+}
+}
+static lean_object* _init_l_Std_Time_Weekday_instOrd(void){
+_start:
+{
+lean_object* v___x_567_; 
+v___x_567_ = lean_obj_once(&l_Std_Time_Weekday_instOrd___closed__1, &l_Std_Time_Weekday_instOrd___closed__1_once, _init_l_Std_Time_Weekday_instOrd___closed__1);
+return v___x_567_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Std_Time_Date_Unit_Weekday_0__Std_Time_instReprWeekday_repr_match__1_splitter___redArg(uint8_t v_x_568_, lean_object* v_h__1_569_, lean_object* v_h__2_570_, lean_object* v_h__3_571_, lean_object* v_h__4_572_, lean_object* v_h__5_573_, lean_object* v_h__6_574_, lean_object* v_h__7_575_){
 _start:
 {
@@ -2295,6 +2499,83 @@ v_res_644_ = l_Std_Time_Weekday_toNat(v_x_74__boxed_643_);
 return v_res_644_;
 }
 }
+static lean_object* _init_l_Std_Time_Weekday_ofNat_x3f___closed__0(void){
+_start:
+{
+uint8_t v___x_645_; lean_object* v___x_646_; lean_object* v___x_647_; 
+v___x_645_ = 6;
+v___x_646_ = lean_box(v___x_645_);
+v___x_647_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_647_, 0, v___x_646_);
+return v___x_647_;
+}
+}
+static lean_object* _init_l_Std_Time_Weekday_ofNat_x3f___closed__1(void){
+_start:
+{
+uint8_t v___x_648_; lean_object* v___x_649_; lean_object* v___x_650_; 
+v___x_648_ = 5;
+v___x_649_ = lean_box(v___x_648_);
+v___x_650_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_650_, 0, v___x_649_);
+return v___x_650_;
+}
+}
+static lean_object* _init_l_Std_Time_Weekday_ofNat_x3f___closed__2(void){
+_start:
+{
+uint8_t v___x_651_; lean_object* v___x_652_; lean_object* v___x_653_; 
+v___x_651_ = 4;
+v___x_652_ = lean_box(v___x_651_);
+v___x_653_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_653_, 0, v___x_652_);
+return v___x_653_;
+}
+}
+static lean_object* _init_l_Std_Time_Weekday_ofNat_x3f___closed__3(void){
+_start:
+{
+uint8_t v___x_654_; lean_object* v___x_655_; lean_object* v___x_656_; 
+v___x_654_ = 3;
+v___x_655_ = lean_box(v___x_654_);
+v___x_656_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_656_, 0, v___x_655_);
+return v___x_656_;
+}
+}
+static lean_object* _init_l_Std_Time_Weekday_ofNat_x3f___closed__4(void){
+_start:
+{
+uint8_t v___x_657_; lean_object* v___x_658_; lean_object* v___x_659_; 
+v___x_657_ = 2;
+v___x_658_ = lean_box(v___x_657_);
+v___x_659_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_659_, 0, v___x_658_);
+return v___x_659_;
+}
+}
+static lean_object* _init_l_Std_Time_Weekday_ofNat_x3f___closed__5(void){
+_start:
+{
+uint8_t v___x_660_; lean_object* v___x_661_; lean_object* v___x_662_; 
+v___x_660_ = 1;
+v___x_661_ = lean_box(v___x_660_);
+v___x_662_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_662_, 0, v___x_661_);
+return v___x_662_;
+}
+}
+static lean_object* _init_l_Std_Time_Weekday_ofNat_x3f___closed__6(void){
+_start:
+{
+uint8_t v___x_663_; lean_object* v___x_664_; lean_object* v___x_665_; 
+v___x_663_ = 0;
+v___x_664_ = lean_box(v___x_663_);
+v___x_665_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_665_, 0, v___x_664_);
+return v___x_665_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Time_Weekday_ofNat_x3f(lean_object* v_x_666_){
 _start:
 {
@@ -2340,49 +2621,49 @@ return v___x_681_;
 else
 {
 lean_object* v___x_682_; 
-v___x_682_ = ((lean_object*)(l_Std_Time_Weekday_ofNat_x3f___closed__0));
+v___x_682_ = lean_obj_once(&l_Std_Time_Weekday_ofNat_x3f___closed__0, &l_Std_Time_Weekday_ofNat_x3f___closed__0_once, _init_l_Std_Time_Weekday_ofNat_x3f___closed__0);
 return v___x_682_;
 }
 }
 else
 {
 lean_object* v___x_683_; 
-v___x_683_ = ((lean_object*)(l_Std_Time_Weekday_ofNat_x3f___closed__1));
+v___x_683_ = lean_obj_once(&l_Std_Time_Weekday_ofNat_x3f___closed__1, &l_Std_Time_Weekday_ofNat_x3f___closed__1_once, _init_l_Std_Time_Weekday_ofNat_x3f___closed__1);
 return v___x_683_;
 }
 }
 else
 {
 lean_object* v___x_684_; 
-v___x_684_ = ((lean_object*)(l_Std_Time_Weekday_ofNat_x3f___closed__2));
+v___x_684_ = lean_obj_once(&l_Std_Time_Weekday_ofNat_x3f___closed__2, &l_Std_Time_Weekday_ofNat_x3f___closed__2_once, _init_l_Std_Time_Weekday_ofNat_x3f___closed__2);
 return v___x_684_;
 }
 }
 else
 {
 lean_object* v___x_685_; 
-v___x_685_ = ((lean_object*)(l_Std_Time_Weekday_ofNat_x3f___closed__3));
+v___x_685_ = lean_obj_once(&l_Std_Time_Weekday_ofNat_x3f___closed__3, &l_Std_Time_Weekday_ofNat_x3f___closed__3_once, _init_l_Std_Time_Weekday_ofNat_x3f___closed__3);
 return v___x_685_;
 }
 }
 else
 {
 lean_object* v___x_686_; 
-v___x_686_ = ((lean_object*)(l_Std_Time_Weekday_ofNat_x3f___closed__4));
+v___x_686_ = lean_obj_once(&l_Std_Time_Weekday_ofNat_x3f___closed__4, &l_Std_Time_Weekday_ofNat_x3f___closed__4_once, _init_l_Std_Time_Weekday_ofNat_x3f___closed__4);
 return v___x_686_;
 }
 }
 else
 {
 lean_object* v___x_687_; 
-v___x_687_ = ((lean_object*)(l_Std_Time_Weekday_ofNat_x3f___closed__5));
+v___x_687_ = lean_obj_once(&l_Std_Time_Weekday_ofNat_x3f___closed__5, &l_Std_Time_Weekday_ofNat_x3f___closed__5_once, _init_l_Std_Time_Weekday_ofNat_x3f___closed__5);
 return v___x_687_;
 }
 }
 else
 {
 lean_object* v___x_688_; 
-v___x_688_ = ((lean_object*)(l_Std_Time_Weekday_ofNat_x3f___closed__6));
+v___x_688_ = lean_obj_once(&l_Std_Time_Weekday_ofNat_x3f___closed__6, &l_Std_Time_Weekday_ofNat_x3f___closed__6_once, _init_l_Std_Time_Weekday_ofNat_x3f___closed__6);
 return v___x_688_;
 }
 }
@@ -2396,15 +2677,39 @@ lean_dec(v_x_689_);
 return v_res_690_;
 }
 }
+static lean_object* _init_l_Std_Time_Weekday_ofNat_x21___closed__0(void){
+_start:
+{
+lean_object* v___x_691_; 
+v___x_691_ = lean_mk_string_unchecked("Std.Time.Date.Unit.Weekday", 26, 26);
+return v___x_691_;
+}
+}
+static lean_object* _init_l_Std_Time_Weekday_ofNat_x21___closed__1(void){
+_start:
+{
+lean_object* v___x_692_; 
+v___x_692_ = lean_mk_string_unchecked("Std.Time.Weekday.ofNat!", 23, 23);
+return v___x_692_;
+}
+}
+static lean_object* _init_l_Std_Time_Weekday_ofNat_x21___closed__2(void){
+_start:
+{
+lean_object* v___x_693_; 
+v___x_693_ = lean_mk_string_unchecked("invalid weekday", 15, 15);
+return v___x_693_;
+}
+}
 static lean_object* _init_l_Std_Time_Weekday_ofNat_x21___closed__3(void){
 _start:
 {
 lean_object* v___x_694_; lean_object* v___x_695_; lean_object* v___x_696_; lean_object* v___x_697_; lean_object* v___x_698_; lean_object* v___x_699_; 
-v___x_694_ = ((lean_object*)(l_Std_Time_Weekday_ofNat_x21___closed__2));
+v___x_694_ = lean_obj_once(&l_Std_Time_Weekday_ofNat_x21___closed__2, &l_Std_Time_Weekday_ofNat_x21___closed__2_once, _init_l_Std_Time_Weekday_ofNat_x21___closed__2);
 v___x_695_ = lean_unsigned_to_nat(12u);
 v___x_696_ = lean_unsigned_to_nat(139u);
-v___x_697_ = ((lean_object*)(l_Std_Time_Weekday_ofNat_x21___closed__1));
-v___x_698_ = ((lean_object*)(l_Std_Time_Weekday_ofNat_x21___closed__0));
+v___x_697_ = lean_obj_once(&l_Std_Time_Weekday_ofNat_x21___closed__1, &l_Std_Time_Weekday_ofNat_x21___closed__1_once, _init_l_Std_Time_Weekday_ofNat_x21___closed__1);
+v___x_698_ = lean_obj_once(&l_Std_Time_Weekday_ofNat_x21___closed__0, &l_Std_Time_Weekday_ofNat_x21___closed__0_once, _init_l_Std_Time_Weekday_ofNat_x21___closed__0);
 v___x_699_ = l_mkPanicMessageWithDecl(v___x_698_, v___x_697_, v___x_696_, v___x_695_, v___x_694_);
 return v___x_699_;
 }
@@ -2553,14 +2858,22 @@ _G_runtime_initialized = true;
 res = runtime_initialize_Std_Time_Date_Unit_Day(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Std_Time_instReprWeekday = _init_l_Std_Time_instReprWeekday();
+lean_mark_persistent(l_Std_Time_instReprWeekday);
 l_Std_Time_instInhabitedWeekday_default = _init_l_Std_Time_instInhabitedWeekday_default();
 l_Std_Time_instInhabitedWeekday = _init_l_Std_Time_instInhabitedWeekday();
+l_Std_Time_Weekday_instReprOrdinal = _init_l_Std_Time_Weekday_instReprOrdinal();
+lean_mark_persistent(l_Std_Time_Weekday_instReprOrdinal);
 l_Std_Time_Weekday_instLTOrdinal = _init_l_Std_Time_Weekday_instLTOrdinal();
 lean_mark_persistent(l_Std_Time_Weekday_instLTOrdinal);
 l_Std_Time_Weekday_instLEOrdinal = _init_l_Std_Time_Weekday_instLEOrdinal();
 lean_mark_persistent(l_Std_Time_Weekday_instLEOrdinal);
 l_Std_Time_Weekday_instInhabitedOrdinal = _init_l_Std_Time_Weekday_instInhabitedOrdinal();
 lean_mark_persistent(l_Std_Time_Weekday_instInhabitedOrdinal);
+l_Std_Time_Weekday_instOrdOrdinal = _init_l_Std_Time_Weekday_instOrdOrdinal();
+lean_mark_persistent(l_Std_Time_Weekday_instOrdOrdinal);
+l_Std_Time_Weekday_instOrd = _init_l_Std_Time_Weekday_instOrd();
+lean_mark_persistent(l_Std_Time_Weekday_instOrd);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

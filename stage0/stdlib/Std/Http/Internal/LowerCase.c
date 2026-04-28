@@ -16,16 +16,24 @@ extern "C" {
 lean_object* lean_string_data(lean_object*);
 lean_object* l_Char_isUpper___boxed(lean_object*);
 uint8_t l_List_any___redArg(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Http_Internal_instDecidableIsLowerCase___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Char_isUpper___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Internal_instDecidableIsLowerCase___closed__0 = (const lean_object*)&l_Std_Http_Internal_instDecidableIsLowerCase___closed__0_value;
+static lean_once_cell_t l_Std_Http_Internal_instDecidableIsLowerCase___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_instDecidableIsLowerCase___closed__0;
 LEAN_EXPORT uint8_t l_Std_Http_Internal_instDecidableIsLowerCase(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Internal_instDecidableIsLowerCase___boxed(lean_object*);
+static lean_object* _init_l_Std_Http_Internal_instDecidableIsLowerCase___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; 
+v___x_1_ = lean_alloc_closure((void*)(l_Char_isUpper___boxed), 1, 0);
+return v___x_1_;
+}
+}
 LEAN_EXPORT uint8_t l_Std_Http_Internal_instDecidableIsLowerCase(lean_object* v_s_2_){
 _start:
 {
 lean_object* v___x_3_; lean_object* v___x_4_; uint8_t v___x_5_; 
 v___x_3_ = lean_string_data(v_s_2_);
-v___x_4_ = ((lean_object*)(l_Std_Http_Internal_instDecidableIsLowerCase___closed__0));
+v___x_4_ = lean_obj_once(&l_Std_Http_Internal_instDecidableIsLowerCase___closed__0, &l_Std_Http_Internal_instDecidableIsLowerCase___closed__0_once, _init_l_Std_Http_Internal_instDecidableIsLowerCase___closed__0);
 v___x_5_ = l_List_any___redArg(v___x_3_, v___x_4_);
 if (v___x_5_ == 0)
 {

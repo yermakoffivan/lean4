@@ -38,8 +38,8 @@ LEAN_EXPORT lean_object* l_Lean_Grind_CommRing_Mon_renameVars(lean_object*, lean
 LEAN_EXPORT lean_object* l_Lean_Grind_CommRing_Mon_renameVars___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Grind_CommRing_Poly_renameVars(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Grind_CommRing_Poly_renameVars___boxed(lean_object*, lean_object*);
-static const lean_ctor_object l_Lean_Grind_CommRing_Expr_renameVars___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lean_Grind_CommRing_Expr_renameVars___closed__0 = (const lean_object*)&l_Lean_Grind_CommRing_Expr_renameVars___closed__0_value;
+static lean_once_cell_t l_Lean_Grind_CommRing_Expr_renameVars___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Grind_CommRing_Expr_renameVars___closed__0;
 LEAN_EXPORT lean_object* l_Lean_Grind_CommRing_Expr_renameVars(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Grind_CommRing_Expr_renameVars___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Grind_CommRing_Power_collectVars(lean_object*, lean_object*);
@@ -381,6 +381,16 @@ lean_dec_ref(v_f_101_);
 return v_res_102_;
 }
 }
+static lean_object* _init_l_Lean_Grind_CommRing_Expr_renameVars___closed__0(void){
+_start:
+{
+lean_object* v___x_103_; lean_object* v___x_104_; 
+v___x_103_ = lean_unsigned_to_nat(0u);
+v___x_104_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_104_, 0, v___x_103_);
+return v___x_104_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Grind_CommRing_Expr_renameVars(lean_object* v_e_105_, lean_object* v_f_106_){
 _start:
 {
@@ -414,7 +424,7 @@ if (lean_obj_tag(v___x_111_) == 0)
 {
 lean_object* v___x_112_; 
 lean_del_object(v___x_109_);
-v___x_112_ = ((lean_object*)(l_Lean_Grind_CommRing_Expr_renameVars___closed__0));
+v___x_112_ = lean_obj_once(&l_Lean_Grind_CommRing_Expr_renameVars___closed__0, &l_Lean_Grind_CommRing_Expr_renameVars___closed__0_once, _init_l_Lean_Grind_CommRing_Expr_renameVars___closed__0);
 return v___x_112_;
 }
 else

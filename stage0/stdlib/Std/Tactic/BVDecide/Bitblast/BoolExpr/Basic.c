@@ -38,14 +38,14 @@ LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_Gate_or_elim___redArg(lean_object
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_Gate_or_elim___redArg___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_Gate_or_elim(lean_object*, uint8_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_Gate_or_elim___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std_Tactic_BVDecide_Gate_toString___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "&&"};
-static const lean_object* l_Std_Tactic_BVDecide_Gate_toString___closed__0 = (const lean_object*)&l_Std_Tactic_BVDecide_Gate_toString___closed__0_value;
-static const lean_string_object l_Std_Tactic_BVDecide_Gate_toString___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "^^"};
-static const lean_object* l_Std_Tactic_BVDecide_Gate_toString___closed__1 = (const lean_object*)&l_Std_Tactic_BVDecide_Gate_toString___closed__1_value;
-static const lean_string_object l_Std_Tactic_BVDecide_Gate_toString___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "=="};
-static const lean_object* l_Std_Tactic_BVDecide_Gate_toString___closed__2 = (const lean_object*)&l_Std_Tactic_BVDecide_Gate_toString___closed__2_value;
-static const lean_string_object l_Std_Tactic_BVDecide_Gate_toString___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "||"};
-static const lean_object* l_Std_Tactic_BVDecide_Gate_toString___closed__3 = (const lean_object*)&l_Std_Tactic_BVDecide_Gate_toString___closed__3_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_Gate_toString___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_Gate_toString___closed__0;
+static lean_once_cell_t l_Std_Tactic_BVDecide_Gate_toString___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_Gate_toString___closed__1;
+static lean_once_cell_t l_Std_Tactic_BVDecide_Gate_toString___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_Gate_toString___closed__2;
+static lean_once_cell_t l_Std_Tactic_BVDecide_Gate_toString___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_Gate_toString___closed__3;
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_Gate_toString(uint8_t);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_Gate_toString___boxed(lean_object*);
 LEAN_EXPORT uint8_t l_Std_Tactic_BVDecide_Gate_eval(uint8_t, uint8_t, uint8_t);
@@ -67,20 +67,20 @@ LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_BoolExpr_gate_elim___redArg(lean_
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_BoolExpr_gate_elim(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_BoolExpr_ite_elim___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_BoolExpr_ite_elim(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "false"};
-static const lean_object* l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__0 = (const lean_object*)&l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__0_value;
-static const lean_string_object l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "true"};
-static const lean_object* l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__1 = (const lean_object*)&l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__1_value;
-static const lean_string_object l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "!"};
-static const lean_object* l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__2 = (const lean_object*)&l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__2_value;
-static const lean_string_object l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "("};
-static const lean_object* l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__3 = (const lean_object*)&l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__3_value;
-static const lean_string_object l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = " "};
-static const lean_object* l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__4 = (const lean_object*)&l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__4_value;
-static const lean_string_object l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = ")"};
-static const lean_object* l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__5 = (const lean_object*)&l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__5_value;
-static const lean_string_object l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "(if "};
-static const lean_object* l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__6 = (const lean_object*)&l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__6_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__0;
+static lean_once_cell_t l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__1;
+static lean_once_cell_t l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__2;
+static lean_once_cell_t l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__3;
+static lean_once_cell_t l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__4;
+static lean_once_cell_t l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__5;
+static lean_once_cell_t l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__6;
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_BoolExpr_toString___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_BoolExpr_toString(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_BoolExpr_instToString___redArg(lean_object*);
@@ -317,6 +317,38 @@ lean_dec(v_or_78_);
 return v_res_80_;
 }
 }
+static lean_object* _init_l_Std_Tactic_BVDecide_Gate_toString___closed__0(void){
+_start:
+{
+lean_object* v___x_81_; 
+v___x_81_ = lean_mk_string_unchecked("&&", 2, 2);
+return v___x_81_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_Gate_toString___closed__1(void){
+_start:
+{
+lean_object* v___x_82_; 
+v___x_82_ = lean_mk_string_unchecked("^^", 2, 2);
+return v___x_82_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_Gate_toString___closed__2(void){
+_start:
+{
+lean_object* v___x_83_; 
+v___x_83_ = lean_mk_string_unchecked("==", 2, 2);
+return v___x_83_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_Gate_toString___closed__3(void){
+_start:
+{
+lean_object* v___x_84_; 
+v___x_84_ = lean_mk_string_unchecked("||", 2, 2);
+return v___x_84_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_Gate_toString(uint8_t v_x_85_){
 _start:
 {
@@ -325,25 +357,25 @@ switch(v_x_85_)
 case 0:
 {
 lean_object* v___x_86_; 
-v___x_86_ = ((lean_object*)(l_Std_Tactic_BVDecide_Gate_toString___closed__0));
+v___x_86_ = lean_obj_once(&l_Std_Tactic_BVDecide_Gate_toString___closed__0, &l_Std_Tactic_BVDecide_Gate_toString___closed__0_once, _init_l_Std_Tactic_BVDecide_Gate_toString___closed__0);
 return v___x_86_;
 }
 case 1:
 {
 lean_object* v___x_87_; 
-v___x_87_ = ((lean_object*)(l_Std_Tactic_BVDecide_Gate_toString___closed__1));
+v___x_87_ = lean_obj_once(&l_Std_Tactic_BVDecide_Gate_toString___closed__1, &l_Std_Tactic_BVDecide_Gate_toString___closed__1_once, _init_l_Std_Tactic_BVDecide_Gate_toString___closed__1);
 return v___x_87_;
 }
 case 2:
 {
 lean_object* v___x_88_; 
-v___x_88_ = ((lean_object*)(l_Std_Tactic_BVDecide_Gate_toString___closed__2));
+v___x_88_ = lean_obj_once(&l_Std_Tactic_BVDecide_Gate_toString___closed__2, &l_Std_Tactic_BVDecide_Gate_toString___closed__2_once, _init_l_Std_Tactic_BVDecide_Gate_toString___closed__2);
 return v___x_88_;
 }
 default: 
 {
 lean_object* v___x_89_; 
-v___x_89_ = ((lean_object*)(l_Std_Tactic_BVDecide_Gate_toString___closed__3));
+v___x_89_ = lean_obj_once(&l_Std_Tactic_BVDecide_Gate_toString___closed__3, &l_Std_Tactic_BVDecide_Gate_toString___closed__3_once, _init_l_Std_Tactic_BVDecide_Gate_toString___closed__3);
 return v___x_89_;
 }
 }
@@ -662,6 +694,62 @@ v___x_196_ = l_Std_Tactic_BVDecide_BoolExpr_ctorElim___redArg(v_t_193_, v_ite_19
 return v___x_196_;
 }
 }
+static lean_object* _init_l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_197_; 
+v___x_197_ = lean_mk_string_unchecked("false", 5, 5);
+return v___x_197_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_198_; 
+v___x_198_ = lean_mk_string_unchecked("true", 4, 4);
+return v___x_198_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__2(void){
+_start:
+{
+lean_object* v___x_199_; 
+v___x_199_ = lean_mk_string_unchecked("!", 1, 1);
+return v___x_199_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__3(void){
+_start:
+{
+lean_object* v___x_200_; 
+v___x_200_ = lean_mk_string_unchecked("(", 1, 1);
+return v___x_200_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__4(void){
+_start:
+{
+lean_object* v___x_201_; 
+v___x_201_ = lean_mk_string_unchecked(" ", 1, 1);
+return v___x_201_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__5(void){
+_start:
+{
+lean_object* v___x_202_; 
+v___x_202_ = lean_mk_string_unchecked(")", 1, 1);
+return v___x_202_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__6(void){
+_start:
+{
+lean_object* v___x_203_; 
+v___x_203_ = lean_mk_string_unchecked("(if ", 4, 4);
+return v___x_203_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_BoolExpr_toString___redArg(lean_object* v_inst_204_, lean_object* v_x_205_){
 _start:
 {
@@ -685,13 +773,13 @@ lean_dec_ref(v_x_205_);
 if (v_a_208_ == 0)
 {
 lean_object* v___x_209_; 
-v___x_209_ = ((lean_object*)(l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__0));
+v___x_209_ = lean_obj_once(&l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__0, &l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__0_once, _init_l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__0);
 return v___x_209_;
 }
 else
 {
 lean_object* v___x_210_; 
-v___x_210_ = ((lean_object*)(l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__1));
+v___x_210_ = lean_obj_once(&l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__1, &l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__1_once, _init_l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__1);
 return v___x_210_;
 }
 }
@@ -701,7 +789,7 @@ lean_object* v_a_211_; lean_object* v___x_212_; lean_object* v___x_213_; lean_ob
 v_a_211_ = lean_ctor_get(v_x_205_, 0);
 lean_inc_ref(v_a_211_);
 lean_dec_ref(v_x_205_);
-v___x_212_ = ((lean_object*)(l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__2));
+v___x_212_ = lean_obj_once(&l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__2, &l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__2_once, _init_l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__2);
 v___x_213_ = l_Std_Tactic_BVDecide_BoolExpr_toString___redArg(v_inst_204_, v_a_211_);
 v___x_214_ = lean_string_append(v___x_212_, v___x_213_);
 lean_dec_ref(v___x_213_);
@@ -716,12 +804,12 @@ lean_inc_ref(v_a_216_);
 v_a_217_ = lean_ctor_get(v_x_205_, 1);
 lean_inc_ref(v_a_217_);
 lean_dec_ref(v_x_205_);
-v___x_218_ = ((lean_object*)(l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__3));
+v___x_218_ = lean_obj_once(&l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__3, &l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__3_once, _init_l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__3);
 lean_inc_ref(v_inst_204_);
 v___x_219_ = l_Std_Tactic_BVDecide_BoolExpr_toString___redArg(v_inst_204_, v_a_216_);
 v___x_220_ = lean_string_append(v___x_218_, v___x_219_);
 lean_dec_ref(v___x_219_);
-v___x_221_ = ((lean_object*)(l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__4));
+v___x_221_ = lean_obj_once(&l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__4, &l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__4_once, _init_l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__4);
 v___x_222_ = lean_string_append(v___x_220_, v___x_221_);
 v___x_223_ = l_Std_Tactic_BVDecide_Gate_toString(v_a_215_);
 v___x_224_ = lean_string_append(v___x_222_, v___x_223_);
@@ -730,7 +818,7 @@ v___x_225_ = lean_string_append(v___x_224_, v___x_221_);
 v___x_226_ = l_Std_Tactic_BVDecide_BoolExpr_toString___redArg(v_inst_204_, v_a_217_);
 v___x_227_ = lean_string_append(v___x_225_, v___x_226_);
 lean_dec_ref(v___x_226_);
-v___x_228_ = ((lean_object*)(l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__5));
+v___x_228_ = lean_obj_once(&l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__5, &l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__5_once, _init_l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__5);
 v___x_229_ = lean_string_append(v___x_227_, v___x_228_);
 return v___x_229_;
 }
@@ -744,12 +832,12 @@ lean_inc_ref(v_a_231_);
 v_a_232_ = lean_ctor_get(v_x_205_, 2);
 lean_inc_ref(v_a_232_);
 lean_dec_ref(v_x_205_);
-v___x_233_ = ((lean_object*)(l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__6));
+v___x_233_ = lean_obj_once(&l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__6, &l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__6_once, _init_l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__6);
 lean_inc_ref_n(v_inst_204_, 2);
 v___x_234_ = l_Std_Tactic_BVDecide_BoolExpr_toString___redArg(v_inst_204_, v_a_230_);
 v___x_235_ = lean_string_append(v___x_233_, v___x_234_);
 lean_dec_ref(v___x_234_);
-v___x_236_ = ((lean_object*)(l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__4));
+v___x_236_ = lean_obj_once(&l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__4, &l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__4_once, _init_l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__4);
 v___x_237_ = lean_string_append(v___x_235_, v___x_236_);
 v___x_238_ = l_Std_Tactic_BVDecide_BoolExpr_toString___redArg(v_inst_204_, v_a_231_);
 v___x_239_ = lean_string_append(v___x_237_, v___x_238_);
@@ -758,7 +846,7 @@ v___x_240_ = lean_string_append(v___x_239_, v___x_236_);
 v___x_241_ = l_Std_Tactic_BVDecide_BoolExpr_toString___redArg(v_inst_204_, v_a_232_);
 v___x_242_ = lean_string_append(v___x_240_, v___x_241_);
 lean_dec_ref(v___x_241_);
-v___x_243_ = ((lean_object*)(l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__5));
+v___x_243_ = lean_obj_once(&l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__5, &l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__5_once, _init_l_Std_Tactic_BVDecide_BoolExpr_toString___redArg___closed__5);
 v___x_244_ = lean_string_append(v___x_242_, v___x_243_);
 return v___x_244_;
 }

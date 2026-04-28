@@ -22,8 +22,8 @@ LEAN_EXPORT lean_object* l_Lean_commitWhenSome_x3f___redArg___lam__5(lean_object
 LEAN_EXPORT lean_object* l_Lean_commitWhenSome_x3f___redArg___lam__6(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_commitWhenSome_x3f___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_commitWhenSome_x3f(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Lean_commitWhenSomeNoEx_x3f___redArg___lam__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lean_commitWhenSomeNoEx_x3f___redArg___lam__1___closed__0 = (const lean_object*)&l_Lean_commitWhenSomeNoEx_x3f___redArg___lam__1___closed__0_value;
+static lean_once_cell_t l_Lean_commitWhenSomeNoEx_x3f___redArg___lam__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_commitWhenSomeNoEx_x3f___redArg___lam__1___closed__0;
 LEAN_EXPORT lean_object* l_Lean_commitWhenSomeNoEx_x3f___redArg___lam__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_commitWhenSomeNoEx_x3f___redArg___lam__1___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_commitWhenSomeNoEx_x3f___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
@@ -45,8 +45,8 @@ LEAN_EXPORT lean_object* l_Lean_withoutModifyingState___redArg___lam__0___boxed(
 LEAN_EXPORT lean_object* l_Lean_withoutModifyingState___redArg___lam__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_withoutModifyingState___redArg___lam__1___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_withoutModifyingState___redArg___lam__2(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Lean_withoutModifyingState___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_withoutModifyingState___redArg___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_withoutModifyingState___redArg___closed__0 = (const lean_object*)&l_Lean_withoutModifyingState___redArg___closed__0_value;
+static lean_once_cell_t l_Lean_withoutModifyingState___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_withoutModifyingState___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Lean_withoutModifyingState___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_withoutModifyingState(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_observing_x3f___redArg___lam__0(lean_object*, lean_object*);
@@ -59,10 +59,10 @@ LEAN_EXPORT lean_object* l_Lean_observing_x3f(lean_object*, lean_object*, lean_o
 LEAN_EXPORT lean_object* l_Lean_instMonadBacktrackExceptTOfMonad___redArg___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_instMonadBacktrackExceptTOfMonad___redArg___lam__1(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_instMonadBacktrackExceptTOfMonad___redArg___lam__2(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Lean_instMonadBacktrackExceptTOfMonad___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_instMonadBacktrackExceptTOfMonad___redArg___lam__0, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_instMonadBacktrackExceptTOfMonad___redArg___closed__0 = (const lean_object*)&l_Lean_instMonadBacktrackExceptTOfMonad___redArg___closed__0_value;
-static const lean_closure_object l_Lean_instMonadBacktrackExceptTOfMonad___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_instMonadBacktrackExceptTOfMonad___redArg___lam__1, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_instMonadBacktrackExceptTOfMonad___redArg___closed__1 = (const lean_object*)&l_Lean_instMonadBacktrackExceptTOfMonad___redArg___closed__1_value;
+static lean_once_cell_t l_Lean_instMonadBacktrackExceptTOfMonad___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_instMonadBacktrackExceptTOfMonad___redArg___closed__0;
+static lean_once_cell_t l_Lean_instMonadBacktrackExceptTOfMonad___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_instMonadBacktrackExceptTOfMonad___redArg___closed__1;
 LEAN_EXPORT lean_object* l_Lean_instMonadBacktrackExceptTOfMonad___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_instMonadBacktrackExceptTOfMonad(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_commitWhenSome_x3f___redArg___lam__0(lean_object* v_toPure_1_, lean_object* v_r_2_){
@@ -216,11 +216,21 @@ v___x_76_ = l_Lean_commitWhenSome_x3f___redArg(v_inst_72_, v_inst_73_, v_inst_74
 return v___x_76_;
 }
 }
+static lean_object* _init_l_Lean_commitWhenSomeNoEx_x3f___redArg___lam__1___closed__0(void){
+_start:
+{
+lean_object* v___x_77_; lean_object* v___x_78_; 
+v___x_77_ = lean_box(0);
+v___x_78_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_78_, 0, v___x_77_);
+return v___x_78_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_commitWhenSomeNoEx_x3f___redArg___lam__1(lean_object* v_toPure_79_, lean_object* v_x_80_){
 _start:
 {
 lean_object* v___x_81_; lean_object* v___x_82_; 
-v___x_81_ = ((lean_object*)(l_Lean_commitWhenSomeNoEx_x3f___redArg___lam__1___closed__0));
+v___x_81_ = lean_obj_once(&l_Lean_commitWhenSomeNoEx_x3f___redArg___lam__1___closed__0, &l_Lean_commitWhenSomeNoEx_x3f___redArg___lam__1___closed__0_once, _init_l_Lean_commitWhenSomeNoEx_x3f___redArg___lam__1___closed__0);
 v___x_82_ = lean_apply_2(v_toPure_79_, lean_box(0), v___x_81_);
 return v___x_82_;
 }
@@ -498,6 +508,14 @@ v___x_227_ = lean_apply_4(v_map_223_, lean_box(0), lean_box(0), v___f_221_, v_y_
 return v___x_227_;
 }
 }
+static lean_object* _init_l_Lean_withoutModifyingState___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_228_; 
+v___f_228_ = lean_alloc_closure((void*)(l_Lean_withoutModifyingState___redArg___lam__0___boxed), 1, 0);
+return v___f_228_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_withoutModifyingState___redArg(lean_object* v_inst_229_, lean_object* v_inst_230_, lean_object* v_inst_231_, lean_object* v_x_232_){
 _start:
 {
@@ -515,7 +533,7 @@ lean_dec_ref(v_inst_231_);
 v_toFunctor_237_ = lean_ctor_get(v_toApplicative_233_, 0);
 lean_inc_ref(v_toFunctor_237_);
 lean_dec_ref(v_toApplicative_233_);
-v___f_238_ = ((lean_object*)(l_Lean_withoutModifyingState___redArg___closed__0));
+v___f_238_ = lean_obj_once(&l_Lean_withoutModifyingState___redArg___closed__0, &l_Lean_withoutModifyingState___redArg___closed__0_once, _init_l_Lean_withoutModifyingState___redArg___closed__0);
 v___f_239_ = lean_alloc_closure((void*)(l_Lean_withoutModifyingState___redArg___lam__2), 6, 5);
 lean_closure_set(v___f_239_, 0, v_toFunctor_237_);
 lean_closure_set(v___f_239_, 1, v_restoreState_236_);
@@ -538,7 +556,7 @@ LEAN_EXPORT lean_object* l_Lean_observing_x3f___redArg___lam__0(lean_object* v_t
 _start:
 {
 lean_object* v___x_251_; lean_object* v___x_252_; 
-v___x_251_ = ((lean_object*)(l_Lean_commitWhenSomeNoEx_x3f___redArg___lam__1___closed__0));
+v___x_251_ = lean_obj_once(&l_Lean_commitWhenSomeNoEx_x3f___redArg___lam__1___closed__0, &l_Lean_commitWhenSomeNoEx_x3f___redArg___lam__1___closed__0_once, _init_l_Lean_commitWhenSomeNoEx_x3f___redArg___lam__1___closed__0);
 v___x_252_ = lean_apply_2(v_toPure_249_, lean_box(0), v___x_251_);
 return v___x_252_;
 }
@@ -664,6 +682,22 @@ v___x_318_ = lean_apply_4(v_map_314_, lean_box(0), lean_box(0), v___f_315_, v___
 return v___x_318_;
 }
 }
+static lean_object* _init_l_Lean_instMonadBacktrackExceptTOfMonad___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_319_; 
+v___f_319_ = lean_alloc_closure((void*)(l_Lean_instMonadBacktrackExceptTOfMonad___redArg___lam__0), 1, 0);
+return v___f_319_;
+}
+}
+static lean_object* _init_l_Lean_instMonadBacktrackExceptTOfMonad___redArg___closed__1(void){
+_start:
+{
+lean_object* v___f_320_; 
+v___f_320_ = lean_alloc_closure((void*)(l_Lean_instMonadBacktrackExceptTOfMonad___redArg___lam__1), 1, 0);
+return v___f_320_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_instMonadBacktrackExceptTOfMonad___redArg(lean_object* v_inst_321_, lean_object* v_inst_322_){
 _start:
 {
@@ -698,8 +732,8 @@ lean_object* v_map_330_; lean_object* v___f_331_; lean_object* v___f_332_; lean_
 v_map_330_ = lean_ctor_get(v_toFunctor_324_, 0);
 lean_inc_n(v_map_330_, 2);
 lean_dec_ref(v_toFunctor_324_);
-v___f_331_ = ((lean_object*)(l_Lean_instMonadBacktrackExceptTOfMonad___redArg___closed__0));
-v___f_332_ = ((lean_object*)(l_Lean_instMonadBacktrackExceptTOfMonad___redArg___closed__1));
+v___f_331_ = lean_obj_once(&l_Lean_instMonadBacktrackExceptTOfMonad___redArg___closed__0, &l_Lean_instMonadBacktrackExceptTOfMonad___redArg___closed__0_once, _init_l_Lean_instMonadBacktrackExceptTOfMonad___redArg___closed__0);
+v___f_332_ = lean_obj_once(&l_Lean_instMonadBacktrackExceptTOfMonad___redArg___closed__1, &l_Lean_instMonadBacktrackExceptTOfMonad___redArg___closed__1_once, _init_l_Lean_instMonadBacktrackExceptTOfMonad___redArg___closed__1);
 v___f_333_ = lean_alloc_closure((void*)(l_Lean_instMonadBacktrackExceptTOfMonad___redArg___lam__2), 4, 3);
 lean_closure_set(v___f_333_, 0, v_restoreState_326_);
 lean_closure_set(v___f_333_, 1, v_map_330_);

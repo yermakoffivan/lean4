@@ -31,8 +31,8 @@ lean_object* lean_string_append(lean_object*, lean_object*);
 lean_object* l_Nat_reprFast(lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Nat_Basic_0__Nat_repeatTR_loop___at___00Lake_lpad_spec__0(uint32_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Nat_Basic_0__Nat_repeatTR_loop___at___00Lake_lpad_spec__0___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lake_lpad___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 1, .m_capacity = 1, .m_length = 0, .m_data = ""};
-static const lean_object* l_Lake_lpad___closed__0 = (const lean_object*)&l_Lake_lpad___closed__0_value;
+static lean_once_cell_t l_Lake_lpad___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_lpad___closed__0;
 LEAN_EXPORT lean_object* l_Lake_lpad(lean_object*, uint32_t, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_lpad___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_rpad(lean_object*, uint32_t, lean_object*);
@@ -89,11 +89,19 @@ v_res_14_ = l___private_Init_Data_Nat_Basic_0__Nat_repeatTR_loop___at___00Lake_l
 return v_res_14_;
 }
 }
+static lean_object* _init_l_Lake_lpad___closed__0(void){
+_start:
+{
+lean_object* v___x_15_; 
+v___x_15_ = lean_mk_string_unchecked("", 0, 0);
+return v___x_15_;
+}
+}
 LEAN_EXPORT lean_object* l_Lake_lpad(lean_object* v_s_16_, uint32_t v_c_17_, lean_object* v_len_18_){
 _start:
 {
 lean_object* v___x_19_; lean_object* v___x_20_; lean_object* v___x_21_; lean_object* v___x_22_; lean_object* v___x_23_; 
-v___x_19_ = ((lean_object*)(l_Lake_lpad___closed__0));
+v___x_19_ = lean_obj_once(&l_Lake_lpad___closed__0, &l_Lake_lpad___closed__0_once, _init_l_Lake_lpad___closed__0);
 v___x_20_ = lean_string_length(v_s_16_);
 v___x_21_ = lean_nat_sub(v_len_18_, v___x_20_);
 v___x_22_ = l___private_Init_Data_Nat_Basic_0__Nat_repeatTR_loop___at___00Lake_lpad_spec__0(v_c_17_, v___x_21_, v___x_19_);

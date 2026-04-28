@@ -131,112 +131,112 @@ LEAN_EXPORT lean_object* l_Std_Async_Signal_sigsys_elim___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_sigsys_elim___redArg___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_sigsys_elim(lean_object*, uint8_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_sigsys_elim___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 24, .m_capacity = 24, .m_length = 23, .m_data = "Std.Async.Signal.sighup"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__0 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__0_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__0_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__1 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__1_value;
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 24, .m_capacity = 24, .m_length = 23, .m_data = "Std.Async.Signal.sigint"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__2 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__2_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__2_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__3 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__3_value;
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "Std.Async.Signal.sigquit"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__4 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__4_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__4_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__5 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__5_value;
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "Std.Async.Signal.sigtrap"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__6 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__6_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__6_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__7 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__7_value;
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "Std.Async.Signal.sigabrt"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__8 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__8_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__8_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__9 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__9_value;
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "Std.Async.Signal.sigusr1"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__10 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__10_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__10_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__11 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__11_value;
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "Std.Async.Signal.sigusr2"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__12 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__12_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__12_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__13 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__13_value;
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "Std.Async.Signal.sigalrm"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__14 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__14_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__14_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__15 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__15_value;
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "Std.Async.Signal.sigterm"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__16 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__16_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__17_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__16_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__17 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__17_value;
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__18_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "Std.Async.Signal.sigchld"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__18 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__18_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__19_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__18_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__19 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__19_value;
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__20_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "Std.Async.Signal.sigcont"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__20 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__20_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__21_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__20_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__21 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__21_value;
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__22_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "Std.Async.Signal.sigtstp"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__22 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__22_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__23_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__22_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__23 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__23_value;
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__24_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "Std.Async.Signal.sigttin"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__24 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__24_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__25_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__24_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__25 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__25_value;
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__26_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "Std.Async.Signal.sigttou"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__26 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__26_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__27_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__26_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__27 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__27_value;
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__28_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 24, .m_capacity = 24, .m_length = 23, .m_data = "Std.Async.Signal.sigurg"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__28 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__28_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__29_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__28_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__29 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__29_value;
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__30_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "Std.Async.Signal.sigxcpu"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__30 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__30_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__31_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__30_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__31 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__31_value;
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__32_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "Std.Async.Signal.sigxfsz"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__32 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__32_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__33_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__32_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__33 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__33_value;
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__34_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 27, .m_capacity = 27, .m_length = 26, .m_data = "Std.Async.Signal.sigvtalrm"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__34 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__34_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__35_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__34_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__35 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__35_value;
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__36_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "Std.Async.Signal.sigprof"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__36 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__36_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__37_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__36_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__37 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__37_value;
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__38_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 26, .m_capacity = 26, .m_length = 25, .m_data = "Std.Async.Signal.sigwinch"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__38 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__38_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__39_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__38_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__39 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__39_value;
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__40_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 23, .m_capacity = 23, .m_length = 22, .m_data = "Std.Async.Signal.sigio"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__40 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__40_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__41_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__40_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__41 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__41_value;
-static const lean_string_object l_Std_Async_instReprSignal_repr___closed__42_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 24, .m_capacity = 24, .m_length = 23, .m_data = "Std.Async.Signal.sigsys"};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__42 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__42_value;
-static const lean_ctor_object l_Std_Async_instReprSignal_repr___closed__43_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Async_instReprSignal_repr___closed__42_value)}};
-static const lean_object* l_Std_Async_instReprSignal_repr___closed__43 = (const lean_object*)&l_Std_Async_instReprSignal_repr___closed__43_value;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__0;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__1;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__2;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__3;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__4;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__5;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__6;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__7;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__8;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__9;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__10;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__11;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__12;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__13;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__14;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__15;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__16;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__17;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__18;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__19;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__20_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__20;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__21_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__21;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__22_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__22;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__23_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__23;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__24_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__24;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__25_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__25;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__26_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__26;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__27_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__27;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__28_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__28;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__29_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__29;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__30_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__30;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__31_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__31;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__32_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__32;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__33_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__33;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__34_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__34;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__35_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__35;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__36_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__36;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__37_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__37;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__38_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__38;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__39_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__39;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__40_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__40;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__41_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__41;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__42_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__42;
+static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__43_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal_repr___closed__43;
 static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__44_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Async_instReprSignal_repr___closed__44;
 static lean_once_cell_t l_Std_Async_instReprSignal_repr___closed__45_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Async_instReprSignal_repr___closed__45;
 LEAN_EXPORT lean_object* l_Std_Async_instReprSignal_repr(uint8_t, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_instReprSignal_repr___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Async_instReprSignal___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_instReprSignal_repr___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Async_instReprSignal___closed__0 = (const lean_object*)&l_Std_Async_instReprSignal___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Async_instReprSignal = (const lean_object*)&l_Std_Async_instReprSignal___closed__0_value;
+static lean_once_cell_t l_Std_Async_instReprSignal___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instReprSignal___closed__0;
+LEAN_EXPORT lean_object* l_Std_Async_instReprSignal;
 LEAN_EXPORT uint8_t l_Std_Async_Signal_ofNat(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_ofNat___boxed(lean_object*);
 LEAN_EXPORT uint8_t l_Std_Async_instDecidableEqSignal(uint8_t, uint8_t);
 LEAN_EXPORT lean_object* l_Std_Async_instDecidableEqSignal___boxed(lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Std_Async_instBEqSignal_beq(uint8_t, uint8_t);
 LEAN_EXPORT lean_object* l_Std_Async_instBEqSignal_beq___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Async_instBEqSignal___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_instBEqSignal_beq___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Async_instBEqSignal___closed__0 = (const lean_object*)&l_Std_Async_instBEqSignal___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Async_instBEqSignal = (const lean_object*)&l_Std_Async_instBEqSignal___closed__0_value;
+static lean_once_cell_t l_Std_Async_instBEqSignal___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_instBEqSignal___closed__0;
+LEAN_EXPORT lean_object* l_Std_Async_instBEqSignal;
 static lean_once_cell_t l___private_Std_Async_Signal_0__Std_Async_Signal_toInt32___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static uint32_t l___private_Std_Async_Signal_0__Std_Async_Signal_toInt32___closed__0;
 static lean_once_cell_t l___private_Std_Async_Signal_0__Std_Async_Signal_toInt32___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -286,32 +286,32 @@ LEAN_EXPORT lean_object* l___private_Std_Async_Signal_0__Std_Async_Signal_toInt3
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_mk(uint8_t, uint8_t);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_mk___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_wait___lam__0(lean_object*, lean_object*);
-static const lean_string_object l_Std_Async_Signal_Waiter_wait___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 49, .m_capacity = 49, .m_length = 48, .m_data = "the promise linked to the Async Task was dropped"};
-static const lean_object* l_Std_Async_Signal_Waiter_wait___closed__0 = (const lean_object*)&l_Std_Async_Signal_Waiter_wait___closed__0_value;
-static const lean_closure_object l_Std_Async_Signal_Waiter_wait___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_Signal_Waiter_wait___lam__0, .m_arity = 2, .m_num_fixed = 1, .m_objs = {((lean_object*)&l_Std_Async_Signal_Waiter_wait___closed__0_value)} };
-static const lean_object* l_Std_Async_Signal_Waiter_wait___closed__1 = (const lean_object*)&l_Std_Async_Signal_Waiter_wait___closed__1_value;
+static lean_once_cell_t l_Std_Async_Signal_Waiter_wait___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Signal_Waiter_wait___closed__0;
+static lean_once_cell_t l_Std_Async_Signal_Waiter_wait___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Signal_Waiter_wait___closed__1;
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_wait(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_wait___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_stop(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_stop___boxed(lean_object*, lean_object*);
-static const lean_ctor_object l_Std_Async_Waiter_race___at___00Std_Async_Signal_Waiter_selector_spec__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_Async_Waiter_race___at___00Std_Async_Signal_Waiter_selector_spec__0___closed__0 = (const lean_object*)&l_Std_Async_Waiter_race___at___00Std_Async_Signal_Waiter_selector_spec__0___closed__0_value;
+static lean_once_cell_t l_Std_Async_Waiter_race___at___00Std_Async_Signal_Waiter_selector_spec__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Waiter_race___at___00Std_Async_Signal_Waiter_selector_spec__0___closed__0;
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___at___00Std_Async_Signal_Waiter_selector_spec__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___at___00Std_Async_Signal_Waiter_selector_spec__0___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector___lam__0___boxed(lean_object*, lean_object*);
-static const lean_ctor_object l_Std_Async_Signal_Waiter_selector___lam__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_Async_Signal_Waiter_selector___lam__1___closed__0 = (const lean_object*)&l_Std_Async_Signal_Waiter_selector___lam__1___closed__0_value;
-static const lean_ctor_object l_Std_Async_Signal_Waiter_selector___lam__1___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Async_Signal_Waiter_selector___lam__1___closed__0_value)}};
-static const lean_object* l_Std_Async_Signal_Waiter_selector___lam__1___closed__1 = (const lean_object*)&l_Std_Async_Signal_Waiter_selector___lam__1___closed__1_value;
+static lean_once_cell_t l_Std_Async_Signal_Waiter_selector___lam__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Signal_Waiter_selector___lam__1___closed__0;
+static lean_once_cell_t l_Std_Async_Signal_Waiter_selector___lam__1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Signal_Waiter_selector___lam__1___closed__1;
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector___lam__1(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector___lam__1___boxed(lean_object*, lean_object*);
-static const lean_ctor_object l_Std_Async_Signal_Waiter_selector___lam__2___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_Async_Signal_Waiter_selector___lam__2___closed__0 = (const lean_object*)&l_Std_Async_Signal_Waiter_selector___lam__2___closed__0_value;
-static const lean_ctor_object l_Std_Async_Signal_Waiter_selector___lam__2___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Async_Signal_Waiter_selector___lam__2___closed__0_value)}};
-static const lean_object* l_Std_Async_Signal_Waiter_selector___lam__2___closed__1 = (const lean_object*)&l_Std_Async_Signal_Waiter_selector___lam__2___closed__1_value;
-static const lean_ctor_object l_Std_Async_Signal_Waiter_selector___lam__2___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Async_Signal_Waiter_selector___lam__2___closed__1_value)}};
-static const lean_object* l_Std_Async_Signal_Waiter_selector___lam__2___closed__2 = (const lean_object*)&l_Std_Async_Signal_Waiter_selector___lam__2___closed__2_value;
+static lean_once_cell_t l_Std_Async_Signal_Waiter_selector___lam__2___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Signal_Waiter_selector___lam__2___closed__0;
+static lean_once_cell_t l_Std_Async_Signal_Waiter_selector___lam__2___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Signal_Waiter_selector___lam__2___closed__1;
+static lean_once_cell_t l_Std_Async_Signal_Waiter_selector___lam__2___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Signal_Waiter_selector___lam__2___closed__2;
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector___lam__2(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector___lam__2___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector___lam__3(lean_object*);
@@ -325,20 +325,20 @@ LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector___lam__7(lean_object
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector___lam__7___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector___lam__8(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector___lam__8___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Async_Signal_Waiter_selector___lam__9___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_Signal_Waiter_selector___lam__8___boxed, .m_arity = 2, .m_num_fixed = 1, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))} };
-static const lean_object* l_Std_Async_Signal_Waiter_selector___lam__9___closed__0 = (const lean_object*)&l_Std_Async_Signal_Waiter_selector___lam__9___closed__0_value;
+static lean_once_cell_t l_Std_Async_Signal_Waiter_selector___lam__9___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Signal_Waiter_selector___lam__9___closed__0;
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector___lam__9(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector___lam__9___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Std_Async_Signal_Waiter_selector___lam__10___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Async_Waiter_race___at___00Std_Async_Signal_Waiter_selector_spec__0___closed__0_value)}};
-static const lean_object* l_Std_Async_Signal_Waiter_selector___lam__10___closed__0 = (const lean_object*)&l_Std_Async_Signal_Waiter_selector___lam__10___closed__0_value;
+static lean_once_cell_t l_Std_Async_Signal_Waiter_selector___lam__10___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Signal_Waiter_selector___lam__10___closed__0;
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector___lam__10(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector___lam__10___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector___lam__11(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector___lam__11___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_Async_Signal_Waiter_selector___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_Signal_Waiter_selector___lam__1___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Async_Signal_Waiter_selector___closed__0 = (const lean_object*)&l_Std_Async_Signal_Waiter_selector___closed__0_value;
-static const lean_closure_object l_Std_Async_Signal_Waiter_selector___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Async_Signal_Waiter_selector___lam__3, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Async_Signal_Waiter_selector___closed__1 = (const lean_object*)&l_Std_Async_Signal_Waiter_selector___closed__1_value;
+static lean_once_cell_t l_Std_Async_Signal_Waiter_selector___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Signal_Waiter_selector___closed__0;
+static lean_once_cell_t l_Std_Async_Signal_Waiter_selector___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Async_Signal_Waiter_selector___closed__1;
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Async_Signal_ctorIdx(uint8_t v_x_1_){
 _start:
@@ -1266,6 +1266,402 @@ lean_dec(v_sigsys_330_);
 return v_res_332_;
 }
 }
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__0(void){
+_start:
+{
+lean_object* v___x_333_; 
+v___x_333_ = lean_mk_string_unchecked("Std.Async.Signal.sighup", 23, 23);
+return v___x_333_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__1(void){
+_start:
+{
+lean_object* v___x_334_; lean_object* v___x_335_; 
+v___x_334_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__0, &l_Std_Async_instReprSignal_repr___closed__0_once, _init_l_Std_Async_instReprSignal_repr___closed__0);
+v___x_335_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_335_, 0, v___x_334_);
+return v___x_335_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__2(void){
+_start:
+{
+lean_object* v___x_336_; 
+v___x_336_ = lean_mk_string_unchecked("Std.Async.Signal.sigint", 23, 23);
+return v___x_336_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__3(void){
+_start:
+{
+lean_object* v___x_337_; lean_object* v___x_338_; 
+v___x_337_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__2, &l_Std_Async_instReprSignal_repr___closed__2_once, _init_l_Std_Async_instReprSignal_repr___closed__2);
+v___x_338_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_338_, 0, v___x_337_);
+return v___x_338_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__4(void){
+_start:
+{
+lean_object* v___x_339_; 
+v___x_339_ = lean_mk_string_unchecked("Std.Async.Signal.sigquit", 24, 24);
+return v___x_339_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__5(void){
+_start:
+{
+lean_object* v___x_340_; lean_object* v___x_341_; 
+v___x_340_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__4, &l_Std_Async_instReprSignal_repr___closed__4_once, _init_l_Std_Async_instReprSignal_repr___closed__4);
+v___x_341_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_341_, 0, v___x_340_);
+return v___x_341_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__6(void){
+_start:
+{
+lean_object* v___x_342_; 
+v___x_342_ = lean_mk_string_unchecked("Std.Async.Signal.sigtrap", 24, 24);
+return v___x_342_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__7(void){
+_start:
+{
+lean_object* v___x_343_; lean_object* v___x_344_; 
+v___x_343_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__6, &l_Std_Async_instReprSignal_repr___closed__6_once, _init_l_Std_Async_instReprSignal_repr___closed__6);
+v___x_344_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_344_, 0, v___x_343_);
+return v___x_344_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__8(void){
+_start:
+{
+lean_object* v___x_345_; 
+v___x_345_ = lean_mk_string_unchecked("Std.Async.Signal.sigabrt", 24, 24);
+return v___x_345_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__9(void){
+_start:
+{
+lean_object* v___x_346_; lean_object* v___x_347_; 
+v___x_346_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__8, &l_Std_Async_instReprSignal_repr___closed__8_once, _init_l_Std_Async_instReprSignal_repr___closed__8);
+v___x_347_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_347_, 0, v___x_346_);
+return v___x_347_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__10(void){
+_start:
+{
+lean_object* v___x_348_; 
+v___x_348_ = lean_mk_string_unchecked("Std.Async.Signal.sigusr1", 24, 24);
+return v___x_348_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__11(void){
+_start:
+{
+lean_object* v___x_349_; lean_object* v___x_350_; 
+v___x_349_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__10, &l_Std_Async_instReprSignal_repr___closed__10_once, _init_l_Std_Async_instReprSignal_repr___closed__10);
+v___x_350_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_350_, 0, v___x_349_);
+return v___x_350_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__12(void){
+_start:
+{
+lean_object* v___x_351_; 
+v___x_351_ = lean_mk_string_unchecked("Std.Async.Signal.sigusr2", 24, 24);
+return v___x_351_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__13(void){
+_start:
+{
+lean_object* v___x_352_; lean_object* v___x_353_; 
+v___x_352_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__12, &l_Std_Async_instReprSignal_repr___closed__12_once, _init_l_Std_Async_instReprSignal_repr___closed__12);
+v___x_353_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_353_, 0, v___x_352_);
+return v___x_353_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__14(void){
+_start:
+{
+lean_object* v___x_354_; 
+v___x_354_ = lean_mk_string_unchecked("Std.Async.Signal.sigalrm", 24, 24);
+return v___x_354_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__15(void){
+_start:
+{
+lean_object* v___x_355_; lean_object* v___x_356_; 
+v___x_355_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__14, &l_Std_Async_instReprSignal_repr___closed__14_once, _init_l_Std_Async_instReprSignal_repr___closed__14);
+v___x_356_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_356_, 0, v___x_355_);
+return v___x_356_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__16(void){
+_start:
+{
+lean_object* v___x_357_; 
+v___x_357_ = lean_mk_string_unchecked("Std.Async.Signal.sigterm", 24, 24);
+return v___x_357_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__17(void){
+_start:
+{
+lean_object* v___x_358_; lean_object* v___x_359_; 
+v___x_358_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__16, &l_Std_Async_instReprSignal_repr___closed__16_once, _init_l_Std_Async_instReprSignal_repr___closed__16);
+v___x_359_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_359_, 0, v___x_358_);
+return v___x_359_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__18(void){
+_start:
+{
+lean_object* v___x_360_; 
+v___x_360_ = lean_mk_string_unchecked("Std.Async.Signal.sigchld", 24, 24);
+return v___x_360_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__19(void){
+_start:
+{
+lean_object* v___x_361_; lean_object* v___x_362_; 
+v___x_361_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__18, &l_Std_Async_instReprSignal_repr___closed__18_once, _init_l_Std_Async_instReprSignal_repr___closed__18);
+v___x_362_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_362_, 0, v___x_361_);
+return v___x_362_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__20(void){
+_start:
+{
+lean_object* v___x_363_; 
+v___x_363_ = lean_mk_string_unchecked("Std.Async.Signal.sigcont", 24, 24);
+return v___x_363_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__21(void){
+_start:
+{
+lean_object* v___x_364_; lean_object* v___x_365_; 
+v___x_364_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__20, &l_Std_Async_instReprSignal_repr___closed__20_once, _init_l_Std_Async_instReprSignal_repr___closed__20);
+v___x_365_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_365_, 0, v___x_364_);
+return v___x_365_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__22(void){
+_start:
+{
+lean_object* v___x_366_; 
+v___x_366_ = lean_mk_string_unchecked("Std.Async.Signal.sigtstp", 24, 24);
+return v___x_366_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__23(void){
+_start:
+{
+lean_object* v___x_367_; lean_object* v___x_368_; 
+v___x_367_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__22, &l_Std_Async_instReprSignal_repr___closed__22_once, _init_l_Std_Async_instReprSignal_repr___closed__22);
+v___x_368_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_368_, 0, v___x_367_);
+return v___x_368_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__24(void){
+_start:
+{
+lean_object* v___x_369_; 
+v___x_369_ = lean_mk_string_unchecked("Std.Async.Signal.sigttin", 24, 24);
+return v___x_369_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__25(void){
+_start:
+{
+lean_object* v___x_370_; lean_object* v___x_371_; 
+v___x_370_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__24, &l_Std_Async_instReprSignal_repr___closed__24_once, _init_l_Std_Async_instReprSignal_repr___closed__24);
+v___x_371_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_371_, 0, v___x_370_);
+return v___x_371_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__26(void){
+_start:
+{
+lean_object* v___x_372_; 
+v___x_372_ = lean_mk_string_unchecked("Std.Async.Signal.sigttou", 24, 24);
+return v___x_372_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__27(void){
+_start:
+{
+lean_object* v___x_373_; lean_object* v___x_374_; 
+v___x_373_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__26, &l_Std_Async_instReprSignal_repr___closed__26_once, _init_l_Std_Async_instReprSignal_repr___closed__26);
+v___x_374_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_374_, 0, v___x_373_);
+return v___x_374_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__28(void){
+_start:
+{
+lean_object* v___x_375_; 
+v___x_375_ = lean_mk_string_unchecked("Std.Async.Signal.sigurg", 23, 23);
+return v___x_375_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__29(void){
+_start:
+{
+lean_object* v___x_376_; lean_object* v___x_377_; 
+v___x_376_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__28, &l_Std_Async_instReprSignal_repr___closed__28_once, _init_l_Std_Async_instReprSignal_repr___closed__28);
+v___x_377_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_377_, 0, v___x_376_);
+return v___x_377_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__30(void){
+_start:
+{
+lean_object* v___x_378_; 
+v___x_378_ = lean_mk_string_unchecked("Std.Async.Signal.sigxcpu", 24, 24);
+return v___x_378_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__31(void){
+_start:
+{
+lean_object* v___x_379_; lean_object* v___x_380_; 
+v___x_379_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__30, &l_Std_Async_instReprSignal_repr___closed__30_once, _init_l_Std_Async_instReprSignal_repr___closed__30);
+v___x_380_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_380_, 0, v___x_379_);
+return v___x_380_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__32(void){
+_start:
+{
+lean_object* v___x_381_; 
+v___x_381_ = lean_mk_string_unchecked("Std.Async.Signal.sigxfsz", 24, 24);
+return v___x_381_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__33(void){
+_start:
+{
+lean_object* v___x_382_; lean_object* v___x_383_; 
+v___x_382_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__32, &l_Std_Async_instReprSignal_repr___closed__32_once, _init_l_Std_Async_instReprSignal_repr___closed__32);
+v___x_383_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_383_, 0, v___x_382_);
+return v___x_383_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__34(void){
+_start:
+{
+lean_object* v___x_384_; 
+v___x_384_ = lean_mk_string_unchecked("Std.Async.Signal.sigvtalrm", 26, 26);
+return v___x_384_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__35(void){
+_start:
+{
+lean_object* v___x_385_; lean_object* v___x_386_; 
+v___x_385_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__34, &l_Std_Async_instReprSignal_repr___closed__34_once, _init_l_Std_Async_instReprSignal_repr___closed__34);
+v___x_386_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_386_, 0, v___x_385_);
+return v___x_386_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__36(void){
+_start:
+{
+lean_object* v___x_387_; 
+v___x_387_ = lean_mk_string_unchecked("Std.Async.Signal.sigprof", 24, 24);
+return v___x_387_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__37(void){
+_start:
+{
+lean_object* v___x_388_; lean_object* v___x_389_; 
+v___x_388_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__36, &l_Std_Async_instReprSignal_repr___closed__36_once, _init_l_Std_Async_instReprSignal_repr___closed__36);
+v___x_389_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_389_, 0, v___x_388_);
+return v___x_389_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__38(void){
+_start:
+{
+lean_object* v___x_390_; 
+v___x_390_ = lean_mk_string_unchecked("Std.Async.Signal.sigwinch", 25, 25);
+return v___x_390_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__39(void){
+_start:
+{
+lean_object* v___x_391_; lean_object* v___x_392_; 
+v___x_391_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__38, &l_Std_Async_instReprSignal_repr___closed__38_once, _init_l_Std_Async_instReprSignal_repr___closed__38);
+v___x_392_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_392_, 0, v___x_391_);
+return v___x_392_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__40(void){
+_start:
+{
+lean_object* v___x_393_; 
+v___x_393_ = lean_mk_string_unchecked("Std.Async.Signal.sigio", 22, 22);
+return v___x_393_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__41(void){
+_start:
+{
+lean_object* v___x_394_; lean_object* v___x_395_; 
+v___x_394_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__40, &l_Std_Async_instReprSignal_repr___closed__40_once, _init_l_Std_Async_instReprSignal_repr___closed__40);
+v___x_395_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_395_, 0, v___x_394_);
+return v___x_395_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__42(void){
+_start:
+{
+lean_object* v___x_396_; 
+v___x_396_ = lean_mk_string_unchecked("Std.Async.Signal.sigsys", 23, 23);
+return v___x_396_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__43(void){
+_start:
+{
+lean_object* v___x_397_; lean_object* v___x_398_; 
+v___x_397_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__42, &l_Std_Async_instReprSignal_repr___closed__42_once, _init_l_Std_Async_instReprSignal_repr___closed__42);
+v___x_398_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_398_, 0, v___x_397_);
+return v___x_398_;
+}
+}
 static lean_object* _init_l_Std_Async_instReprSignal_repr___closed__44(void){
 _start:
 {
@@ -1734,7 +2130,7 @@ goto v___jp_552_;
 v___jp_405_:
 {
 lean_object* v___x_407_; lean_object* v___x_408_; uint8_t v___x_409_; lean_object* v___x_410_; lean_object* v___x_411_; 
-v___x_407_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__1));
+v___x_407_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__1, &l_Std_Async_instReprSignal_repr___closed__1_once, _init_l_Std_Async_instReprSignal_repr___closed__1);
 lean_inc(v___y_406_);
 v___x_408_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_408_, 0, v___y_406_);
@@ -1749,7 +2145,7 @@ return v___x_411_;
 v___jp_412_:
 {
 lean_object* v___x_414_; lean_object* v___x_415_; uint8_t v___x_416_; lean_object* v___x_417_; lean_object* v___x_418_; 
-v___x_414_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__3));
+v___x_414_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__3, &l_Std_Async_instReprSignal_repr___closed__3_once, _init_l_Std_Async_instReprSignal_repr___closed__3);
 lean_inc(v___y_413_);
 v___x_415_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_415_, 0, v___y_413_);
@@ -1764,7 +2160,7 @@ return v___x_418_;
 v___jp_419_:
 {
 lean_object* v___x_421_; lean_object* v___x_422_; uint8_t v___x_423_; lean_object* v___x_424_; lean_object* v___x_425_; 
-v___x_421_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__5));
+v___x_421_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__5, &l_Std_Async_instReprSignal_repr___closed__5_once, _init_l_Std_Async_instReprSignal_repr___closed__5);
 lean_inc(v___y_420_);
 v___x_422_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_422_, 0, v___y_420_);
@@ -1779,7 +2175,7 @@ return v___x_425_;
 v___jp_426_:
 {
 lean_object* v___x_428_; lean_object* v___x_429_; uint8_t v___x_430_; lean_object* v___x_431_; lean_object* v___x_432_; 
-v___x_428_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__7));
+v___x_428_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__7, &l_Std_Async_instReprSignal_repr___closed__7_once, _init_l_Std_Async_instReprSignal_repr___closed__7);
 lean_inc(v___y_427_);
 v___x_429_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_429_, 0, v___y_427_);
@@ -1794,7 +2190,7 @@ return v___x_432_;
 v___jp_433_:
 {
 lean_object* v___x_435_; lean_object* v___x_436_; uint8_t v___x_437_; lean_object* v___x_438_; lean_object* v___x_439_; 
-v___x_435_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__9));
+v___x_435_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__9, &l_Std_Async_instReprSignal_repr___closed__9_once, _init_l_Std_Async_instReprSignal_repr___closed__9);
 lean_inc(v___y_434_);
 v___x_436_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_436_, 0, v___y_434_);
@@ -1809,7 +2205,7 @@ return v___x_439_;
 v___jp_440_:
 {
 lean_object* v___x_442_; lean_object* v___x_443_; uint8_t v___x_444_; lean_object* v___x_445_; lean_object* v___x_446_; 
-v___x_442_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__11));
+v___x_442_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__11, &l_Std_Async_instReprSignal_repr___closed__11_once, _init_l_Std_Async_instReprSignal_repr___closed__11);
 lean_inc(v___y_441_);
 v___x_443_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_443_, 0, v___y_441_);
@@ -1824,7 +2220,7 @@ return v___x_446_;
 v___jp_447_:
 {
 lean_object* v___x_449_; lean_object* v___x_450_; uint8_t v___x_451_; lean_object* v___x_452_; lean_object* v___x_453_; 
-v___x_449_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__13));
+v___x_449_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__13, &l_Std_Async_instReprSignal_repr___closed__13_once, _init_l_Std_Async_instReprSignal_repr___closed__13);
 lean_inc(v___y_448_);
 v___x_450_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_450_, 0, v___y_448_);
@@ -1839,7 +2235,7 @@ return v___x_453_;
 v___jp_454_:
 {
 lean_object* v___x_456_; lean_object* v___x_457_; uint8_t v___x_458_; lean_object* v___x_459_; lean_object* v___x_460_; 
-v___x_456_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__15));
+v___x_456_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__15, &l_Std_Async_instReprSignal_repr___closed__15_once, _init_l_Std_Async_instReprSignal_repr___closed__15);
 lean_inc(v___y_455_);
 v___x_457_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_457_, 0, v___y_455_);
@@ -1854,7 +2250,7 @@ return v___x_460_;
 v___jp_461_:
 {
 lean_object* v___x_463_; lean_object* v___x_464_; uint8_t v___x_465_; lean_object* v___x_466_; lean_object* v___x_467_; 
-v___x_463_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__17));
+v___x_463_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__17, &l_Std_Async_instReprSignal_repr___closed__17_once, _init_l_Std_Async_instReprSignal_repr___closed__17);
 lean_inc(v___y_462_);
 v___x_464_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_464_, 0, v___y_462_);
@@ -1869,7 +2265,7 @@ return v___x_467_;
 v___jp_468_:
 {
 lean_object* v___x_470_; lean_object* v___x_471_; uint8_t v___x_472_; lean_object* v___x_473_; lean_object* v___x_474_; 
-v___x_470_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__19));
+v___x_470_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__19, &l_Std_Async_instReprSignal_repr___closed__19_once, _init_l_Std_Async_instReprSignal_repr___closed__19);
 lean_inc(v___y_469_);
 v___x_471_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_471_, 0, v___y_469_);
@@ -1884,7 +2280,7 @@ return v___x_474_;
 v___jp_475_:
 {
 lean_object* v___x_477_; lean_object* v___x_478_; uint8_t v___x_479_; lean_object* v___x_480_; lean_object* v___x_481_; 
-v___x_477_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__21));
+v___x_477_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__21, &l_Std_Async_instReprSignal_repr___closed__21_once, _init_l_Std_Async_instReprSignal_repr___closed__21);
 lean_inc(v___y_476_);
 v___x_478_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_478_, 0, v___y_476_);
@@ -1899,7 +2295,7 @@ return v___x_481_;
 v___jp_482_:
 {
 lean_object* v___x_484_; lean_object* v___x_485_; uint8_t v___x_486_; lean_object* v___x_487_; lean_object* v___x_488_; 
-v___x_484_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__23));
+v___x_484_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__23, &l_Std_Async_instReprSignal_repr___closed__23_once, _init_l_Std_Async_instReprSignal_repr___closed__23);
 lean_inc(v___y_483_);
 v___x_485_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_485_, 0, v___y_483_);
@@ -1914,7 +2310,7 @@ return v___x_488_;
 v___jp_489_:
 {
 lean_object* v___x_491_; lean_object* v___x_492_; uint8_t v___x_493_; lean_object* v___x_494_; lean_object* v___x_495_; 
-v___x_491_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__25));
+v___x_491_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__25, &l_Std_Async_instReprSignal_repr___closed__25_once, _init_l_Std_Async_instReprSignal_repr___closed__25);
 lean_inc(v___y_490_);
 v___x_492_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_492_, 0, v___y_490_);
@@ -1929,7 +2325,7 @@ return v___x_495_;
 v___jp_496_:
 {
 lean_object* v___x_498_; lean_object* v___x_499_; uint8_t v___x_500_; lean_object* v___x_501_; lean_object* v___x_502_; 
-v___x_498_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__27));
+v___x_498_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__27, &l_Std_Async_instReprSignal_repr___closed__27_once, _init_l_Std_Async_instReprSignal_repr___closed__27);
 lean_inc(v___y_497_);
 v___x_499_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_499_, 0, v___y_497_);
@@ -1944,7 +2340,7 @@ return v___x_502_;
 v___jp_503_:
 {
 lean_object* v___x_505_; lean_object* v___x_506_; uint8_t v___x_507_; lean_object* v___x_508_; lean_object* v___x_509_; 
-v___x_505_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__29));
+v___x_505_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__29, &l_Std_Async_instReprSignal_repr___closed__29_once, _init_l_Std_Async_instReprSignal_repr___closed__29);
 lean_inc(v___y_504_);
 v___x_506_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_506_, 0, v___y_504_);
@@ -1959,7 +2355,7 @@ return v___x_509_;
 v___jp_510_:
 {
 lean_object* v___x_512_; lean_object* v___x_513_; uint8_t v___x_514_; lean_object* v___x_515_; lean_object* v___x_516_; 
-v___x_512_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__31));
+v___x_512_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__31, &l_Std_Async_instReprSignal_repr___closed__31_once, _init_l_Std_Async_instReprSignal_repr___closed__31);
 lean_inc(v___y_511_);
 v___x_513_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_513_, 0, v___y_511_);
@@ -1974,7 +2370,7 @@ return v___x_516_;
 v___jp_517_:
 {
 lean_object* v___x_519_; lean_object* v___x_520_; uint8_t v___x_521_; lean_object* v___x_522_; lean_object* v___x_523_; 
-v___x_519_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__33));
+v___x_519_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__33, &l_Std_Async_instReprSignal_repr___closed__33_once, _init_l_Std_Async_instReprSignal_repr___closed__33);
 lean_inc(v___y_518_);
 v___x_520_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_520_, 0, v___y_518_);
@@ -1989,7 +2385,7 @@ return v___x_523_;
 v___jp_524_:
 {
 lean_object* v___x_526_; lean_object* v___x_527_; uint8_t v___x_528_; lean_object* v___x_529_; lean_object* v___x_530_; 
-v___x_526_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__35));
+v___x_526_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__35, &l_Std_Async_instReprSignal_repr___closed__35_once, _init_l_Std_Async_instReprSignal_repr___closed__35);
 lean_inc(v___y_525_);
 v___x_527_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_527_, 0, v___y_525_);
@@ -2004,7 +2400,7 @@ return v___x_530_;
 v___jp_531_:
 {
 lean_object* v___x_533_; lean_object* v___x_534_; uint8_t v___x_535_; lean_object* v___x_536_; lean_object* v___x_537_; 
-v___x_533_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__37));
+v___x_533_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__37, &l_Std_Async_instReprSignal_repr___closed__37_once, _init_l_Std_Async_instReprSignal_repr___closed__37);
 lean_inc(v___y_532_);
 v___x_534_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_534_, 0, v___y_532_);
@@ -2019,7 +2415,7 @@ return v___x_537_;
 v___jp_538_:
 {
 lean_object* v___x_540_; lean_object* v___x_541_; uint8_t v___x_542_; lean_object* v___x_543_; lean_object* v___x_544_; 
-v___x_540_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__39));
+v___x_540_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__39, &l_Std_Async_instReprSignal_repr___closed__39_once, _init_l_Std_Async_instReprSignal_repr___closed__39);
 lean_inc(v___y_539_);
 v___x_541_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_541_, 0, v___y_539_);
@@ -2034,7 +2430,7 @@ return v___x_544_;
 v___jp_545_:
 {
 lean_object* v___x_547_; lean_object* v___x_548_; uint8_t v___x_549_; lean_object* v___x_550_; lean_object* v___x_551_; 
-v___x_547_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__41));
+v___x_547_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__41, &l_Std_Async_instReprSignal_repr___closed__41_once, _init_l_Std_Async_instReprSignal_repr___closed__41);
 lean_inc(v___y_546_);
 v___x_548_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_548_, 0, v___y_546_);
@@ -2049,7 +2445,7 @@ return v___x_551_;
 v___jp_552_:
 {
 lean_object* v___x_554_; lean_object* v___x_555_; uint8_t v___x_556_; lean_object* v___x_557_; lean_object* v___x_558_; 
-v___x_554_ = ((lean_object*)(l_Std_Async_instReprSignal_repr___closed__43));
+v___x_554_ = lean_obj_once(&l_Std_Async_instReprSignal_repr___closed__43, &l_Std_Async_instReprSignal_repr___closed__43_once, _init_l_Std_Async_instReprSignal_repr___closed__43);
 lean_inc(v___y_553_);
 v___x_555_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_555_, 0, v___y_553_);
@@ -2071,6 +2467,22 @@ v_x_1241__boxed_649_ = lean_unbox(v_x_647_);
 v_res_650_ = l_Std_Async_instReprSignal_repr(v_x_1241__boxed_649_, v_prec_648_);
 lean_dec(v_prec_648_);
 return v_res_650_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal___closed__0(void){
+_start:
+{
+lean_object* v___x_651_; 
+v___x_651_ = lean_alloc_closure((void*)(l_Std_Async_instReprSignal_repr___boxed), 2, 0);
+return v___x_651_;
+}
+}
+static lean_object* _init_l_Std_Async_instReprSignal(void){
+_start:
+{
+lean_object* v___x_652_; 
+v___x_652_ = lean_obj_once(&l_Std_Async_instReprSignal___closed__0, &l_Std_Async_instReprSignal___closed__0_once, _init_l_Std_Async_instReprSignal___closed__0);
+return v___x_652_;
 }
 }
 LEAN_EXPORT uint8_t l_Std_Async_Signal_ofNat(lean_object* v_n_653_){
@@ -2387,6 +2799,22 @@ v_y_18__boxed_740_ = lean_unbox(v_y_738_);
 v_res_741_ = l_Std_Async_instBEqSignal_beq(v_x_17__boxed_739_, v_y_18__boxed_740_);
 v_r_742_ = lean_box(v_res_741_);
 return v_r_742_;
+}
+}
+static lean_object* _init_l_Std_Async_instBEqSignal___closed__0(void){
+_start:
+{
+lean_object* v___x_743_; 
+v___x_743_ = lean_alloc_closure((void*)(l_Std_Async_instBEqSignal_beq___boxed), 2, 0);
+return v___x_743_;
+}
+}
+static lean_object* _init_l_Std_Async_instBEqSignal(void){
+_start:
+{
+lean_object* v___x_744_; 
+v___x_744_ = lean_obj_once(&l_Std_Async_instBEqSignal___closed__0, &l_Std_Async_instBEqSignal___closed__0_once, _init_l_Std_Async_instBEqSignal___closed__0);
+return v___x_744_;
 }
 }
 static uint32_t _init_l___private_Std_Async_Signal_0__Std_Async_Signal_toInt32___closed__0(void){
@@ -2892,6 +3320,24 @@ return v___x_852_;
 }
 }
 }
+static lean_object* _init_l_Std_Async_Signal_Waiter_wait___closed__0(void){
+_start:
+{
+lean_object* v___x_855_; 
+v___x_855_ = lean_mk_string_unchecked("the promise linked to the Async Task was dropped", 48, 48);
+return v___x_855_;
+}
+}
+static lean_object* _init_l_Std_Async_Signal_Waiter_wait___closed__1(void){
+_start:
+{
+lean_object* v___x_856_; lean_object* v___f_857_; 
+v___x_856_ = lean_obj_once(&l_Std_Async_Signal_Waiter_wait___closed__0, &l_Std_Async_Signal_Waiter_wait___closed__0_once, _init_l_Std_Async_Signal_Waiter_wait___closed__0);
+v___f_857_ = lean_alloc_closure((void*)(l_Std_Async_Signal_Waiter_wait___lam__0), 2, 1);
+lean_closure_set(v___f_857_, 0, v___x_856_);
+return v___f_857_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_wait(lean_object* v_s_858_){
 _start:
 {
@@ -2919,7 +3365,7 @@ goto v_resetjp_862_;
 v_resetjp_862_:
 {
 lean_object* v___f_865_; lean_object* v___x_866_; lean_object* v___x_867_; uint8_t v___x_868_; lean_object* v___x_869_; lean_object* v___x_871_; 
-v___f_865_ = ((lean_object*)(l_Std_Async_Signal_Waiter_wait___closed__1));
+v___f_865_ = lean_obj_once(&l_Std_Async_Signal_Waiter_wait___closed__1, &l_Std_Async_Signal_Waiter_wait___closed__1_once, _init_l_Std_Async_Signal_Waiter_wait___closed__1);
 v___x_866_ = lean_io_promise_result_opt(v_a_861_);
 lean_dec(v_a_861_);
 v___x_867_ = lean_unsigned_to_nat(0u);
@@ -3014,6 +3460,16 @@ lean_dec(v_s_888_);
 return v_res_890_;
 }
 }
+static lean_object* _init_l_Std_Async_Waiter_race___at___00Std_Async_Signal_Waiter_selector_spec__0___closed__0(void){
+_start:
+{
+lean_object* v___x_891_; lean_object* v___x_892_; 
+v___x_891_ = lean_box(0);
+v___x_892_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_892_, 0, v___x_891_);
+return v___x_892_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_Waiter_race___at___00Std_Async_Signal_Waiter_selector_spec__0(lean_object* v_w_893_, lean_object* v_lose_894_){
 _start:
 {
@@ -3053,7 +3509,7 @@ else
 {
 lean_object* v___x_905_; lean_object* v___x_906_; lean_object* v___x_907_; 
 lean_dec_ref(v_lose_894_);
-v___x_905_ = ((lean_object*)(l_Std_Async_Waiter_race___at___00Std_Async_Signal_Waiter_selector_spec__0___closed__0));
+v___x_905_ = lean_obj_once(&l_Std_Async_Waiter_race___at___00Std_Async_Signal_Waiter_selector_spec__0___closed__0, &l_Std_Async_Waiter_race___at___00Std_Async_Signal_Waiter_selector_spec__0___closed__0_once, _init_l_Std_Async_Waiter_race___at___00Std_Async_Signal_Waiter_selector_spec__0___closed__0);
 v___x_906_ = lean_io_promise_resolve(v___x_905_, v_promise_897_);
 v___x_907_ = lean_alloc_ctor(0, 1, 0);
 lean_ctor_set(v___x_907_, 0, v___x_906_);
@@ -3180,6 +3636,26 @@ lean_dec(v_s_937_);
 return v_res_939_;
 }
 }
+static lean_object* _init_l_Std_Async_Signal_Waiter_selector___lam__1___closed__0(void){
+_start:
+{
+lean_object* v___x_940_; lean_object* v___x_941_; 
+v___x_940_ = lean_box(0);
+v___x_941_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_941_, 0, v___x_940_);
+return v___x_941_;
+}
+}
+static lean_object* _init_l_Std_Async_Signal_Waiter_selector___lam__1___closed__1(void){
+_start:
+{
+lean_object* v___x_942_; lean_object* v___x_943_; 
+v___x_942_ = lean_obj_once(&l_Std_Async_Signal_Waiter_selector___lam__1___closed__0, &l_Std_Async_Signal_Waiter_selector___lam__1___closed__0_once, _init_l_Std_Async_Signal_Waiter_selector___lam__1___closed__0);
+v___x_943_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_943_, 0, v___x_942_);
+return v___x_943_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector___lam__1(lean_object* v_x_944_){
 _start:
 {
@@ -3231,7 +3707,7 @@ else
 {
 lean_object* v___x_955_; 
 lean_dec_ref(v_x_944_);
-v___x_955_ = ((lean_object*)(l_Std_Async_Signal_Waiter_selector___lam__1___closed__1));
+v___x_955_ = lean_obj_once(&l_Std_Async_Signal_Waiter_selector___lam__1___closed__1, &l_Std_Async_Signal_Waiter_selector___lam__1___closed__1_once, _init_l_Std_Async_Signal_Waiter_selector___lam__1___closed__1);
 return v___x_955_;
 }
 }
@@ -3242,6 +3718,36 @@ _start:
 lean_object* v_res_958_; 
 v_res_958_ = l_Std_Async_Signal_Waiter_selector___lam__1(v_x_956_);
 return v_res_958_;
+}
+}
+static lean_object* _init_l_Std_Async_Signal_Waiter_selector___lam__2___closed__0(void){
+_start:
+{
+lean_object* v___x_959_; lean_object* v___x_960_; 
+v___x_959_ = lean_box(0);
+v___x_960_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_960_, 0, v___x_959_);
+return v___x_960_;
+}
+}
+static lean_object* _init_l_Std_Async_Signal_Waiter_selector___lam__2___closed__1(void){
+_start:
+{
+lean_object* v___x_961_; lean_object* v___x_962_; 
+v___x_961_ = lean_obj_once(&l_Std_Async_Signal_Waiter_selector___lam__2___closed__0, &l_Std_Async_Signal_Waiter_selector___lam__2___closed__0_once, _init_l_Std_Async_Signal_Waiter_selector___lam__2___closed__0);
+v___x_962_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_962_, 0, v___x_961_);
+return v___x_962_;
+}
+}
+static lean_object* _init_l_Std_Async_Signal_Waiter_selector___lam__2___closed__2(void){
+_start:
+{
+lean_object* v___x_963_; lean_object* v___x_964_; 
+v___x_963_ = lean_obj_once(&l_Std_Async_Signal_Waiter_selector___lam__2___closed__1, &l_Std_Async_Signal_Waiter_selector___lam__2___closed__1_once, _init_l_Std_Async_Signal_Waiter_selector___lam__2___closed__1);
+v___x_964_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_964_, 0, v___x_963_);
+return v___x_964_;
 }
 }
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector___lam__2(lean_object* v___f_965_, lean_object* v_s_966_, lean_object* v_x_967_){
@@ -3379,7 +3885,7 @@ lean_object* v___x_998_;
 lean_del_object(v___x_980_);
 lean_dec(v_a_978_);
 lean_dec_ref(v___f_965_);
-v___x_998_ = ((lean_object*)(l_Std_Async_Signal_Waiter_selector___lam__2___closed__2));
+v___x_998_ = lean_obj_once(&l_Std_Async_Signal_Waiter_selector___lam__2___closed__2, &l_Std_Async_Signal_Waiter_selector___lam__2___closed__2_once, _init_l_Std_Async_Signal_Waiter_selector___lam__2___closed__2);
 return v___x_998_;
 }
 v___jp_982_:
@@ -3455,7 +3961,7 @@ goto v_resetjp_1016_;
 v_resetjp_1016_:
 {
 lean_object* v___f_1019_; lean_object* v___x_1020_; lean_object* v___x_1021_; uint8_t v___x_1022_; lean_object* v___x_1023_; lean_object* v___x_1025_; 
-v___f_1019_ = ((lean_object*)(l_Std_Async_Signal_Waiter_wait___closed__1));
+v___f_1019_ = lean_obj_once(&l_Std_Async_Signal_Waiter_wait___closed__1, &l_Std_Async_Signal_Waiter_wait___closed__1_once, _init_l_Std_Async_Signal_Waiter_wait___closed__1);
 v___x_1020_ = lean_io_promise_result_opt(v_a_1015_);
 lean_dec(v_a_1015_);
 v___x_1021_ = lean_unsigned_to_nat(0u);
@@ -3729,6 +4235,16 @@ v_res_1103_ = l_Std_Async_Signal_Waiter_selector___lam__8(v___x_1101_);
 return v_res_1103_;
 }
 }
+static lean_object* _init_l_Std_Async_Signal_Waiter_selector___lam__9___closed__0(void){
+_start:
+{
+lean_object* v___x_1104_; lean_object* v___f_1105_; 
+v___x_1104_ = lean_box(0);
+v___f_1105_ = lean_alloc_closure((void*)(l_Std_Async_Signal_Waiter_selector___lam__8___boxed), 2, 1);
+lean_closure_set(v___f_1105_, 0, v___x_1104_);
+return v___f_1105_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector___lam__9(lean_object* v_waiter_1106_, lean_object* v_a_1107_){
 _start:
 {
@@ -3765,7 +4281,7 @@ goto v_resetjp_1113_;
 v_resetjp_1113_:
 {
 lean_object* v___f_1116_; lean_object* v___x_1117_; 
-v___f_1116_ = ((lean_object*)(l_Std_Async_Signal_Waiter_selector___lam__9___closed__0));
+v___f_1116_ = lean_obj_once(&l_Std_Async_Signal_Waiter_selector___lam__9___closed__0, &l_Std_Async_Signal_Waiter_selector___lam__9___closed__0_once, _init_l_Std_Async_Signal_Waiter_selector___lam__9___closed__0);
 v___x_1117_ = l_Std_Async_Waiter_race___at___00Std_Async_Signal_Waiter_selector_spec__0(v_waiter_1106_, v___f_1116_);
 if (lean_obj_tag(v___x_1117_) == 0)
 {
@@ -3820,6 +4336,16 @@ lean_object* v_res_1128_;
 v_res_1128_ = l_Std_Async_Signal_Waiter_selector___lam__9(v_waiter_1125_, v_a_1126_);
 lean_dec_ref(v_waiter_1125_);
 return v_res_1128_;
+}
+}
+static lean_object* _init_l_Std_Async_Signal_Waiter_selector___lam__10___closed__0(void){
+_start:
+{
+lean_object* v___x_1129_; lean_object* v___x_1130_; 
+v___x_1129_ = lean_obj_once(&l_Std_Async_Waiter_race___at___00Std_Async_Signal_Waiter_selector_spec__0___closed__0, &l_Std_Async_Waiter_race___at___00Std_Async_Signal_Waiter_selector_spec__0___closed__0_once, _init_l_Std_Async_Waiter_race___at___00Std_Async_Signal_Waiter_selector_spec__0___closed__0);
+v___x_1130_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_1130_, 0, v___x_1129_);
+return v___x_1130_;
 }
 }
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector___lam__10(lean_object* v___f_1131_, lean_object* v___x_1132_, lean_object* v_x_1133_){
@@ -3880,7 +4406,7 @@ lean_dec_ref(v_x_1133_);
 v___x_1145_ = 0;
 v___x_1146_ = lean_io_map_task(v___f_1131_, v_a_1144_, v___x_1132_, v___x_1145_);
 lean_dec_ref(v___x_1146_);
-v___x_1147_ = ((lean_object*)(l_Std_Async_Signal_Waiter_selector___lam__10___closed__0));
+v___x_1147_ = lean_obj_once(&l_Std_Async_Signal_Waiter_selector___lam__10___closed__0, &l_Std_Async_Signal_Waiter_selector___lam__10___closed__0_once, _init_l_Std_Async_Signal_Waiter_selector___lam__10___closed__0);
 return v___x_1147_;
 }
 }
@@ -3917,6 +4443,22 @@ v_res_1166_ = l_Std_Async_Signal_Waiter_selector___lam__11(v___f_1162_, v___x_11
 return v_res_1166_;
 }
 }
+static lean_object* _init_l_Std_Async_Signal_Waiter_selector___closed__0(void){
+_start:
+{
+lean_object* v___f_1167_; 
+v___f_1167_ = lean_alloc_closure((void*)(l_Std_Async_Signal_Waiter_selector___lam__1___boxed), 2, 0);
+return v___f_1167_;
+}
+}
+static lean_object* _init_l_Std_Async_Signal_Waiter_selector___closed__1(void){
+_start:
+{
+lean_object* v___f_1168_; 
+v___f_1168_ = lean_alloc_closure((void*)(l_Std_Async_Signal_Waiter_selector___lam__3), 1, 0);
+return v___f_1168_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Async_Signal_Waiter_selector(lean_object* v_s_1169_){
 _start:
 {
@@ -3924,11 +4466,11 @@ lean_object* v___f_1170_; lean_object* v___f_1171_; lean_object* v___f_1172_; le
 lean_inc_n(v_s_1169_, 2);
 v___f_1170_ = lean_alloc_closure((void*)(l_Std_Async_Signal_Waiter_selector___lam__0___boxed), 2, 1);
 lean_closure_set(v___f_1170_, 0, v_s_1169_);
-v___f_1171_ = ((lean_object*)(l_Std_Async_Signal_Waiter_selector___closed__0));
+v___f_1171_ = lean_obj_once(&l_Std_Async_Signal_Waiter_selector___closed__0, &l_Std_Async_Signal_Waiter_selector___closed__0_once, _init_l_Std_Async_Signal_Waiter_selector___closed__0);
 v___f_1172_ = lean_alloc_closure((void*)(l_Std_Async_Signal_Waiter_selector___lam__2___boxed), 4, 2);
 lean_closure_set(v___f_1172_, 0, v___f_1171_);
 lean_closure_set(v___f_1172_, 1, v_s_1169_);
-v___f_1173_ = ((lean_object*)(l_Std_Async_Signal_Waiter_selector___closed__1));
+v___f_1173_ = lean_obj_once(&l_Std_Async_Signal_Waiter_selector___closed__1, &l_Std_Async_Signal_Waiter_selector___closed__1_once, _init_l_Std_Async_Signal_Waiter_selector___closed__1);
 v___f_1174_ = lean_alloc_closure((void*)(l_Std_Async_Signal_Waiter_selector___lam__5___boxed), 2, 1);
 lean_closure_set(v___f_1174_, 0, v_s_1169_);
 lean_inc_ref(v___f_1174_);
@@ -3970,6 +4512,10 @@ lean_dec_ref(res);
 res = runtime_initialize_Std_Async_Select(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Std_Async_instReprSignal = _init_l_Std_Async_instReprSignal();
+lean_mark_persistent(l_Std_Async_instReprSignal);
+l_Std_Async_instBEqSignal = _init_l_Std_Async_instBEqSignal();
+lean_mark_persistent(l_Std_Async_instBEqSignal);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

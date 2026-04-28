@@ -58,10 +58,10 @@ LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_max_
 LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_max___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_max(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_max___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l___private_Lean_Meta_Sym_ExprPtr_0__Lean_Meta_Sym_isSameExpr_unsafe__1___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check___closed__0 = (const lean_object*)&l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check___closed__0_value;
-static const lean_closure_object l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Sym_hashPtrExpr_unsafe__1___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check___closed__1 = (const lean_object*)&l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check___closed__1_value;
+static lean_once_cell_t l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check___closed__0;
+static lean_once_cell_t l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check___closed__1;
 LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 static lean_once_cell_t l_panic___at___00Lean_Meta_Sym_getMaxFVar_x3f_spec__2___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -87,12 +87,12 @@ LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_findAux___at___00Lean_Persiste
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_findAux___at___00Lean_PersistentHashMap_find_x3f___at___00Lean_Meta_Sym_getMaxFVar_x3f_spec__1_spec__2___redArg___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_find_x3f___at___00Lean_Meta_Sym_getMaxFVar_x3f_spec__1___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_PersistentHashMap_find_x3f___at___00Lean_Meta_Sym_getMaxFVar_x3f_spec__1___redArg___boxed(lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Sym_getMaxFVar_x3f___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 22, .m_capacity = 22, .m_length = 21, .m_data = "Lean.Meta.Sym.MaxFVar"};
-static const lean_object* l_Lean_Meta_Sym_getMaxFVar_x3f___closed__0 = (const lean_object*)&l_Lean_Meta_Sym_getMaxFVar_x3f___closed__0_value;
-static const lean_string_object l_Lean_Meta_Sym_getMaxFVar_x3f___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 26, .m_capacity = 26, .m_length = 25, .m_data = "Lean.Meta.Sym.getMaxFVar\?"};
-static const lean_object* l_Lean_Meta_Sym_getMaxFVar_x3f___closed__1 = (const lean_object*)&l_Lean_Meta_Sym_getMaxFVar_x3f___closed__1_value;
-static const lean_string_object l_Lean_Meta_Sym_getMaxFVar_x3f___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 34, .m_capacity = 34, .m_length = 33, .m_data = "unreachable code has been reached"};
-static const lean_object* l_Lean_Meta_Sym_getMaxFVar_x3f___closed__2 = (const lean_object*)&l_Lean_Meta_Sym_getMaxFVar_x3f___closed__2_value;
+static lean_once_cell_t l_Lean_Meta_Sym_getMaxFVar_x3f___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_getMaxFVar_x3f___closed__0;
+static lean_once_cell_t l_Lean_Meta_Sym_getMaxFVar_x3f___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_getMaxFVar_x3f___closed__1;
+static lean_once_cell_t l_Lean_Meta_Sym_getMaxFVar_x3f___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_getMaxFVar_x3f___closed__2;
 static lean_once_cell_t l_Lean_Meta_Sym_getMaxFVar_x3f___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Sym_getMaxFVar_x3f___closed__3;
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_getMaxFVar_x3f(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -395,6 +395,22 @@ lean_dec_ref(v_a_70_);
 return v_res_75_;
 }
 }
+static lean_object* _init_l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check___closed__0(void){
+_start:
+{
+lean_object* v___f_76_; 
+v___f_76_ = lean_alloc_closure((void*)(l___private_Lean_Meta_Sym_ExprPtr_0__Lean_Meta_Sym_isSameExpr_unsafe__1___boxed), 2, 0);
+return v___f_76_;
+}
+}
+static lean_object* _init_l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check___closed__1(void){
+_start:
+{
+lean_object* v___f_77_; 
+v___f_77_ = lean_alloc_closure((void*)(l_Lean_Meta_Sym_hashPtrExpr_unsafe__1___boxed), 1, 0);
+return v___f_77_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check(lean_object* v_e_78_, lean_object* v_k_79_, lean_object* v_a_80_, lean_object* v_a_81_, lean_object* v_a_82_, lean_object* v_a_83_, lean_object* v_a_84_, lean_object* v_a_85_){
 _start:
 {
@@ -431,8 +447,8 @@ v___x_91_ = lean_st_ref_get(v_a_81_);
 v_maxFVar_92_ = lean_ctor_get(v___x_91_, 1);
 lean_inc_ref(v_maxFVar_92_);
 lean_dec(v___x_91_);
-v___f_93_ = ((lean_object*)(l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check___closed__0));
-v___f_94_ = ((lean_object*)(l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check___closed__1));
+v___f_93_ = lean_obj_once(&l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check___closed__0, &l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check___closed__0_once, _init_l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check___closed__0);
+v___f_94_ = lean_obj_once(&l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check___closed__1, &l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check___closed__1_once, _init_l___private_Lean_Meta_Sym_MaxFVar_0__Lean_Meta_Sym_check___closed__1);
 lean_inc_ref(v_e_78_);
 v___x_95_ = l_Lean_PersistentHashMap_find_x3f___redArg(v___f_93_, v___f_94_, v_maxFVar_92_, v_e_78_);
 lean_dec_ref(v_maxFVar_92_);
@@ -1321,15 +1337,39 @@ lean_dec_ref(v_x_376_);
 return v_res_378_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Sym_getMaxFVar_x3f___closed__0(void){
+_start:
+{
+lean_object* v___x_379_; 
+v___x_379_ = lean_mk_string_unchecked("Lean.Meta.Sym.MaxFVar", 21, 21);
+return v___x_379_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Sym_getMaxFVar_x3f___closed__1(void){
+_start:
+{
+lean_object* v___x_380_; 
+v___x_380_ = lean_mk_string_unchecked("Lean.Meta.Sym.getMaxFVar\?", 25, 25);
+return v___x_380_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Sym_getMaxFVar_x3f___closed__2(void){
+_start:
+{
+lean_object* v___x_381_; 
+v___x_381_ = lean_mk_string_unchecked("unreachable code has been reached", 33, 33);
+return v___x_381_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Sym_getMaxFVar_x3f___closed__3(void){
 _start:
 {
 lean_object* v___x_382_; lean_object* v___x_383_; lean_object* v___x_384_; lean_object* v___x_385_; lean_object* v___x_386_; lean_object* v___x_387_; 
-v___x_382_ = ((lean_object*)(l_Lean_Meta_Sym_getMaxFVar_x3f___closed__2));
+v___x_382_ = lean_obj_once(&l_Lean_Meta_Sym_getMaxFVar_x3f___closed__2, &l_Lean_Meta_Sym_getMaxFVar_x3f___closed__2_once, _init_l_Lean_Meta_Sym_getMaxFVar_x3f___closed__2);
 v___x_383_ = lean_unsigned_to_nat(37u);
 v___x_384_ = lean_unsigned_to_nat(52u);
-v___x_385_ = ((lean_object*)(l_Lean_Meta_Sym_getMaxFVar_x3f___closed__1));
-v___x_386_ = ((lean_object*)(l_Lean_Meta_Sym_getMaxFVar_x3f___closed__0));
+v___x_385_ = lean_obj_once(&l_Lean_Meta_Sym_getMaxFVar_x3f___closed__1, &l_Lean_Meta_Sym_getMaxFVar_x3f___closed__1_once, _init_l_Lean_Meta_Sym_getMaxFVar_x3f___closed__1);
+v___x_386_ = lean_obj_once(&l_Lean_Meta_Sym_getMaxFVar_x3f___closed__0, &l_Lean_Meta_Sym_getMaxFVar_x3f___closed__0_once, _init_l_Lean_Meta_Sym_getMaxFVar_x3f___closed__0);
 v___x_387_ = l_mkPanicMessageWithDecl(v___x_386_, v___x_385_, v___x_384_, v___x_383_, v___x_382_);
 return v___x_387_;
 }

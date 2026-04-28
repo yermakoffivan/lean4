@@ -30,12 +30,12 @@ lean_object* lean_int_ediv(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Int_ediv___boxed(lean_object*, lean_object*);
 lean_object* lean_int_emod(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Int_emod___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Int_instDiv___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Int_ediv___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Int_instDiv___closed__0 = (const lean_object*)&l_Int_instDiv___closed__0_value;
-LEAN_EXPORT const lean_object* l_Int_instDiv = (const lean_object*)&l_Int_instDiv___closed__0_value;
-static const lean_closure_object l_Int_instMod___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Int_emod___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Int_instMod___closed__0 = (const lean_object*)&l_Int_instMod___closed__0_value;
-LEAN_EXPORT const lean_object* l_Int_instMod = (const lean_object*)&l_Int_instMod___closed__0_value;
+static lean_once_cell_t l_Int_instDiv___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Int_instDiv___closed__0;
+LEAN_EXPORT lean_object* l_Int_instDiv;
+static lean_once_cell_t l_Int_instMod___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Int_instMod___closed__0;
+LEAN_EXPORT lean_object* l_Int_instMod;
 lean_object* lean_int_div_exact(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Int_divExact___boxed(lean_object*, lean_object*, lean_object*);
 lean_object* lean_int_div(lean_object*, lean_object*);
@@ -81,6 +81,38 @@ v_res_10_ = lean_int_emod(v_a_00___x40___internal___hyg_8_, v_a_00___x40___inter
 lean_dec(v_a_00___x40___internal___hyg_9_);
 lean_dec(v_a_00___x40___internal___hyg_8_);
 return v_res_10_;
+}
+}
+static lean_object* _init_l_Int_instDiv___closed__0(void){
+_start:
+{
+lean_object* v___x_11_; 
+v___x_11_ = lean_alloc_closure((void*)(l_Int_ediv___boxed), 2, 0);
+return v___x_11_;
+}
+}
+static lean_object* _init_l_Int_instDiv(void){
+_start:
+{
+lean_object* v___x_12_; 
+v___x_12_ = lean_obj_once(&l_Int_instDiv___closed__0, &l_Int_instDiv___closed__0_once, _init_l_Int_instDiv___closed__0);
+return v___x_12_;
+}
+}
+static lean_object* _init_l_Int_instMod___closed__0(void){
+_start:
+{
+lean_object* v___x_13_; 
+v___x_13_ = lean_alloc_closure((void*)(l_Int_emod___boxed), 2, 0);
+return v___x_13_;
+}
+}
+static lean_object* _init_l_Int_instMod(void){
+_start:
+{
+lean_object* v___x_14_; 
+v___x_14_ = lean_obj_once(&l_Int_instMod___closed__0, &l_Int_instMod___closed__0_once, _init_l_Int_instMod___closed__0);
+return v___x_14_;
 }
 }
 LEAN_EXPORT lean_object* l_Int_divExact___boxed(lean_object* v_x_18_, lean_object* v_y_19_, lean_object* v_h_20_){
@@ -705,6 +737,10 @@ lean_dec_ref(res);
 res = runtime_initialize_Init_Data_Nat_Div_Basic(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Int_instDiv = _init_l_Int_instDiv();
+lean_mark_persistent(l_Int_instDiv);
+l_Int_instMod = _init_l_Int_instMod();
+lean_mark_persistent(l_Int_instMod);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

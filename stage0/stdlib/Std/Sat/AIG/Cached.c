@@ -34,8 +34,8 @@ LEAN_EXPORT lean_object* l_Std_Sat_AIG_mkConstCached___redArg(uint8_t);
 LEAN_EXPORT lean_object* l_Std_Sat_AIG_mkConstCached___redArg___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Sat_AIG_mkConstCached(lean_object*, lean_object*, lean_object*, lean_object*, uint8_t);
 LEAN_EXPORT lean_object* l_Std_Sat_AIG_mkConstCached___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Std_Sat_AIG_mkGateCached_go___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 8, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Std_Sat_AIG_mkGateCached_go___redArg___closed__0 = (const lean_object*)&l_Std_Sat_AIG_mkGateCached_go___redArg___closed__0_value;
+static lean_once_cell_t l_Std_Sat_AIG_mkGateCached_go___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Sat_AIG_mkGateCached_go___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Std_Sat_AIG_mkGateCached_go___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Sat_AIG_mkGateCached_go(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Sat_AIG_mkGateCached___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
@@ -221,6 +221,18 @@ lean_dec_ref(v_inst_61_);
 return v_res_66_;
 }
 }
+static lean_object* _init_l_Std_Sat_AIG_mkGateCached_go___redArg___closed__0(void){
+_start:
+{
+uint8_t v___x_67_; lean_object* v___x_68_; lean_object* v_ref_69_; 
+v___x_67_ = 0;
+v___x_68_ = lean_unsigned_to_nat(0u);
+v_ref_69_ = lean_alloc_ctor(0, 1, 1);
+lean_ctor_set(v_ref_69_, 0, v___x_68_);
+lean_ctor_set_uint8(v_ref_69_, sizeof(void*)*1, v___x_67_);
+return v_ref_69_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Sat_AIG_mkGateCached_go___redArg(lean_object* v_inst_70_, lean_object* v_inst_71_, lean_object* v_aig_72_, lean_object* v_input_73_){
 _start:
 {
@@ -403,7 +415,7 @@ return v___x_114_;
 v___jp_115_:
 {
 lean_object* v_ref_116_; lean_object* v___x_117_; 
-v_ref_116_ = ((lean_object*)(l_Std_Sat_AIG_mkGateCached_go___redArg___closed__0));
+v_ref_116_ = lean_obj_once(&l_Std_Sat_AIG_mkGateCached_go___redArg___closed__0, &l_Std_Sat_AIG_mkGateCached_go___redArg___closed__0_once, _init_l_Std_Sat_AIG_mkGateCached_go___redArg___closed__0);
 v___x_117_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_117_, 0, v___x_102_);
 lean_ctor_set(v___x_117_, 1, v_ref_116_);

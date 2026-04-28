@@ -35,8 +35,8 @@ LEAN_EXPORT lean_object* l_Lean_Compiler_LCNF_ScopeM_withBackTrackingScope___red
 LEAN_EXPORT lean_object* l_Lean_Compiler_LCNF_ScopeM_withBackTrackingScope___redArg___lam__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Compiler_LCNF_ScopeM_withBackTrackingScope___redArg___lam__1___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Compiler_LCNF_ScopeM_withBackTrackingScope___redArg___lam__2(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Lean_Compiler_LCNF_ScopeM_withBackTrackingScope___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Compiler_LCNF_ScopeM_withBackTrackingScope___redArg___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Compiler_LCNF_ScopeM_withBackTrackingScope___redArg___closed__0 = (const lean_object*)&l_Lean_Compiler_LCNF_ScopeM_withBackTrackingScope___redArg___closed__0_value;
+static lean_once_cell_t l_Lean_Compiler_LCNF_ScopeM_withBackTrackingScope___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Compiler_LCNF_ScopeM_withBackTrackingScope___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Lean_Compiler_LCNF_ScopeM_withBackTrackingScope___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Compiler_LCNF_ScopeM_withBackTrackingScope(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Compiler_LCNF_ScopeM_withNewScope___redArg___lam__0(lean_object*, lean_object*);
@@ -226,6 +226,14 @@ v___x_88_ = lean_apply_4(v_map_83_, lean_box(0), lean_box(0), v___f_81_, v_y_87_
 return v___x_88_;
 }
 }
+static lean_object* _init_l_Lean_Compiler_LCNF_ScopeM_withBackTrackingScope___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_89_; 
+v___f_89_ = lean_alloc_closure((void*)(l_Lean_Compiler_LCNF_ScopeM_withBackTrackingScope___redArg___lam__0___boxed), 1, 0);
+return v___f_89_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Compiler_LCNF_ScopeM_withBackTrackingScope___redArg(lean_object* v_inst_90_, lean_object* v_inst_91_, lean_object* v_inst_92_, lean_object* v_x_93_){
 _start:
 {
@@ -238,7 +246,7 @@ lean_dec_ref(v_inst_91_);
 v_toFunctor_96_ = lean_ctor_get(v_toApplicative_94_, 0);
 lean_inc_ref(v_toFunctor_96_);
 lean_dec_ref(v_toApplicative_94_);
-v___f_97_ = ((lean_object*)(l_Lean_Compiler_LCNF_ScopeM_withBackTrackingScope___redArg___closed__0));
+v___f_97_ = lean_obj_once(&l_Lean_Compiler_LCNF_ScopeM_withBackTrackingScope___redArg___closed__0, &l_Lean_Compiler_LCNF_ScopeM_withBackTrackingScope___redArg___closed__0_once, _init_l_Lean_Compiler_LCNF_ScopeM_withBackTrackingScope___redArg___closed__0);
 v___x_98_ = lean_alloc_closure((void*)(l_Lean_Compiler_LCNF_ScopeM_getScope___boxed), 6, 0);
 lean_inc(v_inst_90_);
 v___x_99_ = lean_apply_2(v_inst_90_, lean_box(0), v___x_98_);

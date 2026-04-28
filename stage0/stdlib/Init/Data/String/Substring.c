@@ -87,10 +87,10 @@ LEAN_EXPORT lean_object* l_Substring_Raw_take(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Substring_Raw_takeRight(lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Substring_Raw_atEnd(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Substring_Raw_atEnd___boxed(lean_object*, lean_object*);
-static const lean_string_object l_Substring_Raw_extract___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 1, .m_capacity = 1, .m_length = 0, .m_data = ""};
-static const lean_object* l_Substring_Raw_extract___closed__0 = (const lean_object*)&l_Substring_Raw_extract___closed__0_value;
-static const lean_ctor_object l_Substring_Raw_extract___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l_Substring_Raw_extract___closed__0_value),((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Substring_Raw_extract___closed__1 = (const lean_object*)&l_Substring_Raw_extract___closed__1_value;
+static lean_once_cell_t l_Substring_Raw_extract___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Substring_Raw_extract___closed__0;
+static lean_once_cell_t l_Substring_Raw_extract___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Substring_Raw_extract___closed__1;
 LEAN_EXPORT lean_object* l_Substring_Raw_extract(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Substring_Raw_extract___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* lean_substring_extract(lean_object*, lean_object*, lean_object*);
@@ -104,12 +104,12 @@ LEAN_EXPORT lean_object* l_Substring_Raw_splitOn(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Substring_Raw_splitOn___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Substring_Raw_foldl___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Substring_Raw_foldl___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Substring_Raw_foldl___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 26, .m_capacity = 26, .m_length = 25, .m_data = "Init.Data.Option.BasicAux"};
-static const lean_object* l_Substring_Raw_foldl___redArg___closed__0 = (const lean_object*)&l_Substring_Raw_foldl___redArg___closed__0_value;
-static const lean_string_object l_Substring_Raw_foldl___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "Option.get!"};
-static const lean_object* l_Substring_Raw_foldl___redArg___closed__1 = (const lean_object*)&l_Substring_Raw_foldl___redArg___closed__1_value;
-static const lean_string_object l_Substring_Raw_foldl___redArg___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "value is none"};
-static const lean_object* l_Substring_Raw_foldl___redArg___closed__2 = (const lean_object*)&l_Substring_Raw_foldl___redArg___closed__2_value;
+static lean_once_cell_t l_Substring_Raw_foldl___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Substring_Raw_foldl___redArg___closed__0;
+static lean_once_cell_t l_Substring_Raw_foldl___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Substring_Raw_foldl___redArg___closed__1;
+static lean_once_cell_t l_Substring_Raw_foldl___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Substring_Raw_foldl___redArg___closed__2;
 static lean_once_cell_t l_Substring_Raw_foldl___redArg___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Substring_Raw_foldl___redArg___closed__3;
 LEAN_EXPORT lean_object* l_Substring_Raw_foldl___redArg(lean_object*, lean_object*, lean_object*);
@@ -143,8 +143,8 @@ LEAN_EXPORT lean_object* l_Substring_Raw_takeRightWhileAux(lean_object*, lean_ob
 LEAN_EXPORT lean_object* l_Substring_Raw_takeRightWhileAux___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Substring_Raw_takeRightWhile(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Substring_Raw_dropRightWhile(lean_object*, lean_object*);
-static const lean_closure_object l_Substring_Raw_trimLeft___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Char_isWhitespace___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Substring_Raw_trimLeft___closed__0 = (const lean_object*)&l_Substring_Raw_trimLeft___closed__0_value;
+static lean_once_cell_t l_Substring_Raw_trimLeft___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Substring_Raw_trimLeft___closed__0;
 LEAN_EXPORT lean_object* l_Substring_Raw_trimLeft(lean_object*);
 LEAN_EXPORT lean_object* l_Substring_Raw_trimRight(lean_object*);
 LEAN_EXPORT lean_object* l_Substring_Raw_trim(lean_object*);
@@ -166,9 +166,9 @@ LEAN_EXPORT uint8_t l_Substring_Raw_beq(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Substring_Raw_beq___boxed(lean_object*, lean_object*);
 LEAN_EXPORT uint8_t lean_substring_beq(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Substring_Raw_Internal_beqImpl___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Substring_Raw_hasBeq___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Substring_Raw_beq___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Substring_Raw_hasBeq___closed__0 = (const lean_object*)&l_Substring_Raw_hasBeq___closed__0_value;
-LEAN_EXPORT const lean_object* l_Substring_Raw_hasBeq = (const lean_object*)&l_Substring_Raw_hasBeq___closed__0_value;
+static lean_once_cell_t l_Substring_Raw_hasBeq___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Substring_Raw_hasBeq___closed__0;
+LEAN_EXPORT lean_object* l_Substring_Raw_hasBeq;
 LEAN_EXPORT uint8_t l_Substring_Raw_sameAs(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Substring_Raw_sameAs___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_String_Substring_0__Substring_Raw_commonPrefix_loop(lean_object*, lean_object*, lean_object*, lean_object*);
@@ -1242,6 +1242,27 @@ v_r_328_ = lean_box(v_res_327_);
 return v_r_328_;
 }
 }
+static lean_object* _init_l_Substring_Raw_extract___closed__0(void){
+_start:
+{
+lean_object* v___x_329_; 
+v___x_329_ = lean_mk_string_unchecked("", 0, 0);
+return v___x_329_;
+}
+}
+static lean_object* _init_l_Substring_Raw_extract___closed__1(void){
+_start:
+{
+lean_object* v___x_330_; lean_object* v___x_331_; lean_object* v___x_332_; 
+v___x_330_ = lean_unsigned_to_nat(0u);
+v___x_331_ = lean_obj_once(&l_Substring_Raw_extract___closed__0, &l_Substring_Raw_extract___closed__0_once, _init_l_Substring_Raw_extract___closed__0);
+v___x_332_ = lean_alloc_ctor(0, 3, 0);
+lean_ctor_set(v___x_332_, 0, v___x_331_);
+lean_ctor_set(v___x_332_, 1, v___x_330_);
+lean_ctor_set(v___x_332_, 2, v___x_330_);
+return v___x_332_;
+}
+}
 LEAN_EXPORT lean_object* l_Substring_Raw_extract(lean_object* v_x_333_, lean_object* v_x_334_, lean_object* v_x_335_){
 _start:
 {
@@ -1295,7 +1316,7 @@ lean_del_object(v___x_340_);
 lean_dec(v_stopPos_338_);
 lean_dec(v_startPos_337_);
 lean_dec_ref(v_str_336_);
-v___x_355_ = ((lean_object*)(l_Substring_Raw_extract___closed__1));
+v___x_355_ = lean_obj_once(&l_Substring_Raw_extract___closed__1, &l_Substring_Raw_extract___closed__1_once, _init_l_Substring_Raw_extract___closed__1);
 return v___x_355_;
 }
 v___jp_342_:
@@ -1425,7 +1446,7 @@ lean_dec(v_startPos_365_);
 lean_dec_ref(v_str_364_);
 lean_dec(v_a_363_);
 lean_dec(v_a_362_);
-v___x_383_ = ((lean_object*)(l_Substring_Raw_extract___closed__1));
+v___x_383_ = lean_obj_once(&l_Substring_Raw_extract___closed__1, &l_Substring_Raw_extract___closed__1_once, _init_l_Substring_Raw_extract___closed__1);
 return v___x_383_;
 }
 v___jp_370_:
@@ -1494,7 +1515,7 @@ static lean_object* _init_l___private_Init_Data_String_Substring_0__Substring_Ra
 _start:
 {
 lean_object* v___x_385_; lean_object* v___x_386_; 
-v___x_385_ = ((lean_object*)(l_Substring_Raw_extract___closed__0));
+v___x_385_ = lean_obj_once(&l_Substring_Raw_extract___closed__0, &l_Substring_Raw_extract___closed__0_once, _init_l_Substring_Raw_extract___closed__0);
 v___x_386_ = lean_string_utf8_byte_size(v___x_385_);
 return v___x_386_;
 }
@@ -1505,7 +1526,7 @@ _start:
 lean_object* v___x_387_; lean_object* v___x_388_; lean_object* v___x_389_; lean_object* v___x_390_; 
 v___x_387_ = lean_obj_once(&l___private_Init_Data_String_Substring_0__Substring_Raw_splitOn_loop___closed__0, &l___private_Init_Data_String_Substring_0__Substring_Raw_splitOn_loop___closed__0_once, _init_l___private_Init_Data_String_Substring_0__Substring_Raw_splitOn_loop___closed__0);
 v___x_388_ = lean_unsigned_to_nat(0u);
-v___x_389_ = ((lean_object*)(l_Substring_Raw_extract___closed__0));
+v___x_389_ = lean_obj_once(&l_Substring_Raw_extract___closed__0, &l_Substring_Raw_extract___closed__0_once, _init_l_Substring_Raw_extract___closed__0);
 v___x_390_ = lean_alloc_ctor(0, 3, 0);
 lean_ctor_set(v___x_390_, 0, v___x_389_);
 lean_ctor_set(v___x_390_, 1, v___x_388_);
@@ -1587,7 +1608,7 @@ lean_dec(v_startPos_412_);
 lean_dec_ref(v_str_411_);
 lean_dec(v_i_394_);
 lean_dec(v_b_393_);
-v___x_449_ = ((lean_object*)(l_Substring_Raw_extract___closed__1));
+v___x_449_ = lean_obj_once(&l_Substring_Raw_extract___closed__1, &l_Substring_Raw_extract___closed__1_once, _init_l_Substring_Raw_extract___closed__1);
 v___y_398_ = v___x_449_;
 goto v___jp_397_;
 }
@@ -1628,7 +1649,7 @@ lean_dec(v_stopPos_413_);
 lean_dec(v_startPos_412_);
 lean_dec_ref(v_str_411_);
 lean_dec(v_b_393_);
-v___x_470_ = ((lean_object*)(l_Substring_Raw_extract___closed__1));
+v___x_470_ = lean_obj_once(&l_Substring_Raw_extract___closed__1, &l_Substring_Raw_extract___closed__1_once, _init_l_Substring_Raw_extract___closed__1);
 v___y_452_ = v___x_470_;
 goto v___jp_451_;
 }
@@ -1875,7 +1896,7 @@ else
 lean_object* v___x_433_; 
 lean_dec(v___x_429_);
 lean_dec(v_b_393_);
-v___x_433_ = ((lean_object*)(l_Substring_Raw_extract___closed__1));
+v___x_433_ = lean_obj_once(&l_Substring_Raw_extract___closed__1, &l_Substring_Raw_extract___closed__1_once, _init_l_Substring_Raw_extract___closed__1);
 v___y_406_ = v___y_424_;
 v___y_407_ = v___x_428_;
 v___y_408_ = v___x_433_;
@@ -1928,7 +1949,7 @@ LEAN_EXPORT lean_object* l_Substring_Raw_splitOn(lean_object* v_s_492_, lean_obj
 _start:
 {
 lean_object* v___x_494_; uint8_t v___x_495_; 
-v___x_494_ = ((lean_object*)(l_Substring_Raw_extract___closed__0));
+v___x_494_ = lean_obj_once(&l_Substring_Raw_extract___closed__0, &l_Substring_Raw_extract___closed__0_once, _init_l_Substring_Raw_extract___closed__0);
 v___x_495_ = lean_string_dec_eq(v_sep_493_, v___x_494_);
 if (v___x_495_ == 0)
 {
@@ -1999,15 +2020,39 @@ lean_dec_ref(v___y_522_);
 return v_res_528_;
 }
 }
+static lean_object* _init_l_Substring_Raw_foldl___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_529_; 
+v___x_529_ = lean_mk_string_unchecked("Init.Data.Option.BasicAux", 25, 25);
+return v___x_529_;
+}
+}
+static lean_object* _init_l_Substring_Raw_foldl___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_530_; 
+v___x_530_ = lean_mk_string_unchecked("Option.get!", 11, 11);
+return v___x_530_;
+}
+}
+static lean_object* _init_l_Substring_Raw_foldl___redArg___closed__2(void){
+_start:
+{
+lean_object* v___x_531_; 
+v___x_531_ = lean_mk_string_unchecked("value is none", 13, 13);
+return v___x_531_;
+}
+}
 static lean_object* _init_l_Substring_Raw_foldl___redArg___closed__3(void){
 _start:
 {
 lean_object* v___x_532_; lean_object* v___x_533_; lean_object* v___x_534_; lean_object* v___x_535_; lean_object* v___x_536_; lean_object* v___x_537_; 
-v___x_532_ = ((lean_object*)(l_Substring_Raw_foldl___redArg___closed__2));
+v___x_532_ = lean_obj_once(&l_Substring_Raw_foldl___redArg___closed__2, &l_Substring_Raw_foldl___redArg___closed__2_once, _init_l_Substring_Raw_foldl___redArg___closed__2);
 v___x_533_ = lean_unsigned_to_nat(14u);
 v___x_534_ = lean_unsigned_to_nat(22u);
-v___x_535_ = ((lean_object*)(l_Substring_Raw_foldl___redArg___closed__1));
-v___x_536_ = ((lean_object*)(l_Substring_Raw_foldl___redArg___closed__0));
+v___x_535_ = lean_obj_once(&l_Substring_Raw_foldl___redArg___closed__1, &l_Substring_Raw_foldl___redArg___closed__1_once, _init_l_Substring_Raw_foldl___redArg___closed__1);
+v___x_536_ = lean_obj_once(&l_Substring_Raw_foldl___redArg___closed__0, &l_Substring_Raw_foldl___redArg___closed__0_once, _init_l_Substring_Raw_foldl___redArg___closed__0);
 v___x_537_ = l_mkPanicMessageWithDecl(v___x_536_, v___x_535_, v___x_534_, v___x_533_, v___x_532_);
 return v___x_537_;
 }
@@ -3486,6 +3531,14 @@ return v___x_944_;
 }
 }
 }
+static lean_object* _init_l_Substring_Raw_trimLeft___closed__0(void){
+_start:
+{
+lean_object* v___x_947_; 
+v___x_947_ = lean_alloc_closure((void*)(l_Char_isWhitespace___boxed), 1, 0);
+return v___x_947_;
+}
+}
 LEAN_EXPORT lean_object* l_Substring_Raw_trimLeft(lean_object* v_s_948_){
 _start:
 {
@@ -3513,7 +3566,7 @@ goto v_resetjp_952_;
 v_resetjp_952_:
 {
 lean_object* v___x_955_; lean_object* v_b_956_; lean_object* v___x_958_; 
-v___x_955_ = ((lean_object*)(l_Substring_Raw_trimLeft___closed__0));
+v___x_955_ = lean_obj_once(&l_Substring_Raw_trimLeft___closed__0, &l_Substring_Raw_trimLeft___closed__0_once, _init_l_Substring_Raw_trimLeft___closed__0);
 v_b_956_ = l_Substring_Raw_takeWhileAux(v_str_949_, v_stopPos_951_, v___x_955_, v_startPos_950_);
 if (v_isShared_954_ == 0)
 {
@@ -3565,7 +3618,7 @@ goto v_resetjp_965_;
 v_resetjp_965_:
 {
 lean_object* v___x_968_; lean_object* v_e_969_; lean_object* v___x_971_; 
-v___x_968_ = ((lean_object*)(l_Substring_Raw_trimLeft___closed__0));
+v___x_968_ = lean_obj_once(&l_Substring_Raw_trimLeft___closed__0, &l_Substring_Raw_trimLeft___closed__0_once, _init_l_Substring_Raw_trimLeft___closed__0);
 v_e_969_ = l_Substring_Raw_takeRightWhileAux(v_str_962_, v_startPos_963_, v___x_968_, v_stopPos_964_);
 if (v_isShared_967_ == 0)
 {
@@ -3617,7 +3670,7 @@ goto v_resetjp_978_;
 v_resetjp_978_:
 {
 lean_object* v___x_981_; lean_object* v_b_982_; lean_object* v_e_983_; lean_object* v___x_985_; 
-v___x_981_ = ((lean_object*)(l_Substring_Raw_trimLeft___closed__0));
+v___x_981_ = lean_obj_once(&l_Substring_Raw_trimLeft___closed__0, &l_Substring_Raw_trimLeft___closed__0_once, _init_l_Substring_Raw_trimLeft___closed__0);
 v_b_982_ = l_Substring_Raw_takeWhileAux(v_str_975_, v_stopPos_977_, v___x_981_, v_startPos_976_);
 v_e_983_ = l_Substring_Raw_takeRightWhileAux(v_str_975_, v_b_982_, v___x_981_, v_stopPos_977_);
 if (v_isShared_980_ == 0)
@@ -4956,6 +5009,22 @@ v_r_1360_ = lean_box(v_res_1359_);
 return v_r_1360_;
 }
 }
+static lean_object* _init_l_Substring_Raw_hasBeq___closed__0(void){
+_start:
+{
+lean_object* v___x_1361_; 
+v___x_1361_ = lean_alloc_closure((void*)(l_Substring_Raw_beq___boxed), 2, 0);
+return v___x_1361_;
+}
+}
+static lean_object* _init_l_Substring_Raw_hasBeq(void){
+_start:
+{
+lean_object* v___x_1362_; 
+v___x_1362_ = lean_obj_once(&l_Substring_Raw_hasBeq___closed__0, &l_Substring_Raw_hasBeq___closed__0_once, _init_l_Substring_Raw_hasBeq___closed__0);
+return v___x_1362_;
+}
+}
 LEAN_EXPORT uint8_t l_Substring_Raw_sameAs(lean_object* v_ss1_1363_, lean_object* v_ss2_1364_){
 _start:
 {
@@ -5652,6 +5721,8 @@ lean_dec_ref(res);
 res = runtime_initialize_Init_Data_Option_BasicAux(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Substring_Raw_hasBeq = _init_l_Substring_Raw_hasBeq();
+lean_mark_persistent(l_Substring_Raw_hasBeq);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

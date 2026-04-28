@@ -26,24 +26,24 @@ lean_object* l_Nat_reprFast(lean_object*);
 size_t lean_usize_add(size_t, size_t);
 LEAN_EXPORT lean_object* l___private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_DimacsM_handleLit(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_DimacsM_incrementClauses(lean_object*);
-static const lean_string_object l_List_foldlM___at___00__private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go_spec__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "-"};
-static const lean_object* l_List_foldlM___at___00__private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go_spec__0___closed__0 = (const lean_object*)&l_List_foldlM___at___00__private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go_spec__0___closed__0_value;
+static lean_once_cell_t l_List_foldlM___at___00__private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go_spec__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_List_foldlM___at___00__private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go_spec__0___closed__0;
 LEAN_EXPORT lean_object* l_List_foldlM___at___00__private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go_spec__0(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_List_foldlM___at___00__private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go_spec__0___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go_spec__1(lean_object*, size_t, size_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go_spec__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 1, .m_capacity = 1, .m_length = 0, .m_data = ""};
-static const lean_object* l___private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go___closed__0 = (const lean_object*)&l___private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go___closed__0_value;
+static lean_once_cell_t l___private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go___closed__0;
 LEAN_EXPORT lean_object* l___private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go___boxed(lean_object*, lean_object*);
-static const lean_ctor_object l_Std_Sat_CNF_dimacs___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_Sat_CNF_dimacs___closed__0 = (const lean_object*)&l_Std_Sat_CNF_dimacs___closed__0_value;
-static const lean_string_object l_Std_Sat_CNF_dimacs___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "p cnf "};
-static const lean_object* l_Std_Sat_CNF_dimacs___closed__1 = (const lean_object*)&l_Std_Sat_CNF_dimacs___closed__1_value;
-static const lean_string_object l_Std_Sat_CNF_dimacs___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = " "};
-static const lean_object* l_Std_Sat_CNF_dimacs___closed__2 = (const lean_object*)&l_Std_Sat_CNF_dimacs___closed__2_value;
-static const lean_string_object l_Std_Sat_CNF_dimacs___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "\n"};
-static const lean_object* l_Std_Sat_CNF_dimacs___closed__3 = (const lean_object*)&l_Std_Sat_CNF_dimacs___closed__3_value;
+static lean_once_cell_t l_Std_Sat_CNF_dimacs___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Sat_CNF_dimacs___closed__0;
+static lean_once_cell_t l_Std_Sat_CNF_dimacs___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Sat_CNF_dimacs___closed__1;
+static lean_once_cell_t l_Std_Sat_CNF_dimacs___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Sat_CNF_dimacs___closed__2;
+static lean_once_cell_t l_Std_Sat_CNF_dimacs___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Sat_CNF_dimacs___closed__3;
 LEAN_EXPORT lean_object* l_Std_Sat_CNF_dimacs(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Sat_CNF_dimacs___boxed(lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_DimacsM_handleLit(lean_object* v_lit_1_, lean_object* v_a_2_){
@@ -226,6 +226,14 @@ return v___x_39_;
 }
 }
 }
+static lean_object* _init_l_List_foldlM___at___00__private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go_spec__0___closed__0(void){
+_start:
+{
+lean_object* v___x_42_; 
+v___x_42_ = lean_mk_string_unchecked("-", 1, 1);
+return v___x_42_;
+}
+}
 LEAN_EXPORT lean_object* l_List_foldlM___at___00__private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go_spec__0(lean_object* v_x_43_, lean_object* v_x_44_, lean_object* v___y_45_){
 _start:
 {
@@ -320,7 +328,7 @@ v___x_62_ = lean_unbox(v_snd_59_);
 if (v___x_62_ == 0)
 {
 lean_object* v___x_63_; lean_object* v___x_64_; lean_object* v___x_65_; lean_object* v___x_66_; lean_object* v___x_67_; 
-v___x_63_ = ((lean_object*)(l_List_foldlM___at___00__private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go_spec__0___closed__0));
+v___x_63_ = lean_obj_once(&l_List_foldlM___at___00__private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go_spec__0___closed__0, &l_List_foldlM___at___00__private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go_spec__0___closed__0_once, _init_l_List_foldlM___at___00__private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go_spec__0___closed__0);
 v___x_64_ = lean_unsigned_to_nat(1u);
 v___x_65_ = lean_nat_add(v_fst_58_, v___x_64_);
 v___x_66_ = l_Nat_reprFast(v___x_65_);
@@ -446,11 +454,19 @@ lean_dec_ref(v_as_114_);
 return v_res_121_;
 }
 }
+static lean_object* _init_l___private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go___closed__0(void){
+_start:
+{
+lean_object* v___x_122_; 
+v___x_122_ = lean_mk_string_unchecked("", 0, 0);
+return v___x_122_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go(lean_object* v_cnf_123_, lean_object* v_a_124_){
 _start:
 {
 lean_object* v___x_125_; lean_object* v___x_126_; lean_object* v___x_127_; uint8_t v___x_128_; 
-v___x_125_ = ((lean_object*)(l___private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go___closed__0));
+v___x_125_ = lean_obj_once(&l___private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go___closed__0, &l___private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go___closed__0_once, _init_l___private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go___closed__0);
 v___x_126_ = lean_unsigned_to_nat(0u);
 v___x_127_ = lean_array_get_size(v_cnf_123_);
 v___x_128_ = lean_nat_dec_lt(v___x_126_, v___x_127_);
@@ -505,11 +521,46 @@ lean_dec_ref(v_cnf_138_);
 return v_res_140_;
 }
 }
+static lean_object* _init_l_Std_Sat_CNF_dimacs___closed__0(void){
+_start:
+{
+lean_object* v___x_141_; lean_object* v___x_142_; 
+v___x_141_ = lean_unsigned_to_nat(0u);
+v___x_142_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_142_, 0, v___x_141_);
+lean_ctor_set(v___x_142_, 1, v___x_141_);
+return v___x_142_;
+}
+}
+static lean_object* _init_l_Std_Sat_CNF_dimacs___closed__1(void){
+_start:
+{
+lean_object* v___x_143_; 
+v___x_143_ = lean_mk_string_unchecked("p cnf ", 6, 6);
+return v___x_143_;
+}
+}
+static lean_object* _init_l_Std_Sat_CNF_dimacs___closed__2(void){
+_start:
+{
+lean_object* v___x_144_; 
+v___x_144_ = lean_mk_string_unchecked(" ", 1, 1);
+return v___x_144_;
+}
+}
+static lean_object* _init_l_Std_Sat_CNF_dimacs___closed__3(void){
+_start:
+{
+lean_object* v___x_145_; 
+v___x_145_ = lean_mk_string_unchecked("\n", 1, 1);
+return v___x_145_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Sat_CNF_dimacs(lean_object* v_cnf_146_){
 _start:
 {
 lean_object* v___x_147_; lean_object* v___x_148_; lean_object* v_snd_149_; lean_object* v_fst_150_; lean_object* v_numClauses_151_; lean_object* v_maxLit_152_; lean_object* v___x_153_; lean_object* v___x_154_; lean_object* v___x_155_; lean_object* v___x_156_; lean_object* v___x_157_; lean_object* v___x_158_; lean_object* v___x_159_; lean_object* v___x_160_; lean_object* v___x_161_; lean_object* v___x_162_; lean_object* v___x_163_; lean_object* v___x_164_; 
-v___x_147_ = ((lean_object*)(l_Std_Sat_CNF_dimacs___closed__0));
+v___x_147_ = lean_obj_once(&l_Std_Sat_CNF_dimacs___closed__0, &l_Std_Sat_CNF_dimacs___closed__0_once, _init_l_Std_Sat_CNF_dimacs___closed__0);
 v___x_148_ = l___private_Std_Sat_CNF_Dimacs_0__Std_Sat_CNF_dimacs_go(v_cnf_146_, v___x_147_);
 v_snd_149_ = lean_ctor_get(v___x_148_, 1);
 lean_inc(v_snd_149_);
@@ -521,19 +572,19 @@ lean_inc(v_numClauses_151_);
 v_maxLit_152_ = lean_ctor_get(v_snd_149_, 1);
 lean_inc(v_maxLit_152_);
 lean_dec(v_snd_149_);
-v___x_153_ = ((lean_object*)(l_Std_Sat_CNF_dimacs___closed__1));
+v___x_153_ = lean_obj_once(&l_Std_Sat_CNF_dimacs___closed__1, &l_Std_Sat_CNF_dimacs___closed__1_once, _init_l_Std_Sat_CNF_dimacs___closed__1);
 v___x_154_ = lean_unsigned_to_nat(1u);
 v___x_155_ = lean_nat_add(v_maxLit_152_, v___x_154_);
 lean_dec(v_maxLit_152_);
 v___x_156_ = l_Nat_reprFast(v___x_155_);
 v___x_157_ = lean_string_append(v___x_153_, v___x_156_);
 lean_dec_ref(v___x_156_);
-v___x_158_ = ((lean_object*)(l_Std_Sat_CNF_dimacs___closed__2));
+v___x_158_ = lean_obj_once(&l_Std_Sat_CNF_dimacs___closed__2, &l_Std_Sat_CNF_dimacs___closed__2_once, _init_l_Std_Sat_CNF_dimacs___closed__2);
 v___x_159_ = lean_string_append(v___x_157_, v___x_158_);
 v___x_160_ = l_Nat_reprFast(v_numClauses_151_);
 v___x_161_ = lean_string_append(v___x_159_, v___x_160_);
 lean_dec_ref(v___x_160_);
-v___x_162_ = ((lean_object*)(l_Std_Sat_CNF_dimacs___closed__3));
+v___x_162_ = lean_obj_once(&l_Std_Sat_CNF_dimacs___closed__3, &l_Std_Sat_CNF_dimacs___closed__3_once, _init_l_Std_Sat_CNF_dimacs___closed__3);
 v___x_163_ = lean_string_append(v___x_161_, v___x_162_);
 v___x_164_ = lean_string_append(v___x_163_, v_fst_150_);
 lean_dec(v_fst_150_);

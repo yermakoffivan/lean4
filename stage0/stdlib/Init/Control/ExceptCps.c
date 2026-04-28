@@ -40,37 +40,37 @@ LEAN_EXPORT lean_object* l_ExceptCpsT_instMonad___lam__10(lean_object*, lean_obj
 LEAN_EXPORT lean_object* l_ExceptCpsT_instMonad___lam__11(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_ExceptCpsT_instMonad___lam__11___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_ExceptCpsT_instMonad___lam__12(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_ExceptCpsT_instMonad___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_ExceptCpsT_instMonad___lam__1, .m_arity = 7, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_ExceptCpsT_instMonad___closed__0 = (const lean_object*)&l_ExceptCpsT_instMonad___closed__0_value;
-static const lean_closure_object l_ExceptCpsT_instMonad___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_ExceptCpsT_instMonad___lam__2, .m_arity = 8, .m_num_fixed = 1, .m_objs = {((lean_object*)&l_ExceptCpsT_instMonad___closed__0_value)} };
-static const lean_object* l_ExceptCpsT_instMonad___closed__1 = (const lean_object*)&l_ExceptCpsT_instMonad___closed__1_value;
-static const lean_closure_object l_ExceptCpsT_instMonad___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_ExceptCpsT_instMonad___lam__3___boxed, .m_arity = 5, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_ExceptCpsT_instMonad___closed__2 = (const lean_object*)&l_ExceptCpsT_instMonad___closed__2_value;
-static const lean_closure_object l_ExceptCpsT_instMonad___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_ExceptCpsT_instMonad___lam__5, .m_arity = 8, .m_num_fixed = 1, .m_objs = {((lean_object*)&l_ExceptCpsT_instMonad___closed__0_value)} };
-static const lean_object* l_ExceptCpsT_instMonad___closed__3 = (const lean_object*)&l_ExceptCpsT_instMonad___closed__3_value;
-static const lean_closure_object l_ExceptCpsT_instMonad___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_ExceptCpsT_instMonad___lam__7, .m_arity = 7, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_ExceptCpsT_instMonad___closed__4 = (const lean_object*)&l_ExceptCpsT_instMonad___closed__4_value;
-static const lean_closure_object l_ExceptCpsT_instMonad___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_ExceptCpsT_instMonad___lam__10, .m_arity = 8, .m_num_fixed = 1, .m_objs = {((lean_object*)&l_ExceptCpsT_instMonad___closed__4_value)} };
-static const lean_object* l_ExceptCpsT_instMonad___closed__5 = (const lean_object*)&l_ExceptCpsT_instMonad___closed__5_value;
-static const lean_closure_object l_ExceptCpsT_instMonad___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_ExceptCpsT_instMonad___lam__12, .m_arity = 7, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_ExceptCpsT_instMonad___closed__6 = (const lean_object*)&l_ExceptCpsT_instMonad___closed__6_value;
-static const lean_ctor_object l_ExceptCpsT_instMonad___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_ExceptCpsT_instMonad___closed__0_value),((lean_object*)&l_ExceptCpsT_instMonad___closed__1_value)}};
-static const lean_object* l_ExceptCpsT_instMonad___closed__7 = (const lean_object*)&l_ExceptCpsT_instMonad___closed__7_value;
-static const lean_ctor_object l_ExceptCpsT_instMonad___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*5 + 0, .m_other = 5, .m_tag = 0}, .m_objs = {((lean_object*)&l_ExceptCpsT_instMonad___closed__7_value),((lean_object*)&l_ExceptCpsT_instMonad___closed__2_value),((lean_object*)&l_ExceptCpsT_instMonad___closed__3_value),((lean_object*)&l_ExceptCpsT_instMonad___closed__5_value),((lean_object*)&l_ExceptCpsT_instMonad___closed__6_value)}};
-static const lean_object* l_ExceptCpsT_instMonad___closed__8 = (const lean_object*)&l_ExceptCpsT_instMonad___closed__8_value;
-static const lean_ctor_object l_ExceptCpsT_instMonad___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_ExceptCpsT_instMonad___closed__8_value),((lean_object*)&l_ExceptCpsT_instMonad___closed__4_value)}};
-static const lean_object* l_ExceptCpsT_instMonad___closed__9 = (const lean_object*)&l_ExceptCpsT_instMonad___closed__9_value;
+static lean_once_cell_t l_ExceptCpsT_instMonad___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_ExceptCpsT_instMonad___closed__0;
+static lean_once_cell_t l_ExceptCpsT_instMonad___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_ExceptCpsT_instMonad___closed__1;
+static lean_once_cell_t l_ExceptCpsT_instMonad___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_ExceptCpsT_instMonad___closed__2;
+static lean_once_cell_t l_ExceptCpsT_instMonad___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_ExceptCpsT_instMonad___closed__3;
+static lean_once_cell_t l_ExceptCpsT_instMonad___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_ExceptCpsT_instMonad___closed__4;
+static lean_once_cell_t l_ExceptCpsT_instMonad___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_ExceptCpsT_instMonad___closed__5;
+static lean_once_cell_t l_ExceptCpsT_instMonad___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_ExceptCpsT_instMonad___closed__6;
+static lean_once_cell_t l_ExceptCpsT_instMonad___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_ExceptCpsT_instMonad___closed__7;
+static lean_once_cell_t l_ExceptCpsT_instMonad___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_ExceptCpsT_instMonad___closed__8;
+static lean_once_cell_t l_ExceptCpsT_instMonad___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_ExceptCpsT_instMonad___closed__9;
 LEAN_EXPORT lean_object* l_ExceptCpsT_instMonad(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_ExceptCpsT_instMonadExceptOf___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_ExceptCpsT_instMonadExceptOf___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_ExceptCpsT_instMonadExceptOf___lam__1(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_ExceptCpsT_instMonadExceptOf___lam__2(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_ExceptCpsT_instMonadExceptOf___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_ExceptCpsT_instMonadExceptOf___lam__0___boxed, .m_arity = 5, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_ExceptCpsT_instMonadExceptOf___closed__0 = (const lean_object*)&l_ExceptCpsT_instMonadExceptOf___closed__0_value;
-static const lean_closure_object l_ExceptCpsT_instMonadExceptOf___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_ExceptCpsT_instMonadExceptOf___lam__2, .m_arity = 6, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_ExceptCpsT_instMonadExceptOf___closed__1 = (const lean_object*)&l_ExceptCpsT_instMonadExceptOf___closed__1_value;
-static const lean_ctor_object l_ExceptCpsT_instMonadExceptOf___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_ExceptCpsT_instMonadExceptOf___closed__0_value),((lean_object*)&l_ExceptCpsT_instMonadExceptOf___closed__1_value)}};
-static const lean_object* l_ExceptCpsT_instMonadExceptOf___closed__2 = (const lean_object*)&l_ExceptCpsT_instMonadExceptOf___closed__2_value;
+static lean_once_cell_t l_ExceptCpsT_instMonadExceptOf___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_ExceptCpsT_instMonadExceptOf___closed__0;
+static lean_once_cell_t l_ExceptCpsT_instMonadExceptOf___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_ExceptCpsT_instMonadExceptOf___closed__1;
+static lean_once_cell_t l_ExceptCpsT_instMonadExceptOf___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_ExceptCpsT_instMonadExceptOf___closed__2;
 LEAN_EXPORT lean_object* l_ExceptCpsT_instMonadExceptOf(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_ExceptCpsT_lift___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_ExceptCpsT_lift(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -366,11 +366,115 @@ v___x_181_ = lean_apply_3(v_x_175_, lean_box(0), v___f_180_, v___y_179_);
 return v___x_181_;
 }
 }
+static lean_object* _init_l_ExceptCpsT_instMonad___closed__0(void){
+_start:
+{
+lean_object* v___f_182_; 
+v___f_182_ = lean_alloc_closure((void*)(l_ExceptCpsT_instMonad___lam__1), 7, 0);
+return v___f_182_;
+}
+}
+static lean_object* _init_l_ExceptCpsT_instMonad___closed__1(void){
+_start:
+{
+lean_object* v___f_183_; lean_object* v___f_184_; 
+v___f_183_ = lean_obj_once(&l_ExceptCpsT_instMonad___closed__0, &l_ExceptCpsT_instMonad___closed__0_once, _init_l_ExceptCpsT_instMonad___closed__0);
+v___f_184_ = lean_alloc_closure((void*)(l_ExceptCpsT_instMonad___lam__2), 8, 1);
+lean_closure_set(v___f_184_, 0, v___f_183_);
+return v___f_184_;
+}
+}
+static lean_object* _init_l_ExceptCpsT_instMonad___closed__2(void){
+_start:
+{
+lean_object* v___f_185_; 
+v___f_185_ = lean_alloc_closure((void*)(l_ExceptCpsT_instMonad___lam__3___boxed), 5, 0);
+return v___f_185_;
+}
+}
+static lean_object* _init_l_ExceptCpsT_instMonad___closed__3(void){
+_start:
+{
+lean_object* v___f_186_; lean_object* v___f_187_; 
+v___f_186_ = lean_obj_once(&l_ExceptCpsT_instMonad___closed__0, &l_ExceptCpsT_instMonad___closed__0_once, _init_l_ExceptCpsT_instMonad___closed__0);
+v___f_187_ = lean_alloc_closure((void*)(l_ExceptCpsT_instMonad___lam__5), 8, 1);
+lean_closure_set(v___f_187_, 0, v___f_186_);
+return v___f_187_;
+}
+}
+static lean_object* _init_l_ExceptCpsT_instMonad___closed__4(void){
+_start:
+{
+lean_object* v___f_188_; 
+v___f_188_ = lean_alloc_closure((void*)(l_ExceptCpsT_instMonad___lam__7), 7, 0);
+return v___f_188_;
+}
+}
+static lean_object* _init_l_ExceptCpsT_instMonad___closed__5(void){
+_start:
+{
+lean_object* v___f_189_; lean_object* v___f_190_; 
+v___f_189_ = lean_obj_once(&l_ExceptCpsT_instMonad___closed__4, &l_ExceptCpsT_instMonad___closed__4_once, _init_l_ExceptCpsT_instMonad___closed__4);
+v___f_190_ = lean_alloc_closure((void*)(l_ExceptCpsT_instMonad___lam__10), 8, 1);
+lean_closure_set(v___f_190_, 0, v___f_189_);
+return v___f_190_;
+}
+}
+static lean_object* _init_l_ExceptCpsT_instMonad___closed__6(void){
+_start:
+{
+lean_object* v___f_191_; 
+v___f_191_ = lean_alloc_closure((void*)(l_ExceptCpsT_instMonad___lam__12), 7, 0);
+return v___f_191_;
+}
+}
+static lean_object* _init_l_ExceptCpsT_instMonad___closed__7(void){
+_start:
+{
+lean_object* v___f_192_; lean_object* v___f_193_; lean_object* v___x_194_; 
+v___f_192_ = lean_obj_once(&l_ExceptCpsT_instMonad___closed__1, &l_ExceptCpsT_instMonad___closed__1_once, _init_l_ExceptCpsT_instMonad___closed__1);
+v___f_193_ = lean_obj_once(&l_ExceptCpsT_instMonad___closed__0, &l_ExceptCpsT_instMonad___closed__0_once, _init_l_ExceptCpsT_instMonad___closed__0);
+v___x_194_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_194_, 0, v___f_193_);
+lean_ctor_set(v___x_194_, 1, v___f_192_);
+return v___x_194_;
+}
+}
+static lean_object* _init_l_ExceptCpsT_instMonad___closed__8(void){
+_start:
+{
+lean_object* v___f_195_; lean_object* v___f_196_; lean_object* v___f_197_; lean_object* v___f_198_; lean_object* v___x_199_; lean_object* v___x_200_; 
+v___f_195_ = lean_obj_once(&l_ExceptCpsT_instMonad___closed__6, &l_ExceptCpsT_instMonad___closed__6_once, _init_l_ExceptCpsT_instMonad___closed__6);
+v___f_196_ = lean_obj_once(&l_ExceptCpsT_instMonad___closed__5, &l_ExceptCpsT_instMonad___closed__5_once, _init_l_ExceptCpsT_instMonad___closed__5);
+v___f_197_ = lean_obj_once(&l_ExceptCpsT_instMonad___closed__3, &l_ExceptCpsT_instMonad___closed__3_once, _init_l_ExceptCpsT_instMonad___closed__3);
+v___f_198_ = lean_obj_once(&l_ExceptCpsT_instMonad___closed__2, &l_ExceptCpsT_instMonad___closed__2_once, _init_l_ExceptCpsT_instMonad___closed__2);
+v___x_199_ = lean_obj_once(&l_ExceptCpsT_instMonad___closed__7, &l_ExceptCpsT_instMonad___closed__7_once, _init_l_ExceptCpsT_instMonad___closed__7);
+v___x_200_ = lean_alloc_ctor(0, 5, 0);
+lean_ctor_set(v___x_200_, 0, v___x_199_);
+lean_ctor_set(v___x_200_, 1, v___f_198_);
+lean_ctor_set(v___x_200_, 2, v___f_197_);
+lean_ctor_set(v___x_200_, 3, v___f_196_);
+lean_ctor_set(v___x_200_, 4, v___f_195_);
+return v___x_200_;
+}
+}
+static lean_object* _init_l_ExceptCpsT_instMonad___closed__9(void){
+_start:
+{
+lean_object* v___f_201_; lean_object* v___x_202_; lean_object* v___x_203_; 
+v___f_201_ = lean_obj_once(&l_ExceptCpsT_instMonad___closed__4, &l_ExceptCpsT_instMonad___closed__4_once, _init_l_ExceptCpsT_instMonad___closed__4);
+v___x_202_ = lean_obj_once(&l_ExceptCpsT_instMonad___closed__8, &l_ExceptCpsT_instMonad___closed__8_once, _init_l_ExceptCpsT_instMonad___closed__8);
+v___x_203_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_203_, 0, v___x_202_);
+lean_ctor_set(v___x_203_, 1, v___f_201_);
+return v___x_203_;
+}
+}
 LEAN_EXPORT lean_object* l_ExceptCpsT_instMonad(lean_object* v_00_u03b5_204_, lean_object* v_m_205_){
 _start:
 {
 lean_object* v___x_206_; 
-v___x_206_ = ((lean_object*)(l_ExceptCpsT_instMonad___closed__9));
+v___x_206_ = lean_obj_once(&l_ExceptCpsT_instMonad___closed__9, &l_ExceptCpsT_instMonad___closed__9_once, _init_l_ExceptCpsT_instMonad___closed__9);
 return v___x_206_;
 }
 }
@@ -412,11 +516,39 @@ v___x_231_ = lean_apply_3(v_x_225_, lean_box(0), v_k_u2081_228_, v___f_230_);
 return v___x_231_;
 }
 }
+static lean_object* _init_l_ExceptCpsT_instMonadExceptOf___closed__0(void){
+_start:
+{
+lean_object* v___f_232_; 
+v___f_232_ = lean_alloc_closure((void*)(l_ExceptCpsT_instMonadExceptOf___lam__0___boxed), 5, 0);
+return v___f_232_;
+}
+}
+static lean_object* _init_l_ExceptCpsT_instMonadExceptOf___closed__1(void){
+_start:
+{
+lean_object* v___f_233_; 
+v___f_233_ = lean_alloc_closure((void*)(l_ExceptCpsT_instMonadExceptOf___lam__2), 6, 0);
+return v___f_233_;
+}
+}
+static lean_object* _init_l_ExceptCpsT_instMonadExceptOf___closed__2(void){
+_start:
+{
+lean_object* v___f_234_; lean_object* v___f_235_; lean_object* v___x_236_; 
+v___f_234_ = lean_obj_once(&l_ExceptCpsT_instMonadExceptOf___closed__1, &l_ExceptCpsT_instMonadExceptOf___closed__1_once, _init_l_ExceptCpsT_instMonadExceptOf___closed__1);
+v___f_235_ = lean_obj_once(&l_ExceptCpsT_instMonadExceptOf___closed__0, &l_ExceptCpsT_instMonadExceptOf___closed__0_once, _init_l_ExceptCpsT_instMonadExceptOf___closed__0);
+v___x_236_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_236_, 0, v___f_235_);
+lean_ctor_set(v___x_236_, 1, v___f_234_);
+return v___x_236_;
+}
+}
 LEAN_EXPORT lean_object* l_ExceptCpsT_instMonadExceptOf(lean_object* v_00_u03b5_237_, lean_object* v_m_238_){
 _start:
 {
 lean_object* v___x_239_; 
-v___x_239_ = ((lean_object*)(l_ExceptCpsT_instMonadExceptOf___closed__2));
+v___x_239_ = lean_obj_once(&l_ExceptCpsT_instMonadExceptOf___closed__2, &l_ExceptCpsT_instMonadExceptOf___closed__2_once, _init_l_ExceptCpsT_instMonadExceptOf___closed__2);
 return v___x_239_;
 }
 }
@@ -528,7 +660,7 @@ static lean_object* _init_l_ExceptCpsT_instMonadAttach___closed__0(void){
 _start:
 {
 lean_object* v___x_302_; lean_object* v___x_303_; 
-v___x_302_ = ((lean_object*)(l_ExceptCpsT_instMonad___closed__9));
+v___x_302_ = lean_obj_once(&l_ExceptCpsT_instMonad___closed__9, &l_ExceptCpsT_instMonad___closed__9_once, _init_l_ExceptCpsT_instMonad___closed__9);
 v___x_303_ = l_MonadAttach_trivial___redArg(v___x_302_);
 return v___x_303_;
 }

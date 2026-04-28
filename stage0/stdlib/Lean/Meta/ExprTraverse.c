@@ -42,8 +42,8 @@ LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_travers
 LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLambdaWithPos_visit___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLambdaWithPos_visit___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLambdaWithPos_visit(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_array_object l_Lean_Meta_traverseLambdaWithPos___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Lean_Meta_traverseLambdaWithPos___redArg___closed__0 = (const lean_object*)&l_Lean_Meta_traverseLambdaWithPos___redArg___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_traverseLambdaWithPos___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_traverseLambdaWithPos___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Lean_Meta_traverseLambdaWithPos___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_traverseLambdaWithPos(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseForallWithPos_visit___redArg___lam__2(lean_object*, lean_object*, lean_object*);
@@ -246,11 +246,20 @@ v___x_101_ = l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLambdaWithP
 return v___x_101_;
 }
 }
+static lean_object* _init_l_Lean_Meta_traverseLambdaWithPos___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_102_; lean_object* v___x_103_; 
+v___x_102_ = lean_unsigned_to_nat(0u);
+v___x_103_ = lean_mk_empty_array_with_capacity(v___x_102_);
+return v___x_103_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Meta_traverseLambdaWithPos___redArg(lean_object* v_inst_104_, lean_object* v_inst_105_, lean_object* v_inst_106_, lean_object* v_f_107_, lean_object* v_p_108_, lean_object* v_e_109_){
 _start:
 {
 lean_object* v___x_110_; lean_object* v___x_111_; 
-v___x_110_ = ((lean_object*)(l_Lean_Meta_traverseLambdaWithPos___redArg___closed__0));
+v___x_110_ = lean_obj_once(&l_Lean_Meta_traverseLambdaWithPos___redArg___closed__0, &l_Lean_Meta_traverseLambdaWithPos___redArg___closed__0_once, _init_l_Lean_Meta_traverseLambdaWithPos___redArg___closed__0);
 v___x_111_ = l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLambdaWithPos_visit___redArg(v_inst_104_, v_inst_105_, v_inst_106_, v_f_107_, v___x_110_, v_p_108_, v_e_109_);
 return v___x_111_;
 }
@@ -410,7 +419,7 @@ LEAN_EXPORT lean_object* l_Lean_Meta_traverseForallWithPos___redArg(lean_object*
 _start:
 {
 lean_object* v___x_212_; lean_object* v___x_213_; 
-v___x_212_ = ((lean_object*)(l_Lean_Meta_traverseLambdaWithPos___redArg___closed__0));
+v___x_212_ = lean_obj_once(&l_Lean_Meta_traverseLambdaWithPos___redArg___closed__0, &l_Lean_Meta_traverseLambdaWithPos___redArg___closed__0_once, _init_l_Lean_Meta_traverseLambdaWithPos___redArg___closed__0);
 v___x_213_ = l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseForallWithPos_visit___redArg(v_inst_206_, v_inst_207_, v_inst_208_, v_f_209_, v___x_212_, v_p_210_, v_e_211_);
 return v___x_213_;
 }
@@ -581,7 +590,7 @@ LEAN_EXPORT lean_object* l_Lean_Meta_traverseLetWithPos___redArg(lean_object* v_
 _start:
 {
 lean_object* v___x_326_; lean_object* v___x_327_; 
-v___x_326_ = ((lean_object*)(l_Lean_Meta_traverseLambdaWithPos___redArg___closed__0));
+v___x_326_ = lean_obj_once(&l_Lean_Meta_traverseLambdaWithPos___redArg___closed__0, &l_Lean_Meta_traverseLambdaWithPos___redArg___closed__0_once, _init_l_Lean_Meta_traverseLambdaWithPos___redArg___closed__0);
 v___x_327_ = l___private_Lean_Meta_ExprTraverse_0__Lean_Meta_traverseLetWithPos_visit___redArg(v_inst_320_, v_inst_321_, v_inst_322_, v_f_323_, v___x_326_, v_p_324_, v_e_325_);
 return v___x_327_;
 }

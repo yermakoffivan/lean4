@@ -32,8 +32,8 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldrMUnsafe
 LEAN_EXPORT lean_object* l_List_foldrTR___at___00Lean_FindLevelMVar_main_spec__1(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_FindLevelMVar_main___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_FindLevelMVar_main___lam__0___boxed(lean_object*);
-static const lean_closure_object l_Lean_FindLevelMVar_main___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_FindLevelMVar_main___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_FindLevelMVar_main___closed__0 = (const lean_object*)&l_Lean_FindLevelMVar_main___closed__0_value;
+static lean_once_cell_t l_Lean_FindLevelMVar_main___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_FindLevelMVar_main___closed__0;
 LEAN_EXPORT lean_object* l_Lean_FindLevelMVar_main(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_FindLevelMVar_visit(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Expr_findLevelMVar_x3f(lean_object*, lean_object*);
@@ -262,6 +262,14 @@ lean_dec(v___y_74_);
 return v_res_75_;
 }
 }
+static lean_object* _init_l_Lean_FindLevelMVar_main___closed__0(void){
+_start:
+{
+lean_object* v___f_76_; 
+v___f_76_ = lean_alloc_closure((void*)(l_Lean_FindLevelMVar_main___lam__0___boxed), 1, 0);
+return v___f_76_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_FindLevelMVar_main(lean_object* v_p_77_, lean_object* v_x_78_, lean_object* v_a_79_){
 _start:
 {
@@ -284,7 +292,7 @@ lean_object* v_us_88_; lean_object* v___f_89_; lean_object* v___x_90_;
 v_us_88_ = lean_ctor_get(v_x_78_, 1);
 lean_inc(v_us_88_);
 lean_dec_ref(v_x_78_);
-v___f_89_ = ((lean_object*)(l_Lean_FindLevelMVar_main___closed__0));
+v___f_89_ = lean_obj_once(&l_Lean_FindLevelMVar_main___closed__0, &l_Lean_FindLevelMVar_main___closed__0_once, _init_l_Lean_FindLevelMVar_main___closed__0);
 v___x_90_ = l_List_foldrTR___at___00Lean_FindLevelMVar_main_spec__1(v_p_77_, v___f_89_, v_us_88_, v_a_79_);
 return v___x_90_;
 }

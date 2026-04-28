@@ -52,12 +52,12 @@ lean_object* l_Lean_mkAppN(lean_object*, lean_object*);
 lean_object* l_Lean_Expr_app___override(lean_object*, lean_object*);
 lean_object* l_Lean_Meta_Match_MatcherInfo_altNumParams(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__0(lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 33, .m_capacity = 33, .m_length = 32, .m_data = "Lean.Meta.Match.MatcherApp.Basic"};
-static const lean_object* l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__0 = (const lean_object*)&l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__0_value;
-static const lean_string_object l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 27, .m_capacity = 27, .m_length = 26, .m_data = "Lean.Meta.matchMatcherApp\?"};
-static const lean_object* l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__1 = (const lean_object*)&l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__1_value;
-static const lean_string_object l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 21, .m_capacity = 21, .m_length = 20, .m_data = "expected constructor"};
-static const lean_object* l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__2 = (const lean_object*)&l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__2_value;
+static lean_once_cell_t l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__0;
+static lean_once_cell_t l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__1;
+static lean_once_cell_t l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__2;
 static lean_once_cell_t l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__3;
 LEAN_EXPORT lean_object* l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1(lean_object*, lean_object*, lean_object*);
@@ -68,8 +68,8 @@ static lean_object* l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__3___closed__
 LEAN_EXPORT lean_object* l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__3(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 static lean_once_cell_t l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__4___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__4___closed__0;
-static const lean_ctor_object l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__4___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__4___closed__1 = (const lean_object*)&l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__4___closed__1_value;
+static lean_once_cell_t l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__4___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__4___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__4(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__5(lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__5___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -95,15 +95,39 @@ v___x_6_ = lean_apply_2(v_toPure_4_, lean_box(0), v___x_5_);
 return v___x_6_;
 }
 }
+static lean_object* _init_l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__0(void){
+_start:
+{
+lean_object* v___x_7_; 
+v___x_7_ = lean_mk_string_unchecked("Lean.Meta.Match.MatcherApp.Basic", 32, 32);
+return v___x_7_;
+}
+}
+static lean_object* _init_l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__1(void){
+_start:
+{
+lean_object* v___x_8_; 
+v___x_8_ = lean_mk_string_unchecked("Lean.Meta.matchMatcherApp\?", 26, 26);
+return v___x_8_;
+}
+}
+static lean_object* _init_l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__2(void){
+_start:
+{
+lean_object* v___x_9_; 
+v___x_9_ = lean_mk_string_unchecked("expected constructor", 20, 20);
+return v___x_9_;
+}
+}
 static lean_object* _init_l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__3(void){
 _start:
 {
 lean_object* v___x_10_; lean_object* v___x_11_; lean_object* v___x_12_; lean_object* v___x_13_; lean_object* v___x_14_; lean_object* v___x_15_; 
-v___x_10_ = ((lean_object*)(l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__2));
+v___x_10_ = lean_obj_once(&l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__2, &l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__2_once, _init_l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__2);
 v___x_11_ = lean_unsigned_to_nat(53u);
 v___x_12_ = lean_unsigned_to_nat(62u);
-v___x_13_ = ((lean_object*)(l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__1));
-v___x_14_ = ((lean_object*)(l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__0));
+v___x_13_ = lean_obj_once(&l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__1, &l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__1_once, _init_l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__1);
+v___x_14_ = lean_obj_once(&l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__0, &l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__0_once, _init_l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__1___closed__0);
 v___x_15_ = l_mkPanicMessageWithDecl(v___x_14_, v___x_13_, v___x_12_, v___x_11_, v___x_10_);
 return v___x_15_;
 }
@@ -222,6 +246,16 @@ lean_object* v___x_75_; lean_object* v_dummy_76_;
 v___x_75_ = lean_box(0);
 v_dummy_76_ = l_Lean_Expr_sort___override(v___x_75_);
 return v_dummy_76_;
+}
+}
+static lean_object* _init_l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__4___closed__1(void){
+_start:
+{
+lean_object* v___x_77_; lean_object* v___x_78_; 
+v___x_77_ = lean_unsigned_to_nat(0u);
+v___x_78_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_78_, 0, v___x_77_);
+return v___x_78_;
 }
 }
 LEAN_EXPORT lean_object* l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__4(lean_object* v_e_79_, lean_object* v_toApplicative_80_, lean_object* v_us_81_, lean_object* v_declName_82_, lean_object* v_inst_83_, lean_object* v___f_84_, lean_object* v_toBind_85_, lean_object* v_____x_86_){
@@ -352,7 +386,7 @@ lean_dec(v___x_131_);
 if (v___x_133_ == 0)
 {
 lean_object* v___x_134_; 
-v___x_134_ = ((lean_object*)(l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__4___closed__1));
+v___x_134_ = lean_obj_once(&l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__4___closed__1, &l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__4___closed__1_once, _init_l_Lean_Meta_matchMatcherApp_x3f___redArg___lam__4___closed__1);
 v___y_118_ = v___x_130_;
 v___y_119_ = v___x_134_;
 goto v___jp_117_;

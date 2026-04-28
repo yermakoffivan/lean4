@@ -75,64 +75,64 @@ uint8_t lean_uint8_shift_left(uint8_t, uint8_t);
 LEAN_EXPORT lean_object* l_UInt8_shiftLeft___boxed(lean_object*, lean_object*);
 uint8_t lean_uint8_shift_right(uint8_t, uint8_t);
 LEAN_EXPORT lean_object* l_UInt8_shiftRight___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instAddUInt8___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt8_add___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instAddUInt8___closed__0 = (const lean_object*)&l_instAddUInt8___closed__0_value;
-LEAN_EXPORT const lean_object* l_instAddUInt8 = (const lean_object*)&l_instAddUInt8___closed__0_value;
-static const lean_closure_object l_instSubUInt8___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt8_sub___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSubUInt8___closed__0 = (const lean_object*)&l_instSubUInt8___closed__0_value;
-LEAN_EXPORT const lean_object* l_instSubUInt8 = (const lean_object*)&l_instSubUInt8___closed__0_value;
-static const lean_closure_object l_instMulUInt8___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt8_mul___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instMulUInt8___closed__0 = (const lean_object*)&l_instMulUInt8___closed__0_value;
-LEAN_EXPORT const lean_object* l_instMulUInt8 = (const lean_object*)&l_instMulUInt8___closed__0_value;
-static const lean_closure_object l_instPowUInt8Nat___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt8_pow___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instPowUInt8Nat___closed__0 = (const lean_object*)&l_instPowUInt8Nat___closed__0_value;
-LEAN_EXPORT const lean_object* l_instPowUInt8Nat = (const lean_object*)&l_instPowUInt8Nat___closed__0_value;
-static const lean_closure_object l_instModUInt8___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt8_mod___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instModUInt8___closed__0 = (const lean_object*)&l_instModUInt8___closed__0_value;
-LEAN_EXPORT const lean_object* l_instModUInt8 = (const lean_object*)&l_instModUInt8___closed__0_value;
-static const lean_closure_object l_instHModUInt8Nat___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt8_modn___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instHModUInt8Nat___closed__0 = (const lean_object*)&l_instHModUInt8Nat___closed__0_value;
-LEAN_EXPORT const lean_object* l_instHModUInt8Nat = (const lean_object*)&l_instHModUInt8Nat___closed__0_value;
-static const lean_closure_object l_instDivUInt8___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt8_div___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instDivUInt8___closed__0 = (const lean_object*)&l_instDivUInt8___closed__0_value;
-LEAN_EXPORT const lean_object* l_instDivUInt8 = (const lean_object*)&l_instDivUInt8___closed__0_value;
+static lean_once_cell_t l_instAddUInt8___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instAddUInt8___closed__0;
+LEAN_EXPORT lean_object* l_instAddUInt8;
+static lean_once_cell_t l_instSubUInt8___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSubUInt8___closed__0;
+LEAN_EXPORT lean_object* l_instSubUInt8;
+static lean_once_cell_t l_instMulUInt8___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instMulUInt8___closed__0;
+LEAN_EXPORT lean_object* l_instMulUInt8;
+static lean_once_cell_t l_instPowUInt8Nat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instPowUInt8Nat___closed__0;
+LEAN_EXPORT lean_object* l_instPowUInt8Nat;
+static lean_once_cell_t l_instModUInt8___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instModUInt8___closed__0;
+LEAN_EXPORT lean_object* l_instModUInt8;
+static lean_once_cell_t l_instHModUInt8Nat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instHModUInt8Nat___closed__0;
+LEAN_EXPORT lean_object* l_instHModUInt8Nat;
+static lean_once_cell_t l_instDivUInt8___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instDivUInt8___closed__0;
+LEAN_EXPORT lean_object* l_instDivUInt8;
 uint8_t lean_uint8_complement(uint8_t);
 LEAN_EXPORT lean_object* l_UInt8_complement___boxed(lean_object*);
 uint8_t lean_uint8_neg(uint8_t);
 LEAN_EXPORT lean_object* l_UInt8_neg___boxed(lean_object*);
-static const lean_closure_object l_instComplementUInt8___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt8_complement___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instComplementUInt8___closed__0 = (const lean_object*)&l_instComplementUInt8___closed__0_value;
-LEAN_EXPORT const lean_object* l_instComplementUInt8 = (const lean_object*)&l_instComplementUInt8___closed__0_value;
-static const lean_closure_object l_instNegUInt8___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt8_neg___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instNegUInt8___closed__0 = (const lean_object*)&l_instNegUInt8___closed__0_value;
-LEAN_EXPORT const lean_object* l_instNegUInt8 = (const lean_object*)&l_instNegUInt8___closed__0_value;
-static const lean_closure_object l_instAndOpUInt8___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt8_land___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instAndOpUInt8___closed__0 = (const lean_object*)&l_instAndOpUInt8___closed__0_value;
-LEAN_EXPORT const lean_object* l_instAndOpUInt8 = (const lean_object*)&l_instAndOpUInt8___closed__0_value;
-static const lean_closure_object l_instOrOpUInt8___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt8_lor___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instOrOpUInt8___closed__0 = (const lean_object*)&l_instOrOpUInt8___closed__0_value;
-LEAN_EXPORT const lean_object* l_instOrOpUInt8 = (const lean_object*)&l_instOrOpUInt8___closed__0_value;
-static const lean_closure_object l_instXorOpUInt8___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt8_xor___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instXorOpUInt8___closed__0 = (const lean_object*)&l_instXorOpUInt8___closed__0_value;
-LEAN_EXPORT const lean_object* l_instXorOpUInt8 = (const lean_object*)&l_instXorOpUInt8___closed__0_value;
-static const lean_closure_object l_instShiftLeftUInt8___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt8_shiftLeft___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instShiftLeftUInt8___closed__0 = (const lean_object*)&l_instShiftLeftUInt8___closed__0_value;
-LEAN_EXPORT const lean_object* l_instShiftLeftUInt8 = (const lean_object*)&l_instShiftLeftUInt8___closed__0_value;
-static const lean_closure_object l_instShiftRightUInt8___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt8_shiftRight___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instShiftRightUInt8___closed__0 = (const lean_object*)&l_instShiftRightUInt8___closed__0_value;
-LEAN_EXPORT const lean_object* l_instShiftRightUInt8 = (const lean_object*)&l_instShiftRightUInt8___closed__0_value;
+static lean_once_cell_t l_instComplementUInt8___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instComplementUInt8___closed__0;
+LEAN_EXPORT lean_object* l_instComplementUInt8;
+static lean_once_cell_t l_instNegUInt8___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instNegUInt8___closed__0;
+LEAN_EXPORT lean_object* l_instNegUInt8;
+static lean_once_cell_t l_instAndOpUInt8___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instAndOpUInt8___closed__0;
+LEAN_EXPORT lean_object* l_instAndOpUInt8;
+static lean_once_cell_t l_instOrOpUInt8___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instOrOpUInt8___closed__0;
+LEAN_EXPORT lean_object* l_instOrOpUInt8;
+static lean_once_cell_t l_instXorOpUInt8___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instXorOpUInt8___closed__0;
+LEAN_EXPORT lean_object* l_instXorOpUInt8;
+static lean_once_cell_t l_instShiftLeftUInt8___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instShiftLeftUInt8___closed__0;
+LEAN_EXPORT lean_object* l_instShiftLeftUInt8;
+static lean_once_cell_t l_instShiftRightUInt8___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instShiftRightUInt8___closed__0;
+LEAN_EXPORT lean_object* l_instShiftRightUInt8;
 uint8_t lean_bool_to_uint8(uint8_t);
 LEAN_EXPORT lean_object* l_Bool_toUInt8___boxed(lean_object*);
 LEAN_EXPORT uint8_t l_instMaxUInt8___lam__0(uint8_t, uint8_t);
 LEAN_EXPORT lean_object* l_instMaxUInt8___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instMaxUInt8___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instMaxUInt8___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instMaxUInt8___closed__0 = (const lean_object*)&l_instMaxUInt8___closed__0_value;
-LEAN_EXPORT const lean_object* l_instMaxUInt8 = (const lean_object*)&l_instMaxUInt8___closed__0_value;
+static lean_once_cell_t l_instMaxUInt8___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instMaxUInt8___closed__0;
+LEAN_EXPORT lean_object* l_instMaxUInt8;
 LEAN_EXPORT uint8_t l_instMinUInt8___lam__0(uint8_t, uint8_t);
 LEAN_EXPORT lean_object* l_instMinUInt8___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instMinUInt8___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instMinUInt8___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instMinUInt8___closed__0 = (const lean_object*)&l_instMinUInt8___closed__0_value;
-LEAN_EXPORT const lean_object* l_instMinUInt8 = (const lean_object*)&l_instMinUInt8___closed__0_value;
+static lean_once_cell_t l_instMinUInt8___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instMinUInt8___closed__0;
+LEAN_EXPORT lean_object* l_instMinUInt8;
 LEAN_EXPORT uint8_t l_UInt8_toAsciiLower(uint8_t);
 LEAN_EXPORT lean_object* l_UInt8_toAsciiLower___boxed(lean_object*);
 LEAN_EXPORT uint16_t l_UInt16_ofFin(lean_object*);
@@ -167,54 +167,54 @@ uint16_t lean_uint16_shift_left(uint16_t, uint16_t);
 LEAN_EXPORT lean_object* l_UInt16_shiftLeft___boxed(lean_object*, lean_object*);
 uint16_t lean_uint16_shift_right(uint16_t, uint16_t);
 LEAN_EXPORT lean_object* l_UInt16_shiftRight___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instAddUInt16___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt16_add___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instAddUInt16___closed__0 = (const lean_object*)&l_instAddUInt16___closed__0_value;
-LEAN_EXPORT const lean_object* l_instAddUInt16 = (const lean_object*)&l_instAddUInt16___closed__0_value;
-static const lean_closure_object l_instSubUInt16___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt16_sub___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSubUInt16___closed__0 = (const lean_object*)&l_instSubUInt16___closed__0_value;
-LEAN_EXPORT const lean_object* l_instSubUInt16 = (const lean_object*)&l_instSubUInt16___closed__0_value;
-static const lean_closure_object l_instMulUInt16___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt16_mul___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instMulUInt16___closed__0 = (const lean_object*)&l_instMulUInt16___closed__0_value;
-LEAN_EXPORT const lean_object* l_instMulUInt16 = (const lean_object*)&l_instMulUInt16___closed__0_value;
-static const lean_closure_object l_instPowUInt16Nat___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt16_pow___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instPowUInt16Nat___closed__0 = (const lean_object*)&l_instPowUInt16Nat___closed__0_value;
-LEAN_EXPORT const lean_object* l_instPowUInt16Nat = (const lean_object*)&l_instPowUInt16Nat___closed__0_value;
-static const lean_closure_object l_instModUInt16___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt16_mod___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instModUInt16___closed__0 = (const lean_object*)&l_instModUInt16___closed__0_value;
-LEAN_EXPORT const lean_object* l_instModUInt16 = (const lean_object*)&l_instModUInt16___closed__0_value;
-static const lean_closure_object l_instHModUInt16Nat___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt16_modn___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instHModUInt16Nat___closed__0 = (const lean_object*)&l_instHModUInt16Nat___closed__0_value;
-LEAN_EXPORT const lean_object* l_instHModUInt16Nat = (const lean_object*)&l_instHModUInt16Nat___closed__0_value;
-static const lean_closure_object l_instDivUInt16___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt16_div___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instDivUInt16___closed__0 = (const lean_object*)&l_instDivUInt16___closed__0_value;
-LEAN_EXPORT const lean_object* l_instDivUInt16 = (const lean_object*)&l_instDivUInt16___closed__0_value;
+static lean_once_cell_t l_instAddUInt16___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instAddUInt16___closed__0;
+LEAN_EXPORT lean_object* l_instAddUInt16;
+static lean_once_cell_t l_instSubUInt16___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSubUInt16___closed__0;
+LEAN_EXPORT lean_object* l_instSubUInt16;
+static lean_once_cell_t l_instMulUInt16___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instMulUInt16___closed__0;
+LEAN_EXPORT lean_object* l_instMulUInt16;
+static lean_once_cell_t l_instPowUInt16Nat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instPowUInt16Nat___closed__0;
+LEAN_EXPORT lean_object* l_instPowUInt16Nat;
+static lean_once_cell_t l_instModUInt16___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instModUInt16___closed__0;
+LEAN_EXPORT lean_object* l_instModUInt16;
+static lean_once_cell_t l_instHModUInt16Nat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instHModUInt16Nat___closed__0;
+LEAN_EXPORT lean_object* l_instHModUInt16Nat;
+static lean_once_cell_t l_instDivUInt16___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instDivUInt16___closed__0;
+LEAN_EXPORT lean_object* l_instDivUInt16;
 LEAN_EXPORT lean_object* l_instLTUInt16;
 LEAN_EXPORT lean_object* l_instLEUInt16;
 uint16_t lean_uint16_complement(uint16_t);
 LEAN_EXPORT lean_object* l_UInt16_complement___boxed(lean_object*);
 uint16_t lean_uint16_neg(uint16_t);
 LEAN_EXPORT lean_object* l_UInt16_neg___boxed(lean_object*);
-static const lean_closure_object l_instComplementUInt16___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt16_complement___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instComplementUInt16___closed__0 = (const lean_object*)&l_instComplementUInt16___closed__0_value;
-LEAN_EXPORT const lean_object* l_instComplementUInt16 = (const lean_object*)&l_instComplementUInt16___closed__0_value;
-static const lean_closure_object l_instNegUInt16___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt16_neg___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instNegUInt16___closed__0 = (const lean_object*)&l_instNegUInt16___closed__0_value;
-LEAN_EXPORT const lean_object* l_instNegUInt16 = (const lean_object*)&l_instNegUInt16___closed__0_value;
-static const lean_closure_object l_instAndOpUInt16___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt16_land___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instAndOpUInt16___closed__0 = (const lean_object*)&l_instAndOpUInt16___closed__0_value;
-LEAN_EXPORT const lean_object* l_instAndOpUInt16 = (const lean_object*)&l_instAndOpUInt16___closed__0_value;
-static const lean_closure_object l_instOrOpUInt16___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt16_lor___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instOrOpUInt16___closed__0 = (const lean_object*)&l_instOrOpUInt16___closed__0_value;
-LEAN_EXPORT const lean_object* l_instOrOpUInt16 = (const lean_object*)&l_instOrOpUInt16___closed__0_value;
-static const lean_closure_object l_instXorOpUInt16___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt16_xor___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instXorOpUInt16___closed__0 = (const lean_object*)&l_instXorOpUInt16___closed__0_value;
-LEAN_EXPORT const lean_object* l_instXorOpUInt16 = (const lean_object*)&l_instXorOpUInt16___closed__0_value;
-static const lean_closure_object l_instShiftLeftUInt16___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt16_shiftLeft___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instShiftLeftUInt16___closed__0 = (const lean_object*)&l_instShiftLeftUInt16___closed__0_value;
-LEAN_EXPORT const lean_object* l_instShiftLeftUInt16 = (const lean_object*)&l_instShiftLeftUInt16___closed__0_value;
-static const lean_closure_object l_instShiftRightUInt16___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt16_shiftRight___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instShiftRightUInt16___closed__0 = (const lean_object*)&l_instShiftRightUInt16___closed__0_value;
-LEAN_EXPORT const lean_object* l_instShiftRightUInt16 = (const lean_object*)&l_instShiftRightUInt16___closed__0_value;
+static lean_once_cell_t l_instComplementUInt16___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instComplementUInt16___closed__0;
+LEAN_EXPORT lean_object* l_instComplementUInt16;
+static lean_once_cell_t l_instNegUInt16___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instNegUInt16___closed__0;
+LEAN_EXPORT lean_object* l_instNegUInt16;
+static lean_once_cell_t l_instAndOpUInt16___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instAndOpUInt16___closed__0;
+LEAN_EXPORT lean_object* l_instAndOpUInt16;
+static lean_once_cell_t l_instOrOpUInt16___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instOrOpUInt16___closed__0;
+LEAN_EXPORT lean_object* l_instOrOpUInt16;
+static lean_once_cell_t l_instXorOpUInt16___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instXorOpUInt16___closed__0;
+LEAN_EXPORT lean_object* l_instXorOpUInt16;
+static lean_once_cell_t l_instShiftLeftUInt16___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instShiftLeftUInt16___closed__0;
+LEAN_EXPORT lean_object* l_instShiftLeftUInt16;
+static lean_once_cell_t l_instShiftRightUInt16___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instShiftRightUInt16___closed__0;
+LEAN_EXPORT lean_object* l_instShiftRightUInt16;
 uint16_t lean_bool_to_uint16(uint8_t);
 LEAN_EXPORT lean_object* l_Bool_toUInt16___boxed(lean_object*);
 LEAN_EXPORT uint8_t l_UInt16_decLt___aux__1(uint16_t, uint16_t);
@@ -227,14 +227,14 @@ uint8_t lean_uint16_dec_le(uint16_t, uint16_t);
 LEAN_EXPORT lean_object* l_UInt16_decLe___boxed(lean_object*, lean_object*);
 LEAN_EXPORT uint16_t l_instMaxUInt16___lam__0(uint16_t, uint16_t);
 LEAN_EXPORT lean_object* l_instMaxUInt16___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instMaxUInt16___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instMaxUInt16___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instMaxUInt16___closed__0 = (const lean_object*)&l_instMaxUInt16___closed__0_value;
-LEAN_EXPORT const lean_object* l_instMaxUInt16 = (const lean_object*)&l_instMaxUInt16___closed__0_value;
+static lean_once_cell_t l_instMaxUInt16___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instMaxUInt16___closed__0;
+LEAN_EXPORT lean_object* l_instMaxUInt16;
 LEAN_EXPORT uint16_t l_instMinUInt16___lam__0(uint16_t, uint16_t);
 LEAN_EXPORT lean_object* l_instMinUInt16___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instMinUInt16___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instMinUInt16___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instMinUInt16___closed__0 = (const lean_object*)&l_instMinUInt16___closed__0_value;
-LEAN_EXPORT const lean_object* l_instMinUInt16 = (const lean_object*)&l_instMinUInt16___closed__0_value;
+static lean_once_cell_t l_instMinUInt16___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instMinUInt16___closed__0;
+LEAN_EXPORT lean_object* l_instMinUInt16;
 LEAN_EXPORT uint32_t l_UInt32_ofFin(lean_object*);
 LEAN_EXPORT lean_object* l_UInt32_ofFin___boxed(lean_object*);
 static lean_once_cell_t l_UInt32_ofInt___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -263,46 +263,46 @@ uint32_t lean_uint32_shift_left(uint32_t, uint32_t);
 LEAN_EXPORT lean_object* l_UInt32_shiftLeft___boxed(lean_object*, lean_object*);
 uint32_t lean_uint32_shift_right(uint32_t, uint32_t);
 LEAN_EXPORT lean_object* l_UInt32_shiftRight___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instMulUInt32___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt32_mul___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instMulUInt32___closed__0 = (const lean_object*)&l_instMulUInt32___closed__0_value;
-LEAN_EXPORT const lean_object* l_instMulUInt32 = (const lean_object*)&l_instMulUInt32___closed__0_value;
-static const lean_closure_object l_instPowUInt32Nat___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt32_pow___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instPowUInt32Nat___closed__0 = (const lean_object*)&l_instPowUInt32Nat___closed__0_value;
-LEAN_EXPORT const lean_object* l_instPowUInt32Nat = (const lean_object*)&l_instPowUInt32Nat___closed__0_value;
-static const lean_closure_object l_instModUInt32___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt32_mod___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instModUInt32___closed__0 = (const lean_object*)&l_instModUInt32___closed__0_value;
-LEAN_EXPORT const lean_object* l_instModUInt32 = (const lean_object*)&l_instModUInt32___closed__0_value;
-static const lean_closure_object l_instHModUInt32Nat___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt32_modn___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instHModUInt32Nat___closed__0 = (const lean_object*)&l_instHModUInt32Nat___closed__0_value;
-LEAN_EXPORT const lean_object* l_instHModUInt32Nat = (const lean_object*)&l_instHModUInt32Nat___closed__0_value;
-static const lean_closure_object l_instDivUInt32___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt32_div___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instDivUInt32___closed__0 = (const lean_object*)&l_instDivUInt32___closed__0_value;
-LEAN_EXPORT const lean_object* l_instDivUInt32 = (const lean_object*)&l_instDivUInt32___closed__0_value;
+static lean_once_cell_t l_instMulUInt32___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instMulUInt32___closed__0;
+LEAN_EXPORT lean_object* l_instMulUInt32;
+static lean_once_cell_t l_instPowUInt32Nat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instPowUInt32Nat___closed__0;
+LEAN_EXPORT lean_object* l_instPowUInt32Nat;
+static lean_once_cell_t l_instModUInt32___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instModUInt32___closed__0;
+LEAN_EXPORT lean_object* l_instModUInt32;
+static lean_once_cell_t l_instHModUInt32Nat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instHModUInt32Nat___closed__0;
+LEAN_EXPORT lean_object* l_instHModUInt32Nat;
+static lean_once_cell_t l_instDivUInt32___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instDivUInt32___closed__0;
+LEAN_EXPORT lean_object* l_instDivUInt32;
 uint32_t lean_uint32_complement(uint32_t);
 LEAN_EXPORT lean_object* l_UInt32_complement___boxed(lean_object*);
 uint32_t lean_uint32_neg(uint32_t);
 LEAN_EXPORT lean_object* l_UInt32_neg___boxed(lean_object*);
-static const lean_closure_object l_instComplementUInt32___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt32_complement___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instComplementUInt32___closed__0 = (const lean_object*)&l_instComplementUInt32___closed__0_value;
-LEAN_EXPORT const lean_object* l_instComplementUInt32 = (const lean_object*)&l_instComplementUInt32___closed__0_value;
-static const lean_closure_object l_instNegUInt32___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt32_neg___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instNegUInt32___closed__0 = (const lean_object*)&l_instNegUInt32___closed__0_value;
-LEAN_EXPORT const lean_object* l_instNegUInt32 = (const lean_object*)&l_instNegUInt32___closed__0_value;
-static const lean_closure_object l_instAndOpUInt32___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt32_land___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instAndOpUInt32___closed__0 = (const lean_object*)&l_instAndOpUInt32___closed__0_value;
-LEAN_EXPORT const lean_object* l_instAndOpUInt32 = (const lean_object*)&l_instAndOpUInt32___closed__0_value;
-static const lean_closure_object l_instOrOpUInt32___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt32_lor___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instOrOpUInt32___closed__0 = (const lean_object*)&l_instOrOpUInt32___closed__0_value;
-LEAN_EXPORT const lean_object* l_instOrOpUInt32 = (const lean_object*)&l_instOrOpUInt32___closed__0_value;
-static const lean_closure_object l_instXorOpUInt32___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt32_xor___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instXorOpUInt32___closed__0 = (const lean_object*)&l_instXorOpUInt32___closed__0_value;
-LEAN_EXPORT const lean_object* l_instXorOpUInt32 = (const lean_object*)&l_instXorOpUInt32___closed__0_value;
-static const lean_closure_object l_instShiftLeftUInt32___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt32_shiftLeft___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instShiftLeftUInt32___closed__0 = (const lean_object*)&l_instShiftLeftUInt32___closed__0_value;
-LEAN_EXPORT const lean_object* l_instShiftLeftUInt32 = (const lean_object*)&l_instShiftLeftUInt32___closed__0_value;
-static const lean_closure_object l_instShiftRightUInt32___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt32_shiftRight___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instShiftRightUInt32___closed__0 = (const lean_object*)&l_instShiftRightUInt32___closed__0_value;
-LEAN_EXPORT const lean_object* l_instShiftRightUInt32 = (const lean_object*)&l_instShiftRightUInt32___closed__0_value;
+static lean_once_cell_t l_instComplementUInt32___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instComplementUInt32___closed__0;
+LEAN_EXPORT lean_object* l_instComplementUInt32;
+static lean_once_cell_t l_instNegUInt32___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instNegUInt32___closed__0;
+LEAN_EXPORT lean_object* l_instNegUInt32;
+static lean_once_cell_t l_instAndOpUInt32___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instAndOpUInt32___closed__0;
+LEAN_EXPORT lean_object* l_instAndOpUInt32;
+static lean_once_cell_t l_instOrOpUInt32___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instOrOpUInt32___closed__0;
+LEAN_EXPORT lean_object* l_instOrOpUInt32;
+static lean_once_cell_t l_instXorOpUInt32___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instXorOpUInt32___closed__0;
+LEAN_EXPORT lean_object* l_instXorOpUInt32;
+static lean_once_cell_t l_instShiftLeftUInt32___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instShiftLeftUInt32___closed__0;
+LEAN_EXPORT lean_object* l_instShiftLeftUInt32;
+static lean_once_cell_t l_instShiftRightUInt32___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instShiftRightUInt32___closed__0;
+LEAN_EXPORT lean_object* l_instShiftRightUInt32;
 uint32_t lean_bool_to_uint32(uint8_t);
 LEAN_EXPORT lean_object* l_Bool_toUInt32___boxed(lean_object*);
 LEAN_EXPORT uint64_t l_UInt64_ofFin(lean_object*);
@@ -337,54 +337,54 @@ uint64_t lean_uint64_shift_left(uint64_t, uint64_t);
 LEAN_EXPORT lean_object* l_UInt64_shiftLeft___boxed(lean_object*, lean_object*);
 uint64_t lean_uint64_shift_right(uint64_t, uint64_t);
 LEAN_EXPORT lean_object* l_UInt64_shiftRight___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instAddUInt64___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt64_add___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instAddUInt64___closed__0 = (const lean_object*)&l_instAddUInt64___closed__0_value;
-LEAN_EXPORT const lean_object* l_instAddUInt64 = (const lean_object*)&l_instAddUInt64___closed__0_value;
-static const lean_closure_object l_instSubUInt64___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt64_sub___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSubUInt64___closed__0 = (const lean_object*)&l_instSubUInt64___closed__0_value;
-LEAN_EXPORT const lean_object* l_instSubUInt64 = (const lean_object*)&l_instSubUInt64___closed__0_value;
-static const lean_closure_object l_instMulUInt64___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt64_mul___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instMulUInt64___closed__0 = (const lean_object*)&l_instMulUInt64___closed__0_value;
-LEAN_EXPORT const lean_object* l_instMulUInt64 = (const lean_object*)&l_instMulUInt64___closed__0_value;
-static const lean_closure_object l_instPowUInt64Nat___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt64_pow___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instPowUInt64Nat___closed__0 = (const lean_object*)&l_instPowUInt64Nat___closed__0_value;
-LEAN_EXPORT const lean_object* l_instPowUInt64Nat = (const lean_object*)&l_instPowUInt64Nat___closed__0_value;
-static const lean_closure_object l_instModUInt64___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt64_mod___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instModUInt64___closed__0 = (const lean_object*)&l_instModUInt64___closed__0_value;
-LEAN_EXPORT const lean_object* l_instModUInt64 = (const lean_object*)&l_instModUInt64___closed__0_value;
-static const lean_closure_object l_instHModUInt64Nat___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt64_modn___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instHModUInt64Nat___closed__0 = (const lean_object*)&l_instHModUInt64Nat___closed__0_value;
-LEAN_EXPORT const lean_object* l_instHModUInt64Nat = (const lean_object*)&l_instHModUInt64Nat___closed__0_value;
-static const lean_closure_object l_instDivUInt64___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt64_div___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instDivUInt64___closed__0 = (const lean_object*)&l_instDivUInt64___closed__0_value;
-LEAN_EXPORT const lean_object* l_instDivUInt64 = (const lean_object*)&l_instDivUInt64___closed__0_value;
+static lean_once_cell_t l_instAddUInt64___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instAddUInt64___closed__0;
+LEAN_EXPORT lean_object* l_instAddUInt64;
+static lean_once_cell_t l_instSubUInt64___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSubUInt64___closed__0;
+LEAN_EXPORT lean_object* l_instSubUInt64;
+static lean_once_cell_t l_instMulUInt64___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instMulUInt64___closed__0;
+LEAN_EXPORT lean_object* l_instMulUInt64;
+static lean_once_cell_t l_instPowUInt64Nat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instPowUInt64Nat___closed__0;
+LEAN_EXPORT lean_object* l_instPowUInt64Nat;
+static lean_once_cell_t l_instModUInt64___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instModUInt64___closed__0;
+LEAN_EXPORT lean_object* l_instModUInt64;
+static lean_once_cell_t l_instHModUInt64Nat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instHModUInt64Nat___closed__0;
+LEAN_EXPORT lean_object* l_instHModUInt64Nat;
+static lean_once_cell_t l_instDivUInt64___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instDivUInt64___closed__0;
+LEAN_EXPORT lean_object* l_instDivUInt64;
 LEAN_EXPORT lean_object* l_instLTUInt64;
 LEAN_EXPORT lean_object* l_instLEUInt64;
 uint64_t lean_uint64_complement(uint64_t);
 LEAN_EXPORT lean_object* l_UInt64_complement___boxed(lean_object*);
 uint64_t lean_uint64_neg(uint64_t);
 LEAN_EXPORT lean_object* l_UInt64_neg___boxed(lean_object*);
-static const lean_closure_object l_instComplementUInt64___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt64_complement___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instComplementUInt64___closed__0 = (const lean_object*)&l_instComplementUInt64___closed__0_value;
-LEAN_EXPORT const lean_object* l_instComplementUInt64 = (const lean_object*)&l_instComplementUInt64___closed__0_value;
-static const lean_closure_object l_instNegUInt64___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt64_neg___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instNegUInt64___closed__0 = (const lean_object*)&l_instNegUInt64___closed__0_value;
-LEAN_EXPORT const lean_object* l_instNegUInt64 = (const lean_object*)&l_instNegUInt64___closed__0_value;
-static const lean_closure_object l_instAndOpUInt64___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt64_land___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instAndOpUInt64___closed__0 = (const lean_object*)&l_instAndOpUInt64___closed__0_value;
-LEAN_EXPORT const lean_object* l_instAndOpUInt64 = (const lean_object*)&l_instAndOpUInt64___closed__0_value;
-static const lean_closure_object l_instOrOpUInt64___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt64_lor___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instOrOpUInt64___closed__0 = (const lean_object*)&l_instOrOpUInt64___closed__0_value;
-LEAN_EXPORT const lean_object* l_instOrOpUInt64 = (const lean_object*)&l_instOrOpUInt64___closed__0_value;
-static const lean_closure_object l_instXorOpUInt64___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt64_xor___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instXorOpUInt64___closed__0 = (const lean_object*)&l_instXorOpUInt64___closed__0_value;
-LEAN_EXPORT const lean_object* l_instXorOpUInt64 = (const lean_object*)&l_instXorOpUInt64___closed__0_value;
-static const lean_closure_object l_instShiftLeftUInt64___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt64_shiftLeft___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instShiftLeftUInt64___closed__0 = (const lean_object*)&l_instShiftLeftUInt64___closed__0_value;
-LEAN_EXPORT const lean_object* l_instShiftLeftUInt64 = (const lean_object*)&l_instShiftLeftUInt64___closed__0_value;
-static const lean_closure_object l_instShiftRightUInt64___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_UInt64_shiftRight___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instShiftRightUInt64___closed__0 = (const lean_object*)&l_instShiftRightUInt64___closed__0_value;
-LEAN_EXPORT const lean_object* l_instShiftRightUInt64 = (const lean_object*)&l_instShiftRightUInt64___closed__0_value;
+static lean_once_cell_t l_instComplementUInt64___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instComplementUInt64___closed__0;
+LEAN_EXPORT lean_object* l_instComplementUInt64;
+static lean_once_cell_t l_instNegUInt64___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instNegUInt64___closed__0;
+LEAN_EXPORT lean_object* l_instNegUInt64;
+static lean_once_cell_t l_instAndOpUInt64___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instAndOpUInt64___closed__0;
+LEAN_EXPORT lean_object* l_instAndOpUInt64;
+static lean_once_cell_t l_instOrOpUInt64___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instOrOpUInt64___closed__0;
+LEAN_EXPORT lean_object* l_instOrOpUInt64;
+static lean_once_cell_t l_instXorOpUInt64___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instXorOpUInt64___closed__0;
+LEAN_EXPORT lean_object* l_instXorOpUInt64;
+static lean_once_cell_t l_instShiftLeftUInt64___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instShiftLeftUInt64___closed__0;
+LEAN_EXPORT lean_object* l_instShiftLeftUInt64;
+static lean_once_cell_t l_instShiftRightUInt64___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instShiftRightUInt64___closed__0;
+LEAN_EXPORT lean_object* l_instShiftRightUInt64;
 uint64_t lean_bool_to_uint64(uint8_t);
 LEAN_EXPORT lean_object* l_Bool_toUInt64___boxed(lean_object*);
 LEAN_EXPORT uint8_t l_UInt64_decLt___aux__1(uint64_t, uint64_t);
@@ -397,14 +397,14 @@ uint8_t lean_uint64_dec_le(uint64_t, uint64_t);
 LEAN_EXPORT lean_object* l_UInt64_decLe___boxed(lean_object*, lean_object*);
 LEAN_EXPORT uint64_t l_instMaxUInt64___lam__0(uint64_t, uint64_t);
 LEAN_EXPORT lean_object* l_instMaxUInt64___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instMaxUInt64___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instMaxUInt64___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instMaxUInt64___closed__0 = (const lean_object*)&l_instMaxUInt64___closed__0_value;
-LEAN_EXPORT const lean_object* l_instMaxUInt64 = (const lean_object*)&l_instMaxUInt64___closed__0_value;
+static lean_once_cell_t l_instMaxUInt64___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instMaxUInt64___closed__0;
+LEAN_EXPORT lean_object* l_instMaxUInt64;
 LEAN_EXPORT uint64_t l_instMinUInt64___lam__0(uint64_t, uint64_t);
 LEAN_EXPORT lean_object* l_instMinUInt64___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instMinUInt64___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instMinUInt64___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instMinUInt64___closed__0 = (const lean_object*)&l_instMinUInt64___closed__0_value;
-LEAN_EXPORT const lean_object* l_instMinUInt64 = (const lean_object*)&l_instMinUInt64___closed__0_value;
+static lean_once_cell_t l_instMinUInt64___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instMinUInt64___closed__0;
+LEAN_EXPORT lean_object* l_instMinUInt64;
 LEAN_EXPORT size_t l_USize_ofFin(lean_object*);
 LEAN_EXPORT lean_object* l_USize_ofFin___boxed(lean_object*);
 static lean_once_cell_t l_USize_ofInt___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -451,58 +451,58 @@ size_t lean_uint64_to_usize(uint64_t);
 LEAN_EXPORT lean_object* l_UInt64_toUSize___boxed(lean_object*);
 uint64_t lean_usize_to_uint64(size_t);
 LEAN_EXPORT lean_object* l_USize_toUInt64___boxed(lean_object*);
-static const lean_closure_object l_instMulUSize___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_USize_mul___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instMulUSize___closed__0 = (const lean_object*)&l_instMulUSize___closed__0_value;
-LEAN_EXPORT const lean_object* l_instMulUSize = (const lean_object*)&l_instMulUSize___closed__0_value;
-static const lean_closure_object l_instPowUSizeNat___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_USize_pow___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instPowUSizeNat___closed__0 = (const lean_object*)&l_instPowUSizeNat___closed__0_value;
-LEAN_EXPORT const lean_object* l_instPowUSizeNat = (const lean_object*)&l_instPowUSizeNat___closed__0_value;
-static const lean_closure_object l_instModUSize___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_USize_mod___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instModUSize___closed__0 = (const lean_object*)&l_instModUSize___closed__0_value;
-LEAN_EXPORT const lean_object* l_instModUSize = (const lean_object*)&l_instModUSize___closed__0_value;
-static const lean_closure_object l_instHModUSizeNat___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_USize_modn___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instHModUSizeNat___closed__0 = (const lean_object*)&l_instHModUSizeNat___closed__0_value;
-LEAN_EXPORT const lean_object* l_instHModUSizeNat = (const lean_object*)&l_instHModUSizeNat___closed__0_value;
-static const lean_closure_object l_instDivUSize___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_USize_div___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instDivUSize___closed__0 = (const lean_object*)&l_instDivUSize___closed__0_value;
-LEAN_EXPORT const lean_object* l_instDivUSize = (const lean_object*)&l_instDivUSize___closed__0_value;
+static lean_once_cell_t l_instMulUSize___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instMulUSize___closed__0;
+LEAN_EXPORT lean_object* l_instMulUSize;
+static lean_once_cell_t l_instPowUSizeNat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instPowUSizeNat___closed__0;
+LEAN_EXPORT lean_object* l_instPowUSizeNat;
+static lean_once_cell_t l_instModUSize___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instModUSize___closed__0;
+LEAN_EXPORT lean_object* l_instModUSize;
+static lean_once_cell_t l_instHModUSizeNat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instHModUSizeNat___closed__0;
+LEAN_EXPORT lean_object* l_instHModUSizeNat;
+static lean_once_cell_t l_instDivUSize___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instDivUSize___closed__0;
+LEAN_EXPORT lean_object* l_instDivUSize;
 size_t lean_usize_complement(size_t);
 LEAN_EXPORT lean_object* l_USize_complement___boxed(lean_object*);
 size_t lean_usize_neg(size_t);
 LEAN_EXPORT lean_object* l_USize_neg___boxed(lean_object*);
-static const lean_closure_object l_instComplementUSize___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_USize_complement___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instComplementUSize___closed__0 = (const lean_object*)&l_instComplementUSize___closed__0_value;
-LEAN_EXPORT const lean_object* l_instComplementUSize = (const lean_object*)&l_instComplementUSize___closed__0_value;
-static const lean_closure_object l_instNegUSize___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_USize_neg___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instNegUSize___closed__0 = (const lean_object*)&l_instNegUSize___closed__0_value;
-LEAN_EXPORT const lean_object* l_instNegUSize = (const lean_object*)&l_instNegUSize___closed__0_value;
-static const lean_closure_object l_instAndOpUSize___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_USize_land___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instAndOpUSize___closed__0 = (const lean_object*)&l_instAndOpUSize___closed__0_value;
-LEAN_EXPORT const lean_object* l_instAndOpUSize = (const lean_object*)&l_instAndOpUSize___closed__0_value;
-static const lean_closure_object l_instOrOpUSize___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_USize_lor___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instOrOpUSize___closed__0 = (const lean_object*)&l_instOrOpUSize___closed__0_value;
-LEAN_EXPORT const lean_object* l_instOrOpUSize = (const lean_object*)&l_instOrOpUSize___closed__0_value;
-static const lean_closure_object l_instXorOpUSize___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_USize_xor___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instXorOpUSize___closed__0 = (const lean_object*)&l_instXorOpUSize___closed__0_value;
-LEAN_EXPORT const lean_object* l_instXorOpUSize = (const lean_object*)&l_instXorOpUSize___closed__0_value;
-static const lean_closure_object l_instShiftLeftUSize___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_USize_shiftLeft___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instShiftLeftUSize___closed__0 = (const lean_object*)&l_instShiftLeftUSize___closed__0_value;
-LEAN_EXPORT const lean_object* l_instShiftLeftUSize = (const lean_object*)&l_instShiftLeftUSize___closed__0_value;
-static const lean_closure_object l_instShiftRightUSize___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_USize_shiftRight___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instShiftRightUSize___closed__0 = (const lean_object*)&l_instShiftRightUSize___closed__0_value;
-LEAN_EXPORT const lean_object* l_instShiftRightUSize = (const lean_object*)&l_instShiftRightUSize___closed__0_value;
+static lean_once_cell_t l_instComplementUSize___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instComplementUSize___closed__0;
+LEAN_EXPORT lean_object* l_instComplementUSize;
+static lean_once_cell_t l_instNegUSize___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instNegUSize___closed__0;
+LEAN_EXPORT lean_object* l_instNegUSize;
+static lean_once_cell_t l_instAndOpUSize___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instAndOpUSize___closed__0;
+LEAN_EXPORT lean_object* l_instAndOpUSize;
+static lean_once_cell_t l_instOrOpUSize___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instOrOpUSize___closed__0;
+LEAN_EXPORT lean_object* l_instOrOpUSize;
+static lean_once_cell_t l_instXorOpUSize___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instXorOpUSize___closed__0;
+LEAN_EXPORT lean_object* l_instXorOpUSize;
+static lean_once_cell_t l_instShiftLeftUSize___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instShiftLeftUSize___closed__0;
+LEAN_EXPORT lean_object* l_instShiftLeftUSize;
+static lean_once_cell_t l_instShiftRightUSize___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instShiftRightUSize___closed__0;
+LEAN_EXPORT lean_object* l_instShiftRightUSize;
 size_t lean_bool_to_usize(uint8_t);
 LEAN_EXPORT lean_object* l_Bool_toUSize___boxed(lean_object*);
 LEAN_EXPORT size_t l_instMaxUSize___lam__0(size_t, size_t);
 LEAN_EXPORT lean_object* l_instMaxUSize___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instMaxUSize___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instMaxUSize___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instMaxUSize___closed__0 = (const lean_object*)&l_instMaxUSize___closed__0_value;
-LEAN_EXPORT const lean_object* l_instMaxUSize = (const lean_object*)&l_instMaxUSize___closed__0_value;
+static lean_once_cell_t l_instMaxUSize___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instMaxUSize___closed__0;
+LEAN_EXPORT lean_object* l_instMaxUSize;
 LEAN_EXPORT size_t l_instMinUSize___lam__0(size_t, size_t);
 LEAN_EXPORT lean_object* l_instMinUSize___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instMinUSize___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instMinUSize___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instMinUSize___closed__0 = (const lean_object*)&l_instMinUSize___closed__0_value;
-LEAN_EXPORT const lean_object* l_instMinUSize = (const lean_object*)&l_instMinUSize___closed__0_value;
+static lean_once_cell_t l_instMinUSize___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instMinUSize___closed__0;
+LEAN_EXPORT lean_object* l_instMinUSize;
 LEAN_EXPORT uint8_t l_UInt8_ofFin(lean_object* v_a_1_){
 _start:
 {
@@ -749,6 +749,118 @@ v_r_128_ = lean_box(v_res_127_);
 return v_r_128_;
 }
 }
+static lean_object* _init_l_instAddUInt8___closed__0(void){
+_start:
+{
+lean_object* v___x_129_; 
+v___x_129_ = lean_alloc_closure((void*)(l_UInt8_add___boxed), 2, 0);
+return v___x_129_;
+}
+}
+static lean_object* _init_l_instAddUInt8(void){
+_start:
+{
+lean_object* v___x_130_; 
+v___x_130_ = lean_obj_once(&l_instAddUInt8___closed__0, &l_instAddUInt8___closed__0_once, _init_l_instAddUInt8___closed__0);
+return v___x_130_;
+}
+}
+static lean_object* _init_l_instSubUInt8___closed__0(void){
+_start:
+{
+lean_object* v___x_131_; 
+v___x_131_ = lean_alloc_closure((void*)(l_UInt8_sub___boxed), 2, 0);
+return v___x_131_;
+}
+}
+static lean_object* _init_l_instSubUInt8(void){
+_start:
+{
+lean_object* v___x_132_; 
+v___x_132_ = lean_obj_once(&l_instSubUInt8___closed__0, &l_instSubUInt8___closed__0_once, _init_l_instSubUInt8___closed__0);
+return v___x_132_;
+}
+}
+static lean_object* _init_l_instMulUInt8___closed__0(void){
+_start:
+{
+lean_object* v___x_133_; 
+v___x_133_ = lean_alloc_closure((void*)(l_UInt8_mul___boxed), 2, 0);
+return v___x_133_;
+}
+}
+static lean_object* _init_l_instMulUInt8(void){
+_start:
+{
+lean_object* v___x_134_; 
+v___x_134_ = lean_obj_once(&l_instMulUInt8___closed__0, &l_instMulUInt8___closed__0_once, _init_l_instMulUInt8___closed__0);
+return v___x_134_;
+}
+}
+static lean_object* _init_l_instPowUInt8Nat___closed__0(void){
+_start:
+{
+lean_object* v___x_135_; 
+v___x_135_ = lean_alloc_closure((void*)(l_UInt8_pow___boxed), 2, 0);
+return v___x_135_;
+}
+}
+static lean_object* _init_l_instPowUInt8Nat(void){
+_start:
+{
+lean_object* v___x_136_; 
+v___x_136_ = lean_obj_once(&l_instPowUInt8Nat___closed__0, &l_instPowUInt8Nat___closed__0_once, _init_l_instPowUInt8Nat___closed__0);
+return v___x_136_;
+}
+}
+static lean_object* _init_l_instModUInt8___closed__0(void){
+_start:
+{
+lean_object* v___x_137_; 
+v___x_137_ = lean_alloc_closure((void*)(l_UInt8_mod___boxed), 2, 0);
+return v___x_137_;
+}
+}
+static lean_object* _init_l_instModUInt8(void){
+_start:
+{
+lean_object* v___x_138_; 
+v___x_138_ = lean_obj_once(&l_instModUInt8___closed__0, &l_instModUInt8___closed__0_once, _init_l_instModUInt8___closed__0);
+return v___x_138_;
+}
+}
+static lean_object* _init_l_instHModUInt8Nat___closed__0(void){
+_start:
+{
+lean_object* v___x_139_; 
+v___x_139_ = lean_alloc_closure((void*)(l_UInt8_modn___boxed), 2, 0);
+return v___x_139_;
+}
+}
+static lean_object* _init_l_instHModUInt8Nat(void){
+_start:
+{
+lean_object* v___x_140_; 
+v___x_140_ = lean_obj_once(&l_instHModUInt8Nat___closed__0, &l_instHModUInt8Nat___closed__0_once, _init_l_instHModUInt8Nat___closed__0);
+return v___x_140_;
+}
+}
+static lean_object* _init_l_instDivUInt8___closed__0(void){
+_start:
+{
+lean_object* v___x_141_; 
+v___x_141_ = lean_alloc_closure((void*)(l_UInt8_div___boxed), 2, 0);
+return v___x_141_;
+}
+}
+static lean_object* _init_l_instDivUInt8(void){
+_start:
+{
+lean_object* v___x_142_; 
+v___x_142_ = lean_obj_once(&l_instDivUInt8___closed__0, &l_instDivUInt8___closed__0_once, _init_l_instDivUInt8___closed__0);
+return v___x_142_;
+}
+}
 LEAN_EXPORT lean_object* l_UInt8_complement___boxed(lean_object* v_a_144_){
 _start:
 {
@@ -767,6 +879,118 @@ v_a_boxed_150_ = lean_unbox(v_a_149_);
 v_res_151_ = lean_uint8_neg(v_a_boxed_150_);
 v_r_152_ = lean_box(v_res_151_);
 return v_r_152_;
+}
+}
+static lean_object* _init_l_instComplementUInt8___closed__0(void){
+_start:
+{
+lean_object* v___x_153_; 
+v___x_153_ = lean_alloc_closure((void*)(l_UInt8_complement___boxed), 1, 0);
+return v___x_153_;
+}
+}
+static lean_object* _init_l_instComplementUInt8(void){
+_start:
+{
+lean_object* v___x_154_; 
+v___x_154_ = lean_obj_once(&l_instComplementUInt8___closed__0, &l_instComplementUInt8___closed__0_once, _init_l_instComplementUInt8___closed__0);
+return v___x_154_;
+}
+}
+static lean_object* _init_l_instNegUInt8___closed__0(void){
+_start:
+{
+lean_object* v___x_155_; 
+v___x_155_ = lean_alloc_closure((void*)(l_UInt8_neg___boxed), 1, 0);
+return v___x_155_;
+}
+}
+static lean_object* _init_l_instNegUInt8(void){
+_start:
+{
+lean_object* v___x_156_; 
+v___x_156_ = lean_obj_once(&l_instNegUInt8___closed__0, &l_instNegUInt8___closed__0_once, _init_l_instNegUInt8___closed__0);
+return v___x_156_;
+}
+}
+static lean_object* _init_l_instAndOpUInt8___closed__0(void){
+_start:
+{
+lean_object* v___x_157_; 
+v___x_157_ = lean_alloc_closure((void*)(l_UInt8_land___boxed), 2, 0);
+return v___x_157_;
+}
+}
+static lean_object* _init_l_instAndOpUInt8(void){
+_start:
+{
+lean_object* v___x_158_; 
+v___x_158_ = lean_obj_once(&l_instAndOpUInt8___closed__0, &l_instAndOpUInt8___closed__0_once, _init_l_instAndOpUInt8___closed__0);
+return v___x_158_;
+}
+}
+static lean_object* _init_l_instOrOpUInt8___closed__0(void){
+_start:
+{
+lean_object* v___x_159_; 
+v___x_159_ = lean_alloc_closure((void*)(l_UInt8_lor___boxed), 2, 0);
+return v___x_159_;
+}
+}
+static lean_object* _init_l_instOrOpUInt8(void){
+_start:
+{
+lean_object* v___x_160_; 
+v___x_160_ = lean_obj_once(&l_instOrOpUInt8___closed__0, &l_instOrOpUInt8___closed__0_once, _init_l_instOrOpUInt8___closed__0);
+return v___x_160_;
+}
+}
+static lean_object* _init_l_instXorOpUInt8___closed__0(void){
+_start:
+{
+lean_object* v___x_161_; 
+v___x_161_ = lean_alloc_closure((void*)(l_UInt8_xor___boxed), 2, 0);
+return v___x_161_;
+}
+}
+static lean_object* _init_l_instXorOpUInt8(void){
+_start:
+{
+lean_object* v___x_162_; 
+v___x_162_ = lean_obj_once(&l_instXorOpUInt8___closed__0, &l_instXorOpUInt8___closed__0_once, _init_l_instXorOpUInt8___closed__0);
+return v___x_162_;
+}
+}
+static lean_object* _init_l_instShiftLeftUInt8___closed__0(void){
+_start:
+{
+lean_object* v___x_163_; 
+v___x_163_ = lean_alloc_closure((void*)(l_UInt8_shiftLeft___boxed), 2, 0);
+return v___x_163_;
+}
+}
+static lean_object* _init_l_instShiftLeftUInt8(void){
+_start:
+{
+lean_object* v___x_164_; 
+v___x_164_ = lean_obj_once(&l_instShiftLeftUInt8___closed__0, &l_instShiftLeftUInt8___closed__0_once, _init_l_instShiftLeftUInt8___closed__0);
+return v___x_164_;
+}
+}
+static lean_object* _init_l_instShiftRightUInt8___closed__0(void){
+_start:
+{
+lean_object* v___x_165_; 
+v___x_165_ = lean_alloc_closure((void*)(l_UInt8_shiftRight___boxed), 2, 0);
+return v___x_165_;
+}
+}
+static lean_object* _init_l_instShiftRightUInt8(void){
+_start:
+{
+lean_object* v___x_166_; 
+v___x_166_ = lean_obj_once(&l_instShiftRightUInt8___closed__0, &l_instShiftRightUInt8___closed__0_once, _init_l_instShiftRightUInt8___closed__0);
+return v___x_166_;
 }
 }
 LEAN_EXPORT lean_object* l_Bool_toUInt8___boxed(lean_object* v_b_168_){
@@ -805,6 +1029,22 @@ v_r_180_ = lean_box(v_res_179_);
 return v_r_180_;
 }
 }
+static lean_object* _init_l_instMaxUInt8___closed__0(void){
+_start:
+{
+lean_object* v___f_181_; 
+v___f_181_ = lean_alloc_closure((void*)(l_instMaxUInt8___lam__0___boxed), 2, 0);
+return v___f_181_;
+}
+}
+static lean_object* _init_l_instMaxUInt8(void){
+_start:
+{
+lean_object* v___f_182_; 
+v___f_182_ = lean_obj_once(&l_instMaxUInt8___closed__0, &l_instMaxUInt8___closed__0_once, _init_l_instMaxUInt8___closed__0);
+return v___f_182_;
+}
+}
 LEAN_EXPORT uint8_t l_instMinUInt8___lam__0(uint8_t v_x_183_, uint8_t v_y_184_){
 _start:
 {
@@ -829,6 +1069,22 @@ v_y_boxed_189_ = lean_unbox(v_y_187_);
 v_res_190_ = l_instMinUInt8___lam__0(v_x_boxed_188_, v_y_boxed_189_);
 v_r_191_ = lean_box(v_res_190_);
 return v_r_191_;
+}
+}
+static lean_object* _init_l_instMinUInt8___closed__0(void){
+_start:
+{
+lean_object* v___f_192_; 
+v___f_192_ = lean_alloc_closure((void*)(l_instMinUInt8___lam__0___boxed), 2, 0);
+return v___f_192_;
+}
+}
+static lean_object* _init_l_instMinUInt8(void){
+_start:
+{
+lean_object* v___f_193_; 
+v___f_193_ = lean_obj_once(&l_instMinUInt8___closed__0, &l_instMinUInt8___closed__0_once, _init_l_instMinUInt8___closed__0);
+return v___f_193_;
 }
 }
 LEAN_EXPORT uint8_t l_UInt8_toAsciiLower(uint8_t v_b_194_){
@@ -1113,6 +1369,118 @@ v_r_332_ = lean_box(v_res_331_);
 return v_r_332_;
 }
 }
+static lean_object* _init_l_instAddUInt16___closed__0(void){
+_start:
+{
+lean_object* v___x_333_; 
+v___x_333_ = lean_alloc_closure((void*)(l_UInt16_add___boxed), 2, 0);
+return v___x_333_;
+}
+}
+static lean_object* _init_l_instAddUInt16(void){
+_start:
+{
+lean_object* v___x_334_; 
+v___x_334_ = lean_obj_once(&l_instAddUInt16___closed__0, &l_instAddUInt16___closed__0_once, _init_l_instAddUInt16___closed__0);
+return v___x_334_;
+}
+}
+static lean_object* _init_l_instSubUInt16___closed__0(void){
+_start:
+{
+lean_object* v___x_335_; 
+v___x_335_ = lean_alloc_closure((void*)(l_UInt16_sub___boxed), 2, 0);
+return v___x_335_;
+}
+}
+static lean_object* _init_l_instSubUInt16(void){
+_start:
+{
+lean_object* v___x_336_; 
+v___x_336_ = lean_obj_once(&l_instSubUInt16___closed__0, &l_instSubUInt16___closed__0_once, _init_l_instSubUInt16___closed__0);
+return v___x_336_;
+}
+}
+static lean_object* _init_l_instMulUInt16___closed__0(void){
+_start:
+{
+lean_object* v___x_337_; 
+v___x_337_ = lean_alloc_closure((void*)(l_UInt16_mul___boxed), 2, 0);
+return v___x_337_;
+}
+}
+static lean_object* _init_l_instMulUInt16(void){
+_start:
+{
+lean_object* v___x_338_; 
+v___x_338_ = lean_obj_once(&l_instMulUInt16___closed__0, &l_instMulUInt16___closed__0_once, _init_l_instMulUInt16___closed__0);
+return v___x_338_;
+}
+}
+static lean_object* _init_l_instPowUInt16Nat___closed__0(void){
+_start:
+{
+lean_object* v___x_339_; 
+v___x_339_ = lean_alloc_closure((void*)(l_UInt16_pow___boxed), 2, 0);
+return v___x_339_;
+}
+}
+static lean_object* _init_l_instPowUInt16Nat(void){
+_start:
+{
+lean_object* v___x_340_; 
+v___x_340_ = lean_obj_once(&l_instPowUInt16Nat___closed__0, &l_instPowUInt16Nat___closed__0_once, _init_l_instPowUInt16Nat___closed__0);
+return v___x_340_;
+}
+}
+static lean_object* _init_l_instModUInt16___closed__0(void){
+_start:
+{
+lean_object* v___x_341_; 
+v___x_341_ = lean_alloc_closure((void*)(l_UInt16_mod___boxed), 2, 0);
+return v___x_341_;
+}
+}
+static lean_object* _init_l_instModUInt16(void){
+_start:
+{
+lean_object* v___x_342_; 
+v___x_342_ = lean_obj_once(&l_instModUInt16___closed__0, &l_instModUInt16___closed__0_once, _init_l_instModUInt16___closed__0);
+return v___x_342_;
+}
+}
+static lean_object* _init_l_instHModUInt16Nat___closed__0(void){
+_start:
+{
+lean_object* v___x_343_; 
+v___x_343_ = lean_alloc_closure((void*)(l_UInt16_modn___boxed), 2, 0);
+return v___x_343_;
+}
+}
+static lean_object* _init_l_instHModUInt16Nat(void){
+_start:
+{
+lean_object* v___x_344_; 
+v___x_344_ = lean_obj_once(&l_instHModUInt16Nat___closed__0, &l_instHModUInt16Nat___closed__0_once, _init_l_instHModUInt16Nat___closed__0);
+return v___x_344_;
+}
+}
+static lean_object* _init_l_instDivUInt16___closed__0(void){
+_start:
+{
+lean_object* v___x_345_; 
+v___x_345_ = lean_alloc_closure((void*)(l_UInt16_div___boxed), 2, 0);
+return v___x_345_;
+}
+}
+static lean_object* _init_l_instDivUInt16(void){
+_start:
+{
+lean_object* v___x_346_; 
+v___x_346_ = lean_obj_once(&l_instDivUInt16___closed__0, &l_instDivUInt16___closed__0_once, _init_l_instDivUInt16___closed__0);
+return v___x_346_;
+}
+}
 static lean_object* _init_l_instLTUInt16(void){
 _start:
 {
@@ -1147,6 +1515,118 @@ v_a_boxed_356_ = lean_unbox(v_a_355_);
 v_res_357_ = lean_uint16_neg(v_a_boxed_356_);
 v_r_358_ = lean_box(v_res_357_);
 return v_r_358_;
+}
+}
+static lean_object* _init_l_instComplementUInt16___closed__0(void){
+_start:
+{
+lean_object* v___x_359_; 
+v___x_359_ = lean_alloc_closure((void*)(l_UInt16_complement___boxed), 1, 0);
+return v___x_359_;
+}
+}
+static lean_object* _init_l_instComplementUInt16(void){
+_start:
+{
+lean_object* v___x_360_; 
+v___x_360_ = lean_obj_once(&l_instComplementUInt16___closed__0, &l_instComplementUInt16___closed__0_once, _init_l_instComplementUInt16___closed__0);
+return v___x_360_;
+}
+}
+static lean_object* _init_l_instNegUInt16___closed__0(void){
+_start:
+{
+lean_object* v___x_361_; 
+v___x_361_ = lean_alloc_closure((void*)(l_UInt16_neg___boxed), 1, 0);
+return v___x_361_;
+}
+}
+static lean_object* _init_l_instNegUInt16(void){
+_start:
+{
+lean_object* v___x_362_; 
+v___x_362_ = lean_obj_once(&l_instNegUInt16___closed__0, &l_instNegUInt16___closed__0_once, _init_l_instNegUInt16___closed__0);
+return v___x_362_;
+}
+}
+static lean_object* _init_l_instAndOpUInt16___closed__0(void){
+_start:
+{
+lean_object* v___x_363_; 
+v___x_363_ = lean_alloc_closure((void*)(l_UInt16_land___boxed), 2, 0);
+return v___x_363_;
+}
+}
+static lean_object* _init_l_instAndOpUInt16(void){
+_start:
+{
+lean_object* v___x_364_; 
+v___x_364_ = lean_obj_once(&l_instAndOpUInt16___closed__0, &l_instAndOpUInt16___closed__0_once, _init_l_instAndOpUInt16___closed__0);
+return v___x_364_;
+}
+}
+static lean_object* _init_l_instOrOpUInt16___closed__0(void){
+_start:
+{
+lean_object* v___x_365_; 
+v___x_365_ = lean_alloc_closure((void*)(l_UInt16_lor___boxed), 2, 0);
+return v___x_365_;
+}
+}
+static lean_object* _init_l_instOrOpUInt16(void){
+_start:
+{
+lean_object* v___x_366_; 
+v___x_366_ = lean_obj_once(&l_instOrOpUInt16___closed__0, &l_instOrOpUInt16___closed__0_once, _init_l_instOrOpUInt16___closed__0);
+return v___x_366_;
+}
+}
+static lean_object* _init_l_instXorOpUInt16___closed__0(void){
+_start:
+{
+lean_object* v___x_367_; 
+v___x_367_ = lean_alloc_closure((void*)(l_UInt16_xor___boxed), 2, 0);
+return v___x_367_;
+}
+}
+static lean_object* _init_l_instXorOpUInt16(void){
+_start:
+{
+lean_object* v___x_368_; 
+v___x_368_ = lean_obj_once(&l_instXorOpUInt16___closed__0, &l_instXorOpUInt16___closed__0_once, _init_l_instXorOpUInt16___closed__0);
+return v___x_368_;
+}
+}
+static lean_object* _init_l_instShiftLeftUInt16___closed__0(void){
+_start:
+{
+lean_object* v___x_369_; 
+v___x_369_ = lean_alloc_closure((void*)(l_UInt16_shiftLeft___boxed), 2, 0);
+return v___x_369_;
+}
+}
+static lean_object* _init_l_instShiftLeftUInt16(void){
+_start:
+{
+lean_object* v___x_370_; 
+v___x_370_ = lean_obj_once(&l_instShiftLeftUInt16___closed__0, &l_instShiftLeftUInt16___closed__0_once, _init_l_instShiftLeftUInt16___closed__0);
+return v___x_370_;
+}
+}
+static lean_object* _init_l_instShiftRightUInt16___closed__0(void){
+_start:
+{
+lean_object* v___x_371_; 
+v___x_371_ = lean_alloc_closure((void*)(l_UInt16_shiftRight___boxed), 2, 0);
+return v___x_371_;
+}
+}
+static lean_object* _init_l_instShiftRightUInt16(void){
+_start:
+{
+lean_object* v___x_372_; 
+v___x_372_ = lean_obj_once(&l_instShiftRightUInt16___closed__0, &l_instShiftRightUInt16___closed__0_once, _init_l_instShiftRightUInt16___closed__0);
+return v___x_372_;
 }
 }
 LEAN_EXPORT lean_object* l_Bool_toUInt16___boxed(lean_object* v_b_374_){
@@ -1253,6 +1733,22 @@ v_r_424_ = lean_box(v_res_423_);
 return v_r_424_;
 }
 }
+static lean_object* _init_l_instMaxUInt16___closed__0(void){
+_start:
+{
+lean_object* v___f_425_; 
+v___f_425_ = lean_alloc_closure((void*)(l_instMaxUInt16___lam__0___boxed), 2, 0);
+return v___f_425_;
+}
+}
+static lean_object* _init_l_instMaxUInt16(void){
+_start:
+{
+lean_object* v___f_426_; 
+v___f_426_ = lean_obj_once(&l_instMaxUInt16___closed__0, &l_instMaxUInt16___closed__0_once, _init_l_instMaxUInt16___closed__0);
+return v___f_426_;
+}
+}
 LEAN_EXPORT uint16_t l_instMinUInt16___lam__0(uint16_t v_x_427_, uint16_t v_y_428_){
 _start:
 {
@@ -1277,6 +1773,22 @@ v_y_boxed_433_ = lean_unbox(v_y_431_);
 v_res_434_ = l_instMinUInt16___lam__0(v_x_boxed_432_, v_y_boxed_433_);
 v_r_435_ = lean_box(v_res_434_);
 return v_r_435_;
+}
+}
+static lean_object* _init_l_instMinUInt16___closed__0(void){
+_start:
+{
+lean_object* v___f_436_; 
+v___f_436_ = lean_alloc_closure((void*)(l_instMinUInt16___lam__0___boxed), 2, 0);
+return v___f_436_;
+}
+}
+static lean_object* _init_l_instMinUInt16(void){
+_start:
+{
+lean_object* v___f_437_; 
+v___f_437_ = lean_obj_once(&l_instMinUInt16___closed__0, &l_instMinUInt16___closed__0_once, _init_l_instMinUInt16___closed__0);
+return v___f_437_;
 }
 }
 LEAN_EXPORT uint32_t l_UInt32_ofFin(lean_object* v_a_438_){
@@ -1512,6 +2024,86 @@ v_r_547_ = lean_box_uint32(v_res_546_);
 return v_r_547_;
 }
 }
+static lean_object* _init_l_instMulUInt32___closed__0(void){
+_start:
+{
+lean_object* v___x_548_; 
+v___x_548_ = lean_alloc_closure((void*)(l_UInt32_mul___boxed), 2, 0);
+return v___x_548_;
+}
+}
+static lean_object* _init_l_instMulUInt32(void){
+_start:
+{
+lean_object* v___x_549_; 
+v___x_549_ = lean_obj_once(&l_instMulUInt32___closed__0, &l_instMulUInt32___closed__0_once, _init_l_instMulUInt32___closed__0);
+return v___x_549_;
+}
+}
+static lean_object* _init_l_instPowUInt32Nat___closed__0(void){
+_start:
+{
+lean_object* v___x_550_; 
+v___x_550_ = lean_alloc_closure((void*)(l_UInt32_pow___boxed), 2, 0);
+return v___x_550_;
+}
+}
+static lean_object* _init_l_instPowUInt32Nat(void){
+_start:
+{
+lean_object* v___x_551_; 
+v___x_551_ = lean_obj_once(&l_instPowUInt32Nat___closed__0, &l_instPowUInt32Nat___closed__0_once, _init_l_instPowUInt32Nat___closed__0);
+return v___x_551_;
+}
+}
+static lean_object* _init_l_instModUInt32___closed__0(void){
+_start:
+{
+lean_object* v___x_552_; 
+v___x_552_ = lean_alloc_closure((void*)(l_UInt32_mod___boxed), 2, 0);
+return v___x_552_;
+}
+}
+static lean_object* _init_l_instModUInt32(void){
+_start:
+{
+lean_object* v___x_553_; 
+v___x_553_ = lean_obj_once(&l_instModUInt32___closed__0, &l_instModUInt32___closed__0_once, _init_l_instModUInt32___closed__0);
+return v___x_553_;
+}
+}
+static lean_object* _init_l_instHModUInt32Nat___closed__0(void){
+_start:
+{
+lean_object* v___x_554_; 
+v___x_554_ = lean_alloc_closure((void*)(l_UInt32_modn___boxed), 2, 0);
+return v___x_554_;
+}
+}
+static lean_object* _init_l_instHModUInt32Nat(void){
+_start:
+{
+lean_object* v___x_555_; 
+v___x_555_ = lean_obj_once(&l_instHModUInt32Nat___closed__0, &l_instHModUInt32Nat___closed__0_once, _init_l_instHModUInt32Nat___closed__0);
+return v___x_555_;
+}
+}
+static lean_object* _init_l_instDivUInt32___closed__0(void){
+_start:
+{
+lean_object* v___x_556_; 
+v___x_556_ = lean_alloc_closure((void*)(l_UInt32_div___boxed), 2, 0);
+return v___x_556_;
+}
+}
+static lean_object* _init_l_instDivUInt32(void){
+_start:
+{
+lean_object* v___x_557_; 
+v___x_557_ = lean_obj_once(&l_instDivUInt32___closed__0, &l_instDivUInt32___closed__0_once, _init_l_instDivUInt32___closed__0);
+return v___x_557_;
+}
+}
 LEAN_EXPORT lean_object* l_UInt32_complement___boxed(lean_object* v_a_559_){
 _start:
 {
@@ -1532,6 +2124,118 @@ lean_dec(v_a_564_);
 v_res_566_ = lean_uint32_neg(v_a_boxed_565_);
 v_r_567_ = lean_box_uint32(v_res_566_);
 return v_r_567_;
+}
+}
+static lean_object* _init_l_instComplementUInt32___closed__0(void){
+_start:
+{
+lean_object* v___x_568_; 
+v___x_568_ = lean_alloc_closure((void*)(l_UInt32_complement___boxed), 1, 0);
+return v___x_568_;
+}
+}
+static lean_object* _init_l_instComplementUInt32(void){
+_start:
+{
+lean_object* v___x_569_; 
+v___x_569_ = lean_obj_once(&l_instComplementUInt32___closed__0, &l_instComplementUInt32___closed__0_once, _init_l_instComplementUInt32___closed__0);
+return v___x_569_;
+}
+}
+static lean_object* _init_l_instNegUInt32___closed__0(void){
+_start:
+{
+lean_object* v___x_570_; 
+v___x_570_ = lean_alloc_closure((void*)(l_UInt32_neg___boxed), 1, 0);
+return v___x_570_;
+}
+}
+static lean_object* _init_l_instNegUInt32(void){
+_start:
+{
+lean_object* v___x_571_; 
+v___x_571_ = lean_obj_once(&l_instNegUInt32___closed__0, &l_instNegUInt32___closed__0_once, _init_l_instNegUInt32___closed__0);
+return v___x_571_;
+}
+}
+static lean_object* _init_l_instAndOpUInt32___closed__0(void){
+_start:
+{
+lean_object* v___x_572_; 
+v___x_572_ = lean_alloc_closure((void*)(l_UInt32_land___boxed), 2, 0);
+return v___x_572_;
+}
+}
+static lean_object* _init_l_instAndOpUInt32(void){
+_start:
+{
+lean_object* v___x_573_; 
+v___x_573_ = lean_obj_once(&l_instAndOpUInt32___closed__0, &l_instAndOpUInt32___closed__0_once, _init_l_instAndOpUInt32___closed__0);
+return v___x_573_;
+}
+}
+static lean_object* _init_l_instOrOpUInt32___closed__0(void){
+_start:
+{
+lean_object* v___x_574_; 
+v___x_574_ = lean_alloc_closure((void*)(l_UInt32_lor___boxed), 2, 0);
+return v___x_574_;
+}
+}
+static lean_object* _init_l_instOrOpUInt32(void){
+_start:
+{
+lean_object* v___x_575_; 
+v___x_575_ = lean_obj_once(&l_instOrOpUInt32___closed__0, &l_instOrOpUInt32___closed__0_once, _init_l_instOrOpUInt32___closed__0);
+return v___x_575_;
+}
+}
+static lean_object* _init_l_instXorOpUInt32___closed__0(void){
+_start:
+{
+lean_object* v___x_576_; 
+v___x_576_ = lean_alloc_closure((void*)(l_UInt32_xor___boxed), 2, 0);
+return v___x_576_;
+}
+}
+static lean_object* _init_l_instXorOpUInt32(void){
+_start:
+{
+lean_object* v___x_577_; 
+v___x_577_ = lean_obj_once(&l_instXorOpUInt32___closed__0, &l_instXorOpUInt32___closed__0_once, _init_l_instXorOpUInt32___closed__0);
+return v___x_577_;
+}
+}
+static lean_object* _init_l_instShiftLeftUInt32___closed__0(void){
+_start:
+{
+lean_object* v___x_578_; 
+v___x_578_ = lean_alloc_closure((void*)(l_UInt32_shiftLeft___boxed), 2, 0);
+return v___x_578_;
+}
+}
+static lean_object* _init_l_instShiftLeftUInt32(void){
+_start:
+{
+lean_object* v___x_579_; 
+v___x_579_ = lean_obj_once(&l_instShiftLeftUInt32___closed__0, &l_instShiftLeftUInt32___closed__0_once, _init_l_instShiftLeftUInt32___closed__0);
+return v___x_579_;
+}
+}
+static lean_object* _init_l_instShiftRightUInt32___closed__0(void){
+_start:
+{
+lean_object* v___x_580_; 
+v___x_580_ = lean_alloc_closure((void*)(l_UInt32_shiftRight___boxed), 2, 0);
+return v___x_580_;
+}
+}
+static lean_object* _init_l_instShiftRightUInt32(void){
+_start:
+{
+lean_object* v___x_581_; 
+v___x_581_ = lean_obj_once(&l_instShiftRightUInt32___closed__0, &l_instShiftRightUInt32___closed__0_once, _init_l_instShiftRightUInt32___closed__0);
+return v___x_581_;
 }
 }
 LEAN_EXPORT lean_object* l_Bool_toUInt32___boxed(lean_object* v_b_583_){
@@ -1803,6 +2507,118 @@ v_r_712_ = lean_box_uint64(v_res_711_);
 return v_r_712_;
 }
 }
+static lean_object* _init_l_instAddUInt64___closed__0(void){
+_start:
+{
+lean_object* v___x_713_; 
+v___x_713_ = lean_alloc_closure((void*)(l_UInt64_add___boxed), 2, 0);
+return v___x_713_;
+}
+}
+static lean_object* _init_l_instAddUInt64(void){
+_start:
+{
+lean_object* v___x_714_; 
+v___x_714_ = lean_obj_once(&l_instAddUInt64___closed__0, &l_instAddUInt64___closed__0_once, _init_l_instAddUInt64___closed__0);
+return v___x_714_;
+}
+}
+static lean_object* _init_l_instSubUInt64___closed__0(void){
+_start:
+{
+lean_object* v___x_715_; 
+v___x_715_ = lean_alloc_closure((void*)(l_UInt64_sub___boxed), 2, 0);
+return v___x_715_;
+}
+}
+static lean_object* _init_l_instSubUInt64(void){
+_start:
+{
+lean_object* v___x_716_; 
+v___x_716_ = lean_obj_once(&l_instSubUInt64___closed__0, &l_instSubUInt64___closed__0_once, _init_l_instSubUInt64___closed__0);
+return v___x_716_;
+}
+}
+static lean_object* _init_l_instMulUInt64___closed__0(void){
+_start:
+{
+lean_object* v___x_717_; 
+v___x_717_ = lean_alloc_closure((void*)(l_UInt64_mul___boxed), 2, 0);
+return v___x_717_;
+}
+}
+static lean_object* _init_l_instMulUInt64(void){
+_start:
+{
+lean_object* v___x_718_; 
+v___x_718_ = lean_obj_once(&l_instMulUInt64___closed__0, &l_instMulUInt64___closed__0_once, _init_l_instMulUInt64___closed__0);
+return v___x_718_;
+}
+}
+static lean_object* _init_l_instPowUInt64Nat___closed__0(void){
+_start:
+{
+lean_object* v___x_719_; 
+v___x_719_ = lean_alloc_closure((void*)(l_UInt64_pow___boxed), 2, 0);
+return v___x_719_;
+}
+}
+static lean_object* _init_l_instPowUInt64Nat(void){
+_start:
+{
+lean_object* v___x_720_; 
+v___x_720_ = lean_obj_once(&l_instPowUInt64Nat___closed__0, &l_instPowUInt64Nat___closed__0_once, _init_l_instPowUInt64Nat___closed__0);
+return v___x_720_;
+}
+}
+static lean_object* _init_l_instModUInt64___closed__0(void){
+_start:
+{
+lean_object* v___x_721_; 
+v___x_721_ = lean_alloc_closure((void*)(l_UInt64_mod___boxed), 2, 0);
+return v___x_721_;
+}
+}
+static lean_object* _init_l_instModUInt64(void){
+_start:
+{
+lean_object* v___x_722_; 
+v___x_722_ = lean_obj_once(&l_instModUInt64___closed__0, &l_instModUInt64___closed__0_once, _init_l_instModUInt64___closed__0);
+return v___x_722_;
+}
+}
+static lean_object* _init_l_instHModUInt64Nat___closed__0(void){
+_start:
+{
+lean_object* v___x_723_; 
+v___x_723_ = lean_alloc_closure((void*)(l_UInt64_modn___boxed), 2, 0);
+return v___x_723_;
+}
+}
+static lean_object* _init_l_instHModUInt64Nat(void){
+_start:
+{
+lean_object* v___x_724_; 
+v___x_724_ = lean_obj_once(&l_instHModUInt64Nat___closed__0, &l_instHModUInt64Nat___closed__0_once, _init_l_instHModUInt64Nat___closed__0);
+return v___x_724_;
+}
+}
+static lean_object* _init_l_instDivUInt64___closed__0(void){
+_start:
+{
+lean_object* v___x_725_; 
+v___x_725_ = lean_alloc_closure((void*)(l_UInt64_div___boxed), 2, 0);
+return v___x_725_;
+}
+}
+static lean_object* _init_l_instDivUInt64(void){
+_start:
+{
+lean_object* v___x_726_; 
+v___x_726_ = lean_obj_once(&l_instDivUInt64___closed__0, &l_instDivUInt64___closed__0_once, _init_l_instDivUInt64___closed__0);
+return v___x_726_;
+}
+}
 static lean_object* _init_l_instLTUInt64(void){
 _start:
 {
@@ -1839,6 +2655,118 @@ lean_dec_ref(v_a_735_);
 v_res_737_ = lean_uint64_neg(v_a_boxed_736_);
 v_r_738_ = lean_box_uint64(v_res_737_);
 return v_r_738_;
+}
+}
+static lean_object* _init_l_instComplementUInt64___closed__0(void){
+_start:
+{
+lean_object* v___x_739_; 
+v___x_739_ = lean_alloc_closure((void*)(l_UInt64_complement___boxed), 1, 0);
+return v___x_739_;
+}
+}
+static lean_object* _init_l_instComplementUInt64(void){
+_start:
+{
+lean_object* v___x_740_; 
+v___x_740_ = lean_obj_once(&l_instComplementUInt64___closed__0, &l_instComplementUInt64___closed__0_once, _init_l_instComplementUInt64___closed__0);
+return v___x_740_;
+}
+}
+static lean_object* _init_l_instNegUInt64___closed__0(void){
+_start:
+{
+lean_object* v___x_741_; 
+v___x_741_ = lean_alloc_closure((void*)(l_UInt64_neg___boxed), 1, 0);
+return v___x_741_;
+}
+}
+static lean_object* _init_l_instNegUInt64(void){
+_start:
+{
+lean_object* v___x_742_; 
+v___x_742_ = lean_obj_once(&l_instNegUInt64___closed__0, &l_instNegUInt64___closed__0_once, _init_l_instNegUInt64___closed__0);
+return v___x_742_;
+}
+}
+static lean_object* _init_l_instAndOpUInt64___closed__0(void){
+_start:
+{
+lean_object* v___x_743_; 
+v___x_743_ = lean_alloc_closure((void*)(l_UInt64_land___boxed), 2, 0);
+return v___x_743_;
+}
+}
+static lean_object* _init_l_instAndOpUInt64(void){
+_start:
+{
+lean_object* v___x_744_; 
+v___x_744_ = lean_obj_once(&l_instAndOpUInt64___closed__0, &l_instAndOpUInt64___closed__0_once, _init_l_instAndOpUInt64___closed__0);
+return v___x_744_;
+}
+}
+static lean_object* _init_l_instOrOpUInt64___closed__0(void){
+_start:
+{
+lean_object* v___x_745_; 
+v___x_745_ = lean_alloc_closure((void*)(l_UInt64_lor___boxed), 2, 0);
+return v___x_745_;
+}
+}
+static lean_object* _init_l_instOrOpUInt64(void){
+_start:
+{
+lean_object* v___x_746_; 
+v___x_746_ = lean_obj_once(&l_instOrOpUInt64___closed__0, &l_instOrOpUInt64___closed__0_once, _init_l_instOrOpUInt64___closed__0);
+return v___x_746_;
+}
+}
+static lean_object* _init_l_instXorOpUInt64___closed__0(void){
+_start:
+{
+lean_object* v___x_747_; 
+v___x_747_ = lean_alloc_closure((void*)(l_UInt64_xor___boxed), 2, 0);
+return v___x_747_;
+}
+}
+static lean_object* _init_l_instXorOpUInt64(void){
+_start:
+{
+lean_object* v___x_748_; 
+v___x_748_ = lean_obj_once(&l_instXorOpUInt64___closed__0, &l_instXorOpUInt64___closed__0_once, _init_l_instXorOpUInt64___closed__0);
+return v___x_748_;
+}
+}
+static lean_object* _init_l_instShiftLeftUInt64___closed__0(void){
+_start:
+{
+lean_object* v___x_749_; 
+v___x_749_ = lean_alloc_closure((void*)(l_UInt64_shiftLeft___boxed), 2, 0);
+return v___x_749_;
+}
+}
+static lean_object* _init_l_instShiftLeftUInt64(void){
+_start:
+{
+lean_object* v___x_750_; 
+v___x_750_ = lean_obj_once(&l_instShiftLeftUInt64___closed__0, &l_instShiftLeftUInt64___closed__0_once, _init_l_instShiftLeftUInt64___closed__0);
+return v___x_750_;
+}
+}
+static lean_object* _init_l_instShiftRightUInt64___closed__0(void){
+_start:
+{
+lean_object* v___x_751_; 
+v___x_751_ = lean_alloc_closure((void*)(l_UInt64_shiftRight___boxed), 2, 0);
+return v___x_751_;
+}
+}
+static lean_object* _init_l_instShiftRightUInt64(void){
+_start:
+{
+lean_object* v___x_752_; 
+v___x_752_ = lean_obj_once(&l_instShiftRightUInt64___closed__0, &l_instShiftRightUInt64___closed__0_once, _init_l_instShiftRightUInt64___closed__0);
+return v___x_752_;
 }
 }
 LEAN_EXPORT lean_object* l_Bool_toUInt64___boxed(lean_object* v_b_754_){
@@ -1955,6 +2883,22 @@ v_r_804_ = lean_box_uint64(v_res_803_);
 return v_r_804_;
 }
 }
+static lean_object* _init_l_instMaxUInt64___closed__0(void){
+_start:
+{
+lean_object* v___f_805_; 
+v___f_805_ = lean_alloc_closure((void*)(l_instMaxUInt64___lam__0___boxed), 2, 0);
+return v___f_805_;
+}
+}
+static lean_object* _init_l_instMaxUInt64(void){
+_start:
+{
+lean_object* v___f_806_; 
+v___f_806_ = lean_obj_once(&l_instMaxUInt64___closed__0, &l_instMaxUInt64___closed__0_once, _init_l_instMaxUInt64___closed__0);
+return v___f_806_;
+}
+}
 LEAN_EXPORT uint64_t l_instMinUInt64___lam__0(uint64_t v_x_807_, uint64_t v_y_808_){
 _start:
 {
@@ -1981,6 +2925,22 @@ lean_dec_ref(v_y_811_);
 v_res_814_ = l_instMinUInt64___lam__0(v_x_boxed_812_, v_y_boxed_813_);
 v_r_815_ = lean_box_uint64(v_res_814_);
 return v_r_815_;
+}
+}
+static lean_object* _init_l_instMinUInt64___closed__0(void){
+_start:
+{
+lean_object* v___f_816_; 
+v___f_816_ = lean_alloc_closure((void*)(l_instMinUInt64___lam__0___boxed), 2, 0);
+return v___f_816_;
+}
+}
+static lean_object* _init_l_instMinUInt64(void){
+_start:
+{
+lean_object* v___f_817_; 
+v___f_817_ = lean_obj_once(&l_instMinUInt64___closed__0, &l_instMinUInt64___closed__0_once, _init_l_instMinUInt64___closed__0);
+return v___f_817_;
 }
 }
 LEAN_EXPORT size_t l_USize_ofFin(lean_object* v_a_818_){
@@ -2312,6 +3272,86 @@ v_r_973_ = lean_box_uint64(v_res_972_);
 return v_r_973_;
 }
 }
+static lean_object* _init_l_instMulUSize___closed__0(void){
+_start:
+{
+lean_object* v___x_974_; 
+v___x_974_ = lean_alloc_closure((void*)(l_USize_mul___boxed), 2, 0);
+return v___x_974_;
+}
+}
+static lean_object* _init_l_instMulUSize(void){
+_start:
+{
+lean_object* v___x_975_; 
+v___x_975_ = lean_obj_once(&l_instMulUSize___closed__0, &l_instMulUSize___closed__0_once, _init_l_instMulUSize___closed__0);
+return v___x_975_;
+}
+}
+static lean_object* _init_l_instPowUSizeNat___closed__0(void){
+_start:
+{
+lean_object* v___x_976_; 
+v___x_976_ = lean_alloc_closure((void*)(l_USize_pow___boxed), 2, 0);
+return v___x_976_;
+}
+}
+static lean_object* _init_l_instPowUSizeNat(void){
+_start:
+{
+lean_object* v___x_977_; 
+v___x_977_ = lean_obj_once(&l_instPowUSizeNat___closed__0, &l_instPowUSizeNat___closed__0_once, _init_l_instPowUSizeNat___closed__0);
+return v___x_977_;
+}
+}
+static lean_object* _init_l_instModUSize___closed__0(void){
+_start:
+{
+lean_object* v___x_978_; 
+v___x_978_ = lean_alloc_closure((void*)(l_USize_mod___boxed), 2, 0);
+return v___x_978_;
+}
+}
+static lean_object* _init_l_instModUSize(void){
+_start:
+{
+lean_object* v___x_979_; 
+v___x_979_ = lean_obj_once(&l_instModUSize___closed__0, &l_instModUSize___closed__0_once, _init_l_instModUSize___closed__0);
+return v___x_979_;
+}
+}
+static lean_object* _init_l_instHModUSizeNat___closed__0(void){
+_start:
+{
+lean_object* v___x_980_; 
+v___x_980_ = lean_alloc_closure((void*)(l_USize_modn___boxed), 2, 0);
+return v___x_980_;
+}
+}
+static lean_object* _init_l_instHModUSizeNat(void){
+_start:
+{
+lean_object* v___x_981_; 
+v___x_981_ = lean_obj_once(&l_instHModUSizeNat___closed__0, &l_instHModUSizeNat___closed__0_once, _init_l_instHModUSizeNat___closed__0);
+return v___x_981_;
+}
+}
+static lean_object* _init_l_instDivUSize___closed__0(void){
+_start:
+{
+lean_object* v___x_982_; 
+v___x_982_ = lean_alloc_closure((void*)(l_USize_div___boxed), 2, 0);
+return v___x_982_;
+}
+}
+static lean_object* _init_l_instDivUSize(void){
+_start:
+{
+lean_object* v___x_983_; 
+v___x_983_ = lean_obj_once(&l_instDivUSize___closed__0, &l_instDivUSize___closed__0_once, _init_l_instDivUSize___closed__0);
+return v___x_983_;
+}
+}
 LEAN_EXPORT lean_object* l_USize_complement___boxed(lean_object* v_a_985_){
 _start:
 {
@@ -2332,6 +3372,118 @@ lean_dec(v_a_990_);
 v_res_992_ = lean_usize_neg(v_a_boxed_991_);
 v_r_993_ = lean_box_usize(v_res_992_);
 return v_r_993_;
+}
+}
+static lean_object* _init_l_instComplementUSize___closed__0(void){
+_start:
+{
+lean_object* v___x_994_; 
+v___x_994_ = lean_alloc_closure((void*)(l_USize_complement___boxed), 1, 0);
+return v___x_994_;
+}
+}
+static lean_object* _init_l_instComplementUSize(void){
+_start:
+{
+lean_object* v___x_995_; 
+v___x_995_ = lean_obj_once(&l_instComplementUSize___closed__0, &l_instComplementUSize___closed__0_once, _init_l_instComplementUSize___closed__0);
+return v___x_995_;
+}
+}
+static lean_object* _init_l_instNegUSize___closed__0(void){
+_start:
+{
+lean_object* v___x_996_; 
+v___x_996_ = lean_alloc_closure((void*)(l_USize_neg___boxed), 1, 0);
+return v___x_996_;
+}
+}
+static lean_object* _init_l_instNegUSize(void){
+_start:
+{
+lean_object* v___x_997_; 
+v___x_997_ = lean_obj_once(&l_instNegUSize___closed__0, &l_instNegUSize___closed__0_once, _init_l_instNegUSize___closed__0);
+return v___x_997_;
+}
+}
+static lean_object* _init_l_instAndOpUSize___closed__0(void){
+_start:
+{
+lean_object* v___x_998_; 
+v___x_998_ = lean_alloc_closure((void*)(l_USize_land___boxed), 2, 0);
+return v___x_998_;
+}
+}
+static lean_object* _init_l_instAndOpUSize(void){
+_start:
+{
+lean_object* v___x_999_; 
+v___x_999_ = lean_obj_once(&l_instAndOpUSize___closed__0, &l_instAndOpUSize___closed__0_once, _init_l_instAndOpUSize___closed__0);
+return v___x_999_;
+}
+}
+static lean_object* _init_l_instOrOpUSize___closed__0(void){
+_start:
+{
+lean_object* v___x_1000_; 
+v___x_1000_ = lean_alloc_closure((void*)(l_USize_lor___boxed), 2, 0);
+return v___x_1000_;
+}
+}
+static lean_object* _init_l_instOrOpUSize(void){
+_start:
+{
+lean_object* v___x_1001_; 
+v___x_1001_ = lean_obj_once(&l_instOrOpUSize___closed__0, &l_instOrOpUSize___closed__0_once, _init_l_instOrOpUSize___closed__0);
+return v___x_1001_;
+}
+}
+static lean_object* _init_l_instXorOpUSize___closed__0(void){
+_start:
+{
+lean_object* v___x_1002_; 
+v___x_1002_ = lean_alloc_closure((void*)(l_USize_xor___boxed), 2, 0);
+return v___x_1002_;
+}
+}
+static lean_object* _init_l_instXorOpUSize(void){
+_start:
+{
+lean_object* v___x_1003_; 
+v___x_1003_ = lean_obj_once(&l_instXorOpUSize___closed__0, &l_instXorOpUSize___closed__0_once, _init_l_instXorOpUSize___closed__0);
+return v___x_1003_;
+}
+}
+static lean_object* _init_l_instShiftLeftUSize___closed__0(void){
+_start:
+{
+lean_object* v___x_1004_; 
+v___x_1004_ = lean_alloc_closure((void*)(l_USize_shiftLeft___boxed), 2, 0);
+return v___x_1004_;
+}
+}
+static lean_object* _init_l_instShiftLeftUSize(void){
+_start:
+{
+lean_object* v___x_1005_; 
+v___x_1005_ = lean_obj_once(&l_instShiftLeftUSize___closed__0, &l_instShiftLeftUSize___closed__0_once, _init_l_instShiftLeftUSize___closed__0);
+return v___x_1005_;
+}
+}
+static lean_object* _init_l_instShiftRightUSize___closed__0(void){
+_start:
+{
+lean_object* v___x_1006_; 
+v___x_1006_ = lean_alloc_closure((void*)(l_USize_shiftRight___boxed), 2, 0);
+return v___x_1006_;
+}
+}
+static lean_object* _init_l_instShiftRightUSize(void){
+_start:
+{
+lean_object* v___x_1007_; 
+v___x_1007_ = lean_obj_once(&l_instShiftRightUSize___closed__0, &l_instShiftRightUSize___closed__0_once, _init_l_instShiftRightUSize___closed__0);
+return v___x_1007_;
 }
 }
 LEAN_EXPORT lean_object* l_Bool_toUSize___boxed(lean_object* v_b_1009_){
@@ -2372,6 +3524,22 @@ v_r_1021_ = lean_box_usize(v_res_1020_);
 return v_r_1021_;
 }
 }
+static lean_object* _init_l_instMaxUSize___closed__0(void){
+_start:
+{
+lean_object* v___f_1022_; 
+v___f_1022_ = lean_alloc_closure((void*)(l_instMaxUSize___lam__0___boxed), 2, 0);
+return v___f_1022_;
+}
+}
+static lean_object* _init_l_instMaxUSize(void){
+_start:
+{
+lean_object* v___f_1023_; 
+v___f_1023_ = lean_obj_once(&l_instMaxUSize___closed__0, &l_instMaxUSize___closed__0_once, _init_l_instMaxUSize___closed__0);
+return v___f_1023_;
+}
+}
 LEAN_EXPORT size_t l_instMinUSize___lam__0(size_t v_x_1024_, size_t v_y_1025_){
 _start:
 {
@@ -2400,6 +3568,22 @@ v_r_1032_ = lean_box_usize(v_res_1031_);
 return v_r_1032_;
 }
 }
+static lean_object* _init_l_instMinUSize___closed__0(void){
+_start:
+{
+lean_object* v___f_1033_; 
+v___f_1033_ = lean_alloc_closure((void*)(l_instMinUSize___lam__0___boxed), 2, 0);
+return v___f_1033_;
+}
+}
+static lean_object* _init_l_instMinUSize(void){
+_start:
+{
+lean_object* v___f_1034_; 
+v___f_1034_ = lean_obj_once(&l_instMinUSize___closed__0, &l_instMinUSize___closed__0_once, _init_l_instMinUSize___closed__0);
+return v___f_1034_;
+}
+}
 lean_object* runtime_initialize_Init_Data_BitVec_Basic(uint8_t builtin);
 static bool _G_runtime_initialized = false;
 LEAN_EXPORT lean_object* runtime_initialize_Init_Data_UInt_Basic(uint8_t builtin) {
@@ -2409,14 +3593,162 @@ _G_runtime_initialized = true;
 res = runtime_initialize_Init_Data_BitVec_Basic(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_instAddUInt8 = _init_l_instAddUInt8();
+lean_mark_persistent(l_instAddUInt8);
+l_instSubUInt8 = _init_l_instSubUInt8();
+lean_mark_persistent(l_instSubUInt8);
+l_instMulUInt8 = _init_l_instMulUInt8();
+lean_mark_persistent(l_instMulUInt8);
+l_instPowUInt8Nat = _init_l_instPowUInt8Nat();
+lean_mark_persistent(l_instPowUInt8Nat);
+l_instModUInt8 = _init_l_instModUInt8();
+lean_mark_persistent(l_instModUInt8);
+l_instHModUInt8Nat = _init_l_instHModUInt8Nat();
+lean_mark_persistent(l_instHModUInt8Nat);
+l_instDivUInt8 = _init_l_instDivUInt8();
+lean_mark_persistent(l_instDivUInt8);
+l_instComplementUInt8 = _init_l_instComplementUInt8();
+lean_mark_persistent(l_instComplementUInt8);
+l_instNegUInt8 = _init_l_instNegUInt8();
+lean_mark_persistent(l_instNegUInt8);
+l_instAndOpUInt8 = _init_l_instAndOpUInt8();
+lean_mark_persistent(l_instAndOpUInt8);
+l_instOrOpUInt8 = _init_l_instOrOpUInt8();
+lean_mark_persistent(l_instOrOpUInt8);
+l_instXorOpUInt8 = _init_l_instXorOpUInt8();
+lean_mark_persistent(l_instXorOpUInt8);
+l_instShiftLeftUInt8 = _init_l_instShiftLeftUInt8();
+lean_mark_persistent(l_instShiftLeftUInt8);
+l_instShiftRightUInt8 = _init_l_instShiftRightUInt8();
+lean_mark_persistent(l_instShiftRightUInt8);
+l_instMaxUInt8 = _init_l_instMaxUInt8();
+lean_mark_persistent(l_instMaxUInt8);
+l_instMinUInt8 = _init_l_instMinUInt8();
+lean_mark_persistent(l_instMinUInt8);
+l_instAddUInt16 = _init_l_instAddUInt16();
+lean_mark_persistent(l_instAddUInt16);
+l_instSubUInt16 = _init_l_instSubUInt16();
+lean_mark_persistent(l_instSubUInt16);
+l_instMulUInt16 = _init_l_instMulUInt16();
+lean_mark_persistent(l_instMulUInt16);
+l_instPowUInt16Nat = _init_l_instPowUInt16Nat();
+lean_mark_persistent(l_instPowUInt16Nat);
+l_instModUInt16 = _init_l_instModUInt16();
+lean_mark_persistent(l_instModUInt16);
+l_instHModUInt16Nat = _init_l_instHModUInt16Nat();
+lean_mark_persistent(l_instHModUInt16Nat);
+l_instDivUInt16 = _init_l_instDivUInt16();
+lean_mark_persistent(l_instDivUInt16);
 l_instLTUInt16 = _init_l_instLTUInt16();
 lean_mark_persistent(l_instLTUInt16);
 l_instLEUInt16 = _init_l_instLEUInt16();
 lean_mark_persistent(l_instLEUInt16);
+l_instComplementUInt16 = _init_l_instComplementUInt16();
+lean_mark_persistent(l_instComplementUInt16);
+l_instNegUInt16 = _init_l_instNegUInt16();
+lean_mark_persistent(l_instNegUInt16);
+l_instAndOpUInt16 = _init_l_instAndOpUInt16();
+lean_mark_persistent(l_instAndOpUInt16);
+l_instOrOpUInt16 = _init_l_instOrOpUInt16();
+lean_mark_persistent(l_instOrOpUInt16);
+l_instXorOpUInt16 = _init_l_instXorOpUInt16();
+lean_mark_persistent(l_instXorOpUInt16);
+l_instShiftLeftUInt16 = _init_l_instShiftLeftUInt16();
+lean_mark_persistent(l_instShiftLeftUInt16);
+l_instShiftRightUInt16 = _init_l_instShiftRightUInt16();
+lean_mark_persistent(l_instShiftRightUInt16);
+l_instMaxUInt16 = _init_l_instMaxUInt16();
+lean_mark_persistent(l_instMaxUInt16);
+l_instMinUInt16 = _init_l_instMinUInt16();
+lean_mark_persistent(l_instMinUInt16);
+l_instMulUInt32 = _init_l_instMulUInt32();
+lean_mark_persistent(l_instMulUInt32);
+l_instPowUInt32Nat = _init_l_instPowUInt32Nat();
+lean_mark_persistent(l_instPowUInt32Nat);
+l_instModUInt32 = _init_l_instModUInt32();
+lean_mark_persistent(l_instModUInt32);
+l_instHModUInt32Nat = _init_l_instHModUInt32Nat();
+lean_mark_persistent(l_instHModUInt32Nat);
+l_instDivUInt32 = _init_l_instDivUInt32();
+lean_mark_persistent(l_instDivUInt32);
+l_instComplementUInt32 = _init_l_instComplementUInt32();
+lean_mark_persistent(l_instComplementUInt32);
+l_instNegUInt32 = _init_l_instNegUInt32();
+lean_mark_persistent(l_instNegUInt32);
+l_instAndOpUInt32 = _init_l_instAndOpUInt32();
+lean_mark_persistent(l_instAndOpUInt32);
+l_instOrOpUInt32 = _init_l_instOrOpUInt32();
+lean_mark_persistent(l_instOrOpUInt32);
+l_instXorOpUInt32 = _init_l_instXorOpUInt32();
+lean_mark_persistent(l_instXorOpUInt32);
+l_instShiftLeftUInt32 = _init_l_instShiftLeftUInt32();
+lean_mark_persistent(l_instShiftLeftUInt32);
+l_instShiftRightUInt32 = _init_l_instShiftRightUInt32();
+lean_mark_persistent(l_instShiftRightUInt32);
+l_instAddUInt64 = _init_l_instAddUInt64();
+lean_mark_persistent(l_instAddUInt64);
+l_instSubUInt64 = _init_l_instSubUInt64();
+lean_mark_persistent(l_instSubUInt64);
+l_instMulUInt64 = _init_l_instMulUInt64();
+lean_mark_persistent(l_instMulUInt64);
+l_instPowUInt64Nat = _init_l_instPowUInt64Nat();
+lean_mark_persistent(l_instPowUInt64Nat);
+l_instModUInt64 = _init_l_instModUInt64();
+lean_mark_persistent(l_instModUInt64);
+l_instHModUInt64Nat = _init_l_instHModUInt64Nat();
+lean_mark_persistent(l_instHModUInt64Nat);
+l_instDivUInt64 = _init_l_instDivUInt64();
+lean_mark_persistent(l_instDivUInt64);
 l_instLTUInt64 = _init_l_instLTUInt64();
 lean_mark_persistent(l_instLTUInt64);
 l_instLEUInt64 = _init_l_instLEUInt64();
 lean_mark_persistent(l_instLEUInt64);
+l_instComplementUInt64 = _init_l_instComplementUInt64();
+lean_mark_persistent(l_instComplementUInt64);
+l_instNegUInt64 = _init_l_instNegUInt64();
+lean_mark_persistent(l_instNegUInt64);
+l_instAndOpUInt64 = _init_l_instAndOpUInt64();
+lean_mark_persistent(l_instAndOpUInt64);
+l_instOrOpUInt64 = _init_l_instOrOpUInt64();
+lean_mark_persistent(l_instOrOpUInt64);
+l_instXorOpUInt64 = _init_l_instXorOpUInt64();
+lean_mark_persistent(l_instXorOpUInt64);
+l_instShiftLeftUInt64 = _init_l_instShiftLeftUInt64();
+lean_mark_persistent(l_instShiftLeftUInt64);
+l_instShiftRightUInt64 = _init_l_instShiftRightUInt64();
+lean_mark_persistent(l_instShiftRightUInt64);
+l_instMaxUInt64 = _init_l_instMaxUInt64();
+lean_mark_persistent(l_instMaxUInt64);
+l_instMinUInt64 = _init_l_instMinUInt64();
+lean_mark_persistent(l_instMinUInt64);
+l_instMulUSize = _init_l_instMulUSize();
+lean_mark_persistent(l_instMulUSize);
+l_instPowUSizeNat = _init_l_instPowUSizeNat();
+lean_mark_persistent(l_instPowUSizeNat);
+l_instModUSize = _init_l_instModUSize();
+lean_mark_persistent(l_instModUSize);
+l_instHModUSizeNat = _init_l_instHModUSizeNat();
+lean_mark_persistent(l_instHModUSizeNat);
+l_instDivUSize = _init_l_instDivUSize();
+lean_mark_persistent(l_instDivUSize);
+l_instComplementUSize = _init_l_instComplementUSize();
+lean_mark_persistent(l_instComplementUSize);
+l_instNegUSize = _init_l_instNegUSize();
+lean_mark_persistent(l_instNegUSize);
+l_instAndOpUSize = _init_l_instAndOpUSize();
+lean_mark_persistent(l_instAndOpUSize);
+l_instOrOpUSize = _init_l_instOrOpUSize();
+lean_mark_persistent(l_instOrOpUSize);
+l_instXorOpUSize = _init_l_instXorOpUSize();
+lean_mark_persistent(l_instXorOpUSize);
+l_instShiftLeftUSize = _init_l_instShiftLeftUSize();
+lean_mark_persistent(l_instShiftLeftUSize);
+l_instShiftRightUSize = _init_l_instShiftRightUSize();
+lean_mark_persistent(l_instShiftRightUSize);
+l_instMaxUSize = _init_l_instMaxUSize();
+lean_mark_persistent(l_instMaxUSize);
+l_instMinUSize = _init_l_instMinUSize();
+lean_mark_persistent(l_instMinUSize);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

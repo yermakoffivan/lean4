@@ -34,12 +34,12 @@ LEAN_EXPORT lean_object* l_String_Slice_subslice(lean_object*, lean_object*, lea
 LEAN_EXPORT lean_object* l_String_Slice_subslice___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_panic___at___00String_Slice_subslice_x21_spec__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_panic___at___00String_Slice_subslice_x21_spec__0___boxed(lean_object*, lean_object*);
-static const lean_string_object l_String_Slice_subslice_x21___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 26, .m_capacity = 26, .m_length = 25, .m_data = "Init.Data.String.Subslice"};
-static const lean_object* l_String_Slice_subslice_x21___closed__0 = (const lean_object*)&l_String_Slice_subslice_x21___closed__0_value;
-static const lean_string_object l_String_Slice_subslice_x21___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 23, .m_capacity = 23, .m_length = 22, .m_data = "String.Slice.subslice!"};
-static const lean_object* l_String_Slice_subslice_x21___closed__1 = (const lean_object*)&l_String_Slice_subslice_x21___closed__1_value;
-static const lean_string_object l_String_Slice_subslice_x21___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 42, .m_capacity = 42, .m_length = 41, .m_data = "Trying to construct a degenerate subslice"};
-static const lean_object* l_String_Slice_subslice_x21___closed__2 = (const lean_object*)&l_String_Slice_subslice_x21___closed__2_value;
+static lean_once_cell_t l_String_Slice_subslice_x21___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Slice_subslice_x21___closed__0;
+static lean_once_cell_t l_String_Slice_subslice_x21___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Slice_subslice_x21___closed__1;
+static lean_once_cell_t l_String_Slice_subslice_x21___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Slice_subslice_x21___closed__2;
 static lean_once_cell_t l_String_Slice_subslice_x21___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_String_Slice_subslice_x21___closed__3;
 LEAN_EXPORT lean_object* l_String_Slice_subslice_x21(lean_object*, lean_object*, lean_object*);
@@ -265,15 +265,39 @@ lean_dec_ref(v_s_72_);
 return v_res_74_;
 }
 }
+static lean_object* _init_l_String_Slice_subslice_x21___closed__0(void){
+_start:
+{
+lean_object* v___x_75_; 
+v___x_75_ = lean_mk_string_unchecked("Init.Data.String.Subslice", 25, 25);
+return v___x_75_;
+}
+}
+static lean_object* _init_l_String_Slice_subslice_x21___closed__1(void){
+_start:
+{
+lean_object* v___x_76_; 
+v___x_76_ = lean_mk_string_unchecked("String.Slice.subslice!", 22, 22);
+return v___x_76_;
+}
+}
+static lean_object* _init_l_String_Slice_subslice_x21___closed__2(void){
+_start:
+{
+lean_object* v___x_77_; 
+v___x_77_ = lean_mk_string_unchecked("Trying to construct a degenerate subslice", 41, 41);
+return v___x_77_;
+}
+}
 static lean_object* _init_l_String_Slice_subslice_x21___closed__3(void){
 _start:
 {
 lean_object* v___x_78_; lean_object* v___x_79_; lean_object* v___x_80_; lean_object* v___x_81_; lean_object* v___x_82_; lean_object* v___x_83_; 
-v___x_78_ = ((lean_object*)(l_String_Slice_subslice_x21___closed__2));
+v___x_78_ = lean_obj_once(&l_String_Slice_subslice_x21___closed__2, &l_String_Slice_subslice_x21___closed__2_once, _init_l_String_Slice_subslice_x21___closed__2);
 v___x_79_ = lean_unsigned_to_nat(4u);
 v___x_80_ = lean_unsigned_to_nat(128u);
-v___x_81_ = ((lean_object*)(l_String_Slice_subslice_x21___closed__1));
-v___x_82_ = ((lean_object*)(l_String_Slice_subslice_x21___closed__0));
+v___x_81_ = lean_obj_once(&l_String_Slice_subslice_x21___closed__1, &l_String_Slice_subslice_x21___closed__1_once, _init_l_String_Slice_subslice_x21___closed__1);
+v___x_82_ = lean_obj_once(&l_String_Slice_subslice_x21___closed__0, &l_String_Slice_subslice_x21___closed__0_once, _init_l_String_Slice_subslice_x21___closed__0);
 v___x_83_ = l_mkPanicMessageWithDecl(v___x_82_, v___x_81_, v___x_80_, v___x_79_, v___x_78_);
 return v___x_83_;
 }

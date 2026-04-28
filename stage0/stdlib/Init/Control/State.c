@@ -19,8 +19,8 @@ LEAN_EXPORT lean_object* l_StateT_run___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_StateT_run(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_StateT_run_x27___redArg___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_StateT_run_x27___redArg___lam__0___boxed(lean_object*);
-static const lean_closure_object l_StateT_run_x27___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_StateT_run_x27___redArg___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_StateT_run_x27___redArg___closed__0 = (const lean_object*)&l_StateT_run_x27___redArg___closed__0_value;
+static lean_once_cell_t l_StateT_run_x27___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_StateT_run_x27___redArg___closed__0;
 LEAN_EXPORT lean_object* l_StateT_run_x27___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_StateT_run_x27(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_StateT_pure___redArg(lean_object*, lean_object*, lean_object*);
@@ -64,8 +64,8 @@ LEAN_EXPORT lean_object* l_StateT_lift(lean_object*, lean_object*, lean_object*,
 LEAN_EXPORT lean_object* l_StateT_instMonadLift___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_StateT_instMonadLift(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_StateT_instMonadFunctor___lam__0(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_StateT_instMonadFunctor___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_StateT_instMonadFunctor___lam__0, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_StateT_instMonadFunctor___closed__0 = (const lean_object*)&l_StateT_instMonadFunctor___closed__0_value;
+static lean_once_cell_t l_StateT_instMonadFunctor___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_StateT_instMonadFunctor___closed__0;
 LEAN_EXPORT lean_object* l_StateT_instMonadFunctor(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_StateT_instMonadExceptOf___redArg___lam__0(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_StateT_instMonadExceptOf___redArg___lam__1(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -97,8 +97,8 @@ LEAN_EXPORT lean_object* l_StateT_tryFinally___redArg(lean_object*, lean_object*
 LEAN_EXPORT lean_object* l_StateT_tryFinally(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instMonadAttachStateTOfMonad___redArg___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_instMonadAttachStateTOfMonad___redArg___lam__1(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_instMonadAttachStateTOfMonad___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instMonadAttachStateTOfMonad___redArg___lam__0, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instMonadAttachStateTOfMonad___redArg___closed__0 = (const lean_object*)&l_instMonadAttachStateTOfMonad___redArg___closed__0_value;
+static lean_once_cell_t l_instMonadAttachStateTOfMonad___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instMonadAttachStateTOfMonad___redArg___closed__0;
 LEAN_EXPORT lean_object* l_instMonadAttachStateTOfMonad___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instMonadAttachStateTOfMonad(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_StateT_mk___redArg(lean_object* v_x_1_, lean_object* v_a_2_){
@@ -151,6 +151,14 @@ lean_dec_ref(v_x_21_);
 return v_res_22_;
 }
 }
+static lean_object* _init_l_StateT_run_x27___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_23_; 
+v___f_23_ = lean_alloc_closure((void*)(l_StateT_run_x27___redArg___lam__0___boxed), 1, 0);
+return v___f_23_;
+}
+}
 LEAN_EXPORT lean_object* l_StateT_run_x27___redArg(lean_object* v_inst_24_, lean_object* v_x_25_, lean_object* v_s_26_){
 _start:
 {
@@ -158,7 +166,7 @@ lean_object* v_map_27_; lean_object* v___f_28_; lean_object* v___x_29_; lean_obj
 v_map_27_ = lean_ctor_get(v_inst_24_, 0);
 lean_inc(v_map_27_);
 lean_dec_ref(v_inst_24_);
-v___f_28_ = ((lean_object*)(l_StateT_run_x27___redArg___closed__0));
+v___f_28_ = lean_obj_once(&l_StateT_run_x27___redArg___closed__0, &l_StateT_run_x27___redArg___closed__0_once, _init_l_StateT_run_x27___redArg___closed__0);
 v___x_29_ = lean_apply_1(v_x_25_, v_s_26_);
 v___x_30_ = lean_apply_4(v_map_27_, lean_box(0), lean_box(0), v___f_28_, v___x_29_);
 return v___x_30_;
@@ -171,7 +179,7 @@ lean_object* v_map_37_; lean_object* v___f_38_; lean_object* v___x_39_; lean_obj
 v_map_37_ = lean_ctor_get(v_inst_33_, 0);
 lean_inc(v_map_37_);
 lean_dec_ref(v_inst_33_);
-v___f_38_ = ((lean_object*)(l_StateT_run_x27___redArg___closed__0));
+v___f_38_ = lean_obj_once(&l_StateT_run_x27___redArg___closed__0, &l_StateT_run_x27___redArg___closed__0_once, _init_l_StateT_run_x27___redArg___closed__0);
 v___x_39_ = lean_apply_1(v_x_35_, v_s_36_);
 v___x_40_ = lean_apply_4(v_map_37_, lean_box(0), lean_box(0), v___f_38_, v___x_39_);
 return v___x_40_;
@@ -1235,11 +1243,19 @@ v___x_445_ = lean_apply_2(v_f_441_, lean_box(0), v___x_444_);
 return v___x_445_;
 }
 }
+static lean_object* _init_l_StateT_instMonadFunctor___closed__0(void){
+_start:
+{
+lean_object* v___f_446_; 
+v___f_446_ = lean_alloc_closure((void*)(l_StateT_instMonadFunctor___lam__0), 4, 0);
+return v___f_446_;
+}
+}
 LEAN_EXPORT lean_object* l_StateT_instMonadFunctor(lean_object* v_00_u03c3_447_, lean_object* v_m_448_){
 _start:
 {
 lean_object* v___f_449_; 
-v___f_449_ = ((lean_object*)(l_StateT_instMonadFunctor___closed__0));
+v___f_449_ = lean_obj_once(&l_StateT_instMonadFunctor___closed__0, &l_StateT_instMonadFunctor___closed__0_once, _init_l_StateT_instMonadFunctor___closed__0);
 return v___f_449_;
 }
 }
@@ -2101,6 +2117,14 @@ v___x_750_ = lean_apply_4(v_map_747_, lean_box(0), lean_box(0), v___f_743_, v___
 return v___x_750_;
 }
 }
+static lean_object* _init_l_instMonadAttachStateTOfMonad___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_751_; 
+v___f_751_ = lean_alloc_closure((void*)(l_instMonadAttachStateTOfMonad___redArg___lam__0), 1, 0);
+return v___f_751_;
+}
+}
 LEAN_EXPORT lean_object* l_instMonadAttachStateTOfMonad___redArg(lean_object* v_inst_752_, lean_object* v_inst_753_){
 _start:
 {
@@ -2111,7 +2135,7 @@ lean_dec_ref(v_inst_752_);
 v_toFunctor_755_ = lean_ctor_get(v_toApplicative_754_, 0);
 lean_inc_ref(v_toFunctor_755_);
 lean_dec_ref(v_toApplicative_754_);
-v___f_756_ = ((lean_object*)(l_instMonadAttachStateTOfMonad___redArg___closed__0));
+v___f_756_ = lean_obj_once(&l_instMonadAttachStateTOfMonad___redArg___closed__0, &l_instMonadAttachStateTOfMonad___redArg___closed__0_once, _init_l_instMonadAttachStateTOfMonad___redArg___closed__0);
 v___f_757_ = lean_alloc_closure((void*)(l_instMonadAttachStateTOfMonad___redArg___lam__1), 6, 3);
 lean_closure_set(v___f_757_, 0, v_toFunctor_755_);
 lean_closure_set(v___f_757_, 1, v_inst_753_);

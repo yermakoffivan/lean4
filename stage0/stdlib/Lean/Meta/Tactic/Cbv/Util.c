@@ -102,62 +102,62 @@ LEAN_EXPORT uint8_t l_Lean_Meta_Tactic_Cbv_isVal___lam__13(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Tactic_Cbv_isVal___lam__13___boxed(lean_object*);
 LEAN_EXPORT uint8_t l_List_any___at___00Lean_Meta_Tactic_Cbv_isVal_spec__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_List_any___at___00Lean_Meta_Tactic_Cbv_isVal_spec__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Lean_Meta_Tactic_Cbv_isVal___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Tactic_Cbv_isVal___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__0 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__0_value;
-static const lean_closure_object l_Lean_Meta_Tactic_Cbv_isVal___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Tactic_Cbv_isVal___lam__1___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__1 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__1_value;
-static const lean_closure_object l_Lean_Meta_Tactic_Cbv_isVal___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Tactic_Cbv_isVal___lam__2___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__2 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__2_value;
-static const lean_closure_object l_Lean_Meta_Tactic_Cbv_isVal___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Tactic_Cbv_isVal___lam__3___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__3 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__3_value;
-static const lean_closure_object l_Lean_Meta_Tactic_Cbv_isVal___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Tactic_Cbv_isVal___lam__4___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__4 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__4_value;
-static const lean_closure_object l_Lean_Meta_Tactic_Cbv_isVal___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Tactic_Cbv_isVal___lam__5___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__5 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__5_value;
-static const lean_closure_object l_Lean_Meta_Tactic_Cbv_isVal___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Tactic_Cbv_isVal___lam__6___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__6 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__6_value;
-static const lean_closure_object l_Lean_Meta_Tactic_Cbv_isVal___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Tactic_Cbv_isVal___lam__7___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__7 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__7_value;
-static const lean_closure_object l_Lean_Meta_Tactic_Cbv_isVal___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Tactic_Cbv_isVal___lam__8___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__8 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__8_value;
-static const lean_closure_object l_Lean_Meta_Tactic_Cbv_isVal___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Tactic_Cbv_isVal___lam__9___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__9 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__9_value;
-static const lean_closure_object l_Lean_Meta_Tactic_Cbv_isVal___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Tactic_Cbv_isVal___lam__10___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__10 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__10_value;
-static const lean_closure_object l_Lean_Meta_Tactic_Cbv_isVal___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Tactic_Cbv_isVal___lam__11___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__11 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__11_value;
-static const lean_closure_object l_Lean_Meta_Tactic_Cbv_isVal___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Tactic_Cbv_isVal___lam__12___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__12 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__12_value;
-static const lean_closure_object l_Lean_Meta_Tactic_Cbv_isVal___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Tactic_Cbv_isVal___lam__13___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__13 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__13_value;
-static const lean_ctor_object l_Lean_Meta_Tactic_Cbv_isVal___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__13_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__14 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__14_value;
-static const lean_ctor_object l_Lean_Meta_Tactic_Cbv_isVal___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__12_value),((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__14_value)}};
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__15 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__15_value;
-static const lean_ctor_object l_Lean_Meta_Tactic_Cbv_isVal___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__11_value),((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__15_value)}};
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__16 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__16_value;
-static const lean_ctor_object l_Lean_Meta_Tactic_Cbv_isVal___closed__17_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__10_value),((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__16_value)}};
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__17 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__17_value;
-static const lean_ctor_object l_Lean_Meta_Tactic_Cbv_isVal___closed__18_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__9_value),((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__17_value)}};
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__18 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__18_value;
-static const lean_ctor_object l_Lean_Meta_Tactic_Cbv_isVal___closed__19_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__8_value),((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__18_value)}};
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__19 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__19_value;
-static const lean_ctor_object l_Lean_Meta_Tactic_Cbv_isVal___closed__20_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__7_value),((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__19_value)}};
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__20 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__20_value;
-static const lean_ctor_object l_Lean_Meta_Tactic_Cbv_isVal___closed__21_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__6_value),((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__20_value)}};
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__21 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__21_value;
-static const lean_ctor_object l_Lean_Meta_Tactic_Cbv_isVal___closed__22_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__5_value),((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__21_value)}};
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__22 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__22_value;
-static const lean_ctor_object l_Lean_Meta_Tactic_Cbv_isVal___closed__23_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__4_value),((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__22_value)}};
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__23 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__23_value;
-static const lean_ctor_object l_Lean_Meta_Tactic_Cbv_isVal___closed__24_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__3_value),((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__23_value)}};
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__24 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__24_value;
-static const lean_ctor_object l_Lean_Meta_Tactic_Cbv_isVal___closed__25_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__2_value),((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__24_value)}};
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__25 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__25_value;
-static const lean_ctor_object l_Lean_Meta_Tactic_Cbv_isVal___closed__26_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__1_value),((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__25_value)}};
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__26 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__26_value;
-static const lean_ctor_object l_Lean_Meta_Tactic_Cbv_isVal___closed__27_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__0_value),((lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__26_value)}};
-static const lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__27 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_isVal___closed__27_value;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__0;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__1;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__2;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__3;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__4;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__5;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__6;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__7;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__8;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__9;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__10;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__11;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__12;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__13;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__14;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__15;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__16;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__17;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__18;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__19;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__20_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__20;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__21_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__21;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__22_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__22;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__23_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__23;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__24_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__24;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__25_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__25;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__26_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__26;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_isVal___closed__27_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_isVal___closed__27;
 LEAN_EXPORT uint8_t l_Lean_Meta_Tactic_Cbv_isVal(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Tactic_Cbv_isVal___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Tactic_Cbv_isBuiltinValue___redArg(lean_object*);
@@ -180,18 +180,16 @@ LEAN_EXPORT lean_object* l_Lean_Meta_Tactic_Cbv_isProofTerm___redArg(lean_object
 LEAN_EXPORT lean_object* l_Lean_Meta_Tactic_Cbv_isProofTerm___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Tactic_Cbv_isProofTerm(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Tactic_Cbv_isProofTerm___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "List"};
-static const lean_object* l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__0 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__0_value;
-static const lean_string_object l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "nil"};
-static const lean_object* l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__1 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__1_value;
-static const lean_ctor_object l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__2_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__0_value),LEAN_SCALAR_PTR_LITERAL(245, 188, 225, 225, 165, 5, 251, 132)}};
-static const lean_ctor_object l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__2_value_aux_0),((lean_object*)&l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__1_value),LEAN_SCALAR_PTR_LITERAL(90, 150, 134, 113, 145, 38, 173, 251)}};
-static const lean_object* l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__2 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__2_value;
-static const lean_string_object l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "cons"};
-static const lean_object* l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__3 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__3_value;
-static const lean_ctor_object l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__4_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__0_value),LEAN_SCALAR_PTR_LITERAL(245, 188, 225, 225, 165, 5, 251, 132)}};
-static const lean_ctor_object l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__4_value_aux_0),((lean_object*)&l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__3_value),LEAN_SCALAR_PTR_LITERAL(98, 170, 59, 223, 79, 132, 139, 119)}};
-static const lean_object* l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__4 = (const lean_object*)&l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__4_value;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__0;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__1;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__2;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__3;
+static lean_once_cell_t l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__4;
 LEAN_EXPORT lean_object* l_Lean_Meta_Tactic_Cbv_getListLitElems(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Tactic_Cbv_markAsDoneIfFailed(lean_object*);
 LEAN_EXPORT uint8_t l___private_Lean_Meta_Tactic_Cbv_Util_0__Lean_Meta_Tactic_Cbv_isNatValue(lean_object* v_e_1_){
@@ -1081,11 +1079,291 @@ v_r_216_ = lean_box(v_res_215_);
 return v_r_216_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__0(void){
+_start:
+{
+lean_object* v___f_217_; 
+v___f_217_ = lean_alloc_closure((void*)(l_Lean_Meta_Tactic_Cbv_isVal___lam__0___boxed), 1, 0);
+return v___f_217_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__1(void){
+_start:
+{
+lean_object* v___f_218_; 
+v___f_218_ = lean_alloc_closure((void*)(l_Lean_Meta_Tactic_Cbv_isVal___lam__1___boxed), 1, 0);
+return v___f_218_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__2(void){
+_start:
+{
+lean_object* v___f_219_; 
+v___f_219_ = lean_alloc_closure((void*)(l_Lean_Meta_Tactic_Cbv_isVal___lam__2___boxed), 1, 0);
+return v___f_219_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__3(void){
+_start:
+{
+lean_object* v___f_220_; 
+v___f_220_ = lean_alloc_closure((void*)(l_Lean_Meta_Tactic_Cbv_isVal___lam__3___boxed), 1, 0);
+return v___f_220_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__4(void){
+_start:
+{
+lean_object* v___f_221_; 
+v___f_221_ = lean_alloc_closure((void*)(l_Lean_Meta_Tactic_Cbv_isVal___lam__4___boxed), 1, 0);
+return v___f_221_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__5(void){
+_start:
+{
+lean_object* v___f_222_; 
+v___f_222_ = lean_alloc_closure((void*)(l_Lean_Meta_Tactic_Cbv_isVal___lam__5___boxed), 1, 0);
+return v___f_222_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__6(void){
+_start:
+{
+lean_object* v___f_223_; 
+v___f_223_ = lean_alloc_closure((void*)(l_Lean_Meta_Tactic_Cbv_isVal___lam__6___boxed), 1, 0);
+return v___f_223_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__7(void){
+_start:
+{
+lean_object* v___f_224_; 
+v___f_224_ = lean_alloc_closure((void*)(l_Lean_Meta_Tactic_Cbv_isVal___lam__7___boxed), 1, 0);
+return v___f_224_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__8(void){
+_start:
+{
+lean_object* v___f_225_; 
+v___f_225_ = lean_alloc_closure((void*)(l_Lean_Meta_Tactic_Cbv_isVal___lam__8___boxed), 1, 0);
+return v___f_225_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__9(void){
+_start:
+{
+lean_object* v___f_226_; 
+v___f_226_ = lean_alloc_closure((void*)(l_Lean_Meta_Tactic_Cbv_isVal___lam__9___boxed), 1, 0);
+return v___f_226_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__10(void){
+_start:
+{
+lean_object* v___f_227_; 
+v___f_227_ = lean_alloc_closure((void*)(l_Lean_Meta_Tactic_Cbv_isVal___lam__10___boxed), 1, 0);
+return v___f_227_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__11(void){
+_start:
+{
+lean_object* v___f_228_; 
+v___f_228_ = lean_alloc_closure((void*)(l_Lean_Meta_Tactic_Cbv_isVal___lam__11___boxed), 1, 0);
+return v___f_228_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__12(void){
+_start:
+{
+lean_object* v___f_229_; 
+v___f_229_ = lean_alloc_closure((void*)(l_Lean_Meta_Tactic_Cbv_isVal___lam__12___boxed), 1, 0);
+return v___f_229_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__13(void){
+_start:
+{
+lean_object* v___f_230_; 
+v___f_230_ = lean_alloc_closure((void*)(l_Lean_Meta_Tactic_Cbv_isVal___lam__13___boxed), 1, 0);
+return v___f_230_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__14(void){
+_start:
+{
+lean_object* v___x_231_; lean_object* v___f_232_; lean_object* v___x_233_; 
+v___x_231_ = lean_box(0);
+v___f_232_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__13, &l_Lean_Meta_Tactic_Cbv_isVal___closed__13_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__13);
+v___x_233_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_233_, 0, v___f_232_);
+lean_ctor_set(v___x_233_, 1, v___x_231_);
+return v___x_233_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__15(void){
+_start:
+{
+lean_object* v___x_234_; lean_object* v___f_235_; lean_object* v___x_236_; 
+v___x_234_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__14, &l_Lean_Meta_Tactic_Cbv_isVal___closed__14_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__14);
+v___f_235_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__12, &l_Lean_Meta_Tactic_Cbv_isVal___closed__12_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__12);
+v___x_236_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_236_, 0, v___f_235_);
+lean_ctor_set(v___x_236_, 1, v___x_234_);
+return v___x_236_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__16(void){
+_start:
+{
+lean_object* v___x_237_; lean_object* v___f_238_; lean_object* v___x_239_; 
+v___x_237_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__15, &l_Lean_Meta_Tactic_Cbv_isVal___closed__15_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__15);
+v___f_238_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__11, &l_Lean_Meta_Tactic_Cbv_isVal___closed__11_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__11);
+v___x_239_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_239_, 0, v___f_238_);
+lean_ctor_set(v___x_239_, 1, v___x_237_);
+return v___x_239_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__17(void){
+_start:
+{
+lean_object* v___x_240_; lean_object* v___f_241_; lean_object* v___x_242_; 
+v___x_240_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__16, &l_Lean_Meta_Tactic_Cbv_isVal___closed__16_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__16);
+v___f_241_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__10, &l_Lean_Meta_Tactic_Cbv_isVal___closed__10_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__10);
+v___x_242_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_242_, 0, v___f_241_);
+lean_ctor_set(v___x_242_, 1, v___x_240_);
+return v___x_242_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__18(void){
+_start:
+{
+lean_object* v___x_243_; lean_object* v___f_244_; lean_object* v___x_245_; 
+v___x_243_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__17, &l_Lean_Meta_Tactic_Cbv_isVal___closed__17_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__17);
+v___f_244_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__9, &l_Lean_Meta_Tactic_Cbv_isVal___closed__9_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__9);
+v___x_245_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_245_, 0, v___f_244_);
+lean_ctor_set(v___x_245_, 1, v___x_243_);
+return v___x_245_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__19(void){
+_start:
+{
+lean_object* v___x_246_; lean_object* v___f_247_; lean_object* v___x_248_; 
+v___x_246_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__18, &l_Lean_Meta_Tactic_Cbv_isVal___closed__18_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__18);
+v___f_247_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__8, &l_Lean_Meta_Tactic_Cbv_isVal___closed__8_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__8);
+v___x_248_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_248_, 0, v___f_247_);
+lean_ctor_set(v___x_248_, 1, v___x_246_);
+return v___x_248_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__20(void){
+_start:
+{
+lean_object* v___x_249_; lean_object* v___f_250_; lean_object* v___x_251_; 
+v___x_249_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__19, &l_Lean_Meta_Tactic_Cbv_isVal___closed__19_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__19);
+v___f_250_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__7, &l_Lean_Meta_Tactic_Cbv_isVal___closed__7_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__7);
+v___x_251_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_251_, 0, v___f_250_);
+lean_ctor_set(v___x_251_, 1, v___x_249_);
+return v___x_251_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__21(void){
+_start:
+{
+lean_object* v___x_252_; lean_object* v___f_253_; lean_object* v___x_254_; 
+v___x_252_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__20, &l_Lean_Meta_Tactic_Cbv_isVal___closed__20_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__20);
+v___f_253_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__6, &l_Lean_Meta_Tactic_Cbv_isVal___closed__6_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__6);
+v___x_254_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_254_, 0, v___f_253_);
+lean_ctor_set(v___x_254_, 1, v___x_252_);
+return v___x_254_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__22(void){
+_start:
+{
+lean_object* v___x_255_; lean_object* v___f_256_; lean_object* v___x_257_; 
+v___x_255_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__21, &l_Lean_Meta_Tactic_Cbv_isVal___closed__21_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__21);
+v___f_256_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__5, &l_Lean_Meta_Tactic_Cbv_isVal___closed__5_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__5);
+v___x_257_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_257_, 0, v___f_256_);
+lean_ctor_set(v___x_257_, 1, v___x_255_);
+return v___x_257_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__23(void){
+_start:
+{
+lean_object* v___x_258_; lean_object* v___f_259_; lean_object* v___x_260_; 
+v___x_258_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__22, &l_Lean_Meta_Tactic_Cbv_isVal___closed__22_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__22);
+v___f_259_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__4, &l_Lean_Meta_Tactic_Cbv_isVal___closed__4_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__4);
+v___x_260_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_260_, 0, v___f_259_);
+lean_ctor_set(v___x_260_, 1, v___x_258_);
+return v___x_260_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__24(void){
+_start:
+{
+lean_object* v___x_261_; lean_object* v___f_262_; lean_object* v___x_263_; 
+v___x_261_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__23, &l_Lean_Meta_Tactic_Cbv_isVal___closed__23_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__23);
+v___f_262_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__3, &l_Lean_Meta_Tactic_Cbv_isVal___closed__3_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__3);
+v___x_263_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_263_, 0, v___f_262_);
+lean_ctor_set(v___x_263_, 1, v___x_261_);
+return v___x_263_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__25(void){
+_start:
+{
+lean_object* v___x_264_; lean_object* v___f_265_; lean_object* v___x_266_; 
+v___x_264_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__24, &l_Lean_Meta_Tactic_Cbv_isVal___closed__24_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__24);
+v___f_265_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__2, &l_Lean_Meta_Tactic_Cbv_isVal___closed__2_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__2);
+v___x_266_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_266_, 0, v___f_265_);
+lean_ctor_set(v___x_266_, 1, v___x_264_);
+return v___x_266_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__26(void){
+_start:
+{
+lean_object* v___x_267_; lean_object* v___f_268_; lean_object* v___x_269_; 
+v___x_267_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__25, &l_Lean_Meta_Tactic_Cbv_isVal___closed__25_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__25);
+v___f_268_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__1, &l_Lean_Meta_Tactic_Cbv_isVal___closed__1_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__1);
+v___x_269_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_269_, 0, v___f_268_);
+lean_ctor_set(v___x_269_, 1, v___x_267_);
+return v___x_269_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__27(void){
+_start:
+{
+lean_object* v___x_270_; lean_object* v___f_271_; lean_object* v___x_272_; 
+v___x_270_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__26, &l_Lean_Meta_Tactic_Cbv_isVal___closed__26_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__26);
+v___f_271_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__0, &l_Lean_Meta_Tactic_Cbv_isVal___closed__0_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__0);
+v___x_272_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_272_, 0, v___f_271_);
+lean_ctor_set(v___x_272_, 1, v___x_270_);
+return v___x_272_;
+}
+}
 LEAN_EXPORT uint8_t l_Lean_Meta_Tactic_Cbv_isVal(lean_object* v_e_273_){
 _start:
 {
 lean_object* v___x_274_; uint8_t v___x_275_; 
-v___x_274_ = ((lean_object*)(l_Lean_Meta_Tactic_Cbv_isVal___closed__27));
+v___x_274_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_isVal___closed__27, &l_Lean_Meta_Tactic_Cbv_isVal___closed__27_once, _init_l_Lean_Meta_Tactic_Cbv_isVal___closed__27);
 v___x_275_ = l_List_any___at___00Lean_Meta_Tactic_Cbv_isVal_spec__0(v_e_273_, v___x_274_);
 return v___x_275_;
 }
@@ -2028,6 +2306,50 @@ lean_dec(v_a_589_);
 return v_res_599_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__0(void){
+_start:
+{
+lean_object* v___x_600_; 
+v___x_600_ = lean_mk_string_unchecked("List", 4, 4);
+return v___x_600_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__1(void){
+_start:
+{
+lean_object* v___x_601_; 
+v___x_601_ = lean_mk_string_unchecked("nil", 3, 3);
+return v___x_601_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__2(void){
+_start:
+{
+lean_object* v___x_602_; lean_object* v___x_603_; lean_object* v___x_604_; 
+v___x_602_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__1, &l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__1_once, _init_l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__1);
+v___x_603_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__0, &l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__0_once, _init_l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__0);
+v___x_604_ = l_Lean_Name_mkStr2(v___x_603_, v___x_602_);
+return v___x_604_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__3(void){
+_start:
+{
+lean_object* v___x_605_; 
+v___x_605_ = lean_mk_string_unchecked("cons", 4, 4);
+return v___x_605_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__4(void){
+_start:
+{
+lean_object* v___x_606_; lean_object* v___x_607_; lean_object* v___x_608_; 
+v___x_606_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__3, &l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__3_once, _init_l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__3);
+v___x_607_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__0, &l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__0_once, _init_l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__0);
+v___x_608_ = l_Lean_Name_mkStr2(v___x_607_, v___x_606_);
+return v___x_608_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Meta_Tactic_Cbv_getListLitElems(lean_object* v_e_609_, lean_object* v_acc_610_){
 _start:
 {
@@ -2048,7 +2370,7 @@ lean_object* v_arg_614_; lean_object* v___x_615_; lean_object* v___x_616_; uint8
 v_arg_614_ = lean_ctor_get(v___x_611_, 1);
 lean_inc_ref(v_arg_614_);
 v___x_615_ = l_Lean_Expr_appFnCleanup___redArg(v___x_611_);
-v___x_616_ = ((lean_object*)(l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__2));
+v___x_616_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__2, &l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__2_once, _init_l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__2);
 v___x_617_ = l_Lean_Expr_isConstOf(v___x_615_, v___x_616_);
 if (v___x_617_ == 0)
 {
@@ -2084,7 +2406,7 @@ else
 {
 lean_object* v___x_624_; lean_object* v___x_625_; uint8_t v___x_626_; 
 v___x_624_ = l_Lean_Expr_appFnCleanup___redArg(v___x_621_);
-v___x_625_ = ((lean_object*)(l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__4));
+v___x_625_ = lean_obj_once(&l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__4, &l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__4_once, _init_l_Lean_Meta_Tactic_Cbv_getListLitElems___closed__4);
 v___x_626_ = l_Lean_Expr_isConstOf(v___x_624_, v___x_625_);
 lean_dec_ref(v___x_624_);
 if (v___x_626_ == 0)

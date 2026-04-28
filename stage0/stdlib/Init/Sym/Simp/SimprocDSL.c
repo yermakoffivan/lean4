@@ -17,474 +17,718 @@ lean_object* l_Lean_Name_mkStr5(lean_object*, lean_object*, lean_object*, lean_o
 lean_object* l_Lean_Name_mkStr1(lean_object*);
 lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Name_mkStr2(lean_object*, lean_object*);
-static const lean_string_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Lean"};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Parser"};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Term"};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__2 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__2_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "quot"};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4_value_aux_1),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__2_value),LEAN_SCALAR_PTR_LITERAL(75, 170, 162, 138, 136, 204, 251, 229)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4_value_aux_2),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3_value),LEAN_SCALAR_PTR_LITERAL(145, 163, 173, 41, 168, 168, 65, 81)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "sym_simproc"};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__5 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__5_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__6_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__5_value),LEAN_SCALAR_PTR_LITERAL(182, 46, 43, 108, 212, 246, 33, 245)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__6_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3_value),LEAN_SCALAR_PTR_LITERAL(176, 150, 62, 162, 102, 116, 55, 68)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__6 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__6_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "andthen"};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__7 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__7_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__7_value),LEAN_SCALAR_PTR_LITERAL(40, 255, 78, 30, 143, 119, 117, 174)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "`(sym_simproc| "};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__9 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__9_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__9_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__10 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__10_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__5_value),LEAN_SCALAR_PTR_LITERAL(182, 46, 43, 108, 212, 246, 33, 245)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__11 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__11_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 7}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__11_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = ")"};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__13 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__13_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__13_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12_value),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__15 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__15_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__10_value),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__15_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__16 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__16_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__17_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__6_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__16_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__17 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__17_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__18_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__17_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__18 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__18_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__18_value;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__2;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__5;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__6;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__7;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__9;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__10;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__11;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__13;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__15;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__16;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__17;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__18;
+LEAN_EXPORT lean_object* l_Lean_Parser_Sym_Simp_sym__simproc_quot;
 LEAN_EXPORT lean_object* l_Lean_Parser_Category_sym__simproc;
-static const lean_string_object l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "sym_discharger"};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__0 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__0_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(167, 224, 81, 146, 130, 88, 184, 234)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__1_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3_value),LEAN_SCALAR_PTR_LITERAL(245, 0, 227, 203, 93, 43, 5, 111)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__1 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__1_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 19, .m_capacity = 19, .m_length = 18, .m_data = "`(sym_discharger| "};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__2 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__2_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__2_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__3 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__3_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(167, 224, 81, 146, 130, 88, 184, 234)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__4 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__4_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 7}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__4_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__5 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__5_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__5_value),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__6 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__6_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__3_value),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__6_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__7 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__7_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__7_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__8 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__8_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__8_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__9 = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__9_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot = (const lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__9_value;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__0;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__1;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__2;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__3;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__4;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__5;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__6;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__7;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__8;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__9;
+LEAN_EXPORT lean_object* l_Lean_Parser_Sym_Simp_sym__discharger_quot;
 LEAN_EXPORT lean_object* l_Lean_Parser_Category_sym__discharger;
-static const lean_string_object l_Lean_Parser_Sym_Simp_ground___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "Sym"};
-static const lean_object* l_Lean_Parser_Sym_Simp_ground___closed__0 = (const lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__0_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_ground___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Simp"};
-static const lean_object* l_Lean_Parser_Sym_Simp_ground___closed__1 = (const lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__1_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_ground___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "ground"};
-static const lean_object* l_Lean_Parser_Sym_Simp_ground___closed__2 = (const lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__2_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_ground___closed__3_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_ground___closed__3_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__3_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_ground___closed__3_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__3_value_aux_1),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__0_value),LEAN_SCALAR_PTR_LITERAL(234, 243, 118, 39, 175, 170, 127, 242)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_ground___closed__3_value_aux_3 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__3_value_aux_2),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__1_value),LEAN_SCALAR_PTR_LITERAL(46, 183, 106, 149, 74, 106, 130, 246)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_ground___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__3_value_aux_3),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__2_value),LEAN_SCALAR_PTR_LITERAL(137, 151, 239, 218, 219, 216, 20, 217)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_ground___closed__3 = (const lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__3_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_ground___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 8, .m_other = 1, .m_tag = 6}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__2_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_ground___closed__4 = (const lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__4_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_ground___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__3_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__4_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_ground___closed__5 = (const lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__5_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Sym_Simp_ground = (const lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__5_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_telescope___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "telescope"};
-static const lean_object* l_Lean_Parser_Sym_Simp_telescope___closed__0 = (const lean_object*)&l_Lean_Parser_Sym_Simp_telescope___closed__0_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_telescope___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_telescope___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_telescope___closed__1_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_telescope___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_telescope___closed__1_value_aux_1),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__0_value),LEAN_SCALAR_PTR_LITERAL(234, 243, 118, 39, 175, 170, 127, 242)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_telescope___closed__1_value_aux_3 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_telescope___closed__1_value_aux_2),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__1_value),LEAN_SCALAR_PTR_LITERAL(46, 183, 106, 149, 74, 106, 130, 246)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_telescope___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_telescope___closed__1_value_aux_3),((lean_object*)&l_Lean_Parser_Sym_Simp_telescope___closed__0_value),LEAN_SCALAR_PTR_LITERAL(110, 31, 147, 192, 56, 72, 93, 69)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_telescope___closed__1 = (const lean_object*)&l_Lean_Parser_Sym_Simp_telescope___closed__1_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_telescope___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 8, .m_other = 1, .m_tag = 6}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_telescope___closed__0_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_telescope___closed__2 = (const lean_object*)&l_Lean_Parser_Sym_Simp_telescope___closed__2_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_telescope___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_telescope___closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_telescope___closed__2_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_telescope___closed__3 = (const lean_object*)&l_Lean_Parser_Sym_Simp_telescope___closed__3_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Sym_Simp_telescope = (const lean_object*)&l_Lean_Parser_Sym_Simp_telescope___closed__3_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_control___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "control"};
-static const lean_object* l_Lean_Parser_Sym_Simp_control___closed__0 = (const lean_object*)&l_Lean_Parser_Sym_Simp_control___closed__0_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_control___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_control___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_control___closed__1_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_control___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_control___closed__1_value_aux_1),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__0_value),LEAN_SCALAR_PTR_LITERAL(234, 243, 118, 39, 175, 170, 127, 242)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_control___closed__1_value_aux_3 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_control___closed__1_value_aux_2),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__1_value),LEAN_SCALAR_PTR_LITERAL(46, 183, 106, 149, 74, 106, 130, 246)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_control___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_control___closed__1_value_aux_3),((lean_object*)&l_Lean_Parser_Sym_Simp_control___closed__0_value),LEAN_SCALAR_PTR_LITERAL(171, 125, 67, 85, 145, 131, 133, 70)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_control___closed__1 = (const lean_object*)&l_Lean_Parser_Sym_Simp_control___closed__1_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_control___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 8, .m_other = 1, .m_tag = 6}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_control___closed__0_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_control___closed__2 = (const lean_object*)&l_Lean_Parser_Sym_Simp_control___closed__2_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_control___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_control___closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_control___closed__2_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_control___closed__3 = (const lean_object*)&l_Lean_Parser_Sym_Simp_control___closed__3_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Sym_Simp_control = (const lean_object*)&l_Lean_Parser_Sym_Simp_control___closed__3_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_arrowTelescope___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "arrowTelescope"};
-static const lean_object* l_Lean_Parser_Sym_Simp_arrowTelescope___closed__0 = (const lean_object*)&l_Lean_Parser_Sym_Simp_arrowTelescope___closed__0_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_arrowTelescope___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_arrowTelescope___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_arrowTelescope___closed__1_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_arrowTelescope___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_arrowTelescope___closed__1_value_aux_1),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__0_value),LEAN_SCALAR_PTR_LITERAL(234, 243, 118, 39, 175, 170, 127, 242)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_arrowTelescope___closed__1_value_aux_3 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_arrowTelescope___closed__1_value_aux_2),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__1_value),LEAN_SCALAR_PTR_LITERAL(46, 183, 106, 149, 74, 106, 130, 246)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_arrowTelescope___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_arrowTelescope___closed__1_value_aux_3),((lean_object*)&l_Lean_Parser_Sym_Simp_arrowTelescope___closed__0_value),LEAN_SCALAR_PTR_LITERAL(23, 76, 27, 84, 168, 103, 99, 102)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_arrowTelescope___closed__1 = (const lean_object*)&l_Lean_Parser_Sym_Simp_arrowTelescope___closed__1_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_arrowTelescope___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "arrow_telescope"};
-static const lean_object* l_Lean_Parser_Sym_Simp_arrowTelescope___closed__2 = (const lean_object*)&l_Lean_Parser_Sym_Simp_arrowTelescope___closed__2_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_arrowTelescope___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 8, .m_other = 1, .m_tag = 6}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_arrowTelescope___closed__2_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_arrowTelescope___closed__3 = (const lean_object*)&l_Lean_Parser_Sym_Simp_arrowTelescope___closed__3_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_arrowTelescope___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_arrowTelescope___closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_arrowTelescope___closed__3_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_arrowTelescope___closed__4 = (const lean_object*)&l_Lean_Parser_Sym_Simp_arrowTelescope___closed__4_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Sym_Simp_arrowTelescope = (const lean_object*)&l_Lean_Parser_Sym_Simp_arrowTelescope___closed__4_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_rewriteSet___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "rewriteSet"};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__0 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__0_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteSet___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteSet___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__1_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteSet___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__1_value_aux_1),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__0_value),LEAN_SCALAR_PTR_LITERAL(234, 243, 118, 39, 175, 170, 127, 242)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteSet___closed__1_value_aux_3 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__1_value_aux_2),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__1_value),LEAN_SCALAR_PTR_LITERAL(46, 183, 106, 149, 74, 106, 130, 246)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteSet___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__1_value_aux_3),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__0_value),LEAN_SCALAR_PTR_LITERAL(13, 237, 151, 14, 163, 181, 113, 140)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__1 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__1_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_rewriteSet___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "rewrite"};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__2 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__2_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteSet___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 8, .m_other = 1, .m_tag = 6}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__2_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__3 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__3_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_rewriteSet___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "ident"};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__4 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__4_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteSet___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__4_value),LEAN_SCALAR_PTR_LITERAL(52, 159, 208, 51, 14, 60, 6, 71)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__5 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__5_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteSet___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__5_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__6 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__6_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteSet___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__3_value),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__6_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__7 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__7_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_rewriteSet___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "optional"};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__8 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__8_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteSet___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__8_value),LEAN_SCALAR_PTR_LITERAL(233, 141, 154, 50, 143, 135, 42, 252)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__9 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__9_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_rewriteSet___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = " with "};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__10 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__10_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteSet___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__10_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__11 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__11_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteSet___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__11_value),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__5_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__12 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__12_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteSet___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__9_value),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__12_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__13 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__13_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteSet___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__7_value),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__13_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__14 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__14_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteSet___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__1_value),((lean_object*)(((size_t)(1022) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__14_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__15 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__15_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Sym_Simp_rewriteSet = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__15_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_rewriteInline___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "rewriteInline"};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__0 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__0_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteInline___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteInline___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__1_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteInline___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__1_value_aux_1),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__0_value),LEAN_SCALAR_PTR_LITERAL(234, 243, 118, 39, 175, 170, 127, 242)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteInline___closed__1_value_aux_3 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__1_value_aux_2),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__1_value),LEAN_SCALAR_PTR_LITERAL(46, 183, 106, 149, 74, 106, 130, 246)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteInline___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__1_value_aux_3),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__0_value),LEAN_SCALAR_PTR_LITERAL(23, 37, 144, 204, 240, 250, 222, 75)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__1 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__1_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_rewriteInline___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = " ["};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__2 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__2_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteInline___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__2_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__3 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__3_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteInline___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__3_value),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__3_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__4 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__4_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_rewriteInline___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = ","};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__5 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__5_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_rewriteInline___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = ", "};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__6 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__6_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteInline___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__6_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__7 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__7_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteInline___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 10}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__6_value),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__5_value),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__7_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__8 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__8_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteInline___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__4_value),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__8_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__9 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__9_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_rewriteInline___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "]"};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__10 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__10_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteInline___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__10_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__11 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__11_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteInline___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__9_value),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__11_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__12 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__12_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteInline___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__12_value),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__13_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__13 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__13_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_rewriteInline___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__1_value),((lean_object*)(((size_t)(1022) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__13_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__14 = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__14_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Sym_Simp_rewriteInline = (const lean_object*)&l_Lean_Parser_Sym_Simp_rewriteInline___closed__14_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_self___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "self"};
-static const lean_object* l_Lean_Parser_Sym_Simp_self___closed__0 = (const lean_object*)&l_Lean_Parser_Sym_Simp_self___closed__0_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_self___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_self___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_self___closed__1_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_self___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_self___closed__1_value_aux_1),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__0_value),LEAN_SCALAR_PTR_LITERAL(234, 243, 118, 39, 175, 170, 127, 242)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_self___closed__1_value_aux_3 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_self___closed__1_value_aux_2),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__1_value),LEAN_SCALAR_PTR_LITERAL(46, 183, 106, 149, 74, 106, 130, 246)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_self___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_self___closed__1_value_aux_3),((lean_object*)&l_Lean_Parser_Sym_Simp_self___closed__0_value),LEAN_SCALAR_PTR_LITERAL(145, 211, 137, 241, 28, 184, 75, 50)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_self___closed__1 = (const lean_object*)&l_Lean_Parser_Sym_Simp_self___closed__1_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_self___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 8, .m_other = 1, .m_tag = 6}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_self___closed__0_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_self___closed__2 = (const lean_object*)&l_Lean_Parser_Sym_Simp_self___closed__2_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_self___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_self___closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_self___closed__2_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_self___closed__3 = (const lean_object*)&l_Lean_Parser_Sym_Simp_self___closed__3_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Sym_Simp_self = (const lean_object*)&l_Lean_Parser_Sym_Simp_self___closed__3_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_none___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "none"};
-static const lean_object* l_Lean_Parser_Sym_Simp_none___closed__0 = (const lean_object*)&l_Lean_Parser_Sym_Simp_none___closed__0_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_none___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_none___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_none___closed__1_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_none___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_none___closed__1_value_aux_1),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__0_value),LEAN_SCALAR_PTR_LITERAL(234, 243, 118, 39, 175, 170, 127, 242)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_none___closed__1_value_aux_3 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_none___closed__1_value_aux_2),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__1_value),LEAN_SCALAR_PTR_LITERAL(46, 183, 106, 149, 74, 106, 130, 246)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_none___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_none___closed__1_value_aux_3),((lean_object*)&l_Lean_Parser_Sym_Simp_none___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 9, 229, 207, 2, 171, 193, 80)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_none___closed__1 = (const lean_object*)&l_Lean_Parser_Sym_Simp_none___closed__1_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_none___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 8, .m_other = 1, .m_tag = 6}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_none___closed__0_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_none___closed__2 = (const lean_object*)&l_Lean_Parser_Sym_Simp_none___closed__2_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_none___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_none___closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_none___closed__2_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_none___closed__3 = (const lean_object*)&l_Lean_Parser_Sym_Simp_none___closed__3_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Sym_Simp_none = (const lean_object*)&l_Lean_Parser_Sym_Simp_none___closed__3_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_andThen___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "andThen"};
-static const lean_object* l_Lean_Parser_Sym_Simp_andThen___closed__0 = (const lean_object*)&l_Lean_Parser_Sym_Simp_andThen___closed__0_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_andThen___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_andThen___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_andThen___closed__1_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_andThen___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_andThen___closed__1_value_aux_1),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__0_value),LEAN_SCALAR_PTR_LITERAL(234, 243, 118, 39, 175, 170, 127, 242)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_andThen___closed__1_value_aux_3 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_andThen___closed__1_value_aux_2),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__1_value),LEAN_SCALAR_PTR_LITERAL(46, 183, 106, 149, 74, 106, 130, 246)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_andThen___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_andThen___closed__1_value_aux_3),((lean_object*)&l_Lean_Parser_Sym_Simp_andThen___closed__0_value),LEAN_SCALAR_PTR_LITERAL(231, 0, 84, 101, 13, 130, 212, 7)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_andThen___closed__1 = (const lean_object*)&l_Lean_Parser_Sym_Simp_andThen___closed__1_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_andThen___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = " >> "};
-static const lean_object* l_Lean_Parser_Sym_Simp_andThen___closed__2 = (const lean_object*)&l_Lean_Parser_Sym_Simp_andThen___closed__2_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_andThen___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_andThen___closed__2_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_andThen___closed__3 = (const lean_object*)&l_Lean_Parser_Sym_Simp_andThen___closed__3_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_andThen___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 7}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__11_value),((lean_object*)(((size_t)(60) << 1) | 1))}};
-static const lean_object* l_Lean_Parser_Sym_Simp_andThen___closed__4 = (const lean_object*)&l_Lean_Parser_Sym_Simp_andThen___closed__4_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_andThen___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Sym_Simp_andThen___closed__3_value),((lean_object*)&l_Lean_Parser_Sym_Simp_andThen___closed__4_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_andThen___closed__5 = (const lean_object*)&l_Lean_Parser_Sym_Simp_andThen___closed__5_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_andThen___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*4 + 0, .m_other = 4, .m_tag = 4}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_andThen___closed__1_value),((lean_object*)(((size_t)(60) << 1) | 1)),((lean_object*)(((size_t)(61) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_andThen___closed__5_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_andThen___closed__6 = (const lean_object*)&l_Lean_Parser_Sym_Simp_andThen___closed__6_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Sym_Simp_andThen = (const lean_object*)&l_Lean_Parser_Sym_Simp_andThen___closed__6_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_orElse___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "orElse"};
-static const lean_object* l_Lean_Parser_Sym_Simp_orElse___closed__0 = (const lean_object*)&l_Lean_Parser_Sym_Simp_orElse___closed__0_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_orElse___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_orElse___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_orElse___closed__1_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_orElse___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_orElse___closed__1_value_aux_1),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__0_value),LEAN_SCALAR_PTR_LITERAL(234, 243, 118, 39, 175, 170, 127, 242)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_orElse___closed__1_value_aux_3 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_orElse___closed__1_value_aux_2),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__1_value),LEAN_SCALAR_PTR_LITERAL(46, 183, 106, 149, 74, 106, 130, 246)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_orElse___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_orElse___closed__1_value_aux_3),((lean_object*)&l_Lean_Parser_Sym_Simp_orElse___closed__0_value),LEAN_SCALAR_PTR_LITERAL(247, 15, 104, 108, 253, 175, 57, 154)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_orElse___closed__1 = (const lean_object*)&l_Lean_Parser_Sym_Simp_orElse___closed__1_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_orElse___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = " <|> "};
-static const lean_object* l_Lean_Parser_Sym_Simp_orElse___closed__2 = (const lean_object*)&l_Lean_Parser_Sym_Simp_orElse___closed__2_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_orElse___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_orElse___closed__2_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_orElse___closed__3 = (const lean_object*)&l_Lean_Parser_Sym_Simp_orElse___closed__3_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_orElse___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 7}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__11_value),((lean_object*)(((size_t)(20) << 1) | 1))}};
-static const lean_object* l_Lean_Parser_Sym_Simp_orElse___closed__4 = (const lean_object*)&l_Lean_Parser_Sym_Simp_orElse___closed__4_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_orElse___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Sym_Simp_orElse___closed__3_value),((lean_object*)&l_Lean_Parser_Sym_Simp_orElse___closed__4_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_orElse___closed__5 = (const lean_object*)&l_Lean_Parser_Sym_Simp_orElse___closed__5_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_orElse___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*4 + 0, .m_other = 4, .m_tag = 4}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_orElse___closed__1_value),((lean_object*)(((size_t)(20) << 1) | 1)),((lean_object*)(((size_t)(21) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_orElse___closed__5_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_orElse___closed__6 = (const lean_object*)&l_Lean_Parser_Sym_Simp_orElse___closed__6_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Sym_Simp_orElse = (const lean_object*)&l_Lean_Parser_Sym_Simp_orElse___closed__6_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_simprocParen___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "simprocParen"};
-static const lean_object* l_Lean_Parser_Sym_Simp_simprocParen___closed__0 = (const lean_object*)&l_Lean_Parser_Sym_Simp_simprocParen___closed__0_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_simprocParen___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_simprocParen___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_simprocParen___closed__1_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_simprocParen___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_simprocParen___closed__1_value_aux_1),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__0_value),LEAN_SCALAR_PTR_LITERAL(234, 243, 118, 39, 175, 170, 127, 242)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_simprocParen___closed__1_value_aux_3 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_simprocParen___closed__1_value_aux_2),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__1_value),LEAN_SCALAR_PTR_LITERAL(46, 183, 106, 149, 74, 106, 130, 246)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_simprocParen___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_simprocParen___closed__1_value_aux_3),((lean_object*)&l_Lean_Parser_Sym_Simp_simprocParen___closed__0_value),LEAN_SCALAR_PTR_LITERAL(180, 24, 83, 62, 216, 237, 199, 219)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_simprocParen___closed__1 = (const lean_object*)&l_Lean_Parser_Sym_Simp_simprocParen___closed__1_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_simprocParen___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "("};
-static const lean_object* l_Lean_Parser_Sym_Simp_simprocParen___closed__2 = (const lean_object*)&l_Lean_Parser_Sym_Simp_simprocParen___closed__2_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_simprocParen___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 8, .m_other = 1, .m_tag = 6}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_simprocParen___closed__2_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_simprocParen___closed__3 = (const lean_object*)&l_Lean_Parser_Sym_Simp_simprocParen___closed__3_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_simprocParen___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Sym_Simp_simprocParen___closed__3_value),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_simprocParen___closed__4 = (const lean_object*)&l_Lean_Parser_Sym_Simp_simprocParen___closed__4_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_simprocParen___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Sym_Simp_simprocParen___closed__4_value),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_simprocParen___closed__5 = (const lean_object*)&l_Lean_Parser_Sym_Simp_simprocParen___closed__5_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_simprocParen___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_simprocParen___closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_simprocParen___closed__5_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_simprocParen___closed__6 = (const lean_object*)&l_Lean_Parser_Sym_Simp_simprocParen___closed__6_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Sym_Simp_simprocParen = (const lean_object*)&l_Lean_Parser_Sym_Simp_simprocParen___closed__6_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_dischSelf___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "dischSelf"};
-static const lean_object* l_Lean_Parser_Sym_Simp_dischSelf___closed__0 = (const lean_object*)&l_Lean_Parser_Sym_Simp_dischSelf___closed__0_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_dischSelf___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_dischSelf___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_dischSelf___closed__1_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_dischSelf___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_dischSelf___closed__1_value_aux_1),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__0_value),LEAN_SCALAR_PTR_LITERAL(234, 243, 118, 39, 175, 170, 127, 242)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_dischSelf___closed__1_value_aux_3 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_dischSelf___closed__1_value_aux_2),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__1_value),LEAN_SCALAR_PTR_LITERAL(46, 183, 106, 149, 74, 106, 130, 246)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_dischSelf___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_dischSelf___closed__1_value_aux_3),((lean_object*)&l_Lean_Parser_Sym_Simp_dischSelf___closed__0_value),LEAN_SCALAR_PTR_LITERAL(0, 182, 165, 193, 208, 80, 103, 224)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_dischSelf___closed__1 = (const lean_object*)&l_Lean_Parser_Sym_Simp_dischSelf___closed__1_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_dischSelf___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_dischSelf___closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_self___closed__2_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_dischSelf___closed__2 = (const lean_object*)&l_Lean_Parser_Sym_Simp_dischSelf___closed__2_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Sym_Simp_dischSelf = (const lean_object*)&l_Lean_Parser_Sym_Simp_dischSelf___closed__2_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_dischNone___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "dischNone"};
-static const lean_object* l_Lean_Parser_Sym_Simp_dischNone___closed__0 = (const lean_object*)&l_Lean_Parser_Sym_Simp_dischNone___closed__0_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_dischNone___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_dischNone___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_dischNone___closed__1_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_dischNone___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_dischNone___closed__1_value_aux_1),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__0_value),LEAN_SCALAR_PTR_LITERAL(234, 243, 118, 39, 175, 170, 127, 242)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_dischNone___closed__1_value_aux_3 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_dischNone___closed__1_value_aux_2),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__1_value),LEAN_SCALAR_PTR_LITERAL(46, 183, 106, 149, 74, 106, 130, 246)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_dischNone___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_dischNone___closed__1_value_aux_3),((lean_object*)&l_Lean_Parser_Sym_Simp_dischNone___closed__0_value),LEAN_SCALAR_PTR_LITERAL(126, 129, 180, 246, 62, 25, 114, 168)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_dischNone___closed__1 = (const lean_object*)&l_Lean_Parser_Sym_Simp_dischNone___closed__1_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_dischNone___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_dischNone___closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_none___closed__2_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_dischNone___closed__2 = (const lean_object*)&l_Lean_Parser_Sym_Simp_dischNone___closed__2_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Sym_Simp_dischNone = (const lean_object*)&l_Lean_Parser_Sym_Simp_dischNone___closed__2_value;
-static const lean_string_object l_Lean_Parser_Sym_Simp_dischParen___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "dischParen"};
-static const lean_object* l_Lean_Parser_Sym_Simp_dischParen___closed__0 = (const lean_object*)&l_Lean_Parser_Sym_Simp_dischParen___closed__0_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_dischParen___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_dischParen___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_dischParen___closed__1_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_dischParen___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_dischParen___closed__1_value_aux_1),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__0_value),LEAN_SCALAR_PTR_LITERAL(234, 243, 118, 39, 175, 170, 127, 242)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_dischParen___closed__1_value_aux_3 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_dischParen___closed__1_value_aux_2),((lean_object*)&l_Lean_Parser_Sym_Simp_ground___closed__1_value),LEAN_SCALAR_PTR_LITERAL(46, 183, 106, 149, 74, 106, 130, 246)}};
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_dischParen___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_dischParen___closed__1_value_aux_3),((lean_object*)&l_Lean_Parser_Sym_Simp_dischParen___closed__0_value),LEAN_SCALAR_PTR_LITERAL(150, 60, 196, 44, 146, 171, 74, 5)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_dischParen___closed__1 = (const lean_object*)&l_Lean_Parser_Sym_Simp_dischParen___closed__1_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_dischParen___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Sym_Simp_simprocParen___closed__3_value),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__5_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_dischParen___closed__2 = (const lean_object*)&l_Lean_Parser_Sym_Simp_dischParen___closed__2_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_dischParen___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Sym_Simp_dischParen___closed__2_value),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_dischParen___closed__3 = (const lean_object*)&l_Lean_Parser_Sym_Simp_dischParen___closed__3_value;
-static const lean_ctor_object l_Lean_Parser_Sym_Simp_dischParen___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_dischParen___closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_dischParen___closed__3_value)}};
-static const lean_object* l_Lean_Parser_Sym_Simp_dischParen___closed__4 = (const lean_object*)&l_Lean_Parser_Sym_Simp_dischParen___closed__4_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Sym_Simp_dischParen = (const lean_object*)&l_Lean_Parser_Sym_Simp_dischParen___closed__4_value;
-static const lean_string_object l_Lean_Parser_Command_sym__simp__field_quot___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "sym_simp_field"};
-static const lean_object* l_Lean_Parser_Command_sym__simp__field_quot___closed__0 = (const lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__0_value;
-static const lean_ctor_object l_Lean_Parser_Command_sym__simp__field_quot___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(47, 107, 220, 116, 148, 163, 214, 175)}};
-static const lean_ctor_object l_Lean_Parser_Command_sym__simp__field_quot___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__1_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3_value),LEAN_SCALAR_PTR_LITERAL(29, 64, 82, 170, 49, 68, 156, 16)}};
-static const lean_object* l_Lean_Parser_Command_sym__simp__field_quot___closed__1 = (const lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__1_value;
-static const lean_string_object l_Lean_Parser_Command_sym__simp__field_quot___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 19, .m_capacity = 19, .m_length = 18, .m_data = "`(sym_simp_field| "};
-static const lean_object* l_Lean_Parser_Command_sym__simp__field_quot___closed__2 = (const lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__2_value;
-static const lean_ctor_object l_Lean_Parser_Command_sym__simp__field_quot___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__2_value)}};
-static const lean_object* l_Lean_Parser_Command_sym__simp__field_quot___closed__3 = (const lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__3_value;
-static const lean_ctor_object l_Lean_Parser_Command_sym__simp__field_quot___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(47, 107, 220, 116, 148, 163, 214, 175)}};
-static const lean_object* l_Lean_Parser_Command_sym__simp__field_quot___closed__4 = (const lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__4_value;
-static const lean_ctor_object l_Lean_Parser_Command_sym__simp__field_quot___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 7}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__4_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lean_Parser_Command_sym__simp__field_quot___closed__5 = (const lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__5_value;
-static const lean_ctor_object l_Lean_Parser_Command_sym__simp__field_quot___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__5_value),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14_value)}};
-static const lean_object* l_Lean_Parser_Command_sym__simp__field_quot___closed__6 = (const lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__6_value;
-static const lean_ctor_object l_Lean_Parser_Command_sym__simp__field_quot___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__3_value),((lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__6_value)}};
-static const lean_object* l_Lean_Parser_Command_sym__simp__field_quot___closed__7 = (const lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__7_value;
-static const lean_ctor_object l_Lean_Parser_Command_sym__simp__field_quot___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__7_value)}};
-static const lean_object* l_Lean_Parser_Command_sym__simp__field_quot___closed__8 = (const lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__8_value;
-static const lean_ctor_object l_Lean_Parser_Command_sym__simp__field_quot___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__8_value)}};
-static const lean_object* l_Lean_Parser_Command_sym__simp__field_quot___closed__9 = (const lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__9_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Command_sym__simp__field_quot = (const lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__9_value;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_ground___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_ground___closed__0;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_ground___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_ground___closed__1;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_ground___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_ground___closed__2;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_ground___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_ground___closed__3;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_ground___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_ground___closed__4;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_ground___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_ground___closed__5;
+LEAN_EXPORT lean_object* l_Lean_Parser_Sym_Simp_ground;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_telescope___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_telescope___closed__0;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_telescope___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_telescope___closed__1;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_telescope___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_telescope___closed__2;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_telescope___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_telescope___closed__3;
+LEAN_EXPORT lean_object* l_Lean_Parser_Sym_Simp_telescope;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_control___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_control___closed__0;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_control___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_control___closed__1;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_control___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_control___closed__2;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_control___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_control___closed__3;
+LEAN_EXPORT lean_object* l_Lean_Parser_Sym_Simp_control;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_arrowTelescope___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_arrowTelescope___closed__0;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_arrowTelescope___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_arrowTelescope___closed__1;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_arrowTelescope___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_arrowTelescope___closed__2;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_arrowTelescope___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_arrowTelescope___closed__3;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_arrowTelescope___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_arrowTelescope___closed__4;
+LEAN_EXPORT lean_object* l_Lean_Parser_Sym_Simp_arrowTelescope;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteSet___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__0;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteSet___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__1;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteSet___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__2;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteSet___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__3;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteSet___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__4;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteSet___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__5;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteSet___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__6;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteSet___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__7;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteSet___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__8;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteSet___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__9;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteSet___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__10;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteSet___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__11;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteSet___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__12;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteSet___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__13;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteSet___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__14;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteSet___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteSet___closed__15;
+LEAN_EXPORT lean_object* l_Lean_Parser_Sym_Simp_rewriteSet;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteInline___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__0;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteInline___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__1;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteInline___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__2;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteInline___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__3;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteInline___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__4;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteInline___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__5;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteInline___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__6;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteInline___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__7;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteInline___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__8;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteInline___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__9;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteInline___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__10;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteInline___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__11;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteInline___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__12;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteInline___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__13;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_rewriteInline___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_rewriteInline___closed__14;
+LEAN_EXPORT lean_object* l_Lean_Parser_Sym_Simp_rewriteInline;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_self___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_self___closed__0;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_self___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_self___closed__1;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_self___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_self___closed__2;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_self___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_self___closed__3;
+LEAN_EXPORT lean_object* l_Lean_Parser_Sym_Simp_self;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_none___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_none___closed__0;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_none___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_none___closed__1;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_none___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_none___closed__2;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_none___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_none___closed__3;
+LEAN_EXPORT lean_object* l_Lean_Parser_Sym_Simp_none;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_andThen___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_andThen___closed__0;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_andThen___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_andThen___closed__1;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_andThen___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_andThen___closed__2;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_andThen___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_andThen___closed__3;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_andThen___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_andThen___closed__4;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_andThen___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_andThen___closed__5;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_andThen___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_andThen___closed__6;
+LEAN_EXPORT lean_object* l_Lean_Parser_Sym_Simp_andThen;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_orElse___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_orElse___closed__0;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_orElse___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_orElse___closed__1;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_orElse___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_orElse___closed__2;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_orElse___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_orElse___closed__3;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_orElse___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_orElse___closed__4;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_orElse___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_orElse___closed__5;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_orElse___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_orElse___closed__6;
+LEAN_EXPORT lean_object* l_Lean_Parser_Sym_Simp_orElse;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_simprocParen___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_simprocParen___closed__0;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_simprocParen___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_simprocParen___closed__1;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_simprocParen___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_simprocParen___closed__2;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_simprocParen___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_simprocParen___closed__3;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_simprocParen___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_simprocParen___closed__4;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_simprocParen___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_simprocParen___closed__5;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_simprocParen___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_simprocParen___closed__6;
+LEAN_EXPORT lean_object* l_Lean_Parser_Sym_Simp_simprocParen;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_dischSelf___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_dischSelf___closed__0;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_dischSelf___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_dischSelf___closed__1;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_dischSelf___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_dischSelf___closed__2;
+LEAN_EXPORT lean_object* l_Lean_Parser_Sym_Simp_dischSelf;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_dischNone___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_dischNone___closed__0;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_dischNone___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_dischNone___closed__1;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_dischNone___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_dischNone___closed__2;
+LEAN_EXPORT lean_object* l_Lean_Parser_Sym_Simp_dischNone;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_dischParen___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_dischParen___closed__0;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_dischParen___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_dischParen___closed__1;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_dischParen___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_dischParen___closed__2;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_dischParen___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_dischParen___closed__3;
+static lean_once_cell_t l_Lean_Parser_Sym_Simp_dischParen___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Sym_Simp_dischParen___closed__4;
+LEAN_EXPORT lean_object* l_Lean_Parser_Sym_Simp_dischParen;
+static lean_once_cell_t l_Lean_Parser_Command_sym__simp__field_quot___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_sym__simp__field_quot___closed__0;
+static lean_once_cell_t l_Lean_Parser_Command_sym__simp__field_quot___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_sym__simp__field_quot___closed__1;
+static lean_once_cell_t l_Lean_Parser_Command_sym__simp__field_quot___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_sym__simp__field_quot___closed__2;
+static lean_once_cell_t l_Lean_Parser_Command_sym__simp__field_quot___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_sym__simp__field_quot___closed__3;
+static lean_once_cell_t l_Lean_Parser_Command_sym__simp__field_quot___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_sym__simp__field_quot___closed__4;
+static lean_once_cell_t l_Lean_Parser_Command_sym__simp__field_quot___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_sym__simp__field_quot___closed__5;
+static lean_once_cell_t l_Lean_Parser_Command_sym__simp__field_quot___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_sym__simp__field_quot___closed__6;
+static lean_once_cell_t l_Lean_Parser_Command_sym__simp__field_quot___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_sym__simp__field_quot___closed__7;
+static lean_once_cell_t l_Lean_Parser_Command_sym__simp__field_quot___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_sym__simp__field_quot___closed__8;
+static lean_once_cell_t l_Lean_Parser_Command_sym__simp__field_quot___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_sym__simp__field_quot___closed__9;
+LEAN_EXPORT lean_object* l_Lean_Parser_Command_sym__simp__field_quot;
 LEAN_EXPORT lean_object* l_Lean_Parser_Category_sym__simp__field;
-static const lean_string_object l_Lean_Parser_Command_symSimpFieldPre___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "Command"};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldPre___closed__0 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__0_value;
-static const lean_string_object l_Lean_Parser_Command_symSimpFieldPre___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "symSimpFieldPre"};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldPre___closed__1 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__1_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldPre___closed__2_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldPre___closed__2_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__2_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldPre___closed__2_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__2_value_aux_1),((lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__0_value),LEAN_SCALAR_PTR_LITERAL(214, 208, 105, 11, 221, 56, 173, 240)}};
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldPre___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__2_value_aux_2),((lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__1_value),LEAN_SCALAR_PTR_LITERAL(55, 39, 173, 182, 117, 84, 135, 127)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldPre___closed__2 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__2_value;
-static const lean_string_object l_Lean_Parser_Command_symSimpFieldPre___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "pre"};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldPre___closed__3 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__3_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldPre___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 8, .m_other = 1, .m_tag = 6}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__3_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldPre___closed__4 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__4_value;
-static const lean_string_object l_Lean_Parser_Command_symSimpFieldPre___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = " := "};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldPre___closed__5 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__5_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldPre___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__5_value)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldPre___closed__6 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__6_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldPre___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__4_value),((lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__6_value)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldPre___closed__7 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__7_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldPre___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__7_value),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12_value)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldPre___closed__8 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__8_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldPre___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__2_value),((lean_object*)(((size_t)(1022) << 1) | 1)),((lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__8_value)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldPre___closed__9 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__9_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Command_symSimpFieldPre = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__9_value;
-static const lean_string_object l_Lean_Parser_Command_symSimpFieldPost___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 17, .m_capacity = 17, .m_length = 16, .m_data = "symSimpFieldPost"};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldPost___closed__0 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldPost___closed__0_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldPost___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldPost___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldPost___closed__1_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldPost___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldPost___closed__1_value_aux_1),((lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__0_value),LEAN_SCALAR_PTR_LITERAL(214, 208, 105, 11, 221, 56, 173, 240)}};
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldPost___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldPost___closed__1_value_aux_2),((lean_object*)&l_Lean_Parser_Command_symSimpFieldPost___closed__0_value),LEAN_SCALAR_PTR_LITERAL(141, 158, 112, 0, 222, 65, 195, 224)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldPost___closed__1 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldPost___closed__1_value;
-static const lean_string_object l_Lean_Parser_Command_symSimpFieldPost___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "post"};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldPost___closed__2 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldPost___closed__2_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldPost___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 8, .m_other = 1, .m_tag = 6}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldPost___closed__2_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldPost___closed__3 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldPost___closed__3_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldPost___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Command_symSimpFieldPost___closed__3_value),((lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__6_value)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldPost___closed__4 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldPost___closed__4_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldPost___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Command_symSimpFieldPost___closed__4_value),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12_value)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldPost___closed__5 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldPost___closed__5_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldPost___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldPost___closed__1_value),((lean_object*)(((size_t)(1022) << 1) | 1)),((lean_object*)&l_Lean_Parser_Command_symSimpFieldPost___closed__5_value)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldPost___closed__6 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldPost___closed__6_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Command_symSimpFieldPost = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldPost___closed__6_value;
-static const lean_string_object l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 21, .m_capacity = 21, .m_length = 20, .m_data = "symSimpFieldMaxSteps"};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__0 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__0_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__1_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__1_value_aux_1),((lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__0_value),LEAN_SCALAR_PTR_LITERAL(214, 208, 105, 11, 221, 56, 173, 240)}};
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__1_value_aux_2),((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__0_value),LEAN_SCALAR_PTR_LITERAL(3, 59, 159, 191, 234, 244, 46, 27)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__1 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__1_value;
-static const lean_string_object l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "maxSteps"};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__2 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__2_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 8, .m_other = 1, .m_tag = 6}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__2_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__3 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__3_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__3_value),((lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__6_value)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__4 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__4_value;
-static const lean_string_object l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "num"};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__5 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__5_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__5_value),LEAN_SCALAR_PTR_LITERAL(227, 68, 22, 222, 47, 51, 204, 84)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__6 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__6_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__6_value)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__7 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__7_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__4_value),((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__7_value)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__8 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__8_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__1_value),((lean_object*)(((size_t)(1022) << 1) | 1)),((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__8_value)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__9 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__9_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__9_value;
-static const lean_string_object l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 30, .m_capacity = 30, .m_length = 29, .m_data = "symSimpFieldMaxDischargeDepth"};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__0 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__0_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__1_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__1_value_aux_1),((lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__0_value),LEAN_SCALAR_PTR_LITERAL(214, 208, 105, 11, 221, 56, 173, 240)}};
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__1_value_aux_2),((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__0_value),LEAN_SCALAR_PTR_LITERAL(244, 101, 101, 105, 195, 9, 110, 88)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__1 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__1_value;
-static const lean_string_object l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 18, .m_capacity = 18, .m_length = 17, .m_data = "maxDischargeDepth"};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__2 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__2_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 8, .m_other = 1, .m_tag = 6}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__2_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__3 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__3_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__3_value),((lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__6_value)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__4 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__4_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__4_value),((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__7_value)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__5 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__5_value;
-static const lean_ctor_object l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__1_value),((lean_object*)(((size_t)(1022) << 1) | 1)),((lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__5_value)}};
-static const lean_object* l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__6 = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__6_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth = (const lean_object*)&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__6_value;
-static const lean_string_object l_Lean_Parser_Command_registerSymSimp___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "registerSymSimp"};
-static const lean_object* l_Lean_Parser_Command_registerSymSimp___closed__0 = (const lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__0_value;
-static const lean_ctor_object l_Lean_Parser_Command_registerSymSimp___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Lean_Parser_Command_registerSymSimp___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__1_value_aux_0),((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Lean_Parser_Command_registerSymSimp___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__1_value_aux_1),((lean_object*)&l_Lean_Parser_Command_symSimpFieldPre___closed__0_value),LEAN_SCALAR_PTR_LITERAL(214, 208, 105, 11, 221, 56, 173, 240)}};
-static const lean_ctor_object l_Lean_Parser_Command_registerSymSimp___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__1_value_aux_2),((lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__0_value),LEAN_SCALAR_PTR_LITERAL(184, 45, 50, 162, 52, 223, 148, 3)}};
-static const lean_object* l_Lean_Parser_Command_registerSymSimp___closed__1 = (const lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__1_value;
-static const lean_string_object l_Lean_Parser_Command_registerSymSimp___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 18, .m_capacity = 18, .m_length = 17, .m_data = "register_sym_simp"};
-static const lean_object* l_Lean_Parser_Command_registerSymSimp___closed__2 = (const lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__2_value;
-static const lean_ctor_object l_Lean_Parser_Command_registerSymSimp___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__2_value)}};
-static const lean_object* l_Lean_Parser_Command_registerSymSimp___closed__3 = (const lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__3_value;
-static const lean_ctor_object l_Lean_Parser_Command_registerSymSimp___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__3_value),((lean_object*)&l_Lean_Parser_Sym_Simp_rewriteSet___closed__6_value)}};
-static const lean_object* l_Lean_Parser_Command_registerSymSimp___closed__4 = (const lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__4_value;
-static const lean_string_object l_Lean_Parser_Command_registerSymSimp___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "where"};
-static const lean_object* l_Lean_Parser_Command_registerSymSimp___closed__5 = (const lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__5_value;
-static const lean_ctor_object l_Lean_Parser_Command_registerSymSimp___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__5_value)}};
-static const lean_object* l_Lean_Parser_Command_registerSymSimp___closed__6 = (const lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__6_value;
-static const lean_ctor_object l_Lean_Parser_Command_registerSymSimp___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__4_value),((lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__6_value)}};
-static const lean_object* l_Lean_Parser_Command_registerSymSimp___closed__7 = (const lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__7_value;
-static const lean_string_object l_Lean_Parser_Command_registerSymSimp___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "many"};
-static const lean_object* l_Lean_Parser_Command_registerSymSimp___closed__8 = (const lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__8_value;
-static const lean_ctor_object l_Lean_Parser_Command_registerSymSimp___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__8_value),LEAN_SCALAR_PTR_LITERAL(41, 35, 40, 86, 189, 97, 244, 31)}};
-static const lean_object* l_Lean_Parser_Command_registerSymSimp___closed__9 = (const lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__9_value;
-static const lean_string_object l_Lean_Parser_Command_registerSymSimp___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "colGt"};
-static const lean_object* l_Lean_Parser_Command_registerSymSimp___closed__10 = (const lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__10_value;
-static const lean_ctor_object l_Lean_Parser_Command_registerSymSimp___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__10_value),LEAN_SCALAR_PTR_LITERAL(185, 236, 32, 153, 169, 213, 53, 244)}};
-static const lean_object* l_Lean_Parser_Command_registerSymSimp___closed__11 = (const lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__11_value;
-static const lean_ctor_object l_Lean_Parser_Command_registerSymSimp___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__11_value)}};
-static const lean_object* l_Lean_Parser_Command_registerSymSimp___closed__12 = (const lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__12_value;
-static const lean_ctor_object l_Lean_Parser_Command_registerSymSimp___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__12_value),((lean_object*)&l_Lean_Parser_Command_sym__simp__field_quot___closed__5_value)}};
-static const lean_object* l_Lean_Parser_Command_registerSymSimp___closed__13 = (const lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__13_value;
-static const lean_ctor_object l_Lean_Parser_Command_registerSymSimp___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__9_value),((lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__13_value)}};
-static const lean_object* l_Lean_Parser_Command_registerSymSimp___closed__14 = (const lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__14_value;
-static const lean_ctor_object l_Lean_Parser_Command_registerSymSimp___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_value),((lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__7_value),((lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__14_value)}};
-static const lean_object* l_Lean_Parser_Command_registerSymSimp___closed__15 = (const lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__15_value;
-static const lean_ctor_object l_Lean_Parser_Command_registerSymSimp___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__1_value),((lean_object*)(((size_t)(1022) << 1) | 1)),((lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__15_value)}};
-static const lean_object* l_Lean_Parser_Command_registerSymSimp___closed__16 = (const lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__16_value;
-LEAN_EXPORT const lean_object* l_Lean_Parser_Command_registerSymSimp = (const lean_object*)&l_Lean_Parser_Command_registerSymSimp___closed__16_value;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldPre___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldPre___closed__0;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldPre___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldPre___closed__1;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldPre___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldPre___closed__2;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldPre___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldPre___closed__3;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldPre___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldPre___closed__4;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldPre___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldPre___closed__5;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldPre___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldPre___closed__6;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldPre___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldPre___closed__7;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldPre___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldPre___closed__8;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldPre___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldPre___closed__9;
+LEAN_EXPORT lean_object* l_Lean_Parser_Command_symSimpFieldPre;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldPost___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldPost___closed__0;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldPost___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldPost___closed__1;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldPost___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldPost___closed__2;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldPost___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldPost___closed__3;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldPost___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldPost___closed__4;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldPost___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldPost___closed__5;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldPost___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldPost___closed__6;
+LEAN_EXPORT lean_object* l_Lean_Parser_Command_symSimpFieldPost;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__0;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__1;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__2;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__3;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__4;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__5;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__6;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__7;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__8;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__9;
+LEAN_EXPORT lean_object* l_Lean_Parser_Command_symSimpFieldMaxSteps;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__0;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__1;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__2;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__3;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__4;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__5;
+static lean_once_cell_t l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__6;
+LEAN_EXPORT lean_object* l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth;
+static lean_once_cell_t l_Lean_Parser_Command_registerSymSimp___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_registerSymSimp___closed__0;
+static lean_once_cell_t l_Lean_Parser_Command_registerSymSimp___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_registerSymSimp___closed__1;
+static lean_once_cell_t l_Lean_Parser_Command_registerSymSimp___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_registerSymSimp___closed__2;
+static lean_once_cell_t l_Lean_Parser_Command_registerSymSimp___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_registerSymSimp___closed__3;
+static lean_once_cell_t l_Lean_Parser_Command_registerSymSimp___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_registerSymSimp___closed__4;
+static lean_once_cell_t l_Lean_Parser_Command_registerSymSimp___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_registerSymSimp___closed__5;
+static lean_once_cell_t l_Lean_Parser_Command_registerSymSimp___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_registerSymSimp___closed__6;
+static lean_once_cell_t l_Lean_Parser_Command_registerSymSimp___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_registerSymSimp___closed__7;
+static lean_once_cell_t l_Lean_Parser_Command_registerSymSimp___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_registerSymSimp___closed__8;
+static lean_once_cell_t l_Lean_Parser_Command_registerSymSimp___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_registerSymSimp___closed__9;
+static lean_once_cell_t l_Lean_Parser_Command_registerSymSimp___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_registerSymSimp___closed__10;
+static lean_once_cell_t l_Lean_Parser_Command_registerSymSimp___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_registerSymSimp___closed__11;
+static lean_once_cell_t l_Lean_Parser_Command_registerSymSimp___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_registerSymSimp___closed__12;
+static lean_once_cell_t l_Lean_Parser_Command_registerSymSimp___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_registerSymSimp___closed__13;
+static lean_once_cell_t l_Lean_Parser_Command_registerSymSimp___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_registerSymSimp___closed__14;
+static lean_once_cell_t l_Lean_Parser_Command_registerSymSimp___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_registerSymSimp___closed__15;
+static lean_once_cell_t l_Lean_Parser_Command_registerSymSimp___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Parser_Command_registerSymSimp___closed__16;
+LEAN_EXPORT lean_object* l_Lean_Parser_Command_registerSymSimp;
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; 
+v___x_1_ = lean_mk_string_unchecked("Lean", 4, 4);
+return v___x_1_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1(void){
+_start:
+{
+lean_object* v___x_2_; 
+v___x_2_ = lean_mk_string_unchecked("Parser", 6, 6);
+return v___x_2_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__2(void){
+_start:
+{
+lean_object* v___x_3_; 
+v___x_3_ = lean_mk_string_unchecked("Term", 4, 4);
+return v___x_3_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3(void){
+_start:
+{
+lean_object* v___x_4_; 
+v___x_4_ = lean_mk_string_unchecked("quot", 4, 4);
+return v___x_4_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4(void){
+_start:
+{
+lean_object* v___x_5_; lean_object* v___x_6_; lean_object* v___x_7_; lean_object* v___x_8_; lean_object* v___x_9_; 
+v___x_5_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3);
+v___x_6_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__2, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__2_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__2);
+v___x_7_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1);
+v___x_8_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0);
+v___x_9_ = l_Lean_Name_mkStr4(v___x_8_, v___x_7_, v___x_6_, v___x_5_);
+return v___x_9_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__5(void){
+_start:
+{
+lean_object* v___x_10_; 
+v___x_10_ = lean_mk_string_unchecked("sym_simproc", 11, 11);
+return v___x_10_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__6(void){
+_start:
+{
+lean_object* v___x_11_; lean_object* v___x_12_; lean_object* v___x_13_; 
+v___x_11_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3);
+v___x_12_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__5, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__5_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__5);
+v___x_13_ = l_Lean_Name_mkStr2(v___x_12_, v___x_11_);
+return v___x_13_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__7(void){
+_start:
+{
+lean_object* v___x_14_; 
+v___x_14_ = lean_mk_string_unchecked("andthen", 7, 7);
+return v___x_14_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8(void){
+_start:
+{
+lean_object* v___x_15_; lean_object* v___x_16_; 
+v___x_15_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__7, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__7_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__7);
+v___x_16_ = l_Lean_Name_mkStr1(v___x_15_);
+return v___x_16_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__9(void){
+_start:
+{
+lean_object* v___x_17_; 
+v___x_17_ = lean_mk_string_unchecked("`(sym_simproc| ", 15, 15);
+return v___x_17_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__10(void){
+_start:
+{
+lean_object* v___x_18_; lean_object* v___x_19_; 
+v___x_18_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__9, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__9_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__9);
+v___x_19_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_19_, 0, v___x_18_);
+return v___x_19_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__11(void){
+_start:
+{
+lean_object* v___x_20_; lean_object* v___x_21_; 
+v___x_20_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__5, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__5_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__5);
+v___x_21_ = l_Lean_Name_mkStr1(v___x_20_);
+return v___x_21_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12(void){
+_start:
+{
+lean_object* v___x_22_; lean_object* v___x_23_; lean_object* v___x_24_; 
+v___x_22_ = lean_unsigned_to_nat(0u);
+v___x_23_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__11, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__11_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__11);
+v___x_24_ = lean_alloc_ctor(7, 2, 0);
+lean_ctor_set(v___x_24_, 0, v___x_23_);
+lean_ctor_set(v___x_24_, 1, v___x_22_);
+return v___x_24_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__13(void){
+_start:
+{
+lean_object* v___x_25_; 
+v___x_25_ = lean_mk_string_unchecked(")", 1, 1);
+return v___x_25_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14(void){
+_start:
+{
+lean_object* v___x_26_; lean_object* v___x_27_; 
+v___x_26_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__13, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__13_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__13);
+v___x_27_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_27_, 0, v___x_26_);
+return v___x_27_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__15(void){
+_start:
+{
+lean_object* v___x_28_; lean_object* v___x_29_; lean_object* v___x_30_; lean_object* v___x_31_; 
+v___x_28_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14);
+v___x_29_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12);
+v___x_30_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_31_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_31_, 0, v___x_30_);
+lean_ctor_set(v___x_31_, 1, v___x_29_);
+lean_ctor_set(v___x_31_, 2, v___x_28_);
+return v___x_31_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__16(void){
+_start:
+{
+lean_object* v___x_32_; lean_object* v___x_33_; lean_object* v___x_34_; lean_object* v___x_35_; 
+v___x_32_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__15, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__15_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__15);
+v___x_33_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__10, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__10_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__10);
+v___x_34_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_35_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_35_, 0, v___x_34_);
+lean_ctor_set(v___x_35_, 1, v___x_33_);
+lean_ctor_set(v___x_35_, 2, v___x_32_);
+return v___x_35_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__17(void){
+_start:
+{
+lean_object* v___x_36_; lean_object* v___x_37_; lean_object* v___x_38_; lean_object* v___x_39_; 
+v___x_36_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__16, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__16_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__16);
+v___x_37_ = lean_unsigned_to_nat(1024u);
+v___x_38_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__6, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__6_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__6);
+v___x_39_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_39_, 0, v___x_38_);
+lean_ctor_set(v___x_39_, 1, v___x_37_);
+lean_ctor_set(v___x_39_, 2, v___x_36_);
+return v___x_39_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__18(void){
+_start:
+{
+lean_object* v___x_40_; lean_object* v___x_41_; lean_object* v___x_42_; lean_object* v___x_43_; 
+v___x_40_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__17, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__17_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__17);
+v___x_41_ = lean_unsigned_to_nat(1024u);
+v___x_42_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4);
+v___x_43_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_43_, 0, v___x_42_);
+lean_ctor_set(v___x_43_, 1, v___x_41_);
+lean_ctor_set(v___x_43_, 2, v___x_40_);
+return v___x_43_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot(void){
+_start:
+{
+lean_object* v___x_44_; 
+v___x_44_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__18, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__18_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__18);
+return v___x_44_;
+}
+}
 static lean_object* _init_l_Lean_Parser_Category_sym__simproc(void){
 _start:
 {
 lean_object* v___x_45_; 
 v___x_45_ = lean_box(0);
 return v___x_45_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__0(void){
+_start:
+{
+lean_object* v___x_46_; 
+v___x_46_ = lean_mk_string_unchecked("sym_discharger", 14, 14);
+return v___x_46_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__1(void){
+_start:
+{
+lean_object* v___x_47_; lean_object* v___x_48_; lean_object* v___x_49_; 
+v___x_47_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3);
+v___x_48_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__0);
+v___x_49_ = l_Lean_Name_mkStr2(v___x_48_, v___x_47_);
+return v___x_49_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__2(void){
+_start:
+{
+lean_object* v___x_50_; 
+v___x_50_ = lean_mk_string_unchecked("`(sym_discharger| ", 18, 18);
+return v___x_50_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__3(void){
+_start:
+{
+lean_object* v___x_51_; lean_object* v___x_52_; 
+v___x_51_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__2, &l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__2_once, _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__2);
+v___x_52_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_52_, 0, v___x_51_);
+return v___x_52_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__4(void){
+_start:
+{
+lean_object* v___x_53_; lean_object* v___x_54_; 
+v___x_53_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__0);
+v___x_54_ = l_Lean_Name_mkStr1(v___x_53_);
+return v___x_54_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__5(void){
+_start:
+{
+lean_object* v___x_55_; lean_object* v___x_56_; lean_object* v___x_57_; 
+v___x_55_ = lean_unsigned_to_nat(0u);
+v___x_56_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__4, &l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__4_once, _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__4);
+v___x_57_ = lean_alloc_ctor(7, 2, 0);
+lean_ctor_set(v___x_57_, 0, v___x_56_);
+lean_ctor_set(v___x_57_, 1, v___x_55_);
+return v___x_57_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__6(void){
+_start:
+{
+lean_object* v___x_58_; lean_object* v___x_59_; lean_object* v___x_60_; lean_object* v___x_61_; 
+v___x_58_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14);
+v___x_59_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__5, &l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__5_once, _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__5);
+v___x_60_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_61_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_61_, 0, v___x_60_);
+lean_ctor_set(v___x_61_, 1, v___x_59_);
+lean_ctor_set(v___x_61_, 2, v___x_58_);
+return v___x_61_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__7(void){
+_start:
+{
+lean_object* v___x_62_; lean_object* v___x_63_; lean_object* v___x_64_; lean_object* v___x_65_; 
+v___x_62_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__6, &l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__6_once, _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__6);
+v___x_63_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__3, &l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__3_once, _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__3);
+v___x_64_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_65_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_65_, 0, v___x_64_);
+lean_ctor_set(v___x_65_, 1, v___x_63_);
+lean_ctor_set(v___x_65_, 2, v___x_62_);
+return v___x_65_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__8(void){
+_start:
+{
+lean_object* v___x_66_; lean_object* v___x_67_; lean_object* v___x_68_; lean_object* v___x_69_; 
+v___x_66_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__7, &l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__7_once, _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__7);
+v___x_67_ = lean_unsigned_to_nat(1024u);
+v___x_68_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__1, &l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__1_once, _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__1);
+v___x_69_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_69_, 0, v___x_68_);
+lean_ctor_set(v___x_69_, 1, v___x_67_);
+lean_ctor_set(v___x_69_, 2, v___x_66_);
+return v___x_69_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__9(void){
+_start:
+{
+lean_object* v___x_70_; lean_object* v___x_71_; lean_object* v___x_72_; lean_object* v___x_73_; 
+v___x_70_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__8);
+v___x_71_ = lean_unsigned_to_nat(1024u);
+v___x_72_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4);
+v___x_73_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_73_, 0, v___x_72_);
+lean_ctor_set(v___x_73_, 1, v___x_71_);
+lean_ctor_set(v___x_73_, 2, v___x_70_);
+return v___x_73_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot(void){
+_start:
+{
+lean_object* v___x_74_; 
+v___x_74_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__9, &l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__9_once, _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__9);
+return v___x_74_;
 }
 }
 static lean_object* _init_l_Lean_Parser_Category_sym__discharger(void){
@@ -495,12 +739,1872 @@ v___x_75_ = lean_box(0);
 return v___x_75_;
 }
 }
+static lean_object* _init_l_Lean_Parser_Sym_Simp_ground___closed__0(void){
+_start:
+{
+lean_object* v___x_76_; 
+v___x_76_ = lean_mk_string_unchecked("Sym", 3, 3);
+return v___x_76_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_ground___closed__1(void){
+_start:
+{
+lean_object* v___x_77_; 
+v___x_77_ = lean_mk_string_unchecked("Simp", 4, 4);
+return v___x_77_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_ground___closed__2(void){
+_start:
+{
+lean_object* v___x_78_; 
+v___x_78_ = lean_mk_string_unchecked("ground", 6, 6);
+return v___x_78_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_ground___closed__3(void){
+_start:
+{
+lean_object* v___x_79_; lean_object* v___x_80_; lean_object* v___x_81_; lean_object* v___x_82_; lean_object* v___x_83_; lean_object* v___x_84_; 
+v___x_79_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__2, &l_Lean_Parser_Sym_Simp_ground___closed__2_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__2);
+v___x_80_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__1, &l_Lean_Parser_Sym_Simp_ground___closed__1_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__1);
+v___x_81_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__0, &l_Lean_Parser_Sym_Simp_ground___closed__0_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__0);
+v___x_82_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1);
+v___x_83_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0);
+v___x_84_ = l_Lean_Name_mkStr5(v___x_83_, v___x_82_, v___x_81_, v___x_80_, v___x_79_);
+return v___x_84_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_ground___closed__4(void){
+_start:
+{
+uint8_t v___x_85_; lean_object* v___x_86_; lean_object* v___x_87_; 
+v___x_85_ = 0;
+v___x_86_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__2, &l_Lean_Parser_Sym_Simp_ground___closed__2_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__2);
+v___x_87_ = lean_alloc_ctor(6, 1, 1);
+lean_ctor_set(v___x_87_, 0, v___x_86_);
+lean_ctor_set_uint8(v___x_87_, sizeof(void*)*1, v___x_85_);
+return v___x_87_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_ground___closed__5(void){
+_start:
+{
+lean_object* v___x_88_; lean_object* v___x_89_; lean_object* v___x_90_; lean_object* v___x_91_; 
+v___x_88_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__4, &l_Lean_Parser_Sym_Simp_ground___closed__4_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__4);
+v___x_89_ = lean_unsigned_to_nat(1024u);
+v___x_90_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__3, &l_Lean_Parser_Sym_Simp_ground___closed__3_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__3);
+v___x_91_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_91_, 0, v___x_90_);
+lean_ctor_set(v___x_91_, 1, v___x_89_);
+lean_ctor_set(v___x_91_, 2, v___x_88_);
+return v___x_91_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_ground(void){
+_start:
+{
+lean_object* v___x_92_; 
+v___x_92_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__5, &l_Lean_Parser_Sym_Simp_ground___closed__5_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__5);
+return v___x_92_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_telescope___closed__0(void){
+_start:
+{
+lean_object* v___x_93_; 
+v___x_93_ = lean_mk_string_unchecked("telescope", 9, 9);
+return v___x_93_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_telescope___closed__1(void){
+_start:
+{
+lean_object* v___x_94_; lean_object* v___x_95_; lean_object* v___x_96_; lean_object* v___x_97_; lean_object* v___x_98_; lean_object* v___x_99_; 
+v___x_94_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_telescope___closed__0, &l_Lean_Parser_Sym_Simp_telescope___closed__0_once, _init_l_Lean_Parser_Sym_Simp_telescope___closed__0);
+v___x_95_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__1, &l_Lean_Parser_Sym_Simp_ground___closed__1_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__1);
+v___x_96_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__0, &l_Lean_Parser_Sym_Simp_ground___closed__0_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__0);
+v___x_97_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1);
+v___x_98_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0);
+v___x_99_ = l_Lean_Name_mkStr5(v___x_98_, v___x_97_, v___x_96_, v___x_95_, v___x_94_);
+return v___x_99_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_telescope___closed__2(void){
+_start:
+{
+uint8_t v___x_100_; lean_object* v___x_101_; lean_object* v___x_102_; 
+v___x_100_ = 0;
+v___x_101_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_telescope___closed__0, &l_Lean_Parser_Sym_Simp_telescope___closed__0_once, _init_l_Lean_Parser_Sym_Simp_telescope___closed__0);
+v___x_102_ = lean_alloc_ctor(6, 1, 1);
+lean_ctor_set(v___x_102_, 0, v___x_101_);
+lean_ctor_set_uint8(v___x_102_, sizeof(void*)*1, v___x_100_);
+return v___x_102_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_telescope___closed__3(void){
+_start:
+{
+lean_object* v___x_103_; lean_object* v___x_104_; lean_object* v___x_105_; lean_object* v___x_106_; 
+v___x_103_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_telescope___closed__2, &l_Lean_Parser_Sym_Simp_telescope___closed__2_once, _init_l_Lean_Parser_Sym_Simp_telescope___closed__2);
+v___x_104_ = lean_unsigned_to_nat(1024u);
+v___x_105_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_telescope___closed__1, &l_Lean_Parser_Sym_Simp_telescope___closed__1_once, _init_l_Lean_Parser_Sym_Simp_telescope___closed__1);
+v___x_106_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_106_, 0, v___x_105_);
+lean_ctor_set(v___x_106_, 1, v___x_104_);
+lean_ctor_set(v___x_106_, 2, v___x_103_);
+return v___x_106_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_telescope(void){
+_start:
+{
+lean_object* v___x_107_; 
+v___x_107_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_telescope___closed__3, &l_Lean_Parser_Sym_Simp_telescope___closed__3_once, _init_l_Lean_Parser_Sym_Simp_telescope___closed__3);
+return v___x_107_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_control___closed__0(void){
+_start:
+{
+lean_object* v___x_108_; 
+v___x_108_ = lean_mk_string_unchecked("control", 7, 7);
+return v___x_108_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_control___closed__1(void){
+_start:
+{
+lean_object* v___x_109_; lean_object* v___x_110_; lean_object* v___x_111_; lean_object* v___x_112_; lean_object* v___x_113_; lean_object* v___x_114_; 
+v___x_109_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_control___closed__0, &l_Lean_Parser_Sym_Simp_control___closed__0_once, _init_l_Lean_Parser_Sym_Simp_control___closed__0);
+v___x_110_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__1, &l_Lean_Parser_Sym_Simp_ground___closed__1_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__1);
+v___x_111_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__0, &l_Lean_Parser_Sym_Simp_ground___closed__0_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__0);
+v___x_112_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1);
+v___x_113_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0);
+v___x_114_ = l_Lean_Name_mkStr5(v___x_113_, v___x_112_, v___x_111_, v___x_110_, v___x_109_);
+return v___x_114_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_control___closed__2(void){
+_start:
+{
+uint8_t v___x_115_; lean_object* v___x_116_; lean_object* v___x_117_; 
+v___x_115_ = 0;
+v___x_116_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_control___closed__0, &l_Lean_Parser_Sym_Simp_control___closed__0_once, _init_l_Lean_Parser_Sym_Simp_control___closed__0);
+v___x_117_ = lean_alloc_ctor(6, 1, 1);
+lean_ctor_set(v___x_117_, 0, v___x_116_);
+lean_ctor_set_uint8(v___x_117_, sizeof(void*)*1, v___x_115_);
+return v___x_117_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_control___closed__3(void){
+_start:
+{
+lean_object* v___x_118_; lean_object* v___x_119_; lean_object* v___x_120_; lean_object* v___x_121_; 
+v___x_118_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_control___closed__2, &l_Lean_Parser_Sym_Simp_control___closed__2_once, _init_l_Lean_Parser_Sym_Simp_control___closed__2);
+v___x_119_ = lean_unsigned_to_nat(1024u);
+v___x_120_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_control___closed__1, &l_Lean_Parser_Sym_Simp_control___closed__1_once, _init_l_Lean_Parser_Sym_Simp_control___closed__1);
+v___x_121_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_121_, 0, v___x_120_);
+lean_ctor_set(v___x_121_, 1, v___x_119_);
+lean_ctor_set(v___x_121_, 2, v___x_118_);
+return v___x_121_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_control(void){
+_start:
+{
+lean_object* v___x_122_; 
+v___x_122_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_control___closed__3, &l_Lean_Parser_Sym_Simp_control___closed__3_once, _init_l_Lean_Parser_Sym_Simp_control___closed__3);
+return v___x_122_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_arrowTelescope___closed__0(void){
+_start:
+{
+lean_object* v___x_123_; 
+v___x_123_ = lean_mk_string_unchecked("arrowTelescope", 14, 14);
+return v___x_123_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_arrowTelescope___closed__1(void){
+_start:
+{
+lean_object* v___x_124_; lean_object* v___x_125_; lean_object* v___x_126_; lean_object* v___x_127_; lean_object* v___x_128_; lean_object* v___x_129_; 
+v___x_124_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_arrowTelescope___closed__0, &l_Lean_Parser_Sym_Simp_arrowTelescope___closed__0_once, _init_l_Lean_Parser_Sym_Simp_arrowTelescope___closed__0);
+v___x_125_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__1, &l_Lean_Parser_Sym_Simp_ground___closed__1_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__1);
+v___x_126_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__0, &l_Lean_Parser_Sym_Simp_ground___closed__0_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__0);
+v___x_127_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1);
+v___x_128_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0);
+v___x_129_ = l_Lean_Name_mkStr5(v___x_128_, v___x_127_, v___x_126_, v___x_125_, v___x_124_);
+return v___x_129_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_arrowTelescope___closed__2(void){
+_start:
+{
+lean_object* v___x_130_; 
+v___x_130_ = lean_mk_string_unchecked("arrow_telescope", 15, 15);
+return v___x_130_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_arrowTelescope___closed__3(void){
+_start:
+{
+uint8_t v___x_131_; lean_object* v___x_132_; lean_object* v___x_133_; 
+v___x_131_ = 0;
+v___x_132_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_arrowTelescope___closed__2, &l_Lean_Parser_Sym_Simp_arrowTelescope___closed__2_once, _init_l_Lean_Parser_Sym_Simp_arrowTelescope___closed__2);
+v___x_133_ = lean_alloc_ctor(6, 1, 1);
+lean_ctor_set(v___x_133_, 0, v___x_132_);
+lean_ctor_set_uint8(v___x_133_, sizeof(void*)*1, v___x_131_);
+return v___x_133_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_arrowTelescope___closed__4(void){
+_start:
+{
+lean_object* v___x_134_; lean_object* v___x_135_; lean_object* v___x_136_; lean_object* v___x_137_; 
+v___x_134_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_arrowTelescope___closed__3, &l_Lean_Parser_Sym_Simp_arrowTelescope___closed__3_once, _init_l_Lean_Parser_Sym_Simp_arrowTelescope___closed__3);
+v___x_135_ = lean_unsigned_to_nat(1024u);
+v___x_136_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_arrowTelescope___closed__1, &l_Lean_Parser_Sym_Simp_arrowTelescope___closed__1_once, _init_l_Lean_Parser_Sym_Simp_arrowTelescope___closed__1);
+v___x_137_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_137_, 0, v___x_136_);
+lean_ctor_set(v___x_137_, 1, v___x_135_);
+lean_ctor_set(v___x_137_, 2, v___x_134_);
+return v___x_137_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_arrowTelescope(void){
+_start:
+{
+lean_object* v___x_138_; 
+v___x_138_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_arrowTelescope___closed__4, &l_Lean_Parser_Sym_Simp_arrowTelescope___closed__4_once, _init_l_Lean_Parser_Sym_Simp_arrowTelescope___closed__4);
+return v___x_138_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__0(void){
+_start:
+{
+lean_object* v___x_139_; 
+v___x_139_ = lean_mk_string_unchecked("rewriteSet", 10, 10);
+return v___x_139_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__1(void){
+_start:
+{
+lean_object* v___x_140_; lean_object* v___x_141_; lean_object* v___x_142_; lean_object* v___x_143_; lean_object* v___x_144_; lean_object* v___x_145_; 
+v___x_140_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteSet___closed__0, &l_Lean_Parser_Sym_Simp_rewriteSet___closed__0_once, _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__0);
+v___x_141_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__1, &l_Lean_Parser_Sym_Simp_ground___closed__1_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__1);
+v___x_142_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__0, &l_Lean_Parser_Sym_Simp_ground___closed__0_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__0);
+v___x_143_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1);
+v___x_144_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0);
+v___x_145_ = l_Lean_Name_mkStr5(v___x_144_, v___x_143_, v___x_142_, v___x_141_, v___x_140_);
+return v___x_145_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__2(void){
+_start:
+{
+lean_object* v___x_146_; 
+v___x_146_ = lean_mk_string_unchecked("rewrite", 7, 7);
+return v___x_146_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__3(void){
+_start:
+{
+uint8_t v___x_147_; lean_object* v___x_148_; lean_object* v___x_149_; 
+v___x_147_ = 0;
+v___x_148_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteSet___closed__2, &l_Lean_Parser_Sym_Simp_rewriteSet___closed__2_once, _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__2);
+v___x_149_ = lean_alloc_ctor(6, 1, 1);
+lean_ctor_set(v___x_149_, 0, v___x_148_);
+lean_ctor_set_uint8(v___x_149_, sizeof(void*)*1, v___x_147_);
+return v___x_149_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__4(void){
+_start:
+{
+lean_object* v___x_150_; 
+v___x_150_ = lean_mk_string_unchecked("ident", 5, 5);
+return v___x_150_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__5(void){
+_start:
+{
+lean_object* v___x_151_; lean_object* v___x_152_; 
+v___x_151_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteSet___closed__4, &l_Lean_Parser_Sym_Simp_rewriteSet___closed__4_once, _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__4);
+v___x_152_ = l_Lean_Name_mkStr1(v___x_151_);
+return v___x_152_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__6(void){
+_start:
+{
+lean_object* v___x_153_; lean_object* v___x_154_; 
+v___x_153_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteSet___closed__5, &l_Lean_Parser_Sym_Simp_rewriteSet___closed__5_once, _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__5);
+v___x_154_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_154_, 0, v___x_153_);
+return v___x_154_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__7(void){
+_start:
+{
+lean_object* v___x_155_; lean_object* v___x_156_; lean_object* v___x_157_; lean_object* v___x_158_; 
+v___x_155_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteSet___closed__6, &l_Lean_Parser_Sym_Simp_rewriteSet___closed__6_once, _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__6);
+v___x_156_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteSet___closed__3, &l_Lean_Parser_Sym_Simp_rewriteSet___closed__3_once, _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__3);
+v___x_157_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_158_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_158_, 0, v___x_157_);
+lean_ctor_set(v___x_158_, 1, v___x_156_);
+lean_ctor_set(v___x_158_, 2, v___x_155_);
+return v___x_158_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__8(void){
+_start:
+{
+lean_object* v___x_159_; 
+v___x_159_ = lean_mk_string_unchecked("optional", 8, 8);
+return v___x_159_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__9(void){
+_start:
+{
+lean_object* v___x_160_; lean_object* v___x_161_; 
+v___x_160_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteSet___closed__8, &l_Lean_Parser_Sym_Simp_rewriteSet___closed__8_once, _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__8);
+v___x_161_ = l_Lean_Name_mkStr1(v___x_160_);
+return v___x_161_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__10(void){
+_start:
+{
+lean_object* v___x_162_; 
+v___x_162_ = lean_mk_string_unchecked(" with ", 6, 6);
+return v___x_162_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__11(void){
+_start:
+{
+lean_object* v___x_163_; lean_object* v___x_164_; 
+v___x_163_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteSet___closed__10, &l_Lean_Parser_Sym_Simp_rewriteSet___closed__10_once, _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__10);
+v___x_164_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_164_, 0, v___x_163_);
+return v___x_164_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__12(void){
+_start:
+{
+lean_object* v___x_165_; lean_object* v___x_166_; lean_object* v___x_167_; lean_object* v___x_168_; 
+v___x_165_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__5, &l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__5_once, _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__5);
+v___x_166_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteSet___closed__11, &l_Lean_Parser_Sym_Simp_rewriteSet___closed__11_once, _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__11);
+v___x_167_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_168_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_168_, 0, v___x_167_);
+lean_ctor_set(v___x_168_, 1, v___x_166_);
+lean_ctor_set(v___x_168_, 2, v___x_165_);
+return v___x_168_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__13(void){
+_start:
+{
+lean_object* v___x_169_; lean_object* v___x_170_; lean_object* v___x_171_; 
+v___x_169_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteSet___closed__12, &l_Lean_Parser_Sym_Simp_rewriteSet___closed__12_once, _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__12);
+v___x_170_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteSet___closed__9, &l_Lean_Parser_Sym_Simp_rewriteSet___closed__9_once, _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__9);
+v___x_171_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_171_, 0, v___x_170_);
+lean_ctor_set(v___x_171_, 1, v___x_169_);
+return v___x_171_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__14(void){
+_start:
+{
+lean_object* v___x_172_; lean_object* v___x_173_; lean_object* v___x_174_; lean_object* v___x_175_; 
+v___x_172_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteSet___closed__13, &l_Lean_Parser_Sym_Simp_rewriteSet___closed__13_once, _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__13);
+v___x_173_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteSet___closed__7, &l_Lean_Parser_Sym_Simp_rewriteSet___closed__7_once, _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__7);
+v___x_174_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_175_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_175_, 0, v___x_174_);
+lean_ctor_set(v___x_175_, 1, v___x_173_);
+lean_ctor_set(v___x_175_, 2, v___x_172_);
+return v___x_175_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__15(void){
+_start:
+{
+lean_object* v___x_176_; lean_object* v___x_177_; lean_object* v___x_178_; lean_object* v___x_179_; 
+v___x_176_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteSet___closed__14, &l_Lean_Parser_Sym_Simp_rewriteSet___closed__14_once, _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__14);
+v___x_177_ = lean_unsigned_to_nat(1022u);
+v___x_178_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteSet___closed__1, &l_Lean_Parser_Sym_Simp_rewriteSet___closed__1_once, _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__1);
+v___x_179_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_179_, 0, v___x_178_);
+lean_ctor_set(v___x_179_, 1, v___x_177_);
+lean_ctor_set(v___x_179_, 2, v___x_176_);
+return v___x_179_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteSet(void){
+_start:
+{
+lean_object* v___x_180_; 
+v___x_180_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteSet___closed__15, &l_Lean_Parser_Sym_Simp_rewriteSet___closed__15_once, _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__15);
+return v___x_180_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__0(void){
+_start:
+{
+lean_object* v___x_181_; 
+v___x_181_ = lean_mk_string_unchecked("rewriteInline", 13, 13);
+return v___x_181_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__1(void){
+_start:
+{
+lean_object* v___x_182_; lean_object* v___x_183_; lean_object* v___x_184_; lean_object* v___x_185_; lean_object* v___x_186_; lean_object* v___x_187_; 
+v___x_182_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteInline___closed__0, &l_Lean_Parser_Sym_Simp_rewriteInline___closed__0_once, _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__0);
+v___x_183_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__1, &l_Lean_Parser_Sym_Simp_ground___closed__1_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__1);
+v___x_184_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__0, &l_Lean_Parser_Sym_Simp_ground___closed__0_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__0);
+v___x_185_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1);
+v___x_186_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0);
+v___x_187_ = l_Lean_Name_mkStr5(v___x_186_, v___x_185_, v___x_184_, v___x_183_, v___x_182_);
+return v___x_187_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__2(void){
+_start:
+{
+lean_object* v___x_188_; 
+v___x_188_ = lean_mk_string_unchecked(" [", 2, 2);
+return v___x_188_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__3(void){
+_start:
+{
+lean_object* v___x_189_; lean_object* v___x_190_; 
+v___x_189_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteInline___closed__2, &l_Lean_Parser_Sym_Simp_rewriteInline___closed__2_once, _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__2);
+v___x_190_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_190_, 0, v___x_189_);
+return v___x_190_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__4(void){
+_start:
+{
+lean_object* v___x_191_; lean_object* v___x_192_; lean_object* v___x_193_; lean_object* v___x_194_; 
+v___x_191_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteInline___closed__3, &l_Lean_Parser_Sym_Simp_rewriteInline___closed__3_once, _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__3);
+v___x_192_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteSet___closed__3, &l_Lean_Parser_Sym_Simp_rewriteSet___closed__3_once, _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__3);
+v___x_193_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_194_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_194_, 0, v___x_193_);
+lean_ctor_set(v___x_194_, 1, v___x_192_);
+lean_ctor_set(v___x_194_, 2, v___x_191_);
+return v___x_194_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__5(void){
+_start:
+{
+lean_object* v___x_195_; 
+v___x_195_ = lean_mk_string_unchecked(",", 1, 1);
+return v___x_195_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__6(void){
+_start:
+{
+lean_object* v___x_196_; 
+v___x_196_ = lean_mk_string_unchecked(", ", 2, 2);
+return v___x_196_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__7(void){
+_start:
+{
+lean_object* v___x_197_; lean_object* v___x_198_; 
+v___x_197_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteInline___closed__6, &l_Lean_Parser_Sym_Simp_rewriteInline___closed__6_once, _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__6);
+v___x_198_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_198_, 0, v___x_197_);
+return v___x_198_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__8(void){
+_start:
+{
+uint8_t v___x_199_; lean_object* v___x_200_; lean_object* v___x_201_; lean_object* v___x_202_; lean_object* v___x_203_; 
+v___x_199_ = 0;
+v___x_200_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteInline___closed__7, &l_Lean_Parser_Sym_Simp_rewriteInline___closed__7_once, _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__7);
+v___x_201_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteInline___closed__5, &l_Lean_Parser_Sym_Simp_rewriteInline___closed__5_once, _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__5);
+v___x_202_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteSet___closed__6, &l_Lean_Parser_Sym_Simp_rewriteSet___closed__6_once, _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__6);
+v___x_203_ = lean_alloc_ctor(10, 3, 1);
+lean_ctor_set(v___x_203_, 0, v___x_202_);
+lean_ctor_set(v___x_203_, 1, v___x_201_);
+lean_ctor_set(v___x_203_, 2, v___x_200_);
+lean_ctor_set_uint8(v___x_203_, sizeof(void*)*3, v___x_199_);
+return v___x_203_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__9(void){
+_start:
+{
+lean_object* v___x_204_; lean_object* v___x_205_; lean_object* v___x_206_; lean_object* v___x_207_; 
+v___x_204_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteInline___closed__8, &l_Lean_Parser_Sym_Simp_rewriteInline___closed__8_once, _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__8);
+v___x_205_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteInline___closed__4, &l_Lean_Parser_Sym_Simp_rewriteInline___closed__4_once, _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__4);
+v___x_206_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_207_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_207_, 0, v___x_206_);
+lean_ctor_set(v___x_207_, 1, v___x_205_);
+lean_ctor_set(v___x_207_, 2, v___x_204_);
+return v___x_207_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__10(void){
+_start:
+{
+lean_object* v___x_208_; 
+v___x_208_ = lean_mk_string_unchecked("]", 1, 1);
+return v___x_208_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__11(void){
+_start:
+{
+lean_object* v___x_209_; lean_object* v___x_210_; 
+v___x_209_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteInline___closed__10, &l_Lean_Parser_Sym_Simp_rewriteInline___closed__10_once, _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__10);
+v___x_210_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_210_, 0, v___x_209_);
+return v___x_210_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__12(void){
+_start:
+{
+lean_object* v___x_211_; lean_object* v___x_212_; lean_object* v___x_213_; lean_object* v___x_214_; 
+v___x_211_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteInline___closed__11, &l_Lean_Parser_Sym_Simp_rewriteInline___closed__11_once, _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__11);
+v___x_212_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteInline___closed__9, &l_Lean_Parser_Sym_Simp_rewriteInline___closed__9_once, _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__9);
+v___x_213_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_214_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_214_, 0, v___x_213_);
+lean_ctor_set(v___x_214_, 1, v___x_212_);
+lean_ctor_set(v___x_214_, 2, v___x_211_);
+return v___x_214_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__13(void){
+_start:
+{
+lean_object* v___x_215_; lean_object* v___x_216_; lean_object* v___x_217_; lean_object* v___x_218_; 
+v___x_215_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteSet___closed__13, &l_Lean_Parser_Sym_Simp_rewriteSet___closed__13_once, _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__13);
+v___x_216_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteInline___closed__12, &l_Lean_Parser_Sym_Simp_rewriteInline___closed__12_once, _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__12);
+v___x_217_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_218_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_218_, 0, v___x_217_);
+lean_ctor_set(v___x_218_, 1, v___x_216_);
+lean_ctor_set(v___x_218_, 2, v___x_215_);
+return v___x_218_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__14(void){
+_start:
+{
+lean_object* v___x_219_; lean_object* v___x_220_; lean_object* v___x_221_; lean_object* v___x_222_; 
+v___x_219_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteInline___closed__13, &l_Lean_Parser_Sym_Simp_rewriteInline___closed__13_once, _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__13);
+v___x_220_ = lean_unsigned_to_nat(1022u);
+v___x_221_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteInline___closed__1, &l_Lean_Parser_Sym_Simp_rewriteInline___closed__1_once, _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__1);
+v___x_222_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_222_, 0, v___x_221_);
+lean_ctor_set(v___x_222_, 1, v___x_220_);
+lean_ctor_set(v___x_222_, 2, v___x_219_);
+return v___x_222_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_rewriteInline(void){
+_start:
+{
+lean_object* v___x_223_; 
+v___x_223_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteInline___closed__14, &l_Lean_Parser_Sym_Simp_rewriteInline___closed__14_once, _init_l_Lean_Parser_Sym_Simp_rewriteInline___closed__14);
+return v___x_223_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_self___closed__0(void){
+_start:
+{
+lean_object* v___x_224_; 
+v___x_224_ = lean_mk_string_unchecked("self", 4, 4);
+return v___x_224_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_self___closed__1(void){
+_start:
+{
+lean_object* v___x_225_; lean_object* v___x_226_; lean_object* v___x_227_; lean_object* v___x_228_; lean_object* v___x_229_; lean_object* v___x_230_; 
+v___x_225_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_self___closed__0, &l_Lean_Parser_Sym_Simp_self___closed__0_once, _init_l_Lean_Parser_Sym_Simp_self___closed__0);
+v___x_226_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__1, &l_Lean_Parser_Sym_Simp_ground___closed__1_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__1);
+v___x_227_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__0, &l_Lean_Parser_Sym_Simp_ground___closed__0_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__0);
+v___x_228_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1);
+v___x_229_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0);
+v___x_230_ = l_Lean_Name_mkStr5(v___x_229_, v___x_228_, v___x_227_, v___x_226_, v___x_225_);
+return v___x_230_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_self___closed__2(void){
+_start:
+{
+uint8_t v___x_231_; lean_object* v___x_232_; lean_object* v___x_233_; 
+v___x_231_ = 0;
+v___x_232_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_self___closed__0, &l_Lean_Parser_Sym_Simp_self___closed__0_once, _init_l_Lean_Parser_Sym_Simp_self___closed__0);
+v___x_233_ = lean_alloc_ctor(6, 1, 1);
+lean_ctor_set(v___x_233_, 0, v___x_232_);
+lean_ctor_set_uint8(v___x_233_, sizeof(void*)*1, v___x_231_);
+return v___x_233_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_self___closed__3(void){
+_start:
+{
+lean_object* v___x_234_; lean_object* v___x_235_; lean_object* v___x_236_; lean_object* v___x_237_; 
+v___x_234_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_self___closed__2, &l_Lean_Parser_Sym_Simp_self___closed__2_once, _init_l_Lean_Parser_Sym_Simp_self___closed__2);
+v___x_235_ = lean_unsigned_to_nat(1024u);
+v___x_236_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_self___closed__1, &l_Lean_Parser_Sym_Simp_self___closed__1_once, _init_l_Lean_Parser_Sym_Simp_self___closed__1);
+v___x_237_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_237_, 0, v___x_236_);
+lean_ctor_set(v___x_237_, 1, v___x_235_);
+lean_ctor_set(v___x_237_, 2, v___x_234_);
+return v___x_237_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_self(void){
+_start:
+{
+lean_object* v___x_238_; 
+v___x_238_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_self___closed__3, &l_Lean_Parser_Sym_Simp_self___closed__3_once, _init_l_Lean_Parser_Sym_Simp_self___closed__3);
+return v___x_238_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_none___closed__0(void){
+_start:
+{
+lean_object* v___x_239_; 
+v___x_239_ = lean_mk_string_unchecked("none", 4, 4);
+return v___x_239_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_none___closed__1(void){
+_start:
+{
+lean_object* v___x_240_; lean_object* v___x_241_; lean_object* v___x_242_; lean_object* v___x_243_; lean_object* v___x_244_; lean_object* v___x_245_; 
+v___x_240_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_none___closed__0, &l_Lean_Parser_Sym_Simp_none___closed__0_once, _init_l_Lean_Parser_Sym_Simp_none___closed__0);
+v___x_241_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__1, &l_Lean_Parser_Sym_Simp_ground___closed__1_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__1);
+v___x_242_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__0, &l_Lean_Parser_Sym_Simp_ground___closed__0_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__0);
+v___x_243_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1);
+v___x_244_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0);
+v___x_245_ = l_Lean_Name_mkStr5(v___x_244_, v___x_243_, v___x_242_, v___x_241_, v___x_240_);
+return v___x_245_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_none___closed__2(void){
+_start:
+{
+uint8_t v___x_246_; lean_object* v___x_247_; lean_object* v___x_248_; 
+v___x_246_ = 0;
+v___x_247_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_none___closed__0, &l_Lean_Parser_Sym_Simp_none___closed__0_once, _init_l_Lean_Parser_Sym_Simp_none___closed__0);
+v___x_248_ = lean_alloc_ctor(6, 1, 1);
+lean_ctor_set(v___x_248_, 0, v___x_247_);
+lean_ctor_set_uint8(v___x_248_, sizeof(void*)*1, v___x_246_);
+return v___x_248_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_none___closed__3(void){
+_start:
+{
+lean_object* v___x_249_; lean_object* v___x_250_; lean_object* v___x_251_; lean_object* v___x_252_; 
+v___x_249_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_none___closed__2, &l_Lean_Parser_Sym_Simp_none___closed__2_once, _init_l_Lean_Parser_Sym_Simp_none___closed__2);
+v___x_250_ = lean_unsigned_to_nat(1024u);
+v___x_251_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_none___closed__1, &l_Lean_Parser_Sym_Simp_none___closed__1_once, _init_l_Lean_Parser_Sym_Simp_none___closed__1);
+v___x_252_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_252_, 0, v___x_251_);
+lean_ctor_set(v___x_252_, 1, v___x_250_);
+lean_ctor_set(v___x_252_, 2, v___x_249_);
+return v___x_252_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_none(void){
+_start:
+{
+lean_object* v___x_253_; 
+v___x_253_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_none___closed__3, &l_Lean_Parser_Sym_Simp_none___closed__3_once, _init_l_Lean_Parser_Sym_Simp_none___closed__3);
+return v___x_253_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_andThen___closed__0(void){
+_start:
+{
+lean_object* v___x_254_; 
+v___x_254_ = lean_mk_string_unchecked("andThen", 7, 7);
+return v___x_254_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_andThen___closed__1(void){
+_start:
+{
+lean_object* v___x_255_; lean_object* v___x_256_; lean_object* v___x_257_; lean_object* v___x_258_; lean_object* v___x_259_; lean_object* v___x_260_; 
+v___x_255_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_andThen___closed__0, &l_Lean_Parser_Sym_Simp_andThen___closed__0_once, _init_l_Lean_Parser_Sym_Simp_andThen___closed__0);
+v___x_256_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__1, &l_Lean_Parser_Sym_Simp_ground___closed__1_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__1);
+v___x_257_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__0, &l_Lean_Parser_Sym_Simp_ground___closed__0_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__0);
+v___x_258_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1);
+v___x_259_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0);
+v___x_260_ = l_Lean_Name_mkStr5(v___x_259_, v___x_258_, v___x_257_, v___x_256_, v___x_255_);
+return v___x_260_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_andThen___closed__2(void){
+_start:
+{
+lean_object* v___x_261_; 
+v___x_261_ = lean_mk_string_unchecked(" >> ", 4, 4);
+return v___x_261_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_andThen___closed__3(void){
+_start:
+{
+lean_object* v___x_262_; lean_object* v___x_263_; 
+v___x_262_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_andThen___closed__2, &l_Lean_Parser_Sym_Simp_andThen___closed__2_once, _init_l_Lean_Parser_Sym_Simp_andThen___closed__2);
+v___x_263_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_263_, 0, v___x_262_);
+return v___x_263_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_andThen___closed__4(void){
+_start:
+{
+lean_object* v___x_264_; lean_object* v___x_265_; lean_object* v___x_266_; 
+v___x_264_ = lean_unsigned_to_nat(60u);
+v___x_265_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__11, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__11_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__11);
+v___x_266_ = lean_alloc_ctor(7, 2, 0);
+lean_ctor_set(v___x_266_, 0, v___x_265_);
+lean_ctor_set(v___x_266_, 1, v___x_264_);
+return v___x_266_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_andThen___closed__5(void){
+_start:
+{
+lean_object* v___x_267_; lean_object* v___x_268_; lean_object* v___x_269_; lean_object* v___x_270_; 
+v___x_267_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_andThen___closed__4, &l_Lean_Parser_Sym_Simp_andThen___closed__4_once, _init_l_Lean_Parser_Sym_Simp_andThen___closed__4);
+v___x_268_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_andThen___closed__3, &l_Lean_Parser_Sym_Simp_andThen___closed__3_once, _init_l_Lean_Parser_Sym_Simp_andThen___closed__3);
+v___x_269_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_270_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_270_, 0, v___x_269_);
+lean_ctor_set(v___x_270_, 1, v___x_268_);
+lean_ctor_set(v___x_270_, 2, v___x_267_);
+return v___x_270_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_andThen___closed__6(void){
+_start:
+{
+lean_object* v___x_271_; lean_object* v___x_272_; lean_object* v___x_273_; lean_object* v___x_274_; lean_object* v___x_275_; 
+v___x_271_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_andThen___closed__5, &l_Lean_Parser_Sym_Simp_andThen___closed__5_once, _init_l_Lean_Parser_Sym_Simp_andThen___closed__5);
+v___x_272_ = lean_unsigned_to_nat(61u);
+v___x_273_ = lean_unsigned_to_nat(60u);
+v___x_274_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_andThen___closed__1, &l_Lean_Parser_Sym_Simp_andThen___closed__1_once, _init_l_Lean_Parser_Sym_Simp_andThen___closed__1);
+v___x_275_ = lean_alloc_ctor(4, 4, 0);
+lean_ctor_set(v___x_275_, 0, v___x_274_);
+lean_ctor_set(v___x_275_, 1, v___x_273_);
+lean_ctor_set(v___x_275_, 2, v___x_272_);
+lean_ctor_set(v___x_275_, 3, v___x_271_);
+return v___x_275_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_andThen(void){
+_start:
+{
+lean_object* v___x_276_; 
+v___x_276_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_andThen___closed__6, &l_Lean_Parser_Sym_Simp_andThen___closed__6_once, _init_l_Lean_Parser_Sym_Simp_andThen___closed__6);
+return v___x_276_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_orElse___closed__0(void){
+_start:
+{
+lean_object* v___x_277_; 
+v___x_277_ = lean_mk_string_unchecked("orElse", 6, 6);
+return v___x_277_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_orElse___closed__1(void){
+_start:
+{
+lean_object* v___x_278_; lean_object* v___x_279_; lean_object* v___x_280_; lean_object* v___x_281_; lean_object* v___x_282_; lean_object* v___x_283_; 
+v___x_278_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_orElse___closed__0, &l_Lean_Parser_Sym_Simp_orElse___closed__0_once, _init_l_Lean_Parser_Sym_Simp_orElse___closed__0);
+v___x_279_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__1, &l_Lean_Parser_Sym_Simp_ground___closed__1_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__1);
+v___x_280_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__0, &l_Lean_Parser_Sym_Simp_ground___closed__0_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__0);
+v___x_281_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1);
+v___x_282_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0);
+v___x_283_ = l_Lean_Name_mkStr5(v___x_282_, v___x_281_, v___x_280_, v___x_279_, v___x_278_);
+return v___x_283_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_orElse___closed__2(void){
+_start:
+{
+lean_object* v___x_284_; 
+v___x_284_ = lean_mk_string_unchecked(" <|> ", 5, 5);
+return v___x_284_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_orElse___closed__3(void){
+_start:
+{
+lean_object* v___x_285_; lean_object* v___x_286_; 
+v___x_285_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_orElse___closed__2, &l_Lean_Parser_Sym_Simp_orElse___closed__2_once, _init_l_Lean_Parser_Sym_Simp_orElse___closed__2);
+v___x_286_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_286_, 0, v___x_285_);
+return v___x_286_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_orElse___closed__4(void){
+_start:
+{
+lean_object* v___x_287_; lean_object* v___x_288_; lean_object* v___x_289_; 
+v___x_287_ = lean_unsigned_to_nat(20u);
+v___x_288_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__11, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__11_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__11);
+v___x_289_ = lean_alloc_ctor(7, 2, 0);
+lean_ctor_set(v___x_289_, 0, v___x_288_);
+lean_ctor_set(v___x_289_, 1, v___x_287_);
+return v___x_289_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_orElse___closed__5(void){
+_start:
+{
+lean_object* v___x_290_; lean_object* v___x_291_; lean_object* v___x_292_; lean_object* v___x_293_; 
+v___x_290_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_orElse___closed__4, &l_Lean_Parser_Sym_Simp_orElse___closed__4_once, _init_l_Lean_Parser_Sym_Simp_orElse___closed__4);
+v___x_291_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_orElse___closed__3, &l_Lean_Parser_Sym_Simp_orElse___closed__3_once, _init_l_Lean_Parser_Sym_Simp_orElse___closed__3);
+v___x_292_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_293_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_293_, 0, v___x_292_);
+lean_ctor_set(v___x_293_, 1, v___x_291_);
+lean_ctor_set(v___x_293_, 2, v___x_290_);
+return v___x_293_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_orElse___closed__6(void){
+_start:
+{
+lean_object* v___x_294_; lean_object* v___x_295_; lean_object* v___x_296_; lean_object* v___x_297_; lean_object* v___x_298_; 
+v___x_294_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_orElse___closed__5, &l_Lean_Parser_Sym_Simp_orElse___closed__5_once, _init_l_Lean_Parser_Sym_Simp_orElse___closed__5);
+v___x_295_ = lean_unsigned_to_nat(21u);
+v___x_296_ = lean_unsigned_to_nat(20u);
+v___x_297_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_orElse___closed__1, &l_Lean_Parser_Sym_Simp_orElse___closed__1_once, _init_l_Lean_Parser_Sym_Simp_orElse___closed__1);
+v___x_298_ = lean_alloc_ctor(4, 4, 0);
+lean_ctor_set(v___x_298_, 0, v___x_297_);
+lean_ctor_set(v___x_298_, 1, v___x_296_);
+lean_ctor_set(v___x_298_, 2, v___x_295_);
+lean_ctor_set(v___x_298_, 3, v___x_294_);
+return v___x_298_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_orElse(void){
+_start:
+{
+lean_object* v___x_299_; 
+v___x_299_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_orElse___closed__6, &l_Lean_Parser_Sym_Simp_orElse___closed__6_once, _init_l_Lean_Parser_Sym_Simp_orElse___closed__6);
+return v___x_299_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_simprocParen___closed__0(void){
+_start:
+{
+lean_object* v___x_300_; 
+v___x_300_ = lean_mk_string_unchecked("simprocParen", 12, 12);
+return v___x_300_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_simprocParen___closed__1(void){
+_start:
+{
+lean_object* v___x_301_; lean_object* v___x_302_; lean_object* v___x_303_; lean_object* v___x_304_; lean_object* v___x_305_; lean_object* v___x_306_; 
+v___x_301_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_simprocParen___closed__0, &l_Lean_Parser_Sym_Simp_simprocParen___closed__0_once, _init_l_Lean_Parser_Sym_Simp_simprocParen___closed__0);
+v___x_302_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__1, &l_Lean_Parser_Sym_Simp_ground___closed__1_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__1);
+v___x_303_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__0, &l_Lean_Parser_Sym_Simp_ground___closed__0_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__0);
+v___x_304_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1);
+v___x_305_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0);
+v___x_306_ = l_Lean_Name_mkStr5(v___x_305_, v___x_304_, v___x_303_, v___x_302_, v___x_301_);
+return v___x_306_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_simprocParen___closed__2(void){
+_start:
+{
+lean_object* v___x_307_; 
+v___x_307_ = lean_mk_string_unchecked("(", 1, 1);
+return v___x_307_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_simprocParen___closed__3(void){
+_start:
+{
+uint8_t v___x_308_; lean_object* v___x_309_; lean_object* v___x_310_; 
+v___x_308_ = 0;
+v___x_309_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_simprocParen___closed__2, &l_Lean_Parser_Sym_Simp_simprocParen___closed__2_once, _init_l_Lean_Parser_Sym_Simp_simprocParen___closed__2);
+v___x_310_ = lean_alloc_ctor(6, 1, 1);
+lean_ctor_set(v___x_310_, 0, v___x_309_);
+lean_ctor_set_uint8(v___x_310_, sizeof(void*)*1, v___x_308_);
+return v___x_310_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_simprocParen___closed__4(void){
+_start:
+{
+lean_object* v___x_311_; lean_object* v___x_312_; lean_object* v___x_313_; lean_object* v___x_314_; 
+v___x_311_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12);
+v___x_312_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_simprocParen___closed__3, &l_Lean_Parser_Sym_Simp_simprocParen___closed__3_once, _init_l_Lean_Parser_Sym_Simp_simprocParen___closed__3);
+v___x_313_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_314_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_314_, 0, v___x_313_);
+lean_ctor_set(v___x_314_, 1, v___x_312_);
+lean_ctor_set(v___x_314_, 2, v___x_311_);
+return v___x_314_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_simprocParen___closed__5(void){
+_start:
+{
+lean_object* v___x_315_; lean_object* v___x_316_; lean_object* v___x_317_; lean_object* v___x_318_; 
+v___x_315_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14);
+v___x_316_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_simprocParen___closed__4, &l_Lean_Parser_Sym_Simp_simprocParen___closed__4_once, _init_l_Lean_Parser_Sym_Simp_simprocParen___closed__4);
+v___x_317_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_318_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_318_, 0, v___x_317_);
+lean_ctor_set(v___x_318_, 1, v___x_316_);
+lean_ctor_set(v___x_318_, 2, v___x_315_);
+return v___x_318_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_simprocParen___closed__6(void){
+_start:
+{
+lean_object* v___x_319_; lean_object* v___x_320_; lean_object* v___x_321_; lean_object* v___x_322_; 
+v___x_319_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_simprocParen___closed__5, &l_Lean_Parser_Sym_Simp_simprocParen___closed__5_once, _init_l_Lean_Parser_Sym_Simp_simprocParen___closed__5);
+v___x_320_ = lean_unsigned_to_nat(1024u);
+v___x_321_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_simprocParen___closed__1, &l_Lean_Parser_Sym_Simp_simprocParen___closed__1_once, _init_l_Lean_Parser_Sym_Simp_simprocParen___closed__1);
+v___x_322_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_322_, 0, v___x_321_);
+lean_ctor_set(v___x_322_, 1, v___x_320_);
+lean_ctor_set(v___x_322_, 2, v___x_319_);
+return v___x_322_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_simprocParen(void){
+_start:
+{
+lean_object* v___x_323_; 
+v___x_323_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_simprocParen___closed__6, &l_Lean_Parser_Sym_Simp_simprocParen___closed__6_once, _init_l_Lean_Parser_Sym_Simp_simprocParen___closed__6);
+return v___x_323_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_dischSelf___closed__0(void){
+_start:
+{
+lean_object* v___x_324_; 
+v___x_324_ = lean_mk_string_unchecked("dischSelf", 9, 9);
+return v___x_324_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_dischSelf___closed__1(void){
+_start:
+{
+lean_object* v___x_325_; lean_object* v___x_326_; lean_object* v___x_327_; lean_object* v___x_328_; lean_object* v___x_329_; lean_object* v___x_330_; 
+v___x_325_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_dischSelf___closed__0, &l_Lean_Parser_Sym_Simp_dischSelf___closed__0_once, _init_l_Lean_Parser_Sym_Simp_dischSelf___closed__0);
+v___x_326_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__1, &l_Lean_Parser_Sym_Simp_ground___closed__1_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__1);
+v___x_327_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__0, &l_Lean_Parser_Sym_Simp_ground___closed__0_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__0);
+v___x_328_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1);
+v___x_329_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0);
+v___x_330_ = l_Lean_Name_mkStr5(v___x_329_, v___x_328_, v___x_327_, v___x_326_, v___x_325_);
+return v___x_330_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_dischSelf___closed__2(void){
+_start:
+{
+lean_object* v___x_331_; lean_object* v___x_332_; lean_object* v___x_333_; lean_object* v___x_334_; 
+v___x_331_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_self___closed__2, &l_Lean_Parser_Sym_Simp_self___closed__2_once, _init_l_Lean_Parser_Sym_Simp_self___closed__2);
+v___x_332_ = lean_unsigned_to_nat(1024u);
+v___x_333_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_dischSelf___closed__1, &l_Lean_Parser_Sym_Simp_dischSelf___closed__1_once, _init_l_Lean_Parser_Sym_Simp_dischSelf___closed__1);
+v___x_334_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_334_, 0, v___x_333_);
+lean_ctor_set(v___x_334_, 1, v___x_332_);
+lean_ctor_set(v___x_334_, 2, v___x_331_);
+return v___x_334_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_dischSelf(void){
+_start:
+{
+lean_object* v___x_335_; 
+v___x_335_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_dischSelf___closed__2, &l_Lean_Parser_Sym_Simp_dischSelf___closed__2_once, _init_l_Lean_Parser_Sym_Simp_dischSelf___closed__2);
+return v___x_335_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_dischNone___closed__0(void){
+_start:
+{
+lean_object* v___x_336_; 
+v___x_336_ = lean_mk_string_unchecked("dischNone", 9, 9);
+return v___x_336_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_dischNone___closed__1(void){
+_start:
+{
+lean_object* v___x_337_; lean_object* v___x_338_; lean_object* v___x_339_; lean_object* v___x_340_; lean_object* v___x_341_; lean_object* v___x_342_; 
+v___x_337_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_dischNone___closed__0, &l_Lean_Parser_Sym_Simp_dischNone___closed__0_once, _init_l_Lean_Parser_Sym_Simp_dischNone___closed__0);
+v___x_338_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__1, &l_Lean_Parser_Sym_Simp_ground___closed__1_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__1);
+v___x_339_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__0, &l_Lean_Parser_Sym_Simp_ground___closed__0_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__0);
+v___x_340_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1);
+v___x_341_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0);
+v___x_342_ = l_Lean_Name_mkStr5(v___x_341_, v___x_340_, v___x_339_, v___x_338_, v___x_337_);
+return v___x_342_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_dischNone___closed__2(void){
+_start:
+{
+lean_object* v___x_343_; lean_object* v___x_344_; lean_object* v___x_345_; lean_object* v___x_346_; 
+v___x_343_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_none___closed__2, &l_Lean_Parser_Sym_Simp_none___closed__2_once, _init_l_Lean_Parser_Sym_Simp_none___closed__2);
+v___x_344_ = lean_unsigned_to_nat(1024u);
+v___x_345_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_dischNone___closed__1, &l_Lean_Parser_Sym_Simp_dischNone___closed__1_once, _init_l_Lean_Parser_Sym_Simp_dischNone___closed__1);
+v___x_346_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_346_, 0, v___x_345_);
+lean_ctor_set(v___x_346_, 1, v___x_344_);
+lean_ctor_set(v___x_346_, 2, v___x_343_);
+return v___x_346_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_dischNone(void){
+_start:
+{
+lean_object* v___x_347_; 
+v___x_347_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_dischNone___closed__2, &l_Lean_Parser_Sym_Simp_dischNone___closed__2_once, _init_l_Lean_Parser_Sym_Simp_dischNone___closed__2);
+return v___x_347_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_dischParen___closed__0(void){
+_start:
+{
+lean_object* v___x_348_; 
+v___x_348_ = lean_mk_string_unchecked("dischParen", 10, 10);
+return v___x_348_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_dischParen___closed__1(void){
+_start:
+{
+lean_object* v___x_349_; lean_object* v___x_350_; lean_object* v___x_351_; lean_object* v___x_352_; lean_object* v___x_353_; lean_object* v___x_354_; 
+v___x_349_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_dischParen___closed__0, &l_Lean_Parser_Sym_Simp_dischParen___closed__0_once, _init_l_Lean_Parser_Sym_Simp_dischParen___closed__0);
+v___x_350_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__1, &l_Lean_Parser_Sym_Simp_ground___closed__1_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__1);
+v___x_351_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_ground___closed__0, &l_Lean_Parser_Sym_Simp_ground___closed__0_once, _init_l_Lean_Parser_Sym_Simp_ground___closed__0);
+v___x_352_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1);
+v___x_353_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0);
+v___x_354_ = l_Lean_Name_mkStr5(v___x_353_, v___x_352_, v___x_351_, v___x_350_, v___x_349_);
+return v___x_354_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_dischParen___closed__2(void){
+_start:
+{
+lean_object* v___x_355_; lean_object* v___x_356_; lean_object* v___x_357_; lean_object* v___x_358_; 
+v___x_355_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__5, &l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__5_once, _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot___closed__5);
+v___x_356_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_simprocParen___closed__3, &l_Lean_Parser_Sym_Simp_simprocParen___closed__3_once, _init_l_Lean_Parser_Sym_Simp_simprocParen___closed__3);
+v___x_357_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_358_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_358_, 0, v___x_357_);
+lean_ctor_set(v___x_358_, 1, v___x_356_);
+lean_ctor_set(v___x_358_, 2, v___x_355_);
+return v___x_358_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_dischParen___closed__3(void){
+_start:
+{
+lean_object* v___x_359_; lean_object* v___x_360_; lean_object* v___x_361_; lean_object* v___x_362_; 
+v___x_359_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14);
+v___x_360_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_dischParen___closed__2, &l_Lean_Parser_Sym_Simp_dischParen___closed__2_once, _init_l_Lean_Parser_Sym_Simp_dischParen___closed__2);
+v___x_361_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_362_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_362_, 0, v___x_361_);
+lean_ctor_set(v___x_362_, 1, v___x_360_);
+lean_ctor_set(v___x_362_, 2, v___x_359_);
+return v___x_362_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_dischParen___closed__4(void){
+_start:
+{
+lean_object* v___x_363_; lean_object* v___x_364_; lean_object* v___x_365_; lean_object* v___x_366_; 
+v___x_363_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_dischParen___closed__3, &l_Lean_Parser_Sym_Simp_dischParen___closed__3_once, _init_l_Lean_Parser_Sym_Simp_dischParen___closed__3);
+v___x_364_ = lean_unsigned_to_nat(1024u);
+v___x_365_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_dischParen___closed__1, &l_Lean_Parser_Sym_Simp_dischParen___closed__1_once, _init_l_Lean_Parser_Sym_Simp_dischParen___closed__1);
+v___x_366_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_366_, 0, v___x_365_);
+lean_ctor_set(v___x_366_, 1, v___x_364_);
+lean_ctor_set(v___x_366_, 2, v___x_363_);
+return v___x_366_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Sym_Simp_dischParen(void){
+_start:
+{
+lean_object* v___x_367_; 
+v___x_367_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_dischParen___closed__4, &l_Lean_Parser_Sym_Simp_dischParen___closed__4_once, _init_l_Lean_Parser_Sym_Simp_dischParen___closed__4);
+return v___x_367_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__0(void){
+_start:
+{
+lean_object* v___x_368_; 
+v___x_368_ = lean_mk_string_unchecked("sym_simp_field", 14, 14);
+return v___x_368_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__1(void){
+_start:
+{
+lean_object* v___x_369_; lean_object* v___x_370_; lean_object* v___x_371_; 
+v___x_369_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__3);
+v___x_370_ = lean_obj_once(&l_Lean_Parser_Command_sym__simp__field_quot___closed__0, &l_Lean_Parser_Command_sym__simp__field_quot___closed__0_once, _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__0);
+v___x_371_ = l_Lean_Name_mkStr2(v___x_370_, v___x_369_);
+return v___x_371_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__2(void){
+_start:
+{
+lean_object* v___x_372_; 
+v___x_372_ = lean_mk_string_unchecked("`(sym_simp_field| ", 18, 18);
+return v___x_372_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__3(void){
+_start:
+{
+lean_object* v___x_373_; lean_object* v___x_374_; 
+v___x_373_ = lean_obj_once(&l_Lean_Parser_Command_sym__simp__field_quot___closed__2, &l_Lean_Parser_Command_sym__simp__field_quot___closed__2_once, _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__2);
+v___x_374_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_374_, 0, v___x_373_);
+return v___x_374_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__4(void){
+_start:
+{
+lean_object* v___x_375_; lean_object* v___x_376_; 
+v___x_375_ = lean_obj_once(&l_Lean_Parser_Command_sym__simp__field_quot___closed__0, &l_Lean_Parser_Command_sym__simp__field_quot___closed__0_once, _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__0);
+v___x_376_ = l_Lean_Name_mkStr1(v___x_375_);
+return v___x_376_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__5(void){
+_start:
+{
+lean_object* v___x_377_; lean_object* v___x_378_; lean_object* v___x_379_; 
+v___x_377_ = lean_unsigned_to_nat(0u);
+v___x_378_ = lean_obj_once(&l_Lean_Parser_Command_sym__simp__field_quot___closed__4, &l_Lean_Parser_Command_sym__simp__field_quot___closed__4_once, _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__4);
+v___x_379_ = lean_alloc_ctor(7, 2, 0);
+lean_ctor_set(v___x_379_, 0, v___x_378_);
+lean_ctor_set(v___x_379_, 1, v___x_377_);
+return v___x_379_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__6(void){
+_start:
+{
+lean_object* v___x_380_; lean_object* v___x_381_; lean_object* v___x_382_; lean_object* v___x_383_; 
+v___x_380_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__14);
+v___x_381_ = lean_obj_once(&l_Lean_Parser_Command_sym__simp__field_quot___closed__5, &l_Lean_Parser_Command_sym__simp__field_quot___closed__5_once, _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__5);
+v___x_382_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_383_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_383_, 0, v___x_382_);
+lean_ctor_set(v___x_383_, 1, v___x_381_);
+lean_ctor_set(v___x_383_, 2, v___x_380_);
+return v___x_383_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__7(void){
+_start:
+{
+lean_object* v___x_384_; lean_object* v___x_385_; lean_object* v___x_386_; lean_object* v___x_387_; 
+v___x_384_ = lean_obj_once(&l_Lean_Parser_Command_sym__simp__field_quot___closed__6, &l_Lean_Parser_Command_sym__simp__field_quot___closed__6_once, _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__6);
+v___x_385_ = lean_obj_once(&l_Lean_Parser_Command_sym__simp__field_quot___closed__3, &l_Lean_Parser_Command_sym__simp__field_quot___closed__3_once, _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__3);
+v___x_386_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_387_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_387_, 0, v___x_386_);
+lean_ctor_set(v___x_387_, 1, v___x_385_);
+lean_ctor_set(v___x_387_, 2, v___x_384_);
+return v___x_387_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__8(void){
+_start:
+{
+lean_object* v___x_388_; lean_object* v___x_389_; lean_object* v___x_390_; lean_object* v___x_391_; 
+v___x_388_ = lean_obj_once(&l_Lean_Parser_Command_sym__simp__field_quot___closed__7, &l_Lean_Parser_Command_sym__simp__field_quot___closed__7_once, _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__7);
+v___x_389_ = lean_unsigned_to_nat(1024u);
+v___x_390_ = lean_obj_once(&l_Lean_Parser_Command_sym__simp__field_quot___closed__1, &l_Lean_Parser_Command_sym__simp__field_quot___closed__1_once, _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__1);
+v___x_391_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_391_, 0, v___x_390_);
+lean_ctor_set(v___x_391_, 1, v___x_389_);
+lean_ctor_set(v___x_391_, 2, v___x_388_);
+return v___x_391_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__9(void){
+_start:
+{
+lean_object* v___x_392_; lean_object* v___x_393_; lean_object* v___x_394_; lean_object* v___x_395_; 
+v___x_392_ = lean_obj_once(&l_Lean_Parser_Command_sym__simp__field_quot___closed__8, &l_Lean_Parser_Command_sym__simp__field_quot___closed__8_once, _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__8);
+v___x_393_ = lean_unsigned_to_nat(1024u);
+v___x_394_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__4);
+v___x_395_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_395_, 0, v___x_394_);
+lean_ctor_set(v___x_395_, 1, v___x_393_);
+lean_ctor_set(v___x_395_, 2, v___x_392_);
+return v___x_395_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_sym__simp__field_quot(void){
+_start:
+{
+lean_object* v___x_396_; 
+v___x_396_ = lean_obj_once(&l_Lean_Parser_Command_sym__simp__field_quot___closed__9, &l_Lean_Parser_Command_sym__simp__field_quot___closed__9_once, _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__9);
+return v___x_396_;
+}
+}
 static lean_object* _init_l_Lean_Parser_Category_sym__simp__field(void){
 _start:
 {
 lean_object* v___x_397_; 
 v___x_397_ = lean_box(0);
 return v___x_397_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldPre___closed__0(void){
+_start:
+{
+lean_object* v___x_398_; 
+v___x_398_ = lean_mk_string_unchecked("Command", 7, 7);
+return v___x_398_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldPre___closed__1(void){
+_start:
+{
+lean_object* v___x_399_; 
+v___x_399_ = lean_mk_string_unchecked("symSimpFieldPre", 15, 15);
+return v___x_399_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldPre___closed__2(void){
+_start:
+{
+lean_object* v___x_400_; lean_object* v___x_401_; lean_object* v___x_402_; lean_object* v___x_403_; lean_object* v___x_404_; 
+v___x_400_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPre___closed__1, &l_Lean_Parser_Command_symSimpFieldPre___closed__1_once, _init_l_Lean_Parser_Command_symSimpFieldPre___closed__1);
+v___x_401_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPre___closed__0, &l_Lean_Parser_Command_symSimpFieldPre___closed__0_once, _init_l_Lean_Parser_Command_symSimpFieldPre___closed__0);
+v___x_402_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1);
+v___x_403_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0);
+v___x_404_ = l_Lean_Name_mkStr4(v___x_403_, v___x_402_, v___x_401_, v___x_400_);
+return v___x_404_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldPre___closed__3(void){
+_start:
+{
+lean_object* v___x_405_; 
+v___x_405_ = lean_mk_string_unchecked("pre", 3, 3);
+return v___x_405_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldPre___closed__4(void){
+_start:
+{
+uint8_t v___x_406_; lean_object* v___x_407_; lean_object* v___x_408_; 
+v___x_406_ = 0;
+v___x_407_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPre___closed__3, &l_Lean_Parser_Command_symSimpFieldPre___closed__3_once, _init_l_Lean_Parser_Command_symSimpFieldPre___closed__3);
+v___x_408_ = lean_alloc_ctor(6, 1, 1);
+lean_ctor_set(v___x_408_, 0, v___x_407_);
+lean_ctor_set_uint8(v___x_408_, sizeof(void*)*1, v___x_406_);
+return v___x_408_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldPre___closed__5(void){
+_start:
+{
+lean_object* v___x_409_; 
+v___x_409_ = lean_mk_string_unchecked(" := ", 4, 4);
+return v___x_409_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldPre___closed__6(void){
+_start:
+{
+lean_object* v___x_410_; lean_object* v___x_411_; 
+v___x_410_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPre___closed__5, &l_Lean_Parser_Command_symSimpFieldPre___closed__5_once, _init_l_Lean_Parser_Command_symSimpFieldPre___closed__5);
+v___x_411_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_411_, 0, v___x_410_);
+return v___x_411_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldPre___closed__7(void){
+_start:
+{
+lean_object* v___x_412_; lean_object* v___x_413_; lean_object* v___x_414_; lean_object* v___x_415_; 
+v___x_412_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPre___closed__6, &l_Lean_Parser_Command_symSimpFieldPre___closed__6_once, _init_l_Lean_Parser_Command_symSimpFieldPre___closed__6);
+v___x_413_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPre___closed__4, &l_Lean_Parser_Command_symSimpFieldPre___closed__4_once, _init_l_Lean_Parser_Command_symSimpFieldPre___closed__4);
+v___x_414_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_415_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_415_, 0, v___x_414_);
+lean_ctor_set(v___x_415_, 1, v___x_413_);
+lean_ctor_set(v___x_415_, 2, v___x_412_);
+return v___x_415_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldPre___closed__8(void){
+_start:
+{
+lean_object* v___x_416_; lean_object* v___x_417_; lean_object* v___x_418_; lean_object* v___x_419_; 
+v___x_416_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12);
+v___x_417_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPre___closed__7, &l_Lean_Parser_Command_symSimpFieldPre___closed__7_once, _init_l_Lean_Parser_Command_symSimpFieldPre___closed__7);
+v___x_418_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_419_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_419_, 0, v___x_418_);
+lean_ctor_set(v___x_419_, 1, v___x_417_);
+lean_ctor_set(v___x_419_, 2, v___x_416_);
+return v___x_419_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldPre___closed__9(void){
+_start:
+{
+lean_object* v___x_420_; lean_object* v___x_421_; lean_object* v___x_422_; lean_object* v___x_423_; 
+v___x_420_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPre___closed__8, &l_Lean_Parser_Command_symSimpFieldPre___closed__8_once, _init_l_Lean_Parser_Command_symSimpFieldPre___closed__8);
+v___x_421_ = lean_unsigned_to_nat(1022u);
+v___x_422_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPre___closed__2, &l_Lean_Parser_Command_symSimpFieldPre___closed__2_once, _init_l_Lean_Parser_Command_symSimpFieldPre___closed__2);
+v___x_423_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_423_, 0, v___x_422_);
+lean_ctor_set(v___x_423_, 1, v___x_421_);
+lean_ctor_set(v___x_423_, 2, v___x_420_);
+return v___x_423_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldPre(void){
+_start:
+{
+lean_object* v___x_424_; 
+v___x_424_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPre___closed__9, &l_Lean_Parser_Command_symSimpFieldPre___closed__9_once, _init_l_Lean_Parser_Command_symSimpFieldPre___closed__9);
+return v___x_424_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldPost___closed__0(void){
+_start:
+{
+lean_object* v___x_425_; 
+v___x_425_ = lean_mk_string_unchecked("symSimpFieldPost", 16, 16);
+return v___x_425_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldPost___closed__1(void){
+_start:
+{
+lean_object* v___x_426_; lean_object* v___x_427_; lean_object* v___x_428_; lean_object* v___x_429_; lean_object* v___x_430_; 
+v___x_426_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPost___closed__0, &l_Lean_Parser_Command_symSimpFieldPost___closed__0_once, _init_l_Lean_Parser_Command_symSimpFieldPost___closed__0);
+v___x_427_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPre___closed__0, &l_Lean_Parser_Command_symSimpFieldPre___closed__0_once, _init_l_Lean_Parser_Command_symSimpFieldPre___closed__0);
+v___x_428_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1);
+v___x_429_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0);
+v___x_430_ = l_Lean_Name_mkStr4(v___x_429_, v___x_428_, v___x_427_, v___x_426_);
+return v___x_430_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldPost___closed__2(void){
+_start:
+{
+lean_object* v___x_431_; 
+v___x_431_ = lean_mk_string_unchecked("post", 4, 4);
+return v___x_431_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldPost___closed__3(void){
+_start:
+{
+uint8_t v___x_432_; lean_object* v___x_433_; lean_object* v___x_434_; 
+v___x_432_ = 0;
+v___x_433_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPost___closed__2, &l_Lean_Parser_Command_symSimpFieldPost___closed__2_once, _init_l_Lean_Parser_Command_symSimpFieldPost___closed__2);
+v___x_434_ = lean_alloc_ctor(6, 1, 1);
+lean_ctor_set(v___x_434_, 0, v___x_433_);
+lean_ctor_set_uint8(v___x_434_, sizeof(void*)*1, v___x_432_);
+return v___x_434_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldPost___closed__4(void){
+_start:
+{
+lean_object* v___x_435_; lean_object* v___x_436_; lean_object* v___x_437_; lean_object* v___x_438_; 
+v___x_435_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPre___closed__6, &l_Lean_Parser_Command_symSimpFieldPre___closed__6_once, _init_l_Lean_Parser_Command_symSimpFieldPre___closed__6);
+v___x_436_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPost___closed__3, &l_Lean_Parser_Command_symSimpFieldPost___closed__3_once, _init_l_Lean_Parser_Command_symSimpFieldPost___closed__3);
+v___x_437_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_438_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_438_, 0, v___x_437_);
+lean_ctor_set(v___x_438_, 1, v___x_436_);
+lean_ctor_set(v___x_438_, 2, v___x_435_);
+return v___x_438_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldPost___closed__5(void){
+_start:
+{
+lean_object* v___x_439_; lean_object* v___x_440_; lean_object* v___x_441_; lean_object* v___x_442_; 
+v___x_439_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__12);
+v___x_440_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPost___closed__4, &l_Lean_Parser_Command_symSimpFieldPost___closed__4_once, _init_l_Lean_Parser_Command_symSimpFieldPost___closed__4);
+v___x_441_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_442_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_442_, 0, v___x_441_);
+lean_ctor_set(v___x_442_, 1, v___x_440_);
+lean_ctor_set(v___x_442_, 2, v___x_439_);
+return v___x_442_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldPost___closed__6(void){
+_start:
+{
+lean_object* v___x_443_; lean_object* v___x_444_; lean_object* v___x_445_; lean_object* v___x_446_; 
+v___x_443_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPost___closed__5, &l_Lean_Parser_Command_symSimpFieldPost___closed__5_once, _init_l_Lean_Parser_Command_symSimpFieldPost___closed__5);
+v___x_444_ = lean_unsigned_to_nat(1022u);
+v___x_445_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPost___closed__1, &l_Lean_Parser_Command_symSimpFieldPost___closed__1_once, _init_l_Lean_Parser_Command_symSimpFieldPost___closed__1);
+v___x_446_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_446_, 0, v___x_445_);
+lean_ctor_set(v___x_446_, 1, v___x_444_);
+lean_ctor_set(v___x_446_, 2, v___x_443_);
+return v___x_446_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldPost(void){
+_start:
+{
+lean_object* v___x_447_; 
+v___x_447_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPost___closed__6, &l_Lean_Parser_Command_symSimpFieldPost___closed__6_once, _init_l_Lean_Parser_Command_symSimpFieldPost___closed__6);
+return v___x_447_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__0(void){
+_start:
+{
+lean_object* v___x_448_; 
+v___x_448_ = lean_mk_string_unchecked("symSimpFieldMaxSteps", 20, 20);
+return v___x_448_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__1(void){
+_start:
+{
+lean_object* v___x_449_; lean_object* v___x_450_; lean_object* v___x_451_; lean_object* v___x_452_; lean_object* v___x_453_; 
+v___x_449_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__0, &l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__0_once, _init_l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__0);
+v___x_450_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPre___closed__0, &l_Lean_Parser_Command_symSimpFieldPre___closed__0_once, _init_l_Lean_Parser_Command_symSimpFieldPre___closed__0);
+v___x_451_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1);
+v___x_452_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0);
+v___x_453_ = l_Lean_Name_mkStr4(v___x_452_, v___x_451_, v___x_450_, v___x_449_);
+return v___x_453_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__2(void){
+_start:
+{
+lean_object* v___x_454_; 
+v___x_454_ = lean_mk_string_unchecked("maxSteps", 8, 8);
+return v___x_454_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__3(void){
+_start:
+{
+uint8_t v___x_455_; lean_object* v___x_456_; lean_object* v___x_457_; 
+v___x_455_ = 0;
+v___x_456_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__2, &l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__2_once, _init_l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__2);
+v___x_457_ = lean_alloc_ctor(6, 1, 1);
+lean_ctor_set(v___x_457_, 0, v___x_456_);
+lean_ctor_set_uint8(v___x_457_, sizeof(void*)*1, v___x_455_);
+return v___x_457_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__4(void){
+_start:
+{
+lean_object* v___x_458_; lean_object* v___x_459_; lean_object* v___x_460_; lean_object* v___x_461_; 
+v___x_458_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPre___closed__6, &l_Lean_Parser_Command_symSimpFieldPre___closed__6_once, _init_l_Lean_Parser_Command_symSimpFieldPre___closed__6);
+v___x_459_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__3, &l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__3_once, _init_l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__3);
+v___x_460_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_461_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_461_, 0, v___x_460_);
+lean_ctor_set(v___x_461_, 1, v___x_459_);
+lean_ctor_set(v___x_461_, 2, v___x_458_);
+return v___x_461_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__5(void){
+_start:
+{
+lean_object* v___x_462_; 
+v___x_462_ = lean_mk_string_unchecked("num", 3, 3);
+return v___x_462_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__6(void){
+_start:
+{
+lean_object* v___x_463_; lean_object* v___x_464_; 
+v___x_463_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__5, &l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__5_once, _init_l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__5);
+v___x_464_ = l_Lean_Name_mkStr1(v___x_463_);
+return v___x_464_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__7(void){
+_start:
+{
+lean_object* v___x_465_; lean_object* v___x_466_; 
+v___x_465_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__6, &l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__6_once, _init_l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__6);
+v___x_466_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_466_, 0, v___x_465_);
+return v___x_466_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__8(void){
+_start:
+{
+lean_object* v___x_467_; lean_object* v___x_468_; lean_object* v___x_469_; lean_object* v___x_470_; 
+v___x_467_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__7, &l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__7_once, _init_l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__7);
+v___x_468_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__4, &l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__4_once, _init_l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__4);
+v___x_469_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_470_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_470_, 0, v___x_469_);
+lean_ctor_set(v___x_470_, 1, v___x_468_);
+lean_ctor_set(v___x_470_, 2, v___x_467_);
+return v___x_470_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__9(void){
+_start:
+{
+lean_object* v___x_471_; lean_object* v___x_472_; lean_object* v___x_473_; lean_object* v___x_474_; 
+v___x_471_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__8, &l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__8_once, _init_l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__8);
+v___x_472_ = lean_unsigned_to_nat(1022u);
+v___x_473_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__1, &l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__1_once, _init_l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__1);
+v___x_474_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_474_, 0, v___x_473_);
+lean_ctor_set(v___x_474_, 1, v___x_472_);
+lean_ctor_set(v___x_474_, 2, v___x_471_);
+return v___x_474_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldMaxSteps(void){
+_start:
+{
+lean_object* v___x_475_; 
+v___x_475_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__9, &l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__9_once, _init_l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__9);
+return v___x_475_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__0(void){
+_start:
+{
+lean_object* v___x_476_; 
+v___x_476_ = lean_mk_string_unchecked("symSimpFieldMaxDischargeDepth", 29, 29);
+return v___x_476_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__1(void){
+_start:
+{
+lean_object* v___x_477_; lean_object* v___x_478_; lean_object* v___x_479_; lean_object* v___x_480_; lean_object* v___x_481_; 
+v___x_477_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__0, &l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__0_once, _init_l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__0);
+v___x_478_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPre___closed__0, &l_Lean_Parser_Command_symSimpFieldPre___closed__0_once, _init_l_Lean_Parser_Command_symSimpFieldPre___closed__0);
+v___x_479_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1);
+v___x_480_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0);
+v___x_481_ = l_Lean_Name_mkStr4(v___x_480_, v___x_479_, v___x_478_, v___x_477_);
+return v___x_481_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__2(void){
+_start:
+{
+lean_object* v___x_482_; 
+v___x_482_ = lean_mk_string_unchecked("maxDischargeDepth", 17, 17);
+return v___x_482_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__3(void){
+_start:
+{
+uint8_t v___x_483_; lean_object* v___x_484_; lean_object* v___x_485_; 
+v___x_483_ = 0;
+v___x_484_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__2, &l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__2_once, _init_l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__2);
+v___x_485_ = lean_alloc_ctor(6, 1, 1);
+lean_ctor_set(v___x_485_, 0, v___x_484_);
+lean_ctor_set_uint8(v___x_485_, sizeof(void*)*1, v___x_483_);
+return v___x_485_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__4(void){
+_start:
+{
+lean_object* v___x_486_; lean_object* v___x_487_; lean_object* v___x_488_; lean_object* v___x_489_; 
+v___x_486_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPre___closed__6, &l_Lean_Parser_Command_symSimpFieldPre___closed__6_once, _init_l_Lean_Parser_Command_symSimpFieldPre___closed__6);
+v___x_487_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__3, &l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__3_once, _init_l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__3);
+v___x_488_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_489_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_489_, 0, v___x_488_);
+lean_ctor_set(v___x_489_, 1, v___x_487_);
+lean_ctor_set(v___x_489_, 2, v___x_486_);
+return v___x_489_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__5(void){
+_start:
+{
+lean_object* v___x_490_; lean_object* v___x_491_; lean_object* v___x_492_; lean_object* v___x_493_; 
+v___x_490_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__7, &l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__7_once, _init_l_Lean_Parser_Command_symSimpFieldMaxSteps___closed__7);
+v___x_491_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__4, &l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__4_once, _init_l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__4);
+v___x_492_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_493_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_493_, 0, v___x_492_);
+lean_ctor_set(v___x_493_, 1, v___x_491_);
+lean_ctor_set(v___x_493_, 2, v___x_490_);
+return v___x_493_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__6(void){
+_start:
+{
+lean_object* v___x_494_; lean_object* v___x_495_; lean_object* v___x_496_; lean_object* v___x_497_; 
+v___x_494_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__5, &l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__5_once, _init_l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__5);
+v___x_495_ = lean_unsigned_to_nat(1022u);
+v___x_496_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__1, &l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__1_once, _init_l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__1);
+v___x_497_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_497_, 0, v___x_496_);
+lean_ctor_set(v___x_497_, 1, v___x_495_);
+lean_ctor_set(v___x_497_, 2, v___x_494_);
+return v___x_497_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth(void){
+_start:
+{
+lean_object* v___x_498_; 
+v___x_498_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__6, &l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__6_once, _init_l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth___closed__6);
+return v___x_498_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_registerSymSimp___closed__0(void){
+_start:
+{
+lean_object* v___x_499_; 
+v___x_499_ = lean_mk_string_unchecked("registerSymSimp", 15, 15);
+return v___x_499_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_registerSymSimp___closed__1(void){
+_start:
+{
+lean_object* v___x_500_; lean_object* v___x_501_; lean_object* v___x_502_; lean_object* v___x_503_; lean_object* v___x_504_; 
+v___x_500_ = lean_obj_once(&l_Lean_Parser_Command_registerSymSimp___closed__0, &l_Lean_Parser_Command_registerSymSimp___closed__0_once, _init_l_Lean_Parser_Command_registerSymSimp___closed__0);
+v___x_501_ = lean_obj_once(&l_Lean_Parser_Command_symSimpFieldPre___closed__0, &l_Lean_Parser_Command_symSimpFieldPre___closed__0_once, _init_l_Lean_Parser_Command_symSimpFieldPre___closed__0);
+v___x_502_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__1);
+v___x_503_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__0);
+v___x_504_ = l_Lean_Name_mkStr4(v___x_503_, v___x_502_, v___x_501_, v___x_500_);
+return v___x_504_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_registerSymSimp___closed__2(void){
+_start:
+{
+lean_object* v___x_505_; 
+v___x_505_ = lean_mk_string_unchecked("register_sym_simp", 17, 17);
+return v___x_505_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_registerSymSimp___closed__3(void){
+_start:
+{
+lean_object* v___x_506_; lean_object* v___x_507_; 
+v___x_506_ = lean_obj_once(&l_Lean_Parser_Command_registerSymSimp___closed__2, &l_Lean_Parser_Command_registerSymSimp___closed__2_once, _init_l_Lean_Parser_Command_registerSymSimp___closed__2);
+v___x_507_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_507_, 0, v___x_506_);
+return v___x_507_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_registerSymSimp___closed__4(void){
+_start:
+{
+lean_object* v___x_508_; lean_object* v___x_509_; lean_object* v___x_510_; lean_object* v___x_511_; 
+v___x_508_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_rewriteSet___closed__6, &l_Lean_Parser_Sym_Simp_rewriteSet___closed__6_once, _init_l_Lean_Parser_Sym_Simp_rewriteSet___closed__6);
+v___x_509_ = lean_obj_once(&l_Lean_Parser_Command_registerSymSimp___closed__3, &l_Lean_Parser_Command_registerSymSimp___closed__3_once, _init_l_Lean_Parser_Command_registerSymSimp___closed__3);
+v___x_510_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_511_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_511_, 0, v___x_510_);
+lean_ctor_set(v___x_511_, 1, v___x_509_);
+lean_ctor_set(v___x_511_, 2, v___x_508_);
+return v___x_511_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_registerSymSimp___closed__5(void){
+_start:
+{
+lean_object* v___x_512_; 
+v___x_512_ = lean_mk_string_unchecked("where", 5, 5);
+return v___x_512_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_registerSymSimp___closed__6(void){
+_start:
+{
+lean_object* v___x_513_; lean_object* v___x_514_; 
+v___x_513_ = lean_obj_once(&l_Lean_Parser_Command_registerSymSimp___closed__5, &l_Lean_Parser_Command_registerSymSimp___closed__5_once, _init_l_Lean_Parser_Command_registerSymSimp___closed__5);
+v___x_514_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_514_, 0, v___x_513_);
+return v___x_514_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_registerSymSimp___closed__7(void){
+_start:
+{
+lean_object* v___x_515_; lean_object* v___x_516_; lean_object* v___x_517_; lean_object* v___x_518_; 
+v___x_515_ = lean_obj_once(&l_Lean_Parser_Command_registerSymSimp___closed__6, &l_Lean_Parser_Command_registerSymSimp___closed__6_once, _init_l_Lean_Parser_Command_registerSymSimp___closed__6);
+v___x_516_ = lean_obj_once(&l_Lean_Parser_Command_registerSymSimp___closed__4, &l_Lean_Parser_Command_registerSymSimp___closed__4_once, _init_l_Lean_Parser_Command_registerSymSimp___closed__4);
+v___x_517_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_518_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_518_, 0, v___x_517_);
+lean_ctor_set(v___x_518_, 1, v___x_516_);
+lean_ctor_set(v___x_518_, 2, v___x_515_);
+return v___x_518_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_registerSymSimp___closed__8(void){
+_start:
+{
+lean_object* v___x_519_; 
+v___x_519_ = lean_mk_string_unchecked("many", 4, 4);
+return v___x_519_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_registerSymSimp___closed__9(void){
+_start:
+{
+lean_object* v___x_520_; lean_object* v___x_521_; 
+v___x_520_ = lean_obj_once(&l_Lean_Parser_Command_registerSymSimp___closed__8, &l_Lean_Parser_Command_registerSymSimp___closed__8_once, _init_l_Lean_Parser_Command_registerSymSimp___closed__8);
+v___x_521_ = l_Lean_Name_mkStr1(v___x_520_);
+return v___x_521_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_registerSymSimp___closed__10(void){
+_start:
+{
+lean_object* v___x_522_; 
+v___x_522_ = lean_mk_string_unchecked("colGt", 5, 5);
+return v___x_522_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_registerSymSimp___closed__11(void){
+_start:
+{
+lean_object* v___x_523_; lean_object* v___x_524_; 
+v___x_523_ = lean_obj_once(&l_Lean_Parser_Command_registerSymSimp___closed__10, &l_Lean_Parser_Command_registerSymSimp___closed__10_once, _init_l_Lean_Parser_Command_registerSymSimp___closed__10);
+v___x_524_ = l_Lean_Name_mkStr1(v___x_523_);
+return v___x_524_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_registerSymSimp___closed__12(void){
+_start:
+{
+lean_object* v___x_525_; lean_object* v___x_526_; 
+v___x_525_ = lean_obj_once(&l_Lean_Parser_Command_registerSymSimp___closed__11, &l_Lean_Parser_Command_registerSymSimp___closed__11_once, _init_l_Lean_Parser_Command_registerSymSimp___closed__11);
+v___x_526_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_526_, 0, v___x_525_);
+return v___x_526_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_registerSymSimp___closed__13(void){
+_start:
+{
+lean_object* v___x_527_; lean_object* v___x_528_; lean_object* v___x_529_; lean_object* v___x_530_; 
+v___x_527_ = lean_obj_once(&l_Lean_Parser_Command_sym__simp__field_quot___closed__5, &l_Lean_Parser_Command_sym__simp__field_quot___closed__5_once, _init_l_Lean_Parser_Command_sym__simp__field_quot___closed__5);
+v___x_528_ = lean_obj_once(&l_Lean_Parser_Command_registerSymSimp___closed__12, &l_Lean_Parser_Command_registerSymSimp___closed__12_once, _init_l_Lean_Parser_Command_registerSymSimp___closed__12);
+v___x_529_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_530_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_530_, 0, v___x_529_);
+lean_ctor_set(v___x_530_, 1, v___x_528_);
+lean_ctor_set(v___x_530_, 2, v___x_527_);
+return v___x_530_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_registerSymSimp___closed__14(void){
+_start:
+{
+lean_object* v___x_531_; lean_object* v___x_532_; lean_object* v___x_533_; 
+v___x_531_ = lean_obj_once(&l_Lean_Parser_Command_registerSymSimp___closed__13, &l_Lean_Parser_Command_registerSymSimp___closed__13_once, _init_l_Lean_Parser_Command_registerSymSimp___closed__13);
+v___x_532_ = lean_obj_once(&l_Lean_Parser_Command_registerSymSimp___closed__9, &l_Lean_Parser_Command_registerSymSimp___closed__9_once, _init_l_Lean_Parser_Command_registerSymSimp___closed__9);
+v___x_533_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_533_, 0, v___x_532_);
+lean_ctor_set(v___x_533_, 1, v___x_531_);
+return v___x_533_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_registerSymSimp___closed__15(void){
+_start:
+{
+lean_object* v___x_534_; lean_object* v___x_535_; lean_object* v___x_536_; lean_object* v___x_537_; 
+v___x_534_ = lean_obj_once(&l_Lean_Parser_Command_registerSymSimp___closed__14, &l_Lean_Parser_Command_registerSymSimp___closed__14_once, _init_l_Lean_Parser_Command_registerSymSimp___closed__14);
+v___x_535_ = lean_obj_once(&l_Lean_Parser_Command_registerSymSimp___closed__7, &l_Lean_Parser_Command_registerSymSimp___closed__7_once, _init_l_Lean_Parser_Command_registerSymSimp___closed__7);
+v___x_536_ = lean_obj_once(&l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8, &l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8_once, _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot___closed__8);
+v___x_537_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_537_, 0, v___x_536_);
+lean_ctor_set(v___x_537_, 1, v___x_535_);
+lean_ctor_set(v___x_537_, 2, v___x_534_);
+return v___x_537_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_registerSymSimp___closed__16(void){
+_start:
+{
+lean_object* v___x_538_; lean_object* v___x_539_; lean_object* v___x_540_; lean_object* v___x_541_; 
+v___x_538_ = lean_obj_once(&l_Lean_Parser_Command_registerSymSimp___closed__15, &l_Lean_Parser_Command_registerSymSimp___closed__15_once, _init_l_Lean_Parser_Command_registerSymSimp___closed__15);
+v___x_539_ = lean_unsigned_to_nat(1022u);
+v___x_540_ = lean_obj_once(&l_Lean_Parser_Command_registerSymSimp___closed__1, &l_Lean_Parser_Command_registerSymSimp___closed__1_once, _init_l_Lean_Parser_Command_registerSymSimp___closed__1);
+v___x_541_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_541_, 0, v___x_540_);
+lean_ctor_set(v___x_541_, 1, v___x_539_);
+lean_ctor_set(v___x_541_, 2, v___x_538_);
+return v___x_541_;
+}
+}
+static lean_object* _init_l_Lean_Parser_Command_registerSymSimp(void){
+_start:
+{
+lean_object* v___x_542_; 
+v___x_542_ = lean_obj_once(&l_Lean_Parser_Command_registerSymSimp___closed__16, &l_Lean_Parser_Command_registerSymSimp___closed__16_once, _init_l_Lean_Parser_Command_registerSymSimp___closed__16);
+return v___x_542_;
 }
 }
 lean_object* runtime_initialize_Init_Tactics(uint8_t builtin);
@@ -519,12 +2623,56 @@ LEAN_EXPORT lean_object* meta_initialize_Init_Sym_Simp_SimprocDSL(uint8_t builti
 lean_object * res;
 if (_G_meta_initialized) return lean_io_result_mk_ok(lean_box(0));
 _G_meta_initialized = true;
+l_Lean_Parser_Sym_Simp_sym__simproc_quot = _init_l_Lean_Parser_Sym_Simp_sym__simproc_quot();
+lean_mark_persistent(l_Lean_Parser_Sym_Simp_sym__simproc_quot);
 l_Lean_Parser_Category_sym__simproc = _init_l_Lean_Parser_Category_sym__simproc();
 lean_mark_persistent(l_Lean_Parser_Category_sym__simproc);
+l_Lean_Parser_Sym_Simp_sym__discharger_quot = _init_l_Lean_Parser_Sym_Simp_sym__discharger_quot();
+lean_mark_persistent(l_Lean_Parser_Sym_Simp_sym__discharger_quot);
 l_Lean_Parser_Category_sym__discharger = _init_l_Lean_Parser_Category_sym__discharger();
 lean_mark_persistent(l_Lean_Parser_Category_sym__discharger);
+l_Lean_Parser_Sym_Simp_ground = _init_l_Lean_Parser_Sym_Simp_ground();
+lean_mark_persistent(l_Lean_Parser_Sym_Simp_ground);
+l_Lean_Parser_Sym_Simp_telescope = _init_l_Lean_Parser_Sym_Simp_telescope();
+lean_mark_persistent(l_Lean_Parser_Sym_Simp_telescope);
+l_Lean_Parser_Sym_Simp_control = _init_l_Lean_Parser_Sym_Simp_control();
+lean_mark_persistent(l_Lean_Parser_Sym_Simp_control);
+l_Lean_Parser_Sym_Simp_arrowTelescope = _init_l_Lean_Parser_Sym_Simp_arrowTelescope();
+lean_mark_persistent(l_Lean_Parser_Sym_Simp_arrowTelescope);
+l_Lean_Parser_Sym_Simp_rewriteSet = _init_l_Lean_Parser_Sym_Simp_rewriteSet();
+lean_mark_persistent(l_Lean_Parser_Sym_Simp_rewriteSet);
+l_Lean_Parser_Sym_Simp_rewriteInline = _init_l_Lean_Parser_Sym_Simp_rewriteInline();
+lean_mark_persistent(l_Lean_Parser_Sym_Simp_rewriteInline);
+l_Lean_Parser_Sym_Simp_self = _init_l_Lean_Parser_Sym_Simp_self();
+lean_mark_persistent(l_Lean_Parser_Sym_Simp_self);
+l_Lean_Parser_Sym_Simp_none = _init_l_Lean_Parser_Sym_Simp_none();
+lean_mark_persistent(l_Lean_Parser_Sym_Simp_none);
+l_Lean_Parser_Sym_Simp_andThen = _init_l_Lean_Parser_Sym_Simp_andThen();
+lean_mark_persistent(l_Lean_Parser_Sym_Simp_andThen);
+l_Lean_Parser_Sym_Simp_orElse = _init_l_Lean_Parser_Sym_Simp_orElse();
+lean_mark_persistent(l_Lean_Parser_Sym_Simp_orElse);
+l_Lean_Parser_Sym_Simp_simprocParen = _init_l_Lean_Parser_Sym_Simp_simprocParen();
+lean_mark_persistent(l_Lean_Parser_Sym_Simp_simprocParen);
+l_Lean_Parser_Sym_Simp_dischSelf = _init_l_Lean_Parser_Sym_Simp_dischSelf();
+lean_mark_persistent(l_Lean_Parser_Sym_Simp_dischSelf);
+l_Lean_Parser_Sym_Simp_dischNone = _init_l_Lean_Parser_Sym_Simp_dischNone();
+lean_mark_persistent(l_Lean_Parser_Sym_Simp_dischNone);
+l_Lean_Parser_Sym_Simp_dischParen = _init_l_Lean_Parser_Sym_Simp_dischParen();
+lean_mark_persistent(l_Lean_Parser_Sym_Simp_dischParen);
+l_Lean_Parser_Command_sym__simp__field_quot = _init_l_Lean_Parser_Command_sym__simp__field_quot();
+lean_mark_persistent(l_Lean_Parser_Command_sym__simp__field_quot);
 l_Lean_Parser_Category_sym__simp__field = _init_l_Lean_Parser_Category_sym__simp__field();
 lean_mark_persistent(l_Lean_Parser_Category_sym__simp__field);
+l_Lean_Parser_Command_symSimpFieldPre = _init_l_Lean_Parser_Command_symSimpFieldPre();
+lean_mark_persistent(l_Lean_Parser_Command_symSimpFieldPre);
+l_Lean_Parser_Command_symSimpFieldPost = _init_l_Lean_Parser_Command_symSimpFieldPost();
+lean_mark_persistent(l_Lean_Parser_Command_symSimpFieldPost);
+l_Lean_Parser_Command_symSimpFieldMaxSteps = _init_l_Lean_Parser_Command_symSimpFieldMaxSteps();
+lean_mark_persistent(l_Lean_Parser_Command_symSimpFieldMaxSteps);
+l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth = _init_l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth();
+lean_mark_persistent(l_Lean_Parser_Command_symSimpFieldMaxDischargeDepth);
+l_Lean_Parser_Command_registerSymSimp = _init_l_Lean_Parser_Command_registerSymSimp();
+lean_mark_persistent(l_Lean_Parser_Command_registerSymSimp);
 return lean_io_result_mk_ok(lean_box(0));
 }
 lean_object* initialize_Init_Tactics(uint8_t builtin);

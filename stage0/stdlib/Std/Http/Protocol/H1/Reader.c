@@ -57,93 +57,93 @@ LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_BodyState_chunkedBody_eli
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_BodyState_chunkedBody_elim(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_BodyState_closeDelimited_elim___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_BodyState_closeDelimited_elim(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState_default___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState_default___closed__0 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState_default___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState_default = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState_default___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState_default___closed__0_value;
-static const lean_string_object l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "none"};
-static const lean_object* l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__0 = (const lean_object*)&l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__0_value;
-static const lean_ctor_object l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__0_value)}};
-static const lean_object* l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__1 = (const lean_object*)&l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__1_value;
-static const lean_string_object l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "some "};
-static const lean_object* l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__2 = (const lean_object*)&l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__2_value;
-static const lean_ctor_object l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__2_value)}};
-static const lean_object* l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__3 = (const lean_object*)&l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__3_value;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState_default___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState_default___closed__0;
+LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState_default;
+LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState;
+static lean_once_cell_t l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__0;
+static lean_once_cell_t l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__1;
+static lean_once_cell_t l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__2;
+static lean_once_cell_t l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__3;
 LEAN_EXPORT lean_object* l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_List_foldl___at___00Std_Format_joinSep___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__2_spec__4(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Format_joinSep___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__2(lean_object*, lean_object*);
-static const lean_string_object l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "("};
-static const lean_object* l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__0 = (const lean_object*)&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__0_value;
-static const lean_string_object l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = ","};
-static const lean_object* l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__1 = (const lean_object*)&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__1_value;
-static const lean_ctor_object l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__1_value)}};
-static const lean_object* l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__2 = (const lean_object*)&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__2_value;
-static const lean_ctor_object l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 5}, .m_objs = {((lean_object*)&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__2_value),((lean_object*)(((size_t)(1) << 1) | 1))}};
-static const lean_object* l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__3 = (const lean_object*)&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__3_value;
-static const lean_string_object l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = ")"};
-static const lean_object* l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__4 = (const lean_object*)&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__4_value;
+static lean_once_cell_t l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__0;
+static lean_once_cell_t l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__1;
+static lean_once_cell_t l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__2;
+static lean_once_cell_t l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__3;
+static lean_once_cell_t l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__4;
 static lean_once_cell_t l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__5;
 static lean_once_cell_t l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__6;
-static const lean_ctor_object l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__0_value)}};
-static const lean_object* l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__7 = (const lean_object*)&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__7_value;
-static const lean_ctor_object l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__4_value)}};
-static const lean_object* l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__8 = (const lean_object*)&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__8_value;
+static lean_once_cell_t l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__7;
+static lean_once_cell_t l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__8;
 LEAN_EXPORT lean_object* l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_List_foldl___at___00List_foldl___at___00Std_Format_joinSep___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__1_spec__4_spec__7(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_List_foldl___at___00Std_Format_joinSep___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__1_spec__4(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Format_joinSep___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__1(lean_object*, lean_object*);
-static const lean_string_object l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "#["};
-static const lean_object* l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__0 = (const lean_object*)&l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__0_value;
-static const lean_string_object l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "]"};
-static const lean_object* l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__1 = (const lean_object*)&l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__1_value;
+static lean_once_cell_t l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__0;
+static lean_once_cell_t l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__1;
 static lean_once_cell_t l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__2;
 static lean_once_cell_t l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__3;
-static const lean_ctor_object l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__0_value)}};
-static const lean_object* l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__4 = (const lean_object*)&l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__4_value;
-static const lean_ctor_object l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__1_value)}};
-static const lean_object* l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__5 = (const lean_object*)&l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__5_value;
-static const lean_string_object l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "#[]"};
-static const lean_object* l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__6 = (const lean_object*)&l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__6_value;
-static const lean_ctor_object l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__6_value)}};
-static const lean_object* l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__7 = (const lean_object*)&l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__7_value;
+static lean_once_cell_t l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__4;
+static lean_once_cell_t l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__5;
+static lean_once_cell_t l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__6;
+static lean_once_cell_t l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__7;
 LEAN_EXPORT lean_object* l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0(lean_object*);
-static const lean_string_object l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 50, .m_capacity = 50, .m_length = 49, .m_data = "Std.Http.Protocol.H1.Reader.BodyState.chunkedSize"};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__0 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__0_value;
-static const lean_ctor_object l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__0_value)}};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__1 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__1_value;
-static const lean_string_object l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 53, .m_capacity = 53, .m_length = 52, .m_data = "Std.Http.Protocol.H1.Reader.BodyState.closeDelimited"};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__2 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__2_value;
-static const lean_ctor_object l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__2_value)}};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__3 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__3_value;
-static const lean_string_object l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 44, .m_capacity = 44, .m_length = 43, .m_data = "Std.Http.Protocol.H1.Reader.BodyState.fixed"};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__4 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__4_value;
-static const lean_ctor_object l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__4_value)}};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__5 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__5_value;
-static const lean_ctor_object l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__5_value),((lean_object*)(((size_t)(1) << 1) | 1))}};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__6 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__6_value;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__0;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__1;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__2;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__3;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__4;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__5;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__6;
 static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__7;
 static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__8;
-static const lean_string_object l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 50, .m_capacity = 50, .m_length = 49, .m_data = "Std.Http.Protocol.H1.Reader.BodyState.chunkedBody"};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__9 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__9_value;
-static const lean_ctor_object l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__9_value)}};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__10 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__10_value;
-static const lean_ctor_object l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__10_value),((lean_object*)(((size_t)(1) << 1) | 1))}};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__11 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__11_value;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__9;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__10;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__11;
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Nat_cast___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__2(lean_object*);
 LEAN_EXPORT lean_object* l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Http_Protocol_H1_Reader_instReprBodyState___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState___closed__0 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprBodyState___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprBodyState___closed__0_value;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprBodyState___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState___closed__0;
+LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState;
 LEAN_EXPORT uint8_t l_Option_instBEq_beq___at___00Std_Http_Protocol_H1_Reader_instBEqBodyState_beq_spec__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Option_instBEq_beq___at___00Std_Http_Protocol_H1_Reader_instBEqBodyState_beq_spec__0___boxed(lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Array_isEqvAux___at___00Std_Http_Protocol_H1_Reader_instBEqBodyState_beq_spec__1___redArg(lean_object*, lean_object*, lean_object*);
@@ -152,9 +152,9 @@ LEAN_EXPORT uint8_t l_Std_Http_Protocol_H1_Reader_instBEqBodyState_beq(lean_obje
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_instBEqBodyState_beq___boxed(lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Array_isEqvAux___at___00Std_Http_Protocol_H1_Reader_instBEqBodyState_beq_spec__1(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_isEqvAux___at___00Std_Http_Protocol_H1_Reader_instBEqBodyState_beq_spec__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_Http_Protocol_H1_Reader_instBEqBodyState___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Protocol_H1_Reader_instBEqBodyState_beq___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instBEqBodyState___closed__0 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instBEqBodyState___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Http_Protocol_H1_Reader_instBEqBodyState = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instBEqBodyState___closed__0_value;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instBEqBodyState___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instBEqBodyState___closed__0;
+LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_instBEqBodyState;
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_State_ctorIdx___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_State_ctorIdx___redArg___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_State_ctorIdx(uint8_t, lean_object*);
@@ -190,46 +190,46 @@ LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_instInhabitedState_defaul
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_instInhabitedState_default___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_instInhabitedState(uint8_t);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_instInhabitedState___boxed(lean_object*);
-static const lean_string_object l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 41, .m_capacity = 41, .m_length = 40, .m_data = "Std.Http.Protocol.H1.Reader.State.closed"};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__0 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__0_value;
-static const lean_ctor_object l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__0_value)}};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__1 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__1_value;
-static const lean_string_object l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 43, .m_capacity = 43, .m_length = 42, .m_data = "Std.Http.Protocol.H1.Reader.State.complete"};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__2 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__2_value;
-static const lean_ctor_object l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__2_value)}};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__3 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__3_value;
-static const lean_string_object l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 42, .m_capacity = 42, .m_length = 41, .m_data = "Std.Http.Protocol.H1.Reader.State.pending"};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__4 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__4_value;
-static const lean_ctor_object l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__4_value)}};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__5 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__5_value;
-static const lean_string_object l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 48, .m_capacity = 48, .m_length = 47, .m_data = "Std.Http.Protocol.H1.Reader.State.needStartLine"};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__6 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__6_value;
-static const lean_ctor_object l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__6_value)}};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__7 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__7_value;
-static const lean_string_object l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 45, .m_capacity = 45, .m_length = 44, .m_data = "Std.Http.Protocol.H1.Reader.State.needHeader"};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__8 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__8_value;
-static const lean_ctor_object l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__8_value)}};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__9 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__9_value;
-static const lean_ctor_object l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__9_value),((lean_object*)(((size_t)(1) << 1) | 1))}};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__10 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__10_value;
-static const lean_string_object l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 43, .m_capacity = 43, .m_length = 42, .m_data = "Std.Http.Protocol.H1.Reader.State.readBody"};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__11 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__11_value;
-static const lean_ctor_object l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__11_value)}};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__12 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__12_value;
-static const lean_ctor_object l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__12_value),((lean_object*)(((size_t)(1) << 1) | 1))}};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__13 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__13_value;
-static const lean_string_object l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 43, .m_capacity = 43, .m_length = 42, .m_data = "Std.Http.Protocol.H1.Reader.State.continue"};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__14 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__14_value;
-static const lean_ctor_object l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__14_value)}};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__15 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__15_value;
-static const lean_ctor_object l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__15_value),((lean_object*)(((size_t)(1) << 1) | 1))}};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__16 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__16_value;
-static const lean_string_object l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__17_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 41, .m_capacity = 41, .m_length = 40, .m_data = "Std.Http.Protocol.H1.Reader.State.failed"};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__17 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__17_value;
-static const lean_ctor_object l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__18_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__17_value)}};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__18 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__18_value;
-static const lean_ctor_object l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__19_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__18_value),((lean_object*)(((size_t)(1) << 1) | 1))}};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__19 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__19_value;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__0;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__1;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__2;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__3;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__4;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__5;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__6;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__7;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__8;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__9;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__10;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__11;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__12;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__13;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__14;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__15;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__16;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__17;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__18;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__19;
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr(uint8_t, lean_object*, lean_object*);
@@ -264,10 +264,10 @@ LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_setMessageHead___redArg(l
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_setMessageHead(uint8_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_setMessageHead___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_addHeader___lam__0(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Http_Protocol_H1_Reader_addHeader___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_String_decEq___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Protocol_H1_Reader_addHeader___closed__0 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_addHeader___closed__0_value;
-static const lean_closure_object l_Std_Http_Protocol_H1_Reader_addHeader___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_String_hash___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Protocol_H1_Reader_addHeader___closed__1 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_addHeader___closed__1_value;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_addHeader___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_addHeader___closed__0;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_addHeader___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_addHeader___closed__1;
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_addHeader(uint8_t, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_addHeader___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_close___redArg(lean_object*);
@@ -296,8 +296,8 @@ LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_advance___redArg(lean_obj
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_advance___redArg___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_advance(uint8_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_advance___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Std_Http_Protocol_H1_Reader_startHeaders___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_startHeaders___redArg___closed__0 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_startHeaders___redArg___closed__0_value;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_startHeaders___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_startHeaders___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_startHeaders___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_startHeaders(uint8_t, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_startHeaders___boxed(lean_object*, lean_object*);
@@ -312,8 +312,8 @@ LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_addHeaderBytes___boxed(le
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_startFixedBody___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_startFixedBody(uint8_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_startFixedBody___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Std_Http_Protocol_H1_Reader_startChunkedBody___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 2}, .m_objs = {((lean_object*)(((size_t)(1) << 1) | 1))}};
-static const lean_object* l_Std_Http_Protocol_H1_Reader_startChunkedBody___redArg___closed__0 = (const lean_object*)&l_Std_Http_Protocol_H1_Reader_startChunkedBody___redArg___closed__0_value;
+static lean_once_cell_t l_Std_Http_Protocol_H1_Reader_startChunkedBody___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Protocol_H1_Reader_startChunkedBody___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_startChunkedBody___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_startChunkedBody(uint8_t, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_startChunkedBody___boxed(lean_object*, lean_object*);
@@ -477,13 +477,75 @@ v___x_58_ = l_Std_Http_Protocol_H1_Reader_BodyState_ctorElim___redArg(v_t_55_, v
 return v___x_58_;
 }
 }
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState_default___closed__0(void){
+_start:
+{
+lean_object* v___x_59_; lean_object* v___x_60_; 
+v___x_59_ = lean_unsigned_to_nat(0u);
+v___x_60_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_60_, 0, v___x_59_);
+return v___x_60_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState_default(void){
+_start:
+{
+lean_object* v___x_61_; 
+v___x_61_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState_default___closed__0, &l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState_default___closed__0_once, _init_l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState_default___closed__0);
+return v___x_61_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState(void){
+_start:
+{
+lean_object* v___x_62_; 
+v___x_62_ = l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState_default;
+return v___x_62_;
+}
+}
+static lean_object* _init_l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__0(void){
+_start:
+{
+lean_object* v___x_63_; 
+v___x_63_ = lean_mk_string_unchecked("none", 4, 4);
+return v___x_63_;
+}
+}
+static lean_object* _init_l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__1(void){
+_start:
+{
+lean_object* v___x_64_; lean_object* v___x_65_; 
+v___x_64_ = lean_obj_once(&l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__0, &l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__0_once, _init_l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__0);
+v___x_65_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_65_, 0, v___x_64_);
+return v___x_65_;
+}
+}
+static lean_object* _init_l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__2(void){
+_start:
+{
+lean_object* v___x_66_; 
+v___x_66_ = lean_mk_string_unchecked("some ", 5, 5);
+return v___x_66_;
+}
+}
+static lean_object* _init_l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__3(void){
+_start:
+{
+lean_object* v___x_67_; lean_object* v___x_68_; 
+v___x_67_ = lean_obj_once(&l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__2, &l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__2_once, _init_l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__2);
+v___x_68_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_68_, 0, v___x_67_);
+return v___x_68_;
+}
+}
 LEAN_EXPORT lean_object* l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1(lean_object* v_x_69_, lean_object* v_x_70_){
 _start:
 {
 if (lean_obj_tag(v_x_69_) == 0)
 {
 lean_object* v___x_71_; 
-v___x_71_ = ((lean_object*)(l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__1));
+v___x_71_ = lean_obj_once(&l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__1, &l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__1_once, _init_l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__1);
 return v___x_71_;
 }
 else
@@ -492,7 +554,7 @@ lean_object* v_val_72_; lean_object* v___x_73_; lean_object* v___x_74_; lean_obj
 v_val_72_ = lean_ctor_get(v_x_69_, 0);
 lean_inc(v_val_72_);
 lean_dec_ref(v_x_69_);
-v___x_73_ = ((lean_object*)(l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__3));
+v___x_73_ = lean_obj_once(&l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__3, &l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__3_once, _init_l_Option_repr___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__1___closed__3);
 v___x_74_ = l_Std_Http_Chunk_instReprExtensionValue_repr___redArg(v_val_72_);
 v___x_75_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_75_, 0, v___x_73_);
@@ -611,11 +673,57 @@ return v___x_100_;
 }
 }
 }
+static lean_object* _init_l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_101_; 
+v___x_101_ = lean_mk_string_unchecked("(", 1, 1);
+return v___x_101_;
+}
+}
+static lean_object* _init_l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_102_; 
+v___x_102_ = lean_mk_string_unchecked(",", 1, 1);
+return v___x_102_;
+}
+}
+static lean_object* _init_l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__2(void){
+_start:
+{
+lean_object* v___x_103_; lean_object* v___x_104_; 
+v___x_103_ = lean_obj_once(&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__1, &l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__1_once, _init_l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__1);
+v___x_104_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_104_, 0, v___x_103_);
+return v___x_104_;
+}
+}
+static lean_object* _init_l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__3(void){
+_start:
+{
+lean_object* v___x_105_; lean_object* v___x_106_; lean_object* v___x_107_; 
+v___x_105_ = lean_box(1);
+v___x_106_ = lean_obj_once(&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__2, &l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__2_once, _init_l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__2);
+v___x_107_ = lean_alloc_ctor(5, 2, 0);
+lean_ctor_set(v___x_107_, 0, v___x_106_);
+lean_ctor_set(v___x_107_, 1, v___x_105_);
+return v___x_107_;
+}
+}
+static lean_object* _init_l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__4(void){
+_start:
+{
+lean_object* v___x_108_; 
+v___x_108_ = lean_mk_string_unchecked(")", 1, 1);
+return v___x_108_;
+}
+}
 static lean_object* _init_l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__5(void){
 _start:
 {
 lean_object* v___x_109_; lean_object* v___x_110_; 
-v___x_109_ = ((lean_object*)(l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__0));
+v___x_109_ = lean_obj_once(&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__0, &l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__0_once, _init_l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__0);
 v___x_110_ = lean_string_length(v___x_109_);
 return v___x_110_;
 }
@@ -627,6 +735,26 @@ lean_object* v___x_111_; lean_object* v___x_112_;
 v___x_111_ = lean_obj_once(&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__5, &l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__5_once, _init_l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__5);
 v___x_112_ = lean_nat_to_int(v___x_111_);
 return v___x_112_;
+}
+}
+static lean_object* _init_l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__7(void){
+_start:
+{
+lean_object* v___x_113_; lean_object* v___x_114_; 
+v___x_113_ = lean_obj_once(&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__0, &l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__0_once, _init_l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__0);
+v___x_114_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_114_, 0, v___x_113_);
+return v___x_114_;
+}
+}
+static lean_object* _init_l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__8(void){
+_start:
+{
+lean_object* v___x_115_; lean_object* v___x_116_; 
+v___x_115_ = lean_obj_once(&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__4, &l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__4_once, _init_l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__4);
+v___x_116_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_116_, 0, v___x_115_);
+return v___x_116_;
 }
 }
 LEAN_EXPORT lean_object* l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg(lean_object* v_x_117_){
@@ -682,14 +810,14 @@ v___x_129_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_129_, 0, v___x_128_);
 lean_ctor_set(v___x_129_, 1, v___x_127_);
 v___x_130_ = l_List_reverse___redArg(v___x_129_);
-v___x_131_ = ((lean_object*)(l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__3));
+v___x_131_ = lean_obj_once(&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__3, &l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__3_once, _init_l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__3);
 v___x_132_ = l_Std_Format_joinSep___at___00Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0_spec__2(v___x_130_, v___x_131_);
 v___x_133_ = lean_obj_once(&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__6, &l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__6_once, _init_l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__6);
-v___x_134_ = ((lean_object*)(l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__7));
+v___x_134_ = lean_obj_once(&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__7, &l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__7_once, _init_l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__7);
 v___x_135_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_135_, 0, v___x_134_);
 lean_ctor_set(v___x_135_, 1, v___x_132_);
-v___x_136_ = ((lean_object*)(l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__8));
+v___x_136_ = lean_obj_once(&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__8, &l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__8_once, _init_l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__8);
 v___x_137_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_137_, 0, v___x_135_);
 lean_ctor_set(v___x_137_, 1, v___x_136_);
@@ -872,11 +1000,27 @@ return v___x_181_;
 }
 }
 }
+static lean_object* _init_l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__0(void){
+_start:
+{
+lean_object* v___x_182_; 
+v___x_182_ = lean_mk_string_unchecked("#[", 2, 2);
+return v___x_182_;
+}
+}
+static lean_object* _init_l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__1(void){
+_start:
+{
+lean_object* v___x_183_; 
+v___x_183_ = lean_mk_string_unchecked("]", 1, 1);
+return v___x_183_;
+}
+}
 static lean_object* _init_l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__2(void){
 _start:
 {
 lean_object* v___x_184_; lean_object* v___x_185_; 
-v___x_184_ = ((lean_object*)(l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__0));
+v___x_184_ = lean_obj_once(&l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__0, &l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__0_once, _init_l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__0);
 v___x_185_ = lean_string_length(v___x_184_);
 return v___x_185_;
 }
@@ -890,6 +1034,44 @@ v___x_187_ = lean_nat_to_int(v___x_186_);
 return v___x_187_;
 }
 }
+static lean_object* _init_l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__4(void){
+_start:
+{
+lean_object* v___x_188_; lean_object* v___x_189_; 
+v___x_188_ = lean_obj_once(&l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__0, &l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__0_once, _init_l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__0);
+v___x_189_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_189_, 0, v___x_188_);
+return v___x_189_;
+}
+}
+static lean_object* _init_l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__5(void){
+_start:
+{
+lean_object* v___x_190_; lean_object* v___x_191_; 
+v___x_190_ = lean_obj_once(&l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__1, &l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__1_once, _init_l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__1);
+v___x_191_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_191_, 0, v___x_190_);
+return v___x_191_;
+}
+}
+static lean_object* _init_l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__6(void){
+_start:
+{
+lean_object* v___x_192_; 
+v___x_192_ = lean_mk_string_unchecked("#[]", 3, 3);
+return v___x_192_;
+}
+}
+static lean_object* _init_l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__7(void){
+_start:
+{
+lean_object* v___x_193_; lean_object* v___x_194_; 
+v___x_193_ = lean_obj_once(&l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__6, &l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__6_once, _init_l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__6);
+v___x_194_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_194_, 0, v___x_193_);
+return v___x_194_;
+}
+}
 LEAN_EXPORT lean_object* l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0(lean_object* v_xs_195_){
 _start:
 {
@@ -901,14 +1083,14 @@ if (v___x_198_ == 0)
 {
 lean_object* v___x_199_; lean_object* v___x_200_; lean_object* v___x_201_; lean_object* v___x_202_; lean_object* v___x_203_; lean_object* v___x_204_; lean_object* v___x_205_; lean_object* v___x_206_; lean_object* v___x_207_; lean_object* v___x_208_; 
 v___x_199_ = lean_array_to_list(v_xs_195_);
-v___x_200_ = ((lean_object*)(l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__3));
+v___x_200_ = lean_obj_once(&l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__3, &l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__3_once, _init_l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0___redArg___closed__3);
 v___x_201_ = l_Std_Format_joinSep___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__1(v___x_199_, v___x_200_);
 v___x_202_ = lean_obj_once(&l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__3, &l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__3_once, _init_l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__3);
-v___x_203_ = ((lean_object*)(l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__4));
+v___x_203_ = lean_obj_once(&l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__4, &l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__4_once, _init_l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__4);
 v___x_204_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_204_, 0, v___x_203_);
 lean_ctor_set(v___x_204_, 1, v___x_201_);
-v___x_205_ = ((lean_object*)(l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__5));
+v___x_205_ = lean_obj_once(&l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__5, &l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__5_once, _init_l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__5);
 v___x_206_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_206_, 0, v___x_204_);
 lean_ctor_set(v___x_206_, 1, v___x_205_);
@@ -922,9 +1104,75 @@ else
 {
 lean_object* v___x_209_; 
 lean_dec_ref(v_xs_195_);
-v___x_209_ = ((lean_object*)(l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__7));
+v___x_209_ = lean_obj_once(&l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__7, &l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__7_once, _init_l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0___closed__7);
 return v___x_209_;
 }
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__0(void){
+_start:
+{
+lean_object* v___x_210_; 
+v___x_210_ = lean_mk_string_unchecked("Std.Http.Protocol.H1.Reader.BodyState.chunkedSize", 49, 49);
+return v___x_210_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__1(void){
+_start:
+{
+lean_object* v___x_211_; lean_object* v___x_212_; 
+v___x_211_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__0, &l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__0_once, _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__0);
+v___x_212_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_212_, 0, v___x_211_);
+return v___x_212_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__2(void){
+_start:
+{
+lean_object* v___x_213_; 
+v___x_213_ = lean_mk_string_unchecked("Std.Http.Protocol.H1.Reader.BodyState.closeDelimited", 52, 52);
+return v___x_213_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__3(void){
+_start:
+{
+lean_object* v___x_214_; lean_object* v___x_215_; 
+v___x_214_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__2, &l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__2_once, _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__2);
+v___x_215_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_215_, 0, v___x_214_);
+return v___x_215_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__4(void){
+_start:
+{
+lean_object* v___x_216_; 
+v___x_216_ = lean_mk_string_unchecked("Std.Http.Protocol.H1.Reader.BodyState.fixed", 43, 43);
+return v___x_216_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__5(void){
+_start:
+{
+lean_object* v___x_217_; lean_object* v___x_218_; 
+v___x_217_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__4, &l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__4_once, _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__4);
+v___x_218_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_218_, 0, v___x_217_);
+return v___x_218_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__6(void){
+_start:
+{
+lean_object* v___x_219_; lean_object* v___x_220_; lean_object* v___x_221_; 
+v___x_219_ = lean_box(1);
+v___x_220_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__5, &l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__5_once, _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__5);
+v___x_221_ = lean_alloc_ctor(5, 2, 0);
+lean_ctor_set(v___x_221_, 0, v___x_220_);
+lean_ctor_set(v___x_221_, 1, v___x_219_);
+return v___x_221_;
 }
 }
 static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__7(void){
@@ -943,6 +1191,36 @@ lean_object* v___x_224_; lean_object* v___x_225_;
 v___x_224_ = lean_unsigned_to_nat(1u);
 v___x_225_ = lean_nat_to_int(v___x_224_);
 return v___x_225_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__9(void){
+_start:
+{
+lean_object* v___x_226_; 
+v___x_226_ = lean_mk_string_unchecked("Std.Http.Protocol.H1.Reader.BodyState.chunkedBody", 49, 49);
+return v___x_226_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__10(void){
+_start:
+{
+lean_object* v___x_227_; lean_object* v___x_228_; 
+v___x_227_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__9, &l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__9_once, _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__9);
+v___x_228_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_228_, 0, v___x_227_);
+return v___x_228_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__11(void){
+_start:
+{
+lean_object* v___x_229_; lean_object* v___x_230_; lean_object* v___x_231_; 
+v___x_229_ = lean_box(1);
+v___x_230_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__10, &l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__10_once, _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__10);
+v___x_231_ = lean_alloc_ctor(5, 2, 0);
+lean_ctor_set(v___x_231_, 0, v___x_230_);
+lean_ctor_set(v___x_231_, 1, v___x_229_);
+return v___x_231_;
 }
 }
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr(lean_object* v_x_232_, lean_object* v_prec_233_){
@@ -992,7 +1270,7 @@ goto v___jp_252_;
 v___jp_252_:
 {
 lean_object* v___x_254_; lean_object* v___x_255_; lean_object* v___x_257_; 
-v___x_254_ = ((lean_object*)(l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__6));
+v___x_254_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__6, &l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__6_once, _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__6);
 v___x_255_ = l_Nat_reprFast(v_remaining_248_);
 if (v_isShared_251_ == 0)
 {
@@ -1093,7 +1371,7 @@ v___jp_278_:
 {
 lean_object* v___x_280_; lean_object* v___x_281_; lean_object* v___x_282_; lean_object* v___x_284_; 
 v___x_280_ = lean_box(1);
-v___x_281_ = ((lean_object*)(l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__11));
+v___x_281_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__11, &l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__11_once, _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__11);
 v___x_282_ = l_Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0(v_ext_273_);
 if (v_isShared_277_ == 0)
 {
@@ -1162,7 +1440,7 @@ goto v___jp_241_;
 v___jp_234_:
 {
 lean_object* v___x_236_; lean_object* v___x_237_; uint8_t v___x_238_; lean_object* v___x_239_; lean_object* v___x_240_; 
-v___x_236_ = ((lean_object*)(l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__1));
+v___x_236_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__1, &l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__1_once, _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__1);
 lean_inc(v___y_235_);
 v___x_237_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_237_, 0, v___y_235_);
@@ -1177,7 +1455,7 @@ return v___x_240_;
 v___jp_241_:
 {
 lean_object* v___x_243_; lean_object* v___x_244_; uint8_t v___x_245_; lean_object* v___x_246_; lean_object* v___x_247_; 
-v___x_243_ = ((lean_object*)(l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__3));
+v___x_243_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__3, &l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__3_once, _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___closed__3);
 lean_inc(v___y_242_);
 v___x_244_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_244_, 0, v___y_242_);
@@ -1223,6 +1501,22 @@ lean_object* v_res_313_;
 v_res_313_ = l_Prod_repr___at___00Array_repr___at___00Std_Http_Protocol_H1_Reader_instReprBodyState_repr_spec__0_spec__0(v_x_311_, v_x_312_);
 lean_dec(v_x_312_);
 return v_res_313_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState___closed__0(void){
+_start:
+{
+lean_object* v___x_314_; 
+v___x_314_ = lean_alloc_closure((void*)(l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr___boxed), 2, 0);
+return v___x_314_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState(void){
+_start:
+{
+lean_object* v___x_315_; 
+v___x_315_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprBodyState___closed__0, &l_Std_Http_Protocol_H1_Reader_instReprBodyState___closed__0_once, _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState___closed__0);
+return v___x_315_;
 }
 }
 LEAN_EXPORT uint8_t l_Option_instBEq_beq___at___00Std_Http_Protocol_H1_Reader_instBEqBodyState_beq_spec__0(lean_object* v_x_316_, lean_object* v_x_317_){
@@ -1458,6 +1752,22 @@ lean_dec_ref(v_ys_382_);
 lean_dec_ref(v_xs_381_);
 v_r_387_ = lean_box(v_res_386_);
 return v_r_387_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instBEqBodyState___closed__0(void){
+_start:
+{
+lean_object* v___x_388_; 
+v___x_388_ = lean_alloc_closure((void*)(l_Std_Http_Protocol_H1_Reader_instBEqBodyState_beq___boxed), 2, 0);
+return v___x_388_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instBEqBodyState(void){
+_start:
+{
+lean_object* v___x_389_; 
+v___x_389_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instBEqBodyState___closed__0, &l_Std_Http_Protocol_H1_Reader_instBEqBodyState___closed__0_once, _init_l_Std_Http_Protocol_H1_Reader_instBEqBodyState___closed__0);
+return v___x_389_;
 }
 }
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_State_ctorIdx___redArg(lean_object* v_x_390_){
@@ -1844,6 +2154,198 @@ v_res_570_ = l_Std_Http_Protocol_H1_Reader_instInhabitedState(v_a_6__boxed_569_)
 return v_res_570_;
 }
 }
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_571_; 
+v___x_571_ = lean_mk_string_unchecked("Std.Http.Protocol.H1.Reader.State.closed", 40, 40);
+return v___x_571_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_572_; lean_object* v___x_573_; 
+v___x_572_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__0, &l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__0_once, _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__0);
+v___x_573_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_573_, 0, v___x_572_);
+return v___x_573_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__2(void){
+_start:
+{
+lean_object* v___x_574_; 
+v___x_574_ = lean_mk_string_unchecked("Std.Http.Protocol.H1.Reader.State.complete", 42, 42);
+return v___x_574_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__3(void){
+_start:
+{
+lean_object* v___x_575_; lean_object* v___x_576_; 
+v___x_575_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__2, &l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__2_once, _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__2);
+v___x_576_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_576_, 0, v___x_575_);
+return v___x_576_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__4(void){
+_start:
+{
+lean_object* v___x_577_; 
+v___x_577_ = lean_mk_string_unchecked("Std.Http.Protocol.H1.Reader.State.pending", 41, 41);
+return v___x_577_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__5(void){
+_start:
+{
+lean_object* v___x_578_; lean_object* v___x_579_; 
+v___x_578_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__4, &l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__4_once, _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__4);
+v___x_579_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_579_, 0, v___x_578_);
+return v___x_579_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__6(void){
+_start:
+{
+lean_object* v___x_580_; 
+v___x_580_ = lean_mk_string_unchecked("Std.Http.Protocol.H1.Reader.State.needStartLine", 47, 47);
+return v___x_580_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__7(void){
+_start:
+{
+lean_object* v___x_581_; lean_object* v___x_582_; 
+v___x_581_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__6, &l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__6_once, _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__6);
+v___x_582_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_582_, 0, v___x_581_);
+return v___x_582_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__8(void){
+_start:
+{
+lean_object* v___x_583_; 
+v___x_583_ = lean_mk_string_unchecked("Std.Http.Protocol.H1.Reader.State.needHeader", 44, 44);
+return v___x_583_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__9(void){
+_start:
+{
+lean_object* v___x_584_; lean_object* v___x_585_; 
+v___x_584_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__8, &l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__8_once, _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__8);
+v___x_585_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_585_, 0, v___x_584_);
+return v___x_585_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__10(void){
+_start:
+{
+lean_object* v___x_586_; lean_object* v___x_587_; lean_object* v___x_588_; 
+v___x_586_ = lean_box(1);
+v___x_587_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__9, &l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__9_once, _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__9);
+v___x_588_ = lean_alloc_ctor(5, 2, 0);
+lean_ctor_set(v___x_588_, 0, v___x_587_);
+lean_ctor_set(v___x_588_, 1, v___x_586_);
+return v___x_588_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__11(void){
+_start:
+{
+lean_object* v___x_589_; 
+v___x_589_ = lean_mk_string_unchecked("Std.Http.Protocol.H1.Reader.State.readBody", 42, 42);
+return v___x_589_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__12(void){
+_start:
+{
+lean_object* v___x_590_; lean_object* v___x_591_; 
+v___x_590_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__11, &l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__11_once, _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__11);
+v___x_591_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_591_, 0, v___x_590_);
+return v___x_591_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__13(void){
+_start:
+{
+lean_object* v___x_592_; lean_object* v___x_593_; lean_object* v___x_594_; 
+v___x_592_ = lean_box(1);
+v___x_593_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__12, &l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__12_once, _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__12);
+v___x_594_ = lean_alloc_ctor(5, 2, 0);
+lean_ctor_set(v___x_594_, 0, v___x_593_);
+lean_ctor_set(v___x_594_, 1, v___x_592_);
+return v___x_594_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__14(void){
+_start:
+{
+lean_object* v___x_595_; 
+v___x_595_ = lean_mk_string_unchecked("Std.Http.Protocol.H1.Reader.State.continue", 42, 42);
+return v___x_595_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__15(void){
+_start:
+{
+lean_object* v___x_596_; lean_object* v___x_597_; 
+v___x_596_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__14, &l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__14_once, _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__14);
+v___x_597_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_597_, 0, v___x_596_);
+return v___x_597_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__16(void){
+_start:
+{
+lean_object* v___x_598_; lean_object* v___x_599_; lean_object* v___x_600_; 
+v___x_598_ = lean_box(1);
+v___x_599_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__15, &l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__15_once, _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__15);
+v___x_600_ = lean_alloc_ctor(5, 2, 0);
+lean_ctor_set(v___x_600_, 0, v___x_599_);
+lean_ctor_set(v___x_600_, 1, v___x_598_);
+return v___x_600_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__17(void){
+_start:
+{
+lean_object* v___x_601_; 
+v___x_601_ = lean_mk_string_unchecked("Std.Http.Protocol.H1.Reader.State.failed", 40, 40);
+return v___x_601_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__18(void){
+_start:
+{
+lean_object* v___x_602_; lean_object* v___x_603_; 
+v___x_602_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__17, &l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__17_once, _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__17);
+v___x_603_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_603_, 0, v___x_602_);
+return v___x_603_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__19(void){
+_start:
+{
+lean_object* v___x_604_; lean_object* v___x_605_; lean_object* v___x_606_; 
+v___x_604_ = lean_box(1);
+v___x_605_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__18, &l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__18_once, _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__18);
+v___x_606_ = lean_alloc_ctor(5, 2, 0);
+lean_ctor_set(v___x_606_, 0, v___x_605_);
+lean_ctor_set(v___x_606_, 1, v___x_604_);
+return v___x_606_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg(lean_object* v_x_607_, lean_object* v_prec_608_){
 _start:
 {
@@ -1911,7 +2413,7 @@ goto v___jp_645_;
 v___jp_645_:
 {
 lean_object* v___x_647_; lean_object* v___x_648_; lean_object* v___x_650_; 
-v___x_647_ = ((lean_object*)(l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__10));
+v___x_647_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__10, &l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__10_once, _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__10);
 v___x_648_ = l_Nat_reprFast(v_a_641_);
 if (v_isShared_644_ == 0)
 {
@@ -1973,7 +2475,7 @@ goto v___jp_663_;
 v___jp_663_:
 {
 lean_object* v___x_665_; lean_object* v___x_666_; lean_object* v___x_667_; lean_object* v___x_668_; lean_object* v___x_669_; uint8_t v___x_670_; lean_object* v___x_671_; lean_object* v___x_672_; 
-v___x_665_ = ((lean_object*)(l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__13));
+v___x_665_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__13, &l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__13_once, _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__13);
 v___x_666_ = lean_unsigned_to_nat(1024u);
 v___x_667_ = l_Std_Http_Protocol_H1_Reader_instReprBodyState_repr(v_a_662_, v___x_666_);
 v___x_668_ = lean_alloc_ctor(5, 2, 0);
@@ -2016,7 +2518,7 @@ goto v___jp_679_;
 v___jp_679_:
 {
 lean_object* v___x_681_; lean_object* v___x_682_; lean_object* v___x_683_; lean_object* v___x_684_; uint8_t v___x_685_; lean_object* v___x_686_; lean_object* v___x_687_; 
-v___x_681_ = ((lean_object*)(l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__16));
+v___x_681_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__16, &l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__16_once, _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__16);
 v___x_682_ = l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg(v_a_677_, v___x_678_);
 v___x_683_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_683_, 0, v___x_681_);
@@ -2118,7 +2620,7 @@ goto v___jp_704_;
 v___jp_704_:
 {
 lean_object* v___x_706_; lean_object* v___x_707_; lean_object* v___x_708_; lean_object* v___x_709_; lean_object* v___x_710_; uint8_t v___x_711_; lean_object* v___x_712_; lean_object* v___x_713_; 
-v___x_706_ = ((lean_object*)(l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__19));
+v___x_706_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__19, &l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__19_once, _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__19);
 v___x_707_ = lean_unsigned_to_nat(1024u);
 v___x_708_ = l_Std_Http_Protocol_H1_instReprError_repr(v_error_703_, v___x_707_);
 v___x_709_ = lean_alloc_ctor(5, 2, 0);
@@ -2140,7 +2642,7 @@ return v___x_713_;
 v___jp_609_:
 {
 lean_object* v___x_611_; lean_object* v___x_612_; uint8_t v___x_613_; lean_object* v___x_614_; lean_object* v___x_615_; 
-v___x_611_ = ((lean_object*)(l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__1));
+v___x_611_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__1, &l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__1_once, _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__1);
 lean_inc(v___y_610_);
 v___x_612_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_612_, 0, v___y_610_);
@@ -2155,7 +2657,7 @@ return v___x_615_;
 v___jp_616_:
 {
 lean_object* v___x_618_; lean_object* v___x_619_; uint8_t v___x_620_; lean_object* v___x_621_; lean_object* v___x_622_; 
-v___x_618_ = ((lean_object*)(l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__3));
+v___x_618_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__3, &l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__3_once, _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__3);
 lean_inc(v___y_617_);
 v___x_619_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_619_, 0, v___y_617_);
@@ -2170,7 +2672,7 @@ return v___x_622_;
 v___jp_623_:
 {
 lean_object* v___x_625_; lean_object* v___x_626_; uint8_t v___x_627_; lean_object* v___x_628_; lean_object* v___x_629_; 
-v___x_625_ = ((lean_object*)(l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__5));
+v___x_625_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__5, &l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__5_once, _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__5);
 lean_inc(v___y_624_);
 v___x_626_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_626_, 0, v___y_624_);
@@ -2185,7 +2687,7 @@ return v___x_629_;
 v___jp_630_:
 {
 lean_object* v___x_632_; lean_object* v___x_633_; uint8_t v___x_634_; lean_object* v___x_635_; lean_object* v___x_636_; 
-v___x_632_ = ((lean_object*)(l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__7));
+v___x_632_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__7, &l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__7_once, _init_l_Std_Http_Protocol_H1_Reader_instReprState_repr___redArg___closed__7);
 lean_inc(v___y_631_);
 v___x_633_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_633_, 0, v___y_631_);
@@ -3164,6 +3666,22 @@ return v___x_987_;
 }
 }
 }
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_addHeader___closed__0(void){
+_start:
+{
+lean_object* v___f_990_; 
+v___f_990_ = lean_alloc_closure((void*)(l_String_decEq___boxed), 2, 0);
+return v___f_990_;
+}
+}
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_addHeader___closed__1(void){
+_start:
+{
+lean_object* v___f_991_; 
+v___f_991_ = lean_alloc_closure((void*)(l_String_hash___boxed), 1, 0);
+return v___f_991_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_addHeader(uint8_t v_dir_992_, lean_object* v_name_993_, lean_object* v_value_994_, lean_object* v_reader_995_){
 _start:
 {
@@ -3248,8 +3766,8 @@ goto v_resetjp_1015_;
 v_resetjp_1015_:
 {
 lean_object* v___f_1018_; lean_object* v___f_1019_; lean_object* v_i_1020_; lean_object* v_f_1021_; lean_object* v___x_1022_; lean_object* v_entries_1023_; lean_object* v_indexes_1024_; lean_object* v___x_1026_; 
-v___f_1018_ = ((lean_object*)(l_Std_Http_Protocol_H1_Reader_addHeader___closed__0));
-v___f_1019_ = ((lean_object*)(l_Std_Http_Protocol_H1_Reader_addHeader___closed__1));
+v___f_1018_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_addHeader___closed__0, &l_Std_Http_Protocol_H1_Reader_addHeader___closed__0_once, _init_l_Std_Http_Protocol_H1_Reader_addHeader___closed__0);
+v___f_1019_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_addHeader___closed__1, &l_Std_Http_Protocol_H1_Reader_addHeader___closed__1_once, _init_l_Std_Http_Protocol_H1_Reader_addHeader___closed__1);
 v_i_1020_ = lean_array_get_size(v_entries_1013_);
 v_f_1021_ = lean_alloc_closure((void*)(l_Std_Http_Protocol_H1_Reader_addHeader___lam__0), 2, 1);
 lean_closure_set(v_f_1021_, 0, v_i_1020_);
@@ -3408,8 +3926,8 @@ goto v_resetjp_1057_;
 v_resetjp_1057_:
 {
 lean_object* v___f_1060_; lean_object* v___f_1061_; lean_object* v_i_1062_; lean_object* v_f_1063_; lean_object* v___x_1064_; lean_object* v_entries_1065_; lean_object* v_indexes_1066_; lean_object* v___x_1068_; 
-v___f_1060_ = ((lean_object*)(l_Std_Http_Protocol_H1_Reader_addHeader___closed__0));
-v___f_1061_ = ((lean_object*)(l_Std_Http_Protocol_H1_Reader_addHeader___closed__1));
+v___f_1060_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_addHeader___closed__0, &l_Std_Http_Protocol_H1_Reader_addHeader___closed__0_once, _init_l_Std_Http_Protocol_H1_Reader_addHeader___closed__0);
+v___f_1061_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_addHeader___closed__1, &l_Std_Http_Protocol_H1_Reader_addHeader___closed__1_once, _init_l_Std_Http_Protocol_H1_Reader_addHeader___closed__1);
 v_i_1062_ = lean_array_get_size(v_entries_1055_);
 v_f_1063_ = lean_alloc_closure((void*)(l_Std_Http_Protocol_H1_Reader_addHeader___lam__0), 2, 1);
 lean_closure_set(v_f_1063_, 0, v_i_1062_);
@@ -4552,6 +5070,16 @@ lean_dec(v_n_1370_);
 return v_res_1373_;
 }
 }
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_startHeaders___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_1374_; lean_object* v___x_1375_; 
+v___x_1374_ = lean_unsigned_to_nat(0u);
+v___x_1375_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_1375_, 0, v___x_1374_);
+return v___x_1375_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_startHeaders___redArg(lean_object* v_reader_1376_){
 _start:
 {
@@ -4588,7 +5116,7 @@ v_resetjp_1381_:
 {
 lean_object* v___x_1384_; lean_object* v___x_1385_; lean_object* v___x_1387_; 
 v___x_1384_ = lean_unsigned_to_nat(0u);
-v___x_1385_ = ((lean_object*)(l_Std_Http_Protocol_H1_Reader_startHeaders___redArg___closed__0));
+v___x_1385_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_startHeaders___redArg___closed__0, &l_Std_Http_Protocol_H1_Reader_startHeaders___redArg___closed__0_once, _init_l_Std_Http_Protocol_H1_Reader_startHeaders___redArg___closed__0);
 if (v_isShared_1383_ == 0)
 {
 lean_ctor_set(v___x_1382_, 5, v___x_1384_);
@@ -4654,7 +5182,7 @@ v_resetjp_1399_:
 {
 lean_object* v___x_1402_; lean_object* v___x_1403_; lean_object* v___x_1405_; 
 v___x_1402_ = lean_unsigned_to_nat(0u);
-v___x_1403_ = ((lean_object*)(l_Std_Http_Protocol_H1_Reader_startHeaders___redArg___closed__0));
+v___x_1403_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_startHeaders___redArg___closed__0, &l_Std_Http_Protocol_H1_Reader_startHeaders___redArg___closed__0_once, _init_l_Std_Http_Protocol_H1_Reader_startHeaders___redArg___closed__0);
 if (v_isShared_1401_ == 0)
 {
 lean_ctor_set(v___x_1400_, 5, v___x_1402_);
@@ -5124,6 +5652,16 @@ v_res_1542_ = l_Std_Http_Protocol_H1_Reader_startFixedBody(v_dir_boxed_1541_, v_
 return v_res_1542_;
 }
 }
+static lean_object* _init_l_Std_Http_Protocol_H1_Reader_startChunkedBody___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_1543_; lean_object* v___x_1544_; 
+v___x_1543_ = lean_box(1);
+v___x_1544_ = lean_alloc_ctor(2, 1, 0);
+lean_ctor_set(v___x_1544_, 0, v___x_1543_);
+return v___x_1544_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Http_Protocol_H1_Reader_startChunkedBody___redArg(lean_object* v_reader_1545_){
 _start:
 {
@@ -5159,7 +5697,7 @@ goto v_resetjp_1552_;
 v_resetjp_1552_:
 {
 lean_object* v___x_1555_; lean_object* v___x_1557_; 
-v___x_1555_ = ((lean_object*)(l_Std_Http_Protocol_H1_Reader_startChunkedBody___redArg___closed__0));
+v___x_1555_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_startChunkedBody___redArg___closed__0, &l_Std_Http_Protocol_H1_Reader_startChunkedBody___redArg___closed__0_once, _init_l_Std_Http_Protocol_H1_Reader_startChunkedBody___redArg___closed__0);
 if (v_isShared_1554_ == 0)
 {
 lean_ctor_set(v___x_1553_, 0, v___x_1555_);
@@ -5222,7 +5760,7 @@ goto v_resetjp_1569_;
 v_resetjp_1569_:
 {
 lean_object* v___x_1572_; lean_object* v___x_1574_; 
-v___x_1572_ = ((lean_object*)(l_Std_Http_Protocol_H1_Reader_startChunkedBody___redArg___closed__0));
+v___x_1572_ = lean_obj_once(&l_Std_Http_Protocol_H1_Reader_startChunkedBody___redArg___closed__0, &l_Std_Http_Protocol_H1_Reader_startChunkedBody___redArg___closed__0_once, _init_l_Std_Http_Protocol_H1_Reader_startChunkedBody___redArg___closed__0);
 if (v_isShared_1571_ == 0)
 {
 lean_ctor_set(v___x_1570_, 0, v___x_1572_);
@@ -5441,6 +5979,14 @@ lean_dec_ref(res);
 res = runtime_initialize_Std_Http_Protocol_H1_Error(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState_default = _init_l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState_default();
+lean_mark_persistent(l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState_default);
+l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState = _init_l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState();
+lean_mark_persistent(l_Std_Http_Protocol_H1_Reader_instInhabitedBodyState);
+l_Std_Http_Protocol_H1_Reader_instReprBodyState = _init_l_Std_Http_Protocol_H1_Reader_instReprBodyState();
+lean_mark_persistent(l_Std_Http_Protocol_H1_Reader_instReprBodyState);
+l_Std_Http_Protocol_H1_Reader_instBEqBodyState = _init_l_Std_Http_Protocol_H1_Reader_instBEqBodyState();
+lean_mark_persistent(l_Std_Http_Protocol_H1_Reader_instBEqBodyState);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

@@ -70,16 +70,16 @@ lean_object* l_Lean_NameSet_insert(lean_object*, lean_object*);
 lean_object* l_Lean_NameSet_filter(lean_object*, lean_object*);
 LEAN_EXPORT uint64_t l_Lean_Meta_FunInd_instHashableCall_hash(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_FunInd_instHashableCall_hash___boxed(lean_object*);
-static const lean_closure_object l_Lean_Meta_FunInd_instHashableCall___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_FunInd_instHashableCall_hash___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_FunInd_instHashableCall___closed__0 = (const lean_object*)&l_Lean_Meta_FunInd_instHashableCall___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Meta_FunInd_instHashableCall = (const lean_object*)&l_Lean_Meta_FunInd_instHashableCall___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_FunInd_instHashableCall___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_FunInd_instHashableCall___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Meta_FunInd_instHashableCall;
 LEAN_EXPORT uint8_t l_Lean_Meta_FunInd_instBEqCall_beq(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_FunInd_instBEqCall_beq___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Lean_Meta_FunInd_instBEqCall___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_FunInd_instBEqCall_beq___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_FunInd_instBEqCall___closed__0 = (const lean_object*)&l_Lean_Meta_FunInd_instBEqCall___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Meta_FunInd_instBEqCall = (const lean_object*)&l_Lean_Meta_FunInd_instBEqCall___closed__0_value;
-static const lean_array_object l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls___closed__0 = (const lean_object*)&l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_FunInd_instBEqCall___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_FunInd_instBEqCall___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Meta_FunInd_instBEqCall;
+static lean_once_cell_t l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls___closed__0;
 static lean_once_cell_t l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls___closed__1;
 static lean_once_cell_t l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -218,6 +218,22 @@ v_r_11_ = lean_box_uint64(v_res_10_);
 return v_r_11_;
 }
 }
+static lean_object* _init_l_Lean_Meta_FunInd_instHashableCall___closed__0(void){
+_start:
+{
+lean_object* v___x_12_; 
+v___x_12_ = lean_alloc_closure((void*)(l_Lean_Meta_FunInd_instHashableCall_hash___boxed), 1, 0);
+return v___x_12_;
+}
+}
+static lean_object* _init_l_Lean_Meta_FunInd_instHashableCall(void){
+_start:
+{
+lean_object* v___x_13_; 
+v___x_13_ = lean_obj_once(&l_Lean_Meta_FunInd_instHashableCall___closed__0, &l_Lean_Meta_FunInd_instHashableCall___closed__0_once, _init_l_Lean_Meta_FunInd_instHashableCall___closed__0);
+return v___x_13_;
+}
+}
 LEAN_EXPORT uint8_t l_Lean_Meta_FunInd_instBEqCall_beq(lean_object* v_x_14_, lean_object* v_x_15_){
 _start:
 {
@@ -250,6 +266,31 @@ v_r_25_ = lean_box(v_res_24_);
 return v_r_25_;
 }
 }
+static lean_object* _init_l_Lean_Meta_FunInd_instBEqCall___closed__0(void){
+_start:
+{
+lean_object* v___x_26_; 
+v___x_26_ = lean_alloc_closure((void*)(l_Lean_Meta_FunInd_instBEqCall_beq___boxed), 2, 0);
+return v___x_26_;
+}
+}
+static lean_object* _init_l_Lean_Meta_FunInd_instBEqCall(void){
+_start:
+{
+lean_object* v___x_27_; 
+v___x_27_ = lean_obj_once(&l_Lean_Meta_FunInd_instBEqCall___closed__0, &l_Lean_Meta_FunInd_instBEqCall___closed__0_once, _init_l_Lean_Meta_FunInd_instBEqCall___closed__0);
+return v___x_27_;
+}
+}
+static lean_object* _init_l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls___closed__0(void){
+_start:
+{
+lean_object* v___x_28_; lean_object* v___x_29_; 
+v___x_28_ = lean_unsigned_to_nat(0u);
+v___x_29_ = lean_mk_empty_array_with_capacity(v___x_28_);
+return v___x_29_;
+}
+}
 static lean_object* _init_l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls___closed__1(void){
 _start:
 {
@@ -277,7 +318,7 @@ _start:
 {
 lean_object* v___x_36_; lean_object* v___x_37_; lean_object* v___x_38_; 
 v___x_36_ = lean_obj_once(&l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls___closed__2, &l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls___closed__2_once, _init_l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls___closed__2);
-v___x_37_ = ((lean_object*)(l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls___closed__0));
+v___x_37_ = lean_obj_once(&l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls___closed__0, &l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls___closed__0_once, _init_l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls___closed__0);
 v___x_38_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_38_, 0, v___x_37_);
 lean_ctor_set(v___x_38_, 1, v___x_36_);
@@ -1304,7 +1345,7 @@ else
 {
 lean_object* v___x_377_; lean_object* v_keys_378_; lean_object* v___x_379_; lean_object* v___x_380_; lean_object* v___x_381_; lean_object* v___x_382_; size_t v_sz_383_; size_t v___x_384_; lean_object* v___x_385_; 
 v___x_377_ = lean_unsigned_to_nat(0u);
-v_keys_378_ = ((lean_object*)(l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls___closed__0));
+v_keys_378_ = lean_obj_once(&l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls___closed__0, &l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls___closed__0_once, _init_l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls___closed__0);
 v___x_379_ = l_Array_toSubarray___redArg(v_params_372_, v___x_377_, v___x_373_);
 v___x_380_ = lean_box(0);
 v___x_381_ = lean_alloc_ctor(0, 2, 0);
@@ -5566,6 +5607,10 @@ lean_dec_ref(res);
 res = runtime_initialize_Lean_Meta_Tactic_FunIndInfo(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Lean_Meta_FunInd_instHashableCall = _init_l_Lean_Meta_FunInd_instHashableCall();
+lean_mark_persistent(l_Lean_Meta_FunInd_instHashableCall);
+l_Lean_Meta_FunInd_instBEqCall = _init_l_Lean_Meta_FunInd_instBEqCall();
+lean_mark_persistent(l_Lean_Meta_FunInd_instBEqCall);
 l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls = _init_l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls();
 lean_mark_persistent(l_Lean_Meta_FunInd_instEmptyCollectionSeenCalls);
 return lean_io_result_mk_ok(lean_box(0));

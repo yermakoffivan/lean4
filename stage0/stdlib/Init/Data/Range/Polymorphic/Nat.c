@@ -20,62 +20,62 @@ LEAN_EXPORT lean_object* l_Std_PRange_instUpwardEnumerableNat___lam__0(lean_obje
 LEAN_EXPORT lean_object* l_Std_PRange_instUpwardEnumerableNat___lam__0___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_PRange_instUpwardEnumerableNat___lam__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_PRange_instUpwardEnumerableNat___lam__1___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_PRange_instUpwardEnumerableNat___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_PRange_instUpwardEnumerableNat___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_PRange_instUpwardEnumerableNat___closed__0 = (const lean_object*)&l_Std_PRange_instUpwardEnumerableNat___closed__0_value;
-static const lean_closure_object l_Std_PRange_instUpwardEnumerableNat___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_PRange_instUpwardEnumerableNat___lam__1___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_PRange_instUpwardEnumerableNat___closed__1 = (const lean_object*)&l_Std_PRange_instUpwardEnumerableNat___closed__1_value;
-static const lean_ctor_object l_Std_PRange_instUpwardEnumerableNat___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_PRange_instUpwardEnumerableNat___closed__0_value),((lean_object*)&l_Std_PRange_instUpwardEnumerableNat___closed__1_value)}};
-static const lean_object* l_Std_PRange_instUpwardEnumerableNat___closed__2 = (const lean_object*)&l_Std_PRange_instUpwardEnumerableNat___closed__2_value;
-LEAN_EXPORT const lean_object* l_Std_PRange_instUpwardEnumerableNat = (const lean_object*)&l_Std_PRange_instUpwardEnumerableNat___closed__2_value;
-static const lean_ctor_object l_Std_PRange_instLeast_x3fNat___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_PRange_instLeast_x3fNat___closed__0 = (const lean_object*)&l_Std_PRange_instLeast_x3fNat___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_PRange_instLeast_x3fNat = (const lean_object*)&l_Std_PRange_instLeast_x3fNat___closed__0_value;
+static lean_once_cell_t l_Std_PRange_instUpwardEnumerableNat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_PRange_instUpwardEnumerableNat___closed__0;
+static lean_once_cell_t l_Std_PRange_instUpwardEnumerableNat___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_PRange_instUpwardEnumerableNat___closed__1;
+static lean_once_cell_t l_Std_PRange_instUpwardEnumerableNat___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_PRange_instUpwardEnumerableNat___closed__2;
+LEAN_EXPORT lean_object* l_Std_PRange_instUpwardEnumerableNat;
+static lean_once_cell_t l_Std_PRange_instLeast_x3fNat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_PRange_instLeast_x3fNat___closed__0;
+LEAN_EXPORT lean_object* l_Std_PRange_instLeast_x3fNat;
 LEAN_EXPORT lean_object* l_Std_PRange_instHasSizeNat___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_PRange_instHasSizeNat___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_PRange_instHasSizeNat___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_PRange_instHasSizeNat___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_PRange_instHasSizeNat___closed__0 = (const lean_object*)&l_Std_PRange_instHasSizeNat___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_PRange_instHasSizeNat = (const lean_object*)&l_Std_PRange_instHasSizeNat___closed__0_value;
+static lean_once_cell_t l_Std_PRange_instHasSizeNat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_PRange_instHasSizeNat___closed__0;
+LEAN_EXPORT lean_object* l_Std_PRange_instHasSizeNat;
 LEAN_EXPORT lean_object* l_Std_PRange_instHasSizeNat__1___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_PRange_instHasSizeNat__1___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_PRange_instHasSizeNat__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_PRange_instHasSizeNat__1___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_PRange_instHasSizeNat__1___closed__0 = (const lean_object*)&l_Std_PRange_instHasSizeNat__1___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_PRange_instHasSizeNat__1 = (const lean_object*)&l_Std_PRange_instHasSizeNat__1___closed__0_value;
+static lean_once_cell_t l_Std_PRange_instHasSizeNat__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_PRange_instHasSizeNat__1___closed__0;
+LEAN_EXPORT lean_object* l_Std_PRange_instHasSizeNat__1;
 LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_instHasRcoIntersectionNat___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_instHasRcoIntersectionNat___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_instHasRcoIntersectionNat___closed__0 = (const lean_object*)&l_Std_instHasRcoIntersectionNat___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_instHasRcoIntersectionNat = (const lean_object*)&l_Std_instHasRcoIntersectionNat___closed__0_value;
+static lean_once_cell_t l_Std_instHasRcoIntersectionNat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_instHasRcoIntersectionNat___closed__0;
+LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat;
 LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__1___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__1___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_instHasRcoIntersectionNat__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_instHasRcoIntersectionNat__1___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_instHasRcoIntersectionNat__1___closed__0 = (const lean_object*)&l_Std_instHasRcoIntersectionNat__1___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_instHasRcoIntersectionNat__1 = (const lean_object*)&l_Std_instHasRcoIntersectionNat__1___closed__0_value;
+static lean_once_cell_t l_Std_instHasRcoIntersectionNat__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_instHasRcoIntersectionNat__1___closed__0;
+LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__1;
 LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__2___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__2___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_instHasRcoIntersectionNat__2___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_instHasRcoIntersectionNat__2___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_instHasRcoIntersectionNat__2___closed__0 = (const lean_object*)&l_Std_instHasRcoIntersectionNat__2___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_instHasRcoIntersectionNat__2 = (const lean_object*)&l_Std_instHasRcoIntersectionNat__2___closed__0_value;
+static lean_once_cell_t l_Std_instHasRcoIntersectionNat__2___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_instHasRcoIntersectionNat__2___closed__0;
+LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__2;
 LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__3___lam__0(lean_object*, lean_object*);
-static const lean_closure_object l_Std_instHasRcoIntersectionNat__3___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_instHasRcoIntersectionNat__3___lam__0, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_instHasRcoIntersectionNat__3___closed__0 = (const lean_object*)&l_Std_instHasRcoIntersectionNat__3___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_instHasRcoIntersectionNat__3 = (const lean_object*)&l_Std_instHasRcoIntersectionNat__3___closed__0_value;
+static lean_once_cell_t l_Std_instHasRcoIntersectionNat__3___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_instHasRcoIntersectionNat__3___closed__0;
+LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__3;
 LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__4___lam__0(lean_object*, lean_object*);
-static const lean_closure_object l_Std_instHasRcoIntersectionNat__4___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_instHasRcoIntersectionNat__4___lam__0, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_instHasRcoIntersectionNat__4___closed__0 = (const lean_object*)&l_Std_instHasRcoIntersectionNat__4___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_instHasRcoIntersectionNat__4 = (const lean_object*)&l_Std_instHasRcoIntersectionNat__4___closed__0_value;
+static lean_once_cell_t l_Std_instHasRcoIntersectionNat__4___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_instHasRcoIntersectionNat__4___closed__0;
+LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__4;
 LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__5___lam__0(lean_object*, lean_object*);
-static const lean_closure_object l_Std_instHasRcoIntersectionNat__5___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_instHasRcoIntersectionNat__5___lam__0, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_instHasRcoIntersectionNat__5___closed__0 = (const lean_object*)&l_Std_instHasRcoIntersectionNat__5___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_instHasRcoIntersectionNat__5 = (const lean_object*)&l_Std_instHasRcoIntersectionNat__5___closed__0_value;
+static lean_once_cell_t l_Std_instHasRcoIntersectionNat__5___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_instHasRcoIntersectionNat__5___closed__0;
+LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__5;
 LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__6___lam__0(lean_object*, lean_object*);
-static const lean_closure_object l_Std_instHasRcoIntersectionNat__6___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_instHasRcoIntersectionNat__6___lam__0, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_instHasRcoIntersectionNat__6___closed__0 = (const lean_object*)&l_Std_instHasRcoIntersectionNat__6___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_instHasRcoIntersectionNat__6 = (const lean_object*)&l_Std_instHasRcoIntersectionNat__6___closed__0_value;
+static lean_once_cell_t l_Std_instHasRcoIntersectionNat__6___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_instHasRcoIntersectionNat__6___closed__0;
+LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__6;
 LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__7___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__7___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_instHasRcoIntersectionNat__7___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_instHasRcoIntersectionNat__7___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_instHasRcoIntersectionNat__7___closed__0 = (const lean_object*)&l_Std_instHasRcoIntersectionNat__7___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_instHasRcoIntersectionNat__7 = (const lean_object*)&l_Std_instHasRcoIntersectionNat__7___closed__0_value;
+static lean_once_cell_t l_Std_instHasRcoIntersectionNat__7___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_instHasRcoIntersectionNat__7___closed__0;
+LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__7;
 LEAN_EXPORT lean_object* l_Std_PRange_instUpwardEnumerableNat___lam__0(lean_object* v_n_1_){
 _start:
 {
@@ -116,6 +116,60 @@ lean_dec(v_k_11_);
 return v_res_13_;
 }
 }
+static lean_object* _init_l_Std_PRange_instUpwardEnumerableNat___closed__0(void){
+_start:
+{
+lean_object* v___f_14_; 
+v___f_14_ = lean_alloc_closure((void*)(l_Std_PRange_instUpwardEnumerableNat___lam__0___boxed), 1, 0);
+return v___f_14_;
+}
+}
+static lean_object* _init_l_Std_PRange_instUpwardEnumerableNat___closed__1(void){
+_start:
+{
+lean_object* v___f_15_; 
+v___f_15_ = lean_alloc_closure((void*)(l_Std_PRange_instUpwardEnumerableNat___lam__1___boxed), 2, 0);
+return v___f_15_;
+}
+}
+static lean_object* _init_l_Std_PRange_instUpwardEnumerableNat___closed__2(void){
+_start:
+{
+lean_object* v___f_16_; lean_object* v___f_17_; lean_object* v___x_18_; 
+v___f_16_ = lean_obj_once(&l_Std_PRange_instUpwardEnumerableNat___closed__1, &l_Std_PRange_instUpwardEnumerableNat___closed__1_once, _init_l_Std_PRange_instUpwardEnumerableNat___closed__1);
+v___f_17_ = lean_obj_once(&l_Std_PRange_instUpwardEnumerableNat___closed__0, &l_Std_PRange_instUpwardEnumerableNat___closed__0_once, _init_l_Std_PRange_instUpwardEnumerableNat___closed__0);
+v___x_18_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_18_, 0, v___f_17_);
+lean_ctor_set(v___x_18_, 1, v___f_16_);
+return v___x_18_;
+}
+}
+static lean_object* _init_l_Std_PRange_instUpwardEnumerableNat(void){
+_start:
+{
+lean_object* v___x_19_; 
+v___x_19_ = lean_obj_once(&l_Std_PRange_instUpwardEnumerableNat___closed__2, &l_Std_PRange_instUpwardEnumerableNat___closed__2_once, _init_l_Std_PRange_instUpwardEnumerableNat___closed__2);
+return v___x_19_;
+}
+}
+static lean_object* _init_l_Std_PRange_instLeast_x3fNat___closed__0(void){
+_start:
+{
+lean_object* v___x_20_; lean_object* v___x_21_; 
+v___x_20_ = lean_unsigned_to_nat(0u);
+v___x_21_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_21_, 0, v___x_20_);
+return v___x_21_;
+}
+}
+static lean_object* _init_l_Std_PRange_instLeast_x3fNat(void){
+_start:
+{
+lean_object* v___x_22_; 
+v___x_22_ = lean_obj_once(&l_Std_PRange_instLeast_x3fNat___closed__0, &l_Std_PRange_instLeast_x3fNat___closed__0_once, _init_l_Std_PRange_instLeast_x3fNat___closed__0);
+return v___x_22_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_PRange_instHasSizeNat___lam__0(lean_object* v_lo_23_, lean_object* v_hi_24_){
 _start:
 {
@@ -135,6 +189,22 @@ v_res_30_ = l_Std_PRange_instHasSizeNat___lam__0(v_lo_28_, v_hi_29_);
 lean_dec(v_hi_29_);
 lean_dec(v_lo_28_);
 return v_res_30_;
+}
+}
+static lean_object* _init_l_Std_PRange_instHasSizeNat___closed__0(void){
+_start:
+{
+lean_object* v___f_31_; 
+v___f_31_ = lean_alloc_closure((void*)(l_Std_PRange_instHasSizeNat___lam__0___boxed), 2, 0);
+return v___f_31_;
+}
+}
+static lean_object* _init_l_Std_PRange_instHasSizeNat(void){
+_start:
+{
+lean_object* v___f_32_; 
+v___f_32_ = lean_obj_once(&l_Std_PRange_instHasSizeNat___closed__0, &l_Std_PRange_instHasSizeNat___closed__0_once, _init_l_Std_PRange_instHasSizeNat___closed__0);
+return v___f_32_;
 }
 }
 LEAN_EXPORT lean_object* l_Std_PRange_instHasSizeNat__1___lam__0(lean_object* v_lo_33_, lean_object* v_hi_34_){
@@ -158,6 +228,22 @@ v_res_41_ = l_Std_PRange_instHasSizeNat__1___lam__0(v_lo_39_, v_hi_40_);
 lean_dec(v_hi_40_);
 lean_dec(v_lo_39_);
 return v_res_41_;
+}
+}
+static lean_object* _init_l_Std_PRange_instHasSizeNat__1___closed__0(void){
+_start:
+{
+lean_object* v___f_42_; 
+v___f_42_ = lean_alloc_closure((void*)(l_Std_PRange_instHasSizeNat__1___lam__0___boxed), 2, 0);
+return v___f_42_;
+}
+}
+static lean_object* _init_l_Std_PRange_instHasSizeNat__1(void){
+_start:
+{
+lean_object* v___f_43_; 
+v___f_43_ = lean_obj_once(&l_Std_PRange_instHasSizeNat__1___closed__0, &l_Std_PRange_instHasSizeNat__1___closed__0_once, _init_l_Std_PRange_instHasSizeNat__1___closed__0);
+return v___f_43_;
 }
 }
 LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat___lam__0(lean_object* v_r_44_, lean_object* v_s_45_){
@@ -266,6 +352,22 @@ lean_object* v_res_68_;
 v_res_68_ = l_Std_instHasRcoIntersectionNat___lam__0(v_r_66_, v_s_67_);
 lean_dec_ref(v_r_66_);
 return v_res_68_;
+}
+}
+static lean_object* _init_l_Std_instHasRcoIntersectionNat___closed__0(void){
+_start:
+{
+lean_object* v___f_69_; 
+v___f_69_ = lean_alloc_closure((void*)(l_Std_instHasRcoIntersectionNat___lam__0___boxed), 2, 0);
+return v___f_69_;
+}
+}
+static lean_object* _init_l_Std_instHasRcoIntersectionNat(void){
+_start:
+{
+lean_object* v___f_70_; 
+v___f_70_ = lean_obj_once(&l_Std_instHasRcoIntersectionNat___closed__0, &l_Std_instHasRcoIntersectionNat___closed__0_once, _init_l_Std_instHasRcoIntersectionNat___closed__0);
+return v___f_70_;
 }
 }
 LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__1___lam__0(lean_object* v_r_71_, lean_object* v_s_72_){
@@ -377,6 +479,22 @@ lean_dec_ref(v_r_94_);
 return v_res_96_;
 }
 }
+static lean_object* _init_l_Std_instHasRcoIntersectionNat__1___closed__0(void){
+_start:
+{
+lean_object* v___f_97_; 
+v___f_97_ = lean_alloc_closure((void*)(l_Std_instHasRcoIntersectionNat__1___lam__0___boxed), 2, 0);
+return v___f_97_;
+}
+}
+static lean_object* _init_l_Std_instHasRcoIntersectionNat__1(void){
+_start:
+{
+lean_object* v___f_98_; 
+v___f_98_ = lean_obj_once(&l_Std_instHasRcoIntersectionNat__1___closed__0, &l_Std_instHasRcoIntersectionNat__1___closed__0_once, _init_l_Std_instHasRcoIntersectionNat__1___closed__0);
+return v___f_98_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__2___lam__0(lean_object* v_r_99_, lean_object* v_s_100_){
 _start:
 {
@@ -462,6 +580,22 @@ lean_object* v_res_118_;
 v_res_118_ = l_Std_instHasRcoIntersectionNat__2___lam__0(v_r_116_, v_s_117_);
 lean_dec(v_r_116_);
 return v_res_118_;
+}
+}
+static lean_object* _init_l_Std_instHasRcoIntersectionNat__2___closed__0(void){
+_start:
+{
+lean_object* v___f_119_; 
+v___f_119_ = lean_alloc_closure((void*)(l_Std_instHasRcoIntersectionNat__2___lam__0___boxed), 2, 0);
+return v___f_119_;
+}
+}
+static lean_object* _init_l_Std_instHasRcoIntersectionNat__2(void){
+_start:
+{
+lean_object* v___f_120_; 
+v___f_120_ = lean_obj_once(&l_Std_instHasRcoIntersectionNat__2___closed__0, &l_Std_instHasRcoIntersectionNat__2___closed__0_once, _init_l_Std_instHasRcoIntersectionNat__2___closed__0);
+return v___f_120_;
 }
 }
 LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__3___lam__0(lean_object* v_r_121_, lean_object* v_s_122_){
@@ -562,6 +696,22 @@ return v___x_137_;
 }
 }
 }
+}
+}
+static lean_object* _init_l_Std_instHasRcoIntersectionNat__3___closed__0(void){
+_start:
+{
+lean_object* v___f_141_; 
+v___f_141_ = lean_alloc_closure((void*)(l_Std_instHasRcoIntersectionNat__3___lam__0), 2, 0);
+return v___f_141_;
+}
+}
+static lean_object* _init_l_Std_instHasRcoIntersectionNat__3(void){
+_start:
+{
+lean_object* v___f_142_; 
+v___f_142_ = lean_obj_once(&l_Std_instHasRcoIntersectionNat__3___closed__0, &l_Std_instHasRcoIntersectionNat__3___closed__0_once, _init_l_Std_instHasRcoIntersectionNat__3___closed__0);
+return v___f_142_;
 }
 }
 LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__4___lam__0(lean_object* v_r_143_, lean_object* v_s_144_){
@@ -667,6 +817,22 @@ return v___x_161_;
 }
 }
 }
+static lean_object* _init_l_Std_instHasRcoIntersectionNat__4___closed__0(void){
+_start:
+{
+lean_object* v___f_165_; 
+v___f_165_ = lean_alloc_closure((void*)(l_Std_instHasRcoIntersectionNat__4___lam__0), 2, 0);
+return v___f_165_;
+}
+}
+static lean_object* _init_l_Std_instHasRcoIntersectionNat__4(void){
+_start:
+{
+lean_object* v___f_166_; 
+v___f_166_ = lean_obj_once(&l_Std_instHasRcoIntersectionNat__4___closed__0, &l_Std_instHasRcoIntersectionNat__4___closed__0_once, _init_l_Std_instHasRcoIntersectionNat__4___closed__0);
+return v___f_166_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__5___lam__0(lean_object* v_r_167_, lean_object* v_s_168_){
 _start:
 {
@@ -743,6 +909,22 @@ return v___x_179_;
 }
 }
 }
+static lean_object* _init_l_Std_instHasRcoIntersectionNat__5___closed__0(void){
+_start:
+{
+lean_object* v___f_182_; 
+v___f_182_ = lean_alloc_closure((void*)(l_Std_instHasRcoIntersectionNat__5___lam__0), 2, 0);
+return v___f_182_;
+}
+}
+static lean_object* _init_l_Std_instHasRcoIntersectionNat__5(void){
+_start:
+{
+lean_object* v___f_183_; 
+v___f_183_ = lean_obj_once(&l_Std_instHasRcoIntersectionNat__5___closed__0, &l_Std_instHasRcoIntersectionNat__5___closed__0_once, _init_l_Std_instHasRcoIntersectionNat__5___closed__0);
+return v___f_183_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__6___lam__0(lean_object* v_r_184_, lean_object* v_s_185_){
 _start:
 {
@@ -817,6 +999,22 @@ return v___x_196_;
 }
 }
 }
+}
+}
+static lean_object* _init_l_Std_instHasRcoIntersectionNat__6___closed__0(void){
+_start:
+{
+lean_object* v___f_199_; 
+v___f_199_ = lean_alloc_closure((void*)(l_Std_instHasRcoIntersectionNat__6___lam__0), 2, 0);
+return v___f_199_;
+}
+}
+static lean_object* _init_l_Std_instHasRcoIntersectionNat__6(void){
+_start:
+{
+lean_object* v___f_200_; 
+v___f_200_ = lean_obj_once(&l_Std_instHasRcoIntersectionNat__6___closed__0, &l_Std_instHasRcoIntersectionNat__6___closed__0_once, _init_l_Std_instHasRcoIntersectionNat__6___closed__0);
+return v___f_200_;
 }
 }
 LEAN_EXPORT lean_object* l_Std_instHasRcoIntersectionNat__7___lam__0(lean_object* v_r_201_, lean_object* v_s_202_){
@@ -906,6 +1104,22 @@ lean_dec(v_r_218_);
 return v_res_220_;
 }
 }
+static lean_object* _init_l_Std_instHasRcoIntersectionNat__7___closed__0(void){
+_start:
+{
+lean_object* v___f_221_; 
+v___f_221_ = lean_alloc_closure((void*)(l_Std_instHasRcoIntersectionNat__7___lam__0___boxed), 2, 0);
+return v___f_221_;
+}
+}
+static lean_object* _init_l_Std_instHasRcoIntersectionNat__7(void){
+_start:
+{
+lean_object* v___f_222_; 
+v___f_222_ = lean_obj_once(&l_Std_instHasRcoIntersectionNat__7___closed__0, &l_Std_instHasRcoIntersectionNat__7___closed__0_once, _init_l_Std_instHasRcoIntersectionNat__7___closed__0);
+return v___f_222_;
+}
+}
 lean_object* runtime_initialize_Init_Data_Nat_Lemmas(uint8_t builtin);
 lean_object* runtime_initialize_Init_Data_Range_Polymorphic_Instances(uint8_t builtin);
 lean_object* runtime_initialize_Init_Data_Nat_MinMax(uint8_t builtin);
@@ -931,6 +1145,30 @@ lean_dec_ref(res);
 res = runtime_initialize_Init_RCases(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Std_PRange_instUpwardEnumerableNat = _init_l_Std_PRange_instUpwardEnumerableNat();
+lean_mark_persistent(l_Std_PRange_instUpwardEnumerableNat);
+l_Std_PRange_instLeast_x3fNat = _init_l_Std_PRange_instLeast_x3fNat();
+lean_mark_persistent(l_Std_PRange_instLeast_x3fNat);
+l_Std_PRange_instHasSizeNat = _init_l_Std_PRange_instHasSizeNat();
+lean_mark_persistent(l_Std_PRange_instHasSizeNat);
+l_Std_PRange_instHasSizeNat__1 = _init_l_Std_PRange_instHasSizeNat__1();
+lean_mark_persistent(l_Std_PRange_instHasSizeNat__1);
+l_Std_instHasRcoIntersectionNat = _init_l_Std_instHasRcoIntersectionNat();
+lean_mark_persistent(l_Std_instHasRcoIntersectionNat);
+l_Std_instHasRcoIntersectionNat__1 = _init_l_Std_instHasRcoIntersectionNat__1();
+lean_mark_persistent(l_Std_instHasRcoIntersectionNat__1);
+l_Std_instHasRcoIntersectionNat__2 = _init_l_Std_instHasRcoIntersectionNat__2();
+lean_mark_persistent(l_Std_instHasRcoIntersectionNat__2);
+l_Std_instHasRcoIntersectionNat__3 = _init_l_Std_instHasRcoIntersectionNat__3();
+lean_mark_persistent(l_Std_instHasRcoIntersectionNat__3);
+l_Std_instHasRcoIntersectionNat__4 = _init_l_Std_instHasRcoIntersectionNat__4();
+lean_mark_persistent(l_Std_instHasRcoIntersectionNat__4);
+l_Std_instHasRcoIntersectionNat__5 = _init_l_Std_instHasRcoIntersectionNat__5();
+lean_mark_persistent(l_Std_instHasRcoIntersectionNat__5);
+l_Std_instHasRcoIntersectionNat__6 = _init_l_Std_instHasRcoIntersectionNat__6();
+lean_mark_persistent(l_Std_instHasRcoIntersectionNat__6);
+l_Std_instHasRcoIntersectionNat__7 = _init_l_Std_instHasRcoIntersectionNat__7();
+lean_mark_persistent(l_Std_instHasRcoIntersectionNat__7);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

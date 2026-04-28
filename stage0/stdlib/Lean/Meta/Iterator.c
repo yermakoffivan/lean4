@@ -35,8 +35,8 @@ LEAN_EXPORT lean_object* l_Lean_addMessageContextFull___at___00Lean_throwError__
 LEAN_EXPORT lean_object* l_Lean_addMessageContextFull___at___00Lean_throwError___at___00Lean_Meta_Iterator_head_spec__0_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00Lean_Meta_Iterator_head_spec__0___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00Lean_Meta_Iterator_head_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_Meta_Iterator_head___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "failed"};
-static const lean_object* l_Lean_Meta_Iterator_head___redArg___closed__0 = (const lean_object*)&l_Lean_Meta_Iterator_head___redArg___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Iterator_head___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Iterator_head___redArg___closed__0;
 static lean_once_cell_t l_Lean_Meta_Iterator_head___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_Iterator_head___redArg___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Meta_Iterator_head___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -979,11 +979,19 @@ lean_dec_ref(v___y_263_);
 return v_res_268_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Iterator_head___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_269_; 
+v___x_269_ = lean_mk_string_unchecked("failed", 6, 6);
+return v___x_269_;
+}
+}
 static lean_object* _init_l_Lean_Meta_Iterator_head___redArg___closed__1(void){
 _start:
 {
 lean_object* v___x_270_; lean_object* v___x_271_; 
-v___x_270_ = ((lean_object*)(l_Lean_Meta_Iterator_head___redArg___closed__0));
+v___x_270_ = lean_obj_once(&l_Lean_Meta_Iterator_head___redArg___closed__0, &l_Lean_Meta_Iterator_head___redArg___closed__0_once, _init_l_Lean_Meta_Iterator_head___redArg___closed__0);
 v___x_271_ = l_Lean_stringToMessageData(v___x_270_);
 return v___x_271_;
 }

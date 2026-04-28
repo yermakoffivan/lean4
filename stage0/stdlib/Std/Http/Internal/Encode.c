@@ -17,19 +17,51 @@ lean_object* lean_string_to_utf8(lean_object*);
 lean_object* lean_array_push(lean_object*, lean_object*);
 lean_object* lean_byte_array_size(lean_object*);
 lean_object* lean_nat_add(lean_object*, lean_object*);
-static const lean_string_object l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "HTTP/1.0"};
-static const lean_object* l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__0 = (const lean_object*)&l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__0_value;
-static const lean_string_object l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "HTTP/1.1"};
-static const lean_object* l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__1 = (const lean_object*)&l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__1_value;
-static const lean_string_object l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "HTTP/2.0"};
-static const lean_object* l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__2 = (const lean_object*)&l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__2_value;
-static const lean_string_object l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "HTTP/3.0"};
-static const lean_object* l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__3 = (const lean_object*)&l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__3_value;
+static lean_once_cell_t l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__0;
+static lean_once_cell_t l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__1;
+static lean_once_cell_t l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__2;
+static lean_once_cell_t l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__3;
 LEAN_EXPORT lean_object* l_Std_Http_Internal_instEncodeV11Version___lam__0(lean_object*, uint8_t);
 LEAN_EXPORT lean_object* l_Std_Http_Internal_instEncodeV11Version___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Http_Internal_instEncodeV11Version___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Internal_instEncodeV11Version___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Internal_instEncodeV11Version___closed__0 = (const lean_object*)&l_Std_Http_Internal_instEncodeV11Version___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Http_Internal_instEncodeV11Version = (const lean_object*)&l_Std_Http_Internal_instEncodeV11Version___closed__0_value;
+static lean_once_cell_t l_Std_Http_Internal_instEncodeV11Version___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Internal_instEncodeV11Version___closed__0;
+LEAN_EXPORT lean_object* l_Std_Http_Internal_instEncodeV11Version;
+static lean_object* _init_l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; 
+v___x_1_ = lean_mk_string_unchecked("HTTP/1.0", 8, 8);
+return v___x_1_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__1(void){
+_start:
+{
+lean_object* v___x_2_; 
+v___x_2_ = lean_mk_string_unchecked("HTTP/1.1", 8, 8);
+return v___x_2_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__2(void){
+_start:
+{
+lean_object* v___x_3_; 
+v___x_3_ = lean_mk_string_unchecked("HTTP/2.0", 8, 8);
+return v___x_3_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__3(void){
+_start:
+{
+lean_object* v___x_4_; 
+v___x_4_ = lean_mk_string_unchecked("HTTP/3.0", 8, 8);
+return v___x_4_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Http_Internal_instEncodeV11Version___lam__0(lean_object* v_buffer_5_, uint8_t v___y_6_){
 _start:
 {
@@ -39,28 +71,28 @@ switch(v___y_6_)
 case 0:
 {
 lean_object* v___x_22_; 
-v___x_22_ = ((lean_object*)(l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__0));
+v___x_22_ = lean_obj_once(&l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__0, &l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__0_once, _init_l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__0);
 v___y_8_ = v___x_22_;
 goto v___jp_7_;
 }
 case 1:
 {
 lean_object* v___x_23_; 
-v___x_23_ = ((lean_object*)(l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__1));
+v___x_23_ = lean_obj_once(&l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__1, &l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__1_once, _init_l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__1);
 v___y_8_ = v___x_23_;
 goto v___jp_7_;
 }
 case 2:
 {
 lean_object* v___x_24_; 
-v___x_24_ = ((lean_object*)(l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__2));
+v___x_24_ = lean_obj_once(&l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__2, &l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__2_once, _init_l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__2);
 v___y_8_ = v___x_24_;
 goto v___jp_7_;
 }
 default: 
 {
 lean_object* v___x_25_; 
-v___x_25_ = ((lean_object*)(l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__3));
+v___x_25_ = lean_obj_once(&l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__3, &l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__3_once, _init_l_Std_Http_Internal_instEncodeV11Version___lam__0___closed__3);
 v___y_8_ = v___x_25_;
 goto v___jp_7_;
 }
@@ -129,6 +161,22 @@ v_res_29_ = l_Std_Http_Internal_instEncodeV11Version___lam__0(v_buffer_26_, v___
 return v_res_29_;
 }
 }
+static lean_object* _init_l_Std_Http_Internal_instEncodeV11Version___closed__0(void){
+_start:
+{
+lean_object* v___f_30_; 
+v___f_30_ = lean_alloc_closure((void*)(l_Std_Http_Internal_instEncodeV11Version___lam__0___boxed), 2, 0);
+return v___f_30_;
+}
+}
+static lean_object* _init_l_Std_Http_Internal_instEncodeV11Version(void){
+_start:
+{
+lean_object* v___f_31_; 
+v___f_31_ = lean_obj_once(&l_Std_Http_Internal_instEncodeV11Version___closed__0, &l_Std_Http_Internal_instEncodeV11Version___closed__0_once, _init_l_Std_Http_Internal_instEncodeV11Version___closed__0);
+return v___f_31_;
+}
+}
 lean_object* runtime_initialize_Std_Http_Internal_ChunkedBuffer(uint8_t builtin);
 lean_object* runtime_initialize_Std_Http_Data_Version(uint8_t builtin);
 static bool _G_runtime_initialized = false;
@@ -142,6 +190,8 @@ lean_dec_ref(res);
 res = runtime_initialize_Std_Http_Data_Version(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Std_Http_Internal_instEncodeV11Version = _init_l_Std_Http_Internal_instEncodeV11Version();
+lean_mark_persistent(l_Std_Http_Internal_instEncodeV11Version);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

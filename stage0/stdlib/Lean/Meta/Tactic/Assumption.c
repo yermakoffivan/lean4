@@ -85,10 +85,10 @@ LEAN_EXPORT lean_object* l_Lean_MVarId_assign___at___00Lean_MVarId_assumptionCor
 LEAN_EXPORT lean_object* l_Lean_MVarId_assign___at___00Lean_MVarId_assumptionCore_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MVarId_assumptionCore___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MVarId_assumptionCore___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Lean_MVarId_assumptionCore___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "assumption"};
-static const lean_object* l_Lean_MVarId_assumptionCore___closed__0 = (const lean_object*)&l_Lean_MVarId_assumptionCore___closed__0_value;
-static const lean_ctor_object l_Lean_MVarId_assumptionCore___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_MVarId_assumptionCore___closed__0_value),LEAN_SCALAR_PTR_LITERAL(49, 18, 34, 73, 19, 20, 120, 164)}};
-static const lean_object* l_Lean_MVarId_assumptionCore___closed__1 = (const lean_object*)&l_Lean_MVarId_assumptionCore___closed__1_value;
+static lean_once_cell_t l_Lean_MVarId_assumptionCore___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_MVarId_assumptionCore___closed__0;
+static lean_once_cell_t l_Lean_MVarId_assumptionCore___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_MVarId_assumptionCore___closed__1;
 LEAN_EXPORT lean_object* l_Lean_MVarId_assumptionCore(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MVarId_assumptionCore___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MVarId_assign___at___00Lean_MVarId_assumptionCore_spec__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -1567,11 +1567,28 @@ lean_dec_ref(v___y_508_);
 return v_res_513_;
 }
 }
+static lean_object* _init_l_Lean_MVarId_assumptionCore___closed__0(void){
+_start:
+{
+lean_object* v___x_514_; 
+v___x_514_ = lean_mk_string_unchecked("assumption", 10, 10);
+return v___x_514_;
+}
+}
+static lean_object* _init_l_Lean_MVarId_assumptionCore___closed__1(void){
+_start:
+{
+lean_object* v___x_515_; lean_object* v___x_516_; 
+v___x_515_ = lean_obj_once(&l_Lean_MVarId_assumptionCore___closed__0, &l_Lean_MVarId_assumptionCore___closed__0_once, _init_l_Lean_MVarId_assumptionCore___closed__0);
+v___x_516_ = l_Lean_Name_mkStr1(v___x_515_);
+return v___x_516_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_MVarId_assumptionCore(lean_object* v_mvarId_517_, lean_object* v_a_518_, lean_object* v_a_519_, lean_object* v_a_520_, lean_object* v_a_521_){
 _start:
 {
 lean_object* v___x_523_; lean_object* v___f_524_; lean_object* v___x_525_; 
-v___x_523_ = ((lean_object*)(l_Lean_MVarId_assumptionCore___closed__1));
+v___x_523_ = lean_obj_once(&l_Lean_MVarId_assumptionCore___closed__1, &l_Lean_MVarId_assumptionCore___closed__1_once, _init_l_Lean_MVarId_assumptionCore___closed__1);
 lean_inc(v_mvarId_517_);
 v___f_524_ = lean_alloc_closure((void*)(l_Lean_MVarId_assumptionCore___lam__0___boxed), 7, 2);
 lean_closure_set(v___f_524_, 0, v_mvarId_517_);
@@ -1710,7 +1727,7 @@ if (v___x_609_ == 0)
 {
 lean_object* v___x_610_; lean_object* v___x_611_; lean_object* v___x_612_; 
 lean_del_object(v___x_607_);
-v___x_610_ = ((lean_object*)(l_Lean_MVarId_assumptionCore___closed__1));
+v___x_610_ = lean_obj_once(&l_Lean_MVarId_assumptionCore___closed__1, &l_Lean_MVarId_assumptionCore___closed__1_once, _init_l_Lean_MVarId_assumptionCore___closed__1);
 v___x_611_ = lean_box(0);
 v___x_612_ = l_Lean_Meta_throwTacticEx___redArg(v___x_610_, v_mvarId_598_, v___x_611_, v_a_599_, v_a_600_, v_a_601_, v_a_602_);
 return v___x_612_;

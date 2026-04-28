@@ -29,52 +29,40 @@ lean_object* l_Lean_Name_mkStr4(lean_object*, lean_object*, lean_object*, lean_o
 lean_object* lean_array_get_size(lean_object*);
 uint8_t lean_nat_dec_eq(lean_object*, lean_object*);
 lean_object* lean_nat_sub(lean_object*, lean_object*);
-static const lean_string_object l_Array_qpartition___auto__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Lean"};
-static const lean_object* l_Array_qpartition___auto__1___closed__0 = (const lean_object*)&l_Array_qpartition___auto__1___closed__0_value;
-static const lean_string_object l_Array_qpartition___auto__1___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Parser"};
-static const lean_object* l_Array_qpartition___auto__1___closed__1 = (const lean_object*)&l_Array_qpartition___auto__1___closed__1_value;
-static const lean_string_object l_Array_qpartition___auto__1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Tactic"};
-static const lean_object* l_Array_qpartition___auto__1___closed__2 = (const lean_object*)&l_Array_qpartition___auto__1___closed__2_value;
-static const lean_string_object l_Array_qpartition___auto__1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "tacticSeq"};
-static const lean_object* l_Array_qpartition___auto__1___closed__3 = (const lean_object*)&l_Array_qpartition___auto__1___closed__3_value;
-static const lean_ctor_object l_Array_qpartition___auto__1___closed__4_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Array_qpartition___auto__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Array_qpartition___auto__1___closed__4_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qpartition___auto__1___closed__4_value_aux_0),((lean_object*)&l_Array_qpartition___auto__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Array_qpartition___auto__1___closed__4_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qpartition___auto__1___closed__4_value_aux_1),((lean_object*)&l_Array_qpartition___auto__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_Array_qpartition___auto__1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qpartition___auto__1___closed__4_value_aux_2),((lean_object*)&l_Array_qpartition___auto__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(212, 140, 85, 215, 241, 69, 7, 118)}};
-static const lean_object* l_Array_qpartition___auto__1___closed__4 = (const lean_object*)&l_Array_qpartition___auto__1___closed__4_value;
-static const lean_array_object l_Array_qpartition___auto__1___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Array_qpartition___auto__1___closed__5 = (const lean_object*)&l_Array_qpartition___auto__1___closed__5_value;
-static const lean_string_object l_Array_qpartition___auto__1___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 19, .m_capacity = 19, .m_length = 18, .m_data = "tacticSeq1Indented"};
-static const lean_object* l_Array_qpartition___auto__1___closed__6 = (const lean_object*)&l_Array_qpartition___auto__1___closed__6_value;
-static const lean_ctor_object l_Array_qpartition___auto__1___closed__7_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Array_qpartition___auto__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Array_qpartition___auto__1___closed__7_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qpartition___auto__1___closed__7_value_aux_0),((lean_object*)&l_Array_qpartition___auto__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Array_qpartition___auto__1___closed__7_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qpartition___auto__1___closed__7_value_aux_1),((lean_object*)&l_Array_qpartition___auto__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_Array_qpartition___auto__1___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qpartition___auto__1___closed__7_value_aux_2),((lean_object*)&l_Array_qpartition___auto__1___closed__6_value),LEAN_SCALAR_PTR_LITERAL(223, 90, 160, 238, 133, 180, 23, 239)}};
-static const lean_object* l_Array_qpartition___auto__1___closed__7 = (const lean_object*)&l_Array_qpartition___auto__1___closed__7_value;
-static const lean_string_object l_Array_qpartition___auto__1___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "null"};
-static const lean_object* l_Array_qpartition___auto__1___closed__8 = (const lean_object*)&l_Array_qpartition___auto__1___closed__8_value;
-static const lean_ctor_object l_Array_qpartition___auto__1___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Array_qpartition___auto__1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(24, 58, 49, 223, 146, 207, 197, 136)}};
-static const lean_object* l_Array_qpartition___auto__1___closed__9 = (const lean_object*)&l_Array_qpartition___auto__1___closed__9_value;
-static const lean_string_object l_Array_qpartition___auto__1___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "omega"};
-static const lean_object* l_Array_qpartition___auto__1___closed__10 = (const lean_object*)&l_Array_qpartition___auto__1___closed__10_value;
-static const lean_ctor_object l_Array_qpartition___auto__1___closed__11_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Array_qpartition___auto__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Array_qpartition___auto__1___closed__11_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qpartition___auto__1___closed__11_value_aux_0),((lean_object*)&l_Array_qpartition___auto__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Array_qpartition___auto__1___closed__11_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qpartition___auto__1___closed__11_value_aux_1),((lean_object*)&l_Array_qpartition___auto__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_Array_qpartition___auto__1___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qpartition___auto__1___closed__11_value_aux_2),((lean_object*)&l_Array_qpartition___auto__1___closed__10_value),LEAN_SCALAR_PTR_LITERAL(138, 49, 229, 237, 137, 52, 176, 206)}};
-static const lean_object* l_Array_qpartition___auto__1___closed__11 = (const lean_object*)&l_Array_qpartition___auto__1___closed__11_value;
+static lean_once_cell_t l_Array_qpartition___auto__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qpartition___auto__1___closed__0;
+static lean_once_cell_t l_Array_qpartition___auto__1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qpartition___auto__1___closed__1;
+static lean_once_cell_t l_Array_qpartition___auto__1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qpartition___auto__1___closed__2;
+static lean_once_cell_t l_Array_qpartition___auto__1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qpartition___auto__1___closed__3;
+static lean_once_cell_t l_Array_qpartition___auto__1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qpartition___auto__1___closed__4;
+static lean_once_cell_t l_Array_qpartition___auto__1___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qpartition___auto__1___closed__5;
+static lean_once_cell_t l_Array_qpartition___auto__1___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qpartition___auto__1___closed__6;
+static lean_once_cell_t l_Array_qpartition___auto__1___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qpartition___auto__1___closed__7;
+static lean_once_cell_t l_Array_qpartition___auto__1___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qpartition___auto__1___closed__8;
+static lean_once_cell_t l_Array_qpartition___auto__1___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qpartition___auto__1___closed__9;
+static lean_once_cell_t l_Array_qpartition___auto__1___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qpartition___auto__1___closed__10;
+static lean_once_cell_t l_Array_qpartition___auto__1___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qpartition___auto__1___closed__11;
 static lean_once_cell_t l_Array_qpartition___auto__1___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Array_qpartition___auto__1___closed__12;
 static lean_once_cell_t l_Array_qpartition___auto__1___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Array_qpartition___auto__1___closed__13;
-static const lean_string_object l_Array_qpartition___auto__1___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "optConfig"};
-static const lean_object* l_Array_qpartition___auto__1___closed__14 = (const lean_object*)&l_Array_qpartition___auto__1___closed__14_value;
-static const lean_ctor_object l_Array_qpartition___auto__1___closed__15_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Array_qpartition___auto__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Array_qpartition___auto__1___closed__15_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qpartition___auto__1___closed__15_value_aux_0),((lean_object*)&l_Array_qpartition___auto__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Array_qpartition___auto__1___closed__15_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qpartition___auto__1___closed__15_value_aux_1),((lean_object*)&l_Array_qpartition___auto__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_Array_qpartition___auto__1___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qpartition___auto__1___closed__15_value_aux_2),((lean_object*)&l_Array_qpartition___auto__1___closed__14_value),LEAN_SCALAR_PTR_LITERAL(137, 208, 10, 74, 108, 50, 106, 48)}};
-static const lean_object* l_Array_qpartition___auto__1___closed__15 = (const lean_object*)&l_Array_qpartition___auto__1___closed__15_value;
-static const lean_ctor_object l_Array_qpartition___auto__1___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(2) << 1) | 1)),((lean_object*)&l_Array_qpartition___auto__1___closed__9_value),((lean_object*)&l_Array_qpartition___auto__1___closed__5_value)}};
-static const lean_object* l_Array_qpartition___auto__1___closed__16 = (const lean_object*)&l_Array_qpartition___auto__1___closed__16_value;
+static lean_once_cell_t l_Array_qpartition___auto__1___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qpartition___auto__1___closed__14;
+static lean_once_cell_t l_Array_qpartition___auto__1___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qpartition___auto__1___closed__15;
+static lean_once_cell_t l_Array_qpartition___auto__1___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qpartition___auto__1___closed__16;
 static lean_once_cell_t l_Array_qpartition___auto__1___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Array_qpartition___auto__1___closed__17;
 static lean_once_cell_t l_Array_qpartition___auto__1___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -109,45 +97,36 @@ LEAN_EXPORT lean_object* l_Array_qpartition___redArg(lean_object*, lean_object*,
 LEAN_EXPORT lean_object* l_Array_qpartition___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_qpartition(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_qpartition___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Array_qsort___auto__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "exact"};
-static const lean_object* l_Array_qsort___auto__1___closed__0 = (const lean_object*)&l_Array_qsort___auto__1___closed__0_value;
-static const lean_ctor_object l_Array_qsort___auto__1___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Array_qpartition___auto__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Array_qsort___auto__1___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qsort___auto__1___closed__1_value_aux_0),((lean_object*)&l_Array_qpartition___auto__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Array_qsort___auto__1___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qsort___auto__1___closed__1_value_aux_1),((lean_object*)&l_Array_qpartition___auto__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_Array_qsort___auto__1___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qsort___auto__1___closed__1_value_aux_2),((lean_object*)&l_Array_qsort___auto__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(108, 106, 111, 83, 219, 207, 32, 208)}};
-static const lean_object* l_Array_qsort___auto__1___closed__1 = (const lean_object*)&l_Array_qsort___auto__1___closed__1_value;
+static lean_once_cell_t l_Array_qsort___auto__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qsort___auto__1___closed__0;
+static lean_once_cell_t l_Array_qsort___auto__1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qsort___auto__1___closed__1;
 static lean_once_cell_t l_Array_qsort___auto__1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Array_qsort___auto__1___closed__2;
 static lean_once_cell_t l_Array_qsort___auto__1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Array_qsort___auto__1___closed__3;
-static const lean_string_object l_Array_qsort___auto__1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Term"};
-static const lean_object* l_Array_qsort___auto__1___closed__4 = (const lean_object*)&l_Array_qsort___auto__1___closed__4_value;
-static const lean_string_object l_Array_qsort___auto__1___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "paren"};
-static const lean_object* l_Array_qsort___auto__1___closed__5 = (const lean_object*)&l_Array_qsort___auto__1___closed__5_value;
-static const lean_ctor_object l_Array_qsort___auto__1___closed__6_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Array_qpartition___auto__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Array_qsort___auto__1___closed__6_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qsort___auto__1___closed__6_value_aux_0),((lean_object*)&l_Array_qpartition___auto__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Array_qsort___auto__1___closed__6_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qsort___auto__1___closed__6_value_aux_1),((lean_object*)&l_Array_qsort___auto__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(75, 170, 162, 138, 136, 204, 251, 229)}};
-static const lean_ctor_object l_Array_qsort___auto__1___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qsort___auto__1___closed__6_value_aux_2),((lean_object*)&l_Array_qsort___auto__1___closed__5_value),LEAN_SCALAR_PTR_LITERAL(124, 9, 161, 194, 227, 100, 20, 110)}};
-static const lean_object* l_Array_qsort___auto__1___closed__6 = (const lean_object*)&l_Array_qsort___auto__1___closed__6_value;
-static const lean_string_object l_Array_qsort___auto__1___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "hygienicLParen"};
-static const lean_object* l_Array_qsort___auto__1___closed__7 = (const lean_object*)&l_Array_qsort___auto__1___closed__7_value;
-static const lean_ctor_object l_Array_qsort___auto__1___closed__8_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Array_qpartition___auto__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Array_qsort___auto__1___closed__8_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qsort___auto__1___closed__8_value_aux_0),((lean_object*)&l_Array_qpartition___auto__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Array_qsort___auto__1___closed__8_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qsort___auto__1___closed__8_value_aux_1),((lean_object*)&l_Array_qsort___auto__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(75, 170, 162, 138, 136, 204, 251, 229)}};
-static const lean_ctor_object l_Array_qsort___auto__1___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qsort___auto__1___closed__8_value_aux_2),((lean_object*)&l_Array_qsort___auto__1___closed__7_value),LEAN_SCALAR_PTR_LITERAL(41, 104, 206, 51, 21, 254, 100, 101)}};
-static const lean_object* l_Array_qsort___auto__1___closed__8 = (const lean_object*)&l_Array_qsort___auto__1___closed__8_value;
-static const lean_string_object l_Array_qsort___auto__1___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "("};
-static const lean_object* l_Array_qsort___auto__1___closed__9 = (const lean_object*)&l_Array_qsort___auto__1___closed__9_value;
+static lean_once_cell_t l_Array_qsort___auto__1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qsort___auto__1___closed__4;
+static lean_once_cell_t l_Array_qsort___auto__1___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qsort___auto__1___closed__5;
+static lean_once_cell_t l_Array_qsort___auto__1___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qsort___auto__1___closed__6;
+static lean_once_cell_t l_Array_qsort___auto__1___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qsort___auto__1___closed__7;
+static lean_once_cell_t l_Array_qsort___auto__1___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qsort___auto__1___closed__8;
+static lean_once_cell_t l_Array_qsort___auto__1___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qsort___auto__1___closed__9;
 static lean_once_cell_t l_Array_qsort___auto__1___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Array_qsort___auto__1___closed__10;
 static lean_once_cell_t l_Array_qsort___auto__1___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Array_qsort___auto__1___closed__11;
-static const lean_string_object l_Array_qsort___auto__1___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "hygieneInfo"};
-static const lean_object* l_Array_qsort___auto__1___closed__12 = (const lean_object*)&l_Array_qsort___auto__1___closed__12_value;
-static const lean_ctor_object l_Array_qsort___auto__1___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Array_qsort___auto__1___closed__12_value),LEAN_SCALAR_PTR_LITERAL(27, 64, 36, 144, 170, 151, 255, 136)}};
-static const lean_object* l_Array_qsort___auto__1___closed__13 = (const lean_object*)&l_Array_qsort___auto__1___closed__13_value;
-static const lean_string_object l_Array_qsort___auto__1___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "[anonymous]"};
-static const lean_object* l_Array_qsort___auto__1___closed__14 = (const lean_object*)&l_Array_qsort___auto__1___closed__14_value;
+static lean_once_cell_t l_Array_qsort___auto__1___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qsort___auto__1___closed__12;
+static lean_once_cell_t l_Array_qsort___auto__1___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qsort___auto__1___closed__13;
+static lean_once_cell_t l_Array_qsort___auto__1___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qsort___auto__1___closed__14;
 static lean_once_cell_t l_Array_qsort___auto__1___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Array_qsort___auto__1___closed__15;
 static lean_once_cell_t l_Array_qsort___auto__1___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -164,19 +143,16 @@ static lean_once_cell_t l_Array_qsort___auto__1___closed__21_once = LEAN_ONCE_CE
 static lean_object* l_Array_qsort___auto__1___closed__21;
 static lean_once_cell_t l_Array_qsort___auto__1___closed__22_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Array_qsort___auto__1___closed__22;
-static const lean_string_object l_Array_qsort___auto__1___closed__23_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "term_<_"};
-static const lean_object* l_Array_qsort___auto__1___closed__23 = (const lean_object*)&l_Array_qsort___auto__1___closed__23_value;
-static const lean_ctor_object l_Array_qsort___auto__1___closed__24_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Array_qsort___auto__1___closed__23_value),LEAN_SCALAR_PTR_LITERAL(192, 242, 106, 74, 199, 131, 133, 95)}};
-static const lean_object* l_Array_qsort___auto__1___closed__24 = (const lean_object*)&l_Array_qsort___auto__1___closed__24_value;
-static const lean_string_object l_Array_qsort___auto__1___closed__25_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "cdot"};
-static const lean_object* l_Array_qsort___auto__1___closed__25 = (const lean_object*)&l_Array_qsort___auto__1___closed__25_value;
-static const lean_ctor_object l_Array_qsort___auto__1___closed__26_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Array_qpartition___auto__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Array_qsort___auto__1___closed__26_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qsort___auto__1___closed__26_value_aux_0),((lean_object*)&l_Array_qpartition___auto__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Array_qsort___auto__1___closed__26_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qsort___auto__1___closed__26_value_aux_1),((lean_object*)&l_Array_qsort___auto__1___closed__4_value),LEAN_SCALAR_PTR_LITERAL(75, 170, 162, 138, 136, 204, 251, 229)}};
-static const lean_ctor_object l_Array_qsort___auto__1___closed__26_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Array_qsort___auto__1___closed__26_value_aux_2),((lean_object*)&l_Array_qsort___auto__1___closed__25_value),LEAN_SCALAR_PTR_LITERAL(215, 94, 65, 66, 49, 100, 151, 85)}};
-static const lean_object* l_Array_qsort___auto__1___closed__26 = (const lean_object*)&l_Array_qsort___auto__1___closed__26_value;
-static const lean_string_object l_Array_qsort___auto__1___closed__27_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 1, .m_data = "·"};
-static const lean_object* l_Array_qsort___auto__1___closed__27 = (const lean_object*)&l_Array_qsort___auto__1___closed__27_value;
+static lean_once_cell_t l_Array_qsort___auto__1___closed__23_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qsort___auto__1___closed__23;
+static lean_once_cell_t l_Array_qsort___auto__1___closed__24_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qsort___auto__1___closed__24;
+static lean_once_cell_t l_Array_qsort___auto__1___closed__25_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qsort___auto__1___closed__25;
+static lean_once_cell_t l_Array_qsort___auto__1___closed__26_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qsort___auto__1___closed__26;
+static lean_once_cell_t l_Array_qsort___auto__1___closed__27_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qsort___auto__1___closed__27;
 static lean_once_cell_t l_Array_qsort___auto__1___closed__28_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Array_qsort___auto__1___closed__28;
 static lean_once_cell_t l_Array_qsort___auto__1___closed__29_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -187,8 +163,8 @@ static lean_once_cell_t l_Array_qsort___auto__1___closed__31_once = LEAN_ONCE_CE
 static lean_object* l_Array_qsort___auto__1___closed__31;
 static lean_once_cell_t l_Array_qsort___auto__1___closed__32_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Array_qsort___auto__1___closed__32;
-static const lean_string_object l_Array_qsort___auto__1___closed__33_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "<"};
-static const lean_object* l_Array_qsort___auto__1___closed__33 = (const lean_object*)&l_Array_qsort___auto__1___closed__33_value;
+static lean_once_cell_t l_Array_qsort___auto__1___closed__33_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qsort___auto__1___closed__33;
 static lean_once_cell_t l_Array_qsort___auto__1___closed__34_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Array_qsort___auto__1___closed__34;
 static lean_once_cell_t l_Array_qsort___auto__1___closed__35_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -199,8 +175,8 @@ static lean_once_cell_t l_Array_qsort___auto__1___closed__37_once = LEAN_ONCE_CE
 static lean_object* l_Array_qsort___auto__1___closed__37;
 static lean_once_cell_t l_Array_qsort___auto__1___closed__38_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Array_qsort___auto__1___closed__38;
-static const lean_string_object l_Array_qsort___auto__1___closed__39_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = ")"};
-static const lean_object* l_Array_qsort___auto__1___closed__39 = (const lean_object*)&l_Array_qsort___auto__1___closed__39_value;
+static lean_once_cell_t l_Array_qsort___auto__1___closed__39_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_qsort___auto__1___closed__39;
 static lean_once_cell_t l_Array_qsort___auto__1___closed__40_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Array_qsort___auto__1___closed__40;
 static lean_once_cell_t l_Array_qsort___auto__1___closed__41_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -240,11 +216,121 @@ LEAN_EXPORT uint8_t l_Array_qsortOrd___redArg___lam__0(lean_object*, uint8_t, le
 LEAN_EXPORT lean_object* l_Array_qsortOrd___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_qsortOrd___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_qsortOrd(lean_object*, lean_object*, lean_object*);
+static lean_object* _init_l_Array_qpartition___auto__1___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; 
+v___x_1_ = lean_mk_string_unchecked("Lean", 4, 4);
+return v___x_1_;
+}
+}
+static lean_object* _init_l_Array_qpartition___auto__1___closed__1(void){
+_start:
+{
+lean_object* v___x_2_; 
+v___x_2_ = lean_mk_string_unchecked("Parser", 6, 6);
+return v___x_2_;
+}
+}
+static lean_object* _init_l_Array_qpartition___auto__1___closed__2(void){
+_start:
+{
+lean_object* v___x_3_; 
+v___x_3_ = lean_mk_string_unchecked("Tactic", 6, 6);
+return v___x_3_;
+}
+}
+static lean_object* _init_l_Array_qpartition___auto__1___closed__3(void){
+_start:
+{
+lean_object* v___x_4_; 
+v___x_4_ = lean_mk_string_unchecked("tacticSeq", 9, 9);
+return v___x_4_;
+}
+}
+static lean_object* _init_l_Array_qpartition___auto__1___closed__4(void){
+_start:
+{
+lean_object* v___x_5_; lean_object* v___x_6_; lean_object* v___x_7_; lean_object* v___x_8_; lean_object* v___x_9_; 
+v___x_5_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__3, &l_Array_qpartition___auto__1___closed__3_once, _init_l_Array_qpartition___auto__1___closed__3);
+v___x_6_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__2, &l_Array_qpartition___auto__1___closed__2_once, _init_l_Array_qpartition___auto__1___closed__2);
+v___x_7_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__1, &l_Array_qpartition___auto__1___closed__1_once, _init_l_Array_qpartition___auto__1___closed__1);
+v___x_8_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__0, &l_Array_qpartition___auto__1___closed__0_once, _init_l_Array_qpartition___auto__1___closed__0);
+v___x_9_ = l_Lean_Name_mkStr4(v___x_8_, v___x_7_, v___x_6_, v___x_5_);
+return v___x_9_;
+}
+}
+static lean_object* _init_l_Array_qpartition___auto__1___closed__5(void){
+_start:
+{
+lean_object* v___x_10_; lean_object* v___x_11_; 
+v___x_10_ = lean_unsigned_to_nat(0u);
+v___x_11_ = lean_mk_empty_array_with_capacity(v___x_10_);
+return v___x_11_;
+}
+}
+static lean_object* _init_l_Array_qpartition___auto__1___closed__6(void){
+_start:
+{
+lean_object* v___x_12_; 
+v___x_12_ = lean_mk_string_unchecked("tacticSeq1Indented", 18, 18);
+return v___x_12_;
+}
+}
+static lean_object* _init_l_Array_qpartition___auto__1___closed__7(void){
+_start:
+{
+lean_object* v___x_13_; lean_object* v___x_14_; lean_object* v___x_15_; lean_object* v___x_16_; lean_object* v___x_17_; 
+v___x_13_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__6, &l_Array_qpartition___auto__1___closed__6_once, _init_l_Array_qpartition___auto__1___closed__6);
+v___x_14_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__2, &l_Array_qpartition___auto__1___closed__2_once, _init_l_Array_qpartition___auto__1___closed__2);
+v___x_15_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__1, &l_Array_qpartition___auto__1___closed__1_once, _init_l_Array_qpartition___auto__1___closed__1);
+v___x_16_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__0, &l_Array_qpartition___auto__1___closed__0_once, _init_l_Array_qpartition___auto__1___closed__0);
+v___x_17_ = l_Lean_Name_mkStr4(v___x_16_, v___x_15_, v___x_14_, v___x_13_);
+return v___x_17_;
+}
+}
+static lean_object* _init_l_Array_qpartition___auto__1___closed__8(void){
+_start:
+{
+lean_object* v___x_18_; 
+v___x_18_ = lean_mk_string_unchecked("null", 4, 4);
+return v___x_18_;
+}
+}
+static lean_object* _init_l_Array_qpartition___auto__1___closed__9(void){
+_start:
+{
+lean_object* v___x_19_; lean_object* v___x_20_; 
+v___x_19_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__8, &l_Array_qpartition___auto__1___closed__8_once, _init_l_Array_qpartition___auto__1___closed__8);
+v___x_20_ = l_Lean_Name_mkStr1(v___x_19_);
+return v___x_20_;
+}
+}
+static lean_object* _init_l_Array_qpartition___auto__1___closed__10(void){
+_start:
+{
+lean_object* v___x_21_; 
+v___x_21_ = lean_mk_string_unchecked("omega", 5, 5);
+return v___x_21_;
+}
+}
+static lean_object* _init_l_Array_qpartition___auto__1___closed__11(void){
+_start:
+{
+lean_object* v___x_22_; lean_object* v___x_23_; lean_object* v___x_24_; lean_object* v___x_25_; lean_object* v___x_26_; 
+v___x_22_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__10, &l_Array_qpartition___auto__1___closed__10_once, _init_l_Array_qpartition___auto__1___closed__10);
+v___x_23_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__2, &l_Array_qpartition___auto__1___closed__2_once, _init_l_Array_qpartition___auto__1___closed__2);
+v___x_24_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__1, &l_Array_qpartition___auto__1___closed__1_once, _init_l_Array_qpartition___auto__1___closed__1);
+v___x_25_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__0, &l_Array_qpartition___auto__1___closed__0_once, _init_l_Array_qpartition___auto__1___closed__0);
+v___x_26_ = l_Lean_Name_mkStr4(v___x_25_, v___x_24_, v___x_23_, v___x_22_);
+return v___x_26_;
+}
+}
 static lean_object* _init_l_Array_qpartition___auto__1___closed__12(void){
 _start:
 {
 lean_object* v___x_27_; lean_object* v___x_28_; 
-v___x_27_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__10));
+v___x_27_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__10, &l_Array_qpartition___auto__1___closed__10_once, _init_l_Array_qpartition___auto__1___closed__10);
 v___x_28_ = l_Lean_mkAtom(v___x_27_);
 return v___x_28_;
 }
@@ -254,17 +340,51 @@ _start:
 {
 lean_object* v___x_29_; lean_object* v___x_30_; lean_object* v___x_31_; 
 v___x_29_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__12, &l_Array_qpartition___auto__1___closed__12_once, _init_l_Array_qpartition___auto__1___closed__12);
-v___x_30_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__5));
+v___x_30_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__5, &l_Array_qpartition___auto__1___closed__5_once, _init_l_Array_qpartition___auto__1___closed__5);
 v___x_31_ = lean_array_push(v___x_30_, v___x_29_);
 return v___x_31_;
+}
+}
+static lean_object* _init_l_Array_qpartition___auto__1___closed__14(void){
+_start:
+{
+lean_object* v___x_32_; 
+v___x_32_ = lean_mk_string_unchecked("optConfig", 9, 9);
+return v___x_32_;
+}
+}
+static lean_object* _init_l_Array_qpartition___auto__1___closed__15(void){
+_start:
+{
+lean_object* v___x_33_; lean_object* v___x_34_; lean_object* v___x_35_; lean_object* v___x_36_; lean_object* v___x_37_; 
+v___x_33_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__14, &l_Array_qpartition___auto__1___closed__14_once, _init_l_Array_qpartition___auto__1___closed__14);
+v___x_34_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__2, &l_Array_qpartition___auto__1___closed__2_once, _init_l_Array_qpartition___auto__1___closed__2);
+v___x_35_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__1, &l_Array_qpartition___auto__1___closed__1_once, _init_l_Array_qpartition___auto__1___closed__1);
+v___x_36_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__0, &l_Array_qpartition___auto__1___closed__0_once, _init_l_Array_qpartition___auto__1___closed__0);
+v___x_37_ = l_Lean_Name_mkStr4(v___x_36_, v___x_35_, v___x_34_, v___x_33_);
+return v___x_37_;
+}
+}
+static lean_object* _init_l_Array_qpartition___auto__1___closed__16(void){
+_start:
+{
+lean_object* v___x_38_; lean_object* v___x_39_; lean_object* v___x_40_; lean_object* v___x_41_; 
+v___x_38_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__5, &l_Array_qpartition___auto__1___closed__5_once, _init_l_Array_qpartition___auto__1___closed__5);
+v___x_39_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__9, &l_Array_qpartition___auto__1___closed__9_once, _init_l_Array_qpartition___auto__1___closed__9);
+v___x_40_ = lean_box(2);
+v___x_41_ = lean_alloc_ctor(1, 3, 0);
+lean_ctor_set(v___x_41_, 0, v___x_40_);
+lean_ctor_set(v___x_41_, 1, v___x_39_);
+lean_ctor_set(v___x_41_, 2, v___x_38_);
+return v___x_41_;
 }
 }
 static lean_object* _init_l_Array_qpartition___auto__1___closed__17(void){
 _start:
 {
 lean_object* v___x_42_; lean_object* v___x_43_; lean_object* v___x_44_; 
-v___x_42_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__16));
-v___x_43_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__5));
+v___x_42_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__16, &l_Array_qpartition___auto__1___closed__16_once, _init_l_Array_qpartition___auto__1___closed__16);
+v___x_43_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__5, &l_Array_qpartition___auto__1___closed__5_once, _init_l_Array_qpartition___auto__1___closed__5);
 v___x_44_ = lean_array_push(v___x_43_, v___x_42_);
 return v___x_44_;
 }
@@ -274,7 +394,7 @@ _start:
 {
 lean_object* v___x_45_; lean_object* v___x_46_; lean_object* v___x_47_; lean_object* v___x_48_; 
 v___x_45_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__17, &l_Array_qpartition___auto__1___closed__17_once, _init_l_Array_qpartition___auto__1___closed__17);
-v___x_46_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__15));
+v___x_46_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__15, &l_Array_qpartition___auto__1___closed__15_once, _init_l_Array_qpartition___auto__1___closed__15);
 v___x_47_ = lean_box(2);
 v___x_48_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_48_, 0, v___x_47_);
@@ -298,7 +418,7 @@ _start:
 {
 lean_object* v___x_52_; lean_object* v___x_53_; lean_object* v___x_54_; lean_object* v___x_55_; 
 v___x_52_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__19, &l_Array_qpartition___auto__1___closed__19_once, _init_l_Array_qpartition___auto__1___closed__19);
-v___x_53_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__11));
+v___x_53_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__11, &l_Array_qpartition___auto__1___closed__11_once, _init_l_Array_qpartition___auto__1___closed__11);
 v___x_54_ = lean_box(2);
 v___x_55_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_55_, 0, v___x_54_);
@@ -312,7 +432,7 @@ _start:
 {
 lean_object* v___x_56_; lean_object* v___x_57_; lean_object* v___x_58_; 
 v___x_56_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__20, &l_Array_qpartition___auto__1___closed__20_once, _init_l_Array_qpartition___auto__1___closed__20);
-v___x_57_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__5));
+v___x_57_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__5, &l_Array_qpartition___auto__1___closed__5_once, _init_l_Array_qpartition___auto__1___closed__5);
 v___x_58_ = lean_array_push(v___x_57_, v___x_56_);
 return v___x_58_;
 }
@@ -322,7 +442,7 @@ _start:
 {
 lean_object* v___x_59_; lean_object* v___x_60_; lean_object* v___x_61_; lean_object* v___x_62_; 
 v___x_59_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__21, &l_Array_qpartition___auto__1___closed__21_once, _init_l_Array_qpartition___auto__1___closed__21);
-v___x_60_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__9));
+v___x_60_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__9, &l_Array_qpartition___auto__1___closed__9_once, _init_l_Array_qpartition___auto__1___closed__9);
 v___x_61_ = lean_box(2);
 v___x_62_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_62_, 0, v___x_61_);
@@ -336,7 +456,7 @@ _start:
 {
 lean_object* v___x_63_; lean_object* v___x_64_; lean_object* v___x_65_; 
 v___x_63_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__22, &l_Array_qpartition___auto__1___closed__22_once, _init_l_Array_qpartition___auto__1___closed__22);
-v___x_64_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__5));
+v___x_64_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__5, &l_Array_qpartition___auto__1___closed__5_once, _init_l_Array_qpartition___auto__1___closed__5);
 v___x_65_ = lean_array_push(v___x_64_, v___x_63_);
 return v___x_65_;
 }
@@ -346,7 +466,7 @@ _start:
 {
 lean_object* v___x_66_; lean_object* v___x_67_; lean_object* v___x_68_; lean_object* v___x_69_; 
 v___x_66_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__23, &l_Array_qpartition___auto__1___closed__23_once, _init_l_Array_qpartition___auto__1___closed__23);
-v___x_67_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__7));
+v___x_67_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__7, &l_Array_qpartition___auto__1___closed__7_once, _init_l_Array_qpartition___auto__1___closed__7);
 v___x_68_ = lean_box(2);
 v___x_69_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_69_, 0, v___x_68_);
@@ -360,7 +480,7 @@ _start:
 {
 lean_object* v___x_70_; lean_object* v___x_71_; lean_object* v___x_72_; 
 v___x_70_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__24, &l_Array_qpartition___auto__1___closed__24_once, _init_l_Array_qpartition___auto__1___closed__24);
-v___x_71_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__5));
+v___x_71_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__5, &l_Array_qpartition___auto__1___closed__5_once, _init_l_Array_qpartition___auto__1___closed__5);
 v___x_72_ = lean_array_push(v___x_71_, v___x_70_);
 return v___x_72_;
 }
@@ -370,7 +490,7 @@ _start:
 {
 lean_object* v___x_73_; lean_object* v___x_74_; lean_object* v___x_75_; lean_object* v___x_76_; 
 v___x_73_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__25, &l_Array_qpartition___auto__1___closed__25_once, _init_l_Array_qpartition___auto__1___closed__25);
-v___x_74_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__4));
+v___x_74_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__4, &l_Array_qpartition___auto__1___closed__4_once, _init_l_Array_qpartition___auto__1___closed__4);
 v___x_75_ = lean_box(2);
 v___x_76_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_76_, 0, v___x_75_);
@@ -696,11 +816,31 @@ lean_dec(v_n_209_);
 return v_res_217_;
 }
 }
+static lean_object* _init_l_Array_qsort___auto__1___closed__0(void){
+_start:
+{
+lean_object* v___x_218_; 
+v___x_218_ = lean_mk_string_unchecked("exact", 5, 5);
+return v___x_218_;
+}
+}
+static lean_object* _init_l_Array_qsort___auto__1___closed__1(void){
+_start:
+{
+lean_object* v___x_219_; lean_object* v___x_220_; lean_object* v___x_221_; lean_object* v___x_222_; lean_object* v___x_223_; 
+v___x_219_ = lean_obj_once(&l_Array_qsort___auto__1___closed__0, &l_Array_qsort___auto__1___closed__0_once, _init_l_Array_qsort___auto__1___closed__0);
+v___x_220_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__2, &l_Array_qpartition___auto__1___closed__2_once, _init_l_Array_qpartition___auto__1___closed__2);
+v___x_221_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__1, &l_Array_qpartition___auto__1___closed__1_once, _init_l_Array_qpartition___auto__1___closed__1);
+v___x_222_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__0, &l_Array_qpartition___auto__1___closed__0_once, _init_l_Array_qpartition___auto__1___closed__0);
+v___x_223_ = l_Lean_Name_mkStr4(v___x_222_, v___x_221_, v___x_220_, v___x_219_);
+return v___x_223_;
+}
+}
 static lean_object* _init_l_Array_qsort___auto__1___closed__2(void){
 _start:
 {
 lean_object* v___x_224_; lean_object* v___x_225_; 
-v___x_224_ = ((lean_object*)(l_Array_qsort___auto__1___closed__0));
+v___x_224_ = lean_obj_once(&l_Array_qsort___auto__1___closed__0, &l_Array_qsort___auto__1___closed__0_once, _init_l_Array_qsort___auto__1___closed__0);
 v___x_225_ = l_Lean_mkAtom(v___x_224_);
 return v___x_225_;
 }
@@ -710,16 +850,72 @@ _start:
 {
 lean_object* v___x_226_; lean_object* v___x_227_; lean_object* v___x_228_; 
 v___x_226_ = lean_obj_once(&l_Array_qsort___auto__1___closed__2, &l_Array_qsort___auto__1___closed__2_once, _init_l_Array_qsort___auto__1___closed__2);
-v___x_227_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__5));
+v___x_227_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__5, &l_Array_qpartition___auto__1___closed__5_once, _init_l_Array_qpartition___auto__1___closed__5);
 v___x_228_ = lean_array_push(v___x_227_, v___x_226_);
 return v___x_228_;
+}
+}
+static lean_object* _init_l_Array_qsort___auto__1___closed__4(void){
+_start:
+{
+lean_object* v___x_229_; 
+v___x_229_ = lean_mk_string_unchecked("Term", 4, 4);
+return v___x_229_;
+}
+}
+static lean_object* _init_l_Array_qsort___auto__1___closed__5(void){
+_start:
+{
+lean_object* v___x_230_; 
+v___x_230_ = lean_mk_string_unchecked("paren", 5, 5);
+return v___x_230_;
+}
+}
+static lean_object* _init_l_Array_qsort___auto__1___closed__6(void){
+_start:
+{
+lean_object* v___x_231_; lean_object* v___x_232_; lean_object* v___x_233_; lean_object* v___x_234_; lean_object* v___x_235_; 
+v___x_231_ = lean_obj_once(&l_Array_qsort___auto__1___closed__5, &l_Array_qsort___auto__1___closed__5_once, _init_l_Array_qsort___auto__1___closed__5);
+v___x_232_ = lean_obj_once(&l_Array_qsort___auto__1___closed__4, &l_Array_qsort___auto__1___closed__4_once, _init_l_Array_qsort___auto__1___closed__4);
+v___x_233_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__1, &l_Array_qpartition___auto__1___closed__1_once, _init_l_Array_qpartition___auto__1___closed__1);
+v___x_234_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__0, &l_Array_qpartition___auto__1___closed__0_once, _init_l_Array_qpartition___auto__1___closed__0);
+v___x_235_ = l_Lean_Name_mkStr4(v___x_234_, v___x_233_, v___x_232_, v___x_231_);
+return v___x_235_;
+}
+}
+static lean_object* _init_l_Array_qsort___auto__1___closed__7(void){
+_start:
+{
+lean_object* v___x_236_; 
+v___x_236_ = lean_mk_string_unchecked("hygienicLParen", 14, 14);
+return v___x_236_;
+}
+}
+static lean_object* _init_l_Array_qsort___auto__1___closed__8(void){
+_start:
+{
+lean_object* v___x_237_; lean_object* v___x_238_; lean_object* v___x_239_; lean_object* v___x_240_; lean_object* v___x_241_; 
+v___x_237_ = lean_obj_once(&l_Array_qsort___auto__1___closed__7, &l_Array_qsort___auto__1___closed__7_once, _init_l_Array_qsort___auto__1___closed__7);
+v___x_238_ = lean_obj_once(&l_Array_qsort___auto__1___closed__4, &l_Array_qsort___auto__1___closed__4_once, _init_l_Array_qsort___auto__1___closed__4);
+v___x_239_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__1, &l_Array_qpartition___auto__1___closed__1_once, _init_l_Array_qpartition___auto__1___closed__1);
+v___x_240_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__0, &l_Array_qpartition___auto__1___closed__0_once, _init_l_Array_qpartition___auto__1___closed__0);
+v___x_241_ = l_Lean_Name_mkStr4(v___x_240_, v___x_239_, v___x_238_, v___x_237_);
+return v___x_241_;
+}
+}
+static lean_object* _init_l_Array_qsort___auto__1___closed__9(void){
+_start:
+{
+lean_object* v___x_242_; 
+v___x_242_ = lean_mk_string_unchecked("(", 1, 1);
+return v___x_242_;
 }
 }
 static lean_object* _init_l_Array_qsort___auto__1___closed__10(void){
 _start:
 {
 lean_object* v___x_243_; lean_object* v___x_244_; 
-v___x_243_ = ((lean_object*)(l_Array_qsort___auto__1___closed__9));
+v___x_243_ = lean_obj_once(&l_Array_qsort___auto__1___closed__9, &l_Array_qsort___auto__1___closed__9_once, _init_l_Array_qsort___auto__1___closed__9);
 v___x_244_ = l_Lean_mkAtom(v___x_243_);
 return v___x_244_;
 }
@@ -729,16 +925,41 @@ _start:
 {
 lean_object* v___x_245_; lean_object* v___x_246_; lean_object* v___x_247_; 
 v___x_245_ = lean_obj_once(&l_Array_qsort___auto__1___closed__10, &l_Array_qsort___auto__1___closed__10_once, _init_l_Array_qsort___auto__1___closed__10);
-v___x_246_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__5));
+v___x_246_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__5, &l_Array_qpartition___auto__1___closed__5_once, _init_l_Array_qpartition___auto__1___closed__5);
 v___x_247_ = lean_array_push(v___x_246_, v___x_245_);
 return v___x_247_;
+}
+}
+static lean_object* _init_l_Array_qsort___auto__1___closed__12(void){
+_start:
+{
+lean_object* v___x_248_; 
+v___x_248_ = lean_mk_string_unchecked("hygieneInfo", 11, 11);
+return v___x_248_;
+}
+}
+static lean_object* _init_l_Array_qsort___auto__1___closed__13(void){
+_start:
+{
+lean_object* v___x_249_; lean_object* v___x_250_; 
+v___x_249_ = lean_obj_once(&l_Array_qsort___auto__1___closed__12, &l_Array_qsort___auto__1___closed__12_once, _init_l_Array_qsort___auto__1___closed__12);
+v___x_250_ = l_Lean_Name_mkStr1(v___x_249_);
+return v___x_250_;
+}
+}
+static lean_object* _init_l_Array_qsort___auto__1___closed__14(void){
+_start:
+{
+lean_object* v___x_251_; 
+v___x_251_ = lean_mk_string_unchecked("[anonymous]", 11, 11);
+return v___x_251_;
 }
 }
 static lean_object* _init_l_Array_qsort___auto__1___closed__15(void){
 _start:
 {
 lean_object* v___x_252_; lean_object* v___x_253_; 
-v___x_252_ = ((lean_object*)(l_Array_qsort___auto__1___closed__14));
+v___x_252_ = lean_obj_once(&l_Array_qsort___auto__1___closed__14, &l_Array_qsort___auto__1___closed__14_once, _init_l_Array_qsort___auto__1___closed__14);
 v___x_253_ = lean_string_utf8_byte_size(v___x_252_);
 return v___x_253_;
 }
@@ -749,7 +970,7 @@ _start:
 lean_object* v___x_254_; lean_object* v___x_255_; lean_object* v___x_256_; lean_object* v___x_257_; 
 v___x_254_ = lean_obj_once(&l_Array_qsort___auto__1___closed__15, &l_Array_qsort___auto__1___closed__15_once, _init_l_Array_qsort___auto__1___closed__15);
 v___x_255_ = lean_unsigned_to_nat(0u);
-v___x_256_ = ((lean_object*)(l_Array_qsort___auto__1___closed__14));
+v___x_256_ = lean_obj_once(&l_Array_qsort___auto__1___closed__14, &l_Array_qsort___auto__1___closed__14_once, _init_l_Array_qsort___auto__1___closed__14);
 v___x_257_ = lean_alloc_ctor(0, 3, 0);
 lean_ctor_set(v___x_257_, 0, v___x_256_);
 lean_ctor_set(v___x_257_, 1, v___x_255_);
@@ -778,7 +999,7 @@ _start:
 {
 lean_object* v___x_263_; lean_object* v___x_264_; lean_object* v___x_265_; 
 v___x_263_ = lean_obj_once(&l_Array_qsort___auto__1___closed__17, &l_Array_qsort___auto__1___closed__17_once, _init_l_Array_qsort___auto__1___closed__17);
-v___x_264_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__5));
+v___x_264_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__5, &l_Array_qpartition___auto__1___closed__5_once, _init_l_Array_qpartition___auto__1___closed__5);
 v___x_265_ = lean_array_push(v___x_264_, v___x_263_);
 return v___x_265_;
 }
@@ -788,7 +1009,7 @@ _start:
 {
 lean_object* v___x_266_; lean_object* v___x_267_; lean_object* v___x_268_; lean_object* v___x_269_; 
 v___x_266_ = lean_obj_once(&l_Array_qsort___auto__1___closed__18, &l_Array_qsort___auto__1___closed__18_once, _init_l_Array_qsort___auto__1___closed__18);
-v___x_267_ = ((lean_object*)(l_Array_qsort___auto__1___closed__13));
+v___x_267_ = lean_obj_once(&l_Array_qsort___auto__1___closed__13, &l_Array_qsort___auto__1___closed__13_once, _init_l_Array_qsort___auto__1___closed__13);
 v___x_268_ = lean_box(2);
 v___x_269_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_269_, 0, v___x_268_);
@@ -812,7 +1033,7 @@ _start:
 {
 lean_object* v___x_273_; lean_object* v___x_274_; lean_object* v___x_275_; lean_object* v___x_276_; 
 v___x_273_ = lean_obj_once(&l_Array_qsort___auto__1___closed__20, &l_Array_qsort___auto__1___closed__20_once, _init_l_Array_qsort___auto__1___closed__20);
-v___x_274_ = ((lean_object*)(l_Array_qsort___auto__1___closed__8));
+v___x_274_ = lean_obj_once(&l_Array_qsort___auto__1___closed__8, &l_Array_qsort___auto__1___closed__8_once, _init_l_Array_qsort___auto__1___closed__8);
 v___x_275_ = lean_box(2);
 v___x_276_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_276_, 0, v___x_275_);
@@ -826,16 +1047,61 @@ _start:
 {
 lean_object* v___x_277_; lean_object* v___x_278_; lean_object* v___x_279_; 
 v___x_277_ = lean_obj_once(&l_Array_qsort___auto__1___closed__21, &l_Array_qsort___auto__1___closed__21_once, _init_l_Array_qsort___auto__1___closed__21);
-v___x_278_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__5));
+v___x_278_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__5, &l_Array_qpartition___auto__1___closed__5_once, _init_l_Array_qpartition___auto__1___closed__5);
 v___x_279_ = lean_array_push(v___x_278_, v___x_277_);
 return v___x_279_;
+}
+}
+static lean_object* _init_l_Array_qsort___auto__1___closed__23(void){
+_start:
+{
+lean_object* v___x_280_; 
+v___x_280_ = lean_mk_string_unchecked("term_<_", 7, 7);
+return v___x_280_;
+}
+}
+static lean_object* _init_l_Array_qsort___auto__1___closed__24(void){
+_start:
+{
+lean_object* v___x_281_; lean_object* v___x_282_; 
+v___x_281_ = lean_obj_once(&l_Array_qsort___auto__1___closed__23, &l_Array_qsort___auto__1___closed__23_once, _init_l_Array_qsort___auto__1___closed__23);
+v___x_282_ = l_Lean_Name_mkStr1(v___x_281_);
+return v___x_282_;
+}
+}
+static lean_object* _init_l_Array_qsort___auto__1___closed__25(void){
+_start:
+{
+lean_object* v___x_283_; 
+v___x_283_ = lean_mk_string_unchecked("cdot", 4, 4);
+return v___x_283_;
+}
+}
+static lean_object* _init_l_Array_qsort___auto__1___closed__26(void){
+_start:
+{
+lean_object* v___x_284_; lean_object* v___x_285_; lean_object* v___x_286_; lean_object* v___x_287_; lean_object* v___x_288_; 
+v___x_284_ = lean_obj_once(&l_Array_qsort___auto__1___closed__25, &l_Array_qsort___auto__1___closed__25_once, _init_l_Array_qsort___auto__1___closed__25);
+v___x_285_ = lean_obj_once(&l_Array_qsort___auto__1___closed__4, &l_Array_qsort___auto__1___closed__4_once, _init_l_Array_qsort___auto__1___closed__4);
+v___x_286_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__1, &l_Array_qpartition___auto__1___closed__1_once, _init_l_Array_qpartition___auto__1___closed__1);
+v___x_287_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__0, &l_Array_qpartition___auto__1___closed__0_once, _init_l_Array_qpartition___auto__1___closed__0);
+v___x_288_ = l_Lean_Name_mkStr4(v___x_287_, v___x_286_, v___x_285_, v___x_284_);
+return v___x_288_;
+}
+}
+static lean_object* _init_l_Array_qsort___auto__1___closed__27(void){
+_start:
+{
+lean_object* v___x_289_; 
+v___x_289_ = lean_mk_string_unchecked("·", 2, 1);
+return v___x_289_;
 }
 }
 static lean_object* _init_l_Array_qsort___auto__1___closed__28(void){
 _start:
 {
 lean_object* v___x_290_; lean_object* v___x_291_; 
-v___x_290_ = ((lean_object*)(l_Array_qsort___auto__1___closed__27));
+v___x_290_ = lean_obj_once(&l_Array_qsort___auto__1___closed__27, &l_Array_qsort___auto__1___closed__27_once, _init_l_Array_qsort___auto__1___closed__27);
 v___x_291_ = l_Lean_mkAtom(v___x_290_);
 return v___x_291_;
 }
@@ -845,7 +1111,7 @@ _start:
 {
 lean_object* v___x_292_; lean_object* v___x_293_; lean_object* v___x_294_; 
 v___x_292_ = lean_obj_once(&l_Array_qsort___auto__1___closed__28, &l_Array_qsort___auto__1___closed__28_once, _init_l_Array_qsort___auto__1___closed__28);
-v___x_293_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__5));
+v___x_293_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__5, &l_Array_qpartition___auto__1___closed__5_once, _init_l_Array_qpartition___auto__1___closed__5);
 v___x_294_ = lean_array_push(v___x_293_, v___x_292_);
 return v___x_294_;
 }
@@ -865,7 +1131,7 @@ _start:
 {
 lean_object* v___x_298_; lean_object* v___x_299_; lean_object* v___x_300_; lean_object* v___x_301_; 
 v___x_298_ = lean_obj_once(&l_Array_qsort___auto__1___closed__30, &l_Array_qsort___auto__1___closed__30_once, _init_l_Array_qsort___auto__1___closed__30);
-v___x_299_ = ((lean_object*)(l_Array_qsort___auto__1___closed__26));
+v___x_299_ = lean_obj_once(&l_Array_qsort___auto__1___closed__26, &l_Array_qsort___auto__1___closed__26_once, _init_l_Array_qsort___auto__1___closed__26);
 v___x_300_ = lean_box(2);
 v___x_301_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_301_, 0, v___x_300_);
@@ -879,16 +1145,24 @@ _start:
 {
 lean_object* v___x_302_; lean_object* v___x_303_; lean_object* v___x_304_; 
 v___x_302_ = lean_obj_once(&l_Array_qsort___auto__1___closed__31, &l_Array_qsort___auto__1___closed__31_once, _init_l_Array_qsort___auto__1___closed__31);
-v___x_303_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__5));
+v___x_303_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__5, &l_Array_qpartition___auto__1___closed__5_once, _init_l_Array_qpartition___auto__1___closed__5);
 v___x_304_ = lean_array_push(v___x_303_, v___x_302_);
 return v___x_304_;
+}
+}
+static lean_object* _init_l_Array_qsort___auto__1___closed__33(void){
+_start:
+{
+lean_object* v___x_305_; 
+v___x_305_ = lean_mk_string_unchecked("<", 1, 1);
+return v___x_305_;
 }
 }
 static lean_object* _init_l_Array_qsort___auto__1___closed__34(void){
 _start:
 {
 lean_object* v___x_306_; lean_object* v___x_307_; 
-v___x_306_ = ((lean_object*)(l_Array_qsort___auto__1___closed__33));
+v___x_306_ = lean_obj_once(&l_Array_qsort___auto__1___closed__33, &l_Array_qsort___auto__1___closed__33_once, _init_l_Array_qsort___auto__1___closed__33);
 v___x_307_ = l_Lean_mkAtom(v___x_306_);
 return v___x_307_;
 }
@@ -918,7 +1192,7 @@ _start:
 {
 lean_object* v___x_314_; lean_object* v___x_315_; lean_object* v___x_316_; lean_object* v___x_317_; 
 v___x_314_ = lean_obj_once(&l_Array_qsort___auto__1___closed__36, &l_Array_qsort___auto__1___closed__36_once, _init_l_Array_qsort___auto__1___closed__36);
-v___x_315_ = ((lean_object*)(l_Array_qsort___auto__1___closed__24));
+v___x_315_ = lean_obj_once(&l_Array_qsort___auto__1___closed__24, &l_Array_qsort___auto__1___closed__24_once, _init_l_Array_qsort___auto__1___closed__24);
 v___x_316_ = lean_box(2);
 v___x_317_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_317_, 0, v___x_316_);
@@ -937,11 +1211,19 @@ v___x_320_ = lean_array_push(v___x_319_, v___x_318_);
 return v___x_320_;
 }
 }
+static lean_object* _init_l_Array_qsort___auto__1___closed__39(void){
+_start:
+{
+lean_object* v___x_321_; 
+v___x_321_ = lean_mk_string_unchecked(")", 1, 1);
+return v___x_321_;
+}
+}
 static lean_object* _init_l_Array_qsort___auto__1___closed__40(void){
 _start:
 {
 lean_object* v___x_322_; lean_object* v___x_323_; 
-v___x_322_ = ((lean_object*)(l_Array_qsort___auto__1___closed__39));
+v___x_322_ = lean_obj_once(&l_Array_qsort___auto__1___closed__39, &l_Array_qsort___auto__1___closed__39_once, _init_l_Array_qsort___auto__1___closed__39);
 v___x_323_ = l_Lean_mkAtom(v___x_322_);
 return v___x_323_;
 }
@@ -961,7 +1243,7 @@ _start:
 {
 lean_object* v___x_327_; lean_object* v___x_328_; lean_object* v___x_329_; lean_object* v___x_330_; 
 v___x_327_ = lean_obj_once(&l_Array_qsort___auto__1___closed__41, &l_Array_qsort___auto__1___closed__41_once, _init_l_Array_qsort___auto__1___closed__41);
-v___x_328_ = ((lean_object*)(l_Array_qsort___auto__1___closed__6));
+v___x_328_ = lean_obj_once(&l_Array_qsort___auto__1___closed__6, &l_Array_qsort___auto__1___closed__6_once, _init_l_Array_qsort___auto__1___closed__6);
 v___x_329_ = lean_box(2);
 v___x_330_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_330_, 0, v___x_329_);
@@ -985,7 +1267,7 @@ _start:
 {
 lean_object* v___x_334_; lean_object* v___x_335_; lean_object* v___x_336_; lean_object* v___x_337_; 
 v___x_334_ = lean_obj_once(&l_Array_qsort___auto__1___closed__43, &l_Array_qsort___auto__1___closed__43_once, _init_l_Array_qsort___auto__1___closed__43);
-v___x_335_ = ((lean_object*)(l_Array_qsort___auto__1___closed__1));
+v___x_335_ = lean_obj_once(&l_Array_qsort___auto__1___closed__1, &l_Array_qsort___auto__1___closed__1_once, _init_l_Array_qsort___auto__1___closed__1);
 v___x_336_ = lean_box(2);
 v___x_337_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_337_, 0, v___x_336_);
@@ -999,7 +1281,7 @@ _start:
 {
 lean_object* v___x_338_; lean_object* v___x_339_; lean_object* v___x_340_; 
 v___x_338_ = lean_obj_once(&l_Array_qsort___auto__1___closed__44, &l_Array_qsort___auto__1___closed__44_once, _init_l_Array_qsort___auto__1___closed__44);
-v___x_339_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__5));
+v___x_339_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__5, &l_Array_qpartition___auto__1___closed__5_once, _init_l_Array_qpartition___auto__1___closed__5);
 v___x_340_ = lean_array_push(v___x_339_, v___x_338_);
 return v___x_340_;
 }
@@ -1009,7 +1291,7 @@ _start:
 {
 lean_object* v___x_341_; lean_object* v___x_342_; lean_object* v___x_343_; lean_object* v___x_344_; 
 v___x_341_ = lean_obj_once(&l_Array_qsort___auto__1___closed__45, &l_Array_qsort___auto__1___closed__45_once, _init_l_Array_qsort___auto__1___closed__45);
-v___x_342_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__9));
+v___x_342_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__9, &l_Array_qpartition___auto__1___closed__9_once, _init_l_Array_qpartition___auto__1___closed__9);
 v___x_343_ = lean_box(2);
 v___x_344_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_344_, 0, v___x_343_);
@@ -1023,7 +1305,7 @@ _start:
 {
 lean_object* v___x_345_; lean_object* v___x_346_; lean_object* v___x_347_; 
 v___x_345_ = lean_obj_once(&l_Array_qsort___auto__1___closed__46, &l_Array_qsort___auto__1___closed__46_once, _init_l_Array_qsort___auto__1___closed__46);
-v___x_346_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__5));
+v___x_346_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__5, &l_Array_qpartition___auto__1___closed__5_once, _init_l_Array_qpartition___auto__1___closed__5);
 v___x_347_ = lean_array_push(v___x_346_, v___x_345_);
 return v___x_347_;
 }
@@ -1033,7 +1315,7 @@ _start:
 {
 lean_object* v___x_348_; lean_object* v___x_349_; lean_object* v___x_350_; lean_object* v___x_351_; 
 v___x_348_ = lean_obj_once(&l_Array_qsort___auto__1___closed__47, &l_Array_qsort___auto__1___closed__47_once, _init_l_Array_qsort___auto__1___closed__47);
-v___x_349_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__7));
+v___x_349_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__7, &l_Array_qpartition___auto__1___closed__7_once, _init_l_Array_qpartition___auto__1___closed__7);
 v___x_350_ = lean_box(2);
 v___x_351_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_351_, 0, v___x_350_);
@@ -1047,7 +1329,7 @@ _start:
 {
 lean_object* v___x_352_; lean_object* v___x_353_; lean_object* v___x_354_; 
 v___x_352_ = lean_obj_once(&l_Array_qsort___auto__1___closed__48, &l_Array_qsort___auto__1___closed__48_once, _init_l_Array_qsort___auto__1___closed__48);
-v___x_353_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__5));
+v___x_353_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__5, &l_Array_qpartition___auto__1___closed__5_once, _init_l_Array_qpartition___auto__1___closed__5);
 v___x_354_ = lean_array_push(v___x_353_, v___x_352_);
 return v___x_354_;
 }
@@ -1057,7 +1339,7 @@ _start:
 {
 lean_object* v___x_355_; lean_object* v___x_356_; lean_object* v___x_357_; lean_object* v___x_358_; 
 v___x_355_ = lean_obj_once(&l_Array_qsort___auto__1___closed__49, &l_Array_qsort___auto__1___closed__49_once, _init_l_Array_qsort___auto__1___closed__49);
-v___x_356_ = ((lean_object*)(l_Array_qpartition___auto__1___closed__4));
+v___x_356_ = lean_obj_once(&l_Array_qpartition___auto__1___closed__4, &l_Array_qpartition___auto__1___closed__4_once, _init_l_Array_qpartition___auto__1___closed__4);
 v___x_357_ = lean_box(2);
 v___x_358_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_358_, 0, v___x_357_);

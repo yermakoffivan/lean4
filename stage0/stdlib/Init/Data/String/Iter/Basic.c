@@ -18,8 +18,8 @@ lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(lean_object*, lean_object*, lean_object*);
 lean_object* lean_array_to_list(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Iter_toStringList___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_array_object l_Std_Iter_toStringList___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Std_Iter_toStringList___redArg___closed__0 = (const lean_object*)&l_Std_Iter_toStringList___redArg___closed__0_value;
+static lean_once_cell_t l_Std_Iter_toStringList___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Iter_toStringList___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Std_Iter_toStringList___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Iter_toStringList(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Iter_toStringArray___redArg(lean_object*, lean_object*, lean_object*);
@@ -63,6 +63,15 @@ return v_acc_4_;
 }
 }
 }
+static lean_object* _init_l_Std_Iter_toStringList___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_14_; lean_object* v___x_15_; 
+v___x_14_ = lean_unsigned_to_nat(0u);
+v___x_15_ = lean_mk_empty_array_with_capacity(v___x_14_);
+return v___x_15_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Iter_toStringList___redArg(lean_object* v_inst_16_, lean_object* v_inst_17_, lean_object* v_it_18_){
 _start:
 {
@@ -70,7 +79,7 @@ lean_object* v___f_19_; lean_object* v___x_20_; lean_object* v___x_21_; lean_obj
 v___f_19_ = lean_alloc_closure((void*)(l_Std_Iter_toStringList___redArg___lam__0), 5, 2);
 lean_closure_set(v___f_19_, 0, v_inst_16_);
 lean_closure_set(v___f_19_, 1, v_inst_17_);
-v___x_20_ = ((lean_object*)(l_Std_Iter_toStringList___redArg___closed__0));
+v___x_20_ = lean_obj_once(&l_Std_Iter_toStringList___redArg___closed__0, &l_Std_Iter_toStringList___redArg___closed__0_once, _init_l_Std_Iter_toStringList___redArg___closed__0);
 v___x_21_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_19_, v_it_18_, v___x_20_);
 v___x_22_ = lean_array_to_list(v___x_21_);
 return v___x_22_;
@@ -83,7 +92,7 @@ lean_object* v___f_28_; lean_object* v___x_29_; lean_object* v___x_30_; lean_obj
 v___f_28_ = lean_alloc_closure((void*)(l_Std_Iter_toStringList___redArg___lam__0), 5, 2);
 lean_closure_set(v___f_28_, 0, v_inst_25_);
 lean_closure_set(v___f_28_, 1, v_inst_26_);
-v___x_29_ = ((lean_object*)(l_Std_Iter_toStringList___redArg___closed__0));
+v___x_29_ = lean_obj_once(&l_Std_Iter_toStringList___redArg___closed__0, &l_Std_Iter_toStringList___redArg___closed__0_once, _init_l_Std_Iter_toStringList___redArg___closed__0);
 v___x_30_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_28_, v_it_27_, v___x_29_);
 v___x_31_ = lean_array_to_list(v___x_30_);
 return v___x_31_;
@@ -96,7 +105,7 @@ lean_object* v___f_35_; lean_object* v___x_36_; lean_object* v___x_37_;
 v___f_35_ = lean_alloc_closure((void*)(l_Std_Iter_toStringList___redArg___lam__0), 5, 2);
 lean_closure_set(v___f_35_, 0, v_inst_32_);
 lean_closure_set(v___f_35_, 1, v_inst_33_);
-v___x_36_ = ((lean_object*)(l_Std_Iter_toStringList___redArg___closed__0));
+v___x_36_ = lean_obj_once(&l_Std_Iter_toStringList___redArg___closed__0, &l_Std_Iter_toStringList___redArg___closed__0_once, _init_l_Std_Iter_toStringList___redArg___closed__0);
 v___x_37_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_35_, v_it_34_, v___x_36_);
 return v___x_37_;
 }
@@ -108,7 +117,7 @@ lean_object* v___f_43_; lean_object* v___x_44_; lean_object* v___x_45_;
 v___f_43_ = lean_alloc_closure((void*)(l_Std_Iter_toStringList___redArg___lam__0), 5, 2);
 lean_closure_set(v___f_43_, 0, v_inst_40_);
 lean_closure_set(v___f_43_, 1, v_inst_41_);
-v___x_44_ = ((lean_object*)(l_Std_Iter_toStringList___redArg___closed__0));
+v___x_44_ = lean_obj_once(&l_Std_Iter_toStringList___redArg___closed__0, &l_Std_Iter_toStringList___redArg___closed__0_once, _init_l_Std_Iter_toStringList___redArg___closed__0);
 v___x_45_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_43_, v_it_42_, v___x_44_);
 return v___x_45_;
 }

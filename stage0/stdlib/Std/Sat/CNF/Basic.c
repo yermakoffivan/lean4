@@ -55,8 +55,8 @@ LEAN_EXPORT uint8_t l_Std_Sat_CNF_eval(lean_object*, lean_object*, lean_object*)
 LEAN_EXPORT lean_object* l_Std_Sat_CNF_eval___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l___private_Init_Data_Array_Basic_0__Array_anyMUnsafe_any___at___00Std_Sat_CNF_eval_spec__0(lean_object*, lean_object*, lean_object*, size_t, size_t);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_anyMUnsafe_any___at___00Std_Sat_CNF_eval_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_array_object l_Std_Sat_CNF_empty___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Std_Sat_CNF_empty___closed__0 = (const lean_object*)&l_Std_Sat_CNF_empty___closed__0_value;
+static lean_once_cell_t l_Std_Sat_CNF_empty___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Sat_CNF_empty___closed__0;
 LEAN_EXPORT lean_object* l_Std_Sat_CNF_empty(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Sat_CNF_emptyWithCapacity___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Sat_CNF_emptyWithCapacity___redArg___boxed(lean_object*);
@@ -68,8 +68,8 @@ LEAN_EXPORT lean_object* l_Std_Sat_CNF_append___redArg(lean_object*, lean_object
 LEAN_EXPORT lean_object* l_Std_Sat_CNF_append___redArg___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Sat_CNF_append(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Sat_CNF_append___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_Sat_CNF_instAppend___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Sat_CNF_append___boxed, .m_arity = 3, .m_num_fixed = 1, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))} };
-static const lean_object* l_Std_Sat_CNF_instAppend___closed__0 = (const lean_object*)&l_Std_Sat_CNF_instAppend___closed__0_value;
+static lean_once_cell_t l_Std_Sat_CNF_instAppend___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Sat_CNF_instAppend___closed__0;
 LEAN_EXPORT lean_object* l_Std_Sat_CNF_instAppend(lean_object*);
 static lean_once_cell_t l_Std_Sat_CNF_Clause_instDecidableMemOfDecidableEq___aux__1___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Sat_CNF_Clause_instDecidableMemOfDecidableEq___aux__1___redArg___closed__0;
@@ -102,26 +102,26 @@ LEAN_EXPORT uint8_t l_Std_Sat_CNF_instDecidableVarMemOfDecidableEq(lean_object*,
 LEAN_EXPORT lean_object* l_Std_Sat_CNF_instDecidableVarMemOfDecidableEq___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___lam__0(uint8_t, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__0, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__0 = (const lean_object*)&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__0_value;
-static const lean_closure_object l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__1___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__1 = (const lean_object*)&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__1_value;
-static const lean_closure_object l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__2___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__2 = (const lean_object*)&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__2_value;
-static const lean_closure_object l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__3, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__3 = (const lean_object*)&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__3_value;
-static const lean_closure_object l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__4___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__4 = (const lean_object*)&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__4_value;
-static const lean_closure_object l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__5___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__5 = (const lean_object*)&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__5_value;
-static const lean_closure_object l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__6, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__6 = (const lean_object*)&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__6_value;
-static const lean_ctor_object l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__0_value),((lean_object*)&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__1_value)}};
-static const lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__7 = (const lean_object*)&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__7_value;
-static const lean_ctor_object l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*5 + 0, .m_other = 5, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__7_value),((lean_object*)&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__2_value),((lean_object*)&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__3_value),((lean_object*)&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__4_value),((lean_object*)&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__5_value)}};
-static const lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__8 = (const lean_object*)&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__8_value;
-static const lean_ctor_object l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__8_value),((lean_object*)&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__6_value)}};
-static const lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__9 = (const lean_object*)&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__9_value;
+static lean_once_cell_t l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__0;
+static lean_once_cell_t l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__1;
+static lean_once_cell_t l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__2;
+static lean_once_cell_t l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__3;
+static lean_once_cell_t l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__4;
+static lean_once_cell_t l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__5;
+static lean_once_cell_t l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__6;
+static lean_once_cell_t l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__7;
+static lean_once_cell_t l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__8;
+static lean_once_cell_t l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__9;
 LEAN_EXPORT uint8_t l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___boxed(lean_object*);
 LEAN_EXPORT uint8_t l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq(lean_object*, lean_object*, lean_object*);
@@ -403,11 +403,20 @@ v_r_102_ = lean_box(v_res_101_);
 return v_r_102_;
 }
 }
+static lean_object* _init_l_Std_Sat_CNF_empty___closed__0(void){
+_start:
+{
+lean_object* v___x_103_; lean_object* v___x_104_; 
+v___x_103_ = lean_unsigned_to_nat(0u);
+v___x_104_ = lean_mk_empty_array_with_capacity(v___x_103_);
+return v___x_104_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Sat_CNF_empty(lean_object* v_00_u03b1_105_){
 _start:
 {
 lean_object* v___x_106_; 
-v___x_106_ = ((lean_object*)(l_Std_Sat_CNF_empty___closed__0));
+v___x_106_ = lean_obj_once(&l_Std_Sat_CNF_empty___closed__0, &l_Std_Sat_CNF_empty___closed__0_once, _init_l_Std_Sat_CNF_empty___closed__0);
 return v___x_106_;
 }
 }
@@ -495,11 +504,20 @@ lean_dec_ref(v_f2_136_);
 return v_res_137_;
 }
 }
+static lean_object* _init_l_Std_Sat_CNF_instAppend___closed__0(void){
+_start:
+{
+lean_object* v___x_138_; 
+v___x_138_ = lean_alloc_closure((void*)(l_Std_Sat_CNF_append___boxed), 3, 1);
+lean_closure_set(v___x_138_, 0, lean_box(0));
+return v___x_138_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Sat_CNF_instAppend(lean_object* v_00_u03b1_139_){
 _start:
 {
 lean_object* v___x_140_; 
-v___x_140_ = ((lean_object*)(l_Std_Sat_CNF_instAppend___closed__0));
+v___x_140_ = lean_obj_once(&l_Std_Sat_CNF_instAppend___closed__0, &l_Std_Sat_CNF_instAppend___closed__0_once, _init_l_Std_Sat_CNF_instAppend___closed__0);
 return v___x_140_;
 }
 }
@@ -813,13 +831,111 @@ v_r_297_ = lean_box(v_res_296_);
 return v_r_297_;
 }
 }
+static lean_object* _init_l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_298_; 
+v___f_298_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__0), 4, 0);
+return v___f_298_;
+}
+}
+static lean_object* _init_l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__1(void){
+_start:
+{
+lean_object* v___f_299_; 
+v___f_299_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__1___boxed), 4, 0);
+return v___f_299_;
+}
+}
+static lean_object* _init_l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__2(void){
+_start:
+{
+lean_object* v___f_300_; 
+v___f_300_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__2___boxed), 2, 0);
+return v___f_300_;
+}
+}
+static lean_object* _init_l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__3(void){
+_start:
+{
+lean_object* v___f_301_; 
+v___f_301_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__3), 4, 0);
+return v___f_301_;
+}
+}
+static lean_object* _init_l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__4(void){
+_start:
+{
+lean_object* v___f_302_; 
+v___f_302_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__4___boxed), 4, 0);
+return v___f_302_;
+}
+}
+static lean_object* _init_l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__5(void){
+_start:
+{
+lean_object* v___f_303_; 
+v___f_303_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__5___boxed), 4, 0);
+return v___f_303_;
+}
+}
+static lean_object* _init_l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__6(void){
+_start:
+{
+lean_object* v___f_304_; 
+v___f_304_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__6), 4, 0);
+return v___f_304_;
+}
+}
+static lean_object* _init_l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__7(void){
+_start:
+{
+lean_object* v___f_305_; lean_object* v___f_306_; lean_object* v___x_307_; 
+v___f_305_ = lean_obj_once(&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__1, &l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__1_once, _init_l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__1);
+v___f_306_ = lean_obj_once(&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__0, &l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__0_once, _init_l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__0);
+v___x_307_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_307_, 0, v___f_306_);
+lean_ctor_set(v___x_307_, 1, v___f_305_);
+return v___x_307_;
+}
+}
+static lean_object* _init_l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__8(void){
+_start:
+{
+lean_object* v___f_308_; lean_object* v___f_309_; lean_object* v___f_310_; lean_object* v___f_311_; lean_object* v___x_312_; lean_object* v___x_313_; 
+v___f_308_ = lean_obj_once(&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__5, &l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__5_once, _init_l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__5);
+v___f_309_ = lean_obj_once(&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__4, &l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__4_once, _init_l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__4);
+v___f_310_ = lean_obj_once(&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__3, &l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__3_once, _init_l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__3);
+v___f_311_ = lean_obj_once(&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__2, &l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__2_once, _init_l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__2);
+v___x_312_ = lean_obj_once(&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__7, &l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__7_once, _init_l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__7);
+v___x_313_ = lean_alloc_ctor(0, 5, 0);
+lean_ctor_set(v___x_313_, 0, v___x_312_);
+lean_ctor_set(v___x_313_, 1, v___f_311_);
+lean_ctor_set(v___x_313_, 2, v___f_310_);
+lean_ctor_set(v___x_313_, 3, v___f_309_);
+lean_ctor_set(v___x_313_, 4, v___f_308_);
+return v___x_313_;
+}
+}
+static lean_object* _init_l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__9(void){
+_start:
+{
+lean_object* v___f_314_; lean_object* v___x_315_; lean_object* v___x_316_; 
+v___f_314_ = lean_obj_once(&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__6, &l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__6_once, _init_l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__6);
+v___x_315_ = lean_obj_once(&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__8, &l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__8_once, _init_l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__8);
+v___x_316_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_316_, 0, v___x_315_);
+lean_ctor_set(v___x_316_, 1, v___f_314_);
+return v___x_316_;
+}
+}
 LEAN_EXPORT uint8_t l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg(lean_object* v_f_317_){
 _start:
 {
 lean_object* v___x_318_; lean_object* v___x_319_; lean_object* v___x_320_; uint8_t v___x_321_; 
 v___x_318_ = lean_unsigned_to_nat(0u);
 v___x_319_ = lean_array_get_size(v_f_317_);
-v___x_320_ = ((lean_object*)(l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__9));
+v___x_320_ = lean_obj_once(&l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__9, &l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__9_once, _init_l_Std_Sat_CNF_instDecidableExistsVarMemOfDecidableEq___redArg___closed__9);
 v___x_321_ = lean_nat_dec_lt(v___x_318_, v___x_319_);
 if (v___x_321_ == 0)
 {

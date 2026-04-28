@@ -19,8 +19,8 @@ LEAN_EXPORT lean_object* l_Std_Iterators_Types_Attach_Monadic_modifyStep(lean_ob
 LEAN_EXPORT lean_object* l_Std_Iterators_Types_Attach_Monadic_modifyStep___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Iterators_Types_Attach_instIterator___redArg___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Iterators_Types_Attach_instIterator___redArg___lam__1(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_Iterators_Types_Attach_instIterator___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Iterators_Types_Attach_instIterator___redArg___lam__0, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Iterators_Types_Attach_instIterator___redArg___closed__0 = (const lean_object*)&l_Std_Iterators_Types_Attach_instIterator___redArg___closed__0_value;
+static lean_once_cell_t l_Std_Iterators_Types_Attach_instIterator___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Iterators_Types_Attach_instIterator___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Std_Iterators_Types_Attach_instIterator___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Iterators_Types_Attach_instIterator(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Iterators_Combinators_Monadic_Attach_0__Std_Iterators_Types_Attach_Monadic_modifyStep_match__1_splitter___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
@@ -359,6 +359,14 @@ v___x_78_ = lean_apply_4(v_map_76_, lean_box(0), lean_box(0), v___f_74_, v___x_7
 return v___x_78_;
 }
 }
+static lean_object* _init_l_Std_Iterators_Types_Attach_instIterator___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_79_; 
+v___f_79_ = lean_alloc_closure((void*)(l_Std_Iterators_Types_Attach_instIterator___redArg___lam__0), 1, 0);
+return v___f_79_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Iterators_Types_Attach_instIterator___redArg(lean_object* v_inst_80_, lean_object* v_inst_81_){
 _start:
 {
@@ -369,7 +377,7 @@ lean_dec_ref(v_inst_80_);
 v_toFunctor_83_ = lean_ctor_get(v_toApplicative_82_, 0);
 lean_inc_ref(v_toFunctor_83_);
 lean_dec_ref(v_toApplicative_82_);
-v___f_84_ = ((lean_object*)(l_Std_Iterators_Types_Attach_instIterator___redArg___closed__0));
+v___f_84_ = lean_obj_once(&l_Std_Iterators_Types_Attach_instIterator___redArg___closed__0, &l_Std_Iterators_Types_Attach_instIterator___redArg___closed__0_once, _init_l_Std_Iterators_Types_Attach_instIterator___redArg___closed__0);
 v___f_85_ = lean_alloc_closure((void*)(l_Std_Iterators_Types_Attach_instIterator___redArg___lam__1), 4, 3);
 lean_closure_set(v___f_85_, 0, v_toFunctor_83_);
 lean_closure_set(v___f_85_, 1, v_inst_81_);
@@ -635,7 +643,7 @@ LEAN_EXPORT lean_object* l_Std_Iterators_Types_Attach_instIteratorLoop___redArg(
 _start:
 {
 lean_object* v___f_222_; lean_object* v___f_223_; 
-v___f_222_ = ((lean_object*)(l_Std_Iterators_Types_Attach_instIterator___redArg___closed__0));
+v___f_222_ = lean_obj_once(&l_Std_Iterators_Types_Attach_instIterator___redArg___closed__0, &l_Std_Iterators_Types_Attach_instIterator___redArg___closed__0_once, _init_l_Std_Iterators_Types_Attach_instIterator___redArg___closed__0);
 v___f_223_ = lean_alloc_closure((void*)(l_Std_Iterators_Types_Attach_instIteratorLoop___redArg___lam__3), 10, 4);
 lean_closure_set(v___f_223_, 0, v_inst_220_);
 lean_closure_set(v___f_223_, 1, v_inst_219_);

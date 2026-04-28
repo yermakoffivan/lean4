@@ -39,29 +39,29 @@ lean_object* l_Lean_MessageData_ofName(lean_object*);
 uint8_t l_Lean_isExtern(lean_object*, lean_object*);
 lean_object* l_Lean_Compiler_getImplementedBy_x3f(lean_object*, lean_object*);
 lean_object* l_Lean_Elab_Command_liftTermElabM___redArg(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_testExternCmd___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "testExternCmd"};
-static const lean_object* l_testExternCmd___closed__0 = (const lean_object*)&l_testExternCmd___closed__0_value;
-static const lean_ctor_object l_testExternCmd___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_testExternCmd___closed__0_value),LEAN_SCALAR_PTR_LITERAL(107, 24, 25, 40, 221, 224, 5, 217)}};
-static const lean_object* l_testExternCmd___closed__1 = (const lean_object*)&l_testExternCmd___closed__1_value;
-static const lean_string_object l_testExternCmd___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "andthen"};
-static const lean_object* l_testExternCmd___closed__2 = (const lean_object*)&l_testExternCmd___closed__2_value;
-static const lean_ctor_object l_testExternCmd___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_testExternCmd___closed__2_value),LEAN_SCALAR_PTR_LITERAL(40, 255, 78, 30, 143, 119, 117, 174)}};
-static const lean_object* l_testExternCmd___closed__3 = (const lean_object*)&l_testExternCmd___closed__3_value;
-static const lean_string_object l_testExternCmd___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "test_extern "};
-static const lean_object* l_testExternCmd___closed__4 = (const lean_object*)&l_testExternCmd___closed__4_value;
-static const lean_ctor_object l_testExternCmd___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_testExternCmd___closed__4_value)}};
-static const lean_object* l_testExternCmd___closed__5 = (const lean_object*)&l_testExternCmd___closed__5_value;
-static const lean_string_object l_testExternCmd___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "term"};
-static const lean_object* l_testExternCmd___closed__6 = (const lean_object*)&l_testExternCmd___closed__6_value;
-static const lean_ctor_object l_testExternCmd___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_testExternCmd___closed__6_value),LEAN_SCALAR_PTR_LITERAL(187, 230, 181, 162, 253, 146, 122, 119)}};
-static const lean_object* l_testExternCmd___closed__7 = (const lean_object*)&l_testExternCmd___closed__7_value;
-static const lean_ctor_object l_testExternCmd___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 7}, .m_objs = {((lean_object*)&l_testExternCmd___closed__7_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_testExternCmd___closed__8 = (const lean_object*)&l_testExternCmd___closed__8_value;
-static const lean_ctor_object l_testExternCmd___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_testExternCmd___closed__3_value),((lean_object*)&l_testExternCmd___closed__5_value),((lean_object*)&l_testExternCmd___closed__8_value)}};
-static const lean_object* l_testExternCmd___closed__9 = (const lean_object*)&l_testExternCmd___closed__9_value;
-static const lean_ctor_object l_testExternCmd___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_testExternCmd___closed__1_value),((lean_object*)(((size_t)(1022) << 1) | 1)),((lean_object*)&l_testExternCmd___closed__9_value)}};
-static const lean_object* l_testExternCmd___closed__10 = (const lean_object*)&l_testExternCmd___closed__10_value;
-LEAN_EXPORT const lean_object* l_testExternCmd = (const lean_object*)&l_testExternCmd___closed__10_value;
+static lean_once_cell_t l_testExternCmd___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_testExternCmd___closed__0;
+static lean_once_cell_t l_testExternCmd___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_testExternCmd___closed__1;
+static lean_once_cell_t l_testExternCmd___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_testExternCmd___closed__2;
+static lean_once_cell_t l_testExternCmd___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_testExternCmd___closed__3;
+static lean_once_cell_t l_testExternCmd___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_testExternCmd___closed__4;
+static lean_once_cell_t l_testExternCmd___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_testExternCmd___closed__5;
+static lean_once_cell_t l_testExternCmd___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_testExternCmd___closed__6;
+static lean_once_cell_t l_testExternCmd___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_testExternCmd___closed__7;
+static lean_once_cell_t l_testExternCmd___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_testExternCmd___closed__8;
+static lean_once_cell_t l_testExternCmd___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_testExternCmd___closed__9;
+static lean_once_cell_t l_testExternCmd___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_testExternCmd___closed__10;
+LEAN_EXPORT lean_object* l_testExternCmd;
 static lean_once_cell_t l_Lean_Elab_throwUnsupportedSyntax___at___00elabTestExtern_spec__0___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Elab_throwUnsupportedSyntax___at___00elabTestExtern_spec__0___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Lean_Elab_throwUnsupportedSyntax___at___00elabTestExtern_spec__0___redArg();
@@ -74,62 +74,61 @@ LEAN_EXPORT uint8_t l_Lean_Option_get___at___00Lean_Elab_addMacroStack___at___00
 LEAN_EXPORT lean_object* l_Lean_Option_get___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__3___boxed(lean_object*, lean_object*);
 static lean_once_cell_t l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__0;
-static const lean_string_object l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "while expanding"};
-static const lean_object* l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__1 = (const lean_object*)&l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__1_value;
-static const lean_ctor_object l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__1_value)}};
-static const lean_object* l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__2 = (const lean_object*)&l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__2_value;
+static lean_once_cell_t l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__1;
+static lean_once_cell_t l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__2;
 static lean_once_cell_t l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__3;
 LEAN_EXPORT lean_object* l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4(lean_object*, lean_object*);
-static const lean_string_object l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "with resulting expansion"};
-static const lean_object* l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__0 = (const lean_object*)&l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__0_value;
-static const lean_ctor_object l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__0_value)}};
-static const lean_object* l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__1 = (const lean_object*)&l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__1_value;
+static lean_once_cell_t l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__0;
+static lean_once_cell_t l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__1;
 static lean_once_cell_t l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__2;
 LEAN_EXPORT lean_object* l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00elabTestExtern_spec__1___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00elabTestExtern_spec__1___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_elabTestExtern___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Lean"};
-static const lean_object* l_elabTestExtern___lam__0___closed__0 = (const lean_object*)&l_elabTestExtern___lam__0___closed__0_value;
-static const lean_string_object l_elabTestExtern___lam__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "reduceBool"};
-static const lean_object* l_elabTestExtern___lam__0___closed__1 = (const lean_object*)&l_elabTestExtern___lam__0___closed__1_value;
-static const lean_ctor_object l_elabTestExtern___lam__0___closed__2_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_elabTestExtern___lam__0___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_elabTestExtern___lam__0___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_elabTestExtern___lam__0___closed__2_value_aux_0),((lean_object*)&l_elabTestExtern___lam__0___closed__1_value),LEAN_SCALAR_PTR_LITERAL(114, 197, 237, 28, 99, 199, 232, 30)}};
-static const lean_object* l_elabTestExtern___lam__0___closed__2 = (const lean_object*)&l_elabTestExtern___lam__0___closed__2_value;
+static lean_once_cell_t l_elabTestExtern___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_elabTestExtern___lam__0___closed__0;
+static lean_once_cell_t l_elabTestExtern___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_elabTestExtern___lam__0___closed__1;
+static lean_once_cell_t l_elabTestExtern___lam__0___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_elabTestExtern___lam__0___closed__2;
 static lean_once_cell_t l_elabTestExtern___lam__0___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_elabTestExtern___lam__0___closed__3;
-static const lean_string_object l_elabTestExtern___lam__0___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Bool"};
-static const lean_object* l_elabTestExtern___lam__0___closed__4 = (const lean_object*)&l_elabTestExtern___lam__0___closed__4_value;
-static const lean_ctor_object l_elabTestExtern___lam__0___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_elabTestExtern___lam__0___closed__4_value),LEAN_SCALAR_PTR_LITERAL(250, 44, 198, 216, 184, 195, 199, 178)}};
-static const lean_object* l_elabTestExtern___lam__0___closed__5 = (const lean_object*)&l_elabTestExtern___lam__0___closed__5_value;
+static lean_once_cell_t l_elabTestExtern___lam__0___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_elabTestExtern___lam__0___closed__4;
+static lean_once_cell_t l_elabTestExtern___lam__0___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_elabTestExtern___lam__0___closed__5;
 static lean_once_cell_t l_elabTestExtern___lam__0___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_elabTestExtern___lam__0___closed__6;
-static const lean_string_object l_elabTestExtern___lam__0___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 68, .m_capacity = 68, .m_length = 67, .m_data = "native implementation did not agree with reference implementation!\n"};
-static const lean_object* l_elabTestExtern___lam__0___closed__7 = (const lean_object*)&l_elabTestExtern___lam__0___closed__7_value;
-static const lean_ctor_object l_elabTestExtern___lam__0___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_elabTestExtern___lam__0___closed__7_value)}};
-static const lean_object* l_elabTestExtern___lam__0___closed__8 = (const lean_object*)&l_elabTestExtern___lam__0___closed__8_value;
+static lean_once_cell_t l_elabTestExtern___lam__0___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_elabTestExtern___lam__0___closed__7;
+static lean_once_cell_t l_elabTestExtern___lam__0___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_elabTestExtern___lam__0___closed__8;
 static lean_once_cell_t l_elabTestExtern___lam__0___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_elabTestExtern___lam__0___closed__9;
-static const lean_string_object l_elabTestExtern___lam__0___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 31, .m_capacity = 31, .m_length = 30, .m_data = "Compare the outputs of:\n#eval "};
-static const lean_object* l_elabTestExtern___lam__0___closed__10 = (const lean_object*)&l_elabTestExtern___lam__0___closed__10_value;
+static lean_once_cell_t l_elabTestExtern___lam__0___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_elabTestExtern___lam__0___closed__10;
 static lean_once_cell_t l_elabTestExtern___lam__0___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_elabTestExtern___lam__0___closed__11;
-static const lean_string_object l_elabTestExtern___lam__0___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "\n and\n#eval "};
-static const lean_object* l_elabTestExtern___lam__0___closed__12 = (const lean_object*)&l_elabTestExtern___lam__0___closed__12_value;
+static lean_once_cell_t l_elabTestExtern___lam__0___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_elabTestExtern___lam__0___closed__12;
 static lean_once_cell_t l_elabTestExtern___lam__0___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_elabTestExtern___lam__0___closed__13;
-static const lean_string_object l_elabTestExtern___lam__0___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "test_extern: "};
-static const lean_object* l_elabTestExtern___lam__0___closed__14 = (const lean_object*)&l_elabTestExtern___lam__0___closed__14_value;
+static lean_once_cell_t l_elabTestExtern___lam__0___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_elabTestExtern___lam__0___closed__14;
 static lean_once_cell_t l_elabTestExtern___lam__0___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_elabTestExtern___lam__0___closed__15;
-static const lean_string_object l_elabTestExtern___lam__0___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 69, .m_capacity = 69, .m_length = 68, .m_data = " does not have an @[extern] attribute or @[implemented_by] attribute"};
-static const lean_object* l_elabTestExtern___lam__0___closed__16 = (const lean_object*)&l_elabTestExtern___lam__0___closed__16_value;
+static lean_once_cell_t l_elabTestExtern___lam__0___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_elabTestExtern___lam__0___closed__16;
 static lean_once_cell_t l_elabTestExtern___lam__0___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_elabTestExtern___lam__0___closed__17;
-static const lean_string_object l_elabTestExtern___lam__0___closed__18_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 44, .m_capacity = 44, .m_length = 43, .m_data = "test_extern: expects a function application"};
-static const lean_object* l_elabTestExtern___lam__0___closed__18 = (const lean_object*)&l_elabTestExtern___lam__0___closed__18_value;
+static lean_once_cell_t l_elabTestExtern___lam__0___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_elabTestExtern___lam__0___closed__18;
 static lean_once_cell_t l_elabTestExtern___lam__0___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_elabTestExtern___lam__0___closed__19;
 LEAN_EXPORT lean_object* l_elabTestExtern___lam__0(lean_object*, lean_object*, uint8_t, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -140,6 +139,123 @@ LEAN_EXPORT lean_object* l_Lean_throwError___at___00elabTestExtern_spec__1(lean_
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00elabTestExtern_spec__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+static lean_object* _init_l_testExternCmd___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; 
+v___x_1_ = lean_mk_string_unchecked("testExternCmd", 13, 13);
+return v___x_1_;
+}
+}
+static lean_object* _init_l_testExternCmd___closed__1(void){
+_start:
+{
+lean_object* v___x_2_; lean_object* v___x_3_; 
+v___x_2_ = lean_obj_once(&l_testExternCmd___closed__0, &l_testExternCmd___closed__0_once, _init_l_testExternCmd___closed__0);
+v___x_3_ = l_Lean_Name_mkStr1(v___x_2_);
+return v___x_3_;
+}
+}
+static lean_object* _init_l_testExternCmd___closed__2(void){
+_start:
+{
+lean_object* v___x_4_; 
+v___x_4_ = lean_mk_string_unchecked("andthen", 7, 7);
+return v___x_4_;
+}
+}
+static lean_object* _init_l_testExternCmd___closed__3(void){
+_start:
+{
+lean_object* v___x_5_; lean_object* v___x_6_; 
+v___x_5_ = lean_obj_once(&l_testExternCmd___closed__2, &l_testExternCmd___closed__2_once, _init_l_testExternCmd___closed__2);
+v___x_6_ = l_Lean_Name_mkStr1(v___x_5_);
+return v___x_6_;
+}
+}
+static lean_object* _init_l_testExternCmd___closed__4(void){
+_start:
+{
+lean_object* v___x_7_; 
+v___x_7_ = lean_mk_string_unchecked("test_extern ", 12, 12);
+return v___x_7_;
+}
+}
+static lean_object* _init_l_testExternCmd___closed__5(void){
+_start:
+{
+lean_object* v___x_8_; lean_object* v___x_9_; 
+v___x_8_ = lean_obj_once(&l_testExternCmd___closed__4, &l_testExternCmd___closed__4_once, _init_l_testExternCmd___closed__4);
+v___x_9_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_9_, 0, v___x_8_);
+return v___x_9_;
+}
+}
+static lean_object* _init_l_testExternCmd___closed__6(void){
+_start:
+{
+lean_object* v___x_10_; 
+v___x_10_ = lean_mk_string_unchecked("term", 4, 4);
+return v___x_10_;
+}
+}
+static lean_object* _init_l_testExternCmd___closed__7(void){
+_start:
+{
+lean_object* v___x_11_; lean_object* v___x_12_; 
+v___x_11_ = lean_obj_once(&l_testExternCmd___closed__6, &l_testExternCmd___closed__6_once, _init_l_testExternCmd___closed__6);
+v___x_12_ = l_Lean_Name_mkStr1(v___x_11_);
+return v___x_12_;
+}
+}
+static lean_object* _init_l_testExternCmd___closed__8(void){
+_start:
+{
+lean_object* v___x_13_; lean_object* v___x_14_; lean_object* v___x_15_; 
+v___x_13_ = lean_unsigned_to_nat(0u);
+v___x_14_ = lean_obj_once(&l_testExternCmd___closed__7, &l_testExternCmd___closed__7_once, _init_l_testExternCmd___closed__7);
+v___x_15_ = lean_alloc_ctor(7, 2, 0);
+lean_ctor_set(v___x_15_, 0, v___x_14_);
+lean_ctor_set(v___x_15_, 1, v___x_13_);
+return v___x_15_;
+}
+}
+static lean_object* _init_l_testExternCmd___closed__9(void){
+_start:
+{
+lean_object* v___x_16_; lean_object* v___x_17_; lean_object* v___x_18_; lean_object* v___x_19_; 
+v___x_16_ = lean_obj_once(&l_testExternCmd___closed__8, &l_testExternCmd___closed__8_once, _init_l_testExternCmd___closed__8);
+v___x_17_ = lean_obj_once(&l_testExternCmd___closed__5, &l_testExternCmd___closed__5_once, _init_l_testExternCmd___closed__5);
+v___x_18_ = lean_obj_once(&l_testExternCmd___closed__3, &l_testExternCmd___closed__3_once, _init_l_testExternCmd___closed__3);
+v___x_19_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_19_, 0, v___x_18_);
+lean_ctor_set(v___x_19_, 1, v___x_17_);
+lean_ctor_set(v___x_19_, 2, v___x_16_);
+return v___x_19_;
+}
+}
+static lean_object* _init_l_testExternCmd___closed__10(void){
+_start:
+{
+lean_object* v___x_20_; lean_object* v___x_21_; lean_object* v___x_22_; lean_object* v___x_23_; 
+v___x_20_ = lean_obj_once(&l_testExternCmd___closed__9, &l_testExternCmd___closed__9_once, _init_l_testExternCmd___closed__9);
+v___x_21_ = lean_unsigned_to_nat(1022u);
+v___x_22_ = lean_obj_once(&l_testExternCmd___closed__1, &l_testExternCmd___closed__1_once, _init_l_testExternCmd___closed__1);
+v___x_23_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_23_, 0, v___x_22_);
+lean_ctor_set(v___x_23_, 1, v___x_21_);
+lean_ctor_set(v___x_23_, 2, v___x_20_);
+return v___x_23_;
+}
+}
+static lean_object* _init_l_testExternCmd(void){
+_start:
+{
+lean_object* v___x_24_; 
+v___x_24_ = lean_obj_once(&l_testExternCmd___closed__10, &l_testExternCmd___closed__10_once, _init_l_testExternCmd___closed__10);
+return v___x_24_;
+}
+}
 static lean_object* _init_l_Lean_Elab_throwUnsupportedSyntax___at___00elabTestExtern_spec__0___redArg___closed__0(void){
 _start:
 {
@@ -286,11 +402,29 @@ v___x_80_ = l_Lean_MessageData_ofFormat(v___x_79_);
 return v___x_80_;
 }
 }
+static lean_object* _init_l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__1(void){
+_start:
+{
+lean_object* v___x_81_; 
+v___x_81_ = lean_mk_string_unchecked("while expanding", 15, 15);
+return v___x_81_;
+}
+}
+static lean_object* _init_l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__2(void){
+_start:
+{
+lean_object* v___x_82_; lean_object* v___x_83_; 
+v___x_82_ = lean_obj_once(&l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__1, &l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__1_once, _init_l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__1);
+v___x_83_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_83_, 0, v___x_82_);
+return v___x_83_;
+}
+}
 static lean_object* _init_l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__3(void){
 _start:
 {
 lean_object* v___x_84_; lean_object* v___x_85_; 
-v___x_84_ = ((lean_object*)(l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__2));
+v___x_84_ = lean_obj_once(&l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__2, &l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__2_once, _init_l_List_foldl___at___00Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2_spec__4___closed__2);
 v___x_85_ = l_Lean_MessageData_ofFormat(v___x_84_);
 return v___x_85_;
 }
@@ -405,11 +539,29 @@ goto _start;
 }
 }
 }
+static lean_object* _init_l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_112_; 
+v___x_112_ = lean_mk_string_unchecked("with resulting expansion", 24, 24);
+return v___x_112_;
+}
+}
+static lean_object* _init_l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_113_; lean_object* v___x_114_; 
+v___x_113_ = lean_obj_once(&l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__0, &l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__0_once, _init_l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__0);
+v___x_114_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_114_, 0, v___x_113_);
+return v___x_114_;
+}
+}
 static lean_object* _init_l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__2(void){
 _start:
 {
 lean_object* v___x_115_; lean_object* v___x_116_; 
-v___x_115_ = ((lean_object*)(l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__1));
+v___x_115_ = lean_obj_once(&l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__1, &l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__1_once, _init_l_Lean_Elab_addMacroStack___at___00Lean_throwError___at___00elabTestExtern_spec__1_spec__2___redArg___closed__1);
 v___x_116_ = l_Lean_MessageData_ofFormat(v___x_115_);
 return v___x_116_;
 }
@@ -585,14 +737,57 @@ lean_dec_ref(v___y_173_);
 return v_res_180_;
 }
 }
+static lean_object* _init_l_elabTestExtern___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_181_; 
+v___x_181_ = lean_mk_string_unchecked("Lean", 4, 4);
+return v___x_181_;
+}
+}
+static lean_object* _init_l_elabTestExtern___lam__0___closed__1(void){
+_start:
+{
+lean_object* v___x_182_; 
+v___x_182_ = lean_mk_string_unchecked("reduceBool", 10, 10);
+return v___x_182_;
+}
+}
+static lean_object* _init_l_elabTestExtern___lam__0___closed__2(void){
+_start:
+{
+lean_object* v___x_183_; lean_object* v___x_184_; lean_object* v___x_185_; 
+v___x_183_ = lean_obj_once(&l_elabTestExtern___lam__0___closed__1, &l_elabTestExtern___lam__0___closed__1_once, _init_l_elabTestExtern___lam__0___closed__1);
+v___x_184_ = lean_obj_once(&l_elabTestExtern___lam__0___closed__0, &l_elabTestExtern___lam__0___closed__0_once, _init_l_elabTestExtern___lam__0___closed__0);
+v___x_185_ = l_Lean_Name_mkStr2(v___x_184_, v___x_183_);
+return v___x_185_;
+}
+}
 static lean_object* _init_l_elabTestExtern___lam__0___closed__3(void){
 _start:
 {
 lean_object* v___x_186_; lean_object* v___x_187_; lean_object* v___x_188_; 
 v___x_186_ = lean_box(0);
-v___x_187_ = ((lean_object*)(l_elabTestExtern___lam__0___closed__2));
+v___x_187_ = lean_obj_once(&l_elabTestExtern___lam__0___closed__2, &l_elabTestExtern___lam__0___closed__2_once, _init_l_elabTestExtern___lam__0___closed__2);
 v___x_188_ = l_Lean_Expr_const___override(v___x_187_, v___x_186_);
 return v___x_188_;
+}
+}
+static lean_object* _init_l_elabTestExtern___lam__0___closed__4(void){
+_start:
+{
+lean_object* v___x_189_; 
+v___x_189_ = lean_mk_string_unchecked("Bool", 4, 4);
+return v___x_189_;
+}
+}
+static lean_object* _init_l_elabTestExtern___lam__0___closed__5(void){
+_start:
+{
+lean_object* v___x_190_; lean_object* v___x_191_; 
+v___x_190_ = lean_obj_once(&l_elabTestExtern___lam__0___closed__4, &l_elabTestExtern___lam__0___closed__4_once, _init_l_elabTestExtern___lam__0___closed__4);
+v___x_191_ = l_Lean_Name_mkStr1(v___x_190_);
+return v___x_191_;
 }
 }
 static lean_object* _init_l_elabTestExtern___lam__0___closed__6(void){
@@ -600,61 +795,119 @@ _start:
 {
 lean_object* v___x_192_; lean_object* v___x_193_; lean_object* v___x_194_; 
 v___x_192_ = lean_box(0);
-v___x_193_ = ((lean_object*)(l_elabTestExtern___lam__0___closed__5));
+v___x_193_ = lean_obj_once(&l_elabTestExtern___lam__0___closed__5, &l_elabTestExtern___lam__0___closed__5_once, _init_l_elabTestExtern___lam__0___closed__5);
 v___x_194_ = l_Lean_Expr_const___override(v___x_193_, v___x_192_);
 return v___x_194_;
+}
+}
+static lean_object* _init_l_elabTestExtern___lam__0___closed__7(void){
+_start:
+{
+lean_object* v___x_195_; 
+v___x_195_ = lean_mk_string_unchecked("native implementation did not agree with reference implementation!\n", 67, 67);
+return v___x_195_;
+}
+}
+static lean_object* _init_l_elabTestExtern___lam__0___closed__8(void){
+_start:
+{
+lean_object* v___x_196_; lean_object* v___x_197_; 
+v___x_196_ = lean_obj_once(&l_elabTestExtern___lam__0___closed__7, &l_elabTestExtern___lam__0___closed__7_once, _init_l_elabTestExtern___lam__0___closed__7);
+v___x_197_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_197_, 0, v___x_196_);
+return v___x_197_;
 }
 }
 static lean_object* _init_l_elabTestExtern___lam__0___closed__9(void){
 _start:
 {
 lean_object* v___x_198_; lean_object* v___x_199_; 
-v___x_198_ = ((lean_object*)(l_elabTestExtern___lam__0___closed__8));
+v___x_198_ = lean_obj_once(&l_elabTestExtern___lam__0___closed__8, &l_elabTestExtern___lam__0___closed__8_once, _init_l_elabTestExtern___lam__0___closed__8);
 v___x_199_ = l_Lean_MessageData_ofFormat(v___x_198_);
 return v___x_199_;
+}
+}
+static lean_object* _init_l_elabTestExtern___lam__0___closed__10(void){
+_start:
+{
+lean_object* v___x_200_; 
+v___x_200_ = lean_mk_string_unchecked("Compare the outputs of:\n#eval ", 30, 30);
+return v___x_200_;
 }
 }
 static lean_object* _init_l_elabTestExtern___lam__0___closed__11(void){
 _start:
 {
 lean_object* v___x_201_; lean_object* v___x_202_; 
-v___x_201_ = ((lean_object*)(l_elabTestExtern___lam__0___closed__10));
+v___x_201_ = lean_obj_once(&l_elabTestExtern___lam__0___closed__10, &l_elabTestExtern___lam__0___closed__10_once, _init_l_elabTestExtern___lam__0___closed__10);
 v___x_202_ = l_Lean_stringToMessageData(v___x_201_);
 return v___x_202_;
+}
+}
+static lean_object* _init_l_elabTestExtern___lam__0___closed__12(void){
+_start:
+{
+lean_object* v___x_203_; 
+v___x_203_ = lean_mk_string_unchecked("\n and\n#eval ", 12, 12);
+return v___x_203_;
 }
 }
 static lean_object* _init_l_elabTestExtern___lam__0___closed__13(void){
 _start:
 {
 lean_object* v___x_204_; lean_object* v___x_205_; 
-v___x_204_ = ((lean_object*)(l_elabTestExtern___lam__0___closed__12));
+v___x_204_ = lean_obj_once(&l_elabTestExtern___lam__0___closed__12, &l_elabTestExtern___lam__0___closed__12_once, _init_l_elabTestExtern___lam__0___closed__12);
 v___x_205_ = l_Lean_stringToMessageData(v___x_204_);
 return v___x_205_;
+}
+}
+static lean_object* _init_l_elabTestExtern___lam__0___closed__14(void){
+_start:
+{
+lean_object* v___x_206_; 
+v___x_206_ = lean_mk_string_unchecked("test_extern: ", 13, 13);
+return v___x_206_;
 }
 }
 static lean_object* _init_l_elabTestExtern___lam__0___closed__15(void){
 _start:
 {
 lean_object* v___x_207_; lean_object* v___x_208_; 
-v___x_207_ = ((lean_object*)(l_elabTestExtern___lam__0___closed__14));
+v___x_207_ = lean_obj_once(&l_elabTestExtern___lam__0___closed__14, &l_elabTestExtern___lam__0___closed__14_once, _init_l_elabTestExtern___lam__0___closed__14);
 v___x_208_ = l_Lean_stringToMessageData(v___x_207_);
 return v___x_208_;
+}
+}
+static lean_object* _init_l_elabTestExtern___lam__0___closed__16(void){
+_start:
+{
+lean_object* v___x_209_; 
+v___x_209_ = lean_mk_string_unchecked(" does not have an @[extern] attribute or @[implemented_by] attribute", 68, 68);
+return v___x_209_;
 }
 }
 static lean_object* _init_l_elabTestExtern___lam__0___closed__17(void){
 _start:
 {
 lean_object* v___x_210_; lean_object* v___x_211_; 
-v___x_210_ = ((lean_object*)(l_elabTestExtern___lam__0___closed__16));
+v___x_210_ = lean_obj_once(&l_elabTestExtern___lam__0___closed__16, &l_elabTestExtern___lam__0___closed__16_once, _init_l_elabTestExtern___lam__0___closed__16);
 v___x_211_ = l_Lean_stringToMessageData(v___x_210_);
 return v___x_211_;
+}
+}
+static lean_object* _init_l_elabTestExtern___lam__0___closed__18(void){
+_start:
+{
+lean_object* v___x_212_; 
+v___x_212_ = lean_mk_string_unchecked("test_extern: expects a function application", 43, 43);
+return v___x_212_;
 }
 }
 static lean_object* _init_l_elabTestExtern___lam__0___closed__19(void){
 _start:
 {
 lean_object* v___x_213_; lean_object* v___x_214_; 
-v___x_213_ = ((lean_object*)(l_elabTestExtern___lam__0___closed__18));
+v___x_213_ = lean_obj_once(&l_elabTestExtern___lam__0___closed__18, &l_elabTestExtern___lam__0___closed__18_once, _init_l_elabTestExtern___lam__0___closed__18);
 v___x_214_ = l_Lean_stringToMessageData(v___x_213_);
 return v___x_214_;
 }
@@ -1084,7 +1337,7 @@ LEAN_EXPORT lean_object* l_elabTestExtern(lean_object* v_x_328_, lean_object* v_
 _start:
 {
 lean_object* v___x_332_; uint8_t v___x_333_; 
-v___x_332_ = ((lean_object*)(l_testExternCmd___closed__1));
+v___x_332_ = lean_obj_once(&l_testExternCmd___closed__1, &l_testExternCmd___closed__1_once, _init_l_testExternCmd___closed__1);
 lean_inc(v_x_328_);
 v___x_333_ = l_Lean_Syntax_isOfKind(v_x_328_, v___x_332_);
 if (v___x_333_ == 0)
@@ -1205,6 +1458,8 @@ lean_dec_ref(res);
 res = runtime_initialize_Lean_Compiler_ExternAttr(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_testExternCmd = _init_l_testExternCmd();
+lean_mark_persistent(l_testExternCmd);
 return lean_io_result_mk_ok(lean_box(0));
 }
 lean_object* initialize_Lean_Meta_Tactic_Unfold(uint8_t builtin);

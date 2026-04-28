@@ -22,40 +22,38 @@ lean_object* lean_nat_sub(lean_object*, lean_object*);
 lean_object* l_Lean_Expr_getRevArg_x21(lean_object*, lean_object*);
 lean_object* l_Lean_Name_mkStr2(lean_object*, lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
-static const lean_string_object l_Lean_Expr_isSorry___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "sorryAx"};
-static const lean_object* l_Lean_Expr_isSorry___closed__0 = (const lean_object*)&l_Lean_Expr_isSorry___closed__0_value;
-static const lean_ctor_object l_Lean_Expr_isSorry___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Expr_isSorry___closed__0_value),LEAN_SCALAR_PTR_LITERAL(196, 190, 164, 146, 38, 179, 69, 72)}};
-static const lean_object* l_Lean_Expr_isSorry___closed__1 = (const lean_object*)&l_Lean_Expr_isSorry___closed__1_value;
+static lean_once_cell_t l_Lean_Expr_isSorry___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_isSorry___closed__0;
+static lean_once_cell_t l_Lean_Expr_isSorry___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_isSorry___closed__1;
 LEAN_EXPORT uint8_t l_Lean_Expr_isSorry(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Expr_isSorry___boxed(lean_object*);
-static const lean_string_object l_Lean_Expr_isSyntheticSorry___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Bool"};
-static const lean_object* l_Lean_Expr_isSyntheticSorry___closed__0 = (const lean_object*)&l_Lean_Expr_isSyntheticSorry___closed__0_value;
-static const lean_string_object l_Lean_Expr_isSyntheticSorry___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "true"};
-static const lean_object* l_Lean_Expr_isSyntheticSorry___closed__1 = (const lean_object*)&l_Lean_Expr_isSyntheticSorry___closed__1_value;
-static const lean_ctor_object l_Lean_Expr_isSyntheticSorry___closed__2_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Expr_isSyntheticSorry___closed__0_value),LEAN_SCALAR_PTR_LITERAL(250, 44, 198, 216, 184, 195, 199, 178)}};
-static const lean_ctor_object l_Lean_Expr_isSyntheticSorry___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Expr_isSyntheticSorry___closed__2_value_aux_0),((lean_object*)&l_Lean_Expr_isSyntheticSorry___closed__1_value),LEAN_SCALAR_PTR_LITERAL(22, 245, 194, 28, 184, 9, 113, 128)}};
-static const lean_object* l_Lean_Expr_isSyntheticSorry___closed__2 = (const lean_object*)&l_Lean_Expr_isSyntheticSorry___closed__2_value;
+static lean_once_cell_t l_Lean_Expr_isSyntheticSorry___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_isSyntheticSorry___closed__0;
+static lean_once_cell_t l_Lean_Expr_isSyntheticSorry___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_isSyntheticSorry___closed__1;
+static lean_once_cell_t l_Lean_Expr_isSyntheticSorry___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_isSyntheticSorry___closed__2;
 LEAN_EXPORT uint8_t l_Lean_Expr_isSyntheticSorry(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Expr_isSyntheticSorry___boxed(lean_object*);
-static const lean_string_object l_Lean_Expr_isNonSyntheticSorry___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "false"};
-static const lean_object* l_Lean_Expr_isNonSyntheticSorry___closed__0 = (const lean_object*)&l_Lean_Expr_isNonSyntheticSorry___closed__0_value;
-static const lean_ctor_object l_Lean_Expr_isNonSyntheticSorry___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Lean_Expr_isSyntheticSorry___closed__0_value),LEAN_SCALAR_PTR_LITERAL(250, 44, 198, 216, 184, 195, 199, 178)}};
-static const lean_ctor_object l_Lean_Expr_isNonSyntheticSorry___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Lean_Expr_isNonSyntheticSorry___closed__1_value_aux_0),((lean_object*)&l_Lean_Expr_isNonSyntheticSorry___closed__0_value),LEAN_SCALAR_PTR_LITERAL(117, 151, 161, 190, 111, 237, 188, 218)}};
-static const lean_object* l_Lean_Expr_isNonSyntheticSorry___closed__1 = (const lean_object*)&l_Lean_Expr_isNonSyntheticSorry___closed__1_value;
+static lean_once_cell_t l_Lean_Expr_isNonSyntheticSorry___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_isNonSyntheticSorry___closed__0;
+static lean_once_cell_t l_Lean_Expr_isNonSyntheticSorry___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_isNonSyntheticSorry___closed__1;
 LEAN_EXPORT uint8_t l_Lean_Expr_isNonSyntheticSorry(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Expr_isNonSyntheticSorry___boxed(lean_object*);
 LEAN_EXPORT uint8_t l_Lean_Expr_hasSorry___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Expr_hasSorry___lam__0___boxed(lean_object*);
-static const lean_closure_object l_Lean_Expr_hasSorry___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Expr_hasSorry___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Expr_hasSorry___closed__0 = (const lean_object*)&l_Lean_Expr_hasSorry___closed__0_value;
+static lean_once_cell_t l_Lean_Expr_hasSorry___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_hasSorry___closed__0;
 LEAN_EXPORT uint8_t l_Lean_Expr_hasSorry(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Expr_hasSorry___boxed(lean_object*);
-static const lean_closure_object l_Lean_Expr_hasSyntheticSorry___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Expr_isSyntheticSorry___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Expr_hasSyntheticSorry___closed__0 = (const lean_object*)&l_Lean_Expr_hasSyntheticSorry___closed__0_value;
+static lean_once_cell_t l_Lean_Expr_hasSyntheticSorry___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_hasSyntheticSorry___closed__0;
 LEAN_EXPORT uint8_t l_Lean_Expr_hasSyntheticSorry(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Expr_hasSyntheticSorry___boxed(lean_object*);
-static const lean_closure_object l_Lean_Expr_hasNonSyntheticSorry___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Expr_isNonSyntheticSorry___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Expr_hasNonSyntheticSorry___closed__0 = (const lean_object*)&l_Lean_Expr_hasNonSyntheticSorry___closed__0_value;
+static lean_once_cell_t l_Lean_Expr_hasNonSyntheticSorry___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_hasNonSyntheticSorry___closed__0;
 LEAN_EXPORT uint8_t l_Lean_Expr_hasNonSyntheticSorry(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Expr_hasNonSyntheticSorry___boxed(lean_object*);
 LEAN_EXPORT uint8_t l_Lean_Declaration_foldExprM___at___00Lean_Declaration_hasSorry_spec__0___lam__0(uint8_t, lean_object*);
@@ -106,11 +104,28 @@ LEAN_EXPORT uint8_t l_Lean_Declaration_foldExprM___at___00Lean_Declaration_hasNo
 LEAN_EXPORT lean_object* l_Lean_Declaration_foldExprM___at___00Lean_Declaration_hasNonSyntheticSorry_spec__0___boxed(lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Lean_Declaration_hasNonSyntheticSorry(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Declaration_hasNonSyntheticSorry___boxed(lean_object*);
+static lean_object* _init_l_Lean_Expr_isSorry___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; 
+v___x_1_ = lean_mk_string_unchecked("sorryAx", 7, 7);
+return v___x_1_;
+}
+}
+static lean_object* _init_l_Lean_Expr_isSorry___closed__1(void){
+_start:
+{
+lean_object* v___x_2_; lean_object* v___x_3_; 
+v___x_2_ = lean_obj_once(&l_Lean_Expr_isSorry___closed__0, &l_Lean_Expr_isSorry___closed__0_once, _init_l_Lean_Expr_isSorry___closed__0);
+v___x_3_ = l_Lean_Name_mkStr1(v___x_2_);
+return v___x_3_;
+}
+}
 LEAN_EXPORT uint8_t l_Lean_Expr_isSorry(lean_object* v_e_4_){
 _start:
 {
 lean_object* v___x_5_; uint8_t v___x_6_; 
-v___x_5_ = ((lean_object*)(l_Lean_Expr_isSorry___closed__1));
+v___x_5_ = lean_obj_once(&l_Lean_Expr_isSorry___closed__1, &l_Lean_Expr_isSorry___closed__1_once, _init_l_Lean_Expr_isSorry___closed__1);
 v___x_6_ = l_Lean_Expr_isAppOf(v_e_4_, v___x_5_);
 return v___x_6_;
 }
@@ -125,11 +140,37 @@ v_r_9_ = lean_box(v_res_8_);
 return v_r_9_;
 }
 }
+static lean_object* _init_l_Lean_Expr_isSyntheticSorry___closed__0(void){
+_start:
+{
+lean_object* v___x_10_; 
+v___x_10_ = lean_mk_string_unchecked("Bool", 4, 4);
+return v___x_10_;
+}
+}
+static lean_object* _init_l_Lean_Expr_isSyntheticSorry___closed__1(void){
+_start:
+{
+lean_object* v___x_11_; 
+v___x_11_ = lean_mk_string_unchecked("true", 4, 4);
+return v___x_11_;
+}
+}
+static lean_object* _init_l_Lean_Expr_isSyntheticSorry___closed__2(void){
+_start:
+{
+lean_object* v___x_12_; lean_object* v___x_13_; lean_object* v___x_14_; 
+v___x_12_ = lean_obj_once(&l_Lean_Expr_isSyntheticSorry___closed__1, &l_Lean_Expr_isSyntheticSorry___closed__1_once, _init_l_Lean_Expr_isSyntheticSorry___closed__1);
+v___x_13_ = lean_obj_once(&l_Lean_Expr_isSyntheticSorry___closed__0, &l_Lean_Expr_isSyntheticSorry___closed__0_once, _init_l_Lean_Expr_isSyntheticSorry___closed__0);
+v___x_14_ = l_Lean_Name_mkStr2(v___x_13_, v___x_12_);
+return v___x_14_;
+}
+}
 LEAN_EXPORT uint8_t l_Lean_Expr_isSyntheticSorry(lean_object* v_e_15_){
 _start:
 {
 uint8_t v___y_17_; lean_object* v___x_25_; uint8_t v___x_26_; 
-v___x_25_ = ((lean_object*)(l_Lean_Expr_isSorry___closed__1));
+v___x_25_ = lean_obj_once(&l_Lean_Expr_isSorry___closed__1, &l_Lean_Expr_isSorry___closed__1_once, _init_l_Lean_Expr_isSorry___closed__1);
 v___x_26_ = l_Lean_Expr_isAppOf(v_e_15_, v___x_25_);
 if (v___x_26_ == 0)
 {
@@ -162,7 +203,7 @@ lean_dec(v___x_19_);
 v___x_21_ = lean_nat_sub(v___x_20_, v___x_18_);
 lean_dec(v___x_20_);
 v___x_22_ = l_Lean_Expr_getRevArg_x21(v_e_15_, v___x_21_);
-v___x_23_ = ((lean_object*)(l_Lean_Expr_isSyntheticSorry___closed__2));
+v___x_23_ = lean_obj_once(&l_Lean_Expr_isSyntheticSorry___closed__2, &l_Lean_Expr_isSyntheticSorry___closed__2_once, _init_l_Lean_Expr_isSyntheticSorry___closed__2);
 v___x_24_ = l_Lean_Expr_isConstOf(v___x_22_, v___x_23_);
 lean_dec_ref(v___x_22_);
 return v___x_24_;
@@ -180,11 +221,29 @@ v_r_32_ = lean_box(v_res_31_);
 return v_r_32_;
 }
 }
+static lean_object* _init_l_Lean_Expr_isNonSyntheticSorry___closed__0(void){
+_start:
+{
+lean_object* v___x_33_; 
+v___x_33_ = lean_mk_string_unchecked("false", 5, 5);
+return v___x_33_;
+}
+}
+static lean_object* _init_l_Lean_Expr_isNonSyntheticSorry___closed__1(void){
+_start:
+{
+lean_object* v___x_34_; lean_object* v___x_35_; lean_object* v___x_36_; 
+v___x_34_ = lean_obj_once(&l_Lean_Expr_isNonSyntheticSorry___closed__0, &l_Lean_Expr_isNonSyntheticSorry___closed__0_once, _init_l_Lean_Expr_isNonSyntheticSorry___closed__0);
+v___x_35_ = lean_obj_once(&l_Lean_Expr_isSyntheticSorry___closed__0, &l_Lean_Expr_isSyntheticSorry___closed__0_once, _init_l_Lean_Expr_isSyntheticSorry___closed__0);
+v___x_36_ = l_Lean_Name_mkStr2(v___x_35_, v___x_34_);
+return v___x_36_;
+}
+}
 LEAN_EXPORT uint8_t l_Lean_Expr_isNonSyntheticSorry(lean_object* v_e_37_){
 _start:
 {
 uint8_t v___y_39_; lean_object* v___x_47_; uint8_t v___x_48_; 
-v___x_47_ = ((lean_object*)(l_Lean_Expr_isSorry___closed__1));
+v___x_47_ = lean_obj_once(&l_Lean_Expr_isSorry___closed__1, &l_Lean_Expr_isSorry___closed__1_once, _init_l_Lean_Expr_isSorry___closed__1);
 v___x_48_ = l_Lean_Expr_isAppOf(v_e_37_, v___x_47_);
 if (v___x_48_ == 0)
 {
@@ -217,7 +276,7 @@ lean_dec(v___x_41_);
 v___x_43_ = lean_nat_sub(v___x_42_, v___x_40_);
 lean_dec(v___x_42_);
 v___x_44_ = l_Lean_Expr_getRevArg_x21(v_e_37_, v___x_43_);
-v___x_45_ = ((lean_object*)(l_Lean_Expr_isNonSyntheticSorry___closed__1));
+v___x_45_ = lean_obj_once(&l_Lean_Expr_isNonSyntheticSorry___closed__1, &l_Lean_Expr_isNonSyntheticSorry___closed__1_once, _init_l_Lean_Expr_isNonSyntheticSorry___closed__1);
 v___x_46_ = l_Lean_Expr_isConstOf(v___x_44_, v___x_45_);
 lean_dec_ref(v___x_44_);
 return v___x_46_;
@@ -239,7 +298,7 @@ LEAN_EXPORT uint8_t l_Lean_Expr_hasSorry___lam__0(lean_object* v_x_55_){
 _start:
 {
 lean_object* v___x_56_; uint8_t v___x_57_; 
-v___x_56_ = ((lean_object*)(l_Lean_Expr_isSorry___closed__1));
+v___x_56_ = lean_obj_once(&l_Lean_Expr_isSorry___closed__1, &l_Lean_Expr_isSorry___closed__1_once, _init_l_Lean_Expr_isSorry___closed__1);
 v___x_57_ = l_Lean_Expr_isConstOf(v_x_55_, v___x_56_);
 return v___x_57_;
 }
@@ -254,11 +313,19 @@ v_r_60_ = lean_box(v_res_59_);
 return v_r_60_;
 }
 }
+static lean_object* _init_l_Lean_Expr_hasSorry___closed__0(void){
+_start:
+{
+lean_object* v___f_61_; 
+v___f_61_ = lean_alloc_closure((void*)(l_Lean_Expr_hasSorry___lam__0___boxed), 1, 0);
+return v___f_61_;
+}
+}
 LEAN_EXPORT uint8_t l_Lean_Expr_hasSorry(lean_object* v_e_62_){
 _start:
 {
 lean_object* v___f_63_; lean_object* v___x_64_; 
-v___f_63_ = ((lean_object*)(l_Lean_Expr_hasSorry___closed__0));
+v___f_63_ = lean_obj_once(&l_Lean_Expr_hasSorry___closed__0, &l_Lean_Expr_hasSorry___closed__0_once, _init_l_Lean_Expr_hasSorry___closed__0);
 v___x_64_ = lean_find_expr(v___f_63_, v_e_62_);
 if (lean_obj_tag(v___x_64_) == 0)
 {
@@ -285,11 +352,19 @@ v_r_69_ = lean_box(v_res_68_);
 return v_r_69_;
 }
 }
+static lean_object* _init_l_Lean_Expr_hasSyntheticSorry___closed__0(void){
+_start:
+{
+lean_object* v___f_70_; 
+v___f_70_ = lean_alloc_closure((void*)(l_Lean_Expr_isSyntheticSorry___boxed), 1, 0);
+return v___f_70_;
+}
+}
 LEAN_EXPORT uint8_t l_Lean_Expr_hasSyntheticSorry(lean_object* v_e_71_){
 _start:
 {
 lean_object* v___f_72_; lean_object* v___x_73_; 
-v___f_72_ = ((lean_object*)(l_Lean_Expr_hasSyntheticSorry___closed__0));
+v___f_72_ = lean_obj_once(&l_Lean_Expr_hasSyntheticSorry___closed__0, &l_Lean_Expr_hasSyntheticSorry___closed__0_once, _init_l_Lean_Expr_hasSyntheticSorry___closed__0);
 v___x_73_ = lean_find_expr(v___f_72_, v_e_71_);
 if (lean_obj_tag(v___x_73_) == 0)
 {
@@ -316,11 +391,19 @@ v_r_78_ = lean_box(v_res_77_);
 return v_r_78_;
 }
 }
+static lean_object* _init_l_Lean_Expr_hasNonSyntheticSorry___closed__0(void){
+_start:
+{
+lean_object* v___f_79_; 
+v___f_79_ = lean_alloc_closure((void*)(l_Lean_Expr_isNonSyntheticSorry___boxed), 1, 0);
+return v___f_79_;
+}
+}
 LEAN_EXPORT uint8_t l_Lean_Expr_hasNonSyntheticSorry(lean_object* v_e_80_){
 _start:
 {
 lean_object* v___f_81_; lean_object* v___x_82_; 
-v___f_81_ = ((lean_object*)(l_Lean_Expr_hasNonSyntheticSorry___closed__0));
+v___f_81_ = lean_obj_once(&l_Lean_Expr_hasNonSyntheticSorry___closed__0, &l_Lean_Expr_hasNonSyntheticSorry___closed__0_once, _init_l_Lean_Expr_hasNonSyntheticSorry___closed__0);
 v___x_82_ = lean_find_expr(v___f_81_, v_e_80_);
 if (lean_obj_tag(v___x_82_) == 0)
 {

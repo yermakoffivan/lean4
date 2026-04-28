@@ -32,8 +32,8 @@ uint64_t l_Lean_instHashableExternAttrData_hash(lean_object*);
 uint64_t l_Lean_Compiler_instHashableInlineAttributeKind_hash(uint8_t);
 LEAN_EXPORT uint64_t l_Lean_Compiler_LCNF_instHashableParam___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Compiler_LCNF_instHashableParam___lam__0___boxed(lean_object*);
-static const lean_closure_object l_Lean_Compiler_LCNF_instHashableParam___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Compiler_LCNF_instHashableParam___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Compiler_LCNF_instHashableParam___closed__0 = (const lean_object*)&l_Lean_Compiler_LCNF_instHashableParam___closed__0_value;
+static lean_once_cell_t l_Lean_Compiler_LCNF_instHashableParam___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Compiler_LCNF_instHashableParam___closed__0;
 LEAN_EXPORT lean_object* l_Lean_Compiler_LCNF_instHashableParam(uint8_t);
 LEAN_EXPORT lean_object* l_Lean_Compiler_LCNF_instHashableParam___boxed(lean_object*);
 LEAN_EXPORT uint64_t l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Lean_Compiler_LCNF_hashParams_spec__0(lean_object*, size_t, size_t, uint64_t);
@@ -98,11 +98,19 @@ v_r_9_ = lean_box_uint64(v_res_8_);
 return v_r_9_;
 }
 }
+static lean_object* _init_l_Lean_Compiler_LCNF_instHashableParam___closed__0(void){
+_start:
+{
+lean_object* v___f_10_; 
+v___f_10_ = lean_alloc_closure((void*)(l_Lean_Compiler_LCNF_instHashableParam___lam__0___boxed), 1, 0);
+return v___f_10_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Compiler_LCNF_instHashableParam(uint8_t v_pu_11_){
 _start:
 {
 lean_object* v___f_12_; 
-v___f_12_ = ((lean_object*)(l_Lean_Compiler_LCNF_instHashableParam___closed__0));
+v___f_12_ = lean_obj_once(&l_Lean_Compiler_LCNF_instHashableParam___closed__0, &l_Lean_Compiler_LCNF_instHashableParam___closed__0_once, _init_l_Lean_Compiler_LCNF_instHashableParam___closed__0);
 return v___f_12_;
 }
 }

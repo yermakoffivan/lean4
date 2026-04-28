@@ -15,10 +15,22 @@ extern "C" {
 #endif
 lean_object* l_Std_Tactic_BVDecide_BVExpr_bitblast_blastNot___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Std_Tactic_BVDecide_BVExpr_bitblast_mkOverflowBit___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Std_Tactic_BVDecide_BVPred_mkUlt___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 8, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),LEAN_SCALAR_PTR_LITERAL(1, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Std_Tactic_BVDecide_BVPred_mkUlt___redArg___closed__0 = (const lean_object*)&l_Std_Tactic_BVDecide_BVPred_mkUlt___redArg___closed__0_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_BVPred_mkUlt___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_BVPred_mkUlt___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_BVPred_mkUlt___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_BVPred_mkUlt(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+static lean_object* _init_l_Std_Tactic_BVDecide_BVPred_mkUlt___redArg___closed__0(void){
+_start:
+{
+uint8_t v___x_1_; lean_object* v___x_2_; lean_object* v_trueRef_3_; 
+v___x_1_ = 1;
+v___x_2_ = lean_unsigned_to_nat(0u);
+v_trueRef_3_ = lean_alloc_ctor(0, 1, 1);
+lean_ctor_set(v_trueRef_3_, 0, v___x_2_);
+lean_ctor_set_uint8(v_trueRef_3_, sizeof(void*)*1, v___x_1_);
+return v_trueRef_3_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_BVPred_mkUlt___redArg(lean_object* v_inst_4_, lean_object* v_inst_5_, lean_object* v_w_6_, lean_object* v_aig_7_, lean_object* v_pair_8_){
 _start:
 {
@@ -53,7 +65,7 @@ v_vec_16_ = lean_ctor_get(v_res_14_, 1);
 lean_inc_ref(v_vec_16_);
 lean_dec_ref(v_res_14_);
 v___x_17_ = 1;
-v_trueRef_18_ = ((lean_object*)(l_Std_Tactic_BVDecide_BVPred_mkUlt___redArg___closed__0));
+v_trueRef_18_ = lean_obj_once(&l_Std_Tactic_BVDecide_BVPred_mkUlt___redArg___closed__0, &l_Std_Tactic_BVDecide_BVPred_mkUlt___redArg___closed__0_once, _init_l_Std_Tactic_BVDecide_BVPred_mkUlt___redArg___closed__0);
 if (v_isShared_13_ == 0)
 {
 lean_ctor_set(v___x_12_, 1, v_vec_16_);

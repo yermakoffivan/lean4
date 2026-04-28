@@ -14,8 +14,8 @@
 extern "C" {
 #endif
 LEAN_EXPORT lean_object* l_optionCoe___lam__0(lean_object*);
-static const lean_closure_object l_optionCoe___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_optionCoe___lam__0, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_optionCoe___closed__0 = (const lean_object*)&l_optionCoe___closed__0_value;
+static lean_once_cell_t l_optionCoe___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_optionCoe___closed__0;
 LEAN_EXPORT lean_object* l_optionCoe(lean_object*);
 LEAN_EXPORT lean_object* l_optionCoe___lam__0(lean_object* v_val_1_){
 _start:
@@ -26,11 +26,19 @@ lean_ctor_set(v___x_2_, 0, v_val_1_);
 return v___x_2_;
 }
 }
+static lean_object* _init_l_optionCoe___closed__0(void){
+_start:
+{
+lean_object* v___f_3_; 
+v___f_3_ = lean_alloc_closure((void*)(l_optionCoe___lam__0), 1, 0);
+return v___f_3_;
+}
+}
 LEAN_EXPORT lean_object* l_optionCoe(lean_object* v_00_u03b1_4_){
 _start:
 {
 lean_object* v___f_5_; 
-v___f_5_ = ((lean_object*)(l_optionCoe___closed__0));
+v___f_5_ = lean_obj_once(&l_optionCoe___closed__0, &l_optionCoe___closed__0_once, _init_l_optionCoe___closed__0);
 return v___f_5_;
 }
 }

@@ -40,14 +40,14 @@ LEAN_EXPORT lean_object* l_Array_binSearchAux___boxed(lean_object*, lean_object*
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_BinSearch_0__Array_binSearchAux_match__1_splitter___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_BinSearch_0__Array_binSearchAux_match__1_splitter(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_BinSearch_0__Array_binSearchAux_match__1_splitter___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Array_binSearch___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_id___boxed, .m_arity = 2, .m_num_fixed = 1, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))} };
-static const lean_object* l_Array_binSearch___redArg___closed__0 = (const lean_object*)&l_Array_binSearch___redArg___closed__0_value;
+static lean_once_cell_t l_Array_binSearch___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_binSearch___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Array_binSearch___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_binSearch___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_binSearch(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_binSearch___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Array_binSearchContains___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Option_isSome___boxed, .m_arity = 2, .m_num_fixed = 1, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))} };
-static const lean_object* l_Array_binSearchContains___redArg___closed__0 = (const lean_object*)&l_Array_binSearchContains___redArg___closed__0_value;
+static lean_once_cell_t l_Array_binSearchContains___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_binSearchContains___redArg___closed__0;
 LEAN_EXPORT uint8_t l_Array_binSearchContains___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_binSearchContains___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Array_binSearchContains(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -72,26 +72,26 @@ LEAN_EXPORT lean_object* l_Array_binInsert___redArg___lam__0(lean_object*, lean_
 LEAN_EXPORT lean_object* l_Array_binInsert___redArg___lam__0___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_binInsert___redArg___lam__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_binInsert___redArg___lam__1___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Array_binInsert___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__0, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Array_binInsert___redArg___closed__0 = (const lean_object*)&l_Array_binInsert___redArg___closed__0_value;
-static const lean_closure_object l_Array_binInsert___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__1___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Array_binInsert___redArg___closed__1 = (const lean_object*)&l_Array_binInsert___redArg___closed__1_value;
-static const lean_closure_object l_Array_binInsert___redArg___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__2___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Array_binInsert___redArg___closed__2 = (const lean_object*)&l_Array_binInsert___redArg___closed__2_value;
-static const lean_closure_object l_Array_binInsert___redArg___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__3, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Array_binInsert___redArg___closed__3 = (const lean_object*)&l_Array_binInsert___redArg___closed__3_value;
-static const lean_closure_object l_Array_binInsert___redArg___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__4___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Array_binInsert___redArg___closed__4 = (const lean_object*)&l_Array_binInsert___redArg___closed__4_value;
-static const lean_closure_object l_Array_binInsert___redArg___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__5___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Array_binInsert___redArg___closed__5 = (const lean_object*)&l_Array_binInsert___redArg___closed__5_value;
-static const lean_closure_object l_Array_binInsert___redArg___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Id_instMonad___lam__6, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Array_binInsert___redArg___closed__6 = (const lean_object*)&l_Array_binInsert___redArg___closed__6_value;
-static const lean_ctor_object l_Array_binInsert___redArg___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_Array_binInsert___redArg___closed__0_value),((lean_object*)&l_Array_binInsert___redArg___closed__1_value)}};
-static const lean_object* l_Array_binInsert___redArg___closed__7 = (const lean_object*)&l_Array_binInsert___redArg___closed__7_value;
-static const lean_ctor_object l_Array_binInsert___redArg___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*5 + 0, .m_other = 5, .m_tag = 0}, .m_objs = {((lean_object*)&l_Array_binInsert___redArg___closed__7_value),((lean_object*)&l_Array_binInsert___redArg___closed__2_value),((lean_object*)&l_Array_binInsert___redArg___closed__3_value),((lean_object*)&l_Array_binInsert___redArg___closed__4_value),((lean_object*)&l_Array_binInsert___redArg___closed__5_value)}};
-static const lean_object* l_Array_binInsert___redArg___closed__8 = (const lean_object*)&l_Array_binInsert___redArg___closed__8_value;
-static const lean_ctor_object l_Array_binInsert___redArg___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_Array_binInsert___redArg___closed__8_value),((lean_object*)&l_Array_binInsert___redArg___closed__6_value)}};
-static const lean_object* l_Array_binInsert___redArg___closed__9 = (const lean_object*)&l_Array_binInsert___redArg___closed__9_value;
+static lean_once_cell_t l_Array_binInsert___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_binInsert___redArg___closed__0;
+static lean_once_cell_t l_Array_binInsert___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_binInsert___redArg___closed__1;
+static lean_once_cell_t l_Array_binInsert___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_binInsert___redArg___closed__2;
+static lean_once_cell_t l_Array_binInsert___redArg___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_binInsert___redArg___closed__3;
+static lean_once_cell_t l_Array_binInsert___redArg___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_binInsert___redArg___closed__4;
+static lean_once_cell_t l_Array_binInsert___redArg___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_binInsert___redArg___closed__5;
+static lean_once_cell_t l_Array_binInsert___redArg___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_binInsert___redArg___closed__6;
+static lean_once_cell_t l_Array_binInsert___redArg___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_binInsert___redArg___closed__7;
+static lean_once_cell_t l_Array_binInsert___redArg___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_binInsert___redArg___closed__8;
+static lean_once_cell_t l_Array_binInsert___redArg___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_binInsert___redArg___closed__9;
 LEAN_EXPORT lean_object* l_Array_binInsert___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_binInsert(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_binSearchAux___redArg(lean_object* v_lt_1_, lean_object* v_found_2_, lean_object* v_as_3_, lean_object* v_k_4_, lean_object* v_x_5_, lean_object* v_x_6_){
@@ -249,6 +249,15 @@ lean_dec_ref(v_as_70_);
 return v_res_76_;
 }
 }
+static lean_object* _init_l_Array_binSearch___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_77_; 
+v___x_77_ = lean_alloc_closure((void*)(l_id___boxed), 2, 1);
+lean_closure_set(v___x_77_, 0, lean_box(0));
+return v___x_77_;
+}
+}
 LEAN_EXPORT lean_object* l_Array_binSearch___redArg(lean_object* v_as_78_, lean_object* v_k_79_, lean_object* v_lt_80_, lean_object* v_lo_81_, lean_object* v_hi_82_){
 _start:
 {
@@ -301,7 +310,7 @@ return v___x_86_;
 else
 {
 lean_object* v___x_87_; lean_object* v___x_88_; 
-v___x_87_ = ((lean_object*)(l_Array_binSearch___redArg___closed__0));
+v___x_87_ = lean_obj_once(&l_Array_binSearch___redArg___closed__0, &l_Array_binSearch___redArg___closed__0_once, _init_l_Array_binSearch___redArg___closed__0);
 v___x_88_ = l_Array_binSearchAux___redArg(v_lt_80_, v___x_87_, v_as_78_, v_k_79_, v_lo_81_, v___y_84_);
 return v___x_88_;
 }
@@ -369,7 +378,7 @@ return v___x_110_;
 else
 {
 lean_object* v___x_111_; lean_object* v___x_112_; 
-v___x_111_ = ((lean_object*)(l_Array_binSearch___redArg___closed__0));
+v___x_111_ = lean_obj_once(&l_Array_binSearch___redArg___closed__0, &l_Array_binSearch___redArg___closed__0_once, _init_l_Array_binSearch___redArg___closed__0);
 v___x_112_ = l_Array_binSearchAux___redArg(v_lt_104_, v___x_111_, v_as_102_, v_k_103_, v_lo_105_, v___y_108_);
 return v___x_112_;
 }
@@ -383,6 +392,15 @@ lean_object* v_res_125_;
 v_res_125_ = l_Array_binSearch(v_00_u03b1_119_, v_as_120_, v_k_121_, v_lt_122_, v_lo_123_, v_hi_124_);
 lean_dec_ref(v_as_120_);
 return v_res_125_;
+}
+}
+static lean_object* _init_l_Array_binSearchContains___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_126_; 
+v___x_126_ = lean_alloc_closure((void*)(l_Option_isSome___boxed), 2, 1);
+lean_closure_set(v___x_126_, 0, lean_box(0));
+return v___x_126_;
 }
 }
 LEAN_EXPORT uint8_t l_Array_binSearchContains___redArg(lean_object* v_as_127_, lean_object* v_k_128_, lean_object* v_lt_129_, lean_object* v_lo_130_, lean_object* v_hi_131_){
@@ -433,7 +451,7 @@ return v___x_134_;
 else
 {
 lean_object* v___x_135_; lean_object* v___x_136_; uint8_t v___x_137_; 
-v___x_135_ = ((lean_object*)(l_Array_binSearchContains___redArg___closed__0));
+v___x_135_ = lean_obj_once(&l_Array_binSearchContains___redArg___closed__0, &l_Array_binSearchContains___redArg___closed__0_once, _init_l_Array_binSearchContains___redArg___closed__0);
 v___x_136_ = l_Array_binSearchAux___redArg(v_lt_129_, v___x_135_, v_as_127_, v_k_128_, v_lo_130_, v___y_133_);
 v___x_137_ = lean_unbox(v___x_136_);
 lean_dec(v___x_136_);
@@ -500,7 +518,7 @@ return v___x_158_;
 else
 {
 lean_object* v___x_159_; lean_object* v___x_160_; uint8_t v___x_161_; 
-v___x_159_ = ((lean_object*)(l_Array_binSearchContains___redArg___closed__0));
+v___x_159_ = lean_obj_once(&l_Array_binSearchContains___redArg___closed__0, &l_Array_binSearchContains___redArg___closed__0_once, _init_l_Array_binSearchContains___redArg___closed__0);
 v___x_160_ = l_Array_binSearchAux___redArg(v_lt_153_, v___x_159_, v_as_151_, v_k_152_, v_lo_154_, v___y_157_);
 v___x_161_ = lean_unbox(v___x_160_);
 lean_dec(v___x_160_);
@@ -1000,6 +1018,104 @@ lean_dec(v_k_390_);
 return v_res_392_;
 }
 }
+static lean_object* _init_l_Array_binInsert___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_393_; 
+v___f_393_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__0), 4, 0);
+return v___f_393_;
+}
+}
+static lean_object* _init_l_Array_binInsert___redArg___closed__1(void){
+_start:
+{
+lean_object* v___f_394_; 
+v___f_394_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__1___boxed), 4, 0);
+return v___f_394_;
+}
+}
+static lean_object* _init_l_Array_binInsert___redArg___closed__2(void){
+_start:
+{
+lean_object* v___f_395_; 
+v___f_395_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__2___boxed), 2, 0);
+return v___f_395_;
+}
+}
+static lean_object* _init_l_Array_binInsert___redArg___closed__3(void){
+_start:
+{
+lean_object* v___f_396_; 
+v___f_396_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__3), 4, 0);
+return v___f_396_;
+}
+}
+static lean_object* _init_l_Array_binInsert___redArg___closed__4(void){
+_start:
+{
+lean_object* v___f_397_; 
+v___f_397_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__4___boxed), 4, 0);
+return v___f_397_;
+}
+}
+static lean_object* _init_l_Array_binInsert___redArg___closed__5(void){
+_start:
+{
+lean_object* v___f_398_; 
+v___f_398_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__5___boxed), 4, 0);
+return v___f_398_;
+}
+}
+static lean_object* _init_l_Array_binInsert___redArg___closed__6(void){
+_start:
+{
+lean_object* v___f_399_; 
+v___f_399_ = lean_alloc_closure((void*)(l_Id_instMonad___lam__6), 4, 0);
+return v___f_399_;
+}
+}
+static lean_object* _init_l_Array_binInsert___redArg___closed__7(void){
+_start:
+{
+lean_object* v___f_400_; lean_object* v___f_401_; lean_object* v___x_402_; 
+v___f_400_ = lean_obj_once(&l_Array_binInsert___redArg___closed__1, &l_Array_binInsert___redArg___closed__1_once, _init_l_Array_binInsert___redArg___closed__1);
+v___f_401_ = lean_obj_once(&l_Array_binInsert___redArg___closed__0, &l_Array_binInsert___redArg___closed__0_once, _init_l_Array_binInsert___redArg___closed__0);
+v___x_402_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_402_, 0, v___f_401_);
+lean_ctor_set(v___x_402_, 1, v___f_400_);
+return v___x_402_;
+}
+}
+static lean_object* _init_l_Array_binInsert___redArg___closed__8(void){
+_start:
+{
+lean_object* v___f_403_; lean_object* v___f_404_; lean_object* v___f_405_; lean_object* v___f_406_; lean_object* v___x_407_; lean_object* v___x_408_; 
+v___f_403_ = lean_obj_once(&l_Array_binInsert___redArg___closed__5, &l_Array_binInsert___redArg___closed__5_once, _init_l_Array_binInsert___redArg___closed__5);
+v___f_404_ = lean_obj_once(&l_Array_binInsert___redArg___closed__4, &l_Array_binInsert___redArg___closed__4_once, _init_l_Array_binInsert___redArg___closed__4);
+v___f_405_ = lean_obj_once(&l_Array_binInsert___redArg___closed__3, &l_Array_binInsert___redArg___closed__3_once, _init_l_Array_binInsert___redArg___closed__3);
+v___f_406_ = lean_obj_once(&l_Array_binInsert___redArg___closed__2, &l_Array_binInsert___redArg___closed__2_once, _init_l_Array_binInsert___redArg___closed__2);
+v___x_407_ = lean_obj_once(&l_Array_binInsert___redArg___closed__7, &l_Array_binInsert___redArg___closed__7_once, _init_l_Array_binInsert___redArg___closed__7);
+v___x_408_ = lean_alloc_ctor(0, 5, 0);
+lean_ctor_set(v___x_408_, 0, v___x_407_);
+lean_ctor_set(v___x_408_, 1, v___f_406_);
+lean_ctor_set(v___x_408_, 2, v___f_405_);
+lean_ctor_set(v___x_408_, 3, v___f_404_);
+lean_ctor_set(v___x_408_, 4, v___f_403_);
+return v___x_408_;
+}
+}
+static lean_object* _init_l_Array_binInsert___redArg___closed__9(void){
+_start:
+{
+lean_object* v___f_409_; lean_object* v___x_410_; lean_object* v___x_411_; 
+v___f_409_ = lean_obj_once(&l_Array_binInsert___redArg___closed__6, &l_Array_binInsert___redArg___closed__6_once, _init_l_Array_binInsert___redArg___closed__6);
+v___x_410_ = lean_obj_once(&l_Array_binInsert___redArg___closed__8, &l_Array_binInsert___redArg___closed__8_once, _init_l_Array_binInsert___redArg___closed__8);
+v___x_411_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_411_, 0, v___x_410_);
+lean_ctor_set(v___x_411_, 1, v___f_409_);
+return v___x_411_;
+}
+}
 LEAN_EXPORT lean_object* l_Array_binInsert___redArg(lean_object* v_lt_412_, lean_object* v_as_413_, lean_object* v_k_414_){
 _start:
 {
@@ -1009,7 +1125,7 @@ v___f_415_ = lean_alloc_closure((void*)(l_Array_binInsert___redArg___lam__0___bo
 lean_closure_set(v___f_415_, 0, v_k_414_);
 v___f_416_ = lean_alloc_closure((void*)(l_Array_binInsert___redArg___lam__1___boxed), 2, 1);
 lean_closure_set(v___f_416_, 0, v_k_414_);
-v___x_417_ = ((lean_object*)(l_Array_binInsert___redArg___closed__9));
+v___x_417_ = lean_obj_once(&l_Array_binInsert___redArg___closed__9, &l_Array_binInsert___redArg___closed__9_once, _init_l_Array_binInsert___redArg___closed__9);
 v___x_418_ = l_Array_binInsertM___redArg(v___x_417_, v_lt_412_, v___f_415_, v___f_416_, v_as_413_, v_k_414_);
 return v___x_418_;
 }
@@ -1023,7 +1139,7 @@ v___f_423_ = lean_alloc_closure((void*)(l_Array_binInsert___redArg___lam__0___bo
 lean_closure_set(v___f_423_, 0, v_k_422_);
 v___f_424_ = lean_alloc_closure((void*)(l_Array_binInsert___redArg___lam__1___boxed), 2, 1);
 lean_closure_set(v___f_424_, 0, v_k_422_);
-v___x_425_ = ((lean_object*)(l_Array_binInsert___redArg___closed__9));
+v___x_425_ = lean_obj_once(&l_Array_binInsert___redArg___closed__9, &l_Array_binInsert___redArg___closed__9_once, _init_l_Array_binInsert___redArg___closed__9);
 v___x_426_ = l_Array_binInsertM___redArg(v___x_425_, v_lt_420_, v___f_423_, v___f_424_, v_as_421_, v_k_422_);
 return v___x_426_;
 }

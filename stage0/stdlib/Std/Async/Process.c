@@ -40,123 +40,123 @@ extern lean_object* l_Std_Time_Millisecond_instInhabitedOffset;
 lean_object* lean_uv_get_constrained_memory();
 lean_object* lean_uv_os_setpriority(uint64_t, uint64_t);
 LEAN_EXPORT lean_object* l_Nat_cast___at___00Std_IO_Process_instReprResourceUsageStats_repr_spec__0(lean_object*);
-static const lean_string_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "{ "};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__0 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__0_value;
-static const lean_string_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "cpuUserTime"};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__1 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__1_value;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__1_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__2 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__2_value;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 5}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__2_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__3 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__3_value;
-static const lean_string_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = " := "};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__4 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__4_value;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__4_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__5 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__5_value;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__3_value),((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__5_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__6 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__6_value;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__0;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__1;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__2;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__3;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__4;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__5;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__6;
 static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__7;
-static const lean_string_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = ","};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__8 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__8_value;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__8_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__9 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__9_value;
-static const lean_string_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "cpuSystemTime"};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__10 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__10_value;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__10_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__11 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__11_value;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__8;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__9;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__10;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__11;
 static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__12;
-static const lean_string_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 22, .m_capacity = 22, .m_length = 21, .m_data = "peakResidentSetSizeKb"};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__13 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__13_value;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__13_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__14 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__14_value;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__13;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__14;
 static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__15;
-static const lean_string_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 19, .m_capacity = 19, .m_length = 18, .m_data = "sharedMemorySizeKb"};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__16 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__16_value;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__17_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__16_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__17 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__17_value;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__16;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__17;
 static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__18;
-static const lean_string_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__19_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 19, .m_capacity = 19, .m_length = 18, .m_data = "unsharedDataSizeKb"};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__19 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__19_value;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__20_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__19_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__20 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__20_value;
-static const lean_string_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__21_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 20, .m_capacity = 20, .m_length = 19, .m_data = "unsharedStackSizeKb"};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__21 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__21_value;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__22_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__21_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__22 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__22_value;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__19;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__20_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__20;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__21_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__21;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__22_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__22;
 static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__23_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__23;
-static const lean_string_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__24_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "minorPageFaults"};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__24 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__24_value;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__25_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__24_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__25 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__25_value;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__24_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__24;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__25_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__25;
 static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__26_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__26;
-static const lean_string_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__27_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "majorPageFaults"};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__27 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__27_value;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__28_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__27_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__28 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__28_value;
-static const lean_string_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__29_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "swapOperations"};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__29 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__29_value;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__30_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__29_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__30 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__30_value;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__27_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__27;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__28_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__28;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__29_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__29;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__30_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__30;
 static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__31_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__31;
-static const lean_string_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__32_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "blockInputOps"};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__32 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__32_value;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__33_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__32_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__33 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__33_value;
-static const lean_string_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__34_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "blockOutputOps"};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__34 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__34_value;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__35_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__34_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__35 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__35_value;
-static const lean_string_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__36_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "messagesSent"};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__36 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__36_value;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__37_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__36_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__37 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__37_value;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__32_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__32;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__33_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__33;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__34_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__34;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__35_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__35;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__36_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__36;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__37_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__37;
 static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__38_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__38;
-static const lean_string_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__39_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 17, .m_capacity = 17, .m_length = 16, .m_data = "messagesReceived"};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__39 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__39_value;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__40_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__39_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__40 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__40_value;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__39_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__39;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__40_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__40;
 static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__41_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__41;
-static const lean_string_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__42_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "signalsReceived"};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__42 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__42_value;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__43_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__42_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__43 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__43_value;
-static const lean_string_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__44_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "voluntaryContextSwitches"};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__44 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__44_value;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__45_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__44_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__45 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__45_value;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__42_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__42;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__43_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__43;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__44_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__44;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__45_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__45;
 static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__46_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__46;
-static const lean_string_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__47_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 27, .m_capacity = 27, .m_length = 26, .m_data = "involuntaryContextSwitches"};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__47 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__47_value;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__48_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__47_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__48 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__48_value;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__47_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__47;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__48_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__48;
 static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__49_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__49;
-static const lean_string_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__50_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = " }"};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__50 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__50_value;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__50_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__50;
 static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__51_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__51;
 static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__52_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__52;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__53_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__0_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__53 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__53_value;
-static const lean_ctor_object l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__54_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__50_value)}};
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__54 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__54_value;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__53_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__53;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__54_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__54;
 LEAN_EXPORT lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_IO_Process_instReprResourceUsageStats___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_IO_Process_instReprResourceUsageStats_repr___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_IO_Process_instReprResourceUsageStats___closed__0 = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_IO_Process_instReprResourceUsageStats = (const lean_object*)&l_Std_IO_Process_instReprResourceUsageStats___closed__0_value;
+static lean_once_cell_t l_Std_IO_Process_instReprResourceUsageStats___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprResourceUsageStats___closed__0;
+LEAN_EXPORT lean_object* l_Std_IO_Process_instReprResourceUsageStats;
 static lean_once_cell_t l_Std_IO_Process_instInhabitedResourceUsageStats_default___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static uint64_t l_Std_IO_Process_instInhabitedResourceUsageStats_default___closed__0;
 static lean_once_cell_t l_Std_IO_Process_instInhabitedResourceUsageStats_default___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -171,18 +171,18 @@ LEAN_EXPORT uint8_t l_Std_IO_Process_instDecidableEqPId(uint64_t, uint64_t);
 LEAN_EXPORT lean_object* l_Std_IO_Process_instDecidableEqPId___boxed(lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Std_IO_Process_instOrdPId_ord(uint64_t, uint64_t);
 LEAN_EXPORT lean_object* l_Std_IO_Process_instOrdPId_ord___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_IO_Process_instOrdPId___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_IO_Process_instOrdPId_ord___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_IO_Process_instOrdPId___closed__0 = (const lean_object*)&l_Std_IO_Process_instOrdPId___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_IO_Process_instOrdPId = (const lean_object*)&l_Std_IO_Process_instOrdPId___closed__0_value;
-static const lean_string_object l_Std_IO_Process_instReprPId___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "PId.mk "};
-static const lean_object* l_Std_IO_Process_instReprPId___lam__0___closed__0 = (const lean_object*)&l_Std_IO_Process_instReprPId___lam__0___closed__0_value;
-static const lean_ctor_object l_Std_IO_Process_instReprPId___lam__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_IO_Process_instReprPId___lam__0___closed__0_value)}};
-static const lean_object* l_Std_IO_Process_instReprPId___lam__0___closed__1 = (const lean_object*)&l_Std_IO_Process_instReprPId___lam__0___closed__1_value;
+static lean_once_cell_t l_Std_IO_Process_instOrdPId___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instOrdPId___closed__0;
+LEAN_EXPORT lean_object* l_Std_IO_Process_instOrdPId;
+static lean_once_cell_t l_Std_IO_Process_instReprPId___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprPId___lam__0___closed__0;
+static lean_once_cell_t l_Std_IO_Process_instReprPId___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprPId___lam__0___closed__1;
 LEAN_EXPORT lean_object* l_Std_IO_Process_instReprPId___lam__0(uint64_t, lean_object*);
 LEAN_EXPORT lean_object* l_Std_IO_Process_instReprPId___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_IO_Process_instReprPId___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_IO_Process_instReprPId___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_IO_Process_instReprPId___closed__0 = (const lean_object*)&l_Std_IO_Process_instReprPId___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_IO_Process_instReprPId = (const lean_object*)&l_Std_IO_Process_instReprPId___closed__0_value;
+static lean_once_cell_t l_Std_IO_Process_instReprPId___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_instReprPId___closed__0;
+LEAN_EXPORT lean_object* l_Std_IO_Process_instReprPId;
 LEAN_EXPORT lean_object* l_Std_IO_Process_getProcessTitle();
 LEAN_EXPORT lean_object* l_Std_IO_Process_getProcessTitle___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_IO_Process_setProcessTitle(lean_object*);
@@ -203,10 +203,10 @@ LEAN_EXPORT lean_object* l_Std_IO_Process_getResourceUsage___lam__0(lean_object*
 LEAN_EXPORT lean_object* l_Std_IO_Process_getResourceUsage___lam__0___boxed(lean_object*);
 static lean_once_cell_t l_Std_IO_Process_getResourceUsage___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_IO_Process_getResourceUsage___closed__0;
-static const lean_closure_object l_Std_IO_Process_getResourceUsage___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_IO_Process_getResourceUsage___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_IO_Process_getResourceUsage___closed__1 = (const lean_object*)&l_Std_IO_Process_getResourceUsage___closed__1_value;
-static const lean_closure_object l_Std_IO_Process_getResourceUsage___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Internal_UV_System_getrusage___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_IO_Process_getResourceUsage___closed__2 = (const lean_object*)&l_Std_IO_Process_getResourceUsage___closed__2_value;
+static lean_once_cell_t l_Std_IO_Process_getResourceUsage___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_getResourceUsage___closed__1;
+static lean_once_cell_t l_Std_IO_Process_getResourceUsage___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_IO_Process_getResourceUsage___closed__2;
 LEAN_EXPORT lean_object* l_Std_IO_Process_getResourceUsage();
 LEAN_EXPORT lean_object* l_Std_IO_Process_getResourceUsage___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_IO_Process_getExecutablePath();
@@ -227,6 +227,74 @@ v___x_2_ = lean_nat_to_int(v_a_1_);
 return v___x_2_;
 }
 }
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_3_; 
+v___x_3_ = lean_mk_string_unchecked("{ ", 2, 2);
+return v___x_3_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_4_; 
+v___x_4_ = lean_mk_string_unchecked("cpuUserTime", 11, 11);
+return v___x_4_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__2(void){
+_start:
+{
+lean_object* v___x_5_; lean_object* v___x_6_; 
+v___x_5_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__1, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__1_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__1);
+v___x_6_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_6_, 0, v___x_5_);
+return v___x_6_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__3(void){
+_start:
+{
+lean_object* v___x_7_; lean_object* v___x_8_; lean_object* v___x_9_; 
+v___x_7_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__2, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__2_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__2);
+v___x_8_ = lean_box(0);
+v___x_9_ = lean_alloc_ctor(5, 2, 0);
+lean_ctor_set(v___x_9_, 0, v___x_8_);
+lean_ctor_set(v___x_9_, 1, v___x_7_);
+return v___x_9_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__4(void){
+_start:
+{
+lean_object* v___x_10_; 
+v___x_10_ = lean_mk_string_unchecked(" := ", 4, 4);
+return v___x_10_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__5(void){
+_start:
+{
+lean_object* v___x_11_; lean_object* v___x_12_; 
+v___x_11_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__4, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__4_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__4);
+v___x_12_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_12_, 0, v___x_11_);
+return v___x_12_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__6(void){
+_start:
+{
+lean_object* v___x_13_; lean_object* v___x_14_; lean_object* v___x_15_; 
+v___x_13_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__5, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__5_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__5);
+v___x_14_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__3, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__3_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__3);
+v___x_15_ = lean_alloc_ctor(5, 2, 0);
+lean_ctor_set(v___x_15_, 0, v___x_14_);
+lean_ctor_set(v___x_15_, 1, v___x_13_);
+return v___x_15_;
+}
+}
 static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__7(void){
 _start:
 {
@@ -234,6 +302,42 @@ lean_object* v___x_16_; lean_object* v___x_17_;
 v___x_16_ = lean_unsigned_to_nat(15u);
 v___x_17_ = lean_nat_to_int(v___x_16_);
 return v___x_17_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__8(void){
+_start:
+{
+lean_object* v___x_18_; 
+v___x_18_ = lean_mk_string_unchecked(",", 1, 1);
+return v___x_18_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__9(void){
+_start:
+{
+lean_object* v___x_19_; lean_object* v___x_20_; 
+v___x_19_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__8, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__8_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__8);
+v___x_20_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_20_, 0, v___x_19_);
+return v___x_20_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__10(void){
+_start:
+{
+lean_object* v___x_21_; 
+v___x_21_ = lean_mk_string_unchecked("cpuSystemTime", 13, 13);
+return v___x_21_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__11(void){
+_start:
+{
+lean_object* v___x_22_; lean_object* v___x_23_; 
+v___x_22_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__10, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__10_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__10);
+v___x_23_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_23_, 0, v___x_22_);
+return v___x_23_;
 }
 }
 static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__12(void){
@@ -245,6 +349,24 @@ v___x_25_ = lean_nat_to_int(v___x_24_);
 return v___x_25_;
 }
 }
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__13(void){
+_start:
+{
+lean_object* v___x_26_; 
+v___x_26_ = lean_mk_string_unchecked("peakResidentSetSizeKb", 21, 21);
+return v___x_26_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__14(void){
+_start:
+{
+lean_object* v___x_27_; lean_object* v___x_28_; 
+v___x_27_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__13, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__13_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__13);
+v___x_28_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_28_, 0, v___x_27_);
+return v___x_28_;
+}
+}
 static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__15(void){
 _start:
 {
@@ -252,6 +374,24 @@ lean_object* v___x_29_; lean_object* v___x_30_;
 v___x_29_ = lean_unsigned_to_nat(25u);
 v___x_30_ = lean_nat_to_int(v___x_29_);
 return v___x_30_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__16(void){
+_start:
+{
+lean_object* v___x_31_; 
+v___x_31_ = lean_mk_string_unchecked("sharedMemorySizeKb", 18, 18);
+return v___x_31_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__17(void){
+_start:
+{
+lean_object* v___x_32_; lean_object* v___x_33_; 
+v___x_32_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__16, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__16_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__16);
+v___x_33_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_33_, 0, v___x_32_);
+return v___x_33_;
 }
 }
 static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__18(void){
@@ -263,6 +403,42 @@ v___x_35_ = lean_nat_to_int(v___x_34_);
 return v___x_35_;
 }
 }
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__19(void){
+_start:
+{
+lean_object* v___x_36_; 
+v___x_36_ = lean_mk_string_unchecked("unsharedDataSizeKb", 18, 18);
+return v___x_36_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__20(void){
+_start:
+{
+lean_object* v___x_37_; lean_object* v___x_38_; 
+v___x_37_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__19, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__19_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__19);
+v___x_38_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_38_, 0, v___x_37_);
+return v___x_38_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__21(void){
+_start:
+{
+lean_object* v___x_39_; 
+v___x_39_ = lean_mk_string_unchecked("unsharedStackSizeKb", 19, 19);
+return v___x_39_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__22(void){
+_start:
+{
+lean_object* v___x_40_; lean_object* v___x_41_; 
+v___x_40_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__21, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__21_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__21);
+v___x_41_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_41_, 0, v___x_40_);
+return v___x_41_;
+}
+}
 static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__23(void){
 _start:
 {
@@ -270,6 +446,24 @@ lean_object* v___x_42_; lean_object* v___x_43_;
 v___x_42_ = lean_unsigned_to_nat(23u);
 v___x_43_ = lean_nat_to_int(v___x_42_);
 return v___x_43_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__24(void){
+_start:
+{
+lean_object* v___x_44_; 
+v___x_44_ = lean_mk_string_unchecked("minorPageFaults", 15, 15);
+return v___x_44_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__25(void){
+_start:
+{
+lean_object* v___x_45_; lean_object* v___x_46_; 
+v___x_45_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__24, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__24_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__24);
+v___x_46_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_46_, 0, v___x_45_);
+return v___x_46_;
 }
 }
 static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__26(void){
@@ -281,6 +475,42 @@ v___x_48_ = lean_nat_to_int(v___x_47_);
 return v___x_48_;
 }
 }
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__27(void){
+_start:
+{
+lean_object* v___x_49_; 
+v___x_49_ = lean_mk_string_unchecked("majorPageFaults", 15, 15);
+return v___x_49_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__28(void){
+_start:
+{
+lean_object* v___x_50_; lean_object* v___x_51_; 
+v___x_50_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__27, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__27_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__27);
+v___x_51_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_51_, 0, v___x_50_);
+return v___x_51_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__29(void){
+_start:
+{
+lean_object* v___x_52_; 
+v___x_52_ = lean_mk_string_unchecked("swapOperations", 14, 14);
+return v___x_52_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__30(void){
+_start:
+{
+lean_object* v___x_53_; lean_object* v___x_54_; 
+v___x_53_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__29, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__29_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__29);
+v___x_54_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_54_, 0, v___x_53_);
+return v___x_54_;
+}
+}
 static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__31(void){
 _start:
 {
@@ -288,6 +518,60 @@ lean_object* v___x_55_; lean_object* v___x_56_;
 v___x_55_ = lean_unsigned_to_nat(18u);
 v___x_56_ = lean_nat_to_int(v___x_55_);
 return v___x_56_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__32(void){
+_start:
+{
+lean_object* v___x_57_; 
+v___x_57_ = lean_mk_string_unchecked("blockInputOps", 13, 13);
+return v___x_57_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__33(void){
+_start:
+{
+lean_object* v___x_58_; lean_object* v___x_59_; 
+v___x_58_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__32, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__32_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__32);
+v___x_59_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_59_, 0, v___x_58_);
+return v___x_59_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__34(void){
+_start:
+{
+lean_object* v___x_60_; 
+v___x_60_ = lean_mk_string_unchecked("blockOutputOps", 14, 14);
+return v___x_60_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__35(void){
+_start:
+{
+lean_object* v___x_61_; lean_object* v___x_62_; 
+v___x_61_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__34, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__34_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__34);
+v___x_62_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_62_, 0, v___x_61_);
+return v___x_62_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__36(void){
+_start:
+{
+lean_object* v___x_63_; 
+v___x_63_ = lean_mk_string_unchecked("messagesSent", 12, 12);
+return v___x_63_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__37(void){
+_start:
+{
+lean_object* v___x_64_; lean_object* v___x_65_; 
+v___x_64_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__36, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__36_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__36);
+v___x_65_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_65_, 0, v___x_64_);
+return v___x_65_;
 }
 }
 static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__38(void){
@@ -299,6 +583,24 @@ v___x_67_ = lean_nat_to_int(v___x_66_);
 return v___x_67_;
 }
 }
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__39(void){
+_start:
+{
+lean_object* v___x_68_; 
+v___x_68_ = lean_mk_string_unchecked("messagesReceived", 16, 16);
+return v___x_68_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__40(void){
+_start:
+{
+lean_object* v___x_69_; lean_object* v___x_70_; 
+v___x_69_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__39, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__39_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__39);
+v___x_70_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_70_, 0, v___x_69_);
+return v___x_70_;
+}
+}
 static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__41(void){
 _start:
 {
@@ -306,6 +608,42 @@ lean_object* v___x_71_; lean_object* v___x_72_;
 v___x_71_ = lean_unsigned_to_nat(20u);
 v___x_72_ = lean_nat_to_int(v___x_71_);
 return v___x_72_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__42(void){
+_start:
+{
+lean_object* v___x_73_; 
+v___x_73_ = lean_mk_string_unchecked("signalsReceived", 15, 15);
+return v___x_73_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__43(void){
+_start:
+{
+lean_object* v___x_74_; lean_object* v___x_75_; 
+v___x_74_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__42, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__42_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__42);
+v___x_75_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_75_, 0, v___x_74_);
+return v___x_75_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__44(void){
+_start:
+{
+lean_object* v___x_76_; 
+v___x_76_ = lean_mk_string_unchecked("voluntaryContextSwitches", 24, 24);
+return v___x_76_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__45(void){
+_start:
+{
+lean_object* v___x_77_; lean_object* v___x_78_; 
+v___x_77_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__44, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__44_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__44);
+v___x_78_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_78_, 0, v___x_77_);
+return v___x_78_;
 }
 }
 static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__46(void){
@@ -317,6 +655,24 @@ v___x_80_ = lean_nat_to_int(v___x_79_);
 return v___x_80_;
 }
 }
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__47(void){
+_start:
+{
+lean_object* v___x_81_; 
+v___x_81_ = lean_mk_string_unchecked("involuntaryContextSwitches", 26, 26);
+return v___x_81_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__48(void){
+_start:
+{
+lean_object* v___x_82_; lean_object* v___x_83_; 
+v___x_82_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__47, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__47_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__47);
+v___x_83_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_83_, 0, v___x_82_);
+return v___x_83_;
+}
+}
 static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__49(void){
 _start:
 {
@@ -326,11 +682,19 @@ v___x_85_ = lean_nat_to_int(v___x_84_);
 return v___x_85_;
 }
 }
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__50(void){
+_start:
+{
+lean_object* v___x_86_; 
+v___x_86_ = lean_mk_string_unchecked(" }", 2, 2);
+return v___x_86_;
+}
+}
 static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__51(void){
 _start:
 {
 lean_object* v___x_87_; lean_object* v___x_88_; 
-v___x_87_ = ((lean_object*)(l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__0));
+v___x_87_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__0, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__0_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__0);
 v___x_88_ = lean_string_length(v___x_87_);
 return v___x_88_;
 }
@@ -342,6 +706,26 @@ lean_object* v___x_89_; lean_object* v___x_90_;
 v___x_89_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__51, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__51_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__51);
 v___x_90_ = lean_nat_to_int(v___x_89_);
 return v___x_90_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__53(void){
+_start:
+{
+lean_object* v___x_91_; lean_object* v___x_92_; 
+v___x_91_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__0, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__0_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__0);
+v___x_92_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_92_, 0, v___x_91_);
+return v___x_92_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__54(void){
+_start:
+{
+lean_object* v___x_93_; lean_object* v___x_94_; 
+v___x_93_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__50, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__50_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__50);
+v___x_94_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_94_, 0, v___x_93_);
+return v___x_94_;
 }
 }
 LEAN_EXPORT lean_object* l_Std_IO_Process_instReprResourceUsageStats_repr___redArg(lean_object* v_x_95_){
@@ -364,8 +748,8 @@ v_messagesReceived_108_ = lean_ctor_get_uint64(v_x_95_, sizeof(void*)*2 + 80);
 v_signalsReceived_109_ = lean_ctor_get_uint64(v_x_95_, sizeof(void*)*2 + 88);
 v_voluntaryContextSwitches_110_ = lean_ctor_get_uint64(v_x_95_, sizeof(void*)*2 + 96);
 v_involuntaryContextSwitches_111_ = lean_ctor_get_uint64(v_x_95_, sizeof(void*)*2 + 104);
-v___x_112_ = ((lean_object*)(l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__5));
-v___x_113_ = ((lean_object*)(l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__6));
+v___x_112_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__5, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__5_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__5);
+v___x_113_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__6, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__6_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__6);
 v___x_114_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__7, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__7_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__7);
 v___x_115_ = lean_unsigned_to_nat(0u);
 v___x_116_ = l_Std_Time_Millisecond_instReprOrdinal___lam__0(v_cpuUserTime_96_, v___x_115_);
@@ -379,7 +763,7 @@ lean_ctor_set_uint8(v___x_119_, sizeof(void*)*1, v___x_118_);
 v___x_120_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_120_, 0, v___x_113_);
 lean_ctor_set(v___x_120_, 1, v___x_119_);
-v___x_121_ = ((lean_object*)(l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__9));
+v___x_121_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__9, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__9_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__9);
 v___x_122_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_122_, 0, v___x_120_);
 lean_ctor_set(v___x_122_, 1, v___x_121_);
@@ -387,7 +771,7 @@ v___x_123_ = lean_box(1);
 v___x_124_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_124_, 0, v___x_122_);
 lean_ctor_set(v___x_124_, 1, v___x_123_);
-v___x_125_ = ((lean_object*)(l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__11));
+v___x_125_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__11, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__11_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__11);
 v___x_126_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_126_, 0, v___x_124_);
 lean_ctor_set(v___x_126_, 1, v___x_125_);
@@ -411,7 +795,7 @@ lean_ctor_set(v___x_133_, 1, v___x_121_);
 v___x_134_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_134_, 0, v___x_133_);
 lean_ctor_set(v___x_134_, 1, v___x_123_);
-v___x_135_ = ((lean_object*)(l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__14));
+v___x_135_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__14, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__14_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__14);
 v___x_136_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_136_, 0, v___x_134_);
 lean_ctor_set(v___x_136_, 1, v___x_135_);
@@ -438,7 +822,7 @@ lean_ctor_set(v___x_145_, 1, v___x_121_);
 v___x_146_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_146_, 0, v___x_145_);
 lean_ctor_set(v___x_146_, 1, v___x_123_);
-v___x_147_ = ((lean_object*)(l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__17));
+v___x_147_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__17, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__17_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__17);
 v___x_148_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_148_, 0, v___x_146_);
 lean_ctor_set(v___x_148_, 1, v___x_147_);
@@ -465,7 +849,7 @@ lean_ctor_set(v___x_157_, 1, v___x_121_);
 v___x_158_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_158_, 0, v___x_157_);
 lean_ctor_set(v___x_158_, 1, v___x_123_);
-v___x_159_ = ((lean_object*)(l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__20));
+v___x_159_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__20, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__20_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__20);
 v___x_160_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_160_, 0, v___x_158_);
 lean_ctor_set(v___x_160_, 1, v___x_159_);
@@ -491,7 +875,7 @@ lean_ctor_set(v___x_168_, 1, v___x_121_);
 v___x_169_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_169_, 0, v___x_168_);
 lean_ctor_set(v___x_169_, 1, v___x_123_);
-v___x_170_ = ((lean_object*)(l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__22));
+v___x_170_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__22, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__22_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__22);
 v___x_171_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_171_, 0, v___x_169_);
 lean_ctor_set(v___x_171_, 1, v___x_170_);
@@ -518,7 +902,7 @@ lean_ctor_set(v___x_180_, 1, v___x_121_);
 v___x_181_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_181_, 0, v___x_180_);
 lean_ctor_set(v___x_181_, 1, v___x_123_);
-v___x_182_ = ((lean_object*)(l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__25));
+v___x_182_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__25, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__25_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__25);
 v___x_183_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_183_, 0, v___x_181_);
 lean_ctor_set(v___x_183_, 1, v___x_182_);
@@ -545,7 +929,7 @@ lean_ctor_set(v___x_192_, 1, v___x_121_);
 v___x_193_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_193_, 0, v___x_192_);
 lean_ctor_set(v___x_193_, 1, v___x_123_);
-v___x_194_ = ((lean_object*)(l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__28));
+v___x_194_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__28, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__28_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__28);
 v___x_195_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_195_, 0, v___x_193_);
 lean_ctor_set(v___x_195_, 1, v___x_194_);
@@ -571,7 +955,7 @@ lean_ctor_set(v___x_203_, 1, v___x_121_);
 v___x_204_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_204_, 0, v___x_203_);
 lean_ctor_set(v___x_204_, 1, v___x_123_);
-v___x_205_ = ((lean_object*)(l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__30));
+v___x_205_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__30, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__30_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__30);
 v___x_206_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_206_, 0, v___x_204_);
 lean_ctor_set(v___x_206_, 1, v___x_205_);
@@ -598,7 +982,7 @@ lean_ctor_set(v___x_215_, 1, v___x_121_);
 v___x_216_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_216_, 0, v___x_215_);
 lean_ctor_set(v___x_216_, 1, v___x_123_);
-v___x_217_ = ((lean_object*)(l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__33));
+v___x_217_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__33, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__33_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__33);
 v___x_218_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_218_, 0, v___x_216_);
 lean_ctor_set(v___x_218_, 1, v___x_217_);
@@ -624,7 +1008,7 @@ lean_ctor_set(v___x_226_, 1, v___x_121_);
 v___x_227_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_227_, 0, v___x_226_);
 lean_ctor_set(v___x_227_, 1, v___x_123_);
-v___x_228_ = ((lean_object*)(l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__35));
+v___x_228_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__35, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__35_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__35);
 v___x_229_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_229_, 0, v___x_227_);
 lean_ctor_set(v___x_229_, 1, v___x_228_);
@@ -650,7 +1034,7 @@ lean_ctor_set(v___x_237_, 1, v___x_121_);
 v___x_238_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_238_, 0, v___x_237_);
 lean_ctor_set(v___x_238_, 1, v___x_123_);
-v___x_239_ = ((lean_object*)(l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__37));
+v___x_239_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__37, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__37_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__37);
 v___x_240_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_240_, 0, v___x_238_);
 lean_ctor_set(v___x_240_, 1, v___x_239_);
@@ -677,7 +1061,7 @@ lean_ctor_set(v___x_249_, 1, v___x_121_);
 v___x_250_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_250_, 0, v___x_249_);
 lean_ctor_set(v___x_250_, 1, v___x_123_);
-v___x_251_ = ((lean_object*)(l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__40));
+v___x_251_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__40, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__40_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__40);
 v___x_252_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_252_, 0, v___x_250_);
 lean_ctor_set(v___x_252_, 1, v___x_251_);
@@ -704,7 +1088,7 @@ lean_ctor_set(v___x_261_, 1, v___x_121_);
 v___x_262_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_262_, 0, v___x_261_);
 lean_ctor_set(v___x_262_, 1, v___x_123_);
-v___x_263_ = ((lean_object*)(l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__43));
+v___x_263_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__43, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__43_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__43);
 v___x_264_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_264_, 0, v___x_262_);
 lean_ctor_set(v___x_264_, 1, v___x_263_);
@@ -730,7 +1114,7 @@ lean_ctor_set(v___x_272_, 1, v___x_121_);
 v___x_273_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_273_, 0, v___x_272_);
 lean_ctor_set(v___x_273_, 1, v___x_123_);
-v___x_274_ = ((lean_object*)(l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__45));
+v___x_274_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__45, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__45_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__45);
 v___x_275_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_275_, 0, v___x_273_);
 lean_ctor_set(v___x_275_, 1, v___x_274_);
@@ -757,7 +1141,7 @@ lean_ctor_set(v___x_284_, 1, v___x_121_);
 v___x_285_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_285_, 0, v___x_284_);
 lean_ctor_set(v___x_285_, 1, v___x_123_);
-v___x_286_ = ((lean_object*)(l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__48));
+v___x_286_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__48, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__48_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__48);
 v___x_287_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_287_, 0, v___x_285_);
 lean_ctor_set(v___x_287_, 1, v___x_286_);
@@ -779,11 +1163,11 @@ v___x_295_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_295_, 0, v___x_288_);
 lean_ctor_set(v___x_295_, 1, v___x_294_);
 v___x_296_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__52, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__52_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__52);
-v___x_297_ = ((lean_object*)(l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__53));
+v___x_297_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__53, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__53_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__53);
 v___x_298_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_298_, 0, v___x_297_);
 lean_ctor_set(v___x_298_, 1, v___x_295_);
-v___x_299_ = ((lean_object*)(l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__54));
+v___x_299_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__54, &l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__54_once, _init_l_Std_IO_Process_instReprResourceUsageStats_repr___redArg___closed__54);
 v___x_300_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_300_, 0, v___x_298_);
 lean_ctor_set(v___x_300_, 1, v___x_299_);
@@ -821,6 +1205,22 @@ v_res_310_ = l_Std_IO_Process_instReprResourceUsageStats_repr(v_x_308_, v_prec_3
 lean_dec(v_prec_309_);
 lean_dec_ref(v_x_308_);
 return v_res_310_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats___closed__0(void){
+_start:
+{
+lean_object* v___x_311_; 
+v___x_311_ = lean_alloc_closure((void*)(l_Std_IO_Process_instReprResourceUsageStats_repr___boxed), 2, 0);
+return v___x_311_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprResourceUsageStats(void){
+_start:
+{
+lean_object* v___x_312_; 
+v___x_312_ = lean_obj_once(&l_Std_IO_Process_instReprResourceUsageStats___closed__0, &l_Std_IO_Process_instReprResourceUsageStats___closed__0_once, _init_l_Std_IO_Process_instReprResourceUsageStats___closed__0);
+return v___x_312_;
 }
 }
 static uint64_t _init_l_Std_IO_Process_instInhabitedResourceUsageStats_default___closed__0(void){
@@ -975,11 +1375,45 @@ v_r_352_ = lean_box(v_res_351_);
 return v_r_352_;
 }
 }
+static lean_object* _init_l_Std_IO_Process_instOrdPId___closed__0(void){
+_start:
+{
+lean_object* v___x_353_; 
+v___x_353_ = lean_alloc_closure((void*)(l_Std_IO_Process_instOrdPId_ord___boxed), 2, 0);
+return v___x_353_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instOrdPId(void){
+_start:
+{
+lean_object* v___x_354_; 
+v___x_354_ = lean_obj_once(&l_Std_IO_Process_instOrdPId___closed__0, &l_Std_IO_Process_instOrdPId___closed__0_once, _init_l_Std_IO_Process_instOrdPId___closed__0);
+return v___x_354_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprPId___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_355_; 
+v___x_355_ = lean_mk_string_unchecked("PId.mk ", 7, 7);
+return v___x_355_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprPId___lam__0___closed__1(void){
+_start:
+{
+lean_object* v___x_356_; lean_object* v___x_357_; 
+v___x_356_ = lean_obj_once(&l_Std_IO_Process_instReprPId___lam__0___closed__0, &l_Std_IO_Process_instReprPId___lam__0___closed__0_once, _init_l_Std_IO_Process_instReprPId___lam__0___closed__0);
+v___x_357_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_357_, 0, v___x_356_);
+return v___x_357_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_IO_Process_instReprPId___lam__0(uint64_t v_u_358_, lean_object* v___y_359_){
 _start:
 {
 lean_object* v___x_360_; lean_object* v___x_361_; lean_object* v___x_362_; lean_object* v___x_363_; lean_object* v___x_364_; lean_object* v___x_365_; 
-v___x_360_ = ((lean_object*)(l_Std_IO_Process_instReprPId___lam__0___closed__1));
+v___x_360_ = lean_obj_once(&l_Std_IO_Process_instReprPId___lam__0___closed__1, &l_Std_IO_Process_instReprPId___lam__0___closed__1_once, _init_l_Std_IO_Process_instReprPId___lam__0___closed__1);
 v___x_361_ = lean_uint64_to_nat(v_u_358_);
 v___x_362_ = l_Nat_reprFast(v___x_361_);
 v___x_363_ = lean_alloc_ctor(3, 1, 0);
@@ -1000,6 +1434,22 @@ lean_dec_ref(v_u_366_);
 v_res_369_ = l_Std_IO_Process_instReprPId___lam__0(v_u_boxed_368_, v___y_367_);
 lean_dec(v___y_367_);
 return v_res_369_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprPId___closed__0(void){
+_start:
+{
+lean_object* v___f_370_; 
+v___f_370_ = lean_alloc_closure((void*)(l_Std_IO_Process_instReprPId___lam__0___boxed), 2, 0);
+return v___f_370_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_instReprPId(void){
+_start:
+{
+lean_object* v___f_371_; 
+v___f_371_ = lean_obj_once(&l_Std_IO_Process_instReprPId___closed__0, &l_Std_IO_Process_instReprPId___closed__0_once, _init_l_Std_IO_Process_instReprPId___closed__0);
+return v___f_371_;
 }
 }
 LEAN_EXPORT lean_object* l_Std_IO_Process_getProcessTitle(){
@@ -1442,6 +1892,22 @@ v___x_489_ = l_instMonadEIO(lean_box(0));
 return v___x_489_;
 }
 }
+static lean_object* _init_l_Std_IO_Process_getResourceUsage___closed__1(void){
+_start:
+{
+lean_object* v___f_490_; 
+v___f_490_ = lean_alloc_closure((void*)(l_Std_IO_Process_getResourceUsage___lam__0___boxed), 1, 0);
+return v___f_490_;
+}
+}
+static lean_object* _init_l_Std_IO_Process_getResourceUsage___closed__2(void){
+_start:
+{
+lean_object* v___x_491_; 
+v___x_491_ = lean_alloc_closure((void*)(l_Std_Internal_UV_System_getrusage___boxed), 1, 0);
+return v___x_491_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_IO_Process_getResourceUsage(){
 _start:
 {
@@ -1449,8 +1915,8 @@ lean_object* v___x_493_; lean_object* v_toApplicative_494_; lean_object* v_toFun
 v___x_493_ = lean_obj_once(&l_Std_IO_Process_getResourceUsage___closed__0, &l_Std_IO_Process_getResourceUsage___closed__0_once, _init_l_Std_IO_Process_getResourceUsage___closed__0);
 v_toApplicative_494_ = lean_ctor_get(v___x_493_, 0);
 v_toFunctor_495_ = lean_ctor_get(v_toApplicative_494_, 0);
-v___f_496_ = ((lean_object*)(l_Std_IO_Process_getResourceUsage___closed__1));
-v___x_497_ = ((lean_object*)(l_Std_IO_Process_getResourceUsage___closed__2));
+v___f_496_ = lean_obj_once(&l_Std_IO_Process_getResourceUsage___closed__1, &l_Std_IO_Process_getResourceUsage___closed__1_once, _init_l_Std_IO_Process_getResourceUsage___closed__1);
+v___x_497_ = lean_obj_once(&l_Std_IO_Process_getResourceUsage___closed__2, &l_Std_IO_Process_getResourceUsage___closed__2_once, _init_l_Std_IO_Process_getResourceUsage___closed__2);
 lean_inc_ref(v_toFunctor_495_);
 v___x_28__overap_498_ = l_Functor_mapRev___redArg(v_toFunctor_495_, v___x_497_, v___f_496_);
 v___x_499_ = lean_apply_1(v___x_28__overap_498_, lean_box(0));
@@ -1647,12 +2113,18 @@ lean_dec_ref(res);
 res = runtime_initialize_Init_Data_Ord_UInt(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Std_IO_Process_instReprResourceUsageStats = _init_l_Std_IO_Process_instReprResourceUsageStats();
+lean_mark_persistent(l_Std_IO_Process_instReprResourceUsageStats);
 l_Std_IO_Process_instInhabitedResourceUsageStats_default = _init_l_Std_IO_Process_instInhabitedResourceUsageStats_default();
 lean_mark_persistent(l_Std_IO_Process_instInhabitedResourceUsageStats_default);
 l_Std_IO_Process_instInhabitedResourceUsageStats = _init_l_Std_IO_Process_instInhabitedResourceUsageStats();
 lean_mark_persistent(l_Std_IO_Process_instInhabitedResourceUsageStats);
 l_Std_IO_Process_instInhabitedPId_default = _init_l_Std_IO_Process_instInhabitedPId_default();
 l_Std_IO_Process_instInhabitedPId = _init_l_Std_IO_Process_instInhabitedPId();
+l_Std_IO_Process_instOrdPId = _init_l_Std_IO_Process_instOrdPId();
+lean_mark_persistent(l_Std_IO_Process_instOrdPId);
+l_Std_IO_Process_instReprPId = _init_l_Std_IO_Process_instReprPId();
+lean_mark_persistent(l_Std_IO_Process_instReprPId);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

@@ -25,8 +25,8 @@ lean_object* lean_io_basemutex_lock(lean_object*);
 lean_object* lean_io_basemutex_unlock(lean_object*);
 lean_object* l_Std_Mutex_new___redArg(lean_object*);
 lean_object* lean_io_condvar_new();
-static const lean_ctor_object l_Std_Barrier_new___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_Barrier_new___closed__0 = (const lean_object*)&l_Std_Barrier_new___closed__0_value;
+static lean_once_cell_t l_Std_Barrier_new___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Barrier_new___closed__0;
 LEAN_EXPORT lean_object* l_Std_Barrier_new(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Barrier_new___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Mutex_atomically___at___00Std_Barrier_wait_spec__1___redArg(lean_object*, lean_object*);
@@ -45,11 +45,22 @@ LEAN_EXPORT uint8_t l_Std_Barrier_wait(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Barrier_wait___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_While_0__Lean_Loop_forIn_loop___at___00Std_Condvar_waitUntil___at___00Std_Barrier_wait_spec__0_spec__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_While_0__Lean_Loop_forIn_loop___at___00Std_Condvar_waitUntil___at___00Std_Barrier_wait_spec__0_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+static lean_object* _init_l_Std_Barrier_new___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; lean_object* v___x_2_; 
+v___x_1_ = lean_unsigned_to_nat(0u);
+v___x_2_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_2_, 0, v___x_1_);
+lean_ctor_set(v___x_2_, 1, v___x_1_);
+return v___x_2_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Barrier_new(lean_object* v_numThreads_3_){
 _start:
 {
 lean_object* v___x_5_; lean_object* v___x_6_; lean_object* v___x_7_; lean_object* v___x_8_; 
-v___x_5_ = ((lean_object*)(l_Std_Barrier_new___closed__0));
+v___x_5_ = lean_obj_once(&l_Std_Barrier_new___closed__0, &l_Std_Barrier_new___closed__0_once, _init_l_Std_Barrier_new___closed__0);
 v___x_6_ = l_Std_Mutex_new___redArg(v___x_5_);
 v___x_7_ = lean_io_condvar_new();
 v___x_8_ = lean_alloc_ctor(0, 3, 0);

@@ -19,11 +19,11 @@ lean_object* l_Lean_KVMap_find(lean_object*, lean_object*);
 extern lean_object* l_Lean_KVMap_empty;
 lean_object* l_Lean_KVMap_insert(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_mkMData(lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "_recApp"};
-static const lean_object* l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__0 = (const lean_object*)&l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__0_value;
-static const lean_ctor_object l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__0_value),LEAN_SCALAR_PTR_LITERAL(108, 14, 43, 140, 165, 123, 61, 74)}};
-static const lean_object* l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__1 = (const lean_object*)&l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__1_value;
-LEAN_EXPORT const lean_object* l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey = (const lean_object*)&l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__1_value;
+static lean_once_cell_t l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__0;
+static lean_once_cell_t l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__1;
+LEAN_EXPORT lean_object* l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey;
 LEAN_EXPORT lean_object* l_Lean_mkRecAppWithSyntax(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_getRecAppSyntax_x3f(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_getRecAppSyntax_x3f___boxed(lean_object*);
@@ -31,12 +31,37 @@ LEAN_EXPORT uint8_t l_Lean_MData_isRecApp(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_MData_isRecApp___boxed(lean_object*);
 LEAN_EXPORT uint8_t l_Lean_hasRecAppSyntax(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_hasRecAppSyntax___boxed(lean_object*);
+static lean_object* _init_l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; 
+v___x_1_ = lean_mk_string_unchecked("_recApp", 7, 7);
+return v___x_1_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__1(void){
+_start:
+{
+lean_object* v___x_2_; lean_object* v___x_3_; 
+v___x_2_ = lean_obj_once(&l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__0, &l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__0_once, _init_l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__0);
+v___x_3_ = l_Lean_Name_mkStr1(v___x_2_);
+return v___x_3_;
+}
+}
+static lean_object* _init_l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey(void){
+_start:
+{
+lean_object* v___x_4_; 
+v___x_4_ = lean_obj_once(&l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__1, &l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__1_once, _init_l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey___closed__1);
+return v___x_4_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_mkRecAppWithSyntax(lean_object* v_e_5_, lean_object* v_stx_6_){
 _start:
 {
 lean_object* v___x_7_; lean_object* v___x_8_; lean_object* v___x_9_; lean_object* v___x_10_; lean_object* v___x_11_; 
 v___x_7_ = l_Lean_KVMap_empty;
-v___x_8_ = ((lean_object*)(l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey));
+v___x_8_ = l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey;
 v___x_9_ = lean_alloc_ctor(5, 1, 0);
 lean_ctor_set(v___x_9_, 0, v_stx_6_);
 v___x_10_ = l_Lean_KVMap_insert(v___x_7_, v___x_8_, v___x_9_);
@@ -51,7 +76,7 @@ if (lean_obj_tag(v_e_12_) == 10)
 {
 lean_object* v_data_13_; lean_object* v___x_14_; lean_object* v___x_15_; 
 v_data_13_ = lean_ctor_get(v_e_12_, 0);
-v___x_14_ = ((lean_object*)(l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey));
+v___x_14_ = l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey;
 v___x_15_ = l_Lean_KVMap_find(v_data_13_, v___x_14_);
 if (lean_obj_tag(v___x_15_) == 1)
 {
@@ -138,7 +163,7 @@ LEAN_EXPORT uint8_t l_Lean_MData_isRecApp(lean_object* v_d_30_){
 _start:
 {
 lean_object* v___x_31_; uint8_t v___x_32_; 
-v___x_31_ = ((lean_object*)(l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey));
+v___x_31_ = l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey;
 v___x_32_ = l_Lean_KVMap_contains(v_d_30_, v___x_31_);
 return v___x_32_;
 }
@@ -190,6 +215,8 @@ _G_runtime_initialized = true;
 res = runtime_initialize_Lean_Expr(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey = _init_l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey();
+lean_mark_persistent(l___private_Lean_Elab_RecAppSyntax_0__Lean_recAppKey);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

@@ -77,14 +77,14 @@ LEAN_EXPORT lean_object* l_String_Slice_RevPosIterator_instIteratorLoopSubtypePo
 LEAN_EXPORT lean_object* l_String_Slice_RevPosIterator_instIteratorLoopSubtypePosNeEndPosOfMonad(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_Slice_revChars(lean_object*);
 LEAN_EXPORT lean_object* l_String_Slice_revChars___boxed(lean_object*);
-static const lean_string_object l_String_Slice_instInhabitedByteIterator_default___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 1, .m_capacity = 1, .m_length = 0, .m_data = ""};
-static const lean_object* l_String_Slice_instInhabitedByteIterator_default___closed__0 = (const lean_object*)&l_String_Slice_instInhabitedByteIterator_default___closed__0_value;
-static const lean_ctor_object l_String_Slice_instInhabitedByteIterator_default___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l_String_Slice_instInhabitedByteIterator_default___closed__0_value),((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Slice_instInhabitedByteIterator_default___closed__1 = (const lean_object*)&l_String_Slice_instInhabitedByteIterator_default___closed__1_value;
-static const lean_ctor_object l_String_Slice_instInhabitedByteIterator_default___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_String_Slice_instInhabitedByteIterator_default___closed__1_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Slice_instInhabitedByteIterator_default___closed__2 = (const lean_object*)&l_String_Slice_instInhabitedByteIterator_default___closed__2_value;
-LEAN_EXPORT const lean_object* l_String_Slice_instInhabitedByteIterator_default = (const lean_object*)&l_String_Slice_instInhabitedByteIterator_default___closed__2_value;
-LEAN_EXPORT const lean_object* l_String_Slice_instInhabitedByteIterator = (const lean_object*)&l_String_Slice_instInhabitedByteIterator_default___closed__2_value;
+static lean_once_cell_t l_String_Slice_instInhabitedByteIterator_default___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Slice_instInhabitedByteIterator_default___closed__0;
+static lean_once_cell_t l_String_Slice_instInhabitedByteIterator_default___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Slice_instInhabitedByteIterator_default___closed__1;
+static lean_once_cell_t l_String_Slice_instInhabitedByteIterator_default___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Slice_instInhabitedByteIterator_default___closed__2;
+LEAN_EXPORT lean_object* l_String_Slice_instInhabitedByteIterator_default;
+LEAN_EXPORT lean_object* l_String_Slice_instInhabitedByteIterator;
 LEAN_EXPORT lean_object* l_String_Slice_bytes(lean_object*);
 LEAN_EXPORT lean_object* l_String_Slice_ByteIterator_instIteratorUInt8OfPure___redArg___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_Slice_ByteIterator_instIteratorUInt8OfPure___redArg(lean_object*);
@@ -98,9 +98,9 @@ LEAN_EXPORT lean_object* l_String_Slice_ByteIterator_instIteratorLoopUInt8OfMona
 LEAN_EXPORT lean_object* l_String_Slice_ByteIterator_instIteratorLoopUInt8OfMonad___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_Slice_ByteIterator_instIteratorLoopUInt8OfMonad(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_Slice_revBytes(lean_object*);
-static const lean_ctor_object l_String_Slice_instInhabitedRevByteIterator___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&l_String_Slice_instInhabitedByteIterator_default___closed__1_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Slice_instInhabitedRevByteIterator___closed__0 = (const lean_object*)&l_String_Slice_instInhabitedRevByteIterator___closed__0_value;
-LEAN_EXPORT const lean_object* l_String_Slice_instInhabitedRevByteIterator = (const lean_object*)&l_String_Slice_instInhabitedRevByteIterator___closed__0_value;
+static lean_once_cell_t l_String_Slice_instInhabitedRevByteIterator___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Slice_instInhabitedRevByteIterator___closed__0;
+LEAN_EXPORT lean_object* l_String_Slice_instInhabitedRevByteIterator;
 LEAN_EXPORT lean_object* l_String_Slice_RevByteIterator_instIteratorUInt8OfPure___redArg___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_Slice_RevByteIterator_instIteratorUInt8OfPure___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_String_Slice_RevByteIterator_instIteratorUInt8OfPure(lean_object*, lean_object*);
@@ -865,6 +865,55 @@ lean_dec_ref(v_s_294_);
 return v_res_295_;
 }
 }
+static lean_object* _init_l_String_Slice_instInhabitedByteIterator_default___closed__0(void){
+_start:
+{
+lean_object* v___x_296_; 
+v___x_296_ = lean_mk_string_unchecked("", 0, 0);
+return v___x_296_;
+}
+}
+static lean_object* _init_l_String_Slice_instInhabitedByteIterator_default___closed__1(void){
+_start:
+{
+lean_object* v___x_297_; lean_object* v___x_298_; lean_object* v___x_299_; 
+v___x_297_ = lean_unsigned_to_nat(0u);
+v___x_298_ = lean_obj_once(&l_String_Slice_instInhabitedByteIterator_default___closed__0, &l_String_Slice_instInhabitedByteIterator_default___closed__0_once, _init_l_String_Slice_instInhabitedByteIterator_default___closed__0);
+v___x_299_ = lean_alloc_ctor(0, 3, 0);
+lean_ctor_set(v___x_299_, 0, v___x_298_);
+lean_ctor_set(v___x_299_, 1, v___x_297_);
+lean_ctor_set(v___x_299_, 2, v___x_297_);
+return v___x_299_;
+}
+}
+static lean_object* _init_l_String_Slice_instInhabitedByteIterator_default___closed__2(void){
+_start:
+{
+lean_object* v___x_300_; lean_object* v___x_301_; lean_object* v___x_302_; 
+v___x_300_ = lean_unsigned_to_nat(0u);
+v___x_301_ = lean_obj_once(&l_String_Slice_instInhabitedByteIterator_default___closed__1, &l_String_Slice_instInhabitedByteIterator_default___closed__1_once, _init_l_String_Slice_instInhabitedByteIterator_default___closed__1);
+v___x_302_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_302_, 0, v___x_301_);
+lean_ctor_set(v___x_302_, 1, v___x_300_);
+return v___x_302_;
+}
+}
+static lean_object* _init_l_String_Slice_instInhabitedByteIterator_default(void){
+_start:
+{
+lean_object* v___x_303_; 
+v___x_303_ = lean_obj_once(&l_String_Slice_instInhabitedByteIterator_default___closed__2, &l_String_Slice_instInhabitedByteIterator_default___closed__2_once, _init_l_String_Slice_instInhabitedByteIterator_default___closed__2);
+return v___x_303_;
+}
+}
+static lean_object* _init_l_String_Slice_instInhabitedByteIterator(void){
+_start:
+{
+lean_object* v___x_304_; 
+v___x_304_ = l_String_Slice_instInhabitedByteIterator_default;
+return v___x_304_;
+}
+}
 LEAN_EXPORT lean_object* l_String_Slice_bytes(lean_object* v_s_305_){
 _start:
 {
@@ -1215,6 +1264,26 @@ v___x_428_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_428_, 0, v_s_424_);
 lean_ctor_set(v___x_428_, 1, v___x_427_);
 return v___x_428_;
+}
+}
+static lean_object* _init_l_String_Slice_instInhabitedRevByteIterator___closed__0(void){
+_start:
+{
+lean_object* v___x_429_; lean_object* v_s_430_; lean_object* v___x_431_; 
+v___x_429_ = lean_unsigned_to_nat(0u);
+v_s_430_ = lean_obj_once(&l_String_Slice_instInhabitedByteIterator_default___closed__1, &l_String_Slice_instInhabitedByteIterator_default___closed__1_once, _init_l_String_Slice_instInhabitedByteIterator_default___closed__1);
+v___x_431_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_431_, 0, v_s_430_);
+lean_ctor_set(v___x_431_, 1, v___x_429_);
+return v___x_431_;
+}
+}
+static lean_object* _init_l_String_Slice_instInhabitedRevByteIterator(void){
+_start:
+{
+lean_object* v___x_432_; 
+v___x_432_ = lean_obj_once(&l_String_Slice_instInhabitedRevByteIterator___closed__0, &l_String_Slice_instInhabitedRevByteIterator___closed__0_once, _init_l_String_Slice_instInhabitedRevByteIterator___closed__0);
+return v___x_432_;
 }
 }
 LEAN_EXPORT lean_object* l_String_Slice_RevByteIterator_instIteratorUInt8OfPure___redArg___lam__0(lean_object* v_inst_433_, lean_object* v_x_434_){
@@ -2337,6 +2406,12 @@ lean_dec_ref(res);
 res = runtime_initialize_Init_Data_String_Lemmas_FindPos(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_String_Slice_instInhabitedByteIterator_default = _init_l_String_Slice_instInhabitedByteIterator_default();
+lean_mark_persistent(l_String_Slice_instInhabitedByteIterator_default);
+l_String_Slice_instInhabitedByteIterator = _init_l_String_Slice_instInhabitedByteIterator();
+lean_mark_persistent(l_String_Slice_instInhabitedByteIterator);
+l_String_Slice_instInhabitedRevByteIterator = _init_l_String_Slice_instInhabitedRevByteIterator();
+lean_mark_persistent(l_String_Slice_instInhabitedRevByteIterator);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

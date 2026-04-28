@@ -23,8 +23,8 @@ LEAN_EXPORT lean_object* l_Std_Sat_AIG_RefVec_fold_go___redArg(lean_object*, lea
 LEAN_EXPORT lean_object* l_Std_Sat_AIG_RefVec_fold_go___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Sat_AIG_RefVec_fold_go(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Sat_AIG_RefVec_fold_go___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Std_Sat_AIG_RefVec_fold___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 8, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),LEAN_SCALAR_PTR_LITERAL(1, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Std_Sat_AIG_RefVec_fold___redArg___closed__0 = (const lean_object*)&l_Std_Sat_AIG_RefVec_fold___redArg___closed__0_value;
+static lean_once_cell_t l_Std_Sat_AIG_RefVec_fold___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Sat_AIG_RefVec_fold___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Std_Sat_AIG_RefVec_fold___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Sat_AIG_RefVec_fold___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Sat_AIG_RefVec_fold(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -127,12 +127,24 @@ lean_dec_ref(v_inst_46_);
 return v_res_55_;
 }
 }
+static lean_object* _init_l_Std_Sat_AIG_RefVec_fold___redArg___closed__0(void){
+_start:
+{
+uint8_t v___x_56_; lean_object* v___x_57_; lean_object* v_acc_58_; 
+v___x_56_ = 1;
+v___x_57_ = lean_unsigned_to_nat(0u);
+v_acc_58_ = lean_alloc_ctor(0, 1, 1);
+lean_ctor_set(v_acc_58_, 0, v___x_57_);
+lean_ctor_set_uint8(v_acc_58_, sizeof(void*)*1, v___x_56_);
+return v_acc_58_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Sat_AIG_RefVec_fold___redArg(lean_object* v_len_59_, lean_object* v_aig_60_, lean_object* v_vec_61_, lean_object* v_func_62_){
 _start:
 {
 lean_object* v___x_63_; lean_object* v_acc_64_; lean_object* v___x_65_; 
 v___x_63_ = lean_unsigned_to_nat(0u);
-v_acc_64_ = ((lean_object*)(l_Std_Sat_AIG_RefVec_fold___redArg___closed__0));
+v_acc_64_ = lean_obj_once(&l_Std_Sat_AIG_RefVec_fold___redArg___closed__0, &l_Std_Sat_AIG_RefVec_fold___redArg___closed__0_once, _init_l_Std_Sat_AIG_RefVec_fold___redArg___closed__0);
 v___x_65_ = l_Std_Sat_AIG_RefVec_fold_go___redArg(v_aig_60_, v_acc_64_, v___x_63_, v_len_59_, v_vec_61_, v_func_62_);
 return v___x_65_;
 }

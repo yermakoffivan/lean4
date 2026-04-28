@@ -20,13 +20,12 @@ lean_object* l_Lean_Name_mkStr2(lean_object*, lean_object*);
 lean_object* l_Lean_mkTagDeclarationExtension(lean_object*, lean_object*);
 uint8_t l_Lean_TagDeclarationExtension_isTagged(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_TagDeclarationExtension_tag(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Lean_Modifiers_0__Lean_initFn___closed__0_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Lean"};
-static const lean_object* l___private_Lean_Modifiers_0__Lean_initFn___closed__0_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Modifiers_0__Lean_initFn___closed__0_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2__value;
-static const lean_string_object l___private_Lean_Modifiers_0__Lean_initFn___closed__1_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 13, .m_capacity = 13, .m_length = 12, .m_data = "protectedExt"};
-static const lean_object* l___private_Lean_Modifiers_0__Lean_initFn___closed__1_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Modifiers_0__Lean_initFn___closed__1_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2__value;
-static const lean_ctor_object l___private_Lean_Modifiers_0__Lean_initFn___closed__2_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2__value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l___private_Lean_Modifiers_0__Lean_initFn___closed__0_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2__value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l___private_Lean_Modifiers_0__Lean_initFn___closed__2_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2__value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Lean_Modifiers_0__Lean_initFn___closed__2_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2__value_aux_0),((lean_object*)&l___private_Lean_Modifiers_0__Lean_initFn___closed__1_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2__value),LEAN_SCALAR_PTR_LITERAL(19, 46, 162, 33, 14, 69, 149, 205)}};
-static const lean_object* l___private_Lean_Modifiers_0__Lean_initFn___closed__2_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2_ = (const lean_object*)&l___private_Lean_Modifiers_0__Lean_initFn___closed__2_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2__value;
+static lean_once_cell_t l___private_Lean_Modifiers_0__Lean_initFn___closed__0_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Modifiers_0__Lean_initFn___closed__0_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Modifiers_0__Lean_initFn___closed__1_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Modifiers_0__Lean_initFn___closed__1_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2_;
+static lean_once_cell_t l___private_Lean_Modifiers_0__Lean_initFn___closed__2_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2__once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Lean_Modifiers_0__Lean_initFn___closed__2_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2_;
 LEAN_EXPORT lean_object* l___private_Lean_Modifiers_0__Lean_initFn_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2_();
 LEAN_EXPORT lean_object* l___private_Lean_Modifiers_0__Lean_initFn_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2____boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_protectedExt;
@@ -35,11 +34,37 @@ LEAN_EXPORT uint8_t l_Lean_isProtected(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_isProtected___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_mkPrivateName(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_mkPrivateName___boxed(lean_object*, lean_object*);
+static lean_object* _init_l___private_Lean_Modifiers_0__Lean_initFn___closed__0_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_1_; 
+v___x_1_ = lean_mk_string_unchecked("Lean", 4, 4);
+return v___x_1_;
+}
+}
+static lean_object* _init_l___private_Lean_Modifiers_0__Lean_initFn___closed__1_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_2_; 
+v___x_2_ = lean_mk_string_unchecked("protectedExt", 12, 12);
+return v___x_2_;
+}
+}
+static lean_object* _init_l___private_Lean_Modifiers_0__Lean_initFn___closed__2_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2_(void){
+_start:
+{
+lean_object* v___x_3_; lean_object* v___x_4_; lean_object* v___x_5_; 
+v___x_3_ = lean_obj_once(&l___private_Lean_Modifiers_0__Lean_initFn___closed__1_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2_, &l___private_Lean_Modifiers_0__Lean_initFn___closed__1_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2__once, _init_l___private_Lean_Modifiers_0__Lean_initFn___closed__1_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2_);
+v___x_4_ = lean_obj_once(&l___private_Lean_Modifiers_0__Lean_initFn___closed__0_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2_, &l___private_Lean_Modifiers_0__Lean_initFn___closed__0_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2__once, _init_l___private_Lean_Modifiers_0__Lean_initFn___closed__0_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2_);
+v___x_5_ = l_Lean_Name_mkStr2(v___x_4_, v___x_3_);
+return v___x_5_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Lean_Modifiers_0__Lean_initFn_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2_(){
 _start:
 {
 lean_object* v___x_7_; lean_object* v___x_8_; lean_object* v___x_9_; 
-v___x_7_ = ((lean_object*)(l___private_Lean_Modifiers_0__Lean_initFn___closed__2_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2_));
+v___x_7_ = lean_obj_once(&l___private_Lean_Modifiers_0__Lean_initFn___closed__2_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2_, &l___private_Lean_Modifiers_0__Lean_initFn___closed__2_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2__once, _init_l___private_Lean_Modifiers_0__Lean_initFn___closed__2_00___x40_Lean_Modifiers_2938752216____hygCtx___hyg_2_);
 v___x_8_ = lean_box(2);
 v___x_9_ = l_Lean_mkTagDeclarationExtension(v___x_7_, v___x_8_);
 return v___x_9_;

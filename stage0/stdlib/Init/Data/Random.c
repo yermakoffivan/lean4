@@ -39,30 +39,30 @@ LEAN_EXPORT lean_object* l_mkStdGen___boxed(lean_object*);
 static lean_once_cell_t l_instInhabitedStdGen___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_instInhabitedStdGen___closed__0;
 LEAN_EXPORT lean_object* l_instInhabitedStdGen;
-static const lean_ctor_object l_stdRange___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(1) << 1) | 1)),((lean_object*)(((size_t)(2147483562) << 1) | 1))}};
-static const lean_object* l_stdRange___closed__0 = (const lean_object*)&l_stdRange___closed__0_value;
-LEAN_EXPORT const lean_object* l_stdRange = (const lean_object*)&l_stdRange___closed__0_value;
-static const lean_string_object l_instReprStdGen___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 1, .m_data = "⟨"};
-static const lean_object* l_instReprStdGen___lam__0___closed__0 = (const lean_object*)&l_instReprStdGen___lam__0___closed__0_value;
-static const lean_string_object l_instReprStdGen___lam__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = ", "};
-static const lean_object* l_instReprStdGen___lam__0___closed__1 = (const lean_object*)&l_instReprStdGen___lam__0___closed__1_value;
-static const lean_ctor_object l_instReprStdGen___lam__0___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_instReprStdGen___lam__0___closed__1_value)}};
-static const lean_object* l_instReprStdGen___lam__0___closed__2 = (const lean_object*)&l_instReprStdGen___lam__0___closed__2_value;
-static const lean_string_object l_instReprStdGen___lam__0___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 1, .m_data = "⟩"};
-static const lean_object* l_instReprStdGen___lam__0___closed__3 = (const lean_object*)&l_instReprStdGen___lam__0___closed__3_value;
+static lean_once_cell_t l_stdRange___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_stdRange___closed__0;
+LEAN_EXPORT lean_object* l_stdRange;
+static lean_once_cell_t l_instReprStdGen___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instReprStdGen___lam__0___closed__0;
+static lean_once_cell_t l_instReprStdGen___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instReprStdGen___lam__0___closed__1;
+static lean_once_cell_t l_instReprStdGen___lam__0___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instReprStdGen___lam__0___closed__2;
+static lean_once_cell_t l_instReprStdGen___lam__0___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instReprStdGen___lam__0___closed__3;
 static lean_once_cell_t l_instReprStdGen___lam__0___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_instReprStdGen___lam__0___closed__4;
 static lean_once_cell_t l_instReprStdGen___lam__0___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_instReprStdGen___lam__0___closed__5;
-static const lean_ctor_object l_instReprStdGen___lam__0___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_instReprStdGen___lam__0___closed__0_value)}};
-static const lean_object* l_instReprStdGen___lam__0___closed__6 = (const lean_object*)&l_instReprStdGen___lam__0___closed__6_value;
-static const lean_ctor_object l_instReprStdGen___lam__0___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_instReprStdGen___lam__0___closed__3_value)}};
-static const lean_object* l_instReprStdGen___lam__0___closed__7 = (const lean_object*)&l_instReprStdGen___lam__0___closed__7_value;
+static lean_once_cell_t l_instReprStdGen___lam__0___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instReprStdGen___lam__0___closed__6;
+static lean_once_cell_t l_instReprStdGen___lam__0___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instReprStdGen___lam__0___closed__7;
 LEAN_EXPORT lean_object* l_instReprStdGen___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instReprStdGen___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instReprStdGen___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instReprStdGen___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instReprStdGen___closed__0 = (const lean_object*)&l_instReprStdGen___closed__0_value;
-LEAN_EXPORT const lean_object* l_instReprStdGen = (const lean_object*)&l_instReprStdGen___closed__0_value;
+static lean_once_cell_t l_instReprStdGen___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instReprStdGen___closed__0;
+LEAN_EXPORT lean_object* l_instReprStdGen;
 static lean_once_cell_t l_stdNext___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_stdNext___closed__0;
 static lean_once_cell_t l_stdNext___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -89,15 +89,15 @@ LEAN_EXPORT lean_object* l_stdNext(lean_object*);
 LEAN_EXPORT lean_object* l_stdSplit(lean_object*);
 LEAN_EXPORT lean_object* l_instRandomGenStdGen___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_instRandomGenStdGen___lam__0___boxed(lean_object*);
-static const lean_closure_object l_instRandomGenStdGen___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instRandomGenStdGen___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instRandomGenStdGen___closed__0 = (const lean_object*)&l_instRandomGenStdGen___closed__0_value;
-static const lean_closure_object l_instRandomGenStdGen___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_stdNext, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instRandomGenStdGen___closed__1 = (const lean_object*)&l_instRandomGenStdGen___closed__1_value;
-static const lean_closure_object l_instRandomGenStdGen___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_stdSplit, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instRandomGenStdGen___closed__2 = (const lean_object*)&l_instRandomGenStdGen___closed__2_value;
-static const lean_ctor_object l_instRandomGenStdGen___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 0}, .m_objs = {((lean_object*)&l_instRandomGenStdGen___closed__0_value),((lean_object*)&l_instRandomGenStdGen___closed__1_value),((lean_object*)&l_instRandomGenStdGen___closed__2_value)}};
-static const lean_object* l_instRandomGenStdGen___closed__3 = (const lean_object*)&l_instRandomGenStdGen___closed__3_value;
-LEAN_EXPORT const lean_object* l_instRandomGenStdGen = (const lean_object*)&l_instRandomGenStdGen___closed__3_value;
+static lean_once_cell_t l_instRandomGenStdGen___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instRandomGenStdGen___closed__0;
+static lean_once_cell_t l_instRandomGenStdGen___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instRandomGenStdGen___closed__1;
+static lean_once_cell_t l_instRandomGenStdGen___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instRandomGenStdGen___closed__2;
+static lean_once_cell_t l_instRandomGenStdGen___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instRandomGenStdGen___closed__3;
+LEAN_EXPORT lean_object* l_instRandomGenStdGen;
 LEAN_EXPORT lean_object* l___private_Init_Data_Random_0__randNatAux___redArg(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Random_0__randNatAux___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Random_0__randNatAux(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -166,11 +166,65 @@ v___x_15_ = lean_obj_once(&l_instInhabitedStdGen___closed__0, &l_instInhabitedSt
 return v___x_15_;
 }
 }
+static lean_object* _init_l_stdRange___closed__0(void){
+_start:
+{
+lean_object* v___x_16_; lean_object* v___x_17_; lean_object* v___x_18_; 
+v___x_16_ = lean_unsigned_to_nat(2147483562u);
+v___x_17_ = lean_unsigned_to_nat(1u);
+v___x_18_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_18_, 0, v___x_17_);
+lean_ctor_set(v___x_18_, 1, v___x_16_);
+return v___x_18_;
+}
+}
+static lean_object* _init_l_stdRange(void){
+_start:
+{
+lean_object* v___x_19_; 
+v___x_19_ = lean_obj_once(&l_stdRange___closed__0, &l_stdRange___closed__0_once, _init_l_stdRange___closed__0);
+return v___x_19_;
+}
+}
+static lean_object* _init_l_instReprStdGen___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_20_; 
+v___x_20_ = lean_mk_string_unchecked("⟨", 3, 1);
+return v___x_20_;
+}
+}
+static lean_object* _init_l_instReprStdGen___lam__0___closed__1(void){
+_start:
+{
+lean_object* v___x_21_; 
+v___x_21_ = lean_mk_string_unchecked(", ", 2, 2);
+return v___x_21_;
+}
+}
+static lean_object* _init_l_instReprStdGen___lam__0___closed__2(void){
+_start:
+{
+lean_object* v___x_22_; lean_object* v___x_23_; 
+v___x_22_ = lean_obj_once(&l_instReprStdGen___lam__0___closed__1, &l_instReprStdGen___lam__0___closed__1_once, _init_l_instReprStdGen___lam__0___closed__1);
+v___x_23_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_23_, 0, v___x_22_);
+return v___x_23_;
+}
+}
+static lean_object* _init_l_instReprStdGen___lam__0___closed__3(void){
+_start:
+{
+lean_object* v___x_24_; 
+v___x_24_ = lean_mk_string_unchecked("⟩", 3, 1);
+return v___x_24_;
+}
+}
 static lean_object* _init_l_instReprStdGen___lam__0___closed__4(void){
 _start:
 {
 lean_object* v___x_25_; lean_object* v___x_26_; 
-v___x_25_ = ((lean_object*)(l_instReprStdGen___lam__0___closed__0));
+v___x_25_ = lean_obj_once(&l_instReprStdGen___lam__0___closed__0, &l_instReprStdGen___lam__0___closed__0_once, _init_l_instReprStdGen___lam__0___closed__0);
 v___x_26_ = lean_string_length(v___x_25_);
 return v___x_26_;
 }
@@ -182,6 +236,26 @@ lean_object* v___x_27_; lean_object* v___x_28_;
 v___x_27_ = lean_obj_once(&l_instReprStdGen___lam__0___closed__4, &l_instReprStdGen___lam__0___closed__4_once, _init_l_instReprStdGen___lam__0___closed__4);
 v___x_28_ = lean_nat_to_int(v___x_27_);
 return v___x_28_;
+}
+}
+static lean_object* _init_l_instReprStdGen___lam__0___closed__6(void){
+_start:
+{
+lean_object* v___x_29_; lean_object* v___x_30_; 
+v___x_29_ = lean_obj_once(&l_instReprStdGen___lam__0___closed__0, &l_instReprStdGen___lam__0___closed__0_once, _init_l_instReprStdGen___lam__0___closed__0);
+v___x_30_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_30_, 0, v___x_29_);
+return v___x_30_;
+}
+}
+static lean_object* _init_l_instReprStdGen___lam__0___closed__7(void){
+_start:
+{
+lean_object* v___x_31_; lean_object* v___x_32_; 
+v___x_31_ = lean_obj_once(&l_instReprStdGen___lam__0___closed__3, &l_instReprStdGen___lam__0___closed__3_once, _init_l_instReprStdGen___lam__0___closed__3);
+v___x_32_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_32_, 0, v___x_31_);
+return v___x_32_;
 }
 }
 LEAN_EXPORT lean_object* l_instReprStdGen___lam__0(lean_object* v_x_33_, lean_object* v_x_34_){
@@ -212,7 +286,7 @@ lean_object* v___x_40_; lean_object* v___x_41_; lean_object* v___x_42_; lean_obj
 v___x_40_ = l_Nat_reprFast(v_s1_35_);
 v___x_41_ = lean_alloc_ctor(3, 1, 0);
 lean_ctor_set(v___x_41_, 0, v___x_40_);
-v___x_42_ = ((lean_object*)(l_instReprStdGen___lam__0___closed__2));
+v___x_42_ = lean_obj_once(&l_instReprStdGen___lam__0___closed__2, &l_instReprStdGen___lam__0___closed__2_once, _init_l_instReprStdGen___lam__0___closed__2);
 if (v_isShared_39_ == 0)
 {
 lean_ctor_set_tag(v___x_38_, 5);
@@ -240,11 +314,11 @@ v___x_47_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_47_, 0, v___x_44_);
 lean_ctor_set(v___x_47_, 1, v___x_46_);
 v___x_48_ = lean_obj_once(&l_instReprStdGen___lam__0___closed__5, &l_instReprStdGen___lam__0___closed__5_once, _init_l_instReprStdGen___lam__0___closed__5);
-v___x_49_ = ((lean_object*)(l_instReprStdGen___lam__0___closed__6));
+v___x_49_ = lean_obj_once(&l_instReprStdGen___lam__0___closed__6, &l_instReprStdGen___lam__0___closed__6_once, _init_l_instReprStdGen___lam__0___closed__6);
 v___x_50_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_50_, 0, v___x_49_);
 lean_ctor_set(v___x_50_, 1, v___x_47_);
-v___x_51_ = ((lean_object*)(l_instReprStdGen___lam__0___closed__7));
+v___x_51_ = lean_obj_once(&l_instReprStdGen___lam__0___closed__7, &l_instReprStdGen___lam__0___closed__7_once, _init_l_instReprStdGen___lam__0___closed__7);
 v___x_52_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_52_, 0, v___x_50_);
 lean_ctor_set(v___x_52_, 1, v___x_51_);
@@ -267,6 +341,22 @@ lean_object* v_res_60_;
 v_res_60_ = l_instReprStdGen___lam__0(v_x_58_, v_x_59_);
 lean_dec(v_x_59_);
 return v_res_60_;
+}
+}
+static lean_object* _init_l_instReprStdGen___closed__0(void){
+_start:
+{
+lean_object* v___f_61_; 
+v___f_61_ = lean_alloc_closure((void*)(l_instReprStdGen___lam__0___boxed), 2, 0);
+return v___f_61_;
+}
+}
+static lean_object* _init_l_instReprStdGen(void){
+_start:
+{
+lean_object* v___f_62_; 
+v___f_62_ = lean_obj_once(&l_instReprStdGen___closed__0, &l_instReprStdGen___closed__0_once, _init_l_instReprStdGen___closed__0);
+return v___f_62_;
 }
 }
 static lean_object* _init_l_stdNext___closed__0(void){
@@ -655,7 +745,7 @@ LEAN_EXPORT lean_object* l_instRandomGenStdGen___lam__0(lean_object* v_x_182_){
 _start:
 {
 lean_object* v___x_183_; 
-v___x_183_ = ((lean_object*)(l_stdRange));
+v___x_183_ = l_stdRange;
 return v___x_183_;
 }
 }
@@ -666,6 +756,52 @@ lean_object* v_res_185_;
 v_res_185_ = l_instRandomGenStdGen___lam__0(v_x_184_);
 lean_dec_ref(v_x_184_);
 return v_res_185_;
+}
+}
+static lean_object* _init_l_instRandomGenStdGen___closed__0(void){
+_start:
+{
+lean_object* v___f_186_; 
+v___f_186_ = lean_alloc_closure((void*)(l_instRandomGenStdGen___lam__0___boxed), 1, 0);
+return v___f_186_;
+}
+}
+static lean_object* _init_l_instRandomGenStdGen___closed__1(void){
+_start:
+{
+lean_object* v___x_187_; 
+v___x_187_ = lean_alloc_closure((void*)(l_stdNext), 1, 0);
+return v___x_187_;
+}
+}
+static lean_object* _init_l_instRandomGenStdGen___closed__2(void){
+_start:
+{
+lean_object* v___x_188_; 
+v___x_188_ = lean_alloc_closure((void*)(l_stdSplit), 1, 0);
+return v___x_188_;
+}
+}
+static lean_object* _init_l_instRandomGenStdGen___closed__3(void){
+_start:
+{
+lean_object* v___x_189_; lean_object* v___x_190_; lean_object* v___f_191_; lean_object* v___x_192_; 
+v___x_189_ = lean_obj_once(&l_instRandomGenStdGen___closed__2, &l_instRandomGenStdGen___closed__2_once, _init_l_instRandomGenStdGen___closed__2);
+v___x_190_ = lean_obj_once(&l_instRandomGenStdGen___closed__1, &l_instRandomGenStdGen___closed__1_once, _init_l_instRandomGenStdGen___closed__1);
+v___f_191_ = lean_obj_once(&l_instRandomGenStdGen___closed__0, &l_instRandomGenStdGen___closed__0_once, _init_l_instRandomGenStdGen___closed__0);
+v___x_192_ = lean_alloc_ctor(0, 3, 0);
+lean_ctor_set(v___x_192_, 0, v___f_191_);
+lean_ctor_set(v___x_192_, 1, v___x_190_);
+lean_ctor_set(v___x_192_, 2, v___x_189_);
+return v___x_192_;
+}
+}
+static lean_object* _init_l_instRandomGenStdGen(void){
+_start:
+{
+lean_object* v___x_193_; 
+v___x_193_ = lean_obj_once(&l_instRandomGenStdGen___closed__3, &l_instRandomGenStdGen___closed__3_once, _init_l_instRandomGenStdGen___closed__3);
+return v___x_193_;
 }
 }
 LEAN_EXPORT lean_object* l___private_Init_Data_Random_0__randNatAux___redArg(lean_object* v_inst_194_, lean_object* v_genLo_195_, lean_object* v_genMag_196_, lean_object* v_x_197_, lean_object* v_x_198_){
@@ -1238,7 +1374,7 @@ goto v___jp_413_;
 v___jp_385_:
 {
 lean_object* v___x_388_; lean_object* v_fst_389_; lean_object* v_snd_390_; lean_object* v___x_391_; lean_object* v___x_392_; lean_object* v_genMag_393_; lean_object* v_q_394_; lean_object* v___x_395_; lean_object* v_k_396_; lean_object* v_tgtMag_397_; lean_object* v___x_398_; lean_object* v___x_399_; lean_object* v___x_400_; lean_object* v_fst_401_; lean_object* v_snd_402_; lean_object* v___x_404_; uint8_t v_isShared_405_; uint8_t v_isSharedCheck_411_; 
-v___x_388_ = ((lean_object*)(l_stdRange));
+v___x_388_ = l_stdRange;
 v_fst_389_ = lean_ctor_get(v___x_388_, 0);
 v_snd_390_ = lean_ctor_get(v___x_388_, 1);
 v___x_391_ = lean_nat_sub(v_snd_390_, v_fst_389_);
@@ -1371,6 +1507,12 @@ if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 l_instInhabitedStdGen = _init_l_instInhabitedStdGen();
 lean_mark_persistent(l_instInhabitedStdGen);
+l_stdRange = _init_l_stdRange();
+lean_mark_persistent(l_stdRange);
+l_instReprStdGen = _init_l_instReprStdGen();
+lean_mark_persistent(l_instReprStdGen);
+l_instRandomGenStdGen = _init_l_instRandomGenStdGen();
+lean_mark_persistent(l_instRandomGenStdGen);
 res = l___private_Init_Data_Random_0__initFn_00___x40_Init_Data_Random_2456098205____hygCtx___hyg_2_();
 if (lean_io_result_is_error(res)) return res;
 l_IO_stdGenRef = lean_io_result_get_value(res);

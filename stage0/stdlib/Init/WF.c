@@ -46,8 +46,8 @@ LEAN_EXPORT lean_object* l_WellFounded_Nat_fix_go___redArg___lam__0___boxed(lean
 LEAN_EXPORT lean_object* l_WellFounded_Nat_fix_go___redArg___lam__1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_WellFounded_Nat_fix_go___redArg___lam__2(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_WellFounded_Nat_fix_go___redArg___lam__2___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_WellFounded_Nat_fix_go___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_WellFounded_Nat_fix_go___redArg___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_WellFounded_Nat_fix_go___redArg___closed__0 = (const lean_object*)&l_WellFounded_Nat_fix_go___redArg___closed__0_value;
+static lean_once_cell_t l_WellFounded_Nat_fix_go___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_WellFounded_Nat_fix_go___redArg___closed__0;
 LEAN_EXPORT lean_object* l_WellFounded_Nat_fix_go___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_WellFounded_Nat_fix_go___redArg___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_WellFounded_Nat_fix_go(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -356,11 +356,19 @@ lean_dec(v_x_142_);
 return v_res_146_;
 }
 }
+static lean_object* _init_l_WellFounded_Nat_fix_go___redArg___closed__0(void){
+_start:
+{
+lean_object* v___f_147_; 
+v___f_147_ = lean_alloc_closure((void*)(l_WellFounded_Nat_fix_go___redArg___lam__0___boxed), 2, 0);
+return v___f_147_;
+}
+}
 LEAN_EXPORT lean_object* l_WellFounded_Nat_fix_go___redArg(lean_object* v_F_148_, lean_object* v_fuel_149_, lean_object* v_x_150_){
 _start:
 {
 lean_object* v___f_151_; lean_object* v___f_152_; lean_object* v___x_10__overap_153_; lean_object* v___x_154_; 
-v___f_151_ = ((lean_object*)(l_WellFounded_Nat_fix_go___redArg___closed__0));
+v___f_151_ = lean_obj_once(&l_WellFounded_Nat_fix_go___redArg___closed__0, &l_WellFounded_Nat_fix_go___redArg___closed__0_once, _init_l_WellFounded_Nat_fix_go___redArg___closed__0);
 v___f_152_ = lean_alloc_closure((void*)(l_WellFounded_Nat_fix_go___redArg___lam__2___boxed), 5, 1);
 lean_closure_set(v___f_152_, 0, v_F_148_);
 v___x_10__overap_153_ = l_Nat_recCompiled___redArg(v___f_151_, v___f_152_, v_fuel_149_);

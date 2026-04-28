@@ -28,8 +28,8 @@ LEAN_EXPORT lean_object* l_Std_Http_Extensions_compareName___boxed(lean_object*,
 LEAN_EXPORT lean_object* l_Std_Http_instInhabitedExtensions_default;
 LEAN_EXPORT lean_object* l_Std_Http_instInhabitedExtensions;
 LEAN_EXPORT lean_object* l_Std_Http_Extensions_empty;
-static const lean_closure_object l_Std_Http_Extensions_get___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Extensions_compareName___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Extensions_get___redArg___closed__0 = (const lean_object*)&l_Std_Http_Extensions_get___redArg___closed__0_value;
+static lean_once_cell_t l_Std_Http_Extensions_get___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Extensions_get___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Std_Http_Extensions_get___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Extensions_get(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Extensions_insert___redArg(lean_object*, lean_object*, lean_object*);
@@ -203,11 +203,19 @@ v___x_32_ = lean_box(1);
 return v___x_32_;
 }
 }
+static lean_object* _init_l_Std_Http_Extensions_get___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_33_; 
+v___x_33_ = lean_alloc_closure((void*)(l_Std_Http_Extensions_compareName___boxed), 2, 0);
+return v___x_33_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Http_Extensions_get___redArg(lean_object* v_x_34_, lean_object* v_inst_35_){
 _start:
 {
 lean_object* v___x_36_; lean_object* v___x_37_; 
-v___x_36_ = ((lean_object*)(l_Std_Http_Extensions_get___redArg___closed__0));
+v___x_36_ = lean_obj_once(&l_Std_Http_Extensions_get___redArg___closed__0, &l_Std_Http_Extensions_get___redArg___closed__0_once, _init_l_Std_Http_Extensions_get___redArg___closed__0);
 lean_inc(v_inst_35_);
 v___x_37_ = l_Std_DTreeMap_Internal_Impl_Const_get_x3f___redArg(v___x_36_, v_x_34_, v_inst_35_);
 if (lean_obj_tag(v___x_37_) == 0)
@@ -234,7 +242,7 @@ LEAN_EXPORT lean_object* l_Std_Http_Extensions_get(lean_object* v_x_41_, lean_ob
 _start:
 {
 lean_object* v___x_44_; lean_object* v___x_45_; 
-v___x_44_ = ((lean_object*)(l_Std_Http_Extensions_get___redArg___closed__0));
+v___x_44_ = lean_obj_once(&l_Std_Http_Extensions_get___redArg___closed__0, &l_Std_Http_Extensions_get___redArg___closed__0_once, _init_l_Std_Http_Extensions_get___redArg___closed__0);
 lean_inc(v_inst_43_);
 v___x_45_ = l_Std_DTreeMap_Internal_Impl_Const_get_x3f___redArg(v___x_44_, v_x_41_, v_inst_43_);
 if (lean_obj_tag(v___x_45_) == 0)
@@ -264,7 +272,7 @@ lean_object* v_dyn_52_; lean_object* v___x_53_; lean_object* v___x_54_; lean_obj
 v_dyn_52_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v_dyn_52_, 0, v_inst_50_);
 lean_ctor_set(v_dyn_52_, 1, v_data_51_);
-v___x_53_ = ((lean_object*)(l_Std_Http_Extensions_get___redArg___closed__0));
+v___x_53_ = lean_obj_once(&l_Std_Http_Extensions_get___redArg___closed__0, &l_Std_Http_Extensions_get___redArg___closed__0_once, _init_l_Std_Http_Extensions_get___redArg___closed__0);
 v___x_54_ = l___private_Init_Dynamic_0__Dynamic_typeNameImpl(v_dyn_52_);
 v___x_55_ = l_Std_DTreeMap_Internal_Impl_insert___redArg(v___x_53_, v___x_54_, v_dyn_52_, v_x_49_);
 return v___x_55_;
@@ -277,7 +285,7 @@ lean_object* v_dyn_60_; lean_object* v___x_61_; lean_object* v___x_62_; lean_obj
 v_dyn_60_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v_dyn_60_, 0, v_inst_58_);
 lean_ctor_set(v_dyn_60_, 1, v_data_59_);
-v___x_61_ = ((lean_object*)(l_Std_Http_Extensions_get___redArg___closed__0));
+v___x_61_ = lean_obj_once(&l_Std_Http_Extensions_get___redArg___closed__0, &l_Std_Http_Extensions_get___redArg___closed__0_once, _init_l_Std_Http_Extensions_get___redArg___closed__0);
 v___x_62_ = l___private_Init_Dynamic_0__Dynamic_typeNameImpl(v_dyn_60_);
 v___x_63_ = l_Std_DTreeMap_Internal_Impl_insert___redArg(v___x_61_, v___x_62_, v_dyn_60_, v_x_57_);
 return v___x_63_;
@@ -287,7 +295,7 @@ LEAN_EXPORT lean_object* l_Std_Http_Extensions_remove___redArg(lean_object* v_x_
 _start:
 {
 lean_object* v___x_66_; lean_object* v___x_67_; 
-v___x_66_ = ((lean_object*)(l_Std_Http_Extensions_get___redArg___closed__0));
+v___x_66_ = lean_obj_once(&l_Std_Http_Extensions_get___redArg___closed__0, &l_Std_Http_Extensions_get___redArg___closed__0_once, _init_l_Std_Http_Extensions_get___redArg___closed__0);
 v___x_67_ = l_Std_DTreeMap_Internal_Impl_erase___redArg(v___x_66_, v_inst_65_, v_x_64_);
 return v___x_67_;
 }
@@ -296,7 +304,7 @@ LEAN_EXPORT lean_object* l_Std_Http_Extensions_remove(lean_object* v_x_68_, lean
 _start:
 {
 lean_object* v___x_71_; lean_object* v___x_72_; 
-v___x_71_ = ((lean_object*)(l_Std_Http_Extensions_get___redArg___closed__0));
+v___x_71_ = lean_obj_once(&l_Std_Http_Extensions_get___redArg___closed__0, &l_Std_Http_Extensions_get___redArg___closed__0_once, _init_l_Std_Http_Extensions_get___redArg___closed__0);
 v___x_72_ = l_Std_DTreeMap_Internal_Impl_erase___redArg(v___x_71_, v_inst_70_, v_x_68_);
 return v___x_72_;
 }
@@ -305,7 +313,7 @@ LEAN_EXPORT uint8_t l_Std_Http_Extensions_contains___redArg(lean_object* v_x_73_
 _start:
 {
 lean_object* v___x_75_; uint8_t v___x_76_; 
-v___x_75_ = ((lean_object*)(l_Std_Http_Extensions_get___redArg___closed__0));
+v___x_75_ = lean_obj_once(&l_Std_Http_Extensions_get___redArg___closed__0, &l_Std_Http_Extensions_get___redArg___closed__0_once, _init_l_Std_Http_Extensions_get___redArg___closed__0);
 v___x_76_ = l_Std_DTreeMap_Internal_Impl_contains___redArg(v___x_75_, v_inst_74_, v_x_73_);
 return v___x_76_;
 }
@@ -323,7 +331,7 @@ LEAN_EXPORT uint8_t l_Std_Http_Extensions_contains(lean_object* v_x_81_, lean_ob
 _start:
 {
 lean_object* v___x_84_; uint8_t v___x_85_; 
-v___x_84_ = ((lean_object*)(l_Std_Http_Extensions_get___redArg___closed__0));
+v___x_84_ = lean_obj_once(&l_Std_Http_Extensions_get___redArg___closed__0, &l_Std_Http_Extensions_get___redArg___closed__0_once, _init_l_Std_Http_Extensions_get___redArg___closed__0);
 v___x_85_ = l_Std_DTreeMap_Internal_Impl_contains___redArg(v___x_84_, v_inst_83_, v_x_81_);
 return v___x_85_;
 }

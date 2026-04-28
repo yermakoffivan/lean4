@@ -39,8 +39,8 @@ LEAN_EXPORT lean_object* l_Lean_throwError___at___00Lean_Elab_Tactic_Grind_elabA
 LEAN_EXPORT lean_object* l_Lean_throwError___at___00Lean_Elab_Tactic_Grind_elabAnchorRef_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 static lean_once_cell_t l_Lean_Elab_Tactic_Grind_elabAnchorRef___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Elab_Tactic_Grind_elabAnchorRef___closed__0;
-static const lean_string_object l_Lean_Elab_Tactic_Grind_elabAnchorRef___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 33, .m_capacity = 33, .m_length = 32, .m_data = "invalid anchor, value is too big"};
-static const lean_object* l_Lean_Elab_Tactic_Grind_elabAnchorRef___closed__1 = (const lean_object*)&l_Lean_Elab_Tactic_Grind_elabAnchorRef___closed__1_value;
+static lean_once_cell_t l_Lean_Elab_Tactic_Grind_elabAnchorRef___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Elab_Tactic_Grind_elabAnchorRef___closed__1;
 static lean_once_cell_t l_Lean_Elab_Tactic_Grind_elabAnchorRef___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Elab_Tactic_Grind_elabAnchorRef___closed__2;
 LEAN_EXPORT lean_object* l_Lean_Elab_Tactic_Grind_elabAnchorRef(lean_object*, lean_object*, lean_object*);
@@ -232,11 +232,19 @@ v___x_57_ = lean_cstr_to_nat("18446744073709551616");
 return v___x_57_;
 }
 }
+static lean_object* _init_l_Lean_Elab_Tactic_Grind_elabAnchorRef___closed__1(void){
+_start:
+{
+lean_object* v___x_58_; 
+v___x_58_ = lean_mk_string_unchecked("invalid anchor, value is too big", 32, 32);
+return v___x_58_;
+}
+}
 static lean_object* _init_l_Lean_Elab_Tactic_Grind_elabAnchorRef___closed__2(void){
 _start:
 {
 lean_object* v___x_59_; lean_object* v___x_60_; 
-v___x_59_ = ((lean_object*)(l_Lean_Elab_Tactic_Grind_elabAnchorRef___closed__1));
+v___x_59_ = lean_obj_once(&l_Lean_Elab_Tactic_Grind_elabAnchorRef___closed__1, &l_Lean_Elab_Tactic_Grind_elabAnchorRef___closed__1_once, _init_l_Lean_Elab_Tactic_Grind_elabAnchorRef___closed__1);
 v___x_60_ = l_Lean_stringToMessageData(v___x_59_);
 return v___x_60_;
 }

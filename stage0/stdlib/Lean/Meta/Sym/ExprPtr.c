@@ -25,12 +25,12 @@ LEAN_EXPORT uint64_t l_Lean_Meta_Sym_hashPtrExpr_unsafe__1(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_hashPtrExpr_unsafe__1___boxed(lean_object*);
 LEAN_EXPORT uint64_t l_Lean_Meta_Sym_hashPtrExpr(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_hashPtrExpr___boxed(lean_object*);
-static const lean_closure_object l_Lean_Meta_Sym_instHashableExprPtr___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_Meta_Sym_hashPtrExpr_unsafe__1___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Sym_instHashableExprPtr___closed__0 = (const lean_object*)&l_Lean_Meta_Sym_instHashableExprPtr___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Meta_Sym_instHashableExprPtr = (const lean_object*)&l_Lean_Meta_Sym_instHashableExprPtr___closed__0_value;
-static const lean_closure_object l_Lean_Meta_Sym_instBEqExprPtr___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l___private_Lean_Meta_Sym_ExprPtr_0__Lean_Meta_Sym_isSameExpr_unsafe__1___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_Meta_Sym_instBEqExprPtr___closed__0 = (const lean_object*)&l_Lean_Meta_Sym_instBEqExprPtr___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Meta_Sym_instBEqExprPtr = (const lean_object*)&l_Lean_Meta_Sym_instBEqExprPtr___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Sym_instHashableExprPtr___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_instHashableExprPtr___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Meta_Sym_instHashableExprPtr;
+static lean_once_cell_t l_Lean_Meta_Sym_instBEqExprPtr___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_instBEqExprPtr___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Meta_Sym_instBEqExprPtr;
 LEAN_EXPORT uint8_t l___private_Lean_Meta_Sym_ExprPtr_0__Lean_Meta_Sym_isSameExpr_unsafe__1(lean_object* v_a_1_, lean_object* v_b_2_){
 _start:
 {
@@ -110,6 +110,38 @@ v_r_29_ = lean_box_uint64(v_res_28_);
 return v_r_29_;
 }
 }
+static lean_object* _init_l_Lean_Meta_Sym_instHashableExprPtr___closed__0(void){
+_start:
+{
+lean_object* v___f_30_; 
+v___f_30_ = lean_alloc_closure((void*)(l_Lean_Meta_Sym_hashPtrExpr_unsafe__1___boxed), 1, 0);
+return v___f_30_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Sym_instHashableExprPtr(void){
+_start:
+{
+lean_object* v___f_31_; 
+v___f_31_ = lean_obj_once(&l_Lean_Meta_Sym_instHashableExprPtr___closed__0, &l_Lean_Meta_Sym_instHashableExprPtr___closed__0_once, _init_l_Lean_Meta_Sym_instHashableExprPtr___closed__0);
+return v___f_31_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Sym_instBEqExprPtr___closed__0(void){
+_start:
+{
+lean_object* v___f_32_; 
+v___f_32_ = lean_alloc_closure((void*)(l___private_Lean_Meta_Sym_ExprPtr_0__Lean_Meta_Sym_isSameExpr_unsafe__1___boxed), 2, 0);
+return v___f_32_;
+}
+}
+static lean_object* _init_l_Lean_Meta_Sym_instBEqExprPtr(void){
+_start:
+{
+lean_object* v___f_33_; 
+v___f_33_ = lean_obj_once(&l_Lean_Meta_Sym_instBEqExprPtr___closed__0, &l_Lean_Meta_Sym_instBEqExprPtr___closed__0_once, _init_l_Lean_Meta_Sym_instBEqExprPtr___closed__0);
+return v___f_33_;
+}
+}
 lean_object* runtime_initialize_Lean_Expr(uint8_t builtin);
 static bool _G_runtime_initialized = false;
 LEAN_EXPORT lean_object* runtime_initialize_Lean_Meta_Sym_ExprPtr(uint8_t builtin) {
@@ -119,6 +151,10 @@ _G_runtime_initialized = true;
 res = runtime_initialize_Lean_Expr(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Lean_Meta_Sym_instHashableExprPtr = _init_l_Lean_Meta_Sym_instHashableExprPtr();
+lean_mark_persistent(l_Lean_Meta_Sym_instHashableExprPtr);
+l_Lean_Meta_Sym_instBEqExprPtr = _init_l_Lean_Meta_Sym_instBEqExprPtr();
+lean_mark_persistent(l_Lean_Meta_Sym_instBEqExprPtr);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

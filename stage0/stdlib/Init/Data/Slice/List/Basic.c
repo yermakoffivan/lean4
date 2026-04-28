@@ -18,10 +18,10 @@ uint8_t lean_nat_dec_lt(lean_object*, lean_object*);
 lean_object* l_List_drop___redArg(lean_object*, lean_object*);
 lean_object* lean_nat_sub(lean_object*, lean_object*);
 uint8_t lean_nat_dec_le(lean_object*, lean_object*);
-static const lean_ctor_object l_List_toSlice___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_List_toSlice___redArg___closed__0 = (const lean_object*)&l_List_toSlice___redArg___closed__0_value;
-static const lean_ctor_object l_List_toSlice___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_List_toSlice___redArg___closed__0_value)}};
-static const lean_object* l_List_toSlice___redArg___closed__1 = (const lean_object*)&l_List_toSlice___redArg___closed__1_value;
+static lean_once_cell_t l_List_toSlice___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_List_toSlice___redArg___closed__0;
+static lean_once_cell_t l_List_toSlice___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_List_toSlice___redArg___closed__1;
 LEAN_EXPORT lean_object* l_List_toSlice___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_List_toSlice___redArg___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_List_toSlice(lean_object*, lean_object*, lean_object*, lean_object*);
@@ -32,90 +32,112 @@ LEAN_EXPORT lean_object* l_List_toUnboundedSlice(lean_object*, lean_object*, lea
 LEAN_EXPORT lean_object* l_List_toUnboundedSlice___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instSliceableListNatListSlice___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instSliceableListNatListSlice___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSliceableListNatListSlice___closed__0 = (const lean_object*)&l_instSliceableListNatListSlice___closed__0_value;
+static lean_once_cell_t l_instSliceableListNatListSlice___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSliceableListNatListSlice___closed__0;
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice(lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__1___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__1___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instSliceableListNatListSlice__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instSliceableListNatListSlice__1___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSliceableListNatListSlice__1___closed__0 = (const lean_object*)&l_instSliceableListNatListSlice__1___closed__0_value;
+static lean_once_cell_t l_instSliceableListNatListSlice__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSliceableListNatListSlice__1___closed__0;
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__1(lean_object*);
-static const lean_closure_object l_instSliceableListNatListSlice__2___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_List_toUnboundedSlice___redArg___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSliceableListNatListSlice__2___closed__0 = (const lean_object*)&l_instSliceableListNatListSlice__2___closed__0_value;
+static lean_once_cell_t l_instSliceableListNatListSlice__2___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSliceableListNatListSlice__2___closed__0;
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__2(lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__3___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__3___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instSliceableListNatListSlice__3___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instSliceableListNatListSlice__3___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSliceableListNatListSlice__3___closed__0 = (const lean_object*)&l_instSliceableListNatListSlice__3___closed__0_value;
+static lean_once_cell_t l_instSliceableListNatListSlice__3___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSliceableListNatListSlice__3___closed__0;
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__3(lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__4___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__4___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instSliceableListNatListSlice__4___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instSliceableListNatListSlice__4___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSliceableListNatListSlice__4___closed__0 = (const lean_object*)&l_instSliceableListNatListSlice__4___closed__0_value;
+static lean_once_cell_t l_instSliceableListNatListSlice__4___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSliceableListNatListSlice__4___closed__0;
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__4(lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__5___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__5___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instSliceableListNatListSlice__5___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instSliceableListNatListSlice__5___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSliceableListNatListSlice__5___closed__0 = (const lean_object*)&l_instSliceableListNatListSlice__5___closed__0_value;
+static lean_once_cell_t l_instSliceableListNatListSlice__5___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSliceableListNatListSlice__5___closed__0;
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__5(lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__6___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__6___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instSliceableListNatListSlice__6___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instSliceableListNatListSlice__6___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSliceableListNatListSlice__6___closed__0 = (const lean_object*)&l_instSliceableListNatListSlice__6___closed__0_value;
+static lean_once_cell_t l_instSliceableListNatListSlice__6___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSliceableListNatListSlice__6___closed__0;
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__6(lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__7___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__7___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instSliceableListNatListSlice__7___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instSliceableListNatListSlice__7___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSliceableListNatListSlice__7___closed__0 = (const lean_object*)&l_instSliceableListNatListSlice__7___closed__0_value;
+static lean_once_cell_t l_instSliceableListNatListSlice__7___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSliceableListNatListSlice__7___closed__0;
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__7(lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__8___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__8___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instSliceableListNatListSlice__8___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instSliceableListNatListSlice__8___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSliceableListNatListSlice__8___closed__0 = (const lean_object*)&l_instSliceableListNatListSlice__8___closed__0_value;
+static lean_once_cell_t l_instSliceableListNatListSlice__8___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSliceableListNatListSlice__8___closed__0;
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__8(lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat___lam__0(lean_object*, lean_object*);
-static const lean_closure_object l_instSliceableListSliceNat___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instSliceableListSliceNat___lam__0, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSliceableListSliceNat___closed__0 = (const lean_object*)&l_instSliceableListSliceNat___closed__0_value;
+static lean_once_cell_t l_instSliceableListSliceNat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSliceableListSliceNat___closed__0;
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat(lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__1___lam__0(lean_object*, lean_object*);
-static const lean_closure_object l_instSliceableListSliceNat__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instSliceableListSliceNat__1___lam__0, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSliceableListSliceNat__1___closed__0 = (const lean_object*)&l_instSliceableListSliceNat__1___closed__0_value;
+static lean_once_cell_t l_instSliceableListSliceNat__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSliceableListSliceNat__1___closed__0;
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__1(lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__2___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__2___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instSliceableListSliceNat__2___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instSliceableListSliceNat__2___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSliceableListSliceNat__2___closed__0 = (const lean_object*)&l_instSliceableListSliceNat__2___closed__0_value;
+static lean_once_cell_t l_instSliceableListSliceNat__2___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSliceableListSliceNat__2___closed__0;
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__2(lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__3___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__3___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instSliceableListSliceNat__3___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instSliceableListSliceNat__3___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSliceableListSliceNat__3___closed__0 = (const lean_object*)&l_instSliceableListSliceNat__3___closed__0_value;
+static lean_once_cell_t l_instSliceableListSliceNat__3___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSliceableListSliceNat__3___closed__0;
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__3(lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__4___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__4___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instSliceableListSliceNat__4___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instSliceableListSliceNat__4___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSliceableListSliceNat__4___closed__0 = (const lean_object*)&l_instSliceableListSliceNat__4___closed__0_value;
+static lean_once_cell_t l_instSliceableListSliceNat__4___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSliceableListSliceNat__4___closed__0;
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__4(lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__5___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__5___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instSliceableListSliceNat__5___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instSliceableListSliceNat__5___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSliceableListSliceNat__5___closed__0 = (const lean_object*)&l_instSliceableListSliceNat__5___closed__0_value;
+static lean_once_cell_t l_instSliceableListSliceNat__5___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSliceableListSliceNat__5___closed__0;
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__5(lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__6___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__6___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instSliceableListSliceNat__6___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instSliceableListSliceNat__6___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSliceableListSliceNat__6___closed__0 = (const lean_object*)&l_instSliceableListSliceNat__6___closed__0_value;
+static lean_once_cell_t l_instSliceableListSliceNat__6___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSliceableListSliceNat__6___closed__0;
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__6(lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__7___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__7___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instSliceableListSliceNat__7___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instSliceableListSliceNat__7___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSliceableListSliceNat__7___closed__0 = (const lean_object*)&l_instSliceableListSliceNat__7___closed__0_value;
+static lean_once_cell_t l_instSliceableListSliceNat__7___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSliceableListSliceNat__7___closed__0;
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__7(lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__8___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__8___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_instSliceableListSliceNat__8___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instSliceableListSliceNat__8___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instSliceableListSliceNat__8___closed__0 = (const lean_object*)&l_instSliceableListSliceNat__8___closed__0_value;
+static lean_once_cell_t l_instSliceableListSliceNat__8___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instSliceableListSliceNat__8___closed__0;
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__8(lean_object*);
+static lean_object* _init_l_List_toSlice___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; lean_object* v___x_2_; 
+v___x_1_ = lean_unsigned_to_nat(0u);
+v___x_2_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_2_, 0, v___x_1_);
+return v___x_2_;
+}
+}
+static lean_object* _init_l_List_toSlice___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_3_; lean_object* v___x_4_; lean_object* v___x_5_; 
+v___x_3_ = lean_obj_once(&l_List_toSlice___redArg___closed__0, &l_List_toSlice___redArg___closed__0_once, _init_l_List_toSlice___redArg___closed__0);
+v___x_4_ = lean_box(0);
+v___x_5_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_5_, 0, v___x_4_);
+lean_ctor_set(v___x_5_, 1, v___x_3_);
+return v___x_5_;
+}
+}
 LEAN_EXPORT lean_object* l_List_toSlice___redArg(lean_object* v_as_6_, lean_object* v_start_7_, lean_object* v_stop_8_){
 _start:
 {
@@ -125,7 +147,7 @@ if (v___x_9_ == 0)
 {
 lean_object* v___x_10_; 
 lean_dec(v_start_7_);
-v___x_10_ = ((lean_object*)(l_List_toSlice___redArg___closed__1));
+v___x_10_ = lean_obj_once(&l_List_toSlice___redArg___closed__1, &l_List_toSlice___redArg___closed__1_once, _init_l_List_toSlice___redArg___closed__1);
 return v___x_10_;
 }
 else
@@ -236,11 +258,19 @@ lean_dec(v_xs_52_);
 return v_res_54_;
 }
 }
+static lean_object* _init_l_instSliceableListNatListSlice___closed__0(void){
+_start:
+{
+lean_object* v___f_55_; 
+v___f_55_ = lean_alloc_closure((void*)(l_instSliceableListNatListSlice___lam__0___boxed), 2, 0);
+return v___f_55_;
+}
+}
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice(lean_object* v_00_u03b1_56_){
 _start:
 {
 lean_object* v___f_57_; 
-v___f_57_ = ((lean_object*)(l_instSliceableListNatListSlice___closed__0));
+v___f_57_ = lean_obj_once(&l_instSliceableListNatListSlice___closed__0, &l_instSliceableListNatListSlice___closed__0_once, _init_l_instSliceableListNatListSlice___closed__0);
 return v___f_57_;
 }
 }
@@ -267,19 +297,35 @@ lean_dec(v_xs_63_);
 return v_res_65_;
 }
 }
+static lean_object* _init_l_instSliceableListNatListSlice__1___closed__0(void){
+_start:
+{
+lean_object* v___f_66_; 
+v___f_66_ = lean_alloc_closure((void*)(l_instSliceableListNatListSlice__1___lam__0___boxed), 2, 0);
+return v___f_66_;
+}
+}
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__1(lean_object* v_00_u03b1_67_){
 _start:
 {
 lean_object* v___f_68_; 
-v___f_68_ = ((lean_object*)(l_instSliceableListNatListSlice__1___closed__0));
+v___f_68_ = lean_obj_once(&l_instSliceableListNatListSlice__1___closed__0, &l_instSliceableListNatListSlice__1___closed__0_once, _init_l_instSliceableListNatListSlice__1___closed__0);
 return v___f_68_;
+}
+}
+static lean_object* _init_l_instSliceableListNatListSlice__2___closed__0(void){
+_start:
+{
+lean_object* v___f_69_; 
+v___f_69_ = lean_alloc_closure((void*)(l_List_toUnboundedSlice___redArg___boxed), 2, 0);
+return v___f_69_;
 }
 }
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__2(lean_object* v_00_u03b1_70_){
 _start:
 {
 lean_object* v___f_71_; 
-v___f_71_ = ((lean_object*)(l_instSliceableListNatListSlice__2___closed__0));
+v___f_71_ = lean_obj_once(&l_instSliceableListNatListSlice__2___closed__0, &l_instSliceableListNatListSlice__2___closed__0_once, _init_l_instSliceableListNatListSlice__2___closed__0);
 return v___f_71_;
 }
 }
@@ -307,11 +353,19 @@ lean_dec(v_xs_80_);
 return v_res_82_;
 }
 }
+static lean_object* _init_l_instSliceableListNatListSlice__3___closed__0(void){
+_start:
+{
+lean_object* v___f_83_; 
+v___f_83_ = lean_alloc_closure((void*)(l_instSliceableListNatListSlice__3___lam__0___boxed), 2, 0);
+return v___f_83_;
+}
+}
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__3(lean_object* v_00_u03b1_84_){
 _start:
 {
 lean_object* v___f_85_; 
-v___f_85_ = ((lean_object*)(l_instSliceableListNatListSlice__3___closed__0));
+v___f_85_ = lean_obj_once(&l_instSliceableListNatListSlice__3___closed__0, &l_instSliceableListNatListSlice__3___closed__0_once, _init_l_instSliceableListNatListSlice__3___closed__0);
 return v___f_85_;
 }
 }
@@ -337,11 +391,19 @@ lean_dec(v_xs_93_);
 return v_res_95_;
 }
 }
+static lean_object* _init_l_instSliceableListNatListSlice__4___closed__0(void){
+_start:
+{
+lean_object* v___f_96_; 
+v___f_96_ = lean_alloc_closure((void*)(l_instSliceableListNatListSlice__4___lam__0___boxed), 2, 0);
+return v___f_96_;
+}
+}
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__4(lean_object* v_00_u03b1_97_){
 _start:
 {
 lean_object* v___f_98_; 
-v___f_98_ = ((lean_object*)(l_instSliceableListNatListSlice__4___closed__0));
+v___f_98_ = lean_obj_once(&l_instSliceableListNatListSlice__4___closed__0, &l_instSliceableListNatListSlice__4___closed__0_once, _init_l_instSliceableListNatListSlice__4___closed__0);
 return v___f_98_;
 }
 }
@@ -365,11 +427,19 @@ lean_dec(v_xs_104_);
 return v_res_106_;
 }
 }
+static lean_object* _init_l_instSliceableListNatListSlice__5___closed__0(void){
+_start:
+{
+lean_object* v___f_107_; 
+v___f_107_ = lean_alloc_closure((void*)(l_instSliceableListNatListSlice__5___lam__0___boxed), 2, 0);
+return v___f_107_;
+}
+}
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__5(lean_object* v_00_u03b1_108_){
 _start:
 {
 lean_object* v___f_109_; 
-v___f_109_ = ((lean_object*)(l_instSliceableListNatListSlice__5___closed__0));
+v___f_109_ = lean_obj_once(&l_instSliceableListNatListSlice__5___closed__0, &l_instSliceableListNatListSlice__5___closed__0_once, _init_l_instSliceableListNatListSlice__5___closed__0);
 return v___f_109_;
 }
 }
@@ -395,11 +465,19 @@ lean_dec(v_xs_116_);
 return v_res_118_;
 }
 }
+static lean_object* _init_l_instSliceableListNatListSlice__6___closed__0(void){
+_start:
+{
+lean_object* v___f_119_; 
+v___f_119_ = lean_alloc_closure((void*)(l_instSliceableListNatListSlice__6___lam__0___boxed), 2, 0);
+return v___f_119_;
+}
+}
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__6(lean_object* v_00_u03b1_120_){
 _start:
 {
 lean_object* v___f_121_; 
-v___f_121_ = ((lean_object*)(l_instSliceableListNatListSlice__6___closed__0));
+v___f_121_ = lean_obj_once(&l_instSliceableListNatListSlice__6___closed__0, &l_instSliceableListNatListSlice__6___closed__0_once, _init_l_instSliceableListNatListSlice__6___closed__0);
 return v___f_121_;
 }
 }
@@ -422,11 +500,19 @@ lean_dec(v_xs_126_);
 return v_res_128_;
 }
 }
+static lean_object* _init_l_instSliceableListNatListSlice__7___closed__0(void){
+_start:
+{
+lean_object* v___f_129_; 
+v___f_129_ = lean_alloc_closure((void*)(l_instSliceableListNatListSlice__7___lam__0___boxed), 2, 0);
+return v___f_129_;
+}
+}
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__7(lean_object* v_00_u03b1_130_){
 _start:
 {
 lean_object* v___f_131_; 
-v___f_131_ = ((lean_object*)(l_instSliceableListNatListSlice__7___closed__0));
+v___f_131_ = lean_obj_once(&l_instSliceableListNatListSlice__7___closed__0, &l_instSliceableListNatListSlice__7___closed__0_once, _init_l_instSliceableListNatListSlice__7___closed__0);
 return v___f_131_;
 }
 }
@@ -448,11 +534,19 @@ lean_dec(v_xs_136_);
 return v_res_138_;
 }
 }
+static lean_object* _init_l_instSliceableListNatListSlice__8___closed__0(void){
+_start:
+{
+lean_object* v___f_139_; 
+v___f_139_ = lean_alloc_closure((void*)(l_instSliceableListNatListSlice__8___lam__0___boxed), 2, 0);
+return v___f_139_;
+}
+}
 LEAN_EXPORT lean_object* l_instSliceableListNatListSlice__8(lean_object* v_00_u03b1_140_){
 _start:
 {
 lean_object* v___f_141_; 
-v___f_141_ = ((lean_object*)(l_instSliceableListNatListSlice__8___closed__0));
+v___f_141_ = lean_obj_once(&l_instSliceableListNatListSlice__8___closed__0, &l_instSliceableListNatListSlice__8___closed__0_once, _init_l_instSliceableListNatListSlice__8___closed__0);
 return v___f_141_;
 }
 }
@@ -510,11 +604,19 @@ return v___x_149_;
 }
 }
 }
+static lean_object* _init_l_instSliceableListSliceNat___closed__0(void){
+_start:
+{
+lean_object* v___f_158_; 
+v___f_158_ = lean_alloc_closure((void*)(l_instSliceableListSliceNat___lam__0), 2, 0);
+return v___f_158_;
+}
+}
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat(lean_object* v_00_u03b1_159_){
 _start:
 {
 lean_object* v___f_160_; 
-v___f_160_ = ((lean_object*)(l_instSliceableListSliceNat___closed__0));
+v___f_160_ = lean_obj_once(&l_instSliceableListSliceNat___closed__0, &l_instSliceableListSliceNat___closed__0_once, _init_l_instSliceableListSliceNat___closed__0);
 return v___f_160_;
 }
 }
@@ -569,11 +671,19 @@ return v___x_168_;
 }
 }
 }
+static lean_object* _init_l_instSliceableListSliceNat__1___closed__0(void){
+_start:
+{
+lean_object* v___f_173_; 
+v___f_173_ = lean_alloc_closure((void*)(l_instSliceableListSliceNat__1___lam__0), 2, 0);
+return v___f_173_;
+}
+}
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__1(lean_object* v_00_u03b1_174_){
 _start:
 {
 lean_object* v___f_175_; 
-v___f_175_ = ((lean_object*)(l_instSliceableListSliceNat__1___closed__0));
+v___f_175_ = lean_obj_once(&l_instSliceableListSliceNat__1___closed__0, &l_instSliceableListSliceNat__1___closed__0_once, _init_l_instSliceableListSliceNat__1___closed__0);
 return v___f_175_;
 }
 }
@@ -608,11 +718,19 @@ lean_dec_ref(v_xs_184_);
 return v_res_186_;
 }
 }
+static lean_object* _init_l_instSliceableListSliceNat__2___closed__0(void){
+_start:
+{
+lean_object* v___f_187_; 
+v___f_187_ = lean_alloc_closure((void*)(l_instSliceableListSliceNat__2___lam__0___boxed), 2, 0);
+return v___f_187_;
+}
+}
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__2(lean_object* v_00_u03b1_188_){
 _start:
 {
 lean_object* v___f_189_; 
-v___f_189_ = ((lean_object*)(l_instSliceableListSliceNat__2___closed__0));
+v___f_189_ = lean_obj_once(&l_instSliceableListSliceNat__2___closed__0, &l_instSliceableListSliceNat__2___closed__0_once, _init_l_instSliceableListSliceNat__2___closed__0);
 return v___f_189_;
 }
 }
@@ -679,11 +797,19 @@ lean_dec_ref(v_range_209_);
 return v_res_210_;
 }
 }
+static lean_object* _init_l_instSliceableListSliceNat__3___closed__0(void){
+_start:
+{
+lean_object* v___f_211_; 
+v___f_211_ = lean_alloc_closure((void*)(l_instSliceableListSliceNat__3___lam__0___boxed), 2, 0);
+return v___f_211_;
+}
+}
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__3(lean_object* v_00_u03b1_212_){
 _start:
 {
 lean_object* v___f_213_; 
-v___f_213_ = ((lean_object*)(l_instSliceableListSliceNat__3___closed__0));
+v___f_213_ = lean_obj_once(&l_instSliceableListSliceNat__3___closed__0, &l_instSliceableListSliceNat__3___closed__0_once, _init_l_instSliceableListSliceNat__3___closed__0);
 return v___f_213_;
 }
 }
@@ -738,11 +864,19 @@ lean_dec_ref(v_xs_228_);
 return v_res_230_;
 }
 }
+static lean_object* _init_l_instSliceableListSliceNat__4___closed__0(void){
+_start:
+{
+lean_object* v___f_231_; 
+v___f_231_ = lean_alloc_closure((void*)(l_instSliceableListSliceNat__4___lam__0___boxed), 2, 0);
+return v___f_231_;
+}
+}
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__4(lean_object* v_00_u03b1_232_){
 _start:
 {
 lean_object* v___f_233_; 
-v___f_233_ = ((lean_object*)(l_instSliceableListSliceNat__4___closed__0));
+v___f_233_ = lean_obj_once(&l_instSliceableListSliceNat__4___closed__0, &l_instSliceableListSliceNat__4___closed__0_once, _init_l_instSliceableListSliceNat__4___closed__0);
 return v___f_233_;
 }
 }
@@ -782,11 +916,19 @@ lean_dec_ref(v_xs_246_);
 return v_res_248_;
 }
 }
+static lean_object* _init_l_instSliceableListSliceNat__5___closed__0(void){
+_start:
+{
+lean_object* v___f_249_; 
+v___f_249_ = lean_alloc_closure((void*)(l_instSliceableListSliceNat__5___lam__0___boxed), 2, 0);
+return v___f_249_;
+}
+}
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__5(lean_object* v_00_u03b1_250_){
 _start:
 {
 lean_object* v___f_251_; 
-v___f_251_ = ((lean_object*)(l_instSliceableListSliceNat__5___closed__0));
+v___f_251_ = lean_obj_once(&l_instSliceableListSliceNat__5___closed__0, &l_instSliceableListSliceNat__5___closed__0_once, _init_l_instSliceableListSliceNat__5___closed__0);
 return v___f_251_;
 }
 }
@@ -849,11 +991,19 @@ lean_dec(v_range_267_);
 return v_res_268_;
 }
 }
+static lean_object* _init_l_instSliceableListSliceNat__6___closed__0(void){
+_start:
+{
+lean_object* v___f_269_; 
+v___f_269_ = lean_alloc_closure((void*)(l_instSliceableListSliceNat__6___lam__0___boxed), 2, 0);
+return v___f_269_;
+}
+}
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__6(lean_object* v_00_u03b1_270_){
 _start:
 {
 lean_object* v___f_271_; 
-v___f_271_ = ((lean_object*)(l_instSliceableListSliceNat__6___closed__0));
+v___f_271_ = lean_obj_once(&l_instSliceableListSliceNat__6___closed__0, &l_instSliceableListSliceNat__6___closed__0_once, _init_l_instSliceableListSliceNat__6___closed__0);
 return v___f_271_;
 }
 }
@@ -903,11 +1053,19 @@ lean_dec_ref(v_xs_282_);
 return v_res_284_;
 }
 }
+static lean_object* _init_l_instSliceableListSliceNat__7___closed__0(void){
+_start:
+{
+lean_object* v___f_285_; 
+v___f_285_ = lean_alloc_closure((void*)(l_instSliceableListSliceNat__7___lam__0___boxed), 2, 0);
+return v___f_285_;
+}
+}
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__7(lean_object* v_00_u03b1_286_){
 _start:
 {
 lean_object* v___f_287_; 
-v___f_287_ = ((lean_object*)(l_instSliceableListSliceNat__7___closed__0));
+v___f_287_ = lean_obj_once(&l_instSliceableListSliceNat__7___closed__0, &l_instSliceableListSliceNat__7___closed__0_once, _init_l_instSliceableListSliceNat__7___closed__0);
 return v___f_287_;
 }
 }
@@ -927,11 +1085,19 @@ lean_dec_ref(v_xs_290_);
 return v_res_292_;
 }
 }
+static lean_object* _init_l_instSliceableListSliceNat__8___closed__0(void){
+_start:
+{
+lean_object* v___f_293_; 
+v___f_293_ = lean_alloc_closure((void*)(l_instSliceableListSliceNat__8___lam__0___boxed), 2, 0);
+return v___f_293_;
+}
+}
 LEAN_EXPORT lean_object* l_instSliceableListSliceNat__8(lean_object* v_00_u03b1_294_){
 _start:
 {
 lean_object* v___f_295_; 
-v___f_295_ = ((lean_object*)(l_instSliceableListSliceNat__8___closed__0));
+v___f_295_ = lean_obj_once(&l_instSliceableListSliceNat__8___closed__0, &l_instSliceableListSliceNat__8___closed__0_once, _init_l_instSliceableListSliceNat__8___closed__0);
 return v___f_295_;
 }
 }

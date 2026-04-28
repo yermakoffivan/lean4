@@ -31,8 +31,8 @@ lean_object* l_Std_Slice_instForInOfMonadOfToIteratorOfIteratorLoopId___redArg(l
 LEAN_EXPORT lean_object* l_SubarrayIterator_step___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_SubarrayIterator_step(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_instIteratorSubarrayIteratorId___lam__0(lean_object*);
-static const lean_closure_object l_instIteratorSubarrayIteratorId___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instIteratorSubarrayIteratorId___lam__0, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_instIteratorSubarrayIteratorId___closed__0 = (const lean_object*)&l_instIteratorSubarrayIteratorId___closed__0_value;
+static lean_once_cell_t l_instIteratorSubarrayIteratorId___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instIteratorSubarrayIteratorId___closed__0;
 LEAN_EXPORT lean_object* l_instIteratorSubarrayIteratorId(lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Slice_Array_Iterator_0__SubarrayIterator_step_match__1_splitter___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Slice_Array_Iterator_0__SubarrayIterator_step_match__1_splitter(lean_object*, lean_object*, lean_object*, lean_object*);
@@ -45,8 +45,8 @@ LEAN_EXPORT lean_object* l_instIteratorLoopSubarrayIteratorIdOfMonad___redArg(le
 LEAN_EXPORT lean_object* l_instIteratorLoopSubarrayIteratorIdOfMonad(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Subarray_instToIterator___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Subarray_instToIterator___lam__0___boxed(lean_object*);
-static const lean_closure_object l_Subarray_instToIterator___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Subarray_instToIterator___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Subarray_instToIterator___closed__0 = (const lean_object*)&l_Subarray_instToIterator___closed__0_value;
+static lean_once_cell_t l_Subarray_instToIterator___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Subarray_instToIterator___closed__0;
 LEAN_EXPORT lean_object* l_Subarray_instToIterator(lean_object*);
 LEAN_EXPORT lean_object* l_instForInSubarrayOfMonad___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_instForInSubarrayOfMonad(lean_object*, lean_object*, lean_object*);
@@ -56,35 +56,35 @@ LEAN_EXPORT lean_object* l_Subarray_forIn___redArg___lam__2(lean_object*, lean_o
 LEAN_EXPORT lean_object* l_Subarray_forIn___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Subarray_forIn(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Subarray_copy_spec__0___redArg(lean_object*, lean_object*);
-static const lean_array_object l_Subarray_copy___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Subarray_copy___redArg___closed__0 = (const lean_object*)&l_Subarray_copy___redArg___closed__0_value;
+static lean_once_cell_t l_Subarray_copy___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Subarray_copy___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Subarray_copy___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Subarray_copy(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Subarray_copy_spec__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_instCoeSubarrayArray___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Subarray_copy, .m_arity = 2, .m_num_fixed = 1, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))} };
-static const lean_object* l_instCoeSubarrayArray___closed__0 = (const lean_object*)&l_instCoeSubarrayArray___closed__0_value;
+static lean_once_cell_t l_instCoeSubarrayArray___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_instCoeSubarrayArray___closed__0;
 LEAN_EXPORT lean_object* l_instCoeSubarrayArray(lean_object*);
 LEAN_EXPORT lean_object* l_Array_ofSubarray___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Array_ofSubarray(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_instAppendSubarray___lam__0(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_instAppendSubarray___lam__2(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Array_instAppendSubarray___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Array_instAppendSubarray___lam__0, .m_arity = 3, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Array_instAppendSubarray___closed__0 = (const lean_object*)&l_Array_instAppendSubarray___closed__0_value;
-static const lean_closure_object l_Array_instAppendSubarray___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*2, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Array_instAppendSubarray___lam__2, .m_arity = 4, .m_num_fixed = 2, .m_objs = {((lean_object*)&l_Array_instAppendSubarray___closed__0_value),((lean_object*)&l_Array_instAppendSubarray___closed__0_value)} };
-static const lean_object* l_Array_instAppendSubarray___closed__1 = (const lean_object*)&l_Array_instAppendSubarray___closed__1_value;
+static lean_once_cell_t l_Array_instAppendSubarray___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_instAppendSubarray___closed__0;
+static lean_once_cell_t l_Array_instAppendSubarray___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_instAppendSubarray___closed__1;
 LEAN_EXPORT lean_object* l_Array_instAppendSubarray(lean_object*);
-static const lean_string_object l_Array_Subarray_repr___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = ".toSubarray"};
-static const lean_object* l_Array_Subarray_repr___redArg___closed__0 = (const lean_object*)&l_Array_Subarray_repr___redArg___closed__0_value;
-static const lean_ctor_object l_Array_Subarray_repr___redArg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Array_Subarray_repr___redArg___closed__0_value)}};
-static const lean_object* l_Array_Subarray_repr___redArg___closed__1 = (const lean_object*)&l_Array_Subarray_repr___redArg___closed__1_value;
+static lean_once_cell_t l_Array_Subarray_repr___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_Subarray_repr___redArg___closed__0;
+static lean_once_cell_t l_Array_Subarray_repr___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_Subarray_repr___redArg___closed__1;
 LEAN_EXPORT lean_object* l_Array_Subarray_repr___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_Subarray_repr(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_instReprSubarray___redArg___lam__0(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_instReprSubarray___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_instReprSubarray___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Array_instReprSubarray(lean_object*, lean_object*);
-static const lean_string_object l_Array_instToStringSubarray___redArg___lam__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "#"};
-static const lean_object* l_Array_instToStringSubarray___redArg___lam__1___closed__0 = (const lean_object*)&l_Array_instToStringSubarray___redArg___lam__1___closed__0_value;
+static lean_once_cell_t l_Array_instToStringSubarray___redArg___lam__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Array_instToStringSubarray___redArg___lam__1___closed__0;
 LEAN_EXPORT lean_object* l_Array_instToStringSubarray___redArg___lam__1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Array_instToStringSubarray___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Array_instToStringSubarray(lean_object*, lean_object*);
@@ -313,11 +313,19 @@ return v___x_51_;
 }
 }
 }
+static lean_object* _init_l_instIteratorSubarrayIteratorId___closed__0(void){
+_start:
+{
+lean_object* v___f_54_; 
+v___f_54_ = lean_alloc_closure((void*)(l_instIteratorSubarrayIteratorId___lam__0), 1, 0);
+return v___f_54_;
+}
+}
 LEAN_EXPORT lean_object* l_instIteratorSubarrayIteratorId(lean_object* v_00_u03b1_55_){
 _start:
 {
 lean_object* v___f_56_; 
-v___f_56_ = ((lean_object*)(l_instIteratorSubarrayIteratorId___closed__0));
+v___f_56_ = lean_obj_once(&l_instIteratorSubarrayIteratorId___closed__0, &l_instIteratorSubarrayIteratorId___closed__0_once, _init_l_instIteratorSubarrayIteratorId___closed__0);
 return v___f_56_;
 }
 }
@@ -554,11 +562,19 @@ lean_dec_ref(v_x_135_);
 return v_res_136_;
 }
 }
+static lean_object* _init_l_Subarray_instToIterator___closed__0(void){
+_start:
+{
+lean_object* v___f_137_; 
+v___f_137_ = lean_alloc_closure((void*)(l_Subarray_instToIterator___lam__0___boxed), 1, 0);
+return v___f_137_;
+}
+}
 LEAN_EXPORT lean_object* l_Subarray_instToIterator(lean_object* v_00_u03b1_138_){
 _start:
 {
 lean_object* v___f_139_; 
-v___f_139_ = ((lean_object*)(l_Subarray_instToIterator___closed__0));
+v___f_139_ = lean_obj_once(&l_Subarray_instToIterator___closed__0, &l_Subarray_instToIterator___closed__0_once, _init_l_Subarray_instToIterator___closed__0);
 return v___f_139_;
 }
 }
@@ -566,7 +582,7 @@ LEAN_EXPORT lean_object* l_instForInSubarrayOfMonad___redArg(lean_object* v_inst
 _start:
 {
 lean_object* v___f_141_; lean_object* v___f_142_; lean_object* v___x_143_; 
-v___f_141_ = ((lean_object*)(l_Subarray_instToIterator___closed__0));
+v___f_141_ = lean_obj_once(&l_Subarray_instToIterator___closed__0, &l_Subarray_instToIterator___closed__0_once, _init_l_Subarray_instToIterator___closed__0);
 lean_inc_ref(v_inst_140_);
 v___f_142_ = lean_alloc_closure((void*)(l_instIteratorLoopSubarrayIteratorIdOfMonad___redArg___lam__3), 7, 1);
 lean_closure_set(v___f_142_, 0, v_inst_140_);
@@ -819,11 +835,20 @@ goto _start;
 }
 }
 }
+static lean_object* _init_l_Subarray_copy___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_227_; lean_object* v___x_228_; 
+v___x_227_ = lean_unsigned_to_nat(0u);
+v___x_228_ = lean_mk_empty_array_with_capacity(v___x_227_);
+return v___x_228_;
+}
+}
 LEAN_EXPORT lean_object* l_Subarray_copy___redArg(lean_object* v_s_229_){
 _start:
 {
 lean_object* v___x_230_; lean_object* v___x_231_; 
-v___x_230_ = ((lean_object*)(l_Subarray_copy___redArg___closed__0));
+v___x_230_ = lean_obj_once(&l_Subarray_copy___redArg___closed__0, &l_Subarray_copy___redArg___closed__0_once, _init_l_Subarray_copy___redArg___closed__0);
 v___x_231_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Subarray_copy_spec__0___redArg(v_s_229_, v___x_230_);
 return v___x_231_;
 }
@@ -844,11 +869,20 @@ v___x_240_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at
 return v___x_240_;
 }
 }
+static lean_object* _init_l_instCoeSubarrayArray___closed__0(void){
+_start:
+{
+lean_object* v___x_241_; 
+v___x_241_ = lean_alloc_closure((void*)(l_Subarray_copy), 2, 1);
+lean_closure_set(v___x_241_, 0, lean_box(0));
+return v___x_241_;
+}
+}
 LEAN_EXPORT lean_object* l_instCoeSubarrayArray(lean_object* v_00_u03b1_242_){
 _start:
 {
 lean_object* v___x_243_; 
-v___x_243_ = ((lean_object*)(l_instCoeSubarrayArray___closed__0));
+v___x_243_ = lean_obj_once(&l_instCoeSubarrayArray___closed__0, &l_instCoeSubarrayArray___closed__0_once, _init_l_instCoeSubarrayArray___closed__0);
 return v___x_243_;
 }
 }
@@ -856,7 +890,7 @@ LEAN_EXPORT lean_object* l_Array_ofSubarray___redArg(lean_object* v_s_244_){
 _start:
 {
 lean_object* v___x_245_; lean_object* v___x_246_; 
-v___x_245_ = ((lean_object*)(l_Subarray_copy___redArg___closed__0));
+v___x_245_ = lean_obj_once(&l_Subarray_copy___redArg___closed__0, &l_Subarray_copy___redArg___closed__0_once, _init_l_Subarray_copy___redArg___closed__0);
 v___x_246_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___at___00Subarray_copy_spec__0___redArg(v_s_244_, v___x_245_);
 return v___x_246_;
 }
@@ -947,7 +981,7 @@ _start:
 {
 lean_object* v___x_273_; lean_object* v___x_274_; lean_object* v___x_275_; lean_object* v___x_276_; lean_object* v_a_277_; lean_object* v___x_278_; lean_object* v___x_279_; 
 v___x_273_ = lean_unsigned_to_nat(0u);
-v___x_274_ = ((lean_object*)(l_Subarray_copy___redArg___closed__0));
+v___x_274_ = lean_obj_once(&l_Subarray_copy___redArg___closed__0, &l_Subarray_copy___redArg___closed__0_once, _init_l_Subarray_copy___redArg___closed__0);
 v___x_275_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_269_, v_x_271_, v___x_274_);
 v___x_276_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_270_, v_y_272_, v___x_274_);
 v_a_277_ = l_Array_append___redArg(v___x_275_, v___x_276_);
@@ -957,23 +991,60 @@ v___x_279_ = l_Array_toSubarray___redArg(v_a_277_, v___x_273_, v___x_278_);
 return v___x_279_;
 }
 }
+static lean_object* _init_l_Array_instAppendSubarray___closed__0(void){
+_start:
+{
+lean_object* v___f_280_; 
+v___f_280_ = lean_alloc_closure((void*)(l_Array_instAppendSubarray___lam__0), 3, 0);
+return v___f_280_;
+}
+}
+static lean_object* _init_l_Array_instAppendSubarray___closed__1(void){
+_start:
+{
+lean_object* v___f_281_; lean_object* v___f_282_; 
+v___f_281_ = lean_obj_once(&l_Array_instAppendSubarray___closed__0, &l_Array_instAppendSubarray___closed__0_once, _init_l_Array_instAppendSubarray___closed__0);
+v___f_282_ = lean_alloc_closure((void*)(l_Array_instAppendSubarray___lam__2), 4, 2);
+lean_closure_set(v___f_282_, 0, v___f_281_);
+lean_closure_set(v___f_282_, 1, v___f_281_);
+return v___f_282_;
+}
+}
 LEAN_EXPORT lean_object* l_Array_instAppendSubarray(lean_object* v_00_u03b1_283_){
 _start:
 {
 lean_object* v___f_284_; 
-v___f_284_ = ((lean_object*)(l_Array_instAppendSubarray___closed__1));
+v___f_284_ = lean_obj_once(&l_Array_instAppendSubarray___closed__1, &l_Array_instAppendSubarray___closed__1_once, _init_l_Array_instAppendSubarray___closed__1);
 return v___f_284_;
+}
+}
+static lean_object* _init_l_Array_Subarray_repr___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_285_; 
+v___x_285_ = lean_mk_string_unchecked(".toSubarray", 11, 11);
+return v___x_285_;
+}
+}
+static lean_object* _init_l_Array_Subarray_repr___redArg___closed__1(void){
+_start:
+{
+lean_object* v___x_286_; lean_object* v___x_287_; 
+v___x_286_ = lean_obj_once(&l_Array_Subarray_repr___redArg___closed__0, &l_Array_Subarray_repr___redArg___closed__0_once, _init_l_Array_Subarray_repr___redArg___closed__0);
+v___x_287_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_287_, 0, v___x_286_);
+return v___x_287_;
 }
 }
 LEAN_EXPORT lean_object* l_Array_Subarray_repr___redArg(lean_object* v_inst_288_, lean_object* v_s_289_){
 _start:
 {
 lean_object* v___f_290_; lean_object* v___x_291_; lean_object* v___x_292_; lean_object* v___x_293_; lean_object* v___x_294_; lean_object* v___x_295_; 
-v___f_290_ = ((lean_object*)(l_Array_instAppendSubarray___closed__0));
-v___x_291_ = ((lean_object*)(l_Subarray_copy___redArg___closed__0));
+v___f_290_ = lean_obj_once(&l_Array_instAppendSubarray___closed__0, &l_Array_instAppendSubarray___closed__0_once, _init_l_Array_instAppendSubarray___closed__0);
+v___x_291_ = lean_obj_once(&l_Subarray_copy___redArg___closed__0, &l_Subarray_copy___redArg___closed__0_once, _init_l_Subarray_copy___redArg___closed__0);
 v___x_292_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_290_, v_s_289_, v___x_291_);
 v___x_293_ = l_Array_repr___redArg(v_inst_288_, v___x_292_);
-v___x_294_ = ((lean_object*)(l_Array_Subarray_repr___redArg___closed__1));
+v___x_294_ = lean_obj_once(&l_Array_Subarray_repr___redArg___closed__1, &l_Array_Subarray_repr___redArg___closed__1_once, _init_l_Array_Subarray_repr___redArg___closed__1);
 v___x_295_ = lean_alloc_ctor(5, 2, 0);
 lean_ctor_set(v___x_295_, 0, v___x_293_);
 lean_ctor_set(v___x_295_, 1, v___x_294_);
@@ -1023,13 +1094,21 @@ lean_closure_set(v___f_312_, 0, v_inst_311_);
 return v___f_312_;
 }
 }
+static lean_object* _init_l_Array_instToStringSubarray___redArg___lam__1___closed__0(void){
+_start:
+{
+lean_object* v___x_313_; 
+v___x_313_ = lean_mk_string_unchecked("#", 1, 1);
+return v___x_313_;
+}
+}
 LEAN_EXPORT lean_object* l_Array_instToStringSubarray___redArg___lam__1(lean_object* v___f_314_, lean_object* v_inst_315_, lean_object* v_s_316_){
 _start:
 {
 lean_object* v___x_317_; lean_object* v___x_318_; lean_object* v___x_319_; lean_object* v___x_320_; lean_object* v___x_321_; lean_object* v___x_322_; 
-v___x_317_ = ((lean_object*)(l_Subarray_copy___redArg___closed__0));
+v___x_317_ = lean_obj_once(&l_Subarray_copy___redArg___closed__0, &l_Subarray_copy___redArg___closed__0_once, _init_l_Subarray_copy___redArg___closed__0);
 v___x_318_ = l___private_Init_WFExtrinsicFix_0__WellFounded_opaqueFix_u2082___redArg(v___f_314_, v_s_316_, v___x_317_);
-v___x_319_ = ((lean_object*)(l_Array_instToStringSubarray___redArg___lam__1___closed__0));
+v___x_319_ = lean_obj_once(&l_Array_instToStringSubarray___redArg___lam__1___closed__0, &l_Array_instToStringSubarray___redArg___lam__1___closed__0_once, _init_l_Array_instToStringSubarray___redArg___lam__1___closed__0);
 v___x_320_ = lean_array_to_list(v___x_318_);
 v___x_321_ = l_List_toString___redArg(v_inst_315_, v___x_320_);
 v___x_322_ = lean_string_append(v___x_319_, v___x_321_);
@@ -1041,7 +1120,7 @@ LEAN_EXPORT lean_object* l_Array_instToStringSubarray___redArg(lean_object* v_in
 _start:
 {
 lean_object* v___f_324_; lean_object* v___f_325_; 
-v___f_324_ = ((lean_object*)(l_Array_instAppendSubarray___closed__0));
+v___f_324_ = lean_obj_once(&l_Array_instAppendSubarray___closed__0, &l_Array_instAppendSubarray___closed__0_once, _init_l_Array_instAppendSubarray___closed__0);
 v___f_325_ = lean_alloc_closure((void*)(l_Array_instToStringSubarray___redArg___lam__1), 3, 2);
 lean_closure_set(v___f_325_, 0, v___f_324_);
 lean_closure_set(v___f_325_, 1, v_inst_323_);

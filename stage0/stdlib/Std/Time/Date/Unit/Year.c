@@ -47,43 +47,43 @@ LEAN_EXPORT lean_object* l_Std_Time_Year_Era_ce_elim___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Year_Era_ce_elim___redArg___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Year_Era_ce_elim(lean_object*, uint8_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Year_Era_ce_elim___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std_Time_Year_instReprEra_repr___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 22, .m_capacity = 22, .m_length = 21, .m_data = "Std.Time.Year.Era.bce"};
-static const lean_object* l_Std_Time_Year_instReprEra_repr___closed__0 = (const lean_object*)&l_Std_Time_Year_instReprEra_repr___closed__0_value;
-static const lean_ctor_object l_Std_Time_Year_instReprEra_repr___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Time_Year_instReprEra_repr___closed__0_value)}};
-static const lean_object* l_Std_Time_Year_instReprEra_repr___closed__1 = (const lean_object*)&l_Std_Time_Year_instReprEra_repr___closed__1_value;
-static const lean_string_object l_Std_Time_Year_instReprEra_repr___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 21, .m_capacity = 21, .m_length = 20, .m_data = "Std.Time.Year.Era.ce"};
-static const lean_object* l_Std_Time_Year_instReprEra_repr___closed__2 = (const lean_object*)&l_Std_Time_Year_instReprEra_repr___closed__2_value;
-static const lean_ctor_object l_Std_Time_Year_instReprEra_repr___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Time_Year_instReprEra_repr___closed__2_value)}};
-static const lean_object* l_Std_Time_Year_instReprEra_repr___closed__3 = (const lean_object*)&l_Std_Time_Year_instReprEra_repr___closed__3_value;
+static lean_once_cell_t l_Std_Time_Year_instReprEra_repr___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Year_instReprEra_repr___closed__0;
+static lean_once_cell_t l_Std_Time_Year_instReprEra_repr___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Year_instReprEra_repr___closed__1;
+static lean_once_cell_t l_Std_Time_Year_instReprEra_repr___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Year_instReprEra_repr___closed__2;
+static lean_once_cell_t l_Std_Time_Year_instReprEra_repr___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Year_instReprEra_repr___closed__3;
 static lean_once_cell_t l_Std_Time_Year_instReprEra_repr___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Time_Year_instReprEra_repr___closed__4;
 static lean_once_cell_t l_Std_Time_Year_instReprEra_repr___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Time_Year_instReprEra_repr___closed__5;
 LEAN_EXPORT lean_object* l_Std_Time_Year_instReprEra_repr(uint8_t, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Year_instReprEra_repr___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Time_Year_instReprEra___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Time_Year_instReprEra_repr___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Time_Year_instReprEra___closed__0 = (const lean_object*)&l_Std_Time_Year_instReprEra___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Time_Year_instReprEra = (const lean_object*)&l_Std_Time_Year_instReprEra___closed__0_value;
+static lean_once_cell_t l_Std_Time_Year_instReprEra___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Year_instReprEra___closed__0;
+LEAN_EXPORT lean_object* l_Std_Time_Year_instReprEra;
 LEAN_EXPORT uint8_t l_Std_Time_Year_instInhabitedEra_default;
 LEAN_EXPORT uint8_t l_Std_Time_Year_instInhabitedEra;
-static const lean_string_object l_Std_Time_Year_instToStringEra___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "BCE"};
-static const lean_object* l_Std_Time_Year_instToStringEra___lam__0___closed__0 = (const lean_object*)&l_Std_Time_Year_instToStringEra___lam__0___closed__0_value;
-static const lean_string_object l_Std_Time_Year_instToStringEra___lam__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "CE"};
-static const lean_object* l_Std_Time_Year_instToStringEra___lam__0___closed__1 = (const lean_object*)&l_Std_Time_Year_instToStringEra___lam__0___closed__1_value;
+static lean_once_cell_t l_Std_Time_Year_instToStringEra___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Year_instToStringEra___lam__0___closed__0;
+static lean_once_cell_t l_Std_Time_Year_instToStringEra___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Year_instToStringEra___lam__0___closed__1;
 LEAN_EXPORT lean_object* l_Std_Time_Year_instToStringEra___lam__0(uint8_t);
 LEAN_EXPORT lean_object* l_Std_Time_Year_instToStringEra___lam__0___boxed(lean_object*);
-static const lean_closure_object l_Std_Time_Year_instToStringEra___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Time_Year_instToStringEra___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Time_Year_instToStringEra___closed__0 = (const lean_object*)&l_Std_Time_Year_instToStringEra___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Time_Year_instToStringEra = (const lean_object*)&l_Std_Time_Year_instToStringEra___closed__0_value;
+static lean_once_cell_t l_Std_Time_Year_instToStringEra___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Year_instToStringEra___closed__0;
+LEAN_EXPORT lean_object* l_Std_Time_Year_instToStringEra;
 static lean_once_cell_t l_Std_Time_Year_instReprOffset___aux__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Time_Year_instReprOffset___aux__1___closed__0;
 LEAN_EXPORT lean_object* l_Std_Time_Year_instReprOffset___aux__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Year_instReprOffset___aux__1___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Year_instReprOffset___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Year_instReprOffset___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Time_Year_instReprOffset___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Time_Year_instReprOffset___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Time_Year_instReprOffset___closed__0 = (const lean_object*)&l_Std_Time_Year_instReprOffset___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Time_Year_instReprOffset = (const lean_object*)&l_Std_Time_Year_instReprOffset___closed__0_value;
+static lean_once_cell_t l_Std_Time_Year_instReprOffset___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Year_instReprOffset___closed__0;
+LEAN_EXPORT lean_object* l_Std_Time_Year_instReprOffset;
 LEAN_EXPORT uint8_t l_Std_Time_Year_instDecidableEqOffset___aux__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Year_instDecidableEqOffset___aux__1___boxed(lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Std_Time_Year_instDecidableEqOffset(lean_object*, lean_object*);
@@ -92,26 +92,26 @@ LEAN_EXPORT lean_object* l_Std_Time_Year_instInhabitedOffset___aux__1;
 LEAN_EXPORT lean_object* l_Std_Time_Year_instInhabitedOffset;
 LEAN_EXPORT lean_object* l_Std_Time_Year_instAddOffset___aux__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Year_instAddOffset___aux__1___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Time_Year_instAddOffset___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Int_add___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Time_Year_instAddOffset___closed__0 = (const lean_object*)&l_Std_Time_Year_instAddOffset___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Time_Year_instAddOffset = (const lean_object*)&l_Std_Time_Year_instAddOffset___closed__0_value;
+static lean_once_cell_t l_Std_Time_Year_instAddOffset___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Year_instAddOffset___closed__0;
+LEAN_EXPORT lean_object* l_Std_Time_Year_instAddOffset;
 LEAN_EXPORT lean_object* l_Std_Time_Year_instSubOffset___aux__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Year_instSubOffset___aux__1___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Time_Year_instSubOffset___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Int_sub___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Time_Year_instSubOffset___closed__0 = (const lean_object*)&l_Std_Time_Year_instSubOffset___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Time_Year_instSubOffset = (const lean_object*)&l_Std_Time_Year_instSubOffset___closed__0_value;
+static lean_once_cell_t l_Std_Time_Year_instSubOffset___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Year_instSubOffset___closed__0;
+LEAN_EXPORT lean_object* l_Std_Time_Year_instSubOffset;
 LEAN_EXPORT lean_object* l_Std_Time_Year_instNegOffset___aux__1(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Year_instNegOffset___aux__1___boxed(lean_object*);
-static const lean_closure_object l_Std_Time_Year_instNegOffset___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Int_neg___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Time_Year_instNegOffset___closed__0 = (const lean_object*)&l_Std_Time_Year_instNegOffset___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Time_Year_instNegOffset = (const lean_object*)&l_Std_Time_Year_instNegOffset___closed__0_value;
+static lean_once_cell_t l_Std_Time_Year_instNegOffset___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Year_instNegOffset___closed__0;
+LEAN_EXPORT lean_object* l_Std_Time_Year_instNegOffset;
 LEAN_EXPORT lean_object* l_Std_Time_Year_instLEOffset;
 LEAN_EXPORT lean_object* l_Std_Time_Year_instLTOffset;
 LEAN_EXPORT lean_object* l_Std_Time_Year_instToStringOffset___aux__1(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Year_instToStringOffset___aux__1___boxed(lean_object*);
-static const lean_closure_object l_Std_Time_Year_instToStringOffset___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Int_repr___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Time_Year_instToStringOffset___closed__0 = (const lean_object*)&l_Std_Time_Year_instToStringOffset___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Time_Year_instToStringOffset = (const lean_object*)&l_Std_Time_Year_instToStringOffset___closed__0_value;
+static lean_once_cell_t l_Std_Time_Year_instToStringOffset___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Year_instToStringOffset___closed__0;
+LEAN_EXPORT lean_object* l_Std_Time_Year_instToStringOffset;
 LEAN_EXPORT uint8_t l_Std_Time_Year_instDecidableLeOffset(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Year_instDecidableLeOffset___boxed(lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Std_Time_Year_instDecidableLtOffset(lean_object*, lean_object*);
@@ -119,9 +119,9 @@ LEAN_EXPORT lean_object* l_Std_Time_Year_instDecidableLtOffset___boxed(lean_obje
 LEAN_EXPORT lean_object* l_Std_Time_Year_instOfNatOffset(lean_object*);
 LEAN_EXPORT uint8_t l_Std_Time_Year_instOrdOffset___aux__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Year_instOrdOffset___aux__1___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Time_Year_instOrdOffset___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Time_Year_instOrdOffset___aux__1___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Time_Year_instOrdOffset___closed__0 = (const lean_object*)&l_Std_Time_Year_instOrdOffset___closed__0_value;
-LEAN_EXPORT const lean_object* l_Std_Time_Year_instOrdOffset = (const lean_object*)&l_Std_Time_Year_instOrdOffset___closed__0_value;
+static lean_once_cell_t l_Std_Time_Year_instOrdOffset___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Year_instOrdOffset___closed__0;
+LEAN_EXPORT lean_object* l_Std_Time_Year_instOrdOffset;
 LEAN_EXPORT lean_object* l_Std_Time_Year_Offset_ofNat(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Year_Offset_ofInt(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Year_Offset_ofInt___boxed(lean_object*);
@@ -325,6 +325,42 @@ lean_dec(v_ce_50_);
 return v_res_52_;
 }
 }
+static lean_object* _init_l_Std_Time_Year_instReprEra_repr___closed__0(void){
+_start:
+{
+lean_object* v___x_53_; 
+v___x_53_ = lean_mk_string_unchecked("Std.Time.Year.Era.bce", 21, 21);
+return v___x_53_;
+}
+}
+static lean_object* _init_l_Std_Time_Year_instReprEra_repr___closed__1(void){
+_start:
+{
+lean_object* v___x_54_; lean_object* v___x_55_; 
+v___x_54_ = lean_obj_once(&l_Std_Time_Year_instReprEra_repr___closed__0, &l_Std_Time_Year_instReprEra_repr___closed__0_once, _init_l_Std_Time_Year_instReprEra_repr___closed__0);
+v___x_55_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_55_, 0, v___x_54_);
+return v___x_55_;
+}
+}
+static lean_object* _init_l_Std_Time_Year_instReprEra_repr___closed__2(void){
+_start:
+{
+lean_object* v___x_56_; 
+v___x_56_ = lean_mk_string_unchecked("Std.Time.Year.Era.ce", 20, 20);
+return v___x_56_;
+}
+}
+static lean_object* _init_l_Std_Time_Year_instReprEra_repr___closed__3(void){
+_start:
+{
+lean_object* v___x_57_; lean_object* v___x_58_; 
+v___x_57_ = lean_obj_once(&l_Std_Time_Year_instReprEra_repr___closed__2, &l_Std_Time_Year_instReprEra_repr___closed__2_once, _init_l_Std_Time_Year_instReprEra_repr___closed__2);
+v___x_58_ = lean_alloc_ctor(3, 1, 0);
+lean_ctor_set(v___x_58_, 0, v___x_57_);
+return v___x_58_;
+}
+}
 static lean_object* _init_l_Std_Time_Year_instReprEra_repr___closed__4(void){
 _start:
 {
@@ -390,7 +426,7 @@ goto v___jp_72_;
 v___jp_65_:
 {
 lean_object* v___x_67_; lean_object* v___x_68_; uint8_t v___x_69_; lean_object* v___x_70_; lean_object* v___x_71_; 
-v___x_67_ = ((lean_object*)(l_Std_Time_Year_instReprEra_repr___closed__1));
+v___x_67_ = lean_obj_once(&l_Std_Time_Year_instReprEra_repr___closed__1, &l_Std_Time_Year_instReprEra_repr___closed__1_once, _init_l_Std_Time_Year_instReprEra_repr___closed__1);
 lean_inc(v___y_66_);
 v___x_68_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_68_, 0, v___y_66_);
@@ -405,7 +441,7 @@ return v___x_71_;
 v___jp_72_:
 {
 lean_object* v___x_74_; lean_object* v___x_75_; uint8_t v___x_76_; lean_object* v___x_77_; lean_object* v___x_78_; 
-v___x_74_ = ((lean_object*)(l_Std_Time_Year_instReprEra_repr___closed__3));
+v___x_74_ = lean_obj_once(&l_Std_Time_Year_instReprEra_repr___closed__3, &l_Std_Time_Year_instReprEra_repr___closed__3_once, _init_l_Std_Time_Year_instReprEra_repr___closed__3);
 lean_inc(v___y_73_);
 v___x_75_ = lean_alloc_ctor(4, 2, 0);
 lean_ctor_set(v___x_75_, 0, v___y_73_);
@@ -429,6 +465,22 @@ lean_dec(v_prec_88_);
 return v_res_90_;
 }
 }
+static lean_object* _init_l_Std_Time_Year_instReprEra___closed__0(void){
+_start:
+{
+lean_object* v___x_91_; 
+v___x_91_ = lean_alloc_closure((void*)(l_Std_Time_Year_instReprEra_repr___boxed), 2, 0);
+return v___x_91_;
+}
+}
+static lean_object* _init_l_Std_Time_Year_instReprEra(void){
+_start:
+{
+lean_object* v___x_92_; 
+v___x_92_ = lean_obj_once(&l_Std_Time_Year_instReprEra___closed__0, &l_Std_Time_Year_instReprEra___closed__0_once, _init_l_Std_Time_Year_instReprEra___closed__0);
+return v___x_92_;
+}
+}
 static uint8_t _init_l_Std_Time_Year_instInhabitedEra_default(void){
 _start:
 {
@@ -445,19 +497,35 @@ v___x_94_ = 0;
 return v___x_94_;
 }
 }
+static lean_object* _init_l_Std_Time_Year_instToStringEra___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_95_; 
+v___x_95_ = lean_mk_string_unchecked("BCE", 3, 3);
+return v___x_95_;
+}
+}
+static lean_object* _init_l_Std_Time_Year_instToStringEra___lam__0___closed__1(void){
+_start:
+{
+lean_object* v___x_96_; 
+v___x_96_ = lean_mk_string_unchecked("CE", 2, 2);
+return v___x_96_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Time_Year_instToStringEra___lam__0(uint8_t v_x_97_){
 _start:
 {
 if (v_x_97_ == 0)
 {
 lean_object* v___x_98_; 
-v___x_98_ = ((lean_object*)(l_Std_Time_Year_instToStringEra___lam__0___closed__0));
+v___x_98_ = lean_obj_once(&l_Std_Time_Year_instToStringEra___lam__0___closed__0, &l_Std_Time_Year_instToStringEra___lam__0___closed__0_once, _init_l_Std_Time_Year_instToStringEra___lam__0___closed__0);
 return v___x_98_;
 }
 else
 {
 lean_object* v___x_99_; 
-v___x_99_ = ((lean_object*)(l_Std_Time_Year_instToStringEra___lam__0___closed__1));
+v___x_99_ = lean_obj_once(&l_Std_Time_Year_instToStringEra___lam__0___closed__1, &l_Std_Time_Year_instToStringEra___lam__0___closed__1_once, _init_l_Std_Time_Year_instToStringEra___lam__0___closed__1);
 return v___x_99_;
 }
 }
@@ -469,6 +537,22 @@ uint8_t v_x_26__boxed_101_; lean_object* v_res_102_;
 v_x_26__boxed_101_ = lean_unbox(v_x_100_);
 v_res_102_ = l_Std_Time_Year_instToStringEra___lam__0(v_x_26__boxed_101_);
 return v_res_102_;
+}
+}
+static lean_object* _init_l_Std_Time_Year_instToStringEra___closed__0(void){
+_start:
+{
+lean_object* v___f_103_; 
+v___f_103_ = lean_alloc_closure((void*)(l_Std_Time_Year_instToStringEra___lam__0___boxed), 1, 0);
+return v___f_103_;
+}
+}
+static lean_object* _init_l_Std_Time_Year_instToStringEra(void){
+_start:
+{
+lean_object* v___f_104_; 
+v___f_104_ = lean_obj_once(&l_Std_Time_Year_instToStringEra___closed__0, &l_Std_Time_Year_instToStringEra___closed__0_once, _init_l_Std_Time_Year_instToStringEra___closed__0);
+return v___f_104_;
 }
 }
 static lean_object* _init_l_Std_Time_Year_instReprOffset___aux__1___closed__0(void){
@@ -550,6 +634,22 @@ lean_dec(v___y_128_);
 return v_res_130_;
 }
 }
+static lean_object* _init_l_Std_Time_Year_instReprOffset___closed__0(void){
+_start:
+{
+lean_object* v___f_131_; 
+v___f_131_ = lean_alloc_closure((void*)(l_Std_Time_Year_instReprOffset___lam__0___boxed), 2, 0);
+return v___f_131_;
+}
+}
+static lean_object* _init_l_Std_Time_Year_instReprOffset(void){
+_start:
+{
+lean_object* v___f_132_; 
+v___f_132_ = lean_obj_once(&l_Std_Time_Year_instReprOffset___closed__0, &l_Std_Time_Year_instReprOffset___closed__0_once, _init_l_Std_Time_Year_instReprOffset___closed__0);
+return v___f_132_;
+}
+}
 LEAN_EXPORT uint8_t l_Std_Time_Year_instDecidableEqOffset___aux__1(lean_object* v_a_133_, lean_object* v_b_134_){
 _start:
 {
@@ -622,6 +722,22 @@ lean_dec(v_m_152_);
 return v_res_154_;
 }
 }
+static lean_object* _init_l_Std_Time_Year_instAddOffset___closed__0(void){
+_start:
+{
+lean_object* v___f_155_; 
+v___f_155_ = lean_alloc_closure((void*)(l_Int_add___boxed), 2, 0);
+return v___f_155_;
+}
+}
+static lean_object* _init_l_Std_Time_Year_instAddOffset(void){
+_start:
+{
+lean_object* v___f_156_; 
+v___f_156_ = lean_obj_once(&l_Std_Time_Year_instAddOffset___closed__0, &l_Std_Time_Year_instAddOffset___closed__0_once, _init_l_Std_Time_Year_instAddOffset___closed__0);
+return v___f_156_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Time_Year_instSubOffset___aux__1(lean_object* v_m_157_, lean_object* v_n_158_){
 _start:
 {
@@ -640,6 +756,22 @@ lean_dec(v_m_160_);
 return v_res_162_;
 }
 }
+static lean_object* _init_l_Std_Time_Year_instSubOffset___closed__0(void){
+_start:
+{
+lean_object* v___f_163_; 
+v___f_163_ = lean_alloc_closure((void*)(l_Int_sub___boxed), 2, 0);
+return v___f_163_;
+}
+}
+static lean_object* _init_l_Std_Time_Year_instSubOffset(void){
+_start:
+{
+lean_object* v___f_164_; 
+v___f_164_ = lean_obj_once(&l_Std_Time_Year_instSubOffset___closed__0, &l_Std_Time_Year_instSubOffset___closed__0_once, _init_l_Std_Time_Year_instSubOffset___closed__0);
+return v___f_164_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Time_Year_instNegOffset___aux__1(lean_object* v_n_165_){
 _start:
 {
@@ -655,6 +787,22 @@ lean_object* v_res_168_;
 v_res_168_ = l_Std_Time_Year_instNegOffset___aux__1(v_n_167_);
 lean_dec(v_n_167_);
 return v_res_168_;
+}
+}
+static lean_object* _init_l_Std_Time_Year_instNegOffset___closed__0(void){
+_start:
+{
+lean_object* v___f_169_; 
+v___f_169_ = lean_alloc_closure((void*)(l_Int_neg___boxed), 1, 0);
+return v___f_169_;
+}
+}
+static lean_object* _init_l_Std_Time_Year_instNegOffset(void){
+_start:
+{
+lean_object* v___f_170_; 
+v___f_170_ = lean_obj_once(&l_Std_Time_Year_instNegOffset___closed__0, &l_Std_Time_Year_instNegOffset___closed__0_once, _init_l_Std_Time_Year_instNegOffset___closed__0);
+return v___f_170_;
 }
 }
 static lean_object* _init_l_Std_Time_Year_instLEOffset(void){
@@ -688,6 +836,22 @@ lean_object* v_res_176_;
 v_res_176_ = l_Std_Time_Year_instToStringOffset___aux__1(v_a_175_);
 lean_dec(v_a_175_);
 return v_res_176_;
+}
+}
+static lean_object* _init_l_Std_Time_Year_instToStringOffset___closed__0(void){
+_start:
+{
+lean_object* v___f_177_; 
+v___f_177_ = lean_alloc_closure((void*)(l_Int_repr___boxed), 1, 0);
+return v___f_177_;
+}
+}
+static lean_object* _init_l_Std_Time_Year_instToStringOffset(void){
+_start:
+{
+lean_object* v___f_178_; 
+v___f_178_ = lean_obj_once(&l_Std_Time_Year_instToStringOffset___closed__0, &l_Std_Time_Year_instToStringOffset___closed__0_once, _init_l_Std_Time_Year_instToStringOffset___closed__0);
+return v___f_178_;
 }
 }
 LEAN_EXPORT uint8_t l_Std_Time_Year_instDecidableLeOffset(lean_object* v_x_179_, lean_object* v_y_180_){
@@ -775,6 +939,22 @@ lean_dec(v_y_203_);
 lean_dec(v_x_202_);
 v_r_205_ = lean_box(v_res_204_);
 return v_r_205_;
+}
+}
+static lean_object* _init_l_Std_Time_Year_instOrdOffset___closed__0(void){
+_start:
+{
+lean_object* v___x_206_; 
+v___x_206_ = lean_alloc_closure((void*)(l_Std_Time_Year_instOrdOffset___aux__1___boxed), 2, 0);
+return v___x_206_;
+}
+}
+static lean_object* _init_l_Std_Time_Year_instOrdOffset(void){
+_start:
+{
+lean_object* v___x_207_; 
+v___x_207_ = lean_obj_once(&l_Std_Time_Year_instOrdOffset___closed__0, &l_Std_Time_Year_instOrdOffset___closed__0_once, _init_l_Std_Time_Year_instOrdOffset___closed__0);
+return v___x_207_;
 }
 }
 LEAN_EXPORT lean_object* l_Std_Time_Year_Offset_ofNat(lean_object* v_data_208_){
@@ -1306,16 +1486,32 @@ _G_runtime_initialized = true;
 res = runtime_initialize_Std_Time_Date_Unit_Month(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Std_Time_Year_instReprEra = _init_l_Std_Time_Year_instReprEra();
+lean_mark_persistent(l_Std_Time_Year_instReprEra);
 l_Std_Time_Year_instInhabitedEra_default = _init_l_Std_Time_Year_instInhabitedEra_default();
 l_Std_Time_Year_instInhabitedEra = _init_l_Std_Time_Year_instInhabitedEra();
+l_Std_Time_Year_instToStringEra = _init_l_Std_Time_Year_instToStringEra();
+lean_mark_persistent(l_Std_Time_Year_instToStringEra);
+l_Std_Time_Year_instReprOffset = _init_l_Std_Time_Year_instReprOffset();
+lean_mark_persistent(l_Std_Time_Year_instReprOffset);
 l_Std_Time_Year_instInhabitedOffset___aux__1 = _init_l_Std_Time_Year_instInhabitedOffset___aux__1();
 lean_mark_persistent(l_Std_Time_Year_instInhabitedOffset___aux__1);
 l_Std_Time_Year_instInhabitedOffset = _init_l_Std_Time_Year_instInhabitedOffset();
 lean_mark_persistent(l_Std_Time_Year_instInhabitedOffset);
+l_Std_Time_Year_instAddOffset = _init_l_Std_Time_Year_instAddOffset();
+lean_mark_persistent(l_Std_Time_Year_instAddOffset);
+l_Std_Time_Year_instSubOffset = _init_l_Std_Time_Year_instSubOffset();
+lean_mark_persistent(l_Std_Time_Year_instSubOffset);
+l_Std_Time_Year_instNegOffset = _init_l_Std_Time_Year_instNegOffset();
+lean_mark_persistent(l_Std_Time_Year_instNegOffset);
 l_Std_Time_Year_instLEOffset = _init_l_Std_Time_Year_instLEOffset();
 lean_mark_persistent(l_Std_Time_Year_instLEOffset);
 l_Std_Time_Year_instLTOffset = _init_l_Std_Time_Year_instLTOffset();
 lean_mark_persistent(l_Std_Time_Year_instLTOffset);
+l_Std_Time_Year_instToStringOffset = _init_l_Std_Time_Year_instToStringOffset();
+lean_mark_persistent(l_Std_Time_Year_instToStringOffset);
+l_Std_Time_Year_instOrdOffset = _init_l_Std_Time_Year_instOrdOffset();
+lean_mark_persistent(l_Std_Time_Year_instOrdOffset);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

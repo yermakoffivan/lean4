@@ -17,21 +17,56 @@ lean_object* l_Lean_Syntax_getArg(lean_object*, lean_object*);
 uint8_t l_Lean_Syntax_isMissing(lean_object*);
 lean_object* l_Lean_stringToMessageData(lean_object*);
 lean_object* l_Lean_throwErrorAt___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Lean_Elab_instInhabitedWhereFinallyView_default___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Lean_Elab_instInhabitedWhereFinallyView_default___closed__0 = (const lean_object*)&l_Lean_Elab_instInhabitedWhereFinallyView_default___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Elab_instInhabitedWhereFinallyView_default = (const lean_object*)&l_Lean_Elab_instInhabitedWhereFinallyView_default___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Elab_instInhabitedWhereFinallyView = (const lean_object*)&l_Lean_Elab_instInhabitedWhereFinallyView_default___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lean_Elab_WhereFinallyView_none = (const lean_object*)&l_Lean_Elab_instInhabitedWhereFinallyView_default___closed__0_value;
+static lean_once_cell_t l_Lean_Elab_instInhabitedWhereFinallyView_default___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Elab_instInhabitedWhereFinallyView_default___closed__0;
+LEAN_EXPORT lean_object* l_Lean_Elab_instInhabitedWhereFinallyView_default;
+LEAN_EXPORT lean_object* l_Lean_Elab_instInhabitedWhereFinallyView;
+LEAN_EXPORT lean_object* l_Lean_Elab_WhereFinallyView_none;
 LEAN_EXPORT uint8_t l_Lean_Elab_WhereFinallyView_isNone(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Elab_WhereFinallyView_isNone___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Elab_mkWhereFinallyView___redArg___lam__0(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Elab_mkWhereFinallyView___redArg___lam__1(lean_object*, lean_object*);
-static const lean_string_object l_Lean_Elab_mkWhereFinallyView___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 93, .m_capacity = 93, .m_length = 92, .m_data = "`where ... finally` does not currently support any named sub-sections `| sectionName => ...`"};
-static const lean_object* l_Lean_Elab_mkWhereFinallyView___redArg___closed__0 = (const lean_object*)&l_Lean_Elab_mkWhereFinallyView___redArg___closed__0_value;
+static lean_once_cell_t l_Lean_Elab_mkWhereFinallyView___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Elab_mkWhereFinallyView___redArg___closed__0;
 static lean_once_cell_t l_Lean_Elab_mkWhereFinallyView___redArg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Elab_mkWhereFinallyView___redArg___closed__1;
 LEAN_EXPORT lean_object* l_Lean_Elab_mkWhereFinallyView___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Elab_mkWhereFinallyView(lean_object*, lean_object*, lean_object*, lean_object*);
+static lean_object* _init_l_Lean_Elab_instInhabitedWhereFinallyView_default___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; lean_object* v___x_2_; 
+v___x_1_ = lean_box(0);
+v___x_2_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_2_, 0, v___x_1_);
+lean_ctor_set(v___x_2_, 1, v___x_1_);
+return v___x_2_;
+}
+}
+static lean_object* _init_l_Lean_Elab_instInhabitedWhereFinallyView_default(void){
+_start:
+{
+lean_object* v___x_3_; 
+v___x_3_ = lean_obj_once(&l_Lean_Elab_instInhabitedWhereFinallyView_default___closed__0, &l_Lean_Elab_instInhabitedWhereFinallyView_default___closed__0_once, _init_l_Lean_Elab_instInhabitedWhereFinallyView_default___closed__0);
+return v___x_3_;
+}
+}
+static lean_object* _init_l_Lean_Elab_instInhabitedWhereFinallyView(void){
+_start:
+{
+lean_object* v___x_4_; 
+v___x_4_ = l_Lean_Elab_instInhabitedWhereFinallyView_default;
+return v___x_4_;
+}
+}
+static lean_object* _init_l_Lean_Elab_WhereFinallyView_none(void){
+_start:
+{
+lean_object* v___x_5_; 
+v___x_5_ = lean_obj_once(&l_Lean_Elab_instInhabitedWhereFinallyView_default___closed__0, &l_Lean_Elab_instInhabitedWhereFinallyView_default___closed__0_once, _init_l_Lean_Elab_instInhabitedWhereFinallyView_default___closed__0);
+return v___x_5_;
+}
+}
 LEAN_EXPORT uint8_t l_Lean_Elab_WhereFinallyView_isNone(lean_object* v_o_6_){
 _start:
 {
@@ -125,11 +160,19 @@ v___x_32_ = lean_apply_1(v___f_30_, v_____r_31_);
 return v___x_32_;
 }
 }
+static lean_object* _init_l_Lean_Elab_mkWhereFinallyView___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_33_; 
+v___x_33_ = lean_mk_string_unchecked("`where ... finally` does not currently support any named sub-sections `| sectionName => ...`", 92, 92);
+return v___x_33_;
+}
+}
 static lean_object* _init_l_Lean_Elab_mkWhereFinallyView___redArg___closed__1(void){
 _start:
 {
 lean_object* v___x_34_; lean_object* v___x_35_; 
-v___x_34_ = ((lean_object*)(l_Lean_Elab_mkWhereFinallyView___redArg___closed__0));
+v___x_34_ = lean_obj_once(&l_Lean_Elab_mkWhereFinallyView___redArg___closed__0, &l_Lean_Elab_mkWhereFinallyView___redArg___closed__0_once, _init_l_Lean_Elab_mkWhereFinallyView___redArg___closed__0);
 v___x_35_ = l_Lean_stringToMessageData(v___x_34_);
 return v___x_35_;
 }
@@ -267,6 +310,12 @@ _G_runtime_initialized = true;
 res = runtime_initialize_Lean_Parser_Term(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Lean_Elab_instInhabitedWhereFinallyView_default = _init_l_Lean_Elab_instInhabitedWhereFinallyView_default();
+lean_mark_persistent(l_Lean_Elab_instInhabitedWhereFinallyView_default);
+l_Lean_Elab_instInhabitedWhereFinallyView = _init_l_Lean_Elab_instInhabitedWhereFinallyView();
+lean_mark_persistent(l_Lean_Elab_instInhabitedWhereFinallyView);
+l_Lean_Elab_WhereFinallyView_none = _init_l_Lean_Elab_WhereFinallyView_none();
+lean_mark_persistent(l_Lean_Elab_WhereFinallyView_none);
 return lean_io_result_mk_ok(lean_box(0));
 }
 static bool _G_meta_initialized = false;

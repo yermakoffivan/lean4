@@ -36,8 +36,8 @@ LEAN_EXPORT lean_object* l___private_Init_Data_RArray_0__Lean_RArray_getImpl_mat
 LEAN_EXPORT lean_object* l___private_Init_Data_RArray_0__Lean_RArray_getImpl_match__1_splitter(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_instGetElemRArrayNatTrue___lam__0(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_instGetElemRArrayNatTrue___lam__0___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Lean_instGetElemRArrayNatTrue___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lean_instGetElemRArrayNatTrue___lam__0___boxed, .m_arity = 3, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lean_instGetElemRArrayNatTrue___closed__0 = (const lean_object*)&l_Lean_instGetElemRArrayNatTrue___closed__0_value;
+static lean_once_cell_t l_Lean_instGetElemRArrayNatTrue___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_instGetElemRArrayNatTrue___closed__0;
 LEAN_EXPORT lean_object* l_Lean_instGetElemRArrayNatTrue(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_RArray_size___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_Lean_RArray_size___redArg___boxed(lean_object*);
@@ -354,11 +354,19 @@ lean_dec_ref(v_a_116_);
 return v_res_119_;
 }
 }
+static lean_object* _init_l_Lean_instGetElemRArrayNatTrue___closed__0(void){
+_start:
+{
+lean_object* v___f_120_; 
+v___f_120_ = lean_alloc_closure((void*)(l_Lean_instGetElemRArrayNatTrue___lam__0___boxed), 3, 0);
+return v___f_120_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_instGetElemRArrayNatTrue(lean_object* v_00_u03b1_121_){
 _start:
 {
 lean_object* v___f_122_; 
-v___f_122_ = ((lean_object*)(l_Lean_instGetElemRArrayNatTrue___closed__0));
+v___f_122_ = lean_obj_once(&l_Lean_instGetElemRArrayNatTrue___closed__0, &l_Lean_instGetElemRArrayNatTrue___closed__0_once, _init_l_Lean_instGetElemRArrayNatTrue___closed__0);
 return v___f_122_;
 }
 }

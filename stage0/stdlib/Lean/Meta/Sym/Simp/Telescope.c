@@ -17,10 +17,21 @@ lean_object* l_Lean_Meta_Sym_Simp_simpLambda_x27___boxed(lean_object*, lean_obje
 lean_object* l_Lean_Meta_Sym_Simp_simpLet_x27(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Meta_Sym_Simp_simpArrowTelescope___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Meta_Sym_Simp_simpForall_x27(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_ctor_object l_Lean_Meta_Sym_Simp_simpTelescope___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*0 + 8, .m_other = 0, .m_tag = 0}, .m_objs = {LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_Lean_Meta_Sym_Simp_simpTelescope___closed__0 = (const lean_object*)&l_Lean_Meta_Sym_Simp_simpTelescope___closed__0_value;
+static lean_once_cell_t l_Lean_Meta_Sym_Simp_simpTelescope___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Meta_Sym_Simp_simpTelescope___closed__0;
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Simp_simpTelescope___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Simp_simpTelescope(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+static lean_object* _init_l_Lean_Meta_Sym_Simp_simpTelescope___closed__0(void){
+_start:
+{
+uint8_t v___x_1_; lean_object* v___x_2_; 
+v___x_1_ = 0;
+v___x_2_ = lean_alloc_ctor(0, 0, 2);
+lean_ctor_set_uint8(v___x_2_, 0, v___x_1_);
+lean_ctor_set_uint8(v___x_2_, 1, v___x_1_);
+return v___x_2_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Meta_Sym_Simp_simpTelescope___boxed(lean_object* v_e_3_, lean_object* v_a_4_, lean_object* v_a_5_, lean_object* v_a_6_, lean_object* v_a_7_, lean_object* v_a_8_, lean_object* v_a_9_, lean_object* v_a_10_, lean_object* v_a_11_, lean_object* v_a_12_, lean_object* v_a_13_){
 _start:
 {
@@ -68,7 +79,7 @@ default:
 {
 lean_object* v___x_33_; lean_object* v___x_34_; 
 lean_dec_ref(v_e_15_);
-v___x_33_ = ((lean_object*)(l_Lean_Meta_Sym_Simp_simpTelescope___closed__0));
+v___x_33_ = lean_obj_once(&l_Lean_Meta_Sym_Simp_simpTelescope___closed__0, &l_Lean_Meta_Sym_Simp_simpTelescope___closed__0_once, _init_l_Lean_Meta_Sym_Simp_simpTelescope___closed__0);
 v___x_34_ = lean_alloc_ctor(0, 1, 0);
 lean_ctor_set(v___x_34_, 0, v___x_33_);
 return v___x_34_;

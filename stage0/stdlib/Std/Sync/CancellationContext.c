@@ -45,8 +45,8 @@ lean_object* l_Std_Mutex_new___redArg(lean_object*);
 uint64_t lean_uint64_add(uint64_t, uint64_t);
 LEAN_EXPORT lean_object* l_Std_DTreeMap_Internal_Impl_insert___at___00Std_CancellationContext_new_spec__0___redArg(uint64_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_DTreeMap_Internal_Impl_insert___at___00Std_CancellationContext_new_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_array_object l_Std_CancellationContext_new___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Std_CancellationContext_new___closed__0 = (const lean_object*)&l_Std_CancellationContext_new___closed__0_value;
+static lean_once_cell_t l_Std_CancellationContext_new___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_CancellationContext_new___closed__0;
 LEAN_EXPORT lean_object* l_Std_CancellationContext_new();
 LEAN_EXPORT lean_object* l_Std_CancellationContext_new___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_DTreeMap_Internal_Impl_insert___at___00Std_CancellationContext_new_spec__0(lean_object*, uint64_t, lean_object*, lean_object*, lean_object*);
@@ -59,8 +59,8 @@ LEAN_EXPORT lean_object* l_Std_DTreeMap_Internal_Impl_Const_modify___at___00Std_
 LEAN_EXPORT lean_object* l_Std_DTreeMap_Internal_Impl_Const_modify___at___00Std_CancellationContext_fork_spec__0___lam__0___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_Std_DTreeMap_Internal_Impl_Const_modify___at___00Std_CancellationContext_fork_spec__0___lam__1(uint64_t, lean_object*);
 LEAN_EXPORT lean_object* l_Std_DTreeMap_Internal_Impl_Const_modify___at___00Std_CancellationContext_fork_spec__0___lam__1___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_DTreeMap_Internal_Impl_Const_modify___at___00Std_CancellationContext_fork_spec__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_DTreeMap_Internal_Impl_Const_modify___at___00Std_CancellationContext_fork_spec__0___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_DTreeMap_Internal_Impl_Const_modify___at___00Std_CancellationContext_fork_spec__0___closed__0 = (const lean_object*)&l_Std_DTreeMap_Internal_Impl_Const_modify___at___00Std_CancellationContext_fork_spec__0___closed__0_value;
+static lean_once_cell_t l_Std_DTreeMap_Internal_Impl_Const_modify___at___00Std_CancellationContext_fork_spec__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_DTreeMap_Internal_Impl_Const_modify___at___00Std_CancellationContext_fork_spec__0___closed__0;
 LEAN_EXPORT lean_object* l_Std_DTreeMap_Internal_Impl_Const_modify___at___00Std_CancellationContext_fork_spec__0(uint64_t, uint64_t, lean_object*);
 LEAN_EXPORT lean_object* l_Std_DTreeMap_Internal_Impl_Const_modify___at___00Std_CancellationContext_fork_spec__0___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_CancellationContext_fork___lam__0(lean_object*, uint64_t, lean_object*, lean_object*, lean_object*);
@@ -1456,6 +1456,15 @@ v_res_300_ = l_Std_DTreeMap_Internal_Impl_insert___at___00Std_CancellationContex
 return v_res_300_;
 }
 }
+static lean_object* _init_l_Std_CancellationContext_new___closed__0(void){
+_start:
+{
+lean_object* v___x_301_; lean_object* v___x_302_; 
+v___x_301_ = lean_unsigned_to_nat(0u);
+v___x_302_ = lean_mk_empty_array_with_capacity(v___x_301_);
+return v___x_302_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_CancellationContext_new(){
 _start:
 {
@@ -1463,7 +1472,7 @@ lean_object* v___x_304_; lean_object* v___x_305_; uint64_t v___x_306_; lean_obje
 v___x_304_ = l_Std_CancellationToken_new();
 v___x_305_ = lean_box(1);
 v___x_306_ = 0ULL;
-v___x_307_ = ((lean_object*)(l_Std_CancellationContext_new___closed__0));
+v___x_307_ = lean_obj_once(&l_Std_CancellationContext_new___closed__0, &l_Std_CancellationContext_new___closed__0_once, _init_l_Std_CancellationContext_new___closed__0);
 lean_inc_ref(v___x_304_);
 v___x_308_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_308_, 0, v___x_304_);
@@ -1582,6 +1591,14 @@ v_res_363_ = l_Std_DTreeMap_Internal_Impl_Const_modify___at___00Std_Cancellation
 return v_res_363_;
 }
 }
+static lean_object* _init_l_Std_DTreeMap_Internal_Impl_Const_modify___at___00Std_CancellationContext_fork_spec__0___closed__0(void){
+_start:
+{
+lean_object* v___f_364_; 
+v___f_364_ = lean_alloc_closure((void*)(l_Std_DTreeMap_Internal_Impl_Const_modify___at___00Std_CancellationContext_fork_spec__0___lam__0___boxed), 1, 0);
+return v___f_364_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_DTreeMap_Internal_Impl_Const_modify___at___00Std_CancellationContext_fork_spec__0(uint64_t v___x_365_, uint64_t v_k_366_, lean_object* v_t_367_){
 _start:
 {
@@ -1653,7 +1670,7 @@ else
 {
 lean_object* v___f_384_; lean_object* v___x_385_; lean_object* v___f_386_; lean_object* v___x_387_; lean_object* v___x_388_; lean_object* v___x_390_; 
 lean_dec(v_k_369_);
-v___f_384_ = ((lean_object*)(l_Std_DTreeMap_Internal_Impl_Const_modify___at___00Std_CancellationContext_fork_spec__0___closed__0));
+v___f_384_ = lean_obj_once(&l_Std_DTreeMap_Internal_Impl_Const_modify___at___00Std_CancellationContext_fork_spec__0___closed__0, &l_Std_DTreeMap_Internal_Impl_Const_modify___at___00Std_CancellationContext_fork_spec__0___closed__0_once, _init_l_Std_DTreeMap_Internal_Impl_Const_modify___at___00Std_CancellationContext_fork_spec__0___closed__0);
 v___x_385_ = lean_box_uint64(v___x_365_);
 v___f_386_ = lean_alloc_closure((void*)(l_Std_DTreeMap_Internal_Impl_Const_modify___at___00Std_CancellationContext_fork_spec__0___lam__1___boxed), 2, 1);
 lean_closure_set(v___f_386_, 0, v___x_385_);
@@ -1761,7 +1778,7 @@ goto v_resetjp_414_;
 v_resetjp_414_:
 {
 lean_object* v___x_417_; lean_object* v___x_418_; lean_object* v___x_419_; lean_object* v___x_420_; uint64_t v___x_421_; uint64_t v___x_422_; lean_object* v___x_424_; 
-v___x_417_ = ((lean_object*)(l_Std_CancellationContext_new___closed__0));
+v___x_417_ = lean_obj_once(&l_Std_CancellationContext_new___closed__0, &l_Std_CancellationContext_new___closed__0_once, _init_l_Std_CancellationContext_new___closed__0);
 lean_inc_ref(v___x_410_);
 v___x_418_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_418_, 0, v___x_410_);

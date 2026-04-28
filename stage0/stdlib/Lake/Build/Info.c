@@ -29,9 +29,9 @@ LEAN_EXPORT lean_object* l_Lake_Package_targetKey(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_Package_targetKey___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lake_BuildInfo_key(lean_object*);
 LEAN_EXPORT lean_object* l_Lake_instToStringBuildInfo___lam__0(lean_object*);
-static const lean_closure_object l_Lake_instToStringBuildInfo___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Lake_instToStringBuildInfo___lam__0, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Lake_instToStringBuildInfo___closed__0 = (const lean_object*)&l_Lake_instToStringBuildInfo___closed__0_value;
-LEAN_EXPORT const lean_object* l_Lake_instToStringBuildInfo = (const lean_object*)&l_Lake_instToStringBuildInfo___closed__0_value;
+static lean_once_cell_t l_Lake_instToStringBuildInfo___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lake_instToStringBuildInfo___closed__0;
+LEAN_EXPORT lean_object* l_Lake_instToStringBuildInfo;
 LEAN_EXPORT lean_object* l_Lake_BuildInfo_ctorIdx(lean_object* v_x_1_){
 _start:
 {
@@ -255,6 +255,22 @@ v___x_72_ = l_Lake_BuildKey_toString(v___x_71_);
 return v___x_72_;
 }
 }
+static lean_object* _init_l_Lake_instToStringBuildInfo___closed__0(void){
+_start:
+{
+lean_object* v___f_73_; 
+v___f_73_ = lean_alloc_closure((void*)(l_Lake_instToStringBuildInfo___lam__0), 1, 0);
+return v___f_73_;
+}
+}
+static lean_object* _init_l_Lake_instToStringBuildInfo(void){
+_start:
+{
+lean_object* v___f_74_; 
+v___f_74_ = lean_obj_once(&l_Lake_instToStringBuildInfo___closed__0, &l_Lake_instToStringBuildInfo___closed__0_once, _init_l_Lake_instToStringBuildInfo___closed__0);
+return v___f_74_;
+}
+}
 lean_object* runtime_initialize_Lake_Config_Package(uint8_t builtin);
 static bool _G_runtime_initialized = false;
 LEAN_EXPORT lean_object* runtime_initialize_Lake_Build_Info(uint8_t builtin) {
@@ -264,6 +280,8 @@ _G_runtime_initialized = true;
 res = runtime_initialize_Lake_Config_Package(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_Lake_instToStringBuildInfo = _init_l_Lake_instToStringBuildInfo();
+lean_mark_persistent(l_Lake_instToStringBuildInfo);
 return lean_io_result_mk_ok(lean_box(0));
 }
 lean_object* runtime_initialize_Lake_Build_Data(uint8_t builtin);

@@ -84,8 +84,8 @@ LEAN_EXPORT uint8_t l___private_Init_Data_Array_QSort_Basic_0__Array_qsort_sort_
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_QSort_Basic_0__Array_qsort_sort___at___00Lean_Expr_numApps_spec__0___redArg___lam__0___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_QSort_Basic_0__Array_qsort_sort___at___00Lean_Expr_numApps_spec__0___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_QSort_Basic_0__Array_qsort_sort___at___00Lean_Expr_numApps_spec__0___redArg___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_array_object l_Lean_Expr_numApps___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Lean_Expr_numApps___closed__0 = (const lean_object*)&l_Lean_Expr_numApps___closed__0_value;
+static lean_once_cell_t l_Lean_Expr_numApps___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Expr_numApps___closed__0;
 LEAN_EXPORT lean_object* l_Lean_Expr_numApps(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Lean_Expr_numApps___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_QSort_Basic_0__Array_qsort_sort___at___00Lean_Expr_numApps_spec__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
@@ -1272,13 +1272,22 @@ lean_dec(v_n_410_);
 return v_res_414_;
 }
 }
+static lean_object* _init_l_Lean_Expr_numApps___closed__0(void){
+_start:
+{
+lean_object* v___x_415_; lean_object* v_result_416_; 
+v___x_415_ = lean_unsigned_to_nat(0u);
+v_result_416_ = lean_mk_empty_array_with_capacity(v___x_415_);
+return v_result_416_;
+}
+}
 LEAN_EXPORT lean_object* l_Lean_Expr_numApps(lean_object* v_e_417_, lean_object* v_threshold_418_){
 _start:
 {
 lean_object* v___y_421_; lean_object* v___y_422_; lean_object* v___y_423_; lean_object* v___y_424_; lean_object* v___y_428_; lean_object* v___y_429_; lean_object* v___y_430_; lean_object* v___y_431_; lean_object* v_counters_433_; lean_object* v___x_434_; lean_object* v_result_435_; lean_object* v___x_436_; lean_object* v_a_437_; lean_object* v___x_439_; uint8_t v_isShared_440_; uint8_t v_isSharedCheck_453_; 
 v_counters_433_ = l_Lean_Expr_NumApps_main(v_e_417_);
 v___x_434_ = lean_unsigned_to_nat(0u);
-v_result_435_ = ((lean_object*)(l_Lean_Expr_numApps___closed__0));
+v_result_435_ = lean_obj_once(&l_Lean_Expr_numApps___closed__0, &l_Lean_Expr_numApps___closed__0_once, _init_l_Lean_Expr_numApps___closed__0);
 v___x_436_ = l_Std_DTreeMap_Internal_Impl_forInStep___at___00Lean_Expr_numApps_spec__1(v_threshold_418_, v_result_435_, v_counters_433_);
 lean_dec(v_counters_433_);
 v_a_437_ = lean_ctor_get(v___x_436_, 0);

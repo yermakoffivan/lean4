@@ -14,18 +14,18 @@
 extern "C" {
 #endif
 LEAN_EXPORT lean_object* l_Std_PRange_instToStreamRccIterIteratorOfUpwardEnumerable___lam__0(lean_object*);
-static const lean_closure_object l_Std_PRange_instToStreamRccIterIteratorOfUpwardEnumerable___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_PRange_instToStreamRccIterIteratorOfUpwardEnumerable___lam__0, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_PRange_instToStreamRccIterIteratorOfUpwardEnumerable___closed__0 = (const lean_object*)&l_Std_PRange_instToStreamRccIterIteratorOfUpwardEnumerable___closed__0_value;
+static lean_once_cell_t l_Std_PRange_instToStreamRccIterIteratorOfUpwardEnumerable___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_PRange_instToStreamRccIterIteratorOfUpwardEnumerable___closed__0;
 LEAN_EXPORT lean_object* l_Std_PRange_instToStreamRccIterIteratorOfUpwardEnumerable(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_PRange_instToStreamRccIterIteratorOfUpwardEnumerable___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_PRange_instToStreamRcoIterIteratorOfUpwardEnumerable___lam__0(lean_object*);
-static const lean_closure_object l_Std_PRange_instToStreamRcoIterIteratorOfUpwardEnumerable___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_PRange_instToStreamRcoIterIteratorOfUpwardEnumerable___lam__0, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_PRange_instToStreamRcoIterIteratorOfUpwardEnumerable___closed__0 = (const lean_object*)&l_Std_PRange_instToStreamRcoIterIteratorOfUpwardEnumerable___closed__0_value;
+static lean_once_cell_t l_Std_PRange_instToStreamRcoIterIteratorOfUpwardEnumerable___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_PRange_instToStreamRcoIterIteratorOfUpwardEnumerable___closed__0;
 LEAN_EXPORT lean_object* l_Std_PRange_instToStreamRcoIterIteratorOfUpwardEnumerable(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_PRange_instToStreamRcoIterIteratorOfUpwardEnumerable___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_PRange_instToStreamRciIterIteratorOfUpwardEnumerable___lam__0(lean_object*);
-static const lean_closure_object l_Std_PRange_instToStreamRciIterIteratorOfUpwardEnumerable___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_PRange_instToStreamRciIterIteratorOfUpwardEnumerable___lam__0, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_PRange_instToStreamRciIterIteratorOfUpwardEnumerable___closed__0 = (const lean_object*)&l_Std_PRange_instToStreamRciIterIteratorOfUpwardEnumerable___closed__0_value;
+static lean_once_cell_t l_Std_PRange_instToStreamRciIterIteratorOfUpwardEnumerable___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_PRange_instToStreamRciIterIteratorOfUpwardEnumerable___closed__0;
 LEAN_EXPORT lean_object* l_Std_PRange_instToStreamRciIterIteratorOfUpwardEnumerable(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_PRange_instToStreamRciIterIteratorOfUpwardEnumerable___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_PRange_instToStreamRocIterIteratorOfUpwardEnumerable___redArg___lam__0(lean_object*, lean_object*);
@@ -100,11 +100,19 @@ return v___x_9_;
 }
 }
 }
+static lean_object* _init_l_Std_PRange_instToStreamRccIterIteratorOfUpwardEnumerable___closed__0(void){
+_start:
+{
+lean_object* v___f_12_; 
+v___f_12_ = lean_alloc_closure((void*)(l_Std_PRange_instToStreamRccIterIteratorOfUpwardEnumerable___lam__0), 1, 0);
+return v___f_12_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_PRange_instToStreamRccIterIteratorOfUpwardEnumerable(lean_object* v_00_u03b1_13_, lean_object* v_inst_14_){
 _start:
 {
 lean_object* v___f_15_; 
-v___f_15_ = ((lean_object*)(l_Std_PRange_instToStreamRccIterIteratorOfUpwardEnumerable___closed__0));
+v___f_15_ = lean_obj_once(&l_Std_PRange_instToStreamRccIterIteratorOfUpwardEnumerable___closed__0, &l_Std_PRange_instToStreamRccIterIteratorOfUpwardEnumerable___closed__0_once, _init_l_Std_PRange_instToStreamRccIterIteratorOfUpwardEnumerable___closed__0);
 return v___f_15_;
 }
 }
@@ -166,11 +174,19 @@ return v___x_27_;
 }
 }
 }
+static lean_object* _init_l_Std_PRange_instToStreamRcoIterIteratorOfUpwardEnumerable___closed__0(void){
+_start:
+{
+lean_object* v___f_30_; 
+v___f_30_ = lean_alloc_closure((void*)(l_Std_PRange_instToStreamRcoIterIteratorOfUpwardEnumerable___lam__0), 1, 0);
+return v___f_30_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_PRange_instToStreamRcoIterIteratorOfUpwardEnumerable(lean_object* v_00_u03b1_31_, lean_object* v_inst_32_){
 _start:
 {
 lean_object* v___f_33_; 
-v___f_33_ = ((lean_object*)(l_Std_PRange_instToStreamRcoIterIteratorOfUpwardEnumerable___closed__0));
+v___f_33_ = lean_obj_once(&l_Std_PRange_instToStreamRcoIterIteratorOfUpwardEnumerable___closed__0, &l_Std_PRange_instToStreamRcoIterIteratorOfUpwardEnumerable___closed__0_once, _init_l_Std_PRange_instToStreamRcoIterIteratorOfUpwardEnumerable___closed__0);
 return v___f_33_;
 }
 }
@@ -192,11 +208,19 @@ lean_ctor_set(v___x_38_, 0, v_r_37_);
 return v___x_38_;
 }
 }
+static lean_object* _init_l_Std_PRange_instToStreamRciIterIteratorOfUpwardEnumerable___closed__0(void){
+_start:
+{
+lean_object* v___f_39_; 
+v___f_39_ = lean_alloc_closure((void*)(l_Std_PRange_instToStreamRciIterIteratorOfUpwardEnumerable___lam__0), 1, 0);
+return v___f_39_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_PRange_instToStreamRciIterIteratorOfUpwardEnumerable(lean_object* v_00_u03b1_40_, lean_object* v_inst_41_){
 _start:
 {
 lean_object* v___f_42_; 
-v___f_42_ = ((lean_object*)(l_Std_PRange_instToStreamRciIterIteratorOfUpwardEnumerable___closed__0));
+v___f_42_ = lean_obj_once(&l_Std_PRange_instToStreamRciIterIteratorOfUpwardEnumerable___closed__0, &l_Std_PRange_instToStreamRciIterIteratorOfUpwardEnumerable___closed__0_once, _init_l_Std_PRange_instToStreamRciIterIteratorOfUpwardEnumerable___closed__0);
 return v___f_42_;
 }
 }

@@ -72,39 +72,39 @@ static lean_once_cell_t l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tacti
 static lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_getPivot___closed__0;
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_getPivot(lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_getPivot___boxed(lean_object*);
-static const lean_string_object l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "\r\n"};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__0 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__0_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__0;
 static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__1;
 static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static uint8_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__2;
-static const lean_string_object l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "expected: '"};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3;
 static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__4;
 static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__5;
 static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__6;
-static const lean_string_object l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "'"};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7;
 static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__8;
 static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__9;
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline(lean_object*);
-static const lean_string_object l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "digit expected"};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__0 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__0_value;
-static const lean_ctor_object l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__0_value)}};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__0;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1;
 static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static uint8_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__2;
 static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static uint8_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__3;
-static const lean_string_object l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "id was 0"};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__4 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__4_value;
-static const lean_ctor_object l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__4_value)}};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__4;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5;
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos(lean_object*);
 static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseNeg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static uint8_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseNeg___closed__0;
@@ -145,8 +145,8 @@ static lean_once_cell_t l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tacti
 static lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList_idWs___closed__5;
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList_idWs(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Internal_Parsec_manyCore___at___00Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList_spec__0(lean_object*, lean_object*);
-static const lean_array_object l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList___closed__0 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList___closed__0_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList___closed__0;
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList(lean_object*);
 static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseDelete___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static uint8_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseDelete___closed__0;
@@ -165,34 +165,34 @@ LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseLit(lean_ob
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseClause_litWs(lean_object*);
 LEAN_EXPORT lean_object* l_Nat_cast___at___00Std_Tactic_BVDecide_LRAT_Parser_Text_parseClause_spec__0(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Internal_Parsec_manyCore___at___00Std_Tactic_BVDecide_LRAT_Parser_Text_parseClause_spec__1(lean_object*, lean_object*);
-static const lean_array_object l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseClause___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseClause___closed__0 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseClause___closed__0_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseClause___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseClause___closed__0;
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseClause(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRes(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Internal_Parsec_manyCore___at___00Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat_spec__0(lean_object*, lean_object*);
-static const lean_array_object l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__0 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__0_value;
-static const lean_string_object l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 57, .m_capacity = 57, .m_length = 56, .m_data = "There cannot be any ratHints for adding the empty clause"};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__1 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__1_value;
-static const lean_ctor_object l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__1_value)}};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__2 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__2_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__0;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__1;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__2;
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseAction(lean_object*);
-static const lean_string_object l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 24, .m_capacity = 24, .m_length = 23, .m_data = "condition not satisfied"};
-static const lean_object* l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__0 = (const lean_object*)&l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__0_value;
-static const lean_ctor_object l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__0_value)}};
-static const lean_object* l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__1 = (const lean_object*)&l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__1_value;
+static lean_once_cell_t l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__0;
+static lean_once_cell_t l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__1;
 static lean_once_cell_t l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static uint8_t l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__2;
 static lean_once_cell_t l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static uint8_t l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__3;
 LEAN_EXPORT lean_object* l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0(uint8_t, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_array_object l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go___closed__0 = (const lean_object*)&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go___closed__0_value;
+static lean_once_cell_t l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go___closed__0;
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go(lean_object*, lean_object*);
-static const lean_array_object l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions___closed__0 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions___closed__0_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions___closed__0;
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions(lean_object*);
 static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseZero___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseZero___closed__0;
@@ -203,34 +203,34 @@ static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseZero___closed_
 static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseZero___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseZero___closed__3;
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseZero(lean_object*);
-static const lean_string_object l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 29, .m_capacity = 29, .m_length = 28, .m_data = "Invalid zero byte in literal"};
-static const lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__0 = (const lean_object*)&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__0_value;
-static const lean_ctor_object l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__0_value)}};
-static const lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__1 = (const lean_object*)&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__1_value;
-static const lean_string_object l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 18, .m_capacity = 18, .m_length = 17, .m_data = "Excessive literal"};
-static const lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__2 = (const lean_object*)&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__2_value;
-static const lean_ctor_object l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__2_value)}};
-static const lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__3 = (const lean_object*)&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__3_value;
+static lean_once_cell_t l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__0;
+static lean_once_cell_t l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__1;
+static lean_once_cell_t l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__2;
+static lean_once_cell_t l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__3;
 static lean_once_cell_t l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
 static uint8_t l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__4;
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go(uint64_t, uint64_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit(lean_object*);
-static const lean_string_object l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 52, .m_capacity = 52, .m_length = 51, .m_data = "parsed non negative lit where negative was expected"};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__0 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__0_value;
-static const lean_ctor_object l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__0_value)}};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__1 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__1_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__0;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__1;
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg(lean_object*);
-static const lean_string_object l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 52, .m_capacity = 52, .m_length = 51, .m_data = "parsed non positive lit where positive was expected"};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__0 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__0_value;
-static const lean_ctor_object l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__0_value)}};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__0;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1;
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseId(lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero_go___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero_go(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_array_object l_Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero___redArg___closed__0 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero___redArg___closed__0_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero___redArg___closed__0;
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillNegOrZero_go___redArg(lean_object*, lean_object*, lean_object*);
@@ -251,29 +251,29 @@ LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tact
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseAction_parseDelete(lean_object*);
 static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseAction___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static uint8_t l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseAction___closed__0;
-static const lean_string_object l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseAction___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 22, .m_capacity = 22, .m_length = 21, .m_data = "Expected a or d got: "};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseAction___closed__1 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseAction___closed__1_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseAction___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseAction___closed__1;
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseAction(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Internal_Parsec_manyCore___at___00Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions_spec__0(lean_object*, lean_object*);
-static const lean_string_object l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 22, .m_capacity = 22, .m_length = 21, .m_data = "expected end of input"};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions___closed__0 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions___closed__0_value;
-static const lean_ctor_object l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions___closed__0_value)}};
-static const lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions___closed__1 = (const lean_object*)&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions___closed__1_value;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions___closed__0;
+static lean_once_cell_t l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions___closed__1;
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_parseActions(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_loadLRATProof(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_loadLRATProof___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_parseLRATProof(lean_object*);
-static const lean_string_object l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = " "};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0_value;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0(lean_object*, size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 1, .m_capacity = 1, .m_length = 0, .m_data = ""};
-static const lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0 = (const lean_object*)&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0_value;
+static lean_once_cell_t l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0;
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList(lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___boxed(lean_object*);
-static const lean_string_object l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeRatHint___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "-"};
-static const lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeRatHint___closed__0 = (const lean_object*)&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeRatHint___closed__0_value;
+static lean_once_cell_t l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeRatHint___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeRatHint___closed__0;
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeRatHint(lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeRatHints_spec__0(lean_object*, size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeRatHints_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
@@ -283,17 +283,17 @@ LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeClause_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeClause(lean_object*);
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeClause___boxed(lean_object*);
-static const lean_string_object l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = " 0 "};
-static const lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__0 = (const lean_object*)&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__0_value;
-static const lean_string_object l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "0"};
-static const lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1 = (const lean_object*)&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1_value;
-static const lean_string_object l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "0 "};
-static const lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__2 = (const lean_object*)&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__2_value;
-static const lean_string_object l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "1 d "};
-static const lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__3 = (const lean_object*)&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__3_value;
+static lean_once_cell_t l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__0;
+static lean_once_cell_t l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1;
+static lean_once_cell_t l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__2;
+static lean_once_cell_t l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__3;
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize(lean_object*);
-static const lean_string_object l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Std_Tactic_BVDecide_LRAT_lratProofToString_spec__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "\n"};
-static const lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Std_Tactic_BVDecide_LRAT_lratProofToString_spec__0___closed__0 = (const lean_object*)&l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Std_Tactic_BVDecide_LRAT_lratProofToString_spec__0___closed__0_value;
+static lean_once_cell_t l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Std_Tactic_BVDecide_LRAT_lratProofToString_spec__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Std_Tactic_BVDecide_LRAT_lratProofToString_spec__0___closed__0;
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Std_Tactic_BVDecide_LRAT_lratProofToString_spec__0(lean_object*, size_t, size_t, lean_object*);
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Std_Tactic_BVDecide_LRAT_lratProofToString_spec__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_lratProofToString(lean_object*);
@@ -304,12 +304,12 @@ LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tact
 LEAN_EXPORT lean_object* l_panic___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt_spec__0(lean_object*);
 static lean_once_cell_t l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__0;
-static const lean_string_object l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 32, .m_capacity = 32, .m_length = 31, .m_data = "Std.Tactic.BVDecide.LRAT.Parser"};
-static const lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__1 = (const lean_object*)&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__1_value;
-static const lean_string_object l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 93, .m_capacity = 93, .m_length = 92, .m_data = "_private.Std.Tactic.BVDecide.LRAT.Parser.0.Std.Tactic.BVDecide.LRAT.lratProofToBinary.addInt"};
-static const lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__2 = (const lean_object*)&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__2_value;
-static const lean_string_object l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 94, .m_capacity = 94, .m_length = 91, .m_data = "assertion violation: mapped ≤ (2^64 - 1) -- our parser \"only\" supports 64 bit literals\n    "};
-static const lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__3 = (const lean_object*)&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__3_value;
+static lean_once_cell_t l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__1;
+static lean_once_cell_t l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__2;
+static lean_once_cell_t l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__3;
 static lean_once_cell_t l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__4;
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt(lean_object*, lean_object*);
@@ -368,11 +368,19 @@ lean_dec_ref(v_clause_12_);
 return v_res_13_;
 }
 }
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__0(void){
+_start:
+{
+lean_object* v___x_14_; 
+v___x_14_ = lean_mk_string_unchecked("\r\n", 2, 2);
+return v___x_14_;
+}
+}
 static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__1(void){
 _start:
 {
 lean_object* v___x_15_; lean_object* v_utf8_16_; 
-v___x_15_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__0));
+v___x_15_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__0, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__0_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__0);
 v_utf8_16_ = lean_string_to_utf8(v___x_15_);
 return v_utf8_16_;
 }
@@ -384,6 +392,14 @@ uint32_t v___x_17_; uint8_t v___x_18_;
 v___x_17_ = 10;
 v___x_18_ = lean_uint32_to_uint8(v___x_17_);
 return v___x_18_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3(void){
+_start:
+{
+lean_object* v___x_19_; 
+v___x_19_ = lean_mk_string_unchecked("expected: '", 11, 11);
+return v___x_19_;
 }
 }
 static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__4(void){
@@ -409,16 +425,24 @@ _start:
 {
 lean_object* v___x_24_; lean_object* v___x_25_; lean_object* v___x_26_; 
 v___x_24_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__5, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__5_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__5);
-v___x_25_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3));
+v___x_25_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3);
 v___x_26_ = lean_string_append(v___x_25_, v___x_24_);
 return v___x_26_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7(void){
+_start:
+{
+lean_object* v___x_27_; 
+v___x_27_ = lean_mk_string_unchecked("'", 1, 1);
+return v___x_27_;
 }
 }
 static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__8(void){
 _start:
 {
 lean_object* v___x_28_; lean_object* v___x_29_; lean_object* v___x_30_; 
-v___x_28_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7));
+v___x_28_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7);
 v___x_29_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__6, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__6_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__6);
 v___x_30_ = lean_string_append(v___x_29_, v___x_28_);
 return v___x_30_;
@@ -605,6 +629,24 @@ return v___x_42_;
 }
 }
 }
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__0(void){
+_start:
+{
+lean_object* v___x_75_; 
+v___x_75_ = lean_mk_string_unchecked("digit expected", 14, 14);
+return v___x_75_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1(void){
+_start:
+{
+lean_object* v___x_76_; lean_object* v___x_77_; 
+v___x_76_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__0, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__0_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__0);
+v___x_77_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_77_, 0, v___x_76_);
+return v___x_77_;
+}
+}
 static uint8_t _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__2(void){
 _start:
 {
@@ -621,6 +663,24 @@ uint32_t v___x_80_; uint8_t v___x_81_;
 v___x_80_ = 57;
 v___x_81_ = lean_uint32_to_uint8(v___x_80_);
 return v___x_81_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__4(void){
+_start:
+{
+lean_object* v___x_82_; 
+v___x_82_ = lean_mk_string_unchecked("id was 0", 8, 8);
+return v___x_82_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5(void){
+_start:
+{
+lean_object* v___x_83_; lean_object* v___x_84_; 
+v___x_83_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__4, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__4_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__4);
+v___x_84_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_84_, 0, v___x_83_);
+return v___x_84_;
 }
 }
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos(lean_object* v_a_85_){
@@ -763,7 +823,7 @@ else
 {
 lean_object* v___x_122_; lean_object* v___x_124_; 
 lean_dec(v_fst_112_);
-v___x_122_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5));
+v___x_122_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5);
 if (v_isShared_116_ == 0)
 {
 lean_ctor_set_tag(v___x_115_, 1);
@@ -795,7 +855,7 @@ return v___x_124_;
 v___jp_86_:
 {
 lean_object* v___x_87_; lean_object* v___x_88_; 
-v___x_87_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1));
+v___x_87_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1);
 v___x_88_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_88_, 0, v_a_85_);
 lean_ctor_set(v___x_88_, 1, v___x_87_);
@@ -835,7 +895,7 @@ _start:
 {
 lean_object* v___x_137_; lean_object* v___x_138_; lean_object* v___x_139_; 
 v___x_137_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseNeg___closed__2, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseNeg___closed__2_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseNeg___closed__2);
-v___x_138_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3));
+v___x_138_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3);
 v___x_139_ = lean_string_append(v___x_138_, v___x_137_);
 return v___x_139_;
 }
@@ -844,7 +904,7 @@ static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseNeg___clos
 _start:
 {
 lean_object* v___x_140_; lean_object* v___x_141_; lean_object* v___x_142_; 
-v___x_140_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7));
+v___x_140_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7);
 v___x_141_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseNeg___closed__3, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseNeg___closed__3_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseNeg___closed__3);
 v___x_142_ = lean_string_append(v___x_141_, v___x_140_);
 return v___x_142_;
@@ -1045,7 +1105,7 @@ else
 {
 lean_object* v___x_194_; lean_object* v___x_196_; 
 lean_dec(v_fst_182_);
-v___x_194_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5));
+v___x_194_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5);
 if (v_isShared_186_ == 0)
 {
 lean_ctor_set_tag(v___x_185_, 1);
@@ -1075,7 +1135,7 @@ return v___x_196_;
 v___jp_164_:
 {
 lean_object* v___x_165_; lean_object* v___x_166_; 
-v___x_165_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1));
+v___x_165_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1);
 v___x_166_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_166_, 0, v___x_163_);
 lean_ctor_set(v___x_166_, 1, v___x_165_);
@@ -1227,7 +1287,7 @@ else
 {
 lean_object* v___x_240_; lean_object* v___x_242_; 
 lean_dec(v_fst_230_);
-v___x_240_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5));
+v___x_240_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5);
 if (v_isShared_234_ == 0)
 {
 lean_ctor_set_tag(v___x_233_, 1);
@@ -1259,7 +1319,7 @@ return v___x_242_;
 v___jp_204_:
 {
 lean_object* v___x_205_; lean_object* v___x_206_; 
-v___x_205_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1));
+v___x_205_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1);
 v___x_206_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_206_, 0, v_a_203_);
 lean_ctor_set(v___x_206_, 1, v___x_205_);
@@ -1290,7 +1350,7 @@ _start:
 {
 lean_object* v___x_253_; lean_object* v___x_254_; lean_object* v___x_255_; 
 v___x_253_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseZero___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseZero___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseZero___closed__1);
-v___x_254_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3));
+v___x_254_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3);
 v___x_255_ = lean_string_append(v___x_254_, v___x_253_);
 return v___x_255_;
 }
@@ -1299,7 +1359,7 @@ static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseZero___clo
 _start:
 {
 lean_object* v___x_256_; lean_object* v___x_257_; lean_object* v___x_258_; 
-v___x_256_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7));
+v___x_256_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7);
 v___x_257_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseZero___closed__2, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseZero___closed__2_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseZero___closed__2);
 v___x_258_ = lean_string_append(v___x_257_, v___x_256_);
 return v___x_258_;
@@ -1438,7 +1498,7 @@ _start:
 {
 lean_object* v___x_292_; lean_object* v___x_293_; lean_object* v___x_294_; 
 v___x_292_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList_idWs___closed__2, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList_idWs___closed__2_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList_idWs___closed__2);
-v___x_293_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3));
+v___x_293_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3);
 v___x_294_ = lean_string_append(v___x_293_, v___x_292_);
 return v___x_294_;
 }
@@ -1447,7 +1507,7 @@ static lean_object* _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tac
 _start:
 {
 lean_object* v___x_295_; lean_object* v___x_296_; lean_object* v___x_297_; 
-v___x_295_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7));
+v___x_295_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7);
 v___x_296_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList_idWs___closed__3, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList_idWs___closed__3_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList_idWs___closed__3);
 v___x_297_ = lean_string_append(v___x_296_, v___x_295_);
 return v___x_297_;
@@ -1681,7 +1741,7 @@ else
 lean_object* v___x_358_; lean_object* v___x_360_; 
 lean_dec(v_snd_324_);
 lean_dec(v_fst_323_);
-v___x_358_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5));
+v___x_358_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5);
 if (v_isShared_327_ == 0)
 {
 lean_ctor_set_tag(v___x_326_, 1);
@@ -1711,7 +1771,7 @@ return v___x_360_;
 v___jp_301_:
 {
 lean_object* v___x_302_; lean_object* v___x_303_; 
-v___x_302_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1));
+v___x_302_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1);
 v___x_303_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_303_, 0, v_a_300_);
 lean_ctor_set(v___x_303_, 1, v___x_302_);
@@ -1874,7 +1934,7 @@ else
 lean_object* v___x_417_; 
 lean_dec(v_snd_393_);
 lean_dec(v_fst_392_);
-v___x_417_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5));
+v___x_417_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5);
 lean_inc(v_idx_366_);
 v_pos_368_ = v_a_364_;
 v_idx_369_ = v_idx_366_;
@@ -1912,7 +1972,7 @@ return v___x_373_;
 v___jp_374_:
 {
 lean_object* v___x_375_; 
-v___x_375_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1));
+v___x_375_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1);
 lean_inc(v_idx_366_);
 v_pos_368_ = v_a_364_;
 v_idx_369_ = v_idx_366_;
@@ -1921,11 +1981,20 @@ goto v___jp_367_;
 }
 }
 }
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList___closed__0(void){
+_start:
+{
+lean_object* v___x_418_; lean_object* v___x_419_; 
+v___x_418_ = lean_unsigned_to_nat(0u);
+v___x_419_ = lean_mk_empty_array_with_capacity(v___x_418_);
+return v___x_419_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList(lean_object* v_a_420_){
 _start:
 {
 lean_object* v___x_421_; lean_object* v___x_422_; 
-v___x_421_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList___closed__0));
+v___x_421_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList___closed__0, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList___closed__0_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList___closed__0);
 v___x_422_ = l_Std_Internal_Parsec_manyCore___at___00Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList_spec__0(v___x_421_, v_a_420_);
 return v___x_422_;
 }
@@ -1962,7 +2031,7 @@ _start:
 {
 lean_object* v___x_429_; lean_object* v___x_430_; lean_object* v___x_431_; 
 v___x_429_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseDelete___closed__2, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseDelete___closed__2_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseDelete___closed__2);
-v___x_430_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3));
+v___x_430_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3);
 v___x_431_ = lean_string_append(v___x_430_, v___x_429_);
 return v___x_431_;
 }
@@ -1971,7 +2040,7 @@ static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseDelete___c
 _start:
 {
 lean_object* v___x_432_; lean_object* v___x_433_; lean_object* v___x_434_; 
-v___x_432_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7));
+v___x_432_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7);
 v___x_433_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseDelete___closed__3, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseDelete___closed__3_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseDelete___closed__3);
 v___x_434_ = lean_string_append(v___x_433_, v___x_432_);
 return v___x_434_;
@@ -2478,7 +2547,7 @@ else
 {
 lean_object* v___x_557_; lean_object* v___x_559_; 
 lean_dec(v_fst_546_);
-v___x_557_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5));
+v___x_557_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5);
 if (v_isShared_550_ == 0)
 {
 lean_ctor_set_tag(v___x_549_, 1);
@@ -2683,7 +2752,7 @@ else
 {
 lean_object* v___x_607_; lean_object* v___x_609_; 
 lean_dec(v_fst_595_);
-v___x_607_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5));
+v___x_607_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5);
 if (v_isShared_599_ == 0)
 {
 lean_ctor_set_tag(v___x_598_, 1);
@@ -2713,7 +2782,7 @@ return v___x_609_;
 v___jp_577_:
 {
 lean_object* v___x_578_; lean_object* v___x_579_; 
-v___x_578_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1));
+v___x_578_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1);
 v___x_579_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_579_, 0, v___x_576_);
 lean_ctor_set(v___x_579_, 1, v___x_578_);
@@ -2728,7 +2797,7 @@ return v___x_579_;
 v___jp_516_:
 {
 lean_object* v___x_517_; lean_object* v___x_518_; 
-v___x_517_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1));
+v___x_517_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1);
 v___x_518_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_518_, 0, v_a_515_);
 lean_ctor_set(v___x_518_, 1, v___x_517_);
@@ -2840,7 +2909,7 @@ else
 lean_object* v___x_680_; lean_object* v___x_682_; 
 lean_dec(v_snd_673_);
 lean_dec(v_fst_672_);
-v___x_680_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5));
+v___x_680_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5);
 if (v_isShared_676_ == 0)
 {
 lean_ctor_set_tag(v___x_675_, 1);
@@ -2981,7 +3050,7 @@ else
 lean_object* v___x_715_; lean_object* v___x_717_; 
 lean_dec(v_snd_707_);
 lean_dec(v_fst_706_);
-v___x_715_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5));
+v___x_715_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5);
 if (v_isShared_710_ == 0)
 {
 lean_ctor_set_tag(v___x_709_, 1);
@@ -3105,7 +3174,7 @@ return v___x_638_;
 v___jp_643_:
 {
 lean_object* v___x_644_; lean_object* v___x_645_; 
-v___x_644_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1));
+v___x_644_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1);
 v___x_645_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_645_, 0, v_a_616_);
 lean_ctor_set(v___x_645_, 1, v___x_644_);
@@ -3114,7 +3183,7 @@ return v___x_645_;
 v___jp_646_:
 {
 lean_object* v___x_647_; lean_object* v___x_648_; 
-v___x_647_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1));
+v___x_647_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1);
 v___x_648_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_648_, 0, v_a_616_);
 lean_ctor_set(v___x_648_, 1, v___x_647_);
@@ -3220,7 +3289,7 @@ else
 lean_object* v___x_786_; 
 lean_dec(v_snd_782_);
 lean_dec(v_fst_781_);
-v___x_786_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5));
+v___x_786_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5);
 lean_inc(v_idx_725_);
 v_pos_727_ = v_a_723_;
 v_idx_728_ = v_idx_725_;
@@ -3330,7 +3399,7 @@ else
 lean_object* v___x_811_; 
 lean_dec(v_snd_806_);
 lean_dec(v_fst_805_);
-v___x_811_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5));
+v___x_811_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5);
 lean_inc(v_idx_725_);
 v_pos_727_ = v_a_723_;
 v_idx_728_ = v_idx_725_;
@@ -3372,7 +3441,7 @@ return v___x_732_;
 v___jp_733_:
 {
 lean_object* v___x_734_; 
-v___x_734_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1));
+v___x_734_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1);
 lean_inc(v_idx_725_);
 v_pos_727_ = v_a_723_;
 v_idx_728_ = v_idx_725_;
@@ -3382,7 +3451,7 @@ goto v___jp_726_;
 v___jp_735_:
 {
 lean_object* v___x_736_; 
-v___x_736_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1));
+v___x_736_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1);
 lean_inc(v_idx_725_);
 v_pos_727_ = v_a_723_;
 v_idx_728_ = v_idx_725_;
@@ -3482,11 +3551,20 @@ goto _start;
 }
 }
 }
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseClause___closed__0(void){
+_start:
+{
+lean_object* v___x_812_; lean_object* v___x_813_; 
+v___x_812_ = lean_unsigned_to_nat(0u);
+v___x_813_ = lean_mk_empty_array_with_capacity(v___x_812_);
+return v___x_813_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseClause(lean_object* v_a_814_){
 _start:
 {
 lean_object* v___x_815_; lean_object* v___x_816_; 
-v___x_815_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseClause___closed__0));
+v___x_815_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseClause___closed__0, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseClause___closed__0_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseClause___closed__0);
 v___x_816_ = l_Std_Internal_Parsec_manyCore___at___00Std_Tactic_BVDecide_LRAT_Parser_Text_parseClause_spec__1(v___x_815_, v_a_814_);
 if (lean_obj_tag(v___x_816_) == 0)
 {
@@ -4016,7 +4094,7 @@ else
 lean_object* v___x_942_; lean_object* v___x_943_; 
 lean_del_object(v___x_892_);
 lean_dec(v_fst_889_);
-v___x_942_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5));
+v___x_942_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5);
 v___x_943_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_943_, 0, v_snd_890_);
 lean_ctor_set(v___x_943_, 1, v___x_942_);
@@ -4029,7 +4107,7 @@ return v___x_943_;
 v___jp_871_:
 {
 lean_object* v___x_872_; lean_object* v___x_873_; 
-v___x_872_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1));
+v___x_872_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1);
 v___x_873_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_873_, 0, v___x_870_);
 lean_ctor_set(v___x_873_, 1, v___x_872_);
@@ -4168,6 +4246,33 @@ return v___x_964_;
 }
 }
 }
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__0(void){
+_start:
+{
+lean_object* v___x_976_; lean_object* v___x_977_; 
+v___x_976_ = lean_unsigned_to_nat(0u);
+v___x_977_ = lean_mk_empty_array_with_capacity(v___x_976_);
+return v___x_977_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__1(void){
+_start:
+{
+lean_object* v___x_978_; 
+v___x_978_ = lean_mk_string_unchecked("There cannot be any ratHints for adding the empty clause", 56, 56);
+return v___x_978_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__2(void){
+_start:
+{
+lean_object* v___x_979_; lean_object* v___x_980_; 
+v___x_979_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__1);
+v___x_980_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_980_, 0, v___x_979_);
+return v___x_980_;
 }
 }
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat(lean_object* v_ident_981_, lean_object* v_a_982_){
@@ -4322,7 +4427,7 @@ v_res_1013_ = lean_ctor_get(v___x_1011_, 1);
 lean_inc(v_res_1013_);
 lean_dec_ref(v___x_1011_);
 v___x_1014_ = lean_unsigned_to_nat(0u);
-v___x_1015_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__0));
+v___x_1015_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__0, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__0_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__0);
 v___x_1016_ = l_Std_Internal_Parsec_manyCore___at___00Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat_spec__0(v___x_1015_, v_pos_1012_);
 if (lean_obj_tag(v___x_1016_) == 0)
 {
@@ -4543,7 +4648,7 @@ if (v___x_1057_ == 0)
 lean_object* v___x_1058_; lean_object* v___x_1060_; 
 lean_dec(v_res_1013_);
 lean_dec(v_ident_981_);
-v___x_1058_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__2));
+v___x_1058_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__2, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__2_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__2);
 if (v_isShared_1021_ == 0)
 {
 lean_ctor_set_tag(v___x_1020_, 1);
@@ -5037,7 +5142,7 @@ else
 {
 lean_object* v___x_1172_; lean_object* v___x_1174_; 
 lean_dec(v_fst_1130_);
-v___x_1172_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5));
+v___x_1172_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__5);
 if (v_isShared_1134_ == 0)
 {
 lean_ctor_set_tag(v___x_1133_, 1);
@@ -5069,12 +5174,30 @@ return v___x_1174_;
 v___jp_1104_:
 {
 lean_object* v___x_1105_; lean_object* v___x_1106_; 
-v___x_1105_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1));
+v___x_1105_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parsePos___closed__1);
 v___x_1106_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_1106_, 0, v_a_1103_);
 lean_ctor_set(v___x_1106_, 1, v___x_1105_);
 return v___x_1106_;
 }
+}
+}
+static lean_object* _init_l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__0(void){
+_start:
+{
+lean_object* v___x_1181_; 
+v___x_1181_ = lean_mk_string_unchecked("condition not satisfied", 23, 23);
+return v___x_1181_;
+}
+}
+static lean_object* _init_l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__1(void){
+_start:
+{
+lean_object* v___x_1182_; lean_object* v___x_1183_; 
+v___x_1182_ = lean_obj_once(&l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__0, &l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__0_once, _init_l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__0);
+v___x_1183_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_1183_, 0, v___x_1182_);
+return v___x_1183_;
 }
 }
 static uint8_t _init_l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__2(void){
@@ -5197,7 +5320,7 @@ return v___x_1199_;
 v___jp_1200_:
 {
 lean_object* v___x_1201_; 
-v___x_1201_ = ((lean_object*)(l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__1));
+v___x_1201_ = lean_obj_once(&l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__1, &l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__1_once, _init_l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0___closed__1);
 lean_inc(v_idx_1192_);
 v_pos_1194_ = v_a_1190_;
 v_idx_1195_ = v_idx_1192_;
@@ -5213,6 +5336,15 @@ uint8_t v___x_2518__boxed_1223_; lean_object* v_res_1224_;
 v___x_2518__boxed_1223_ = lean_unbox(v___x_1220_);
 v_res_1224_ = l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0(v___x_2518__boxed_1223_, v_acc_1221_, v_a_1222_);
 return v_res_1224_;
+}
+}
+static lean_object* _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go___closed__0(void){
+_start:
+{
+lean_object* v___x_1225_; lean_object* v___x_1226_; 
+v___x_1225_ = lean_unsigned_to_nat(0u);
+v___x_1226_ = lean_mk_empty_array_with_capacity(v___x_1225_);
+return v___x_1226_;
 }
 }
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go(lean_object* v_actions_1227_, lean_object* v_a_1228_){
@@ -5558,7 +5690,7 @@ return v___x_1332_;
 else
 {
 lean_object* v___x_1335_; lean_object* v___x_1336_; 
-v___x_1335_ = ((lean_object*)(l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go___closed__0));
+v___x_1335_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go___closed__0, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go___closed__0_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go___closed__0);
 v___x_1336_ = l_Std_Internal_Parsec_manyCore___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go_spec__0(v___x_1259_, v___x_1335_, v_a_1228_);
 if (lean_obj_tag(v___x_1336_) == 0)
 {
@@ -5888,11 +6020,20 @@ return v___x_1250_;
 }
 }
 }
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions___closed__0(void){
+_start:
+{
+lean_object* v___x_1386_; lean_object* v___x_1387_; 
+v___x_1386_ = lean_unsigned_to_nat(0u);
+v___x_1387_ = lean_mk_empty_array_with_capacity(v___x_1386_);
+return v___x_1387_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions(lean_object* v_a_1388_){
 _start:
 {
 lean_object* v___x_1389_; lean_object* v___x_1390_; 
-v___x_1389_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions___closed__0));
+v___x_1389_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions___closed__0, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions___closed__0_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions___closed__0);
 v___x_1390_ = l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions_go(v___x_1389_, v_a_1388_);
 return v___x_1390_;
 }
@@ -5911,7 +6052,7 @@ _start:
 {
 lean_object* v___x_1393_; lean_object* v___x_1394_; lean_object* v___x_1395_; 
 v___x_1393_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseZero___closed__0, &l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseZero___closed__0_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseZero___closed__0);
-v___x_1394_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3));
+v___x_1394_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__3);
 v___x_1395_ = lean_string_append(v___x_1394_, v___x_1393_);
 return v___x_1395_;
 }
@@ -5920,7 +6061,7 @@ static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseZero___c
 _start:
 {
 lean_object* v___x_1396_; lean_object* v___x_1397_; lean_object* v___x_1398_; 
-v___x_1396_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7));
+v___x_1396_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_skipNewline___closed__7);
 v___x_1397_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseZero___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseZero___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseZero___closed__1);
 v___x_1398_ = lean_string_append(v___x_1397_, v___x_1396_);
 return v___x_1398_;
@@ -6025,6 +6166,42 @@ return v___x_1421_;
 }
 }
 }
+}
+}
+static lean_object* _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__0(void){
+_start:
+{
+lean_object* v___x_1426_; 
+v___x_1426_ = lean_mk_string_unchecked("Invalid zero byte in literal", 28, 28);
+return v___x_1426_;
+}
+}
+static lean_object* _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__1(void){
+_start:
+{
+lean_object* v___x_1427_; lean_object* v___x_1428_; 
+v___x_1427_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__0, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__0_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__0);
+v___x_1428_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_1428_, 0, v___x_1427_);
+return v___x_1428_;
+}
+}
+static lean_object* _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__2(void){
+_start:
+{
+lean_object* v___x_1429_; 
+v___x_1429_ = lean_mk_string_unchecked("Excessive literal", 17, 17);
+return v___x_1429_;
+}
+}
+static lean_object* _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__3(void){
+_start:
+{
+lean_object* v___x_1430_; lean_object* v___x_1431_; 
+v___x_1430_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__2, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__2_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__2);
+v___x_1431_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_1431_, 0, v___x_1430_);
+return v___x_1431_;
 }
 }
 static uint8_t _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__4(void){
@@ -6202,7 +6379,7 @@ goto v___jp_1451_;
 else
 {
 lean_object* v___x_1480_; lean_object* v___x_1481_; 
-v___x_1480_ = ((lean_object*)(l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__1));
+v___x_1480_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__1, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__1_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__1);
 v___x_1481_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_1481_, 0, v_it_x27_1450_);
 lean_ctor_set(v___x_1481_, 1, v___x_1480_);
@@ -6218,7 +6395,7 @@ goto v___jp_1461_;
 else
 {
 lean_object* v___x_1484_; lean_object* v___x_1485_; 
-v___x_1484_ = ((lean_object*)(l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__3));
+v___x_1484_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__3, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__3_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go___closed__3);
 v___x_1485_ = lean_alloc_ctor(1, 2, 0);
 lean_ctor_set(v___x_1485_, 0, v_it_x27_1450_);
 lean_ctor_set(v___x_1485_, 1, v___x_1484_);
@@ -6249,6 +6426,24 @@ uint64_t v___x_1503_; lean_object* v___x_1504_;
 v___x_1503_ = 0ULL;
 v___x_1504_ = l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseLit_go(v___x_1503_, v___x_1503_, v_a_1502_);
 return v___x_1504_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__0(void){
+_start:
+{
+lean_object* v___x_1505_; 
+v___x_1505_ = lean_mk_string_unchecked("parsed non negative lit where negative was expected", 51, 51);
+return v___x_1505_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__1(void){
+_start:
+{
+lean_object* v___x_1506_; lean_object* v___x_1507_; 
+v___x_1506_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__0, &l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__0_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__0);
+v___x_1507_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_1507_, 0, v___x_1506_);
+return v___x_1507_;
 }
 }
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg(lean_object* v_a_1508_){
@@ -6286,7 +6481,7 @@ if (v___x_1516_ == 0)
 {
 lean_object* v___x_1517_; lean_object* v___x_1519_; 
 lean_dec(v_res_1511_);
-v___x_1517_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__1));
+v___x_1517_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__1);
 if (v_isShared_1514_ == 0)
 {
 lean_ctor_set_tag(v___x_1513_, 1);
@@ -6381,6 +6576,24 @@ return v___x_1532_;
 }
 }
 }
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__0(void){
+_start:
+{
+lean_object* v___x_1535_; 
+v___x_1535_ = lean_mk_string_unchecked("parsed non positive lit where positive was expected", 51, 51);
+return v___x_1535_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1(void){
+_start:
+{
+lean_object* v___x_1536_; lean_object* v___x_1537_; 
+v___x_1536_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__0, &l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__0_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__0);
+v___x_1537_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_1537_, 0, v___x_1536_);
+return v___x_1537_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos(lean_object* v_a_1538_){
 _start:
 {
@@ -6416,7 +6629,7 @@ if (v___x_1546_ == 0)
 {
 lean_object* v___x_1547_; lean_object* v___x_1549_; 
 lean_dec(v_res_1541_);
-v___x_1547_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1));
+v___x_1547_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1);
 if (v_isShared_1544_ == 0)
 {
 lean_ctor_set_tag(v___x_1543_, 1);
@@ -6546,7 +6759,7 @@ if (v___x_1573_ == 0)
 {
 lean_object* v___x_1574_; lean_object* v___x_1576_; 
 lean_dec(v_res_1568_);
-v___x_1574_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1));
+v___x_1574_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1);
 if (v_isShared_1571_ == 0)
 {
 lean_ctor_set_tag(v___x_1570_, 1);
@@ -6751,11 +6964,20 @@ v___x_1623_ = l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide
 return v___x_1623_;
 }
 }
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_1624_; lean_object* v___x_1625_; 
+v___x_1624_ = lean_unsigned_to_nat(0u);
+v___x_1625_ = lean_mk_empty_array_with_capacity(v___x_1624_);
+return v___x_1625_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero___redArg(lean_object* v_parser_1626_, lean_object* v_a_1627_){
 _start:
 {
 lean_object* v___x_1628_; lean_object* v___x_1629_; 
-v___x_1628_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero___redArg___closed__0));
+v___x_1628_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero___redArg___closed__0, &l_Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero___redArg___closed__0_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero___redArg___closed__0);
 v___x_1629_ = l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero_go___redArg(v_parser_1626_, v___x_1628_, v_a_1627_);
 return v___x_1629_;
 }
@@ -6910,7 +7132,7 @@ LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillNegOrZ
 _start:
 {
 lean_object* v___x_1674_; lean_object* v___x_1675_; 
-v___x_1674_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero___redArg___closed__0));
+v___x_1674_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero___redArg___closed__0, &l_Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero___redArg___closed__0_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero___redArg___closed__0);
 v___x_1675_ = l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillNegOrZero_go___redArg(v_parser_1672_, v___x_1674_, v_a_1673_);
 return v___x_1675_;
 }
@@ -7026,7 +7248,7 @@ if (v___x_1705_ == 0)
 lean_object* v___x_1706_; lean_object* v___x_1708_; 
 lean_dec(v_res_1700_);
 lean_dec_ref(v_acc_1686_);
-v___x_1706_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1));
+v___x_1706_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1);
 if (v_isShared_1703_ == 0)
 {
 lean_ctor_set_tag(v___x_1702_, 1);
@@ -7123,7 +7345,7 @@ LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillNegOrZ
 _start:
 {
 lean_object* v___x_1730_; lean_object* v___x_1731_; 
-v___x_1730_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList___closed__0));
+v___x_1730_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList___closed__0, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList___closed__0_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseIdList___closed__0);
 v___x_1731_ = l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillNegOrZero_go___at___00Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillNegOrZero___at___00Std_Tactic_BVDecide_LRAT_Parser_Binary_parseRes_spec__0_spec__0(v___x_1730_, v_a_1729_);
 return v___x_1731_;
 }
@@ -7163,7 +7385,7 @@ if (v___x_1740_ == 0)
 {
 lean_object* v___x_1741_; lean_object* v___x_1743_; 
 lean_dec(v_res_1735_);
-v___x_1741_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__1));
+v___x_1741_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseNeg___closed__1);
 if (v_isShared_1738_ == 0)
 {
 lean_ctor_set_tag(v___x_1737_, 1);
@@ -7445,7 +7667,7 @@ LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero__
 _start:
 {
 lean_object* v___x_1806_; lean_object* v___x_1807_; 
-v___x_1806_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseClause___closed__0));
+v___x_1806_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseClause___closed__0, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseClause___closed__0_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseClause___closed__0);
 v___x_1807_ = l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero_go___at___00Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseAction_parseAdd_spec__0_spec__0(v___x_1806_, v_a_1805_);
 return v___x_1807_;
 }
@@ -7552,7 +7774,7 @@ LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero__
 _start:
 {
 lean_object* v___x_1835_; lean_object* v___x_1836_; 
-v___x_1835_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__0));
+v___x_1835_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__0, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__0_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__0);
 v___x_1836_ = l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero_go___at___00Std_Tactic_BVDecide_LRAT_Parser_Binary_manyTillZero___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_Parser_Binary_parseAction_parseAdd_spec__1_spec__2(v___x_1835_, v_a_1834_);
 return v___x_1836_;
 }
@@ -7593,7 +7815,7 @@ if (v___x_1846_ == 0)
 {
 lean_object* v___x_1847_; lean_object* v___x_1849_; 
 lean_dec(v_res_1840_);
-v___x_1847_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1));
+v___x_1847_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parsePos___closed__1);
 if (v_isShared_1843_ == 0)
 {
 lean_ctor_set_tag(v___x_1842_, 1);
@@ -7987,7 +8209,7 @@ if (v___x_1923_ == 0)
 lean_object* v___x_1924_; lean_object* v___x_1926_; 
 lean_dec(v___x_1905_);
 lean_dec(v_res_1881_);
-v___x_1924_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__2));
+v___x_1924_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__2, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__2_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseRat___closed__2);
 if (v_isShared_1887_ == 0)
 {
 lean_ctor_set_tag(v___x_1886_, 1);
@@ -8460,6 +8682,14 @@ v___x_2027_ = lean_uint32_to_uint8(v___x_2026_);
 return v___x_2027_;
 }
 }
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseAction___closed__1(void){
+_start:
+{
+lean_object* v___x_2028_; 
+v___x_2028_ = lean_mk_string_unchecked("Expected a or d got: ", 21, 21);
+return v___x_2028_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseAction(lean_object* v_a_2029_){
 _start:
 {
@@ -8536,7 +8766,7 @@ v___x_2047_ = lean_uint8_dec_eq(v_c_2039_, v___x_2046_);
 if (v___x_2047_ == 0)
 {
 lean_object* v___x_2048_; lean_object* v___x_2049_; lean_object* v___x_2050_; lean_object* v___x_2051_; lean_object* v___x_2052_; lean_object* v___x_2053_; 
-v___x_2048_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseAction___closed__1));
+v___x_2048_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseAction___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseAction___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseAction___closed__1);
 v___x_2049_ = lean_uint8_to_nat(v_c_2039_);
 v___x_2050_ = l_Nat_reprFast(v___x_2049_);
 v___x_2051_ = lean_string_append(v___x_2048_, v___x_2050_);
@@ -8668,11 +8898,29 @@ return v___x_2079_;
 }
 }
 }
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions___closed__0(void){
+_start:
+{
+lean_object* v___x_2082_; 
+v___x_2082_ = lean_mk_string_unchecked("expected end of input", 21, 21);
+return v___x_2082_;
+}
+}
+static lean_object* _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions___closed__1(void){
+_start:
+{
+lean_object* v___x_2083_; lean_object* v___x_2084_; 
+v___x_2083_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions___closed__0, &l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions___closed__0_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions___closed__0);
+v___x_2084_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_2084_, 0, v___x_2083_);
+return v___x_2084_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions(lean_object* v_a_2085_){
 _start:
 {
 lean_object* v___x_2086_; lean_object* v___x_2087_; 
-v___x_2086_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions___closed__0));
+v___x_2086_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions___closed__0, &l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions___closed__0_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Text_parseActions___closed__0);
 v___x_2087_ = l_Std_Internal_Parsec_manyCore___at___00Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions_spec__0(v___x_2086_, v_a_2085_);
 if (lean_obj_tag(v___x_2087_) == 0)
 {
@@ -8713,7 +8961,7 @@ goto v_resetjp_2093_;
 v_resetjp_2093_:
 {
 lean_object* v___x_2096_; lean_object* v___x_2098_; 
-v___x_2096_ = ((lean_object*)(l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions___closed__1));
+v___x_2096_ = lean_obj_once(&l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions___closed__1, &l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions___closed__1_once, _init_l_Std_Tactic_BVDecide_LRAT_Parser_Binary_parseActions___closed__1);
 if (v_isShared_2095_ == 0)
 {
 lean_ctor_set_tag(v___x_2094_, 1);
@@ -8975,6 +9223,14 @@ v___x_2157_ = l_Std_Internal_Parsec_ByteArray_Parser_run___redArg(v___x_2156_, v
 return v___x_2157_;
 }
 }
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0(void){
+_start:
+{
+lean_object* v___x_2158_; 
+v___x_2158_ = lean_mk_string_unchecked(" ", 1, 1);
+return v___x_2158_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0(lean_object* v_as_2159_, size_t v_i_2160_, size_t v_stop_2161_, lean_object* v_b_2162_){
 _start:
 {
@@ -8986,7 +9242,7 @@ lean_object* v___x_2164_; lean_object* v___x_2165_; lean_object* v___x_2166_; le
 v___x_2164_ = lean_array_uget_borrowed(v_as_2159_, v_i_2160_);
 lean_inc(v___x_2164_);
 v___x_2165_ = l_Nat_reprFast(v___x_2164_);
-v___x_2166_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0));
+v___x_2166_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0, &l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0);
 v___x_2167_ = lean_string_append(v___x_2165_, v___x_2166_);
 v___x_2168_ = lean_string_append(v_b_2162_, v___x_2167_);
 lean_dec_ref(v___x_2167_);
@@ -9015,11 +9271,19 @@ lean_dec_ref(v_as_2172_);
 return v_res_2178_;
 }
 }
+static lean_object* _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0(void){
+_start:
+{
+lean_object* v___x_2179_; 
+v___x_2179_ = lean_mk_string_unchecked("", 0, 0);
+return v___x_2179_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList(lean_object* v_ids_2180_){
 _start:
 {
 lean_object* v___x_2181_; lean_object* v___x_2182_; lean_object* v___x_2183_; uint8_t v___x_2184_; 
-v___x_2181_ = ((lean_object*)(l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0));
+v___x_2181_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0);
 v___x_2182_ = lean_unsigned_to_nat(0u);
 v___x_2183_ = lean_array_get_size(v_ids_2180_);
 v___x_2184_ = lean_nat_dec_lt(v___x_2182_, v___x_2183_);
@@ -9066,6 +9330,14 @@ lean_dec_ref(v_ids_2192_);
 return v_res_2193_;
 }
 }
+static lean_object* _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeRatHint___closed__0(void){
+_start:
+{
+lean_object* v___x_2194_; 
+v___x_2194_ = lean_mk_string_unchecked("-", 1, 1);
+return v___x_2194_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeRatHint(lean_object* v_hint_2195_){
 _start:
 {
@@ -9075,11 +9347,11 @@ lean_inc(v_fst_2196_);
 v_snd_2197_ = lean_ctor_get(v_hint_2195_, 1);
 lean_inc(v_snd_2197_);
 lean_dec_ref(v_hint_2195_);
-v___x_2198_ = ((lean_object*)(l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeRatHint___closed__0));
+v___x_2198_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeRatHint___closed__0, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeRatHint___closed__0_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeRatHint___closed__0);
 v___x_2199_ = l_Nat_reprFast(v_fst_2196_);
 v___x_2200_ = lean_string_append(v___x_2198_, v___x_2199_);
 lean_dec_ref(v___x_2199_);
-v___x_2201_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0));
+v___x_2201_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0, &l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0);
 v___x_2202_ = lean_string_append(v___x_2200_, v___x_2201_);
 v___x_2203_ = l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList(v_snd_2197_);
 lean_dec(v_snd_2197_);
@@ -9130,7 +9402,7 @@ LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tact
 _start:
 {
 lean_object* v___x_2224_; lean_object* v___x_2225_; lean_object* v___x_2226_; uint8_t v___x_2227_; 
-v___x_2224_ = ((lean_object*)(l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0));
+v___x_2224_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0);
 v___x_2225_ = lean_unsigned_to_nat(0u);
 v___x_2226_ = lean_array_get_size(v_hints_2223_);
 v___x_2227_ = lean_nat_dec_lt(v___x_2225_, v___x_2226_);
@@ -9187,7 +9459,7 @@ if (v___x_2241_ == 0)
 lean_object* v___x_2242_; lean_object* v___x_2243_; lean_object* v___x_2244_; lean_object* v___x_2245_; lean_object* v___x_2246_; size_t v___x_2247_; size_t v___x_2248_; 
 v___x_2242_ = lean_array_uget_borrowed(v_as_2237_, v_i_2238_);
 v___x_2243_ = l_Int_repr(v___x_2242_);
-v___x_2244_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0));
+v___x_2244_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0, &l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0);
 v___x_2245_ = lean_string_append(v___x_2243_, v___x_2244_);
 v___x_2246_ = lean_string_append(v_b_2240_, v___x_2245_);
 lean_dec_ref(v___x_2245_);
@@ -9220,7 +9492,7 @@ LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tact
 _start:
 {
 lean_object* v___x_2258_; lean_object* v___x_2259_; lean_object* v___x_2260_; uint8_t v___x_2261_; 
-v___x_2258_ = ((lean_object*)(l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0));
+v___x_2258_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0);
 v___x_2259_ = lean_unsigned_to_nat(0u);
 v___x_2260_ = lean_array_get_size(v_clause_2257_);
 v___x_2261_ = lean_nat_dec_lt(v___x_2259_, v___x_2260_);
@@ -9267,6 +9539,38 @@ lean_dec_ref(v_clause_2269_);
 return v_res_2270_;
 }
 }
+static lean_object* _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__0(void){
+_start:
+{
+lean_object* v___x_2271_; 
+v___x_2271_ = lean_mk_string_unchecked(" 0 ", 3, 3);
+return v___x_2271_;
+}
+}
+static lean_object* _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1(void){
+_start:
+{
+lean_object* v___x_2272_; 
+v___x_2272_ = lean_mk_string_unchecked("0", 1, 1);
+return v___x_2272_;
+}
+}
+static lean_object* _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__2(void){
+_start:
+{
+lean_object* v___x_2273_; 
+v___x_2273_ = lean_mk_string_unchecked("0 ", 2, 2);
+return v___x_2273_;
+}
+}
+static lean_object* _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__3(void){
+_start:
+{
+lean_object* v___x_2274_; 
+v___x_2274_ = lean_mk_string_unchecked("1 d ", 4, 4);
+return v___x_2274_;
+}
+}
 LEAN_EXPORT lean_object* l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize(lean_object* v_a_2275_){
 _start:
 {
@@ -9281,13 +9585,13 @@ v_rupHints_2277_ = lean_ctor_get(v_a_2275_, 1);
 lean_inc_ref(v_rupHints_2277_);
 lean_dec_ref(v_a_2275_);
 v___x_2278_ = l_Nat_reprFast(v_id_2276_);
-v___x_2279_ = ((lean_object*)(l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__0));
+v___x_2279_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__0, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__0_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__0);
 v___x_2280_ = lean_string_append(v___x_2278_, v___x_2279_);
 v___x_2281_ = l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList(v_rupHints_2277_);
 lean_dec_ref(v_rupHints_2277_);
 v___x_2282_ = lean_string_append(v___x_2280_, v___x_2281_);
 lean_dec_ref(v___x_2281_);
-v___x_2283_ = ((lean_object*)(l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1));
+v___x_2283_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1);
 v___x_2284_ = lean_string_append(v___x_2282_, v___x_2283_);
 return v___x_2284_;
 }
@@ -9302,19 +9606,19 @@ v_rupHints_2287_ = lean_ctor_get(v_a_2275_, 2);
 lean_inc_ref(v_rupHints_2287_);
 lean_dec_ref(v_a_2275_);
 v___x_2288_ = l_Nat_reprFast(v_id_2285_);
-v___x_2289_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0));
+v___x_2289_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0, &l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0);
 v___x_2290_ = lean_string_append(v___x_2288_, v___x_2289_);
 v___x_2291_ = l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeClause(v_c_2286_);
 lean_dec(v_c_2286_);
 v___x_2292_ = lean_string_append(v___x_2290_, v___x_2291_);
 lean_dec_ref(v___x_2291_);
-v___x_2293_ = ((lean_object*)(l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__2));
+v___x_2293_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__2, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__2_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__2);
 v___x_2294_ = lean_string_append(v___x_2292_, v___x_2293_);
 v___x_2295_ = l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList(v_rupHints_2287_);
 lean_dec_ref(v_rupHints_2287_);
 v___x_2296_ = lean_string_append(v___x_2294_, v___x_2295_);
 lean_dec_ref(v___x_2295_);
-v___x_2297_ = ((lean_object*)(l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1));
+v___x_2297_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1);
 v___x_2298_ = lean_string_append(v___x_2296_, v___x_2297_);
 return v___x_2298_;
 }
@@ -9331,13 +9635,13 @@ v_ratHints_2302_ = lean_ctor_get(v_a_2275_, 4);
 lean_inc_ref(v_ratHints_2302_);
 lean_dec_ref(v_a_2275_);
 v___x_2303_ = l_Nat_reprFast(v_id_2299_);
-v___x_2304_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0));
+v___x_2304_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0, &l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00__private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList_spec__0___closed__0);
 v___x_2305_ = lean_string_append(v___x_2303_, v___x_2304_);
 v___x_2306_ = l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeClause(v_c_2300_);
 lean_dec(v_c_2300_);
 v___x_2307_ = lean_string_append(v___x_2305_, v___x_2306_);
 lean_dec_ref(v___x_2306_);
-v___x_2308_ = ((lean_object*)(l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__2));
+v___x_2308_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__2, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__2_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__2);
 v___x_2309_ = lean_string_append(v___x_2307_, v___x_2308_);
 v___x_2310_ = l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList(v_rupHints_2301_);
 lean_dec_ref(v_rupHints_2301_);
@@ -9347,7 +9651,7 @@ v___x_2312_ = l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide
 lean_dec_ref(v_ratHints_2302_);
 v___x_2313_ = lean_string_append(v___x_2311_, v___x_2312_);
 lean_dec_ref(v___x_2312_);
-v___x_2314_ = ((lean_object*)(l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1));
+v___x_2314_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1);
 v___x_2315_ = lean_string_append(v___x_2313_, v___x_2314_);
 return v___x_2315_;
 }
@@ -9357,16 +9661,24 @@ lean_object* v_ids_2316_; lean_object* v___x_2317_; lean_object* v___x_2318_; le
 v_ids_2316_ = lean_ctor_get(v_a_2275_, 0);
 lean_inc_ref(v_ids_2316_);
 lean_dec_ref(v_a_2275_);
-v___x_2317_ = ((lean_object*)(l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__3));
+v___x_2317_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__3, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__3_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__3);
 v___x_2318_ = l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList(v_ids_2316_);
 lean_dec_ref(v_ids_2316_);
 v___x_2319_ = lean_string_append(v___x_2317_, v___x_2318_);
 lean_dec_ref(v___x_2318_);
-v___x_2320_ = ((lean_object*)(l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1));
+v___x_2320_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize___closed__1);
 v___x_2321_ = lean_string_append(v___x_2319_, v___x_2320_);
 return v___x_2321_;
 }
 }
+}
+}
+static lean_object* _init_l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Std_Tactic_BVDecide_LRAT_lratProofToString_spec__0___closed__0(void){
+_start:
+{
+lean_object* v___x_2322_; 
+v___x_2322_ = lean_mk_string_unchecked("\n", 1, 1);
+return v___x_2322_;
 }
 }
 LEAN_EXPORT lean_object* l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Std_Tactic_BVDecide_LRAT_lratProofToString_spec__0(lean_object* v_as_2323_, size_t v_i_2324_, size_t v_stop_2325_, lean_object* v_b_2326_){
@@ -9382,7 +9694,7 @@ lean_inc(v___x_2328_);
 v___x_2329_ = l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serialize(v___x_2328_);
 v___x_2330_ = lean_string_append(v_b_2326_, v___x_2329_);
 lean_dec_ref(v___x_2329_);
-v___x_2331_ = ((lean_object*)(l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Std_Tactic_BVDecide_LRAT_lratProofToString_spec__0___closed__0));
+v___x_2331_ = lean_obj_once(&l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Std_Tactic_BVDecide_LRAT_lratProofToString_spec__0___closed__0, &l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Std_Tactic_BVDecide_LRAT_lratProofToString_spec__0___closed__0_once, _init_l___private_Init_Data_Array_Basic_0__Array_foldlMUnsafe_fold___at___00Std_Tactic_BVDecide_LRAT_lratProofToString_spec__0___closed__0);
 v___x_2332_ = lean_string_append(v___x_2330_, v___x_2331_);
 v___x_2333_ = ((size_t)1ULL);
 v___x_2334_ = lean_usize_add(v_i_2324_, v___x_2333_);
@@ -9413,7 +9725,7 @@ LEAN_EXPORT lean_object* l_Std_Tactic_BVDecide_LRAT_lratProofToString(lean_objec
 _start:
 {
 lean_object* v___x_2344_; lean_object* v___x_2345_; lean_object* v___x_2346_; uint8_t v___x_2347_; 
-v___x_2344_ = ((lean_object*)(l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0));
+v___x_2344_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToString_serializeIdList___closed__0);
 v___x_2345_ = lean_unsigned_to_nat(0u);
 v___x_2346_ = lean_array_get_size(v_proof_2343_);
 v___x_2347_ = lean_nat_dec_lt(v___x_2345_, v___x_2346_);
@@ -9544,15 +9856,39 @@ v___x_2387_ = lean_cstr_to_nat("18446744073709551615");
 return v___x_2387_;
 }
 }
+static lean_object* _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__1(void){
+_start:
+{
+lean_object* v___x_2388_; 
+v___x_2388_ = lean_mk_string_unchecked("Std.Tactic.BVDecide.LRAT.Parser", 31, 31);
+return v___x_2388_;
+}
+}
+static lean_object* _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__2(void){
+_start:
+{
+lean_object* v___x_2389_; 
+v___x_2389_ = lean_mk_string_unchecked("_private.Std.Tactic.BVDecide.LRAT.Parser.0.Std.Tactic.BVDecide.LRAT.lratProofToBinary.addInt", 92, 92);
+return v___x_2389_;
+}
+}
+static lean_object* _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__3(void){
+_start:
+{
+lean_object* v___x_2390_; 
+v___x_2390_ = lean_mk_string_unchecked("assertion violation: mapped ≤ (2^64 - 1) -- our parser \"only\" supports 64 bit literals\n    ", 93, 91);
+return v___x_2390_;
+}
+}
 static lean_object* _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__4(void){
 _start:
 {
 lean_object* v___x_2391_; lean_object* v___x_2392_; lean_object* v___x_2393_; lean_object* v___x_2394_; lean_object* v___x_2395_; lean_object* v___x_2396_; 
-v___x_2391_ = ((lean_object*)(l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__3));
+v___x_2391_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__3, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__3_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__3);
 v___x_2392_ = lean_unsigned_to_nat(4u);
 v___x_2393_ = lean_unsigned_to_nat(388u);
-v___x_2394_ = ((lean_object*)(l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__2));
-v___x_2395_ = ((lean_object*)(l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__1));
+v___x_2394_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__2, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__2_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__2);
+v___x_2395_ = lean_obj_once(&l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__1, &l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__1_once, _init_l___private_Std_Tactic_BVDecide_LRAT_Parser_0__Std_Tactic_BVDecide_LRAT_lratProofToBinary_addInt___closed__1);
 v___x_2396_ = l_mkPanicMessageWithDecl(v___x_2395_, v___x_2394_, v___x_2393_, v___x_2392_, v___x_2391_);
 return v___x_2396_;
 }

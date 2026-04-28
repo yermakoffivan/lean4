@@ -92,408 +92,366 @@ LEAN_EXPORT uint8_t l_Std_instDecidableEqRii_decEq(lean_object*, lean_object*, l
 LEAN_EXPORT lean_object* l_Std_instDecidableEqRii_decEq___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Std_instDecidableEqRii(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_instDecidableEqRii___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std_term___x2e_x2e_x2e_x2a___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "Std"};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x2a___closed__0 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value;
-static const lean_string_object l_Std_term___x2e_x2e_x2e_x2a___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "term_...*"};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x2a___closed__1 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__1_value;
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e_x2a___closed__2_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e_x2a___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__2_value_aux_0),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__1_value),LEAN_SCALAR_PTR_LITERAL(89, 184, 85, 23, 243, 11, 13, 179)}};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x2a___closed__2 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__2_value;
-static const lean_string_object l_Std_term___x2e_x2e_x2e_x2a___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "...*"};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x2a___closed__3 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__3_value;
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e_x2a___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__3_value)}};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x2a___closed__4 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__4_value;
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e_x2a___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*4 + 0, .m_other = 4, .m_tag = 4}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__2_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__4_value)}};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x2a___closed__5 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__5_value;
-LEAN_EXPORT const lean_object* l_Std_term___x2e_x2e_x2e_x2a = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__5_value;
-static const lean_string_object l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "term*...*"};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__0 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__0_value;
-static const lean_ctor_object l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
-static const lean_ctor_object l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__1_value_aux_0),((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(6, 9, 100, 11, 112, 109, 114, 219)}};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__1 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__1_value;
-static const lean_string_object l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "*...*"};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__2 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__2_value;
-static const lean_ctor_object l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__2_value)}};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__3 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__3_value;
-static const lean_ctor_object l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__3_value)}};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__4 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__4_value;
-LEAN_EXPORT const lean_object* l_Std_term_x2a_x2e_x2e_x2e_x2a = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__4_value;
-static const lean_string_object l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "term_<...*"};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__0 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__0_value;
-static const lean_ctor_object l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
-static const lean_ctor_object l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__1_value_aux_0),((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(171, 27, 224, 193, 208, 224, 37, 254)}};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__1 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__1_value;
-static const lean_string_object l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "<...*"};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__2 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__2_value;
-static const lean_ctor_object l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__2_value)}};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__3 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__3_value;
-static const lean_ctor_object l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*4 + 0, .m_other = 4, .m_tag = 4}, .m_objs = {((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__3_value)}};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__4 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__4_value;
-LEAN_EXPORT const lean_object* l_Std_term___x3c_x2e_x2e_x2e_x2a = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__4_value;
-static const lean_string_object l_Std_term___x2e_x2e_x2e_x3c___00__closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "term_...<_"};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__0 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__0_value;
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e_x3c___00__closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e_x3c___00__closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__1_value_aux_0),((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__0_value),LEAN_SCALAR_PTR_LITERAL(136, 56, 180, 150, 42, 67, 215, 61)}};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__1 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__1_value;
-static const lean_string_object l_Std_term___x2e_x2e_x2e_x3c___00__closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "andthen"};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__2 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__2_value;
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e_x3c___00__closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__2_value),LEAN_SCALAR_PTR_LITERAL(40, 255, 78, 30, 143, 119, 117, 174)}};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__3 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__3_value;
-static const lean_string_object l_Std_term___x2e_x2e_x2e_x3c___00__closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "...<"};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__4 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__4_value;
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e_x3c___00__closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__4_value)}};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__5 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__5_value;
-static const lean_string_object l_Std_term___x2e_x2e_x2e_x3c___00__closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "term"};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__6 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__6_value;
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e_x3c___00__closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__6_value),LEAN_SCALAR_PTR_LITERAL(187, 230, 181, 162, 253, 146, 122, 119)}};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__7 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__7_value;
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e_x3c___00__closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 7}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__7_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__8 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__8_value;
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e_x3c___00__closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__3_value),((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__5_value),((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__8_value)}};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__9 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__9_value;
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e_x3c___00__closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*4 + 0, .m_other = 4, .m_tag = 4}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__9_value)}};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__10 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__10_value;
-LEAN_EXPORT const lean_object* l_Std_term___x2e_x2e_x2e_x3c__ = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__10_value;
-static const lean_string_object l_Std_term___x2e_x2e_x2e___00__closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "term_..._"};
-static const lean_object* l_Std_term___x2e_x2e_x2e___00__closed__0 = (const lean_object*)&l_Std_term___x2e_x2e_x2e___00__closed__0_value;
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e___00__closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e___00__closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e___00__closed__1_value_aux_0),((lean_object*)&l_Std_term___x2e_x2e_x2e___00__closed__0_value),LEAN_SCALAR_PTR_LITERAL(16, 215, 136, 196, 225, 228, 219, 74)}};
-static const lean_object* l_Std_term___x2e_x2e_x2e___00__closed__1 = (const lean_object*)&l_Std_term___x2e_x2e_x2e___00__closed__1_value;
-static const lean_string_object l_Std_term___x2e_x2e_x2e___00__closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "..."};
-static const lean_object* l_Std_term___x2e_x2e_x2e___00__closed__2 = (const lean_object*)&l_Std_term___x2e_x2e_x2e___00__closed__2_value;
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e___00__closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e___00__closed__2_value)}};
-static const lean_object* l_Std_term___x2e_x2e_x2e___00__closed__3 = (const lean_object*)&l_Std_term___x2e_x2e_x2e___00__closed__3_value;
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e___00__closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__3_value),((lean_object*)&l_Std_term___x2e_x2e_x2e___00__closed__3_value),((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__8_value)}};
-static const lean_object* l_Std_term___x2e_x2e_x2e___00__closed__4 = (const lean_object*)&l_Std_term___x2e_x2e_x2e___00__closed__4_value;
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e___00__closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*4 + 0, .m_other = 4, .m_tag = 4}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e___00__closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e___00__closed__4_value)}};
-static const lean_object* l_Std_term___x2e_x2e_x2e___00__closed__5 = (const lean_object*)&l_Std_term___x2e_x2e_x2e___00__closed__5_value;
-LEAN_EXPORT const lean_object* l_Std_term___x2e_x2e_x2e__ = (const lean_object*)&l_Std_term___x2e_x2e_x2e___00__closed__5_value;
-static const lean_string_object l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "term*...<_"};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__0 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__0_value;
-static const lean_ctor_object l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
-static const lean_ctor_object l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__1_value_aux_0),((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__0_value),LEAN_SCALAR_PTR_LITERAL(76, 95, 249, 207, 5, 93, 41, 245)}};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__1 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__1_value;
-static const lean_string_object l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "*...<"};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__2 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__2_value;
-static const lean_ctor_object l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__2_value)}};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__3 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__3_value;
-static const lean_ctor_object l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__3_value),((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__3_value),((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__8_value)}};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__4 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__4_value;
-static const lean_ctor_object l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__4_value)}};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__5 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__5_value;
-LEAN_EXPORT const lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3c__ = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__5_value;
-static const lean_string_object l_Std_term_x2a_x2e_x2e_x2e___00__closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "term*..._"};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e___00__closed__0 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e___00__closed__0_value;
-static const lean_ctor_object l_Std_term_x2a_x2e_x2e_x2e___00__closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
-static const lean_ctor_object l_Std_term_x2a_x2e_x2e_x2e___00__closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e___00__closed__1_value_aux_0),((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e___00__closed__0_value),LEAN_SCALAR_PTR_LITERAL(172, 214, 10, 96, 112, 57, 139, 148)}};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e___00__closed__1 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e___00__closed__1_value;
-static const lean_string_object l_Std_term_x2a_x2e_x2e_x2e___00__closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "*..."};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e___00__closed__2 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e___00__closed__2_value;
-static const lean_ctor_object l_Std_term_x2a_x2e_x2e_x2e___00__closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e___00__closed__2_value)}};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e___00__closed__3 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e___00__closed__3_value;
-static const lean_ctor_object l_Std_term_x2a_x2e_x2e_x2e___00__closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__3_value),((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e___00__closed__3_value),((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__8_value)}};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e___00__closed__4 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e___00__closed__4_value;
-static const lean_ctor_object l_Std_term_x2a_x2e_x2e_x2e___00__closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e___00__closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e___00__closed__4_value)}};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e___00__closed__5 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e___00__closed__5_value;
-LEAN_EXPORT const lean_object* l_Std_term_x2a_x2e_x2e_x2e__ = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e___00__closed__5_value;
-static const lean_string_object l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "term_<...<_"};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__0 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__0_value;
-static const lean_ctor_object l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
-static const lean_ctor_object l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__1_value_aux_0),((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__0_value),LEAN_SCALAR_PTR_LITERAL(137, 24, 184, 113, 209, 224, 82, 248)}};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__1 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__1_value;
-static const lean_string_object l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "<...<"};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__2 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__2_value;
-static const lean_ctor_object l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__2_value)}};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__3 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__3_value;
-static const lean_ctor_object l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__3_value),((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__3_value),((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__8_value)}};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__4 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__4_value;
-static const lean_ctor_object l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*4 + 0, .m_other = 4, .m_tag = 4}, .m_objs = {((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__4_value)}};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__5 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__5_value;
-LEAN_EXPORT const lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3c__ = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__5_value;
-static const lean_string_object l_Std_term___x3c_x2e_x2e_x2e___00__closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "term_<..._"};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e___00__closed__0 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e___00__closed__0_value;
-static const lean_ctor_object l_Std_term___x3c_x2e_x2e_x2e___00__closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
-static const lean_ctor_object l_Std_term___x3c_x2e_x2e_x2e___00__closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e___00__closed__1_value_aux_0),((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e___00__closed__0_value),LEAN_SCALAR_PTR_LITERAL(138, 200, 25, 103, 90, 101, 53, 48)}};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e___00__closed__1 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e___00__closed__1_value;
-static const lean_string_object l_Std_term___x3c_x2e_x2e_x2e___00__closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "<..."};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e___00__closed__2 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e___00__closed__2_value;
-static const lean_ctor_object l_Std_term___x3c_x2e_x2e_x2e___00__closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e___00__closed__2_value)}};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e___00__closed__3 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e___00__closed__3_value;
-static const lean_ctor_object l_Std_term___x3c_x2e_x2e_x2e___00__closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__3_value),((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e___00__closed__3_value),((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__8_value)}};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e___00__closed__4 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e___00__closed__4_value;
-static const lean_ctor_object l_Std_term___x3c_x2e_x2e_x2e___00__closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*4 + 0, .m_other = 4, .m_tag = 4}, .m_objs = {((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e___00__closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e___00__closed__4_value)}};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e___00__closed__5 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e___00__closed__5_value;
-LEAN_EXPORT const lean_object* l_Std_term___x3c_x2e_x2e_x2e__ = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e___00__closed__5_value;
-static const lean_string_object l_Std_term___x2e_x2e_x2e_x3d___00__closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "term_...=_"};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x3d___00__closed__0 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x3d___00__closed__0_value;
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e_x3d___00__closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e_x3d___00__closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e_x3d___00__closed__1_value_aux_0),((lean_object*)&l_Std_term___x2e_x2e_x2e_x3d___00__closed__0_value),LEAN_SCALAR_PTR_LITERAL(20, 81, 4, 194, 158, 170, 93, 115)}};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x3d___00__closed__1 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x3d___00__closed__1_value;
-static const lean_string_object l_Std_term___x2e_x2e_x2e_x3d___00__closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "...="};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x3d___00__closed__2 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x3d___00__closed__2_value;
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e_x3d___00__closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e_x3d___00__closed__2_value)}};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x3d___00__closed__3 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x3d___00__closed__3_value;
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e_x3d___00__closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__3_value),((lean_object*)&l_Std_term___x2e_x2e_x2e_x3d___00__closed__3_value),((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__8_value)}};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x3d___00__closed__4 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x3d___00__closed__4_value;
-static const lean_ctor_object l_Std_term___x2e_x2e_x2e_x3d___00__closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*4 + 0, .m_other = 4, .m_tag = 4}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e_x3d___00__closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x3d___00__closed__4_value)}};
-static const lean_object* l_Std_term___x2e_x2e_x2e_x3d___00__closed__5 = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x3d___00__closed__5_value;
-LEAN_EXPORT const lean_object* l_Std_term___x2e_x2e_x2e_x3d__ = (const lean_object*)&l_Std_term___x2e_x2e_x2e_x3d___00__closed__5_value;
-static const lean_string_object l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "term*...=_"};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__0 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__0_value;
-static const lean_ctor_object l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
-static const lean_ctor_object l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__1_value_aux_0),((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__0_value),LEAN_SCALAR_PTR_LITERAL(128, 142, 110, 52, 44, 186, 117, 12)}};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__1 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__1_value;
-static const lean_string_object l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "*...="};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__2 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__2_value;
-static const lean_ctor_object l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__2_value)}};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__3 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__3_value;
-static const lean_ctor_object l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__3_value),((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__3_value),((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__8_value)}};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__4 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__4_value;
-static const lean_ctor_object l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__4_value)}};
-static const lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__5 = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__5_value;
-LEAN_EXPORT const lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3d__ = (const lean_object*)&l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__5_value;
-static const lean_string_object l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "term_<...=_"};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__0 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__0_value;
-static const lean_ctor_object l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
-static const lean_ctor_object l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__1_value_aux_0),((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__0_value),LEAN_SCALAR_PTR_LITERAL(52, 72, 254, 139, 229, 96, 28, 211)}};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__1 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__1_value;
-static const lean_string_object l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "<...="};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__2 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__2_value;
-static const lean_ctor_object l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__2_value)}};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__3 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__3_value;
-static const lean_ctor_object l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__3_value),((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__3_value),((lean_object*)&l_Std_term___x2e_x2e_x2e_x3c___00__closed__8_value)}};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__4 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__4_value;
-static const lean_ctor_object l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*4 + 0, .m_other = 4, .m_tag = 4}, .m_objs = {((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__1_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__4_value)}};
-static const lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__5 = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__5_value;
-LEAN_EXPORT const lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3d__ = (const lean_object*)&l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__5_value;
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Lean"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__0 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__0_value;
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Parser"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__1 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__1_value;
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Term"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__2 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__2_value;
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "app"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__3 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__3_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4_value_aux_0),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4_value_aux_1),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(75, 170, 162, 138, 136, 204, 251, 229)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4_value_aux_2),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(69, 118, 10, 41, 220, 156, 243, 179)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4_value;
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Rcc.mk"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__5 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__5_value;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x2a___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x2a___closed__0;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x2a___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x2a___closed__1;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x2a___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x2a___closed__2;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x2a___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x2a___closed__3;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x2a___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x2a___closed__4;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x2a___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x2a___closed__5;
+LEAN_EXPORT lean_object* l_Std_term___x2e_x2e_x2e_x2a;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__0;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__1;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__2;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__3;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__4;
+LEAN_EXPORT lean_object* l_Std_term_x2a_x2e_x2e_x2e_x2a;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__0;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__1;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__2;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__3;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__4;
+LEAN_EXPORT lean_object* l_Std_term___x3c_x2e_x2e_x2e_x2a;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x3c___00__closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__0;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x3c___00__closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__1;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x3c___00__closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__2;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x3c___00__closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__3;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x3c___00__closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__4;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x3c___00__closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__5;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x3c___00__closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__6;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x3c___00__closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__7;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x3c___00__closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__8;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x3c___00__closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__9;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x3c___00__closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x3c___00__closed__10;
+LEAN_EXPORT lean_object* l_Std_term___x2e_x2e_x2e_x3c__;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e___00__closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e___00__closed__0;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e___00__closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e___00__closed__1;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e___00__closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e___00__closed__2;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e___00__closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e___00__closed__3;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e___00__closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e___00__closed__4;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e___00__closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e___00__closed__5;
+LEAN_EXPORT lean_object* l_Std_term___x2e_x2e_x2e__;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__0;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__1;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__2;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__3;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__4;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__5;
+LEAN_EXPORT lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3c__;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e___00__closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e___00__closed__0;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e___00__closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e___00__closed__1;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e___00__closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e___00__closed__2;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e___00__closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e___00__closed__3;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e___00__closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e___00__closed__4;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e___00__closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e___00__closed__5;
+LEAN_EXPORT lean_object* l_Std_term_x2a_x2e_x2e_x2e__;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__0;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__1;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__2;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__3;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__4;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__5;
+LEAN_EXPORT lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3c__;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e___00__closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e___00__closed__0;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e___00__closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e___00__closed__1;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e___00__closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e___00__closed__2;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e___00__closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e___00__closed__3;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e___00__closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e___00__closed__4;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e___00__closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e___00__closed__5;
+LEAN_EXPORT lean_object* l_Std_term___x3c_x2e_x2e_x2e__;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x3d___00__closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x3d___00__closed__0;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x3d___00__closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x3d___00__closed__1;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x3d___00__closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x3d___00__closed__2;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x3d___00__closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x3d___00__closed__3;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x3d___00__closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x3d___00__closed__4;
+static lean_once_cell_t l_Std_term___x2e_x2e_x2e_x3d___00__closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x2e_x2e_x2e_x3d___00__closed__5;
+LEAN_EXPORT lean_object* l_Std_term___x2e_x2e_x2e_x3d__;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__0;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__1;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__2;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__3;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__4;
+static lean_once_cell_t l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__5;
+LEAN_EXPORT lean_object* l_Std_term_x2a_x2e_x2e_x2e_x3d__;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__0;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__1;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__2;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__3;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__4;
+static lean_once_cell_t l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__5;
+LEAN_EXPORT lean_object* l_Std_term___x3c_x2e_x2e_x2e_x3d__;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__0;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__1;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__2;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__3;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__5;
 static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__6;
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "Rcc"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__7 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__7_value;
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "mk"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__9_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__7_value),LEAN_SCALAR_PTR_LITERAL(175, 69, 185, 129, 244, 236, 185, 225)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__9_value_aux_0),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(131, 107, 95, 242, 110, 199, 227, 122)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__9 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__9_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__10_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__10_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__10_value_aux_0),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__7_value),LEAN_SCALAR_PTR_LITERAL(24, 238, 58, 56, 209, 114, 29, 228)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__10_value_aux_1),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(0, 21, 116, 230, 181, 124, 77, 220)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__10 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__10_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__10_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__11 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__11_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__12_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__10_value)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__12 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__12_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__12_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__13 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__13_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__11_value),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__13_value)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__14 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__14_value;
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "null"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__15 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__15_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__15_value),LEAN_SCALAR_PTR_LITERAL(24, 58, 49, 223, 146, 207, 197, 136)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16_value;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__7;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__9;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__10;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__11;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__12;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__13;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__14;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__15;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16;
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Ric.mk"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__0 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__0_value;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__0;
 static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__1;
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "Ric"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__2 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__2_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__3_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(118, 93, 82, 58, 11, 2, 27, 222)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__3_value_aux_0),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(6, 120, 153, 215, 244, 147, 168, 99)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__3 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__3_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__4_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__4_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__4_value_aux_0),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(185, 67, 230, 246, 155, 76, 10, 120)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__4_value_aux_1),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(181, 130, 117, 53, 80, 95, 78, 116)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__4 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__4_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__4_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__5 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__5_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__4_value)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__6 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__6_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__6_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__7 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__7_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__5_value),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__7_value)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__8 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__8_value;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__2;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__3;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__4;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__5;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__6;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__7;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__8;
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Rci.mk"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__0 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__0_value;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__0;
 static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__1;
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "Rci"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__2 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__2_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__3_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(188, 174, 152, 104, 54, 96, 0, 97)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__3_value_aux_0),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(116, 248, 156, 94, 192, 235, 212, 242)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__3 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__3_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__4_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__4_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__4_value_aux_0),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(83, 90, 19, 212, 182, 193, 89, 16)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__4_value_aux_1),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(167, 71, 120, 0, 165, 65, 50, 6)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__4 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__4_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__4_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__5 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__5_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__4_value)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__6 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__6_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__6_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__7 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__7_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__5_value),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__7_value)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__8 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__8_value;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__2;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__3;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__4;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__5;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__6;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__7;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__8;
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Rii.mk"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__0 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__0_value;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__0;
 static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__1;
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "Rii"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__2 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__2_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__3_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(99, 86, 88, 80, 224, 91, 82, 111)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__3_value_aux_0),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(151, 103, 39, 227, 122, 142, 212, 182)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__3 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__3_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__4_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__4_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__4_value_aux_0),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(204, 10, 192, 182, 218, 42, 98, 220)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__4_value_aux_1),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(100, 56, 191, 92, 38, 6, 135, 82)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__4 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__4_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__4_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__5 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__5_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__4_value)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__6 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__6_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__6_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__7 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__7_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__5_value),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__7_value)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__8 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__8_value;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__2;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__3;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__4;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__5;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__6;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__7;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__8;
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Roc.mk"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__0 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__0_value;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__0;
 static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__1;
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "Roc"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__2 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__2_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__3_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(179, 253, 213, 29, 242, 199, 8, 132)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__3_value_aux_0),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(135, 0, 201, 39, 192, 159, 244, 192)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__3 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__3_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__4_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__4_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__4_value_aux_0),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(28, 166, 87, 113, 118, 177, 150, 230)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__4_value_aux_1),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(84, 163, 94, 134, 20, 241, 197, 229)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__4 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__4_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__4_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__5 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__5_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__4_value)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__6 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__6_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__6_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__7 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__7_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__5_value),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__7_value)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__8 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__8_value;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__2;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__3;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__4;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__5;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__6;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__7;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__8;
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Roi.mk"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__0 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__0_value;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__0;
 static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__1;
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "Roi"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__2 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__2_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__3_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(200, 149, 179, 188, 144, 198, 181, 247)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__3_value_aux_0),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(16, 75, 38, 248, 8, 57, 232, 97)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__3 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__3_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__4_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__4_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__4_value_aux_0),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(95, 65, 216, 85, 31, 94, 16, 225)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__4_value_aux_1),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(83, 142, 250, 85, 106, 40, 159, 95)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__4 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__4_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__4_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__5 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__5_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__4_value)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__6 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__6_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__6_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__7 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__7_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__5_value),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__7_value)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__8 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__8_value;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__2;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__3;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__4;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__5;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__6;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__7;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__8;
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Rco.mk"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__0 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__0_value;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__0;
 static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__1;
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "Rco"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__2 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__2_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__3_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(149, 196, 187, 21, 78, 72, 98, 231)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__3_value_aux_0),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(17, 46, 121, 249, 21, 194, 251, 19)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__3 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__3_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__4_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__4_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__4_value_aux_0),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(82, 23, 146, 9, 98, 233, 127, 0)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__4_value_aux_1),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(18, 93, 179, 105, 68, 67, 235, 201)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__4 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__4_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__4_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__5 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__5_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__4_value)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__6 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__6_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__6_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__7 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__7_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__5_value),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__7_value)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__8 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__8_value;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__2;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__3;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__4;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__5;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__6;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__7;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__8;
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e____1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e____1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Rio.mk"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__0 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__0_value;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__0;
 static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__1;
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "Rio"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__2 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__2_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__3_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(238, 197, 64, 120, 99, 67, 210, 243)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__3_value_aux_0),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(46, 103, 21, 135, 36, 136, 183, 160)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__3 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__3_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__4_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__4_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__4_value_aux_0),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(129, 16, 150, 7, 181, 46, 199, 145)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__4_value_aux_1),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(13, 133, 49, 73, 31, 216, 201, 63)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__4 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__4_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__4_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__5 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__5_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__4_value)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__6 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__6_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__6_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__7 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__7_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__5_value),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__7_value)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__8 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__8_value;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__2;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__3;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__4;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__5;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__6;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__7;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__8;
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e____1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e____1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Roo.mk"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__0 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__0_value;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__0;
 static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__1;
-static const lean_string_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "Roo"};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__2 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__2_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__3_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(33, 37, 125, 112, 69, 74, 250, 21)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__3_value_aux_0),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(45, 20, 213, 36, 156, 9, 113, 195)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__3 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__3_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__4_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_term___x2e_x2e_x2e_x2a___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__4_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__4_value_aux_0),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(142, 134, 1, 143, 80, 181, 102, 249)}};
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__4_value_aux_1),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(78, 122, 174, 114, 50, 86, 67, 250)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__4 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__4_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__4_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__5 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__5_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__4_value)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__6 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__6_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__6_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__7 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__7_value;
-static const lean_ctor_object l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__5_value),((lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__7_value)}};
-static const lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__8 = (const lean_object*)&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__8_value;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__2;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__3;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__4;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__5;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__6;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__7;
+static lean_once_cell_t l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__8;
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e____1(lean_object*, lean_object*, lean_object*);
@@ -1245,20 +1203,1064 @@ v_r_390_ = lean_box(v_res_389_);
 return v_r_390_;
 }
 }
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0(void){
+_start:
+{
+lean_object* v___x_391_; 
+v___x_391_ = lean_mk_string_unchecked("Std", 3, 3);
+return v___x_391_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x2a___closed__1(void){
+_start:
+{
+lean_object* v___x_392_; 
+v___x_392_ = lean_mk_string_unchecked("term_...*", 9, 9);
+return v___x_392_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x2a___closed__2(void){
+_start:
+{
+lean_object* v___x_393_; lean_object* v___x_394_; lean_object* v___x_395_; 
+v___x_393_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__1, &l_Std_term___x2e_x2e_x2e_x2a___closed__1_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__1);
+v___x_394_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0);
+v___x_395_ = l_Lean_Name_mkStr2(v___x_394_, v___x_393_);
+return v___x_395_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x2a___closed__3(void){
+_start:
+{
+lean_object* v___x_396_; 
+v___x_396_ = lean_mk_string_unchecked("...*", 4, 4);
+return v___x_396_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x2a___closed__4(void){
+_start:
+{
+lean_object* v___x_397_; lean_object* v___x_398_; 
+v___x_397_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__3, &l_Std_term___x2e_x2e_x2e_x2a___closed__3_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__3);
+v___x_398_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_398_, 0, v___x_397_);
+return v___x_398_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x2a___closed__5(void){
+_start:
+{
+lean_object* v___x_399_; lean_object* v___x_400_; lean_object* v___x_401_; lean_object* v___x_402_; lean_object* v___x_403_; 
+v___x_399_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__4, &l_Std_term___x2e_x2e_x2e_x2a___closed__4_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__4);
+v___x_400_ = lean_unsigned_to_nat(0u);
+v___x_401_ = lean_unsigned_to_nat(1024u);
+v___x_402_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__2, &l_Std_term___x2e_x2e_x2e_x2a___closed__2_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__2);
+v___x_403_ = lean_alloc_ctor(4, 4, 0);
+lean_ctor_set(v___x_403_, 0, v___x_402_);
+lean_ctor_set(v___x_403_, 1, v___x_401_);
+lean_ctor_set(v___x_403_, 2, v___x_400_);
+lean_ctor_set(v___x_403_, 3, v___x_399_);
+return v___x_403_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x2a(void){
+_start:
+{
+lean_object* v___x_404_; 
+v___x_404_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__5, &l_Std_term___x2e_x2e_x2e_x2a___closed__5_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__5);
+return v___x_404_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__0(void){
+_start:
+{
+lean_object* v___x_405_; 
+v___x_405_ = lean_mk_string_unchecked("term*...*", 9, 9);
+return v___x_405_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__1(void){
+_start:
+{
+lean_object* v___x_406_; lean_object* v___x_407_; lean_object* v___x_408_; 
+v___x_406_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__0, &l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__0);
+v___x_407_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0);
+v___x_408_ = l_Lean_Name_mkStr2(v___x_407_, v___x_406_);
+return v___x_408_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__2(void){
+_start:
+{
+lean_object* v___x_409_; 
+v___x_409_ = lean_mk_string_unchecked("*...*", 5, 5);
+return v___x_409_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__3(void){
+_start:
+{
+lean_object* v___x_410_; lean_object* v___x_411_; 
+v___x_410_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__2, &l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__2_once, _init_l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__2);
+v___x_411_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_411_, 0, v___x_410_);
+return v___x_411_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__4(void){
+_start:
+{
+lean_object* v___x_412_; lean_object* v___x_413_; lean_object* v___x_414_; lean_object* v___x_415_; 
+v___x_412_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__3, &l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__3_once, _init_l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__3);
+v___x_413_ = lean_unsigned_to_nat(1024u);
+v___x_414_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__1, &l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__1_once, _init_l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__1);
+v___x_415_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_415_, 0, v___x_414_);
+lean_ctor_set(v___x_415_, 1, v___x_413_);
+lean_ctor_set(v___x_415_, 2, v___x_412_);
+return v___x_415_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e_x2a(void){
+_start:
+{
+lean_object* v___x_416_; 
+v___x_416_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__4, &l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__4_once, _init_l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__4);
+return v___x_416_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__0(void){
+_start:
+{
+lean_object* v___x_417_; 
+v___x_417_ = lean_mk_string_unchecked("term_<...*", 10, 10);
+return v___x_417_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__1(void){
+_start:
+{
+lean_object* v___x_418_; lean_object* v___x_419_; lean_object* v___x_420_; 
+v___x_418_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__0);
+v___x_419_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0);
+v___x_420_ = l_Lean_Name_mkStr2(v___x_419_, v___x_418_);
+return v___x_420_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__2(void){
+_start:
+{
+lean_object* v___x_421_; 
+v___x_421_ = lean_mk_string_unchecked("<...*", 5, 5);
+return v___x_421_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__3(void){
+_start:
+{
+lean_object* v___x_422_; lean_object* v___x_423_; 
+v___x_422_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__2, &l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__2_once, _init_l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__2);
+v___x_423_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_423_, 0, v___x_422_);
+return v___x_423_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__4(void){
+_start:
+{
+lean_object* v___x_424_; lean_object* v___x_425_; lean_object* v___x_426_; lean_object* v___x_427_; lean_object* v___x_428_; 
+v___x_424_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__3, &l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__3_once, _init_l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__3);
+v___x_425_ = lean_unsigned_to_nat(0u);
+v___x_426_ = lean_unsigned_to_nat(1024u);
+v___x_427_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__1, &l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__1_once, _init_l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__1);
+v___x_428_ = lean_alloc_ctor(4, 4, 0);
+lean_ctor_set(v___x_428_, 0, v___x_427_);
+lean_ctor_set(v___x_428_, 1, v___x_426_);
+lean_ctor_set(v___x_428_, 2, v___x_425_);
+lean_ctor_set(v___x_428_, 3, v___x_424_);
+return v___x_428_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e_x2a(void){
+_start:
+{
+lean_object* v___x_429_; 
+v___x_429_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__4, &l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__4_once, _init_l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__4);
+return v___x_429_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__0(void){
+_start:
+{
+lean_object* v___x_430_; 
+v___x_430_ = lean_mk_string_unchecked("term_...<_", 10, 10);
+return v___x_430_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__1(void){
+_start:
+{
+lean_object* v___x_431_; lean_object* v___x_432_; lean_object* v___x_433_; 
+v___x_431_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__0, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__0);
+v___x_432_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0);
+v___x_433_ = l_Lean_Name_mkStr2(v___x_432_, v___x_431_);
+return v___x_433_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__2(void){
+_start:
+{
+lean_object* v___x_434_; 
+v___x_434_ = lean_mk_string_unchecked("andthen", 7, 7);
+return v___x_434_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__3(void){
+_start:
+{
+lean_object* v___x_435_; lean_object* v___x_436_; 
+v___x_435_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__2, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__2_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__2);
+v___x_436_ = l_Lean_Name_mkStr1(v___x_435_);
+return v___x_436_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__4(void){
+_start:
+{
+lean_object* v___x_437_; 
+v___x_437_ = lean_mk_string_unchecked("...<", 4, 4);
+return v___x_437_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__5(void){
+_start:
+{
+lean_object* v___x_438_; lean_object* v___x_439_; 
+v___x_438_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__4, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__4_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__4);
+v___x_439_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_439_, 0, v___x_438_);
+return v___x_439_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__6(void){
+_start:
+{
+lean_object* v___x_440_; 
+v___x_440_ = lean_mk_string_unchecked("term", 4, 4);
+return v___x_440_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__7(void){
+_start:
+{
+lean_object* v___x_441_; lean_object* v___x_442_; 
+v___x_441_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__6, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__6_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__6);
+v___x_442_ = l_Lean_Name_mkStr1(v___x_441_);
+return v___x_442_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__8(void){
+_start:
+{
+lean_object* v___x_443_; lean_object* v___x_444_; lean_object* v___x_445_; 
+v___x_443_ = lean_unsigned_to_nat(0u);
+v___x_444_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__7, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__7_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__7);
+v___x_445_ = lean_alloc_ctor(7, 2, 0);
+lean_ctor_set(v___x_445_, 0, v___x_444_);
+lean_ctor_set(v___x_445_, 1, v___x_443_);
+return v___x_445_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__9(void){
+_start:
+{
+lean_object* v___x_446_; lean_object* v___x_447_; lean_object* v___x_448_; lean_object* v___x_449_; 
+v___x_446_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__8, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__8_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__8);
+v___x_447_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__5, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__5_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__5);
+v___x_448_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__3, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__3_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__3);
+v___x_449_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_449_, 0, v___x_448_);
+lean_ctor_set(v___x_449_, 1, v___x_447_);
+lean_ctor_set(v___x_449_, 2, v___x_446_);
+return v___x_449_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__10(void){
+_start:
+{
+lean_object* v___x_450_; lean_object* v___x_451_; lean_object* v___x_452_; lean_object* v___x_453_; lean_object* v___x_454_; 
+v___x_450_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__9, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__9_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__9);
+v___x_451_ = lean_unsigned_to_nat(0u);
+v___x_452_ = lean_unsigned_to_nat(1024u);
+v___x_453_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__1, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__1_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__1);
+v___x_454_ = lean_alloc_ctor(4, 4, 0);
+lean_ctor_set(v___x_454_, 0, v___x_453_);
+lean_ctor_set(v___x_454_, 1, v___x_452_);
+lean_ctor_set(v___x_454_, 2, v___x_451_);
+lean_ctor_set(v___x_454_, 3, v___x_450_);
+return v___x_454_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x3c__(void){
+_start:
+{
+lean_object* v___x_455_; 
+v___x_455_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__10, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__10_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__10);
+return v___x_455_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e___00__closed__0(void){
+_start:
+{
+lean_object* v___x_456_; 
+v___x_456_ = lean_mk_string_unchecked("term_..._", 9, 9);
+return v___x_456_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e___00__closed__1(void){
+_start:
+{
+lean_object* v___x_457_; lean_object* v___x_458_; lean_object* v___x_459_; 
+v___x_457_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e___00__closed__0, &l_Std_term___x2e_x2e_x2e___00__closed__0_once, _init_l_Std_term___x2e_x2e_x2e___00__closed__0);
+v___x_458_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0);
+v___x_459_ = l_Lean_Name_mkStr2(v___x_458_, v___x_457_);
+return v___x_459_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e___00__closed__2(void){
+_start:
+{
+lean_object* v___x_460_; 
+v___x_460_ = lean_mk_string_unchecked("...", 3, 3);
+return v___x_460_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e___00__closed__3(void){
+_start:
+{
+lean_object* v___x_461_; lean_object* v___x_462_; 
+v___x_461_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e___00__closed__2, &l_Std_term___x2e_x2e_x2e___00__closed__2_once, _init_l_Std_term___x2e_x2e_x2e___00__closed__2);
+v___x_462_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_462_, 0, v___x_461_);
+return v___x_462_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e___00__closed__4(void){
+_start:
+{
+lean_object* v___x_463_; lean_object* v___x_464_; lean_object* v___x_465_; lean_object* v___x_466_; 
+v___x_463_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__8, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__8_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__8);
+v___x_464_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e___00__closed__3, &l_Std_term___x2e_x2e_x2e___00__closed__3_once, _init_l_Std_term___x2e_x2e_x2e___00__closed__3);
+v___x_465_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__3, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__3_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__3);
+v___x_466_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_466_, 0, v___x_465_);
+lean_ctor_set(v___x_466_, 1, v___x_464_);
+lean_ctor_set(v___x_466_, 2, v___x_463_);
+return v___x_466_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e___00__closed__5(void){
+_start:
+{
+lean_object* v___x_467_; lean_object* v___x_468_; lean_object* v___x_469_; lean_object* v___x_470_; lean_object* v___x_471_; 
+v___x_467_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e___00__closed__4, &l_Std_term___x2e_x2e_x2e___00__closed__4_once, _init_l_Std_term___x2e_x2e_x2e___00__closed__4);
+v___x_468_ = lean_unsigned_to_nat(0u);
+v___x_469_ = lean_unsigned_to_nat(1024u);
+v___x_470_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e___00__closed__1, &l_Std_term___x2e_x2e_x2e___00__closed__1_once, _init_l_Std_term___x2e_x2e_x2e___00__closed__1);
+v___x_471_ = lean_alloc_ctor(4, 4, 0);
+lean_ctor_set(v___x_471_, 0, v___x_470_);
+lean_ctor_set(v___x_471_, 1, v___x_469_);
+lean_ctor_set(v___x_471_, 2, v___x_468_);
+lean_ctor_set(v___x_471_, 3, v___x_467_);
+return v___x_471_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e__(void){
+_start:
+{
+lean_object* v___x_472_; 
+v___x_472_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e___00__closed__5, &l_Std_term___x2e_x2e_x2e___00__closed__5_once, _init_l_Std_term___x2e_x2e_x2e___00__closed__5);
+return v___x_472_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__0(void){
+_start:
+{
+lean_object* v___x_473_; 
+v___x_473_ = lean_mk_string_unchecked("term*...<_", 10, 10);
+return v___x_473_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__1(void){
+_start:
+{
+lean_object* v___x_474_; lean_object* v___x_475_; lean_object* v___x_476_; 
+v___x_474_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__0, &l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__0_once, _init_l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__0);
+v___x_475_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0);
+v___x_476_ = l_Lean_Name_mkStr2(v___x_475_, v___x_474_);
+return v___x_476_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__2(void){
+_start:
+{
+lean_object* v___x_477_; 
+v___x_477_ = lean_mk_string_unchecked("*...<", 5, 5);
+return v___x_477_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__3(void){
+_start:
+{
+lean_object* v___x_478_; lean_object* v___x_479_; 
+v___x_478_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__2, &l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__2_once, _init_l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__2);
+v___x_479_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_479_, 0, v___x_478_);
+return v___x_479_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__4(void){
+_start:
+{
+lean_object* v___x_480_; lean_object* v___x_481_; lean_object* v___x_482_; lean_object* v___x_483_; 
+v___x_480_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__8, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__8_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__8);
+v___x_481_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__3, &l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__3_once, _init_l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__3);
+v___x_482_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__3, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__3_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__3);
+v___x_483_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_483_, 0, v___x_482_);
+lean_ctor_set(v___x_483_, 1, v___x_481_);
+lean_ctor_set(v___x_483_, 2, v___x_480_);
+return v___x_483_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__5(void){
+_start:
+{
+lean_object* v___x_484_; lean_object* v___x_485_; lean_object* v___x_486_; lean_object* v___x_487_; 
+v___x_484_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__4, &l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__4_once, _init_l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__4);
+v___x_485_ = lean_unsigned_to_nat(1024u);
+v___x_486_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__1, &l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__1_once, _init_l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__1);
+v___x_487_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_487_, 0, v___x_486_);
+lean_ctor_set(v___x_487_, 1, v___x_485_);
+lean_ctor_set(v___x_487_, 2, v___x_484_);
+return v___x_487_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e_x3c__(void){
+_start:
+{
+lean_object* v___x_488_; 
+v___x_488_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__5, &l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__5_once, _init_l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__5);
+return v___x_488_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e___00__closed__0(void){
+_start:
+{
+lean_object* v___x_489_; 
+v___x_489_ = lean_mk_string_unchecked("term*..._", 9, 9);
+return v___x_489_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e___00__closed__1(void){
+_start:
+{
+lean_object* v___x_490_; lean_object* v___x_491_; lean_object* v___x_492_; 
+v___x_490_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e___00__closed__0, &l_Std_term_x2a_x2e_x2e_x2e___00__closed__0_once, _init_l_Std_term_x2a_x2e_x2e_x2e___00__closed__0);
+v___x_491_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0);
+v___x_492_ = l_Lean_Name_mkStr2(v___x_491_, v___x_490_);
+return v___x_492_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e___00__closed__2(void){
+_start:
+{
+lean_object* v___x_493_; 
+v___x_493_ = lean_mk_string_unchecked("*...", 4, 4);
+return v___x_493_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e___00__closed__3(void){
+_start:
+{
+lean_object* v___x_494_; lean_object* v___x_495_; 
+v___x_494_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e___00__closed__2, &l_Std_term_x2a_x2e_x2e_x2e___00__closed__2_once, _init_l_Std_term_x2a_x2e_x2e_x2e___00__closed__2);
+v___x_495_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_495_, 0, v___x_494_);
+return v___x_495_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e___00__closed__4(void){
+_start:
+{
+lean_object* v___x_496_; lean_object* v___x_497_; lean_object* v___x_498_; lean_object* v___x_499_; 
+v___x_496_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__8, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__8_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__8);
+v___x_497_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e___00__closed__3, &l_Std_term_x2a_x2e_x2e_x2e___00__closed__3_once, _init_l_Std_term_x2a_x2e_x2e_x2e___00__closed__3);
+v___x_498_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__3, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__3_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__3);
+v___x_499_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_499_, 0, v___x_498_);
+lean_ctor_set(v___x_499_, 1, v___x_497_);
+lean_ctor_set(v___x_499_, 2, v___x_496_);
+return v___x_499_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e___00__closed__5(void){
+_start:
+{
+lean_object* v___x_500_; lean_object* v___x_501_; lean_object* v___x_502_; lean_object* v___x_503_; 
+v___x_500_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e___00__closed__4, &l_Std_term_x2a_x2e_x2e_x2e___00__closed__4_once, _init_l_Std_term_x2a_x2e_x2e_x2e___00__closed__4);
+v___x_501_ = lean_unsigned_to_nat(1024u);
+v___x_502_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e___00__closed__1, &l_Std_term_x2a_x2e_x2e_x2e___00__closed__1_once, _init_l_Std_term_x2a_x2e_x2e_x2e___00__closed__1);
+v___x_503_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_503_, 0, v___x_502_);
+lean_ctor_set(v___x_503_, 1, v___x_501_);
+lean_ctor_set(v___x_503_, 2, v___x_500_);
+return v___x_503_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e__(void){
+_start:
+{
+lean_object* v___x_504_; 
+v___x_504_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e___00__closed__5, &l_Std_term_x2a_x2e_x2e_x2e___00__closed__5_once, _init_l_Std_term_x2a_x2e_x2e_x2e___00__closed__5);
+return v___x_504_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__0(void){
+_start:
+{
+lean_object* v___x_505_; 
+v___x_505_ = lean_mk_string_unchecked("term_<...<_", 11, 11);
+return v___x_505_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__1(void){
+_start:
+{
+lean_object* v___x_506_; lean_object* v___x_507_; lean_object* v___x_508_; 
+v___x_506_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__0, &l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__0_once, _init_l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__0);
+v___x_507_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0);
+v___x_508_ = l_Lean_Name_mkStr2(v___x_507_, v___x_506_);
+return v___x_508_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__2(void){
+_start:
+{
+lean_object* v___x_509_; 
+v___x_509_ = lean_mk_string_unchecked("<...<", 5, 5);
+return v___x_509_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__3(void){
+_start:
+{
+lean_object* v___x_510_; lean_object* v___x_511_; 
+v___x_510_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__2, &l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__2_once, _init_l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__2);
+v___x_511_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_511_, 0, v___x_510_);
+return v___x_511_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__4(void){
+_start:
+{
+lean_object* v___x_512_; lean_object* v___x_513_; lean_object* v___x_514_; lean_object* v___x_515_; 
+v___x_512_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__8, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__8_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__8);
+v___x_513_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__3, &l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__3_once, _init_l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__3);
+v___x_514_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__3, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__3_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__3);
+v___x_515_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_515_, 0, v___x_514_);
+lean_ctor_set(v___x_515_, 1, v___x_513_);
+lean_ctor_set(v___x_515_, 2, v___x_512_);
+return v___x_515_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__5(void){
+_start:
+{
+lean_object* v___x_516_; lean_object* v___x_517_; lean_object* v___x_518_; lean_object* v___x_519_; lean_object* v___x_520_; 
+v___x_516_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__4, &l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__4_once, _init_l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__4);
+v___x_517_ = lean_unsigned_to_nat(0u);
+v___x_518_ = lean_unsigned_to_nat(1024u);
+v___x_519_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__1, &l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__1_once, _init_l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__1);
+v___x_520_ = lean_alloc_ctor(4, 4, 0);
+lean_ctor_set(v___x_520_, 0, v___x_519_);
+lean_ctor_set(v___x_520_, 1, v___x_518_);
+lean_ctor_set(v___x_520_, 2, v___x_517_);
+lean_ctor_set(v___x_520_, 3, v___x_516_);
+return v___x_520_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e_x3c__(void){
+_start:
+{
+lean_object* v___x_521_; 
+v___x_521_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__5, &l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__5_once, _init_l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__5);
+return v___x_521_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e___00__closed__0(void){
+_start:
+{
+lean_object* v___x_522_; 
+v___x_522_ = lean_mk_string_unchecked("term_<..._", 10, 10);
+return v___x_522_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e___00__closed__1(void){
+_start:
+{
+lean_object* v___x_523_; lean_object* v___x_524_; lean_object* v___x_525_; 
+v___x_523_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e___00__closed__0, &l_Std_term___x3c_x2e_x2e_x2e___00__closed__0_once, _init_l_Std_term___x3c_x2e_x2e_x2e___00__closed__0);
+v___x_524_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0);
+v___x_525_ = l_Lean_Name_mkStr2(v___x_524_, v___x_523_);
+return v___x_525_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e___00__closed__2(void){
+_start:
+{
+lean_object* v___x_526_; 
+v___x_526_ = lean_mk_string_unchecked("<...", 4, 4);
+return v___x_526_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e___00__closed__3(void){
+_start:
+{
+lean_object* v___x_527_; lean_object* v___x_528_; 
+v___x_527_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e___00__closed__2, &l_Std_term___x3c_x2e_x2e_x2e___00__closed__2_once, _init_l_Std_term___x3c_x2e_x2e_x2e___00__closed__2);
+v___x_528_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_528_, 0, v___x_527_);
+return v___x_528_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e___00__closed__4(void){
+_start:
+{
+lean_object* v___x_529_; lean_object* v___x_530_; lean_object* v___x_531_; lean_object* v___x_532_; 
+v___x_529_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__8, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__8_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__8);
+v___x_530_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e___00__closed__3, &l_Std_term___x3c_x2e_x2e_x2e___00__closed__3_once, _init_l_Std_term___x3c_x2e_x2e_x2e___00__closed__3);
+v___x_531_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__3, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__3_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__3);
+v___x_532_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_532_, 0, v___x_531_);
+lean_ctor_set(v___x_532_, 1, v___x_530_);
+lean_ctor_set(v___x_532_, 2, v___x_529_);
+return v___x_532_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e___00__closed__5(void){
+_start:
+{
+lean_object* v___x_533_; lean_object* v___x_534_; lean_object* v___x_535_; lean_object* v___x_536_; lean_object* v___x_537_; 
+v___x_533_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e___00__closed__4, &l_Std_term___x3c_x2e_x2e_x2e___00__closed__4_once, _init_l_Std_term___x3c_x2e_x2e_x2e___00__closed__4);
+v___x_534_ = lean_unsigned_to_nat(0u);
+v___x_535_ = lean_unsigned_to_nat(1024u);
+v___x_536_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e___00__closed__1, &l_Std_term___x3c_x2e_x2e_x2e___00__closed__1_once, _init_l_Std_term___x3c_x2e_x2e_x2e___00__closed__1);
+v___x_537_ = lean_alloc_ctor(4, 4, 0);
+lean_ctor_set(v___x_537_, 0, v___x_536_);
+lean_ctor_set(v___x_537_, 1, v___x_535_);
+lean_ctor_set(v___x_537_, 2, v___x_534_);
+lean_ctor_set(v___x_537_, 3, v___x_533_);
+return v___x_537_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e__(void){
+_start:
+{
+lean_object* v___x_538_; 
+v___x_538_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e___00__closed__5, &l_Std_term___x3c_x2e_x2e_x2e___00__closed__5_once, _init_l_Std_term___x3c_x2e_x2e_x2e___00__closed__5);
+return v___x_538_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x3d___00__closed__0(void){
+_start:
+{
+lean_object* v___x_539_; 
+v___x_539_ = lean_mk_string_unchecked("term_...=_", 10, 10);
+return v___x_539_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x3d___00__closed__1(void){
+_start:
+{
+lean_object* v___x_540_; lean_object* v___x_541_; lean_object* v___x_542_; 
+v___x_540_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3d___00__closed__0, &l_Std_term___x2e_x2e_x2e_x3d___00__closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x3d___00__closed__0);
+v___x_541_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0);
+v___x_542_ = l_Lean_Name_mkStr2(v___x_541_, v___x_540_);
+return v___x_542_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x3d___00__closed__2(void){
+_start:
+{
+lean_object* v___x_543_; 
+v___x_543_ = lean_mk_string_unchecked("...=", 4, 4);
+return v___x_543_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x3d___00__closed__3(void){
+_start:
+{
+lean_object* v___x_544_; lean_object* v___x_545_; 
+v___x_544_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3d___00__closed__2, &l_Std_term___x2e_x2e_x2e_x3d___00__closed__2_once, _init_l_Std_term___x2e_x2e_x2e_x3d___00__closed__2);
+v___x_545_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_545_, 0, v___x_544_);
+return v___x_545_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x3d___00__closed__4(void){
+_start:
+{
+lean_object* v___x_546_; lean_object* v___x_547_; lean_object* v___x_548_; lean_object* v___x_549_; 
+v___x_546_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__8, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__8_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__8);
+v___x_547_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3d___00__closed__3, &l_Std_term___x2e_x2e_x2e_x3d___00__closed__3_once, _init_l_Std_term___x2e_x2e_x2e_x3d___00__closed__3);
+v___x_548_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__3, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__3_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__3);
+v___x_549_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_549_, 0, v___x_548_);
+lean_ctor_set(v___x_549_, 1, v___x_547_);
+lean_ctor_set(v___x_549_, 2, v___x_546_);
+return v___x_549_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x3d___00__closed__5(void){
+_start:
+{
+lean_object* v___x_550_; lean_object* v___x_551_; lean_object* v___x_552_; lean_object* v___x_553_; lean_object* v___x_554_; 
+v___x_550_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3d___00__closed__4, &l_Std_term___x2e_x2e_x2e_x3d___00__closed__4_once, _init_l_Std_term___x2e_x2e_x2e_x3d___00__closed__4);
+v___x_551_ = lean_unsigned_to_nat(0u);
+v___x_552_ = lean_unsigned_to_nat(1024u);
+v___x_553_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3d___00__closed__1, &l_Std_term___x2e_x2e_x2e_x3d___00__closed__1_once, _init_l_Std_term___x2e_x2e_x2e_x3d___00__closed__1);
+v___x_554_ = lean_alloc_ctor(4, 4, 0);
+lean_ctor_set(v___x_554_, 0, v___x_553_);
+lean_ctor_set(v___x_554_, 1, v___x_552_);
+lean_ctor_set(v___x_554_, 2, v___x_551_);
+lean_ctor_set(v___x_554_, 3, v___x_550_);
+return v___x_554_;
+}
+}
+static lean_object* _init_l_Std_term___x2e_x2e_x2e_x3d__(void){
+_start:
+{
+lean_object* v___x_555_; 
+v___x_555_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3d___00__closed__5, &l_Std_term___x2e_x2e_x2e_x3d___00__closed__5_once, _init_l_Std_term___x2e_x2e_x2e_x3d___00__closed__5);
+return v___x_555_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__0(void){
+_start:
+{
+lean_object* v___x_556_; 
+v___x_556_ = lean_mk_string_unchecked("term*...=_", 10, 10);
+return v___x_556_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__1(void){
+_start:
+{
+lean_object* v___x_557_; lean_object* v___x_558_; lean_object* v___x_559_; 
+v___x_557_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__0, &l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__0_once, _init_l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__0);
+v___x_558_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0);
+v___x_559_ = l_Lean_Name_mkStr2(v___x_558_, v___x_557_);
+return v___x_559_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__2(void){
+_start:
+{
+lean_object* v___x_560_; 
+v___x_560_ = lean_mk_string_unchecked("*...=", 5, 5);
+return v___x_560_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__3(void){
+_start:
+{
+lean_object* v___x_561_; lean_object* v___x_562_; 
+v___x_561_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__2, &l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__2_once, _init_l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__2);
+v___x_562_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_562_, 0, v___x_561_);
+return v___x_562_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__4(void){
+_start:
+{
+lean_object* v___x_563_; lean_object* v___x_564_; lean_object* v___x_565_; lean_object* v___x_566_; 
+v___x_563_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__8, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__8_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__8);
+v___x_564_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__3, &l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__3_once, _init_l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__3);
+v___x_565_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__3, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__3_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__3);
+v___x_566_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_566_, 0, v___x_565_);
+lean_ctor_set(v___x_566_, 1, v___x_564_);
+lean_ctor_set(v___x_566_, 2, v___x_563_);
+return v___x_566_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__5(void){
+_start:
+{
+lean_object* v___x_567_; lean_object* v___x_568_; lean_object* v___x_569_; lean_object* v___x_570_; 
+v___x_567_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__4, &l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__4_once, _init_l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__4);
+v___x_568_ = lean_unsigned_to_nat(1024u);
+v___x_569_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__1, &l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__1_once, _init_l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__1);
+v___x_570_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_570_, 0, v___x_569_);
+lean_ctor_set(v___x_570_, 1, v___x_568_);
+lean_ctor_set(v___x_570_, 2, v___x_567_);
+return v___x_570_;
+}
+}
+static lean_object* _init_l_Std_term_x2a_x2e_x2e_x2e_x3d__(void){
+_start:
+{
+lean_object* v___x_571_; 
+v___x_571_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__5, &l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__5_once, _init_l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__5);
+return v___x_571_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__0(void){
+_start:
+{
+lean_object* v___x_572_; 
+v___x_572_ = lean_mk_string_unchecked("term_<...=_", 11, 11);
+return v___x_572_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__1(void){
+_start:
+{
+lean_object* v___x_573_; lean_object* v___x_574_; lean_object* v___x_575_; 
+v___x_573_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__0, &l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__0_once, _init_l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__0);
+v___x_574_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0);
+v___x_575_ = l_Lean_Name_mkStr2(v___x_574_, v___x_573_);
+return v___x_575_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__2(void){
+_start:
+{
+lean_object* v___x_576_; 
+v___x_576_ = lean_mk_string_unchecked("<...=", 5, 5);
+return v___x_576_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__3(void){
+_start:
+{
+lean_object* v___x_577_; lean_object* v___x_578_; 
+v___x_577_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__2, &l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__2_once, _init_l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__2);
+v___x_578_ = lean_alloc_ctor(5, 1, 0);
+lean_ctor_set(v___x_578_, 0, v___x_577_);
+return v___x_578_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__4(void){
+_start:
+{
+lean_object* v___x_579_; lean_object* v___x_580_; lean_object* v___x_581_; lean_object* v___x_582_; 
+v___x_579_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__8, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__8_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__8);
+v___x_580_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__3, &l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__3_once, _init_l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__3);
+v___x_581_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__3, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__3_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__3);
+v___x_582_ = lean_alloc_ctor(2, 3, 0);
+lean_ctor_set(v___x_582_, 0, v___x_581_);
+lean_ctor_set(v___x_582_, 1, v___x_580_);
+lean_ctor_set(v___x_582_, 2, v___x_579_);
+return v___x_582_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__5(void){
+_start:
+{
+lean_object* v___x_583_; lean_object* v___x_584_; lean_object* v___x_585_; lean_object* v___x_586_; lean_object* v___x_587_; 
+v___x_583_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__4, &l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__4_once, _init_l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__4);
+v___x_584_ = lean_unsigned_to_nat(0u);
+v___x_585_ = lean_unsigned_to_nat(1024u);
+v___x_586_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__1, &l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__1_once, _init_l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__1);
+v___x_587_ = lean_alloc_ctor(4, 4, 0);
+lean_ctor_set(v___x_587_, 0, v___x_586_);
+lean_ctor_set(v___x_587_, 1, v___x_585_);
+lean_ctor_set(v___x_587_, 2, v___x_584_);
+lean_ctor_set(v___x_587_, 3, v___x_583_);
+return v___x_587_;
+}
+}
+static lean_object* _init_l_Std_term___x3c_x2e_x2e_x2e_x3d__(void){
+_start:
+{
+lean_object* v___x_588_; 
+v___x_588_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__5, &l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__5_once, _init_l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__5);
+return v___x_588_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__0(void){
+_start:
+{
+lean_object* v___x_589_; 
+v___x_589_ = lean_mk_string_unchecked("Lean", 4, 4);
+return v___x_589_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__1(void){
+_start:
+{
+lean_object* v___x_590_; 
+v___x_590_ = lean_mk_string_unchecked("Parser", 6, 6);
+return v___x_590_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__2(void){
+_start:
+{
+lean_object* v___x_591_; 
+v___x_591_ = lean_mk_string_unchecked("Term", 4, 4);
+return v___x_591_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__3(void){
+_start:
+{
+lean_object* v___x_592_; 
+v___x_592_ = lean_mk_string_unchecked("app", 3, 3);
+return v___x_592_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4(void){
+_start:
+{
+lean_object* v___x_593_; lean_object* v___x_594_; lean_object* v___x_595_; lean_object* v___x_596_; lean_object* v___x_597_; 
+v___x_593_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__3, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__3_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__3);
+v___x_594_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__2, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__2_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__2);
+v___x_595_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__1, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__1_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__1);
+v___x_596_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__0, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__0_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__0);
+v___x_597_ = l_Lean_Name_mkStr4(v___x_596_, v___x_595_, v___x_594_, v___x_593_);
+return v___x_597_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__5(void){
+_start:
+{
+lean_object* v___x_598_; 
+v___x_598_ = lean_mk_string_unchecked("Rcc.mk", 6, 6);
+return v___x_598_;
+}
+}
 static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__6(void){
 _start:
 {
 lean_object* v___x_599_; lean_object* v___x_600_; 
-v___x_599_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__5));
+v___x_599_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__5, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__5_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__5);
 v___x_600_ = l_String_toRawSubstring_x27(v___x_599_);
 return v___x_600_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__7(void){
+_start:
+{
+lean_object* v___x_601_; 
+v___x_601_ = lean_mk_string_unchecked("Rcc", 3, 3);
+return v___x_601_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8(void){
+_start:
+{
+lean_object* v___x_602_; 
+v___x_602_ = lean_mk_string_unchecked("mk", 2, 2);
+return v___x_602_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__9(void){
+_start:
+{
+lean_object* v___x_603_; lean_object* v___x_604_; lean_object* v___x_605_; 
+v___x_603_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8);
+v___x_604_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__7, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__7_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__7);
+v___x_605_ = l_Lean_Name_mkStr2(v___x_604_, v___x_603_);
+return v___x_605_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__10(void){
+_start:
+{
+lean_object* v___x_606_; lean_object* v___x_607_; lean_object* v___x_608_; lean_object* v___x_609_; 
+v___x_606_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8);
+v___x_607_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__7, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__7_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__7);
+v___x_608_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0);
+v___x_609_ = l_Lean_Name_mkStr3(v___x_608_, v___x_607_, v___x_606_);
+return v___x_609_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__11(void){
+_start:
+{
+lean_object* v___x_610_; lean_object* v___x_611_; lean_object* v___x_612_; 
+v___x_610_ = lean_box(0);
+v___x_611_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__10, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__10_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__10);
+v___x_612_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_612_, 0, v___x_611_);
+lean_ctor_set(v___x_612_, 1, v___x_610_);
+return v___x_612_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__12(void){
+_start:
+{
+lean_object* v___x_613_; lean_object* v___x_614_; 
+v___x_613_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__10, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__10_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__10);
+v___x_614_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_614_, 0, v___x_613_);
+return v___x_614_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__13(void){
+_start:
+{
+lean_object* v___x_615_; lean_object* v___x_616_; lean_object* v___x_617_; 
+v___x_615_ = lean_box(0);
+v___x_616_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__12, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__12_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__12);
+v___x_617_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_617_, 0, v___x_616_);
+lean_ctor_set(v___x_617_, 1, v___x_615_);
+return v___x_617_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__14(void){
+_start:
+{
+lean_object* v___x_618_; lean_object* v___x_619_; lean_object* v___x_620_; 
+v___x_618_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__13, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__13_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__13);
+v___x_619_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__11, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__11_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__11);
+v___x_620_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_620_, 0, v___x_619_);
+lean_ctor_set(v___x_620_, 1, v___x_618_);
+return v___x_620_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__15(void){
+_start:
+{
+lean_object* v___x_621_; 
+v___x_621_ = lean_mk_string_unchecked("null", 4, 4);
+return v___x_621_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16(void){
+_start:
+{
+lean_object* v___x_622_; lean_object* v___x_623_; 
+v___x_622_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__15, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__15_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__15);
+v___x_623_ = l_Lean_Name_mkStr1(v___x_622_);
+return v___x_623_;
 }
 }
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1(lean_object* v_x_624_, lean_object* v_a_625_, lean_object* v_a_626_){
 _start:
 {
 lean_object* v___x_627_; uint8_t v___x_628_; 
-v___x_627_ = ((lean_object*)(l_Std_term___x2e_x2e_x2e_x3d___00__closed__1));
+v___x_627_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3d___00__closed__1, &l_Std_term___x2e_x2e_x2e_x3d___00__closed__1_once, _init_l_Std_term___x2e_x2e_x2e_x3d___00__closed__1);
 lean_inc(v_x_624_);
 v___x_628_ = l_Lean_Syntax_isOfKind(v_x_624_, v___x_627_);
 if (v___x_628_ == 0)
@@ -1284,20 +2286,20 @@ v___x_637_ = l_Lean_Syntax_getArg(v_x_624_, v___x_636_);
 lean_dec(v_x_624_);
 v___x_638_ = 0;
 v___x_639_ = l_Lean_SourceInfo_fromRef(v_ref_633_, v___x_638_);
-v___x_640_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4));
+v___x_640_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4);
 v___x_641_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__6, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__6_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__6);
-v___x_642_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__9));
+v___x_642_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__9, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__9_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__9);
 lean_inc(v_currMacroScope_632_);
 lean_inc(v_quotContext_631_);
 v___x_643_ = l_Lean_addMacroScope(v_quotContext_631_, v___x_642_, v_currMacroScope_632_);
-v___x_644_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__14));
+v___x_644_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__14, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__14_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__14);
 lean_inc_n(v___x_639_, 2);
 v___x_645_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_645_, 0, v___x_639_);
 lean_ctor_set(v___x_645_, 1, v___x_641_);
 lean_ctor_set(v___x_645_, 2, v___x_643_);
 lean_ctor_set(v___x_645_, 3, v___x_644_);
-v___x_646_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16));
+v___x_646_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16);
 v___x_647_ = l_Lean_Syntax_node2(v___x_639_, v___x_646_, v___x_635_, v___x_637_);
 v___x_648_ = l_Lean_Syntax_node2(v___x_639_, v___x_640_, v___x_645_, v___x_647_);
 v___x_649_ = lean_alloc_ctor(0, 2, 0);
@@ -1316,20 +2318,103 @@ lean_dec_ref(v_a_651_);
 return v_res_653_;
 }
 }
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__0(void){
+_start:
+{
+lean_object* v___x_654_; 
+v___x_654_ = lean_mk_string_unchecked("Ric.mk", 6, 6);
+return v___x_654_;
+}
+}
 static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__1(void){
 _start:
 {
 lean_object* v___x_655_; lean_object* v___x_656_; 
-v___x_655_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__0));
+v___x_655_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__0, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__0_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__0);
 v___x_656_ = l_String_toRawSubstring_x27(v___x_655_);
 return v___x_656_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__2(void){
+_start:
+{
+lean_object* v___x_657_; 
+v___x_657_ = lean_mk_string_unchecked("Ric", 3, 3);
+return v___x_657_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__3(void){
+_start:
+{
+lean_object* v___x_658_; lean_object* v___x_659_; lean_object* v___x_660_; 
+v___x_658_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8);
+v___x_659_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__2, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__2_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__2);
+v___x_660_ = l_Lean_Name_mkStr2(v___x_659_, v___x_658_);
+return v___x_660_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__4(void){
+_start:
+{
+lean_object* v___x_661_; lean_object* v___x_662_; lean_object* v___x_663_; lean_object* v___x_664_; 
+v___x_661_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8);
+v___x_662_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__2, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__2_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__2);
+v___x_663_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0);
+v___x_664_ = l_Lean_Name_mkStr3(v___x_663_, v___x_662_, v___x_661_);
+return v___x_664_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__5(void){
+_start:
+{
+lean_object* v___x_665_; lean_object* v___x_666_; lean_object* v___x_667_; 
+v___x_665_ = lean_box(0);
+v___x_666_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__4);
+v___x_667_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_667_, 0, v___x_666_);
+lean_ctor_set(v___x_667_, 1, v___x_665_);
+return v___x_667_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__6(void){
+_start:
+{
+lean_object* v___x_668_; lean_object* v___x_669_; 
+v___x_668_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__4);
+v___x_669_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_669_, 0, v___x_668_);
+return v___x_669_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__7(void){
+_start:
+{
+lean_object* v___x_670_; lean_object* v___x_671_; lean_object* v___x_672_; 
+v___x_670_ = lean_box(0);
+v___x_671_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__6, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__6_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__6);
+v___x_672_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_672_, 0, v___x_671_);
+lean_ctor_set(v___x_672_, 1, v___x_670_);
+return v___x_672_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__8(void){
+_start:
+{
+lean_object* v___x_673_; lean_object* v___x_674_; lean_object* v___x_675_; 
+v___x_673_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__7, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__7_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__7);
+v___x_674_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__5, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__5_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__5);
+v___x_675_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_675_, 0, v___x_674_);
+lean_ctor_set(v___x_675_, 1, v___x_673_);
+return v___x_675_;
 }
 }
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1(lean_object* v_x_676_, lean_object* v_a_677_, lean_object* v_a_678_){
 _start:
 {
 lean_object* v___x_679_; uint8_t v___x_680_; 
-v___x_679_ = ((lean_object*)(l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__1));
+v___x_679_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__1, &l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__1_once, _init_l_Std_term_x2a_x2e_x2e_x2e_x3d___00__closed__1);
 lean_inc(v_x_676_);
 v___x_680_ = l_Lean_Syntax_isOfKind(v_x_676_, v___x_679_);
 if (v___x_680_ == 0)
@@ -1353,20 +2438,20 @@ v___x_687_ = l_Lean_Syntax_getArg(v_x_676_, v___x_686_);
 lean_dec(v_x_676_);
 v___x_688_ = 0;
 v___x_689_ = l_Lean_SourceInfo_fromRef(v_ref_685_, v___x_688_);
-v___x_690_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4));
+v___x_690_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4);
 v___x_691_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__1, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__1_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__1);
-v___x_692_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__3));
+v___x_692_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__3, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__3_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__3);
 lean_inc(v_currMacroScope_684_);
 lean_inc(v_quotContext_683_);
 v___x_693_ = l_Lean_addMacroScope(v_quotContext_683_, v___x_692_, v_currMacroScope_684_);
-v___x_694_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__8));
+v___x_694_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3d____1___closed__8);
 lean_inc_n(v___x_689_, 2);
 v___x_695_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_695_, 0, v___x_689_);
 lean_ctor_set(v___x_695_, 1, v___x_691_);
 lean_ctor_set(v___x_695_, 2, v___x_693_);
 lean_ctor_set(v___x_695_, 3, v___x_694_);
-v___x_696_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16));
+v___x_696_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16);
 v___x_697_ = l_Lean_Syntax_node1(v___x_689_, v___x_696_, v___x_687_);
 v___x_698_ = l_Lean_Syntax_node2(v___x_689_, v___x_690_, v___x_695_, v___x_697_);
 v___x_699_ = lean_alloc_ctor(0, 2, 0);
@@ -1385,20 +2470,103 @@ lean_dec_ref(v_a_701_);
 return v_res_703_;
 }
 }
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__0(void){
+_start:
+{
+lean_object* v___x_704_; 
+v___x_704_ = lean_mk_string_unchecked("Rci.mk", 6, 6);
+return v___x_704_;
+}
+}
 static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__1(void){
 _start:
 {
 lean_object* v___x_705_; lean_object* v___x_706_; 
-v___x_705_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__0));
+v___x_705_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__0, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__0_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__0);
 v___x_706_ = l_String_toRawSubstring_x27(v___x_705_);
 return v___x_706_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__2(void){
+_start:
+{
+lean_object* v___x_707_; 
+v___x_707_ = lean_mk_string_unchecked("Rci", 3, 3);
+return v___x_707_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__3(void){
+_start:
+{
+lean_object* v___x_708_; lean_object* v___x_709_; lean_object* v___x_710_; 
+v___x_708_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8);
+v___x_709_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__2, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__2_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__2);
+v___x_710_ = l_Lean_Name_mkStr2(v___x_709_, v___x_708_);
+return v___x_710_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__4(void){
+_start:
+{
+lean_object* v___x_711_; lean_object* v___x_712_; lean_object* v___x_713_; lean_object* v___x_714_; 
+v___x_711_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8);
+v___x_712_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__2, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__2_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__2);
+v___x_713_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0);
+v___x_714_ = l_Lean_Name_mkStr3(v___x_713_, v___x_712_, v___x_711_);
+return v___x_714_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__5(void){
+_start:
+{
+lean_object* v___x_715_; lean_object* v___x_716_; lean_object* v___x_717_; 
+v___x_715_ = lean_box(0);
+v___x_716_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__4);
+v___x_717_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_717_, 0, v___x_716_);
+lean_ctor_set(v___x_717_, 1, v___x_715_);
+return v___x_717_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__6(void){
+_start:
+{
+lean_object* v___x_718_; lean_object* v___x_719_; 
+v___x_718_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__4);
+v___x_719_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_719_, 0, v___x_718_);
+return v___x_719_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__7(void){
+_start:
+{
+lean_object* v___x_720_; lean_object* v___x_721_; lean_object* v___x_722_; 
+v___x_720_ = lean_box(0);
+v___x_721_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__6, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__6_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__6);
+v___x_722_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_722_, 0, v___x_721_);
+lean_ctor_set(v___x_722_, 1, v___x_720_);
+return v___x_722_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__8(void){
+_start:
+{
+lean_object* v___x_723_; lean_object* v___x_724_; lean_object* v___x_725_; 
+v___x_723_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__7, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__7_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__7);
+v___x_724_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__5, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__5_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__5);
+v___x_725_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_725_, 0, v___x_724_);
+lean_ctor_set(v___x_725_, 1, v___x_723_);
+return v___x_725_;
 }
 }
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1(lean_object* v_x_726_, lean_object* v_a_727_, lean_object* v_a_728_){
 _start:
 {
 lean_object* v___x_729_; uint8_t v___x_730_; 
-v___x_729_ = ((lean_object*)(l_Std_term___x2e_x2e_x2e_x2a___closed__2));
+v___x_729_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__2, &l_Std_term___x2e_x2e_x2e_x2a___closed__2_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__2);
 lean_inc(v_x_726_);
 v___x_730_ = l_Lean_Syntax_isOfKind(v_x_726_, v___x_729_);
 if (v___x_730_ == 0)
@@ -1422,20 +2590,20 @@ v___x_737_ = l_Lean_Syntax_getArg(v_x_726_, v___x_736_);
 lean_dec(v_x_726_);
 v___x_738_ = 0;
 v___x_739_ = l_Lean_SourceInfo_fromRef(v_ref_735_, v___x_738_);
-v___x_740_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4));
+v___x_740_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4);
 v___x_741_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__1, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__1_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__1);
-v___x_742_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__3));
+v___x_742_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__3, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__3_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__3);
 lean_inc(v_currMacroScope_734_);
 lean_inc(v_quotContext_733_);
 v___x_743_ = l_Lean_addMacroScope(v_quotContext_733_, v___x_742_, v_currMacroScope_734_);
-v___x_744_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__8));
+v___x_744_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x2a__1___closed__8);
 lean_inc_n(v___x_739_, 2);
 v___x_745_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_745_, 0, v___x_739_);
 lean_ctor_set(v___x_745_, 1, v___x_741_);
 lean_ctor_set(v___x_745_, 2, v___x_743_);
 lean_ctor_set(v___x_745_, 3, v___x_744_);
-v___x_746_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16));
+v___x_746_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16);
 v___x_747_ = l_Lean_Syntax_node1(v___x_739_, v___x_746_, v___x_737_);
 v___x_748_ = l_Lean_Syntax_node2(v___x_739_, v___x_740_, v___x_745_, v___x_747_);
 v___x_749_ = lean_alloc_ctor(0, 2, 0);
@@ -1454,20 +2622,103 @@ lean_dec_ref(v_a_751_);
 return v_res_753_;
 }
 }
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__0(void){
+_start:
+{
+lean_object* v___x_754_; 
+v___x_754_ = lean_mk_string_unchecked("Rii.mk", 6, 6);
+return v___x_754_;
+}
+}
 static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__1(void){
 _start:
 {
 lean_object* v___x_755_; lean_object* v___x_756_; 
-v___x_755_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__0));
+v___x_755_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__0, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__0_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__0);
 v___x_756_ = l_String_toRawSubstring_x27(v___x_755_);
 return v___x_756_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__2(void){
+_start:
+{
+lean_object* v___x_757_; 
+v___x_757_ = lean_mk_string_unchecked("Rii", 3, 3);
+return v___x_757_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__3(void){
+_start:
+{
+lean_object* v___x_758_; lean_object* v___x_759_; lean_object* v___x_760_; 
+v___x_758_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8);
+v___x_759_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__2, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__2_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__2);
+v___x_760_ = l_Lean_Name_mkStr2(v___x_759_, v___x_758_);
+return v___x_760_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__4(void){
+_start:
+{
+lean_object* v___x_761_; lean_object* v___x_762_; lean_object* v___x_763_; lean_object* v___x_764_; 
+v___x_761_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8);
+v___x_762_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__2, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__2_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__2);
+v___x_763_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0);
+v___x_764_ = l_Lean_Name_mkStr3(v___x_763_, v___x_762_, v___x_761_);
+return v___x_764_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__5(void){
+_start:
+{
+lean_object* v___x_765_; lean_object* v___x_766_; lean_object* v___x_767_; 
+v___x_765_ = lean_box(0);
+v___x_766_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__4);
+v___x_767_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_767_, 0, v___x_766_);
+lean_ctor_set(v___x_767_, 1, v___x_765_);
+return v___x_767_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__6(void){
+_start:
+{
+lean_object* v___x_768_; lean_object* v___x_769_; 
+v___x_768_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__4);
+v___x_769_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_769_, 0, v___x_768_);
+return v___x_769_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__7(void){
+_start:
+{
+lean_object* v___x_770_; lean_object* v___x_771_; lean_object* v___x_772_; 
+v___x_770_ = lean_box(0);
+v___x_771_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__6, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__6_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__6);
+v___x_772_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_772_, 0, v___x_771_);
+lean_ctor_set(v___x_772_, 1, v___x_770_);
+return v___x_772_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__8(void){
+_start:
+{
+lean_object* v___x_773_; lean_object* v___x_774_; lean_object* v___x_775_; 
+v___x_773_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__7, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__7_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__7);
+v___x_774_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__5, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__5_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__5);
+v___x_775_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_775_, 0, v___x_774_);
+lean_ctor_set(v___x_775_, 1, v___x_773_);
+return v___x_775_;
 }
 }
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1(lean_object* v_x_776_, lean_object* v_a_777_, lean_object* v_a_778_){
 _start:
 {
 lean_object* v___x_779_; uint8_t v___x_780_; 
-v___x_779_ = ((lean_object*)(l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__1));
+v___x_779_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__1, &l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__1_once, _init_l_Std_term_x2a_x2e_x2e_x2e_x2a___closed__1);
 v___x_780_ = l_Lean_Syntax_isOfKind(v_x_776_, v___x_779_);
 if (v___x_780_ == 0)
 {
@@ -1487,11 +2738,11 @@ v_ref_785_ = lean_ctor_get(v_a_777_, 5);
 v___x_786_ = 0;
 v___x_787_ = l_Lean_SourceInfo_fromRef(v_ref_785_, v___x_786_);
 v___x_788_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__1, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__1_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__1);
-v___x_789_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__3));
+v___x_789_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__3, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__3_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__3);
 lean_inc(v_currMacroScope_784_);
 lean_inc(v_quotContext_783_);
 v___x_790_ = l_Lean_addMacroScope(v_quotContext_783_, v___x_789_, v_currMacroScope_784_);
-v___x_791_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__8));
+v___x_791_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x2a__1___closed__8);
 v___x_792_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_792_, 0, v___x_787_);
 lean_ctor_set(v___x_792_, 1, v___x_788_);
@@ -1513,20 +2764,103 @@ lean_dec_ref(v_a_795_);
 return v_res_797_;
 }
 }
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__0(void){
+_start:
+{
+lean_object* v___x_798_; 
+v___x_798_ = lean_mk_string_unchecked("Roc.mk", 6, 6);
+return v___x_798_;
+}
+}
 static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__1(void){
 _start:
 {
 lean_object* v___x_799_; lean_object* v___x_800_; 
-v___x_799_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__0));
+v___x_799_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__0, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__0_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__0);
 v___x_800_ = l_String_toRawSubstring_x27(v___x_799_);
 return v___x_800_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__2(void){
+_start:
+{
+lean_object* v___x_801_; 
+v___x_801_ = lean_mk_string_unchecked("Roc", 3, 3);
+return v___x_801_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__3(void){
+_start:
+{
+lean_object* v___x_802_; lean_object* v___x_803_; lean_object* v___x_804_; 
+v___x_802_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8);
+v___x_803_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__2, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__2_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__2);
+v___x_804_ = l_Lean_Name_mkStr2(v___x_803_, v___x_802_);
+return v___x_804_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__4(void){
+_start:
+{
+lean_object* v___x_805_; lean_object* v___x_806_; lean_object* v___x_807_; lean_object* v___x_808_; 
+v___x_805_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8);
+v___x_806_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__2, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__2_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__2);
+v___x_807_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0);
+v___x_808_ = l_Lean_Name_mkStr3(v___x_807_, v___x_806_, v___x_805_);
+return v___x_808_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__5(void){
+_start:
+{
+lean_object* v___x_809_; lean_object* v___x_810_; lean_object* v___x_811_; 
+v___x_809_ = lean_box(0);
+v___x_810_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__4);
+v___x_811_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_811_, 0, v___x_810_);
+lean_ctor_set(v___x_811_, 1, v___x_809_);
+return v___x_811_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__6(void){
+_start:
+{
+lean_object* v___x_812_; lean_object* v___x_813_; 
+v___x_812_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__4);
+v___x_813_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_813_, 0, v___x_812_);
+return v___x_813_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__7(void){
+_start:
+{
+lean_object* v___x_814_; lean_object* v___x_815_; lean_object* v___x_816_; 
+v___x_814_ = lean_box(0);
+v___x_815_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__6, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__6_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__6);
+v___x_816_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_816_, 0, v___x_815_);
+lean_ctor_set(v___x_816_, 1, v___x_814_);
+return v___x_816_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__8(void){
+_start:
+{
+lean_object* v___x_817_; lean_object* v___x_818_; lean_object* v___x_819_; 
+v___x_817_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__7, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__7_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__7);
+v___x_818_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__5, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__5_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__5);
+v___x_819_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_819_, 0, v___x_818_);
+lean_ctor_set(v___x_819_, 1, v___x_817_);
+return v___x_819_;
 }
 }
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1(lean_object* v_x_820_, lean_object* v_a_821_, lean_object* v_a_822_){
 _start:
 {
 lean_object* v___x_823_; uint8_t v___x_824_; 
-v___x_823_ = ((lean_object*)(l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__1));
+v___x_823_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__1, &l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__1_once, _init_l_Std_term___x3c_x2e_x2e_x2e_x3d___00__closed__1);
 lean_inc(v_x_820_);
 v___x_824_ = l_Lean_Syntax_isOfKind(v_x_820_, v___x_823_);
 if (v___x_824_ == 0)
@@ -1552,20 +2886,20 @@ v___x_833_ = l_Lean_Syntax_getArg(v_x_820_, v___x_832_);
 lean_dec(v_x_820_);
 v___x_834_ = 0;
 v___x_835_ = l_Lean_SourceInfo_fromRef(v_ref_829_, v___x_834_);
-v___x_836_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4));
+v___x_836_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4);
 v___x_837_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__1, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__1_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__1);
-v___x_838_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__3));
+v___x_838_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__3, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__3_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__3);
 lean_inc(v_currMacroScope_828_);
 lean_inc(v_quotContext_827_);
 v___x_839_ = l_Lean_addMacroScope(v_quotContext_827_, v___x_838_, v_currMacroScope_828_);
-v___x_840_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__8));
+v___x_840_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3d____1___closed__8);
 lean_inc_n(v___x_835_, 2);
 v___x_841_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_841_, 0, v___x_835_);
 lean_ctor_set(v___x_841_, 1, v___x_837_);
 lean_ctor_set(v___x_841_, 2, v___x_839_);
 lean_ctor_set(v___x_841_, 3, v___x_840_);
-v___x_842_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16));
+v___x_842_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16);
 v___x_843_ = l_Lean_Syntax_node2(v___x_835_, v___x_842_, v___x_831_, v___x_833_);
 v___x_844_ = l_Lean_Syntax_node2(v___x_835_, v___x_836_, v___x_841_, v___x_843_);
 v___x_845_ = lean_alloc_ctor(0, 2, 0);
@@ -1584,20 +2918,103 @@ lean_dec_ref(v_a_847_);
 return v_res_849_;
 }
 }
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__0(void){
+_start:
+{
+lean_object* v___x_850_; 
+v___x_850_ = lean_mk_string_unchecked("Roi.mk", 6, 6);
+return v___x_850_;
+}
+}
 static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__1(void){
 _start:
 {
 lean_object* v___x_851_; lean_object* v___x_852_; 
-v___x_851_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__0));
+v___x_851_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__0, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__0_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__0);
 v___x_852_ = l_String_toRawSubstring_x27(v___x_851_);
 return v___x_852_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__2(void){
+_start:
+{
+lean_object* v___x_853_; 
+v___x_853_ = lean_mk_string_unchecked("Roi", 3, 3);
+return v___x_853_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__3(void){
+_start:
+{
+lean_object* v___x_854_; lean_object* v___x_855_; lean_object* v___x_856_; 
+v___x_854_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8);
+v___x_855_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__2, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__2_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__2);
+v___x_856_ = l_Lean_Name_mkStr2(v___x_855_, v___x_854_);
+return v___x_856_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__4(void){
+_start:
+{
+lean_object* v___x_857_; lean_object* v___x_858_; lean_object* v___x_859_; lean_object* v___x_860_; 
+v___x_857_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8);
+v___x_858_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__2, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__2_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__2);
+v___x_859_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0);
+v___x_860_ = l_Lean_Name_mkStr3(v___x_859_, v___x_858_, v___x_857_);
+return v___x_860_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__5(void){
+_start:
+{
+lean_object* v___x_861_; lean_object* v___x_862_; lean_object* v___x_863_; 
+v___x_861_ = lean_box(0);
+v___x_862_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__4);
+v___x_863_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_863_, 0, v___x_862_);
+lean_ctor_set(v___x_863_, 1, v___x_861_);
+return v___x_863_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__6(void){
+_start:
+{
+lean_object* v___x_864_; lean_object* v___x_865_; 
+v___x_864_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__4);
+v___x_865_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_865_, 0, v___x_864_);
+return v___x_865_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__7(void){
+_start:
+{
+lean_object* v___x_866_; lean_object* v___x_867_; lean_object* v___x_868_; 
+v___x_866_ = lean_box(0);
+v___x_867_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__6, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__6_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__6);
+v___x_868_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_868_, 0, v___x_867_);
+lean_ctor_set(v___x_868_, 1, v___x_866_);
+return v___x_868_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__8(void){
+_start:
+{
+lean_object* v___x_869_; lean_object* v___x_870_; lean_object* v___x_871_; 
+v___x_869_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__7, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__7_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__7);
+v___x_870_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__5, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__5_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__5);
+v___x_871_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_871_, 0, v___x_870_);
+lean_ctor_set(v___x_871_, 1, v___x_869_);
+return v___x_871_;
 }
 }
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1(lean_object* v_x_872_, lean_object* v_a_873_, lean_object* v_a_874_){
 _start:
 {
 lean_object* v___x_875_; uint8_t v___x_876_; 
-v___x_875_ = ((lean_object*)(l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__1));
+v___x_875_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__1, &l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__1_once, _init_l_Std_term___x3c_x2e_x2e_x2e_x2a___closed__1);
 lean_inc(v_x_872_);
 v___x_876_ = l_Lean_Syntax_isOfKind(v_x_872_, v___x_875_);
 if (v___x_876_ == 0)
@@ -1621,20 +3038,20 @@ v___x_883_ = l_Lean_Syntax_getArg(v_x_872_, v___x_882_);
 lean_dec(v_x_872_);
 v___x_884_ = 0;
 v___x_885_ = l_Lean_SourceInfo_fromRef(v_ref_881_, v___x_884_);
-v___x_886_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4));
+v___x_886_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4);
 v___x_887_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__1, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__1_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__1);
-v___x_888_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__3));
+v___x_888_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__3, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__3_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__3);
 lean_inc(v_currMacroScope_880_);
 lean_inc(v_quotContext_879_);
 v___x_889_ = l_Lean_addMacroScope(v_quotContext_879_, v___x_888_, v_currMacroScope_880_);
-v___x_890_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__8));
+v___x_890_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x2a__1___closed__8);
 lean_inc_n(v___x_885_, 2);
 v___x_891_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_891_, 0, v___x_885_);
 lean_ctor_set(v___x_891_, 1, v___x_887_);
 lean_ctor_set(v___x_891_, 2, v___x_889_);
 lean_ctor_set(v___x_891_, 3, v___x_890_);
-v___x_892_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16));
+v___x_892_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16);
 v___x_893_ = l_Lean_Syntax_node1(v___x_885_, v___x_892_, v___x_883_);
 v___x_894_ = l_Lean_Syntax_node2(v___x_885_, v___x_886_, v___x_891_, v___x_893_);
 v___x_895_ = lean_alloc_ctor(0, 2, 0);
@@ -1653,20 +3070,103 @@ lean_dec_ref(v_a_897_);
 return v_res_899_;
 }
 }
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__0(void){
+_start:
+{
+lean_object* v___x_900_; 
+v___x_900_ = lean_mk_string_unchecked("Rco.mk", 6, 6);
+return v___x_900_;
+}
+}
 static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__1(void){
 _start:
 {
 lean_object* v___x_901_; lean_object* v___x_902_; 
-v___x_901_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__0));
+v___x_901_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__0, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__0_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__0);
 v___x_902_ = l_String_toRawSubstring_x27(v___x_901_);
 return v___x_902_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__2(void){
+_start:
+{
+lean_object* v___x_903_; 
+v___x_903_ = lean_mk_string_unchecked("Rco", 3, 3);
+return v___x_903_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__3(void){
+_start:
+{
+lean_object* v___x_904_; lean_object* v___x_905_; lean_object* v___x_906_; 
+v___x_904_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8);
+v___x_905_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__2, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__2_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__2);
+v___x_906_ = l_Lean_Name_mkStr2(v___x_905_, v___x_904_);
+return v___x_906_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__4(void){
+_start:
+{
+lean_object* v___x_907_; lean_object* v___x_908_; lean_object* v___x_909_; lean_object* v___x_910_; 
+v___x_907_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8);
+v___x_908_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__2, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__2_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__2);
+v___x_909_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0);
+v___x_910_ = l_Lean_Name_mkStr3(v___x_909_, v___x_908_, v___x_907_);
+return v___x_910_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__5(void){
+_start:
+{
+lean_object* v___x_911_; lean_object* v___x_912_; lean_object* v___x_913_; 
+v___x_911_ = lean_box(0);
+v___x_912_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__4);
+v___x_913_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_913_, 0, v___x_912_);
+lean_ctor_set(v___x_913_, 1, v___x_911_);
+return v___x_913_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__6(void){
+_start:
+{
+lean_object* v___x_914_; lean_object* v___x_915_; 
+v___x_914_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__4);
+v___x_915_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_915_, 0, v___x_914_);
+return v___x_915_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__7(void){
+_start:
+{
+lean_object* v___x_916_; lean_object* v___x_917_; lean_object* v___x_918_; 
+v___x_916_ = lean_box(0);
+v___x_917_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__6, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__6_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__6);
+v___x_918_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_918_, 0, v___x_917_);
+lean_ctor_set(v___x_918_, 1, v___x_916_);
+return v___x_918_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__8(void){
+_start:
+{
+lean_object* v___x_919_; lean_object* v___x_920_; lean_object* v___x_921_; 
+v___x_919_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__7, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__7_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__7);
+v___x_920_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__5, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__5_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__5);
+v___x_921_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_921_, 0, v___x_920_);
+lean_ctor_set(v___x_921_, 1, v___x_919_);
+return v___x_921_;
 }
 }
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1(lean_object* v_x_922_, lean_object* v_a_923_, lean_object* v_a_924_){
 _start:
 {
 lean_object* v___x_925_; uint8_t v___x_926_; 
-v___x_925_ = ((lean_object*)(l_Std_term___x2e_x2e_x2e_x3c___00__closed__1));
+v___x_925_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x3c___00__closed__1, &l_Std_term___x2e_x2e_x2e_x3c___00__closed__1_once, _init_l_Std_term___x2e_x2e_x2e_x3c___00__closed__1);
 lean_inc(v_x_922_);
 v___x_926_ = l_Lean_Syntax_isOfKind(v_x_922_, v___x_925_);
 if (v___x_926_ == 0)
@@ -1692,20 +3192,20 @@ v___x_935_ = l_Lean_Syntax_getArg(v_x_922_, v___x_934_);
 lean_dec(v_x_922_);
 v___x_936_ = 0;
 v___x_937_ = l_Lean_SourceInfo_fromRef(v_ref_931_, v___x_936_);
-v___x_938_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4));
+v___x_938_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4);
 v___x_939_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__1, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__1_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__1);
-v___x_940_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__3));
+v___x_940_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__3, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__3_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__3);
 lean_inc(v_currMacroScope_930_);
 lean_inc(v_quotContext_929_);
 v___x_941_ = l_Lean_addMacroScope(v_quotContext_929_, v___x_940_, v_currMacroScope_930_);
-v___x_942_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__8));
+v___x_942_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__8);
 lean_inc_n(v___x_937_, 2);
 v___x_943_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_943_, 0, v___x_937_);
 lean_ctor_set(v___x_943_, 1, v___x_939_);
 lean_ctor_set(v___x_943_, 2, v___x_941_);
 lean_ctor_set(v___x_943_, 3, v___x_942_);
-v___x_944_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16));
+v___x_944_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16);
 v___x_945_ = l_Lean_Syntax_node2(v___x_937_, v___x_944_, v___x_933_, v___x_935_);
 v___x_946_ = l_Lean_Syntax_node2(v___x_937_, v___x_938_, v___x_943_, v___x_945_);
 v___x_947_ = lean_alloc_ctor(0, 2, 0);
@@ -1728,7 +3228,7 @@ LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange____
 _start:
 {
 lean_object* v___x_955_; uint8_t v___x_956_; 
-v___x_955_ = ((lean_object*)(l_Std_term___x2e_x2e_x2e___00__closed__1));
+v___x_955_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e___00__closed__1, &l_Std_term___x2e_x2e_x2e___00__closed__1_once, _init_l_Std_term___x2e_x2e_x2e___00__closed__1);
 lean_inc(v_x_952_);
 v___x_956_ = l_Lean_Syntax_isOfKind(v_x_952_, v___x_955_);
 if (v___x_956_ == 0)
@@ -1754,20 +3254,20 @@ v___x_965_ = l_Lean_Syntax_getArg(v_x_952_, v___x_964_);
 lean_dec(v_x_952_);
 v___x_966_ = 0;
 v___x_967_ = l_Lean_SourceInfo_fromRef(v_ref_961_, v___x_966_);
-v___x_968_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4));
+v___x_968_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4);
 v___x_969_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__1, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__1_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__1);
-v___x_970_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__3));
+v___x_970_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__3, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__3_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__3);
 lean_inc(v_currMacroScope_960_);
 lean_inc(v_quotContext_959_);
 v___x_971_ = l_Lean_addMacroScope(v_quotContext_959_, v___x_970_, v_currMacroScope_960_);
-v___x_972_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__8));
+v___x_972_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3c____1___closed__8);
 lean_inc_n(v___x_967_, 2);
 v___x_973_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_973_, 0, v___x_967_);
 lean_ctor_set(v___x_973_, 1, v___x_969_);
 lean_ctor_set(v___x_973_, 2, v___x_971_);
 lean_ctor_set(v___x_973_, 3, v___x_972_);
-v___x_974_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16));
+v___x_974_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16);
 v___x_975_ = l_Lean_Syntax_node2(v___x_967_, v___x_974_, v___x_963_, v___x_965_);
 v___x_976_ = l_Lean_Syntax_node2(v___x_967_, v___x_968_, v___x_973_, v___x_975_);
 v___x_977_ = lean_alloc_ctor(0, 2, 0);
@@ -1786,20 +3286,103 @@ lean_dec_ref(v_a_979_);
 return v_res_981_;
 }
 }
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__0(void){
+_start:
+{
+lean_object* v___x_982_; 
+v___x_982_ = lean_mk_string_unchecked("Rio.mk", 6, 6);
+return v___x_982_;
+}
+}
 static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__1(void){
 _start:
 {
 lean_object* v___x_983_; lean_object* v___x_984_; 
-v___x_983_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__0));
+v___x_983_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__0, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__0_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__0);
 v___x_984_ = l_String_toRawSubstring_x27(v___x_983_);
 return v___x_984_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__2(void){
+_start:
+{
+lean_object* v___x_985_; 
+v___x_985_ = lean_mk_string_unchecked("Rio", 3, 3);
+return v___x_985_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__3(void){
+_start:
+{
+lean_object* v___x_986_; lean_object* v___x_987_; lean_object* v___x_988_; 
+v___x_986_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8);
+v___x_987_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__2, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__2_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__2);
+v___x_988_ = l_Lean_Name_mkStr2(v___x_987_, v___x_986_);
+return v___x_988_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__4(void){
+_start:
+{
+lean_object* v___x_989_; lean_object* v___x_990_; lean_object* v___x_991_; lean_object* v___x_992_; 
+v___x_989_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8);
+v___x_990_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__2, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__2_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__2);
+v___x_991_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0);
+v___x_992_ = l_Lean_Name_mkStr3(v___x_991_, v___x_990_, v___x_989_);
+return v___x_992_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__5(void){
+_start:
+{
+lean_object* v___x_993_; lean_object* v___x_994_; lean_object* v___x_995_; 
+v___x_993_ = lean_box(0);
+v___x_994_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__4);
+v___x_995_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_995_, 0, v___x_994_);
+lean_ctor_set(v___x_995_, 1, v___x_993_);
+return v___x_995_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__6(void){
+_start:
+{
+lean_object* v___x_996_; lean_object* v___x_997_; 
+v___x_996_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__4);
+v___x_997_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_997_, 0, v___x_996_);
+return v___x_997_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__7(void){
+_start:
+{
+lean_object* v___x_998_; lean_object* v___x_999_; lean_object* v___x_1000_; 
+v___x_998_ = lean_box(0);
+v___x_999_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__6, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__6_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__6);
+v___x_1000_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_1000_, 0, v___x_999_);
+lean_ctor_set(v___x_1000_, 1, v___x_998_);
+return v___x_1000_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__8(void){
+_start:
+{
+lean_object* v___x_1001_; lean_object* v___x_1002_; lean_object* v___x_1003_; 
+v___x_1001_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__7, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__7_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__7);
+v___x_1002_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__5, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__5_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__5);
+v___x_1003_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_1003_, 0, v___x_1002_);
+lean_ctor_set(v___x_1003_, 1, v___x_1001_);
+return v___x_1003_;
 }
 }
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1(lean_object* v_x_1004_, lean_object* v_a_1005_, lean_object* v_a_1006_){
 _start:
 {
 lean_object* v___x_1007_; uint8_t v___x_1008_; 
-v___x_1007_ = ((lean_object*)(l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__1));
+v___x_1007_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__1, &l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__1_once, _init_l_Std_term_x2a_x2e_x2e_x2e_x3c___00__closed__1);
 lean_inc(v_x_1004_);
 v___x_1008_ = l_Lean_Syntax_isOfKind(v_x_1004_, v___x_1007_);
 if (v___x_1008_ == 0)
@@ -1823,20 +3406,20 @@ v___x_1015_ = l_Lean_Syntax_getArg(v_x_1004_, v___x_1014_);
 lean_dec(v_x_1004_);
 v___x_1016_ = 0;
 v___x_1017_ = l_Lean_SourceInfo_fromRef(v_ref_1013_, v___x_1016_);
-v___x_1018_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4));
+v___x_1018_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4);
 v___x_1019_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__1, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__1_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__1);
-v___x_1020_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__3));
+v___x_1020_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__3, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__3_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__3);
 lean_inc(v_currMacroScope_1012_);
 lean_inc(v_quotContext_1011_);
 v___x_1021_ = l_Lean_addMacroScope(v_quotContext_1011_, v___x_1020_, v_currMacroScope_1012_);
-v___x_1022_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__8));
+v___x_1022_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__8);
 lean_inc_n(v___x_1017_, 2);
 v___x_1023_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_1023_, 0, v___x_1017_);
 lean_ctor_set(v___x_1023_, 1, v___x_1019_);
 lean_ctor_set(v___x_1023_, 2, v___x_1021_);
 lean_ctor_set(v___x_1023_, 3, v___x_1022_);
-v___x_1024_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16));
+v___x_1024_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16);
 v___x_1025_ = l_Lean_Syntax_node1(v___x_1017_, v___x_1024_, v___x_1015_);
 v___x_1026_ = l_Lean_Syntax_node2(v___x_1017_, v___x_1018_, v___x_1023_, v___x_1025_);
 v___x_1027_ = lean_alloc_ctor(0, 2, 0);
@@ -1859,7 +3442,7 @@ LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange____
 _start:
 {
 lean_object* v___x_1035_; uint8_t v___x_1036_; 
-v___x_1035_ = ((lean_object*)(l_Std_term_x2a_x2e_x2e_x2e___00__closed__1));
+v___x_1035_ = lean_obj_once(&l_Std_term_x2a_x2e_x2e_x2e___00__closed__1, &l_Std_term_x2a_x2e_x2e_x2e___00__closed__1_once, _init_l_Std_term_x2a_x2e_x2e_x2e___00__closed__1);
 lean_inc(v_x_1032_);
 v___x_1036_ = l_Lean_Syntax_isOfKind(v_x_1032_, v___x_1035_);
 if (v___x_1036_ == 0)
@@ -1883,20 +3466,20 @@ v___x_1043_ = l_Lean_Syntax_getArg(v_x_1032_, v___x_1042_);
 lean_dec(v_x_1032_);
 v___x_1044_ = 0;
 v___x_1045_ = l_Lean_SourceInfo_fromRef(v_ref_1041_, v___x_1044_);
-v___x_1046_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4));
+v___x_1046_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4);
 v___x_1047_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__1, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__1_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__1);
-v___x_1048_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__3));
+v___x_1048_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__3, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__3_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__3);
 lean_inc(v_currMacroScope_1040_);
 lean_inc(v_quotContext_1039_);
 v___x_1049_ = l_Lean_addMacroScope(v_quotContext_1039_, v___x_1048_, v_currMacroScope_1040_);
-v___x_1050_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__8));
+v___x_1050_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term_x2a_x2e_x2e_x2e_x3c____1___closed__8);
 lean_inc_n(v___x_1045_, 2);
 v___x_1051_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_1051_, 0, v___x_1045_);
 lean_ctor_set(v___x_1051_, 1, v___x_1047_);
 lean_ctor_set(v___x_1051_, 2, v___x_1049_);
 lean_ctor_set(v___x_1051_, 3, v___x_1050_);
-v___x_1052_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16));
+v___x_1052_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16);
 v___x_1053_ = l_Lean_Syntax_node1(v___x_1045_, v___x_1052_, v___x_1043_);
 v___x_1054_ = l_Lean_Syntax_node2(v___x_1045_, v___x_1046_, v___x_1051_, v___x_1053_);
 v___x_1055_ = lean_alloc_ctor(0, 2, 0);
@@ -1915,20 +3498,103 @@ lean_dec_ref(v_a_1057_);
 return v_res_1059_;
 }
 }
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__0(void){
+_start:
+{
+lean_object* v___x_1060_; 
+v___x_1060_ = lean_mk_string_unchecked("Roo.mk", 6, 6);
+return v___x_1060_;
+}
+}
 static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__1(void){
 _start:
 {
 lean_object* v___x_1061_; lean_object* v___x_1062_; 
-v___x_1061_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__0));
+v___x_1061_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__0, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__0_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__0);
 v___x_1062_ = l_String_toRawSubstring_x27(v___x_1061_);
 return v___x_1062_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__2(void){
+_start:
+{
+lean_object* v___x_1063_; 
+v___x_1063_ = lean_mk_string_unchecked("Roo", 3, 3);
+return v___x_1063_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__3(void){
+_start:
+{
+lean_object* v___x_1064_; lean_object* v___x_1065_; lean_object* v___x_1066_; 
+v___x_1064_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8);
+v___x_1065_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__2, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__2_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__2);
+v___x_1066_ = l_Lean_Name_mkStr2(v___x_1065_, v___x_1064_);
+return v___x_1066_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__4(void){
+_start:
+{
+lean_object* v___x_1067_; lean_object* v___x_1068_; lean_object* v___x_1069_; lean_object* v___x_1070_; 
+v___x_1067_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__8);
+v___x_1068_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__2, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__2_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__2);
+v___x_1069_ = lean_obj_once(&l_Std_term___x2e_x2e_x2e_x2a___closed__0, &l_Std_term___x2e_x2e_x2e_x2a___closed__0_once, _init_l_Std_term___x2e_x2e_x2e_x2a___closed__0);
+v___x_1070_ = l_Lean_Name_mkStr3(v___x_1069_, v___x_1068_, v___x_1067_);
+return v___x_1070_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__5(void){
+_start:
+{
+lean_object* v___x_1071_; lean_object* v___x_1072_; lean_object* v___x_1073_; 
+v___x_1071_ = lean_box(0);
+v___x_1072_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__4);
+v___x_1073_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_1073_, 0, v___x_1072_);
+lean_ctor_set(v___x_1073_, 1, v___x_1071_);
+return v___x_1073_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__6(void){
+_start:
+{
+lean_object* v___x_1074_; lean_object* v___x_1075_; 
+v___x_1074_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__4);
+v___x_1075_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_1075_, 0, v___x_1074_);
+return v___x_1075_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__7(void){
+_start:
+{
+lean_object* v___x_1076_; lean_object* v___x_1077_; lean_object* v___x_1078_; 
+v___x_1076_ = lean_box(0);
+v___x_1077_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__6, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__6_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__6);
+v___x_1078_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_1078_, 0, v___x_1077_);
+lean_ctor_set(v___x_1078_, 1, v___x_1076_);
+return v___x_1078_;
+}
+}
+static lean_object* _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__8(void){
+_start:
+{
+lean_object* v___x_1079_; lean_object* v___x_1080_; lean_object* v___x_1081_; 
+v___x_1079_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__7, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__7_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__7);
+v___x_1080_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__5, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__5_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__5);
+v___x_1081_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_1081_, 0, v___x_1080_);
+lean_ctor_set(v___x_1081_, 1, v___x_1079_);
+return v___x_1081_;
 }
 }
 LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1(lean_object* v_x_1082_, lean_object* v_a_1083_, lean_object* v_a_1084_){
 _start:
 {
 lean_object* v___x_1085_; uint8_t v___x_1086_; 
-v___x_1085_ = ((lean_object*)(l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__1));
+v___x_1085_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__1, &l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__1_once, _init_l_Std_term___x3c_x2e_x2e_x2e_x3c___00__closed__1);
 lean_inc(v_x_1082_);
 v___x_1086_ = l_Lean_Syntax_isOfKind(v_x_1082_, v___x_1085_);
 if (v___x_1086_ == 0)
@@ -1954,20 +3620,20 @@ v___x_1095_ = l_Lean_Syntax_getArg(v_x_1082_, v___x_1094_);
 lean_dec(v_x_1082_);
 v___x_1096_ = 0;
 v___x_1097_ = l_Lean_SourceInfo_fromRef(v_ref_1091_, v___x_1096_);
-v___x_1098_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4));
+v___x_1098_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4);
 v___x_1099_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__1, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__1_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__1);
-v___x_1100_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__3));
+v___x_1100_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__3, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__3_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__3);
 lean_inc(v_currMacroScope_1090_);
 lean_inc(v_quotContext_1089_);
 v___x_1101_ = l_Lean_addMacroScope(v_quotContext_1089_, v___x_1100_, v_currMacroScope_1090_);
-v___x_1102_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__8));
+v___x_1102_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__8);
 lean_inc_n(v___x_1097_, 2);
 v___x_1103_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_1103_, 0, v___x_1097_);
 lean_ctor_set(v___x_1103_, 1, v___x_1099_);
 lean_ctor_set(v___x_1103_, 2, v___x_1101_);
 lean_ctor_set(v___x_1103_, 3, v___x_1102_);
-v___x_1104_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16));
+v___x_1104_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16);
 v___x_1105_ = l_Lean_Syntax_node2(v___x_1097_, v___x_1104_, v___x_1093_, v___x_1095_);
 v___x_1106_ = l_Lean_Syntax_node2(v___x_1097_, v___x_1098_, v___x_1103_, v___x_1105_);
 v___x_1107_ = lean_alloc_ctor(0, 2, 0);
@@ -1990,7 +3656,7 @@ LEAN_EXPORT lean_object* l_Std___aux__Init__Data__Range__Polymorphic__PRange____
 _start:
 {
 lean_object* v___x_1115_; uint8_t v___x_1116_; 
-v___x_1115_ = ((lean_object*)(l_Std_term___x3c_x2e_x2e_x2e___00__closed__1));
+v___x_1115_ = lean_obj_once(&l_Std_term___x3c_x2e_x2e_x2e___00__closed__1, &l_Std_term___x3c_x2e_x2e_x2e___00__closed__1_once, _init_l_Std_term___x3c_x2e_x2e_x2e___00__closed__1);
 lean_inc(v_x_1112_);
 v___x_1116_ = l_Lean_Syntax_isOfKind(v_x_1112_, v___x_1115_);
 if (v___x_1116_ == 0)
@@ -2016,20 +3682,20 @@ v___x_1125_ = l_Lean_Syntax_getArg(v_x_1112_, v___x_1124_);
 lean_dec(v_x_1112_);
 v___x_1126_ = 0;
 v___x_1127_ = l_Lean_SourceInfo_fromRef(v_ref_1121_, v___x_1126_);
-v___x_1128_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4));
+v___x_1128_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__4);
 v___x_1129_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__1, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__1_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__1);
-v___x_1130_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__3));
+v___x_1130_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__3, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__3_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__3);
 lean_inc(v_currMacroScope_1120_);
 lean_inc(v_quotContext_1119_);
 v___x_1131_ = l_Lean_addMacroScope(v_quotContext_1119_, v___x_1130_, v_currMacroScope_1120_);
-v___x_1132_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__8));
+v___x_1132_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__8, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__8_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x3c_x2e_x2e_x2e_x3c____1___closed__8);
 lean_inc_n(v___x_1127_, 2);
 v___x_1133_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_1133_, 0, v___x_1127_);
 lean_ctor_set(v___x_1133_, 1, v___x_1129_);
 lean_ctor_set(v___x_1133_, 2, v___x_1131_);
 lean_ctor_set(v___x_1133_, 3, v___x_1132_);
-v___x_1134_ = ((lean_object*)(l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16));
+v___x_1134_ = lean_obj_once(&l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16, &l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16_once, _init_l_Std___aux__Init__Data__Range__Polymorphic__PRange______macroRules__Std__term___x2e_x2e_x2e_x3d____1___closed__16);
 v___x_1135_ = l_Lean_Syntax_node2(v___x_1127_, v___x_1134_, v___x_1123_, v___x_1125_);
 v___x_1136_ = l_Lean_Syntax_node2(v___x_1127_, v___x_1128_, v___x_1133_, v___x_1135_);
 v___x_1137_ = lean_alloc_ctor(0, 2, 0);
@@ -2524,6 +4190,30 @@ LEAN_EXPORT lean_object* meta_initialize_Init_Data_Range_Polymorphic_PRange(uint
 lean_object * res;
 if (_G_meta_initialized) return lean_io_result_mk_ok(lean_box(0));
 _G_meta_initialized = true;
+l_Std_term___x2e_x2e_x2e_x2a = _init_l_Std_term___x2e_x2e_x2e_x2a();
+lean_mark_persistent(l_Std_term___x2e_x2e_x2e_x2a);
+l_Std_term_x2a_x2e_x2e_x2e_x2a = _init_l_Std_term_x2a_x2e_x2e_x2e_x2a();
+lean_mark_persistent(l_Std_term_x2a_x2e_x2e_x2e_x2a);
+l_Std_term___x3c_x2e_x2e_x2e_x2a = _init_l_Std_term___x3c_x2e_x2e_x2e_x2a();
+lean_mark_persistent(l_Std_term___x3c_x2e_x2e_x2e_x2a);
+l_Std_term___x2e_x2e_x2e_x3c__ = _init_l_Std_term___x2e_x2e_x2e_x3c__();
+lean_mark_persistent(l_Std_term___x2e_x2e_x2e_x3c__);
+l_Std_term___x2e_x2e_x2e__ = _init_l_Std_term___x2e_x2e_x2e__();
+lean_mark_persistent(l_Std_term___x2e_x2e_x2e__);
+l_Std_term_x2a_x2e_x2e_x2e_x3c__ = _init_l_Std_term_x2a_x2e_x2e_x2e_x3c__();
+lean_mark_persistent(l_Std_term_x2a_x2e_x2e_x2e_x3c__);
+l_Std_term_x2a_x2e_x2e_x2e__ = _init_l_Std_term_x2a_x2e_x2e_x2e__();
+lean_mark_persistent(l_Std_term_x2a_x2e_x2e_x2e__);
+l_Std_term___x3c_x2e_x2e_x2e_x3c__ = _init_l_Std_term___x3c_x2e_x2e_x2e_x3c__();
+lean_mark_persistent(l_Std_term___x3c_x2e_x2e_x2e_x3c__);
+l_Std_term___x3c_x2e_x2e_x2e__ = _init_l_Std_term___x3c_x2e_x2e_x2e__();
+lean_mark_persistent(l_Std_term___x3c_x2e_x2e_x2e__);
+l_Std_term___x2e_x2e_x2e_x3d__ = _init_l_Std_term___x2e_x2e_x2e_x3d__();
+lean_mark_persistent(l_Std_term___x2e_x2e_x2e_x3d__);
+l_Std_term_x2a_x2e_x2e_x2e_x3d__ = _init_l_Std_term_x2a_x2e_x2e_x2e_x3d__();
+lean_mark_persistent(l_Std_term_x2a_x2e_x2e_x2e_x3d__);
+l_Std_term___x3c_x2e_x2e_x2e_x3d__ = _init_l_Std_term___x3c_x2e_x2e_x2e_x3d__();
+lean_mark_persistent(l_Std_term___x3c_x2e_x2e_x2e_x3d__);
 return lean_io_result_mk_ok(lean_box(0));
 }
 lean_object* initialize_Init_Data_Range_Polymorphic_UpwardEnumerable(uint8_t builtin);

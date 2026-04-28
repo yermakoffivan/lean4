@@ -15,24 +15,41 @@ extern "C" {
 #endif
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 extern lean_object* l_Lean_Options_empty;
-static const lean_string_object l_Lean_Elab_Command_instInhabitedScope_default___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 1, .m_capacity = 1, .m_length = 0, .m_data = ""};
-static const lean_object* l_Lean_Elab_Command_instInhabitedScope_default___closed__0 = (const lean_object*)&l_Lean_Elab_Command_instInhabitedScope_default___closed__0_value;
-static const lean_array_object l_Lean_Elab_Command_instInhabitedScope_default___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_Lean_Elab_Command_instInhabitedScope_default___closed__1 = (const lean_object*)&l_Lean_Elab_Command_instInhabitedScope_default___closed__1_value;
+static lean_once_cell_t l_Lean_Elab_Command_instInhabitedScope_default___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Elab_Command_instInhabitedScope_default___closed__0;
+static lean_once_cell_t l_Lean_Elab_Command_instInhabitedScope_default___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Lean_Elab_Command_instInhabitedScope_default___closed__1;
 static lean_once_cell_t l_Lean_Elab_Command_instInhabitedScope_default___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Elab_Command_instInhabitedScope_default___closed__2;
 LEAN_EXPORT lean_object* l_Lean_Elab_Command_instInhabitedScope_default;
 LEAN_EXPORT lean_object* l_Lean_Elab_Command_instInhabitedScope;
+static lean_object* _init_l_Lean_Elab_Command_instInhabitedScope_default___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; 
+v___x_1_ = lean_mk_string_unchecked("", 0, 0);
+return v___x_1_;
+}
+}
+static lean_object* _init_l_Lean_Elab_Command_instInhabitedScope_default___closed__1(void){
+_start:
+{
+lean_object* v___x_2_; lean_object* v___x_3_; 
+v___x_2_ = lean_unsigned_to_nat(0u);
+v___x_3_ = lean_mk_empty_array_with_capacity(v___x_2_);
+return v___x_3_;
+}
+}
 static lean_object* _init_l_Lean_Elab_Command_instInhabitedScope_default___closed__2(void){
 _start:
 {
 uint8_t v___x_4_; lean_object* v___x_5_; lean_object* v___x_6_; lean_object* v___x_7_; lean_object* v___x_8_; lean_object* v___x_9_; lean_object* v___x_10_; 
 v___x_4_ = 0;
-v___x_5_ = ((lean_object*)(l_Lean_Elab_Command_instInhabitedScope_default___closed__1));
+v___x_5_ = lean_obj_once(&l_Lean_Elab_Command_instInhabitedScope_default___closed__1, &l_Lean_Elab_Command_instInhabitedScope_default___closed__1_once, _init_l_Lean_Elab_Command_instInhabitedScope_default___closed__1);
 v___x_6_ = lean_box(0);
 v___x_7_ = lean_box(0);
 v___x_8_ = l_Lean_Options_empty;
-v___x_9_ = ((lean_object*)(l_Lean_Elab_Command_instInhabitedScope_default___closed__0));
+v___x_9_ = lean_obj_once(&l_Lean_Elab_Command_instInhabitedScope_default___closed__0, &l_Lean_Elab_Command_instInhabitedScope_default___closed__0_once, _init_l_Lean_Elab_Command_instInhabitedScope_default___closed__0);
 v___x_10_ = lean_alloc_ctor(0, 10, 3);
 lean_ctor_set(v___x_10_, 0, v___x_9_);
 lean_ctor_set(v___x_10_, 1, v___x_8_);

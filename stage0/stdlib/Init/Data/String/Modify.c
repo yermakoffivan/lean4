@@ -57,11 +57,11 @@ LEAN_EXPORT lean_object* l_String_modify(lean_object*, lean_object*, lean_object
 LEAN_EXPORT lean_object* l_String_modify___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_mapAux(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_map(lean_object*, lean_object*);
-static const lean_closure_object l_String_toUpper___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Char_toUpper___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_String_toUpper___closed__0 = (const lean_object*)&l_String_toUpper___closed__0_value;
+static lean_once_cell_t l_String_toUpper___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_toUpper___closed__0;
 LEAN_EXPORT lean_object* l_String_toUpper(lean_object*);
-static const lean_closure_object l_String_toLower___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Char_toLower___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_String_toLower___closed__0 = (const lean_object*)&l_String_toLower___closed__0_value;
+static lean_once_cell_t l_String_toLower___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_toLower___closed__0;
 LEAN_EXPORT lean_object* l_String_toLower(lean_object*);
 LEAN_EXPORT lean_object* l_String_capitalize(lean_object*);
 LEAN_EXPORT lean_object* lean_string_capitalize(lean_object*);
@@ -409,21 +409,37 @@ v___x_176_ = l_String_mapAux(v_f_173_, v_s_174_, v___x_175_);
 return v___x_176_;
 }
 }
+static lean_object* _init_l_String_toUpper___closed__0(void){
+_start:
+{
+lean_object* v___x_177_; 
+v___x_177_ = lean_alloc_closure((void*)(l_Char_toUpper___boxed), 1, 0);
+return v___x_177_;
+}
+}
 LEAN_EXPORT lean_object* l_String_toUpper(lean_object* v_s_178_){
 _start:
 {
 lean_object* v___x_179_; lean_object* v___x_180_; lean_object* v___x_181_; 
-v___x_179_ = ((lean_object*)(l_String_toUpper___closed__0));
+v___x_179_ = lean_obj_once(&l_String_toUpper___closed__0, &l_String_toUpper___closed__0_once, _init_l_String_toUpper___closed__0);
 v___x_180_ = lean_unsigned_to_nat(0u);
 v___x_181_ = l_String_mapAux(v___x_179_, v_s_178_, v___x_180_);
 return v___x_181_;
+}
+}
+static lean_object* _init_l_String_toLower___closed__0(void){
+_start:
+{
+lean_object* v___x_182_; 
+v___x_182_ = lean_alloc_closure((void*)(l_Char_toLower___boxed), 1, 0);
+return v___x_182_;
 }
 }
 LEAN_EXPORT lean_object* l_String_toLower(lean_object* v_s_183_){
 _start:
 {
 lean_object* v___x_184_; lean_object* v___x_185_; lean_object* v___x_186_; 
-v___x_184_ = ((lean_object*)(l_String_toLower___closed__0));
+v___x_184_ = lean_obj_once(&l_String_toLower___closed__0, &l_String_toLower___closed__0_once, _init_l_String_toLower___closed__0);
 v___x_185_ = lean_unsigned_to_nat(0u);
 v___x_186_ = l_String_mapAux(v___x_184_, v_s_183_, v___x_185_);
 return v___x_186_;

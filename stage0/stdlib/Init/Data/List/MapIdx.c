@@ -20,8 +20,8 @@ lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 LEAN_EXPORT lean_object* l_List_mapFinIdx_go___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_List_mapFinIdx_go(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_List_mapFinIdx_go___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_array_object l_List_mapFinIdx___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
-static const lean_object* l_List_mapFinIdx___redArg___closed__0 = (const lean_object*)&l_List_mapFinIdx___redArg___closed__0_value;
+static lean_once_cell_t l_List_mapFinIdx___redArg___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_List_mapFinIdx___redArg___closed__0;
 LEAN_EXPORT lean_object* l_List_mapFinIdx___redArg(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_List_mapFinIdx(lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_List_mapIdx_go___redArg(lean_object*, lean_object*, lean_object*);
@@ -91,11 +91,20 @@ lean_dec(v_as_21_);
 return v_res_26_;
 }
 }
+static lean_object* _init_l_List_mapFinIdx___redArg___closed__0(void){
+_start:
+{
+lean_object* v___x_27_; lean_object* v___x_28_; 
+v___x_27_ = lean_unsigned_to_nat(0u);
+v___x_28_ = lean_mk_empty_array_with_capacity(v___x_27_);
+return v___x_28_;
+}
+}
 LEAN_EXPORT lean_object* l_List_mapFinIdx___redArg(lean_object* v_as_29_, lean_object* v_f_30_){
 _start:
 {
 lean_object* v___x_31_; lean_object* v___x_32_; 
-v___x_31_ = ((lean_object*)(l_List_mapFinIdx___redArg___closed__0));
+v___x_31_ = lean_obj_once(&l_List_mapFinIdx___redArg___closed__0, &l_List_mapFinIdx___redArg___closed__0_once, _init_l_List_mapFinIdx___redArg___closed__0);
 v___x_32_ = l_List_mapFinIdx_go___redArg(v_f_30_, v_as_29_, v___x_31_);
 return v___x_32_;
 }
@@ -104,7 +113,7 @@ LEAN_EXPORT lean_object* l_List_mapFinIdx(lean_object* v_00_u03b1_33_, lean_obje
 _start:
 {
 lean_object* v___x_37_; lean_object* v___x_38_; 
-v___x_37_ = ((lean_object*)(l_List_mapFinIdx___redArg___closed__0));
+v___x_37_ = lean_obj_once(&l_List_mapFinIdx___redArg___closed__0, &l_List_mapFinIdx___redArg___closed__0_once, _init_l_List_mapFinIdx___redArg___closed__0);
 v___x_38_ = l_List_mapFinIdx_go___redArg(v_f_36_, v_as_35_, v___x_37_);
 return v___x_38_;
 }
@@ -149,7 +158,7 @@ LEAN_EXPORT lean_object* l_List_mapIdx___redArg(lean_object* v_f_55_, lean_objec
 _start:
 {
 lean_object* v___x_57_; lean_object* v___x_58_; 
-v___x_57_ = ((lean_object*)(l_List_mapFinIdx___redArg___closed__0));
+v___x_57_ = lean_obj_once(&l_List_mapFinIdx___redArg___closed__0, &l_List_mapFinIdx___redArg___closed__0_once, _init_l_List_mapFinIdx___redArg___closed__0);
 v___x_58_ = l_List_mapIdx_go___redArg(v_f_55_, v_as_56_, v___x_57_);
 return v___x_58_;
 }
@@ -158,7 +167,7 @@ LEAN_EXPORT lean_object* l_List_mapIdx(lean_object* v_00_u03b1_59_, lean_object*
 _start:
 {
 lean_object* v___x_63_; lean_object* v___x_64_; 
-v___x_63_ = ((lean_object*)(l_List_mapFinIdx___redArg___closed__0));
+v___x_63_ = lean_obj_once(&l_List_mapFinIdx___redArg___closed__0, &l_List_mapFinIdx___redArg___closed__0_once, _init_l_List_mapFinIdx___redArg___closed__0);
 v___x_64_ = l_List_mapIdx_go___redArg(v_f_61_, v_as_62_, v___x_63_);
 return v___x_64_;
 }
@@ -235,7 +244,7 @@ LEAN_EXPORT lean_object* l_List_mapFinIdxM___redArg(lean_object* v_inst_107_, le
 _start:
 {
 lean_object* v___x_110_; lean_object* v___x_111_; 
-v___x_110_ = ((lean_object*)(l_List_mapFinIdx___redArg___closed__0));
+v___x_110_ = lean_obj_once(&l_List_mapFinIdx___redArg___closed__0, &l_List_mapFinIdx___redArg___closed__0_once, _init_l_List_mapFinIdx___redArg___closed__0);
 v___x_111_ = l_List_mapFinIdxM_go___redArg(v_inst_107_, v_f_109_, v_as_108_, v___x_110_);
 return v___x_111_;
 }
@@ -244,7 +253,7 @@ LEAN_EXPORT lean_object* l_List_mapFinIdxM(lean_object* v_m_112_, lean_object* v
 _start:
 {
 lean_object* v___x_118_; lean_object* v___x_119_; 
-v___x_118_ = ((lean_object*)(l_List_mapFinIdx___redArg___closed__0));
+v___x_118_ = lean_obj_once(&l_List_mapFinIdx___redArg___closed__0, &l_List_mapFinIdx___redArg___closed__0_once, _init_l_List_mapFinIdx___redArg___closed__0);
 v___x_119_ = l_List_mapFinIdxM_go___redArg(v_inst_115_, v_f_117_, v_as_116_, v___x_118_);
 return v___x_119_;
 }
@@ -312,7 +321,7 @@ LEAN_EXPORT lean_object* l_List_mapIdxM___redArg(lean_object* v_inst_150_, lean_
 _start:
 {
 lean_object* v___x_153_; lean_object* v___x_154_; 
-v___x_153_ = ((lean_object*)(l_List_mapFinIdx___redArg___closed__0));
+v___x_153_ = lean_obj_once(&l_List_mapFinIdx___redArg___closed__0, &l_List_mapFinIdx___redArg___closed__0_once, _init_l_List_mapFinIdx___redArg___closed__0);
 v___x_154_ = l_List_mapIdxM_go___redArg(v_inst_150_, v_f_151_, v_as_152_, v___x_153_);
 return v___x_154_;
 }
@@ -321,7 +330,7 @@ LEAN_EXPORT lean_object* l_List_mapIdxM(lean_object* v_m_155_, lean_object* v_00
 _start:
 {
 lean_object* v___x_161_; lean_object* v___x_162_; 
-v___x_161_ = ((lean_object*)(l_List_mapFinIdx___redArg___closed__0));
+v___x_161_ = lean_obj_once(&l_List_mapFinIdx___redArg___closed__0, &l_List_mapFinIdx___redArg___closed__0_once, _init_l_List_mapFinIdx___redArg___closed__0);
 v___x_162_ = l_List_mapIdxM_go___redArg(v_inst_158_, v_f_159_, v_as_160_, v___x_161_);
 return v___x_162_;
 }

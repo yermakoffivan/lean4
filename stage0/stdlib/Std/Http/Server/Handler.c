@@ -20,31 +20,31 @@ LEAN_EXPORT lean_object* l_Std_Http_Server_instHandlerStatelessHandler___lam__1(
 LEAN_EXPORT lean_object* l_Std_Http_Server_instHandlerStatelessHandler___lam__1___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Server_instHandlerStatelessHandler___lam__2(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Server_instHandlerStatelessHandler___lam__2___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_Std_Http_Server_instHandlerStatelessHandler___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Server_instHandlerStatelessHandler___lam__0___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Server_instHandlerStatelessHandler___closed__0 = (const lean_object*)&l_Std_Http_Server_instHandlerStatelessHandler___closed__0_value;
-static const lean_closure_object l_Std_Http_Server_instHandlerStatelessHandler___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Server_instHandlerStatelessHandler___lam__1___boxed, .m_arity = 3, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Server_instHandlerStatelessHandler___closed__1 = (const lean_object*)&l_Std_Http_Server_instHandlerStatelessHandler___closed__1_value;
-static const lean_closure_object l_Std_Http_Server_instHandlerStatelessHandler___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Server_instHandlerStatelessHandler___lam__2___boxed, .m_arity = 3, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Server_instHandlerStatelessHandler___closed__2 = (const lean_object*)&l_Std_Http_Server_instHandlerStatelessHandler___closed__2_value;
+static lean_once_cell_t l_Std_Http_Server_instHandlerStatelessHandler___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Server_instHandlerStatelessHandler___closed__0;
+static lean_once_cell_t l_Std_Http_Server_instHandlerStatelessHandler___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Server_instHandlerStatelessHandler___closed__1;
+static lean_once_cell_t l_Std_Http_Server_instHandlerStatelessHandler___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Server_instHandlerStatelessHandler___closed__2;
 static lean_once_cell_t l_Std_Http_Server_instHandlerStatelessHandler___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Http_Server_instHandlerStatelessHandler___closed__3;
 LEAN_EXPORT lean_object* l_Std_Http_Server_instHandlerStatelessHandler;
-static const lean_ctor_object l_Std_Http_Server_Handler_ofFn___lam__0___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_Std_Http_Server_Handler_ofFn___lam__0___closed__0 = (const lean_object*)&l_Std_Http_Server_Handler_ofFn___lam__0___closed__0_value;
-static const lean_ctor_object l_Std_Http_Server_Handler_ofFn___lam__0___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Http_Server_Handler_ofFn___lam__0___closed__0_value)}};
-static const lean_object* l_Std_Http_Server_Handler_ofFn___lam__0___closed__1 = (const lean_object*)&l_Std_Http_Server_Handler_ofFn___lam__0___closed__1_value;
+static lean_once_cell_t l_Std_Http_Server_Handler_ofFn___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Server_Handler_ofFn___lam__0___closed__0;
+static lean_once_cell_t l_Std_Http_Server_Handler_ofFn___lam__0___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Server_Handler_ofFn___lam__0___closed__1;
 LEAN_EXPORT lean_object* l_Std_Http_Server_Handler_ofFn___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Server_Handler_ofFn___lam__0___boxed(lean_object*, lean_object*);
-static const lean_ctor_object l_Std_Http_Server_Handler_ofFn___lam__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(1) << 1) | 1))}};
-static const lean_object* l_Std_Http_Server_Handler_ofFn___lam__1___closed__0 = (const lean_object*)&l_Std_Http_Server_Handler_ofFn___lam__1___closed__0_value;
-static const lean_ctor_object l_Std_Http_Server_Handler_ofFn___lam__1___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 0}, .m_objs = {((lean_object*)&l_Std_Http_Server_Handler_ofFn___lam__1___closed__0_value)}};
-static const lean_object* l_Std_Http_Server_Handler_ofFn___lam__1___closed__1 = (const lean_object*)&l_Std_Http_Server_Handler_ofFn___lam__1___closed__1_value;
+static lean_once_cell_t l_Std_Http_Server_Handler_ofFn___lam__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Server_Handler_ofFn___lam__1___closed__0;
+static lean_once_cell_t l_Std_Http_Server_Handler_ofFn___lam__1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Server_Handler_ofFn___lam__1___closed__1;
 LEAN_EXPORT lean_object* l_Std_Http_Server_Handler_ofFn___lam__1(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Server_Handler_ofFn___lam__1___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Http_Server_Handler_ofFn___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Server_Handler_ofFn___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Server_Handler_ofFn___closed__0 = (const lean_object*)&l_Std_Http_Server_Handler_ofFn___closed__0_value;
-static const lean_closure_object l_Std_Http_Server_Handler_ofFn___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Http_Server_Handler_ofFn___lam__1___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Http_Server_Handler_ofFn___closed__1 = (const lean_object*)&l_Std_Http_Server_Handler_ofFn___closed__1_value;
+static lean_once_cell_t l_Std_Http_Server_Handler_ofFn___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Server_Handler_ofFn___closed__0;
+static lean_once_cell_t l_Std_Http_Server_Handler_ofFn___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Http_Server_Handler_ofFn___closed__1;
 LEAN_EXPORT lean_object* l_Std_Http_Server_Handler_ofFn(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Server_Handler_ofFns(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Http_Server_Handler_withFailure(lean_object*, lean_object*);
@@ -108,13 +108,37 @@ v_res_29_ = l_Std_Http_Server_instHandlerStatelessHandler___lam__2(v_self_26_, v
 return v_res_29_;
 }
 }
+static lean_object* _init_l_Std_Http_Server_instHandlerStatelessHandler___closed__0(void){
+_start:
+{
+lean_object* v___f_30_; 
+v___f_30_ = lean_alloc_closure((void*)(l_Std_Http_Server_instHandlerStatelessHandler___lam__0___boxed), 4, 0);
+return v___f_30_;
+}
+}
+static lean_object* _init_l_Std_Http_Server_instHandlerStatelessHandler___closed__1(void){
+_start:
+{
+lean_object* v___f_31_; 
+v___f_31_ = lean_alloc_closure((void*)(l_Std_Http_Server_instHandlerStatelessHandler___lam__1___boxed), 3, 0);
+return v___f_31_;
+}
+}
+static lean_object* _init_l_Std_Http_Server_instHandlerStatelessHandler___closed__2(void){
+_start:
+{
+lean_object* v___f_32_; 
+v___f_32_ = lean_alloc_closure((void*)(l_Std_Http_Server_instHandlerStatelessHandler___lam__2___boxed), 3, 0);
+return v___f_32_;
+}
+}
 static lean_object* _init_l_Std_Http_Server_instHandlerStatelessHandler___closed__3(void){
 _start:
 {
 lean_object* v___f_33_; lean_object* v___f_34_; lean_object* v___f_35_; lean_object* v___x_36_; lean_object* v___x_37_; 
-v___f_33_ = ((lean_object*)(l_Std_Http_Server_instHandlerStatelessHandler___closed__2));
-v___f_34_ = ((lean_object*)(l_Std_Http_Server_instHandlerStatelessHandler___closed__1));
-v___f_35_ = ((lean_object*)(l_Std_Http_Server_instHandlerStatelessHandler___closed__0));
+v___f_33_ = lean_obj_once(&l_Std_Http_Server_instHandlerStatelessHandler___closed__2, &l_Std_Http_Server_instHandlerStatelessHandler___closed__2_once, _init_l_Std_Http_Server_instHandlerStatelessHandler___closed__2);
+v___f_34_ = lean_obj_once(&l_Std_Http_Server_instHandlerStatelessHandler___closed__1, &l_Std_Http_Server_instHandlerStatelessHandler___closed__1_once, _init_l_Std_Http_Server_instHandlerStatelessHandler___closed__1);
+v___f_35_ = lean_obj_once(&l_Std_Http_Server_instHandlerStatelessHandler___closed__0, &l_Std_Http_Server_instHandlerStatelessHandler___closed__0_once, _init_l_Std_Http_Server_instHandlerStatelessHandler___closed__0);
 v___x_36_ = l_Std_Http_Body_instAny;
 v___x_37_ = lean_alloc_ctor(0, 4, 0);
 lean_ctor_set(v___x_37_, 0, v___x_36_);
@@ -132,11 +156,31 @@ v___x_38_ = lean_obj_once(&l_Std_Http_Server_instHandlerStatelessHandler___close
 return v___x_38_;
 }
 }
+static lean_object* _init_l_Std_Http_Server_Handler_ofFn___lam__0___closed__0(void){
+_start:
+{
+lean_object* v___x_39_; lean_object* v___x_40_; 
+v___x_39_ = lean_box(0);
+v___x_40_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_40_, 0, v___x_39_);
+return v___x_40_;
+}
+}
+static lean_object* _init_l_Std_Http_Server_Handler_ofFn___lam__0___closed__1(void){
+_start:
+{
+lean_object* v___x_41_; lean_object* v___x_42_; 
+v___x_41_ = lean_obj_once(&l_Std_Http_Server_Handler_ofFn___lam__0___closed__0, &l_Std_Http_Server_Handler_ofFn___lam__0___closed__0_once, _init_l_Std_Http_Server_Handler_ofFn___lam__0___closed__0);
+v___x_42_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_42_, 0, v___x_41_);
+return v___x_42_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Http_Server_Handler_ofFn___lam__0(lean_object* v_x_43_){
 _start:
 {
 lean_object* v___x_45_; 
-v___x_45_ = ((lean_object*)(l_Std_Http_Server_Handler_ofFn___lam__0___closed__1));
+v___x_45_ = lean_obj_once(&l_Std_Http_Server_Handler_ofFn___lam__0___closed__1, &l_Std_Http_Server_Handler_ofFn___lam__0___closed__1_once, _init_l_Std_Http_Server_Handler_ofFn___lam__0___closed__1);
 return v___x_45_;
 }
 }
@@ -149,11 +193,32 @@ lean_dec(v_x_46_);
 return v_res_48_;
 }
 }
+static lean_object* _init_l_Std_Http_Server_Handler_ofFn___lam__1___closed__0(void){
+_start:
+{
+uint8_t v___x_49_; lean_object* v___x_50_; lean_object* v___x_51_; 
+v___x_49_ = 1;
+v___x_50_ = lean_box(v___x_49_);
+v___x_51_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_51_, 0, v___x_50_);
+return v___x_51_;
+}
+}
+static lean_object* _init_l_Std_Http_Server_Handler_ofFn___lam__1___closed__1(void){
+_start:
+{
+lean_object* v___x_52_; lean_object* v___x_53_; 
+v___x_52_ = lean_obj_once(&l_Std_Http_Server_Handler_ofFn___lam__1___closed__0, &l_Std_Http_Server_Handler_ofFn___lam__1___closed__0_once, _init_l_Std_Http_Server_Handler_ofFn___lam__1___closed__0);
+v___x_53_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_53_, 0, v___x_52_);
+return v___x_53_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Http_Server_Handler_ofFn___lam__1(lean_object* v_x_54_){
 _start:
 {
 lean_object* v___x_56_; 
-v___x_56_ = ((lean_object*)(l_Std_Http_Server_Handler_ofFn___lam__1___closed__1));
+v___x_56_ = lean_obj_once(&l_Std_Http_Server_Handler_ofFn___lam__1___closed__1, &l_Std_Http_Server_Handler_ofFn___lam__1___closed__1_once, _init_l_Std_Http_Server_Handler_ofFn___lam__1___closed__1);
 return v___x_56_;
 }
 }
@@ -166,12 +231,28 @@ lean_dec_ref(v_x_57_);
 return v_res_59_;
 }
 }
+static lean_object* _init_l_Std_Http_Server_Handler_ofFn___closed__0(void){
+_start:
+{
+lean_object* v___f_60_; 
+v___f_60_ = lean_alloc_closure((void*)(l_Std_Http_Server_Handler_ofFn___lam__0___boxed), 2, 0);
+return v___f_60_;
+}
+}
+static lean_object* _init_l_Std_Http_Server_Handler_ofFn___closed__1(void){
+_start:
+{
+lean_object* v___f_61_; 
+v___f_61_ = lean_alloc_closure((void*)(l_Std_Http_Server_Handler_ofFn___lam__1___boxed), 2, 0);
+return v___f_61_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Http_Server_Handler_ofFn(lean_object* v_f_62_){
 _start:
 {
 lean_object* v___f_63_; lean_object* v___f_64_; lean_object* v___x_65_; 
-v___f_63_ = ((lean_object*)(l_Std_Http_Server_Handler_ofFn___closed__0));
-v___f_64_ = ((lean_object*)(l_Std_Http_Server_Handler_ofFn___closed__1));
+v___f_63_ = lean_obj_once(&l_Std_Http_Server_Handler_ofFn___closed__0, &l_Std_Http_Server_Handler_ofFn___closed__0_once, _init_l_Std_Http_Server_Handler_ofFn___closed__0);
+v___f_64_ = lean_obj_once(&l_Std_Http_Server_Handler_ofFn___closed__1, &l_Std_Http_Server_Handler_ofFn___closed__1_once, _init_l_Std_Http_Server_Handler_ofFn___closed__1);
 v___x_65_ = lean_alloc_ctor(0, 3, 0);
 lean_ctor_set(v___x_65_, 0, v_f_62_);
 lean_ctor_set(v___x_65_, 1, v___f_63_);

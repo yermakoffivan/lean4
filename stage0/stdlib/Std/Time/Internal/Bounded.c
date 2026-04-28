@@ -38,20 +38,20 @@ LEAN_EXPORT lean_object* l_Std_Time_Internal_Bounded_instLT(lean_object*, lean_o
 LEAN_EXPORT lean_object* l_Std_Time_Internal_Bounded_instLT___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Internal_Bounded_instOrd___lam__0(lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Internal_Bounded_instOrd___lam__0___boxed(lean_object*);
-static const lean_closure_object l_Std_Time_Internal_Bounded_instOrd___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Time_Internal_Bounded_instOrd___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Time_Internal_Bounded_instOrd___closed__0 = (const lean_object*)&l_Std_Time_Internal_Bounded_instOrd___closed__0_value;
-static const lean_closure_object l_Std_Time_Internal_Bounded_instOrd___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_instOrdInt___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Time_Internal_Bounded_instOrd___closed__1 = (const lean_object*)&l_Std_Time_Internal_Bounded_instOrd___closed__1_value;
-static const lean_closure_object l_Std_Time_Internal_Bounded_instOrd___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*4, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_compareOn___boxed, .m_arity = 6, .m_num_fixed = 4, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_Time_Internal_Bounded_instOrd___closed__1_value),((lean_object*)&l_Std_Time_Internal_Bounded_instOrd___closed__0_value)} };
-static const lean_object* l_Std_Time_Internal_Bounded_instOrd___closed__2 = (const lean_object*)&l_Std_Time_Internal_Bounded_instOrd___closed__2_value;
+static lean_once_cell_t l_Std_Time_Internal_Bounded_instOrd___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Internal_Bounded_instOrd___closed__0;
+static lean_once_cell_t l_Std_Time_Internal_Bounded_instOrd___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Internal_Bounded_instOrd___closed__1;
+static lean_once_cell_t l_Std_Time_Internal_Bounded_instOrd___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Internal_Bounded_instOrd___closed__2;
 LEAN_EXPORT lean_object* l_Std_Time_Internal_Bounded_instOrd(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Internal_Bounded_instOrd___boxed(lean_object*, lean_object*, lean_object*);
 static lean_once_cell_t l_Std_Time_Internal_Bounded_instRepr___lam__0___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Std_Time_Internal_Bounded_instRepr___lam__0___closed__0;
 LEAN_EXPORT lean_object* l_Std_Time_Internal_Bounded_instRepr___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Internal_Bounded_instRepr___lam__0___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_Std_Time_Internal_Bounded_instRepr___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_Time_Internal_Bounded_instRepr___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_Std_Time_Internal_Bounded_instRepr___closed__0 = (const lean_object*)&l_Std_Time_Internal_Bounded_instRepr___closed__0_value;
+static lean_once_cell_t l_Std_Time_Internal_Bounded_instRepr___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_Std_Time_Internal_Bounded_instRepr___closed__0;
 LEAN_EXPORT lean_object* l_Std_Time_Internal_Bounded_instRepr(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Time_Internal_Bounded_instRepr___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT uint8_t l_Std_Time_Internal_Bounded_instDecidableEq___redArg(lean_object*, lean_object*);
@@ -279,11 +279,41 @@ lean_dec(v_x_18_);
 return v_res_19_;
 }
 }
+static lean_object* _init_l_Std_Time_Internal_Bounded_instOrd___closed__0(void){
+_start:
+{
+lean_object* v___f_20_; 
+v___f_20_ = lean_alloc_closure((void*)(l_Std_Time_Internal_Bounded_instOrd___lam__0___boxed), 1, 0);
+return v___f_20_;
+}
+}
+static lean_object* _init_l_Std_Time_Internal_Bounded_instOrd___closed__1(void){
+_start:
+{
+lean_object* v___f_21_; 
+v___f_21_ = lean_alloc_closure((void*)(l_instOrdInt___lam__0___boxed), 2, 0);
+return v___f_21_;
+}
+}
+static lean_object* _init_l_Std_Time_Internal_Bounded_instOrd___closed__2(void){
+_start:
+{
+lean_object* v___f_22_; lean_object* v___f_23_; lean_object* v___x_24_; 
+v___f_22_ = lean_obj_once(&l_Std_Time_Internal_Bounded_instOrd___closed__0, &l_Std_Time_Internal_Bounded_instOrd___closed__0_once, _init_l_Std_Time_Internal_Bounded_instOrd___closed__0);
+v___f_23_ = lean_obj_once(&l_Std_Time_Internal_Bounded_instOrd___closed__1, &l_Std_Time_Internal_Bounded_instOrd___closed__1_once, _init_l_Std_Time_Internal_Bounded_instOrd___closed__1);
+v___x_24_ = lean_alloc_closure((void*)(l_compareOn___boxed), 6, 4);
+lean_closure_set(v___x_24_, 0, lean_box(0));
+lean_closure_set(v___x_24_, 1, lean_box(0));
+lean_closure_set(v___x_24_, 2, v___f_23_);
+lean_closure_set(v___x_24_, 3, v___f_22_);
+return v___x_24_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Time_Internal_Bounded_instOrd(lean_object* v_rel_25_, lean_object* v_n_26_, lean_object* v_m_27_){
 _start:
 {
 lean_object* v___x_28_; 
-v___x_28_ = ((lean_object*)(l_Std_Time_Internal_Bounded_instOrd___closed__2));
+v___x_28_ = lean_obj_once(&l_Std_Time_Internal_Bounded_instOrd___closed__2, &l_Std_Time_Internal_Bounded_instOrd___closed__2_once, _init_l_Std_Time_Internal_Bounded_instOrd___closed__2);
 return v___x_28_;
 }
 }
@@ -341,11 +371,19 @@ lean_dec(v_n_44_);
 return v_res_46_;
 }
 }
+static lean_object* _init_l_Std_Time_Internal_Bounded_instRepr___closed__0(void){
+_start:
+{
+lean_object* v___f_47_; 
+v___f_47_ = lean_alloc_closure((void*)(l_Std_Time_Internal_Bounded_instRepr___lam__0___boxed), 2, 0);
+return v___f_47_;
+}
+}
 LEAN_EXPORT lean_object* l_Std_Time_Internal_Bounded_instRepr(lean_object* v_rel_48_, lean_object* v_m_49_, lean_object* v_n_50_){
 _start:
 {
 lean_object* v___f_51_; 
-v___f_51_ = ((lean_object*)(l_Std_Time_Internal_Bounded_instRepr___closed__0));
+v___f_51_ = lean_obj_once(&l_Std_Time_Internal_Bounded_instRepr___closed__0, &l_Std_Time_Internal_Bounded_instRepr___closed__0_once, _init_l_Std_Time_Internal_Bounded_instRepr___closed__0);
 return v___f_51_;
 }
 }

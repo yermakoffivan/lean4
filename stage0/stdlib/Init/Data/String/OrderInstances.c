@@ -40,294 +40,225 @@ lean_object* l_String_instDecidableLtPos___boxed(lean_object*, lean_object*, lea
 lean_object* l_String_instDecidableLePos__1___boxed(lean_object*, lean_object*, lean_object*);
 lean_object* l_String_Slice_instDecidableEqPos___boxed(lean_object*, lean_object*, lean_object*);
 lean_object* l_String_instDecidableLtPos__1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_string_object l_String_Internal_tacticOrder___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "String"};
-static const lean_object* l_String_Internal_tacticOrder___closed__0 = (const lean_object*)&l_String_Internal_tacticOrder___closed__0_value;
-static const lean_string_object l_String_Internal_tacticOrder___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "Internal"};
-static const lean_object* l_String_Internal_tacticOrder___closed__1 = (const lean_object*)&l_String_Internal_tacticOrder___closed__1_value;
-static const lean_string_object l_String_Internal_tacticOrder___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "tacticOrder"};
-static const lean_object* l_String_Internal_tacticOrder___closed__2 = (const lean_object*)&l_String_Internal_tacticOrder___closed__2_value;
-static const lean_ctor_object l_String_Internal_tacticOrder___closed__3_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal_tacticOrder___closed__0_value),LEAN_SCALAR_PTR_LITERAL(6, 130, 56, 8, 41, 104, 134, 43)}};
-static const lean_ctor_object l_String_Internal_tacticOrder___closed__3_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal_tacticOrder___closed__3_value_aux_0),((lean_object*)&l_String_Internal_tacticOrder___closed__1_value),LEAN_SCALAR_PTR_LITERAL(7, 129, 74, 87, 236, 194, 167, 197)}};
-static const lean_ctor_object l_String_Internal_tacticOrder___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal_tacticOrder___closed__3_value_aux_1),((lean_object*)&l_String_Internal_tacticOrder___closed__2_value),LEAN_SCALAR_PTR_LITERAL(241, 218, 229, 106, 179, 251, 249, 12)}};
-static const lean_object* l_String_Internal_tacticOrder___closed__3 = (const lean_object*)&l_String_Internal_tacticOrder___closed__3_value;
-static const lean_string_object l_String_Internal_tacticOrder___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "order"};
-static const lean_object* l_String_Internal_tacticOrder___closed__4 = (const lean_object*)&l_String_Internal_tacticOrder___closed__4_value;
-static const lean_ctor_object l_String_Internal_tacticOrder___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 8, .m_other = 1, .m_tag = 6}, .m_objs = {((lean_object*)&l_String_Internal_tacticOrder___closed__4_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
-static const lean_object* l_String_Internal_tacticOrder___closed__5 = (const lean_object*)&l_String_Internal_tacticOrder___closed__5_value;
-static const lean_ctor_object l_String_Internal_tacticOrder___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_String_Internal_tacticOrder___closed__3_value),((lean_object*)(((size_t)(1024) << 1) | 1)),((lean_object*)&l_String_Internal_tacticOrder___closed__5_value)}};
-static const lean_object* l_String_Internal_tacticOrder___closed__6 = (const lean_object*)&l_String_Internal_tacticOrder___closed__6_value;
-LEAN_EXPORT const lean_object* l_String_Internal_tacticOrder = (const lean_object*)&l_String_Internal_tacticOrder___closed__6_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "Lean"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Parser"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "Tactic"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 19, .m_capacity = 19, .m_length = 18, .m_data = "tacticSeqBracketed"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__3 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__3_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__4_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__4_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__4_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__4_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__4_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__4_value_aux_2),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__3_value),LEAN_SCALAR_PTR_LITERAL(142, 80, 121, 250, 245, 54, 71, 145)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__4 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__4_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "{"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__5 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__5_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "null"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__6 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__6_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__6_value),LEAN_SCALAR_PTR_LITERAL(24, 58, 49, 223, 146, 207, 197, 136)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__7 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__7_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 4, .m_data = "simp"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__8 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__8_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__9_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__9_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__9_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__9_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__9_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__9_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__9_value_aux_2),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__8_value),LEAN_SCALAR_PTR_LITERAL(50, 13, 241, 145, 67, 153, 105, 177)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__9 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__9_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__10_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "optConfig"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__10 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__10_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__11_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__11_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__11_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__11_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__11_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__11_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__11_value_aux_2),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__10_value),LEAN_SCALAR_PTR_LITERAL(137, 208, 10, 74, 108, 50, 106, 48)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__11 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__11_value;
+static lean_once_cell_t l_String_Internal_tacticOrder___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal_tacticOrder___closed__0;
+static lean_once_cell_t l_String_Internal_tacticOrder___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal_tacticOrder___closed__1;
+static lean_once_cell_t l_String_Internal_tacticOrder___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal_tacticOrder___closed__2;
+static lean_once_cell_t l_String_Internal_tacticOrder___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal_tacticOrder___closed__3;
+static lean_once_cell_t l_String_Internal_tacticOrder___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal_tacticOrder___closed__4;
+static lean_once_cell_t l_String_Internal_tacticOrder___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal_tacticOrder___closed__5;
+static lean_once_cell_t l_String_Internal_tacticOrder___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal_tacticOrder___closed__6;
+LEAN_EXPORT lean_object* l_String_Internal_tacticOrder;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__3;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__4;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__5;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__6;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__7;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__8;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__9_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__9;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__10_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__10;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__11_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__11;
 static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__12_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__12;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__13_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "["};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__13 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__13_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__14_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "simpLemma"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__14 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__14_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__15_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__15_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__15_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__15_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__15_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__15_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__15_value_aux_2),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__14_value),LEAN_SCALAR_PTR_LITERAL(38, 215, 101, 250, 181, 108, 118, 102)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__15 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__15_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__16_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "Pos.Raw.lt_iff"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__16 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__16_value;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__13_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__13;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__14_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__14;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__15_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__15;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__16_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__16;
 static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__17_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__17;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "Pos"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "Raw"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "lt_iff"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__21_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_value),LEAN_SCALAR_PTR_LITERAL(6, 235, 182, 83, 236, 144, 113, 47)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__21_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__21_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19_value),LEAN_SCALAR_PTR_LITERAL(61, 22, 22, 180, 152, 141, 124, 220)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__21_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__21_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20_value),LEAN_SCALAR_PTR_LITERAL(22, 104, 170, 151, 29, 132, 183, 208)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__21 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__21_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__22_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal_tacticOrder___closed__0_value),LEAN_SCALAR_PTR_LITERAL(6, 130, 56, 8, 41, 104, 134, 43)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__22_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__22_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_value),LEAN_SCALAR_PTR_LITERAL(207, 230, 80, 37, 136, 222, 125, 174)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__22_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__22_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19_value),LEAN_SCALAR_PTR_LITERAL(192, 160, 30, 114, 46, 165, 46, 109)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__22_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__22_value_aux_2),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20_value),LEAN_SCALAR_PTR_LITERAL(127, 212, 0, 129, 78, 185, 20, 99)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__22 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__22_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__23_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__22_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__23 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__23_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__24_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__23_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__24 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__24_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__25_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = ","};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__25 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__25_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__26_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 15, .m_capacity = 15, .m_length = 14, .m_data = "Pos.Raw.le_iff"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__26 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__26_value;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__21_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__21;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__22_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__22;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__23_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__23;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__24_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__24;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__25_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__25;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__26_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__26;
 static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__27_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__27;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 7, .m_capacity = 7, .m_length = 6, .m_data = "le_iff"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__29_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_value),LEAN_SCALAR_PTR_LITERAL(6, 235, 182, 83, 236, 144, 113, 47)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__29_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__29_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19_value),LEAN_SCALAR_PTR_LITERAL(61, 22, 22, 180, 152, 141, 124, 220)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__29_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__29_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28_value),LEAN_SCALAR_PTR_LITERAL(197, 104, 48, 82, 230, 119, 117, 161)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__29 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__29_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__30_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal_tacticOrder___closed__0_value),LEAN_SCALAR_PTR_LITERAL(6, 130, 56, 8, 41, 104, 134, 43)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__30_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__30_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_value),LEAN_SCALAR_PTR_LITERAL(207, 230, 80, 37, 136, 222, 125, 174)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__30_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__30_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19_value),LEAN_SCALAR_PTR_LITERAL(192, 160, 30, 114, 46, 165, 46, 109)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__30_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__30_value_aux_2),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28_value),LEAN_SCALAR_PTR_LITERAL(124, 93, 1, 49, 222, 183, 184, 222)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__30 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__30_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__31_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__30_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__31 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__31_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__32_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__31_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__32 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__32_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__33_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 18, .m_capacity = 18, .m_length = 17, .m_data = "String.Pos.lt_iff"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__33 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__33_value;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__29_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__29;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__30_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__30;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__31_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__31;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__32_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__32;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__33_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__33;
 static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__34_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__34;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__35_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal_tacticOrder___closed__0_value),LEAN_SCALAR_PTR_LITERAL(6, 130, 56, 8, 41, 104, 134, 43)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__35_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__35_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_value),LEAN_SCALAR_PTR_LITERAL(207, 230, 80, 37, 136, 222, 125, 174)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__35_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__35_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20_value),LEAN_SCALAR_PTR_LITERAL(188, 72, 8, 238, 89, 167, 244, 71)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__35 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__35_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__36_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__35_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__36 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__36_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__37_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__36_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__37 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__37_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__38_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 18, .m_capacity = 18, .m_length = 17, .m_data = "String.Pos.le_iff"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__38 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__38_value;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__35_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__35;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__36_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__36;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__37_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__37;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__38_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__38;
 static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__39_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__39;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__40_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal_tacticOrder___closed__0_value),LEAN_SCALAR_PTR_LITERAL(6, 130, 56, 8, 41, 104, 134, 43)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__40_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__40_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_value),LEAN_SCALAR_PTR_LITERAL(207, 230, 80, 37, 136, 222, 125, 174)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__40_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__40_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28_value),LEAN_SCALAR_PTR_LITERAL(63, 229, 232, 27, 101, 214, 182, 89)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__40 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__40_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__41_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__40_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__41 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__41_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__42_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__41_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__42 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__42_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__43_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 17, .m_capacity = 17, .m_length = 16, .m_data = "Slice.Pos.lt_iff"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__43 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__43_value;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__40_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__40;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__41_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__41;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__42_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__42;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__43_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__43;
 static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__44_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__44;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "Slice"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__46_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45_value),LEAN_SCALAR_PTR_LITERAL(173, 4, 120, 222, 71, 205, 160, 113)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__46_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__46_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_value),LEAN_SCALAR_PTR_LITERAL(216, 52, 85, 20, 23, 200, 218, 224)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__46_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__46_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20_value),LEAN_SCALAR_PTR_LITERAL(119, 222, 139, 215, 104, 127, 150, 22)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__46 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__46_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__47_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal_tacticOrder___closed__0_value),LEAN_SCALAR_PTR_LITERAL(6, 130, 56, 8, 41, 104, 134, 43)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__47_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__47_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45_value),LEAN_SCALAR_PTR_LITERAL(84, 178, 198, 6, 19, 246, 168, 69)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__47_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__47_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_value),LEAN_SCALAR_PTR_LITERAL(21, 101, 147, 105, 116, 117, 171, 195)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__47_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__47_value_aux_2),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20_value),LEAN_SCALAR_PTR_LITERAL(206, 35, 44, 114, 210, 123, 55, 220)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__47 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__47_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__48_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__47_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__48 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__48_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__49_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__48_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__49 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__49_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__50_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 17, .m_capacity = 17, .m_length = 16, .m_data = "Slice.Pos.le_iff"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__50 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__50_value;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__46_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__46;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__47_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__47;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__48_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__48;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__49_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__49;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__50_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__50;
 static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__51_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__51;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__52_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45_value),LEAN_SCALAR_PTR_LITERAL(173, 4, 120, 222, 71, 205, 160, 113)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__52_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__52_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_value),LEAN_SCALAR_PTR_LITERAL(216, 52, 85, 20, 23, 200, 218, 224)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__52_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__52_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28_value),LEAN_SCALAR_PTR_LITERAL(36, 206, 195, 65, 19, 225, 88, 107)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__52 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__52_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__53_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal_tacticOrder___closed__0_value),LEAN_SCALAR_PTR_LITERAL(6, 130, 56, 8, 41, 104, 134, 43)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__53_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__53_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45_value),LEAN_SCALAR_PTR_LITERAL(84, 178, 198, 6, 19, 246, 168, 69)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__53_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__53_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_value),LEAN_SCALAR_PTR_LITERAL(21, 101, 147, 105, 116, 117, 171, 195)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__53_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__53_value_aux_2),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28_value),LEAN_SCALAR_PTR_LITERAL(205, 125, 46, 185, 29, 165, 72, 167)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__53 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__53_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__54_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__53_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__54 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__54_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__55_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__54_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__55 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__55_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__56_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "Pos.Raw.ext_iff"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__56 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__56_value;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__52_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__52;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__53_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__53;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__54_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__54;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__55_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__55;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__56_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__56;
 static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__57_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__57;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 8, .m_capacity = 8, .m_length = 7, .m_data = "ext_iff"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__59_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_value),LEAN_SCALAR_PTR_LITERAL(6, 235, 182, 83, 236, 144, 113, 47)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__59_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__59_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19_value),LEAN_SCALAR_PTR_LITERAL(61, 22, 22, 180, 152, 141, 124, 220)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__59_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__59_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58_value),LEAN_SCALAR_PTR_LITERAL(67, 182, 123, 255, 102, 79, 234, 143)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__59 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__59_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__60_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal_tacticOrder___closed__0_value),LEAN_SCALAR_PTR_LITERAL(6, 130, 56, 8, 41, 104, 134, 43)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__60_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__60_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_value),LEAN_SCALAR_PTR_LITERAL(207, 230, 80, 37, 136, 222, 125, 174)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__60_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__60_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19_value),LEAN_SCALAR_PTR_LITERAL(192, 160, 30, 114, 46, 165, 46, 109)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__60_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__60_value_aux_2),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58_value),LEAN_SCALAR_PTR_LITERAL(82, 6, 239, 233, 154, 76, 228, 104)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__60 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__60_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__61_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__60_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__61 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__61_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__62_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__61_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__62 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__62_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__63_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 19, .m_capacity = 19, .m_length = 18, .m_data = "String.Pos.ext_iff"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__63 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__63_value;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__59_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__59;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__60_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__60;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__61_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__61;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__62_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__62;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__63_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__63;
 static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__64_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__64;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__65_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal_tacticOrder___closed__0_value),LEAN_SCALAR_PTR_LITERAL(6, 130, 56, 8, 41, 104, 134, 43)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__65_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__65_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_value),LEAN_SCALAR_PTR_LITERAL(207, 230, 80, 37, 136, 222, 125, 174)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__65_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__65_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58_value),LEAN_SCALAR_PTR_LITERAL(105, 140, 41, 144, 4, 105, 95, 120)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__65 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__65_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__66_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__65_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__66 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__66_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__67_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__66_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__67 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__67_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__68_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 18, .m_capacity = 18, .m_length = 17, .m_data = "Slice.Pos.ext_iff"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__68 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__68_value;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__65_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__65;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__66_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__66;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__67_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__67;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__68_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__68;
 static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__69_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__69;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__70_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45_value),LEAN_SCALAR_PTR_LITERAL(173, 4, 120, 222, 71, 205, 160, 113)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__70_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__70_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_value),LEAN_SCALAR_PTR_LITERAL(216, 52, 85, 20, 23, 200, 218, 224)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__70_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__70_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58_value),LEAN_SCALAR_PTR_LITERAL(250, 206, 127, 208, 120, 178, 156, 46)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__70 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__70_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__71_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal_tacticOrder___closed__0_value),LEAN_SCALAR_PTR_LITERAL(6, 130, 56, 8, 41, 104, 134, 43)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__71_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__71_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45_value),LEAN_SCALAR_PTR_LITERAL(84, 178, 198, 6, 19, 246, 168, 69)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__71_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__71_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_value),LEAN_SCALAR_PTR_LITERAL(21, 101, 147, 105, 116, 117, 171, 195)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__71_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__71_value_aux_2),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58_value),LEAN_SCALAR_PTR_LITERAL(75, 203, 33, 166, 182, 189, 1, 233)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__71 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__71_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__72_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__71_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__72 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__72_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__73_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__72_value),((lean_object*)(((size_t)(0) << 1) | 1))}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__73 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__73_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__74_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "]"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__74 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__74_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__75_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "location"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__75 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__75_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__76_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__76_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__76_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__76_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__76_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__76_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__76_value_aux_2),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__75_value),LEAN_SCALAR_PTR_LITERAL(124, 82, 43, 228, 241, 102, 135, 24)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__76 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__76_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__77_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "at"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__77 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__77_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__78_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 17, .m_capacity = 17, .m_length = 16, .m_data = "locationWildcard"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__78 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__78_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__79_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__79_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__79_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__79_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__79_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__79_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__79_value_aux_2),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__78_value),LEAN_SCALAR_PTR_LITERAL(134, 218, 71, 35, 220, 118, 132, 17)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__79 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__79_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__80_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "*"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__80 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__80_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__81_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = ";"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__81 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__81_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__82_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 11, .m_capacity = 11, .m_length = 10, .m_data = "tacticTry_"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__82 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__82_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__83_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__83_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__83_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__83_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__83_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__83_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__83_value_aux_2),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__82_value),LEAN_SCALAR_PTR_LITERAL(34, 109, 187, 155, 23, 130, 33, 152)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__83 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__83_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__84_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "try"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__84 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__84_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__85_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 10, .m_capacity = 10, .m_length = 9, .m_data = "tacticSeq"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__85 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__85_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__86_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__86_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__86_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__86_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__86_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__86_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__86_value_aux_2),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__85_value),LEAN_SCALAR_PTR_LITERAL(212, 140, 85, 215, 241, 69, 7, 118)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__86 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__86_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__87_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 19, .m_capacity = 19, .m_length = 18, .m_data = "tacticSeq1Indented"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__87 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__87_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__88_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__88_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__88_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__88_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__88_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__88_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__88_value_aux_2),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__87_value),LEAN_SCALAR_PTR_LITERAL(223, 90, 160, 238, 133, 180, 23, 239)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__88 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__88_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__89_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 6, .m_capacity = 6, .m_length = 5, .m_data = "omega"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__89 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__89_value;
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__90_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(70, 193, 83, 126, 233, 67, 208, 165)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__90_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__90_value_aux_0),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_value),LEAN_SCALAR_PTR_LITERAL(103, 136, 125, 166, 167, 98, 71, 111)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__90_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__90_value_aux_1),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_value),LEAN_SCALAR_PTR_LITERAL(166, 58, 35, 182, 187, 130, 147, 254)}};
-static const lean_ctor_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__90_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__90_value_aux_2),((lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__89_value),LEAN_SCALAR_PTR_LITERAL(138, 49, 229, 237, 137, 52, 176, 206)}};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__90 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__90_value;
-static const lean_string_object l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__91_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = "}"};
-static const lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__91 = (const lean_object*)&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__91_value;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__70_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__70;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__71_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__71;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__72_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__72;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__73_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__73;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__74_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__74;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__75_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__75;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__76_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__76;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__77_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__77;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__78_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__78;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__79_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__79;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__80_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__80;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__81_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__81;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__82_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__82;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__83_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__83;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__84_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__84;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__85_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__85;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__86_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__86;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__87_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__87;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__88_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__88;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__89_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__89;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__90_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__90;
+static lean_once_cell_t l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__91_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__91;
 LEAN_EXPORT lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___boxed(lean_object*, lean_object*, lean_object*);
-static const lean_closure_object l_String_Pos_Raw_instToIntCiOfNatInt_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Int_ofNat___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
-LEAN_EXPORT const lean_object* l_String_Pos_Raw_instToIntCiOfNatInt = (const lean_object*)&l_String_Pos_Raw_instToIntCiOfNatInt_value;
+LEAN_EXPORT lean_object* l_String_Pos_Raw_instToIntCiOfNatInt;
 LEAN_EXPORT lean_object* l_String_Pos_Raw_instTransLe;
 LEAN_EXPORT lean_object* l_String_Pos_Raw_instLinearOrderPackage___lam__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_Pos_Raw_instLinearOrderPackage___lam__0___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_Pos_Raw_instLinearOrderPackage___lam__1(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_String_Pos_Raw_instLinearOrderPackage___lam__1___boxed(lean_object*, lean_object*);
-static const lean_closure_object l_String_Pos_Raw_instLinearOrderPackage___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_String_Pos_Raw_instLinearOrderPackage___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_String_Pos_Raw_instLinearOrderPackage___closed__0 = (const lean_object*)&l_String_Pos_Raw_instLinearOrderPackage___closed__0_value;
-static const lean_closure_object l_String_Pos_Raw_instLinearOrderPackage___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_String_Pos_Raw_instLinearOrderPackage___lam__1___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_String_Pos_Raw_instLinearOrderPackage___closed__1 = (const lean_object*)&l_String_Pos_Raw_instLinearOrderPackage___closed__1_value;
-static const lean_closure_object l_String_Pos_Raw_instLinearOrderPackage___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_String_instDecidableLeRaw___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_String_Pos_Raw_instLinearOrderPackage___closed__2 = (const lean_object*)&l_String_Pos_Raw_instLinearOrderPackage___closed__2_value;
+static lean_once_cell_t l_String_Pos_Raw_instLinearOrderPackage___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Pos_Raw_instLinearOrderPackage___closed__0;
+static lean_once_cell_t l_String_Pos_Raw_instLinearOrderPackage___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Pos_Raw_instLinearOrderPackage___closed__1;
+static lean_once_cell_t l_String_Pos_Raw_instLinearOrderPackage___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Pos_Raw_instLinearOrderPackage___closed__2;
 static lean_once_cell_t l_String_Pos_Raw_instLinearOrderPackage___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_String_Pos_Raw_instLinearOrderPackage___closed__3;
-static const lean_closure_object l_String_Pos_Raw_instLinearOrderPackage___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_String_instDecidableLtRaw___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* l_String_Pos_Raw_instLinearOrderPackage___closed__4 = (const lean_object*)&l_String_Pos_Raw_instLinearOrderPackage___closed__4_value;
-static const lean_closure_object l_String_Pos_Raw_instLinearOrderPackage___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*1, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Std_FactoryInstances_instOrdOfDecidableLE___redArg___lam__0___boxed, .m_arity = 3, .m_num_fixed = 1, .m_objs = {((lean_object*)&l_String_Pos_Raw_instLinearOrderPackage___closed__2_value)} };
-static const lean_object* l_String_Pos_Raw_instLinearOrderPackage___closed__5 = (const lean_object*)&l_String_Pos_Raw_instLinearOrderPackage___closed__5_value;
+static lean_once_cell_t l_String_Pos_Raw_instLinearOrderPackage___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Pos_Raw_instLinearOrderPackage___closed__4;
+static lean_once_cell_t l_String_Pos_Raw_instLinearOrderPackage___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Pos_Raw_instLinearOrderPackage___closed__5;
 static lean_once_cell_t l_String_Pos_Raw_instLinearOrderPackage___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_String_Pos_Raw_instLinearOrderPackage___closed__6;
 static lean_once_cell_t l_String_Pos_Raw_instLinearOrderPackage___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
@@ -345,6 +276,192 @@ LEAN_EXPORT lean_object* l_String_Slice_Pos_instToIntCoOfNatIntHAddCastUtf8ByteS
 LEAN_EXPORT lean_object* l_String_Slice_Pos_instTransLe(lean_object*);
 LEAN_EXPORT lean_object* l_String_Slice_Pos_instTransLe___boxed(lean_object*);
 LEAN_EXPORT lean_object* l_String_Slice_Pos_instLinearOrderPackage(lean_object*);
+static lean_object* _init_l_String_Internal_tacticOrder___closed__0(void){
+_start:
+{
+lean_object* v___x_1_; 
+v___x_1_ = lean_mk_string_unchecked("String", 6, 6);
+return v___x_1_;
+}
+}
+static lean_object* _init_l_String_Internal_tacticOrder___closed__1(void){
+_start:
+{
+lean_object* v___x_2_; 
+v___x_2_ = lean_mk_string_unchecked("Internal", 8, 8);
+return v___x_2_;
+}
+}
+static lean_object* _init_l_String_Internal_tacticOrder___closed__2(void){
+_start:
+{
+lean_object* v___x_3_; 
+v___x_3_ = lean_mk_string_unchecked("tacticOrder", 11, 11);
+return v___x_3_;
+}
+}
+static lean_object* _init_l_String_Internal_tacticOrder___closed__3(void){
+_start:
+{
+lean_object* v___x_4_; lean_object* v___x_5_; lean_object* v___x_6_; lean_object* v___x_7_; 
+v___x_4_ = lean_obj_once(&l_String_Internal_tacticOrder___closed__2, &l_String_Internal_tacticOrder___closed__2_once, _init_l_String_Internal_tacticOrder___closed__2);
+v___x_5_ = lean_obj_once(&l_String_Internal_tacticOrder___closed__1, &l_String_Internal_tacticOrder___closed__1_once, _init_l_String_Internal_tacticOrder___closed__1);
+v___x_6_ = lean_obj_once(&l_String_Internal_tacticOrder___closed__0, &l_String_Internal_tacticOrder___closed__0_once, _init_l_String_Internal_tacticOrder___closed__0);
+v___x_7_ = l_Lean_Name_mkStr3(v___x_6_, v___x_5_, v___x_4_);
+return v___x_7_;
+}
+}
+static lean_object* _init_l_String_Internal_tacticOrder___closed__4(void){
+_start:
+{
+lean_object* v___x_8_; 
+v___x_8_ = lean_mk_string_unchecked("order", 5, 5);
+return v___x_8_;
+}
+}
+static lean_object* _init_l_String_Internal_tacticOrder___closed__5(void){
+_start:
+{
+uint8_t v___x_9_; lean_object* v___x_10_; lean_object* v___x_11_; 
+v___x_9_ = 0;
+v___x_10_ = lean_obj_once(&l_String_Internal_tacticOrder___closed__4, &l_String_Internal_tacticOrder___closed__4_once, _init_l_String_Internal_tacticOrder___closed__4);
+v___x_11_ = lean_alloc_ctor(6, 1, 1);
+lean_ctor_set(v___x_11_, 0, v___x_10_);
+lean_ctor_set_uint8(v___x_11_, sizeof(void*)*1, v___x_9_);
+return v___x_11_;
+}
+}
+static lean_object* _init_l_String_Internal_tacticOrder___closed__6(void){
+_start:
+{
+lean_object* v___x_12_; lean_object* v___x_13_; lean_object* v___x_14_; lean_object* v___x_15_; 
+v___x_12_ = lean_obj_once(&l_String_Internal_tacticOrder___closed__5, &l_String_Internal_tacticOrder___closed__5_once, _init_l_String_Internal_tacticOrder___closed__5);
+v___x_13_ = lean_unsigned_to_nat(1024u);
+v___x_14_ = lean_obj_once(&l_String_Internal_tacticOrder___closed__3, &l_String_Internal_tacticOrder___closed__3_once, _init_l_String_Internal_tacticOrder___closed__3);
+v___x_15_ = lean_alloc_ctor(3, 3, 0);
+lean_ctor_set(v___x_15_, 0, v___x_14_);
+lean_ctor_set(v___x_15_, 1, v___x_13_);
+lean_ctor_set(v___x_15_, 2, v___x_12_);
+return v___x_15_;
+}
+}
+static lean_object* _init_l_String_Internal_tacticOrder(void){
+_start:
+{
+lean_object* v___x_16_; 
+v___x_16_ = lean_obj_once(&l_String_Internal_tacticOrder___closed__6, &l_String_Internal_tacticOrder___closed__6_once, _init_l_String_Internal_tacticOrder___closed__6);
+return v___x_16_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0(void){
+_start:
+{
+lean_object* v___x_17_; 
+v___x_17_ = lean_mk_string_unchecked("Lean", 4, 4);
+return v___x_17_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1(void){
+_start:
+{
+lean_object* v___x_18_; 
+v___x_18_ = lean_mk_string_unchecked("Parser", 6, 6);
+return v___x_18_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2(void){
+_start:
+{
+lean_object* v___x_19_; 
+v___x_19_ = lean_mk_string_unchecked("Tactic", 6, 6);
+return v___x_19_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__3(void){
+_start:
+{
+lean_object* v___x_20_; 
+v___x_20_ = lean_mk_string_unchecked("tacticSeqBracketed", 18, 18);
+return v___x_20_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__4(void){
+_start:
+{
+lean_object* v___x_21_; lean_object* v___x_22_; lean_object* v___x_23_; lean_object* v___x_24_; lean_object* v___x_25_; 
+v___x_21_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__3, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__3_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__3);
+v___x_22_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2);
+v___x_23_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1);
+v___x_24_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0);
+v___x_25_ = l_Lean_Name_mkStr4(v___x_24_, v___x_23_, v___x_22_, v___x_21_);
+return v___x_25_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__5(void){
+_start:
+{
+lean_object* v___x_26_; 
+v___x_26_ = lean_mk_string_unchecked("{", 1, 1);
+return v___x_26_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__6(void){
+_start:
+{
+lean_object* v___x_27_; 
+v___x_27_ = lean_mk_string_unchecked("null", 4, 4);
+return v___x_27_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__7(void){
+_start:
+{
+lean_object* v___x_28_; lean_object* v___x_29_; 
+v___x_28_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__6, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__6_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__6);
+v___x_29_ = l_Lean_Name_mkStr1(v___x_28_);
+return v___x_29_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__8(void){
+_start:
+{
+lean_object* v___x_30_; 
+v___x_30_ = lean_mk_string_unchecked("simp", 4, 4);
+return v___x_30_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__9(void){
+_start:
+{
+lean_object* v___x_31_; lean_object* v___x_32_; lean_object* v___x_33_; lean_object* v___x_34_; lean_object* v___x_35_; 
+v___x_31_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__8, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__8_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__8);
+v___x_32_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2);
+v___x_33_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1);
+v___x_34_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0);
+v___x_35_ = l_Lean_Name_mkStr4(v___x_34_, v___x_33_, v___x_32_, v___x_31_);
+return v___x_35_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__10(void){
+_start:
+{
+lean_object* v___x_36_; 
+v___x_36_ = lean_mk_string_unchecked("optConfig", 9, 9);
+return v___x_36_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__11(void){
+_start:
+{
+lean_object* v___x_37_; lean_object* v___x_38_; lean_object* v___x_39_; lean_object* v___x_40_; lean_object* v___x_41_; 
+v___x_37_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__10, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__10_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__10);
+v___x_38_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2);
+v___x_39_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1);
+v___x_40_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0);
+v___x_41_ = l_Lean_Name_mkStr4(v___x_40_, v___x_39_, v___x_38_, v___x_37_);
+return v___x_41_;
+}
+}
 static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__12(void){
 _start:
 {
@@ -353,92 +470,803 @@ v___x_42_ = l_Array_mkArray0(lean_box(0));
 return v___x_42_;
 }
 }
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__13(void){
+_start:
+{
+lean_object* v___x_43_; 
+v___x_43_ = lean_mk_string_unchecked("[", 1, 1);
+return v___x_43_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__14(void){
+_start:
+{
+lean_object* v___x_44_; 
+v___x_44_ = lean_mk_string_unchecked("simpLemma", 9, 9);
+return v___x_44_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__15(void){
+_start:
+{
+lean_object* v___x_45_; lean_object* v___x_46_; lean_object* v___x_47_; lean_object* v___x_48_; lean_object* v___x_49_; 
+v___x_45_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__14, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__14_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__14);
+v___x_46_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2);
+v___x_47_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1);
+v___x_48_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0);
+v___x_49_ = l_Lean_Name_mkStr4(v___x_48_, v___x_47_, v___x_46_, v___x_45_);
+return v___x_49_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__16(void){
+_start:
+{
+lean_object* v___x_50_; 
+v___x_50_ = lean_mk_string_unchecked("Pos.Raw.lt_iff", 14, 14);
+return v___x_50_;
+}
+}
 static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__17(void){
 _start:
 {
 lean_object* v___x_51_; lean_object* v___x_52_; 
-v___x_51_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__16));
+v___x_51_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__16, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__16_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__16);
 v___x_52_ = l_String_toRawSubstring_x27(v___x_51_);
 return v___x_52_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18(void){
+_start:
+{
+lean_object* v___x_53_; 
+v___x_53_ = lean_mk_string_unchecked("Pos", 3, 3);
+return v___x_53_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19(void){
+_start:
+{
+lean_object* v___x_54_; 
+v___x_54_ = lean_mk_string_unchecked("Raw", 3, 3);
+return v___x_54_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20(void){
+_start:
+{
+lean_object* v___x_55_; 
+v___x_55_ = lean_mk_string_unchecked("lt_iff", 6, 6);
+return v___x_55_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__21(void){
+_start:
+{
+lean_object* v___x_56_; lean_object* v___x_57_; lean_object* v___x_58_; lean_object* v___x_59_; 
+v___x_56_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20);
+v___x_57_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19);
+v___x_58_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18);
+v___x_59_ = l_Lean_Name_mkStr3(v___x_58_, v___x_57_, v___x_56_);
+return v___x_59_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__22(void){
+_start:
+{
+lean_object* v___x_60_; lean_object* v___x_61_; lean_object* v___x_62_; lean_object* v___x_63_; lean_object* v___x_64_; 
+v___x_60_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20);
+v___x_61_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19);
+v___x_62_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18);
+v___x_63_ = lean_obj_once(&l_String_Internal_tacticOrder___closed__0, &l_String_Internal_tacticOrder___closed__0_once, _init_l_String_Internal_tacticOrder___closed__0);
+v___x_64_ = l_Lean_Name_mkStr4(v___x_63_, v___x_62_, v___x_61_, v___x_60_);
+return v___x_64_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__23(void){
+_start:
+{
+lean_object* v___x_65_; lean_object* v___x_66_; lean_object* v___x_67_; 
+v___x_65_ = lean_box(0);
+v___x_66_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__22, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__22_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__22);
+v___x_67_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_67_, 0, v___x_66_);
+lean_ctor_set(v___x_67_, 1, v___x_65_);
+return v___x_67_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__24(void){
+_start:
+{
+lean_object* v___x_68_; lean_object* v___x_69_; lean_object* v___x_70_; 
+v___x_68_ = lean_box(0);
+v___x_69_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__23, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__23_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__23);
+v___x_70_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_70_, 0, v___x_69_);
+lean_ctor_set(v___x_70_, 1, v___x_68_);
+return v___x_70_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__25(void){
+_start:
+{
+lean_object* v___x_71_; 
+v___x_71_ = lean_mk_string_unchecked(",", 1, 1);
+return v___x_71_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__26(void){
+_start:
+{
+lean_object* v___x_72_; 
+v___x_72_ = lean_mk_string_unchecked("Pos.Raw.le_iff", 14, 14);
+return v___x_72_;
 }
 }
 static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__27(void){
 _start:
 {
 lean_object* v___x_73_; lean_object* v___x_74_; 
-v___x_73_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__26));
+v___x_73_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__26, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__26_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__26);
 v___x_74_ = l_String_toRawSubstring_x27(v___x_73_);
 return v___x_74_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28(void){
+_start:
+{
+lean_object* v___x_75_; 
+v___x_75_ = lean_mk_string_unchecked("le_iff", 6, 6);
+return v___x_75_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__29(void){
+_start:
+{
+lean_object* v___x_76_; lean_object* v___x_77_; lean_object* v___x_78_; lean_object* v___x_79_; 
+v___x_76_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28);
+v___x_77_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19);
+v___x_78_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18);
+v___x_79_ = l_Lean_Name_mkStr3(v___x_78_, v___x_77_, v___x_76_);
+return v___x_79_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__30(void){
+_start:
+{
+lean_object* v___x_80_; lean_object* v___x_81_; lean_object* v___x_82_; lean_object* v___x_83_; lean_object* v___x_84_; 
+v___x_80_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28);
+v___x_81_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19);
+v___x_82_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18);
+v___x_83_ = lean_obj_once(&l_String_Internal_tacticOrder___closed__0, &l_String_Internal_tacticOrder___closed__0_once, _init_l_String_Internal_tacticOrder___closed__0);
+v___x_84_ = l_Lean_Name_mkStr4(v___x_83_, v___x_82_, v___x_81_, v___x_80_);
+return v___x_84_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__31(void){
+_start:
+{
+lean_object* v___x_85_; lean_object* v___x_86_; lean_object* v___x_87_; 
+v___x_85_ = lean_box(0);
+v___x_86_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__30, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__30_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__30);
+v___x_87_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_87_, 0, v___x_86_);
+lean_ctor_set(v___x_87_, 1, v___x_85_);
+return v___x_87_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__32(void){
+_start:
+{
+lean_object* v___x_88_; lean_object* v___x_89_; lean_object* v___x_90_; 
+v___x_88_ = lean_box(0);
+v___x_89_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__31, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__31_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__31);
+v___x_90_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_90_, 0, v___x_89_);
+lean_ctor_set(v___x_90_, 1, v___x_88_);
+return v___x_90_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__33(void){
+_start:
+{
+lean_object* v___x_91_; 
+v___x_91_ = lean_mk_string_unchecked("String.Pos.lt_iff", 17, 17);
+return v___x_91_;
 }
 }
 static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__34(void){
 _start:
 {
 lean_object* v___x_92_; lean_object* v___x_93_; 
-v___x_92_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__33));
+v___x_92_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__33, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__33_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__33);
 v___x_93_ = l_String_toRawSubstring_x27(v___x_92_);
 return v___x_93_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__35(void){
+_start:
+{
+lean_object* v___x_94_; lean_object* v___x_95_; lean_object* v___x_96_; lean_object* v___x_97_; 
+v___x_94_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20);
+v___x_95_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18);
+v___x_96_ = lean_obj_once(&l_String_Internal_tacticOrder___closed__0, &l_String_Internal_tacticOrder___closed__0_once, _init_l_String_Internal_tacticOrder___closed__0);
+v___x_97_ = l_Lean_Name_mkStr3(v___x_96_, v___x_95_, v___x_94_);
+return v___x_97_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__36(void){
+_start:
+{
+lean_object* v___x_98_; lean_object* v___x_99_; lean_object* v___x_100_; 
+v___x_98_ = lean_box(0);
+v___x_99_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__35, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__35_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__35);
+v___x_100_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_100_, 0, v___x_99_);
+lean_ctor_set(v___x_100_, 1, v___x_98_);
+return v___x_100_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__37(void){
+_start:
+{
+lean_object* v___x_101_; lean_object* v___x_102_; lean_object* v___x_103_; 
+v___x_101_ = lean_box(0);
+v___x_102_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__36, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__36_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__36);
+v___x_103_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_103_, 0, v___x_102_);
+lean_ctor_set(v___x_103_, 1, v___x_101_);
+return v___x_103_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__38(void){
+_start:
+{
+lean_object* v___x_104_; 
+v___x_104_ = lean_mk_string_unchecked("String.Pos.le_iff", 17, 17);
+return v___x_104_;
 }
 }
 static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__39(void){
 _start:
 {
 lean_object* v___x_105_; lean_object* v___x_106_; 
-v___x_105_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__38));
+v___x_105_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__38, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__38_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__38);
 v___x_106_ = l_String_toRawSubstring_x27(v___x_105_);
 return v___x_106_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__40(void){
+_start:
+{
+lean_object* v___x_107_; lean_object* v___x_108_; lean_object* v___x_109_; lean_object* v___x_110_; 
+v___x_107_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28);
+v___x_108_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18);
+v___x_109_ = lean_obj_once(&l_String_Internal_tacticOrder___closed__0, &l_String_Internal_tacticOrder___closed__0_once, _init_l_String_Internal_tacticOrder___closed__0);
+v___x_110_ = l_Lean_Name_mkStr3(v___x_109_, v___x_108_, v___x_107_);
+return v___x_110_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__41(void){
+_start:
+{
+lean_object* v___x_111_; lean_object* v___x_112_; lean_object* v___x_113_; 
+v___x_111_ = lean_box(0);
+v___x_112_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__40, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__40_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__40);
+v___x_113_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_113_, 0, v___x_112_);
+lean_ctor_set(v___x_113_, 1, v___x_111_);
+return v___x_113_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__42(void){
+_start:
+{
+lean_object* v___x_114_; lean_object* v___x_115_; lean_object* v___x_116_; 
+v___x_114_ = lean_box(0);
+v___x_115_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__41, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__41_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__41);
+v___x_116_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_116_, 0, v___x_115_);
+lean_ctor_set(v___x_116_, 1, v___x_114_);
+return v___x_116_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__43(void){
+_start:
+{
+lean_object* v___x_117_; 
+v___x_117_ = lean_mk_string_unchecked("Slice.Pos.lt_iff", 16, 16);
+return v___x_117_;
 }
 }
 static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__44(void){
 _start:
 {
 lean_object* v___x_118_; lean_object* v___x_119_; 
-v___x_118_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__43));
+v___x_118_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__43, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__43_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__43);
 v___x_119_ = l_String_toRawSubstring_x27(v___x_118_);
 return v___x_119_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45(void){
+_start:
+{
+lean_object* v___x_120_; 
+v___x_120_ = lean_mk_string_unchecked("Slice", 5, 5);
+return v___x_120_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__46(void){
+_start:
+{
+lean_object* v___x_121_; lean_object* v___x_122_; lean_object* v___x_123_; lean_object* v___x_124_; 
+v___x_121_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20);
+v___x_122_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18);
+v___x_123_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45);
+v___x_124_ = l_Lean_Name_mkStr3(v___x_123_, v___x_122_, v___x_121_);
+return v___x_124_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__47(void){
+_start:
+{
+lean_object* v___x_125_; lean_object* v___x_126_; lean_object* v___x_127_; lean_object* v___x_128_; lean_object* v___x_129_; 
+v___x_125_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__20);
+v___x_126_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18);
+v___x_127_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45);
+v___x_128_ = lean_obj_once(&l_String_Internal_tacticOrder___closed__0, &l_String_Internal_tacticOrder___closed__0_once, _init_l_String_Internal_tacticOrder___closed__0);
+v___x_129_ = l_Lean_Name_mkStr4(v___x_128_, v___x_127_, v___x_126_, v___x_125_);
+return v___x_129_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__48(void){
+_start:
+{
+lean_object* v___x_130_; lean_object* v___x_131_; lean_object* v___x_132_; 
+v___x_130_ = lean_box(0);
+v___x_131_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__47, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__47_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__47);
+v___x_132_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_132_, 0, v___x_131_);
+lean_ctor_set(v___x_132_, 1, v___x_130_);
+return v___x_132_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__49(void){
+_start:
+{
+lean_object* v___x_133_; lean_object* v___x_134_; lean_object* v___x_135_; 
+v___x_133_ = lean_box(0);
+v___x_134_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__48, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__48_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__48);
+v___x_135_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_135_, 0, v___x_134_);
+lean_ctor_set(v___x_135_, 1, v___x_133_);
+return v___x_135_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__50(void){
+_start:
+{
+lean_object* v___x_136_; 
+v___x_136_ = lean_mk_string_unchecked("Slice.Pos.le_iff", 16, 16);
+return v___x_136_;
 }
 }
 static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__51(void){
 _start:
 {
 lean_object* v___x_137_; lean_object* v___x_138_; 
-v___x_137_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__50));
+v___x_137_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__50, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__50_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__50);
 v___x_138_ = l_String_toRawSubstring_x27(v___x_137_);
 return v___x_138_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__52(void){
+_start:
+{
+lean_object* v___x_139_; lean_object* v___x_140_; lean_object* v___x_141_; lean_object* v___x_142_; 
+v___x_139_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28);
+v___x_140_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18);
+v___x_141_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45);
+v___x_142_ = l_Lean_Name_mkStr3(v___x_141_, v___x_140_, v___x_139_);
+return v___x_142_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__53(void){
+_start:
+{
+lean_object* v___x_143_; lean_object* v___x_144_; lean_object* v___x_145_; lean_object* v___x_146_; lean_object* v___x_147_; 
+v___x_143_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__28);
+v___x_144_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18);
+v___x_145_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45);
+v___x_146_ = lean_obj_once(&l_String_Internal_tacticOrder___closed__0, &l_String_Internal_tacticOrder___closed__0_once, _init_l_String_Internal_tacticOrder___closed__0);
+v___x_147_ = l_Lean_Name_mkStr4(v___x_146_, v___x_145_, v___x_144_, v___x_143_);
+return v___x_147_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__54(void){
+_start:
+{
+lean_object* v___x_148_; lean_object* v___x_149_; lean_object* v___x_150_; 
+v___x_148_ = lean_box(0);
+v___x_149_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__53, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__53_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__53);
+v___x_150_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_150_, 0, v___x_149_);
+lean_ctor_set(v___x_150_, 1, v___x_148_);
+return v___x_150_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__55(void){
+_start:
+{
+lean_object* v___x_151_; lean_object* v___x_152_; lean_object* v___x_153_; 
+v___x_151_ = lean_box(0);
+v___x_152_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__54, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__54_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__54);
+v___x_153_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_153_, 0, v___x_152_);
+lean_ctor_set(v___x_153_, 1, v___x_151_);
+return v___x_153_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__56(void){
+_start:
+{
+lean_object* v___x_154_; 
+v___x_154_ = lean_mk_string_unchecked("Pos.Raw.ext_iff", 15, 15);
+return v___x_154_;
 }
 }
 static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__57(void){
 _start:
 {
 lean_object* v___x_155_; lean_object* v___x_156_; 
-v___x_155_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__56));
+v___x_155_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__56, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__56_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__56);
 v___x_156_ = l_String_toRawSubstring_x27(v___x_155_);
 return v___x_156_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58(void){
+_start:
+{
+lean_object* v___x_157_; 
+v___x_157_ = lean_mk_string_unchecked("ext_iff", 7, 7);
+return v___x_157_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__59(void){
+_start:
+{
+lean_object* v___x_158_; lean_object* v___x_159_; lean_object* v___x_160_; lean_object* v___x_161_; 
+v___x_158_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58);
+v___x_159_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19);
+v___x_160_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18);
+v___x_161_ = l_Lean_Name_mkStr3(v___x_160_, v___x_159_, v___x_158_);
+return v___x_161_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__60(void){
+_start:
+{
+lean_object* v___x_162_; lean_object* v___x_163_; lean_object* v___x_164_; lean_object* v___x_165_; lean_object* v___x_166_; 
+v___x_162_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58);
+v___x_163_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__19);
+v___x_164_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18);
+v___x_165_ = lean_obj_once(&l_String_Internal_tacticOrder___closed__0, &l_String_Internal_tacticOrder___closed__0_once, _init_l_String_Internal_tacticOrder___closed__0);
+v___x_166_ = l_Lean_Name_mkStr4(v___x_165_, v___x_164_, v___x_163_, v___x_162_);
+return v___x_166_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__61(void){
+_start:
+{
+lean_object* v___x_167_; lean_object* v___x_168_; lean_object* v___x_169_; 
+v___x_167_ = lean_box(0);
+v___x_168_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__60, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__60_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__60);
+v___x_169_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_169_, 0, v___x_168_);
+lean_ctor_set(v___x_169_, 1, v___x_167_);
+return v___x_169_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__62(void){
+_start:
+{
+lean_object* v___x_170_; lean_object* v___x_171_; lean_object* v___x_172_; 
+v___x_170_ = lean_box(0);
+v___x_171_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__61, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__61_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__61);
+v___x_172_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_172_, 0, v___x_171_);
+lean_ctor_set(v___x_172_, 1, v___x_170_);
+return v___x_172_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__63(void){
+_start:
+{
+lean_object* v___x_173_; 
+v___x_173_ = lean_mk_string_unchecked("String.Pos.ext_iff", 18, 18);
+return v___x_173_;
 }
 }
 static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__64(void){
 _start:
 {
 lean_object* v___x_174_; lean_object* v___x_175_; 
-v___x_174_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__63));
+v___x_174_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__63, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__63_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__63);
 v___x_175_ = l_String_toRawSubstring_x27(v___x_174_);
 return v___x_175_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__65(void){
+_start:
+{
+lean_object* v___x_176_; lean_object* v___x_177_; lean_object* v___x_178_; lean_object* v___x_179_; 
+v___x_176_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58);
+v___x_177_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18);
+v___x_178_ = lean_obj_once(&l_String_Internal_tacticOrder___closed__0, &l_String_Internal_tacticOrder___closed__0_once, _init_l_String_Internal_tacticOrder___closed__0);
+v___x_179_ = l_Lean_Name_mkStr3(v___x_178_, v___x_177_, v___x_176_);
+return v___x_179_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__66(void){
+_start:
+{
+lean_object* v___x_180_; lean_object* v___x_181_; lean_object* v___x_182_; 
+v___x_180_ = lean_box(0);
+v___x_181_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__65, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__65_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__65);
+v___x_182_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_182_, 0, v___x_181_);
+lean_ctor_set(v___x_182_, 1, v___x_180_);
+return v___x_182_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__67(void){
+_start:
+{
+lean_object* v___x_183_; lean_object* v___x_184_; lean_object* v___x_185_; 
+v___x_183_ = lean_box(0);
+v___x_184_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__66, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__66_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__66);
+v___x_185_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_185_, 0, v___x_184_);
+lean_ctor_set(v___x_185_, 1, v___x_183_);
+return v___x_185_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__68(void){
+_start:
+{
+lean_object* v___x_186_; 
+v___x_186_ = lean_mk_string_unchecked("Slice.Pos.ext_iff", 17, 17);
+return v___x_186_;
 }
 }
 static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__69(void){
 _start:
 {
 lean_object* v___x_187_; lean_object* v___x_188_; 
-v___x_187_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__68));
+v___x_187_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__68, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__68_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__68);
 v___x_188_ = l_String_toRawSubstring_x27(v___x_187_);
 return v___x_188_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__70(void){
+_start:
+{
+lean_object* v___x_189_; lean_object* v___x_190_; lean_object* v___x_191_; lean_object* v___x_192_; 
+v___x_189_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58);
+v___x_190_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18);
+v___x_191_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45);
+v___x_192_ = l_Lean_Name_mkStr3(v___x_191_, v___x_190_, v___x_189_);
+return v___x_192_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__71(void){
+_start:
+{
+lean_object* v___x_193_; lean_object* v___x_194_; lean_object* v___x_195_; lean_object* v___x_196_; lean_object* v___x_197_; 
+v___x_193_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__58);
+v___x_194_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__18);
+v___x_195_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__45);
+v___x_196_ = lean_obj_once(&l_String_Internal_tacticOrder___closed__0, &l_String_Internal_tacticOrder___closed__0_once, _init_l_String_Internal_tacticOrder___closed__0);
+v___x_197_ = l_Lean_Name_mkStr4(v___x_196_, v___x_195_, v___x_194_, v___x_193_);
+return v___x_197_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__72(void){
+_start:
+{
+lean_object* v___x_198_; lean_object* v___x_199_; lean_object* v___x_200_; 
+v___x_198_ = lean_box(0);
+v___x_199_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__71, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__71_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__71);
+v___x_200_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_200_, 0, v___x_199_);
+lean_ctor_set(v___x_200_, 1, v___x_198_);
+return v___x_200_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__73(void){
+_start:
+{
+lean_object* v___x_201_; lean_object* v___x_202_; lean_object* v___x_203_; 
+v___x_201_ = lean_box(0);
+v___x_202_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__72, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__72_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__72);
+v___x_203_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_203_, 0, v___x_202_);
+lean_ctor_set(v___x_203_, 1, v___x_201_);
+return v___x_203_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__74(void){
+_start:
+{
+lean_object* v___x_204_; 
+v___x_204_ = lean_mk_string_unchecked("]", 1, 1);
+return v___x_204_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__75(void){
+_start:
+{
+lean_object* v___x_205_; 
+v___x_205_ = lean_mk_string_unchecked("location", 8, 8);
+return v___x_205_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__76(void){
+_start:
+{
+lean_object* v___x_206_; lean_object* v___x_207_; lean_object* v___x_208_; lean_object* v___x_209_; lean_object* v___x_210_; 
+v___x_206_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__75, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__75_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__75);
+v___x_207_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2);
+v___x_208_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1);
+v___x_209_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0);
+v___x_210_ = l_Lean_Name_mkStr4(v___x_209_, v___x_208_, v___x_207_, v___x_206_);
+return v___x_210_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__77(void){
+_start:
+{
+lean_object* v___x_211_; 
+v___x_211_ = lean_mk_string_unchecked("at", 2, 2);
+return v___x_211_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__78(void){
+_start:
+{
+lean_object* v___x_212_; 
+v___x_212_ = lean_mk_string_unchecked("locationWildcard", 16, 16);
+return v___x_212_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__79(void){
+_start:
+{
+lean_object* v___x_213_; lean_object* v___x_214_; lean_object* v___x_215_; lean_object* v___x_216_; lean_object* v___x_217_; 
+v___x_213_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__78, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__78_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__78);
+v___x_214_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2);
+v___x_215_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1);
+v___x_216_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0);
+v___x_217_ = l_Lean_Name_mkStr4(v___x_216_, v___x_215_, v___x_214_, v___x_213_);
+return v___x_217_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__80(void){
+_start:
+{
+lean_object* v___x_218_; 
+v___x_218_ = lean_mk_string_unchecked("*", 1, 1);
+return v___x_218_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__81(void){
+_start:
+{
+lean_object* v___x_219_; 
+v___x_219_ = lean_mk_string_unchecked(";", 1, 1);
+return v___x_219_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__82(void){
+_start:
+{
+lean_object* v___x_220_; 
+v___x_220_ = lean_mk_string_unchecked("tacticTry_", 10, 10);
+return v___x_220_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__83(void){
+_start:
+{
+lean_object* v___x_221_; lean_object* v___x_222_; lean_object* v___x_223_; lean_object* v___x_224_; lean_object* v___x_225_; 
+v___x_221_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__82, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__82_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__82);
+v___x_222_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2);
+v___x_223_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1);
+v___x_224_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0);
+v___x_225_ = l_Lean_Name_mkStr4(v___x_224_, v___x_223_, v___x_222_, v___x_221_);
+return v___x_225_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__84(void){
+_start:
+{
+lean_object* v___x_226_; 
+v___x_226_ = lean_mk_string_unchecked("try", 3, 3);
+return v___x_226_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__85(void){
+_start:
+{
+lean_object* v___x_227_; 
+v___x_227_ = lean_mk_string_unchecked("tacticSeq", 9, 9);
+return v___x_227_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__86(void){
+_start:
+{
+lean_object* v___x_228_; lean_object* v___x_229_; lean_object* v___x_230_; lean_object* v___x_231_; lean_object* v___x_232_; 
+v___x_228_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__85, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__85_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__85);
+v___x_229_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2);
+v___x_230_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1);
+v___x_231_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0);
+v___x_232_ = l_Lean_Name_mkStr4(v___x_231_, v___x_230_, v___x_229_, v___x_228_);
+return v___x_232_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__87(void){
+_start:
+{
+lean_object* v___x_233_; 
+v___x_233_ = lean_mk_string_unchecked("tacticSeq1Indented", 18, 18);
+return v___x_233_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__88(void){
+_start:
+{
+lean_object* v___x_234_; lean_object* v___x_235_; lean_object* v___x_236_; lean_object* v___x_237_; lean_object* v___x_238_; 
+v___x_234_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__87, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__87_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__87);
+v___x_235_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2);
+v___x_236_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1);
+v___x_237_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0);
+v___x_238_ = l_Lean_Name_mkStr4(v___x_237_, v___x_236_, v___x_235_, v___x_234_);
+return v___x_238_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__89(void){
+_start:
+{
+lean_object* v___x_239_; 
+v___x_239_ = lean_mk_string_unchecked("omega", 5, 5);
+return v___x_239_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__90(void){
+_start:
+{
+lean_object* v___x_240_; lean_object* v___x_241_; lean_object* v___x_242_; lean_object* v___x_243_; lean_object* v___x_244_; 
+v___x_240_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__89, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__89_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__89);
+v___x_241_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__2);
+v___x_242_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__1);
+v___x_243_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__0);
+v___x_244_ = l_Lean_Name_mkStr4(v___x_243_, v___x_242_, v___x_241_, v___x_240_);
+return v___x_244_;
+}
+}
+static lean_object* _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__91(void){
+_start:
+{
+lean_object* v___x_245_; 
+v___x_245_ = lean_mk_string_unchecked("}", 1, 1);
+return v___x_245_;
 }
 }
 LEAN_EXPORT lean_object* l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1(lean_object* v_x_246_, lean_object* v_a_247_, lean_object* v_a_248_){
 _start:
 {
 lean_object* v___x_249_; uint8_t v___x_250_; 
-v___x_249_ = ((lean_object*)(l_String_Internal_tacticOrder___closed__3));
+v___x_249_ = lean_obj_once(&l_String_Internal_tacticOrder___closed__3, &l_String_Internal_tacticOrder___closed__3_once, _init_l_String_Internal_tacticOrder___closed__3);
 v___x_250_ = l_Lean_Syntax_isOfKind(v_x_246_, v___x_249_);
 if (v___x_250_ == 0)
 {
@@ -457,19 +1285,19 @@ v_currMacroScope_254_ = lean_ctor_get(v_a_247_, 2);
 v_ref_255_ = lean_ctor_get(v_a_247_, 5);
 v___x_256_ = 0;
 v___x_257_ = l_Lean_SourceInfo_fromRef(v_ref_255_, v___x_256_);
-v___x_258_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__4));
-v___x_259_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__5));
+v___x_258_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__4, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__4_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__4);
+v___x_259_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__5, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__5_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__5);
 lean_inc_n(v___x_257_, 43);
 v___x_260_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_260_, 0, v___x_257_);
 lean_ctor_set(v___x_260_, 1, v___x_259_);
-v___x_261_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__7));
-v___x_262_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__8));
-v___x_263_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__9));
+v___x_261_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__7, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__7_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__7);
+v___x_262_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__8, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__8_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__8);
+v___x_263_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__9, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__9_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__9);
 v___x_264_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_264_, 0, v___x_257_);
 lean_ctor_set(v___x_264_, 1, v___x_262_);
-v___x_265_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__11));
+v___x_265_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__11, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__11_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__11);
 v___x_266_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__12, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__12_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__12);
 v___x_267_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_267_, 0, v___x_257_);
@@ -477,31 +1305,31 @@ lean_ctor_set(v___x_267_, 1, v___x_261_);
 lean_ctor_set(v___x_267_, 2, v___x_266_);
 lean_inc_ref_n(v___x_267_, 20);
 v___x_268_ = l_Lean_Syntax_node1(v___x_257_, v___x_265_, v___x_267_);
-v___x_269_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__13));
+v___x_269_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__13, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__13_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__13);
 v___x_270_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_270_, 0, v___x_257_);
 lean_ctor_set(v___x_270_, 1, v___x_269_);
-v___x_271_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__15));
+v___x_271_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__15, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__15_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__15);
 v___x_272_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__17, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__17_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__17);
-v___x_273_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__21));
+v___x_273_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__21, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__21_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__21);
 lean_inc_n(v_currMacroScope_254_, 9);
 lean_inc_n(v_quotContext_253_, 9);
 v___x_274_ = l_Lean_addMacroScope(v_quotContext_253_, v___x_273_, v_currMacroScope_254_);
-v___x_275_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__24));
+v___x_275_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__24, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__24_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__24);
 v___x_276_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_276_, 0, v___x_257_);
 lean_ctor_set(v___x_276_, 1, v___x_272_);
 lean_ctor_set(v___x_276_, 2, v___x_274_);
 lean_ctor_set(v___x_276_, 3, v___x_275_);
 v___x_277_ = l_Lean_Syntax_node3(v___x_257_, v___x_271_, v___x_267_, v___x_267_, v___x_276_);
-v___x_278_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__25));
+v___x_278_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__25, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__25_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__25);
 v___x_279_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_279_, 0, v___x_257_);
 lean_ctor_set(v___x_279_, 1, v___x_278_);
 v___x_280_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__27, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__27_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__27);
-v___x_281_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__29));
+v___x_281_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__29, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__29_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__29);
 v___x_282_ = l_Lean_addMacroScope(v_quotContext_253_, v___x_281_, v_currMacroScope_254_);
-v___x_283_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__32));
+v___x_283_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__32, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__32_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__32);
 v___x_284_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_284_, 0, v___x_257_);
 lean_ctor_set(v___x_284_, 1, v___x_280_);
@@ -509,9 +1337,9 @@ lean_ctor_set(v___x_284_, 2, v___x_282_);
 lean_ctor_set(v___x_284_, 3, v___x_283_);
 v___x_285_ = l_Lean_Syntax_node3(v___x_257_, v___x_271_, v___x_267_, v___x_267_, v___x_284_);
 v___x_286_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__34, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__34_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__34);
-v___x_287_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__35));
+v___x_287_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__35, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__35_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__35);
 v___x_288_ = l_Lean_addMacroScope(v_quotContext_253_, v___x_287_, v_currMacroScope_254_);
-v___x_289_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__37));
+v___x_289_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__37, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__37_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__37);
 v___x_290_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_290_, 0, v___x_257_);
 lean_ctor_set(v___x_290_, 1, v___x_286_);
@@ -519,9 +1347,9 @@ lean_ctor_set(v___x_290_, 2, v___x_288_);
 lean_ctor_set(v___x_290_, 3, v___x_289_);
 v___x_291_ = l_Lean_Syntax_node3(v___x_257_, v___x_271_, v___x_267_, v___x_267_, v___x_290_);
 v___x_292_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__39, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__39_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__39);
-v___x_293_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__40));
+v___x_293_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__40, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__40_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__40);
 v___x_294_ = l_Lean_addMacroScope(v_quotContext_253_, v___x_293_, v_currMacroScope_254_);
-v___x_295_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__42));
+v___x_295_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__42, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__42_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__42);
 v___x_296_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_296_, 0, v___x_257_);
 lean_ctor_set(v___x_296_, 1, v___x_292_);
@@ -529,9 +1357,9 @@ lean_ctor_set(v___x_296_, 2, v___x_294_);
 lean_ctor_set(v___x_296_, 3, v___x_295_);
 v___x_297_ = l_Lean_Syntax_node3(v___x_257_, v___x_271_, v___x_267_, v___x_267_, v___x_296_);
 v___x_298_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__44, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__44_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__44);
-v___x_299_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__46));
+v___x_299_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__46, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__46_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__46);
 v___x_300_ = l_Lean_addMacroScope(v_quotContext_253_, v___x_299_, v_currMacroScope_254_);
-v___x_301_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__49));
+v___x_301_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__49, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__49_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__49);
 v___x_302_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_302_, 0, v___x_257_);
 lean_ctor_set(v___x_302_, 1, v___x_298_);
@@ -539,9 +1367,9 @@ lean_ctor_set(v___x_302_, 2, v___x_300_);
 lean_ctor_set(v___x_302_, 3, v___x_301_);
 v___x_303_ = l_Lean_Syntax_node3(v___x_257_, v___x_271_, v___x_267_, v___x_267_, v___x_302_);
 v___x_304_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__51, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__51_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__51);
-v___x_305_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__52));
+v___x_305_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__52, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__52_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__52);
 v___x_306_ = l_Lean_addMacroScope(v_quotContext_253_, v___x_305_, v_currMacroScope_254_);
-v___x_307_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__55));
+v___x_307_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__55, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__55_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__55);
 v___x_308_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_308_, 0, v___x_257_);
 lean_ctor_set(v___x_308_, 1, v___x_304_);
@@ -549,9 +1377,9 @@ lean_ctor_set(v___x_308_, 2, v___x_306_);
 lean_ctor_set(v___x_308_, 3, v___x_307_);
 v___x_309_ = l_Lean_Syntax_node3(v___x_257_, v___x_271_, v___x_267_, v___x_267_, v___x_308_);
 v___x_310_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__57, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__57_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__57);
-v___x_311_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__59));
+v___x_311_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__59, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__59_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__59);
 v___x_312_ = l_Lean_addMacroScope(v_quotContext_253_, v___x_311_, v_currMacroScope_254_);
-v___x_313_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__62));
+v___x_313_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__62, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__62_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__62);
 v___x_314_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_314_, 0, v___x_257_);
 lean_ctor_set(v___x_314_, 1, v___x_310_);
@@ -559,9 +1387,9 @@ lean_ctor_set(v___x_314_, 2, v___x_312_);
 lean_ctor_set(v___x_314_, 3, v___x_313_);
 v___x_315_ = l_Lean_Syntax_node3(v___x_257_, v___x_271_, v___x_267_, v___x_267_, v___x_314_);
 v___x_316_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__64, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__64_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__64);
-v___x_317_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__65));
+v___x_317_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__65, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__65_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__65);
 v___x_318_ = l_Lean_addMacroScope(v_quotContext_253_, v___x_317_, v_currMacroScope_254_);
-v___x_319_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__67));
+v___x_319_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__67, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__67_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__67);
 v___x_320_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_320_, 0, v___x_257_);
 lean_ctor_set(v___x_320_, 1, v___x_316_);
@@ -569,9 +1397,9 @@ lean_ctor_set(v___x_320_, 2, v___x_318_);
 lean_ctor_set(v___x_320_, 3, v___x_319_);
 v___x_321_ = l_Lean_Syntax_node3(v___x_257_, v___x_271_, v___x_267_, v___x_267_, v___x_320_);
 v___x_322_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__69, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__69_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__69);
-v___x_323_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__70));
+v___x_323_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__70, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__70_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__70);
 v___x_324_ = l_Lean_addMacroScope(v_quotContext_253_, v___x_323_, v_currMacroScope_254_);
-v___x_325_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__73));
+v___x_325_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__73, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__73_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__73);
 v___x_326_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v___x_326_, 0, v___x_257_);
 lean_ctor_set(v___x_326_, 1, v___x_322_);
@@ -602,18 +1430,18 @@ v___x_347_ = lean_alloc_ctor(1, 3, 0);
 lean_ctor_set(v___x_347_, 0, v___x_257_);
 lean_ctor_set(v___x_347_, 1, v___x_261_);
 lean_ctor_set(v___x_347_, 2, v___x_346_);
-v___x_348_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__74));
+v___x_348_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__74, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__74_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__74);
 v___x_349_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_349_, 0, v___x_257_);
 lean_ctor_set(v___x_349_, 1, v___x_348_);
 v___x_350_ = l_Lean_Syntax_node3(v___x_257_, v___x_261_, v___x_270_, v___x_347_, v___x_349_);
-v___x_351_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__76));
-v___x_352_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__77));
+v___x_351_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__76, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__76_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__76);
+v___x_352_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__77, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__77_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__77);
 v___x_353_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_353_, 0, v___x_257_);
 lean_ctor_set(v___x_353_, 1, v___x_352_);
-v___x_354_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__79));
-v___x_355_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__80));
+v___x_354_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__79, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__79_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__79);
+v___x_355_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__80, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__80_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__80);
 v___x_356_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_356_, 0, v___x_257_);
 lean_ctor_set(v___x_356_, 1, v___x_355_);
@@ -622,19 +1450,19 @@ v___x_358_ = l_Lean_Syntax_node2(v___x_257_, v___x_351_, v___x_353_, v___x_357_)
 v___x_359_ = l_Lean_Syntax_node1(v___x_257_, v___x_261_, v___x_358_);
 lean_inc(v___x_268_);
 v___x_360_ = l_Lean_Syntax_node6(v___x_257_, v___x_263_, v___x_264_, v___x_268_, v___x_267_, v___x_267_, v___x_350_, v___x_359_);
-v___x_361_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__81));
+v___x_361_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__81, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__81_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__81);
 v___x_362_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_362_, 0, v___x_257_);
 lean_ctor_set(v___x_362_, 1, v___x_361_);
-v___x_363_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__83));
-v___x_364_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__84));
+v___x_363_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__83, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__83_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__83);
+v___x_364_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__84, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__84_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__84);
 v___x_365_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_365_, 0, v___x_257_);
 lean_ctor_set(v___x_365_, 1, v___x_364_);
-v___x_366_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__86));
-v___x_367_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__88));
-v___x_368_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__89));
-v___x_369_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__90));
+v___x_366_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__86, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__86_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__86);
+v___x_367_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__88, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__88_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__88);
+v___x_368_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__89, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__89_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__89);
+v___x_369_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__90, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__90_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__90);
 v___x_370_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_370_, 0, v___x_257_);
 lean_ctor_set(v___x_370_, 1, v___x_368_);
@@ -644,7 +1472,7 @@ v___x_373_ = l_Lean_Syntax_node1(v___x_257_, v___x_367_, v___x_372_);
 v___x_374_ = l_Lean_Syntax_node1(v___x_257_, v___x_366_, v___x_373_);
 v___x_375_ = l_Lean_Syntax_node2(v___x_257_, v___x_363_, v___x_365_, v___x_374_);
 v___x_376_ = l_Lean_Syntax_node3(v___x_257_, v___x_261_, v___x_360_, v___x_362_, v___x_375_);
-v___x_377_ = ((lean_object*)(l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__91));
+v___x_377_ = lean_obj_once(&l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__91, &l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__91_once, _init_l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1___closed__91);
 v___x_378_ = lean_alloc_ctor(2, 2, 0);
 lean_ctor_set(v___x_378_, 0, v___x_257_);
 lean_ctor_set(v___x_378_, 1, v___x_377_);
@@ -663,6 +1491,14 @@ lean_object* v_res_384_;
 v_res_384_ = l_String_Internal___aux__Init__Data__String__OrderInstances______macroRules__String__Internal__tacticOrder__1(v_x_381_, v_a_382_, v_a_383_);
 lean_dec_ref(v_a_382_);
 return v_res_384_;
+}
+}
+static lean_object* _init_l_String_Pos_Raw_instToIntCiOfNatInt(void){
+_start:
+{
+lean_object* v___f_385_; 
+v___f_385_ = lean_alloc_closure((void*)(l_Int_ofNat___boxed), 1, 0);
+return v___f_385_;
 }
 }
 static lean_object* _init_l_String_Pos_Raw_instTransLe(void){
@@ -727,6 +1563,30 @@ lean_dec(v_a_396_);
 return v_res_398_;
 }
 }
+static lean_object* _init_l_String_Pos_Raw_instLinearOrderPackage___closed__0(void){
+_start:
+{
+lean_object* v___f_399_; 
+v___f_399_ = lean_alloc_closure((void*)(l_String_Pos_Raw_instLinearOrderPackage___lam__0___boxed), 2, 0);
+return v___f_399_;
+}
+}
+static lean_object* _init_l_String_Pos_Raw_instLinearOrderPackage___closed__1(void){
+_start:
+{
+lean_object* v___f_400_; 
+v___f_400_ = lean_alloc_closure((void*)(l_String_Pos_Raw_instLinearOrderPackage___lam__1___boxed), 2, 0);
+return v___f_400_;
+}
+}
+static lean_object* _init_l_String_Pos_Raw_instLinearOrderPackage___closed__2(void){
+_start:
+{
+lean_object* v_this_401_; 
+v_this_401_ = lean_alloc_closure((void*)(l_String_instDecidableLeRaw___boxed), 2, 0);
+return v_this_401_;
+}
+}
 static lean_object* _init_l_String_Pos_Raw_instLinearOrderPackage___closed__3(void){
 _start:
 {
@@ -737,12 +1597,30 @@ lean_closure_set(v___f_403_, 0, v___x_402_);
 return v___f_403_;
 }
 }
+static lean_object* _init_l_String_Pos_Raw_instLinearOrderPackage___closed__4(void){
+_start:
+{
+lean_object* v___x_404_; 
+v___x_404_ = lean_alloc_closure((void*)(l_String_instDecidableLtRaw___boxed), 2, 0);
+return v___x_404_;
+}
+}
+static lean_object* _init_l_String_Pos_Raw_instLinearOrderPackage___closed__5(void){
+_start:
+{
+lean_object* v_this_405_; lean_object* v___f_406_; 
+v_this_405_ = lean_obj_once(&l_String_Pos_Raw_instLinearOrderPackage___closed__2, &l_String_Pos_Raw_instLinearOrderPackage___closed__2_once, _init_l_String_Pos_Raw_instLinearOrderPackage___closed__2);
+v___f_406_ = lean_alloc_closure((void*)(l_Std_FactoryInstances_instOrdOfDecidableLE___redArg___lam__0___boxed), 3, 1);
+lean_closure_set(v___f_406_, 0, v_this_405_);
+return v___f_406_;
+}
+}
 static lean_object* _init_l_String_Pos_Raw_instLinearOrderPackage___closed__6(void){
 _start:
 {
 lean_object* v___x_407_; lean_object* v_this_408_; lean_object* v___f_409_; lean_object* v_this_410_; lean_object* v_this_411_; lean_object* v___x_412_; 
-v___x_407_ = ((lean_object*)(l_String_Pos_Raw_instLinearOrderPackage___closed__4));
-v_this_408_ = ((lean_object*)(l_String_Pos_Raw_instLinearOrderPackage___closed__2));
+v___x_407_ = lean_obj_once(&l_String_Pos_Raw_instLinearOrderPackage___closed__4, &l_String_Pos_Raw_instLinearOrderPackage___closed__4_once, _init_l_String_Pos_Raw_instLinearOrderPackage___closed__4);
+v_this_408_ = lean_obj_once(&l_String_Pos_Raw_instLinearOrderPackage___closed__2, &l_String_Pos_Raw_instLinearOrderPackage___closed__2_once, _init_l_String_Pos_Raw_instLinearOrderPackage___closed__2);
 v___f_409_ = lean_obj_once(&l_String_Pos_Raw_instLinearOrderPackage___closed__3, &l_String_Pos_Raw_instLinearOrderPackage___closed__3_once, _init_l_String_Pos_Raw_instLinearOrderPackage___closed__3);
 v_this_410_ = lean_box(0);
 v_this_411_ = lean_box(0);
@@ -759,7 +1637,7 @@ static lean_object* _init_l_String_Pos_Raw_instLinearOrderPackage___closed__7(vo
 _start:
 {
 lean_object* v___f_413_; lean_object* v___x_414_; lean_object* v___x_415_; 
-v___f_413_ = ((lean_object*)(l_String_Pos_Raw_instLinearOrderPackage___closed__5));
+v___f_413_ = lean_obj_once(&l_String_Pos_Raw_instLinearOrderPackage___closed__5, &l_String_Pos_Raw_instLinearOrderPackage___closed__5_once, _init_l_String_Pos_Raw_instLinearOrderPackage___closed__5);
 v___x_414_ = lean_obj_once(&l_String_Pos_Raw_instLinearOrderPackage___closed__6, &l_String_Pos_Raw_instLinearOrderPackage___closed__6_once, _init_l_String_Pos_Raw_instLinearOrderPackage___closed__6);
 v___x_415_ = lean_alloc_ctor(0, 2, 0);
 lean_ctor_set(v___x_415_, 0, v___x_414_);
@@ -771,8 +1649,8 @@ static lean_object* _init_l_String_Pos_Raw_instLinearOrderPackage___closed__8(vo
 _start:
 {
 lean_object* v___f_416_; lean_object* v___f_417_; lean_object* v___x_418_; lean_object* v___x_419_; 
-v___f_416_ = ((lean_object*)(l_String_Pos_Raw_instLinearOrderPackage___closed__1));
-v___f_417_ = ((lean_object*)(l_String_Pos_Raw_instLinearOrderPackage___closed__0));
+v___f_416_ = lean_obj_once(&l_String_Pos_Raw_instLinearOrderPackage___closed__1, &l_String_Pos_Raw_instLinearOrderPackage___closed__1_once, _init_l_String_Pos_Raw_instLinearOrderPackage___closed__1);
+v___f_417_ = lean_obj_once(&l_String_Pos_Raw_instLinearOrderPackage___closed__0, &l_String_Pos_Raw_instLinearOrderPackage___closed__0_once, _init_l_String_Pos_Raw_instLinearOrderPackage___closed__0);
 v___x_418_ = lean_obj_once(&l_String_Pos_Raw_instLinearOrderPackage___closed__7, &l_String_Pos_Raw_instLinearOrderPackage___closed__7_once, _init_l_String_Pos_Raw_instLinearOrderPackage___closed__7);
 v___x_419_ = lean_alloc_ctor(0, 3, 0);
 lean_ctor_set(v___x_419_, 0, v___x_418_);
@@ -827,8 +1705,8 @@ LEAN_EXPORT lean_object* l_String_Pos_instLinearOrderPackage(lean_object* v_s_42
 _start:
 {
 lean_object* v___f_430_; lean_object* v___f_431_; lean_object* v_this_432_; lean_object* v_this_433_; lean_object* v_this_434_; lean_object* v___x_435_; lean_object* v___f_436_; lean_object* v___x_437_; lean_object* v___f_438_; lean_object* v___x_439_; lean_object* v___x_440_; lean_object* v___x_441_; 
-v___f_430_ = ((lean_object*)(l_String_Pos_Raw_instLinearOrderPackage___closed__0));
-v___f_431_ = ((lean_object*)(l_String_Pos_Raw_instLinearOrderPackage___closed__1));
+v___f_430_ = lean_obj_once(&l_String_Pos_Raw_instLinearOrderPackage___closed__0, &l_String_Pos_Raw_instLinearOrderPackage___closed__0_once, _init_l_String_Pos_Raw_instLinearOrderPackage___closed__0);
+v___f_431_ = lean_obj_once(&l_String_Pos_Raw_instLinearOrderPackage___closed__1, &l_String_Pos_Raw_instLinearOrderPackage___closed__1_once, _init_l_String_Pos_Raw_instLinearOrderPackage___closed__1);
 v_this_432_ = lean_box(0);
 lean_inc_ref_n(v_s_429_, 2);
 v_this_433_ = lean_alloc_closure((void*)(l_String_instDecidableLePos___boxed), 3, 1);
@@ -897,8 +1775,8 @@ LEAN_EXPORT lean_object* l_String_Slice_Pos_instLinearOrderPackage(lean_object* 
 _start:
 {
 lean_object* v___f_451_; lean_object* v___f_452_; lean_object* v_this_453_; lean_object* v_this_454_; lean_object* v_this_455_; lean_object* v___x_456_; lean_object* v___f_457_; lean_object* v___x_458_; lean_object* v___f_459_; lean_object* v___x_460_; lean_object* v___x_461_; lean_object* v___x_462_; 
-v___f_451_ = ((lean_object*)(l_String_Pos_Raw_instLinearOrderPackage___closed__0));
-v___f_452_ = ((lean_object*)(l_String_Pos_Raw_instLinearOrderPackage___closed__1));
+v___f_451_ = lean_obj_once(&l_String_Pos_Raw_instLinearOrderPackage___closed__0, &l_String_Pos_Raw_instLinearOrderPackage___closed__0_once, _init_l_String_Pos_Raw_instLinearOrderPackage___closed__0);
+v___f_452_ = lean_obj_once(&l_String_Pos_Raw_instLinearOrderPackage___closed__1, &l_String_Pos_Raw_instLinearOrderPackage___closed__1_once, _init_l_String_Pos_Raw_instLinearOrderPackage___closed__1);
 v_this_453_ = lean_box(0);
 lean_inc_ref_n(v_s_450_, 2);
 v_this_454_ = lean_alloc_closure((void*)(l_String_instDecidableLePos__1___boxed), 3, 1);
@@ -958,6 +1836,8 @@ lean_dec_ref(res);
 res = runtime_initialize_Init_Data_Order_PackageFactories(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
+l_String_Pos_Raw_instToIntCiOfNatInt = _init_l_String_Pos_Raw_instToIntCiOfNatInt();
+lean_mark_persistent(l_String_Pos_Raw_instToIntCiOfNatInt);
 l_String_Pos_Raw_instTransLe = _init_l_String_Pos_Raw_instTransLe();
 l_String_Pos_Raw_instLinearOrderPackage = _init_l_String_Pos_Raw_instLinearOrderPackage();
 lean_mark_persistent(l_String_Pos_Raw_instLinearOrderPackage);
@@ -968,6 +1848,8 @@ LEAN_EXPORT lean_object* meta_initialize_Init_Data_String_OrderInstances(uint8_t
 lean_object * res;
 if (_G_meta_initialized) return lean_io_result_mk_ok(lean_box(0));
 _G_meta_initialized = true;
+l_String_Internal_tacticOrder = _init_l_String_Internal_tacticOrder();
+lean_mark_persistent(l_String_Internal_tacticOrder);
 return lean_io_result_mk_ok(lean_box(0));
 }
 lean_object* initialize_Init_Data_String_Defs(uint8_t builtin);

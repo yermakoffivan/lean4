@@ -58,12 +58,12 @@ LEAN_EXPORT lean_object* l_String_Slice_Pos_prev_x3f___boxed(lean_object*, lean_
 LEAN_EXPORT lean_object* l_panic___at___00String_Slice_Pos_prev_x21_spec__0___redArg(lean_object*);
 LEAN_EXPORT lean_object* l_panic___at___00String_Slice_Pos_prev_x21_spec__0(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_panic___at___00String_Slice_Pos_prev_x21_spec__0___boxed(lean_object*, lean_object*);
-static const lean_string_object l_String_Slice_Pos_prev_x21___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 25, .m_capacity = 25, .m_length = 24, .m_data = "Init.Data.String.FindPos"};
-static const lean_object* l_String_Slice_Pos_prev_x21___closed__0 = (const lean_object*)&l_String_Slice_Pos_prev_x21___closed__0_value;
-static const lean_string_object l_String_Slice_Pos_prev_x21___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 23, .m_capacity = 23, .m_length = 22, .m_data = "String.Slice.Pos.prev!"};
-static const lean_object* l_String_Slice_Pos_prev_x21___closed__1 = (const lean_object*)&l_String_Slice_Pos_prev_x21___closed__1_value;
-static const lean_string_object l_String_Slice_Pos_prev_x21___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 44, .m_capacity = 44, .m_length = 43, .m_data = "The start position has no previous position"};
-static const lean_object* l_String_Slice_Pos_prev_x21___closed__2 = (const lean_object*)&l_String_Slice_Pos_prev_x21___closed__2_value;
+static lean_once_cell_t l_String_Slice_Pos_prev_x21___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Slice_Pos_prev_x21___closed__0;
+static lean_once_cell_t l_String_Slice_Pos_prev_x21___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Slice_Pos_prev_x21___closed__1;
+static lean_once_cell_t l_String_Slice_Pos_prev_x21___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* l_String_Slice_Pos_prev_x21___closed__2;
 static lean_once_cell_t l_String_Slice_Pos_prev_x21___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_String_Slice_Pos_prev_x21___closed__3;
 LEAN_EXPORT lean_object* l_String_Slice_Pos_prev_x21(lean_object*, lean_object*);
@@ -521,15 +521,39 @@ lean_dec_ref(v_s_182_);
 return v_res_184_;
 }
 }
+static lean_object* _init_l_String_Slice_Pos_prev_x21___closed__0(void){
+_start:
+{
+lean_object* v___x_185_; 
+v___x_185_ = lean_mk_string_unchecked("Init.Data.String.FindPos", 24, 24);
+return v___x_185_;
+}
+}
+static lean_object* _init_l_String_Slice_Pos_prev_x21___closed__1(void){
+_start:
+{
+lean_object* v___x_186_; 
+v___x_186_ = lean_mk_string_unchecked("String.Slice.Pos.prev!", 22, 22);
+return v___x_186_;
+}
+}
+static lean_object* _init_l_String_Slice_Pos_prev_x21___closed__2(void){
+_start:
+{
+lean_object* v___x_187_; 
+v___x_187_ = lean_mk_string_unchecked("The start position has no previous position", 43, 43);
+return v___x_187_;
+}
+}
 static lean_object* _init_l_String_Slice_Pos_prev_x21___closed__3(void){
 _start:
 {
 lean_object* v___x_188_; lean_object* v___x_189_; lean_object* v___x_190_; lean_object* v___x_191_; lean_object* v___x_192_; lean_object* v___x_193_; 
-v___x_188_ = ((lean_object*)(l_String_Slice_Pos_prev_x21___closed__2));
+v___x_188_ = lean_obj_once(&l_String_Slice_Pos_prev_x21___closed__2, &l_String_Slice_Pos_prev_x21___closed__2_once, _init_l_String_Slice_Pos_prev_x21___closed__2);
 v___x_189_ = lean_unsigned_to_nat(31u);
 v___x_190_ = lean_unsigned_to_nat(115u);
-v___x_191_ = ((lean_object*)(l_String_Slice_Pos_prev_x21___closed__1));
-v___x_192_ = ((lean_object*)(l_String_Slice_Pos_prev_x21___closed__0));
+v___x_191_ = lean_obj_once(&l_String_Slice_Pos_prev_x21___closed__1, &l_String_Slice_Pos_prev_x21___closed__1_once, _init_l_String_Slice_Pos_prev_x21___closed__1);
+v___x_192_ = lean_obj_once(&l_String_Slice_Pos_prev_x21___closed__0, &l_String_Slice_Pos_prev_x21___closed__0_once, _init_l_String_Slice_Pos_prev_x21___closed__0);
 v___x_193_ = l_mkPanicMessageWithDecl(v___x_192_, v___x_191_, v___x_190_, v___x_189_, v___x_188_);
 return v___x_193_;
 }

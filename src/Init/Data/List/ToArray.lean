@@ -38,7 +38,7 @@ set_option linter.indexVariables true -- Enforce naming conventions for index va
 
 namespace Array
 
-@[simp, backward_defeq] theorem toList_set (xs : Array α) (i x h) :
+@[backward_defeq, simp] theorem toList_set (xs : Array α) (i x h) :
     (xs.set i x).toList = xs.toList.set i x := rfl
 
 theorem swap_def (xs : Array α) (i j : Nat) (hi hj) :
@@ -93,7 +93,7 @@ theorem toArray_cons (a : α) (l : List α) : (a :: l).toArray = #[a] ++ l.toArr
 @[simp, grind =] theorem isEmpty_toArray (l : List α) : l.toArray.isEmpty = l.isEmpty := by
   cases l <;> simp [Array.isEmpty]
 
-@[simp, backward_defeq] theorem toArray_singleton (a : α) : (List.singleton a).toArray = Array.singleton a := rfl
+@[backward_defeq, simp] theorem toArray_singleton (a : α) : (List.singleton a).toArray = Array.singleton a := rfl
 
 @[simp, grind =] theorem back!_toArray [Inhabited α] (l : List α) : l.toArray.back! = l.getLast! := by
   simp only [back!, size_toArray, getElem!_toArray, getLast!_eq_getElem!]
@@ -120,7 +120,7 @@ theorem toArray_cons (a : α) (l : List α) : (a :: l).toArray = #[a] ++ l.toArr
   rcases xs with ⟨xs⟩
   simp
 
-@[simp, grind =, backward_defeq] theorem set_toArray (l : List α) (i : Nat) (a : α) (h : i < l.length) :
+@[backward_defeq, simp, grind =] theorem set_toArray (l : List α) (i : Nat) (a : α) (h : i < l.length) :
     (l.toArray.set i a) = (l.set i a).toArray := rfl
 
 @[simp] theorem forIn'_loop_toArray [Monad m] (l : List α) (f : (a : α) → a ∈ l.toArray → β → m (ForInStep β)) (i : Nat)
@@ -561,14 +561,14 @@ private theorem popWhile_toArray_aux (p : α → Bool) (l : List α) :
   · simp
   · simp_all [List.set_eq_of_length_le]
 
-@[simp, grind =, backward_defeq] theorem toArray_replicate (n : Nat) (v : α) :
+@[backward_defeq, simp, grind =] theorem toArray_replicate (n : Nat) (v : α) :
     (List.replicate n v).toArray = Array.replicate n v := rfl
 
 theorem _root_.Array.replicate_eq_toArray_replicate :
     Array.replicate n v = (List.replicate n v).toArray := by
   simp
 
-@[simp, grind =, backward_defeq] theorem _root_.Array.flatMap_empty {β} (f : α → Array β) :
+@[backward_defeq, simp, grind =] theorem _root_.Array.flatMap_empty {β} (f : α → Array β) :
     (#[] : Array α).flatMap f = #[] := rfl
 
 theorem flatMap_toArray_cons {β} (f : α → Array β) (a : α) (as : List α) :

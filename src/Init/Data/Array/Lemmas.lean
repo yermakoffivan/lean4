@@ -53,7 +53,7 @@ namespace Array
 @[simp, grind =] theorem mem_toList_iff {a : α} {xs : Array α} : a ∈ xs.toList ↔ a ∈ xs := by
   cases xs <;> simp
 
-@[simp, grind =, defeq] theorem length_toList {xs : Array α} : xs.toList.length = xs.size := rfl
+@[defeq, simp, grind =] theorem length_toList {xs : Array α} : xs.toList.length = xs.size := rfl
 
 theorem eq_toArray : xs = List.toArray as ↔ xs.toList = as := by
   cases xs
@@ -68,7 +68,7 @@ theorem toArray_eq : List.toArray as = xs ↔ as = xs.toList := by
 @[simp] theorem empty_eq {xs : Array α} : #[] = xs ↔ xs = #[] := by
   cases xs <;> simp
 
-@[grind =, defeq] theorem size_empty : (#[] : Array α).size = 0 := rfl
+@[defeq, grind =] theorem size_empty : (#[] : Array α).size = 0 := rfl
 
 /-! ### size -/
 
@@ -171,7 +171,7 @@ theorem getD_getElem? {xs : Array α} {i : Nat} {d : α} :
     have p : i ≥ xs.size := Nat.le_of_not_gt h
     simp [h]
 
-@[simp, backward_defeq] theorem getElem?_empty {i : Nat} : (#[] : Array α)[i]? = none := rfl
+@[backward_defeq, simp] theorem getElem?_empty {i : Nat} : (#[] : Array α)[i]? = none := rfl
 
 set_option backward.isDefEq.respectTransparency false in
 theorem getElem_push_lt {xs : Array α} {x : α} {i : Nat} (h : i < xs.size) :
@@ -212,7 +212,7 @@ theorem ext_getElem? {xs ys : Array α} (h : ∀ i : Nat, xs[i]? = ys[i]?) : xs 
 
 /-! ### pop -/
 
-@[simp, backward_defeq] theorem pop_empty : (#[] : Array α).pop = #[] := rfl
+@[backward_defeq, simp] theorem pop_empty : (#[] : Array α).pop = #[] := rfl
 
 @[simp] theorem pop_push {xs : Array α} {x : α} : (xs.push x).pop = xs := by simp [pop]
 
@@ -246,7 +246,7 @@ theorem back?_pop {xs : Array α} :
 
 /-! ### push -/
 
-@[simp, backward_defeq] theorem push_empty : #[].push x = #[x] := rfl
+@[backward_defeq, simp] theorem push_empty : #[].push x = #[x] := rfl
 
 @[simp] theorem push_ne_empty {a : α} {xs : Array α} : xs.push a ≠ #[] := by
   cases xs
@@ -334,7 +334,7 @@ theorem singleton_inj : #[a] = #[b] ↔ a = b := by
 @[simp] theorem toList_replicate : (replicate n a).toList = List.replicate n a := by
   simp only [replicate]
 
-@[simp, grind =, backward_defeq] theorem replicate_zero : replicate 0 a = #[] := rfl
+@[backward_defeq, simp, grind =] theorem replicate_zero : replicate 0 a = #[] := rfl
 
 @[grind =]
 theorem replicate_succ : replicate (n + 1) a = (replicate n a).push a := by
@@ -515,7 +515,7 @@ theorem forall_getElem {xs : Array α} {p : α → Prop} :
 
 /-! ### isEmpty -/
 
-@[grind =, backward_defeq] theorem isEmpty_empty : (#[] : Array α).isEmpty = true := rfl
+@[backward_defeq, grind =] theorem isEmpty_empty : (#[] : Array α).isEmpty = true := rfl
 @[simp, grind =] theorem isEmpty_push {xs : Array α} : (xs.push x).isEmpty = false := by
   rcases xs with ⟨xs⟩
   simp
@@ -977,12 +977,12 @@ grind_pattern mem_or_eq_of_mem_set => a ∈ xs.set i b
 
 /-! ### setIfInBounds -/
 
-@[simp, grind =, backward_defeq] theorem setIfInBounds_empty {i : Nat} {a : α} :
+@[backward_defeq, simp, grind =] theorem setIfInBounds_empty {i : Nat} {a : α} :
     #[].setIfInBounds i a = #[] := rfl
 
-@[simp, grind =, backward_defeq] theorem set!_eq_setIfInBounds : set! xs i v = setIfInBounds xs i v := rfl
+@[backward_defeq, simp, grind =] theorem set!_eq_setIfInBounds : set! xs i v = setIfInBounds xs i v := rfl
 
-@[grind =, backward_defeq]
+@[backward_defeq, grind =]
 theorem setIfInBounds_def (xs : Array α) (i : Nat) (a : α) :
     xs.setIfInBounds i a = if h : i < xs.size then xs.set i a else xs := rfl
 
@@ -1370,7 +1370,7 @@ theorem array₃_induction (P : Array (Array (Array α)) → Prop)
 
 /-! ### filter -/
 
-@[grind =, backward_defeq] theorem filter_empty {p : α → Bool} : #[].filter p = #[] := rfl
+@[backward_defeq, grind =] theorem filter_empty {p : α → Bool} : #[].filter p = #[] := rfl
 
 @[congr]
 theorem filter_congr {xs ys : Array α} (h : xs = ys)
@@ -1555,7 +1555,7 @@ theorem size_filter_lt_size_iff_exists {xs : Array α} {p : α → Bool} :
 
 /-! ### filterMap -/
 
-@[simp, grind =, backward_defeq] theorem filterMap_empty {f : α → Option β} : filterMap f #[] = #[] := rfl
+@[backward_defeq, simp, grind =] theorem filterMap_empty {f : α → Option β} : filterMap f #[] = #[] := rfl
 
 @[congr]
 theorem filterMap_congr {as bs : Array α} (h : as = bs)
@@ -1753,7 +1753,7 @@ theorem size_filterMap_lt_size_iff_exists {xs : Array α} {f : α → Option β}
 
 /-! ### singleton -/
 
-@[simp, backward_defeq] theorem singleton_def {v : α} : Array.singleton v = #[v] := rfl
+@[backward_defeq, simp] theorem singleton_def {v : α} : Array.singleton v = #[v] := rfl
 
 /-! ### append -/
 
@@ -1873,7 +1873,7 @@ theorem getElem_of_append {xs ys zs : Array α} (eq : xs = ys.push a ++ zs) (h :
   rw [← getElem?_eq_getElem, eq, getElem?_append_left (by simp; omega), ← h]
   simp
 
-@[simp, backward_defeq] theorem append_singleton {a : α} {as : Array α} : as ++ #[a] = as.push a := rfl
+@[backward_defeq, simp] theorem append_singleton {a : α} {as : Array α} : as ++ #[a] = as.push a := rfl
 
 @[simp] theorem append_singleton_assoc {a : α} {xs ys : Array α} : xs ++ (#[a] ++ ys) = xs.push a ++ ys := by
   rw [← append_assoc, append_singleton]
@@ -1881,7 +1881,7 @@ theorem getElem_of_append {xs ys zs : Array α} (eq : xs = ys.push a ++ zs) (h :
 @[backward_defeq]
 theorem push_eq_append {a : α} {as : Array α} : as.push a = as ++ #[a] := rfl
 
-@[deprecated push_eq_append (since := "2025-10-26"), backward_defeq]
+@[backward_defeq, deprecated push_eq_append (since := "2025-10-26")]
 theorem push_eq_append_singleton {as : Array α} {x : α} : as.push x = as ++ #[x] := rfl
 
 theorem append_inj {xs₁ xs₂ ys₁ ys₂ : Array α} (h : xs₁ ++ ys₁ = xs₂ ++ ys₂) (hl : xs₁.size = xs₂.size) :
@@ -2405,7 +2405,7 @@ theorem flatMap_eq_foldl {f : α → Array β} {xs : Array α} :
 
 /-! ### replicate -/
 
-@[simp, backward_defeq] theorem replicate_one : replicate 1 a = #[a] := rfl
+@[backward_defeq, simp] theorem replicate_one : replicate 1 a = #[a] := rfl
 
 /-- Variant of `replicate_succ` that prepends `a` at the beginning of the array. -/
 theorem replicate_succ' : replicate (n + 1) a = #[a] ++ replicate n a := by
@@ -2555,7 +2555,7 @@ theorem getElem?_swap {xs : Array α} {i j : Nat} (hi hj) {k : Nat} : (xs.swap i
     termination_by j - i
   simp only [reverse]; split <;> simp [go]
 
-@[simp, grind =, backward_defeq] theorem reverse_empty : reverse (#[] : Array α) = #[] := rfl
+@[backward_defeq, simp, grind =] theorem reverse_empty : reverse (#[] : Array α) = #[] := rfl
 
 @[simp] theorem toList_reverse {xs : Array α} : xs.reverse.toList = xs.toList.reverse := by
   let rec go (as : Array α) (i j hj)
@@ -3112,10 +3112,10 @@ theorem foldr_eq_foldr_extract {xs : Array α} {f : α → β → β} {init : β
   simp only [foldr_eq_foldrM]
   rw [foldrM_start_stop]
 
-@[simp, backward_defeq] theorem id_run_foldlM {f : β → α → Id β} {b} {xs : Array α} {start stop : Nat} :
+@[backward_defeq, simp] theorem id_run_foldlM {f : β → α → Id β} {b} {xs : Array α} {start stop : Nat} :
     Id.run (xs.foldlM f b start stop) = xs.foldl (f · · |>.run) b start stop := rfl
 
-@[simp, backward_defeq] theorem id_run_foldrM {f : α → β → Id β} {b} {xs : Array α} {start stop : Nat} :
+@[backward_defeq, simp] theorem id_run_foldrM {f : α → β → Id β} {b} {xs : Array α} {start stop : Nat} :
     Id.run (xs.foldrM f b start stop) = xs.foldr (f · · |>.run) b start stop := rfl
 
 /-- Variant of `foldlM_reverse` with a side condition for the `stop` argument. -/
@@ -3177,9 +3177,9 @@ rather than `(arr.push a).size` as the argument.
 
 /-! ### foldl / foldr -/
 
-@[grind =, backward_defeq] theorem foldl_empty {f : β → α → β} {init : β} : (#[].foldl f init) = init := rfl
+@[backward_defeq, grind =] theorem foldl_empty {f : β → α → β} {init : β} : (#[].foldl f init) = init := rfl
 
-@[grind =, backward_defeq] theorem foldr_empty {f : α → β → β} {init : β} : (#[].foldr f init) = init := rfl
+@[backward_defeq, grind =] theorem foldr_empty {f : α → β → β} {init : β} : (#[].foldr f init) = init := rfl
 
 theorem foldl_induction
     {as : Array α} (motive : Nat → β → Prop) {init : β} (h0 : motive 0 init) {f : β → α → β}
@@ -4065,7 +4065,7 @@ theorem swap_comm {xs : Array α} {i j : Nat} (hi hj) : xs.swap i j hi hj = xs.s
 
 /-! ### swapIfInBounds -/
 
-@[grind =, backward_defeq] theorem swapIfInBounds_def {xs : Array α} {i j : Nat} :
+@[backward_defeq, grind =] theorem swapIfInBounds_def {xs : Array α} {i j : Nat} :
     xs.swapIfInBounds i j = if h₁ : i < xs.size then
   if h₂ : j < xs.size then swap xs i j else xs else xs := rfl
 
@@ -4126,7 +4126,7 @@ theorem getElem_swapIfInBounds_of_ne_of_ne {xs : Array α} {i j k : Nat} (hi : k
 
 /-! ### swapAt -/
 
-@[simp, grind =, backward_defeq] theorem swapAt_def {xs : Array α} {i : Nat} {v : α} (hi) :
+@[backward_defeq, simp, grind =] theorem swapAt_def {xs : Array α} {i : Nat} {v : α} (hi) :
     xs.swapAt i v hi = (xs[i], xs.set i v) := rfl
 
 theorem size_swapAt {xs : Array α} {i : Nat} {v : α} (hi) :
@@ -4340,7 +4340,7 @@ theorem getElem?_range {n : Nat} {i : Nat} : (Array.range n)[i]? = if i < n then
 
 /-! ### sum -/
 
-@[simp, grind =, backward_defeq] theorem sum_empty [Add α] [Zero α] : (#[] : Array α).sum = 0 := rfl
+@[backward_defeq, simp, grind =] theorem sum_empty [Add α] [Zero α] : (#[] : Array α).sum = 0 := rfl
 @[backward_defeq]
 theorem sum_eq_foldr [Add α] [Zero α] {xs : Array α} :
     xs.sum = xs.foldr (init := 0) (· + ·) :=
@@ -4387,7 +4387,7 @@ theorem sum_eq_foldl [Zero α] [Add α] [Std.Associative (α := α) (· + ·)]
 
 /-! ### prod -/
 
-@[simp, grind =, backward_defeq] theorem prod_empty [Mul α] [One α] : (#[] : Array α).prod = 1 := rfl
+@[backward_defeq, simp, grind =] theorem prod_empty [Mul α] [One α] : (#[] : Array α).prod = 1 := rfl
 @[backward_defeq]
 theorem prod_eq_foldr [Mul α] [One α] {xs : Array α} :
     xs.prod = xs.foldr (init := 1) (· * ·) :=
@@ -4470,7 +4470,7 @@ theorem lt_of_getElem {x : α} {xs : Array α} {i : Nat} {hidx : i < xs.size} (_
 @[backward_defeq]
 theorem getElem_fin_eq_getElem_toList {xs : Array α} {i : Fin xs.size} : xs[i] = xs.toList[i] := rfl
 
-@[simp, backward_defeq] theorem ugetElem_eq_getElem {xs : Array α} {i : USize} (h : i.toNat < xs.size) :
+@[backward_defeq, simp] theorem ugetElem_eq_getElem {xs : Array α} {i : USize} (h : i.toNat < xs.size) :
   xs[i] = xs[i.toNat] := rfl
 
 @[deprecated getElem?_eq_none (since := "2025-10-26")]

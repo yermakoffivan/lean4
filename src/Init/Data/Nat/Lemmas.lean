@@ -170,7 +170,7 @@ theorem pred_eq_of_eq_succ {m n : Nat} (H : m = n.succ) : m.pred = n := by simp 
 @[simp] theorem pred_eq_succ_iff : n - 1 = m + 1 ↔ n = m + 2 := by
   cases n <;> constructor <;> rintro ⟨⟩ <;> rfl
 
-@[simp, backward_defeq] theorem add_succ_sub_one (m n : Nat) : m + succ n - 1 = m + n := rfl
+@[backward_defeq, simp] theorem add_succ_sub_one (m n : Nat) : m + succ n - 1 = m + n := rfl
 
 @[simp]
 theorem succ_add_sub_one (n m : Nat) : succ m + n - 1 = m + n := by rw [succ_add, Nat.add_one_sub_one]
@@ -1071,7 +1071,7 @@ theorem pow_succ' {m n : Nat} : m ^ n.succ = m * m ^ n := by
 theorem pow_add_one' {m n : Nat} : m ^ (n + 1) = m * m ^ n := by
   rw [Nat.pow_add_one, Nat.mul_comm]
 
-@[simp, defeq] theorem pow_eq {m n : Nat} : m.pow n = m ^ n := rfl
+@[defeq, simp] theorem pow_eq {m n : Nat} : m.pow n = m ^ n := rfl
 
 theorem one_shiftLeft (n : Nat) : 1 <<< n = 2 ^ n := by rw [shiftLeft_eq, Nat.one_mul]
 
@@ -1712,7 +1712,7 @@ theorem div_lt_div_of_lt_of_dvd {a b d : Nat} (hdb : d ∣ b) (h : a < b) : a / 
 
 /-! ### shiftLeft and shiftRight -/
 
-@[simp, grind =, backward_defeq] theorem shiftLeft_zero : n <<< 0 = n := rfl
+@[backward_defeq, simp, grind =] theorem shiftLeft_zero : n <<< 0 = n := rfl
 
 /-- Shift left on successor with multiple moved inside. -/
 @[backward_defeq]

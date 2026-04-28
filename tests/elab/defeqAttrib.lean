@@ -105,7 +105,7 @@ set_option backward.defeqAttrib.useBackward true in
 #guard_msgs in example (h : P a) : P e2 := by dsimp; exact h
 
 @[reducible] def e3 := a
-@[simp, defeq] theorem e3_eq_a : e3 = a := (rfl) -- defeq before simp also works
+@[defeq, simp] theorem e3_eq_a : e3 = a := (rfl) -- defeq before simp also works
 #guard_msgs in example (h : P a) : P e3 := by dsimp; exact h
 
 -- Tests the `defeq` attribute on a realized constant: That they are set, and that they

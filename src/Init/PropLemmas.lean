@@ -16,8 +16,8 @@ set_option linter.missingDocs true -- keep it documented
 
 /-! ## cast and equality -/
 
-@[simp, backward_defeq] theorem eq_mp_eq_cast  (h : α = β) : Eq.mp  h = cast h := rfl
-@[simp, backward_defeq] theorem eq_mpr_eq_cast (h : α = β) : Eq.mpr h = cast h.symm := rfl
+@[backward_defeq, simp] theorem eq_mp_eq_cast  (h : α = β) : Eq.mp  h = cast h := rfl
+@[backward_defeq, simp] theorem eq_mpr_eq_cast (h : α = β) : Eq.mpr h = cast h.symm := rfl
 
 @[simp] theorem cast_cast : ∀ (ha : α = β) (hb : β = γ) (a : α),
     cast hb (cast ha a) = cast (ha.trans hb) a

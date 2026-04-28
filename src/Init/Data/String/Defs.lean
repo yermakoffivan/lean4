@@ -133,7 +133,7 @@ theorem String.utf8ByteSize_append {s t : String} :
     (s ++ t).utf8ByteSize = s.utf8ByteSize + t.utf8ByteSize := by
   simp [utf8ByteSize]
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem String.size_toByteArray {s : String} : s.toByteArray.size = s.utf8ByteSize := rfl
 
 @[simp]
@@ -149,13 +149,13 @@ def rawStartPos (_s : String) : String.Pos.Raw :=
 @[simp]
 theorem rawStartPos_eq {s : String} : s.rawStartPos = 0 := (rfl)
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem byteIdx_rawEndPos {s : String} : s.rawEndPos.byteIdx = s.utf8ByteSize := rfl
 
-@[deprecated byteIdx_rawEndPos (since := "2025-10-20"), backward_defeq]
+@[backward_defeq, deprecated byteIdx_rawEndPos (since := "2025-10-20")]
 theorem byteIdx_endPos {s : String} : s.rawEndPos.byteIdx = s.utf8ByteSize := rfl
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem utf8ByteSize_ofByteArray {b : ByteArray} {h} :
     (String.ofByteArray b h).utf8ByteSize = b.size := rfl
 
@@ -432,13 +432,13 @@ def toSlice (s : String) : Slice where
 instance : Coe String String.Slice where
   coe := String.toSlice
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem startInclusive_toSlice {s : String} : s.toSlice.startInclusive = s.startPos := rfl
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem endExclusive_toSlice {s : String} : s.toSlice.endExclusive = s.endPos := rfl
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem str_toSlice {s : String} : s.toSlice.str = s := rfl
 
 /-- The number of bytes of the UTF-8 encoding of the string slice. -/
@@ -458,15 +458,15 @@ instance : HAdd Slice Pos.Raw Pos.Raw where
 instance : HSub Pos.Raw Slice Pos.Raw where
   hSub p s := { byteIdx := p.byteIdx - s.utf8ByteSize }
 
-@[simp, defeq]
+@[defeq, simp]
 theorem Pos.Raw.byteIdx_add_slide {p : Pos.Raw} {s : Slice} :
     (p + s).byteIdx = p.byteIdx + s.utf8ByteSize := rfl
 
-@[simp, defeq]
+@[defeq, simp]
 theorem Pos.Raw.byteIdx_slice_add {s : Slice} {p : Pos.Raw} :
     (s + p).byteIdx = s.utf8ByteSize + p.byteIdx := rfl
 
-@[simp, defeq]
+@[defeq, simp]
 theorem Pos.Raw.byteIdx_sub_slice {p : Pos.Raw} {s : Slice} :
     (p - s).byteIdx = p.byteIdx - s.utf8ByteSize := rfl
 
@@ -633,7 +633,7 @@ def Slice.Pos.byte {s : Slice} (pos : s.Pos) (h : pos ≠ s.endPos) : UInt8 :=
     simp_all [Pos.ext_iff, String.Pos.Raw.ext_iff, Pos.Raw.le_iff, Pos.Raw.lt_iff]
     omega)
 
-@[simp, defeq] theorem default_eq : default = "" := rfl
+@[defeq, simp] theorem default_eq : default = "" := rfl
 
 theorem push_eq_append (c : Char) : String.push s c = s ++ singleton c := by
   simp

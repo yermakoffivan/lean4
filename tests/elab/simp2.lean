@@ -1,6 +1,6 @@
 def p (x : Prop) := x
 
-@[simp, backward_defeq] theorem lemma1 (x : Prop) : p x = x :=
+@[backward_defeq, simp] theorem lemma1 (x : Prop) : p x = x :=
  rfl
 
 set_option backward.defeqAttrib.useBackward true in

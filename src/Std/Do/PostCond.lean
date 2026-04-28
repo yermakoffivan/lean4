@@ -128,27 +128,27 @@ An assertion about the possible exceptions in `ps` that never holds.
 -/
 def ExceptConds.false : ExceptConds ps := ExceptConds.const False
 
-@[simp, grind =, backward_defeq]
+@[backward_defeq, simp, grind =]
 theorem ExceptConds.fst_const {ps : PostShape.{u}} (p : Prop) :
     Prod.fst (ExceptConds.const p (ps := .except ε ps)) = fun _ε => ⌜p⌝ := rfl
 
-@[simp, grind =, backward_defeq]
+@[backward_defeq, simp, grind =]
 theorem ExceptConds.snd_const {ps : PostShape.{u}} (p : Prop) :
     Prod.snd (ExceptConds.const p (ps := .except ε ps)) = ExceptConds.const p := rfl
 
-@[simp, grind =, backward_defeq]
+@[backward_defeq, simp, grind =]
 theorem ExceptConds.fst_true {ps : PostShape.{u}} :
     Prod.fst (ExceptConds.true (ps := .except ε ps)) = fun _ε => ⌜True⌝ := rfl
 
-@[simp, grind =, backward_defeq]
+@[backward_defeq, simp, grind =]
 theorem ExceptConds.snd_true {ps : PostShape.{u}} :
     Prod.snd (ExceptConds.true (ps := .except ε ps)) = ExceptConds.true := rfl
 
-@[simp, grind =, backward_defeq]
+@[backward_defeq, simp, grind =]
 theorem ExceptConds.fst_false {ps : PostShape.{u}} :
     Prod.fst (ExceptConds.false (ps := .except ε ps)) = fun _ε => ⌜False⌝ := rfl
 
-@[simp, grind =, backward_defeq]
+@[backward_defeq, simp, grind =]
 theorem ExceptConds.snd_false {ps : PostShape.{u}} :
     Prod.snd (ExceptConds.false (ps := .except ε ps)) = ExceptConds.false := rfl
 
@@ -204,10 +204,10 @@ def ExceptConds.and {ps : PostShape.{u}} (x : ExceptConds ps) (y : ExceptConds p
 @[inherit_doc ExceptConds.and]
 infixr:35 " ∧ₑ " => ExceptConds.and
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem ExceptConds.fst_and {x₁ x₂ : ExceptConds (.except ε ps)} : (x₁ ∧ₑ x₂).fst = fun e => spred(x₁.fst e ∧ x₂.fst e) := rfl
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem ExceptConds.snd_and {x₁ x₂ : ExceptConds (.except ε ps)} : (x₁ ∧ₑ x₂).snd = (x₁.snd ∧ₑ x₂.snd) := rfl
 
 theorem ExceptConds.and_elim_left {ps : PostShape} (x y : ExceptConds ps) :
@@ -260,10 +260,10 @@ def ExceptConds.imp {ps : PostShape.{u}} (x : ExceptConds ps) (y : ExceptConds p
 @[inherit_doc ExceptConds.imp]
 infixr:25 " →ₑ " => ExceptConds.imp
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem ExceptConds.fst_imp {x₁ x₂ : ExceptConds (.except ε ps)} : (x₁ →ₑ x₂).fst = fun e => spred(x₁.fst e → x₂.fst e) := rfl
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem ExceptConds.snd_imp {x₁ x₂ : ExceptConds (.except ε ps)} : (x₁ →ₑ x₂).snd = (x₁.snd →ₑ x₂.snd) := rfl
 
 theorem ExceptConds.imp_intro {P Q R : ExceptConds ps} (h : P ∧ₑ Q ⊢ₑ R) : P ⊢ₑ Q →ₑ R := by

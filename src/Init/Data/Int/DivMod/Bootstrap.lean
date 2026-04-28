@@ -86,7 +86,7 @@ theorem ofNat_dvd_left {n : Nat} {z : Int} : (↑n : Int) ∣ z ↔ n ∣ z.natA
 
 /-! ### emod zero -/
 
-@[simp, backward_defeq] theorem zero_emod (b : Int) : 0 % b = 0 := rfl
+@[backward_defeq, simp] theorem zero_emod (b : Int) : 0 % b = 0 := rfl
 
 @[simp] theorem emod_zero : ∀ a : Int, a % 0 = a
   | ofNat _ => congrArg ofNat <| Nat.mod_zero _
@@ -94,7 +94,7 @@ theorem ofNat_dvd_left {n : Nat} {z : Int} : (↑n : Int) ∣ z ↔ n ∣ z.natA
 
 /-! ### ofNat mod -/
 
-@[simp, norm_cast, backward_defeq] theorem natCast_emod (m n : Nat) : (↑(m % n) : Int) = m % n := rfl
+@[backward_defeq, simp, norm_cast] theorem natCast_emod (m n : Nat) : (↑(m % n) : Int) = m % n := rfl
 
 /-! ### mod definitions -/
 

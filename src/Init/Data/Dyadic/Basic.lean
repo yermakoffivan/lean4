@@ -233,14 +233,14 @@ def toRat (x : Dyadic) : Rat :=
   | .ofOdd n (-((k : Nat) + 1)) hn =>
     (n * (2 ^ (k + 1) : Nat) : Int)
 
-@[simp, backward_defeq] protected theorem zero_eq : Dyadic.zero = 0 := rfl
+@[backward_defeq, simp] protected theorem zero_eq : Dyadic.zero = 0 := rfl
 @[simp] protected theorem add_zero (x : Dyadic) : x + 0 = x := by cases x <;> rfl
 @[simp] protected theorem zero_add (x : Dyadic) : 0 + x = x := by cases x <;> rfl
-@[simp, backward_defeq] protected theorem neg_zero : (-0 : Dyadic) = 0 := rfl
+@[backward_defeq, simp] protected theorem neg_zero : (-0 : Dyadic) = 0 := rfl
 @[simp] protected theorem mul_zero (x : Dyadic) : x * 0 = 0 := by cases x <;> rfl
 @[simp] protected theorem zero_mul (x : Dyadic) : 0 * x = 0 := by cases x <;> rfl
 
-@[simp, backward_defeq] theorem toRat_zero : toRat 0 = 0 := rfl
+@[backward_defeq, simp] theorem toRat_zero : toRat 0 = 0 := rfl
 
 theorem _root_.Rat.mkRat_one (x : Int) : mkRat x 1 = x := by
   rw [← Rat.mk_den_one, Rat.mk_eq_mkRat]
@@ -380,10 +380,10 @@ theorem ofOdd_eq_ofIntWithPrec : ofOdd n k hn = ofIntWithPrec n k := by
 theorem toRat_ofOdd_eq_mul_two_pow : toRat (.ofOdd n k hn) = n * 2 ^ (-k) := by
   rw [ofOdd_eq_ofIntWithPrec, toRat_ofIntWithPrec_eq_mul_two_pow]
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem ofIntWithPrec_zero {i : Int} : ofIntWithPrec 0 i = 0 := rfl
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem neg_ofOdd : -ofOdd n k hn = ofOdd (-n) k (by simpa using hn) := rfl
 
 @[simp]
@@ -418,7 +418,7 @@ theorem precision_ofIntWithPrec_le {i : Int} (h : i ≠ 0) (prec : Int) :
   simp [ofIntWithPrec, h, precision]
   omega
 
-@[simp, backward_defeq] theorem precision_zero : (0 : Dyadic).precision = none := rfl
+@[backward_defeq, simp] theorem precision_zero : (0 : Dyadic).precision = none := rfl
 @[simp] theorem precision_neg {x : Dyadic} : (-x).precision = x.precision :=
   match x with
   | .zero => rfl

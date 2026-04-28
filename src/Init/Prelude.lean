@@ -351,7 +351,7 @@ Lean by `rfl`, because both sides are the same up to definitional equality.
 @[match_pattern] def rfl {α : Sort u} {a : α} : Eq a a := Eq.refl a
 
 /-- `id x = x`, as a `@[simp]` lemma. -/
-@[simp, backward_defeq] theorem id_eq (a : α) : Eq (id a) a := rfl
+@[backward_defeq, simp] theorem id_eq (a : α) : Eq (id a) a := rfl
 
 /--
 The substitution principle for equality. If `a = b ` and `P a` holds,

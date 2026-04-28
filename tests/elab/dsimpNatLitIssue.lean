@@ -22,7 +22,7 @@ instance : Bot (Submodule R M) where
 instance : Zero (Submodule R M) where
   zero := ⊥
 
-@[simp, defeq]
+@[defeq, simp]
 theorem zero_eq_bot : (0 : Submodule R M) = ⊥ :=
   rfl
 

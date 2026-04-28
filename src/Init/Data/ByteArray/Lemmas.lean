@@ -18,13 +18,13 @@ public section
 namespace ByteArray
 
 -- At present the preferred normal form for empty byte arrays is `ByteArray.empty`
-@[simp, defeq]
+@[defeq, simp]
 theorem emptyc_eq_empty : (∅ : ByteArray) = ByteArray.empty := rfl
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem emptyWithCapacity_eq_empty : ByteArray.emptyWithCapacity 0 = ByteArray.empty := rfl
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem data_empty : ByteArray.empty.data = #[] := rfl
 
 @[simp]
@@ -82,7 +82,7 @@ theorem _root_.List.size_toByteArray {l : List UInt8} :
     l.toByteArray.size = l.length := by
   simp [← ByteArray.size_data]
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem _root_.List.toByteArray_nil : List.toByteArray [] = ByteArray.empty := rfl
 
 @[simp]

@@ -50,14 +50,14 @@ Turns a subslice into a standalone slice by "forgetting" which slice the subslic
 def toSlice {s : Slice} (sl : s.Subslice) : Slice :=
   s.slice sl.startInclusive sl.endExclusive sl.startInclusive_le_endExclusive
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem str_toSlice {s : Slice} {sl : s.Subslice} : sl.toSlice.str = s.str := rfl
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem startInclusive_toSlice {s : Slice} {sl : s.Subslice} :
     sl.toSlice.startInclusive = sl.startInclusive.str := rfl
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem endExclusive_toSlice {s : Slice} {sl : s.Subslice} :
     sl.toSlice.endExclusive = sl.endExclusive.str := rfl
 

@@ -277,12 +277,12 @@ instance [GetElem? cont Nat elem dom] [h : LawfulGetElem cont Nat elem dom] :
   getElem?_def _c _i _d := h.getElem?_def ..
   getElem!_def _c _i := h.getElem!_def ..
 
-@[simp, grind =, defeq] theorem getElem_fin [GetElem Cont Nat Elem Dom] (a : Cont) (i : Fin n) (h : Dom a i) :
+@[defeq, simp, grind =] theorem getElem_fin [GetElem Cont Nat Elem Dom] (a : Cont) (i : Fin n) (h : Dom a i) :
     a[i] = a[i.1] := rfl
 
-@[simp, grind =, defeq] theorem getElem?_fin [h : GetElem? Cont Nat Elem Dom] (a : Cont) (i : Fin n) : a[i]? = a[i.1]? := rfl
+@[defeq, simp, grind =] theorem getElem?_fin [h : GetElem? Cont Nat Elem Dom] (a : Cont) (i : Fin n) : a[i]? = a[i.1]? := rfl
 
-@[simp, grind =, defeq] theorem getElem!_fin [GetElem? Cont Nat Elem Dom] (a : Cont) (i : Fin n) [Inhabited Elem] : a[i]! = a[i.1]! := rfl
+@[defeq, simp, grind =] theorem getElem!_fin [GetElem? Cont Nat Elem Dom] (a : Cont) (i : Fin n) [Inhabited Elem] : a[i]! = a[i.1]! := rfl
 
 macro_rules
   | `(tactic| get_elem_tactic_extensible) => `(tactic| (with_reducible apply Fin.val_lt_of_le); get_elem_tactic_extensible; done)
@@ -294,11 +294,11 @@ namespace List
 instance : GetElem (List α) Nat α fun as i => i < as.length where
   getElem as i h := as.get ⟨i, h⟩
 
-@[simp, grind =, backward_defeq]
+@[backward_defeq, simp, grind =]
 theorem getElem_cons_zero (a : α) (as : List α) (h : 0 < (a :: as).length) :
     getElem (a :: as) 0 h = a := rfl
 
-@[simp, grind =, backward_defeq]
+@[backward_defeq, simp, grind =]
 theorem getElem_cons_succ (a : α) (as : List α) (i : Nat) (h : i + 1 < (a :: as).length) : getElem (a :: as) (i+1) h = getElem as i (Nat.lt_of_succ_lt_succ h) :=
     rfl
 
@@ -341,10 +341,10 @@ instance : GetElem? (List α) Nat α fun as i => i < as.length where
   getElem? as i := as.get?Internal i
   getElem! as i := as.get!Internal i
 
-@[simp, defeq] theorem get?Internal_eq_getElem? {l : List α} {i : Nat} :
+@[defeq, simp] theorem get?Internal_eq_getElem? {l : List α} {i : Nat} :
     l.get?Internal i = l[i]? := rfl
 
-@[simp, defeq] theorem get!Internal_eq_getElem! [Inhabited α] {l : List α} {i : Nat} :
+@[defeq, simp] theorem get!Internal_eq_getElem! [Inhabited α] {l : List α} {i : Nat} :
     l.get!Internal i = l[i]! := rfl
 
 -- This is only needed locally; after the `LawfulGetElem` instance the general `getElem?_pos` lemma applies.
@@ -408,7 +408,7 @@ instance : LawfulGetElem (Array α) Nat α fun xs i => i < xs.size where
     simp only [getElem!, getElem?, decidableGetElem?, get!Internal, getD, getElem]
     split <;> rfl
 
-@[simp, defeq] theorem getInternal_eq_getElem (a : Array α) (i : Nat) (h) :
+@[defeq, simp] theorem getInternal_eq_getElem (a : Array α) (i : Nat) (h) :
     a.getInternal i h = a[i] := rfl
 
 @[simp] theorem get!Internal_eq_getElem! [Inhabited α] (a : Array α) (i : Nat) :

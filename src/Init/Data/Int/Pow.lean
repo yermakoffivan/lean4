@@ -18,7 +18,7 @@ namespace Int
 
 /-! # pow -/
 
-@[simp, norm_cast, backward_defeq]
+@[backward_defeq, simp, norm_cast]
 theorem natCast_pow (m n : Nat) : (m ^ n : Nat) = (m : Int) ^ n := rfl
 
 @[backward_defeq]

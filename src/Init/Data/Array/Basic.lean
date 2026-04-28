@@ -88,9 +88,9 @@ theorem ext' {xs ys : Array α} (h : xs.toList = ys.toList) : xs = ys := by
 @[simp] theorem toArrayAux_eq {as : List α} {acc : Array α} : (as.toArrayAux acc).toList = acc.toList ++ as := by
   induction as generalizing acc <;> simp [*, List.toArrayAux, Array.push, List.append_assoc, List.concat_eq_append]
 
-@[simp, grind =, defeq] theorem toArray_toList {xs : Array α} : xs.toList.toArray = xs := rfl
+@[defeq, simp, grind =] theorem toArray_toList {xs : Array α} : xs.toList.toArray = xs := rfl
 
-@[simp, grind =, backward_defeq] theorem getElem_toList {xs : Array α} {i : Nat} (h : i < xs.size) : xs.toList[i] = xs[i] := rfl
+@[backward_defeq, simp, grind =] theorem getElem_toList {xs : Array α} {i : Nat} (h : i < xs.size) : xs.toList[i] = xs[i] := rfl
 
 @[simp, grind =] theorem getElem?_toList {xs : Array α} {i : Nat} : xs.toList[i]? = xs[i]? := by
   simp only [getElem?_def, getElem_toList]
@@ -121,9 +121,9 @@ theorem mem_toArray {a : α} {l : List α} : a ∈ l.toArray ↔ a ∈ l :=
 
 grind_pattern getElem_mem => xs[i] ∈ xs
 
-@[simp, grind =, backward_defeq] theorem emptyWithCapacity_eq {α n} : @emptyWithCapacity α n = #[] := rfl
+@[backward_defeq, simp, grind =] theorem emptyWithCapacity_eq {α n} : @emptyWithCapacity α n = #[] := rfl
 
-@[simp, backward_defeq] theorem mkEmpty_eq {α n} : @mkEmpty α n = #[] := rfl
+@[backward_defeq, simp] theorem mkEmpty_eq {α n} : @mkEmpty α n = #[] := rfl
 
 end Array
 
@@ -135,7 +135,7 @@ theorem toList_toArray {as : List α} : as.toArray.toList = as := rfl
 
 @[simp, grind =] theorem size_toArray {as : List α} : as.toArray.size = as.length := by simp [Array.size]
 
-@[simp, grind =, backward_defeq] theorem getElem_toArray {xs : List α} {i : Nat} (h : i < xs.toArray.size) :
+@[backward_defeq, simp, grind =] theorem getElem_toArray {xs : List α} {i : Nat} (h : i < xs.toArray.size) :
     xs.toArray[i] = xs[i]'(by simpa using h) := rfl
 
 @[simp, grind =] theorem getElem?_toArray {xs : List α} {i : Nat} : xs.toArray[i]? = xs[i]? := by
@@ -469,7 +469,7 @@ Examples:
 -/
 abbrev take (xs : Array α) (i : Nat) : Array α := extract xs 0 i
 
-@[simp, grind =, defeq] theorem take_eq_extract {xs : Array α} {i : Nat} : xs.take i = xs.extract 0 i := rfl
+@[defeq, simp, grind =] theorem take_eq_extract {xs : Array α} {i : Nat} : xs.take i = xs.extract 0 i := rfl
 
 /--
 Removes the first `i` elements of `xs`. If `xs` has fewer than `i` elements, the new array is empty.
@@ -483,7 +483,7 @@ Examples:
 -/
 abbrev drop (xs : Array α) (i : Nat) : Array α := extract xs i xs.size
 
-@[simp, grind =, defeq] theorem drop_eq_extract {xs : Array α} {i : Nat} : xs.drop i = xs.extract i xs.size := rfl
+@[defeq, simp, grind =] theorem drop_eq_extract {xs : Array α} {i : Nat} : xs.drop i = xs.extract i xs.size := rfl
 
 @[inline]
 unsafe def modifyMUnsafe [Monad m] (xs : Array α) (i : Nat) (f : α → m α) : m (Array α) := do
@@ -597,7 +597,7 @@ instance [Monad m] : ForIn' m (Array α) α inferInstance where
 -- No separate `ForIn` instance is required because it can be derived from `ForIn'`.
 
 -- We simplify `Array.forIn'` to `forIn'`.
-@[simp, defeq] theorem forIn'_eq_forIn' [Monad m] : @Array.forIn' α β m _ = forIn' := rfl
+@[defeq, simp] theorem forIn'_eq_forIn' [Monad m] : @Array.forIn' α β m _ = forIn' := rfl
 
 /-- See comment at `forIn'Unsafe` -/
 @[inline]
@@ -1029,7 +1029,7 @@ instance [Monad m] : ForM m (Array α) α where
   forM xs f := Array.forM f xs
 
 -- We simplify `Array.forM` to `forM`.
-@[simp, defeq] theorem forM_eq_forM [Monad m] {f : α → m PUnit} :
+@[defeq, simp] theorem forM_eq_forM [Monad m] {f : α → m PUnit} :
     Array.forM f as 0 as.size = forM as f := rfl
 
 /--

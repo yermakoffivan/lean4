@@ -23,24 +23,24 @@ theorem subNatNat_of_sub_eq_zero {m n : Nat} (h : n - m = 0) : subNatNat m n = �
 theorem subNatNat_of_sub_eq_succ {m n k : Nat} (h : n - m = succ k) : subNatNat m n = -[k+1] := by
   rw [subNatNat, h]
 
-@[simp, backward_defeq] protected theorem neg_zero : -(0:Int) = 0 := rfl
+@[backward_defeq, simp] protected theorem neg_zero : -(0:Int) = 0 := rfl
 
-@[simp, norm_cast, backward_defeq] theorem natCast_add (n m : Nat) : (↑(n + m) : Int) = n + m := rfl
-@[simp, norm_cast, backward_defeq] theorem natCast_mul (n m : Nat) : (↑(n * m) : Int) = n * m := rfl
-@[norm_cast, backward_defeq] theorem natCast_succ (n : Nat) : (succ n : Int) = n + 1 := rfl
-@[norm_cast, backward_defeq] theorem natCast_add_one (n : Nat) : ((n + 1 : Nat) : Int) = n + 1 := rfl
+@[backward_defeq, simp, norm_cast] theorem natCast_add (n m : Nat) : (↑(n + m) : Int) = n + m := rfl
+@[backward_defeq, simp, norm_cast] theorem natCast_mul (n m : Nat) : (↑(n * m) : Int) = n * m := rfl
+@[backward_defeq, norm_cast] theorem natCast_succ (n : Nat) : (succ n : Int) = n + 1 := rfl
+@[backward_defeq, norm_cast] theorem natCast_add_one (n : Nat) : ((n + 1 : Nat) : Int) = n + 1 := rfl
 
 @[backward_defeq]
 theorem neg_ofNat_zero : -((0 : Nat) : Int) = 0 := rfl
 @[backward_defeq]
 theorem neg_ofNat_succ (n : Nat) : -(succ n : Int) = -[n+1] := rfl
-@[simp, backward_defeq] theorem neg_negSucc (n : Nat) : -(-[n+1]) = ((n + 1 : Nat) : Int) := rfl
+@[backward_defeq, simp] theorem neg_negSucc (n : Nat) : -(-[n+1]) = ((n + 1 : Nat) : Int) := rfl
 
 @[backward_defeq]
 theorem negOfNat_eq : negOfNat n = -ofNat n := rfl
 
-@[simp, defeq] theorem add_def {a b : Int} : Int.add a b = a + b := rfl
-@[simp, defeq] theorem mul_def {a b : Int} : Int.mul a b = a * b := rfl
+@[defeq, simp] theorem add_def {a b : Int} : Int.add a b = a + b := rfl
+@[defeq, simp] theorem mul_def {a b : Int} : Int.mul a b = a * b := rfl
 
 /-!
 ## These are only for internal use
@@ -48,15 +48,15 @@ theorem negOfNat_eq : negOfNat n = -ofNat n := rfl
 Ideally these could all be made private, but they are used in downstream libraries.
 -/
 
-@[local simp, backward_defeq] theorem ofNat_add_ofNat (m n : Nat) : (↑m + ↑n : Int) = ↑(m + n) := rfl
-@[local simp, backward_defeq] theorem ofNat_add_negSucc (m n : Nat) : ↑m + -[n+1] = subNatNat m (succ n) := rfl
-@[local simp, backward_defeq] theorem negSucc_add_ofNat (m n : Nat) : -[m+1] + ↑n = subNatNat n (succ m) := rfl
-@[local simp, backward_defeq] theorem negSucc_add_negSucc (m n : Nat) : -[m+1] + -[n+1] = -[succ (m + n) +1] := rfl
+@[backward_defeq, local simp] theorem ofNat_add_ofNat (m n : Nat) : (↑m + ↑n : Int) = ↑(m + n) := rfl
+@[backward_defeq, local simp] theorem ofNat_add_negSucc (m n : Nat) : ↑m + -[n+1] = subNatNat m (succ n) := rfl
+@[backward_defeq, local simp] theorem negSucc_add_ofNat (m n : Nat) : -[m+1] + ↑n = subNatNat n (succ m) := rfl
+@[backward_defeq, local simp] theorem negSucc_add_negSucc (m n : Nat) : -[m+1] + -[n+1] = -[succ (m + n) +1] := rfl
 
-@[local simp, backward_defeq] theorem ofNat_mul_ofNat (m n : Nat) : (↑m * ↑n : Int) = ↑(m * n) := rfl
-@[local simp, backward_defeq] private theorem ofNat_mul_negSucc' (m n : Nat) : ↑m * -[n+1] = negOfNat (m * succ n) := rfl
-@[local simp, backward_defeq] private theorem negSucc_mul_ofNat' (m n : Nat) : -[m+1] * ↑n = negOfNat (succ m * n) := rfl
-@[local simp, backward_defeq] private theorem negSucc_mul_negSucc' (m n : Nat) :
+@[backward_defeq, local simp] theorem ofNat_mul_ofNat (m n : Nat) : (↑m * ↑n : Int) = ↑(m * n) := rfl
+@[backward_defeq, local simp] private theorem ofNat_mul_negSucc' (m n : Nat) : ↑m * -[n+1] = negOfNat (m * succ n) := rfl
+@[backward_defeq, local simp] private theorem negSucc_mul_ofNat' (m n : Nat) : -[m+1] * ↑n = negOfNat (succ m * n) := rfl
+@[backward_defeq, local simp] private theorem negSucc_mul_negSucc' (m n : Nat) :
     -[m+1] * -[n+1] = ofNat (succ m * succ n) := rfl
 
 /- ## some basic functions and properties -/
@@ -76,7 +76,7 @@ theorem negSucc_eq (n : Nat) : -[n+1] = -((n : Int) + 1) := rfl
 
 @[simp] theorem zero_ne_negSucc (n : Nat) : 0 ≠ -[n+1] := nofun
 
-@[simp, norm_cast, defeq] theorem cast_ofNat_Int :
+@[defeq, simp, norm_cast] theorem cast_ofNat_Int :
   (Nat.cast (no_index (OfNat.ofNat n)) : Int) = OfNat.ofNat n := rfl
 
 @[simp] theorem beq'_eq (a b : Int) : Int.beq' a b = (a = b) := by
@@ -304,7 +304,7 @@ theorem wlog_sign {P : Int → Prop} (inv : ∀ i, P i ↔ P (-i)) (w : ∀ n : 
 
 /- ## subtraction -/
 
-@[simp, backward_defeq] theorem negSucc_sub_one (n : Nat) : -[n+1] - 1 = -[n + 1 +1] := rfl
+@[backward_defeq, simp] theorem negSucc_sub_one (n : Nat) : -[n+1] - 1 = -[n + 1 +1] := rfl
 
 @[simp] protected theorem sub_self (a : Int) : a - a = 0 := by
   rw [Int.sub_eq_add_neg, Int.add_right_neg]

@@ -41,7 +41,7 @@ theorem or_val (a b : Fin n) : (a ||| b).val = (a.val ||| b.val) % n := rfl
 @[backward_defeq]
 theorem xor_val (a b : Fin n) : (a ^^^ b).val = (a.val ^^^ b.val) % n := rfl
 
-@[simp, backward_defeq] theorem shiftLeft_val (a b : Fin n) : (a <<< b).val = (a.val <<< b.val) % n := rfl
+@[backward_defeq, simp] theorem shiftLeft_val (a b : Fin n) : (a <<< b).val = (a.val <<< b.val) % n := rfl
 
 @[simp] theorem shiftRight_val (a b : Fin n) : (a >>> b).val = a.val >>> b.val :=
   Nat.mod_eq_of_lt (Nat.lt_of_le_of_lt (Nat.shiftRight_le _ _) a.isLt)

@@ -38,7 +38,7 @@ set_option backward.defeqAttrib.useBackward true
 example : w true = true := by dsimp
 
 @[backward_defeq] theorem foo_internal_with_arg (_ : Nat) : w true = true := rfl
-@[simp, backward_defeq] theorem foo_using_arg : w true = true := foo_internal_with_arg 0
+@[backward_defeq, simp] theorem foo_using_arg : w true = true := foo_internal_with_arg 0
 
 example : w true = true := by dsimp
 
@@ -49,6 +49,6 @@ example : w true = true := by dsimp
 example : w false = false := by dsimp
 
 @[backward_defeq] theorem foo_internal_without_arg : w false = false := rfl
-@[simp, backward_defeq] theorem foo_without_arg : w false = false := foo_internal_without_arg
+@[backward_defeq, simp] theorem foo_without_arg : w false = false := foo_internal_without_arg
 
 example : w false = false := by dsimp

@@ -112,8 +112,8 @@ def add (l₁ l₂ : LinearCombo) : LinearCombo where
 
 instance : Add LinearCombo := ⟨add⟩
 
-@[simp, backward_defeq] theorem add_const {l₁ l₂ : LinearCombo} : (l₁ + l₂).const = l₁.const + l₂.const := rfl
-@[simp, backward_defeq] theorem add_coeffs {l₁ l₂ : LinearCombo} : (l₁ + l₂).coeffs = l₁.coeffs + l₂.coeffs := rfl
+@[backward_defeq, simp] theorem add_const {l₁ l₂ : LinearCombo} : (l₁ + l₂).const = l₁.const + l₂.const := rfl
+@[backward_defeq, simp] theorem add_coeffs {l₁ l₂ : LinearCombo} : (l₁ + l₂).coeffs = l₁.coeffs + l₂.coeffs := rfl
 
 /-- Implementation of subtraction on `LinearCombo`. -/
 def sub (l₁ l₂ : LinearCombo) : LinearCombo where
@@ -122,8 +122,8 @@ def sub (l₁ l₂ : LinearCombo) : LinearCombo where
 
 instance : Sub LinearCombo := ⟨sub⟩
 
-@[simp, backward_defeq] theorem sub_const {l₁ l₂ : LinearCombo} : (l₁ - l₂).const = l₁.const - l₂.const := rfl
-@[simp, backward_defeq] theorem sub_coeffs {l₁ l₂ : LinearCombo} : (l₁ - l₂).coeffs = l₁.coeffs - l₂.coeffs := rfl
+@[backward_defeq, simp] theorem sub_const {l₁ l₂ : LinearCombo} : (l₁ - l₂).const = l₁.const - l₂.const := rfl
+@[backward_defeq, simp] theorem sub_coeffs {l₁ l₂ : LinearCombo} : (l₁ - l₂).coeffs = l₁.coeffs - l₂.coeffs := rfl
 
 /-- Implementation of negation on `LinearCombo`. -/
 def neg (lc : LinearCombo) : LinearCombo where
@@ -132,8 +132,8 @@ def neg (lc : LinearCombo) : LinearCombo where
 
 instance : Neg LinearCombo := ⟨neg⟩
 
-@[simp, backward_defeq] theorem neg_const {l : LinearCombo} : (-l).const = -l.const := rfl
-@[simp, backward_defeq] theorem neg_coeffs {l : LinearCombo} : (-l).coeffs = -l.coeffs  := rfl
+@[backward_defeq, simp] theorem neg_const {l : LinearCombo} : (-l).const = -l.const := rfl
+@[backward_defeq, simp] theorem neg_coeffs {l : LinearCombo} : (-l).coeffs = -l.coeffs  := rfl
 
 theorem sub_eq_add_neg (l₁ l₂ : LinearCombo) : l₁ - l₂ = l₁ + -l₂ := by
   rcases l₁ with ⟨a₁, c₁⟩; rcases l₂ with ⟨a₂, c₂⟩
@@ -148,8 +148,8 @@ def smul (lc : LinearCombo) (i : Int) : LinearCombo where
 
 instance : HMul Int LinearCombo LinearCombo := ⟨fun i lc => lc.smul i⟩
 
-@[simp, backward_defeq] theorem smul_const {lc : LinearCombo} {i : Int} : (i * lc).const = i * lc.const := rfl
-@[simp, backward_defeq] theorem smul_coeffs {lc : LinearCombo} {i : Int} : (i * lc).coeffs = i * lc.coeffs := rfl
+@[backward_defeq, simp] theorem smul_const {lc : LinearCombo} {i : Int} : (i * lc).const = i * lc.const := rfl
+@[backward_defeq, simp] theorem smul_coeffs {lc : LinearCombo} {i : Int} : (i * lc).coeffs = i * lc.coeffs := rfl
 
 @[simp] theorem add_eval (l₁ l₂ : LinearCombo) (v : Coeffs) :
     (l₁ + l₂).eval v = l₁.eval v + l₂.eval v := by

@@ -1059,11 +1059,11 @@ def divRec {w : Nat} (m : Nat) (args : DivModArgs w) (qr : DivModState w) :
   | 0 => qr
   | m + 1 => divRec m args <| divSubtractShift args qr
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem divRec_zero (qr : DivModState w) :
     divRec 0 args qr = qr := rfl
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem divRec_succ (m : Nat) (args : DivModArgs w) (qr : DivModState w) :
     divRec (m + 1) args qr =
       divRec m args (divSubtractShift args qr) := rfl
@@ -2584,11 +2584,11 @@ theorem getLsbD_cpopLayer {w iterNum: Nat} {oldLayer : BitVec (oldLen * w)}
     · rw [hmod, Nat.sub_zero, Nat.add_zero, Nat.div_mul_cancel (by omega)]
     · rw [Nat.div_mul_cancel (by exact dvd_sub_mod k), Nat.sub_add_cancel (by exact mod_le k w)]
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 private theorem addRecAux_zero {x : BitVec (l * w)} {acc : BitVec w} :
     x.addRecAux 0 acc = acc := rfl
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 private theorem addRecAux_succ {x : BitVec (l * w)} {n : Nat} {acc : BitVec w} :
     x.addRecAux (n + 1) acc = x.addRecAux n (acc + extractLsb' (n * w) w x) := rfl
 

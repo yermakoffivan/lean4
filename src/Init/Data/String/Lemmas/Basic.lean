@@ -307,7 +307,7 @@ theorem Pos.get_ofToSlice {s : String} {p : (s.toSlice).Pos} {h} :
     (ofToSlice p).get h = p.get (by simpa [← ofToSlice_inj]) := by
   simp [get_eq_get_toSlice]
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem push_empty {c : Char} : "".push c = singleton c := rfl
 
 namespace Slice.Pos

@@ -34,7 +34,7 @@ open Nat
 
 /-! ### min? -/
 
-@[simp, grind =, backward_defeq] theorem min?_nil [Min α] : ([] : List α).min? = none := rfl
+@[backward_defeq, simp, grind =] theorem min?_nil [Min α] : ([] : List α).min? = none := rfl
 
 @[simp, grind =]
 theorem min?_singleton [Min α] {x : α} : [x].min? = some x :=
@@ -245,7 +245,7 @@ theorem foldl_min_eq_min [Min α] [Std.IdempotentOp (min : α → α → α)] [S
 
 /-! ### max? -/
 
-@[simp, grind =, backward_defeq] theorem max?_nil [Max α] : ([] : List α).max? = none := rfl
+@[backward_defeq, simp, grind =] theorem max?_nil [Max α] : ([] : List α).max? = none := rfl
 
 @[simp, grind =]
 theorem max?_singleton [Max α] {x : α} : [x].max? = some x :=

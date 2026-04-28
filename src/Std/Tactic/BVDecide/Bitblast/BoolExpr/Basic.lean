@@ -64,11 +64,11 @@ def eval (a : α → Bool) : BoolExpr α → Bool
   | .gate g x y => g.eval (eval a x) (eval a y)
   | .ite d l r => bif d.eval a then l.eval a else r.eval a
 
-@[simp, backward_defeq] theorem eval_literal : eval a (.literal l) = a l := rfl
-@[simp, backward_defeq] theorem eval_const : eval a (.const b) = b := rfl
-@[simp, backward_defeq] theorem eval_not : eval a (.not x) = !eval a x := rfl
-@[simp, backward_defeq] theorem eval_gate : eval a (.gate g x y) = g.eval (eval a x) (eval a y) := rfl
-@[simp, backward_defeq] theorem eval_ite : eval a (.ite d l r) = bif d.eval a then l.eval a else r.eval a := rfl
+@[backward_defeq, simp] theorem eval_literal : eval a (.literal l) = a l := rfl
+@[backward_defeq, simp] theorem eval_const : eval a (.const b) = b := rfl
+@[backward_defeq, simp] theorem eval_not : eval a (.not x) = !eval a x := rfl
+@[backward_defeq, simp] theorem eval_gate : eval a (.gate g x y) = g.eval (eval a x) (eval a y) := rfl
+@[backward_defeq, simp] theorem eval_ite : eval a (.ite d l r) = bif d.eval a then l.eval a else r.eval a := rfl
 
 def Sat (a : α → Bool) (x : BoolExpr α) : Prop := eval a x = true
 def Unsat (x : BoolExpr α) : Prop := ∀ f, eval f x = false

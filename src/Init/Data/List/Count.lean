@@ -38,7 +38,7 @@ section countP
 
 variable {p q : α → Bool}
 
-@[simp, grind =, backward_defeq] theorem countP_nil : countP p [] = 0 := rfl
+@[backward_defeq, simp, grind =] theorem countP_nil : countP p [] = 0 := rfl
 
 protected theorem countP_go_eq_add {l} : countP.go p l n = n + countP.go p l 0 := by
   induction l generalizing n with
@@ -245,7 +245,7 @@ section count
 
 variable [BEq α]
 
-@[simp, grind =, backward_defeq] theorem count_nil {a : α} : count a [] = 0 := rfl
+@[backward_defeq, simp, grind =] theorem count_nil {a : α} : count a [] = 0 := rfl
 
 @[grind =]
 theorem count_cons {a b : α} {l : List α} :

@@ -13,7 +13,7 @@ public import Init.Data.Iterators.Lemmas.Consumers.Monadic
 
 namespace Std
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem IterM.step_empty {m β} [Monad m] :
     (IterM.empty m β).step = pure (.deflate ⟨.done, rfl⟩) :=
   rfl

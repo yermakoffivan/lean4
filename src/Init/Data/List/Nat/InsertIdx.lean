@@ -37,15 +37,15 @@ section InsertIdx
 
 variable {a : α}
 
-@[simp, grind =, backward_defeq]
+@[backward_defeq, simp, grind =]
 theorem insertIdx_zero {xs : List α} {x : α} : xs.insertIdx 0 x = x :: xs :=
   rfl
 
-@[simp, grind =, backward_defeq]
+@[backward_defeq, simp, grind =]
 theorem insertIdx_succ_nil {n : Nat} {a : α} : ([] : List α).insertIdx (n + 1) a = [] :=
   rfl
 
-@[simp, grind =, backward_defeq]
+@[backward_defeq, simp, grind =]
 theorem insertIdx_succ_cons {xs : List α} {hd x : α} {i : Nat} :
     (hd :: xs).insertIdx (i + 1) x = hd :: xs.insertIdx i x :=
   rfl

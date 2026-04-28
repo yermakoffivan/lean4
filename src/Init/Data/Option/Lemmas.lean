@@ -20,7 +20,7 @@ public section
 
 namespace Option
 
-@[grind =, defeq] theorem default_eq_none : (default : Option α) = none := rfl
+@[defeq, grind =] theorem default_eq_none : (default : Option α) = none := rfl
 
 @[grind =] theorem mem_some {a b : α} : a ∈ some b ↔ b = a := by simp
 
@@ -58,9 +58,9 @@ theorem getD_of_ne_none {x : Option α} (hx : x ≠ none) (y : α) : some (x.get
 theorem getD_eq_iff {o : Option α} {a b} : o.getD a = b ↔ (o = some b ∨ o = none ∧ a = b) := by
   cases o <;> simp
 
-@[simp, grind =, backward_defeq] theorem get!_none [Inhabited α] : (none : Option α).get! = default := rfl
+@[backward_defeq, simp, grind =] theorem get!_none [Inhabited α] : (none : Option α).get! = default := rfl
 
-@[simp, grind =, backward_defeq] theorem get!_some [Inhabited α] {a : α} : (some a).get! = a := rfl
+@[backward_defeq, simp, grind =] theorem get!_some [Inhabited α] {a : α} : (some a).get! = a := rfl
 
 theorem get_eq_get! [Inhabited α] : (o : Option α) → {h : o.isSome} → o.get h = o.get!
   | some _, _ => rfl
@@ -194,13 +194,13 @@ theorem forall_ne_none {p : Option α → Prop} : (∀ x (_ : x ≠ none), p x) 
       simp [some_get] at this ⊢
       exact this⟩
 
-@[simp, defeq] theorem pure_def : pure = @some α := rfl
+@[defeq, simp] theorem pure_def : pure = @some α := rfl
 
-@[grind =, defeq] theorem pure_apply : pure x = some x := rfl
+@[defeq, grind =] theorem pure_apply : pure x = some x := rfl
 
-@[simp, defeq] theorem bind_eq_bind : bind = @Option.bind α β := rfl
+@[defeq, simp] theorem bind_eq_bind : bind = @Option.bind α β := rfl
 
-@[grind =, defeq] theorem bind_apply : bind x f = Option.bind x f := rfl
+@[defeq, grind =] theorem bind_apply : bind x f = Option.bind x f := rfl
 
 @[simp, grind =] theorem bind_fun_some (x : Option α) : x.bind some = x := by cases x <;> rfl
 
@@ -267,7 +267,7 @@ theorem isSome_apply_of_isSome_bind {α β : Type _} {x : Option α} {f : α →
     (o.bind f).all p = o.all (Option.all p ∘ f) := by
   cases o <;> simp
 
-@[grind =, backward_defeq] theorem bind_id_eq_join {x : Option (Option α)} : x.bind id = x.join := rfl
+@[backward_defeq, grind =] theorem bind_id_eq_join {x : Option (Option α)} : x.bind id = x.join := rfl
 
 theorem join_eq_some_iff : x.join = some a ↔ x = some (some a) := by
   simp [← bind_id_eq_join, bind_eq_some_iff]
@@ -285,9 +285,9 @@ theorem bind_join {f : α → Option β} {o : Option (Option α)} :
     o.join.bind f = o.bind (·.bind f) := by
   cases o <;> simp
 
-@[simp, defeq] theorem map_eq_map : Functor.map f = Option.map f := rfl
+@[defeq, simp] theorem map_eq_map : Functor.map f = Option.map f := rfl
 
-@[grind =, defeq] theorem map_apply : Functor.map f x = Option.map f x := rfl
+@[defeq, grind =] theorem map_apply : Functor.map f x = Option.map f x := rfl
 
 @[simp] theorem map_eq_some_iff : x.map f = some b ↔ ∃ a, x = some a ∧ f a = b := by
   cases x <;> simp
@@ -363,9 +363,9 @@ theorem map_inj_right {f : α → β} {o o' : Option α} (w : ∀ x y, f x = f y
      (if h : c then some (a h) else none).map f = if h : c then some (f (a h)) else none := by
   split <;> rfl
 
-@[simp, grind =, backward_defeq] theorem filter_none (p : α → Bool) : none.filter p = none := rfl
+@[backward_defeq, simp, grind =] theorem filter_none (p : α → Bool) : none.filter p = none := rfl
 
-@[grind =, backward_defeq] theorem filter_some : Option.filter p (some a) = if p a then some a else none := rfl
+@[backward_defeq, grind =] theorem filter_some : Option.filter p (some a) = if p a then some a else none := rfl
 
 theorem filter_some_pos (h : p a) : Option.filter p (some a) = some a := by
   rw [filter_some, if_pos h]
@@ -627,7 +627,7 @@ theorem get_none_eq_iff_true {h} : (none : Option α).get h = a ↔ True := by
 theorem guard_def (p : α → Bool) :
     Option.guard p = fun x => if p x then some x else none := rfl
 
-@[grind =, backward_defeq] theorem guard_apply : Option.guard p x = if p x then some x else none := rfl
+@[backward_defeq, grind =] theorem guard_apply : Option.guard p x = if p x then some x else none := rfl
 
 @[backward_defeq]
 theorem guard_eq_ite {p : α → Bool} {x : α} :
@@ -679,7 +679,7 @@ theorem merge_eq_or_eq {f : α → α → α} (h : ∀ a b, f a b = a ∨ f a b 
 @[simp, grind =] theorem merge_none_right {f} {a : Option α} : merge f a none = a := by
   cases a <;> rfl
 
-@[simp, grind =, backward_defeq] theorem merge_some_some {f} {a b : α} :
+@[backward_defeq, simp, grind =] theorem merge_some_some {f} {a b : α} :
   merge f (some a) (some b) = some (f a b) := rfl
 
 instance commutative_merge (f : α → α → α) [Std.Commutative f] :
@@ -736,9 +736,9 @@ theorem get_merge {o o' : Option α} {f : α → α → α} {i : α} [Std.Lawful
     (o.merge f o').get h = f (o.getD i) (o'.getD i) := by
   cases o <;> cases o' <;> simp [Std.LawfulLeftIdentity.left_id, Std.LawfulRightIdentity.right_id]
 
-@[simp, grind =, backward_defeq] theorem elim_none (x : β) (f : α → β) : Option.elim none x f = x := rfl
+@[backward_defeq, simp, grind =] theorem elim_none (x : β) (f : α → β) : Option.elim none x f = x := rfl
 
-@[simp, grind =, backward_defeq] theorem elim_some (x : β) (f : α → β) (a : α) : (some a).elim x f = f a := rfl
+@[backward_defeq, simp, grind =] theorem elim_some (x : β) (f : α → β) (a : α) : (some a).elim x f = f a := rfl
 
 @[grind =] theorem elim_filter {o : Option α} {b : β} :
     Option.elim (Option.filter p o) b f = Option.elim o b (fun a => if p a then f a else b) :=
@@ -819,16 +819,16 @@ theorem get!_choice [Inhabited α] : (choice α).get! = (choice α).get isSome_c
 
 end choice
 
-@[simp, grind =, backward_defeq] theorem toList_some (a : α) : (some a).toList = [a] := rfl
-@[simp, grind =, backward_defeq] theorem toList_none (α : Type _) : (none : Option α).toList = [] := rfl
+@[backward_defeq, simp, grind =] theorem toList_some (a : α) : (some a).toList = [a] := rfl
+@[backward_defeq, simp, grind =] theorem toList_none (α : Type _) : (none : Option α).toList = [] := rfl
 
-@[simp, grind =, backward_defeq] theorem toArray_some (a : α) : (some a).toArray = #[a] := rfl
-@[simp, grind =, backward_defeq] theorem toArray_none (α : Type _) : (none : Option α).toArray = #[] := rfl
+@[backward_defeq, simp, grind =] theorem toArray_some (a : α) : (some a).toArray = #[a] := rfl
+@[backward_defeq, simp, grind =] theorem toArray_none (α : Type _) : (none : Option α).toArray = #[] := rfl
 
 -- See `Init.Data.Option.List` for lemmas about `toList`.
 
-@[simp, grind =, backward_defeq] theorem some_or : (some a).or o = some a := rfl
-@[simp, grind =, backward_defeq] theorem none_or : none.or o = o := rfl
+@[backward_defeq, simp, grind =] theorem some_or : (some a).or o = some a := rfl
+@[backward_defeq, simp, grind =] theorem none_or : none.or o = o := rfl
 
 theorem or_eq_right_of_none {o o' : Option α} (h : o = none) : o.or o' = o' := by
   cases h; simp
@@ -906,9 +906,9 @@ theorem any_or_of_any_left {o₁ o₂ : Option α} {f : α → Bool} (h : o₁.a
 /-! ### `orElse` -/
 
 /-- The `simp` normal form of `o <|> o'` is `o.or o'` via `orElse_eq_orElse` and `orElse_eq_or`. -/
-@[simp, defeq] theorem orElse_eq_orElse : HOrElse.hOrElse = @Option.orElse α := rfl
+@[defeq, simp] theorem orElse_eq_orElse : HOrElse.hOrElse = @Option.orElse α := rfl
 
-@[grind =, defeq] theorem orElse_apply : HOrElse.hOrElse o o' = Option.orElse o o' := rfl
+@[defeq, grind =] theorem orElse_apply : HOrElse.hOrElse o o' = Option.orElse o o' := rfl
 
 theorem or_eq_orElse : or o o' = o.orElse (fun _ => o') := by
   cases o <;> rfl
@@ -923,10 +923,10 @@ section beq
 
 variable [BEq α]
 
-@[simp, grind =, backward_defeq] theorem none_beq_none : ((none : Option α) == none) = true := rfl
-@[simp, grind =, backward_defeq] theorem none_beq_some (a : α) : ((none : Option α) == some a) = false := rfl
-@[simp, grind =, backward_defeq] theorem some_beq_none (a : α) : ((some a : Option α) == none) = false := rfl
-@[simp, grind =, backward_defeq] theorem some_beq_some {a b : α} : (some a == some b) = (a == b) := rfl
+@[backward_defeq, simp, grind =] theorem none_beq_none : ((none : Option α) == none) = true := rfl
+@[backward_defeq, simp, grind =] theorem none_beq_some (a : α) : ((none : Option α) == some a) = false := rfl
+@[backward_defeq, simp, grind =] theorem some_beq_none (a : α) : ((some a : Option α) == none) = false := rfl
+@[backward_defeq, simp, grind =] theorem some_beq_some {a b : α} : (some a == some b) = (a == b) := rfl
 
 /-- We simplify away `isEqSome` in terms of `==`. -/
 @[simp, grind =] theorem isEqSome_eq_beq_some {o : Option α} : isEqSome o y = (o == some y) := by
@@ -1098,8 +1098,8 @@ end ite
 
 /-! ### pbind -/
 
-@[simp, backward_defeq] theorem pbind_none : pbind none f = none := rfl
-@[simp, backward_defeq] theorem pbind_some : pbind (some a) f = f a rfl := rfl
+@[backward_defeq, simp] theorem pbind_none : pbind none f = none := rfl
+@[backward_defeq, simp] theorem pbind_some : pbind (some a) f = f a rfl := rfl
 
 @[grind = gen] theorem pbind_none' (h : x = none) : pbind x f = none := by subst h; rfl
 @[grind = gen] theorem pbind_some' (h : x = some a) : pbind x f = f a h := by subst h; rfl
@@ -1160,10 +1160,10 @@ theorem get_pbind {o : Option α} {f : (a : α) → o = some a → Option β} {h
 
 /-! ### pmap -/
 
-@[simp, backward_defeq] theorem pmap_none {p : α → Prop} {f : ∀ (a : α), p a → β} {h} :
+@[backward_defeq, simp] theorem pmap_none {p : α → Prop} {f : ∀ (a : α), p a → β} {h} :
     pmap f none h = none := rfl
 
-@[simp, backward_defeq] theorem pmap_some {p : α → Prop} {f : ∀ (a : α), p a → β} {h} :
+@[backward_defeq, simp] theorem pmap_some {p : α → Prop} {f : ∀ (a : α), p a → β} {h} :
     pmap f (some a) h = some (f a (h a rfl)) := rfl
 
 @[grind = gen] theorem pmap_none' {p : α → Prop} {f : ∀ (a : α), p a → β} (he : x = none) {h} :
@@ -1253,8 +1253,8 @@ theorem get_pmap {p : α → Bool} {f : (x : α) → p x → β} {o : Option α}
 
 /-! ### pelim -/
 
-@[simp, backward_defeq] theorem pelim_none : pelim none b f = b := rfl
-@[simp, backward_defeq] theorem pelim_some : pelim (some a) b f = f a rfl := rfl
+@[backward_defeq, simp] theorem pelim_none : pelim none b f = b := rfl
+@[backward_defeq, simp] theorem pelim_some : pelim (some a) b f = f a rfl := rfl
 
 @[grind = gen] theorem pelim_none' (h : x = none) : pelim x b f = b := by subst h; rfl
 @[grind = gen] theorem pelim_some' (h : x = some a) : pelim x b f = f a h := by subst h; rfl

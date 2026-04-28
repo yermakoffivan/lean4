@@ -53,7 +53,7 @@ The assumption `NeZero n` ensures that `Fin n` is nonempty.
 protected def ofNat (n : Nat) [NeZero n] (a : Nat) : Fin n :=
   ⟨a % n, Nat.mod_lt _ (pos_of_neZero n)⟩
 
-@[simp, backward_defeq]
+@[backward_defeq, simp]
 theorem Internal.ofNat_eq_ofNat {n : Nat} {hn} {a : Nat} :
   letI : NeZero n := ⟨Nat.pos_iff_ne_zero.1 hn⟩
   Fin.Internal.ofNat n hn a = Fin.ofNat n a := rfl
@@ -70,7 +70,7 @@ coercion, so values of type `Fin n` are automatically converted to `Nat`s as nee
 protected def toNat (i : Fin n) : Nat :=
   i.val
 
-@[simp, backward_defeq] theorem toNat_eq_val {i : Fin n} : i.toNat = i.val := rfl
+@[backward_defeq, simp] theorem toNat_eq_val {i : Fin n} : i.toNat = i.val := rfl
 
 private theorem mlt {b : Nat} : {a : Nat} → a < n → b % n < n
   | 0,   h => Nat.mod_lt _ h
@@ -250,14 +250,14 @@ theorem neg_def (a : Fin n) : -a = ⟨(n - a) % n, Nat.mod_lt _ a.pos⟩ := rfl
 protected theorem val_neg' (a : Fin n) : ((-a : Fin n) : Nat) = (n - a) % n :=
   rfl
 
-@[deprecated Fin.val_neg' (since := "2025-11-21"), defeq]
+@[defeq, deprecated Fin.val_neg' (since := "2025-11-21")]
 protected theorem coe_neg (a : Fin n) : ((-a : Fin n) : Nat) = (n - a) % n :=
   rfl
 
 instance instInhabited {n : Nat} [NeZero n] : Inhabited (Fin n) where
   default := 0
 
-@[simp, backward_defeq] theorem zero_eta : (⟨0, Nat.zero_lt_succ _⟩ : Fin (n + 1)) = 0 := rfl
+@[backward_defeq, simp] theorem zero_eta : (⟨0, Nat.zero_lt_succ _⟩ : Fin (n + 1)) = 0 := rfl
 
 theorem ne_of_val_ne {i j : Fin n} (h : val i ≠ val j) : i ≠ j :=
   fun h' => absurd (val_eq_of_eq h') h

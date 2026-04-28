@@ -583,11 +583,11 @@ The semantics of boolean problems involving BitVec predicates as atoms.
 def eval (assign : BVExpr.Assignment) (expr : BVLogicalExpr) : Bool :=
   BoolExpr.eval (·.eval assign) expr
 
-@[simp, backward_defeq] theorem eval_literal : eval assign (.literal pred) = pred.eval assign := rfl
-@[simp, backward_defeq] theorem eval_const : eval assign (.const b) = b := rfl
-@[simp, backward_defeq] theorem eval_not : eval assign (.not x) = !eval assign x := rfl
-@[simp, backward_defeq] theorem eval_gate : eval assign (.gate g x y) = g.eval (eval assign x) (eval assign y) := rfl
-@[simp, backward_defeq] theorem eval_ite :
+@[backward_defeq, simp] theorem eval_literal : eval assign (.literal pred) = pred.eval assign := rfl
+@[backward_defeq, simp] theorem eval_const : eval assign (.const b) = b := rfl
+@[backward_defeq, simp] theorem eval_not : eval assign (.not x) = !eval assign x := rfl
+@[backward_defeq, simp] theorem eval_gate : eval assign (.gate g x y) = g.eval (eval assign x) (eval assign y) := rfl
+@[backward_defeq, simp] theorem eval_ite :
   eval assign (.ite d l r) = bif (eval assign d) then (eval assign l) else (eval assign r) := rfl
 
 def Sat (x : BVLogicalExpr) (assign : BVExpr.Assignment) : Prop := eval assign x = true

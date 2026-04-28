@@ -44,10 +44,10 @@ namespace Int
 theorem neg_lt_self_iff {n : Int} : -n < n ↔ 0 < n := by
   omega
 
-@[deprecated ofNat_add_ofNat (since := "2025-10-26"), backward_defeq]
+@[backward_defeq, deprecated ofNat_add_ofNat (since := "2025-10-26")]
 protected theorem ofNat_add_out (m n : Nat) : ↑m + ↑n = (↑(m + n) : Int) := rfl
 
-@[deprecated ofNat_mul_ofNat (since := "2025-10-26"), backward_defeq]
+@[backward_defeq, deprecated ofNat_mul_ofNat (since := "2025-10-26")]
 protected theorem ofNat_mul_out (m n : Nat) : ↑m * ↑n = (↑(m * n) : Int) := rfl
 
 @[backward_defeq]
@@ -66,7 +66,7 @@ theorem natCast_succ_pos (n : Nat) : 0 < (n.succ : Int) := natCast_pos.2 n.succ_
 
 @[simp high] theorem natCast_nonpos_iff {n : Nat} : (n : Int) ≤ 0 ↔ n = 0 := by omega
 
-@[simp, norm_cast, defeq] theorem cast_id {n : Int} : Int.cast n = n := rfl
+@[defeq, simp, norm_cast] theorem cast_id {n : Int} : Int.cast n = n := rfl
 
 @[simp] theorem ble'_eq_true (a b : Int) : (Int.ble' a b = true) = (a ≤ b) := by
   cases a <;> cases b <;> simp [Int.ble'] <;> omega

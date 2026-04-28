@@ -339,7 +339,7 @@ info: "3 03 3rd quarter 3"
 #eval zoned₄.format "Q QQ QQQQ QQQQQ"
 
 /--
-info: "29 29"
+info: "28 28"
 -/
 #guard_msgs in
 #eval zoned₄.format "w ww"
@@ -542,7 +542,7 @@ info: "28 28"
 #eval datetime₄.format "w ww"
 
 /--
-info: "2"
+info: "3"
 -/
 #guard_msgs in
 #eval datetime₄.format "W"
@@ -757,7 +757,7 @@ info: "28 28"
 #eval date₄.format "w ww"
 
 /--
-info: "2"
+info: "3"
 -/
 #guard_msgs in
 #eval date₄.format "W"
@@ -960,3 +960,1059 @@ info: Except.ok (zoned("2002-07-14T14:13:12.000000000Z"))
 -/
 #guard_msgs in
 #eval Formats.leanDateTimeWithZoneAlt.parse "2002-07-14T14:13:12+00:00"
+
+/-
+===========================
+Additional format specifier tests – PlainDateTime, PlainDate, PlainTime
+===========================
+-/
+
+-- Shared fixtures
+def fmtDT (y : Int) (mo : Month.Ordinal) (d : Day.Ordinal)
+    (h : Hour.Ordinal) (mi : Minute.Ordinal) (se : Second.Ordinal true)
+    (ns : Nanosecond.Ordinal := 0) : PlainDateTime :=
+  PlainDateTime.mk (PlainDate.ofYearMonthDayClip y mo d) (PlainTime.mk h mi se ns)
+
+def fmtPD (y : Int) (mo : Month.Ordinal) (d : Day.Ordinal) : PlainDate :=
+  PlainDate.ofYearMonthDayClip y mo d
+
+def fmtPT (h : Hour.Ordinal) (mi : Minute.Ordinal) (se : Second.Ordinal true)
+    (ns : Nanosecond.Ordinal := 0) : PlainTime :=
+  PlainTime.mk h mi se ns
+
+-- ===== G (ERA) =====
+
+/--
+info: "AD AD AD Anno Domini A"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 6 15 0 0 0).format "G GG GGG GGGG GGGGG"
+
+/--
+info: "BC BC BC Before Christ B"
+-/
+#guard_msgs in
+#eval (fmtDT (-100) 6 15 0 0 0).format "G GG GGG GGGG GGGGG"
+
+/--
+info: "AD Anno Domini A"
+-/
+#guard_msgs in
+#eval (fmtDT 1 1 1 0 0 0).format "G GGGG GGGGG"
+
+/--
+info: "BC Before Christ B"
+-/
+#guard_msgs in
+#eval (fmtDT 0 1 1 0 0 0).format "G GGGG GGGGG"
+
+/--
+info: "BC Before Christ B"
+-/
+#guard_msgs in
+#eval (fmtDT (-1) 1 1 0 0 0).format "G GGGG GGGGG"
+
+-- ===== y (YEAR OF ERA) =====
+
+/--
+info: "2024 24 2024"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0).format "y yy yyyy"
+
+/--
+info: "101 01 0101"
+-/
+#guard_msgs in
+#eval (fmtDT (-100) 6 15 0 0 0).format "y yy yyyy"
+
+/--
+info: "1 01 0001"
+-/
+#guard_msgs in
+#eval (fmtDT 1 1 1 0 0 0).format "y yy yyyy"
+
+/--
+info: "1 01"
+-/
+#guard_msgs in
+#eval (fmtDT 0 6 1 0 0 0).format "y yy"
+
+/--
+info: "00"
+-/
+#guard_msgs in
+#eval (fmtDT 2100 1 1 0 0 0).format "yy"
+
+-- ===== Y (WEEK-BASED YEAR) =====
+-- Dec 31 2018 is in ISO week 1 of 2019
+
+/--
+info: "2019"
+-/
+#guard_msgs in
+#eval (fmtDT 2018 12 31 12 0 0).format "YYYY"
+
+/--
+info: "2019"
+-/
+#guard_msgs in
+#eval (fmtDT 2019 1 1 0 0 0).format "YYYY"
+
+-- Dec 30 2019 is in ISO week 1 of 2020
+
+/--
+info: "2020"
+-/
+#guard_msgs in
+#eval (fmtDT 2019 12 30 0 0 0).format "YYYY"
+
+/--
+info: "2020"
+-/
+#guard_msgs in
+#eval (fmtDT 2020 12 31 0 0 0).format "YYYY"
+
+-- Dec 31 2023 is in ISO week 52 of 2023
+
+/--
+info: "2023"
+-/
+#guard_msgs in
+#eval (fmtDT 2023 12 31 23 59 59).format "YYYY"
+
+-- ===== u (PROLEPTIC YEAR) =====
+
+/--
+info: "2024 2024"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0).format "u uuuu"
+
+/--
+info: "-100 -0100"
+-/
+#guard_msgs in
+#eval (fmtDT (-100) 1 1 0 0 0).format "u uuuu"
+
+/--
+info: "0000"
+-/
+#guard_msgs in
+#eval (fmtDT 0 1 1 0 0 0).format "uuuu"
+
+/--
+info: "0001"
+-/
+#guard_msgs in
+#eval (fmtDT 1 1 1 0 0 0).format "uuuu"
+
+-- ===== D (DAY OF YEAR) =====
+
+/--
+info: "1 001"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0).format "D DDD"
+
+-- Feb 29 is day 60 in a leap year
+
+/--
+info: "60 060"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 2 29 0 0 0).format "D DDD"
+
+-- Mar 1 is day 61 in a leap year, day 60 in a non-leap year
+
+/--
+info: "61 061"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 3 1 0 0 0).format "D DDD"
+
+/--
+info: "60 060"
+-/
+#guard_msgs in
+#eval (fmtDT 2023 3 1 0 0 0).format "D DDD"
+
+-- Dec 31: 366 in leap year, 365 in non-leap
+
+/--
+info: "366 366"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 12 31 0 0 0).format "D DDD"
+
+/--
+info: "365 365"
+-/
+#guard_msgs in
+#eval (fmtDT 2023 12 31 0 0 0).format "D DDD"
+
+/--
+info: "59 059"
+-/
+#guard_msgs in
+#eval (fmtDT 2023 2 28 0 0 0).format "D DDD"
+
+-- July 4, 2024 = day 186
+
+/--
+info: "186"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 7 4 0 0 0).format "D"
+
+-- ===== M / L (MONTH) =====
+
+/--
+info: "1 01 Jan January J"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0).format "M MM MMM MMMM MMMMM"
+
+/--
+info: "6 06 Jun June J"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 6 1 0 0 0).format "M MM MMM MMMM MMMMM"
+
+/--
+info: "12 12 Dec December D"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 12 1 0 0 0).format "M MM MMM MMMM MMMMM"
+
+/--
+info: "February"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 2 1 0 0 0).format "MMMM"
+
+/--
+info: "1 01 Jan January J"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0).format "L LL LLL LLLL LLLLL"
+
+/--
+info: "9 09 Sep September S"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 9 1 0 0 0).format "L LL LLL LLLL LLLLL"
+
+-- ===== d (DAY OF MONTH) =====
+
+/--
+info: "1 01"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0).format "d dd"
+
+/--
+info: "31 31"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 31 0 0 0).format "d dd"
+
+/--
+info: "29 29"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 2 29 0 0 0).format "d dd"
+
+-- ===== Q / q (QUARTER) =====
+
+/--
+info: "1 01 Q1 1st quarter 1"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0).format "Q QQ QQQ QQQQ QQQQQ"
+
+/--
+info: "2 02 Q2 2nd quarter 2"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 4 1 0 0 0).format "Q QQ QQQ QQQQ QQQQQ"
+
+/--
+info: "3 03 Q3 3rd quarter 3"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 7 1 0 0 0).format "Q QQ QQQ QQQQ QQQQQ"
+
+/--
+info: "4 04 Q4 4th quarter 4"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 10 1 0 0 0).format "Q QQ QQQ QQQQ QQQQQ"
+
+/--
+info: "1 01 Q1 1st quarter 1"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0).format "q qq qqq qqqq qqqqq"
+
+/--
+info: "3 03 Q3 3rd quarter 3"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 7 1 0 0 0).format "q qq qqq qqqq qqqqq"
+
+/--
+info: "4 04 Q4 4th quarter 4"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 10 1 0 0 0).format "q qq qqq qqqq qqqqq"
+
+-- ===== w (ISO WEEK OF YEAR) =====
+-- Jan 1 2024 = week 1
+
+/--
+info: "1 01"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0).format "w ww"
+
+-- Jan 7 2024 = still week 1
+
+/--
+info: "1"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 7 0 0 0).format "w"
+
+-- Dec 31 2024 = ISO week 1 of 2025
+
+/--
+info: "1"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 12 31 0 0 0).format "w"
+
+-- Dec 31 2023 = ISO week 52 of 2023
+
+/--
+info: "52"
+-/
+#guard_msgs in
+#eval (fmtDT 2023 12 31 23 59 59).format "w"
+
+-- Dec 31 2020 = ISO week 53 of 2020
+
+/--
+info: "53"
+-/
+#guard_msgs in
+#eval (fmtDT 2020 12 31 0 0 0).format "w"
+
+-- ===== W (WEEK OF MONTH, Sunday-first) =====
+-- April 2024 starts Monday; week boundaries: W1=Apr1-6, W2=Apr7-13, W3=Apr14-20, W4=Apr21-27, W5=Apr28-30
+
+/--
+info: "1"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 4 1 0 0 0).format "W"
+
+/--
+info: "1"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 4 6 0 0 0).format "W"
+
+/--
+info: "2"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 4 7 0 0 0).format "W"
+
+/--
+info: "3"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 4 14 0 0 0).format "W"
+
+/--
+info: "5"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 4 30 0 0 0).format "W"
+
+-- May 2024 starts Wednesday: W1=May1-4, W2=May5-11
+
+/--
+info: "1"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 5 1 0 0 0).format "W"
+
+/--
+info: "2"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 5 5 0 0 0).format "W"
+
+-- November 2024 starts Friday: W1=Nov1-2, W2=Nov3-9
+
+/--
+info: "1"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 11 1 0 0 0).format "W"
+
+/--
+info: "2"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 11 3 0 0 0).format "W"
+
+-- ===== E / e / c (WEEKDAY) =====
+-- 2024-01-01 = Monday, 2024-01-02 = Tuesday, 2024-01-06 = Saturday, 2024-01-07 = Sunday
+
+/--
+info: "Mon Mon Mon Monday M"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0).format "E EE EEE EEEE EEEEE"
+
+/--
+info: "Tue Tue Tue Tuesday T"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 2 0 0 0).format "E EE EEE EEEE EEEEE"
+
+/--
+info: "Sat Sat Sat Saturday S"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 6 0 0 0).format "E EE EEE EEEE EEEEE"
+
+/--
+info: "Sun Sun Sun Sunday S"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 7 0 0 0).format "E EE EEE EEEE EEEEE"
+
+-- e: 1=Sunday numeric (1-7, Sun=1)
+
+/--
+info: "2 02 Mon Monday M"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0).format "e ee eee eeee eeeee"
+
+/--
+info: "1 01 Sun Sunday S"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 7 0 0 0).format "e ee eee eeee eeeee"
+
+-- c: stand-alone weekday
+
+/--
+info: "2 Mon Monday M"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0).format "c ccc cccc ccccc"
+
+/--
+info: "1 Sun Sunday S"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 7 0 0 0).format "c ccc cccc ccccc"
+
+-- ===== F (DAY-IN-MONTH: n-th occurrence of weekday) =====
+
+/--
+info: "1"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 4 1 0 0 0).format "F"
+
+/--
+info: "1"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 4 7 0 0 0).format "F"
+
+/--
+info: "2"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 4 8 0 0 0).format "F"
+
+/--
+info: "2"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 4 14 0 0 0).format "F"
+
+/--
+info: "4"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 4 28 0 0 0).format "F"
+
+/--
+info: "1"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 7 4 0 0 0).format "F"
+
+-- ===== H / h / K / k (HOURS) =====
+-- midnight: H=0, h=12, K=0, k=24
+
+/--
+info: "0 12 0 24"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0).format "H h K k"
+
+-- 1 AM: H=1, h=1, K=1, k=1
+
+/--
+info: "1 1 1 1"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 1 0 0).format "H h K k"
+
+-- 11 AM: H=11, h=11, K=11, k=11
+
+/--
+info: "11 11 11 11"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 11 0 0).format "H h K k"
+
+-- noon: H=12, h=12, K=0, k=12
+
+/--
+info: "12 12 0 12"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 12 0 0).format "H h K k"
+
+-- 1 PM: H=13, h=1, K=1, k=13
+
+/--
+info: "13 1 1 13"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 13 0 0).format "H h K k"
+
+-- 11 PM: H=23, h=11, K=11, k=23
+
+/--
+info: "23 11 11 23"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 23 0 0).format "H h K k"
+
+-- zero-padded
+
+/--
+info: "00 12 00 24"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0).format "HH hh KK kk"
+
+/--
+info: "12 12 00 12"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 12 0 0).format "HH hh KK kk"
+
+-- ===== a (AM/PM) =====
+
+/--
+info: "AM"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0).format "a"
+
+/--
+info: "AM"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 11 59 59).format "a"
+
+/--
+info: "PM"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 12 0 0).format "a"
+
+/--
+info: "PM"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 23 59 59).format "a"
+
+/--
+info: "ante meridiem"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 9 0 0).format "aaaa"
+
+/--
+info: "post meridiem"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 15 0 0).format "aaaa"
+
+/--
+info: "a"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 9 0 0).format "aaaaa"
+
+/--
+info: "p"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 15 0 0).format "aaaaa"
+
+-- ===== b (DAY PERIOD: noon / midnight / AM / PM) =====
+
+/--
+info: "midnight midnight midnight"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0).format "b bb bbb"
+
+/--
+info: "noon noon noon"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 12 0 0).format "b bb bbb"
+
+-- one second past midnight is AM, not midnight
+
+/--
+info: "AM"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 1).format "b"
+
+-- one second past noon is PM, not noon
+
+/--
+info: "PM"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 12 0 1).format "b"
+
+/--
+info: "AM"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 11 59 59).format "b"
+
+/--
+info: "PM"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 23 59 59).format "b"
+
+-- PlainTime: b also works
+
+/--
+info: "midnight"
+-/
+#guard_msgs in
+#eval (fmtPT 0 0 0).format "b"
+
+/--
+info: "noon"
+-/
+#guard_msgs in
+#eval (fmtPT 12 0 0).format "b"
+
+/--
+info: "AM"
+-/
+#guard_msgs in
+#eval (fmtPT 0 0 1).format "b"
+
+-- ===== B (EXTENDED DAY PERIOD) =====
+
+/--
+info: "midnight"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0).format "B"
+
+-- h < 6 = night
+
+/--
+info: "at night"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 3 0 0).format "B"
+
+-- 6 ≤ h < 12 = morning
+
+/--
+info: "in the morning"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 9 0 0).format "B"
+
+/--
+info: "noon"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 12 0 0).format "B"
+
+-- 12 < h < 18 = afternoon
+
+/--
+info: "in the afternoon"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 15 0 0).format "B"
+
+-- 18 ≤ h < 21 = evening
+
+/--
+info: "in the evening"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 19 0 0).format "B"
+
+-- h ≥ 21 = night
+
+/--
+info: "at night"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 22 0 0).format "B"
+
+-- boundary: 05:59:59 = night (h=5 < 6)
+
+/--
+info: "at night"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 5 59 59).format "B"
+
+-- boundary: 20:59:59 = evening (h=20, 18≤h<21)
+
+/--
+info: "in the evening"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 20 59 59).format "B"
+
+-- one second past noon = afternoon (not "noon")
+
+/--
+info: "in the afternoon"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 12 0 1).format "B"
+
+-- one second past midnight = night (h=0, not midnight because s≠0)
+
+/--
+info: "at night"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 1).format "B"
+
+-- ===== m (MINUTE) =====
+
+/--
+info: "0 00"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0).format "m mm"
+
+/--
+info: "30 30"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 30 0).format "m mm"
+
+/--
+info: "59 59"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 59 0).format "m mm"
+
+/--
+info: "5 05"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 12 5 0).format "m mm"
+
+-- ===== s (SECOND) =====
+
+/--
+info: "0 00"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0).format "s ss"
+
+/--
+info: "30 30"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 30).format "s ss"
+
+/--
+info: "59 59"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 23 59 59).format "s ss"
+
+/--
+info: "5 05"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 12 0 5).format "s ss"
+
+-- ===== S (FRACTION OF SECOND: top-truncated nanoseconds) =====
+
+/--
+info: "1 12 123 1234 123456789"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0 123456789).format "S SS SSS SSSS SSSSSSSSS"
+
+/--
+info: "9 98 987"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0 987654321).format "S SS SSS"
+
+-- 100 ms = 100000000 ns: S=1, SSS=100
+
+/--
+info: "1 100 100000000"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0 100000000).format "S SSS SSSSSSSSS"
+
+-- zero nanoseconds
+
+/--
+info: "0 000 000000000"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0 0).format "S SSS SSSSSSSSS"
+
+-- 1 nanosecond: SSSSSSSSS = 000000001
+
+/--
+info: "000000001"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0 1).format "SSSSSSSSS"
+
+/--
+info: "5 50 500"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0 500000000).format "S SS SSS"
+
+-- ===== A (MILLISECOND OF DAY) =====
+
+/--
+info: "0"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0).format "A"
+
+/--
+info: "43200000"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 12 0 0).format "A"
+
+/--
+info: "86399000"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 23 59 59).format "A"
+
+-- 1 hour = 3600000 ms
+
+/--
+info: "3600000"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 1 0 0).format "A"
+
+-- 1 minute = 60000 ms
+
+/--
+info: "60000"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 1 0).format "A"
+
+-- 1 second = 1000 ms
+
+/--
+info: "1000"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 1).format "A"
+
+-- 999 ms (999000000 ns)
+
+/--
+info: "999"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0 999000000).format "A"
+
+-- ===== n (NANOSECOND) =====
+
+/--
+info: "0"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0 0).format "n"
+
+/--
+info: "1"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0 1).format "n"
+
+/--
+info: "123456789"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0 123456789).format "n"
+
+/--
+info: "999999999"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0 999999999).format "n"
+
+-- ===== N (NANOSECOND OF DAY) =====
+
+/--
+info: "0"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0 0).format "N"
+
+/--
+info: "1"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 0 0 0 1).format "N"
+
+-- noon = 12 * 3600 * 1_000_000_000 = 43200000000000
+
+/--
+info: "43200000000000"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 12 0 0 0).format "N"
+
+-- 23:59:59.999999999
+
+/--
+info: "86399999999999"
+-/
+#guard_msgs in
+#eval (fmtDT 2024 1 1 23 59 59 999999999).format "N"
+
+-- ===== PlainDate spot checks =====
+
+/--
+info: "AD AD AD Anno Domini A"
+-/
+#guard_msgs in
+#eval (fmtPD 2024 6 15).format "G GG GGG GGGG GGGGG"
+
+/--
+info: "BC Before Christ"
+-/
+#guard_msgs in
+#eval (fmtPD (-100) 6 15).format "G GGGG"
+
+/--
+info: "2024 24 2024"
+-/
+#guard_msgs in
+#eval (fmtPD 2024 1 1).format "y yy yyyy"
+
+/--
+info: "101 01"
+-/
+#guard_msgs in
+#eval (fmtPD (-100) 1 1).format "y yy"
+
+/--
+info: "1 001"
+-/
+#guard_msgs in
+#eval (fmtPD 2024 1 1).format "D DDD"
+
+/--
+info: "366"
+-/
+#guard_msgs in
+#eval (fmtPD 2024 12 31).format "D"
+
+/--
+info: "365"
+-/
+#guard_msgs in
+#eval (fmtPD 2023 12 31).format "D"
+
+/--
+info: "1 01 Q1 1st quarter"
+-/
+#guard_msgs in
+#eval (fmtPD 2024 1 15).format "Q QQ QQQ QQQQ"
+
+/--
+info: "4 04 Q4 4th quarter"
+-/
+#guard_msgs in
+#eval (fmtPD 2024 10 15).format "Q QQ QQQ QQQQ"
+
+-- W (week of month, Sunday-first) on PlainDate
+
+/--
+info: "1"
+-/
+#guard_msgs in
+#eval (fmtPD 2024 4 1).format "W"
+
+/--
+info: "2"
+-/
+#guard_msgs in
+#eval (fmtPD 2024 4 7).format "W"
+
+/--
+info: "3"
+-/
+#guard_msgs in
+#eval (fmtPD 2024 4 14).format "W"
+
+/--
+info: "Mon Mon Mon Monday M"
+-/
+#guard_msgs in
+#eval (fmtPD 2024 1 1).format "E EE EEE EEEE EEEEE"
+
+/--
+info: "Sun Sun Sun Sunday S"
+-/
+#guard_msgs in
+#eval (fmtPD 2024 1 7).format "E EE EEE EEEE EEEEE"
+
+-- (Bug-fix regression tests have been moved to timeBugs.lean)

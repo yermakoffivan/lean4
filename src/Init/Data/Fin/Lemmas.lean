@@ -279,12 +279,11 @@ grind_pattern val_rev => i.rev
 @[simp] theorem rev_inj {i j : Fin n} : rev i = rev j ↔ i = j :=
   ⟨fun h => by simpa using congrArg rev h, congrArg _⟩
 
-set_option backward.defeqAttrib.useBackward true in
 theorem rev_eq {n a : Nat} (i : Fin (n + 1)) (h : n = a + i) :
     rev i = ⟨a, Nat.lt_succ_of_le (h ▸ Nat.le_add_right ..)⟩ := by
-  ext; dsimp
-  conv => lhs; congr; rw [h]
-  rw [Nat.add_assoc, Nat.add_sub_cancel]
+  apply Fin.ext
+  simp only [val_rev]
+  omega
 
 @[simp] theorem rev_lt_rev {i j : Fin n} : rev i < rev j ↔ j < i := by
   rw [← Fin.not_le, ← Fin.not_le, rev_le_rev]

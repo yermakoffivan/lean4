@@ -61,7 +61,7 @@ structure Choice where
   Helper field for implementing `grind.ematch.diagnostics`.
   It stores the sources for an entry `{thm_1, ..., thm_n} => thm`
   -/
-  sources : PHashSet (Origin × Expr) := {}
+  sources : PHashSet EMatchDiagNode := {}
   deriving Inhabited
 
 /-- Context for the E-matching monad. -/
@@ -156,7 +156,7 @@ private def saveSource (c : Choice) (e : Expr) : GoalM Choice := do
   unless (← isEmatchDiagEnabled) do return c
   let some n ← getENode? e | return c
   let .ematch o p := n.ematchDiagSource | return c
-  return { c with sources := c.sources.insert (o, p) }
+  return { c with sources := c.sources.insert { origin := o, proof := p } }
 
 private def unassign (c : Choice) (bidx : Nat) : Choice :=
   { c with assignment := c.assignment.set! bidx unassigned }
@@ -481,7 +481,7 @@ Stores new theorem instance in the state.
 Recall that new instances are internalized later, after a full round of ematching.
 -/
 private def addNewInstance (thm : EMatchTheorem) (proof : Expr) (generation : Nat)
-    (guards : List TheoremGuard) (sources : PHashSet (Origin × Expr)) : M Unit := do
+    (guards : List TheoremGuard) (sources : PHashSet EMatchDiagNode) : M Unit := do
   let proof ← instantiateMVars proof
   if grind.debug.proofs.get (← getOptions) then
     check proof

@@ -218,13 +218,21 @@ structure SplitDiagInfo where
   splitSource : SplitSource
 
 /--
+A node in the E-matching diagnostics hyper-graph.
+-/
+structure EMatchDiagNode where
+  origin : Origin
+  proof  : Expr
+  deriving Hashable, BEq, Inhabited
+
+/--
 An entry `{thm_1, ..., thm_n} => {thm}`. Each `thm_i` and `thm` is the proof of a theorem instance.
 It means terms created while instantiating `thm_i` were used to create theorem `thm`.
 -/
 structure EMatchDiagInfo where
   lctx    : LocalContext
-  sources : List (Origin × Expr)
-  target  : Origin × Expr
+  sources : List EMatchDiagNode
+  target  : EMatchDiagNode
   deriving Inhabited
 
 /-- State for the `GrindM` monad. -/
@@ -408,7 +416,7 @@ def saveSplitDiagInfo (c : Expr) (gen : Nat) (numCases : Nat) (splitSource : Spl
     let lctx ← getLCtx
     modify fun s => { s with splitDiags := s.splitDiags.push { c, gen, lctx, numCases, splitSource } }
 
-def saveEMatchDiagInfo (sources : List (Origin × Expr)) (target : (Origin × Expr)) : GrindM Unit := do
+def saveEMatchDiagInfo (sources : List EMatchDiagNode) (target : EMatchDiagNode) : GrindM Unit := do
   if (← isEmatchDiagEnabled) then
     let lctx ← getLCtx
     modify fun s => { s with ematchDiags := s.ematchDiags.push { sources, target, lctx } }
@@ -795,7 +803,7 @@ structure DelayedTheoremInstance where
   generation : Nat
   guards     : List TheoremGuard
   /-- Sources for `grind.ematch.diagnostics` that generated this instance. -/
-  sources    : List (Origin × Expr)
+  sources    : List EMatchDiagNode
   deriving Inhabited
 
 /-- E-matching related fields for the `grind` goal. -/
@@ -1723,13 +1731,13 @@ where
 
 /-- Adds a new theorem instance produced using E-matching. -/
 def addTheoremInstance (thm : EMatchTheorem) (proof : Expr) (prop : Expr) (generation : Nat)
-    (guards : List TheoremGuard) (sources : List (Origin × Expr)) : GoalM Unit := do
+    (guards : List TheoremGuard) (sources : List EMatchDiagNode) : GoalM Unit := do
   match (← activateNextGuard thm guards generation) with
   | .ready =>
     trace_goal[grind.ematch.instance] "{thm.origin.pp}: {prop}"
     saveEMatchTheorem thm
     let ematchDiagSource ← if (← isEmatchDiagEnabled) then
-      saveEMatchDiagInfo sources (thm.origin, proof)
+      saveEMatchDiagInfo sources { origin := thm.origin, proof }
       pure (.ematch thm.origin proof)
     else
       pure .other

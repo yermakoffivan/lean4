@@ -341,8 +341,8 @@ partial def traceEMatchDiagsCompact (diag : PArray EMatchDiagInfo) : GrindM Unit
     logWarning "use `set_option grind.ematch.diagnostics true` when using `set_option trace.grind.ematch.diagnostics.compact true`"
   withTraceNode `grind.ematch.diagnostics.compact (fun _ => return m!"instances") do
   for { sources, target, .. } in diag do
-    let .decl target := target.1 | pure ()
-    let sources := sources.filterMap fun (origin, _) =>
+    let .decl target := target.origin | pure ()
+    let sources := sources.filterMap fun { origin, .. } =>
       match origin with
       | .decl source => some (MessageData.ofConstName source)
       | _ => none

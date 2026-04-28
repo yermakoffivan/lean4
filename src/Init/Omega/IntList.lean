@@ -21,6 +21,7 @@ public section
 -- We replay some `List` theory here in order to avoid importing `List` theory.
 namespace List
 
+@[backward_defeq]
 private theorem getElem?_cons_succ {l : List α} : (a::l)[i+1]? = l[i]? := rfl
 
 private theorem getElem?_map {f : α → β} : ∀ {l : List α} {i : Nat}, (map f l)[i]? = Option.map f l[i]?
@@ -83,7 +84,7 @@ namespace IntList
 /-- Get the `i`-th element (interpreted as `0` if the list is not long enough). -/
 def get (xs : IntList) (i : Nat) : Int := xs[i]?.getD 0
 
-@[simp] theorem get_nil : get ([] : IntList) i = 0 := rfl
+@[simp, backward_defeq] theorem get_nil : get ([] : IntList) i = 0 := rfl
 @[simp] theorem get_cons_zero : get (x :: xs) 0 = x := by simp [get]
 @[simp] theorem get_cons_succ : get (x :: xs) (i+1) = get xs i := by simp [get, List.getElem?_cons_succ]
 
@@ -103,10 +104,10 @@ def set (xs : IntList) (i : Nat) (y : Int) : IntList :=
   | _ :: xs, 0 => y :: xs
   | x :: xs, (i+1) => x :: set xs i y
 
-@[simp] theorem set_nil_zero : set [] 0 y = [y] := rfl
-@[simp] theorem set_nil_succ : set [] (i+1) y = 0 :: set [] i y := rfl
-@[simp] theorem set_cons_zero : set (x :: xs) 0 y = y :: xs := rfl
-@[simp] theorem set_cons_succ : set (x :: xs) (i+1) y = x :: set xs i y := rfl
+@[simp, backward_defeq] theorem set_nil_zero : set [] 0 y = [y] := rfl
+@[simp, backward_defeq] theorem set_nil_succ : set [] (i+1) y = 0 :: set [] i y := rfl
+@[simp, backward_defeq] theorem set_cons_zero : set (x :: xs) 0 y = y :: xs := rfl
+@[simp, backward_defeq] theorem set_cons_succ : set (x :: xs) (i+1) y = x :: set xs i y := rfl
 
 /-- Returns the leading coefficient, i.e. the first non-zero entry. -/
 def leading (xs : IntList) : Int := xs.find? (! · == 0) |>.getD 0
@@ -117,6 +118,7 @@ def add (xs ys : IntList) : IntList :=
 
 instance : Add IntList := ⟨add⟩
 
+@[backward_defeq]
 theorem add_def (xs ys : IntList) :
     xs + ys = List.zipWithAll (fun x y => x.getD 0 + y.getD 0) xs ys :=
   rfl
@@ -135,6 +137,7 @@ def mul (xs ys : IntList) : IntList := List.zipWith (· * ·) xs ys
 
 instance : Mul IntList := ⟨mul⟩
 
+@[backward_defeq]
 theorem mul_def (xs ys : IntList) : xs * ys = List.zipWith (· * ·) xs ys :=
   rfl
 
@@ -142,9 +145,9 @@ theorem mul_def (xs ys : IntList) : xs * ys = List.zipWith (· * ·) xs ys :=
   simp only [get, mul_def, List.getElem?_zipWith]
   cases xs[i]? <;> cases ys[i]? <;> simp
 
-@[simp] theorem mul_nil_left : ([] : IntList) * ys = [] := rfl
+@[simp, backward_defeq] theorem mul_nil_left : ([] : IntList) * ys = [] := rfl
 @[simp] theorem mul_nil_right : xs * ([] : IntList) = [] := List.zipWith_nil_right
-@[simp] theorem mul_cons_cons : (x::xs : IntList) * (y::ys) = (x * y) :: (xs * ys) := rfl
+@[simp, backward_defeq] theorem mul_cons_cons : (x::xs : IntList) * (y::ys) = (x * y) :: (xs * ys) := rfl
 
 @[deprecated mul_cons_cons (since := "2026-02-26")]
 theorem mul_cons₂ : (x::xs : IntList) * (y::ys) = (x * y) :: (xs * ys) := mul_cons_cons
@@ -154,14 +157,15 @@ def neg (xs : IntList) : IntList := xs.map fun x => -x
 
 instance : Neg IntList := ⟨neg⟩
 
+@[backward_defeq]
 theorem neg_def (xs : IntList) : - xs = xs.map fun x => -x := rfl
 
 @[simp] theorem neg_get (xs : IntList) (i : Nat) : (- xs).get i = - xs.get i := by
   simp only [get, neg_def, List.getElem?_map]
   cases xs[i]? <;> simp
 
-@[simp] theorem neg_nil : (- ([] : IntList)) = [] := rfl
-@[simp] theorem neg_cons : (- (x::xs : IntList)) = -x :: -xs := rfl
+@[simp, backward_defeq] theorem neg_nil : (- ([] : IntList)) = [] := rfl
+@[simp, backward_defeq] theorem neg_cons : (- (x::xs : IntList)) = -x :: -xs := rfl
 
 /-- Implementation of subtraction on `IntList`. -/
 def sub (xs ys : IntList) : IntList :=
@@ -169,6 +173,7 @@ def sub (xs ys : IntList) : IntList :=
 
 instance : Sub IntList := ⟨sub⟩
 
+@[backward_defeq]
 theorem sub_def (xs ys : IntList) :
     xs - ys = List.zipWithAll (fun x y => x.getD 0 - y.getD 0) xs ys :=
   rfl
@@ -180,14 +185,15 @@ def smul (xs : IntList) (i : Int) : IntList :=
 instance : HMul Int IntList IntList where
   hMul i xs := xs.smul i
 
+@[backward_defeq]
 theorem smul_def (xs : IntList) (i : Int) : i * xs = xs.map fun x => i * x := rfl
 
 @[simp] theorem smul_get (xs : IntList) (a : Int) (i : Nat) : (a * xs).get i = a * xs.get i := by
   simp only [get, smul_def, List.getElem?_map]
   cases xs[i]? <;> simp
 
-@[simp] theorem smul_nil {i : Int} : i * ([] : IntList) = [] := rfl
-@[simp] theorem smul_cons {i : Int} : i * (x::xs : IntList) = i * x :: i * xs := rfl
+@[simp, backward_defeq] theorem smul_nil {i : Int} : i * ([] : IntList) = [] := rfl
+@[simp, backward_defeq] theorem smul_cons {i : Int} : i * (x::xs : IntList) = i * x :: i * xs := rfl
 
 /-- A linear combination of two `IntList`s. -/
 def combo (a : Int) (xs : IntList) (b : Int) (ys : IntList) : IntList :=
@@ -249,8 +255,8 @@ theorem sub_eq_add_neg (xs ys : IntList) : xs - ys = xs + (-ys) := by
 /-- The sum of the entries of an `IntList`. -/
 def sum (xs : IntList) : Int := xs.foldr (· + ·) 0
 
-@[simp] theorem sum_nil : sum ([] : IntList) = 0 := rfl
-@[simp] theorem sum_cons : sum (x::xs : IntList) = x + sum xs := rfl
+@[simp, backward_defeq] theorem sum_nil : sum ([] : IntList) = 0 := rfl
+@[simp, backward_defeq] theorem sum_cons : sum (x::xs : IntList) = x + sum xs := rfl
 
 attribute [local simp] sum add_def in
 theorem sum_add (xs ys : IntList) : (xs + ys).sum = xs.sum + ys.sum := by
@@ -279,9 +285,9 @@ def dot (xs ys : IntList) : Int := (xs * ys).sum
 example : IntList.dot [a, b, c] [x, y, z] = IntList.dot [a, b, c, d] [x, y, z] := rfl
 example : IntList.dot [a, b, c] [x, y, z] = IntList.dot [a, b, c] [x, y, z, w] := rfl
 
-@[local simp] theorem dot_nil_left : dot ([] : IntList) ys = 0 := rfl
+@[local simp, backward_defeq] theorem dot_nil_left : dot ([] : IntList) ys = 0 := rfl
 @[simp] theorem dot_nil_right : dot xs ([] : IntList) = 0 := by simp [dot]
-@[simp] theorem dot_cons_cons : dot (x::xs) (y::ys) = x * y + dot xs ys := rfl
+@[simp, backward_defeq] theorem dot_cons_cons : dot (x::xs) (y::ys) = x * y + dot xs ys := rfl
 
 @[deprecated dot_cons_cons (since := "2026-02-26")]
 theorem dot_cons₂ : dot (x::xs) (y::ys) = x * y + dot xs ys := dot_cons_cons
@@ -334,14 +340,14 @@ theorem dot_of_left_zero (w : ∀ x, x ∈ xs → x = 0) : dot xs ys = 0 := by
 /-- Division of an `IntList` by a integer. -/
 def sdiv (xs : IntList) (g : Int) : IntList := xs.map fun x => x / g
 
-@[simp] theorem sdiv_nil : sdiv [] g = [] := rfl
-@[simp] theorem sdiv_cons : sdiv (x::xs) g = (x / g) :: sdiv xs g := rfl
+@[simp, backward_defeq] theorem sdiv_nil : sdiv [] g = [] := rfl
+@[simp, backward_defeq] theorem sdiv_cons : sdiv (x::xs) g = (x / g) :: sdiv xs g := rfl
 
 /-- The gcd of the absolute values of the entries of an `IntList`. -/
 def gcd (xs : IntList) : Nat := xs.foldr (fun x g => Nat.gcd x.natAbs g) 0
 
-@[simp] theorem gcd_nil : gcd [] = 0 := rfl
-@[simp] theorem gcd_cons : gcd (x :: xs) = Nat.gcd x.natAbs (gcd xs) := rfl
+@[simp, backward_defeq] theorem gcd_nil : gcd [] = 0 := rfl
+@[simp, backward_defeq] theorem gcd_cons : gcd (x :: xs) = Nat.gcd x.natAbs (gcd xs) := rfl
 
 theorem gcd_cons_div_left : (gcd (x::xs) : Int) ∣ x := by
   simp only [gcd, List.foldr_cons, Int.ofNat_dvd_left]
@@ -424,7 +430,7 @@ theorem dot_eq_zero_of_left_eq_zero {xs ys : IntList} (h : ∀ x, x ∈ xs → x
       rw [dot_cons_cons, h x List.mem_cons_self, ih (fun x m => h x (List.mem_cons_of_mem _ m)),
         Int.zero_mul, Int.add_zero]
 
-@[simp] theorem nil_dot (xs : IntList) : dot [] xs = 0 := rfl
+@[simp, backward_defeq] theorem nil_dot (xs : IntList) : dot [] xs = 0 := rfl
 
 theorem dot_sdiv_left (xs ys : IntList) {d : Int} (h : d ∣ xs.gcd) :
     dot (xs.sdiv d) ys = (dot xs ys) / d := by

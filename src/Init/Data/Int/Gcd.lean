@@ -42,6 +42,7 @@ Examples:
 @[expose]
 def gcd (m n : Int) : Nat := m.natAbs.gcd n.natAbs
 
+@[backward_defeq]
 theorem gcd_eq_natAbs_gcd_natAbs (m n : Int) : gcd m n = Nat.gcd m.natAbs n.natAbs := rfl
 
 theorem gcd_dvd_natAbs_left (a b : Int) : gcd a b ∣ a.natAbs := Nat.gcd_dvd_left ..
@@ -438,6 +439,7 @@ Examples:
 @[expose]
 def lcm (m n : Int) : Nat := m.natAbs.lcm n.natAbs
 
+@[backward_defeq]
 theorem lcm_eq_natAbs_lcm_natAbs (m n : Int) : lcm m n = Nat.lcm m.natAbs n.natAbs := rfl
 
 theorem lcm_eq_mul_div (m n : Int) : lcm m n = m.natAbs * n.natAbs / gcd m n := by

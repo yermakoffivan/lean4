@@ -251,7 +251,7 @@ def foldlM {m : Type u → Type v} [Monad m] {s : Type u} {α : Type w} : (f : s
     let s' ← f s a
     List.foldlM f s' as
 
-@[simp, grind =] theorem foldlM_nil [Monad m] {f : β → α → m β} {b : β} : [].foldlM f b = pure b := rfl
+@[simp, grind =, backward_defeq] theorem foldlM_nil [Monad m] {f : β → α → m β} {b : β} : [].foldlM f b = pure b := rfl
 @[simp, grind =] theorem foldlM_cons [Monad m] {f : β → α → m β} {b : β} {a : α} {l : List α} :
     (a :: l).foldlM f b = f b a >>= l.foldlM f := by
   simp [List.foldlM]
@@ -275,7 +275,7 @@ example [Monad m] (f : α → β → m β) :
 def foldrM {m : Type u → Type v} [Monad m] {s : Type u} {α : Type w} (f : α → s → m s) (init : s) (l : List α) : m s :=
   l.reverse.foldlM (fun s a => f a s) init
 
-@[simp, grind =] theorem foldrM_nil [Monad m] {f : α → β → m β} {b : β} : [].foldrM f b = pure b := rfl
+@[simp, grind =, backward_defeq] theorem foldrM_nil [Monad m] {f : α → β → m β} {b : β} : [].foldrM f b = pure b := rfl
 
 /--
 Maps `f` over the list and collects the results with `<|>`. The result for the end of the list is
@@ -466,23 +466,23 @@ instance [Monad m] : ForIn' m (List α) α inferInstance where
 -- No separate `ForIn` instance is required because it can be derived from `ForIn'`.
 
 -- We simplify `List.forIn'` to `forIn'`.
-@[simp, grind =] theorem forIn'_eq_forIn' [Monad m] : @List.forIn' α β m _ = forIn' := rfl
+@[simp, grind =, defeq] theorem forIn'_eq_forIn' [Monad m] : @List.forIn' α β m _ = forIn' := rfl
 
-@[simp, grind =] theorem forIn'_nil [Monad m] {f : (a : α) → a ∈ [] → β → m (ForInStep β)} {b : β} : forIn' [] b f = pure b :=
+@[simp, grind =, backward_defeq] theorem forIn'_nil [Monad m] {f : (a : α) → a ∈ [] → β → m (ForInStep β)} {b : β} : forIn' [] b f = pure b :=
   rfl
 
-@[simp, grind =] theorem forIn_nil [Monad m] {f : α → β → m (ForInStep β)} {b : β} : forIn [] b f = pure b :=
+@[simp, grind =, backward_defeq] theorem forIn_nil [Monad m] {f : α → β → m (ForInStep β)} {b : β} : forIn [] b f = pure b :=
   rfl
 
 instance [Monad m] : ForM m (List α) α where
   forM := List.forM
 
 -- We simplify `List.forM` to `forM`.
-@[simp, grind =] theorem forM_eq_forM [Monad m] : @List.forM m _ α = forM := rfl
+@[simp, grind =, defeq] theorem forM_eq_forM [Monad m] : @List.forM m _ α = forM := rfl
 
-@[simp, grind =] theorem forM_nil [Monad m] {f : α → m PUnit} : forM [] f = pure ⟨⟩ :=
+@[simp, grind =, backward_defeq] theorem forM_nil [Monad m] {f : α → m PUnit} : forM [] f = pure ⟨⟩ :=
   rfl
-@[simp, grind =] theorem forM_cons [Monad m] {f : α → m PUnit} {a : α} {as : List α} : forM (a::as) f = f a >>= fun _ => forM as f :=
+@[simp, grind =, backward_defeq] theorem forM_cons [Monad m] {f : α → m PUnit} {a : α} {as : List α} : forM (a::as) f = f a >>= fun _ => forM as f :=
   rfl
 
 instance : Functor List where

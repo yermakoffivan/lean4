@@ -43,7 +43,7 @@ instance (p : Bool → Prop) [inst : DecidablePred p] : Decidable (∃ x, p x) :
   | _, isTrue hf => isTrue ⟨_, hf⟩
   | isFalse ht, isFalse hf => isFalse fun | ⟨true, h⟩ => absurd h ht | ⟨false, h⟩ => absurd h hf
 
-@[simp] theorem default_bool : default = false := rfl
+@[simp, backward_defeq] theorem default_bool : default = false := rfl
 
 instance : LE Bool := ⟨(. → .)⟩
 instance : LT Bool := ⟨(!. && .)⟩
@@ -358,9 +358,9 @@ protected theorem eq_false_of_le_false : ∀ {x : Bool}, x ≤ false → x = fal
 
 /-! ### min/max -/
 
-@[simp] protected theorem max_eq_or : max = or := rfl
+@[simp, defeq] protected theorem max_eq_or : max = or := rfl
 
-@[simp] protected theorem min_eq_and : min = and := rfl
+@[simp, defeq] protected theorem min_eq_and : min = and := rfl
 
 /-! ### injectivity lemmas -/
 
@@ -387,9 +387,9 @@ Converts `true` to `1` and `false` to `0`.
 -/
 @[expose] def toNat (b : Bool) : Nat := cond b 1 0
 
-@[simp, bitvec_to_nat, grind =] theorem toNat_false : false.toNat = 0 := rfl
+@[simp, bitvec_to_nat, grind =, backward_defeq] theorem toNat_false : false.toNat = 0 := rfl
 
-@[simp, bitvec_to_nat, grind =] theorem toNat_true : true.toNat = 1 := rfl
+@[simp, bitvec_to_nat, grind =, backward_defeq] theorem toNat_true : true.toNat = 1 := rfl
 
 theorem toNat_le (c : Bool) : c.toNat ≤ 1 := by
   cases c <;> trivial
@@ -410,9 +410,9 @@ Converts `true` to `1` and `false` to `0`.
 -/
 @[expose] def toInt (b : Bool) : Int := cond b 1 0
 
-@[simp, grind =] theorem toInt_false : false.toInt = 0 := rfl
+@[simp, grind =, backward_defeq] theorem toInt_false : false.toInt = 0 := rfl
 
-@[simp, grind =] theorem toInt_true : true.toInt = 1 := rfl
+@[simp, grind =, backward_defeq] theorem toInt_true : true.toInt = 1 := rfl
 
 /-! ### ite -/
 
@@ -642,7 +642,7 @@ but may be used locally.
 
 /-! ### subtypes -/
 
-@[simp] theorem Subtype.beq_iff {α : Type u} [BEq α] {p : α → Prop} {x y : {a : α // p a}} :
+@[simp, defeq] theorem Subtype.beq_iff {α : Type u} [BEq α] {p : α → Prop} {x y : {a : α // p a}} :
     (x == y) = (x.1 == y.1) := rfl
 
 /-! ### Proof by reflection support  -/

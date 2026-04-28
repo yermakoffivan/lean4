@@ -28,6 +28,7 @@ theorem IterM.step_takeWhileWithPostcondition {α m β} [Monad m] [Iterator α m
   intro step
   cases step.inflate using PlausibleIterStep.casesOn <;> rfl
 
+set_option backward.defeqAttrib.useBackward true in
 theorem IterM.step_takeWhileM {α m β} [Monad m] [MonadAttach m] [LawfulMonad m] [Iterator α m β]
     {it : IterM (α := α) m β} {P} :
     (it.takeWhileM P).step = (do
@@ -49,6 +50,7 @@ theorem IterM.step_takeWhileM {α m β} [Monad m] [MonadAttach m] [LawfulMonad m
   · simp
   · simp
 
+set_option backward.defeqAttrib.useBackward true in
 theorem IterM.step_takeWhile {α m β} [Monad m] [LawfulMonad m] [Iterator α m β]
     {it : IterM (α := α) m β} {P} :
     (it.takeWhile P).step = (do

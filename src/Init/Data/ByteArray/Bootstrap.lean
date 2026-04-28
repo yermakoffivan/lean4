@@ -13,7 +13,7 @@ set_option doc.verso true
 
 namespace ByteArray
 
-@[simp]
+@[simp, backward_defeq]
 theorem data_push {a : ByteArray} {b : UInt8} : (a.push b).data = a.data.push b := rfl
 
 /--

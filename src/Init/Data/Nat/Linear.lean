@@ -465,6 +465,7 @@ theorem Expr.of_cancel_le (ctx : Context) (a b c d : Expr) (h : Poly.cancel a.to
 theorem Expr.of_cancel_lt (ctx : Context) (a b c d : Expr) (h : Poly.cancel a.inc.toNormPoly b.toNormPoly = (c.inc.toPoly, d.toPoly)) : (a.denote ctx < b.denote ctx) = (c.denote ctx < d.denote ctx) :=
   of_cancel_le ctx a.inc b c.inc d h
 
+@[backward_defeq]
 theorem ExprCnstr.toPoly_norm_eq (c : ExprCnstr) : c.toPoly.norm = c.toNormPoly :=
   rfl
 

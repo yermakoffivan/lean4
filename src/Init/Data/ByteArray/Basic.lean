@@ -153,7 +153,7 @@ protected def fastAppend (a : ByteArray) (b : ByteArray) : ByteArray :=
   -- we assume that `append`s may be repeated, so use asymptotic growing; use `copySlice` directly to customize
   b.copySlice 0 a a.size b.size false
 
-@[simp]
+@[simp, backward_defeq]
 theorem size_data {a : ByteArray} :
   a.data.size = a.size := rfl
 
@@ -168,7 +168,7 @@ theorem append_eq_fastAppend : @ByteArray.append = @ByteArray.fastAppend := by
 instance : Append ByteArray where
   append := ByteArray.append
 
-@[simp]
+@[simp, defeq]
 theorem append_eq {a b : ByteArray} : a.append b = a ++ b := rfl
 
 @[simp]
@@ -365,6 +365,7 @@ abbrev iter := mkIterator
 instance : SizeOf Iterator where
   sizeOf i := i.array.size - i.idx
 
+@[defeq]
 theorem Iterator.sizeOf_eq (i : Iterator) : sizeOf i = i.array.size - i.idx :=
   rfl
 

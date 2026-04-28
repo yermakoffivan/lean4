@@ -603,6 +603,7 @@ theorem mulRec_zero_eq (x y : BitVec w) :
     mulRec x y 0 = if y.getLsbD 0 then x else 0 := by
   simp [mulRec]
 
+@[backward_defeq]
 theorem mulRec_succ_eq (x y : BitVec w) (s : Nat) :
     mulRec x y (s + 1) = mulRec x y s + if y.getLsbD (s + 1) then (x <<< (s + 1)) else 0 := rfl
 
@@ -1058,11 +1059,11 @@ def divRec {w : Nat} (m : Nat) (args : DivModArgs w) (qr : DivModState w) :
   | 0 => qr
   | m + 1 => divRec m args <| divSubtractShift args qr
 
-@[simp]
+@[simp, backward_defeq]
 theorem divRec_zero (qr : DivModState w) :
     divRec 0 args qr = qr := rfl
 
-@[simp]
+@[simp, backward_defeq]
 theorem divRec_succ (m : Nat) (args : DivModArgs w) (qr : DivModState w) :
     divRec (m + 1) args qr =
       divRec m args (divSubtractShift args qr) := rfl
@@ -1291,6 +1292,7 @@ theorem saddOverflow_eq {w : Nat} (x y : BitVec w) :
     simp only [Nat.add_one_sub_one, ge_iff_le]
     omega
 
+@[backward_defeq]
 theorem usubOverflow_eq {w : Nat} (x y : BitVec w) :
     usubOverflow x y = decide (x < y) := rfl
 
@@ -2582,11 +2584,11 @@ theorem getLsbD_cpopLayer {w iterNum: Nat} {oldLayer : BitVec (oldLen * w)}
     · rw [hmod, Nat.sub_zero, Nat.add_zero, Nat.div_mul_cancel (by omega)]
     · rw [Nat.div_mul_cancel (by exact dvd_sub_mod k), Nat.sub_add_cancel (by exact mod_le k w)]
 
-@[simp]
+@[simp, backward_defeq]
 private theorem addRecAux_zero {x : BitVec (l * w)} {acc : BitVec w} :
     x.addRecAux 0 acc = acc := rfl
 
-@[simp]
+@[simp, backward_defeq]
 private theorem addRecAux_succ {x : BitVec (l * w)} {n : Nat} {acc : BitVec w} :
     x.addRecAux (n + 1) acc = x.addRecAux n (acc + extractLsb' (n * w) w x) := rfl
 
@@ -2644,6 +2646,7 @@ private theorem Nat.mul_add_le_mul_of_succ_le {a b c : Nat} (h : a + 1 ≤ c) :
   rw [← Nat.succ_mul]
   exact mul_le_mul_right b h
 
+set_option backward.defeqAttrib.useBackward true in
 /--
   The recursive addition of `w`-long words on two flattened bitvectors `x` and `y` (with different
   number of words `len` and `len'`, respectively) returns the same value, if we can prove

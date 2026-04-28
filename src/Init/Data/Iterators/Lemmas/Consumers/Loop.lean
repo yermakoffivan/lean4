@@ -93,6 +93,7 @@ theorem Iter.forIn_eq_forIn_toIterM {α β : Type w} [Iterator α Id β]
       ForIn.forIn it.toIterM init f := by
   simp [forIn_eq_forIn', forIn'_eq_forIn'_toIterM, -forIn'_eq_forIn]
 
+set_option backward.defeqAttrib.useBackward true in
 theorem Iter.forIn'_eq_match_step {α β : Type w} [Iterator α Id β]
     [Finite α Id] {m : Type x → Type x''} [Monad m] [LawfulMonad m]
     [IteratorLoop α Id m] [LawfulIteratorLoop α Id m]
@@ -154,6 +155,7 @@ private theorem Iter.forIn'_toList.aux {ρ : Type u} {α : Type v} {γ : Type x}
     forIn' r init f = forIn' s init (fun a h' acc => f a (h ▸ h') acc) := by
   cases h; rfl
 
+set_option backward.defeqAttrib.useBackward true in
 theorem Iter.isPlausibleStep_iff_step_eq {α β} [Iterator α Id β]
     [Finite α Id] [LawfulDeterministicIterator α Id]
     {it : Iter (α := α) β} {step} :

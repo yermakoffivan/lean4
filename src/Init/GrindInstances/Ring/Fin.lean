@@ -31,8 +31,8 @@ instance [NeZero n] : HPow (Fin n) Nat (Fin n) where
 instance [NeZero n] : Pow (Fin n) Nat where
   pow := Fin.npow
 
-@[simp] theorem pow_zero [NeZero n] (a : Fin n) : a ^ 0 = 1 := rfl
-@[simp] theorem pow_succ [NeZero n] (a : Fin n) (n : Nat) : a ^ (n+1) = a ^ n * a := rfl
+@[simp, backward_defeq] theorem pow_zero [NeZero n] (a : Fin n) : a ^ 0 = 1 := rfl
+@[simp, backward_defeq] theorem pow_succ [NeZero n] (a : Fin n) (n : Nat) : a ^ (n+1) = a ^ n * a := rfl
 
 theorem add_assoc (a b c : Fin n) : a + b + c = a + (b + c) := by
   cases a; cases b; cases c; simp [Fin.add_def, Nat.add_assoc]

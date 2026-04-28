@@ -176,6 +176,7 @@ instance instLawfulMonad : LawfulMonad (PredTrans ps) := by
   apply LawfulMonad.mk' _
   all_goals (intros; ext Q; simp)
 
+set_option backward.defeqAttrib.useBackward true in
 /--
 Adds the ability to make assertions about a state of type `σ` to a predicate transformer with
 postcondition shape `ps`, resulting in postcondition shape `.arg σ ps`. This is done by
@@ -230,15 +231,15 @@ def pushOption {ps : PostShape} {α} (x : OptionT (PredTrans ps) α) : PredTrans
     ext x
     cases x <;> simp
 
-@[simp, grind =]
+@[simp, grind =, backward_defeq]
 theorem apply_pushArg {ps} {α σ : Type u} {Q : PostCond α (.arg σ ps)} (f : σ → PredTrans ps (α × σ)) :
   (pushArg f).apply Q = fun s => (f s).apply (fun ⟨a, s⟩ => Q.1 a s, Q.2) := rfl
 
-@[simp, grind =]
+@[simp, grind =, backward_defeq]
 theorem apply_pushExcept {ps} {α ε : Type u} {Q : PostCond α (.except ε ps)} (x : PredTrans ps (Except ε α)) :
   (pushExcept x).apply Q = x.apply (fun | .ok a => Q.1 a | .error e => Q.2.1 e, Q.2.2) := rfl
 
-@[simp, grind =]
+@[simp, grind =, backward_defeq]
 theorem apply_pushOption {ps} {α : Type u} {Q : PostCond α (.except PUnit ps)} (x : PredTrans ps (Option α)) :
   (pushOption x).apply Q = x.apply (fun | .some a => Q.1 a | .none => Q.2.1 ⟨⟩, Q.2.2) := rfl
 

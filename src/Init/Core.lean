@@ -29,6 +29,7 @@ which applies to all applications of the function).
 -/
 @[simp] def inline {α : Sort u} (a : α) : α := a
 
+@[backward_defeq]
 theorem id_def {α : Sort u} (a : α) : id a = a := rfl
 
 attribute [grind] id
@@ -65,25 +66,26 @@ and `flip (·<·)` is the greater-than relation.
 @[inline] def flip {α : Sort u} {β : Sort v} {φ : Sort w} (f : α → β → φ) : β → α → φ :=
   fun b a => f a b
 
-@[simp] theorem Function.const_apply {y : β} {x : α} : const α y x = y := rfl
+@[simp, backward_defeq] theorem Function.const_apply {y : β} {x : α} : const α y x = y := rfl
 
-@[simp] theorem Function.comp_apply {f : β → δ} {g : α → β} {x : α} : comp f g x = f (g x) := rfl
+@[simp, backward_defeq] theorem Function.comp_apply {f : β → δ} {g : α → β} {x : α} : comp f g x = f (g x) := rfl
 
+@[backward_defeq]
 theorem Function.comp_def {α β δ} (f : β → δ) (g : α → β) : f ∘ g = fun x => f (g x) := rfl
 
-@[simp] theorem Function.const_comp {f : α → β} {c : γ} :
+@[simp, backward_defeq] theorem Function.const_comp {f : α → β} {c : γ} :
     (Function.const β c ∘ f) = Function.const α c :=
   rfl
-@[simp] theorem Function.comp_const {f : β → γ} {b : β} :
+@[simp, backward_defeq] theorem Function.comp_const {f : β → γ} {b : β} :
     (f ∘ Function.const α b) = Function.const α (f b) :=
   rfl
-@[simp] theorem Function.true_comp {f : α → β} : ((fun _ => true) ∘ f) = fun _ => true :=
+@[simp, backward_defeq] theorem Function.true_comp {f : α → β} : ((fun _ => true) ∘ f) = fun _ => true :=
   rfl
-@[simp] theorem Function.false_comp {f : α → β} : ((fun _ => false) ∘ f) = fun _ => false :=
+@[simp, backward_defeq] theorem Function.false_comp {f : α → β} : ((fun _ => false) ∘ f) = fun _ => false :=
   rfl
 
-@[simp] theorem Function.comp_id (f : α → β) : f ∘ id = f := rfl
-@[simp] theorem Function.id_comp (f : α → β) : id ∘ f = f := rfl
+@[simp, backward_defeq] theorem Function.comp_id (f : α → β) : f ∘ id = f := rfl
+@[simp, backward_defeq] theorem Function.id_comp (f : α → β) : id ∘ f = f := rfl
 
 attribute [simp] namedPattern
 
@@ -150,7 +152,7 @@ Computed values are cached, so the value is not recomputed.
 -- Ensure `Thunk.fn` is still computable even if it shouldn't be accessed directly.
 /-- Implementation detail. -/
 @[inline] def Thunk.fnImpl (x : Thunk α) : Unit → α := fun _ => x.get
-@[csimp] theorem Thunk.fn_eq_fnImpl : @Thunk.fn = @Thunk.fnImpl := rfl
+@[csimp, backward_defeq] theorem Thunk.fn_eq_fnImpl : @Thunk.fn = @Thunk.fnImpl := rfl
 
 /--
 Constructs a new thunk that forces `x` and then applies `x` to the result. Upon forcing, the result
@@ -744,8 +746,9 @@ inductive PNonScalar : Type u where
   /-- You should not use this function -/
   | mk (v : Nat) : PNonScalar
 
-@[simp] protected theorem Nat.add_zero (n : Nat) : n + 0 = n := rfl
+@[simp, defeq] protected theorem Nat.add_zero (n : Nat) : n + 0 = n := rfl
 
+@[defeq]
 theorem optParam_eq (α : Sort u) (default : α) : optParam α default = α := rfl
 
 /-! # Boolean operators -/
@@ -839,6 +842,7 @@ theorem not_not_intro {p : Prop} (h : p) : ¬ ¬ p :=
   fun hn : ¬ p => hn h
 
 -- proof irrelevance is built in
+@[defeq]
 theorem proof_irrel {a : Prop} (h₁ h₂ : a) : h₁ = h₂ := rfl
 
 /--
@@ -865,7 +869,7 @@ You can prove theorems about the resulting element by induction on `h`, since
 theorem Eq.substr {α : Sort u} {p : α → Prop} {a b : α} (h₁ : b = a) (h₂ : p a) : p b :=
   h₁ ▸ h₂
 
-@[simp] theorem cast_eq {α : Sort u} (h : α = α) (a : α) : cast h a = a :=
+@[simp, backward_defeq] theorem cast_eq {α : Sort u} (h : α = α) (a : α) : cast h a = a :=
   rfl
 
 /--
@@ -1466,9 +1470,11 @@ instance Prod.lexLtDec
     : (s t : α × β) → Decidable (Prod.lexLt s t) :=
   fun _ _ => inferInstanceAs (Decidable (_ ∨ _))
 
+@[backward_defeq]
 theorem Prod.lexLt_def [LT α] [LT β] (s t : α × β) : (Prod.lexLt s t) = (s.1 < t.1 ∨ (s.1 = t.1 ∧ s.2 < t.2)) :=
   rfl
 
+@[defeq]
 theorem Prod.eta (p : α × β) : (p.1, p.2) = p := rfl
 
 /--
@@ -1482,12 +1488,12 @@ def Prod.map {α₁ : Type u₁} {α₂ : Type u₂} {β₁ : Type v₁} {β₂ 
     (f : α₁ → α₂) (g : β₁ → β₂) : α₁ × β₁ → α₂ × β₂
   | (a, b) => (f a, g b)
 
-@[simp] theorem Prod.map_apply (f : α → β) (g : γ → δ) (x) (y) :
+@[simp, backward_defeq] theorem Prod.map_apply (f : α → β) (g : γ → δ) (x) (y) :
     Prod.map f g (x, y) = (f x, g y) := rfl
 
 -- We add `@[grind =]` to these in `Init.Data.Prod`.
-@[simp] theorem Prod.map_fst (f : α → β) (g : γ → δ) (x) : (Prod.map f g x).1 = f x.1 := rfl
-@[simp] theorem Prod.map_snd (f : α → β) (g : γ → δ) (x) : (Prod.map f g x).2 = g x.2 := rfl
+@[simp, backward_defeq] theorem Prod.map_fst (f : α → β) (g : γ → δ) (x) : (Prod.map f g x).1 = f x.1 := rfl
+@[simp, backward_defeq] theorem Prod.map_snd (f : α → β) (g : γ → δ) (x) : (Prod.map f g x).2 = g x.2 := rfl
 
 /-! # Dependent products -/
 
@@ -1788,6 +1794,7 @@ Reference.
 -/
 axiom sound : ∀ {α : Sort u} {r : α → α → Prop} {a b : α}, r a b → Quot.mk r a = Quot.mk r b
 
+@[defeq]
 protected theorem liftBeta {α : Sort u} {r : α → α → Prop} {β : Sort v}
     (f : α → β)
     (c : (a b : α) → r a b → f a = f b)
@@ -1795,6 +1802,7 @@ protected theorem liftBeta {α : Sort u} {r : α → α → Prop} {β : Sort v}
     : lift f c (Quot.mk r a) = f a :=
   rfl
 
+@[defeq]
 protected theorem indBeta {α : Sort u} {r : α → α → Prop} {motive : Quot r → Prop}
     (p : (a : α) → motive (Quot.mk r a))
     (a : α)

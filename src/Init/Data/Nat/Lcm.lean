@@ -33,6 +33,7 @@ Examples:
 @[expose]
 def lcm (m n : Nat) : Nat := m * n / gcd m n
 
+@[backward_defeq]
 theorem lcm_eq_mul_div (m n : Nat) : lcm m n = m * n / gcd m n := rfl
 
 @[simp] theorem gcd_mul_lcm (m n : Nat) : gcd m n * lcm m n = m * n := by

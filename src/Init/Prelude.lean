@@ -351,7 +351,7 @@ Lean by `rfl`, because both sides are the same up to definitional equality.
 @[match_pattern] def rfl {α : Sort u} {a : α} : Eq a a := Eq.refl a
 
 /-- `id x = x`, as a `@[simp]` lemma. -/
-@[simp] theorem id_eq (a : α) : Eq (id a) a := rfl
+@[simp, backward_defeq] theorem id_eq (a : α) : Eq (id a) a := rfl
 
 /--
 The substitution principle for equality. If `a = b ` and `P a` holds,
@@ -876,9 +876,11 @@ structure PLift (α : Sort u) : Type u where
   down : α
 
 /-- Bijection between `α` and `PLift α` -/
+@[defeq]
 theorem PLift.up_down {α : Sort u} (b : PLift α) : Eq (up (down b)) b := rfl
 
 /-- Bijection between `α` and `PLift α` -/
+@[defeq]
 theorem PLift.down_up {α : Sort u} (a : α) : Eq (down (up a)) a := rfl
 
 /--
@@ -925,9 +927,11 @@ structure ULift.{r, s} (α : Type s) : Type (max s r) where
   down : α
 
 /-- Bijection between `α` and `ULift.{v} α` -/
+@[defeq]
 theorem ULift.up_down {α : Type u} (b : ULift.{v} α) : Eq (up (down b)) b := rfl
 
 /-- Bijection between `α` and `ULift.{v} α` -/
+@[defeq]
 theorem ULift.down_up {α : Type u} (a : α) : Eq (down (up.{v} a)) a := rfl
 
 instance [Inhabited α] : Inhabited (ULift α) where
@@ -949,9 +953,11 @@ structure PULift.{r, s} (α : Sort s) : Sort (max s r 1) where
   down : α
 
 /-- Bijection between `α` and `PULift.{v} α` -/
+@[defeq]
 theorem PULift.up_down {α : Sort u} (b : PULift.{v} α) : Eq (up (down b)) b := rfl
 
 /-- Bijection between `α` and `PULift.{v} α` -/
+@[defeq]
 theorem PULift.down_up {α : Sort u} (a : α) : Eq (down (up.{v} a)) a := rfl
 
 /--
@@ -2111,7 +2117,9 @@ attribute [gen_constructor_elims] Nat
 
 -- Grind setup for Nat.ctorIdx, the built-in propagator for `.ctorIdx` does not kick in
 -- due to the special representation of Nat constructors.
+@[backward_defeq]
 protected theorem Nat.ctorIdx_zero : Eq (Nat.ctorIdx 0) 0 := rfl
+@[backward_defeq]
 protected theorem Nat.ctorIdx_succ : Eq (Nat.ctorIdx (succ n)) 1 := rfl
 grind_pattern Nat.ctorIdx_zero => Nat.ctorIdx 0
 grind_pattern Nat.ctorIdx_succ => Nat.ctorIdx (.succ n)

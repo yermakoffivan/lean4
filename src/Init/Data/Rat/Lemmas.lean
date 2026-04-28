@@ -26,15 +26,15 @@ namespace Rat
 theorem ext : {p q : Rat} → p.num = q.num → p.den = q.den → p = q
   | ⟨_,_,_,_⟩, ⟨_,_,_,_⟩, rfl, rfl => rfl
 
-@[simp] theorem mk_den_one {r : Int} :
+@[simp, backward_defeq] theorem mk_den_one {r : Int} :
     ⟨r, 1, Nat.one_ne_zero, (Nat.coprime_one_right _)⟩ = (r : Rat) := rfl
 
-@[simp] theorem zero_num : (0 : Rat).num = 0 := rfl
-@[simp] theorem zero_den : (0 : Rat).den = 1 := rfl
-@[simp] theorem one_num : (1 : Rat).num = 1 := rfl
-@[simp] theorem one_den : (1 : Rat).den = 1 := rfl
+@[simp, backward_defeq] theorem zero_num : (0 : Rat).num = 0 := rfl
+@[simp, backward_defeq] theorem zero_den : (0 : Rat).den = 1 := rfl
+@[simp, backward_defeq] theorem one_num : (1 : Rat).num = 1 := rfl
+@[simp, backward_defeq] theorem one_den : (1 : Rat).den = 1 := rfl
 
-@[simp] theorem neg_zero : -(0 : Rat) = 0 := rfl
+@[simp, backward_defeq] theorem neg_zero : -(0 : Rat) = 0 := rfl
 
 @[simp] theorem maybeNormalize_eq {num den g} (dvd_num dvd_den den_nz reduced) :
     maybeNormalize num den g dvd_num dvd_den den_nz reduced =
@@ -126,6 +126,7 @@ theorem mkRat_num_den (z : d ≠ 0) (h : mkRat n d = ⟨n', d', z', c⟩) :
     ∃ m : Nat, m ≠ 0 ∧ n = n' * m ∧ d = d' * m :=
   normalize_num_den ((normalize_eq_mkRat z).symm ▸ h)
 
+@[backward_defeq]
 theorem mkRat_def (n d) : mkRat n d = if d0 : d = 0 then 0 else normalize n d d0 := rfl
 
 theorem num_mkRat (n d) : (mkRat n d).num = if d = 0 then 0 else n / d.gcd n.natAbs := by
@@ -269,16 +270,16 @@ def numDenCasesOn''.{u} {C : Rat → Sort u} (a : Rat)
     rw [← mk_eq_divInt (c := h')]
     exact H n d (Nat.ne_of_gt h) _
 
-@[simp] protected theorem ofInt_ofNat : ofInt (OfNat.ofNat n) = OfNat.ofNat n := rfl
+@[simp, defeq] protected theorem ofInt_ofNat : ofInt (OfNat.ofNat n) = OfNat.ofNat n := rfl
 
-@[simp] theorem ofInt_num : (ofInt n : Rat).num = n := rfl
-@[simp] theorem ofInt_den : (ofInt n : Rat).den = 1 := rfl
+@[simp, backward_defeq] theorem ofInt_num : (ofInt n : Rat).num = n := rfl
+@[simp, backward_defeq] theorem ofInt_den : (ofInt n : Rat).den = 1 := rfl
 
-@[simp] theorem num_ofNat : (no_index (OfNat.ofNat n : Rat)).num = OfNat.ofNat n := rfl
-@[simp] theorem den_ofNat : (no_index (OfNat.ofNat n : Rat)).den = 1 := rfl
+@[simp, backward_defeq] theorem num_ofNat : (no_index (OfNat.ofNat n : Rat)).num = OfNat.ofNat n := rfl
+@[simp, backward_defeq] theorem den_ofNat : (no_index (OfNat.ofNat n : Rat)).den = 1 := rfl
 
-@[simp] theorem num_natCast (n : Nat) : (n : Rat).num = n := rfl
-@[simp] theorem den_natCast (n : Nat) : (n : Rat).den = 1 := rfl
+@[simp, backward_defeq] theorem num_natCast (n : Nat) : (n : Rat).num = n := rfl
+@[simp, backward_defeq] theorem den_natCast (n : Nat) : (n : Rat).den = 1 := rfl
 
 @[deprecated num_ofNat (since := "2025-08-22")]
 abbrev ofNat_num := @num_ofNat
@@ -351,8 +352,8 @@ protected theorem add_assoc (a b c : Rat) : a + b + c = a + (b + c) :=
 protected theorem add_left_comm (a b c : Rat) : a + (b + c) = b + (a + c) := by
   rw [← Rat.add_assoc, Rat.add_comm a, Rat.add_assoc]
 
-@[simp] theorem neg_num (a : Rat) : (-a).num = -a.num := rfl
-@[simp] theorem neg_den (a : Rat) : (-a).den = a.den := rfl
+@[simp, backward_defeq] theorem neg_num (a : Rat) : (-a).num = -a.num := rfl
+@[simp, backward_defeq] theorem neg_den (a : Rat) : (-a).den = a.den := rfl
 
 theorem neg_normalize (n d z) : -normalize n d z = normalize (-n) d z := by
   simp only [normalize, maybeNormalize_eq, Int.divExact_eq_tdiv, Int.natAbs_neg, Int.neg_tdiv]
@@ -571,6 +572,7 @@ protected theorem mul_eq_zero {a b : Rat} : a * b = 0 ↔ a = 0 ∨ b = 0 := by
     exact absurd h h'.1
   · rintro (h | h) <;> simp [h]
 
+@[backward_defeq]
 theorem div_def (a b : Rat) : a / b = a * b⁻¹ := rfl
 
 theorem divInt_eq_div (a b : Int) : a /. b = a / b := by
@@ -586,12 +588,13 @@ protected theorem div_mul_cancel {a b : Rat} (hb : b ≠ 0) : a / b * b = a := b
 protected theorem mul_div_cancel {a b : Rat} (hb : b ≠ 0) : a * b / b = a := by
   rw [div_def, Rat.mul_assoc, Rat.mul_inv_cancel _ hb, Rat.mul_one]
 
+@[backward_defeq]
 theorem pow_def (q : Rat) (n : Nat) :
     q ^ n = ⟨q.num ^ n, q.den ^ n, by simp [q.den_nz],
       by rw [Int.natAbs_pow]; exact q.reduced.pow _ _⟩ := rfl
 
-@[simp] theorem num_pow (q : Rat) (n : Nat) : (q ^ n).num = q.num ^ n := rfl
-@[simp] theorem den_pow (q : Rat) (n : Nat) : (q ^ n).den = q.den ^ n := rfl
+@[simp, backward_defeq] theorem num_pow (q : Rat) (n : Nat) : (q ^ n).num = q.num ^ n := rfl
+@[simp, backward_defeq] theorem den_pow (q : Rat) (n : Nat) : (q ^ n).den = q.den ^ n := rfl
 
 @[simp] protected theorem pow_zero (q : Rat) : q ^ 0 = 1 := by
   simp only [pow_def, Int.pow_zero, Nat.pow_zero, mk_den_one]
@@ -607,6 +610,7 @@ protected theorem pow_succ (q : Rat) (n : Nat) : q ^ (n + 1) = q ^ n * q := by
 @[simp] protected theorem zpow_zero (q : Rat) : q ^ (0 : Int) = 1 := Rat.pow_zero q
 @[simp] protected theorem zpow_one (q : Rat) : q ^ (1 : Int) = q := Rat.pow_one q
 
+@[backward_defeq]
 protected theorem zpow_natCast (q : Rat) (n : Nat) : q ^ (n : Int) = q ^ n := rfl
 
 protected theorem zpow_neg (q : Rat) (n : Int) : q ^ (-n : Int) = (q ^ n)⁻¹ := by
@@ -654,7 +658,7 @@ theorem ofScientific_def : Rat.ofScientific m s e =
   cases s; exact ofScientific_false_def; exact ofScientific_true_def
 
 /-- `Rat.ofScientific` applied to numeric literals is the same as a scientific literal. -/
-@[simp]
+@[simp, defeq]
 theorem ofScientific_ofNat_ofNat :
     Rat.ofScientific (no_index (OfNat.ofNat m)) s (no_index (OfNat.ofNat e))
       = OfScientific.ofScientific m s e := rfl
@@ -992,9 +996,9 @@ protected theorem lt_div_iff' {a b c : Rat} (hc : 0 < c) : a < b / c ↔ c * a <
 
 /-! ### `intCast` -/
 
-@[simp] theorem den_intCast (a : Int) : (a : Rat).den = 1 := rfl
+@[simp, backward_defeq] theorem den_intCast (a : Int) : (a : Rat).den = 1 := rfl
 
-@[simp] theorem num_intCast (a : Int) : (a : Rat).num = a := rfl
+@[simp, backward_defeq] theorem num_intCast (a : Int) : (a : Rat).num = a := rfl
 
 @[deprecated den_intCast (since := "2025-08-22")]
 abbrev intCast_den := @den_intCast
@@ -1006,7 +1010,7 @@ The following lemmas are later subsumed by e.g. `Int.cast_add` and `Int.cast_mul
 but it is convenient to have these earlier, for users who only need `Int` and `Rat`.
 -/
 
-@[norm_cast] theorem intCast_natCast (n : Nat) : ((n : Int) : Rat) = n := rfl
+@[norm_cast, defeq] theorem intCast_natCast (n : Nat) : ((n : Int) : Rat) = n := rfl
 
 @[simp, norm_cast] theorem intCast_inj {a b : Int} : (a : Rat) = (b : Rat) ↔ a = b := by
   constructor
@@ -1028,16 +1032,18 @@ but it is convenient to have these earlier, for users who only need `Int` and `R
     no_index (OfNat.ofNat a : Rat) = no_index (OfNat.ofNat b : Rat) ↔ a = b :=
   natCast_inj
 
-@[simp, norm_cast] theorem intCast_ofNat {a : Nat} :
+@[simp, norm_cast, defeq] theorem intCast_ofNat {a : Nat} :
     (no_index (OfNat.ofNat a : Int) : Rat) = OfNat.ofNat a :=
   rfl
 
-@[simp, norm_cast] theorem natCast_ofNat {a : Nat} :
+@[simp, norm_cast, defeq] theorem natCast_ofNat {a : Nat} :
     (no_index (OfNat.ofNat a : Nat) : Rat) = OfNat.ofNat a :=
   rfl
 
+@[defeq]
 protected theorem intCast_zero : ((0 : Int) : Rat) = (0 : Rat) := rfl
 
+@[defeq]
 protected theorem intCast_one : ((1 : Int) : Rat) = (1 : Rat) := rfl
 
 @[simp, norm_cast] protected theorem intCast_add (a b : Int) :
@@ -1049,7 +1055,7 @@ protected theorem intCast_one : ((1 : Int) : Rat) = (1 : Rat) := rfl
     ((a + b : Nat) : Rat) = (a : Rat) + (b : Rat) := by
   simp [← intCast_natCast]
 
-@[simp, norm_cast] protected theorem intCast_neg (a : Int) : ((-a : Int) : Rat) = -(a : Rat) := rfl
+@[simp, norm_cast, backward_defeq] protected theorem intCast_neg (a : Int) : ((-a : Int) : Rat) = -(a : Rat) := rfl
 
 @[simp, norm_cast] protected theorem intCast_sub (a b : Int) :
     ((a - b : Int) : Rat) = (a : Rat) - (b : Rat) := by
@@ -1139,9 +1145,9 @@ theorem ofScientific_def_eq_if :
 # min and max
 -/
 
-@[grind =] protected theorem max_def {n m : Rat} : max n m = if n ≤ m then m else n := rfl
+@[grind =, defeq] protected theorem max_def {n m : Rat} : max n m = if n ≤ m then m else n := rfl
 
-@[grind =] protected theorem min_def {n m : Rat} : min n m = if n ≤ m then n else m := rfl
+@[grind =, defeq] protected theorem min_def {n m : Rat} : min n m = if n ≤ m then n else m := rfl
 
 
 /-!
@@ -1253,7 +1259,7 @@ theorem ceil_eq_neg_floor_neg (a : Rat) : a.ceil = -((-a).floor) := by
       rw [Int.ofNat_dvd_left] at h
       exact Nat.not_coprime_of_dvd_of_dvd (by have := a.den_nz; omega) h (Nat.dvd_refl _) a.reduced
 
-@[simp]
+@[simp, backward_defeq]
 theorem ceil_intCast (a : Int) : (a : Rat).ceil = a := rfl
 
 theorem ceil_le_iff {x : Rat} {y : Int} :

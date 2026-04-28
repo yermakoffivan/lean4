@@ -31,7 +31,9 @@ noncomputable abbrev Var.denote {α : Sort u} (ctx : Context α) (x : Var) : α 
 noncomputable abbrev Expr.denote {α} (ctx : Context α) (e : Expr) : α :=
   Expr.rec (fun x => x.denote ctx) (fun _ _ ih₁ ih₂ => ctx.op ih₁ ih₂) e
 
+@[defeq]
 theorem Expr.denote_var {α} (ctx : Context α) (x : Var) : (Expr.var x).denote ctx = x.denote ctx := rfl
+@[defeq]
 theorem Expr.denote_op {α} (ctx : Context α) (a b : Expr) : (Expr.op a b).denote ctx = ctx.op (a.denote ctx) (b.denote ctx) := rfl
 
 attribute [local simp] Expr.denote_var Expr.denote_op
@@ -62,7 +64,9 @@ noncomputable abbrev Seq.denote {α} (ctx : Context α) (s : Seq) : α :=
 set_option allowUnsafeReducibility true
 attribute [semireducible] Seq.denote
 
+@[backward_defeq]
 theorem Seq.denote_var {α} (ctx : Context α) (x : Var) : (Seq.var x).denote ctx = x.denote ctx := rfl
+@[backward_defeq]
 theorem Seq.denote_op {α} (ctx : Context α) (x : Var) (s : Seq) : (Seq.cons x s).denote ctx = ctx.op (x.denote ctx) (s.denote ctx) := rfl
 
 attribute [local simp] Seq.denote_var Seq.denote_op
@@ -129,10 +133,12 @@ def Seq.erase0 (s : Seq) : Seq :=
 noncomputable def Seq.erase0_k (s : Seq) : Seq :=
   Seq.rec (fun x => .var x) (fun x _ ih => Bool.rec (Bool.rec (.cons x ih) (.var x) (Seq.beq' ih (.var 0))) ih (Nat.beq x 0)) s
 
+@[backward_defeq]
 theorem Seq.erase0_k_var (x : Var)
     : (Seq.var x).erase0_k = .var x :=
   rfl
 
+@[backward_defeq]
 theorem Seq.erase0_k_cons (x : Var) (s : Seq)
     : (Seq.cons x s).erase0_k = Bool.rec (Bool.rec (.cons x s.erase0_k) (.var x) (Seq.beq' s.erase0_k (.var 0))) s.erase0_k (Nat.beq x 0) :=
   rfl
@@ -251,6 +257,7 @@ noncomputable def Seq.eraseDup_k (s : Seq) : Seq :=
       (fun y s' _ => Bool.rec (.cons x (.cons y s')) (.cons y s') (Nat.beq x y)) ih)
     s
 
+@[backward_defeq]
 theorem Seq.eraseDup_k_cons (x : Var) (s : Seq)
     : (Seq.cons x s).eraseDup_k =
       Seq.rec
@@ -580,6 +587,7 @@ noncomputable def Seq.endsWithVar_k (s : Seq) (x : Var) : Bool :=
 theorem Seq.endsWithVar_k_var (y x : Var) : Seq.endsWithVar_k (.var y) x = (x == y) := by
   simp [Seq.endsWithVar_k]; rw [Bool.eq_iff_iff]; simp
 
+@[backward_defeq]
 theorem Seq.endsWithVar_k_cons (y x : Var) (s : Seq) : Seq.endsWithVar_k (.cons y s) x = s.endsWithVar_k x := rfl
 
 attribute [local simp] Seq.endsWithVar_k_var Seq.endsWithVar_k_cons

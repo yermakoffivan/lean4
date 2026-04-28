@@ -170,37 +170,37 @@ instance [DecidablePred p] : Decidable (∀ o : Ordering, p o) :=
 instance [DecidablePred p] : Decidable (∃ o : Ordering, p o) :=
   decidable_of_decidable_of_iff Ordering.«exists».symm
 
-@[simp] theorem isLT_lt : lt.isLT := rfl
-@[simp] theorem isLE_lt : lt.isLE := rfl
-@[simp] theorem isEq_lt : lt.isEq = false := rfl
-@[simp] theorem isNe_lt : lt.isNe = true := rfl
-@[simp] theorem isGE_lt : lt.isGE = false := rfl
-@[simp] theorem isGT_lt : lt.isGT = false := rfl
+@[simp, backward_defeq] theorem isLT_lt : lt.isLT := rfl
+@[simp, backward_defeq] theorem isLE_lt : lt.isLE := rfl
+@[simp, backward_defeq] theorem isEq_lt : lt.isEq = false := rfl
+@[simp, backward_defeq] theorem isNe_lt : lt.isNe = true := rfl
+@[simp, backward_defeq] theorem isGE_lt : lt.isGE = false := rfl
+@[simp, backward_defeq] theorem isGT_lt : lt.isGT = false := rfl
 
-@[simp] theorem isLT_eq : eq.isLT = false := rfl
-@[simp] theorem isLE_eq : eq.isLE := rfl
-@[simp] theorem isEq_eq : eq.isEq := rfl
-@[simp] theorem isNe_eq : eq.isNe = false := rfl
-@[simp] theorem isGE_eq : eq.isGE := rfl
-@[simp] theorem isGT_eq : eq.isGT = false := rfl
+@[simp, backward_defeq] theorem isLT_eq : eq.isLT = false := rfl
+@[simp, backward_defeq] theorem isLE_eq : eq.isLE := rfl
+@[simp, backward_defeq] theorem isEq_eq : eq.isEq := rfl
+@[simp, backward_defeq] theorem isNe_eq : eq.isNe = false := rfl
+@[simp, backward_defeq] theorem isGE_eq : eq.isGE := rfl
+@[simp, backward_defeq] theorem isGT_eq : eq.isGT = false := rfl
 
-@[simp] theorem isLT_gt : gt.isLT = false := rfl
-@[simp] theorem isLE_gt : gt.isLE = false := rfl
-@[simp] theorem isEq_gt : gt.isEq = false := rfl
-@[simp] theorem isNe_gt : gt.isNe = true := rfl
-@[simp] theorem isGE_gt : gt.isGE := rfl
-@[simp] theorem isGT_gt : gt.isGT := rfl
+@[simp, backward_defeq] theorem isLT_gt : gt.isLT = false := rfl
+@[simp, backward_defeq] theorem isLE_gt : gt.isLE = false := rfl
+@[simp, backward_defeq] theorem isEq_gt : gt.isEq = false := rfl
+@[simp, backward_defeq] theorem isNe_gt : gt.isNe = true := rfl
+@[simp, backward_defeq] theorem isGE_gt : gt.isGE := rfl
+@[simp, backward_defeq] theorem isGT_gt : gt.isGT := rfl
 
-@[simp] theorem lt_beq_eq : (lt == eq) = false := rfl
-@[simp] theorem lt_beq_gt : (lt == gt) = false := rfl
-@[simp] theorem eq_beq_lt : (eq == lt) = false := rfl
-@[simp] theorem eq_beq_gt : (eq == gt) = false := rfl
-@[simp] theorem gt_beq_lt : (gt == lt) = false := rfl
-@[simp] theorem gt_beq_eq : (gt == eq) = false := rfl
+@[simp, backward_defeq] theorem lt_beq_eq : (lt == eq) = false := rfl
+@[simp, backward_defeq] theorem lt_beq_gt : (lt == gt) = false := rfl
+@[simp, backward_defeq] theorem eq_beq_lt : (eq == lt) = false := rfl
+@[simp, backward_defeq] theorem eq_beq_gt : (eq == gt) = false := rfl
+@[simp, backward_defeq] theorem gt_beq_lt : (gt == lt) = false := rfl
+@[simp, backward_defeq] theorem gt_beq_eq : (gt == eq) = false := rfl
 
-@[simp] theorem swap_lt : lt.swap = .gt := rfl
-@[simp] theorem swap_eq : eq.swap = .eq := rfl
-@[simp] theorem swap_gt : gt.swap = .lt := rfl
+@[simp, backward_defeq] theorem swap_lt : lt.swap = .gt := rfl
+@[simp, backward_defeq] theorem swap_eq : eq.swap = .eq := rfl
+@[simp, backward_defeq] theorem swap_gt : gt.swap = .lt := rfl
 
 theorem eq_eq_of_isLE_of_isLE_swap : ∀ {o : Ordering}, o.isLE → o.swap.isLE → o = .eq := by decide
 theorem eq_eq_of_isGE_of_isGE_swap : ∀ {o : Ordering}, o.isGE → o.swap.isGE → o = .eq := by decide
@@ -277,9 +277,9 @@ theorem isEq_then : ∀ {o₁ o₂ : Ordering}, (o₁.then o₂).isEq = (o₁.is
 theorem isNe_then : ∀ {o₁ o₂ : Ordering}, (o₁.then o₂).isNe = (o₁.isNe || o₂.isNe) := by decide
 theorem isGT_then : ∀ {o₁ o₂ : Ordering}, (o₁.then o₂).isGT = (o₁.isGT || o₁.isEq && o₂.isGT) := by decide
 
-@[simp] theorem lt_then {o : Ordering} : lt.then o = lt := rfl
-@[simp] theorem gt_then {o : Ordering} : gt.then o = gt := rfl
-@[simp] theorem eq_then {o : Ordering} : eq.then o = o := rfl
+@[simp, backward_defeq] theorem lt_then {o : Ordering} : lt.then o = lt := rfl
+@[simp, backward_defeq] theorem gt_then {o : Ordering} : gt.then o = gt := rfl
+@[simp, backward_defeq] theorem eq_then {o : Ordering} : eq.then o = o := rfl
 
 @[simp] theorem then_eq : ∀ {o : Ordering}, o.then eq = o := by decide
 @[simp] theorem then_self : ∀ {o : Ordering}, o.then o = o := by decide
@@ -524,6 +524,7 @@ protected def compareLex {α} (cmp : α → α → Ordering) :
 instance {α} [Ord α] : Ord (List α) where
   compare := List.compareLex compare
 
+@[defeq]
 protected theorem compare_eq_compareLex {α} [Ord α] :
     compare (α := List α) = List.compareLex compare := rfl
 
@@ -537,29 +538,32 @@ protected theorem compare_cons_cons {α} [Ord α] {x y : α} {xs ys : List α} :
     compare (x :: xs) (y :: ys) = (compare x y).then (compare xs ys) :=
   List.compareLex_cons_cons
 
+@[backward_defeq]
 protected theorem compareLex_nil_cons {α} {cmp} {x : α} {xs : List α} :
     [].compareLex cmp (x :: xs) = .lt :=
   rfl
 
-@[simp]
+@[simp, backward_defeq]
 protected theorem compare_nil_cons {α} [Ord α] {x : α} {xs : List α} :
     compare [] (x :: xs) = .lt :=
   rfl
 
+@[backward_defeq]
 protected theorem compareLex_cons_nil {α} {cmp} {x : α} {xs : List α} :
     (x :: xs).compareLex cmp [] = .gt :=
   rfl
 
-@[simp]
+@[simp, backward_defeq]
 protected theorem compare_cons_nil {α} [Ord α] {x : α} {xs : List α} :
     compare (x :: xs) [] = .gt :=
   rfl
 
+@[backward_defeq]
 protected theorem compareLex_nil_nil {α} {cmp} :
     [].compareLex (α := α) cmp [] = .eq :=
   rfl
 
-@[simp]
+@[simp, backward_defeq]
 protected theorem compare_nil_nil {α} [Ord α] :
     compare (α := List α) [] [] = .eq :=
   rfl

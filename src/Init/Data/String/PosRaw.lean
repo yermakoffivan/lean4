@@ -57,22 +57,22 @@ instance (p₁ p₂ : String.Pos.Raw) : Decidable (p₁ ≤ p₂) :=
 instance (p₁ p₂ : String.Pos.Raw) : Decidable (p₁ < p₂) :=
   inferInstanceAs (Decidable (p₁.byteIdx < p₂.byteIdx))
 
-@[simp]
+@[simp, defeq]
 theorem Pos.Raw.byteIdx_sub_char {p : Pos.Raw} {c : Char} : (p - c).byteIdx = p.byteIdx - c.utf8Size := rfl
 
-@[simp]
+@[simp, defeq]
 theorem Pos.Raw.byteIdx_sub_string {p : Pos.Raw} {s : String} : (p - s).byteIdx = p.byteIdx - s.utf8ByteSize := rfl
 
-@[simp]
+@[simp, defeq]
 theorem Pos.Raw.byteIdx_add_string {p : Pos.Raw} {s : String} : (p + s).byteIdx = p.byteIdx + s.utf8ByteSize := rfl
 
-@[simp]
+@[simp, defeq]
 theorem Pos.Raw.byteIdx_string_add {s : String} {p : Pos.Raw} : (s + p).byteIdx = s.utf8ByteSize + p.byteIdx := rfl
 
-@[simp]
+@[simp, defeq]
 theorem Pos.Raw.byteIdx_add_char {p : Pos.Raw} {c : Char} : (p + c).byteIdx = p.byteIdx + c.utf8Size := rfl
 
-@[simp]
+@[simp, defeq]
 theorem Pos.Raw.byteIdx_char_add {c : Char} {p : Pos.Raw} : (c + p).byteIdx = c.utf8Size + p.byteIdx := rfl
 
 
@@ -80,7 +80,7 @@ theorem Pos.Raw.le_iff {i₁ i₂ : Pos.Raw} : i₁ ≤ i₂ ↔ i₁.byteIdx �
 
 theorem Pos.Raw.lt_iff {i₁ i₂ : Pos.Raw} : i₁ < i₂ ↔ i₁.byteIdx < i₂.byteIdx := .rfl
 
-@[simp]
+@[simp, defeq]
 theorem Pos.Raw.byteIdx_zero : (0 : Pos.Raw).byteIdx = 0 := rfl
 
 /--
@@ -93,10 +93,10 @@ def Pos.Raw.byteDistance (lo hi : Pos.Raw) : Nat :=
 theorem Pos.Raw.byteDistance_eq {lo hi : Pos.Raw} : lo.byteDistance hi = hi.byteIdx - lo.byteIdx :=
   (rfl)
 
-@[simp]
+@[simp, backward_defeq]
 theorem rawEndPos_empty : "".rawEndPos = 0 := rfl
 
-@[deprecated rawEndPos_empty (since := "2025-10-20")]
+@[deprecated rawEndPos_empty (since := "2025-10-20"), backward_defeq]
 theorem endPos_empty : "".rawEndPos = 0 := rfl
 
 /--
@@ -313,26 +313,28 @@ theorem Pos.Raw.unoffsetBy_lt_unoffsetBy_of_le_of_lt {p₁ p₂ p₃ : Pos.Raw} 
 
 namespace Pos.Raw
 
+@[defeq]
 theorem byteIdx_mk (n : Nat) : byteIdx ⟨n⟩ = n := rfl
 
-@[simp] theorem mk_zero : ⟨0⟩ = (0 : Pos.Raw) := rfl
+@[simp, defeq] theorem mk_zero : ⟨0⟩ = (0 : Pos.Raw) := rfl
 
-@[simp] theorem mk_byteIdx (p : Pos.Raw) : ⟨p.byteIdx⟩ = p := rfl
+@[simp, defeq] theorem mk_byteIdx (p : Pos.Raw) : ⟨p.byteIdx⟩ = p := rfl
 
 @[deprecated byteIdx_offsetBy (since := "2025-10-08")]
 theorem add_byteIdx {p₁ p₂ : Pos.Raw} : (p₂.offsetBy p₁).byteIdx = p₁.byteIdx + p₂.byteIdx := by
   simp
 
-@[deprecated byteIdx_offsetBy (since := "2025-10-08")]
+@[deprecated byteIdx_offsetBy (since := "2025-10-08"), backward_defeq]
 theorem add_eq {p₁ p₂ : Pos.Raw} : p₂.offsetBy p₁ = ⟨p₁.byteIdx + p₂.byteIdx⟩ := rfl
 
-@[deprecated byteIdx_unoffsetBy (since := "2025-10-08")]
+@[deprecated byteIdx_unoffsetBy (since := "2025-10-08"), backward_defeq]
 theorem sub_byteIdx (p₁ p₂ : Pos.Raw) : (p₁.unoffsetBy p₂).byteIdx = p₁.byteIdx - p₂.byteIdx := rfl
 
 @[deprecated byteIdx_add_char (since := "2025-10-10")]
 theorem addChar_byteIdx (p : Pos.Raw) (c : Char) : (p + c).byteIdx = p.byteIdx + c.utf8Size :=
   byteIdx_add_char
 
+@[defeq]
 theorem add_char_eq (p : Pos.Raw) (c : Char) : p + c = ⟨p.byteIdx + c.utf8Size⟩ := rfl
 
 @[deprecated add_char_eq (since := "2025-10-10")]
@@ -365,6 +367,7 @@ theorem ne_of_gt {i₁ i₂ : Pos.Raw} (h : i₁ < i₂) : i₂ ≠ i₁ := (ne_
 theorem byteIdx_addString (p : Pos.Raw) (s : String) :
     (p + s).byteIdx = p.byteIdx + s.utf8ByteSize := byteIdx_add_string
 
+@[defeq]
 theorem addString_eq (p : Pos.Raw) (s : String) : p + s = ⟨p.byteIdx + s.utf8ByteSize⟩ := rfl
 
 theorem byteIdx_zero_add_string (s : String) : ((0 : Pos.Raw) + s).byteIdx = s.utf8ByteSize := by

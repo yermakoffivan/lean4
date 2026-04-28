@@ -115,6 +115,7 @@ theorem IterStep.restrict_bundle [Iterator α₁ m β] [Iterator α₂ m β] [Mo
     IterM.QuotStep.restrict ⟨step.bundledQuotient, h⟩ = Quot.mk _ h.choose := by
   rfl
 
+set_option backward.defeqAttrib.useBackward true in
 /-
 Equivalence and usage of `transportAlongEquiv` tells us:
 
@@ -222,6 +223,7 @@ theorem IterM.Equiv.liftInner_stepAsHetT_pbind_congr [Monad m] [LawfulMonad m]
     intro s₁ s₂ h
     simp only [hfg s₁.inflate.1 s₁.inflate.2 s₂.inflate.1 s₂.inflate.2 h]
 
+set_option backward.defeqAttrib.useBackward true in
 theorem IterM.Equiv.liftInner_stepAsHetT_bind_congr [Monad m] [LawfulMonad m]
     [Monad n] [LawfulMonad n] [MonadLiftT m n] [LawfulMonadLiftT m n] [Iterator α₁ m β]
     [Iterator α₂ m β] {ita : IterM (α := α₁) m β} {itb : IterM (α := α₂) m β}

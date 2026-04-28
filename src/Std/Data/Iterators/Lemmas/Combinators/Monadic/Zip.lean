@@ -31,6 +31,7 @@ noncomputable def IterM.Intermediate.zip [Iterator α₁ m β₁] (it₁ : IterM
     IterM (α := Zip α₁ m α₂ β₂) m (β₁ × β₂) :=
   ⟨⟨it₁, memo, it₂⟩⟩
 
+@[backward_defeq]
 theorem IterM.zip_eq_intermediateZip [Iterator α₁ m β₁]
     (it₁ : IterM (α := α₁) m β₁) (it₂ : IterM (α := α₂) m β₂) :
     it₁.zip it₂ = Intermediate.zip it₁ none it₂ := rfl
@@ -73,6 +74,7 @@ theorem IterM.step_intermediateZip [Monad m] [Iterator α₁ m β₁] [Iterator 
     intro step
     cases step.inflate using PlausibleIterStep.casesOn <;> rfl
 
+set_option backward.defeqAttrib.useBackward true in
 theorem IterM.step_zip [Monad m] [Iterator α₁ m β₁] [Iterator α₂ m β₂]
     {it₁ : IterM (α := α₁) m β₁}
     {it₂ : IterM (α := α₂) m β₂} :

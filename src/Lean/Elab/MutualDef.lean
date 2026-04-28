@@ -1521,8 +1521,14 @@ def elabMutualDef (ds : Array Syntax) : CommandElabM Unit := do
     let mut view ←
       withExporting (isExporting := modifiers.visibility.isInferredPublic (← getEnv)) do
         mkDefView modifiers d[1]
-    if view.kind != .example && view.value matches `(declVal| := rfl) then
-      view := view.markDefEq
+    -- Adaption helper: when `debug.inferDefEqOnRfl` is set, theorems written `:= rfl`
+    -- without an explicit `[defeq]`/`[backward_defeq]` attribute get the diagnostic
+    -- `[infer_defeq]` attribute, which infers the appropriate attribute and reports
+    -- which one would have been chosen. Used to migrate `:= rfl` theorems in src/.
+    if debug.inferDefEqOnRfl.get opts &&
+        view.kind != .example && view.value matches `(declVal| := rfl) &&
+        !view.modifiers.attrs.any (fun a => a.name == `defeq || a.name == `backward_defeq) then
+      view := { view with modifiers := view.modifiers.addAttr { name := `infer_defeq } }
     let fullHeaderRef := mkNullNode #[d[0], view.headerRef]
     if let some snap := snap? then
       view := { view with headerSnap? := some {

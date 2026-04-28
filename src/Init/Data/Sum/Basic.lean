@@ -78,18 +78,18 @@ section get
   | inr b => some b
   | inl _ => none
 
-@[simp, grind =] theorem isLeft_inl : (inl x : α ⊕ β).isLeft = true := rfl
-@[simp, grind =] theorem isLeft_inr : (inr x : α ⊕ β).isLeft = false := rfl
-@[simp, grind =] theorem isRight_inl : (inl x : α ⊕ β).isRight = false := rfl
-@[simp, grind =] theorem isRight_inr : (inr x : α ⊕ β).isRight = true := rfl
+@[simp, grind =, backward_defeq] theorem isLeft_inl : (inl x : α ⊕ β).isLeft = true := rfl
+@[simp, grind =, backward_defeq] theorem isLeft_inr : (inr x : α ⊕ β).isLeft = false := rfl
+@[simp, grind =, backward_defeq] theorem isRight_inl : (inl x : α ⊕ β).isRight = false := rfl
+@[simp, grind =, backward_defeq] theorem isRight_inr : (inr x : α ⊕ β).isRight = true := rfl
 
-@[simp, grind =] theorem getLeft_inl (h : (inl x : α ⊕ β).isLeft) : (inl x).getLeft h = x := rfl
-@[simp, grind =] theorem getRight_inr (h : (inr x : α ⊕ β).isRight) : (inr x).getRight h = x := rfl
+@[simp, grind =, backward_defeq] theorem getLeft_inl (h : (inl x : α ⊕ β).isLeft) : (inl x).getLeft h = x := rfl
+@[simp, grind =, backward_defeq] theorem getRight_inr (h : (inr x : α ⊕ β).isRight) : (inr x).getRight h = x := rfl
 
-@[simp, grind =] theorem getLeft?_inl : (inl x : α ⊕ β).getLeft? = some x := rfl
-@[simp, grind =] theorem getLeft?_inr : (inr x : α ⊕ β).getLeft? = none := rfl
-@[simp, grind =] theorem getRight?_inl : (inl x : α ⊕ β).getRight? = none := rfl
-@[simp, grind =] theorem getRight?_inr : (inr x : α ⊕ β).getRight? = some x := rfl
+@[simp, grind =, backward_defeq] theorem getLeft?_inl : (inl x : α ⊕ β).getLeft? = some x := rfl
+@[simp, grind =, backward_defeq] theorem getLeft?_inr : (inr x : α ⊕ β).getLeft? = none := rfl
+@[simp, grind =, backward_defeq] theorem getRight?_inl : (inl x : α ⊕ β).getRight? = none := rfl
+@[simp, grind =, backward_defeq] theorem getRight?_inr : (inr x : α ⊕ β).getRight? = some x := rfl
 
 end get
 
@@ -100,10 +100,10 @@ constructor is present.
 @[expose] protected def elim {α β γ} (f : α → γ) (g : β → γ) : α ⊕ β → γ :=
   fun x => Sum.casesOn x f g
 
-@[simp, grind =] theorem elim_inl (f : α → γ) (g : β → γ) (x : α) :
+@[simp, grind =, backward_defeq] theorem elim_inl (f : α → γ) (g : β → γ) (x : α) :
     Sum.elim f g (inl x) = f x := rfl
 
-@[simp, grind =] theorem elim_inr (f : α → γ) (g : β → γ) (x : β) :
+@[simp, grind =, backward_defeq] theorem elim_inr (f : α → γ) (g : β → γ) (x : β) :
     Sum.elim f g (inr x) = g x := rfl
 
 /--
@@ -114,9 +114,9 @@ This function maps `α ⊕ β` to `α' ⊕ β'`, sending `α` to `α'` and `β` 
 @[expose] protected def map (f : α → α') (g : β → β') : α ⊕ β → α' ⊕ β' :=
   Sum.elim (inl ∘ f) (inr ∘ g)
 
-@[simp, grind =] theorem map_inl (f : α → α') (g : β → β') (x : α) : (inl x).map f g = inl (f x) := rfl
+@[simp, grind =, backward_defeq] theorem map_inl (f : α → α') (g : β → β') (x : α) : (inl x).map f g = inl (f x) := rfl
 
-@[simp, grind =] theorem map_inr (f : α → α') (g : β → β') (x : β) : (inr x).map f g = inr (g x) := rfl
+@[simp, grind =, backward_defeq] theorem map_inr (f : α → α') (g : β → β') (x : β) : (inr x).map f g = inr (g x) := rfl
 
 /--
 Swaps the factors of a sum type.
@@ -125,9 +125,9 @@ The constructor `Sum.inl` is replaced with `Sum.inr`, and vice versa.
 -/
 @[expose] def swap : α ⊕ β → β ⊕ α := Sum.elim inr inl
 
-@[simp, grind =] theorem swap_inl : swap (inl x : α ⊕ β) = inr x := rfl
+@[simp, grind =, backward_defeq] theorem swap_inl : swap (inl x : α ⊕ β) = inr x := rfl
 
-@[simp, grind =] theorem swap_inr : swap (inr x : α ⊕ β) = inl x := rfl
+@[simp, grind =, backward_defeq] theorem swap_inr : swap (inr x : α ⊕ β) = inl x := rfl
 
 section LiftRel
 

@@ -21,12 +21,13 @@ public section
 
 namespace Int
 
+@[defeq]
 theorem shiftRight_eq (n : Int) (s : Nat) : n >>> s = Int.shiftRight n s := rfl
 
-@[simp, norm_cast]
+@[simp, norm_cast, backward_defeq]
 theorem natCast_shiftRight (n s : Nat) : n >>> s = (n : Int) >>> s := rfl
 
-@[simp]
+@[simp, backward_defeq]
 theorem negSucc_shiftRight (m n : Nat) :
     -[m+1] >>> n = -[m >>>n +1] := rfl
 
@@ -100,7 +101,7 @@ theorem shiftRight_le_of_nonpos {n : Int} {s : Nat} (h : n ≤ 0) : (n >>> s) �
     have rl : n / 2 ^ s ≤ 0 := Int.ediv_nonpos_of_nonpos_of_neg (by omega) (by norm_cast at *; omega)
     norm_cast at *
 
-@[simp, norm_cast]
+@[simp, norm_cast, backward_defeq]
 theorem natCast_shiftLeft (n s : Nat) : n <<< s = (n : Int) <<< s := rfl
 
 @[simp, grind =]

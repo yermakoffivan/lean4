@@ -21,11 +21,13 @@ import Init.Data.Option.Lemmas
 namespace Std
 open Std.Iterators
 
+@[backward_defeq]
 theorem Iter.drop_eq {α β} [Iterator α Id β] {n : Nat}
     {it : Iter (α := α) β} :
     it.drop n = (it.toIterM.drop n).toIter :=
   rfl
 
+set_option backward.defeqAttrib.useBackward true in
 theorem Iter.step_drop {α β} [Iterator α Id β] {n : Nat}
     {it : Iter (α := α) β} :
     (it.drop n).step = (match it.step with

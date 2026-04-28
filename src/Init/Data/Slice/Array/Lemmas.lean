@@ -28,6 +28,7 @@ open Std Std.Iterators Std.PRange Std.Slice
 
 namespace SubarrayIterator
 
+set_option backward.defeqAttrib.useBackward true in
 theorem step_eq {it : Iter (α := SubarrayIterator α) α} :
     it.step = if h : it.1.xs.start < it.1.xs.stop then
         haveI := it.1.xs.start_le_stop

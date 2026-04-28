@@ -22,10 +22,12 @@ namespace Option
 @[simp, grind =] theorem mem_toArray {a : α} {o : Option α} : a ∈ o.toArray ↔ o = some a := by
   cases o <;> simp [eq_comm]
 
+set_option backward.defeqAttrib.useBackward true in
 @[simp, grind =] theorem forIn'_toArray [Monad m] (o : Option α) (b : β) (f : (a : α) → a ∈ o.toArray → β → m (ForInStep β)) :
     forIn' o.toArray b f = forIn' o b fun a m b => f a (by simpa using m) b := by
   cases o <;> simp <;> rfl
 
+set_option backward.defeqAttrib.useBackward true in
 @[simp, grind =] theorem forIn_toArray [Monad m] (o : Option α) (b : β) (f : α → β → m (ForInStep β)) :
     forIn o.toArray b f = forIn o b f := by
   cases o <;> simp <;> rfl

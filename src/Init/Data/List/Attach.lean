@@ -71,14 +71,14 @@ well-founded recursion mechanism to prove that the function terminates.
   | cons _ l', hL' => congrArg _ <| go l' fun _ hx => hL' (.tail _ hx)
   exact go l h'
 
-@[simp, grind =] theorem pmap_nil {P : α → Prop} {f : ∀ a, P a → β} : pmap f [] (by simp) = [] := rfl
+@[simp, grind =, backward_defeq] theorem pmap_nil {P : α → Prop} {f : ∀ a, P a → β} : pmap f [] (by simp) = [] := rfl
 
-@[simp, grind =] theorem pmap_cons {P : α → Prop} {f : ∀ a, P a → β} {a : α} {l : List α} (h : ∀ b ∈ a :: l, P b) :
+@[simp, grind =, backward_defeq] theorem pmap_cons {P : α → Prop} {f : ∀ a, P a → β} {a : α} {l : List α} (h : ∀ b ∈ a :: l, P b) :
     pmap f (a :: l) h = f a (forall_mem_cons.1 h).1 :: pmap f l (forall_mem_cons.1 h).2 := rfl
 
-@[simp, grind =] theorem attach_nil : ([] : List α).attach = [] := rfl
+@[simp, grind =, backward_defeq] theorem attach_nil : ([] : List α).attach = [] := rfl
 
-@[simp, grind =] theorem attachWith_nil : ([] : List α).attachWith P H = [] := rfl
+@[simp, grind =, backward_defeq] theorem attachWith_nil : ([] : List α).attachWith P H = [] := rfl
 
 @[simp]
 theorem pmap_eq_map {p : α → Prop} {f : α → β} {l : List α} (H) :
@@ -124,7 +124,7 @@ theorem attachWith_congr {l₁ l₂ : List α} (w : l₁ = l₂) {P : α → Pro
   intro a _ m' _
   rfl
 
-@[simp, grind =]
+@[simp, grind =, backward_defeq]
 theorem attachWith_cons {x : α} {xs : List α} {p : α → Prop} (h : ∀ a ∈ x :: xs, p a) :
     (x :: xs).attachWith p h = ⟨x, h x (mem_cons_self)⟩ ::
       xs.attachWith p (fun a ha ↦ h a (mem_cons_of_mem x ha)) :=
@@ -342,6 +342,7 @@ theorem getElem_attach {xs : List α} {i : Nat} (h : i < xs.attach.length) :
     (xs.attachWith P H).tail = xs.tail.attachWith P (fun a h => H a (mem_of_mem_tail h)) := by
   cases xs <;> simp
 
+set_option backward.defeqAttrib.useBackward true in
 @[simp, grind =] theorem tail_attach {xs : List α} :
     xs.attach.tail = xs.tail.attach.map (fun ⟨x, h⟩ => ⟨x, mem_of_mem_tail h⟩) := by
   cases xs <;> simp
@@ -402,6 +403,7 @@ theorem foldr_attach {l : List α} {f : α → β → β} {b : β} :
   | nil => simp
   | cons a l ih => rw [foldr_cons, attach_cons, foldr_cons, foldr_map, ih]
 
+set_option backward.defeqAttrib.useBackward true in
 theorem attach_map {l : List α} {f : α → β} :
     (l.map f).attach = l.attach.map (fun ⟨x, h⟩ => ⟨f x, mem_map_of_mem h⟩) := by
   induction l <;> simp [*]
@@ -437,6 +439,7 @@ theorem map_attach_eq_pmap {l : List α} {f : { x // x ∈ l } → β} :
     apply pmap_congr_left
     simp
 
+set_option backward.defeqAttrib.useBackward true in
 theorem attach_filterMap {l : List α} {f : α → Option β} :
     (l.filterMap f).attach = l.attach.filterMap
       fun ⟨x, h⟩ => (f x).pbind (fun b m => some ⟨b, mem_filterMap.mpr ⟨x, h, m⟩⟩) := by
@@ -503,6 +506,7 @@ theorem pmap_pmap {p : α → Prop} {q : β → Prop} {g : ∀ a, p a → β} {f
         (fun a _ => H₁ a a.2) := by
   simp [pmap_eq_map_attach, attach_map]
 
+set_option backward.defeqAttrib.useBackward true in
 @[simp] theorem pmap_append {p : ι → Prop} {f : ∀ a : ι, p a → α} {l₁ l₂ : List ι}
     (h : ∀ a ∈ l₁ ++ l₂, p a) :
     (l₁ ++ l₂).pmap f h =
@@ -658,8 +662,8 @@ state, the right approach is usually the tactic `simp [List.unattach, -List.map_
 @[expose]
 def unattach {α : Type _} {p : α → Prop} (l : List { x // p x }) : List α := l.map (·.val)
 
-@[simp] theorem unattach_nil {p : α → Prop} : ([] : List { x // p x }).unattach = [] := rfl
-@[simp] theorem unattach_cons {p : α → Prop} {a : { x // p x }} {l : List { x // p x }} :
+@[simp, backward_defeq] theorem unattach_nil {p : α → Prop} : ([] : List { x // p x }).unattach = [] := rfl
+@[simp, backward_defeq] theorem unattach_cons {p : α → Prop} {a : { x // p x }} {l : List { x // p x }} :
   (a :: l).unattach = a.val :: l.unattach := rfl
 
 @[simp] theorem mem_unattach {p : α → Prop} {l : List { x // p x }} {a} :

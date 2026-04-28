@@ -26,6 +26,7 @@ namespace Int
 
 /-! ### dvd  -/
 
+@[defeq]
 protected theorem dvd_def (a b : Int) : (a ∣ b) = Exists (fun c => b = a * c) := rfl
 
 @[simp] protected theorem dvd_zero (n : Int) : n ∣ 0 := ⟨0, (Int.mul_zero _).symm⟩
@@ -85,7 +86,7 @@ theorem ofNat_dvd_left {n : Nat} {z : Int} : (↑n : Int) ∣ z ↔ n ∣ z.natA
 
 /-! ### emod zero -/
 
-@[simp] theorem zero_emod (b : Int) : 0 % b = 0 := rfl
+@[simp, backward_defeq] theorem zero_emod (b : Int) : 0 % b = 0 := rfl
 
 @[simp] theorem emod_zero : ∀ a : Int, a % 0 = a
   | ofNat _ => congrArg ofNat <| Nat.mod_zero _
@@ -93,7 +94,7 @@ theorem ofNat_dvd_left {n : Nat} {z : Int} : (↑n : Int) ∣ z ↔ n ∣ z.natA
 
 /-! ### ofNat mod -/
 
-@[simp, norm_cast] theorem natCast_emod (m n : Nat) : (↑(m % n) : Int) = m % n := rfl
+@[simp, norm_cast, backward_defeq] theorem natCast_emod (m n : Nat) : (↑(m % n) : Int) = m % n := rfl
 
 /-! ### mod definitions -/
 
@@ -148,6 +149,7 @@ theorem ediv_mul_self (a b : Int) : a / b * b = a - a % b := by
   | ofNat _, -[_+1] => (Int.neg_neg _).symm
   | ofNat _, succ _ | -[_+1], 0 | -[_+1], succ _ | -[_+1], -[_+1] => rfl
 
+@[defeq]
 protected theorem div_def (a b : Int) : a / b = Int.ediv a b := rfl
 
 theorem add_mul_ediv_right (a b : Int) {c : Int} (H : c ≠ 0) : (a + b * c) / c = a / c + b :=
@@ -348,6 +350,7 @@ theorem lt_mul_ediv_self_add {x k : Int} (h : 0 < k) : x < k * (x / k) + k :=
   dsimp [bmod]
   split <;> simp [Int.sub_emod]
 
+@[backward_defeq]
 theorem bmod_def (x : Int) (m : Nat) : bmod x m =
     if (x % m) < (m + 1) / 2 then
       x % m

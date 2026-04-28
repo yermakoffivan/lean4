@@ -3780,6 +3780,7 @@ theorem get?_alter [LawfulBEq α] {k k' : α} {f : Option (β k) → Option (β 
         m.get? k' :=
   Raw₀.get?_alter ⟨m.1, _⟩ m.2
 
+set_option backward.defeqAttrib.useBackward true in
 @[simp]
 theorem get?_alter_self [LawfulBEq α] {k : α} {f : Option (β k) → Option (β k)} :
     (m.alter k f).get? k = f (m.get? k) := by

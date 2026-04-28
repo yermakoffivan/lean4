@@ -137,7 +137,7 @@ theorem range'_1_concat {s n : Nat} : range' s (n + 1) = range' s n ++ [s + n] :
 
 /-! ### range -/
 
-@[simp, grind =] theorem range_one : range 1 = [0] := rfl
+@[simp, grind =, backward_defeq] theorem range_one : range 1 = [0] := rfl
 
 theorem range_loop_range' : ∀ s n, range.loop s (range' s n) = range' 0 (n + s)
   | 0, _ => rfl

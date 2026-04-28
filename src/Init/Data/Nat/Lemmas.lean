@@ -115,6 +115,7 @@ theorem exists_lt_succ_left {p : Nat → Prop} :
 
 /-! ## succ/pred -/
 
+@[defeq]
 protected theorem sub_one (n) : n - 1 = pred n := rfl
 
 theorem one_add (n) : 1 + n = succ n := Nat.add_comm ..
@@ -169,7 +170,7 @@ theorem pred_eq_of_eq_succ {m n : Nat} (H : m = n.succ) : m.pred = n := by simp 
 @[simp] theorem pred_eq_succ_iff : n - 1 = m + 1 ↔ n = m + 2 := by
   cases n <;> constructor <;> rintro ⟨⟩ <;> rfl
 
-@[simp] theorem add_succ_sub_one (m n : Nat) : m + succ n - 1 = m + n := rfl
+@[simp, backward_defeq] theorem add_succ_sub_one (m n : Nat) : m + succ n - 1 = m + n := rfl
 
 @[simp]
 theorem succ_add_sub_one (n m : Nat) : succ m + n - 1 = m + n := by rw [succ_add, Nat.add_one_sub_one]
@@ -304,6 +305,7 @@ protected theorem add_sub_cancel_right (n m : Nat) : (n + m) - m = n := Nat.add_
 @[simp] protected theorem add_sub_cancel' {n m : Nat} (h : m ≤ n) : m + (n - m) = n := by
   rw [Nat.add_comm, Nat.sub_add_cancel h]
 
+@[backward_defeq]
 theorem succ_sub_one (n) : succ n - 1 = n := rfl
 
 protected theorem one_add_sub_one (n : Nat) : (1 + n) - 1 = n := Nat.add_sub_cancel_left 1 _
@@ -383,6 +385,7 @@ protected theorem exists_eq_add_of_lt (h : m < n) : ∃ k : Nat, n = m + k + 1 :
   ⟨n - (m + 1), by rw [Nat.add_right_comm, add_sub_of_le h]⟩
 
 /-- A version of `Nat.sub_succ` in the form `_ - 1` instead of `Nat.pred _`. -/
+@[defeq]
 theorem sub_succ' (m n : Nat) : m - n.succ = m - n - 1 := rfl
 
 protected theorem sub_eq_of_eq_add' {a b c : Nat} (h : a = b + c) : a - b = c := by omega
@@ -1068,7 +1071,7 @@ theorem pow_succ' {m n : Nat} : m ^ n.succ = m * m ^ n := by
 theorem pow_add_one' {m n : Nat} : m ^ (n + 1) = m * m ^ n := by
   rw [Nat.pow_add_one, Nat.mul_comm]
 
-@[simp] theorem pow_eq {m n : Nat} : m.pow n = m ^ n := rfl
+@[simp, defeq] theorem pow_eq {m n : Nat} : m.pow n = m ^ n := rfl
 
 theorem one_shiftLeft (n : Nat) : 1 <<< n = 2 ^ n := by rw [shiftLeft_eq, Nat.one_mul]
 
@@ -1709,9 +1712,10 @@ theorem div_lt_div_of_lt_of_dvd {a b d : Nat} (hdb : d ∣ b) (h : a < b) : a / 
 
 /-! ### shiftLeft and shiftRight -/
 
-@[simp, grind =] theorem shiftLeft_zero : n <<< 0 = n := rfl
+@[simp, grind =, backward_defeq] theorem shiftLeft_zero : n <<< 0 = n := rfl
 
 /-- Shift left on successor with multiple moved inside. -/
+@[backward_defeq]
 theorem shiftLeft_succ_inside (m n : Nat) : m <<< (n+1) = (2*m) <<< n := rfl
 
 /-- Shift left on successor with multiple moved to outside. -/

@@ -46,6 +46,7 @@ def ToIterator.of (α : Type w)
   iterMInternal x := iter x |>.toIterM
 
 /-- Replaces `ToIterator.iterM` with its definition. -/
+@[backward_defeq]
 theorem ToIterator.iterM_eq {γ : Type u} {α β : Type v}
     {it : γ → IterM (α := α) Id β} {x} :
     letI : ToIterator γ Id α β := .ofM α it
@@ -53,6 +54,7 @@ theorem ToIterator.iterM_eq {γ : Type u} {α β : Type v}
   rfl
 
 /-- Replaces `ToIterator.iter` with its definition. -/
+@[backward_defeq]
 theorem ToIterator.iter_eq {γ : Type u} {x : γ} {α β : Type v} {it} :
     letI : ToIterator γ Id α β := .ofM α it
     ToIterator.iter x = (it x).toIter :=

@@ -194,22 +194,22 @@ Converts a monadic iterator (`IterM Id β`) over `Id` into a pure iterator (`Ite
 def IterM.toIter {α : Type w} {β : Type w} (it : IterM (α := α) Id β) : Iter (α := α) β :=
   ⟨it.internalState⟩
 
-@[simp]
+@[simp, backward_defeq]
 theorem Iter.toIter_toIterM {α : Type w} {β : Type w} (it : Iter (α := α) β) :
     it.toIterM.toIter = it :=
   rfl
 
-@[simp]
+@[simp, backward_defeq]
 theorem Iter.toIter_comp_toIterM {α : Type w} {β : Type w} :
     IterM.toIter ∘ Iter.toIterM (α := α) (β := β) = id :=
   rfl
 
-@[simp]
+@[simp, backward_defeq]
 theorem Iter.toIterM_toIter {α : Type w} {β : Type w} (it : IterM (α := α) Id β) :
     it.toIter.toIterM = it :=
   rfl
 
-@[simp]
+@[simp, backward_defeq]
 theorem Iter.toIterM_comp_toIter {α : Type w} {β : Type w} :
     Iter.toIterM ∘ IterM.toIter (α := α) (β := β) = id :=
   rfl
@@ -250,14 +250,14 @@ def IterStep.successor : IterStep α β → Option α
   | .skip it => some it
   | .done => none
 
-@[simp]
+@[simp, backward_defeq]
 theorem IterStep.successor_yield {it : α} {out : β} :
   (IterStep.yield it out).successor = some it := rfl
 
-@[simp]
+@[simp, backward_defeq]
 theorem IterStep.successor_skip {it : α} : (IterStep.skip (β := β) it).successor = some it := rfl
 
-@[simp]
+@[simp, backward_defeq]
 theorem IterStep.successor_done : (IterStep.done (α := α) (β := β)).successor = none := rfl
 
 /--
@@ -270,17 +270,17 @@ def IterStep.mapIterator {α' : Type u'} (f : α → α') : IterStep α β → I
   | .skip it => .skip (f it)
   | .done => .done
 
-@[simp]
+@[simp, backward_defeq]
 theorem IterStep.mapIterator_yield {α' : Type u'} {f : α → α'} {it : α} {out : β} :
     (IterStep.yield it out).mapIterator f = IterStep.yield (f it) out :=
   rfl
 
-@[simp]
+@[simp, backward_defeq]
 theorem IterStep.mapIterator_skip {α' : Type u'} {f : α → α'} {it : α} :
     (IterStep.skip it (β := β)).mapIterator f = IterStep.skip (f it) :=
   rfl
 
-@[simp]
+@[simp, backward_defeq]
 theorem IterStep.mapIterator_done {α' : Type u'} {f : α → α'} :
     (IterStep.done (α := α) (β := β)).mapIterator f = IterStep.done :=
   rfl
@@ -398,7 +398,7 @@ set_option linter.missingDocs false in
 @[deprecated IterM.mk_internalState (since := "2025-12-01")]
 def Iterators.toIterM_internalState := @IterM.mk_internalState
 
-@[simp]
+@[simp, defeq]
 theorem IterM.internalState_mk {α m β} (it : α) :
     (⟨it⟩ : IterM m β).internalState = it :=
   rfl
@@ -407,16 +407,16 @@ set_option linter.missingDocs false in
 @[expose, deprecated IterM.internalState_mk (since := "2025-01-29")]
 def internalState_toIterM := @IterM.internalState_mk
 
-@[simp]
+@[simp, backward_defeq]
 theorem Iter.internalState_toIterM {α β} (it : Std.Iter (α := α) β) :
     it.toIterM.internalState = it.internalState := rfl
 
-@[simp]
+@[simp, backward_defeq]
 theorem Iter.toIterM_mk {α β} {it : α} :
     (⟨it⟩ : Iter β).toIterM = ⟨it⟩ :=
   rfl
 
-@[simp]
+@[simp, backward_defeq]
 theorem IterM.toIter_mk {α β} {it : α} :
     (⟨it⟩ : IterM Id β).toIter = ⟨it⟩ :=
   rfl
@@ -565,17 +565,17 @@ def IterM.Step.toPure {α : Type w} {β : Type w} [Iterator α Id β] {it : Iter
     (step : it.Step) : it.toIter.Step :=
   ⟨step.val.mapIterator IterM.toIter, (by simp [Iter.IsPlausibleStep, step.property])⟩
 
-@[simp]
+@[simp, backward_defeq]
 theorem IterM.Step.toPure_yield {α β : Type w} [Iterator α Id β] {it : IterM (α := α) Id β}
     {it' out h} : IterM.Step.toPure (⟨.yield it' out, h⟩ : it.Step) = .yield it'.toIter out h :=
   rfl
 
-@[simp]
+@[simp, backward_defeq]
 theorem IterM.Step.toPure_skip {α β : Type w} [Iterator α Id β] {it : IterM (α := α) Id β}
     {it' h} : IterM.Step.toPure (⟨.skip it', h⟩ : it.Step) = .skip it'.toIter h :=
   rfl
 
-@[simp]
+@[simp, backward_defeq]
 theorem IterM.Step.toPure_done {α β : Type w} [Iterator α Id β] {it : IterM (α := α) Id β}
     {h} : IterM.Step.toPure (⟨.done, h⟩ : it.Step) = .done h :=
   rfl
@@ -608,6 +608,7 @@ def Iter.IsPlausibleSuccessorOf {α : Type w} {β : Type w} [Iterator α Id β]
     (it' it : Iter (α := α) β) : Prop :=
   it'.toIterM.IsPlausibleSuccessorOf it.toIterM
 
+@[backward_defeq]
 theorem Iter.isPlausibleSuccessorOf_eq_invImage {α : Type w} {β : Type w} [Iterator α Id β] :
     IsPlausibleSuccessorOf (α := α) (β := β) =
       InvImage (IterM.IsPlausibleSuccessorOf (α := α) (β := β) (m := Id)) Iter.toIterM := rfl

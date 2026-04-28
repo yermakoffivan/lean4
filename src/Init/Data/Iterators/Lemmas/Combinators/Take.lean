@@ -21,16 +21,19 @@ import Init.Data.List.Nat.TakeDrop
 namespace Std
 open Std.Iterators Std.Iterators.Types
 
+@[backward_defeq]
 theorem Iter.take_eq_toIter_take_toIterM {α β} [Iterator α Id β] {n : Nat}
     {it : Iter (α := α) β} :
     it.take n = (it.toIterM.take n).toIter :=
   rfl
 
+@[backward_defeq]
 theorem Iter.toTake_eq_toIter_toTake_toIterM {α β} [Iterator α Id β] [Finite α Id]
     {it : Iter (α := α) β} :
     it.toTake = it.toIterM.toTake.toIter :=
   rfl
 
+set_option backward.defeqAttrib.useBackward true in
 theorem Iter.step_take {α β} [Iterator α Id β] {n : Nat}
     {it : Iter (α := α) β} :
     (it.take n).step = (match n with
@@ -102,6 +105,7 @@ theorem Iter.toList_take_zero {α β} [Iterator α Id β]
   rw [toList_eq_match_step]
   simp [step_take]
 
+set_option backward.defeqAttrib.useBackward true in
 theorem Iter.step_toTake {α β} [Iterator α Id β] [Finite α Id]
     {it : Iter (α := α) β} :
     it.toTake.step = (

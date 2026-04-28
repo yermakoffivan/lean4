@@ -99,7 +99,7 @@ structure Equiv (m₁ m₂ : DTreeMap α β cmp) where
 
 @[inherit_doc] scoped infix:50 " ~m " => Equiv
 
-@[simp, grind =]
+@[simp, grind =, defeq]
 theorem empty_eq_emptyc : (empty : DTreeMap α β cmp) = ∅ :=
   rfl
 

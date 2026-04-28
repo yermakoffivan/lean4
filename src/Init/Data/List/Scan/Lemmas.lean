@@ -33,6 +33,7 @@ private theorem scanAuxM.go_eq_append_map [Monad m] [LawfulMonad m] {f : α → 
   | nil => simp [scanAuxM.go]
   | cons _ _ ih => simp [scanAuxM.go, ih (acc := last :: acc), ih (acc := [last])]
 
+@[backward_defeq]
 private theorem scanAuxM_nil [Monad m] {f : α → β → m α} :
     scanAuxM f init [] = return [init] := rfl
 

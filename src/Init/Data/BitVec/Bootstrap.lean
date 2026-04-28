@@ -17,9 +17,10 @@ public section
 
 namespace BitVec
 
+@[backward_defeq]
 theorem testBit_toNat (x : BitVec w) : x.toNat.testBit i = x.getLsbD i := rfl
 
-@[simp, grind =] theorem getLsbD_ofFin (x : Fin (2^n)) (i : Nat) :
+@[simp, grind =, backward_defeq] theorem getLsbD_ofFin (x : Fin (2^n)) (i : Nat) :
     getLsbD (BitVec.ofFin x) i = x.val.testBit i := rfl
 
 @[simp, grind =] theorem getLsbD_of_ge (x : BitVec w) (i : Nat) (ge : w ≤ i) : getLsbD x i = false := by
@@ -52,20 +53,20 @@ theorem toNat_ofNat (x w : Nat) : (BitVec.ofNat w x).toNat = x % 2^w := by
         (∀ i (hi : i < n), x[i] = y[i]) → x = y :=
   fun h => BitVec.eq_of_getLsbD_eq (h ↑·)
 
-@[simp, grind =] theorem toNat_append (x : BitVec m) (y : BitVec n) :
+@[simp, grind =, backward_defeq] theorem toNat_append (x : BitVec m) (y : BitVec n) :
     (x ++ y).toNat = x.toNat <<< n ||| y.toNat :=
   rfl
 
 @[simp, grind =] theorem toNat_ofBool (b : Bool) : (ofBool b).toNat = b.toNat := by
   cases b <;> rfl
 
-@[simp, bitvec_to_nat, grind =]
+@[simp, bitvec_to_nat, grind =, backward_defeq]
 theorem toNat_cast (h : w = v) (x : BitVec w) : (x.cast h).toNat = x.toNat := rfl
 
-@[simp, bitvec_to_nat, grind =]
+@[simp, bitvec_to_nat, grind =, backward_defeq]
 theorem toNat_ofFin (x : Fin (2^n)) : (BitVec.ofFin x).toNat = x.val := rfl
 
-@[simp, grind =] theorem toNat_ofNatLT (x : Nat) (p : x < 2^w) : (x#'p).toNat = x := rfl
+@[simp, grind =, backward_defeq] theorem toNat_ofNatLT (x : Nat) (p : x < 2^w) : (x#'p).toNat = x := rfl
 
 @[simp, grind =] theorem toNat_cons (b : Bool) (x : BitVec w) :
     (cons b x).toNat = (b.toNat <<< w) ||| x.toNat := by

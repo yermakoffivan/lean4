@@ -80,13 +80,13 @@ theorem notLTTotal : Std.Total (¬ · < · : Char → Char → Prop) where
   rw [Char.ofNat, dif_pos]
   rfl
 
-@[simp]
+@[simp, backward_defeq]
 theorem toUInt8_val {c : Char} : c.val.toUInt8 = c.toUInt8 := rfl
 
-@[simp]
+@[simp, backward_defeq]
 theorem toString_eq_singleton {c : Char} : c.toString = String.singleton c := rfl
 
-@[simp]
+@[simp, backward_defeq]
 theorem toNat_val {c : Char} : c.val.toNat = c.toNat := rfl
 
 theorem val_inj {c d : Char} : c.val = d.val ↔ c = d :=

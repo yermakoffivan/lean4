@@ -21,20 +21,25 @@ open Std
 
 namespace Fin
 
-@[simp, grind =] theorem ofNat_zero (n : Nat) [NeZero n] : Fin.ofNat n 0 = 0 := rfl
+@[simp, grind =, defeq] theorem ofNat_zero (n : Nat) [NeZero n] : Fin.ofNat n 0 = 0 := rfl
 
+@[backward_defeq]
 theorem mod_def (a m : Fin n) : a % m = Fin.mk (a.val % m.val) (Nat.lt_of_le_of_lt (Nat.mod_le _ _) a.2) :=
   rfl
 
+@[backward_defeq]
 theorem val_mod (a m : Fin n) : (a % m).val = a.val % m.val := rfl
 
+@[backward_defeq]
 theorem mul_def (a b : Fin n) : a * b = Fin.mk ((a.val * b.val) % n) (Nat.mod_lt _ a.pos) := rfl
 
+@[backward_defeq]
 theorem val_mul (a b : Fin n) : (a * b).val = (a.val * b.val) % n := rfl
 
+@[backward_defeq]
 theorem sub_def (a b : Fin n) : a - b = Fin.mk (((n - b.val) + a.val) % n) (Nat.mod_lt _ a.pos) := rfl
 
-@[grind =]
+@[grind =, backward_defeq]
 theorem val_sub (a b : Fin n) : (a - b).val = ((n - b.val) + a.val) % n := rfl
 
 @[grind →]
@@ -47,7 +52,7 @@ theorem pos_iff_nonempty {n : Nat} : 0 < n ↔ Nonempty (Fin n) :=
 
 /-! ### coercions and constructions -/
 
-@[simp] protected theorem eta (a : Fin n) (h : a < n) : (⟨a, h⟩ : Fin n) = a := rfl
+@[simp, defeq] protected theorem eta (a : Fin n) (h : a < n) : (⟨a, h⟩ : Fin n) = a := rfl
 
 @[ext, grind ext]
 protected theorem ext {a b : Fin n} (h : (a : Nat) = b) : a = b := eq_of_val_eq h
@@ -61,6 +66,7 @@ theorem forall_iff {p : Fin n → Prop} : (∀ i, p i) ↔ ∀ i h, p ⟨i, h⟩
 protected theorem mk.inj_iff {n a b : Nat} {ha : a < n} {hb : b < n} :
     (⟨a, ha⟩ : Fin n) = ⟨b, hb⟩ ↔ a = b := Fin.ext_iff
 
+@[defeq]
 theorem val_mk {m n : Nat} (h : m < n) : (⟨m, h⟩ : Fin n).val = m := rfl
 
 theorem eq_mk_iff_val_eq {a : Fin n} {k : Nat} {hk : k < n} :
@@ -76,7 +82,7 @@ theorem mk_val (i : Fin n) : (⟨i, i.isLt⟩ : Fin n) = i := Fin.eta ..
     0 = (⟨a, ha⟩ : Fin n) ↔ a = 0 := by
   simp [eq_comm]
 
-@[simp, grind =] theorem val_ofNat (n : Nat) [NeZero n] (a : Nat) :
+@[simp, grind =, backward_defeq] theorem val_ofNat (n : Nat) [NeZero n] (a : Nat) :
   (Fin.ofNat n a).val = a % n := rfl
 
 @[simp, grind =] theorem ofNat_self {n : Nat} [NeZero n] : Fin.ofNat n n = 0 := by
@@ -89,13 +95,13 @@ theorem mk_val (i : Fin n) : (⟨i, i.isLt⟩ : Fin n) = i := Fin.eta ..
   rw [val_ofNat, Nat.mod_eq_of_lt]
   exact x.2
 
-@[simp] theorem mod_val (a b : Fin n) : (a % b).val = a.val % b.val :=
+@[simp, backward_defeq] theorem mod_val (a b : Fin n) : (a % b).val = a.val % b.val :=
   rfl
 
-@[simp] theorem div_val (a b : Fin n) : (a / b).val = a.val / b.val :=
+@[simp, backward_defeq] theorem div_val (a b : Fin n) : (a / b).val = a.val / b.val :=
   rfl
 
-@[simp, grind =] theorem modn_val (a : Fin n) (b : Nat) : (a.modn b).val = a.val % b :=
+@[simp, grind =, backward_defeq] theorem modn_val (a : Fin n) (b : Nat) : (a.modn b).val = a.val % b :=
   rfl
 
 @[simp] theorem val_eq_zero (a : Fin 1) : a.val = 0 :=
@@ -153,6 +159,7 @@ attribute [scoped instance] instIntCast
 end IntCast
 
 open IntCast in
+@[backward_defeq]
 theorem intCast_def {n : Nat} [NeZero n] (x : Int) :
     (x : Fin n) = if 0 ≤ x then Fin.ofNat n x.natAbs else -Fin.ofNat n x.natAbs := rfl
 
@@ -228,9 +235,9 @@ theorem mk_le_of_le_val {b : Fin n} {a : Nat} (h : a ≤ b) :
 
 @[simp] theorem mk_lt_mk {x y : Nat} {hx hy} : (⟨x, hx⟩ : Fin n) < ⟨y, hy⟩ ↔ x < y := .rfl
 
-@[simp] theorem val_zero (n : Nat) [NeZero n] : ((0 : Fin n) : Nat) = 0 := rfl
+@[simp, backward_defeq] theorem val_zero (n : Nat) [NeZero n] : ((0 : Fin n) : Nat) = 0 := rfl
 
-@[simp] theorem mk_zero : (⟨0, Nat.succ_pos n⟩ : Fin (n + 1)) = 0 := rfl
+@[simp, backward_defeq] theorem mk_zero : (⟨0, Nat.succ_pos n⟩ : Fin (n + 1)) = 0 := rfl
 
 @[simp] theorem zero_le [NeZero n] (a : Fin n) : 0 ≤ a := Nat.zero_le a.val
 
@@ -264,7 +271,7 @@ instance : LawfulOrderLT (Fin n) where
   lt_iff := by
     simp [← Fin.not_le, Decidable.imp_iff_not_or, Std.Total.total]
 
-@[simp] theorem val_rev (i : Fin n) : (rev i).val = n - (i + 1) := rfl
+@[simp, backward_defeq] theorem val_rev (i : Fin n) : (rev i).val = n - (i + 1) := rfl
 
 grind_pattern val_rev => i.rev
 
@@ -278,6 +285,7 @@ grind_pattern val_rev => i.rev
 @[simp] theorem rev_inj {i j : Fin n} : rev i = rev j ↔ i = j :=
   ⟨fun h => by simpa using congrArg rev h, congrArg _⟩
 
+set_option backward.defeqAttrib.useBackward true in
 theorem rev_eq {n a : Nat} (i : Fin (n + 1)) (h : n = a + i) :
     rev i = ⟨a, Nat.lt_succ_of_le (h ▸ Nat.le_add_right ..)⟩ := by
   ext; dsimp
@@ -289,7 +297,7 @@ theorem rev_eq {n a : Nat} (i : Fin (n + 1)) (h : n = a + i) :
 
 /-! ### last -/
 
-@[simp] theorem val_last (n : Nat) : (last n).1 = n := rfl
+@[simp, backward_defeq] theorem val_last (n : Nat) : (last n).1 = n := rfl
 
 grind_pattern val_last => last n
 
@@ -324,9 +332,9 @@ theorem val_lt_last {i : Fin (n + 1)} : i ≠ last n → (i : Nat) < n :=
 
 /-! ### addition, numerals, and coercion from Nat -/
 
-@[simp] theorem val_one (n : Nat) : (1 : Fin (n + 2)).val = 1 := rfl
+@[simp, backward_defeq] theorem val_one (n : Nat) : (1 : Fin (n + 2)).val = 1 := rfl
 
-@[simp] theorem mk_one : (⟨1, Nat.succ_lt_succ (Nat.succ_pos n)⟩ : Fin (n + 2)) = (1 : Fin _) := rfl
+@[simp, backward_defeq] theorem mk_one : (⟨1, Nat.succ_lt_succ (Nat.succ_pos n)⟩ : Fin (n + 2)) = (1 : Fin _) := rfl
 
 theorem subsingleton_iff_le_one : Subsingleton (Fin n) ↔ n ≤ 1 := by
   (match n with | 0 | 1 | n+2 => ?_) <;> try simp
@@ -356,8 +364,10 @@ theorem fin_one_eq_zero (a : Fin 1) : a = 0 := Subsingleton.elim a 0
   rw [eq_comm]
   simp
 
+@[backward_defeq]
 theorem add_def (a b : Fin n) : a + b = Fin.mk ((a + b) % n) (Nat.mod_lt _ a.pos) := rfl
 
+@[backward_defeq]
 theorem val_add (a b : Fin n) : (a + b).val = (a.val + b.val) % n := rfl
 
 @[simp] protected theorem zero_add [NeZero n] (k : Fin n) : (0 : Fin n) + k = k := by
@@ -383,7 +393,7 @@ theorem val_add_one {n : Nat} (i : Fin (n + 1)) :
   | .inl h => cases Fin.eq_of_val_eq h; simp
   | .inr h => simpa [Fin.ne_of_lt h] using val_add_one_of_lt h
 
-@[simp] theorem val_two {n : Nat} : (2 : Fin (n + 3)).val = 2 := rfl
+@[simp, backward_defeq] theorem val_two {n : Nat} : (2 : Fin (n + 3)).val = 2 := rfl
 
 theorem add_one_pos (i : Fin (n + 1)) (h : i < Fin.last n) : (0 : Fin (n + 1)) < i + 1 := by
   match n with
@@ -400,7 +410,7 @@ theorem zero_ne_one : (0 : Fin (n + 2)) ≠ 1 := Fin.ne_of_lt zero_lt_one
 
 /-! ### succ and casts into larger Fin types -/
 
-@[simp] theorem val_succ (j : Fin n) : (j.succ : Nat) = j + 1 := rfl
+@[simp, backward_defeq] theorem val_succ (j : Fin n) : (j.succ : Nat) = j + 1 := rfl
 
 grind_pattern val_succ => j.succ
 
@@ -418,12 +428,12 @@ grind_pattern val_succ => j.succ
 theorem succ_ne_zero {n} : ∀ k : Fin n, Fin.succ k ≠ 0
   | ⟨k, _⟩, heq => Nat.succ_ne_zero k <| congrArg Fin.val heq
 
-@[simp] theorem succ_zero_eq_one : Fin.succ (0 : Fin (n + 1)) = 1 := rfl
+@[simp, backward_defeq] theorem succ_zero_eq_one : Fin.succ (0 : Fin (n + 1)) = 1 := rfl
 
 /-- Version of `succ_one_eq_two` to be used by `dsimp` -/
-@[simp] theorem succ_one_eq_two : Fin.succ (1 : Fin (n + 2)) = 2 := rfl
+@[simp, backward_defeq] theorem succ_one_eq_two : Fin.succ (1 : Fin (n + 2)) = 2 := rfl
 
-@[simp] theorem succ_mk (n i : Nat) (h : i < n) :
+@[simp, backward_defeq] theorem succ_mk (n i : Nat) (h : i < n) :
     Fin.succ ⟨i, h⟩ = ⟨i + 1, Nat.succ_lt_succ h⟩ := rfl
 
 theorem mk_succ_pos (i : Nat) (h : i < n) :
@@ -464,20 +474,20 @@ theorem one_lt_succ_succ (a : Fin n) : (1 : Fin (n + 2)) < a.succ.succ := by
 theorem succ_succ_ne_one (a : Fin n) : Fin.succ (Fin.succ a) ≠ 1 :=
   Fin.ne_of_gt (one_lt_succ_succ a)
 
-@[simp, grind =] theorem val_castLT (i : Fin m) (h : i.1 < n) : (castLT i h : Nat) = i := rfl
+@[simp, grind =, backward_defeq] theorem val_castLT (i : Fin m) (h : i.1 < n) : (castLT i h : Nat) = i := rfl
 
-@[deprecated val_castLT (since := "2025-11-21")]
+@[deprecated val_castLT (since := "2025-11-21"), backward_defeq]
 theorem coe_castLT (i : Fin m) (h : i.1 < n) : (castLT i h : Nat) = i := rfl
 
-@[simp] theorem castLT_mk (i n m : Nat) (hn : i < n) (hm : i < m) : castLT ⟨i, hn⟩ hm = ⟨i, hm⟩ :=
+@[simp, backward_defeq] theorem castLT_mk (i n m : Nat) (hn : i < n) (hm : i < m) : castLT ⟨i, hn⟩ hm = ⟨i, hm⟩ :=
   rfl
 
-@[simp, grind =] theorem val_castLE (h : n ≤ m) (i : Fin n) : (castLE h i : Nat) = i := rfl
+@[simp, grind =, backward_defeq] theorem val_castLE (h : n ≤ m) (i : Fin n) : (castLE h i : Nat) = i := rfl
 
-@[deprecated val_castLE (since := "2025-11-21")]
+@[deprecated val_castLE (since := "2025-11-21"), backward_defeq]
 theorem coe_castLE (h : n ≤ m) (i : Fin n) : (castLE h i : Nat) = i := rfl
 
-@[simp] theorem castLE_mk (i n m : Nat) (hn : i < n) (h : n ≤ m) :
+@[simp, backward_defeq] theorem castLE_mk (i n m : Nat) (hn : i < n) (h : n ≤ m) :
     castLE h ⟨i, hn⟩ = ⟨i, Nat.lt_of_lt_of_le hn h⟩ := rfl
 
 @[simp] theorem castLE_zero {n m : Nat} (h : n.succ ≤ m.succ) : castLE h 0 = 0 := by simp [Fin.ext_iff]
@@ -493,9 +503,9 @@ theorem coe_castLE (h : n ≤ m) (i : Fin n) : (castLE h i : Nat) = i := rfl
     Fin.castLE mn ∘ Fin.castLE km = Fin.castLE (Nat.le_trans km mn) :=
   funext (castLE_castLE km mn)
 
-@[simp, grind =] theorem val_cast (h : n = m) (i : Fin n) : (i.cast h : Nat) = i := rfl
+@[simp, grind =, backward_defeq] theorem val_cast (h : n = m) (i : Fin n) : (i.cast h : Nat) = i := rfl
 
-@[deprecated val_cast (since := "2025-11-21")]
+@[deprecated val_cast (since := "2025-11-21"), backward_defeq]
 theorem coe_cast (h : n = m) (i : Fin n) : (i.cast h : Nat) = i := rfl
 
 @[simp] theorem cast_castLE {k m n} (km : k ≤ m) (mn : m = n) (i : Fin k) :
@@ -506,25 +516,26 @@ theorem coe_cast (h : n = m) (i : Fin n) : (i.cast h : Nat) = i := rfl
     Fin.cast mn (i.castLT h) = i.castLT (mn ▸ h) :=
   Fin.ext (by simp)
 
-@[simp] theorem cast_zero [NeZero n] [NeZero m] (h : n = m) : Fin.cast h 0 = 0 := rfl
+@[simp, backward_defeq] theorem cast_zero [NeZero n] [NeZero m] (h : n = m) : Fin.cast h 0 = 0 := rfl
 
 @[simp] theorem cast_last {n' : Nat} {h : n + 1 = n' + 1} : (last n).cast h  = last n' :=
   Fin.ext (by rw [val_cast, val_last, val_last, Nat.succ.inj h])
 
-@[simp] theorem cast_mk (h : n = m) (i : Nat) (hn : i < n) : Fin.cast h ⟨i, hn⟩ = ⟨i, h ▸ hn⟩ := rfl
+@[simp, backward_defeq] theorem cast_mk (h : n = m) (i : Nat) (hn : i < n) : Fin.cast h ⟨i, hn⟩ = ⟨i, h ▸ hn⟩ := rfl
 
 @[simp] theorem cast_refl (n : Nat) (h : n = n) : Fin.cast h = id := by
   ext
   simp
 
-@[simp, grind =] theorem cast_cast {k : Nat} (h : n = m) (h' : m = k) {i : Fin n} :
+@[simp, grind =, backward_defeq] theorem cast_cast {k : Nat} (h : n = m) (h' : m = k) {i : Fin n} :
     (i.cast h).cast h' = i.cast (Eq.trans h h') := rfl
 
 @[deprecated cast_cast (since := "2025-09-03")] abbrev cast_trans := @cast_cast
 
+@[backward_defeq]
 theorem castLE_of_eq {m n : Nat} (h : m = n) {h' : m ≤ n} : castLE h' = Fin.cast h := rfl
 
-@[simp, grind =] theorem val_castAdd (m : Nat) (i : Fin n) : (castAdd m i : Nat) = i := rfl
+@[simp, grind =, backward_defeq] theorem val_castAdd (m : Nat) (i : Fin n) : (castAdd m i : Nat) = i := rfl
 
 /-
 **Note**
@@ -534,51 +545,54 @@ we will fail to match `@val n (castNat 0 i)`. Thus, we mark the implicit subterm
 -/
 grind_pattern val_castAdd => @val (no_index _) (castAdd m i)
 
-@[deprecated val_castAdd (since := "2025-11-21")]
+@[deprecated val_castAdd (since := "2025-11-21"), backward_defeq]
 theorem coe_castAdd (m : Nat) (i : Fin n) : (castAdd m i : Nat) = i := rfl
 
-@[simp] theorem castAdd_zero : (castAdd 0 : Fin n → Fin (n + 0)) = Fin.cast rfl := rfl
+@[simp, backward_defeq] theorem castAdd_zero : (castAdd 0 : Fin n → Fin (n + 0)) = Fin.cast rfl := rfl
 
 theorem castAdd_lt {m : Nat} (n : Nat) (i : Fin m) : (castAdd n i : Nat) < m := by simp
 
-@[simp] theorem castAdd_mk (m : Nat) (i : Nat) (h : i < n) :
+@[simp, backward_defeq] theorem castAdd_mk (m : Nat) (i : Nat) (h : i < n) :
     castAdd m ⟨i, h⟩ = ⟨i, Nat.lt_add_right m h⟩ := rfl
 
-@[simp] theorem castAdd_castLT (m : Nat) (i : Fin (n + m)) (hi : i.val < n) :
+@[simp, backward_defeq] theorem castAdd_castLT (m : Nat) (i : Fin (n + m)) (hi : i.val < n) :
     castAdd m (castLT i hi) = i := rfl
 
-@[simp] theorem castLT_castAdd (m : Nat) (i : Fin n) :
+@[simp, backward_defeq] theorem castLT_castAdd (m : Nat) (i : Fin n) :
     castLT (castAdd m i) (castAdd_lt m i) = i := rfl
 
 /-- For rewriting in the reverse direction, see `Fin.cast_castAdd_left`. -/
 theorem castAdd_cast {n n' : Nat} (m : Nat) (i : Fin n') (h : n' = n) :
     castAdd m (Fin.cast h i) = Fin.cast (congrArg (. + m) h) (castAdd m i) := Fin.ext rfl
 
+@[backward_defeq]
 theorem cast_castAdd_left {n n' m : Nat} (i : Fin n') (h : n' + m = n + m) :
     (i.castAdd m).cast h = (i.cast (Nat.add_right_cancel h)).castAdd m := rfl
 
-@[simp] theorem cast_castAdd_right {n m m' : Nat} (i : Fin n) (h : n + m' = n + m) :
+@[simp, backward_defeq] theorem cast_castAdd_right {n m m' : Nat} (i : Fin n) (h : n + m' = n + m) :
     (i.castAdd m').cast h = i.castAdd m := rfl
 
+@[backward_defeq]
 theorem castAdd_castAdd {m n p : Nat} (i : Fin m) :
     (i.castAdd n).castAdd p = (i.castAdd (n + p)).cast (Nat.add_assoc ..).symm := rfl
 
 /-- The cast of the successor is the successor of the cast. See `Fin.succ_cast_eq` for rewriting in
 the reverse direction. -/
-@[simp] theorem cast_succ_eq {n' : Nat} (i : Fin n) (h : n.succ = n'.succ) :
+@[simp, backward_defeq] theorem cast_succ_eq {n' : Nat} (i : Fin n) (h : n.succ = n'.succ) :
     i.succ.cast h = (i.cast (Nat.succ.inj h)).succ := rfl
 
+@[backward_defeq]
 theorem succ_cast_eq {n' : Nat} (i : Fin n) (h : n = n') :
     (i.cast h).succ = i.succ.cast (by rw [h]) := rfl
 
-@[simp, grind =] theorem val_castSucc (i : Fin n) : (i.castSucc : Nat) = i := rfl
+@[simp, grind =, backward_defeq] theorem val_castSucc (i : Fin n) : (i.castSucc : Nat) = i := rfl
 
-@[deprecated val_castSucc (since := "2025-11-21")]
+@[deprecated val_castSucc (since := "2025-11-21"), backward_defeq]
 theorem coe_castSucc (i : Fin n) : (i.castSucc : Nat) = i := rfl
 
-@[simp] theorem castSucc_mk (n i : Nat) (h : i < n) : castSucc ⟨i, h⟩ = ⟨i, Nat.lt_succ_of_lt h⟩ := rfl
+@[simp, backward_defeq] theorem castSucc_mk (n i : Nat) (h : i < n) : castSucc ⟨i, h⟩ = ⟨i, Nat.lt_succ_of_lt h⟩ := rfl
 
-@[simp] theorem cast_castSucc {n' : Nat} {h : n + 1 = n' + 1} {i : Fin n} :
+@[simp, backward_defeq] theorem cast_castSucc {n' : Nat} {h : n + 1 = n' + 1} {i : Fin n} :
     i.castSucc.cast h = (i.cast (Nat.succ.inj h)).castSucc := rfl
 
 theorem castSucc_lt_succ {i : Fin n} : i.castSucc < i.succ :=
@@ -590,15 +604,15 @@ theorem le_castSucc_iff {i : Fin (n + 1)} {j : Fin n} : i ≤ j.castSucc ↔ i <
 theorem castSucc_lt_iff_succ_le {n : Nat} {i : Fin n} {j : Fin (n + 1)} :
     i.castSucc < j ↔ i.succ ≤ j := .rfl
 
-@[simp] theorem succ_last (n : Nat) : (last n).succ = last n.succ := rfl
+@[simp, backward_defeq] theorem succ_last (n : Nat) : (last n).succ = last n.succ := rfl
 
 @[simp] theorem succ_eq_last_succ {n : Nat} {i : Fin n.succ} :
     i.succ = last (n + 1) ↔ i = last n := by rw [← succ_last, succ_inj]
 
-@[simp] theorem castSucc_castLT (i : Fin (n + 1)) (h : (i : Nat) < n) :
+@[simp, backward_defeq] theorem castSucc_castLT (i : Fin (n + 1)) (h : (i : Nat) < n) :
     (castLT i h).castSucc = i := rfl
 
-@[simp] theorem castLT_castSucc {n : Nat} (a : Fin n) (h : (a : Nat) < n) :
+@[simp, backward_defeq] theorem castLT_castSucc {n : Nat} (a : Fin n) (h : (a : Nat) < n) :
     castLT a.castSucc h = a := rfl
 
 @[simp] theorem castSucc_lt_castSucc_iff {a b : Fin n} :
@@ -608,9 +622,9 @@ theorem castSucc_inj {a b : Fin n} : a.castSucc = b.castSucc ↔ a = b := by sim
 
 theorem castSucc_lt_last (a : Fin n) : a.castSucc < last n := a.is_lt
 
-@[simp] theorem castSucc_zero [NeZero n] : castSucc (0 : Fin n) = 0 := rfl
+@[simp, backward_defeq] theorem castSucc_zero [NeZero n] : castSucc (0 : Fin n) = 0 := rfl
 
-@[simp] theorem castSucc_one {n : Nat} : castSucc (1 : Fin (n + 2)) = 1 := rfl
+@[simp, backward_defeq] theorem castSucc_one {n : Nat} : castSucc (1 : Fin (n + 2)) = 1 := rfl
 
 /-- `castSucc i` is positive when `i` is positive -/
 theorem castSucc_pos [NeZero n] {i : Fin n} (h : 0 < i) : 0 < i.castSucc := by
@@ -621,7 +635,7 @@ theorem castSucc_pos [NeZero n] {i : Fin n} (h : 0 < i) : 0 < i.castSucc := by
 theorem castSucc_ne_zero_iff [NeZero n] {a : Fin n} : a.castSucc ≠ 0 ↔ a ≠ 0 :=
   not_congr <| castSucc_eq_zero_iff
 
-@[simp, grind _=_]
+@[simp, grind _=_, backward_defeq]
 theorem castSucc_succ (i : Fin n) : i.succ.castSucc = i.castSucc.succ := rfl
 
 @[deprecated castSucc_succ (since := "2025-10-29")]
@@ -642,9 +656,10 @@ theorem exists_castSucc_eq {n : Nat} {i : Fin (n + 1)} : (∃ j, castSucc j = i)
   ⟨fun ⟨j, hj⟩ => hj ▸ Fin.ne_of_lt j.castSucc_lt_last,
    fun hi => ⟨i.castLT <| Fin.val_lt_last hi, rfl⟩⟩
 
+@[backward_defeq]
 theorem succ_castSucc {n : Nat} (i : Fin n) : i.castSucc.succ = i.succ.castSucc := rfl
 
-@[simp] theorem val_addNat (m : Nat) (i : Fin n) : (addNat i m : Nat) = i + m := rfl
+@[simp, backward_defeq] theorem val_addNat (m : Nat) (i : Fin n) : (addNat i m : Nat) = i + m := rfl
 
 /-
 **Note**
@@ -654,28 +669,30 @@ we will fail to match `@val n (addNat i 0)`. Thus, we mark the implicit subterm 
 -/
 grind_pattern val_addNat => @val (no_index _) (addNat i m)
 
-@[deprecated val_addNat (since := "2025-11-21")]
+@[deprecated val_addNat (since := "2025-11-21"), backward_defeq]
 theorem coe_addNat (m : Nat) (i : Fin n) : (addNat i m : Nat) = i + m := rfl
 
 @[simp] theorem addNat_zero (n : Nat) (i : Fin n) : addNat i 0 = i := by
   ext
   simp
 
-@[simp] theorem addNat_one {i : Fin n} : addNat i 1 = i.succ := rfl
+@[simp, backward_defeq] theorem addNat_one {i : Fin n} : addNat i 1 = i.succ := rfl
 
 theorem le_coe_addNat (m : Nat) (i : Fin n) : m ≤ addNat i m :=
   Nat.le_add_left _ _
 
-@[simp] theorem addNat_mk (n i : Nat) (hi : i < m) :
+@[simp, backward_defeq] theorem addNat_mk (n i : Nat) (hi : i < m) :
     addNat ⟨i, hi⟩ n = ⟨i + n, Nat.add_lt_add_right hi n⟩ := rfl
 
-@[simp] theorem cast_addNat_zero {n n' : Nat} (i : Fin n) (h : n + 0 = n') :
+@[simp, backward_defeq] theorem cast_addNat_zero {n n' : Nat} (i : Fin n) (h : n + 0 = n') :
     (addNat i 0).cast h = i.cast ((Nat.add_zero _).symm.trans h) := rfl
 
 /-- For rewriting in the reverse direction, see `Fin.cast_addNat_left`. -/
+@[backward_defeq]
 theorem addNat_cast {n n' m : Nat} (i : Fin n') (h : n' = n) :
     addNat (i.cast h) m = (addNat i m).cast (congrArg (. + m) h) := rfl
 
+@[backward_defeq]
 theorem cast_addNat_left {n n' m : Nat} (i : Fin n') (h : n' + m = n + m) :
     (addNat i m).cast h = addNat (i.cast (Nat.add_right_cancel h)) m := rfl
 
@@ -683,12 +700,12 @@ theorem cast_addNat_left {n n' m : Nat} (i : Fin n') (h : n' + m = n + m) :
     (addNat i m').cast h = addNat i m :=
   Fin.ext <| (congrArg ((· + ·) (i : Nat)) (Nat.add_left_cancel h) : _)
 
-@[simp, grind =] theorem val_natAdd (n : Nat) {m : Nat} (i : Fin m) : (natAdd n i : Nat) = n + i := rfl
+@[simp, grind =, backward_defeq] theorem val_natAdd (n : Nat) {m : Nat} (i : Fin m) : (natAdd n i : Nat) = n + i := rfl
 
-@[deprecated val_natAdd (since := "2025-11-21")]
+@[deprecated val_natAdd (since := "2025-11-21"), backward_defeq]
 theorem coe_natAdd (n : Nat) {m : Nat} (i : Fin m) : (natAdd n i : Nat) = n + i := rfl
 
-@[simp] theorem natAdd_mk (n i : Nat) (hi : i < m) :
+@[simp, backward_defeq] theorem natAdd_mk (n i : Nat) (hi : i < m) :
     natAdd n ⟨i, hi⟩ = ⟨n + i, Nat.add_lt_add_left hi n⟩ := rfl
 
 theorem le_coe_natAdd (m : Nat) (i : Fin n) : m ≤ natAdd m i := Nat.le_add_right ..
@@ -696,9 +713,11 @@ theorem le_coe_natAdd (m : Nat) (i : Fin n) : m ≤ natAdd m i := Nat.le_add_rig
 @[simp] theorem natAdd_zero {n : Nat} : natAdd 0 = Fin.cast (Nat.zero_add n).symm := by ext; simp
 
 /-- For rewriting in the reverse direction, see `Fin.cast_natAdd_right`. -/
+@[backward_defeq]
 theorem natAdd_cast {n n' : Nat} (m : Nat) (i : Fin n') (h : n' = n) :
     natAdd m (i.cast h) = (natAdd m i).cast (congrArg _ h) := rfl
 
+@[backward_defeq]
 theorem cast_natAdd_right {n n' m : Nat} (i : Fin n') (h : m + n' = m + n) :
     (natAdd m i).cast h  = natAdd m (i.cast (Nat.add_left_cancel h)) := rfl
 
@@ -706,9 +725,11 @@ theorem cast_natAdd_right {n n' m : Nat} (i : Fin n') (h : m + n' = m + n) :
     (natAdd m' i).cast h = natAdd m i :=
   Fin.ext <| (congrArg (· + (i : Nat)) (Nat.add_right_cancel h) : _)
 
+@[backward_defeq]
 theorem castAdd_natAdd (p m : Nat) {n : Nat} (i : Fin n) :
     castAdd p (natAdd m i) = (natAdd m (castAdd p i)).cast (Nat.add_assoc ..).symm := rfl
 
+@[backward_defeq]
 theorem natAdd_castAdd (p m : Nat) {n : Nat} (i : Fin n) :
     natAdd m (castAdd p i) = (castAdd p (natAdd m i)).cast (Nat.add_assoc ..) := rfl
 
@@ -727,13 +748,14 @@ theorem cast_natAdd (n : Nat) {m : Nat} (i : Fin m) :
 theorem cast_addNat {n : Nat} (m : Nat) (i : Fin n) :
     (addNat i m).cast (Nat.add_comm ..) = natAdd m i := Fin.ext <| Nat.add_comm ..
 
-@[simp] theorem natAdd_last {m n : Nat} : natAdd n (last m) = last (n + m) := rfl
+@[simp, backward_defeq] theorem natAdd_last {m n : Nat} : natAdd n (last m) = last (n + m) := rfl
 
 @[simp] theorem addNat_last (n : Nat) :
     addNat (last n) m = (last (n + m)).cast (by omega) := by
   ext
   simp
 
+@[backward_defeq]
 theorem natAdd_castSucc {m n : Nat} {i : Fin m} : natAdd n (castSucc i) = castSucc (natAdd n i) :=
   rfl
 
@@ -752,24 +774,24 @@ theorem rev_castSucc (k : Fin n) : rev (castSucc k) = succ (rev k) := k.rev_cast
 
 theorem rev_succ (k : Fin n) : rev (succ k) = castSucc (rev k) := k.rev_addNat 1
 
-@[simp, grind =]
+@[simp, grind =, backward_defeq]
 theorem castLE_refl (h : n ≤ n) (i : Fin n) : i.castLE h = i := rfl
 
-@[simp, grind =]
+@[simp, grind =, backward_defeq]
 theorem castSucc_castLE (h : n ≤ m) (i : Fin n) :
     (i.castLE h).castSucc = i.castLE (by omega) := rfl
 
-@[simp, grind =]
+@[simp, grind =, backward_defeq]
 theorem castSucc_natAdd (n : Nat) (i : Fin k) :
     (i.natAdd n).castSucc = (i.castSucc).natAdd n := rfl
 
 /-! ### pred -/
 
-@[simp] theorem val_pred (j : Fin (n + 1)) (h : j ≠ 0) : (j.pred h : Nat) = j - 1 := rfl
+@[simp, backward_defeq] theorem val_pred (j : Fin (n + 1)) (h : j ≠ 0) : (j.pred h : Nat) = j - 1 := rfl
 
 grind_pattern val_pred => j.pred h
 
-@[deprecated val_pred (since := "2025-11-21")]
+@[deprecated val_pred (since := "2025-11-21"), backward_defeq]
 theorem coe_pred (j : Fin (n + 1)) (h : j ≠ 0) : (j.pred h : Nat) = j - 1 := rfl
 
 @[simp] theorem succ_pred : ∀ (i : Fin (n + 1)) (h : i ≠ 0), (i.pred h).succ = i
@@ -794,6 +816,7 @@ theorem pred_mk_succ (i : Nat) (h : i < n + 1) :
     Fin.pred ⟨i + 1, h₁⟩ h₂ = ⟨i, Nat.lt_of_succ_lt_succ h₁⟩ := pred_mk_succ i _
 
 -- This is not a simp theorem by default, because `pred_mk_succ` is nicer when it applies.
+@[backward_defeq]
 theorem pred_mk {n : Nat} (i : Nat) (h : i < n + 1) (w) : Fin.pred ⟨i, h⟩ w =
     ⟨i - 1, Nat.sub_lt_right_of_lt_add (Nat.pos_iff_ne_zero.2 (Fin.val_ne_of_ne w)) h⟩ :=
   rfl
@@ -810,7 +833,7 @@ theorem pred_mk {n : Nat} (i : Nat) (h : i < n + 1) (w) : Fin.pred ⟨i, h⟩ w 
   | ⟨i + 1, _⟩, ⟨0, _⟩, _, hb => by simp only [mk_zero, ne_eq, not_true] at hb
   | ⟨i + 1, hi⟩, ⟨j + 1, hj⟩, ha, hb => by simp [Fin.ext_iff]
 
-@[simp] theorem pred_one {n : Nat} :
+@[simp, backward_defeq] theorem pred_one {n : Nat} :
     Fin.pred (1 : Fin (n + 2)) (Ne.symm (Fin.ne_of_lt zero_lt_one)) = 0 := rfl
 
 theorem pred_add_one (i : Fin (n + 2)) (h : (i : Nat) < n + 1) :
@@ -818,12 +841,12 @@ theorem pred_add_one (i : Fin (n + 2)) (h : (i : Nat) < n + 1) :
   rw [Fin.ext_iff, val_pred, val_castLT, val_add, val_one, Nat.mod_eq_of_lt, Nat.add_sub_cancel]
   exact Nat.add_lt_add_right h 1
 
-@[simp, grind =] theorem val_subNat (i : Fin (n + m)) (h : m ≤ i) : (i.subNat m h : Nat) = i - m := rfl
+@[simp, grind =, backward_defeq] theorem val_subNat (i : Fin (n + m)) (h : m ≤ i) : (i.subNat m h : Nat) = i - m := rfl
 
-@[deprecated val_subNat (since := "2025-11-21")]
+@[deprecated val_subNat (since := "2025-11-21"), backward_defeq]
 theorem coe_subNat (i : Fin (n + m)) (h : m ≤ i) : (i.subNat m h : Nat) = i - m := rfl
 
-@[simp] theorem subNat_mk {i : Nat} (h₁ : i < n + m) (h₂ : m ≤ i) :
+@[simp, backward_defeq] theorem subNat_mk {i : Nat} (h₁ : i < n + m) (h₂ : m ≤ i) :
     subNat m ⟨i, h₁⟩ h₂ = ⟨i - m, Nat.sub_lt_right_of_lt_add h₂ h₁⟩ := rfl
 
 @[simp] theorem subNat_zero (i : Fin n) (h : 0 ≤ (i : Nat)): Fin.subNat 0 i h = i := by
@@ -835,7 +858,7 @@ theorem coe_subNat (i : Fin (n + m)) (h : m ≤ i) : (i.subNat m h : Nat) = i - 
   simp
   omega
 
-@[simp] theorem pred_castSucc_succ (i : Fin n) :
+@[simp, backward_defeq] theorem pred_castSucc_succ (i : Fin n) :
     pred (castSucc i.succ) (Fin.ne_of_gt (castSucc_pos i.succ_pos)) = castSucc i := rfl
 
 @[simp] theorem addNat_subNat {i : Fin (n + m)} (h : m ≤ i) : addNat (subNat m i h) m = i :=
@@ -918,11 +941,11 @@ where
   | 0, hi => by rwa [Fin.mk_zero]
   | i+1, hi => succ ⟨i, Nat.lt_of_succ_lt_succ hi⟩ (go i (Nat.lt_of_succ_lt hi))
 
-@[simp, grind =] theorem induction_zero {motive : Fin (n + 1) → Sort _} (zero : motive 0)
+@[simp, grind =, backward_defeq] theorem induction_zero {motive : Fin (n + 1) → Sort _} (zero : motive 0)
     (hs : ∀ i : Fin n, motive (castSucc i) → motive i.succ) :
     (induction zero hs : ∀ i : Fin (n + 1), motive i) 0 = zero := rfl
 
-@[simp, grind =] theorem induction_succ {motive : Fin (n + 1) → Sort _} (zero : motive 0)
+@[simp, grind =, backward_defeq] theorem induction_succ {motive : Fin (n + 1) → Sort _} (zero : motive 0)
     (succ : ∀ i : Fin n, motive (castSucc i) → motive i.succ) (i : Fin n) :
     induction (motive := motive) zero succ i.succ = succ i (induction zero succ (castSucc i)) := rfl
 
@@ -954,13 +977,13 @@ The corresponding induction principle is `Fin.induction`.
     (zero : motive 0) (succ : ∀ i : Fin n, motive i.succ) :
     ∀ i : Fin (n + 1), motive i := induction zero fun i _ => succ i
 
-@[simp, grind =] theorem cases_zero {n} {motive : Fin (n + 1) → Sort _} {zero succ} :
+@[simp, grind =, backward_defeq] theorem cases_zero {n} {motive : Fin (n + 1) → Sort _} {zero succ} :
     @Fin.cases n motive zero succ 0 = zero := rfl
 
-@[simp, grind =] theorem cases_succ {n} {motive : Fin (n + 1) → Sort _} {zero succ} (i : Fin n) :
+@[simp, grind =, backward_defeq] theorem cases_succ {n} {motive : Fin (n + 1) → Sort _} {zero succ} (i : Fin n) :
     @Fin.cases n motive zero succ i.succ = succ i := rfl
 
-@[simp, grind =] theorem cases_succ' {n} {motive : Fin (n + 1) → Sort _} {zero succ}
+@[simp, grind =, backward_defeq] theorem cases_succ' {n} {motive : Fin (n + 1) → Sort _} {zero succ}
     {i : Nat} (h : i + 1 < n + 1) :
     @Fin.cases n motive zero succ ⟨i.succ, h⟩ = succ ⟨i, Nat.lt_of_succ_lt_succ h⟩ := rfl
 

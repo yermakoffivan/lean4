@@ -4399,6 +4399,7 @@ theorem mem_alterKey_of_key_ne {a : α} {f : Option (β a) → Option (β a)}
   rw [alterKey]
   split <;> simp only [mem_eraseKey_of_key_ne p hne, mem_insertEntry_of_key_ne p hne]
 
+set_option backward.defeqAttrib.useBackward true in
 theorem getValueCast?_alterKey (k k' : α) (f : Option (β k) → Option (β k))
     (l : List ((a : α) × β a)) (hl : DistinctKeys l) : getValueCast? k' (alterKey k f l) =
       if h : k == k' then
@@ -4424,6 +4425,7 @@ theorem getValueCast?_alterKey (k k' : α) (f : Option (β k) → Option (β k))
     next hsome =>
       simp only [getValueCast?_insertEntry, dite_false, heq, Bool.false_eq_true]
 
+set_option backward.defeqAttrib.useBackward true in
 theorem getValueCast_alterKey (k k' : α) (f : Option (β k) → Option (β k))
     (l : List ((a : α) × β a)) (hl : DistinctKeys l) (hc : containsKey k' (alterKey k f l)) :
     getValueCast k' (alterKey k f l) hc =
@@ -4454,6 +4456,7 @@ theorem getValueCast_alterKey_self (k : α) (f : Option (β k) → Option (β k)
   rw [getValueCast_alterKey _ _ _ _ hl]
   simp
 
+set_option backward.defeqAttrib.useBackward true in
 theorem getValueCast!_alterKey {k k' : α} [Inhabited (β k')] {f : Option (β k) → Option (β k)}
     (l : List ((a : α) × β a)) (hl : DistinctKeys l) : getValueCast! k' (alterKey k f l) =
       if heq : k == k' then
@@ -4467,6 +4470,7 @@ theorem getValueCast!_alterKey {k k' : α} [Inhabited (β k')] {f : Option (β k
     simp only [Option.map_cast_apply]
   · rfl
 
+set_option backward.defeqAttrib.useBackward true in
 theorem getValueCastD_alterKey {k k' : α} {fallback : β k'} {f : Option (β k) → Option (β k)}
     (l : List ((a : α) × β a)) (hl : DistinctKeys l) : getValueCastD k' (alterKey k f l) fallback =
       if heq : k == k' then
@@ -8554,6 +8558,7 @@ theorem minKey?_insertEntry_le_minKey? [Ord α] [TransOrd α] [BEq α] [LawfulBE
   simp only [← hkmi, minKey?_insertEntry hl, hkm, Option.get_some, Option.elim_some]
   split <;> simp [*]
 
+set_option backward.defeqAttrib.useBackward true in
 theorem minKey?_insertEntry_le_self [Ord α] [TransOrd α] [BEq α] [LawfulBEqOrd α] {k : α}
     {v : β k} {l : List ((a : α) × β a)} (hl : DistinctKeys l) {kmi}
     (hkmi : (insertEntry k v l |> minKey? |>.get <| isSome_minKey?_insertEntry hl) = kmi) :

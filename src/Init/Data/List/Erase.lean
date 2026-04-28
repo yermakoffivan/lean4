@@ -35,9 +35,9 @@ open Nat
 
 /-! ### eraseP -/
 
-@[simp, grind =] theorem eraseP_nil : [].eraseP p = [] := rfl
+@[simp, grind =, backward_defeq] theorem eraseP_nil : [].eraseP p = [] := rfl
 
-@[grind =] theorem eraseP_cons {a : α} {l : List α} :
+@[grind =, backward_defeq] theorem eraseP_cons {a : α} {l : List α} :
     (a :: l).eraseP p = bif p a then l else a :: l.eraseP p := rfl
 
 @[simp] theorem eraseP_cons_of_pos {l : List α} {p} (h : p a) : (a :: l).eraseP p = l := by

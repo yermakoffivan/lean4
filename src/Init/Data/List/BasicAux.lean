@@ -43,7 +43,7 @@ Examples:
 @[expose] def getD (as : List α) (i : Nat) (fallback : α) : α :=
   as[i]?.getD fallback
 
-@[simp] theorem getD_nil : getD [] n d = d := rfl
+@[simp, backward_defeq] theorem getD_nil : getD [] n d = d := rfl
 
 /-! ### getLast! -/
 
@@ -99,7 +99,7 @@ Examples:
   | []    => panic! "empty list"
   | _::as => as
 
-@[simp] theorem tail!_cons : @tail! α (a::l) = l := rfl
+@[simp, backward_defeq] theorem tail!_cons : @tail! α (a::l) = l := rfl
 
 /-! ### partitionM -/
 

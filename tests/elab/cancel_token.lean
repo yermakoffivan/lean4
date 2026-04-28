@@ -30,25 +30,36 @@ def testOnSetMultiple : IO Unit := do
   if n != 5 then panic! s!"expected 5 callbacks, got {n}"
   IO.println "ok"
 
-/-- `task` returns a task that resolves once the token is set. -/
+/-- `task` returns a task that resolves once the token is set, with `some ()`. -/
 def testTask : IO Unit := do
   let tk ← IO.CancelToken.new
   let t := tk.task
-  let prom ← IO.Promise.new
-  -- Spawn a task that waits for `tk.task` then resolves `prom`
-  let _ ← BaseIO.asTask do
-    let _ := t.get
-    prom.resolve ()
-  if (← prom.isResolved) then panic! "promise resolved too early"
   tk.set
-  let _ := prom.result?.get
-  IO.println "ok"
+  match t.get with
+  | some () => IO.println "ok"
+  | none    => panic! "task fired with none after set"
+
+/-- `task` resolves to `none` when the token is dropped without being set. -/
+def testTaskDropped : IO Unit := do
+  let t ← do
+    let tk ← IO.CancelToken.new
+    pure tk.task
+  -- `tk` is now out of scope; the underlying promise is dropped.
+  match t.get with
+  | none    => IO.println "ok"
+  | some () => panic! "task fired with some on dropped token"
 
 /--
 info: ok
 ok
 ok
 ok
+ok
 -/
 #guard_msgs in
-#eval do testOnSetBeforeSet; testOnSetAfterSet; testOnSetMultiple; testTask
+#eval do
+  testOnSetBeforeSet
+  testOnSetAfterSet
+  testOnSetMultiple
+  testTask
+  testTaskDropped

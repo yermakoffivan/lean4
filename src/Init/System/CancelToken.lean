@@ -46,15 +46,16 @@ def isSet (tk : CancelToken) : BaseIO Bool :=
   tk.promise.isResolved
 
 /--
-A task that completes when the cancellation token is set. Useful for waiting on cancellation
-without polling — e.g. as one of the tasks given to `IO.waitAny`.
+A task that completes when the cancellation token is set or dropped. Useful for waiting on
+cancellation without polling — e.g. as one of the tasks given to `IO.waitAny`.
 
-Note: each call constructs a fresh `Task`. To attach further dependencies (`Task.map`,
-`BaseIO.bindTask`, etc.) when a token is cancelled, prefer `onSet`, which avoids the
-intermediate `Task` and the GC hazard that comes with chaining on its return value.
+Returns the underlying promise's `result?` task directly, so the same task object is returned
+on every call and can safely have further dependencies attached (`Task.map`, `BaseIO.bindTask`).
+The `Option` distinguishes a normal `set` (`some ()`) from the token being dropped without ever
+being set (`none`). For attaching a callback, prefer `onSet`.
 -/
-def task (tk : CancelToken) : Task Unit :=
-  tk.promise.result!
+def task (tk : CancelToken) : Task (Option Unit) :=
+  tk.promise.result?
 
 /--
 Registers a callback to run when the cancellation token is set. The callback runs as a

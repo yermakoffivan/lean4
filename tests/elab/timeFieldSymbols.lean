@@ -147,7 +147,7 @@ info: "7 07 Jul July J"
 -- ─────────────────────────────────────────────────────────────────────────────
 
 /--
-info: "29 29"
+info: "28 28"
 -/
 #guard_msgs in
 #eval td.format "w ww"
@@ -213,7 +213,7 @@ info: "Sun Sun Sun Sunday S"
 -- ─────────────────────────────────────────────────────────────────────────────
 
 /--
-info: "1 01 Sun Sunday S"
+info: "7 07 Sun Sunday S"
 -/
 #guard_msgs in
 #eval td.format "e ee eee eeee eeeee"
@@ -223,7 +223,7 @@ info: "1 01 Sun Sunday S"
 -- ─────────────────────────────────────────────────────────────────────────────
 
 /--
-info: "1 Sun Sunday S"
+info: "7 Sun Sunday S"
 -/
 #guard_msgs in
 #eval td.format "c ccc cccc ccccc"
@@ -601,14 +601,14 @@ info: "+00 +0000 +00:00 +0000 +00:00"
 -- Y  Week-based year: extended boundary cases
 -- ─────────────────────────────────────────────────────────────────────────────
 
--- Jan 1, 2017 is Sunday → US week 1 of 2017 (Sun starts the week)
+-- Jan 1, 2017 is Sunday → ISO week 52 of 2016 (week Dec 26–Jan 1, more days in 2016)
 /--
-info: "2017 17 2017"
+info: "2016 16 2016"
 -/
 #guard_msgs in
 #eval tdWeekBound2.format "Y YY YYYY"
 
--- Jan 2, 2017 is Monday → US week 1 of 2017
+-- Jan 2, 2017 is Monday → ISO week 1 of 2017 (week Jan 2–8, contains Jan 5 Thu)
 /--
 info: "2017 17 2017"
 -/
@@ -622,14 +622,14 @@ info: "2020 20 2020"
 #guard_msgs in
 #eval tdWeekBound4.format "Y YY YYYY"
 
--- Jan 1, 2021 is Friday → US week 1 of 2021 (week Dec 27–Jan 2 has days in 2021)
+-- Jan 1, 2021 is Friday → ISO week 53 of 2020 (week Dec 28–Jan 3, more days in 2020)
 /--
-info: "2021 21 2021"
+info: "2020 20 2020"
 -/
 #guard_msgs in
 #eval tdWeekBound5.format "Y YY YYYY"
 
--- Jan 4, 2021 is Monday → US week 2 of 2021
+-- Jan 4, 2021 is Monday → ISO week 1 of 2021 (week Jan 4–10, contains Jan 7 Thu)
 /--
 info: "2021 21 2021"
 -/
@@ -640,37 +640,37 @@ info: "2021 21 2021"
 -- w  Week of year paired with Y: check they agree at boundaries
 -- ─────────────────────────────────────────────────────────────────────────────
 
--- Jan 1, 2017 (Sun) → US Y=2017 w=1 (Sun starts week 1 of 2017)
+-- Jan 1, 2017 (Sun) → ISO Y=2016 w=52
 /--
-info: "2017 1"
+info: "2016 52"
 -/
 #guard_msgs in
 #eval tdWeekBound2.format "Y w"
 
--- Jan 2, 2017 (Mon) → US Y=2017 w=1
+-- Jan 2, 2017 (Mon) → ISO Y=2017 w=1
 /--
 info: "2017 1"
 -/
 #guard_msgs in
 #eval tdWeekBound3.format "Y w"
 
--- Dec 31, 2019 (Tue) → US Y=2020 w=1
+-- Dec 31, 2019 (Tue) → ISO Y=2020 w=1 (week Dec 30–Jan 5, contains Jan 2 Thu)
 /--
 info: "2020 1"
 -/
 #guard_msgs in
 #eval tdWeekBound4.format "Y w"
 
--- Jan 1, 2021 (Fri) → US Y=2021 w=1 (week Dec 27–Jan 2 belongs to 2021)
+-- Jan 1, 2021 (Fri) → ISO Y=2020 w=53
 /--
-info: "2021 1"
+info: "2020 53"
 -/
 #guard_msgs in
 #eval tdWeekBound5.format "Y w"
 
--- Jan 4, 2021 (Mon) → US Y=2021 w=2 (week Jan 3–9 is week 2 of 2021)
+-- Jan 4, 2021 (Mon) → ISO Y=2021 w=1 (week Jan 4–10 is ISO week 1 of 2021)
 /--
-info: "2021 2"
+info: "2021 1"
 -/
 #guard_msgs in
 #eval tdWeekBound6.format "Y w"

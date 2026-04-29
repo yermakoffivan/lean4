@@ -357,7 +357,7 @@ info: "Sun Sun Sun Sunday S"
 #eval zoned₄.format "E EE EEE EEEE EEEEE"
 
 /--
-info: "1 01 Sun Sunday S"
+info: "7 07 Sun Sunday S"
 -/
 #guard_msgs in
 #eval zoned₄.format "e ee eee eeee eeeee"
@@ -554,7 +554,7 @@ info: "Sun Sun Sun Sunday S"
 #eval datetime₄.format "E EE EEE EEEE EEEEE"
 
 /--
-info: "1 01 Sun Sunday S"
+info: "7 07 Sun Sunday S"
 -/
 #guard_msgs in
 #eval datetime₄.format "e ee eee eeee eeeee"
@@ -769,7 +769,7 @@ info: "Sun Sun Sun Sunday S"
 #eval date₄.format "E EE EEE EEEE EEEEE"
 
 /--
-info: "1 01 Sun Sunday S"
+info: "7 07 Sun Sunday S"
 -/
 #guard_msgs in
 #eval date₄.format "e ee eee eeee eeeee"
@@ -1396,16 +1396,16 @@ info: "Sun Sun Sun Sunday S"
 #guard_msgs in
 #eval (fmtDT 2024 1 7 0 0 0).format "E EE EEE EEEE EEEEE"
 
--- e: 1=Sunday numeric (1-7, Sun=1)
+-- e: ISO numeric (Mon=1..Sun=7)
 
 /--
-info: "2 02 Mon Monday M"
+info: "1 01 Mon Monday M"
 -/
 #guard_msgs in
 #eval (fmtDT 2024 1 1 0 0 0).format "e ee eee eeee eeeee"
 
 /--
-info: "1 01 Sun Sunday S"
+info: "7 07 Sun Sunday S"
 -/
 #guard_msgs in
 #eval (fmtDT 2024 1 7 0 0 0).format "e ee eee eeee eeeee"
@@ -1413,13 +1413,13 @@ info: "1 01 Sun Sunday S"
 -- c: stand-alone weekday
 
 /--
-info: "2 Mon Monday M"
+info: "1 Mon Monday M"
 -/
 #guard_msgs in
 #eval (fmtDT 2024 1 1 0 0 0).format "c ccc cccc ccccc"
 
 /--
-info: "1 Sun Sunday S"
+info: "7 Sun Sunday S"
 -/
 #guard_msgs in
 #eval (fmtDT 2024 1 7 0 0 0).format "c ccc cccc ccccc"

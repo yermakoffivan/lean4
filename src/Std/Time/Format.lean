@@ -7,6 +7,7 @@ module
 
 prelude
 public import Std.Time.Notation.Spec
+public import Std.Time.Format.Modifier
 public import Std.Time.Format.Basic
 import all Std.Time.Format.Basic
 
@@ -256,7 +257,7 @@ def format (date : PlainDate) (format : String) (locale : Locale := .enUS) : Str
       | .D _ => some (Sigma.mk date.year.isLeap date.dayOfYear)
       | .Q _ | .q _ => some date.quarter
       | .w _ => some date.weekOfYear
-      | .W _ => some (weekOfMonthUS date)
+      | .W _ => some (date.alignedWeekOfMonth .sunday)
       | .M _ | .L _ => some date.month
       | .d _ => some date.day
       | .E _ => some date.weekday
@@ -437,7 +438,7 @@ def format (date : PlainDateTime) (format : String) (locale : Locale := .enUS) :
       | .D _ => some (Sigma.mk date.year.isLeap date.dayOfYear)
       | .Q _ | .q _ => some date.quarter
       | .w _ => some date.weekOfYear
-      | .W _ => some (weekOfMonthUS date.date)
+      | .W _ => some (date.date.alignedWeekOfMonth .sunday)
       | .M _ | .L _ => some date.month
       | .d _ => some date.day
       | .E _ => some date.weekday

@@ -306,9 +306,8 @@ def weekday (date : PlainDate) : Weekday :=
   .ofOrdinal (Bounded.LE.ofNatWrapping res (by decide))
 
 /--
-Determines the week of the month for the given `PlainDate`. The week of the month is calculated based
-on the day of the month and the weekday. Each week starts on Monday because the entire library is
-based on the Gregorian Calendar.
+Determines the week of the month for the given `PlainDate`, where week 1 begins on `firstDay`
+(default: Monday). Week 1 is the partial week containing the 1st of the month.
 -/
 def alignedWeekOfMonth (date : PlainDate) (firstDay : Weekday := .monday) : Week.Ordinal.OfMonth :=
   let day1Ord := (date.withDaysClip 1).weekday.toOrdinal.val

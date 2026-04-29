@@ -118,7 +118,7 @@ theorem throwThe_wp [MonadExceptOf ε m] (err : ε) :
 @[simp]
 theorem throw_Except_wp (e : ε) :
     wp (MonadExceptOf.throw e : Except ε α) post epost = epost.head e := by
-  simp [wp, WPMonad.wpTrans]
+  simp [wp, WPMonad.wpTrans, MonadExceptOf.throw]
 
 theorem throw_ExceptT_wp (err : ε) :
     epost.head err ⊑ wp (MonadExceptOf.throw err : ExceptT ε m α) post epost := by

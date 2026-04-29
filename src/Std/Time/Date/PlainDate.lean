@@ -306,14 +306,13 @@ def weekday (date : PlainDate) : Weekday :=
   .ofOrdinal (Bounded.LE.ofNatWrapping res (by decide))
 
 /--
-Determines the week of the month for the given `PlainDate`. The week of the month is calculated based
-on the day of the month and the weekday. Each week starts on Monday because the entire library is
-based on the Gregorian Calendar.
+Determines the week of the month for the given `PlainDate`, where week 1 begins on `firstDay`
+(default: Monday). Week 1 is the partial week containing the 1st of the month.
 -/
-def alignedWeekOfMonth (date : PlainDate) : Week.Ordinal.OfMonth :=
-  let weekday := date.withDaysClip 1 |>.weekday |>.toOrdinal |>.sub 1
-  let days := date.day |>.sub 1 |>.addBounds weekday
-  days |>.ediv 7 (by decide) |>.add 1
+def alignedWeekOfMonth (date : PlainDate) (firstDay : Weekday := .monday) : Week.Ordinal.OfMonth :=
+  let day1Ord := (date.withDaysClip 1).weekday.toOrdinal.val
+  let offset := (day1Ord - firstDay.toOrdinal.val + 7) % 7
+  Bounded.LE.ofNatWrapping ((date.day.val - 1 + offset) / 7 + 1) (by decide)
 
 /--
 Sets the date to the specified `desiredWeekday`. If the `desiredWeekday` is the same as the current weekday,

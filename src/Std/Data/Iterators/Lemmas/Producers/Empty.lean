@@ -19,11 +19,11 @@ theorem Iter.toIterM_empty {β} :
     (Iter.empty β).toIterM = IterM.empty Id β :=
   rfl
 
-set_option backward.defeqAttrib.useBackward true in
 @[simp]
 theorem Iter.step_empty {β} :
     (Iter.empty β).step = ⟨.done, rfl⟩ := by
-  simp [Iter.step]; rfl
+  simp [Iter.step, IterM.step, Iterator.step,
+        Iter.empty, IterM.empty, IterM.toIter]
 
 @[simp]
 theorem Iter.toList_empty {β} :

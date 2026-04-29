@@ -46,7 +46,7 @@ inductive Text
   | narrow
 
   /--
-  Two-letter short form (e.g., "Tu")
+  Two-letter short form (e.g., "Tu"). Produced only by 6-letter weekday patterns (`EEEEEE`, `eeeeee`, `cccccc`).
   -/
   | twoLetterShort
   deriving Repr, Inhabited
@@ -72,8 +72,9 @@ end Text
 `Number` represents different number formatting styles.
 -/
 structure Number where
+
   /--
-  The number of digits to pad, based on the count of pattern letters.
+  Minimum number of digits; output is zero-padded on the left to reach this width. Determined by the count of pattern letters.
   -/
   padding : Nat
   deriving Repr, Inhabited
@@ -89,9 +90,15 @@ def classifyNumberText : Nat → Option (Number ⊕ Text)
 or a truncated form with fewer digits.
 -/
 inductive Fraction
-  /-- Nanosecond precision (up to 9 digits) -/
+
+  /--
+  Nanosecond precision (up to 9 digits)
+  -/
   | nano
-  /-- Fewer digits (truncated precision) -/
+
+  /--
+  Truncated to `digits` digits (truncated, not rounded)
+  -/
   | truncated (digits : Nat)
   deriving Repr, Inhabited
 
@@ -114,13 +121,25 @@ end Fraction
 `Year` represents different year formatting styles based on the number of pattern letters.
 -/
 inductive Year
-  /-- Any size (e.g., "19000000000000") -/
+
+  /--
+  Any size (e.g., "19000000000000")
+  -/
   | any
-  /-- Two-digit year format (e.g., "23" for 2023) -/
+
+  /--
+  Two-digit year format (e.g., "23" for 2023)
+  -/
   | twoDigit
-  /-- Four-digit year format (e.g., "2023") -/
+
+  /--
+  Four-digit year format (e.g., "2023")
+  -/
   | fourDigit
-  /-- Extended year format for more than 4 digits (e.g., "002023") -/
+
+  /--
+  Extended year format for more than 4 digits (e.g., "002023")
+  -/
   | extended (num : Nat)
   deriving Repr, Inhabited
 
@@ -147,11 +166,20 @@ end Year
 `ZoneId` represents different time zone ID formats based on the number of pattern letters.
 -/
 inductive ZoneId
-  /-- Unknown zone placeholder (1 letter, `V`): always formats as "unk". -/
+
+  /--
+  Unknown zone placeholder (1 letter, `V`): always formats as "unk".
+  -/
   | unknown
-  /-- IANA time zone ID (2 letters, `VV`, e.g., "America/Los_Angeles"). -/
+
+  /--
+  IANA time zone ID (2 letters, `VV`, e.g., "America/Los_Angeles").
+  -/
   | short
-  /-- Generic location format (4 letters, `VVVV`, e.g., "Los Angeles Time"). -/
+
+  /--
+  Reserved for a future generic location format (`VVVV`). Currently formatted identically to `short`.
+  -/
   | full
   deriving Repr, Inhabited
 
@@ -181,9 +209,13 @@ end ZoneId
 whether daylight saving time is considered.
 -/
 inductive ZoneName
-  /-- Short form of zone name (e.g., "PST") -/
+  /--
+  Short form of zone name (e.g., "PST")
+  -/
   | short
-  /-- Full form of zone name (e.g., "Pacific Standard Time") -/
+  /--
+  Full form of zone name (e.g., "Pacific Standard Time")
+  -/
   | full
   deriving Repr, Inhabited
 
@@ -409,12 +441,14 @@ inductive Modifier
   | G (presentation : Text)
 
   /--
-  `y`: Year of era (e.g., 2004, 04, 0002, 2).
+  `y`: Year of era (e.g., 2004, 04, 0002, 2). Never negative: year 1 BC is formatted as `1` paired with a BC era
+  designator. Use `u` instead when you need the proleptic/astronomical year (which can be negative).
   -/
   | y (presentation : Year)
 
   /--
-  `Y`: Week-based year (e.g., 2004, 04, 0002, 2).
+  `Y`: ISO week-based year (e.g., 2004, 04, 0002, 2). This is the year that contains the ISO week (`w`), which can
+  differ from the calendar year near year boundaries: e.g., Dec 31 may belong to week 1 of the following year.
   -/
   | Y (presentation : Year)
 
@@ -425,11 +459,14 @@ inductive Modifier
 
   /--
   `q`: Stand-alone quarter of year as number or text (e.g., 3, 03, Q3, 3rd quarter).
+  Stand-alone means the value is used independently (e.g., a calendar header) rather than as part of a full date phrase.
+  In practice the output is the same as `Q`; the distinction is meaningful only in locale-aware contexts.
   -/
   | q (presentation : Number ⊕ Text)
 
   /--
-  `u`: Year (e.g., 2004, 04, -0001, -1).
+  `u`: Proleptic/astronomical year (e.g., 2004, 04, -0001, -1). Can be negative: year 0 exists and -0001 = 2 BC.
+  Use `y` + `G` instead when you want the era-based (always-positive) representation.
   -/
   | u (presentation : Year)
 
@@ -445,6 +482,8 @@ inductive Modifier
 
   /--
   `L`: Stand-alone month of year as number or text (e.g., 7, 07, Jul, July, J).
+  Stand-alone means the month is used independently (e.g., a calendar header "July") rather than as part of a full date.
+  In practice the output is the same as `M`; the distinction is meaningful only in locale-aware contexts.
   -/
   | L (presentation : Number ⊕ Text)
 
@@ -469,13 +508,16 @@ inductive Modifier
   | E (presentation : Text)
 
   /--
-  `e`: Localized day of week as number or text (e.g., 2, 02, Tue, Tuesday, T).
+  `e`: Day of week as number or text (e.g., 1, 01, Mon, Monday, M).
+  The numeric value uses Monday=1 through Sunday=7 (ISO 8601 convention).
+  Text output is the same as `E`.
   -/
   | e (presentation : Number ⊕ Text)
 
   /--
   `c`: Stand-alone day of week as number or text (e.g., 2, Tue, Tuesday, T).
-  Unlike `e`, `cc` (count of 2) is not valid.
+  Stand-alone means the day is used independently (e.g., a calendar column header) rather than as part of a full date.
+  Unlike `e`, `cc` (count of 2) is not valid; the minimum is `c` (1 letter) or `ccc` (3 letters).
   -/
   | c (presentation : Number ⊕ Text)
 
@@ -550,8 +592,9 @@ inductive Modifier
   | N (presentation : Number)
 
   /--
-  `V`: Time zone ID. `V` (1 letter) outputs "unk" (unknown zone placeholder per Unicode CLDR);
-  `VV` (2 letters) outputs the IANA zone ID (e.g., "America/Los_Angeles").
+  `V`: Time zone ID.
+  - `V` (1 letter): outputs `"unk"` (unknown zone placeholder per Unicode CLDR).
+  - `VV` (2 letters): outputs the IANA zone ID (e.g., `"America/Los_Angeles"`), or `"Z"` for UTC.
   -/
   | V (presentation : ZoneId)
 
@@ -566,7 +609,7 @@ inductive Modifier
   | v (presentation : ZoneName)
 
   /--
-  `O`: Localized zone offset (e.g., GMT+8, GMT+08:00, UTC-08:00).
+  `O`: Localized zone offset using the `GMT` prefix (e.g., `GMT+8`, `GMT+08:00`).
   -/
   | O (presentation : OffsetO)
 
@@ -751,9 +794,15 @@ abbrev FormatString := List FormatPart
 If the format is aware of some timezone data it parses or if it parses any timezone.
 -/
 inductive Awareness
-  /-- The format only parses a single timezone. -/
+
+  /--
+  The format only parses a single timezone.
+  -/
   | only : TimeZone → Awareness
-  /-- The format parses any timezone. -/
+
+  /--
+  The format parses any timezone.
+  -/
   | any
 
 namespace Awareness
@@ -1218,7 +1267,9 @@ private def weekOfYearUS (date : PlainDate) : Week.Ordinal :=
     let week1Start := jan1Days - (jan1UsOrd - 1)
     Bounded.LE.ofNatWrapping ((weekStart - week1Start) / 7 + 1) (by decide)
 
-/-- Returns the week-of-month (1–6) using the US locale Sunday-first convention. -/
+/--
+Returns the week-of-month (1–6) using the US locale Sunday-first convention.
+-/
 def weekOfMonthUS (date : PlainDate) : Bounded.LE 1 6 :=
   let d := date.toDaysSinceUNIXEpoch.val
   let usOrd := (d + 4) % 7 + 1
@@ -2029,7 +2080,9 @@ A `MultiFormat` holds a list of `Format` alternatives tried in order when parsin
 Use it when a value can be represented in several equivalent formats.
 -/
 structure MultiFormat (awareness : Awareness) where
-  /-- The list of format alternatives, tried left-to-right. -/
+  /--
+  The list of format alternatives, tried left-to-right.
+  -/
   formats : { x : Array (Format awareness) // x.size > 0 }
   deriving Repr
 

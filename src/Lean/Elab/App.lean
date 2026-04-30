@@ -72,11 +72,57 @@ private def mkProjAndCheck (structName : Name) (idx : Nat) (e : Expr) : MetaM Ex
         type{indentExpr rType}\nfrom the expression{indentExpr e}\nwhich has propositional type{indentExpr eType}"
   return r
 
-def synthesizeAppInstMVars (instMVars : Array MVarId) (app : Expr) : TermElabM Unit :=
+/--
+Auxiliary function for `trySynthesizeAppInstMVars`.
+Loops so long as there are blocked instance problems and progress is being made,
+since there may be outParams that unblock further synthesis.
+
+- If `interleaveSynth` is true, then runs `synthesizeSyntheticMVars` before each loop.
+- If `allowErrors` is true (the default), then allows exceptions in `synthesizeInstMVarCore`,
+  and keep these instance problems for later. What can happen is that the synthesized types
+  are not yet definitionally equal to the instance metavariable types due to unassigned metavariables.
+-/
+private partial def trySynthesizeAppInstMVars
+    (instMVars : Array MVarId) (interleaveSynth : Bool := false) (allowErrors : Bool := true) :
+    TermElabM (Array MVarId) := do
+  if interleaveSynth then
+    synthesizeSyntheticMVars
+  let numInstMVars := instMVars.size
+  let mut instMVars' : Array MVarId := #[]
+  let mut anyBlocked : Bool := false
+  for instMVar in instMVars do
+    let type ← instMVar.getType
+    try
+      -- Note: this may not be known to be a class yet. Instance parameter types can be free
+      -- variables (`inferInstanceAs` is one such example, though that function does not need this check).
+      unless (← (Option.isSome <$> Meta.isClass? type) <&&> synthesizeInstMVarCore instMVar) do
+        instMVars' := instMVars'.push instMVar
+        anyBlocked := true
+    catch ex =>
+      if allowErrors then
+        instMVars' := instMVars'.push instMVar
+      else if (← read).errToSorry && ex matches .error .. then
+        logException ex
+        if let Expr.mvar mvarId ← instantiateMVars (Expr.mvar instMVar) then
+            mvarId.assign <| ← mkLabeledSorry type (synthetic := true) (unique := true)
+      else
+        throw ex
+  if !anyBlocked || instMVars'.size == numInstMVars then
+    return instMVars'
+  else
+    trySynthesizeAppInstMVars instMVars' interleaveSynth
+
+/--
+Tries synthesizing the instances. Any that cannot be synthesized are registered.
+Note: there may be known synthesis errors. We register them anyway so that the error is
+reported from outside the app elaborator, which allows users to see partially synthesized
+applications.
+-/
+def synthesizeAppInstMVars (instMVars : Array MVarId) (app : Expr) : TermElabM Unit := do
+  let instMVars ← trySynthesizeAppInstMVars instMVars (allowErrors := false)
   for mvarId in instMVars do
-    unless (← synthesizeInstMVarCore mvarId) do
-      registerSyntheticMVarWithCurrRef mvarId (.typeClass none)
-      registerMVarErrorImplicitArgInfo mvarId (← getRef) app
+    registerSyntheticMVarWithCurrRef mvarId (.typeClass none)
+    registerMVarErrorImplicitArgInfo mvarId (← getRef) app
 
 /--
 If the function being applied is a constant, search `namedArgs` for an argument whose name is
@@ -343,13 +389,8 @@ private def getFoundNamedArgs : M (Array Name) :=
     - before trying to apply coercions to function,
     - before unifying the expected type.
 -/
-private def trySynthesizeAppInstMVars : M Unit := do
-  let instMVars ← (← get).instMVars.filterM fun instMVar => do
-    unless (← instantiateMVars (← inferType (.mvar instMVar))).isMVar do try
-      if (← synthesizeInstMVarCore instMVar) then
-        return false
-      catch _ => pure ()
-    return true
+private def trySynthesizeAppInstMVars (interleaveSynth : Bool := false) : M Unit := do
+  let instMVars ← Term.trySynthesizeAppInstMVars (← get).instMVars (interleaveSynth := interleaveSynth)
   modify ({ · with instMVars })
 
 /--
@@ -360,10 +401,9 @@ private def synthesizeAppInstMVars : M Unit := do
   Term.synthesizeAppInstMVars (← get).instMVars (← get).f
   modify ({ · with instMVars := #[] })
 
-/-- fType may become a forallE after we synthesize pending metavariables. -/
+/-- fType may become a function type after we synthesize pending metavariables. -/
 private def synthesizePendingAndNormalizeFunType : M Unit := do
-  trySynthesizeAppInstMVars
-  synthesizeSyntheticMVars
+  trySynthesizeAppInstMVars (interleaveSynth := true)
   unless (← isForallWithWHNF) do
     let f := (← get).f
     if let some f ← coerceToFunction? f then
@@ -742,9 +782,11 @@ mutual
           modify fun s => { s with propagateExpected := false }
           trace[Elab.app.propagateExpectedType] "expected type is Prop, propagation disabled"
         else
+          -- Try synthesizing instances before getting the resulting type or doing unification.
+          -- Possibly an instance has a higher-order outparam that eliminates a dependency in the resulting type.
+          trySynthesizeAppInstMVars
           if let some fTypeBody ← getResultingType? then
             discard <| withTraceNodeBefore `Elab.app.propagateExpectedType (fun _ => return m!"{expectedType} =?= {fTypeBody}") do
-              trySynthesizeAppInstMVars
               if (← isDefEq expectedType fTypeBody) then
                 /- Note that we only disable propagation with `propagateExpected := false` when propagation has succeeded. -/
                 modify fun s => { s with propagateExpected := false, propagateSucceeded := true }

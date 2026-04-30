@@ -174,8 +174,11 @@ private structure Context where
 private structure State where
   /-- The constructed application so far. -/
   f                    : Expr
-  /-- The type of `f`. May have loose bvars, which are instantiated with `fArgs`. -/
+  /-- The type of `f`. May have loose bvars, which are instantiated with `fArgs`.
+  After `isForallWithWHNF`, it may be unfolded. -/
   fType                : Expr
+  /-- The type of `f`, but not unfolded. Once loose bvars are instantiated, this is `inferType f`. -/
+  fTypeSaved           : Expr := fType
   /-- Elaborated arguments. -/
   fArgs                : Array Expr := #[]
   /-- Remaining positional arguments to be processed. -/
@@ -210,6 +213,8 @@ private structure State where
   /-- Since `propagateExpected` is used to also disable propagation, we have a separate flag to record
   if propagation has succeeded. -/
   propagateSucceeded    : Bool := false
+  /-- The cached resulting type for the application, once it's been computed. -/
+  resultingType?        : Option Expr := none
   /--
     If the result type may be the `outParam` of some local instance.
     See comment at `Context.resultIsOutParamSupport`
@@ -362,8 +367,9 @@ private def synthesizePendingAndNormalizeFunType : M Unit := do
   unless (← isForallWithWHNF) do
     let f := (← get).f
     if let some f ← coerceToFunction? f then
+      trace[Elab.app] "coerced to{inlineExprTrailing f}"
       let fType ← inferType f
-      modify fun s => { s with f, fType }
+      modify fun s => { s with f, fType, fTypeSaved := fType }
     else
       for namedArg in (← get).namedArgs do
         let f := f.getAppFn
@@ -408,32 +414,49 @@ Assumes `fType` is a function (ensured by only calling this when `isForallWithWH
 private def addNewArg (argName : Name) (arg : Expr) : M Unit := do
   let s ← get
   trace[Elab.app.args] "arg {s.paramIdx}{if argName.hasMacroScopes then m!"" else m!" ({argName})"}:{inlineExprTrailing arg}"
+  let fType := s.fType.bindingBody! -- `isForallWithWHNF` will instantiate as needed
   set { s with
     f := mkApp s.f arg
     fArgs := s.fArgs.push arg
-    fType := s.fType.bindingBody! -- `isForallWithWHNF` will instantiate as needed
+    fType
+    fTypeSaved := fType
     paramExplicitCount := s.paramExplicitCount + if s.fType.bindingInfo!.isExplicit then 1 else 0 }
   if arg.isMVar && !(← read).isPropagatingExpected then
     registerMVarArgName arg.mvarId! argName
 
 /--
-  Elaborate the given `Arg` and add it to the result. See `addNewArg`.
-  Recall that, `Arg` may be wrapping an already elaborated `Expr`. -/
+Dummy expression to use for arguments that obviously do not appear in the return type while
+in `propagatingExpected` mode. This is for a small optimization (to avoid allocating
+metavariables), but a common case.
+-/
+private def argPlaceholderForPropagatingExpected : Expr :=
+  .const `_unused_in_ftype []
+
+private def mkPlaceholderForPropagatingExpected (argType : Expr) (kind : MetavarKind := .natural) : M Expr := do
+  if (← get).fType.isArrow then
+    return argPlaceholderForPropagatingExpected
+  else
+    mkFreshExprMVar argType kind
+
+/--
+Elaborates the given `Arg` and adds it to the result using `addNewArg`.
+Recall that `Arg` may be wrapping an already elaborated `Expr`.
+-/
 private def elabAndAddNewArg (argName : Name) (arg : Arg) : M Unit := do
-  let s ← get
   let expectedType ← getArgExpectedType
-  match arg with
-  | Arg.expr val =>
-    let arg ← ensureArgType s.f val expectedType
-    addNewArg argName arg
-  | Arg.stx stx  =>
-    if (← read).isPropagatingExpected then
-      -- When propagating, we do not elaborate arguments.
-      let val ← mkFreshExprMVar expectedType
-      addNewArg argName val
-    else
+  if (← read).isPropagatingExpected then
+    -- When propagating, we do not elaborate arguments.
+    -- Potentially we can use `Arg.expr`, but we should check that `expectedType` has no metavariables
+    -- corresponding to unelaborated arguments.
+    addNewArg argName (← mkPlaceholderForPropagatingExpected expectedType)
+  else
+    match arg with
+    | Arg.expr val =>
+      let arg ← ensureArgType (← get).f val expectedType
+      addNewArg argName arg
+    | Arg.stx stx  =>
       let val ← elabTerm stx expectedType
-      let arg ← withRef stx <| ensureArgType s.f val expectedType
+      let arg ← withRef stx <| ensureArgType (← get).f val expectedType
       addNewArg argName arg
 
 /--
@@ -579,53 +602,53 @@ private def getExpectedTypeWithEta? : M (Option Expr) := do
 /-- This method executes after all application arguments have been processed. -/
 private def finalize : M Expr := do
   let s ← get
+  -- We use `fTypeSaved` here since it matches `inferType f`, unlike `fType`, which may be unfolded.
+  let eType := s.fTypeSaved.instantiateBetaRevRange 0 s.fArgs.size s.fArgs
+  let eType ← mkForallFVars (s.etaArgs.map (·.2)) eType
+  let eType := eType.updateBinderNames (s.etaArgs.map (some <| ·.1)).toList
+  if (← read).isPropagatingExpected then
+    -- Skip instance synthesis and expected type propagation.
+    -- We return the **type** in propagation mode, not the function application.
+    trace[Elab.app.finalize] "resulting type: {eType}"
+    return eType
   let mut e := s.f
-  -- all user explicit arguments have been consumed
-  unless (← read).isPropagatingExpected do
-    let ref ← getRef
-    -- Register the error context of implicits
-    for mvarId in s.toSetErrorCtx do
+  let ref ← getRef
+  -- Register the error context of implicits
+  for mvarId in s.toSetErrorCtx do
     registerMVarErrorImplicitArgInfo mvarId ref e
   if !s.etaArgs.isEmpty then
     e ← mkLambdaFVars (s.etaArgs.map (·.2)) e
     e := e.updateBinderNames (s.etaArgs.map (some <| ·.1)).toList
-  /-
-    Remark: we should not use `s.fType` as `eType` even when
-    `s.etaArgs.isEmpty`. Reason: it may have been unfolded.
-  -/
-  let eType ← inferType e
-  trace[Elab.app.finalize] "{e} : {eType}"
-  if (← read).isPropagatingExpected then
-    -- Skip instance synthesis and expected type propagation
-    return e
-  /- Recall that `resultTypeOutParam? = some mvarId` if the function result type is the output parameter
-     of a local instance. The value of this parameter may be inferable using other arguments. For example,
-     suppose we have
-     ```lean
-     def add_one {X} [Trait X] [One (Trait.R X)] [HAdd X (Trait.R X) X] (x : X) : X := x + (One.one : (Trait.R X))
-     ```
-     from test `948.lean`. There are multiple ways to infer `X`, and we don't want to mark it as `syntheticOpaque`.
-  -/
-  if let some outParamMVarId := s.resultTypeOutParam? then
+  withTraceNode `Elab.app.finalize (fun _ => return m!"{e} : {eType}") do
+    trace[Elab.app.finalize] "before synthesis, {e} : {eType}"
+    /- Recall that `resultTypeOutParam? = some mvarId` if the function result type is the output parameter
+      of a local instance. The value of this parameter may be inferable using other arguments. For example,
+      suppose we have
+      ```lean
+      def add_one {X} [Trait X] [One (Trait.R X)] [HAdd X (Trait.R X) X] (x : X) : X := x + (One.one : (Trait.R X))
+      ```
+      from test `948.lean`. There are multiple ways to infer `X`, and we don't want to mark it as `syntheticOpaque`.
+    -/
+    if let some outParamMVarId := s.resultTypeOutParam? then
+      synthesizeAppInstMVars
+      /- If `eType != mkMVar outParamMVarId`, then the
+        function is partially applied, and we do not apply default instances. -/
+      if !(← outParamMVarId.isAssigned) && eType.isMVar && eType.mvarId! == outParamMVarId then
+        synthesizeSyntheticMVarsUsingDefault
+        return e
+      else
+        return e
+    unless (← get).propagateSucceeded do
+      if let some expectedType := (← read).expectedType? then
+        trySynthesizeAppInstMVars
+        -- Try to propagate expected type. Ignore if types are not definitionally equal, caller must handle it.
+        try
+          withTraceNodeBefore `Elab.app.finalize (fun _ => return m!"propagating expected type: {expectedType} =?= {eType}") do
+            guard (← isDefEq expectedType eType)
+            trace[Elab.app.finalize] "propagated: {expectedType} =?= {eType}"
+        catch _ => pure ()
     synthesizeAppInstMVars
-    /- If `eType != mkMVar outParamMVarId`, then the
-       function is partially applied, and we do not apply default instances. -/
-    if !(← outParamMVarId.isAssigned) && eType.isMVar && eType.mvarId! == outParamMVarId then
-      synthesizeSyntheticMVarsUsingDefault
-      return e
-    else
-      return e
-  unless (← get).propagateSucceeded do
-    if let some expectedType := (← read).expectedType? then
-      trySynthesizeAppInstMVars
-      -- Try to propagate expected type. Ignore if types are not definitionally equal, caller must handle it.
-      try
-        withTraceNodeBefore `Elab.app.finalize (fun _ => return m!"propagating expected type: {expectedType} =?= {eType}") do
-          guard (← isDefEq expectedType eType)
-          trace[Elab.app.finalize] "propagated: {expectedType} =?= {eType}"
-      catch _ => pure ()
-  synthesizeAppInstMVars
-  return e
+    return e
 
 private def shouldPropagateExpectedTypeFor (nextArg : Arg) : Bool :=
   match nextArg with
@@ -639,11 +662,11 @@ private def shouldPropagateExpectedTypeFor (nextArg : Arg) : Bool :=
 /--
 This is used in expected type propagation to detect which arguments are not yet elaborated.
 -/
-private def hasCurrDepthMVar (e : Expr) : MetaM Bool := do
+private def hasNewMVar (mvarCounterSaved : Nat) (e : Expr) : MetaM Bool := do
   let mctx ← getMCtx
   return Option.isSome <| e.findMVar? fun mvarId =>
     match mctx.findDecl? mvarId with
-    | some mdecl => mdecl.depth == mctx.depth
+    | some mdecl => mdecl.index ≥ mvarCounterSaved
     | none => true
 
 mutual
@@ -676,7 +699,7 @@ mutual
 
     The method will do nothing if
     1- The resultant type depends on the remaining arguments (i.e., `!eTypeBody.hasLooseBVars`).
-    2- The resultant type contains optional/auto params.
+    2- The resultant type depends on auto params.
 
     We have considered adding the following extra conditions
       a) The resultant type does not contain any type metavariable.
@@ -738,24 +761,27 @@ mutual
   -/
   private partial def getResultingType? : M (Option Expr) := do
     assert! !(← read).isPropagatingExpected
+    if let some resultingType := (← get).resultingType? then
+      return resultingType
     withTraceNode `Elab.app.propagateExpectedType
         (fun _ => do let s ← get; return m!"getResultingType? at {s.paramIdx}, args.length: {s.args.length}, namedArgs.size: {s.namedArgs.size}, fType: {s.getFType}") do
-      let res ←
-        withoutModifyingState <| withEnableInfoTree false <|
-        withoutErrToSorry <| withNewMCtxDepth <| do
-          -- Clear the current eta args so that these don't get abstracted in `finalize'`.
-          -- These are already instantiated by `getExpectedTypeWithEta?`.
-          modify fun s => { s with etaArgs := #[] }
-          try
-            let e ← withReader ({· with isPropagatingExpected := true}) main
-            let eType ← instantiateMVars =<< inferType e
-            if (← hasCurrDepthMVar eType) then
-              throwError "propagation postponed, resulting type depends on arguments that have not yet been elaborated"
-            return Except.ok eType
-          catch ex =>
-            return Except.error ((← get).propagateExpected, ex)
+      let res ← withoutModifyingState <| withEnableInfoTree false <| withoutErrToSorry <| do
+        -- Clear the current eta args so that these don't get abstracted in `finalize'`.
+        -- These are already instantiated by `getExpectedTypeWithEta?`.
+        modify fun s => { s with etaArgs := #[] }
+        let mvarCounterSaved := (← getMCtx).mvarCounter
+        try
+          let eType ← withReader ({· with isPropagatingExpected := true}) main
+          let eType ← instantiateMVars eType
+          if (← hasNewMVar mvarCounterSaved eType) then
+            throwError "propagation postponed, resulting type depends on arguments that have not yet been elaborated"
+          return Except.ok eType
+        catch ex =>
+          return Except.error ((← get).propagateExpected, ex)
       match res with
-      | .ok resultingType => return some resultingType
+      | .ok resultingType =>
+        modify fun s => { s with resultingType? := some resultingType }
+        return some resultingType
       | .error (propagateExpected, ex) =>
         trace[Elab.app.propagateExpectedType] "{ex.toMessageData}"
         modify fun s => { s with propagateExpected }
@@ -779,23 +805,26 @@ mutual
   -/
   private partial def addImplicitArg (argName : Name) : M Expr := do
     let argType ← getArgExpectedType
-    let arg ← if (← isNextOutParamOfLocalInstanceAndResult) then
-      if (← read).isPropagatingExpected then
+    if (← read).isPropagatingExpected then
+      if (← isNextOutParamOfLocalInstanceAndResult) then
+        -- See comment below. Propagation would be disabled once we visit this argument anyway, outside the propagating expected types loop.
         modify fun s => { s with propagateExpected := false }
         throwError "result type is an output parameter, propagation disabled"
-      let arg ← mkFreshExprMVar argType
-      /- When the result type is an output parameter, we don't want to propagate the expected type.
-         So, we just mark `propagateExpected := false` to disable it.
-         At `finalize`, we check whether `arg` is still unassigned, if it is, we apply default instances,
-         and try to synthesize pending mvars. -/
-      modify fun s => { s with resultTypeOutParam? := some arg.mvarId!, propagateExpected := false }
-      trace[Elab.app.args] "result type is an output parameter, disabling expected type propagation"
-      pure arg
+      else
+        addNewArg argName (← mkPlaceholderForPropagatingExpected argType)
+        main
     else
-      mkFreshExprMVar argType
-    modify fun s => { s with toSetErrorCtx := s.toSetErrorCtx.push arg.mvarId! }
-    addNewArg argName arg
-    main
+      let arg ← mkFreshExprMVar argType
+      if (← isNextOutParamOfLocalInstanceAndResult) then
+        /- When the result type is an output parameter, we don't want to propagate the expected type.
+          So, we just mark `propagateExpected := false` to disable it.
+          At `finalize`, we check whether `arg` is still unassigned, if it is, we apply default instances,
+          and try to synthesize pending mvars. -/
+        trace[Elab.app.args] "result type is an output parameter, disabling expected type propagation"
+        modify fun s => { s with resultTypeOutParam? := some arg.mvarId!, propagateExpected := false }
+      modify fun s => { s with toSetErrorCtx := s.toSetErrorCtx.push arg.mvarId! }
+      addNewArg argName arg
+      main
 
   /--
   Process a `fType` of the form `(x : A) → B x`.
@@ -955,10 +984,15 @@ mutual
       main
   where
     mkInstMVar (ty : Expr) : M Expr := do
-      let arg ← mkFreshExprMVar ty MetavarKind.synthetic
-      addInstMVar arg.mvarId!
-      addNewArg argName arg
-      return arg
+      if (← read).isPropagatingExpected then
+        let arg ← mkPlaceholderForPropagatingExpected ty MetavarKind.synthetic
+        addNewArg argName arg
+        return arg
+      else
+        let arg ← mkFreshExprMVar ty MetavarKind.synthetic
+        addInstMVar arg.mvarId!
+        addNewArg argName arg
+        return arg
 
   /-- Elaborate function application arguments. -/
   private partial def main : M Expr := do

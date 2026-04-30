@@ -64,7 +64,6 @@ private meta def convertModifier : Modifier → MacroM (TSyntax `term)
   | .y p => do `(Std.Time.Modifier.y $(← convertYear p))
   | .Y p => do `(Std.Time.Modifier.Y $(← convertYear p))
   | .u p => do `(Std.Time.Modifier.u $(← convertYear p))
-  | .Y p => do `(Std.Time.Modifier.Y $(← convertYear p))
   | .D p => do `(Std.Time.Modifier.D $(← convertNumber p))
   | .M p =>
     match p with

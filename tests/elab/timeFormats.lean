@@ -357,7 +357,7 @@ info: "Sun Sun Sun Sunday S"
 #eval zoned₄.format "E EE EEE EEEE EEEEE"
 
 /--
-info: "7 07 Sun Sunday S"
+info: "1 01 Sun Sunday S"
 -/
 #guard_msgs in
 #eval zoned₄.format "e ee eee eeee eeeee"
@@ -536,7 +536,7 @@ info: "3 03 3rd quarter 3"
 #eval datetime₄.format "Q QQ QQQQ QQQQQ"
 
 /--
-info: "29 29"
+info: "28 28"
 -/
 #guard_msgs in
 #eval datetime₄.format "w ww"
@@ -554,7 +554,7 @@ info: "Sun Sun Sun Sunday S"
 #eval datetime₄.format "E EE EEE EEEE EEEEE"
 
 /--
-info: "7 07 Sun Sunday S"
+info: "1 01 Sun Sunday S"
 -/
 #guard_msgs in
 #eval datetime₄.format "e ee eee eeee eeeee"
@@ -751,7 +751,7 @@ info: "3 03 3rd quarter 3"
 #eval date₄.format "Q QQ QQQQ QQQQQ"
 
 /--
-info: "29 29"
+info: "28 28"
 -/
 #guard_msgs in
 #eval date₄.format "w ww"
@@ -769,7 +769,7 @@ info: "Sun Sun Sun Sunday S"
 #eval date₄.format "E EE EEE EEEE EEEEE"
 
 /--
-info: "7 07 Sun Sunday S"
+info: "1 01 Sun Sunday S"
 -/
 #guard_msgs in
 #eval date₄.format "e ee eee eeee eeeee"
@@ -793,7 +793,7 @@ info: "2002 2002 AD"
 #eval datetime₄.format "uuuu yyyy G"
 
 /--
-info: "BRT BRT BRT America/Sao_Paulo America/Sao_Paulo"
+info: "BRT BRT BRT GMT-01:00 GMT-01:00"
 -/
 #guard_msgs in
 #eval zoned₆.format "z zz zzz zzzz zzzz"
@@ -1396,16 +1396,16 @@ info: "Sun Sun Sun Sunday S"
 #guard_msgs in
 #eval (fmtDT 2024 1 7 0 0 0).format "E EE EEE EEEE EEEEE"
 
--- e: ISO numeric (Mon=1..Sun=7)
+-- e: locale-numeric (enUS Sun=1..Sat=7)
 
 /--
-info: "1 01 Mon Monday M"
+info: "2 02 Mon Monday M"
 -/
 #guard_msgs in
 #eval (fmtDT 2024 1 1 0 0 0).format "e ee eee eeee eeeee"
 
 /--
-info: "7 07 Sun Sunday S"
+info: "1 01 Sun Sunday S"
 -/
 #guard_msgs in
 #eval (fmtDT 2024 1 7 0 0 0).format "e ee eee eeee eeeee"
@@ -1413,13 +1413,13 @@ info: "7 07 Sun Sunday S"
 -- c: stand-alone weekday
 
 /--
-info: "1 Mon Monday M"
+info: "2 Mon Monday M"
 -/
 #guard_msgs in
 #eval (fmtDT 2024 1 1 0 0 0).format "c ccc cccc ccccc"
 
 /--
-info: "7 Sun Sunday S"
+info: "1 Sun Sunday S"
 -/
 #guard_msgs in
 #eval (fmtDT 2024 1 7 0 0 0).format "c ccc cccc ccccc"
@@ -1552,13 +1552,13 @@ info: "PM"
 #eval (fmtDT 2024 1 1 23 59 59).format "a"
 
 /--
-info: "ante meridiem"
+info: "AM"
 -/
 #guard_msgs in
 #eval (fmtDT 2024 1 1 9 0 0).format "aaaa"
 
 /--
-info: "post meridiem"
+info: "PM"
 -/
 #guard_msgs in
 #eval (fmtDT 2024 1 1 15 0 0).format "aaaa"

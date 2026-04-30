@@ -213,7 +213,7 @@ info: "Sun Sun Sun Sunday S"
 -- ─────────────────────────────────────────────────────────────────────────────
 
 /--
-info: "7 07 Sun Sunday S"
+info: "1 01 Sun Sunday S"
 -/
 #guard_msgs in
 #eval td.format "e ee eee eeee eeeee"
@@ -223,7 +223,7 @@ info: "7 07 Sun Sunday S"
 -- ─────────────────────────────────────────────────────────────────────────────
 
 /--
-info: "7 Sun Sunday S"
+info: "1 Sun Sunday S"
 -/
 #guard_msgs in
 #eval td.format "c ccc cccc ccccc"
@@ -245,13 +245,13 @@ info: "AM"
 #eval tdAM.format "a"
 
 /--
-info: "PM PM PM post meridiem p"
+info: "PM PM PM PM p"
 -/
 #guard_msgs in
 #eval td.format "a aa aaa aaaa aaaaa"
 
 /--
-info: "AM AM AM ante meridiem a"
+info: "AM AM AM AM a"
 -/
 #guard_msgs in
 #eval tdAM.format "a aa aaa aaaa aaaaa"
@@ -401,7 +401,7 @@ info: "Z Z Z Z"
 #eval tdUTC.format "z zz zzz zzzz"
 
 /--
-info: "JST JST JST Asia/Tokyo"
+info: "JST JST JST GMT+09:00"
 -/
 #guard_msgs in
 #eval tdNamed.format "z zz zzz zzzz"
@@ -558,9 +558,9 @@ info: "Z Z"
 #guard_msgs in
 #eval tdUTC.format "v vvvv"
 
--- named zone: short = abbreviation, full = IANA name
+-- named zone: short = abbreviation, full = GMT offset fallback (no CLDR)
 /--
-info: "JST Asia/Tokyo"
+info: "JST GMT+09:00"
 -/
 #guard_msgs in
 #eval tdNamed.format "v vvvv"

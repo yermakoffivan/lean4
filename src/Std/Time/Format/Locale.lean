@@ -19,7 +19,7 @@ set_option linter.all true
 /--
 `LocaleSymbols` contains locale-specific strings needed for date/time formatting and parsing.
 
-Arrays are 0-indexed: `monthLong[0]` = January, `weekdayLong[0]` = Sunday, `eraShort[0]` = BCE.
+Arrays are 0-indexed: `monthLong[0]` = January, `weekdayLong[0]` = Monday, `eraShort[0]` = BC.
 -/
 structure LocaleSymbols where
 
@@ -54,17 +54,17 @@ structure LocaleSymbols where
   weekdayNarrow : Vector String 7
 
   /--
-  Short era names (2 elements: index 0 = BCE, index 1 = CE).
+  Short era names (2 elements: index 0 = BC, index 1 = AD).
   -/
   eraShort : Vector String 2
 
   /--
-  Full era names (2 elements: index 0 = Before Common Era, index 1 = Common Era).
+  Full era names (2 elements: index 0 = Before Christ, index 1 = Anno Domini).
   -/
   eraLong : Vector String 2
 
   /--
-  Narrow era names (2 elements: index 0 = B, index 1 = C).
+  Narrow era names (2 elements: index 0 = B, index 1 = A).
   -/
   eraNarrow : Vector String 2
 
@@ -113,6 +113,36 @@ structure LocaleSymbols where
   -/
   pmNarrow : String
 
+  /--
+  Two-letter abbreviated weekday names (7 elements, index 0 = Monday).
+  -/
+  weekdayTwoLetterShort : Vector String 7
+
+  /--
+  Short day period names (4 elements: index 0 = am, 1 = pm, 2 = noon, 3 = midnight).
+  -/
+  dayPeriodShort : Vector String 4
+
+  /--
+  Full day period names (4 elements: index 0 = am, 1 = pm, 2 = noon, 3 = midnight).
+  -/
+  dayPeriodLong : Vector String 4
+
+  /--
+  Narrow day period names (4 elements: index 0 = am, 1 = pm, 2 = noon, 3 = midnight).
+  -/
+  dayPeriodNarrow : Vector String 4
+
+  /--
+  Short extended day period names (6 elements: 0 = midnight, 1 = night, 2 = morning, 3 = noon, 4 = afternoon, 5 = evening).
+  -/
+  extendedDayPeriodShort : Vector String 6
+
+  /--
+  Narrow extended day period names (6 elements: 0 = midnight, 1 = night, 2 = morning, 3 = noon, 4 = afternoon, 5 = evening).
+  -/
+  extendedDayPeriodNarrow : Vector String 6
+
 namespace LocaleSymbols
 
 /--
@@ -125,18 +155,24 @@ def enUS : LocaleSymbols where
   weekdayLong := Vector.mk #["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] (by decide)
   weekdayShort := Vector.mk #["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] (by decide)
   weekdayNarrow := Vector.mk #["M", "T", "W", "T", "F", "S", "S"] (by decide)
-  eraShort := Vector.mk #["BCE", "CE"] (by decide)
-  eraLong := Vector.mk #["Before Common Era", "Common Era"] (by decide)
-  eraNarrow := Vector.mk #["B", "C"] (by decide)
+  eraShort := Vector.mk #["BC", "AD"] (by decide)
+  eraLong := Vector.mk #["Before Christ", "Anno Domini"] (by decide)
+  eraNarrow := Vector.mk #["B", "A"] (by decide)
   quarterShort := Vector.mk #["Q1", "Q2", "Q3", "Q4"] (by decide)
   quarterLong := Vector.mk #["1st quarter", "2nd quarter", "3rd quarter", "4th quarter"] (by decide)
   quarterNarrow := Vector.mk #["1", "2", "3", "4"] (by decide)
   amShort := "AM"
   pmShort := "PM"
-  amLong := "Ante Meridiem"
-  pmLong := "Post Meridiem"
-  amNarrow := "A"
-  pmNarrow := "P"
+  amLong := "AM"
+  pmLong := "PM"
+  amNarrow := "a"
+  pmNarrow := "p"
+  weekdayTwoLetterShort := Vector.mk #["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"] (by decide)
+  dayPeriodShort := Vector.mk #["AM", "PM", "noon", "midnight"] (by decide)
+  dayPeriodLong := Vector.mk #["AM", "PM", "noon", "midnight"] (by decide)
+  dayPeriodNarrow := Vector.mk #["a", "p", "n", "mi"] (by decide)
+  extendedDayPeriodShort := Vector.mk #["midnight", "at night", "in the morning", "noon", "in the afternoon", "in the evening"] (by decide)
+  extendedDayPeriodNarrow := Vector.mk #["mi", "at night", "in the morning", "n", "in the afternoon", "in the evening"] (by decide)
 
 end LocaleSymbols
 

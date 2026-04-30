@@ -8,6 +8,7 @@ module
 prelude
 public import Std.Time.Zoned
 public import Std.Time.Format.Locale
+public import Std.Time.Format.Modifier
 import Init.Data.String.TakeDrop
 import Init.Data.String.Search
 
@@ -92,6 +93,13 @@ private def getD (x : Awareness) (default : TimeZone) : TimeZone :=
 end Awareness
 
 /--
+A function that resolves an IANA timezone identifier (e.g. `"Asia/Tokyo"`) to a locale-aware
+display name (e.g. `"Japan Standard Time"`). Return `none` to fall back to the `GMT±HH:MM`
+offset format. Used by `Format.formatIO` for `zzzz` and `vvvv` patterns.
+-/
+abbrev ZoneNameResolver := String → IO (Option String)
+
+/--
 Configuration options for formatting and parsing date/time strings.
 -/
 structure FormatConfig where
@@ -107,6 +115,14 @@ structure FormatConfig where
   Default is `Locale.enUS` (English, US).
   -/
   locale : Locale := Locale.enUS
+
+  /--
+  Optional CLDR-backed resolver for timezone display names. When set, `Format.formatIO` calls it
+  with the IANA zone ID for `zzzz` and `vvvv` patterns. If the resolver returns `some name`, that
+  name is used; otherwise the output falls back to a `GMT±HH:MM` offset string.
+  Default is `none`.
+  -/
+  zoneNameResolver : Option ZoneNameResolver := none
 
 deriving Inhabited
 
@@ -225,41 +241,42 @@ private def formatMarkerNarrow (symbols : LocaleSymbols) (marker : HourMarker) :
 private def toSigned (data : Int) : String :=
   if data < 0 then toString data else "+" ++ toString data
 
-private def formatDayPeriodShort : DayPeriod → String
-  | .am => "AM"
-  | .pm => "PM"
-  | .noon => "noon"
-  | .midnight => "midnight"
+private def formatDayPeriodShort (symbols : LocaleSymbols) : DayPeriod → String
+  | .am => symbols.dayPeriodShort.get ⟨0, by decide⟩
+  | .pm => symbols.dayPeriodShort.get ⟨1, by decide⟩
+  | .noon => symbols.dayPeriodShort.get ⟨2, by decide⟩
+  | .midnight => symbols.dayPeriodShort.get ⟨3, by decide⟩
 
-private def formatDayPeriodLong : DayPeriod → String
-  | .am => "AM"
-  | .pm => "PM"
-  | .noon => "noon"
-  | .midnight => "midnight"
+private def formatDayPeriodLong (symbols : LocaleSymbols) : DayPeriod → String
+  | .am => symbols.dayPeriodLong.get ⟨0, by decide⟩
+  | .pm => symbols.dayPeriodLong.get ⟨1, by decide⟩
+  | .noon => symbols.dayPeriodLong.get ⟨2, by decide⟩
+  | .midnight => symbols.dayPeriodLong.get ⟨3, by decide⟩
 
-private def formatDayPeriodNarrow : DayPeriod → String
-  | .am => "a"
-  | .pm => "p"
-  | .noon => "n"
-  | .midnight => "mi"
+private def formatDayPeriodNarrow (symbols : LocaleSymbols) : DayPeriod → String
+  | .am => symbols.dayPeriodNarrow.get ⟨0, by decide⟩
+  | .pm => symbols.dayPeriodNarrow.get ⟨1, by decide⟩
+  | .noon => symbols.dayPeriodNarrow.get ⟨2, by decide⟩
+  | .midnight => symbols.dayPeriodNarrow.get ⟨3, by decide⟩
 
-private def formatExtendedDayPeriodShort : ExtendedDayPeriod → String
-  | .midnight => "midnight"
-  | .night => "at night"
-  | .morning => "in the morning"
-  | .noon => "noon"
-  | .afternoon => "in the afternoon"
-  | .evening => "in the evening"
+private def formatExtendedDayPeriodShort (symbols : LocaleSymbols) : ExtendedDayPeriod → String
+  | .midnight => symbols.extendedDayPeriodShort.get ⟨0, by decide⟩
+  | .night => symbols.extendedDayPeriodShort.get ⟨1, by decide⟩
+  | .morning => symbols.extendedDayPeriodShort.get ⟨2, by decide⟩
+  | .noon => symbols.extendedDayPeriodShort.get ⟨3, by decide⟩
+  | .afternoon => symbols.extendedDayPeriodShort.get ⟨4, by decide⟩
+  | .evening => symbols.extendedDayPeriodShort.get ⟨5, by decide⟩
 
-private def formatExtendedDayPeriodNarrow : ExtendedDayPeriod → String
-  | .midnight => "mi"
-  | .night => "at night"
-  | .morning => "in the morning"
-  | .noon => "n"
-  | .afternoon => "in the afternoon"
-  | .evening => "in the evening"
+private def formatExtendedDayPeriodNarrow (symbols : LocaleSymbols) : ExtendedDayPeriod → String
+  | .midnight => symbols.extendedDayPeriodNarrow.get ⟨0, by decide⟩
+  | .night => symbols.extendedDayPeriodNarrow.get ⟨1, by decide⟩
+  | .morning => symbols.extendedDayPeriodNarrow.get ⟨2, by decide⟩
+  | .noon => symbols.extendedDayPeriodNarrow.get ⟨3, by decide⟩
+  | .afternoon => symbols.extendedDayPeriodNarrow.get ⟨4, by decide⟩
+  | .evening => symbols.extendedDayPeriodNarrow.get ⟨5, by decide⟩
 
-end Locale
+private def formatWeekdayTwoLetterShort (symbols : LocaleSymbols) (wd : Weekday) : String :=
+  symbols.weekdayTwoLetterShort.get (wd.toOrdinal.sub 1 |>.toFin (by decide))
 
 private def toIsoString (offset : Offset) (withMinutes : Bool) (withSeconds : Bool) (colon : Bool) : String :=
   let (sign, time) := if offset.second.val ≥ 0 then ("+", offset.second) else ("-", -offset.second)
@@ -404,15 +421,7 @@ private def formatWith (locale : Locale) (modifier : Modifier) (data : TypeForma
     | .short => formatWeekdayShort locale.symbols data
     | .full => formatWeekdayLong locale.symbols data
     | .narrow => formatWeekdayNarrow locale.symbols data
-    | .twoLetterShort =>
-      match data with
-      | .sunday => "Su"
-      | .monday => "Mo"
-      | .tuesday => "Tu"
-      | .wednesday => "We"
-      | .thursday => "Th"
-      | .friday => "Fr"
-      | .saturday => "Sa"
+    | .twoLetterShort => formatWeekdayTwoLetterShort locale.symbols data
   | .e format | .c format =>
     match format with
     | .inl format =>
@@ -422,15 +431,7 @@ private def formatWith (locale : Locale) (modifier : Modifier) (data : TypeForma
     | .inr .short => formatWeekdayShort locale.symbols data
     | .inr .full => formatWeekdayLong locale.symbols data
     | .inr .narrow => formatWeekdayNarrow locale.symbols data
-    | .inr .twoLetterShort =>
-      match data with
-      | .sunday => "Su"
-      | .monday => "Mo"
-      | .tuesday => "Tu"
-      | .wednesday => "We"
-      | .thursday => "Th"
-      | .friday => "Fr"
-      | .saturday => "Sa"
+    | .inr .twoLetterShort => formatWeekdayTwoLetterShort locale.symbols data
   | .F format =>
     pad format.padding data.val
   | .a format =>
@@ -441,14 +442,14 @@ private def formatWith (locale : Locale) (modifier : Modifier) (data : TypeForma
     | .twoLetterShort => formatMarkerShort locale.symbols data
   | .b format =>
     match format with
-    | .short => formatDayPeriodShort data
-    | .full => formatDayPeriodLong data
-    | .narrow => formatDayPeriodNarrow data
-    | .twoLetterShort => formatDayPeriodShort data
+    | .short => formatDayPeriodShort locale.symbols data
+    | .full => formatDayPeriodLong locale.symbols data
+    | .narrow => formatDayPeriodNarrow locale.symbols data
+    | .twoLetterShort => formatDayPeriodShort locale.symbols data
   | .B format =>
     match format with
-    | .short | .full | .twoLetterShort => formatExtendedDayPeriodShort data
-    | .narrow => formatExtendedDayPeriodNarrow data
+    | .short | .full | .twoLetterShort => formatExtendedDayPeriodShort locale.symbols data
+    | .narrow => formatExtendedDayPeriodNarrow locale.symbols data
   | .h format => pad format.padding data.val
   | .K format => pad format.padding (data.val % 12)
   | .k format => pad format.padding data.val
@@ -514,14 +515,11 @@ private def formatWith (locale : Locale) (modifier : Modifier) (data : TypeForma
         then "Z"
         else toIsoString data true true true
 
-
-
-
 private def dateFromModifier (firstDay : Weekday) (date : DateTime tz) : TypeFormat modifier :=
   match modifier with
   | .G _ => date.era
   | .y _ => date.year
-  | .Y _ => date.weekYear firstDay
+  | .Y _ => date.weekYear .monday
   | .u _ => date.year
   | .D _ => Sigma.mk _ date.dayOfYear
   | .M _ => date.month
@@ -530,7 +528,7 @@ private def dateFromModifier (firstDay : Weekday) (date : DateTime tz) : TypeFor
   | .Q _ => date.quarter
   | .q _ => date.quarter
   | .w _ => date.date.get.date.weekOfYear
-  | .W _ => date.date.get.date.alignedWeekOfMonth .sunday
+  | .W _ => date.date.get.date.alignedWeekOfMonth firstDay
   | .E _ =>  date.weekday
   | .e _ => date.weekday
   | .c _ => date.weekday
@@ -568,9 +566,9 @@ private def dateFromModifier (firstDay : Weekday) (date : DateTime tz) : TypeFor
   | .N _ => date.date.get.time.toNanoseconds
   | .V _ => tz.name
   | .z .short => tz.abbreviation
-  | .z .full => tz.name
+  | .z .full => if tz.name.contains '/' then toLocalizedGMT tz.offset true else tz.name
   | .v .short => tz.abbreviation
-  | .v .full => tz.name
+  | .v .full => if tz.name.contains '/' then toLocalizedGMT tz.offset true else tz.name
   | .O _ => tz.offset
   | .X _ => tz.offset
   | .x _ => tz.offset
@@ -604,6 +602,23 @@ private def eraPairs (arr : Vector String 2) : Array (String × Year.Era) :=
 private def quarterPairs (arr : Vector String 4) : Array (String × Month.Quarter) :=
   arr.mapFinIdx (fun idx val n => (val, Bounded.LE.ofFin ⟨idx, n⟩ |>.add 1)) |>.toArray
 
+private def dayPeriodPairs (arr : Vector String 4) : Array (String × DayPeriod) :=
+  #[(arr.get ⟨3, by decide⟩, .midnight),
+    (arr.get ⟨2, by decide⟩, .noon),
+    (arr.get ⟨0, by decide⟩, .am),
+    (arr.get ⟨1, by decide⟩, .pm)]
+
+private def extendedDayPeriodPairs (arr : Vector String 6) : Array (String × ExtendedDayPeriod) :=
+  arr.mapFinIdx (fun idx val _ =>
+    let period : ExtendedDayPeriod :=
+      if idx = 0 then .midnight
+      else if idx = 1 then .night
+      else if idx = 2 then .morning
+      else if idx = 3 then .noon
+      else if idx = 4 then .afternoon
+      else .evening
+    (val, period)) |>.toArray
+
 private def parseMonthLong (symbols : LocaleSymbols) : Parser Month.Ordinal :=
   parseFromSymbols (monthPairs symbols.monthLong)
 
@@ -625,14 +640,8 @@ private def parseWeekdayShort (symbols : LocaleSymbols) : Parser Weekday :=
 private def parseWeekdayNarrow (symbols : LocaleSymbols) : Parser Weekday :=
   parseFromSymbols (weekdayPairs symbols.weekdayNarrow)
 
-private def parseWeekdaytwoLetterShort : Parser Weekday
-   := pstring "Su" *> pure Weekday.sunday
-  <|> pstring "Mo" *> pure Weekday.monday
-  <|> pstring "Tu" *> pure Weekday.tuesday
-  <|> pstring "We" *> pure Weekday.wednesday
-  <|> pstring "Th" *> pure Weekday.thursday
-  <|> pstring "Fr" *> pure Weekday.friday
-  <|> pstring "Sa" *> pure Weekday.saturday
+private def parseWeekdaytwoLetterShort (symbols : LocaleSymbols) : Parser Weekday :=
+  parseFromSymbols (weekdayPairs symbols.weekdayTwoLetterShort)
 
 private def parseEraShort (symbols : LocaleSymbols) : Parser Year.Era :=
   parseFromSymbols (eraPairs symbols.eraShort)
@@ -664,47 +673,24 @@ private def parseMarkerLong (symbols : LocaleSymbols) : Parser HourMarker :=
 private def parseMarkerNarrow (symbols : LocaleSymbols) : Parser HourMarker :=
   (pstring symbols.amNarrow *> pure .am) <|> (pstring symbols.pmNarrow *> pure .pm)
 
-private def parseDayPeriodShort : Parser DayPeriod
-   := pstring "noon"     *> pure DayPeriod.noon
-  <|> pstring "midnight" *> pure DayPeriod.midnight
-  <|> pstring "AM"       *> pure DayPeriod.am
-  <|> pstring "PM"       *> pure DayPeriod.pm
+private def parseDayPeriodShort (symbols : LocaleSymbols) : Parser DayPeriod :=
+  parseFromSymbols (dayPeriodPairs symbols.dayPeriodShort)
 
-private def parseDayPeriodLong : Parser DayPeriod
-   := pstring "noon"          *> pure DayPeriod.noon
-  <|> pstring "midnight"      *> pure DayPeriod.midnight
-  <|> pstring "AM"            *> pure DayPeriod.am
-  <|> pstring "PM"            *> pure DayPeriod.pm
+private def parseDayPeriodLong (symbols : LocaleSymbols) : Parser DayPeriod :=
+  parseFromSymbols (dayPeriodPairs symbols.dayPeriodLong)
   <|> pstring "ante meridiem" *> pure DayPeriod.am
   <|> pstring "post meridiem" *> pure DayPeriod.pm
 
-private def parseDayPeriodNarrow : Parser DayPeriod
-   := pstring "midnight" *> pure DayPeriod.midnight
-  <|> pstring "noon"     *> pure DayPeriod.noon
-  <|> pstring "mi"       *> pure DayPeriod.midnight
-  <|> pstring "n"        *> pure DayPeriod.noon
-  <|> pstring "a"        *> pure DayPeriod.am
-  <|> pstring "p"        *> pure DayPeriod.pm
+private def parseDayPeriodNarrow (symbols : LocaleSymbols) : Parser DayPeriod :=
+  parseFromSymbols (dayPeriodPairs symbols.dayPeriodShort)
+  <|> parseFromSymbols (dayPeriodPairs symbols.dayPeriodNarrow)
 
-private def parseExtendedDayPeriodShort : Parser ExtendedDayPeriod
-   := pstring "midnight"          *> pure .midnight
-  <|> pstring "at night"          *> pure .night
-  <|> pstring "in the morning"    *> pure .morning
-  <|> pstring "noon"              *> pure .noon
-  <|> pstring "in the afternoon"  *> pure .afternoon
-  <|> pstring "in the evening"    *> pure .evening
+private def parseExtendedDayPeriodShort (symbols : LocaleSymbols) : Parser ExtendedDayPeriod :=
+  parseFromSymbols (extendedDayPeriodPairs symbols.extendedDayPeriodShort)
 
-private def parseExtendedDayPeriodNarrow : Parser ExtendedDayPeriod
-   := pstring "midnight"          *> pure .midnight
-  <|> pstring "mi"                *> pure .midnight
-  <|> pstring "at night"          *> pure .night
-  <|> pstring "in the morning"    *> pure .morning
-  <|> pstring "noon"              *> pure .noon
-  <|> pstring "n"                 *> pure .noon
-  <|> pstring "in the afternoon"  *> pure .afternoon
-  <|> pstring "in the evening"    *> pure .evening
-
-end Locale
+private def parseExtendedDayPeriodNarrow (symbols : LocaleSymbols) : Parser ExtendedDayPeriod :=
+  parseFromSymbols (extendedDayPeriodPairs symbols.extendedDayPeriodShort)
+  <|> parseFromSymbols (extendedDayPeriodPairs symbols.extendedDayPeriodNarrow)
 
 private def exactly (parse : Parser α) (size : Nat) : Parser (Array α) :=
   let rec go (acc : Array α) (count : Nat) : Parser (Array α) :=
@@ -715,7 +701,7 @@ private def exactly (parse : Parser α) (size : Nat) : Parser (Array α) :=
       go (acc.push res) count.succ
   termination_by size - count
 
-  go #[] 12
+  go #[] 0
 
 private def exactlyChars (parse : Parser Char) (size : Nat) : Parser String :=
   let rec go (acc : String) (count : Nat) : Parser String :=
@@ -867,7 +853,7 @@ private def parseWith (config : FormatConfig) : (mod : Modifier) → Parser (Typ
     | .short => parseWeekdayShort config.locale.symbols
     | .full => parseWeekdayLong config.locale.symbols
     | .narrow => parseWeekdayNarrow config.locale.symbols
-    | .twoLetterShort => parseWeekdaytwoLetterShort
+    | .twoLetterShort => parseWeekdaytwoLetterShort config.locale.symbols
   | .e format | .c format =>
     match format with
     | .inl format => do
@@ -879,7 +865,7 @@ private def parseWith (config : FormatConfig) : (mod : Modifier) → Parser (Typ
     | .inr .short => parseWeekdayShort config.locale.symbols
     | .inr .full => parseWeekdayLong config.locale.symbols
     | .inr .narrow => parseWeekdayNarrow config.locale.symbols
-    | .inr .twoLetterShort => parseWeekdaytwoLetterShort
+    | .inr .twoLetterShort => parseWeekdaytwoLetterShort config.locale.symbols
   | .F format => parseNatToBounded (parseFlexibleNum format.padding)
   | .a format =>
     match format with
@@ -889,14 +875,14 @@ private def parseWith (config : FormatConfig) : (mod : Modifier) → Parser (Typ
     | .twoLetterShort => parseMarkerShort config.locale.symbols
   | .b format =>
     match format with
-    | .short => parseDayPeriodShort
-    | .full => parseDayPeriodLong
-    | .narrow => parseDayPeriodNarrow
-    | .twoLetterShort => parseDayPeriodShort
+    | .short => parseDayPeriodShort config.locale.symbols
+    | .full => parseDayPeriodLong config.locale.symbols
+    | .narrow => parseDayPeriodNarrow config.locale.symbols
+    | .twoLetterShort => parseDayPeriodShort config.locale.symbols
   | .B format =>
     match format with
-    | .short | .full | .twoLetterShort => parseExtendedDayPeriodShort
-    | .narrow => parseExtendedDayPeriodNarrow
+    | .short | .full | .twoLetterShort => parseExtendedDayPeriodShort config.locale.symbols
+    | .narrow => parseExtendedDayPeriodNarrow config.locale.symbols
   | .h format => parseNatToBounded (parseFlexibleNum format.padding)
   | .K format => parseNatToBounded (parseFlexibleNum format.padding)
   | .k format => parseNatToBounded (parseFlexibleNum format.padding)
@@ -964,6 +950,16 @@ private def formatPartWithDate (locale : Locale) (date : DateTime tz) (part : Fo
   match part with
   | .modifier mod => formatWith locale mod (dateFromModifier locale.firstDayOfWeek date)
   | .string s => s
+
+private def formatPartWithDateIO (resolver : Option ZoneNameResolver) (locale : Locale) (date : DateTime tz) (part : FormatPart) : IO String := do
+  match part with
+  | .modifier (.z .full) | .modifier (.v .full) =>
+    if tz.name.contains '/' then
+      if let some resolve := resolver then
+        if let some name ← resolve tz.name then
+          return name
+    return formatPartWithDate locale date part
+  | _ => pure (formatPartWithDate locale date part)
 
 set_option linter.missingDocs false in  -- TODO
 @[simp, expose /- for codegen -/]
@@ -1206,6 +1202,21 @@ def format [FormattableTime t] (format : Format aw) (date : t) : String :=
   format.string.map mapper
   |> String.join
 
+/--
+Like `format`, but uses the `zoneNameResolver` from the format's configuration to look up
+locale-aware display names for `zzzz` and `vvvv` patterns. When the resolver is absent or returns
+`none` for a given IANA zone ID, the output falls back to a `GMT±HH:MM` offset string.
+-/
+def formatIO [FormattableTime t] (fmt : Format aw) (date : t) : IO String := do
+  let ⟨_, date⟩ := FormattableTime.toDateTime date
+  let locale := fmt.config.locale
+  let resolver := fmt.config.zoneNameResolver
+  let mapper (part : FormatPart) : IO String :=
+    match aw with
+    | .any => formatPartWithDateIO resolver locale date part
+    | .only tz => formatPartWithDateIO resolver locale (date.convertTimeZone tz) part
+  fmt.string.mapM mapper <&> String.join
+
 private def parser (format : FormatString) (config : FormatConfig) (aw : Awareness) : Parser (aw.type) :=
   let rec go (builder : DateBuilder) (x : FormatString) : Parser aw.type :=
     match x with
@@ -1291,6 +1302,7 @@ def parseBuilder! [Inhabited α] (format : Format aw)  (builder : FormatType (Op
   | .ok res => res
   | .error err => panic! err
 
+set_option linter.unusedVariables false in
 /--
 Formats the date using the format into a String, using a `getInfo` function to get the information needed to build the `String`.
 -/
@@ -1302,6 +1314,7 @@ def formatGeneric (format : Format aw) (getInfo : (typ : Modifier) → Option (T
     | [] => some data
   go "" format.string
 
+set_option linter.unusedVariables false in
 /--
 Constructs a `FormatType` function to format a date into a string using a `Format`.
 -/
@@ -1324,7 +1337,6 @@ structure MultiFormat (awareness : Awareness) where
   The list of format alternatives, tried left-to-right.
   -/
   formats : { x : Array (Format awareness) // x.size > 0 }
-  deriving Repr
 
 instance : Inhabited (MultiFormat aw) where
   default := ⟨⟨#[default], by simp⟩⟩
@@ -1332,7 +1344,7 @@ instance : Inhabited (MultiFormat aw) where
 namespace MultiFormat
 
 /--
-?
+Creates a `MultiFormat` from an array of formats, requiring a proof that the array is non-empty.
 -/
 def new (formats : Array (Format aw)) (proof : formats.size > 0 := by simp) : MultiFormat aw :=
   ⟨⟨formats, proof⟩⟩

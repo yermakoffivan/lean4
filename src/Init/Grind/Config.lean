@@ -262,6 +262,9 @@ structure NoopConfig extends Config where
   ac        := false
   order     := false
 
+  -- Disable model-based theory combination
+  mbtc      := false
+
 /--
 A `grind` configuration that only uses `cutsat` and splitting.
 

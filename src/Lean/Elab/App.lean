@@ -77,7 +77,8 @@ Auxiliary function for `trySynthesizeAppInstMVars`.
 Loops so long as there are blocked instance problems and progress is being made,
 since there may be outParams that unblock further synthesis.
 -/
-private partial def trySynthesizeAppInstMVars (instMVars : Array MVarId) : TermElabM (Array MVarId) := do
+private partial def trySynthesizeAppInstMVars (instMVars : Array MVarId) (preserveFailing : Bool := true) :
+    TermElabM (Array MVarId) := do
   if instMVars.isEmpty then
     return instMVars
   else
@@ -87,7 +88,7 @@ private partial def trySynthesizeAppInstMVars (instMVars : Array MVarId) : TermE
     Prod.fst <$> withTraceNode `Elab.app.args (fun
         | .ok (instMVars', _) => return m!"processing {numInstMVars} instance(s), "
             ++ if instMVars'.isEmpty then m!"none remaining" else m!"{instMVars'.size} remaining: {instMVars'.map Expr.mvar}"
-        | .error ex => return m!"processing {numInstMVars} instance(s), error: {ex.toMessageData}") do
+        | .error .. => return m!"processing {numInstMVars} instance(s), exception") do
       loop instMVars true
 where
   loop (instMVars : Array MVarId) (noLoggedFailures : Bool) : TermElabM (Array MVarId × Bool) := do
@@ -106,8 +107,10 @@ where
           instMVars' := instMVars'.push instMVar
           anyBlocked := true
       catch ex =>
-        if (← read).errToSorry && ex matches .error .. then
-          trace[Elab.app.args] m!"error: {ex.toMessageData}"
+        trace[Elab.app.args] m!"error: {ex.toMessageData}"
+        if preserveFailing then
+          instMVars' := instMVars'.push instMVar
+        else if (← read).errToSorry && ex matches .error .. then
           noLoggedFailures := false
           logException ex
           if let Expr.mvar mvarId := (← instantiateMVars (Expr.mvar instMVar)).getAppFn then
@@ -128,7 +131,7 @@ reported from outside the app elaborator, which allows users to see partially sy
 applications.
 -/
 def synthesizeAppInstMVars (instMVars : Array MVarId) (app : Expr) : TermElabM Unit := do
-  let instMVars ← trySynthesizeAppInstMVars instMVars
+  let instMVars ← trySynthesizeAppInstMVars instMVars (preserveFailing := false)
   unless instMVars.isEmpty do
     trace[Elab.app.args] "registering pending instances: {instMVars.map Expr.mvar}"
     for mvarId in instMVars do

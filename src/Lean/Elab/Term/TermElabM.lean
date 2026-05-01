@@ -1211,9 +1211,9 @@ def synthesizeInstMVarCore (instMVar : MVarId) (maxResultSize? : Option Nat := n
   withConfig (fun config => { config with isDefEqStuckEx := true }) do
   match result with
   | LOption.some val =>
-    catchInternalId isDefEqStuckExceptionId
-      (do
-        if (← instMVar.isAssigned) then
+    if (← instMVar.isAssigned) then
+      catchInternalId isDefEqStuckExceptionId
+        (do
           let oldVal ← instantiateMVars (mkMVar instMVar)
           unless (← isDefEq oldVal val) do
             if (← containsPendingMVar oldVal <||> containsPendingMVar val) then
@@ -1243,11 +1243,12 @@ def synthesizeInstMVarCore (instMVar : MVarId) (maxResultSize? : Option Nat := n
               throwError "synthesized type class instance type is not definitionally equal to expected type, synthesized{indentExpr val}\nhas type{indentExpr valType}\nexpected{indentExpr oldValType}{extraErrorMsg}"
             let (oldVal, val) ← addPPExplicitToExposeDiff oldVal val
             throwError "synthesized type class instance is not definitionally equal to expression inferred by typing rules, synthesized{indentExpr val}\ninferred{indentExpr oldVal}{extraErrorMsg}"
-        else
-          unless (← isDefEq (mkMVar instMVar) val) do
-            throwError "failed to assign synthesized type class instance{indentExpr val}{extraErrorMsg}"
-        return true)
-      (fun _ => pure false)
+          return true)
+        (fun _ => pure false)
+    else
+      unless (← isDefEq (mkMVar instMVar) val) do
+        throwError "failed to assign synthesized type class instance{indentExpr val}{extraErrorMsg}"
+      return true
   | .undef => return false -- we will try later
   | .none  =>
     if (← read).ignoreTCFailures then

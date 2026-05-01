@@ -76,41 +76,50 @@ private def mkProjAndCheck (structName : Name) (idx : Nat) (e : Expr) : MetaM Ex
 Auxiliary function for `trySynthesizeAppInstMVars`.
 Loops so long as there are blocked instance problems and progress is being made,
 since there may be outParams that unblock further synthesis.
-
-- If `interleaveSynth` is true, then runs `synthesizeSyntheticMVars` before each loop.
-- If `allowErrors` is true (the default), then allows exceptions in `synthesizeInstMVarCore`,
-  and keep these instance problems for later. What can happen is that the synthesized types
-  are not yet definitionally equal to the instance metavariable types due to unassigned metavariables.
 -/
-private partial def trySynthesizeAppInstMVars
-    (instMVars : Array MVarId) (interleaveSynth : Bool := false) (allowErrors : Bool := true) :
-    TermElabM (Array MVarId) := do
-  if interleaveSynth then
-    synthesizeSyntheticMVars
-  let numInstMVars := instMVars.size
-  let mut instMVars' : Array MVarId := #[]
-  let mut anyBlocked : Bool := false
-  for instMVar in instMVars do
-    let type ← instMVar.getType
-    try
-      -- Note: this may not be known to be a class yet. Instance parameter types can be free
-      -- variables (`inferInstanceAs` is one such example, though that function does not need this check).
-      unless (← (Option.isSome <$> Meta.isClass? type) <&&> synthesizeInstMVarCore instMVar) do
-        instMVars' := instMVars'.push instMVar
-        anyBlocked := true
-    catch ex =>
-      if allowErrors then
-        instMVars' := instMVars'.push instMVar
-      else if (← read).errToSorry && ex matches .error .. then
-        logException ex
-        if let Expr.mvar mvarId ← instantiateMVars (Expr.mvar instMVar) then
-            mvarId.assign <| ← mkLabeledSorry type (synthetic := true) (unique := true)
-      else
-        throw ex
-  if !anyBlocked || instMVars'.size == numInstMVars then
-    return instMVars'
+private partial def trySynthesizeAppInstMVars (instMVars : Array MVarId) : TermElabM (Array MVarId) := do
+  if instMVars.isEmpty then
+    return instMVars
   else
-    trySynthesizeAppInstMVars instMVars' interleaveSynth
+    let numInstMVars := instMVars.size
+    let : ExceptToTraceResult Exception (Array MVarId × Bool) :=
+      { toTraceResult r := ExceptToTraceResult.toTraceResult (Prod.snd <$> r) }
+    Prod.fst <$> withTraceNode `Elab.app.args (fun
+        | .ok (instMVars', _) => return m!"processing {numInstMVars} instance(s), "
+            ++ if instMVars'.isEmpty then m!"none remaining" else m!"{instMVars'.size} remaining: {instMVars'.map Expr.mvar}"
+        | .error ex => return m!"processing {numInstMVars} instance(s), error: {ex.toMessageData}") do
+      loop instMVars true
+where
+  loop (instMVars : Array MVarId) (noLoggedFailures : Bool) : TermElabM (Array MVarId × Bool) := do
+    let mut instMVars' : Array MVarId := #[]
+    let mut hadProgress : Bool := false
+    let mut anyBlocked : Bool := false
+    let mut noLoggedFailures : Bool := noLoggedFailures
+    for instMVar in instMVars do
+      try
+        let type ← instMVar.getType
+        -- Note: this may not be known to be a class yet. Instance parameter types can be free
+        -- variables (`inferInstanceAs` is one such example, though that function does not need this check).
+        if ← instMVar.withContext ((Option.isSome <$> Meta.isClass? type) <&&> synthesizeInstMVarCore instMVar) then
+          hadProgress := true
+        else
+          instMVars' := instMVars'.push instMVar
+          anyBlocked := true
+      catch ex =>
+        if (← read).errToSorry && ex matches .error .. then
+          trace[Elab.app.args] m!"error: {ex.toMessageData}"
+          noLoggedFailures := false
+          logException ex
+          if let Expr.mvar mvarId := (← instantiateMVars (Expr.mvar instMVar)).getAppFn then
+            mvarId.assign <| ← mvarId.withContext do mkLabeledSorry (← mvarId.getType) (synthetic := true) (unique := false)
+        else
+          -- Note: when elaborating ambiguous applications, we need to throw an exception
+          -- on instance synthesis failure to disambiguate.
+          throw ex
+    if anyBlocked && hadProgress then
+      loop instMVars' noLoggedFailures
+    else
+      return (instMVars', noLoggedFailures)
 
 /--
 Tries synthesizing the instances. Any that cannot be synthesized are registered.
@@ -119,10 +128,12 @@ reported from outside the app elaborator, which allows users to see partially sy
 applications.
 -/
 def synthesizeAppInstMVars (instMVars : Array MVarId) (app : Expr) : TermElabM Unit := do
-  let instMVars ← trySynthesizeAppInstMVars instMVars (allowErrors := false)
-  for mvarId in instMVars do
-    registerSyntheticMVarWithCurrRef mvarId (.typeClass none)
-    registerMVarErrorImplicitArgInfo mvarId (← getRef) app
+  let instMVars ← trySynthesizeAppInstMVars instMVars
+  unless instMVars.isEmpty do
+    trace[Elab.app.args] "registering pending instances: {instMVars.map Expr.mvar}"
+    for mvarId in instMVars do
+      registerSyntheticMVarWithCurrRef mvarId (.typeClass none)
+      registerMVarErrorImplicitArgInfo mvarId (← getRef) app
 
 /--
 If the function being applied is a constant, search `namedArgs` for an argument whose name is
@@ -389,8 +400,8 @@ private def getFoundNamedArgs : M (Array Name) :=
     - before trying to apply coercions to function,
     - before unifying the expected type.
 -/
-private def trySynthesizeAppInstMVars (interleaveSynth : Bool := false) : M Unit := do
-  let instMVars ← Term.trySynthesizeAppInstMVars (← get).instMVars (interleaveSynth := interleaveSynth)
+private def trySynthesizeAppInstMVars : M Unit := do
+  let instMVars ← Term.trySynthesizeAppInstMVars (← get).instMVars
   modify ({ · with instMVars })
 
 /--
@@ -403,11 +414,12 @@ private def synthesizeAppInstMVars : M Unit := do
 
 /-- fType may become a function type after we synthesize pending metavariables. -/
 private def synthesizePendingAndNormalizeFunType : M Unit := do
-  trySynthesizeAppInstMVars (interleaveSynth := true)
+  trySynthesizeAppInstMVars
+  synthesizeSyntheticMVars
   unless (← isForallWithWHNF) do
     let f := (← get).f
     if let some f ← coerceToFunction? f then
-      trace[Elab.app] "coerced to{inlineExprTrailing f}"
+      trace[Elab.app.args] "coerced to{inlineExprTrailing f}"
       let fType ← inferType f
       modify fun s => { s with f, fType, fTypeSaved := fType }
     else
@@ -453,7 +465,7 @@ Assumes `fType` is a function (ensured by only calling this when `isForallWithWH
 -/
 private def addNewArg (argName : Name) (arg : Expr) : M Unit := do
   let s ← get
-  trace[Elab.app.args] "arg {s.paramIdx}{if argName.hasMacroScopes then m!"" else m!" ({argName})"}:{inlineExprTrailing arg}"
+  trace[Elab.app.args] "arg {s.paramIdx+1}{if argName.hasMacroScopes then m!"" else m!" ({argName})"}:{inlineExprTrailing arg}"
   let fType := s.fType.bindingBody! -- `isForallWithWHNF` will instantiate as needed
   set { s with
     f := mkApp s.f arg
@@ -806,7 +818,7 @@ mutual
     if let some resultingType := (← get).resultingType? then
       return resultingType
     withTraceNode `Elab.app.propagateExpectedType
-        (fun _ => do let s ← get; return m!"getResultingType? at {s.paramIdx}, args.length: {s.args.length}, namedArgs.size: {s.namedArgs.size}, fType: {s.getFType}") do
+        (fun _ => do let s ← get; return m!"getResultingType? at {s.paramIdx+1}, args.length: {s.args.length}, namedArgs.size: {s.namedArgs.size}, fType: {s.getFType}") do
       let res ← withoutModifyingState <| withEnableInfoTree false <| withoutErrToSorry <| do
         -- Clear the current eta args so that these don't get abstracted in `finalize'`.
         -- These are already instantiated by `getExpectedTypeWithEta?`.

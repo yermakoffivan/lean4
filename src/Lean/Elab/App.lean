@@ -74,10 +74,11 @@ private def mkProjAndCheck (structName : Name) (idx : Nat) (e : Expr) : MetaM Ex
 
 /--
 Auxiliary function for `trySynthesizeAppInstMVars`.
-Loops so long as there are blocked instance problems and progress is being made,
-since there may be outParams that unblock further synthesis.
+
+Loops so long as there are blocked instance problems and that at least one instance synthesis
+cause its type to change (indicating an outParam was assigned, which might unblock further synthesis).
 -/
-private partial def trySynthesizeAppInstMVars (instMVars : Array MVarId) (preserveFailing : Bool := true) :
+private partial def trySynthesizeAppInstMVars (instMVars : Array MVarId) (postponeOnError : Bool := true) :
     TermElabM (Array MVarId) := do
   if instMVars.isEmpty then
     return instMVars
@@ -86,31 +87,31 @@ private partial def trySynthesizeAppInstMVars (instMVars : Array MVarId) (preser
     let : ExceptToTraceResult Exception (Array MVarId × Bool) :=
       { toTraceResult r := ExceptToTraceResult.toTraceResult (Prod.snd <$> r) }
     Prod.fst <$> withTraceNode `Elab.app.args (fun
-        | .ok (instMVars', _) => return m!"processing {numInstMVars} instance(s), "
-            ++ if instMVars'.isEmpty then m!"none remaining" else m!"{instMVars'.size} remaining: {instMVars'.map Expr.mvar}"
+        | .ok (instMVars', _) => return m!"processing {numInstMVars} instance(s), and "
+            ++ if instMVars'.isEmpty then m!"none remain" else m!"{instMVars'.size} remain: {instMVars'.map Expr.mvar}"
         | .error .. => return m!"processing {numInstMVars} instance(s), exception") do
       loop instMVars true
 where
   loop (instMVars : Array MVarId) (noLoggedFailures : Bool) : TermElabM (Array MVarId × Bool) := do
     let mut instMVars' : Array MVarId := #[]
     let mut hadProgress : Bool := false
-    let mut anyBlocked : Bool := false
-    let mut noLoggedFailures : Bool := noLoggedFailures
+    let mut noLoggedFailures : Bool := noLoggedFailures -- for `withTraceNode`
     for instMVar in instMVars do
       try
-        let type ← instMVar.getType
+        let type ← instantiateMVars =<< instMVar.getType
+        instMVar.setType type -- cache instantiated result
         -- Note: this may not be known to be a class yet. Instance parameter types can be free
         -- variables (`inferInstanceAs` is one such example, though that function does not need this check).
         if ← instMVar.withContext ((Option.isSome <$> Meta.isClass? type) <&&> synthesizeInstMVarCore instMVar) then
-          hadProgress := true
+          let type' ← instantiateMVars =<< instMVar.getType
+          hadProgress := type != type'
         else
           instMVars' := instMVars'.push instMVar
-          anyBlocked := true
       catch ex =>
         trace[Elab.app.args] m!"error: {ex.toMessageData}"
-        if preserveFailing then
+        if postponeOnError then
           instMVars' := instMVars'.push instMVar
-        else if (← read).errToSorry && ex matches .error .. then
+        else if (← read).errToSorry then
           noLoggedFailures := false
           logException ex
           if let Expr.mvar mvarId := (← instantiateMVars (Expr.mvar instMVar)).getAppFn then
@@ -119,19 +120,18 @@ where
           -- Note: when elaborating ambiguous applications, we need to throw an exception
           -- on instance synthesis failure to disambiguate.
           throw ex
-    if anyBlocked && hadProgress then
-      loop instMVars' noLoggedFailures
-    else
+    if instMVars'.isEmpty || !hadProgress then
       return (instMVars', noLoggedFailures)
+    else
+      trace[Elab.app.args] "progress was made, processing {instMVars'.size} instance(s)"
+      loop instMVars' noLoggedFailures
 
 /--
 Tries synthesizing the instances. Any that cannot be synthesized are registered.
-Note: there may be known synthesis errors. We register them anyway so that the error is
-reported from outside the app elaborator, which allows users to see partially synthesized
-applications.
 -/
-def synthesizeAppInstMVars (instMVars : Array MVarId) (app : Expr) : TermElabM Unit := do
-  let instMVars ← trySynthesizeAppInstMVars instMVars (preserveFailing := false)
+def synthesizeAppInstMVars (instMVars : Array MVarId) (app : Expr) (postponeOnError : Bool := false) :
+    TermElabM Unit := do
+  let instMVars ← trySynthesizeAppInstMVars instMVars (postponeOnError := postponeOnError)
   unless instMVars.isEmpty do
     trace[Elab.app.args] "registering pending instances: {instMVars.map Expr.mvar}"
     for mvarId in instMVars do
@@ -411,8 +411,8 @@ private def trySynthesizeAppInstMVars : M Unit := do
   Try to synthesize metavariables are `instMVars` using type class resolution.
   The ones that cannot be synthesized yet are registered.
 -/
-private def synthesizeAppInstMVars : M Unit := do
-  Term.synthesizeAppInstMVars (← get).instMVars (← get).f
+private def synthesizeAppInstMVars (postponeOnError : Bool := false) : M Unit := do
+  Term.synthesizeAppInstMVars (← get).instMVars (← get).f (postponeOnError := postponeOnError)
   modify ({ · with instMVars := #[] })
 
 /-- fType may become a function type after we synthesize pending metavariables. -/
@@ -515,39 +515,42 @@ private def elabAndAddNewArg (argName : Name) (arg : Arg) : M Unit := do
       addNewArg argName arg
 
 /--
-Returns `true` if there is a parameter that will be provided by a named argument
-and the type of that parameter depends on the first parameter in `fType`.
+If the first parameter in `fType` is depended upon by a parameter that is
+provided by a named argument in `namedArgs`, then returns that `NamedArg`.
+Assumes the first parameter is not already provided by one of the named arguments.
 -/
-private def anyNamedArgDependsOn?
-    (fType : Expr) (paramIdx paramExplicitCount : Nat) (namedArgs : Array NamedArg) : MetaM Bool := do
+private def findNamedArgDependsOn?
+    (fType : Expr) (paramIdx paramExplicitCount : Nat) (namedArgs : Array NamedArg) :
+    MetaM (Option NamedArg) := do
   if namedArgs.isEmpty then
-    return false
+    return none
   else
     forallTelescopeReducing fType fun xs _ => do
       if let some curr := xs[0]? then
         let mut paramExplicitCount := paramExplicitCount
-        if (← curr.fvarId!.getBinderInfo).isExplicit then
-          paramExplicitCount := paramExplicitCount + 1
-        for h : i in 1...xs.size do
+        let mut namedArgs := namedArgs
+        for h : i in 0...xs.size do
           let xDecl ← xs[i].fvarId!.getDecl
           let explicit := xDecl.binderInfo.isExplicit
-          let paramIdx := paramIdx + i
-          if let some idx ← findNamedArgFinIdx? paramIdx paramExplicitCount explicit xDecl.userName namedArgs then
-            /- Remark: a default value at `optParam` does not count as a dependency -/
-            if (← exprDependsOn xDecl.type.cleanupAnnotations curr.fvarId!) then
-              return true
+          if i > 0 then
+            if let some idx ← findNamedArgFinIdx? (paramIdx + i) paramExplicitCount explicit xDecl.userName namedArgs then
+              /- Remark: dependency in the default value of an `optParam` does not count -/
+              if (← exprDependsOn xDecl.type.cleanupAnnotations curr.fvarId!) then
+                return some namedArgs[idx]
+              -- Erase, since `xDecl.userName` can be repeated, and we can otherwise get false dependencies
+              namedArgs := namedArgs.eraseIdx idx
           if explicit then
             paramExplicitCount := paramExplicitCount + 1
-      return false
+      return none
 
 /--
 Returns `true` if there is a parameter that will be provided by a named argument
 and the type of that parameter depends on the current parameter.
 -/
-private def anyNamedArgDependsOnCurrent? : M Bool := do
+private def findNamedArgDependsOnCurrent? : M (Option NamedArg) := do
   let fType ← getFType
   let s ← get
-  anyNamedArgDependsOn? fType s.paramIdx s.paramExplicitCount s.namedArgs
+  findNamedArgDependsOn? fType s.paramIdx s.paramExplicitCount s.namedArgs
 
 /--
   Return `true` if the next argument to be processed is the outparam of a local instance, and it is the result type
@@ -849,11 +852,10 @@ mutual
   and then execute the main loop.
   -/
   private partial def addEtaArg (argName : Name) : M Expr := do
-    let n    ← getParamName
     let type ← getArgExpectedType
     -- Use a fresh name to ensure that the remaining arguments can't capture this parameter's name.
-    withLocalDeclD (← Core.mkFreshUserName n) type fun x => do
-      modify fun s => { s with etaArgs := s.etaArgs.push (n, x) }
+    withLocalDeclD (← Core.mkFreshUserName argName) type fun x => do
+      modify fun s => { s with etaArgs := s.etaArgs.push (argName, x) }
       addNewArg argName x
       main
 
@@ -983,17 +985,20 @@ mutual
         if (← read).ellipsis then
           addImplicitArg argName
         else if !(← get).namedArgs.isEmpty then
-          if (← anyNamedArgDependsOnCurrent?) then
+          if let some depNamedArg ← findNamedArgDependsOnCurrent? then
             /-
             Dependencies of named arguments cannot be turned into eta arguments
             since they are determined by the named arguments.
             Instead we can turn them into implicit arguments.
             -/
+            trace[Elab.app.args] "named arg `{depNamedArg.param}` depends on this one, adding implicit"
             addImplicitArg argName
           else
+            trace[Elab.app.args] "using eta arg since there are still named arguments"
             addEtaArg argName
         else if !(← read).explicit then
           if (← hasOptAutoParams (← getFType)) then
+            trace[Elab.app.args] "using eta arg since there are still optParams or autoParams"
             addEtaArg argName
           else
             finalize
@@ -1494,16 +1499,23 @@ def elabAppArgs (f : Expr) (namedArgs : Array NamedArg) (args : Array Arg)
   let fType ← inferType f
   let fType ← instantiateMVars fType
   withTraceNodeBefore `Elab.app.args
-      (fun _ => return m!"\
-        explicit: {explicit}, ellipsis: {ellipsis}, args: {namedArgs.size} named {args.size} positional, f:{inlineExprTrailing f}") do
+      (fun _ => do
+        let mut fstr ←
+          if f.isConst || f.isFVar then pure m!"{f}"
+          else MessageData.withExprHoverM "(⋯)" f
+        if explicit then fstr := m!"explicit {fstr}"
+        if args.size > 0 then fstr := m!"{fstr} ({args.size} args)"
+        if namedArgs.size > 0 then fstr := m!"{fstr} ({namedArgs.size} namedArgs)"
+        if ellipsis then fstr := m!"{fstr} .."
+        return m!"elabAppArgs {fstr}") do
     unless namedArgs.isEmpty && args.isEmpty do
       tryPostponeIfMVar fType
+    trace[Elab.app.args] "f:{inlineExprTrailing f}"
     trace[Elab.app.args] "fType:{inlineExprTrailing fType}"
-    if let some expectedType := expectedType? then
-      trace[Elab.app.args] "expectedType:{inlineExprTrailing expectedType}"
+    trace[Elab.app.args] "expectedType:{(inlineExprTrailing <$> expectedType?).getD " none"}"
     trace[Elab.app.args] "namedArgs: {namedArgs}"
     trace[Elab.app.args] "args: {args}"
-    trace[Elab.app.args] "resultIsOutParamSupport: {resultIsOutParamSupport}"
+    trace[Elab.app.args] "explicit: {explicit}, ellipsis: {ellipsis}, resultIsOutParamSupport: {resultIsOutParamSupport}"
     if let some elimInfo ← elabAsElim? then
       trace[Elab.app.args] "Using ElabAsElim procedure. motivePos: {elimInfo.motivePos}, majorPos: {elimInfo.majorsPos}"
       tryPostponeIfNoneOrMVar expectedType?

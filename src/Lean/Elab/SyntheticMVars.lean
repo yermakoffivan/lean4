@@ -83,6 +83,7 @@ private def synthesizePendingInstMVar (instMVar : MVarId) (extraErrorMsg? : Opti
     catch ex =>
       if (← read).errToSorry && ex matches .error .. then
         logException ex
+        -- Using `Expr.getAppFn` since the metavariable may have since been abstracted
         if let Expr.mvar mvarId := (← instantiateMVars (Expr.mvar instMVar)).getAppFn then
           mvarId.assign <| ← mkLabeledSorry (← mvarId.getType) (synthetic := true) (unique := false)
         return true

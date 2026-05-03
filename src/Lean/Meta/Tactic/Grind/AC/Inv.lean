@@ -24,7 +24,7 @@ def checkVars : ACM Unit := do
 
 /-
 **Note**: Elements in the todo queue are not fully simplified.
-Recall that we only (fully) simplify then when adding them to the basis.
+Recall that we only (fully) simplify them when adding them to the basis.
 -/
 def checkSeq (s : AC.Seq) (simplified : Bool) : ACM Unit := do
   if (← isCommutative) then
@@ -45,7 +45,6 @@ def checkBasis : ACM Unit := do
 
 def checkQueue : ACM Unit := do
   for c in (← getStruct).queue do
-    /- Elements in the queue are not fully simplified. -/
     checkLhsRhs c.lhs c.rhs (simplified := false)
 
 def checkDiseqs : ACM Unit := do

@@ -1,5 +1,4 @@
 namespace Sigma
-set_option warn.sorry false
 def map (f₁ : α₁ → α₂) (f₂ : ∀ a, β₁ a → β₂ (f₁ a)) (x : Sigma β₁) : Sigma β₂ :=
   ⟨f₁ x.1, f₂ x.1 x.2⟩
 
@@ -11,8 +10,7 @@ namespace List
 
 variable {α : Type} {α' : Type} {β : α → Type} {β' : α' → Type} {l l₁ l₂ : List (Sigma β)}
 
-def keys : List (Sigma β) → List α :=
-  sorry
+opaque keys : List (Sigma β) → List α
 
 variable [DecidableEq α] [DecidableEq α']
 

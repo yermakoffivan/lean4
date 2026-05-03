@@ -300,12 +300,19 @@ Helper function for propagating over-applied `ite` and `dite`-applications.
 -/
 private def applyCongrFun (e rhs : Expr) (h : Expr) (prefixSize : Nat) (args : Array Expr) : GoalM Unit := do
   /-
-  **Note**: We did not use to set `e` as the parent for `rhs`. This was incorrect because some
-  solvers will inspect the parent to decide whether the term should be internalized or not in the
-  solver.
+  **Note**: We must record `e` as the parent of `rhs` in two distinct ways:
+  1. Pass `e` as the `parent?` argument to `internalize`. Some solvers inspect the
+     parent to decide whether the term should be internalized in the solver.
+  2. Call `registerParent e rhs` to add `e` to `rhs`'s parent set in the e-graph.
+     Otherwise, future merges of `rhs`'s equivalence class will not trigger
+     re-hashing of `e` in the congruence table. This is relevant for
+     `ite`/`dite`/`nestedProof`/`nestedDecidable` branches, which are internalized
+     lazily and so were not registered as parents when `e` itself was internalized.
+  Omitting either step has caused bugs in the past.
   -/
   if prefixSize == args.size then
     internalize rhs (← getGeneration e) e
+    registerParent e rhs
     pushEq e rhs h
   else
     go rhs h prefixSize
@@ -319,6 +326,7 @@ where
     else
       let rhs ← preprocessLight rhs
       internalize rhs (← getGeneration e) e
+      registerParent e rhs
       pushEq e rhs h
 
 /-- Propagates `ite` upwards -/

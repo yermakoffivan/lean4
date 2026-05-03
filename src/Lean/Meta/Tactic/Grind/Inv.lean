@@ -87,12 +87,7 @@ def checkParents (e : Expr) : GoalM Unit := do
           unless b.hasLooseBVars do
             if (← checkChild e b) then
               found := true
-        -- The `ite`/`dite` propagators (see `applyCongrFun` in `Propagate.lean`)
-        -- lazily internalize the active branch's body and register the `ite`/`dite`
-        -- as its parent to ensure the congruence-table re-hashing happens. Such a
-        -- child is not a structural argument of the parent, so the arg-based check
-        -- above does not see it. Skip the check in that case.
-        unless found || isIte parent || isDIte parent do
+        unless found do
           unless (← checkChild e parent.getAppFn) do
             throwError "e: {e}, parent: {parent}"
           assert! (← checkChild e parent.getAppFn)

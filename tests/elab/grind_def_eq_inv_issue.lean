@@ -1,5 +1,5 @@
 namespace Sigma
-
+set_option warn.sorry false
 def map (f₁ : α₁ → α₂) (f₂ : ∀ a, β₁ a → β₂ (f₁ a)) (x : Sigma β₁) : Sigma β₂ :=
   ⟨f₁ x.1, f₂ x.1 x.2⟩
 

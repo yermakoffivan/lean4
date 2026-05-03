@@ -305,10 +305,12 @@ private def applyCongrFun (e rhs : Expr) (h : Expr) (prefixSize : Nat) (args : A
      parent to decide whether the term should be internalized in the solver.
   2. Call `registerParent e rhs` to add `e` to `rhs`'s parent set in the e-graph.
      Otherwise, future merges of `rhs`'s equivalence class will not trigger
-     re-hashing of `e` in the congruence table. This is relevant for
-     `ite`/`dite`/`nestedProof`/`nestedDecidable` branches, which are internalized
-     lazily and so were not registered as parents when `e` itself was internalized.
-  Omitting either step has caused bugs in the past.
+     re-hashing of `e` in the congruence table, leaving an orphaned entry whose
+     `congr` chain no longer matches the table's representative.
+  Note that `rhs` is *not* a structural argument of `e` (the active branch is wrapped
+  in a lambda); we are using `registerParent` here to express the *semantic* relation
+  established by the upcoming `pushEq e rhs h`. The debug invariant `checkParents`
+  has a corresponding case for this in `Inv.lean`.
   -/
   if prefixSize == args.size then
     internalize rhs (← getGeneration e) e

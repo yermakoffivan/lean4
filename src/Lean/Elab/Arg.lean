@@ -34,7 +34,7 @@ instance : ToMessageData Arg where
 inductive NamedArgParam where
   /-- Named argument using a parameter name. -/
   | name (ref : Syntax) (n : Name)
-  /-- Named argument using a parameter index, 0-indexed. -/
+  /-- Named argument using a parameter index, 0-indexed. This does not currently have user notation. -/
   | index (ref : Syntax) (explicit : Bool) (idx : Nat)
   deriving Inhabited
 
@@ -72,15 +72,27 @@ instance : ToString NamedArg where
 instance : ToMessageData NamedArg where
   toMessageData s := m!"({toString s.param} := {s.val})"
 
-/--
-  Add a new named argument to `namedArgs`, and throw an error if it already contains a named argument
-  with the same name. -/
-def addNamedArg (namedArgs : Array NamedArg) (namedArg : NamedArg) : MetaM (Array NamedArg) := do
-  if namedArgs.any (namedArg.param.eqv ·.param) then
-    throwErrorAt namedArg.param.ref "Argument `{toString namedArg.param}` was already set"
-  return namedArgs.push namedArg
+private def NamedArg.alreadySetMessage (namedArg : NamedArg) : MessageData :=
+  m!"Argument `{toString namedArg.param}` was already set"
 
-partial def expandArgs (args : Array Syntax) : MetaM (Array NamedArg × Array Arg × Bool) := do
+private def NamedArg.logOrThrowAlreadySet (namedArg : NamedArg) : TermElabM Unit := do
+  if (← read).errToSorry then
+    logErrorAt namedArg.param.ref namedArg.alreadySetMessage
+  else
+    throwErrorAt namedArg.param.ref namedArg.alreadySetMessage
+
+/--
+Adds a new named argument to `namedArgs`, and throws or logs an error if it already contains a named argument
+with the same name.
+-/
+def addNamedArg (namedArgs : Array NamedArg) (namedArg : NamedArg) : TermElabM (Array NamedArg) := do
+  if namedArgs.any (namedArg.param.eqv ·.param) then
+    namedArg.logOrThrowAlreadySet
+    return namedArgs
+  else
+    return namedArgs.push namedArg
+
+partial def expandArgs (args : Array Syntax) : TermElabM (Array NamedArg × Array Arg × Bool) := do
   let (args, ellipsis) :=
     if args.isEmpty then
       (args, false)
@@ -90,27 +102,18 @@ partial def expandArgs (args : Array Syntax) : MetaM (Array NamedArg × Array Ar
       (args, false)
   let (namedArgs, args) ← args.foldlM (init := (#[], #[])) fun (namedArgs, args) stx => do
     if stx.getKind == ``Lean.Parser.Term.namedArgument then
-      -- def namedArgument := leading_parser "(" >> (ident <|> namedArgumentIndexParam) >> " := " >> termParser >> ")"
-      -- def namedArgumentIndexParam := leading_parser optional "@" >> num
-      let val := stx[3]
-      if stx[1].isOfKind ``Lean.Parser.Term.namedArgumentIndexParam then
-        let explicit := stx[1][0].matchesNull 1
-        let idx := stx[1][1].toNat
-        if idx == 0 then
-          throwErrorAt stx[1][1] "argument indices must be positive"
-        let namedArgs ← addNamedArg namedArgs { ref := stx, param := .index stx[1] explicit (idx - 1), val := Arg.stx val }
-        return (namedArgs, args)
-      else
-        let name := stx[1].getId.eraseMacroScopes
-        let namedArgs ← addNamedArg namedArgs { ref := stx, param := .name stx[1] name, val := Arg.stx val }
-        return (namedArgs, args)
+      -- def namedArgument := leading_parser "(" >> ident >> " := " >> termParser >> ")"
+      let name := stx[1].getId.eraseMacroScopes
+      let val  := stx[3]
+      let namedArgs ← addNamedArg namedArgs { ref := stx, param := .name stx[1] name, val := Arg.stx val }
+      return (namedArgs, args)
     else if stx.getKind == ``Lean.Parser.Term.ellipsis then
       throwErrorAt stx "unexpected '..'"
     else
       return (namedArgs, args.push $ Arg.stx stx)
   return (namedArgs, args, ellipsis)
 
-def expandApp (stx : Syntax) : MetaM (Syntax × Array NamedArg × Array Arg × Bool) := do
+def expandApp (stx : Syntax) : TermElabM (Syntax × Array NamedArg × Array Arg × Bool) := do
   let (namedArgs, args, ellipsis) ← expandArgs stx[1].getArgs
   return (stx[0], namedArgs, args, ellipsis)
 
@@ -130,14 +133,15 @@ Arguments:
 - `isExplicit` is whether the current parameter is explicit (if `false`, then `paramExplicitCount` is ignored)
 - `paramName` is the name of the parameter
 -/
-def findNamedArgFinIdx? (paramIdx : Nat) (paramExplicitCount : Nat) (isExplicit : Bool) (paramName : Name) (namedArgs : Array NamedArg) : MetaM (Option (Fin namedArgs.size)) := do
+def findNamedArgFinIdx? (paramIdx : Nat) (paramExplicitCount : Nat) (isExplicit : Bool) (paramName : Name) (namedArgs : Array NamedArg) :
+    TermElabM (Option (Fin namedArgs.size)) := do
   let paramExplicitIdx? := if isExplicit then some paramExplicitCount else none
   let mut idx? : Option (Fin namedArgs.size) := none
   for h : i in [0:namedArgs.size] do
     let namedArg := namedArgs[i]
     if namedArg.param.applies paramIdx paramExplicitIdx? paramName then
       if idx?.isSome then
-        throwErrorAt namedArg.param.ref "Argument `{toString namedArg.param}` was already set"
+        namedArg.logOrThrowAlreadySet
       else
         idx? := some ⟨i, by get_elem_tactic⟩
   return idx?

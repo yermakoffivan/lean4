@@ -224,7 +224,8 @@ private structure Context where
     but it did not work well in practice. For example, it failed in the example above.
   -/
   resultIsOutParamSupport : Bool
-  /-- Cached from `NamedArg.numImplicitParams`. -/
+  /-- Cached from `NamedArg.numImplicitParams`. This is the prefix of parameters whose explicitness
+  should be overridden to become implicit. -/
   numImplicitParams : Nat
   expectedType? : Option Expr
   /-- True when expected type propagation is running. -/
@@ -234,11 +235,10 @@ private structure Context where
 private structure State where
   /-- The constructed application so far. -/
   f                    : Expr
-  /-- The type of `f`. May have loose bvars, which are instantiated with `fArgs`.
-  After `isForallWithWHNF`, it may be unfolded. -/
+  /-- The type of `f`. Once loose bvars are instantiated using `fArgs`, this is `inferType f`. -/
   fType                : Expr
-  /-- The type of `f`, but not unfolded. Once loose bvars are instantiated, this is `inferType f`. -/
-  fTypeSaved           : Expr := fType
+  /-- The type of `f`, that after `isForallWithWHNF` is in WHNF if it is a forall. -/
+  fTypeWHNF            : Expr := fType
   /-- Elaborated arguments. -/
   fArgs                : Array Expr := #[]
   /-- Remaining positional arguments to be processed. -/
@@ -259,11 +259,13 @@ private structure State where
     Each pair records the name to use for the binding and the fvar for the argument.
 
     When `..` is used, eta-expansion is disabled, and missing arguments are treated as `_`.
+    When there are named arguments that depend on a missing argument, the missing arguments
+    are treated as `_` as well.
   -/
   etaArgs              : Array (Name × Expr)   := #[]
   /-- Metavariables that we need to set the error context using the application being built. -/
   toSetErrorCtx        : Array MVarId := #[]
-  /-- Metavariables for the instance implicit arguments that have already been processed. -/
+  /-- Metavariables for the instance implicit arguments that have already been processed but not yet synthesized. -/
   instMVars            : Array MVarId := #[]
   /--
     The following field is used to implement the `propagateExpectedType` heuristic.
@@ -288,6 +290,9 @@ private structure State where
 
 /-- Gets `s.fType` with all loose bvars instantiated. Uses `Expr.instantiateBetaRevRange` to simulate `inferType`. -/
 @[inline] private def State.getFType (s : State) : Expr := s.fType.instantiateBetaRevRange 0 s.fArgs.size s.fArgs
+
+/-- Gets `s.fTypeWHNF` with all loose bvars instantiated. Uses `Expr.instantiateBetaRevRange` to simulate `inferType`. -/
+@[inline] private def State.getFTypeWHNF (s : State) : Expr := s.fTypeWHNF.instantiateBetaRevRange 0 s.fArgs.size s.fArgs
 
 private abbrev M := ReaderT Context (StateRefT State TermElabM)
 
@@ -316,37 +321,37 @@ Uses `Expr.instantiateBetaRevRange` to simulate `inferType`.
 -/
 private def isForallWithWHNF : M Bool := do
   let s ← get
-  if let Expr.forallE n d b bi := s.fType then
+  if let Expr.forallE n d b bi := s.fTypeWHNF then
     -- Ensure the domain is instantiated, to ensure validity of `getParamType`
     if d.hasLooseBVars then
       let d := d.instantiateBetaRevRange 0 s.fArgs.size s.fArgs
-      set { s with fType := Expr.forallE n d b bi }
+      set { s with fTypeWHNF := Expr.forallE n d b bi }
     return true
   else
-    let fType ← whnfForall s.getFType
-    set { s with fType }
-    return fType.isForall
+    let fTypeWHNF ← whnfForall s.getFType
+    set { s with fTypeWHNF }
+    return fTypeWHNF.isForall
 
 /--
-Returns the current parameter's name, from the binder name at `fType`.
-Assumes `isForallWithWHNF` has been called and has returned true, which ensures `fType` is in a valid state.
+Returns the current parameter's name.
+Assumes `isForallWithWHNF` has been called and has returned true, which ensures `fTypeWHNF` is in a valid state.
 -/
-@[inline] private def getParamName : M Name := return (← get).fType.bindingName!
+@[inline] private def getParamName : M Name := return (← get).fTypeWHNF.bindingName!
 
 /--
-Returns the current parameter's type, from the binder type at `fType`.
-Assumes `isForallWithWHNF` has been called and has returned true, which ensures `fType` is in a valid state. -/
-@[inline] private def getParamType : M Expr := return (← get).fType.bindingDomain!
+Returns the current parameter's type.
+Assumes `isForallWithWHNF` has been called and has returned true, which ensures `fTypeWHNF` is in a valid state. -/
+@[inline] private def getParamType : M Expr := return (← get).fTypeWHNF.bindingDomain!
 
 /--
-Returns the current parameter's binder info, from the binder type at `fType`.
-Assumes `isForallWithWHNF` has been called and has returned true, which ensures `fType` is in a valid state.
+Returns the current parameter's binder info.
+Assumes `isForallWithWHNF` has been called and has returned true, which ensures `fTypeWHNF` is in a valid state.
 -/
-@[inline] private def getParamInfo : M BinderInfo := return (← get).fType.bindingInfo!
+@[inline] private def getParamInfo : M BinderInfo := return (← get).fTypeWHNF.bindingInfo!
 
 /--
 Returns the expected type to use for arguments for the current parameter.
-Assumes `isForallWithWHNF` has been called and has returned true, which ensures `fType` is in a valid state.
+Assumes `isForallWithWHNF` has been called and has returned true, which ensures `fTypeWHNF` is in a valid state.
 -/
 @[inline] private def getArgExpectedType : M Expr := return (← getParamType).cleanupAnnotations
 
@@ -357,6 +362,10 @@ Like `State.getFType` but caches the result.
 private def getFType : M Expr := do
   modify fun s => { s with fType := s.getFType }
   return (← get).fType
+
+private def getFTypeWHNF : M Expr := do
+  modify fun s => { s with fTypeWHNF := s.getFTypeWHNF }
+  return (← get).fTypeWHNF
 
 /-- Returns `true` if there are positional or named arguments to be processed. -/
 private def hasArgsToProcess : M Bool := do
@@ -376,8 +385,7 @@ Returns an applicable named argument from `namedArgs` and its index, if one exis
 Throws an error if multiple named arguments could apply.
 Takes deprecated binder names into account.
 -/
-private def findNamedArg? : M (Option (NamedArg × Nat)) := do
-  let paramName ← getParamName
+private def findNamedArg? (paramName : Name) : M (Option (NamedArg × Nat)) := do
   let s ← get
   if let some idx ← findNamedArgFinIdx? s.paramIdx s.paramExplicitCount (← getParamInfo).isExplicit paramName s.namedArgs then
     return some (s.namedArgs[idx]!, idx)
@@ -424,7 +432,7 @@ private def synthesizePendingAndNormalizeFunType : M Unit := do
     if let some f ← coerceToFunction? f then
       trace[Elab.app.args] "coerced to{inlineExprTrailing f}"
       let fType ← inferType f
-      modify fun s => { s with f, fType, fTypeSaved := fType }
+      modify fun s => { s with f, fType, fTypeWHNF := fType }
     else
       for namedArg in (← get).namedArgs do
         let f := f.getAppFn
@@ -454,7 +462,7 @@ private def synthesizePendingAndNormalizeFunType : M Unit := do
         .note m!"Expected a function because this term is being applied to the argument\
           {indentD <| toMessageData arg}"
       else .nil
-      throwError "Function expected at{indentExpr f}\nbut this term has type{indentExpr (← getFType)}\
+      throwError "Function expected at{indentExpr f}\nbut this term has type{indentExpr (← getFTypeWHNF)}\
         {extra}\
         {← hintAutoImplicitFailure f}"
 
@@ -469,13 +477,14 @@ Assumes `fType` is a function (ensured by only calling this when `isForallWithWH
 private def addNewArg (argName : Name) (arg : Expr) : M Unit := do
   let s ← get
   trace[Elab.app.args] "arg {s.paramIdx+1}{if argName.hasMacroScopes then m!"" else m!" ({argName})"}:{inlineExprTrailing arg}"
-  let fType := s.fType.bindingBody! -- `isForallWithWHNF` will instantiate as needed
+  let fType := s.fTypeWHNF.bindingBody! -- `isForallWithWHNF` will instantiate as needed
+  let paramExplicitCount := s.paramExplicitCount + if s.fTypeWHNF.bindingInfo!.isExplicit then 1 else 0
   set { s with
     f := mkApp s.f arg
     fArgs := s.fArgs.push arg
     fType
-    fTypeSaved := fType
-    paramExplicitCount := s.paramExplicitCount + if s.fType.bindingInfo!.isExplicit then 1 else 0 }
+    fTypeWHNF := fType -- will be updated by `isForallWithWHNF`
+    paramExplicitCount }
   if arg.isMVar && !(← read).isPropagatingExpected then
     registerMVarArgName arg.mvarId! argName
 
@@ -488,7 +497,7 @@ private def argPlaceholderForPropagatingExpected : Expr :=
   .const `_unused_in_ftype []
 
 private def mkPlaceholderForPropagatingExpected (argType : Expr) (kind : MetavarKind := .natural) : M Expr := do
-  if (← get).fType.isArrow then
+  if (← get).fTypeWHNF.isArrow then
     return argPlaceholderForPropagatingExpected
   else
     mkFreshExprMVar argType kind
@@ -521,7 +530,7 @@ Assumes the first parameter is not already provided by one of the named argument
 -/
 private def findNamedArgDependsOn?
     (fType : Expr) (paramIdx paramExplicitCount : Nat) (namedArgs : Array NamedArg) :
-    MetaM (Option NamedArg) := do
+    TermElabM (Option NamedArg) := do
   if namedArgs.isEmpty then
     return none
   else
@@ -548,7 +557,7 @@ Returns `true` if there is a parameter that will be provided by a named argument
 and the type of that parameter depends on the current parameter.
 -/
 private def findNamedArgDependsOnCurrent? : M (Option NamedArg) := do
-  let fType ← getFType
+  let fType ← getFTypeWHNF
   let s ← get
   findNamedArgDependsOn? fType s.paramIdx s.paramExplicitCount s.namedArgs
 
@@ -577,7 +586,7 @@ private def findNamedArgDependsOnCurrent? : M (Option NamedArg) := do
 private partial def isNextOutParamOfLocalInstanceAndResult : M Bool := do
   unless (← read).resultIsOutParamSupport do
     return false
-  let type := (← getFType).bindingBody!
+  let type := (← getFTypeWHNF).bindingBody!
   unless isResultType type 0 do
     return false
   if hasLocalInstanceWithOutParams (← getEnv) type then
@@ -659,9 +668,8 @@ private def getExpectedTypeWithEta? : M (Option Expr) := do
 
 /-- This method executes after all application arguments have been processed. -/
 private def finalize : M Expr := do
+  let eType ← getFType
   let s ← get
-  -- We use `fTypeSaved` here since it matches `inferType f`, unlike `fType`, which may be unfolded.
-  let eType := s.fTypeSaved.instantiateBetaRevRange 0 s.fArgs.size s.fArgs
   let eType ← mkForallFVars (s.etaArgs.map (·.2)) eType
   let eType := eType.updateBinderNames (s.etaArgs.map (some <| ·.1)).toList
   if (← read).isPropagatingExpected then
@@ -824,7 +832,7 @@ mutual
     if let some resultingType := (← get).resultingType? then
       return resultingType
     withTraceNode `Elab.app.propagateExpectedType
-        (fun _ => do let s ← get; return m!"getResultingType? at {s.paramIdx+1}, args.length: {s.args.length}, namedArgs.size: {s.namedArgs.size}, fType: {s.getFType}") do
+        (fun _ => do let s ← get; return m!"getResultingType? at {s.paramIdx+1}, args.length: {s.args.length}, namedArgs.size: {s.namedArgs.size}, fType: {s.getFTypeWHNF}") do
       let res ← withoutModifyingState <| withEnableInfoTree false <| withoutErrToSorry <| do
         -- Clear the current eta args so that these don't get abstracted in `finalize'`.
         -- These are already instantiated by `getExpectedTypeWithEta?`.
@@ -997,7 +1005,7 @@ mutual
             trace[Elab.app.args] "using eta arg since there are still named arguments"
             addEtaArg argName
         else if !(← read).explicit then
-          if (← hasOptAutoParams (← getFType)) then
+          if (← hasOptAutoParams (← getFTypeWHNF)) then
             trace[Elab.app.args] "using eta arg since there are still optParams or autoParams"
             addEtaArg argName
           else
@@ -1060,7 +1068,7 @@ mutual
   private partial def main : M Expr := do
     if (← isForallWithWHNF) then
       let binderName ← getParamName
-      match (← findNamedArg?) with
+      match (← findNamedArg? binderName) with
       | some (namedArg, idx) =>
         propagateExpectedType namedArg.val
         eraseNamedArgIdx idx
@@ -1881,7 +1889,7 @@ Otherwise, we add `e` to `namedArgs`.
 Remark: `fullName` is the name of the resolved "field" access function. It is used for reporting errors
 -/
 private partial def addLValArg (baseName : Name) (e : Expr) (args : Array Arg) (namedArgs : Array NamedArg) (f : Expr) (explicit : Bool) :
-    MetaM (Array Arg × Array NamedArg) := do
+    TermElabM (Array Arg × Array NamedArg) := do
   withoutModifyingState <| go none f (← inferType f) 0 0 0 namedArgs
 where
   /--

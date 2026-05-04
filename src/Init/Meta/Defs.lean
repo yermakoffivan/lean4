@@ -1794,9 +1794,13 @@ partial def getConfigItems (c : Syntax) : TSyntaxArray ``configItem :=
     c.getArgs.flatMap getConfigItems
   else
     match c with
-    | `(optConfig| $items:configItem*) => items
+    | `(Tactic.optConfig| $items:configItem*) => items
     | `(config| (config := $_)) => #[⟨c⟩] -- handled by mkConfigItemViews
-    | _ => #[]
+    | _ =>
+      if c.isOfKind `Lean.Parser.Term.optConfig then
+        TSyntaxArray.mk c[0].getArgs
+      else
+        #[]
 
 def mkOptConfig (items : TSyntaxArray ``configItem) : TSyntax ``optConfig :=
   ⟨Syntax.node1 .none ``optConfig (mkNullNode items)⟩

@@ -6,16 +6,16 @@ Authors: Leonardo de Moura
 module
 prelude
 public import Lean.Elab.Tactic.Grind.Basic
-import Lean.Elab.Tactic.Config
+import Lean.Elab.ConfigEval
 
 public section
 namespace Lean.Elab.Tactic.Grind
 
-private local derive_eval_set_config_item_instance Grind.Config
+private def_eval_config_item evalConfigItem for Grind.Config
 
 def elabConfigItems (init : Grind.Config) (items : Array (TSyntax `Lean.Parser.Tactic.configItem))
     : TermElabM Grind.Config := do
-  runEvalSetConfigItems init items (logExceptions := false)
+  evalConfigItem.runEval init items (logExceptions := false)
 
 def withConfigItems (items : Array (TSyntax ``Lean.Parser.Tactic.configItem))
     (k : GrindTacticM α) : GrindTacticM α := do

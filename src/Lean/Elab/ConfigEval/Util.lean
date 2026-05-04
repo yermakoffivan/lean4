@@ -6,7 +6,6 @@ Authors: Kyle Miller
 module
 
 prelude
--- public import Lean.Elab.Term.TermElabM
 public import Lean.Elab.Command
 
 public section
@@ -58,19 +57,26 @@ private partial def planDerivation (className : Name) (type : Expr)
   go #[] {type} type
 where
   go (plan : Array Expr) (processing : ExprSet) (type : Expr) : TermElabM (Array Expr) := withIncRecDepth do
+    trace[Elab.ConfigEval] "plan: {plan}, processing: {processing.toList}, type: {type}"
     if plan.contains type then
       return plan
     else
       let cls ← mkAppM className #[type]
       let insts ← SynthInstance.getInstances cls
-      logInfo m!"{insts.size} insts for {cls}"
-      insts.firstM (tryInst plan processing cls) <|> do
-        let depTypes ← extraDeps type
-        let plan ← useDepTypes plan processing depTypes
-        return plan.push type
+      trace[Elab.ConfigEval] "num insts for `{cls}`: {insts.size}"
+      for inst in insts do
+        try
+          return ← tryInst plan processing cls inst
+        catch _ => pure ()
+      let depTypes ← extraDeps type
+      trace[Elab.ConfigEval] "extra deps for `{type}`: {depTypes}"
+      let plan ← useDepTypes plan processing depTypes
+      return plan.push type
   tryInst (plan : Array Expr) (processing : ExprSet) (cls : Expr) (inst : SynthInstance.Instance) :
       TermElabM (Array Expr) := do
+    trace[Elab.ConfigEval] "tryInst {cls}"
     let (xs, bis, cls') ← forallMetaTelescopeReducing (← inferType inst.val)
+    trace[Elab.ConfigEval] "inst: {xs}, {cls'}"
     guard <| ← isDefEq cls cls'
     let mut depTypes := #[] -- types that need instances of the class
     -- Analyze instance arguments; fail if instances not of the class can't be synthesized
@@ -87,6 +93,7 @@ where
       unless inst.synthOrder.contains i do
         let x ← instantiateMVars xs[i]
         guard <| !x.hasMVar
+    trace[Elab.ConfigEval] "inst for `{cls}` deps: {depTypes}"
     useDepTypes plan processing depTypes
   useDepTypes (plan : Array Expr) (processing : ExprSet) (depTypes : Array Expr) : TermElabM (Array Expr) := do
     let depTypes ← depTypes.mapM instantiateMVars
@@ -119,8 +126,12 @@ def withClassInstDeps (className : Name) (type : Expr)
     CommandElabM Unit := do
   let cmds ← liftTermElabM do
     let types ← planDerivation className type extraDeps
+    trace[Elab.ConfigEval] m!"derivation plan for `{type}`: {types}"
     types.mapM fun type' => withFreshMacroScope (mkCmd type')
   unless cmds.isEmpty do
     elabCommand (mkNullNode cmds)
+
+builtin_initialize
+  registerTraceClass `Elab.ConfigEval
 
 end Lean.Elab.ConfigEval

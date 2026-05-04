@@ -409,29 +409,30 @@ existent in the current context, or else fails.
 @[builtin_term_parser] def doubleQuotedName := leading_parser
   "`" >> checkNoWsBefore >> rawCh '`' (trailingWs := false) >> ident
 
--- /--
--- `+opt` is short for `(opt := true)`. It sets the `opt` configuration option to `true`.
--- -/
--- @[builtin_term_parser] def posConfigItem := leading_parser
---   " +" >> checkNoWsBefore >> ident
--- /--
--- `-opt` is short for `(opt := false)`. It sets the `opt` configuration option to `false`.
--- -/
--- @[builtin_term_parser] def negConfigItem := leading_parser
---   " -" >> checkNoWsBefore >> ident
--- /--
--- `(opt := val)` sets the `opt` configuration option to `val`.
+/--
+`+opt` is short for `(opt := true)`. It sets the `opt` configuration option to `true`.
+-/
+def posConfigItem := leading_parser
+  " +" >> checkNoWsBefore >> ident
+/--
+`-opt` is short for `(opt := false)`. It sets the `opt` configuration option to `false`.
+-/
+def negConfigItem := leading_parser
+  " -" >> checkNoWsBefore >> ident
+/--
+`(opt := val)` sets the `opt` configuration option to `val`.
 
--- As a special case, `(config := ...)` sets the entire configuration.
--- -/
--- @[builtin_term_parser] def valConfigItem := leading_parser
---   atomic (" (" >> ident >> " := ") >> withoutPosition termParser >> ")"
--- /-- A configuration item. -/
--- @[builtin_term_parser] def configItem := leading_parser
---   posConfigItem <|> negConfigItem <|> valConfigItem
--- /-- Configuration options for tactics, commands, and other elaborators. -/
--- @[builtin_term_parser] def optConfig := leading_parser
---   many (checkColGt >> configItem)
+As a special case, `(config := ...)` sets the entire configuration.
+-/
+def valConfigItem := leading_parser
+  atomic (" (" >> ident >> " := ") >> withoutPosition termParser >> ")"
+/-- A configuration item. -/
+def configItem := leading_parser
+  posConfigItem <|> negConfigItem <|> valConfigItem
+/-- Configuration options for tactics, commands, and other elaborators. -/
+@[run_builtin_parser_attribute_hooks]
+def optConfig := leading_parser
+  many (checkColGt >> configItem)
 
 def letId := leading_parser (withAnonymousAntiquot := false)
   (ppSpace >> binderIdent >> notFollowedBy (checkNoWsBefore "" >> "[")
@@ -1130,6 +1131,7 @@ builtin_initialize
   register_parser_alias attrKind
   register_parser_alias optSemicolon
   register_parser_alias structInstFields
+  register_parser_alias optConfig
 
 end Parser
 end Lean

@@ -8,7 +8,7 @@ module
 prelude
 public import Lean.Meta.Tactic.SolveByElim
 public import Lean.LibrarySuggestions.Basic
-import Lean.Elab.Tactic.Config
+import Lean.Elab.ConfigEval
 
 public section
 

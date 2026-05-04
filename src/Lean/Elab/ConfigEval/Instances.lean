@@ -6,7 +6,8 @@ Authors: Kyle Miller
 module
 
 prelude
-public import Lean.Elab.ConfigEval.Types
+public import Lean.Elab.ConfigEval.Commands
+public import Lean.Elab.DeprecatedSyntax  -- shake: skip (workaround for command elaborators failing to interpret `deprecatedSyntaxExt`, to be fixed #13108)
 
 /-!
 # Evaluator instances for built-in types
@@ -22,37 +23,17 @@ namespace Lean.Elab.ConfigEval
 
 open Meta Term
 
+namespace EvalTerm
 /-!
 ## `EvalTerm` instances
 -/
 
-partial def stripParens : Term → Term
-  | `(($t)) => stripParens t
-  | t => t
-
-@[inline] def evalTermWithInfo {α : Type}
-    (expectedType? : Option Expr) (f : Term → TermElabM (α × Expr)) (stx : Term) :
-    TermElabM (α × Expr) := do
-  let (v, e) ← f (stripParens stx)
-  if (← getInfoState).enabled then
-    addTermInfo' stx e (expectedType? := expectedType?)
-  return (v, e)
-
-/-- Like `evalTermWithInfo`, but uses an existing `ToExpr` instance
-for `expectedType?` and for constructing the expression. -/
-@[inline] def evalTermWithInfo' {α : Type} [ToExpr α]
-    (f : Term → TermElabM α) :
-    Term → TermElabM (α × Expr) :=
-  evalTermWithInfo (toTypeExpr α) (fun stx => do
-    let v ← f stx
-    return (v, toExpr v))
-
 def evalBoolStx : Term → TermElabM (Bool × Expr) :=
   evalTermWithInfo' fun stx =>
     let id := stx.raw.getId.eraseMacroScopes
-    if id == `true then
+    if id == `true || id == ``true then
       return true
-    else if id == `false then
+    else if id == `false || id == ``false then
       return false
     else
       match stx with
@@ -114,6 +95,16 @@ def evalArrayStx {α : Type} (typeExpr : Expr) (ev : Term → TermElabM (α × E
     return (vs, mkApp2 (Expr.const ``List.toArray [0]) typeExpr e)
   | _ => throwUnsupportedSyntax
 
+def evalProdStx {α α' : Type} (typeExpr typeExpr' : Expr)
+    (ev : Term → TermElabM (α × Expr)) (ev' : Term → TermElabM (α' × Expr)) :
+    Term → TermElabM ((α × α') × Expr) :=
+  evalTermWithInfo (mkApp2 (Expr.const ``Prod [0, 0]) typeExpr typeExpr') fun
+  | `(($x, $x')) => do
+    let (v, e) ← ev x
+    let (v', e') ← ev' x'
+    return ((v, v'), mkApp4 (Expr.const ``Prod.mk [0, 0]) typeExpr typeExpr' e e')
+  | _ => throwUnsupportedSyntax
+
 def evalDataValueStx (stx : Term) : TermElabM (DataValue × Expr) :=
   let mk {α} (c : Name) (f : α → DataValue) (x : α × Expr) := (f x.1, Expr.app (.const c []) x.2)
   (mk ``DataValue.ofBool DataValue.ofBool <$> evalBoolStx stx)
@@ -156,74 +147,67 @@ instance {α : Type} [EvalTerm α] : EvalTerm (Array α) where
   evalTerm := evalArrayStx (EvalTerm.typeExpr α) evalTerm
   typeExpr := Expr.app (Expr.const ``Array [0]) (EvalTerm.typeExpr α)
 
+instance {α α' : Type} [EvalTerm α] [EvalTerm α'] : EvalTerm (α × α') where
+  evalTerm := evalProdStx (EvalTerm.typeExpr α) (EvalTerm.typeExpr α') evalTerm evalTerm
+  typeExpr := mkApp2 (Expr.const ``Prod [0, 0]) (EvalTerm.typeExpr α) (EvalTerm.typeExpr α')
+
 instance : EvalTerm DataValue where
   evalTerm := evalDataValueStx
   typeExpr := Expr.const ``DataValue []
 
+end EvalTerm
+
+namespace EvalExpr
 /-!
 ## `EvalExpr` instances
 -/
-
-/--
-Evaluates `f e`, and if that fails, evaluates `f (← whnf e)`.
-However, if `f e` throws `throwUnsupportedSyntax`, then aborts without trying `whnf`.
-Throws `throwUnsupportedSyntax` if neither succeeds.
--/
-def withWHNF {α : Type} (f : Expr → MetaM α) (e : Expr) : MetaM α := do
-  try
-    f e
-  catch ex =>
-    if let .internal id := ex then
-      if id == unsupportedSyntaxExceptionId then
-        throw ex
-    f (← whnf e) <|> throwUnsupportedSyntax
 
 def evalBoolExprCore (e : Expr) : MetaM Bool :=
   match_expr e with
   | Bool.true => return true
   | Bool.false => return false
-  | _ => failure
+  | _ => throwUnsupportedExpr
 
 def evalBoolExpr : Expr → MetaM Bool :=
-  withWHNF evalBoolExprCore
+  withWHNF (errMsg := m!"\nof type `{.ofConstName ``Bool}`.") evalBoolExprCore
 
 def evalNatExprCore (e : Expr) : MetaM Nat :=
-  (e.nat? <|> e.rawNatLit?).getM
+  (e.nat? <|> e.rawNatLit?).getDM throwUnsupportedExpr
 
 def evalNatExpr : Expr → MetaM Nat :=
-  withWHNF evalNatExprCore
+  withWHNF (errMsg := m!"\nof type `{.ofConstName ``Nat}`.") evalNatExprCore
 
 def evalIntExprCore (e : Expr) : MetaM Int :=
   e.int?.getM <|> Int.ofNat <$> evalNatExprCore e <|>
     match_expr e with
     | Int.ofNat e' => Int.ofNat <$> evalNatExpr e'
     | Int.negSucc e' => Int.negSucc <$> evalNatExpr e'
-    | _ => failure
+    | _ => throwUnsupportedExpr
 
 def evalIntExpr : Expr → MetaM Int :=
-  withWHNF evalIntExprCore
+  withWHNF (errMsg := m!"\nof type `{.ofConstName ``Int}`.") evalIntExprCore
 
 def evalStringExprCore : Expr → MetaM String
   | .lit (.strVal s) => return s
-  | _ => failure
+  | _ => throwUnsupportedExpr
 
 def evalStringExpr : Expr → MetaM String :=
-  withWHNF evalStringExprCore
+  withWHNF (errMsg := m!"\nof type `{.ofConstName ``String}`.") evalStringExprCore
 
 def evalNameExprCore (e : Expr) : MetaM Name :=
-  e.name?.getM
+  e.name?.getDM throwUnsupportedExpr
 
 def evalNameExpr : Expr → MetaM Name :=
-  withWHNF evalNameExprCore
+  withWHNF (errMsg := m!"\nof type `{.ofConstName ``Name}`.") evalNameExprCore
 
 def evalOptionExprCore {α : Type} (ev : Expr → MetaM α) (e : Expr) : MetaM (Option α) :=
   match_expr e with
   | Option.none _ => return none
   | Option.some _ x => some <$> ev x
-  | _ => failure
+  | _ => throwUnsupportedExpr
 
 def evalOptionExpr {α : Type} (ev : Expr → MetaM α) (e : Expr) : MetaM (Option α) :=
-  withWHNF (evalOptionExprCore ev) e <|> some <$> ev e
+  withWHNF (errMsg := m!"\nof type `{.ofConstName ``Option}`.") (evalOptionExprCore ev) e <|> some <$> ev e
 
 partial def evalListExpr {α : Type} (ev : Expr → MetaM α) (e : Expr) (didWHNF : Bool := false) : MetaM (List α) := do
   match_expr (meta := false) e with
@@ -234,16 +218,16 @@ partial def evalListExpr {α : Type} (ev : Expr → MetaM α) (e : Expr) (didWHN
     return v :: vs
   | _ =>
     if didWHNF then
-      throwUnsupportedSyntax
+      throwError "Could not evaluate the expression{indentExpr e}\nof type `{.ofConstName ``List}`."
     else
       evalListExpr ev (← whnf e) (didWHNF := true)
 
 partial def evalArrayExpr {α : Type} (ev : Expr → MetaM α) : Expr → MetaM (Array α) :=
-  withWHNF fun e =>
+  withWHNF (errMsg := m!"\nof type `{.ofConstName ``Array}`.") fun e =>
     match_expr e with
     | List.toArray _ e' => List.toArray <$> evalListExpr ev e'
     | Array.mk _ e' => List.toArray <$> evalListExpr ev e'
-    | _ => failure
+    | _ => throwUnsupportedExpr
 
 def evalDataValueExprCore (e : Expr) : MetaM DataValue :=
   match_expr e with
@@ -259,10 +243,10 @@ def evalDataValueExprCore (e : Expr) : MetaM DataValue :=
     <|> (DataValue.ofString <$> evalStringExprCore e)
     <|> (DataValue.ofName <$> evalNameExprCore e)
     -- skipping `DataValue.ofSyntax` for now
-    <|> failure
+    <|> throwUnsupportedExpr
 
 def evalDataValueExpr : Expr → MetaM DataValue :=
-  withWHNF evalDataValueExprCore
+  withWHNF (errMsg := m!"\nof type `{.ofConstName ``DataValue}`.") evalDataValueExprCore
 
 instance : EvalExpr Bool where
   evalExpr := evalBoolExpr
@@ -299,5 +283,19 @@ instance {α : Type} [EvalExpr α] : EvalExpr (Array α) where
 instance : EvalExpr DataValue where
   evalExpr := evalDataValueExpr
   expectedType? := none -- don't want to elaborate with an expected type, since numeric literals will fail
+
+end EvalExpr
+
+section
+/-!
+### Additional instances for Meta types
+-/
+
+ensure_eval_term_expr_instances ApplyNewGoals
+ensure_eval_term_expr_instances EtaStructMode
+ensure_eval_term_expr_instances TransparencyMode
+ensure_eval_term_expr_instances Occurrences
+
+end
 
 end Lean.Elab.ConfigEval

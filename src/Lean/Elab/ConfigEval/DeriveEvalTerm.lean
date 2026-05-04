@@ -6,16 +6,19 @@ Authors: Kyle Miller
 module
 
 prelude
-public import Lean.Elab.ConfigEval.Types
-public import Lean.Elab.ConfigEval.Util
+public import Lean.Elab.ConfigEval.Basic
+import Lean.Elab.ConfigEval.Util
 public import Lean.Elab.Command
-public import Lean.Elab.DeclNameGen
+import Lean.Elab.DeclNameGen
+import all Lean.Elab.ErrorUtils
 
 public section
 
 namespace Lean.Elab.ConfigEval
 
 open Meta Term Command
+
+namespace EvalTerm
 
 /--
 Resolves `id`, making sure the result is in namespace `c`.
@@ -57,7 +60,8 @@ private def resolveDottedAtomicNameForConstNamespace (c : Name) (id : Ident) : T
 /--
 Wrapper to handle atomic identifiers and dotted identifiers.
 -/
-partial def EvalConfigItem.withSimpleEvalStx {α} (indTypeName : Name) (evalStxImpl : String → Array Term → TermElabM (α × Expr)) : Term → TermElabM (α × Expr)
+partial def withSimpleEvalStx {α} (indTypeName : Name) (evalStxImpl : String → TSyntaxArray `term → TermElabM (α × Expr)) : Term → TermElabM (α × Expr) :=
+  evalTermWithInfo (Expr.const indTypeName []) fun
   | `($f:ident) => do
     let ctorName ← resolveAtomicNameForConstNamespace indTypeName f
     evalStxImpl ctorName #[]
@@ -70,20 +74,31 @@ partial def EvalConfigItem.withSimpleEvalStx {α} (indTypeName : Name) (evalStxI
   | `(.$f:ident $args*) => do
     let ctorName ← resolveDottedAtomicNameForConstNamespace indTypeName f
     evalStxImpl ctorName args
-  | `(($stx)) => withSimpleEvalStx indTypeName evalStxImpl stx
   | _ => throwUnsupportedSyntax
+
+def checkExpectedNumberOfArguments (ctor : Name) (expected : Nat) (args : TSyntaxArray `term) : TermElabM Unit := do
+  unless expected == args.size do
+    throwError "unexpected number of arguments, `{.ofConstName ctor}` expects {expected} argument{expected.plural}, \
+      but {args.size} {args.size.plural "was" "were"} provided"
+
+end EvalTerm
+
+open EvalTerm
 
 /--
 Ensures an `EvalTerm` instance exists for the given type by deriving one if necessary.
-Derivation can handle `EvalTerm` instance for nonrecursive inductive types without universes, parameters, or indices.
-Creates syntax matchers for only those constructors with zero fields (the common case for tactics).
+Derivation can handle `EvalTerm` instance for inductive types without universes, parameters, or indices,
+and which only does simple recursion.
 -/
 def ensureEvalTerm
     (vis? : Option (TSyntax `Lean.Parser.Command.visibility))
     (kind : TSyntax `Lean.Parser.Term.attrKind)
     (cmdRef typeRef : Syntax) (type : Expr) : CommandElabM Unit := do
-  withClassInstDeps ``EvalTerm type extraDeps fun type => withRef cmdRef do
-    let ival ← getIndType type
+  withClassInstDeps ``EvalTerm type extraDeps fun type' => withRef cmdRef do
+    let ival ← getIndType type'
+    let indTypeIdent := mkCIdentFrom typeRef ival.name
+    let instName ← NameGen.mkBaseNameWithSuffix' "inst" #[] <| ← ``(EvalTerm $indTypeIdent)
+    let evalTermDef := mkIdent (instName ++ Name.mkSimple "evalTerm")
     let mut stxCases : Array (String × Term) := #[]
     for ctorName in ival.ctors do
       if useCtor ival ctorName then
@@ -92,20 +107,21 @@ def ensureEvalTerm
         let vs ← xs.mapM fun _ => mkIdent <$> Core.mkFreshUserName `v
         let es ← xs.mapM fun _ => mkIdent <$> Core.mkFreshUserName `e
         let expr ← `(Expr.const $(quote ctorName) [])
-        let expr ← es.foldlM (init := expr) fun expr e =>
-          `(Expr.app $expr $e)
+        let expr ← es.foldlM (init := expr) fun expr e => `(Expr.app $expr $e)
         let val ← `(pure ($(mkCIdent ctorName) $vs*, $expr))
-        let val ← ((Array.range xs.size).zip (es.zip vs)).foldrM (init := val) fun (idx, e, v) val =>
-          `(EvalTerm.evalTerm args[$(quote idx)]! >>= fun ($e, $v) => $val)
+        let recArgs ← xs.mapM fun x => return (← instantiateMVars (← inferType x)) == type'
+        let val ← (((Array.range xs.size).zip recArgs).zip (vs.zip es)).foldrM (init := val) fun ((idx, recArg), v, e) val =>
+          if recArg then
+            `($evalTermDef args[$(quote idx)]! >>= fun ($v, $e) => $val)
+          else
+            `(EvalTerm.evalTerm args[$(quote idx)]! >>= fun ($v, $e) => $val)
+        let val ← `(checkExpectedNumberOfArguments $(quote ctorName) $(quote xs.size) args *> $val)
         stxCases := stxCases.push (ctorName', val)
-    let indTypeIdent := mkIdentFrom typeRef ival.name
-    let instName ← NameGen.mkBaseNameWithSuffix' "inst" #[] <| ← ``(EvalConfigItem $indTypeIdent)
-    let evalStxDef := mkIdent (instName ++ Name.mkSimple "auxEvalStx")
-    let stxMatcher ← makeStringMatcher (← `(ident| stx)) stxCases (← `(throwUnsupportedSyntax))
-    `($[$vis?:visibility]? def $evalStxDef : Term → TermElabM ($indTypeIdent × Expr) :=
-        EvalConfigItem.withSimpleEvalStx $(quote ival.name) fun stx args => $stxMatcher
-      $[$vis?:visibility]? $kind:attrKind instance%$cmdRef $(mkIdentFrom cmdRef instName (canonical := true)):ident : EvalTerm $indTypeIdent where
-        evalTerm := $evalStxDef
+    let stxMatcher ← makeStringMatcher (← `(ident| ctor)) stxCases (← `(throwUnsupportedSyntax))
+    `($[$vis?:visibility]? partial def $evalTermDef : Term → TermElabM ($indTypeIdent × Expr) :=
+        withSimpleEvalStx $(quote ival.name) fun ctor args => $stxMatcher
+      $[$vis?:visibility]? $kind:attrKind instance%$cmdRef $(mkIdentFrom cmdRef instName (canonical := type == type')):ident : EvalTerm $indTypeIdent where
+        evalTerm := $evalTermDef
         typeExpr := Expr.const $(quote ival.name) [])
 where
   getIndType (type : Expr) : TermElabM InductiveVal := withRef typeRef do
@@ -114,9 +130,9 @@ where
     let .inductInfo ival ← getConstInfo indTypeName
       | throwError "`{.ofConstName indTypeName}` is not an inductive type"
     unless ival.levelParams.isEmpty && ival.numParams == 0 && ival.numIndices == 0 do
-      throwError "`{.ofConstName indTypeName}` must not have universe parameters, parameters, or indices"
-    if ival.isRec then
-      throwError "`{.ofConstName indTypeName}` must not be recursive"
+      throwError "`{.ofConstName indTypeName}` has universe parameters, parameters, or indices"
+    if ival.isNested || ival.isReflexive then
+      throwError "`{.ofConstName indTypeName}` has unsupported recursion"
     return ival
   useCtor (ival : InductiveVal) (ctorName : Name) : Bool :=
     ctorName.isStr && !ctorName.hasMacroScopes && !isPrivateName ctorName && ctorName.getPrefix == ival.name
@@ -132,6 +148,8 @@ where
           let xTy ← inferType x
           if xTy.hasMVar then
             throwError "Field `{x}` of `{.ofConstName ctorName}` is dependent"
+          if xTy == type then
+            continue
           deps := deps.push xTy
     return deps
 

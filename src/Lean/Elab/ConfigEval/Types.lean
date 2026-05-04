@@ -45,6 +45,11 @@ class EvalTerm (α : Type) where
 
 export EvalTerm (evalTerm)
 
+builtin_initialize unsupportedExprExceptionId : InternalExceptionId ← registerInternalExceptionId `ConfigEval.unsupportedExpr
+
+def throwUnsupportedExpr [MonadExceptOf Exception m] : m α :=
+  throw $ Exception.internal unsupportedExprExceptionId
+
 /--
 Class for evaluation of an expression to a runtime value.
 -/
@@ -52,7 +57,7 @@ class EvalExpr (α : Type) where
   /--
   Evaluation of an elaborated expression.
   If the expression is not recognizable, then the instance may throw an exception.
-  They can throw `throwUnsupportedSyntax` to signal that a generic error should be reported.
+  They can throw `ConfigEval.throwUnsupportedExpr` to signal that a generic error should be reported.
 
   The provided expression does not contain expression metavariables or `sorry`, but
   level metavariables may be present. We assume these do not affect evaluation.

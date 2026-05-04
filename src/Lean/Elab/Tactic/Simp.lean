@@ -11,43 +11,50 @@ public import Lean.Meta.Tactic.Simp.LoopProtection
 public import Lean.Elab.BuiltinNotation
 public import Lean.Elab.Tactic.Location
 import Lean.Meta.Check
-import Lean.Elab.Tactic.Config
+import Lean.Elab.ConfigEval
 
 public section
 
-namespace Lean.Elab.Tactic
-open Meta
-open TSyntax.Compat
+namespace Lean
 
-structure ConfigWithOptions extends config : Meta.Simp.Config where
+structure Meta.Simp.ConfigWithOptions extends config : Meta.Simp.Config where
   /-- User options. Registering a global option `tactic.simp.user.myOption` enables the tactic
   configurations `(user.myOption := ...)` and `+user.myOption`. -/
   userConfig : Options := {}
 
-declare_config_elab elabSimpConfigAux ConfigWithOptions (evalConfig : Term → TermElabM Meta.Simp.Config) where
+namespace Elab.Tactic
+open Meta
+open TSyntax.Compat
+
+section
+open ConfigEval
+
+declare_config_elab elabSimpConfigAux Simp.ConfigWithOptions (evalConfig : Term → TermElabM Meta.Simp.Config) where
   except userConfig
   option config := fun cfg item => do
     let config ← evalConfig item.value
     return { cfg with config }
+  option user := fun _ _ => do
+    throwError "User options are of the form `user.optionName`"
   option user* := fun cfg item => do
-    if item.isAtomic then
-      throwErrorAt item.option "User options are of the form `user.optionName`"
-    let userConfig ← EvalSetConfigItem.evalSetOptions `tactic.simp.user cfg.userConfig item.shift
+    let userConfig ← EvalConfigItem.evalSetOptions `tactic.simp.user cfg.userConfig item
     return { cfg with userConfig }
 
 local macro "make_elab_simp_config" fn:ident struct:ident : command =>
-  `(private local derive_meta_eval_config_item_instance $struct in
+  `(private local ensure_eval_expr_instance $struct in
     def $fn (optConfig : Syntax)
         (initConfig : $struct := {}) (initUserConfig : Options := {}) :
-        TacticM ConfigWithOptions := do
+        TacticM Simp.ConfigWithOptions := do
       elabSimpConfigAux optConfig { initConfig with userConfig := initUserConfig }
         (evalConfig := fun c => do
-          let config : $struct ← EvalConfigItem.eval "config" c
+          let config : $struct ← evalExprWithElab c
           return { config with }))
 
-make_elab_simp_config elabSimpConfigCore Meta.Simp.Config
-make_elab_simp_config elabSimpConfigCtxCore Meta.Simp.ConfigCtx
-make_elab_simp_config elabDSimpConfigCore Meta.DSimp.Config
+make_elab_simp_config elabSimpConfigCore Simp.Config
+make_elab_simp_config elabSimpConfigCtxCore Simp.ConfigCtx
+make_elab_simp_config elabDSimpConfigCore DSimp.Config
+
+end
 
 register_builtin_option tactic.simp.user.exampleBool : Bool := {
   defValue := false
@@ -134,7 +141,7 @@ private def mkDischargeWrapper (optDischargeSyntax : Syntax) : TacticM Simp.Disc
 /-
   `optConfig` is `Lean.Parser.Tactic.optConfig`
 -/
-def elabSimpConfig (optConfig : Syntax) (kind : SimpKind) : TacticM ConfigWithOptions := do
+def elabSimpConfig (optConfig : Syntax) (kind : SimpKind) : TacticM Simp.ConfigWithOptions := do
   match kind with
     | .simp    => elabSimpConfigCore optConfig
     | .simpAll => elabSimpConfigCtxCore optConfig { ({} : Meta.Simp.ConfigCtx) with }

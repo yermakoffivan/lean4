@@ -67,7 +67,7 @@ error: unsolved goals
 #guard_msgs in example : True := by my_tactic +w
 
 /--
-error: Field `x` of structure `MyTacticConfig` has no sub-options.
+error: Invalid configuration option `x.a` for `MyTacticConfig`
 ---
 info: config is { x := 0, y := false }
 ---
@@ -117,6 +117,22 @@ example : True := by
   trivial
 
 /-!
+Evaluation failure
+-/
+opaque fooNat : Nat := 22
+/--
+error: Could not evaluate the expression:
+  fooNat
+of type `Nat`.
+---
+info: config is { x := 0, y := true }
+-/
+#guard_msgs in
+example : True := by
+  my_tactic (x := fooNat) +y
+  trivial
+
+/-!
 Tactic configurations with hierarchical fields
 -/
 
@@ -128,7 +144,6 @@ structure B extends A
 structure C where
   b : B := {}
   deriving Repr
-derive_eval_set_config_item_instance B
 declare_config_elab elabC C
 
 elab "ctac" cfg:Parser.Tactic.optConfig : tactic => do
@@ -142,7 +157,7 @@ example : True := by
   trivial
 
 /--
-error: Invalid configuration option `toA.x` for `B`
+error: Invalid configuration option `b.toA.x` for `C`
 ---
 info: config is { b := { toA := { x := true } } }
 -/

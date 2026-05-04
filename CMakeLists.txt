@@ -123,7 +123,9 @@ if(USE_MIMALLOC)
   FetchContent_Declare(
     mimalloc
     GIT_REPOSITORY https://github.com/microsoft/mimalloc
-    GIT_TAG v3.3.2
+    GIT_BRANCH dev3
+    # 3.3.2 + trivial header fix (only relevant for building Lean with lean-llvm)
+    GIT_TAG 64b0a02690224b66eaa24a89e48c63b715ce27cb
     # Unnecessarily deep directory structure, but it saves us from a complicated
     # stage0 update for now. If we ever update the other dependencies like
     # cadical, it might be worth reorganizing the directory structure.

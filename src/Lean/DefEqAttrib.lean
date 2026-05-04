@@ -239,10 +239,7 @@ builtin_initialize inferDefEqAttribute : TagAttribute ←
     (validate := fun declName => do
       MetaM.run' <| inferDefEqAttr declName
       let env ← getEnv
-      let attrName :=
-        if defeqAttr.hasTag env declName then "@[defeq]"
-        else if backwardDefeqAttr.hasTag env declName then "@[backward_defeq]"
-        else "(neither — not a rfl proof or validation failed)"
-      logInfo m!"`:= rfl` theorem `{declName}`: inferred {attrName}")
+      if defeqAttr.hasTag env declName then
+        logInfo m!"`:= rfl` theorem `{declName}`: inferred @[defeq]")
     (applicationTime := .afterTypeChecking)
     (asyncMode := .async .mainEnv)

@@ -18,7 +18,8 @@ public def preprocessType (type : Expr) : MetaM Expr := do
   let type ← Sym.unfoldReducible type
   let type ← Core.betaReduce type
   let type ← zetaReduce type
-  etaReduceAll type
+  let type ← etaReduceAll type
+  foldProjs type
 
 /--
 Analyzes whether the given free variables (aka arguments) are proofs or instances.

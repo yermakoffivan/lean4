@@ -6,7 +6,7 @@ Authors: Kyle Miller
 module
 
 prelude
-public import Lean.Elab.Config.Types
+public import Lean.Elab.ConfigEval.Types
 public import Lean.Elab.SyntheticMVars
 public import Lean.Meta.CollectMVars
 
@@ -16,7 +16,7 @@ public import Lean.Meta.CollectMVars
 
 public section
 
-namespace Lean.Elab.Config
+namespace Lean.Elab.ConfigEval
 
 open Meta Term
 
@@ -43,9 +43,9 @@ def evalTermOrExpr {α : Type} [EvalTerm α] [EvalExpr α] (stx : Term) : TermEl
         catchInternalId unsupportedSyntaxExceptionId
           (evalExpr e)
           (fun _ => do
-            let lmvars := collectLevelMVars {} e
-            if (← Term.logUnassignedLevelMVarsUsingErrorInfos lmvars.result) then throwAbortTerm
+            -- let lmvars := collectLevelMVars {} e
+            -- if (← Term.logUnassignedLevelMVarsUsingErrorInfos lmvars.result) then throwAbortTerm
             let extra := if let some ty := ty? then m!" of type `{ty}`" else m!""
             throwError "The configuration option evaluator could not evaluate the expression{extra}:{indentExpr e}"))
 
-end Lean.Elab.Config
+end Lean.Elab.ConfigEval

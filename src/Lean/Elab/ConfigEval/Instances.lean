@@ -6,7 +6,7 @@ Authors: Kyle Miller
 module
 
 prelude
-public import Lean.Elab.Config.Types
+public import Lean.Elab.ConfigEval.Types
 
 /-!
 # Evaluator instances for built-in types
@@ -18,7 +18,7 @@ or they might make special assumptions on the type (e.g. for `Bool`, we assume t
 
 public section
 
-namespace Lean.Elab.Config
+namespace Lean.Elab.ConfigEval
 
 open Meta Term
 
@@ -26,14 +26,20 @@ open Meta Term
 ## `EvalTerm` instances
 -/
 
+partial def stripParens : Term → Term
+  | `(($t)) => stripParens t
+  | t => t
+
 @[inline] def evalTermWithInfo {α : Type}
     (expectedType? : Option Expr) (f : Term → TermElabM (α × Expr)) (stx : Term) :
     TermElabM (α × Expr) := do
-  let (v, e) ← f stx
+  let (v, e) ← f (stripParens stx)
   if (← getInfoState).enabled then
     addTermInfo' stx e (expectedType? := expectedType?)
   return (v, e)
 
+/-- Like `evalTermWithInfo`, but uses an existing `ToExpr` instance
+for `expectedType?` and for constructing the expression. -/
 @[inline] def evalTermWithInfo' {α : Type} [ToExpr α]
     (f : Term → TermElabM α) :
     Term → TermElabM (α × Expr) :=
@@ -115,7 +121,7 @@ def evalDataValueStx (stx : Term) : TermElabM (DataValue × Expr) :=
   <|> (mk ``DataValue.ofInt DataValue.ofInt <$> evalIntStx stx)
   <|> (mk ``DataValue.ofString DataValue.ofString <$> evalStringStx stx)
   <|> (mk ``DataValue.ofName DataValue.ofName <$> evalNameStx stx)
-  -- skipping `DataValue.ofSyntax`
+  -- skipping `DataValue.ofSyntax` for now
   <|> throwUnsupportedSyntax
 
 instance : EvalTerm Bool where
@@ -160,7 +166,7 @@ instance : EvalTerm DataValue where
 
 /--
 Evaluates `f e`, and if that fails, evaluates `f (← whnf e)`.
-If `f e` throws `throwUnsupportedSyntax`, then aborts.
+However, if `f e` throws `throwUnsupportedSyntax`, then aborts without trying `whnf`.
 Throws `throwUnsupportedSyntax` if neither succeeds.
 -/
 def withWHNF {α : Type} (f : Expr → MetaM α) (e : Expr) : MetaM α := do
@@ -224,7 +230,7 @@ partial def evalListExpr {α : Type} (ev : Expr → MetaM α) (e : Expr) (didWHN
   | List.nil _ => return []
   | List.cons _ x xs =>
     let v ← ev x
-    let vs ← evalListExpr ev xs
+    let vs ← evalListExpr ev xs (didWHNF := false)
     return v :: vs
   | _ =>
     if didWHNF then
@@ -252,7 +258,7 @@ def evalDataValueExprCore (e : Expr) : MetaM DataValue :=
     <|> (DataValue.ofInt <$> evalIntExprCore e)
     <|> (DataValue.ofString <$> evalStringExprCore e)
     <|> (DataValue.ofName <$> evalNameExprCore e)
-    -- skipping `DataValue.ofSyntax`
+    -- skipping `DataValue.ofSyntax` for now
     <|> failure
 
 def evalDataValueExpr : Expr → MetaM DataValue :=
@@ -294,4 +300,4 @@ instance : EvalExpr DataValue where
   evalExpr := evalDataValueExpr
   expectedType? := none -- don't want to elaborate with an expected type, since numeric literals will fail
 
-end Lean.Elab.Config
+end Lean.Elab.ConfigEval

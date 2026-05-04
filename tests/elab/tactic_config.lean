@@ -133,7 +133,8 @@ example : True := by
   trivial
 
 /-!
-Tactic configurations with hierarchical fields
+Tactic configurations with hierarchical fields.
+The `toA` parent projections are not made available for use.
 -/
 
 structure A where
@@ -338,6 +339,10 @@ info: exampleBool: false exampleNat: 0 exampleInt: -22 exampleString: ""
 info: exampleBool: false exampleNat: 0 exampleInt: 0 exampleString: "hi"
 ---
 info: exampleBool: true exampleNat: 22 exampleInt: -22 exampleString: "hi"
+---
+error: User options are of the form `user.optionName`
+---
+info: exampleBool: false exampleNat: 0 exampleInt: 0 exampleString: ""
 -/
 #guard_msgs in
 example (h : False) : False := by
@@ -347,4 +352,5 @@ example (h : False) : False := by
   simp -failIfUnchanged (user.exampleInt := -22)
   simp -failIfUnchanged (user.exampleString := "hi")
   simp -failIfUnchanged +user.exampleBool  (user.exampleNat := 22) (user.exampleInt := -22) (user.exampleString := "hi")
+  simp -failIfUnchanged +user
   exact h

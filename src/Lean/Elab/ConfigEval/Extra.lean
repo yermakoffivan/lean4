@@ -19,7 +19,7 @@ Uses global option declarations with the prefix `optionPrefix` when setting `Opt
 -/
 def EvalConfigItem.evalSetOptions (optionPrefix : Name) (opts : Options) (item : ConfigItem) : TermElabM Options := do
   let optName := optionPrefix ++ item.optionName
-  addCompletionInfo <| CompletionInfo.option (mkIdentFrom item.option optName (canonical := true))
+  addCompletionInfo <| CompletionInfo.option (mkNullNode #[item.prevOptionComps.back?.getD ⟨Syntax.missing⟩, item.option]) optionPrefix
   let decl ← IO.toEIO (fun (ex : IO.Error) => Exception.error item.option ex.toString) (getOptionDecl optName)
   pushInfoLeaf <| .ofOptionInfo { stx := item.option, optionName := optName, declName := decl.declName }
   let set (α : Type) [EvalTerm α] [EvalExpr α] [KVMap.Value α] : TermElabM Options := do

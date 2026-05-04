@@ -86,6 +86,8 @@ structure ConfigItem where
   value : Term
   /-- Whether this was using `+`/`-`, to be able to give a better error message on type mismatch. -/
   bool : Bool := false
+  /-- Previous root components of `option`, collecting results from `ConfigItem.shift`. -/
+  prevOptionComps : Array Ident := #[]
 
 /--
 An evaluator for updating a configuration object using configuration items.

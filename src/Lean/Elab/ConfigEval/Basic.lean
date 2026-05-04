@@ -101,34 +101,37 @@ def ConfigItem.isAtomic (item : ConfigItem) : Bool := item.optionName.isStr
 
 def ConfigItem.isAnonymous (item : ConfigItem) : Bool := item.optionName.isAnonymous
 
-/-- Given a non-atomic `Ident` `a.b.c`, returns idents `a` and `b.c`.
-See `Lean.Syntax.identComponents`. -/
-private def splitIdentRoot (stx : Syntax) : Syntax × Syntax :=
-  match stx with
+/-- Given a non-atomic `Ident` `a.b.c`, returns idents `a` and `b.c`, inheriting
+original source info, if present. See `Lean.Syntax.identComponents`. -/
+private def splitIdentRoot (stx : Ident) : Ident × Ident :=
+  match stx.raw with
   | .ident si rawStr val _ => Id.run do
     let val := val.eraseMacroScopes
     if val.isAtomic then
       return (stx, mkIdent .anonymous)
+    let nameComp₀ := val.getRoot
+    let nameComp₁ := val.replacePrefix nameComp₀ Name.anonymous
     -- With original info, we assume that `rawStr` represents `val`.
-    let nameComp₀ :: nameComps := val.components | unreachable!
-    let nameComp₁ := nameComps.foldl Name.appendCore Name.anonymous
     if let SourceInfo.original lead pos trail endPos := si then
       let rawComps := Syntax.splitNameLit rawStr
-      if !rawComps.isEmpty && nameComps.length + 1 == rawComps.length then
+      if rawComps.length ≥ 2 && val.getNumParts == rawComps.length then
         let rawComps₀ := rawComps[0]!
         let rawComps₁ := { rawStr with startPos := rawComps[1]!.startPos }
         let info₀ : SourceInfo := .original lead pos "".toRawSubstring rawComps₀.stopPos
         let info₁ : SourceInfo := .original "".toRawSubstring rawComps[1]!.startPos trail endPos
-        return (.ident info₀ rawComps₀ nameComp₀ [], .ident info₁ rawComps₁ nameComp₁ [])
+        return (⟨.ident info₀ rawComps₀ nameComp₀ []⟩, ⟨.ident info₁ rawComps₁ nameComp₁ []⟩)
     -- if re-parsing failed, or non-original info: just give them all the same span
-    return (.ident si nameComp₀.toString.toRawSubstring nameComp₀ [],
-            .ident si nameComp₁.toString.toRawSubstring nameComp₁ [])
+    return (⟨.ident si nameComp₀.toString.toRawSubstring nameComp₀ []⟩,
+            ⟨.ident si nameComp₁.toString.toRawSubstring nameComp₁ []⟩)
   | _ => (stx, mkIdent .anonymous)
 
 /-- Drops the first component of the `optionName`, returning it and the new config item. -/
 def ConfigItem.shift (item : ConfigItem) : Ident × ConfigItem :=
   let (root, option') := splitIdentRoot item.option
-  (⟨root⟩ , { item with option := ⟨option'⟩, optionName := option'.getId })
+  (root,
+    { item with
+      option := option', optionName := option'.getId,
+      prevOptionComps := item.prevOptionComps.push root })
 
 def ConfigItem.checkNotBool (item : ConfigItem) : TermElabM Unit := do
   if item.bool then

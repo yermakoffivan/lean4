@@ -34,9 +34,13 @@ declare_config_elab elabSimpConfigAux Simp.ConfigWithOptions (evalConfig : Term 
   option config := fun cfg item => do
     let config ← evalConfig item.value
     return { cfg with config }
-  option user := fun _ _ => do
+  option user := fun _ item => do
+    if let some ref := item.prevOptionComps.back? then
+      addConstInfo ref ``Simp.ConfigWithOptions.userConfig
     throwError "User options are of the form `user.optionName`"
   option user* := fun cfg item => do
+    if let some ref := item.prevOptionComps.back? then
+      addConstInfo ref ``Simp.ConfigWithOptions.userConfig
     let userConfig ← EvalConfigItem.evalSetOptions `tactic.simp.user cfg.userConfig item
     return { cfg with userConfig }
 

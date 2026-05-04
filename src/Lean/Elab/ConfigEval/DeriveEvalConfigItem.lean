@@ -188,8 +188,10 @@ where
         withRef itemRoot $body
       )
     if let some h := nonexact? then
-      body ← `(have $doNonexact (_ : Unit) := if item.isAnonymous then $onFail else withRef item.option $h.body
-               $body)
+      let mut hbody ← `(withRef item.option $h.body)
+      if exact?.isNone then
+        hbody ← `(if item.isAnonymous then $onFail else $hbody)
+      body ← `(have $doNonexact (_ : Unit) := $hbody; $body)
     if let some h := exact? then
       let mut h' := h.body
       body ← `(if item.isAnonymous then $h' else $body)

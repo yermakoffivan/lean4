@@ -24,13 +24,21 @@ register_builtin_option backward.defeqAttrib.useBackward : Bool := {
     pre-stricter-inference behavior for a specific proof."
 }
 
-register_builtin_option debug.inferDefEqOnRfl : Bool := {
+register_builtin_option backward.inferDefEqOnRfl : Bool := {
   defValue := false
   descr    := "Adaption helper. When true, theorems written `:= rfl` (and that do not \
     already carry a `[defeq]` or `[backward_defeq]` attribute) are inferred to be \
     `[defeq]` (when the equation holds at instance transparency) or `[backward_defeq]` \
-    (otherwise) and an info message is emitted reporting which attribute was inferred. \
-    Use this to identify which attribute to add manually to `:= rfl` theorems."
+    (otherwise). Use this option to opt out of the post-migration default of tagging \
+    `:= rfl` theorems with `[backward_defeq]` only, and instead tag with `[defeq]` \
+    whenever the strict check passes. Combine with `backward.inferDefEqOnRfl.trace` \
+    to log which attribute was inferred."
+}
+
+register_builtin_option backward.inferDefEqOnRfl.trace : Bool := {
+  defValue := false
+  descr    := "When true (and `backward.inferDefEqOnRfl` is also true), emit an info \
+    message for each `:= rfl` theorem inferred to be `[defeq]`."
 }
 
 /--
@@ -223,11 +231,11 @@ def inferDefEqAttr (declName : Name) : MetaM Unit := do
     backwardDefeqAttr.setTag declName
 
 /--
-Diagnostic attribute used by `MutualDef` when `debug.inferDefEqOnRfl` is set. It runs
+Diagnostic attribute used by `MutualDef` when `backward.inferDefEqOnRfl` is set. It runs
 `inferDefEqAttr` (which tags the theorem with `[defeq]` when it holds at instance
 transparency, and with `[backward_defeq]` when it merely holds at default/all
-transparency) and emits an info message reporting which attribute was inferred so
-the user can add it explicitly.
+transparency). When `backward.inferDefEqOnRfl.trace` is also set, emits an info message
+for each `:= rfl` theorem inferred to be `[defeq]`.
 
 This attribute is internal: users should not apply it directly.
 -/
@@ -235,11 +243,12 @@ This attribute is internal: users should not apply it directly.
 builtin_initialize inferDefEqAttribute : TagAttribute ←
   registerTagAttribute `infer_defeq
     "internal diagnostic attribute used to infer `[defeq]` or `[backward_defeq]` for \
-      `:= rfl` theorems and report which attribute was inferred"
+      `:= rfl` theorems"
     (validate := fun declName => do
       MetaM.run' <| inferDefEqAttr declName
-      let env ← getEnv
-      if defeqAttr.hasTag env declName then
-        logInfo m!"`:= rfl` theorem `{declName}`: inferred @[defeq]")
+      if backward.inferDefEqOnRfl.trace.get (← getOptions) then
+        let env ← getEnv
+        if defeqAttr.hasTag env declName then
+          logInfo m!"`:= rfl` theorem `{declName}`: inferred @[defeq]")
     (applicationTime := .afterTypeChecking)
     (asyncMode := .async .mainEnv)

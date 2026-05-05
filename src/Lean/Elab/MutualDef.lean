@@ -1528,14 +1528,15 @@ def elabMutualDef (ds : Array Syntax) : CommandElabM Unit := do
     -- the source theorem having to be touched. Once the backward escape hatch
     -- is no longer in use, the special handling of `:= rfl` here can be dropped.
     --
-    -- When `debug.inferDefEqOnRfl` is set, the diagnostic `[infer_defeq]`
+    -- When `backward.inferDefEqOnRfl` is set, the diagnostic `[infer_defeq]`
     -- attribute is used instead, which calls `inferDefEqAttr` to choose between
     -- `[defeq]` and `[backward_defeq]` based on whether the equation holds at
-    -- instance transparency, and emits an info message reporting which.
+    -- instance transparency. With `backward.inferDefEqOnRfl.trace` also set,
+    -- it logs an info message when `[defeq]` is inferred.
     if view.kind != .example && view.value matches `(declVal| := rfl) &&
         !view.modifiers.attrs.any (fun a => a.name == `defeq || a.name == `backward_defeq) then
       let attrName :=
-        if debug.inferDefEqOnRfl.get opts then `infer_defeq else `backward_defeq
+        if backward.inferDefEqOnRfl.get opts then `infer_defeq else `backward_defeq
       view := { view with modifiers := view.modifiers.addAttr { name := attrName } }
     let fullHeaderRef := mkNullNode #[d[0], view.headerRef]
     if let some snap := snap? then

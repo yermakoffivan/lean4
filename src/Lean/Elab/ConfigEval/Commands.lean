@@ -167,7 +167,7 @@ See `ConfigEval.defEvalConfigItemCmd` for further documentation.
 
 See also `declare_term_config_elab`, `declare_config_elab`, and `declare_command_config_elab`.
 -/
-macro (name := elabDeclareCoreConfigElab) doc?:(docComment)?
+macro (name := elabDeclareCoreConfigElab) doc?:(docComment)? vis?:(visibility)?
     tk:"declare_core_config_elab" elabName:ident type:ident binders:(bracketedBinder)*
     entries?:(configEntries)? : command => do
   let fnName := mkIdentFrom elabName (elabName.getId ++ `evalConfigItem)
@@ -180,7 +180,7 @@ macro (name := elabDeclareCoreConfigElab) doc?:(docComment)?
     `(section
       private local def_eval_config_item $fnName $[$binders]* for $type $[$entries?:configEntries]?
       $[$doc?:docComment]?
-      def $elabName $[$binders]* ($cfg : Lean.Syntax) ($init : $type := {}) ($logExceptions : Bool := false) : CoreM $type := do
+      $[$vis?:visibility]? def $elabName $[$binders]* ($cfg : Lean.Syntax) ($init : $type := {}) ($logExceptions : Bool := false) : CoreM $type := do
         let eval : EvalConfigItem $type := @$fnName $binderArgs*
         eval.setConfig' $init $cfg (logExceptions := $logExceptions)
       end)
@@ -210,7 +210,7 @@ See `ConfigEval.defEvalConfigItemCmd` for further documentation.
 
 See also `declare_core_config_elab`, `declare_config_elab`, and `declare_command_config_elab`.
 -/
-macro (name := elabDeclareTermConfigElab) doc?:(docComment)?
+macro (name := elabDeclareTermConfigElab) doc?:(docComment)? vis?:(visibility)?
     tk:"declare_term_config_elab" elabName:ident type:ident binders:(bracketedBinder)*
     entries?:(configEntries)? : command => do
   let fnName := mkIdentFrom elabName (elabName.getId ++ `evalConfigItem)
@@ -222,7 +222,7 @@ macro (name := elabDeclareTermConfigElab) doc?:(docComment)?
     `(section
       private local def_eval_config_item $fnName $[$binders]* for $type $[$entries?:configEntries]?
       $[$doc?:docComment]?
-      def $elabName $[$binders]* ($cfg : Lean.Syntax) ($init : $type := {}) : TermElabM $type := do
+      $[$vis?:visibility]? def $elabName $[$binders]* ($cfg : Lean.Syntax) ($init : $type := {}) : TermElabM $type := do
         let eval : EvalConfigItem $type := @$fnName $binderArgs*
         eval.setConfig' $init $cfg (logExceptions := (← read).errToSorry)
       end)
@@ -252,7 +252,7 @@ See `ConfigEval.defEvalConfigItemCmd` for further documentation.
 
 See also `declare_core_config_elab`, `declare_term_config_elab`, and `declare_command_config_elab`.
 -/
-macro (name := elabDeclareTacticConfig) doc?:(docComment)?
+macro (name := elabDeclareTacticConfig) doc?:(docComment)? vis?:(visibility)?
     tk:"declare_config_elab" elabName:ident type:ident binders:(bracketedBinder)*
     entries?:(configEntries)? : command => do
   let fnName := mkIdentFrom elabName (elabName.getId ++ `evalConfigItem)
@@ -264,7 +264,7 @@ macro (name := elabDeclareTacticConfig) doc?:(docComment)?
     `(section
       private local def_eval_config_item $fnName $[$binders]* for $type $[$entries?:configEntries]?
       $[$doc?:docComment]?
-      def $elabName $[$binders]* ($cfg : Lean.Syntax) ($init : $type := {}) : $(mkCIdent ``Tactic.TacticM) $type := do
+      $[$vis?:visibility]? def $elabName $[$binders]* ($cfg : Lean.Syntax) ($init : $type := {}) : $(mkCIdent ``Tactic.TacticM) $type := do
         let recover := (← read).recover
         let eval : EvalConfigItem $type := @$fnName $binderArgs*
         Tactic.runTermElab <| eval.setConfig' $init $cfg (logExceptions := recover)
@@ -292,7 +292,8 @@ See `ConfigEval.defEvalConfigItemCmd` for further documentation.
 
 See also `declare_core_config_elab`, `declare_term_config_elab`, and `declare_config_elab`.
 -/
-macro (name := elabDeclareCommandConfig) doc?:(docComment)? tk:"declare_command_config_elab" elabName:ident type:ident binders:(bracketedBinder)*
+macro (name := elabDeclareCommandConfig) doc?:(docComment)? vis?:(visibility)?
+    tk:"declare_command_config_elab" elabName:ident type:ident binders:(bracketedBinder)*
     entries?:(configEntries)? : command => do
   let fnName := mkIdentFrom elabName (elabName.getId ++ `evalConfigItem)
   let binderArgs ← binders.foldlM (init := #[]) fun args binder => do
@@ -304,7 +305,7 @@ macro (name := elabDeclareCommandConfig) doc?:(docComment)? tk:"declare_command_
     `(section
       private local def_eval_config_item $fnName $[$binders]* for $type $[$entries?:configEntries]?
       $[$doc?:docComment]?
-      def $elabName $[$binders]* ($cfg : Lean.Syntax) ($init : $type := {}) ($logExceptions : Bool := true) : $(mkCIdent ``CommandElabM) $type := do
+      $[$vis?:visibility]? def $elabName $[$binders]* ($cfg : Lean.Syntax) ($init : $type := {}) ($logExceptions : Bool := true) : $(mkCIdent ``CommandElabM) $type := do
         let eval : EvalConfigItem $type := @$fnName $binderArgs*
         Command.liftTermElabM <| eval.setConfig' $init $cfg (logExceptions := $logExceptions)
       end)

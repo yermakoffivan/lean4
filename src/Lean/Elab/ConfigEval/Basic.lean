@@ -140,7 +140,8 @@ def ConfigItem.throwInvalidOption {α} (item : ConfigItem) (structName? : Option
 
 def ConfigItem.addConstInfoForPrevRoot (item : ConfigItem) (n : Name) : TermElabM Unit := do
   if (← getInfoState).enabled then
-    addConstInfo item.prevRoot n
+    if (← getEnv).contains n then -- in case we are in Lean prelude
+      addConstInfo item.prevRoot n
 
 mutual
 /--

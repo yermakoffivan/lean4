@@ -1819,3 +1819,9 @@ or these wrapped in null nodes (for example because the syntax is `(config)?`).
 -/
 def appendConfig (cfg cfg' : Syntax) : TSyntax ``optConfig :=
   mkOptConfig <| getConfigItems cfg ++ getConfigItems cfg'
+
+end Tactic
+
+end Parser
+
+end Lean

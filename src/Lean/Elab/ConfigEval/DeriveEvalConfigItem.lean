@@ -128,14 +128,15 @@ also makes use of the cached `item.bool?` value.
 def evalBoolItem (item : ConfigItem) : TermElabM Bool := do
   if let some b := item.bool? then
     if (← getInfoState).enabled then
-      addConstInfo item.value (if b then ``true else ``false)
+      addTermInfo' item.value (Expr.const (if b then ``true else ``false) [])
     return b
   else
     evalTermOrExprWithElab ⟨item.value⟩
 
 def addConstInfo' (ref : Syntax) (projFn : Name) : TermElabM Unit := do
   if (← getInfoState).enabled then
-    addConstInfo ref projFn
+    if (← getEnv).contains projFn then -- in case we are in Lean prelude
+      addConstInfo ref projFn
 
 /--
 Makes an `EvalConfigItem` for the structure.

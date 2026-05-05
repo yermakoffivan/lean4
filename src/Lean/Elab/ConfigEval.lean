@@ -28,4 +28,10 @@ system is designed to be flexible to support custom configurations.
 
 These support user-defined configuration syntaxes without declaring them to the system.
 See `Lean.Elab.ConfigEval.foldConfigM` for a specification of what is allowed.
+
+## Notes for core Lean
+
+Builtin elaborators should put their configuration types in, for example,
+`Init.MetaTypes` or `Init.Meta.Defs` so that hovers can function when
+nothing is imported.
 -/

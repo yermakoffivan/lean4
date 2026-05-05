@@ -78,7 +78,7 @@ def evalApplyAssumption : Tactic := fun stx =>
   | `(tactic| apply_assumption $cfg:optConfig $[only%$o]? $[$t:args]? $[$use:using_]?) => do
     let (star, add, remove) := parseArgs t
     let use := parseUsing use
-    let cfg ← elabConfig (mkOptionalNode cfg)
+    let cfg ← elabConfig cfg
     let cfg := { cfg with
       backtracking := false
       maxDepth := 1 }
@@ -96,7 +96,7 @@ def evalApplyRules : Tactic := fun stx =>
   | `(tactic| apply_rules $cfg:optConfig $[only%$o]? $[$t:args]? $[$use:using_]?) => do
     let (star, add, remove) := parseArgs t
     let use := parseUsing use
-    let cfg ← elabApplyRulesConfig (mkOptionalNode cfg)
+    let cfg ← elabApplyRulesConfig cfg
     let cfg := { cfg with backtracking := false }
     liftMetaTactic fun g => processSyntax cfg o.isSome star add remove use [g]
   | _ => throwUnsupportedSyntax

@@ -114,7 +114,7 @@ def deriveEvalExprUsingMetaEval
     (vis? : Option (TSyntax `Lean.Parser.Command.visibility))
     (kind : TSyntax `Lean.Parser.Term.attrKind)
     (cmdRef typeRef : Syntax) (type : Expr) : CommandElabM Unit := do
-  let cmd ← liftTermElabM do
+  let cmd ← liftTermElabM <| withFreshMacroScope do
     let Expr.const typeName [] := type
       | throwErrorAt typeRef "Expecting a constant with no universes, not `{type}`"
     let typeId := mkCIdentFrom typeRef typeName

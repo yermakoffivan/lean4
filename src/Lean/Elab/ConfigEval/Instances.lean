@@ -6,8 +6,7 @@ Authors: Kyle Miller
 module
 
 prelude
-public import Lean.Elab.ConfigEval.Commands
-public import Lean.Elab.DeprecatedSyntax  -- shake: skip (workaround for command elaborators failing to interpret `deprecatedSyntaxExt`, to be fixed #13108)
+public import Lean.Elab.ConfigEval.Basic
 
 /-!
 # Evaluator instances for built-in types
@@ -285,17 +284,5 @@ instance : EvalExpr DataValue where
   expectedType? := none -- don't want to elaborate with an expected type, since numeric literals will fail
 
 end EvalExpr
-
-section
-/-!
-### Additional instances for Meta types
--/
-
-ensure_eval_term_expr_instances ApplyNewGoals
-ensure_eval_term_expr_instances EtaStructMode
-ensure_eval_term_expr_instances TransparencyMode
-ensure_eval_term_expr_instances Occurrences
-
-end
 
 end Lean.Elab.ConfigEval

@@ -8,7 +8,6 @@ module
 prelude
 public import Lean.Elab.ConfigEval.Types
 public import Lean.Elab.SyntheticMVars
-public import Lean.Meta.CollectMVars
 import Lean.Elab.ConfigEval.Util
 
 /-!
@@ -20,6 +19,9 @@ public section
 namespace Lean.Elab.ConfigEval
 
 open Meta Term
+
+def evalTermWithRef {α : Type} [EvalTerm α] (stx : Term) : TermElabM α :=
+  withRef stx <| Prod.fst <$> evalTerm stx
 
 /--
 Evaluate `stx` using either `evalExpr`.
@@ -39,8 +41,6 @@ def evalExprWithElab {α : Type} [EvalExpr α] (stx : Term) : TermElabM α :=
     catchInternalId unsupportedSyntaxExceptionId
       (evalExpr e)
       (fun _ => do
-        -- let lmvars := collectLevelMVars {} e
-        -- if (← Term.logUnassignedLevelMVarsUsingErrorInfos lmvars.result) then throwAbortTerm
         let extra := if let some ty := ty? then m!"\nof type `{ty}`" else m!""
         throwError "Could not evaluate the expression{indentExpr e}{extra}")
 
@@ -49,11 +49,9 @@ Evaluate `stx` using either `evalStx` or `evalExpr`.
 -/
 def evalTermOrExprWithElab {α : Type} [EvalTerm α] [EvalExpr α] (stx : Term) : TermElabM α :=
   withRef stx do
-    -- let s ← saveState
     catchInternalId unsupportedSyntaxExceptionId
       (Prod.fst <$> evalTerm stx)
       (fun _ => do
-        -- s.restore (restoreInfo := true)
         evalExprWithElab stx)
 
 private partial def stripParens : Term → Term
@@ -78,9 +76,9 @@ for `expectedType?` and for constructing the expression. -/
     return (v, toExpr v))
 
 /--
-Evaluates `f e`, and if that `throwsUnsupportedExpr`, evaluates `f (← whnf e)`.
+Evaluates `f e`, and if that does `throwUnsupportedExpr`, evaluates `f (← whnf e)`.
 If either throw another exception, aborts immediately with that exception.
-If both use `throwsUnsupportedExpr`, then this generates an exception.
+If both do `throwUnsupportedExpr`, then this generates an exception.
 -/
 def EvalExpr.withWHNF {α : Type} (f : Expr → MetaM α) (e : Expr) (errMsg : MessageData) : MetaM α := do
   catchInternalId unsupportedExprExceptionId
@@ -91,77 +89,79 @@ def EvalExpr.withWHNF {α : Type} (f : Expr → MetaM α) (e : Expr) (errMsg : M
         (fun _ =>
           throwError "Could not evaluate the expression:{indentExpr e}{errMsg}"))
 
-def ConfigItem.getRootOptionName (item : ConfigItem) : String :=
-  if let .str _ s := item.optionName.getRoot then
+def ConfigItem.isAnonymous (item : ConfigItem) : Bool := item.optionComps.isEmpty
+
+def ConfigItem.root (item : ConfigItem) : Syntax :=
+  match item.optionComps with
+  | c :: _ => c
+  | _      => .missing
+
+def ConfigItem.getRootStr (item : ConfigItem) : String :=
+  if let .str _ s := item.root.getId then
     s
   else
     ""
 
-def ConfigItem.isAtomic (item : ConfigItem) : Bool := item.optionName.isStr
+def ConfigItem.prevRoot? (item : ConfigItem) : Option Syntax :=
+  item.prevOptionComps[0]?
 
-def ConfigItem.isAnonymous (item : ConfigItem) : Bool := item.optionName.isAnonymous
+def ConfigItem.prevRoot (item : ConfigItem) : Syntax :=
+  match item.prevOptionComps with
+  | c :: _ => c
+  | _      => .missing
 
-/-- Given a non-atomic `Ident` `a.b.c`, returns idents `a` and `b.c`, inheriting
-original source info, if present. See `Lean.Syntax.identComponents`. -/
-private def splitIdentRoot (stx : Ident) : Ident × Ident :=
-  match stx.raw with
-  | .ident si rawStr val _ => Id.run do
-    let val := val.eraseMacroScopes
-    if val.isAtomic then
-      return (stx, mkIdent .anonymous)
-    let nameComp₀ := val.getRoot
-    let nameComp₁ := val.replacePrefix nameComp₀ Name.anonymous
-    -- With original info, we assume that `rawStr` represents `val`.
-    if let SourceInfo.original lead pos trail endPos := si then
-      let rawComps := Syntax.splitNameLit rawStr
-      if rawComps.length ≥ 2 && val.getNumParts == rawComps.length then
-        let rawComps₀ := rawComps[0]!
-        let rawComps₁ := { rawStr with startPos := rawComps[1]!.startPos }
-        let info₀ : SourceInfo := .original lead pos "".toRawSubstring rawComps₀.stopPos
-        let info₁ : SourceInfo := .original "".toRawSubstring rawComps[1]!.startPos trail endPos
-        return (⟨.ident info₀ rawComps₀ nameComp₀ []⟩, ⟨.ident info₁ rawComps₁ nameComp₁ []⟩)
-    -- if re-parsing failed, or non-original info: just give them all the same span
-    return (⟨.ident si nameComp₀.toString.toRawSubstring nameComp₀ []⟩,
-            ⟨.ident si nameComp₁.toString.toRawSubstring nameComp₁ []⟩)
-  | _ => (stx, mkIdent .anonymous)
+def ConfigItem.getCurrOptionName (item : ConfigItem) : Name :=
+  (item.optionComps.map (·.getId)).foldl (init := .anonymous) Name.appendCore
 
-/-- Drops the first component of the `optionName`, returning it and the new config item. -/
-def ConfigItem.shift (item : ConfigItem) : Ident × ConfigItem :=
-  let (root, option') := splitIdentRoot item.option
-  (root,
-    { item with
-      option := option', optionName := option'.getId,
-      prevOptionComps := item.prevOptionComps.push root })
+/--
+Drops the first component of the `optionName`, returning the new config item.
+The first component is stored at the front of `prevOptionComps`.
+-/
+def ConfigItem.shift (item : ConfigItem) : ConfigItem :=
+  { item with
+    optionComps := item.optionComps.tail
+    prevOptionComps := item.root :: item.prevOptionComps }
 
 def ConfigItem.checkNotBool (item : ConfigItem) : TermElabM Unit := do
-  if item.bool then
-    throwErrorAt item.ref m!"Option is not boolean-valued, so `({item.optionName} := ...)` syntax must be used"
+  if item.bool?.isSome then
+    throwErrorAt item.option m!"Option is not boolean-valued, so `({item.origOptionName} := ...)` syntax must be used"
 
 def ConfigItem.throwInvalidOption {α} (item : ConfigItem) (structName? : Option Name) : TermElabM α :=
   let forMsg := if let some structName := structName? then m!" for `{.ofConstName structName}`" else m!""
-  throwErrorAt item.option "Invalid configuration option `{item.optionName}`{forMsg}"
+  throwErrorAt item.option "Invalid configuration option `{item.origOptionName}`{forMsg}"
 
-def ConfigItem.throwCannotSetOption {α} (item : ConfigItem) : TermElabM α := do
-  throwErrorAt item.option "Cannot set configuration option `{item.optionName}` using tactic configuration syntax."
-
+def ConfigItem.addConstInfoForPrevRoot (item : ConfigItem) (n : Name) : TermElabM Unit := do
+  if (← getInfoState).enabled then
+    addConstInfo item.prevRoot n
 
 open Parser in
 /--
 Interprets `item` as an option/value pair.
 The `item` may be a `Term.configItem`, `Tactic.configItem`, or even `Tactic.config`.
+TODO:
+In fact, all that is necessary is that the syntax be structured using one of the following schemes:
+- `"(" ident/atom ":=" syntax ")"
+- "+" ident/atom
+- "-" ident/atom
+This will be interpreted as the correspnding kind of `configItem`.
+The syntax value does not need to be a `Term`.
 -/
 @[specialize]
 def withConfigItem {α} (item : Syntax) (k : ConfigItem → TermElabM α) (err : TermElabM α) : TermElabM α := do
+  let doValue (option : Ident) (value : Syntax) : TermElabM α :=
+    k { ref := item, option, value }
+  let doBool (option : Ident) (b : Bool) : TermElabM α :=
+    let value := if b then mkCIdentFrom item ``true else mkCIdentFrom item ``false
+    k { ref := item, option, bool? := some b, value }
   match item with
-  | `(Term.configItem| ($option:ident := $value)) => k { ref := item, option, value }
-  | `(Term.configItem| +$option) => k { ref := item, option, bool := true, value := mkCIdentFrom item ``true }
-  | `(Term.configItem| -$option) => k { ref := item, option, bool := true, value := mkCIdentFrom item ``false }
-  | `(Tactic.configItem| ($option:ident := $value)) => k { ref := item, option, value }
-  | `(Tactic.configItem| +$option) => k { ref := item, option, bool := true, value := mkCIdentFrom item ``true }
-  | `(Tactic.configItem| -$option) => k { ref := item, option, bool := true, value := mkCIdentFrom item ``false }
-  | `(Tactic.config| (config%$tk := $value)) => k { ref := item, option := mkCIdentFrom tk `config, optionName := `config, value := value }
+  | `(Term.configItem| ($option:ident := $value)) => doValue option value
+  | `(Term.configItem| +$option) => doBool option true
+  | `(Term.configItem| -$option) => doBool option false
+  | `(Tactic.configItem| ($option:ident := $value)) => doValue option value
+  | `(Tactic.configItem| +$option) => doBool option true
+  | `(Tactic.configItem| -$option) => doBool option false
+  | `(Tactic.config| (config%$tk := $value)) => doValue (mkIdentFrom tk `config) value
   | _ => err
-
 
 /-- Interprets `items` as an array of option/value pairs, updating `x`. -/
 @[specialize]
@@ -173,7 +173,7 @@ def EvalConfigItem.setAll {α} (eval : EvalConfigItem α)
     (logExceptions : Bool) : TermElabM α :=
   foldConfigItemsM config items
     (fun config item => withRef item.ref do
-      trace[Elab.ConfigEval] "'{item.optionName}'"
+      trace[Elab.ConfigEval] "setAll: `{item.origOptionName}`"
       try
         eval.set config item
       catch ex =>

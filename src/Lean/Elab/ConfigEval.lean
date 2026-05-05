@@ -10,4 +10,5 @@ public import Lean.Elab.ConfigEval.Types
 public import Lean.Elab.ConfigEval.Basic
 public import Lean.Elab.ConfigEval.Commands
 public import Lean.Elab.ConfigEval.Instances
+public import Lean.Elab.ConfigEval.MetaInstances
 public import Lean.Elab.ConfigEval.Extra

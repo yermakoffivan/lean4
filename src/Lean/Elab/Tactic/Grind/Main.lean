@@ -27,14 +27,16 @@ which allows overriding which structure to use to provide defaults.
 -/
 declare_config_elab elabGrindConfigCore Grind.Config
     (evalConfig : Term → TermElabM Grind.Config) where
-  option config := fun _ item => evalConfig item.value
+  option config := fun _ item => evalConfig ⟨item.value⟩
 
-local macro "make_elab_grind_config" fn:ident struct:ident : command =>
+local macro "make_elab_grind_config" fn:ident struct:ident : command => do
+  let optConfig := mkIdent `optConfig
+  let initConfig := mkIdent `initConfig
   `(private local ensure_eval_expr_instance $struct in
-    def $fn (optConfig : Syntax)
-        (initConfig : $struct := {}) :
+    def $fn ($optConfig : Syntax)
+        ($initConfig : $struct := {}) :
         TacticM Grind.Config := do
-      elabGrindConfigCore optConfig { initConfig with }
+      elabGrindConfigCore $optConfig { $initConfig with }
         (evalConfig := fun c => do
           let cfg : $struct ← evalExprWithElab c
           return { cfg with }))

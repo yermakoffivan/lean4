@@ -17,6 +17,9 @@ public section
 
 namespace Lean
 
+/--
+Configuration for `simp`, for supporting tactic configuration option syntax.
+-/
 structure Meta.Simp.ConfigWithOptions extends config : Meta.Simp.Config where
   /-- User options. Registering a global option `tactic.simp.user.myOption` enables the tactic
   configurations `(user.myOption := ...)` and `+user.myOption`. -/
@@ -29,27 +32,36 @@ open TSyntax.Compat
 section
 open ConfigEval
 
+/--
+Generic `simp` configuration elaborator, with an `evalConfig` argument for overriding how
+the `(config := ...)` syntax is elaborated.
+-/
 declare_config_elab elabSimpConfigAux Simp.ConfigWithOptions (evalConfig : Term → TermElabM Meta.Simp.Config) where
   except userConfig
   option config := fun cfg item => do
     let config ← evalConfig item.value
     return { cfg with config }
   option user := fun _ item => do
-    if let some ref := item.prevOptionComps.back? then
-      addConstInfo ref ``Simp.ConfigWithOptions.userConfig
-    throwError "User options are of the form `user.optionName`"
-  option user* := fun cfg item => do
-    if let some ref := item.prevOptionComps.back? then
-      addConstInfo ref ``Simp.ConfigWithOptions.userConfig
+    addConstInfo item.prevRoot ``Simp.ConfigWithOptions.userConfig
+    throwErrorAt item.prevRoot "User options are of the form `user.optionName`"
+  option user.* := fun cfg item => do
+    addConstInfo item.prevRoot ``Simp.ConfigWithOptions.userConfig
     let userConfig ← EvalConfigItem.evalSetOptions `tactic.simp.user cfg.userConfig item
     return { cfg with userConfig }
 
-local macro "make_elab_simp_config" fn:ident struct:ident : command =>
+/--
+Specializes the `elabSimpConfigAux` configuration elaborator to a specific `Simp` default configuration.
+This is necessary for `(config := {...})` to elaborate the `{...}` expression with the correct expected type.
+-/
+local macro "make_elab_simp_config" fn:ident struct:ident : command => do
+  let optConfig := mkIdent `optConfig
+  let initConfig := mkIdent `initConfig
+  let initUserConfig := mkIdent `initUserConfig
   `(private local ensure_eval_expr_instance $struct in
-    def $fn (optConfig : Syntax)
-        (initConfig : $struct := {}) (initUserConfig : Options := {}) :
+    def $fn ($optConfig : Syntax)
+        ($initConfig : $struct := {}) ($initUserConfig : Options := {}) :
         TacticM Simp.ConfigWithOptions := do
-      elabSimpConfigAux optConfig { initConfig with userConfig := initUserConfig }
+      elabSimpConfigAux $optConfig { $initConfig with userConfig := $initUserConfig }
         (evalConfig := fun c => do
           let config : $struct ← evalExprWithElab c
           return { config with }))

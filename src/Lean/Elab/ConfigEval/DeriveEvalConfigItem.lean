@@ -10,6 +10,7 @@ public import Lean.Elab.ConfigEval.DeriveEvalTerm
 public import Lean.Elab.ConfigEval.DeriveEvalExpr
 import Lean.Elab.ConfigEval.Util
 public import Lean.Elab.ConfigEval.Basic
+import Lean.Elab.ConfigEval.Instances
 
 public section
 
@@ -17,109 +18,159 @@ namespace Lean.Elab.ConfigEval
 
 open Meta Term Command
 
+inductive EvalConfigItemHandlerKind
+  /-- Handler is called when its key matches the configuration key exactly.
+  The matched key is not allowed to be `Name.anonymous`. -/
+  | exact
+  /-- Handler is called when its key is a strict prefix of the configuration key.
+  The matched key may be `Name.anonymous`. -/
+  | wildcard
+  deriving BEq
 
 structure EvalConfigItemHandler where
   /-- Ref for the key. -/
   ref : Syntax
-  /-- The key that's handled. -/
+  /-- The key that's handled. May be anonymous for certain kinds. -/
   key : Name
-  /-- If true, only accepts an exact match of the key. -/
-  exact : Bool
+  /-- The kind of match this handler is looking for. -/
+  kind : EvalConfigItemHandlerKind
   /-- A function `fun cfg item => ...`. -/
   body : Term
-  /-- Constant to use for terminfo -/
+  /-- Constant to use for terminfo. This is added to the `HandlerTrie`. -/
   projFn? : Option Name := none
 
 structure EvalConfigItemView where
+  /-- Fields to not automatically synthesize handlers for, in addition to those keys
+  already appearing in `handlers`. -/
   exceptFields : Array Name
+  /-- Explicitly provided handlers. -/
   handlers : Array EvalConfigItemHandler
 
+/--
+Trie used to organize those handlers provided in `EvalConfigItemView` and those
+handlers that are synthesized.
+
+The fields in this `structure` are given in the order they are applied.
+Conceptually, searching for handlers is done recursively (however the algorithm is compiled
+into non-recursive code via metaprogramming). At each step of the search the state
+consists of a trie key `tkey`, a trie node `trie`, and a configuration key `ckey`.
+Once any handler is applied, matching is complete (handlers can't decide not to apply at run time).
+1. If `exact?` is present and `tkey == ckey`, then it is applied.
+2. If `ckey` is of the form `root.ckey'` and there's a `(root, trie')` entry in `children`,
+   then we recursively search for a handler using `tkey.root`, `trie'`, `ckey'`.
+   If one is found, it is applied.
+3. If `wildcard?` is present and `ckey'` is nonempty, then that handler is applied.
+4. Otherwise, the search failed. If this is recursive, we return and continue.
+-/
 private structure HandlerTrie where
+  /-- The `EvalConfigItemHandlerKind.exact` handler for this trie position's key. -/
   exact? : Option EvalConfigItemHandler := none
+  /-- Handlers for which this trie position's key is a strict prefix. -/
   children : Array (String × HandlerTrie) := #[]
-  nonexact? : Option EvalConfigItemHandler := none
-  /-- Constant to use for terminfo -/
+  /-- The `EvalConfigItemHandlerKind.wildcard` handler for this trie position's key. -/
+  wildcard? : Option EvalConfigItemHandler := none
+  /-- Constant to use for terminfo. The root of the trie does not have this set.
+  Collected from `EvalConfigItemHandler.projFn?`. -/
   projFn? : Option Name := none
   deriving Inhabited
 
-private partial def HandlerTrie.find? (trie : HandlerTrie) (key : Name) (exact : Bool := true) : Option (Name × EvalConfigItemHandler) :=
+/--
+Finds a handler that applies to this key.
+Returns the trie key and the handler.
+
+Returns specifically handlers of a given `kind`.
+-/
+private partial def HandlerTrie.find? (trie : HandlerTrie) (key : Name) (kind : EvalConfigItemHandlerKind) : Option (Name × EvalConfigItemHandler) := do
   let root := key.getRoot
   if root.isAnonymous then
-    ((.anonymous, ·)) <$> ((guard exact *> trie.exact?) <|> trie.nonexact?)
+    match kind with
+    | .exact => return (.anonymous, ← trie.exact?)
+    | .wildcard => return (.anonymous, ← trie.wildcard?)
   else
     let s := root.getString!
-    let res? :=
-      if let some (_, child) := trie.children.find? (·.1 == s) then
-        if let some (key', h) := child.find? (key.replacePrefix root .anonymous) then
-          (root.appendCore key', h)
-        else
-          none
-      else
-        none
-    res? <|> ((key, ·) <$> trie.nonexact?)
+    try
+      let (_, child) ← trie.children.find? (·.1 == s)
+      let (key', h) ← child.find? (key.replacePrefix root .anonymous) kind
+      pure (root.appendCore key', h)
+    catch _ =>
+      let h ← trie.wildcard?
+      return (key, h)
 
-private partial def HandlerTrie.insert (trie : HandlerTrie) (h : EvalConfigItemHandler) :
+/--
+Inserts the handler into the trie. The expectation is that a handler is not already
+installed at a given key (use `HandlerTrie.find?` to verify this ahead of time),
+but it is implemented to replace handlers.
+
+`EvalConfigItemHandler.key` is modified
+-/
+private partial def HandlerTrie.insert (trie : HandlerTrie) (h : EvalConfigItemHandler) (key : Name := h.key) :
     HandlerTrie :=
-  let root := h.key.getRoot
+  let root := key.getRoot
   if root.isAnonymous then
-    if h.exact then
-      { trie with exact? := some h, projFn? := trie.projFn? <|> h.projFn? }
-    else
-      { trie with nonexact? := some h, projFn? := trie.projFn? <|> h.projFn? }
+    let projFn? := trie.projFn? <|> h.projFn?
+    match h.kind with
+    | .exact    => { trie with projFn?, exact? := some h }
+    | .wildcard => { trie with projFn?, wildcard? := some h }
   else
     let s := root.getString!
-    let key' := h.key.replacePrefix root .anonymous
+    let key' := key.replacePrefix root .anonymous
     if let some idx := trie.children.findIdx? (·.1 == s) then
-      let (_, child) := trie.children[idx]!
-      let child := child.insert { h with key := key' }
-      { trie with children := trie.children.set! idx (s, child)}
+      let children := trie.children.modify idx fun (s, child) => (s, child.insert h key')
+      { trie with children }
     else
-      let child := HandlerTrie.insert {} { h with key := key' }
+      let child := HandlerTrie.insert {} h key'
       { trie with children := trie.children.push (s, child)}
+
+/--
+Precompiled version of `evalTermOrExprWithElab (α := Bool)` that
+also makes use of the cached `item.bool?` value.
+-/
+def evalBoolItem (item : ConfigItem) : TermElabM Bool := do
+  if let some b := item.bool? then
+    if (← getInfoState).enabled then
+      addConstInfo item.value (if b then ``true else ``false)
+    return b
+  else
+    evalTermOrExprWithElab ⟨item.value⟩
+
+def addConstInfo' (ref : Syntax) (projFn : Name) : TermElabM Unit := do
+  if (← getInfoState).enabled then
+    addConstInfo ref projFn
 
 /--
 Makes an `EvalConfigItem` for the structure.
 Supports structures with no parameters or universes.
 -/
 partial def defEvalConfigItem
-    (vis? : Option (TSyntax `Lean.Parser.Command.visibility))
+    (doc? : Option (TSyntax ``Parser.Command.docComment))
+    (vis? : Option (TSyntax ``Parser.Command.visibility))
+    (kind : TSyntax ``Parser.Term.attrKind)
     (tk : Syntax)
     (struct : Ident)
     (fnIdent : Ident)
     (extraBinders : TSyntaxArray ``Parser.Term.bracketedBinder)
     (view : EvalConfigItemView) :
     CommandElabM Unit := do
-  let cmd ← liftTermElabM do withRef tk mkCmd
+  let cmd ← liftTermElabM do withRef tk <| withFreshMacroScope mkCmd
   elabCommand cmd
 where
-  hasEvalTermInstance (ty : Expr) : MetaM Bool :=
+  hasInstance (cls : Name) (ty : Expr) : MetaM Bool := do
     try
-      let cls ← mkAppM ``EvalTerm #[ty]
-      return (← synthInstance? cls).isSome
+      return (← synthInstance? (← mkAppM cls #[ty])).isSome
     catch _ =>
       return false
   tryEnsureEvalTermInstance (ty : Expr) : MetaM Bool := do
-    if ← hasEvalTermInstance ty then
-      return true
-    else
-      Option.isSome <$> observing? do
-        liftCommandElabM <| ensureEvalTerm vis? (← `(attrKind| local )) tk struct ty
-        resetSynthInstanceCache
-        guard <| ← hasEvalTermInstance ty
-  hasEvalExprInstance (ty : Expr) : MetaM Bool :=
-    try
-      let cls ← mkAppM ``EvalExpr #[ty]
-      return (← synthInstance? cls).isSome
-    catch _ =>
-      return false
+    hasInstance ``EvalTerm ty
+      <||> (Option.isSome <$> observing? do
+              liftCommandElabM <| ensureEvalTerm vis? kind tk struct ty
+              resetSynthInstanceCache
+              guard <| ← hasInstance ``EvalTerm ty)
   tryEnsureEvalExprInstance (ty : Expr) : MetaM Bool := do
-    if ← hasEvalExprInstance ty then
-      return true
-    else
-      Option.isSome <$> observing? do
-        liftCommandElabM <| ensureEvalExpr vis? (← `(attrKind| local )) tk struct ty
-        resetSynthInstanceCache
-        guard <| ← hasEvalExprInstance ty
+    hasInstance ``EvalExpr ty
+      <||> (Option.isSome <$> observing? do
+              liftCommandElabM <| ensureEvalExpr vis? kind tk struct ty
+              resetSynthInstanceCache
+              guard <| ← hasInstance ``EvalExpr ty)
   checkStruct (structName : Name) : MetaM Unit := do
     let env ← getEnv
     unless isStructure env structName do
@@ -134,95 +185,102 @@ where
     withLocalDeclD `self (Expr.const structName []) fun self => do
       let mut trie := trie
       for field in fields do
-        if view.exceptFields.contains field then
-          continue
         let key := keyPrefix ++ field
-        let mut reportErrorForKey := true
-        -- let mut body ← `(item.throwCannotSetOption)
+        if view.exceptFields.contains key then
+          continue
+        let mut synthesizedHandler := false
         let proj ← mkProjection self field
-        let some projFn := proj.getAppFn.constName?
-          | throwError "(Internal error) Invalid projection {inlineExpr proj}"
+        let some projFn := proj.getAppFn.constName? | panic! "(Internal error) Invalid projection {inlineExpr proj}"
         let fieldTy ← inferType proj
-        let exactKeyExists := if let some (_, h) := trie.find? field then h.exact else false
-        if !exactKeyExists then
-          let hasEvalTerm ← tryEnsureEvalTermInstance fieldTy
-          let hasEvalExpr ← tryEnsureEvalExprInstance fieldTy
-          trace[Elab.ConfigEval] "field `{.ofConstName projFn}`, hasEvalTerm: {hasEvalTerm}, hasEvalExpr: {hasEvalExpr}"
-          if hasEvalTerm || hasEvalExpr then
-            reportErrorForKey := false
-            let eval ←
-              match hasEvalTerm, hasEvalExpr with
-              | true, true  => `(evalTermOrExprWithElab item.value)
-              | true, false => `(evalExprWithElab item.value)
-              | _,    _     => `(evalTerm item.value)
-            let mut body ← `(do
-              let value ← $eval:term
-              return { config with $(mkIdent key):ident := value })
-            unless ← withReducible <| isDefEq fieldTy (mkConst ``Bool) do
-              body ← `(checkNotBool () >>= fun _ => $body:term)
-            trie := trie.insert { ref := struct, key, exact := true, body, projFn? := projFn }
-        let nonexactKeyExists := if let some (_, h) := trie.find? field (exact := false) then !h.exact else false
-        if !nonexactKeyExists then
+        -- If there's no exact key for this field yet, synthesize a handler
+        if (trie.find? key .exact).isNone then
+          let mut body ← `(pure { config with $(mkIdent key):ident := value })
+          if ← withReducible <| isDefEq fieldTy (mkConst ``Bool) then
+            trace[Elab.ConfigEval] "field `{.ofConstName projFn}`, using {.ofConstName ``evalBoolItem}"
+            synthesizedHandler := true
+            body ← `(evalBoolItem item >>= fun value => $body:term)
+            trie := trie.insert { ref := struct, key, kind := .exact, body, projFn? := projFn }
+          else
+            let hasEvalTerm ← tryEnsureEvalTermInstance fieldTy
+            let hasEvalExpr ← tryEnsureEvalExprInstance fieldTy
+            trace[Elab.ConfigEval] "field `{.ofConstName projFn}`, hasEvalTerm: {hasEvalTerm}, hasEvalExpr: {hasEvalExpr}"
+            if hasEvalTerm || hasEvalExpr then
+              synthesizedHandler := true
+              let eval ←
+                match hasEvalTerm, hasEvalExpr with
+                | true,  true  => `(evalTermOrExprWithElab ⟨item.value⟩)
+                | false, true  => `(evalExprWithElab ⟨item.value⟩)
+                | true,  false => `(evalTermWithRef ⟨item.value⟩)
+                | false, false => unreachable!
+              body ← `(item.checkNotBool >>= fun _ => $eval:term >>= fun value => $body)
+              trie := trie.insert { ref := struct, key, kind := .exact, body, projFn? := projFn }
+        -- If there's no wildcard key yet for this field yet, and if the type is a structure,
+        -- we synthesize handlers for that structure's fields under the current key.
+        if (trie.find? key .wildcard).isNone then
           if let some structName' := (← whnfR fieldTy).constName? then
             if (← observing? (checkStruct structName')).isSome then
-              reportErrorForKey := false
+              synthesizedHandler := true
               trie ← visitStruct trie key structName'
-        if reportErrorForKey then
+        unless synthesizedHandler do
           throwErrorAt struct (m!"Field `{field}` of type{inlineExpr fieldTy}is missing an `{.ofConstName ``EvalTerm}` or `{.ofConstName ``EvalExpr}` instance."
-              ++ .note m!"The `ensure_eval_term_instance` and `ensure_eval_expr_instance` commands can be used to attempt to derive such instances.")
+              ++ .note m!"The scoped `ensure_eval_term_instance` and `ensure_eval_expr_instance` commands in `Lean.Elab.ConfigEval` were not able to derive instances.")
       return trie
+  /--
+  Assembles the full key matcher from the trie. Makes use of `item` in the current macro scope.
+  -/
   assemble (trie : HandlerTrie) (onFail : Term) : TermElabM Term := do
-    let { exact?, children, nonexact?, projFn? } := trie
-    let mut onFail' := onFail
-    let mut body := onFail
-    let doNonexact := mkIdent (← Core.mkFreshUserName `doNonexact)
-    if let some _ := nonexact? then
-      onFail' ← `($doNonexact ())
-      body := onFail'
-    unless children.isEmpty do
-      let children ← children.mapM fun (s, trie') => return (s, ← assemble trie' onFail')
-      body ← makeStringMatcher (← `(ident|rootName)) children onFail'
-      body ← `(
-        let rootName := item.getRootOptionName
-        let (itemRoot, item) := item.shift
-        withRef itemRoot $body
-      )
-    if let some h := nonexact? then
-      let mut hbody ← `(withRef item.option $h.body)
-      if exact?.isNone then
-        hbody ← `(if item.isAnonymous then $onFail else $hbody)
-      body ← `(have $doNonexact (_ : Unit) := $hbody; $body)
-    if let some h := exact? then
-      let mut h' := h.body
-      body ← `(if item.isAnonymous then $h' else $body)
+    let { exact?, children, wildcard?, projFn? } := trie
+    let handleChildren (onFail : Term) : TermElabM Term := do
+      if children.isEmpty then
+        return onFail
+      else
+        let children ← children.mapM fun (s, trie') => return (s, ← assemble trie' onFail)
+        let body ← makeStringMatcher (← `(ident| root)) children onFail
+        `(have root := item.getRootStr
+          have item := item.shift
+          $body)
+    let handleWildcard : TermElabM Term := do
+      if let some h := wildcard? then
+        if children.isEmpty then
+          return h.body
+        else
+          let jp ← withFreshMacroScope `(ident| doWildcard)
+          let body ← handleChildren (← `($jp ()))
+          `(have $jp (_ : Unit) := $h.body; $body)
+      else
+        handleChildren onFail
+    let handleExact : TermElabM Term := do
+      let body ← handleWildcard
+      let onAnon := if let some h := exact? then h.body else onFail
+      `(if item.isAnonymous then $onAnon else $body)
+    let mut body ← handleExact
     if let some projFn := projFn? then
-      body ← `(addConstInfo' itemRoot $(quote projFn) >>= fun _ => $body)
+      body ← `(item.addConstInfoForPrevRoot $(quote projFn) >>= fun _ => $body)
     return body
   mkCmd : TermElabM Command := do
     let structName ← realizeGlobalConstNoOverloadWithInfo struct
     let mut trie : HandlerTrie := {}
     for handler in view.handlers do
-      if handler.key.isAnonymous then
+      if handler.key.isAnonymous && handler.kind matches .exact then
         throwErrorAt handler.ref "Unexpected empty key for handler"
-      if let some (key, h) := trie.find? handler.key (exact := handler.exact) then
-        if h.exact == handler.exact then
-          throwErrorAt handler.ref "Duplicate handler for key `{key}`"
+      if let some (key, _) := trie.find? handler.key handler.kind then
+        throwErrorAt handler.ref "Duplicate handler for key `{key}`"
+      -- Update the handlers to refer to
       let body ← `(($handler.body : $struct → ConfigItem → TermElabM $struct) config item)
       trie := trie.insert { handler with body }
     trie ← visitStruct trie .anonymous structName
-    unless view.exceptFields.contains `config || (trie.find? `config).isSome do
+    unless view.exceptFields.contains `config || (trie.find? `config .exact).isSome do
       if ← tryEnsureEvalExprInstance (mkConst structName) then
-        let cfgBody ← `(evalExprWithElab item.value)
-        trie := trie.insert { ref := tk, key := `config, exact := true, body := cfgBody }
+        -- Only use an `EvalExpr` instance; we don't have plans to support structure instance notation with `EvalTerm`.
+        let cfgBody ← `(evalExprWithElab ⟨item.value⟩)
+        trie := trie.insert { ref := tk, key := `config, kind := .exact, body := cfgBody }
     let body ← assemble trie (← `(invalidOption ()))
-    `($[$vis?:visibility]? def $fnIdent $[$extraBinders]* : EvalConfigItem $struct where
+    `($[$doc?:docComment]?
+      $[$vis?:visibility]?
+      def $fnIdent $[$extraBinders]* : EvalConfigItem $struct where
         set (config : $struct) (item : ConfigItem) : TermElabM $struct := do
-          addCompletionInfo (CompletionInfo.fieldId item.option item.optionName {} $(quote structName))
-          withRef item.ref <|
-            have invalidOption (_ : Unit) : TermElabM $struct := item.throwInvalidOption (some $(quote structName))
-            have checkNotBool (_ : Unit) : TermElabM Unit := item.checkNotBool
-            have addConstInfo' (ref : Syntax) (projFn : Name) : TermElabM Unit := do
-              if (← getInfoState).enabled then addConstInfo ref projFn
-            $body)
+          addCompletionInfo (CompletionInfo.fieldId item.option item.origOptionName {} $(quote structName))
+          have invalidOption (_ : Unit) : TermElabM $struct := item.throwInvalidOption (some $(quote structName))
+          $body:term)
 
 end Lean.Elab.ConfigEval

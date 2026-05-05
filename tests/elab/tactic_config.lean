@@ -354,3 +354,23 @@ example (h : False) : False := by
   simp -failIfUnchanged +user.exampleBool  (user.exampleNat := 22) (user.exampleInt := -22) (user.exampleString := "hi")
   simp -failIfUnchanged +user
   exact h
+
+/-!
+Testing the `derive_eval_expr_instance_using_meta_eval` instance.
+-/
+section
+open Lean.Elab.ConfigEval
+
+structure MetaEvalTest where
+  x : Nat
+  b : Bool
+  f : Nat → Nat
+
+derive_eval_expr_instance_using_meta_eval MetaEvalTest
+
+/-- info: x: 3, b: true, f 10: 12, f 100: 102 -/
+#guard_msgs in
+#eval do
+  let stx ← `({ x := 3, b := true, f := (·+2) })
+  let c ← evalExprWithElab (α := MetaEvalTest) stx
+  logInfo m!"x: {c.x}, b: {c.b}, f 10: {c.f 10}, f 100: {c.f 100}"

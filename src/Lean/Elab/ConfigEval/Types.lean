@@ -80,14 +80,17 @@ structure ConfigItem where
   ref : Syntax
   /-- Ref for the option name itself. -/
   option : Ident
-  /-- The option name as a `Name`, without macro scopes. -/
-  optionName : Name := option.getId.eraseMacroScopes
   /-- The configuration value. For `+`/`-` booleans, this syntax is synthetic. -/
-  value : Term
-  /-- Whether this was using `+`/`-`, to be able to give a better error message on type mismatch. -/
-  bool : Bool := false
-  /-- Previous root components of `option`, collecting results from `ConfigItem.shift`. -/
-  prevOptionComps : Array Ident := #[]
+  value : Syntax
+  /-- Whether this was using `+`/`-`, to be able to give a better error message on type mismatch.
+  It also caches the value so we can skip evaluation for `Bool`, which is a very common case. -/
+  bool? : Option Bool := none
+  origOptionName : Name := option.getId.eraseMacroScopes
+  /-- The `option` identifier split into components, without macro scopes.
+  This allows us to pull off components one at a time if we have hierarchical configuration options. -/
+  optionComps : List Syntax := Lean.Syntax.identComponents option
+  /-- Previous root components of `option` in reverse order, collecting results from `ConfigItem.shift`. -/
+  prevOptionComps : List Syntax := []
 
 /--
 An evaluator for updating a configuration object using configuration items.
@@ -100,7 +103,8 @@ structure EvalConfigItem (α : Type) where
   -/
   set (config : α) (item : ConfigItem) : TermElabM α
 
-structure ReflectConfigItems (α : Type) where
+-- TODO
+private structure ReflectConfigItems (α : Type) where
   /--
   Given a configuration, produces an array of configuration items representing it.
   -/

@@ -1797,12 +1797,15 @@ partial def getConfigItems (c : Syntax) : TSyntaxArray ``configItem :=
   go #[] c
 where
   go (acc : TSyntaxArray ``configItem) (c : Syntax) : TSyntaxArray ``configItem :=
-    if c.isOfKind nullKind || c.isOfKind `Lean.Parser.Term.optConfig || c.isOfKind `Lean.Parser.Tactic.optConfig then
+    if c.isOfKind nullKind then
       c.getArgs.foldl go acc
+    else if c.getNumArgs == 1 && (c.getArg 0).isOfKind nullKind then
+      -- It's an `optConfig`, or a generalized version of one.
+      (c.getArg 0).getArgs.foldl go acc
     else if c.isMissing then
       acc
     else
-      -- All other cases will be handled by `ConfigEval.withConfigItem`.
+      -- All other cases will be handled by the `ConfigEval` system.
       -- This includes the legacy `Lean.Parser.Tactic.config`
       acc.push ⟨c⟩
 

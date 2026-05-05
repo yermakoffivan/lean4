@@ -13,11 +13,11 @@ namespace Lean.Elab.Tactic.Grind
 
 private def_eval_config_item evalConfigItem for Grind.Config
 
-def elabConfigItems (init : Grind.Config) (items : Array (TSyntax `Lean.Parser.Tactic.configItem))
+def elabConfigItems (init : Grind.Config) (items : Array Syntax)
     : TermElabM Grind.Config := do
-  evalConfigItem.runEval init items (logExceptions := false)
+  evalConfigItem.setConfigs' init items (logExceptions := false)
 
-def withConfigItems (items : Array (TSyntax ``Lean.Parser.Tactic.configItem))
+def withConfigItems (items : Array Syntax)
     (k : GrindTacticM α) : GrindTacticM α := do
   if items.isEmpty then
     k

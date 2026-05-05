@@ -22,8 +22,9 @@ section
 open ConfigEval
 
 /--
-Elaborator for grind configurations, with the `(config := ...)` elaborator exposed,
-which allows overriding which structure to use to provide defaults.
+Elaborator for grind configurations, with the `(config := ...)` elaborator exposed.
+This allows overriding which structure is used as the expected type when elaborating
+the term, which affects which default values are used in `{...}` structure instance notation.
 -/
 declare_config_elab elabGrindConfigCore Grind.Config
     (evalConfig : Term → TermElabM Grind.Config) where

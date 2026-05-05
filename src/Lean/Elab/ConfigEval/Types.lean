@@ -47,8 +47,8 @@ export EvalTerm (evalTerm)
 
 builtin_initialize unsupportedExprExceptionId : InternalExceptionId ← registerInternalExceptionId `ConfigEval.unsupportedExpr
 
-def throwUnsupportedExpr [MonadExceptOf Exception m] : m α :=
-  throw $ Exception.internal unsupportedExprExceptionId
+def throwUnsupportedExpr {m α} [MonadExceptOf Exception m] : m α :=
+  throw <| Exception.internal unsupportedExprExceptionId
 
 /--
 Class for evaluation of an expression to a runtime value.
@@ -80,11 +80,13 @@ structure ConfigItem where
   ref : Syntax
   /-- Ref for the option name itself. -/
   option : Ident
-  /-- The configuration value. For `+`/`-` booleans, this syntax is synthetic. -/
+  /-- The configuration value. Usually this is a `Term`, but user-defined configuration items
+  can use arbitrary syntax. For `+`/`-` booleans, this syntax is synthetic. -/
   value : Syntax
   /-- Whether this was using `+`/`-`, to be able to give a better error message on type mismatch.
   It also caches the value so we can skip evaluation for `Bool`, which is a very common case. -/
   bool? : Option Bool := none
+  /-- The original option name (without macro scopes), even after shifting. -/
   origOptionName : Name := option.getId.eraseMacroScopes
   /-- The `option` identifier split into components, without macro scopes.
   This allows us to pull off components one at a time if we have hierarchical configuration options. -/

@@ -41,6 +41,12 @@ error: unsolved goals
 #guard_msgs in
 example : True := by { }
 
--- Nested in overloaded resolution (errToSorry = false): should not run try?
--- This is effectively tested by the build succeeding — if try? ran during
--- overloaded resolution it would cause spurious failures.
+-- Nested in a backtracking combinator (`errToSorry = false`): try? must stay silent.
+-- We only assert the absence of the try? info message; the unsolved-goals error is expected
+-- because `exact (by)` succeeds at term-elab time (the empty tactic block fails later).
+/--
+error: unsolved goals
+⊢ True
+-/
+#guard_msgs in
+example : True := by first | exact (by) | trivial

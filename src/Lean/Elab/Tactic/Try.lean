@@ -1051,9 +1051,10 @@ private def elabTryCore (tk : Syntax) (config : Try.Config) : TacticM Unit :=
 open Term in
 /-- When the `by` body is empty and `tactic.tryOnEmptyBy` is set,
 run `try? (wrapWithBy := true)` directly to suggest a proof.
-Disabled when `errToSorry` is false (nested in a combinator like `first`). -/
+Disabled when `errToSorry` is false (nested in a combinator like `first`),
+or when `try?` infrastructure is not yet available (e.g. while building the prelude). -/
 @[builtin_term_elab byTactic] def elabEmptyByAsTry : TermElab := fun stx expectedType? => do
-  unless isEmptyByBlock stx && tactic.tryOnEmptyBy.get (← getOptions) && (← read).errToSorry do
+  unless (← shouldElabEmptyByAsTry stx) do
     throwUnsupportedSyntax
   let some expectedType := expectedType? | do tryPostpone; throwUnsupportedSyntax
   logInfoAt stx[0]

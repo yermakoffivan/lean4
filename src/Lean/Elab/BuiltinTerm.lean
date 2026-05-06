@@ -173,11 +173,20 @@ def isEmptyByBlock (stx : Syntax) : Bool :=
   stx[1][0][0].getNumArgs == 0 &&
   !stx[1][0][0].isMissing
 
+/-- Returns `true` if all conditions are met for empty `by` to be elaborated as `try?`:
+the body is empty, the option is enabled, we are in an interactive (non-combinator) context,
+and the `try?` infrastructure (parser `Lean.Parser.Tactic.tryTrace`) is available — the latter
+matters when working on the prelude, before `Init.Try` is imported. -/
+def shouldElabEmptyByAsTry (stx : Syntax) : TermElabM Bool := do
+  return isEmptyByBlock stx
+    && tactic.tryOnEmptyBy.get (← getOptions)
+    && (← read).errToSorry
+    && (← getEnv).contains `Lean.Parser.Tactic.tryTrace
+
 @[builtin_term_elab byTactic] def elabByTactic : TermElab := fun stx expectedType? => do
-  -- When tactic.tryOnEmptyBy is set (the default), the by body is empty, and errToSorry is true
-  -- (i.e., we're not nested in a combinator like `first`), skip this elaborator so a later one
+  -- When the conditions for `try?` on empty `by` are met, skip this elaborator so a later one
   -- (in Lean.Elab.Tactic.Try) can handle it with try?.
-  if isEmptyByBlock stx && tactic.tryOnEmptyBy.get (← getOptions) && (← read).errToSorry then
+  if (← shouldElabEmptyByAsTry stx) then
     throwUnsupportedSyntax
   match expectedType? with
   | some expectedType =>

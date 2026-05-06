@@ -1062,17 +1062,18 @@ or when `try?` infrastructure is not yet available (e.g. while building the prel
   unless (← shouldElabEmptyByAsTry stx) do
     throwUnsupportedSyntax
   let some expectedType := expectedType? | do tryPostpone; throwUnsupportedSyntax
-  -- Run the (empty) `by` body synchronously so the unsolved-goals diagnostic is logged
-  -- before the (possibly slow) `try?` runs.
   let mvar ← mkFreshExprMVar expectedType MetavarKind.syntheticOpaque
   runTactic mvar.mvarId! stx .term
-  -- Run `try?` on a scratch goal for its informational side effect.
-  let scratch ← mkFreshExprMVar expectedType MetavarKind.syntheticOpaque
+  let cancelTk ← IO.CancelToken.new
   let footer := m!"\nempty `by` ran `try?`; disable with `set_option tactic.tryOnEmptyBy false`"
-  try
-    discard <| Tactic.run scratch.mvarId! <|
-      withRef stx do elabTryCore stx[0] { wrapWithBy := true } (footer := footer)
-  catch _ => pure ()
+  let act ← Term.wrapAsyncAsSnapshot (cancelTk? := cancelTk) fun (_ : Unit) => do
+    let scratch ← mkFreshExprMVar expectedType MetavarKind.syntheticOpaque
+    try
+      discard <| Tactic.run scratch.mvarId! <|
+        withRef stx do elabTryCore stx[0] { wrapWithBy := true } (footer := footer)
+    catch _ => pure ()
+  let t ← BaseIO.asTask (act ())
+  Core.logSnapshotTask { stx? := none, reportingRange := .skip, task := t, cancelTk? := cancelTk }
   return mvar
 
 end Lean.Elab.Tactic.Try

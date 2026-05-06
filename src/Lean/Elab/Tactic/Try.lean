@@ -1062,11 +1062,14 @@ or when `try?` infrastructure is not yet available (e.g. while building the prel
   unless (← shouldElabEmptyByAsTry stx) do
     throwUnsupportedSyntax
   let some expectedType := expectedType? | do tryPostpone; throwUnsupportedSyntax
-  -- Run the same elaboration the normal `by` path does, then eagerly process the
-  -- registered tactic mvar. This runs the empty body via `evalTactic`, attaching the
-  -- `TacticInfo` node and reporting unsolved goals (so the diagnostic is emitted before
-  -- `try?` runs and the editor shows the "Tactic state" view rather than "Expected type").
-  let mvar ← elabByTacticImpl stx expectedType?
+  -- Re-elaborate the `by` with the option disabled to fall through to the normal `by`
+  -- elaborator (which registers a tactic mvar), then eagerly process it. This runs the
+  -- empty body via `evalTactic`, attaching the `TacticInfo` node and reporting unsolved
+  -- goals (so the diagnostic is emitted before `try?` runs and the editor shows the
+  -- "Tactic state" view rather than "Expected type").
+  let mvar ← withTheReader Core.Context
+      (fun ctx => { ctx with options := tactic.tryOnEmptyBy.set ctx.options false }) <|
+    Term.elabTerm stx expectedType?
   runPendingTacticsAt mvar
   -- For `:= by ...` syntax, MutualDef sets up a `tacSnap` promise that the language
   -- server walks when looking up info trees. The tactic incrementality machinery would

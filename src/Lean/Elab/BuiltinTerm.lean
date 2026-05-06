@@ -183,10 +183,11 @@ def shouldElabEmptyByAsTry (stx : Syntax) : TermElabM Bool := do
     && (← read).errToSorry
     && (← getEnv).contains `Lean.Parser.Tactic.tryTrace
 
-/-- Body of the `byTactic` term elaborator: registers a tactic mvar for the body, or
-errors when there's no expected type. Shared between `elabByTactic` and `Lean.Elab.Tactic.Try`'s
-`elabEmptyByAsTry`. -/
-def elabByTacticImpl : TermElab := fun stx expectedType? => do
+@[builtin_term_elab byTactic] def elabByTactic : TermElab := fun stx expectedType? => do
+  -- When the conditions for `try?` on empty `by` are met, skip this elaborator so a later one
+  -- (in Lean.Elab.Tactic.Try) can handle it with try?.
+  if (← shouldElabEmptyByAsTry stx) then
+    throwUnsupportedSyntax
   match expectedType? with
   | some expectedType =>
     -- `by` switches from an exported to a private context, so we must disallow unassigned
@@ -196,13 +197,6 @@ def elabByTacticImpl : TermElab := fun stx expectedType? => do
   | none =>
     tryPostpone
     throwError ("invalid 'by' tactic, expected type has not been provided")
-
-@[builtin_term_elab byTactic] def elabByTactic : TermElab := fun stx expectedType? => do
-  -- When the conditions for `try?` on empty `by` are met, skip this elaborator so a later one
-  -- (in Lean.Elab.Tactic.Try) can handle it with try?.
-  if (← shouldElabEmptyByAsTry stx) then
-    throwUnsupportedSyntax
-  elabByTacticImpl stx expectedType?
 
 @[builtin_term_elab noImplicitLambda] def elabNoImplicitLambda : TermElab := fun stx expectedType? =>
   elabTerm stx[1] (mkNoImplicitLambdaAnnotation <$> expectedType?)

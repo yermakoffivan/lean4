@@ -15,6 +15,7 @@ public meta import VCGen.Util
 
 open Lean Meta Elab Tactic Sym
 open Lean.Elab.Tactic.Do.SpecAttr
+open VCGen
 open Std.Do
 
 /-!

@@ -2,9 +2,13 @@
 Tests for `tactic.tryOnEmptyBy`: empty `by` blocks run `try?` and suggest proofs.
 -/
 
--- Basic: empty by suggests proofs and still reports unsolved goals.
--- The implicit `try?` is informational only — it must not solve the goal.
+-- Basic: empty by reports unsolved goals first (so the user sees it immediately
+-- even when `try?` is slow), then `try?` emits its suggestions as a single info
+-- message with the option-disabling hint at the end.
 /--
+error: unsolved goals
+⊢ True
+---
 info: Try these:
   [apply] by solve_by_elim
   [apply] by simp
@@ -13,9 +17,6 @@ info: Try these:
   [apply] by grind only
   [apply] by simp_all
 empty `by` ran `try?`; disable with `set_option tactic.tryOnEmptyBy false`
----
-error: unsolved goals
-⊢ True
 -/
 #guard_msgs in
 example : True := by

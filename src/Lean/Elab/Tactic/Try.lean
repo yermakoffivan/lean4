@@ -1010,7 +1010,8 @@ private def wrapSuggestionWithBy (sugg : Tactic.TryThis.Suggestion) : TacticM Ta
   | _ => return sugg
 
 /-- Version of `evalAndSuggest` that wraps tactic suggestions with `by` for term mode. -/
-private def evalAndSuggestWithBy (tk : Syntax) (tac : TSyntax `tactic) (originalMaxHeartbeats : Nat) (config : Try.Config) : TacticM Unit := do
+private def evalAndSuggestWithBy (tk : Syntax) (tac : TSyntax `tactic) (originalMaxHeartbeats : Nat)
+    (config : Try.Config) (footer : MessageData := MessageData.nil) : TacticM Unit := do
   -- Suppress "Try this" messages from intermediate tactic executions
   let tac' ← withSuppressedMessages do
     try
@@ -1024,13 +1025,15 @@ private def evalAndSuggestWithBy (tk : Syntax) (tac : TSyntax `tactic) (original
     -- Wrap each suggestion with `by `
     let termSuggestions ← suggestions.mapM wrapSuggestionWithBy
     if termSuggestions.size == 1 then
-      Tactic.TryThis.addSuggestion tk termSuggestions[0]! (origSpan? := (← getRef))
+      Tactic.TryThis.addSuggestion tk termSuggestions[0]! (origSpan? := (← getRef)) (footer := footer)
     else
-      Tactic.TryThis.addSuggestions tk termSuggestions (origSpan? := (← getRef))
+      Tactic.TryThis.addSuggestions tk termSuggestions (origSpan? := (← getRef)) (footer := footer)
 
 /-- Core implementation of `try?`: focus, collect info, build tactic, evaluate and suggest.
-`tk` is the syntax token where "Try this:" appears. -/
-private def elabTryCore (tk : Syntax) (config : Try.Config) : TacticM Unit :=
+`tk` is the syntax token where "Try this:" appears. The optional `footer` is appended to the
+suggestions message (only when `wrapWithBy := true`). -/
+private def elabTryCore (tk : Syntax) (config : Try.Config) (footer : MessageData := MessageData.nil) :
+    TacticM Unit :=
   Tactic.focus do withMainContext do
     let originalMaxHeartbeats ← getMaxHeartbeats
     withUnlimitedHeartbeats do
@@ -1038,7 +1041,7 @@ private def elabTryCore (tk : Syntax) (config : Try.Config) : TacticM Unit :=
       let info ← Try.collect goal config
       let stx ← mkTryEvalSuggestStx goal info
       if config.wrapWithBy then
-        evalAndSuggestWithBy tk stx originalMaxHeartbeats config
+        evalAndSuggestWithBy tk stx originalMaxHeartbeats config (footer := footer)
       else
         evalAndSuggest tk stx originalMaxHeartbeats config
 
@@ -1049,22 +1052,25 @@ private def elabTryCore (tk : Syntax) (config : Try.Config) : TacticM Unit :=
   | _ => throwUnsupportedSyntax
 
 open Term in
-/-- When the `by` body is empty and `tactic.tryOnEmptyBy` is set,
-run `try? (wrapWithBy := true)` directly to suggest a proof.
+/-- When the `by` body is empty and `tactic.tryOnEmptyBy` is set, run `try?` for its
+informational side effect (the "Try this" suggestions) and then delegate to the normal
+`by` elaborator so the empty body still produces an unsolved-goals error. The implicit
+mode must not change elaboration behavior beyond emitting messages.
 Disabled when `errToSorry` is false (nested in a combinator like `first`),
 or when `try?` infrastructure is not yet available (e.g. while building the prelude). -/
 @[builtin_term_elab byTactic] def elabEmptyByAsTry : TermElab := fun stx expectedType? => do
   unless (← shouldElabEmptyByAsTry stx) do
     throwUnsupportedSyntax
   let some expectedType := expectedType? | do tryPostpone; throwUnsupportedSyntax
-  logInfoAt stx[0]
-    m!"empty `by` running `try?`; disable with `set_option tactic.tryOnEmptyBy false`"
-  let mvar ← mkFreshExprMVar expectedType MetavarKind.syntheticOpaque
-  let mvarId := mvar.mvarId!
-  let remainingGoals ← withInfoHole mvarId <| Tactic.run mvarId <|
-    withRef stx do elabTryCore stx[0] { wrapWithBy := true }
-  unless remainingGoals.isEmpty do
-    reportUnsolvedGoals remainingGoals
-  return mvar
+  -- Run `try?` on a scratch goal so it cannot solve the real goal.
+  let scratch ← mkFreshExprMVar expectedType MetavarKind.syntheticOpaque
+  let footer := m!"\nempty `by` ran `try?`; disable with `set_option tactic.tryOnEmptyBy false`"
+  try
+    discard <| Tactic.run scratch.mvarId! <|
+      withRef stx do elabTryCore stx[0] { wrapWithBy := true } (footer := footer)
+  catch _ => pure ()
+  -- Delegate to the normal `by` path so the unsolved goal is reported as usual.
+  mkTacticMVar expectedType stx .term
+    (delayOnMVars := (← getEnv).isExporting && !(← backward.proofsInPublic.getM))
 
 end Lean.Elab.Tactic.Try

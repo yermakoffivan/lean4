@@ -316,6 +316,7 @@ static inline lean_object * pop_back(lean_object * & todo) {
 }
 
 static inline void dec(lean_object * o, lean_object* & todo) {
+start:
     if (lean_is_scalar(o))
         return;
     if (LEAN_LIKELY(o->m_rc > 1)) {
@@ -324,6 +325,11 @@ static inline void dec(lean_object * o, lean_object* & todo) {
         bool is_ctor_obj = lean_ptr_tag(o) <= LeanMaxCtorTag;
         if (is_ctor_obj && lean_ctor_num_objs(o) == 0) {
             lean_free_small_object(o);
+        } else if (is_ctor_obj && lean_ctor_num_objs(o) == 1) {
+            lean_object* mem = lean_ctor_get(o, 0);
+            lean_free_small_object(o);
+            o = mem;
+            goto start;
         } else {
             push_back(todo, o);
         }
@@ -333,6 +339,11 @@ static inline void dec(lean_object * o, lean_object* & todo) {
         bool is_ctor_obj = lean_ptr_tag(o) <= LeanMaxCtorTag;
         if (is_ctor_obj && lean_ctor_num_objs(o) == 0) {
             lean_free_small_object(o);
+        } else if (is_ctor_obj && lean_ctor_num_objs(o) == 1) {
+            lean_object* mem = lean_ctor_get(o, 0);
+            lean_free_small_object(o);
+            o = mem;
+            goto start;
         } else {
             push_back(todo, o);
         }

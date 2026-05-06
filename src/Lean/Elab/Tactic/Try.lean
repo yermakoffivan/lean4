@@ -1063,6 +1063,9 @@ or when `try?` infrastructure is not yet available (e.g. while building the prel
     throwUnsupportedSyntax
   let some expectedType := expectedType? | do tryPostpone; throwUnsupportedSyntax
   let mvar ← mkFreshExprMVar expectedType MetavarKind.syntheticOpaque
+  -- Attach a `TacticInfo` node for the `by` syntax so the language server shows the
+  -- "Tactic state" view (rather than "Expected type") when the cursor is on `by`.
+  discard <| Tactic.run mvar.mvarId! <| withTacticInfoContext stx (pure ())
   withRef stx <| Term.reportUnsolvedGoals [mvar.mvarId!]
   -- For `:= by ...` syntax, MutualDef sets up a `tacSnap` promise that the language
   -- server walks when looking up info trees. The tactic incrementality machinery would

@@ -1062,15 +1062,17 @@ or when `try?` infrastructure is not yet available (e.g. while building the prel
   unless (← shouldElabEmptyByAsTry stx) do
     throwUnsupportedSyntax
   let some expectedType := expectedType? | do tryPostpone; throwUnsupportedSyntax
-  let mvar ← mkFreshExprMVar expectedType MetavarKind.syntheticOpaque
-  -- Attach a `TacticInfo` node for the `by` syntax so the language server shows the
-  -- "Tactic state" view (rather than "Expected type") when the cursor is on `by`.
-  discard <| Tactic.run mvar.mvarId! <| withTacticInfoContext stx (pure ())
-  withRef stx <| Term.reportUnsolvedGoals [mvar.mvarId!]
+  -- Set up the same tactic mvar the normal `by` elaborator would, then eagerly process
+  -- it. This runs the empty body via `evalTactic`, attaching the `TacticInfo` node and
+  -- reporting unsolved goals (so the diagnostic is emitted before `try?` runs and the
+  -- editor shows the "Tactic state" view rather than "Expected type").
+  let mvar ← mkTacticMVar expectedType stx .term
+    (delayOnMVars := (← getEnv).isExporting && !(← backward.proofsInPublic.getM))
+  runPendingTacticsAt mvar
   -- For `:= by ...` syntax, MutualDef sets up a `tacSnap` promise that the language
   -- server walks when looking up info trees. The tactic incrementality machinery would
-  -- normally resolve it, but `elabEmptyByAsTry` bypasses that path entirely. Resolve it
-  -- here so RPC requests like `getInteractiveTermGoal` don't block on this promise.
+  -- normally resolve it, but for an empty `by` it never fires. Resolve it here so RPC
+  -- requests like `getInteractiveTermGoal` don't block on this promise.
   if let some tacSnap := (← readThe Term.Context).tacSnap? then
     tacSnap.new.resolve default
   let cancelTk ← IO.CancelToken.new

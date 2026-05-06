@@ -321,11 +321,21 @@ static inline void dec(lean_object * o, lean_object* & todo) {
     if (LEAN_LIKELY(o->m_rc > 1)) {
         o->m_rc--;
     } else if (o->m_rc == 1) {
-        push_back(todo, o);
+        bool is_ctor_obj = lean_ptr_tag(o) <= LeanMaxCtorTag;
+        if (is_ctor_obj && lean_ctor_num_objs(o) == 0) {
+            lean_free_small_object(o);
+        } else {
+            push_back(todo, o);
+        }
     } else if (o->m_rc == 0) {
         return;
     } else if (std::atomic_fetch_add_explicit(lean_get_rc_mt_addr(o), 1, std::memory_order_acq_rel) == -1) {
-        push_back(todo, o);
+        bool is_ctor_obj = lean_ptr_tag(o) <= LeanMaxCtorTag;
+        if (is_ctor_obj && lean_ctor_num_objs(o) == 0) {
+            lean_free_small_object(o);
+        } else {
+            push_back(todo, o);
+        }
     }
 }
 

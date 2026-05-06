@@ -44,6 +44,15 @@ error: unsolved goals
 #guard_msgs in
 example : True := by { }
 
+-- Unprovable goal: try? finds no suggestions, so the implicit mode is fully silent
+-- (no "Try this", no error or warning from try? itself — only the unsolved-goals error).
+/--
+error: unsolved goals
+⊢ False
+-/
+#guard_msgs in
+example : False := by
+
 -- Nested in a backtracking combinator (`errToSorry = false`): try? must stay silent.
 -- We only assert the absence of the try? info message; the unsolved-goals error is expected
 -- because `exact (by)` succeeds at term-elab time (the empty tactic block fails later).

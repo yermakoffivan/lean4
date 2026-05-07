@@ -471,13 +471,13 @@ def inLeapYear (date : ZonedDateTime) : Bool :=
   date.year.isLeap
 
 /--
-Returns the local (civil) date of the `ZonedDateTime` as a `Day.Offset` since 1970-01-01.
+Returns the local (civil) date of the `ZonedDateTime` as a `Day.Offset` relative to 1970-01-01.
 -/
 def toEpochDay (date : ZonedDateTime) : Day.Offset :=
   date.date.get.toEpochDay
 
 /--
-Creates a `ZonedDateTime` from a local date given as a `Day.Offset` since 1970-01-01, a
+Creates a `ZonedDateTime` from a local date given as a `Day.Offset` relative to 1970-01-01, a
 `PlainTime`, and `ZoneRules`. The day offset is interpreted as a local (civil) date, not UTC.
 -/
 @[inline]

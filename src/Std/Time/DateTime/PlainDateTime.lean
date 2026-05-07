@@ -152,14 +152,14 @@ def ofWallTime (stamp : WallTime) : PlainDateTime := Id.run do
   }
 
 /--
-Returns the local (civil) date of the `PlainDateTime` as a `Day.Offset` since 1970-01-01.
+Returns the local (civil) date of the `PlainDateTime` as a `Day.Offset` relative to 1970-01-01.
 -/
 @[inline]
 def toEpochDay (pdt : PlainDateTime) : Day.Offset :=
   pdt.date.toEpochDay
 
 /--
-Converts the number of days since the UNIX epoch to a `PlainDateTime`.
+Converts the number of days relative to 1970-01-01 as a `PlainDateTime`.
 -/
 @[inline]
 def ofEpochDay (days : Day.Offset) (time : PlainTime) : PlainDateTime :=

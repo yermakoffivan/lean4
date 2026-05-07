@@ -16,7 +16,8 @@ info: Try these:
   [apply] by grind
   [apply] by grind only
   [apply] by simp_all
-empty `by` ran `try?`; disable with `set_option tactic.tryOnEmptyBy false`
+
+(Disable this with `set_option tactic.tryOnEmptyBy false`.)
 -/
 #guard_msgs in
 example : True := by

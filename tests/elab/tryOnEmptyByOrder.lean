@@ -28,7 +28,8 @@ error: unsolved goals
 ---
 info: Try this:
   [apply] by exact _customPropHolds✝
-empty `by` ran `try?`; disable with `set_option tactic.tryOnEmptyBy false`
+
+(Disable this with `set_option tactic.tryOnEmptyBy false`.)
 -/
 #guard_msgs in
 example : CustomProp := by

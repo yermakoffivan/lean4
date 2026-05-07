@@ -9,6 +9,7 @@ prelude
 public import Init.Data.Array.BinSearch
 public import Init.Data.Stream
 public import Init.System.Promise
+public import Init.System.CancelToken
 public import Lean.Data.NameTrie
 public import Lean.Setup
 public import Lean.LocalContext
@@ -616,7 +617,13 @@ structure Environment where
   /--
   Indicates whether the environment is being used in an exported context, i.e. whether it should
   provide access to only the data to be imported by other modules participating in the module
-  system.
+  system. Apart from controlling access, some operations such as `mkAuxDeclName` may also change
+  their output based on this flag.
+
+  By default, `isExporting` is set to false when command elaborators are invoked such that they have
+  access to the full local environment. Use `with(out)Exporting` to modify based on context. For
+  example, `elabDeclaration` sets it based on `(← getScope).isPublic` on the top level, then
+  `elabMutualDef` may switch from public to private when e.g. entering the proof of a theorem.
   -/
   isExporting : Bool := false
 deriving Nonempty
@@ -2371,14 +2378,14 @@ system and imports will be restricted accordingly. If it is `server`, the data f
 as if no `module` annotations were present in the imports.
 -/
 def importModules (imports : Array Import) (opts : Options) (trustLevel : UInt32 := 0)
-    (plugins : Array System.FilePath := #[]) (leakEnv := false) (loadExts := false)
+    (plugins : Array Plugin := #[]) (leakEnv := false) (loadExts := false)
     (level := OLeanLevel.private) (arts : NameMap ImportArtifacts := {})
     : IO Environment := profileitIO "import" opts do
   for imp in imports do
     if imp.module matches .anonymous then
       throw <| IO.userError "import failed, trying to import module with anonymous name"
   withImporting do
-    plugins.forM Lean.loadPlugin
+    plugins.forM fun {path, initFn?} => Lean.loadPlugin path initFn?
     let (_, s) ← importModulesCore (globalLevel := level) imports arts |>.run
     finalizeImport (leakEnv := leakEnv) (loadExts := loadExts) (level := level)
       s imports opts trustLevel

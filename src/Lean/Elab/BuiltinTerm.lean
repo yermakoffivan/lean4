@@ -159,7 +159,8 @@ private def getMVarFromUserName (ident : Syntax) : MetaM Expr := do
 
 register_builtin_option tactic.tryOnEmptyBy : Bool := {
   defValue := false
-  descr    := "when an empty `by` block is encountered interactively, run `try?` to suggest a proof"
+  descr    := "when an empty `by` block is encountered interactively, run `try?` to suggest \
+    a proof (currently disabled by default; may become the default in a future release)"
 }
 
 /-- Returns `true` if `stx` is a `by` expression with an empty tactic body

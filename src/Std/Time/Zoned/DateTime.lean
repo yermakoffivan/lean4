@@ -61,7 +61,7 @@ instance : Inhabited (DateTime tz) where
   default := ofTimestamp Inhabited.default tz
 
 /--
-Returns the number of days since the UNIX epoch in local time.
+Returns the number of days since the UNIX epoch.
 -/
 def toEpochDay (date : DateTime tz) : Day.Offset :=
   date.date.get.toEpochDay
@@ -459,7 +459,7 @@ def time (zdt : DateTime tz) : PlainTime :=
   zdt.date.get.time
 
 /--
-Creates a `DateTime` from a number of days since the UNIX epoch in local time.
+Creates a `DateTime` from a number of days since the 1970-01-01T00:00:00.
 -/
 @[inline]
 def ofEpochDay (days : Day.Offset) (time : PlainTime) (tz : TimeZone) : DateTime tz :=

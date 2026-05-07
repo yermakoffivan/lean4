@@ -214,7 +214,7 @@ def findLocalTimeTypeForTimestamp (zr : ZoneRules) (timestamp : Timestamp) : Loc
   |>.getD zr.initialLocalTimeType
 
 /--
-Finds the `LocalTimeType` for a given wall-clock time (seconds since Unix epoch in local time).
+Finds the `LocalTimeType` for a given wall-clock time (seconds since 1970-01-01T00:00:00 in local time).
 Unlike `findLocalTimeTypeForTimestamp`, this compares each transition's UTC time adjusted by the
 previous offset — necessary when converting local time to UTC.
 -/

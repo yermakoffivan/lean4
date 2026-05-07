@@ -150,7 +150,7 @@ Finds the transition corresponding to a given timestamp in `Array Transition`.
 If the timestamp falls between two transitions, it returns the most recent transition before the timestamp.
 -/
 def findTransitionIndexForTimestamp (transitions : Array Transition) (timestamp : Timestamp) : Option Nat :=
-  let value := timestamp.toSecondsSinceUnixEpoch
+  let value := timestamp.toSeconds
   transitions.findIdx? (fun t => t.time.val > value.val)
 
 /--
@@ -206,6 +206,22 @@ def findLocalTimeTypeForTimestamp (zr : ZoneRules) (timestamp : Timestamp) : Loc
   Transition.findTransitionForTimestamp zr.transitions timestamp
   |>.map (·.localTimeType)
   |>.getD zr.initialLocalTimeType
+
+/--
+Finds the `LocalTimeType` for a given wall-clock time (seconds since Unix epoch in local time).
+Unlike `findLocalTimeTypeForTimestamp`, this compares each transition's UTC time adjusted by the
+previous offset — necessary when converting local time to UTC.
+-/
+def findLocalTimeTypeForWallTime (zr : ZoneRules) (wallTime : WallTime) : LocalTimeType := Id.run do
+  let mut ltt := zr.initialLocalTimeType
+
+  for t in zr.transitions do
+    let localTransitionTime := t.time.add ltt.gmtOffset.second
+    if wallTime.toSeconds.val < localTransitionTime.val then
+      return ltt
+    ltt := t.localTimeType
+
+  return ltt
 
 /--
 Find the current `TimeZone` out of a `Transition` in a `ZoneRules`

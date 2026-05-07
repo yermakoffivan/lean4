@@ -58,9 +58,9 @@ BR: 15 August 2024 13:28:12 GMT-03:00
 -/
 def tm₄ : Second.Offset := 1723739292
 
-def dateBR := DateTime.ofTimestamp (Timestamp.ofSecondsSinceUnixEpoch tm₄) brTZ
-def dateJP := DateTime.ofTimestamp (Timestamp.ofSecondsSinceUnixEpoch tm₄) jpTZ
-def dateUTC := DateTime.ofTimestamp (Timestamp.ofSecondsSinceUnixEpoch tm₄) .UTC
+def dateBR := DateTime.ofTimestamp (Timestamp.ofSeconds tm₄) brTZ
+def dateJP := DateTime.ofTimestamp (Timestamp.ofSeconds tm₄) jpTZ
+def dateUTC := DateTime.ofTimestamp (Timestamp.ofSeconds tm₄) .UTC
 
 /--
 info: "Thursday, August 15, 2024 13:28:12 -0300"
@@ -132,11 +132,11 @@ def localTm : Second.Offset := 1723730627
 /--
 This PlainDate is relative to the local time.
 -/
-def PlainDate : PlainDateTime := Timestamp.toPlainDateTimeAssumingUTC (Timestamp.ofSecondsSinceUnixEpoch localTm)
+def PlainDate : PlainDateTime := PlainDateTime.ofWallTime (WallTime.ofSeconds localTm)
 
-def dateBR₁ := DateTime.ofPlainDateTime PlainDate brTZ
-def dateJP₁ := DateTime.ofPlainDateTime PlainDate jpTZ
-def dateUTC₁ := DateTime.ofPlainDateTime PlainDate .UTC
+def dateBR₁ := DateTime.ofLocalDateTime PlainDate brTZ
+def dateJP₁ := DateTime.ofLocalDateTime PlainDate jpTZ
+def dateUTC₁ := DateTime.ofLocalDateTime PlainDate .UTC
 
 /--
 info: "Thursday, August 15, 2024 14:03:47 -0300"
@@ -215,37 +215,37 @@ info: "06/16/2014"
 info: "0053-06-19"
 -/
 #guard_msgs in
-#eval Formats.sqlDate.format (DateTime.ofPlainDate (PlainDate.ofDaysSinceUNIXEpoch ⟨-700000⟩) .UTC)
+#eval Formats.sqlDate.format (DateTime.ofLocalDate (PlainDate.ofEpochDay ⟨-700000⟩) .UTC)
 
 /--
 info: "-0002-09-16"
 -/
 #guard_msgs in
-#eval Formats.sqlDate.format (DateTime.ofPlainDate (PlainDate.ofDaysSinceUNIXEpoch ⟨-720000⟩) .UTC)
+#eval Formats.sqlDate.format (DateTime.ofLocalDate (PlainDate.ofEpochDay ⟨-720000⟩) .UTC)
 
 /--
 info: "-0084-07-28"
 -/
 #guard_msgs in
-#eval Formats.sqlDate.format (DateTime.ofPlainDate (PlainDate.ofDaysSinceUNIXEpoch ⟨-750000⟩) .UTC)
+#eval Formats.sqlDate.format (DateTime.ofLocalDate (PlainDate.ofEpochDay ⟨-750000⟩) .UTC)
 
 /--
 info: "-0221-09-04"
 -/
 #guard_msgs in
-#eval Formats.sqlDate.format (DateTime.ofPlainDate (PlainDate.ofDaysSinceUNIXEpoch ⟨-800000⟩) .UTC)
+#eval Formats.sqlDate.format (DateTime.ofLocalDate (PlainDate.ofEpochDay ⟨-800000⟩) .UTC)
 
 /--
 info: date("-0221-09-04")
 -/
 #guard_msgs in
-#eval PlainDate.ofDaysSinceUNIXEpoch ⟨-800000⟩
+#eval PlainDate.ofEpochDay ⟨-800000⟩
 
 /--
 info: date("-0221-09-04")
 -/
 #guard_msgs in
-#eval PlainDate.ofDaysSinceUNIXEpoch ⟨-800000⟩
+#eval PlainDate.ofEpochDay ⟨-800000⟩
 
 /--
 info: date("2002-07-14")
@@ -294,7 +294,7 @@ def datetime₄ := datetime("2002-07-14T23:13:12.324354679")
 def zoned₄ := zoned("2002-07-14T23:13:12.324354679+09:00")
 def zoned₅ := zoned("2002-07-14T23:13:12.324354679+00:00")
 def tz : TimeZone := { offset := { second := -3600 }, name := "America/Sao_Paulo", abbreviation := "BRT", isDST := false}
-def zoned₆ := ZonedDateTime.ofPlainDateTime (zoned₄.toPlainDateTime) (TimeZone.ZoneRules.ofTimeZone tz)
+def zoned₆ := ZonedDateTime.ofLocalDateTime (zoned₄.toPlainDateTime) (TimeZone.ZoneRules.ofTimeZone tz)
 
 /--
 info: "CE CE CE Common Era C"
@@ -804,7 +804,7 @@ info: 1
 -/
 #guard_msgs in
 #eval
-  let t : ZonedDateTime := .ofPlainDateTime datetime("2018-12-31T12:00:00") (TimeZone.ZoneRules.ofTimeZone TimeZone.UTC)
+  let t : ZonedDateTime := .ofLocalDateTime datetime("2018-12-31T12:00:00") (TimeZone.ZoneRules.ofTimeZone TimeZone.UTC)
   IO.println s!"{t.format "w"}"
 
 /--

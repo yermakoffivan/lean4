@@ -2,6 +2,8 @@
 Tests for `tactic.tryOnEmptyBy`: empty `by` blocks run `try?` and suggest proofs.
 -/
 
+set_option tactic.tryOnEmptyBy true
+
 -- Basic: empty by reports unsolved goals first (so the user sees it immediately
 -- even when `try?` is slow), then `try?` emits its suggestions as a single info
 -- message with the option-disabling hint at the end.

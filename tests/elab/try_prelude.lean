@@ -5,6 +5,7 @@ Tests that while working on the prelude, try?-on-by does not run when not all in
 availbe.
 -/
 
+set_option tactic.tryOnEmptyBy true
 
 /--
 error: unsolved goals

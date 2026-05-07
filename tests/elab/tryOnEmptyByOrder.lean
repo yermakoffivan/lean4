@@ -9,6 +9,8 @@ public meta import Lean.Elab.Tactic.Try
 
 open Lean Meta Elab Tactic Try
 
+set_option tactic.tryOnEmptyBy true
+
 opaque CustomProp : Prop
 axiom _customPropHolds : CustomProp
 

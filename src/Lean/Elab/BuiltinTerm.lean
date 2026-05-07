@@ -158,7 +158,7 @@ private def getMVarFromUserName (ident : Syntax) : MetaM Expr := do
   | _ => throwUnsupportedSyntax
 
 register_builtin_option tactic.tryOnEmptyBy : Bool := {
-  defValue := true
+  defValue := false
   descr    := "when an empty `by` block is encountered interactively, run `try?` to suggest a proof"
 }
 

@@ -1075,13 +1075,11 @@ or when `try?` infrastructure is not yet available (e.g. while building the prel
   unless (← shouldElabEmptyByAsTry stx) do
     throwUnsupportedSyntax
   let some expectedType := expectedType? | do tryPostpone; throwUnsupportedSyntax
-  -- Re-elaborate the `by` with the option disabled to fall through to the normal `by`
-  -- elaborator (which registers a tactic mvar). The synthetic-mvar machinery will
-  -- process it later, attaching the `TacticInfo` node and reporting unsolved goals
-  -- — exactly as the normal `by` path does, so the editor shows the "Tactic state"
-  -- view rather than "Expected type".
-  let mvar ← withOptions (tactic.tryOnEmptyBy.set · false) <|
-    Term.elabTerm stx expectedType?
+  -- Delegate to the same body the normal `by` elaborator runs (registers the tactic
+  -- mvar). The synthetic-mvar machinery will process it later, attaching the
+  -- `TacticInfo` node and reporting unsolved goals — exactly as the normal `by` path
+  -- does, so the editor shows the "Tactic state" view rather than "Expected type".
+  let mvar ← elabByTacticCore stx expectedType?
   let cancelTk ← IO.CancelToken.new
   let footer := m!"\n\n(Disable this with `set_option tactic.tryOnEmptyBy false`.)"
   let act ← Term.wrapAsyncAsSnapshot (cancelTk? := cancelTk) fun (_ : Unit) => do

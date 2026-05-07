@@ -344,13 +344,9 @@ where
       TermElabM (Option Syntax × Option (Language.SnapshotTask Tactic.TacticParsedSnapshot))
    := do
     if let some e := getBodyTerm? body then
-      -- Skip an empty `by` body: there are no tactics to incrementally process, and
-      -- leaving `tacPromise` unresolved would block language-server requests that walk
-      -- the snapshot tree (e.g. `getInteractiveTermGoal`) until cancel-token cleanup.
       if let `(by $tacs*) := e then
-        unless tacs.getElems.isEmpty do
-          let cancelTk? := (← readThe Core.Context).cancelTk?
-          return (e, some { stx? := mkNullNode tacs, task := tacPromise.resultD default, cancelTk? })
+        let cancelTk? := (← readThe Core.Context).cancelTk?
+        return (e, some { stx? := mkNullNode tacs, task := tacPromise.resultD default, cancelTk? })
     tacPromise.resolve default
     return (none, none)
 

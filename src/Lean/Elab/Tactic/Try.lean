@@ -1071,6 +1071,12 @@ or when `try?` infrastructure is not yet available (e.g. while building the prel
       (fun ctx => { ctx with options := tactic.tryOnEmptyBy.set ctx.options false }) <|
     Term.elabTerm stx expectedType?
   runPendingTacticsAt mvar
+  -- For `:= by ...` syntax, MutualDef sets up a `tacSnap` promise that the language
+  -- server walks when looking up info trees. The tactic incrementality machinery would
+  -- normally resolve it, but for an empty `by` it never fires. Resolve it here so RPC
+  -- requests like `getInteractiveTermGoal` don't block on this promise.
+  if let some tacSnap := (← readThe Term.Context).tacSnap? then
+    tacSnap.new.resolve default
   let cancelTk ← IO.CancelToken.new
   let footer := m!"\nempty `by` ran `try?`; disable with `set_option tactic.tryOnEmptyBy false`"
   let act ← Term.wrapAsyncAsSnapshot (cancelTk? := cancelTk) fun (_ : Unit) => do

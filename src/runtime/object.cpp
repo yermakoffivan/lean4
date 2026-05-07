@@ -712,9 +712,10 @@ class task_manager {
     std::deque<lean_task_object *>                m_queues[LEAN_MAX_PRIO+1];
     unsigned                                      m_queues_size{0};
     unsigned                                      m_max_prio{0};
-    condition_variable                            m_queue_cv;
+    condition_variable                            m_queue_cv;            // notified on work arrival or shutdown
     condition_variable                            m_task_finished_cv;
-    condition_variable                            m_dedicated_finished_cv;
+    condition_variable                            m_capacity_cv;         // notified when std-worker capacity may have opened up, or shutdown
+    condition_variable                            m_worker_finished_cv;  // notified on std/dedicated worker exit or shutdown
     bool                                          m_shutting_down{false};
 
     lean_task_object * dequeue() {
@@ -805,12 +806,14 @@ class task_manager {
                 // If we have reached the maximum number of standard workers (because the
                 // maximum was decreased by `task_get`), wait for someone else to become
                 // idle before picking up new work.
-                // But during shutdown, we skip this throttling:
-                // because the finalizer might have called m_queue_cv.notify_all() for the last
-                // time, we don't want to get stuck behind the wait().
+                // During shutdown we skip this throttling so remaining queued work drains
+                // promptly rather than blocking on capacity that will not free up.
                 if (!m_shutting_down &&
                     m_num_std_workers - m_idle_std_workers >= m_max_std_workers) {
-                    m_queue_cv.wait_for(lock, chrono::milliseconds(WORKER_IDLE_TIMEOUT_MS));
+                    m_capacity_cv.wait(lock, [&]() {
+                        return m_shutting_down ||
+                               m_num_std_workers - m_idle_std_workers < m_max_std_workers;
+                    });
                     continue;
                 }
 
@@ -818,11 +821,12 @@ class task_manager {
                 m_idle_std_workers--;
                 run_task(lock, t);
                 m_idle_std_workers++;
+                m_capacity_cv.notify_one();
                 reset_heartbeat();
             }
             m_idle_std_workers--;
             m_num_std_workers--;
-            m_queue_cv.notify_all();
+            m_worker_finished_cv.notify_all();
         });
     }
 
@@ -833,7 +837,7 @@ class task_manager {
             unique_lock<mutex> lock(m_mutex);
             run_task(lock, t);
             m_num_dedicated_workers--;
-            m_dedicated_finished_cv.notify_all();
+            m_worker_finished_cv.notify_all();
         });
         // `lthread` will be implicitly freed, which frees up its control resources but does not terminate the thread
     }
@@ -930,12 +934,14 @@ public:
             m_shutting_down = true;
         }
         m_queue_cv.notify_all();
+        m_capacity_cv.notify_all();
 #ifndef LEAN_EMSCRIPTEN
         // wait for all workers to finish
         {
             unique_lock<mutex> lock(m_mutex);
-            m_queue_cv.wait(lock, [&]() { return m_num_std_workers == 0; });
-            m_dedicated_finished_cv.wait(lock, [&]() { return m_num_dedicated_workers == 0; });
+            m_worker_finished_cv.wait(lock, [&]() {
+                return m_num_std_workers == 0 && m_num_dedicated_workers == 0;
+            });
         }
         // never seems to terminate under Emscripten
 #endif
@@ -993,6 +999,7 @@ public:
                 spawn_worker();
             else
                 m_queue_cv.notify_one();
+            m_capacity_cv.notify_one();
         }
         m_task_finished_cv.wait(lock, [&]() { return t->m_value != nullptr; });
         if (in_pool) {

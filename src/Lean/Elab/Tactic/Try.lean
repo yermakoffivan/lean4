@@ -1070,7 +1070,15 @@ informational side effect (the "Try this" suggestions) and then delegate to the 
 `by` elaborator so the empty body still produces an unsolved-goals error. The implicit
 mode must not change elaboration behavior beyond emitting messages.
 Disabled when `errToSorry` is false (nested in a combinator like `first`),
-or when `try?` infrastructure is not yet available (e.g. while building the prelude). -/
+or when `try?` infrastructure is not yet available (e.g. while building the prelude).
+
+We register a *second* `builtin_term_elab` for `byTactic` (rather than folding the
+gate-and-dispatch into `elabByTactic` directly) because `Lean.Elab.Tactic.Try` already
+imports `Lean.Elab.BuiltinTerm`, so the `try?` infrastructure can't be referenced
+from `BuiltinTerm.lean` without breaking the dependency direction. The gate in
+`elabByTactic` skips this elaborator (via `throwUnsupportedSyntax`) when the `try?`
+path doesn't apply. This could be cleaned up later, e.g. via a registered handler ref
+in `BuiltinTerm.lean` populated by `Try.lean`. -/
 @[builtin_term_elab byTactic] def elabEmptyByAsTry : TermElab := fun stx expectedType? => do
   unless (← shouldElabEmptyByAsTry stx) do
     throwUnsupportedSyntax

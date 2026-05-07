@@ -1080,8 +1080,7 @@ or when `try?` infrastructure is not yet available (e.g. while building the prel
   -- empty body via `evalTactic`, attaching the `TacticInfo` node and reporting unsolved
   -- goals (so the diagnostic is emitted before `try?` runs and the editor shows the
   -- "Tactic state" view rather than "Expected type").
-  let mvar ← withTheReader Core.Context
-      (fun ctx => { ctx with options := tactic.tryOnEmptyBy.set ctx.options false }) <|
+  let mvar ← withOptions (tactic.tryOnEmptyBy.set · false) <|
     Term.elabTerm stx expectedType?
   runPendingTacticsAt mvar
   let cancelTk ← IO.CancelToken.new

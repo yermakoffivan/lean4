@@ -1472,8 +1472,8 @@ goto v___jp_312_;
 }
 else
 {
-lean_dec_ref(v_pre_331_);
 lean_dec(v_pre_332_);
+lean_dec_ref(v_pre_331_);
 lean_dec_ref(v_pre_330_);
 lean_dec_ref(v_declName_329_);
 lean_dec_ref(v_fn_327_);
@@ -1490,8 +1490,8 @@ goto v___jp_312_;
 }
 else
 {
-lean_dec(v_pre_331_);
 lean_dec_ref(v_pre_330_);
+lean_dec(v_pre_331_);
 lean_dec_ref(v_declName_329_);
 lean_dec_ref(v_fn_327_);
 lean_dec_ref(v_fn_326_);

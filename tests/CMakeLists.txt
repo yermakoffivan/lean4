@@ -261,6 +261,7 @@ else()
     GLOB_RECURSE LEANLAKETESTS
     "${LEAN_SOURCE_DIR}/../tests/lake/examples/test.sh"
     "${LEAN_SOURCE_DIR}/../tests/lake/tests/shake/test.sh"
+    "${LEAN_SOURCE_DIR}/../tests/lake/tests/builtin-lint/test.sh"
   )
 endif()
 foreach(T ${LEANLAKETESTS})
@@ -302,7 +303,12 @@ add_test_pile(elab_fail *.lean)
 add_test_pile(misc *.sh)
 add_test_pile(misc_bench *.sh BENCH PART2)
 add_test_pile(server *.lean)
-add_test_pile(server_interactive *.lean)
+add_test_pile(
+  server_interactive
+  *.lean
+  EXCEPT
+    cancellation_par.lean # Flaky deadlocky
+)
 
 add_test_dir(../doc/examples/compiler)
 add_test_dir(bench/build BENCH PART1)

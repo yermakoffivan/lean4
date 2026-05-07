@@ -1051,6 +1051,19 @@ private def elabTryCore (tk : Syntax) (config : Try.Config) (footer : MessageDat
     elabTryCore tk (← elabTryConfig config)
   | _ => throwUnsupportedSyntax
 
+@[builtin_tactic Lean.Parser.Tactic.tryTraceWith] def evalTryTraceWith : Tactic := fun stx => do
+  match stx with
+  | `(tactic| try?%$tk $config:optConfig => $tac:tacticSeq) => Tactic.focus do withMainContext do
+    let config ← elabTryConfig config
+    let originalMaxHeartbeats ← getMaxHeartbeats
+    let tac ← `(tactic| ($tac:tacticSeq))
+    withUnlimitedHeartbeats do
+      if config.wrapWithBy then
+        evalAndSuggestWithBy tk tac originalMaxHeartbeats config
+      else
+        evalAndSuggest tk tac originalMaxHeartbeats config
+  | _ => throwUnsupportedSyntax
+
 open Term in
 /-- When the `by` body is empty and `tactic.tryOnEmptyBy` is set, run `try?` for its
 informational side effect (the "Try this" suggestions) and then delegate to the normal

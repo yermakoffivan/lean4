@@ -320,11 +320,16 @@ std::ostream & operator<<(std::ostream & out, mpz const & v) {
 
 static void *mpz_alloc(size_t size) {
 #ifdef LEAN_SMALL_ALLOCATOR
+    // the small allocator already panics on memory exhaustion
     return alloc(size);
 #elif defined(LEAN_MIMALLOC)
-    return mi_malloc(size);
+    void * r = mi_malloc(size);
+    if (r == nullptr) lean_internal_panic_out_of_memory();
+    return r;
 #else
-    return malloc(size);
+    void * r = malloc(size);
+    if (r == nullptr) lean_internal_panic_out_of_memory();
+    return r;
 #endif
 }
 
@@ -340,7 +345,7 @@ static void mpz_dealloc(void *ptr, size_t size) {
 
 void mpz::allocate(size_t s) {
     m_size   = s;
-    m_digits = static_cast<mpn_digit*>(mpz_alloc(s * sizeof(mpn_digit)));
+    m_digits = static_cast<mpn_digit*>(mpz_alloc(lean_usize_mul_checked(s, sizeof(mpn_digit))));
 }
 
 void mpz::init() {
@@ -409,8 +414,8 @@ void mpz::init_int64(int64 v) {
 void mpz::init_mpz(mpz const & v) {
     m_sign   = v.m_sign;
     m_size   = v.m_size;
-    m_digits = static_cast<mpn_digit*>(mpz_alloc(m_size * sizeof(mpn_digit)));
-    memcpy(m_digits, v.m_digits, m_size * sizeof(mpn_digit));
+    m_digits = static_cast<mpn_digit*>(mpz_alloc(lean_usize_mul_checked(m_size, sizeof(mpn_digit))));
+    memcpy(m_digits, v.m_digits, lean_usize_mul_checked(m_size, sizeof(mpn_digit)));
 }
 
 mpz::mpz() {

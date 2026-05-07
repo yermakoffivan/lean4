@@ -63,7 +63,7 @@ Creates a new `ZonedDateTime` out of a `PlainDateTime` and a `ZoneRules`. It ass
 the local time.
 -/
 @[inline]
-def ofLocalDateTime (pdt : PlainDateTime) (zr : TimeZone.ZoneRules) : ZonedDateTime :=
+def ofPlainDateTime (pdt : PlainDateTime) (zr : TimeZone.ZoneRules) : ZonedDateTime :=
   let wt := pdt.toWallTime
   let ltt := zr.findLocalTimeTypeForWallTime wt
   let tz := ltt.getTimeZone
@@ -81,8 +81,8 @@ Creates a new `ZonedDateTime` out of a `PlainDateTime` and a `TimeZone`. It assu
 the local time.
 -/
 @[inline]
-def ofLocalDateTimeWithZone (tm : PlainDateTime) (tz : TimeZone) : ZonedDateTime :=
-  ofLocalDateTime tm (TimeZone.ZoneRules.ofTimeZone tz)
+def ofPlainDateTimeWithZone (tm : PlainDateTime) (tz : TimeZone) : ZonedDateTime :=
+  ofPlainDateTime tm (TimeZone.ZoneRules.ofTimeZone tz)
 
 /--
 Creates a new `Timestamp` out of a `ZonedDateTime`.
@@ -253,49 +253,49 @@ def subWeeks (dt : ZonedDateTime) (weeks : Week.Offset) : ZonedDateTime :=
 Add `Month.Offset` to a `ZonedDateTime`, clipping to the last valid day.
 -/
 def addMonthsClip (dt : ZonedDateTime) (months : Month.Offset) : ZonedDateTime :=
-  .ofLocalDateTime (dt.toPlainDateTime.addMonthsClip months) dt.rules
+  .ofPlainDateTime (dt.toPlainDateTime.addMonthsClip months) dt.rules
 
 /--
 Subtract `Month.Offset` from a `ZonedDateTime`, clipping to the last valid day.
 -/
 def subMonthsClip (dt : ZonedDateTime) (months : Month.Offset) : ZonedDateTime :=
-  .ofLocalDateTime (dt.toPlainDateTime.subMonthsClip months) dt.rules
+  .ofPlainDateTime (dt.toPlainDateTime.subMonthsClip months) dt.rules
 
 /--
 Add `Month.Offset` to a `ZonedDateTime`, rolling over excess days.
 -/
 def addMonthsRollOver (dt : ZonedDateTime) (months : Month.Offset) : ZonedDateTime :=
-  .ofLocalDateTime (dt.toPlainDateTime.addMonthsRollOver months) dt.rules
+  .ofPlainDateTime (dt.toPlainDateTime.addMonthsRollOver months) dt.rules
 
 /--
 Subtract `Month.Offset` from a `ZonedDateTime`, rolling over excess days.
 -/
 def subMonthsRollOver (dt : ZonedDateTime) (months : Month.Offset) : ZonedDateTime :=
-  .ofLocalDateTime (dt.toPlainDateTime.subMonthsRollOver months) dt.rules
+  .ofPlainDateTime (dt.toPlainDateTime.subMonthsRollOver months) dt.rules
 
 /--
 Add `Year.Offset` to a `ZonedDateTime`, rolling over excess days.
 -/
 def addYearsRollOver (dt : ZonedDateTime) (years : Year.Offset) : ZonedDateTime :=
-  .ofLocalDateTime (dt.toPlainDateTime.addYearsRollOver years) dt.rules
+  .ofPlainDateTime (dt.toPlainDateTime.addYearsRollOver years) dt.rules
 
 /--
 Add `Year.Offset` to a `ZonedDateTime`, clipping to the last valid day.
 -/
 def addYearsClip (dt : ZonedDateTime) (years : Year.Offset) : ZonedDateTime :=
-  .ofLocalDateTime (dt.toPlainDateTime.addYearsClip years) dt.rules
+  .ofPlainDateTime (dt.toPlainDateTime.addYearsClip years) dt.rules
 
 /--
 Subtract `Year.Offset` from a `ZonedDateTime`, clipping to the last valid day.
 -/
 def subYearsClip (dt : ZonedDateTime) (years : Year.Offset) : ZonedDateTime :=
-  .ofLocalDateTime (dt.toPlainDateTime.subYearsClip years) dt.rules
+  .ofPlainDateTime (dt.toPlainDateTime.subYearsClip years) dt.rules
 
 /--
 Subtract `Year.Offset` from a `ZonedDateTime`, rolling over excess days.
 -/
 def subYearsRollOver (dt : ZonedDateTime) (years : Year.Offset) : ZonedDateTime :=
-  .ofLocalDateTime (dt.toPlainDateTime.subYearsRollOver years) dt.rules
+  .ofPlainDateTime (dt.toPlainDateTime.subYearsRollOver years) dt.rules
 
 /--
 Add `Hour.Offset` to a `ZonedDateTime`.
@@ -366,7 +366,7 @@ Sets the `ZonedDateTime` to the specified `desiredWeekday`.
 -/
 def withWeekday (dt : ZonedDateTime) (desiredWeekday : Weekday) : ZonedDateTime :=
   let date := dt.date.get
-  .ofLocalDateTime (date.withWeekday desiredWeekday) dt.rules
+  .ofPlainDateTime (date.withWeekday desiredWeekday) dt.rules
 
 /--
 Creates a new `ZonedDateTime` by adjusting the day of the month to the given `days` value, with any
@@ -375,7 +375,7 @@ out-of-range days clipped to the nearest valid date.
 @[inline]
 def withDaysClip (dt : ZonedDateTime) (days : Day.Ordinal) : ZonedDateTime :=
   let date := dt.date.get
-  .ofLocalDateTime (date.withDaysClip days) dt.rules
+  .ofPlainDateTime (date.withDaysClip days) dt.rules
 
 /--
 Creates a new `ZonedDateTime` by adjusting the day of the month to the given `days` value, with any
@@ -384,7 +384,7 @@ out-of-range days rolled over to the next month or year as needed.
 @[inline]
 def withDaysRollOver (dt : ZonedDateTime) (days : Day.Ordinal) : ZonedDateTime :=
   let date := dt.date.get
-  .ofLocalDateTime (date.withDaysRollOver days) dt.rules
+  .ofPlainDateTime (date.withDaysRollOver days) dt.rules
 
 /--
 Creates a new `ZonedDateTime` by adjusting the month to the given `month` value.
@@ -393,7 +393,7 @@ The day remains unchanged, and any invalid days for the new month will be handle
 @[inline]
 def withMonthClip (dt : ZonedDateTime) (month : Month.Ordinal) : ZonedDateTime :=
   let date := dt.date.get
-  .ofLocalDateTime (date.withMonthClip month) dt.rules
+  .ofPlainDateTime (date.withMonthClip month) dt.rules
 
 /--
 Creates a new `ZonedDateTime` by adjusting the month to the given `month` value.
@@ -402,7 +402,7 @@ The day is rolled over to the next valid month if necessary.
 @[inline]
 def withMonthRollOver (dt : ZonedDateTime) (month : Month.Ordinal) : ZonedDateTime :=
   let date := dt.date.get
-  .ofLocalDateTime (date.withMonthRollOver month) dt.rules
+  .ofPlainDateTime (date.withMonthRollOver month) dt.rules
 
 /--
 Creates a new `ZonedDateTime` by adjusting the year to the given `year` value. The month and day remain unchanged,
@@ -412,7 +412,7 @@ and any invalid days for the new year will be handled according to the `clip` be
 def withYearClip (dt : ZonedDateTime) (year : Year.Offset) : ZonedDateTime :=
   let date := dt.date.get
 
-  .ofLocalDateTime (date.withYearClip year) dt.rules
+  .ofPlainDateTime (date.withYearClip year) dt.rules
 
 /--
 Creates a new `ZonedDateTime` by adjusting the year to the given `year` value. The month and day are rolled
@@ -421,7 +421,7 @@ over to the next valid month and day if necessary.
 @[inline]
 def withYearRollOver (dt : ZonedDateTime) (year : Year.Offset) : ZonedDateTime :=
   let date := dt.date.get
-  .ofLocalDateTime (date.withYearRollOver year) dt.rules
+  .ofPlainDateTime (date.withYearRollOver year) dt.rules
 
 /--
 Creates a new `ZonedDateTime` by adjusting the `hour` component.
@@ -429,7 +429,7 @@ Creates a new `ZonedDateTime` by adjusting the `hour` component.
 @[inline]
 def withHours (dt : ZonedDateTime) (hour : Hour.Ordinal) : ZonedDateTime :=
   let date := dt.date.get
-  .ofLocalDateTime (date.withHours hour) dt.rules
+  .ofPlainDateTime (date.withHours hour) dt.rules
 
 /--
 Creates a new `ZonedDateTime` by adjusting the `minute` component.
@@ -437,7 +437,7 @@ Creates a new `ZonedDateTime` by adjusting the `minute` component.
 @[inline]
 def withMinutes (dt : ZonedDateTime) (minute : Minute.Ordinal) : ZonedDateTime :=
   let date := dt.date.get
-  .ofLocalDateTime (date.withMinutes minute) dt.rules
+  .ofPlainDateTime (date.withMinutes minute) dt.rules
 
 /--
 Creates a new `ZonedDateTime` by adjusting the `second` component.
@@ -445,7 +445,7 @@ Creates a new `ZonedDateTime` by adjusting the `second` component.
 @[inline]
 def withSeconds (dt : ZonedDateTime) (second : Second.Ordinal true) : ZonedDateTime :=
   let date := dt.date.get
-  .ofLocalDateTime (date.withSeconds second) dt.rules
+  .ofPlainDateTime (date.withSeconds second) dt.rules
 
 /--
 Creates a new `ZonedDateTime` by adjusting the `nano` component with a new `millis` that will set
@@ -454,7 +454,7 @@ in the millisecond scale.
 @[inline]
 def withMilliseconds (dt : ZonedDateTime) (millis : Millisecond.Ordinal) : ZonedDateTime :=
   let date := dt.date.get
-  .ofLocalDateTime (date.withMilliseconds millis) dt.rules
+  .ofPlainDateTime (date.withMilliseconds millis) dt.rules
 
 /--
 Creates a new `ZonedDateTime` by adjusting the `nano` component.
@@ -462,7 +462,7 @@ Creates a new `ZonedDateTime` by adjusting the `nano` component.
 @[inline]
 def withNanoseconds (dt : ZonedDateTime) (nano : Nanosecond.Ordinal) : ZonedDateTime :=
   let date := dt.date.get
-  .ofLocalDateTime (date.withNanoseconds nano) dt.rules
+  .ofPlainDateTime (date.withNanoseconds nano) dt.rules
 
 /--
 Checks if the `ZonedDateTime` is in a leap year.
@@ -471,17 +471,18 @@ def inLeapYear (date : ZonedDateTime) : Bool :=
   date.year.isLeap
 
 /--
-Returns the number of days since the UNIX epoch in local time.
+Returns the local (civil) date of the `ZonedDateTime` as a `Day.Offset` since 1970-01-01.
 -/
 def toEpochDay (date : ZonedDateTime) : Day.Offset :=
   date.date.get.toEpochDay
 
 /--
-Creates a `ZonedDateTime` from a number of days since the UNIX epoch in local time.
+Creates a `ZonedDateTime` from a local date given as a `Day.Offset` since 1970-01-01, a
+`PlainTime`, and `ZoneRules`. The day offset is interpreted as a local (civil) date, not UTC.
 -/
 @[inline]
 def ofEpochDay (days : Day.Offset) (time : PlainTime) (zt : TimeZone.ZoneRules) : ZonedDateTime :=
-  ZonedDateTime.ofLocalDateTime (PlainDateTime.ofEpochDay days time) zt
+  ZonedDateTime.ofPlainDateTime (PlainDateTime.ofEpochDay days time) zt
 
 instance : HAdd ZonedDateTime Day.Offset ZonedDateTime where
   hAdd := addDays

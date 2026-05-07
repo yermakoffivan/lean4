@@ -130,6 +130,12 @@ structure ZoneRules where
 namespace Transition
 
 /--
+Returns the transition time as a `Timestamp`.
+-/
+def timestamp (t : Transition) : Timestamp :=
+  Timestamp.ofSecondsSinceUnixEpoch t.time
+
+/--
 Create a TimeZone from a Transition.
 -/
 def createTimeZoneFromTransition (transition : Transition) : TimeZone :=
@@ -150,7 +156,7 @@ Finds the transition corresponding to a given timestamp in `Array Transition`.
 If the timestamp falls between two transitions, it returns the most recent transition before the timestamp.
 -/
 def findTransitionIndexForTimestamp (transitions : Array Transition) (timestamp : Timestamp) : Option Nat :=
-  let value := timestamp.toSeconds
+  let value := timestamp.toSecondsSinceUnixEpoch
   transitions.findIdx? (fun t => t.time.val > value.val)
 
 /--
@@ -216,8 +222,8 @@ def findLocalTimeTypeForWallTime (zr : ZoneRules) (wallTime : WallTime) : LocalT
   let mut ltt := zr.initialLocalTimeType
 
   for t in zr.transitions do
-    let localTransitionTime := t.time.add ltt.gmtOffset.second
-    if wallTime.toSeconds.val < localTransitionTime.val then
+    let localTransitionTime := t.timestamp.toWallTime ltt.gmtOffset
+    if wallTime < localTransitionTime then
       return ltt
     ltt := t.localTimeType
 

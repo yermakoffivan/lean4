@@ -747,7 +747,7 @@ Std.Time.Weekday.thursday
 -/
 #guard_msgs in
 #eval do
-  let zoned := DateTime.ofLocalDateTime datetime("2024-09-12T02:01:02") timezone("America/Sao_Paulo -03:00")
+  let zoned := DateTime.ofPlainDateTime datetime("2024-09-12T02:01:02") timezone("America/Sao_Paulo -03:00")
 
   println! zoned.addDays 1
   println! zoned.addWeeks 1
@@ -881,7 +881,7 @@ info: 1970-01-02T00:00:00.000000000Z
 #eval do
   println! DateTime.ofEpochDay 1 PlainTime.midnight .UTC
   println! DateTime.ofLocalDate date("1997-03-18") .UTC
-  println! DateTime.ofLocalDateTime datetime("1997-03-18T00:01:02") .UTC
+  println! DateTime.ofPlainDateTime datetime("1997-03-18T00:01:02") .UTC
   println! DateTime.ofTimestamp 1708121234 .UTC
 
 /--
@@ -898,7 +898,7 @@ info: 1970-01-02T00:00:00.000000000[UTC]
   println! ZonedDateTime.ofEpochDay 1 PlainTime.midnight .UTC
   println! ZonedDateTime.ofLocalDate date("1997-03-18") .UTC
   println! ZonedDateTime.ofLocalDateWithZone date("1997-03-18") .UTC
-  println! ZonedDateTime.ofLocalDateTime datetime("1997-03-18T00:01:02") .UTC
-  println! ZonedDateTime.ofLocalDateTimeWithZone datetime("1997-03-18T00:01:02") .UTC
+  println! ZonedDateTime.ofPlainDateTime datetime("1997-03-18T00:01:02") .UTC
+  println! ZonedDateTime.ofPlainDateTimeWithZone datetime("1997-03-18T00:01:02") .UTC
   println! ZonedDateTime.ofTimestamp 1708121234 .UTC
   println! ZonedDateTime.ofTimestampWithZone 1708121234 .UTC

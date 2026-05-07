@@ -140,7 +140,7 @@ def inLeapYear (date : PlainDate) : Bool :=
   date.year.isLeap
 
 /--
-Converts a `PlainDate` to the number of days since the UNIX epoch.
+Converts a `PlainDate` to the number of days since 1970-01-01T00:00:00.
 -/
 def toEpochDay (date : PlainDate) : Day.Offset :=
   let y : Int := if date.month.toInt > 2 then date.year else date.year.toInt - 1

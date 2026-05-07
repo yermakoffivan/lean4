@@ -17,17 +17,21 @@ namespace Time
 set_option linter.all true
 
 /--
-Represents a wall-clock time as a duration since the Unix epoch in local (civil) time. The wall time
-starts at 1970-01-01T00:00:00 local time.
+A wall-clock time is what a clock shows in a given timezone: the local civil time at some point in
+time. It is stored as a `Duration` since `1970-01-01T00:00:00` in local time, equivalent to a
+`PlainDateTime` packed into a single offset, which makes arithmetic straightforward.
 
-Unlike `Timestamp`, which is always UTC, `WallTime` carries no timezone information.
+Every timezone induces a correspondence between `Timestamp` and `WallTime`: interpreting a
+`Timestamp` in a timezone yields the `WallTime` (what a clock in that timezone reads at that
+instant), and resolving a `WallTime` in a timezone yields the `Timestamp` (the absolute instant the
+clock reading refers to).
 -/
 @[ext]
 structure WallTime where
   private mk ::
 
   /--
-  Duration since the Unix epoch, measured in local wall-clock time.
+  Duration since `1970-01-01T00:00:00` in local (civil) time.
   -/
   val : Duration
   deriving Repr, DecidableEq, Inhabited
@@ -56,7 +60,8 @@ instance : Repr WallTime where
 namespace WallTime
 
 /--
-Creates a `WallTime` from a `Duration` since the Unix epoch.
+Creates a `WallTime` from a `Duration`. The epoch is 1970-01-01 00:00:00 in local
+(civil) time, not UTC.
 -/
 @[inline]
 def ofDuration (duration : Duration) : WallTime :=
@@ -79,14 +84,16 @@ def ofNanoseconds (nanos : Nanosecond.Offset) : WallTime :=
   ⟨Duration.ofNanoseconds nanos⟩
 
 /--
-Converts a `WallTime` to seconds as `Second.Offset`.
+Converts a `WallTime` to a `Second.Offset`. The epoch is 1970-01-01 00:00:00 in local
+(civil) time, not UTC.
 -/
 @[inline]
 def toSeconds (wt : WallTime) : Second.Offset :=
   wt.val.second
 
 /--
-Converts a `WallTime` to nanoseconds as `Nanosecond.Offset`.
+Converts a `WallTime` to a `Nanosecond.Offset`. The epoch is 1970-01-01 00:00:00 in local
+(civil) time, not UTC.
 -/
 @[inline]
 def toNanoseconds (wt : WallTime) : Nanosecond.Offset :=
@@ -95,14 +102,16 @@ def toNanoseconds (wt : WallTime) : Nanosecond.Offset :=
   nanos
 
 /--
-Converts a `WallTime` to minutes as `Minute.Offset`.
+Converts a `WallTime` to a `Minute.Offset`. The epoch is 1970-01-01 00:00:00 in local
+(civil) time, not UTC.
 -/
 @[inline]
 def toMinutes (tm : WallTime) : Minute.Offset :=
   tm.val.second.toMinutes
 
 /--
-Converts a `WallTime` to days as `Day.Offset`.
+Converts a `WallTime` to a `Day.Offset`. The epoch is 1970-01-01 00:00:00 in local
+(civil) time, not UTC.
 -/
 @[inline]
 def toDays (tm : WallTime) : Day.Offset :=
@@ -117,7 +126,8 @@ def ofMilliseconds (milli : Millisecond.Offset) : WallTime :=
   ⟨Duration.ofNanoseconds milli.toNanoseconds⟩
 
 /--
-Converts a `WallTime` to milliseconds as `Millisecond.Offset`.
+Converts a `WallTime` to a `Millisecond.Offset`. The epoch is 1970-01-01 00:00:00 in local
+(civil) time, not UTC.
 -/
 @[inline]
 def toMilliseconds (tm : WallTime) : Millisecond.Offset :=
@@ -236,7 +246,8 @@ def subDuration (t : WallTime) (d : Duration) : WallTime :=
   ⟨t.val - d⟩
 
 /--
-Returns the underlying `Duration`.
+Converts a `WallTime` to a `Duration`. The epoch is 1970-01-01 00:00:00 in local
+(civil) time, not UTC.
 -/
 @[inline]
 def toDuration (wt : WallTime) : Duration :=

@@ -71,60 +71,60 @@ Fetches the current duration from the system.
 opaque now : IO Timestamp
 
 /--
-Converts a `Timestamp` to minutes as `Minute.Offset`.
+Converts a `Timestamp` to a `Minute.Offset`.
 -/
 @[inline]
-def toMinutes (tm : Timestamp) : Minute.Offset :=
+def toMinutesSinceUnixEpoch (tm : Timestamp) : Minute.Offset :=
   tm.val.second.toMinutes
 
 /--
-Converts a `Timestamp` to days as `Day.Offset`.
+Converts a `Timestamp` to a `Day.Offset`.
 -/
 @[inline]
-def toDays (tm : Timestamp) : Day.Offset :=
+def toDaysSinceUnixEpoch (tm : Timestamp) : Day.Offset :=
   tm.val.second.toDays
 
 /--
-Creates a `Timestamp` from a `Second.Offset` since the Unix epoch.
+Creates a `Timestamp` from a `Second.Offset`.
 -/
 @[inline]
-def ofSeconds (secs : Second.Offset) : Timestamp :=
+def ofSecondsSinceUnixEpoch (secs : Second.Offset) : Timestamp :=
   ⟨Duration.ofSeconds secs⟩
 
 /--
-Creates a `Timestamp` from a `Nanosecond.Offset` since the Unix epoch.
+Creates a `Timestamp` from a `Nanosecond.Offset`.
 -/
 @[inline]
-def ofNanoseconds (nanos : Nanosecond.Offset) : Timestamp :=
+def ofNanosecondsSinceUnixEpoch (nanos : Nanosecond.Offset) : Timestamp :=
   ⟨Duration.ofNanoseconds nanos⟩
 
 /--
-Creates a `Timestamp` from a `Duration` since the Unix epoch.
+Creates a `Timestamp` from a `Duration`.
 -/
 @[inline]
-def ofDuration (duration : Duration) : Timestamp :=
+def ofDurationSinceUnixEpoch (duration : Duration) : Timestamp :=
   ⟨duration⟩
 
 /--
-Creates a `Timestamp` from a `Millisecond.Offset` since the Unix epoch.
+Creates a `Timestamp` from a `Millisecond.Offset`.
 -/
 @[inline]
-def ofMilliseconds (milli : Millisecond.Offset) : Timestamp :=
+def ofMillisecondsSinceUnixEpoch (milli : Millisecond.Offset) : Timestamp :=
   ⟨Duration.ofNanoseconds milli.toNanoseconds⟩
 
 /--
-Converts a `Timestamp` to seconds as `Second.Offset`.
+Converts a `Timestamp` to a `Second.Offset`.
 -/
 @[inline]
-def toSeconds (t : Timestamp) : Second.Offset :=
+def toSecondsSinceUnixEpoch (t : Timestamp) : Second.Offset :=
   t.val.second
 
 /--
 Converts a `Timestamp` to nanoseconds as `Nanosecond.Offset`.
 -/
 @[inline]
-def toNanoseconds (tm : Timestamp) : Nanosecond.Offset :=
-  let nanos := tm.toSeconds.mul 1000000000
+def toNanosecondsSinceUnixEpoch (tm : Timestamp) : Nanosecond.Offset :=
+  let nanos := tm.toSecondsSinceUnixEpoch.mul 1000000000
   let nanos := nanos + (.ofInt tm.val.nano.val)
   nanos
 
@@ -132,8 +132,8 @@ def toNanoseconds (tm : Timestamp) : Nanosecond.Offset :=
 Converts a `Timestamp` to nanoseconds as `Millisecond.Offset`.
 -/
 @[inline]
-def toMilliseconds (tm : Timestamp) : Millisecond.Offset :=
-  tm.toNanoseconds.toMilliseconds
+def toMillisecondsSinceUnixEpoch (tm : Timestamp) : Millisecond.Offset :=
+  tm.toNanosecondsSinceUnixEpoch.toMilliseconds
 
 /--
 Calculates the duration from the given `Timestamp` to the current time.
@@ -147,7 +147,7 @@ def since (f : Timestamp) : IO Duration := do
 Returns the `Duration` represented by the `Timestamp` since the Unix epoch.
 -/
 @[inline]
-def toDuration (tm : Timestamp) : Duration :=
+def toDurationSinceUnixEpoch (tm : Timestamp) : Duration :=
   tm.val
 
 /--
@@ -314,6 +314,6 @@ instance : HSub Timestamp Timestamp Duration where
   hSub x y := x.val - y.val
 
 instance : OfNat Timestamp n where
-  ofNat := .ofSeconds (Second.Offset.ofNat n)
+  ofNat := .ofSecondsSinceUnixEpoch (Second.Offset.ofNat n)
 
 end Timestamp

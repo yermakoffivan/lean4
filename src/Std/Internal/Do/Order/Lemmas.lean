@@ -7,8 +7,8 @@ module
 
 prelude
 public import Init.ByCases
-public import Std.Internal.Do.Assertion.Assertion
-public import Std.Internal.Do.Frame
+public import Std.Internal.Do.Order.Basic
+public import Std.Internal.Do.Order.Frame
 import Init.Classical
 import Init.TacticsExtra
 
@@ -18,20 +18,20 @@ set_option linter.missingDocs true
 set_option linter.unusedSectionVars false
 
 /-!
-# Derived laws of `Assertion`
+# Derived laws of `CompleteLattice`
 
-This module contains some laws about `Assertion` that are derived from
-the laws in `Std.Internal.Do.Assertion.Assertion`.
+This module contains some laws about `CompleteLattice` that are derived from
+the laws in `Std.Internal.Do.CompleteLattice.CompleteLattice`.
 -/
 
 
-namespace Std.Internal.Do.Assertion
+namespace Std.Internal.Do.CompleteLattice
 
 open Lean.Order PartialOrder
 
 universe u v
 
-variable {l : Type u} [Assertion l] {P P' Q Q' R R' T : l} {φ φ₁ φ₂ : Prop}
+variable {l : Type u} [CompleteLattice l] {P P' Q Q' R R' T : l} {φ φ₁ φ₂ : Prop}
 
 /-! # Connectives -/
 
@@ -194,23 +194,23 @@ theorem of_and_imp (hp : P ⊑ P') (hq : Q ⊑ (P' ⇨ Q')) : P ⊓ Q ⊑ P' ⊓
 
 end Frame
 
-/-! # Pure (`Assertion.ofProp`) -/
+/-! # Pure (`CompleteLattice.ofProp`) -/
 
 theorem pure_elim {φ : Prop} (h1 : Q ⊑ (⌜φ⌝ : l)) (h2 : φ → Q ⊑ R) : Q ⊑ R := by
   by_cases hφ : φ
   · exact h2 hφ
-  · simp [Assertion.ofProp, hφ] at h1
+  · simp [CompleteLattice.ofProp, hφ] at h1
     exact rel_trans h1 false_elim
 
 theorem pure_mono {φ₁ φ₂ : Prop} (h : φ₁ → φ₂) : ⌜φ₁⌝ ⊑ (⌜φ₂⌝ : l) :=
-  Assertion.ofProp_imp _ _ h
+  CompleteLattice.ofProp_imp _ _ h
 theorem pure_congr {φ₁ φ₂ : Prop} (h : φ₁ ↔ φ₂) : (⌜φ₁⌝ : l) = ⌜φ₂⌝ :=
   rel_antisymm (pure_mono h.1) (pure_mono h.2)
 
 theorem pure_elim_l {φ : Prop} (h : φ → Q ⊑ R) : (⌜φ⌝ : l) ⊓ Q ⊑ R := by
-  rw [Assertion.ofProp_intro_r]; exact h
+  rw [CompleteLattice.ofProp_intro_r]; exact h
 theorem pure_elim_r {φ : Prop} (h : φ → Q ⊑ R) : Q ⊓ (⌜φ⌝ : l) ⊑ R := by
-  rw [Assertion.ofProp_intro_l]; exact h
+  rw [CompleteLattice.ofProp_intro_l]; exact h
 theorem pure_true {φ : Prop} (h : φ) : (⌜φ⌝ : l) = ⌜True⌝ := pure_congr ⟨fun _ => trivial, fun _ => h⟩
 
 theorem pure_and {φ₁ φ₂ : Prop} : (⌜φ₁⌝ : l) ⊓ ⌜φ₂⌝ = ⌜φ₁ ∧ φ₂⌝ := by
@@ -224,11 +224,11 @@ theorem pure_and {φ₁ φ₂ : Prop} : (⌜φ₁⌝ : l) ⊓ ⌜φ₂⌝ = ⌜�
 theorem pure_or {φ₁ φ₂ : Prop} : (⌜φ₁⌝ : l) ⊔ ⌜φ₂⌝ = ⌜φ₁ ∨ φ₂⌝ := by
   apply rel_antisymm
   · exact join_le _ _ _ (pure_mono Or.inl) (pure_mono Or.inr)
-  · rw [Assertion.ofProp_intro]
+  · rw [CompleteLattice.ofProp_intro]
     rintro (h₁ | h₂)
-    · rw [pure_true h₁, Assertion.ofProp_true]
+    · rw [pure_true h₁, CompleteLattice.ofProp_true]
       exact left_le_join _ _
-    · rw [pure_true h₂, Assertion.ofProp_true]
+    · rw [pure_true h₂, CompleteLattice.ofProp_true]
       exact right_le_join _ _
 
 theorem pure_forall_2 {α} {Φ : α → Prop} : (⌜∀ x, Φ x⌝ : l) ⊑ iInf (fun x => ⌜Φ x⌝) :=
@@ -238,9 +238,9 @@ theorem pure_exists {α} {Φ : α → Prop} :
     iSup (fun x => (⌜Φ x⌝ : l)) = ⌜∃ x, Φ x⌝ := by
   apply rel_antisymm
   · exact iSup_le _ _ fun a => pure_mono (⟨a, ·⟩)
-  · rw [Assertion.ofProp_intro]
+  · rw [CompleteLattice.ofProp_intro]
     rintro ⟨x, hx⟩
-    have h : (⌜Φ x⌝ : l) = ⊤ := by rw [pure_true hx, Assertion.ofProp_true]
+    have h : (⌜Φ x⌝ : l) = ⊤ := by rw [pure_true hx, CompleteLattice.ofProp_true]
     exact h ▸ le_iSup (fun x => (⌜Φ x⌝ : l)) x
 
 theorem pure_forall {α} {Φ : α → Prop} :
@@ -250,7 +250,7 @@ theorem pure_forall {α} {Φ : α → Prop} :
     · obtain ⟨x, hx⟩ := h
       exact rel_trans (iInf_le _ x) (pure_mono hx.elim)
     · have hall : ∀ x, Φ x := fun x => Classical.not_not.1 <| mt (⟨x, ·⟩) h
-      have heq : (⌜∀ x, Φ x⌝ : l) = ⊤ := by rw [pure_true hall, Assertion.ofProp_true]
+      have heq : (⌜∀ x, Φ x⌝ : l) = ⊤ := by rw [pure_true hall, CompleteLattice.ofProp_true]
       exact heq ▸ le_top _
   · exact pure_forall_2
 
@@ -265,13 +265,13 @@ theorem pure_imp {φ₁ φ₂ : Prop} : ((⌜φ₁⌝ : l) ⇨ ⌜φ₂⌝) = �
   · by_cases h₁ : φ₁
     · -- φ₁ true: goal `(⌜φ₁⌝ ⇨ ⌜φ₂⌝) ⊑ ⌜φ₁ → φ₂⌝`. Use `imp_elim_l` after weakening LHS to `⌜φ₁⌝ ⇨ ⌜φ₂⌝ ⊓ ⌜φ₁⌝`.
       have h₁' : (⊤ : l) ⊑ ⌜φ₁⌝ := by
-        have : (⌜φ₁⌝ : l) = ⊤ := by rw [pure_true h₁, Assertion.ofProp_true]
+        have : (⌜φ₁⌝ : l) = ⊤ := by rw [pure_true h₁, CompleteLattice.ofProp_true]
         exact this ▸ rel_refl
       exact rel_trans
         (le_meet _ _ _ rel_refl (rel_trans (le_top _) h₁'))
         (rel_trans imp_elim_l (pure_mono (fun h _ => h)))
     · -- φ₁ false: ⌜φ₁⌝ = ⊥, ⌜φ₁ → φ₂⌝ = ⊤
-      have : (⌜φ₁ → φ₂⌝ : l) = ⊤ := by rw [pure_true (fun hp => absurd hp h₁), Assertion.ofProp_true]
+      have : (⌜φ₁ → φ₂⌝ : l) = ⊤ := by rw [pure_true (fun hp => absurd hp h₁), CompleteLattice.ofProp_true]
       exact this ▸ le_top _
   · exact pure_imp_2
 
@@ -299,7 +299,7 @@ theorem and_right_comm : (P ⊓ Q) ⊓ R = (P ⊓ R) ⊓ Q := by
 /-! ## Pointwise unfoldings of `⊑` on function lattices
 
 Analogues of `Std.Do.SPred.entails_1`–`entails_5` for nested function-space
-assertions. Each is definitional via the function-space `PartialOrder` instance. -/
+CompleteLattices. Each is definitional via the function-space `PartialOrder` instance. -/
 
 @[simp] theorem entails_1 {σ : Type v} {P Q : σ → l} :
     P ⊑ Q ↔ ∀ s, P s ⊑ Q s := Iff.rfl
@@ -314,24 +314,8 @@ assertions. Each is definitional via the function-space `PartialOrder` instance.
 
 /-! ## Function-space pointwise lemmas -/
 
-/-- Pointwise characterization of `⊤` on a function lattice. -/
-@[simp] theorem top_fun_apply {σ : Type v} {β : Type u} [Assertion β] (s : σ) :
-    (⊤ : σ → β) s = (⊤ : β) :=
-  rel_antisymm (le_top _) ((le_top (fun _ : σ => (⊤ : β))) s)
-
-/-- Pointwise characterization of `⊥` on a function lattice. -/
-@[simp] theorem bot_fun_apply {σ : Type v} {β : Type u} [Assertion β] (s : σ) :
-    (⊥ : σ → β) s = (⊥ : β) :=
-  rel_antisymm ((bot_le (fun _ : σ => (⊥ : β))) s) (bot_le _)
-
-/-- Pointwise characterization of `Assertion.ofProp` on a function lattice. -/
-@[simp] theorem ofProp_fun_apply {σ : Type v} {β : Type u} [Assertion β] (p : Prop) (s : σ) :
-    (⌜p⌝ : σ → β) s = (⌜p⌝ : β) := by
-  simp only [Assertion.ofProp]
-  rcases Classical.em p with h | h <;> simp [h]
-
 /-- Pointwise version of `pure_and`: meet of pointwise-pure functions is pointwise-pure of `∧`. -/
-theorem and_pure_fun {σ : Type v} {β : Type u} [Assertion β] (P P' : σ → Prop) :
+theorem and_pure_fun {σ : Type v} {β : Type u} [CompleteLattice β] (P P' : σ → Prop) :
     (fun t => (⌜P t⌝ : β)) ⊓ (fun t => (⌜P' t⌝ : β)) = fun t => (⌜P t ∧ P' t⌝ : β) := by
   funext t
   rw [meet_fun_apply, pure_and]
@@ -340,34 +324,34 @@ theorem and_pure_fun {σ : Type v} {β : Type u} [Assertion β] (P P' : σ → P
 
 namespace Tactic
 
-/-- A tautology in `Assertion l` (lattice element entailed by `⊤`). -/
+/-- A tautology in `CompleteLattice l` (lattice element entailed by `⊤`). -/
 abbrev tautological (Q : l) : Prop := (⊤ : l) ⊑ Q
 
 /--
-A mapping from propositions to `Assertion`-level tautologies that are known to be logically
+A mapping from propositions to `CompleteLattice`-level tautologies that are known to be logically
 equivalent. This is used to rewrite proof goals into a form that is suitable for use with
 `mvcgen`.
 -/
-class PropAsAssertionTautology (φ : Prop) {l : outParam (Type u)} [outParam (Assertion l)]
+class PropAsCompleteLatticeTautology (φ : Prop) {l : outParam (Type u)} [outParam (CompleteLattice l)]
     (P : outParam l) : Prop where
   /-- A proof that `φ` and `P` are logically equivalent. -/
   iff : φ ↔ ((⊤ : l) ⊑ P)
 
-instance [Frame l] (P Q : l) : PropAsAssertionTautology (P ⊑ Q) (P ⇨ Q) where
+instance [Frame l] (P Q : l) : PropAsCompleteLatticeTautology (P ⊑ Q) (P ⇨ Q) where
   iff := (top_le_himp_iff P Q).symm
 
-instance (P : l) : PropAsAssertionTautology ((⊤ : l) ⊑ P) P where iff := Iff.rfl
+instance (P : l) : PropAsCompleteLatticeTautology ((⊤ : l) ⊑ P) P where iff := Iff.rfl
 
 /--
-A mapping from `Assertion` elements to pure propositions that are known to be equivalent.
+A mapping from `CompleteLattice` elements to pure propositions that are known to be equivalent.
 -/
 class IsPure (P : l) (φ : outParam Prop) where
   /-- A proof that `P` and `⌜φ⌝` are equal. -/
   to_pure : P = ⌜φ⌝
 
 instance (φ : Prop) : IsPure (⌜φ⌝ : l) φ where to_pure := rfl
-instance : IsPure (l := l) ⊤ True where to_pure := (Assertion.ofProp_true l).symm
-instance : IsPure (l := l) ⊥ False where to_pure := (Assertion.ofProp_false l).symm
+instance : IsPure (l := l) ⊤ True where to_pure := (CompleteLattice.ofProp_true l).symm
+instance : IsPure (l := l) ⊥ False where to_pure := (CompleteLattice.ofProp_false l).symm
 instance (φ ψ : Prop) : IsPure (l := l) (⌜φ⌝ ⊓ ⌜ψ⌝) (φ ∧ ψ) where to_pure := pure_and
 instance (φ ψ : Prop) : IsPure (l := l) (⌜φ⌝ ⊔ ⌜ψ⌝) (φ ∨ ψ) where to_pure := pure_or
 instance [Frame l] (φ ψ : Prop) : IsPure (l := l) (⌜φ⌝ ⇨ ⌜ψ⌝) (φ → ψ) where to_pure := pure_imp
@@ -377,14 +361,14 @@ instance {α} (P : α → Prop) :
     IsPure (l := l) (iInf (⌜P ·⌝)) (∀ x, P x) where to_pure := pure_forall
 instance {σ : Type u} (s : σ) (P : σ → l) [inst : IsPure P φ] :
     IsPure (l := l) (P s) φ where
-  to_pure := (congrFun inst.to_pure s).trans (ofProp_fun_apply _ _)
+  to_pure := (congrFun inst.to_pure s).trans (CompleteLattice.ofProp_fun_apply _ _)
 instance {σ : Type u} (P : l) [inst : IsPure P φ] :
     IsPure (l := σ → l) (fun _ => P) φ where
-  to_pure := funext fun _ => inst.to_pure.trans (ofProp_fun_apply _ _).symm
+  to_pure := funext fun _ => inst.to_pure.trans (CompleteLattice.ofProp_fun_apply _ _).symm
 /--
-A decomposition of an assertion into the meet of two other assertions.
+A decomposition of an CompleteLattice into the meet of two other CompleteLattices.
 
-Decomposing assertions in postconditions into meets of simpler predicates increases the
+Decomposing CompleteLattices in postconditions into meets of simpler predicates increases the
 chance that automation will be able to prove the entailment of the postcondition and the next
 precondition.
 -/
@@ -395,10 +379,10 @@ class IsAnd (P : l) (Q₁ Q₂ : outParam l) where
 instance (Q₁ Q₂ : l) : IsAnd (Q₁ ⊓ Q₂) Q₁ Q₂ where to_and := rfl
 instance (p q : Prop) : IsAnd (l := l) ⌜p ∧ q⌝ ⌜p⌝ ⌜q⌝ where to_and := pure_and.symm
 
-theorem ProofMode.start_entails {P : l} {φ : Prop} [PropAsAssertionTautology φ P] :
-    (⊤ ⊑ P) → φ := PropAsAssertionTautology.iff.mpr
-theorem ProofMode.elim_entails {P : l} {φ : Prop} [PropAsAssertionTautology φ P] :
-    φ → (⊤ ⊑ P) := PropAsAssertionTautology.iff.mp
+theorem ProofMode.start_entails {P : l} {φ : Prop} [PropAsCompleteLatticeTautology φ P] :
+    (⊤ ⊑ P) → φ := PropAsCompleteLatticeTautology.iff.mpr
+theorem ProofMode.elim_entails {P : l} {φ : Prop} [PropAsCompleteLatticeTautology φ P] :
+    φ → (⊤ ⊑ P) := PropAsCompleteLatticeTautology.iff.mp
 
 theorem Assumption.left {P Q R : l} (h : P ⊑ R) : P ⊓ Q ⊑ R := and_elim_l' h
 theorem Assumption.right {P Q R : l} (h : Q ⊑ R) : P ⊓ Q ⊑ R := and_elim_r' h
@@ -424,8 +408,8 @@ theorem Clear.clear {P P' A Q : l} (hfocus : P = P' ⊓ A) (h : P' ⊑ Q) : P �
 theorem Exact.assumption {P P' A : l} (h : P = P' ⊓ A) : P ⊑ A :=
   h ▸ meet_le_right _ _
 theorem Exact.from_tautology {P T : l} {φ : Prop}
-    [PropAsAssertionTautology φ T] (h : φ) : P ⊑ T :=
-  rel_trans (le_top _) (PropAsAssertionTautology.iff.mp h)
+    [PropAsCompleteLatticeTautology φ T] (h : φ) : P ⊑ T :=
+  rel_trans (le_top _) (PropAsCompleteLatticeTautology.iff.mp h)
 
 theorem Focus.this {P : l} : P = ⊤ ⊓ P := true_and.symm
 theorem Focus.left {P P' Q C R : l} (h₁ : P = P' ⊓ R) (h₂ : P' ⊓ Q = C) :
@@ -447,7 +431,7 @@ theorem Intro.intro [Frame l] {P Q H T : l} (hand : Q ⊓ H = P) (h : P ⊑ T) :
   imp_intro (hand ▸ h)
 theorem Revert.and_pure_intro_r {φ : Prop} {P P' Q : l}
     (h₁ : φ) (hand : P ⊓ ⌜φ⌝ = P') (h₂ : P' ⊑ Q) : P ⊑ Q := by
-  rw [pure_true h₁, Assertion.ofProp_true (l := l)] at hand
+  rw [pure_true h₁, CompleteLattice.ofProp_true (l := l)] at hand
   exact rel_trans
     (le_meet _ _ _ rel_refl (le_top _)) (hand ▸ h₂)
 theorem Pure.thm {P Q T : l} {φ : Prop} [IsPure Q φ] (h : φ → P ⊑ T) : P ⊓ Q ⊑ T := by
@@ -455,7 +439,7 @@ theorem Pure.thm {P Q T : l} {φ : Prop} [IsPure Q φ] (h : φ → P ⊑ T) : P 
   exact pure_elim_r h
 /-- A generalization of `pure_intro` exploiting `IsPure`. -/
 theorem Pure.intro {P Q : l} {φ : Prop} [IsPure Q φ] (hφ : φ) : P ⊑ Q := by
-  rw [IsPure.to_pure (P := Q), pure_true hφ, Assertion.ofProp_true]
+  rw [IsPure.to_pure (P := Q), pure_true hφ, CompleteLattice.ofProp_true]
   exact le_top _
 theorem Revert.revert [Frame l] {P Q H T : l} (hfoc : P = Q ⊓ H) (h : Q ⊑ H ⇨ T) : P ⊑ T :=
   hfoc ▸ imp_elim h
@@ -470,22 +454,22 @@ theorem Specialize.imp_stateful [Frame l] {P P' Q R : l}
   exact and_mono_l (rel_trans (rel_of_eq hrefocus.symm) (meet_le_left _ _))
 
 theorem Specialize.imp_pure [Frame l] {P Q R : l} {φ : Prop}
-    [PropAsAssertionTautology φ Q] (h : φ) : P ⊓ (Q ⇨ R) ⊑ P ⊓ R :=
+    [PropAsCompleteLatticeTautology φ Q] (h : φ) : P ⊓ (Q ⇨ R) ⊑ P ⊓ R :=
   and_mono_r
     (rel_trans
       (le_meet _ _ _
-        (rel_trans (le_top _) (PropAsAssertionTautology.iff.mp h))
+        (rel_trans (le_top _) (PropAsCompleteLatticeTautology.iff.mp h))
         rel_refl)
       (mp (meet_le_right _ _) (meet_le_left _ _)))
 
 theorem Specialize.forall {α} {ψ : α → l} {P : l} (a : α) :
     P ⊓ iInf ψ ⊑ P ⊓ ψ a := and_mono_r (iInf_le _ a)
 theorem Specialize.pure_start {φ : Prop} {H P T : l}
-    [PropAsAssertionTautology φ H] (hpure : φ) (hgoal : P ⊓ H ⊑ T) : P ⊑ T :=
+    [PropAsCompleteLatticeTautology φ H] (hpure : φ) (hgoal : P ⊓ H ⊑ T) : P ⊑ T :=
   rel_trans (le_meet _ _ _ rel_refl
-    (rel_trans (le_top _) (PropAsAssertionTautology.iff.mp hpure))) hgoal
+    (rel_trans (le_top _) (PropAsCompleteLatticeTautology.iff.mp hpure))) hgoal
 theorem Specialize.pure_taut {φ} {P : l} [IsPure P φ] (h : φ) : (⊤ : l) ⊑ P := by
-  rw [IsPure.to_pure (P := P), pure_true h, Assertion.ofProp_true]
+  rw [IsPure.to_pure (P := P), pure_true h, CompleteLattice.ofProp_true]
 theorem Specialize.focus {P P' Q R : l} (hfocus : P = P' ⊓ Q) (hnew : P' ⊓ Q ⊑ R) : P ⊑ R :=
   hfocus ▸ hnew
 
@@ -499,11 +483,11 @@ instance (P : l) : SimpAnd P ⊤ P where simp_and := and_true
 instance (P : l) : SimpAnd ⊤ P P where simp_and := true_and
 
 /--
-Provides a decomposition of an assertion (`P`) into pure (`φ`) and "everything else" (`P'`)
+Provides a decomposition of an CompleteLattice (`P`) into pure (`φ`) and "everything else" (`P'`)
 components.
 -/
 class HasFrame (P : l) (P' : outParam l) (φ : outParam Prop) : Prop where
-  /-- A proof that the original assertion is equal to the decomposed form. -/
+  /-- A proof that the original CompleteLattice is equal to the decomposed form. -/
   reassoc : P = P' ⊓ ⌜φ⌝
 
 instance [HasFrame P Q φ] [SimpAnd Q P' QP] : HasFrame (P ⊓ P') QP φ where
@@ -512,7 +496,7 @@ instance [HasFrame P' Q' φ] [SimpAnd P Q' PQ] : HasFrame (P ⊓ P') PQ φ where
   reassoc := by rw [HasFrame.reassoc (P := P'), ← and_assoc, SimpAnd.simp_and (P := P) (Q := Q')]
 instance [HasFrame (⌜p⌝ ⊓ ⌜p'⌝) Q φ] : HasFrame (l := l) ⌜p ∧ p'⌝ Q φ where
   reassoc := pure_and.symm.trans HasFrame.reassoc
-instance {σ : Type v} [Assertion β] (P P' : σ → Prop) (Q : σ → β)
+instance {σ : Type v} [CompleteLattice β] (P P' : σ → Prop) (Q : σ → β)
   [HasFrame ((⌜P ·⌝) ⊓ (⌜P' ·⌝)) Q φ] : HasFrame (fun t => ⌜P t ∧ P' t⌝) Q φ where
   reassoc := (and_pure_fun P P').symm.trans HasFrame.reassoc
 instance (P : l) : HasFrame (l := l) (⌜φ⌝ ⊓ P) P φ where reassoc := and_comm
@@ -537,4 +521,4 @@ theorem Frame.frame {P Q T : l} {φ : Prop} [HasFrame P Q φ]
 
 end Tactic
 
-end Std.Internal.Do.Assertion
+end Std.Internal.Do.CompleteLattice

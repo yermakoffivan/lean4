@@ -755,9 +755,19 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_tcp_keepalive(b_obj_arg socket, int3
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_tcp_has_pending_data(b_obj_arg socket) {
 #ifndef LEAN_WINDOWS
     lean_uv_tcp_socket_object* tcp_socket = lean_to_uv_tcp_socket(socket);
-    uv_os_fd_t fd;
-    if (uv_fileno((uv_handle_t*)tcp_socket->m_uv_tcp, &fd) != 0) {
+
+    event_loop_lock(&global_ev);
+
+    if (tcp_socket->m_promise_read != nullptr) {
+        event_loop_unlock(&global_ev);
         return lean_io_result_mk_ok(lean_box(0));
+    }
+
+    uv_os_fd_t fd;
+    int fileno_result = uv_fileno((uv_handle_t*)tcp_socket->m_uv_tcp, &fd);
+    if (fileno_result != 0) {
+        event_loop_unlock(&global_ev);
+        return lean_io_result_mk_error(lean_decode_uv_error(fileno_result, nullptr));
     }
 
     struct pollfd pfd;
@@ -768,17 +778,34 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_tcp_has_pending_data(b_obj_arg socke
     int result = poll(&pfd, 1, 0);
     bool has_data = (result > 0) && (pfd.revents & POLLIN);
 
+    event_loop_unlock(&global_ev);
+
     return lean_io_result_mk_ok(lean_box(has_data ? 1 : 0));
 #else
     lean_uv_tcp_socket_object* tcp_socket = lean_to_uv_tcp_socket(socket);
-    uv_os_fd_t fd;
-    if (uv_fileno((uv_handle_t*)tcp_socket->m_uv_tcp, &fd) != 0) {
+
+    event_loop_lock(&global_ev);
+
+    if (tcp_socket->m_promise_read != nullptr) {
+        event_loop_unlock(&global_ev);
         return lean_io_result_mk_ok(lean_box(0));
     }
+
+    uv_os_fd_t fd;
+    int fileno_result = uv_fileno((uv_handle_t*)tcp_socket->m_uv_tcp, &fd);
+    if (fileno_result != 0) {
+        event_loop_unlock(&global_ev);
+        return lean_io_result_mk_error(lean_decode_uv_error(fileno_result, nullptr));
+    }
+
     u_long bytes_available = 0;
     if (ioctlsocket((SOCKET)fd, FIONREAD, &bytes_available) != 0) {
+        event_loop_unlock(&global_ev);
         return lean_io_result_mk_ok(lean_box(0));
     }
+
+    event_loop_unlock(&global_ev);
+
     return lean_io_result_mk_ok(lean_box(bytes_available > 0 ? 1 : 0));
 #endif
 }
@@ -796,9 +823,11 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_tcp_try_recv(b_obj_arg socket, uint6
     }
 
     uv_os_fd_t fd;
-    if (uv_fileno((uv_handle_t*)tcp_socket->m_uv_tcp, &fd) != 0) {
+    int fileno_result = uv_fileno((uv_handle_t*)tcp_socket->m_uv_tcp, &fd);
+    if (fileno_result != 0) {
         event_loop_unlock(&global_ev);
-        return lean_io_result_mk_ok(lean::mk_option_none());
+        return lean_io_result_mk_ok(
+            lean::mk_option_some(mk_except_err(lean_decode_uv_error(fileno_result, nullptr))));
     }
 
     struct pollfd pfd;
@@ -842,9 +871,11 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_tcp_try_recv(b_obj_arg socket, uint6
     }
 
     uv_os_fd_t fd;
-    if (uv_fileno((uv_handle_t*)tcp_socket->m_uv_tcp, &fd) != 0) {
+    int fileno_result = uv_fileno((uv_handle_t*)tcp_socket->m_uv_tcp, &fd);
+    if (fileno_result != 0) {
         event_loop_unlock(&global_ev);
-        return lean_io_result_mk_ok(lean::mk_option_none());
+        return lean_io_result_mk_ok(
+            lean::mk_option_some(mk_except_err(lean_decode_uv_error(fileno_result, nullptr))));
     }
 
     u_long bytes_available = 0;

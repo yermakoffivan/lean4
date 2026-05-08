@@ -145,6 +145,12 @@ opaque hasPendingData (socket : @& Socket) : IO Bool
 
 /--
 Attempts a non-blocking read of up to `size` bytes.
+
+Returns:
+- `none`: no data is available right now; call again later
+- `some (Except.ok (some bytes))`: successfully read `bytes`
+- `some (Except.ok none)`: the peer closed the connection (EOF)
+- `some (Except.error e)`: a socket or OS-level error occurred
 -/
 @[extern "lean_uv_tcp_try_recv"]
 opaque tryRecv? (socket : @& Socket) (size : UInt64) : IO (Option (Except IO.Error (Option ByteArray)))

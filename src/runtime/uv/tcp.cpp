@@ -760,7 +760,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_tcp_has_pending_data(b_obj_arg socke
 
     if (tcp_socket->m_promise_read != nullptr) {
         event_loop_unlock(&global_ev);
-        return lean_io_result_mk_ok(lean_box(0));
+        return lean_io_result_mk_error(lean_decode_uv_error(UV_EALREADY, nullptr));
     }
 
     uv_os_fd_t fd;
@@ -788,7 +788,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_tcp_has_pending_data(b_obj_arg socke
 
     if (tcp_socket->m_promise_read != nullptr) {
         event_loop_unlock(&global_ev);
-        return lean_io_result_mk_ok(lean_box(0));
+        return lean_io_result_mk_error(lean_decode_uv_error(UV_EALREADY, nullptr));
     }
 
     uv_os_fd_t fd;
@@ -819,7 +819,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_tcp_try_recv(b_obj_arg socket, uint6
 
     if (tcp_socket->m_promise_read != nullptr) {
         event_loop_unlock(&global_ev);
-        return lean_io_result_mk_ok(lean::mk_option_none());
+        return lean_io_result_mk_error(lean_decode_uv_error(UV_EALREADY, nullptr));
     }
 
     uv_os_fd_t fd;
@@ -867,7 +867,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_tcp_try_recv(b_obj_arg socket, uint6
 
     if (tcp_socket->m_promise_read != nullptr) {
         event_loop_unlock(&global_ev);
-        return lean_io_result_mk_ok(lean::mk_option_none());
+        return lean_io_result_mk_error(lean_decode_uv_error(UV_EALREADY, nullptr));
     }
 
     uv_os_fd_t fd;

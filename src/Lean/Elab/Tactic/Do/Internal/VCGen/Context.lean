@@ -4,19 +4,19 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Sebastian Graf
 -/
 module
-public import Lean.Elab
-public import Lean.Meta
-public meta import Lean.Elab
-public meta import Lean.Meta
-meta import Lean.Meta.Sym.Pattern
-meta import Lean.Meta.Sym.Simp.DiscrTree
-public meta import Lean.Meta.Tactic.Grind.Main
-public meta import Lean.Elab.Tactic.Do.VCGen.Basic
-public meta import VCGen.SpecDB
+
+prelude
+public import Lean.Elab.Tactic.Do.VCGen.Basic
+public import Lean.Elab.Tactic.Do.Internal.VCGen.SpecDB
+public import Lean.Meta.Sym.Apply
+public import Lean.Meta.Sym.Simp.SimpM
+public import Lean.Meta.Tactic.Grind.Types
 
 open Lean Meta Elab Tactic Sym
 open Lean.Elab.Tactic.Do Lean.Elab.Tactic.Do.SpecAttr
 open Std.Do
+
+namespace Lean.Elab.Tactic.Do.Internal
 
 /-!
 The `VCGenM` monad: its read-only `Context` (spec database + a fixed bundle of
@@ -29,12 +29,12 @@ public inductive VCGen.PreTac where
   /-- No pre-tactic; VCs are returned as-is. -/
   | none
   /-- Use grind with the given hypothesis simplification methods. -/
-  | grind
+  | grind (silent : Bool := false)
   /-- Use a user-provided tactic syntax. -/
   | tactic (tac : Syntax)
 
-public meta def VCGen.PreTac.isGrind : VCGen.PreTac → Bool
-  | .grind => true
+public def VCGen.PreTac.isGrind : VCGen.PreTac → Bool
+  | .grind .. => true
   | _ => false
 
 public structure VCGen.Context where
@@ -95,6 +95,10 @@ public structure VCGen.Context where
   `mvcgen' [-some_spec]` patterns where the user knows the spec is intentionally
   removed and wants to handle the residual goal by hand. -/
   errorOnMissingSpec : Bool := true
+  /-- The `debug` config option: when `true`, `tryApplyRule` retries failed
+  `BackwardRule.apply` calls after `unfoldReducible` and reports an error when the
+  retry succeeds, pinpointing missing normalization steps in `mvcgen'`. -/
+  debug : Bool := false
   /-- Pre-parsed `invariants`/`invariants?` alternatives, indexed by 1-based invariant
   number. Bullet form maps positions to entries (`bullet n+1 → alt`); labelled form maps
   the parsed `inv<n>` numbers (out-of-order labels are supported). Empty when no
@@ -147,6 +151,8 @@ public structure VCGen.State where
   this to know which user-provided alts have already been consumed (so it doesn't
   warn about them). -/
   inlineHandledInvariants : Std.HashSet Nat := {}
+  /-- Set when a pre-tactic failed on some VC; `elabMVCGen'` throws if true. -/
+  preTacFailed : Bool := false
 
 public abbrev VCGenM := ReaderT VCGen.Context (StateRefT VCGen.State Grind.GrindM)
 
@@ -154,21 +160,23 @@ namespace VCGen
 
 /-- Register a join-point `JumpSiteInfo` for the given fvar. Called when a
 `let __do_jp := …` is detected as a shared continuation. -/
-public meta def registerJP (fv : FVarId) (info : JumpSiteInfo) : _root_.VCGenM Unit :=
+public def registerJP (fv : FVarId) (info : JumpSiteInfo) : VCGenM Unit :=
   modify fun s => { s with jps := s.jps.insert fv info }
 
 /-- Look up a previously-registered join point by fvar id. -/
-public meta def knownJP? (fv : FVarId) : _root_.VCGenM (Option JumpSiteInfo) :=
+public def knownJP? (fv : FVarId) : VCGenM (Option JumpSiteInfo) :=
   return (← get).jps.get? fv
 
 /-- True iff fuel has been exhausted (`Fuel.limited 0`). -/
-public meta def outOfFuel : _root_.VCGenM Bool :=
+public def outOfFuel : VCGenM Bool :=
   return match (← get).fuel with | .limited 0 => true | _ => false
 
 /-- Decrement remaining fuel by one. No-op when fuel is `.unlimited` or already at zero. -/
-public meta def burnOne : _root_.VCGenM Unit :=
+public def burnOne : VCGenM Unit :=
   modify fun s => { s with fuel := match s.fuel with
     | .limited (n+1) => .limited n
     | other => other }
 
 end VCGen
+
+end Lean.Elab.Tactic.Do.Internal

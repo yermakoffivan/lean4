@@ -4,19 +4,18 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Sebastian Graf
 -/
 module
-public import Lean.Elab
-public import Lean.Meta
-public meta import Lean.Elab
-public meta import Lean.Meta
-public meta import Lean.Meta.Tactic.Grind.Main
-public meta import Lean.Meta.Tactic.Grind.Solve
-public meta import VCGen.Context
-public meta import VCGen.Util
-public meta import VCGen.Solve
+
+prelude
+public import Lean.Elab.Tactic.Meta
+public import Lean.Elab.Tactic.Do.Internal.VCGen.Context
+public import Lean.Elab.Tactic.Do.Internal.VCGen.Solve
+public import Lean.Meta.Sym.Grind
 
 open Lean Meta Elab Tactic Sym
 open Lean.Elab.Tactic.Do.SpecAttr
 open Std.Do
+
+namespace Lean.Elab.Tactic.Do.Internal
 
 /-!
 Worklist driver for `mvcgen'`. Wraps `solve` with a queue of pending goals,
@@ -29,24 +28,26 @@ namespace VCGen
 /--
 Runs the `preTac` on the VC:
 - `.grind`: tries to solve the VC using the accumulated `Grind.Goal` state via `Grind.Goal.grind`.
+  Reports failure via `Lean.logError` unless `silent` is set.
 - `.tactic`: runs the user-provided tactic on the VC, potentially emitting multiple subgoals.
 - `.none`: returns the VC as-is.
 -/
-public meta def PreTac.run : PreTac →  Grind.Goal → VCGenM (List MVarId)
+public def PreTac.run : PreTac →  Grind.Goal → VCGenM (List MVarId)
   | .none, goal => return [goal.mvarId]
-  | .grind, goal => do
+  | .grind silent, goal => do
     let savedMCtx ← getMCtx
     match ← goal.grind with
     | .closed => return []
     | .failed .. =>
       setMCtx savedMCtx
+      unless silent do
+        goal.mvarId.withContext do
+          Lean.logError m!"`grind` failed on goal:{indentD (MessageData.ofGoal goal.mvarId)}"
+        modify fun s => { s with preTacFailed := true }
       return [goal.mvarId]
-  | .tactic tac, goal =>
-    try
-      let (gs, _) ← Lean.Elab.runTactic goal.mvarId tac {} {}
-      pure gs
-    catch _ =>
-      pure [goal.mvarId]
+  | .tactic tac, goal => do
+    let (gs, _) ← Lean.Elab.runTactic goal.mvarId tac {} {}
+    pure gs
 
 /--
 Try to elaborate the user's invariant alt for invariant number `n` inline,
@@ -57,7 +58,7 @@ succeeded. Numbering is 1-based; out-of-order labelled forms (e.g. `| inv2 => �
 before `| inv1 => …`) are supported because the map is keyed by parsed number,
 not position.
 -/
-private meta def tryInlineInvariant (n : Nat) (mv : MVarId) : VCGenM Bool := do
+private def tryInlineInvariant (n : Nat) (mv : MVarId) : VCGenM Bool := do
   let some alt := (← read).invariantAlts[n]? | return false
   try
     let tac ← match alt with
@@ -85,7 +86,7 @@ each in `State.invariants` (1-based stable index) and try to inline-elaborate
 its matching user alt. Returns the remaining non-invariant subgoals for `work`
 to enqueue. Eager handling here ensures dependent VCs see `?inv` assigned by
 the time they reach `emitVC`/`preTac`. -/
-private meta def handleInvariantSubgoals (subgoals : List MVarId) : VCGenM (Array MVarId) := do
+private def handleInvariantSubgoals (subgoals : List MVarId) : VCGenM (Array MVarId) := do
   let env ← getEnv
   let mut others : Array MVarId := #[]
   for sg in subgoals do
@@ -105,7 +106,7 @@ Called when decomposing the goal further did not succeed; in this case we emit a
 Invariant subgoals are handled separately by `handleInvariantSubgoals` directly inside `work`,
 so they never reach this path.
 -/
-public meta def emitVC (goal : Grind.Goal) : VCGenM Unit := do
+public def emitVC (goal : Grind.Goal) : VCGenM Unit := do
   let goal ← (← read).preTac.processHypotheses goal
   let mut vcs := #[]
   -- `trivial`: when false, skip `repeatAndRfl` (which collapses And-chains via rfl);
@@ -122,7 +123,7 @@ public meta def emitVC (goal : Grind.Goal) : VCGenM Unit := do
     vcs := vcs.push mvarId
   modify fun s => { s with vcs := s.vcs ++ vcs }
 
-public meta def work (goal : Grind.Goal) : VCGenM Unit := do
+public def work (goal : Grind.Goal) : VCGenM Unit := do
   let mvarId ← preprocessMVar goal.mvarId
   let goal := { goal with mvarId }
   let mut worklist := #[goal] -- worklist is LIFO (popped from the back)
@@ -171,6 +172,8 @@ public structure Result where
   avoid spurious "alt does not match any invariant" warnings for inline-consumed
   alts. -/
   inlineHandledInvariants : Std.HashSet Nat := {}
+  /-- True iff some non-silent pre-tactic failed during VC generation. -/
+  preTacFailed : Bool := false
 
 /--
 Generate verification conditions for a goal of the form `P ⊢ₛ wp⟦e⟧ Q s₁ ... sₙ` by repeatedly
@@ -179,7 +182,7 @@ Return the VCs and invariant goals.
 
 `stepLimit?`, when `some n`, seeds the fuel counter to `n`; when `none`, fuel is unlimited.
 -/
-public meta partial def main (goal : MVarId) (ctx : Context) (stepLimit? : Option Nat := none) :
+public partial def main (goal : MVarId) (ctx : Context) (stepLimit? : Option Nat := none) :
     Grind.GrindM Result := do
   let grindGoal ← Grind.mkGoalCore goal
   let initState : State := { fuel := match stepLimit? with | some n => .limited n | none => .unlimited }
@@ -192,6 +195,9 @@ public meta partial def main (goal : MVarId) (ctx : Context) (stepLimit? : Optio
   return {
     invariants := state.invariants,
     vcs,
-    inlineHandledInvariants := state.inlineHandledInvariants }
+    inlineHandledInvariants := state.inlineHandledInvariants,
+    preTacFailed := state.preTacFailed }
 
 end VCGen
+
+end Lean.Elab.Tactic.Do.Internal

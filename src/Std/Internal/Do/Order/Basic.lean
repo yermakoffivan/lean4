@@ -196,6 +196,16 @@ theorem sup_fun_apply
     · exact (left_le_join a b) s
     · exact (right_le_join a b) s
 
+/-- Pointwise characterization of `⊤` on a function lattice. -/
+@[simp] theorem top_fun_apply {σ : Type v} {β : Type w} [CompleteLattice β] (s : σ) :
+    (⊤ : σ → β) s = (⊤ : β) :=
+  PartialOrder.rel_antisymm (le_top _) ((le_top (fun _ : σ => (⊤ : β))) s)
+
+/-- Pointwise characterization of `⊥` on a function lattice. -/
+@[simp] theorem bot_fun_apply {σ : Type v} {β : Type w} [CompleteLattice β] (s : σ) :
+    (⊥ : σ → β) s = (⊥ : β) :=
+  PartialOrder.rel_antisymm ((bot_le (fun _ : σ => (⊥ : β))) s) (bot_le _)
+
 end LatticeExtensions
 
 /-!
@@ -268,45 +278,29 @@ theorem prop_pre_elim (x : Prop) : x → True ⊑ x :=
 
 end Lean.Order
 
-namespace Std.Internal.Do
-
-open Lean.Order
-
-/-!
-# Assertion
-
-The `Assertion` class and `Assertion.ofProp` embedding.
--/
-
-/-- An assertion type is equipped with a `CompleteLattice` structure,
-used as the carrier for pre- and postconditions. -/
-class abbrev Assertion (α : Type w) := CompleteLattice α
-
-/-- An assertion type is a chain-complete partial order. -/
-scoped instance [Assertion EPred] : CCPO EPred where
-  has_csup {c} _ := CompleteLattice.has_sup c
-
 open Classical
 
-/-- Embedding of propositions into an assertion type. `⌜p⌝` embeds `p : Prop` as `⊤` if `p` holds
+namespace Lean.Order
+
+/-- Embedding of propositions into an CompleteLattice type. `⌜p⌝` embeds `p : Prop` as `⊤` if `p` holds
 and `⊥` otherwise. -/
-noncomputable def Assertion.ofProp [Assertion l] (p : Prop) : l :=
+noncomputable def CompleteLattice.ofProp [CompleteLattice l] (p : Prop) : l :=
   if p then ⊤ else ⊥
 
-@[inherit_doc Assertion.ofProp]
-scoped notation "⌜" p "⌝" => Assertion.ofProp p
+@[inherit_doc CompleteLattice.ofProp]
+scoped notation "⌜" p "⌝" => CompleteLattice.ofProp p
 
 @[simp]
-theorem Assertion.ofProp_true (l : Type v) [Assertion l] : ⌜True⌝ = (⊤ : l) := by
-  simp [Assertion.ofProp]
+theorem CompleteLattice.ofProp_true (l : Type v) [CompleteLattice l] : ⌜True⌝ = (⊤ : l) := by
+  simp [CompleteLattice.ofProp]
 
 @[simp]
-theorem Assertion.ofProp_false (l : Type v) [Assertion l] : ⌜False⌝ = (⊥ : l) := by
-  simp [Assertion.ofProp]
+theorem CompleteLattice.ofProp_false (l : Type v) [CompleteLattice l] : ⌜False⌝ = (⊥ : l) := by
+  simp [CompleteLattice.ofProp]
 
-theorem Assertion.ofProp_imp [Assertion l]
+theorem CompleteLattice.ofProp_imp [CompleteLattice l]
   (p₁ p₂ : Prop) : (p₁ → p₂) → ⌜p₁⌝ ⊑ (⌜p₂⌝ : l) := by
-  simp only [Assertion.ofProp]
+  simp only [CompleteLattice.ofProp]
   intro h
   split
   case isTrue hp1 =>
@@ -317,9 +311,9 @@ theorem Assertion.ofProp_imp [Assertion l]
     exact bot_le _
 
 @[simp]
-theorem Assertion.ofProp_intro [Assertion l]
+theorem CompleteLattice.ofProp_intro [CompleteLattice l]
   (p : Prop) (h : l) : (⌜p⌝ ⊑ h) = (p → ⊤ ⊑ h) := by
-  simp only [Assertion.ofProp]
+  simp only [CompleteLattice.ofProp]
   apply propext
   constructor
   · intro hle hp
@@ -331,33 +325,40 @@ theorem Assertion.ofProp_intro [Assertion l]
     next => exact bot_le _
 
 @[simp]
-theorem Assertion.ofProp_intro_l [Assertion l] (p : Prop) (x y : l) :
+theorem CompleteLattice.ofProp_intro_l [CompleteLattice l] (p : Prop) (x y : l) :
   (x ⊓ ⌜ p ⌝ ⊑ y) = (p → x ⊑ y) := by
   apply propext
   constructor
   · intro h hp
-    have hxy : x ⊓ ⊤ ⊑ y := by simp only [Assertion.ofProp, hp, ↓reduceIte] at h; exact h
+    have hxy : x ⊓ ⊤ ⊑ y := by simp only [CompleteLattice.ofProp, hp, ↓reduceIte] at h; exact h
     have hx_le_meet : x ⊑ x ⊓ ⊤ := le_meet x x ⊤ PartialOrder.rel_refl (le_top x)
     exact PartialOrder.rel_trans hx_le_meet hxy
   · intro h
-    simp only [Assertion.ofProp]
+    simp only [CompleteLattice.ofProp]
     split
     next hp => exact PartialOrder.rel_trans (meet_le_left x ⊤) (h hp)
     next => exact PartialOrder.rel_trans (meet_le_right x ⊥) (bot_le _)
 
 @[simp]
-theorem Assertion.ofProp_intro_r [Assertion l] (p : Prop) (x y : l) :
+theorem CompleteLattice.ofProp_intro_r [CompleteLattice l] (p : Prop) (x y : l) :
   (⌜ p ⌝ ⊓ x ⊑ y) = (p → x ⊑ y) := by
   apply propext
   constructor
   · intro h hp
-    have hxy : ⊤ ⊓ x ⊑ y := by simp only [Assertion.ofProp, hp, ↓reduceIte] at h; exact h
+    have hxy : ⊤ ⊓ x ⊑ y := by simp only [CompleteLattice.ofProp, hp, ↓reduceIte] at h; exact h
     have hx_le_meet : x ⊑ ⊤ ⊓ x := le_meet x ⊤ x (le_top x) PartialOrder.rel_refl
     exact PartialOrder.rel_trans hx_le_meet hxy
   · intro h
-    simp only [Assertion.ofProp]
+    simp only [CompleteLattice.ofProp]
     split
     next hp => exact PartialOrder.rel_trans (meet_le_right ⊤ x) (h hp)
     next => exact PartialOrder.rel_trans (meet_le_left ⊥ x) (bot_le _)
 
-end Std.Internal.Do
+/-- Pointwise characterization of `CompleteLattice.ofProp` on a function lattice. -/
+@[simp] theorem CompleteLattice.ofProp_fun_apply
+    {σ : Type v} {β : Type u} [CompleteLattice β] (p : Prop) (s : σ) :
+    (⌜p⌝ : σ → β) s = (⌜p⌝ : β) := by
+  simp only [CompleteLattice.ofProp]
+  rcases Classical.em p with h | h <;> simp [h]
+
+end Lean.Order

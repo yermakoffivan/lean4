@@ -227,6 +227,10 @@ elab_rules : tactic
 
 meta initialize cmdOnceRef : IO.Ref (Option (Task Unit)) ← IO.mkRef none
 
+/-- Generic ref usable by interactive cancellation tests that need to stash a `Task (Option α)`
+(typically `prom.result?`) so callers can detect promise-dropped without resolution explicitly. -/
+meta initialize tracerPromRef : IO.Ref (Option (Task (Option Unit))) ← IO.mkRef none
+
 /--
 Like `wait_for_main_cancel_once_async` but for commands. Takes a `num` parameter so that its syntax
 can be changed (via `change:`) to trigger re-elaboration. Sends "blocked" as a diagnostic and spawns

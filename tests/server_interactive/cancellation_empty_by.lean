@@ -13,11 +13,13 @@ snapshot tree and sets it.
 
 The `[try_suggestion]` generator runs in MetaM inside the empty-`by`
 snapshot task, so `(← read).cancelTk?` is `T_outer`. On the first
-invocation it allocates a promise, stores `prom.result!` in
-`cmdOnceRef`, and registers an `onSet` callback on `T_outer` that
+invocation it allocates a promise, stores `prom.result?` in
+`tracerPromRef`, and registers an `onSet` callback on `T_outer` that
 resolves the promise. The returned candidate `wait_for_t_outer`
 `IO.wait`s on that stored task. The wait returns iff `T_outer` has
-fired or been dropped.
+fired (`some ()`) or `prom` was dropped without resolution (`none`).
+The `none` branch logs a clear failure rather than silently passing,
+so accidental drops don't masquerade as success.
 
 `t1`'s `wait_for_cancel_once_async` is used purely to publish the
 `"blocked"` diagnostic the runner waits for. On re-elaboration
@@ -32,42 +34,41 @@ snapshot task body's `IO.wait` blocks until `T_outer` is dropped;
 since the body holds `T_outer` alive (via `wrapAsync`'s ctx) until it
 returns, `T_outer` does not drop, the wait does not return, and the
 runner times out.
+
+Implementation note: we store `prom.result?` (not `result!`) so we can
+handle the dropped-without-resolved case explicitly. We deliberately
+avoid going through `Task.map (·.getD ())` to reach the same shape
+as `result!`: that map would default to `sync := false` and queue the
+post-resolve hop on a worker thread, which (under elaboration load)
+introduces scheduling latency and made earlier versions of this test
+flaky. `IO.wait prom.result?` blocks the current thread directly with
+no extra task hop, matching `result!`'s `(sync := true)` timing.
 -/
 
 namespace TestEmptyBy
 
 opaque UnsolvableProp : Prop
 
-/-- Tactic that blocks until the shared promise fires. -/
+/-- Tactic that blocks until the shared promise fires; on a dropped-without-resolved
+promise, prints to stderr to force test failure. The tactic runs inside `try?`, which
+catches `throwError`, so we surface the failure via `IO.eprintln` instead. -/
 syntax "wait_for_t_outer" : tactic
 elab_rules : tactic
 | `(tactic| wait_for_t_outer) => do
-  let some t ← cmdOnceRef.get
-    | throwError "wait_for_t_outer: cmdOnceRef not initialised"
-  IO.wait t
+  let some t ← tracerPromRef.get
+    | throwError "wait_for_t_outer: tracerPromRef not initialised"
+  match (← IO.wait t) with
+  | some _ => return
+  | none   => IO.eprintln "wait_for_t_outer: promise dropped without resolution"
 
 @[try_suggestion]
 def tracerSuggestion (_goal : MVarId) (_info : Try.Info) :
     MetaM (Array (TSyntax `tactic)) := do
   let prom ← IO.Promise.new
-  -- Use `prom.result!` here despite the general footgun (it panics if
-  -- the promise is dropped without being resolved): in this specific
-  -- setup the only way the promise reaches `IO.wait` is via the
-  -- `cancelTk.onSet` callback below resolving it when `T_outer` fires.
-  -- The closure capturing `prom` keeps it alive as long as `T_outer`
-  -- is alive, and `T_outer` is held by the snapshot task's `wrapAsync`
-  -- ctx until the task body completes -- which it can't, because it's
-  -- the one waiting on this promise. So a dropped-without-resolved
-  -- promise can't occur. `result?`-derived alternatives were tried
-  -- (`Task.map (·.getD ())`, `BaseIO.bindTask` with a `none` branch
-  -- that prints) but turned out either flaky (`Task.map`) or unable
-  -- to detect the `cancelTk? := none` bug case at all
-  -- (`BaseIO.bindTask`). `result!` wins on both correctness and
-  -- stability here.
-  let inserted ← cmdOnceRef.modifyGet fun old =>
+  let inserted ← tracerPromRef.modifyGet fun old =>
     match old with
     | some _ => (false, old)
-    | none   => (true, some prom.result!)
+    | none   => (true, some prom.result?)
   if inserted then
     if let some cancelTk := (← readThe Core.Context).cancelTk? then
       cancelTk.onSet (do prom.resolve ())

@@ -227,10 +227,6 @@ elab_rules : tactic
 
 meta initialize cmdOnceRef : IO.Ref (Option (Task Unit)) ← IO.mkRef none
 
-/-- Generic ref usable by interactive cancellation tests that need to stash a `Task (Option α)`
-(typically `prom.result?`) so callers can detect promise-dropped without resolution explicitly. -/
-meta initialize tracerPromRef : IO.Ref (Option (Task (Option Unit))) ← IO.mkRef none
-
 /--
 Like `wait_for_main_cancel_once_async` but for commands. Takes a `num` parameter so that its syntax
 can be changed (via `change:`) to trigger re-elaboration. Sends "blocked" as a diagnostic and spawns
@@ -256,3 +252,35 @@ elab_rules : command
   let t ← BaseIO.asTask (act ())
   (Core.logSnapshotTask { stx? := none, task := t, cancelTk? := cancelTk })
   logInfo "blocked"
+
+/-- Registry of label-keyed `Task (Option Unit)` values for use by `mkTestTask` and
+`wait_for_test_task`. The stored task is `prom.result?` of the promise returned by
+`mkTestTask`; the registry itself does not keep that promise alive, so if no other
+reference exists, the promise drops and the task fires `none`. -/
+meta initialize testTasksRef : IO.Ref (Std.HashMap String (Task (Option Unit))) ← IO.mkRef {}
+
+/-- Register a fresh test task under `label`, returning the underlying `IO.Promise`.
+Returns `none` if a task is already registered under `label`. The caller is responsible
+for keeping the returned promise alive and arranging its resolution -- typically by
+capturing it in a `cancelTk.onSet` closure that calls `prom.resolve`. -/
+meta def mkTestTask (label : String) : BaseIO (Option (IO.Promise Unit)) := do
+  let prom ← IO.Promise.new
+  testTasksRef.modifyGet fun m =>
+    if m.contains label then (none, m) else (some prom, m.insert label prom.result?)
+
+/-- Block until the test task named `label` fires. Prints a diagnostic to stderr if
+the underlying promise was dropped without resolution, or if no task is registered for
+`label`. The diagnostic uses stderr rather than `throwError` so that the failure is
+visible even when this tactic is evaluated inside `try?` (or any other combinator that
+swallows tactic errors). -/
+scoped syntax "wait_for_test_task " str : tactic
+elab_rules : tactic
+| `(tactic| wait_for_test_task $label) => do
+  let label := label.getString
+  match (← testTasksRef.get).get? label with
+  | none =>
+    IO.eprintln s!"wait_for_test_task: no task registered for {label}"
+  | some t =>
+    match (← IO.wait t) with
+    | some _ => return
+    | none   => IO.eprintln s!"wait_for_test_task: task {label} dropped without resolution"

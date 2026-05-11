@@ -48,7 +48,9 @@ def tracerSuggestion (_goal : MVarId) (_info : Try.Info) :
       cancelTk.onSet do
         dbg_trace "cancelTokenSet"
         prom.resolve ()
-  dbg_trace "tracerSuggestion ready"
+    else
+      dbg_trace "tracerSuggestion: no cancel token (unexpected -- test setup wrong?)"
+    dbg_trace "tracerSuggestion ready"
   resolveSyncPromise "tracerSuggestion"
   return #[← `(tactic| wait_for_test_task "cancelTokenSet")]
 
@@ -66,5 +68,6 @@ example : TestEmptyBy.UnsolvableProp := by
 
 theorem t1 : True := by
   wait_for_sync "tracerSuggestion"
+  dbg_trace "sync received"
   trace "blocked"
   trivial

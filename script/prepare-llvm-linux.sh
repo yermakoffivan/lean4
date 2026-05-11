@@ -32,6 +32,7 @@ $CP llvm/lib/libLLVM*.so* $ZLIB/lib/libz.so* stage0/lib/
 $CP $GCC_LIB/lib/libgcc_s.so* stage1/lib/
 # bundle libatomic (referenced by LLVM >= 15, and required by the lean executable to run)
 $CP $GCC_LIB/lib/libatomic.so* stage1/lib/
+$CP $GCC_LIB/lib/libatomic.so* stage0/lib/
 
 find stage1 -type f -exec strip --strip-unneeded '{}' \; 2> /dev/null
 # lean.h dependencies

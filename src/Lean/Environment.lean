@@ -24,7 +24,6 @@ public import Init.Dynamic
 import Init.Data.Slice
 import Init.Data.String.TakeDrop
 import Init.Data.Range.Polymorphic.Iterators
-public import Init.Data.Iterators.Producers.List
 import Init.While
 
 public section
@@ -1164,17 +1163,32 @@ def containsOnBranch (env : Environment) (n : Name) : Bool :=
   (env.asyncConsts.find? n |>.isSome) || (env.base.get env).constants.contains n
 
 /--
-Iterator over the constants added on the current branch (i.e. local to the current module), in
-reverse addition order (most recently added first). Unlike iterating `env.constants.map₂`, this
-does not block on `env.checked`.
+Returns the constants added in the current module, in addition order, excluding those that could
+only be created asynchronously: theorem bodies are elaborated in their own task, so any nested
+constants they introduce (e.g. `where` helpers, `match` matchers, aux recursors) are
+race-dependent. We therefore walk into the `aconsts` of every non-theorem constant — capturing
+`where` helpers inside `def`s and the like — but stop at theorems.
+
+Unlike iterating `env.constants.map₂`, this does not block on `env.checked`.
+
+Nested `AsyncConsts` inherit their parent's `asyncConstsMap`, so a naive recursive walk would
+produce duplicates; we deduplicate by name.
 -/
-@[inline] def localConstantInfos (env : Environment) :
-    Std.Iter (α := Std.Iterators.Types.ListIterator AsyncConstantInfo) AsyncConstantInfo :=
-  -- We eagerly project to `AsyncConstantInfo` (which is public) and then build the iterator,
-  -- rather than `revList.iter.map (·.constInfo)`. The lazy form would leave the private
-  -- `AsyncConst.constInfo` accessor in the inlined closure, which is rejected by `@[inline]`
-  -- visibility checks.
-  (env.asyncConsts.revList.map (·.constInfo)).iter
+partial def localConstantInfos (env : Environment) : BaseIO (Array AsyncConstantInfo) := do
+  let (arr, _) ← go env.asyncConsts #[] {}
+  return arr.reverse
+where
+  go (aconsts : AsyncConsts) (acc : Array AsyncConstantInfo) (seen : NameSet) :
+      BaseIO (Array AsyncConstantInfo × NameSet) := do
+    let mut acc := acc
+    let mut seen := seen
+    for c in aconsts.revList do
+      if seen.contains c.constInfo.name then continue
+      seen := seen.insert c.constInfo.name
+      acc := acc.push c.constInfo
+      if c.constInfo.kind != .thm then
+        (acc, seen) ← go c.aconsts.get acc seen
+    return (acc, seen)
 
 def setMainModule (env : Environment) (m : Name) : Environment := Id.run do
   let env := env.modifyCheckedAsync ({ · with

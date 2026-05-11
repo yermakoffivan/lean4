@@ -202,7 +202,7 @@ def elabGrindLocals (params : Grind.Params) : MetaM Grind.Params := do
   let env ← getEnv
   let mut params := params
   let mut added : Array Name := #[]
-  for c in env.localConstantInfos do
+  for c in ← env.localConstantInfos do
     let name := c.name
     -- Filter similar to LibrarySuggestions.isDeniedPremise (but inlined to avoid dependency)
     -- Skip internal details, but allow private names (which are accessible from current module)

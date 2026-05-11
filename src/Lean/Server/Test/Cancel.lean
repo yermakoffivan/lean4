@@ -277,3 +277,35 @@ elab_rules : tactic
         IO.sleep 10
     finally
       prom.resolve ()
+
+/-- Registry of label-keyed `IO.Promise Unit` for synchronization between cooperating
+tactics/elaborators in tests. The promise is kept alive by the ref itself, so
+`prom.result?` only fires on explicit `resolveSyncPromise` -- there is no drop signal.
+Distinct from `testTasksRef`, which stores only the `Task` side and relies on caller
+liveness to detect dropped-without-resolved. -/
+meta initialize syncPromisesRef : IO.Ref (Std.HashMap String (IO.Promise Unit)) ← IO.mkRef {}
+
+/-- Return the sync promise for `label`, creating it if no entry exists. All callers
+receive the same promise. -/
+meta def getSyncPromise (label : String) : BaseIO (IO.Promise Unit) := do
+  let fresh ← IO.Promise.new
+  syncPromisesRef.modifyGet fun m =>
+    match m[label]? with
+    | some prom => (prom, m)
+    | none      => (fresh, m.insert label fresh)
+
+/-- Resolve the sync promise for `label`. Idempotent (subsequent resolves are no-ops). -/
+meta def resolveSyncPromise (label : String) : BaseIO Unit := do
+  (← getSyncPromise label).resolve ()
+
+/-- Block until `resolveSyncPromise label` has been called. Direct `IO.wait`, no polling. -/
+scoped syntax "wait_for_sync " str : tactic
+elab_rules : tactic
+| `(tactic| wait_for_sync $label) => do
+  let lbl := label.getString
+  match (← IO.wait (← getSyncPromise lbl).result?) with
+  | some _ => return
+  | none   =>
+    IO.eprintln s!"wait_for_sync: sync promise {lbl} dropped without resolution"
+
+

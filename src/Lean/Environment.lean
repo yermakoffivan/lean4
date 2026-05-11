@@ -24,6 +24,7 @@ public import Init.Dynamic
 import Init.Data.Slice
 import Init.Data.String.TakeDrop
 import Init.Data.Range.Polymorphic.Iterators
+public import Init.Data.Iterators.Producers.List
 import Init.While
 
 public section
@@ -1161,6 +1162,19 @@ not block.
 -/
 def containsOnBranch (env : Environment) (n : Name) : Bool :=
   (env.asyncConsts.find? n |>.isSome) || (env.base.get env).constants.contains n
+
+/--
+Iterator over the constants added on the current branch (i.e. local to the current module), in
+reverse addition order (most recently added first). Unlike iterating `env.constants.map₂`, this
+does not block on `env.checked`.
+-/
+@[inline] def localConstantInfos (env : Environment) :
+    Std.Iter (α := Std.Iterators.Types.ListIterator AsyncConstantInfo) AsyncConstantInfo :=
+  -- We eagerly project to `AsyncConstantInfo` (which is public) and then build the iterator,
+  -- rather than `revList.iter.map (·.constInfo)`. The lazy form would leave the private
+  -- `AsyncConst.constInfo` accessor in the inlined closure, which is rejected by `@[inline]`
+  -- visibility checks.
+  (env.asyncConsts.revList.map (·.constInfo)).iter
 
 def setMainModule (env : Environment) (m : Name) : Environment := Id.run do
   let env := env.modifyCheckedAsync ({ · with

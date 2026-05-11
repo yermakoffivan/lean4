@@ -2111,7 +2111,7 @@ def whnfI (e : Expr) : MetaM Expr :=
 /-- `whnf` with at most instances transparency. -/
 def whnfAtMostI (e : Expr) : MetaM Expr := do
   match (← getTransparency) with
-  | .all | .default => withTransparency TransparencyMode.instances <| whnf e
+  | .all | .default => withTransparency TransparencyMode.reducible <| whnf e
   | _ => whnf e
 
 /--

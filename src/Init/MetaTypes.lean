@@ -388,7 +388,7 @@ structure ConfigCtx extends Config where
 /--
 A neutral configuration for `simp`, turning off all reductions and other built-in simplifications.
 -/
-def neutralConfig : Simp.Config := {
+@[expose] def neutralConfig : Simp.Config := {
   zeta              := false
   beta              := false
   eta               := false

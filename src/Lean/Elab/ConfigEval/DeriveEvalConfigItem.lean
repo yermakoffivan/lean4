@@ -12,6 +12,14 @@ import Lean.Elab.ConfigEval.Util
 public import Lean.Elab.ConfigEval.Basic
 import Lean.Elab.ConfigEval.Instances
 
+/-!
+# Derivation of `EvalConfigItem`
+
+This module defines `defEvalConfigItem`, which derives an `EvalConfigItem` object for structures.
+Its main interface are the command syntaxes defined in `Lean.Elab.ConfigEval.Commands`.
+
+-/
+
 public section
 
 namespace Lean.Elab.ConfigEval
@@ -256,7 +264,16 @@ where
         if !hasWildcard then
           if let some structName' := (← whnfR fieldTy).constName? then
             if ← try checkStruct structName'; pure true catch _ => pure false then
-              trie ← visitStruct trie key structName' (allowFailure || hasExact)
+              /-
+              Heuristic: if there is already a handler for an exact match, we shouldn't report errors
+              if sub-keys can't be used. In Mathlib for example, the `linarith` tactic has configuration
+              options that are `structure`s wrapping monadic and functional values. Users are only
+              meant to set the entire `structure`, not the fields within them. We are imagining here
+              that `structure` configuration values are not common, so we shouldn't rigidly expect
+              handlers for sub-keys (saving metaprogram authors the hassle of writing complete `except`
+              clauses). We may consider `(allowFailure := true)` in the future, and/or `except foo.*` clauses.
+              -/
+              trie ← visitStruct trie key structName' (allowFailure := allowFailure || hasExact)
         unless allowFailure || hasExact || hasWildcard || synthesizedHandler do
           throwErrorAt struct (m!"Field `{key}` of type{inlineExpr fieldTy}is missing both `{.ofConstName ``EvalTerm}` and `{.ofConstName ``EvalExpr}` instances."
               ++ .note m!"The scoped `ensure_eval_term_instance` and `ensure_eval_expr_instance` commands in `Lean.Elab.ConfigEval` were not able to derive instances.")

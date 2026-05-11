@@ -97,9 +97,10 @@ where
           deps := deps.push xTy
     return deps
 
-@[expose] unsafe def evalMetaEval (α : Type) (typeName : Name) (e : Expr) : MetaM α := do
+@[expose] unsafe def evalMetaEval (α : Type) (typeName : Name) (moduleName? : Option Name) (e : Expr) : MetaM α := do
   unless (← getEnv).contains typeName do
-    throwError m!"Error evaluating configuration: Environment does not yet contain type `{typeName}`"
+    let fromMsg := if let some moduleName := moduleName? then m!" (from `{moduleName}`)" else m!""
+    throwError m!"Error evaluating configuration: the type `{typeName}`{fromMsg} is not in scope here"
   recordExtraModUseFromDecl (isMeta := true) typeName
   let eType ← inferType e
   unless ← isDefEqGuarded (mkConst typeName) eType do
@@ -117,9 +118,11 @@ def deriveEvalExprUsingMetaEval
   let cmd ← liftTermElabM <| withFreshMacroScope do
     let Expr.const typeName [] := type
       | throwErrorAt typeRef "Expecting a constant with no universes, not `{type}`"
+    let env ← getEnv
+    let moduleName? := (env.header.moduleNames[·]!) <$> env.getModuleIdxFor? typeName
     let typeId := mkCIdentFrom typeRef typeName
     `($[$vis?:visibility]? $kind:attrKind instance%$cmdRef : EvalExpr @$typeId where
-        evalExpr := unsafe evalMetaEval @$typeId $(quote typeName)
+        evalExpr := unsafe evalMetaEval @$typeId $(quote typeName) $(quote moduleName?)
         expectedType? := some (mkConst @$(quote typeName)))
   elabCommand cmd
 

@@ -25,6 +25,14 @@ structure Meta.Simp.ConfigWithOptions extends config : Meta.Simp.Config where
   configurations `(user.myOption := ...)` and `+user.myOption`. -/
   userConfig : Options := {}
 
+/--
+Configuration for `dsimp`, for supporting tactic configuration option syntax.
+-/
+structure Meta.DSimp.ConfigWithOptions extends config : Meta.DSimp.Config where
+  /-- User options. Registering a global option `tactic.simp.user.myOption` enables the tactic
+  configurations `(user.myOption := ...)` and `+user.myOption`. -/
+  userConfig : Options := {}
+
 namespace Elab.Tactic
 open Meta
 open TSyntax.Compat
@@ -36,7 +44,7 @@ open ConfigEval
 Generic `simp` configuration elaborator, with an `evalConfig` argument for overriding how
 the `(config := ...)` syntax is elaborated.
 -/
-declare_config_elab elabSimpConfigAux Simp.ConfigWithOptions (evalConfig : Term → TermElabM Meta.Simp.Config) where
+private declare_config_elab elabSimpConfigAux Simp.ConfigWithOptions (evalConfig : Term → TermElabM Meta.Simp.Config) where
   except userConfig
   option config := fun cfg item => do
     let config ← evalConfig item.value
@@ -48,6 +56,9 @@ declare_config_elab elabSimpConfigAux Simp.ConfigWithOptions (evalConfig : Term 
     addConstInfo item.prevRoot ``Simp.ConfigWithOptions.userConfig
     let userConfig ← EvalConfigItem.evalSetOptions `tactic.simp.user cfg.userConfig item
     return { cfg with userConfig }
+  option userConfig := fun _ item => do
+    addConstInfo item.prevRoot ``Simp.ConfigWithOptions.userConfig
+    throwErrorAt item.prevRoot "Cannot set `userConfig` directly. User options are of the form `user.optionName`"
 
 /--
 Specializes the `elabSimpConfigAux` configuration elaborator to a specific `Simp` default configuration.
@@ -68,7 +79,22 @@ local macro "make_elab_simp_config" fn:ident struct:ident : command => do
 
 make_elab_simp_config elabSimpConfigCore Simp.Config
 make_elab_simp_config elabSimpConfigCtxCore Simp.ConfigCtx
-make_elab_simp_config elabDSimpConfigCore DSimp.Config
+
+/-- Elaborates a `dsimp` configuration, which uses only a subset of the options
+of a `simp` configuration. The `elabSimpConfig` function calls this and immediately
+converts the result to a `Simp.Config`. -/
+private declare_config_elab elabDSimpConfigCore DSimp.ConfigWithOptions where
+  except userConfig
+  option user := fun _ item => do
+    addConstInfo item.prevRoot ``DSimp.ConfigWithOptions.userConfig
+    throwErrorAt item.prevRoot "User options are of the form `user.optionName`"
+  option user.* := fun cfg item => do
+    addConstInfo item.prevRoot ``DSimp.ConfigWithOptions.userConfig
+    let userConfig ← EvalConfigItem.evalSetOptions `tactic.simp.user cfg.userConfig item
+    return { cfg with userConfig }
+  option userConfig := fun _ item => do
+    addConstInfo item.prevRoot ``DSimp.ConfigWithOptions.userConfig
+    throwErrorAt item.prevRoot "Cannot set `userConfig` directly. User options are of the form `user.optionName`"
 
 end
 
@@ -161,7 +187,7 @@ def elabSimpConfig (optConfig : Syntax) (kind : SimpKind) : TacticM Simp.ConfigW
   match kind with
     | .simp    => elabSimpConfigCore optConfig
     | .simpAll => elabSimpConfigCtxCore optConfig { ({} : Meta.Simp.ConfigCtx) with }
-    | .dsimp   => elabDSimpConfigCore optConfig { ({} : Meta.DSimp.Config) with }
+    | .dsimp   => pure { (← elabDSimpConfigCore optConfig) with }
 
 inductive ResolveSimpIdResult where
   | none

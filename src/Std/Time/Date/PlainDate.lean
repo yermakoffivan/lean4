@@ -92,7 +92,7 @@ def ofYearOrdinal (year : Year.Offset) (ordinal : Day.Ordinal.OfYear year.isLeap
   ⟨year, month, day, proof⟩
 
 /--
-Creates a `PlainDate` from the number of days since january 1st, 1970.
+Creates a `PlainDate` from the number of days since January 1st, 1970.
 -/
 def ofEpochDay (day : Day.Offset) : PlainDate :=
   let z := day.toInt + 719468

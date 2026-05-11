@@ -5,8 +5,8 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Author: Siddharth Bhat
 
 This file contains bare bones bindings to the LLVM C FFI. This enables
-`src/Lean/Compiler/IR/EmitLLVM.lean` to produce LLVM bitcode from
-Lean's IR.
+`src/Lean/Compiler/LCNF/EmitLLVM.lean` to produce LLVM bitcode from
+Lean's LCNF IR.
 */
 
 #include <lean/lean.h>
@@ -39,15 +39,15 @@ Lean's IR.
 
 namespace lean {
 /*  initLLVM : IO Unit */
-extern "C" obj_res initialize_Lean_Compiler_IR_EmitLLVM(uint8_t builtin);
+extern "C" obj_res initialize_Lean_Compiler_LCNF_EmitLLVM(uint8_t builtin);
 extern "C" LEAN_EXPORT obj_res lean_init_llvm() {
-    return initialize_Lean_Compiler_IR_EmitLLVM(/*builtin*/ false);
+    return initialize_Lean_Compiler_LCNF_EmitLLVM(/*builtin*/ false);
 }
 
 /*  emitLLVM (env : Environment) (modName : Name) (filepath : FilePath) : IO Unit */
-extern "C" obj_res lean_ir_emit_llvm(obj_arg env, obj_arg mod_name, obj_arg filepath);
+extern "C" obj_res lean_lcnf_emit_llvm(obj_arg env, obj_arg mod_name, obj_arg filepath);
 extern "C" LEAN_EXPORT obj_res lean_emit_llvm(obj_arg env, obj_arg mod_name, obj_arg filepath) {
-    return lean_ir_emit_llvm(env, mod_name, filepath);
+    return lean_lcnf_emit_llvm(env, mod_name, filepath);
 }
 }
 

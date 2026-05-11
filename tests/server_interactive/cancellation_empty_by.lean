@@ -34,28 +34,7 @@ inside the snapshot task library-searches the environment in a way
 that synchronously waits on prior pending async theorem bodies. With
 `t1` first, its `wait_for_sync` would block the snapshot's `try?`,
 deadlocking. Likely a separate upstream issue.
-
-CI tracing: CI has reported `Timeout 1500s` failures for this test
-with no captured stderr output at all. The `#eval`-driven progress
-markers below (`test: imports done`, `test: empty-by command
-returned`) anchor "did the file worker process this command at all?"
-checkpoints, independent of the snapshot task and `t1`'s async body.
-The companion `cancellation_empty_by.lean.init.sh` clamps
-`LEAN_NUM_THREADS` to reduce parallelism on CI, in case the symptom
-is a task-scheduling issue.
-
-The observed output order does not match the causal order above:
-`cancelTokenSet` appears before `tracerSuggestion ready` in the
-captured `2>&1` log even though, causally, the `onSet` callback can
-only fire after `tracerSuggestion` has registered it. We don't have
-a definitive explanation -- likely some interaction between
-buffered stderr writes from the snapshot worker thread and the
-direct writes from the thread that calls `cancelTk.set`. The order
-is stable across hundreds of local runs at 6-way parallelism, so we
-encode it as-is.
 -/
-
-#eval (IO.eprintln "test: imports done" : IO Unit)
 
 namespace TestEmptyBy
 
@@ -86,8 +65,6 @@ example : True := by
        --^ sync
 
 example : TestEmptyBy.UnsolvableProp := by
-
-#eval (IO.eprintln "test: empty-by command returned" : IO Unit)
 
 theorem t1 : True := by
   wait_for_sync "tracerSuggestion"

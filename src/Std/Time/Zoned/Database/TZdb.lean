@@ -121,7 +121,7 @@ Resolves the local timezone file path from the `TZ` environment variable, search
 `TZ` is unset. Throws if `TZ` is set but its value cannot be found on disk.
 -/
 def resolveLocalPath (zonesPaths : Array System.FilePath) : IO System.FilePath := do
-  let some tz := ← IO.getEnv "TZ"
+  let some tz ← IO.getEnv "TZ"
     | return "/etc/localtime"
 
   let some spec := parseTZValue tz
@@ -130,10 +130,10 @@ def resolveLocalPath (zonesPaths : Array System.FilePath) : IO System.FilePath :
   match spec with
   | .filePath p =>
     if p.startsWith "/" then return p
-    if let some path := ← findInPaths zonesPaths p then return path
+    if let some path ← findInPaths zonesPaths p then return path
     throw <| IO.userError s!"TZ='{tz}': path '{p}' not found in any zoneinfo directory"
   | .zoneId id =>
-    if let some path := ← findInPaths zonesPaths id then return path
+    if let some path ← findInPaths zonesPaths id then return path
     throw <| IO.userError s!"TZ='{tz}': timezone not found in any zoneinfo directory"
 
 /--
@@ -142,7 +142,7 @@ Call this once at program startup. The `TZ` and `TZDIR` environment variables
 are re-read on every `getLocalZoneRules`/`getZoneRules` call, so runtime changes
 to those variables are always reflected.
 -/
-def default : IO TZdb :=
+def default : TZdb :=
   return { zonesPaths := #["/usr/share/zoneinfo", "/share/zoneinfo", "/etc/zoneinfo", "/usr/share/lib/zoneinfo"] }
 
 /--

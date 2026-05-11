@@ -3,6 +3,12 @@ import Lean.Elab.Tactic.Try
 open Lean Lean.Meta Lean.Elab Lean.Elab.Term Lean.Elab.Tactic
 open Lean.Server.Test.Cancel
 
+-- Diagnostic anchor: synchronous, fires exactly once at command-elab time
+-- before any async task is spawned by the rest of the file. If a CI / stress
+-- failure shows this line in `.out.produced`, the file worker at least got
+-- past imports.
+#eval (IO.eprintln "test: imports done" : IO Unit)
+
 /-!
 Test that `cancelRec` reaches the snapshot task spawned by
 `elabEmptyByAsTry` on re-elaboration.
@@ -43,6 +49,7 @@ opaque UnsolvableProp : Prop
 @[try_suggestion]
 def tracerSuggestion (_goal : MVarId) (_info : Try.Info) :
     MetaM (Array (TSyntax `tactic)) := do
+  dbg_trace "tracerSuggestion: entered"
   if let some prom ← mkTestTask "cancelTokenSet" then
     if let some cancelTk := (← readThe Core.Context).cancelTk? then
       cancelTk.onSet do
@@ -52,11 +59,16 @@ def tracerSuggestion (_goal : MVarId) (_info : Try.Info) :
       dbg_trace "tracerSuggestion: no cancel token (unexpected -- test setup wrong?)"
     dbg_trace "tracerSuggestion ready"
   resolveSyncPromise "tracerSuggestion"
+  dbg_trace "tracerSuggestion: returning candidate"
   return #[← `(tactic| wait_for_test_task "cancelTokenSet")]
 
 end TestEmptyBy
 
 set_option tactic.tryOnEmptyBy true
+-- Skip the expensive built-in `try?` branches (`simp`/`grind`/`exact?`/…). The
+-- test only cares about the user-registered `tracerSuggestion` running inside
+-- the snapshot task; the library-search branches are pure overhead here.
+set_option tactic.try.onlyUserSuggestions true
 
 example : True := by
   trivial
@@ -64,9 +76,14 @@ example : True := by
        --^ insert: "; skip"
        --^ sync
 
+#eval (IO.eprintln "test: before empty-by example" : IO Unit)
+
 example : TestEmptyBy.UnsolvableProp := by
 
+#eval (IO.eprintln "test: after empty-by example" : IO Unit)
+
 theorem t1 : True := by
+  dbg_trace "t1: body entered"
   wait_for_sync "tracerSuggestion"
   dbg_trace "sync received"
   trace "blocked"

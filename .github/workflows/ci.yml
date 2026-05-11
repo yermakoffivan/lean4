@@ -245,7 +245,6 @@ jobs:
             const isPushToMaster = "${{ github.event_name }}" == "push" && "${{ github.ref_name }}" == "master";
             const chonk = ${{ steps.runner-fallback.outputs.use-runner }};
             let matrix = [
-              /* TODO: to be updated to new LLVM
               {
                 "name": "Linux LLVM",
                 "os": "ubuntu-latest",
@@ -260,7 +259,7 @@ jobs:
                 // reverse-ffi needs to be updated to link to LLVM libraries
                 "CTEST_OPTIONS": "-E 'foreign|leanlaketest_reverse-ffi'",
                 "CMAKE_OPTIONS": "-DLLVM=ON -DLLVM_CONFIG=${GITHUB_WORKSPACE}/build/llvm-host/bin/llvm-config"
-              }, */
+              },
               {
                 // portable release build: use channel with older glibc (2.26)
                 "name": "Linux release",

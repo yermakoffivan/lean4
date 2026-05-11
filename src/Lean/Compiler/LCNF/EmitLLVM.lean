@@ -1311,6 +1311,9 @@ def emitInitFn (builder : LLVM.Builder llvmctx) (phases : IRPhases) :
   let ginit?ty ← LLVM.i1Type llvmctx
   let ginit?slot ← LLVM.getOrAddGlobal mod
     s!"_G_{mkModuleInitializationPrefix phases}initialized" ginit?ty
+  -- `static bool` in EmitC; the LLVM equivalent is internal linkage so that linking multiple
+  -- modules together does not collide on the same `_G_*_initialized` name.
+  LLVM.setLinkage ginit?slot LLVM.Linkage.internal
   LLVM.setVisibility ginit?slot LLVM.Visibility.hidden
   LLVM.setInitializer ginit?slot (← LLVM.constFalse llvmctx)
   let ginit?v ← LLVM.buildLoad2 builder ginit?ty ginit?slot "init_v"
@@ -1356,6 +1359,7 @@ def emitLegacyInitFn (builder : LLVM.Builder llvmctx) : EmitM llvmctx Unit := do
   LLVM.positionBuilderAtEnd builder entryBB
   let ginit?ty ← LLVM.i1Type llvmctx
   let ginit?slot ← LLVM.getOrAddGlobal mod "_G_initialized" ginit?ty
+  LLVM.setLinkage ginit?slot LLVM.Linkage.internal
   LLVM.setVisibility ginit?slot LLVM.Visibility.hidden
   LLVM.setInitializer ginit?slot (← LLVM.constFalse llvmctx)
   let ginit?v ← LLVM.buildLoad2 builder ginit?ty ginit?slot "init_v"

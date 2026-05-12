@@ -26,10 +26,10 @@ instance instFoo : Foo := ⟨42⟩
 
 /-! ## `@[implicit_reducible]` is preserved (no longer aliased to `instance_reducible`). -/
 
-@[implicit_reducible] def myAdd : Nat → Nat → Nat
+@[instance_reducible] def myAdd : Nat → Nat → Nat
   | a, b => a + b
 
-/-- info: @[implicit_reducible] def myAdd : Nat → Nat → Nat -/
+/-- info: @[instance_reducible] def myAdd : Nat → Nat → Nat -/
 #guard_msgs in
 #print sig myAdd
 
@@ -51,7 +51,7 @@ The declaration becomes implicit-reducible and no longer unfolds at `.instances`
 
 attribute [implicit_reducible] upgradeMe
 
-/-- info: @[implicit_reducible] def upgradeMe : Nat → Nat -/
+/-- info: @[instance_reducible] def upgradeMe : Nat → Nat -/
 #guard_msgs in
 #print sig upgradeMe
 

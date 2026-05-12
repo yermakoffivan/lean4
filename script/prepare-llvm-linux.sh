@@ -23,6 +23,8 @@ cp -L llvm/bin/clang stage1/bin/
 cp -L llvm/bin/ld.lld stage1/bin/
 # a static archiver!
 cp -L llvm/bin/llvm-ar stage1/bin/
+# a llvm!
+cp -L llvm/bin/llvm-config stage1/bin/
 # dependencies of the above
 $CP llvm/lib/lib{clang-cpp,LLVM}*.so* stage1/lib/
 $CP $ZLIB/lib/libz.so* stage1/lib/

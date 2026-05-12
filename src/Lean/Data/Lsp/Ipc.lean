@@ -181,35 +181,6 @@ partial def waitForWatchdogILeans (waitForILeansId : RequestID := 0) : IpcM Unit
     | _ =>
       pure ()
 
-/--
-Waits for a diagnostic notification with a specific message to be emitted. Discards all received
-messages, so should not be combined with `collectDiagnostics`.
-
-If the server reports a `$/lean/fileProgress` notification with `fatalError` kind, this aborts
-with an error rather than blocking forever: the message we are waiting for will never be
-produced (the worker either crashed or its header processing failed fatally, so no body
-elaboration will run).
--/
-partial def waitForMessage (msg : String) : IpcM Unit := do
-  loop
-where
-  loop := do
-    match (←readMessage) with
-    | Message.notification "textDocument/publishDiagnostics" (some param) =>
-      match fromJson? (α := PublishDiagnosticsParams) (toJson param) with
-      | Except.ok diagnosticParam =>
-        if diagnosticParam.diagnostics.any (·.message == msg) then
-          return
-        loop
-      | Except.error inner => throw $ userError s!"Cannot decode publishDiagnostics parameters\n{inner}"
-    | Message.notification "$/lean/fileProgress" (some param) =>
-      if let .ok (p : LeanFileProgressParams) := fromJson? (toJson param) then
-        if p.processing.any (·.kind == .fatalError) then
-          throw <| userError s!"waitForMessage: \
-            server reported fatalError before message {repr msg} was emitted"
-      loop
-    | _ => loop
-
 structure CallHierarchy where
   item       : CallHierarchyItem
   fromRanges : Array Range

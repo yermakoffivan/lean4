@@ -28,10 +28,10 @@ instance instFoo : Foo := ⟨42⟩
 
 /-! ## `@[implicit_reducible]` is preserved (no longer aliased to `instance_reducible`). -/
 
-@[implicit_reducible] def myAdd : Nat → Nat → Nat
+@[instance_reducible] def myAdd : Nat → Nat → Nat
   | a, b => a + b
 
-/-- info: @[implicit_reducible] def myAdd : Nat → Nat → Nat -/
+/-- info: @[instance_reducible] def myAdd : Nat → Nat → Nat -/
 #guard_msgs in
 #print sig myAdd
 
@@ -53,7 +53,7 @@ The declaration moves to the higher implicit tier, and no longer unfolds at `.in
 
 attribute [implicit_reducible] upgradeMe
 
-/-- info: @[implicit_reducible] def upgradeMe : Nat → Nat -/
+/-- info: @[instance_reducible] def upgradeMe : Nat → Nat -/
 #guard_msgs in
 #print sig upgradeMe
 
@@ -84,7 +84,7 @@ def noAttr : Foo := ⟨42⟩
 @[instance_reducible] def withInstanceReducible : Foo := ⟨42⟩
 
 #guard_msgs in
-@[implicit_reducible] def withImplicitReducible : Foo := ⟨42⟩
+@[instance_reducible] def withImplicitReducible : Foo := ⟨42⟩
 
 /-! ## Sanity: instance-tier behavior continues to work. -/
 

@@ -63,20 +63,7 @@ def shutdown (requestNo : Nat) : IpcM Unit := do
       pure ()
 
 def readMessage : IpcM JsonRpc.Message := do
-  let msg ← (←stdout).readLspMessage
-  -- Abort promptly if the server reports the file worker has crashed
-  -- (`$/lean/fileProgress` with `fatalError` kind). Without this, test
-  -- runners that loop reading messages -- e.g. `waitForMessage` -- would
-  -- discard the fatalError notification and block forever waiting for a
-  -- message the dead worker can never produce. `collectDiagnostics` and
-  -- `waitForILeans` already handle this via the `responseError` the
-  -- watchdog sends to their pending requests; this check covers the
-  -- request-less loops.
-  if let .notification "$/lean/fileProgress" (some param) := msg then
-    if let .ok (p : LeanFileProgressParams) := fromJson? (toJson param) then
-      if p.processing.any (·.kind == .fatalError) then
-        throw <| IO.userError "Lean file worker reported a fatal error (likely crashed)"
-  return msg
+  (←stdout).readLspMessage
 
 def readRequestAs (expectedMethod : String) (α) [FromJson α] : IpcM (Request α) := do
   (←stdout).readLspRequestAs expectedMethod α
@@ -193,24 +180,6 @@ partial def waitForWatchdogILeans (waitForILeansId : RequestID := 0) : IpcM Unit
         throw $ userError s!"Waiting for ILeans failed: {msg}"
     | _ =>
       pure ()
-
-/--
-Waits for a diagnostic notification with a specific message to be emitted. Discards all received
-messages, so should not be combined with `collectDiagnostics`.
--/
-partial def waitForMessage (msg : String) : IpcM Unit := do
-  loop
-where
-  loop := do
-    match (←readMessage) with
-    | Message.notification "textDocument/publishDiagnostics" (some param) =>
-      match fromJson? (α := PublishDiagnosticsParams) (toJson param) with
-      | Except.ok diagnosticParam =>
-        if diagnosticParam.diagnostics.any (·.message == msg) then
-          return
-        loop
-      | Except.error inner => throw $ userError s!"Cannot decode publishDiagnostics parameters\n{inner}"
-    | _ => loop
 
 structure CallHierarchy where
   item       : CallHierarchyItem

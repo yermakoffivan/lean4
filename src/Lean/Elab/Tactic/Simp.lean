@@ -45,7 +45,7 @@ Generic `simp` configuration elaborator, with an `evalConfig` argument for overr
 the `(config := ...)` syntax is elaborated.
 -/
 private declare_config_elab elabSimpConfigAux Simp.ConfigWithOptions (evalConfig : Term → TermElabM Meta.Simp.Config) where
-  except userConfig
+  omit userConfig
   option config := fun cfg item => do
     let config ← evalConfig item.value
     return { cfg with config }
@@ -85,7 +85,7 @@ private local ensure_eval_expr_instance DSimp.Config in
 of a `simp` configuration. The `elabSimpConfig` function calls this and immediately
 converts the result to a `Simp.Config`. -/
 private declare_config_elab elabDSimpConfigCore DSimp.ConfigWithOptions where
-  except userConfig
+  omit userConfig
   option config := fun cfg item => do
     let config ← evalExprWithElab item.value
     return { cfg with config }

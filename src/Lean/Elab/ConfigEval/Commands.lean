@@ -60,21 +60,25 @@ scoped elab vis?:(visibility)? kind:attrKind tk:"derive_eval_expr_instance_using
 
 section
 open Parser
-/-- `except f1, f2, f3` disables generating setters for fields `f1`, `f2`, and `f3`
+/-- `omit f1, f2, f3` disables generating setters for fields `f1`, `f2`, and `f3`
 of the structure. -/
-meta def configEntryExcept := leading_parser
-  nonReservedSymbol "except " >> sepBy1 ident ", " (allowTrailingSep := true)
+meta def configEntryOmit := leading_parser
+  nonReservedSymbol "omit " >> sepBy1 ident ", " (allowTrailingSep := true)
+meta def configEntryHandlerKeyPrefix := leading_parser
+  ident >> optional (checkNoWsBefore >> "." >> checkNoWsBefore >> "*")
+meta def configEntryHandlerKeyWildcard := leading_parser
+  "*"
 /--
 - `key` matches a specific key
 - `key.*` matches any keys for which `key` is a proper prefix
 - `*` matches all keys
 -/
 meta def configEntryHandlerKey := leading_parser
-  (ident >> optional (checkNoWsBefore >> "." >> checkNoWsBefore >> "*")) <|> "*"
+  configEntryHandlerKeyPrefix <|> configEntryHandlerKeyWildcard
 /--
 `option key := fun cfg item => ...` adds a configuration option named `key` with the given
 expression as its handler. The handler is only called when the key is an exact match.
-The provided value is in `item.value`. Such a handler implies `except key`.
+The provided value is in `item.value`. Such a handler implies `omit key`.
 
 `option key.* := fun cfg item => ...` adds configuration options with `key` as a proper prefix.
 The most-specific `*` handler is called if no handlers for exact matches apply.
@@ -82,22 +86,22 @@ The most-specific `*` handler is called if no handlers for exact matches apply.
 meta def configEntryHandler := leading_parser
   nonReservedSymbol "option " >> configEntryHandlerKey >> " := " >> termParser
 meta def configEntry := leading_parser
-  configEntryExcept <|> configEntryHandler
+  ppGroup (configEntryOmit <|> configEntryHandler)
 meta def configEntries := leading_parser
   "where" >> (sepByIndent configEntry "; " (allowTrailingSep := true))
 end
 
 meta def mkEvalConfigItemView (entries? : Option (TSyntax ``configEntries)) :
     CommandElabM EvalConfigItemView := do
-  let mut exceptFields : Array (Ident × Name) := #[]
+  let mut omitFields : Array (Ident × Name) := #[]
   let mut handlers : Array EvalConfigItemHandler := #[]
   if let some entries := entries? then
     match entries with
     | `(configEntries| where $[$entries:configEntry];*) =>
       for entry in entries do
         match entry with
-        | `(configEntry| except $[$fields],*) =>
-          exceptFields := exceptFields ++ fields.map fun f => (f, f.getId.eraseMacroScopes)
+        | `(configEntry| omit $[$fields],*) =>
+          omitFields := omitFields ++ fields.map fun f => (f, f.getId.eraseMacroScopes)
         | `(configEntry| option $key:configEntryHandlerKey := $body) =>
           let (optName, kind) ←
             match key with
@@ -108,7 +112,7 @@ meta def mkEvalConfigItemView (entries? : Option (TSyntax ``configEntries)) :
           handlers := handlers.push { ref := key, key := optName, body, kind }
         | _ => throwUnsupportedSyntax
     | _ => throwUnsupportedSyntax
-  return { exceptFields, handlers }
+  return { omitFields, handlers }
 
 /--
 `def_eval_config_item f binders* for struct` defines a `ConfigEval.EvalConfigItem struct` structure named `f`
@@ -122,10 +126,10 @@ to any derived instances.
 
 The `EvalConfigItem struct` structure can be customized with a `where` clause.
 The possible items of the `where` clause are:
-- `except f1, f2, f3` disables generating setters for fields `f1`, `f2`, and `f3` of `struct`
+- `omit f1, f2, f3` disables generating setters for fields `f1`, `f2`, and `f3` of `struct`
 - `option key := fun cfg item => ...` adds a configuration option named `key` with the given
 expression as its handler. The handler is only called when the key is an exact match.
-The provided value is in `item.value`. Such a handler implies `except key`.
+The provided value is in `item.value`. Such a handler implies `omit key`.
 - `option key* := fun cfg item => ...` adds configuration options with `key` as a proper prefix.
 The most-specific `*` handler is called if no handlers for exact matches apply.
 -/

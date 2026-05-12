@@ -52,7 +52,7 @@ structure EvalConfigItemHandler where
 structure EvalConfigItemView where
   /-- Fields to not automatically synthesize handlers for, in addition to those keys
   already appearing in `handlers`. -/
-  exceptFields : Array (Ident × Name)
+  omitFields : Array (Ident × Name)
   /-- Explicitly provided handlers. -/
   handlers : Array EvalConfigItemHandler
 
@@ -173,7 +173,7 @@ def addConstInfo' (ref : Syntax) (projFn : Name) : TermElabM Unit := do
 
 private structure State where
   toDerive : NameMap ExprSet := {}
-  except : Array (Ident × Name)
+  toOmit : Array (Ident × Name)
 
 /-- Monad for collecting types that we should try deriving `EvalTerm` or `EvalExpr` instances for. -/
 private abbrev M := StateRefT State TermElabM
@@ -181,12 +181,12 @@ private abbrev M := StateRefT State TermElabM
 private def addToDerive (cls : Name) (ty : Expr) : M Unit :=
   modify fun s => { s with toDerive := s.toDerive.insert cls (s.toDerive.getD cls {} |>.insert ty) }
 
-private def hasExcept (key : Name) (projFn : Name) : M Bool := do
+private def hasToOmit (key : Name) (projFn : Name) : M Bool := do
   let s ← get
-  if let some idx := s.except.findIdx? (fun (_, name) => name == key) then
-    let (ref, _) := s.except[idx]!
+  if let some idx := s.toOmit.findIdx? (fun (_, name) => name == key) then
+    let (ref, _) := s.toOmit[idx]!
     addConstInfo ref projFn
-    set { s with except := s.except.eraseIdx! idx }
+    set { s with toOmit := s.toOmit.eraseIdx! idx }
     return true
   else
     return false
@@ -207,8 +207,8 @@ partial def defEvalConfigItem
     CommandElabM Unit := do
   let structName ← liftTermElabM <| realizeGlobalConstNoOverloadWithInfo struct
   -- Pass one: make the trie to collect the missing instances
-  let (_, { except, toDerive }) ← liftTermElabM <| mkTrie structName true |>.run { except := view.exceptFields }
-  for (ref, name) in except do
+  let (_, { toOmit, toDerive }) ← liftTermElabM <| mkTrie structName true |>.run { toOmit := view.omitFields }
+  for (ref, name) in toOmit do
     logErrorAt ref m!"No such field `{name}` of `{.ofConstName structName}`"
   -- Now that we're back in CommandElabM, derive instances
   for ty in toDerive.getD ``EvalTerm {} do
@@ -251,11 +251,12 @@ where
         let key := keyPrefix ++ field
         let proj ← mkProjection self field
         let some projFn := proj.getAppFn.constName? | panic! "(Internal error) Invalid projection {inlineExpr proj}"
-        if (← hasExcept key projFn) then
+        if (← hasToOmit key projFn) then
           trace[Elab.ConfigEval] "key `{key}` was excluded, skipping"
           continue
         let fieldTy ← inferType proj
-        let mut hasExact := (trie.find? key .exact).isSome
+        let exactHandler? := trie.find? key .exact
+        let mut hasExact := exactHandler?.any fun (key', _) => key == key'
         let hasWildcard := (trie.find? key .wildcard).isSome
         trace[Elab.ConfigEval] m!"key `{key}` hasExact: {hasExact}, hasWildcard: {hasWildcard}"
         let mut synthesizedHandler := false
@@ -287,18 +288,17 @@ where
         if let some structName' := (← whnfR fieldTy).constName? then
           if isStructure (← getEnv) structName' then
             trie := trie.insertStruct key structName'
-            if !hasWildcard then
-              if ← try checkStruct structName'; pure true catch _ => pure false then
-                /-
-                Heuristic: if there is already a handler for an exact match, we shouldn't report errors
-                if sub-keys can't be used. In Mathlib for example, the `linarith` tactic has configuration
-                options that are `structure`s wrapping monadic and functional values. Users are only
-                meant to set the entire `structure`, not the fields within them. We are imagining here
-                that `structure` configuration values are not common, so we shouldn't rigidly expect
-                handlers for sub-keys (saving metaprogram authors the hassle of writing complete `except`
-                clauses). We may consider `(allowFailure := true)` in the future, and/or `except foo.*` clauses.
-                -/
-                trie ← visitStruct trie key structName' (allowFailure := allowFailure || hasExact)
+            if ← try checkStruct structName'; pure true catch _ => pure false then
+              /-
+              Heuristic: if there is already a handler for an exact match, we shouldn't report errors
+              if sub-keys can't be used. In Mathlib for example, the `linarith` tactic has configuration
+              options that are `structure`s wrapping monadic and functional values. Users are only
+              meant to set the entire `structure`, not the fields within them. We are imagining here
+              that `structure` configuration values are not common, so we shouldn't rigidly expect
+              handlers for sub-keys (saving metaprogram authors the hassle of writing complete `except`
+              clauses). We may consider `(allowFailure := true)` in the future, and/or `except foo.*` clauses.
+              -/
+              trie ← visitStruct trie key structName' (allowFailure := allowFailure || hasExact || exactHandler?.isSome)
         unless allowFailure || hasExact || hasWildcard || synthesizedHandler do
           throwErrorAt struct (m!"Field `{key}` of type{inlineExpr fieldTy}is missing both `{.ofConstName ``EvalTerm}` and `{.ofConstName ``EvalExpr}` instances."
               ++ .note m!"The scoped `ensure_eval_term_instance` and `ensure_eval_expr_instance` commands in `Lean.Elab.ConfigEval` were not able to derive instances.")
@@ -313,7 +313,7 @@ where
         throwErrorAt handler.ref "Duplicate handler for key `{key}`"
       trie := trie.insert handler
     trie ← visitStruct trie .anonymous structName allowFailure
-    unless (← hasExcept `config structName) || (trie.find? `config .exact).isSome do
+    unless (← hasToOmit `config structName) || (trie.find? `config .exact).isSome do
       if ← hasInstance ``EvalExpr (mkConst structName) then
         -- Only use an `EvalExpr` instance; we don't have plans to support structure instance notation with `EvalTerm`.
         let cfgBody ← `(fun _ item => (evalExprWithElab ⟨item.value⟩ : TermElabM $struct))
@@ -343,8 +343,8 @@ where
           return body
         else
           let jp ← withFreshMacroScope `(ident| doWildcard)
-          let body ← handleChildren (← `($jp ()))
-          `(have $jp (_ : Unit) := $body; $body)
+          let body' ← handleChildren (← `($jp ()))
+          `(have $jp (_ : Unit) := $body; $body')
       else
         handleChildren onFail
     let handleExact : TermElabM Term := do
@@ -358,7 +358,7 @@ where
       body ← `(item.addCompletionInfo $(quote struct) >>= fun _ => $body)
     return body
   mkCmd (structName : Name) : TermElabM Command := do
-    let trie ← mkTrie structName false |>.run' { except := view.exceptFields }
+    let trie ← mkTrie structName false |>.run' { toOmit := view.omitFields }
     let body ← assemble trie (← `(invalidOption item))
     `($[$doc?:docComment]?
       $[$vis?:visibility]?

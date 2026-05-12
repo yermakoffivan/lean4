@@ -70,7 +70,7 @@ set_option tactic.tryOnEmptyBy true
 -- Skip the expensive built-in `try?` branches (`simp`/`grind`/`exact?`/…). The
 -- test only cares about the user-registered `tracerSuggestion` running inside
 -- the snapshot task; the library-search branches are pure overhead here.
-set_option tactic.try.onlyUserSuggestions true
+set_option debug.tactic.try.onlyUserSuggestions true
 
 example : True := by
   trivial

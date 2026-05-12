@@ -21,7 +21,7 @@ open Meta
 A **very** simple `try?` tactic implementation.
 -/
 
-register_builtin_option tactic.try.onlyUserSuggestions : Bool := {
+register_builtin_option debug.tactic.try.onlyUserSuggestions : Bool := {
   defValue := false
   descr    := "if set, `try?` skips its built-in suggestion branches \
     (simple, simp, grind, simp_all, induction/fun_induction, exact?) and only \
@@ -976,7 +976,7 @@ private def mkAllIndStx (info : Try.Info) (cont : TSyntax `tactic) : MetaM (TSyn
 /-- Returns tactic for `evalAndSuggest` (unsafe version that can evaluate user generators) -/
 private unsafe def mkTryEvalSuggestStxUnsafe (goal : MVarId) (info : Try.Info) : MetaM (TSyntax `tactic) := do
   -- Collect user-defined suggestions (runs before the early-out check so that
-  -- `tactic.try.onlyUserSuggestions` mode still actually invokes user generators).
+  -- `debug.tactic.try.onlyUserSuggestions` mode still actually invokes user generators).
   let userEntries := trySuggestionExtension.getState (← getEnv)
   let mut userTactics := #[]
   for entry in userEntries do
@@ -990,11 +990,11 @@ private unsafe def mkTryEvalSuggestStxUnsafe (goal : MVarId) (info : Try.Info) :
     catch e =>
       logWarning m!"try_suggestion generator {entry.name} failed: {e.toMessageData}"
 
-  if tactic.try.onlyUserSuggestions.get (← getOptions) then
+  if debug.tactic.try.onlyUserSuggestions.get (← getOptions) then
     -- Bypass built-in branches entirely; only run user-registered tactics.
     if userTactics.isEmpty then
       return ← `(tactic|
-        fail "tactic.try.onlyUserSuggestions is set but no user suggestions were produced")
+        fail "debug.tactic.try.onlyUserSuggestions is set but no user suggestions were produced")
     else
       return ← `(tactic| first $[| $userTactics:tactic]*)
 

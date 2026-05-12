@@ -80,11 +80,15 @@ local macro "make_elab_simp_config" fn:ident struct:ident : command => do
 make_elab_simp_config elabSimpConfigCore Simp.Config
 make_elab_simp_config elabSimpConfigCtxCore Simp.ConfigCtx
 
+private local ensure_eval_expr_instance DSimp.Config in
 /-- Elaborates a `dsimp` configuration, which uses only a subset of the options
 of a `simp` configuration. The `elabSimpConfig` function calls this and immediately
 converts the result to a `Simp.Config`. -/
 private declare_config_elab elabDSimpConfigCore DSimp.ConfigWithOptions where
   except userConfig
+  option config := fun cfg item => do
+    let config ← evalExprWithElab item.value
+    return { cfg with config }
   option user := fun _ item => do
     item.addConstInfo ``DSimp.ConfigWithOptions.userConfig
     throwErrorAt item.root "User options are of the form `user.optionName`"

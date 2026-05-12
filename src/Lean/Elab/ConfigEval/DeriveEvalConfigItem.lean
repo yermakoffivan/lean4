@@ -316,7 +316,7 @@ where
     unless (← hasExcept `config structName) || (trie.find? `config .exact).isSome do
       if ← hasInstance ``EvalExpr (mkConst structName) then
         -- Only use an `EvalExpr` instance; we don't have plans to support structure instance notation with `EvalTerm`.
-        let cfgBody ← `(fun _ item => evalExprWithElab ⟨item.value⟩)
+        let cfgBody ← `(fun _ item => (evalExprWithElab ⟨item.value⟩ : TermElabM $struct))
         trie := trie.insert { ref := tk, key := `config, kind := .exact, body := cfgBody }
     return trie
   /--

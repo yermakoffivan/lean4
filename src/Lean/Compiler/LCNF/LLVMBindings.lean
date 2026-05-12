@@ -172,7 +172,34 @@ opaque pointerType (elemty : LLVMType ctx) : BaseIO (LLVMType ctx)
 opaque arrayType (elemty : LLVMType ctx) (nelem : UInt64) : BaseIO (LLVMType ctx)
 
 @[extern "lean_llvm_const_array"]
-opaque constArray (elemty : LLVMType ctx) (vals : @&Array (Value ctx)) : BaseIO (LLVMType ctx)
+opaque constArray (elemty : LLVMType ctx) (vals : @&Array (Value ctx)) : BaseIO (Value ctx)
+
+@[extern "lean_llvm_struct_type_in_context"]
+opaque structTypeInContext (ctx : Context) (elemTys : @&Array (LLVMType ctx))
+    (packed : Bool := false) : BaseIO (LLVMType ctx)
+
+@[extern "lean_llvm_struct_create_named"]
+opaque structCreateNamed (ctx : Context) (name : @&String) : BaseIO (LLVMType ctx)
+
+@[extern "lean_llvm_struct_set_body"]
+opaque structSetBody (ty : LLVMType ctx) (elemTys : @&Array (LLVMType ctx))
+    (packed : Bool := false) : BaseIO Unit
+
+@[extern "lean_llvm_const_struct_in_context"]
+opaque constStructInContext (ctx : Context) (vals : @&Array (Value ctx))
+    (packed : Bool := false) : BaseIO (Value ctx)
+
+@[extern "lean_llvm_const_named_struct"]
+opaque constNamedStruct (ty : LLVMType ctx) (vals : @&Array (Value ctx)) : BaseIO (Value ctx)
+
+@[extern "lean_llvm_set_global_constant"]
+opaque setGlobalConstant (glbl : Value ctx) (isConst : Bool) : BaseIO Unit
+
+@[extern "lean_llvm_const_int_to_ptr"]
+opaque constIntToPtr (val : Value ctx) (destTy : LLVMType ctx) : BaseIO (Value ctx)
+
+@[extern "lean_llvm_const_bit_cast"]
+opaque constBitCast (val : Value ctx) (destTy : LLVMType ctx) : BaseIO (Value ctx)
 
 -- `constString` provides a `String` as a constant array of element type `i8`
 @[extern "lean_llvm_const_string"]

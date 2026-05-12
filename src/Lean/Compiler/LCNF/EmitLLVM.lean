@@ -21,6 +21,7 @@ import Lean.Compiler.ClosedTermCache
 import Lean.Compiler.InitAttr
 import Lean.Runtime
 import Init.Data.Range.Polymorphic.Iterators
+import Init.While
 
 namespace Lean.Compiler.LCNF
 
@@ -28,8 +29,6 @@ namespace Lean.Compiler.LCNF
 TODO: At the time of writing this our CI for LLVM is dysfunctional so this code is not actually
 tested. The following ABI features are still missing relative to EmitC and should be ported once
 LLVM CI is restored:
-- closed term static initializers (`emitFnDeclClosed`, `lean_*_once`, `lean_once_cell_t`)
-- simple ground decl emission (`emitGroundDecl` / static const lean_..._object literals)
 - two-alt `isIf` fast path in `emitCases`
 -/
 
@@ -99,6 +98,17 @@ structure State (llvmctx : LLVM.Context) where
   jp2bb   : Std.HashMap FVarId (LLVM.BasicBlock llvmctx) := {}
   funMangleCache : Std.HashMap Name String := {}
   funInitMangleCache : Std.HashMap Name String := {}
+  /--
+  Cached `%lean.object` named struct: `{ i32, i16, i8, i8 }`. Lazily created on first use so the
+  emitted bitcode contains a single definition rather than an anonymous literal struct repeated
+  at every ground-decl global.
+  -/
+  leanObjectHeaderTy? : Option (LLVM.LLVMType llvmctx) := none
+  /--
+  Cached `%lean.once_cell` named struct: `{ i32, i32 }`. Same lazy-cache rationale as
+  `leanObjectHeaderTy?`.
+  -/
+  leanOnceCellTy? : Option (LLVM.LLVMType llvmctx) := none
 
 abbrev EmitM (llvmctx : LLVM.Context) :=
   ReaderT (Context llvmctx) (StateRefT (State llvmctx) CompilerM)
@@ -163,6 +173,56 @@ def getOrCreateFunctionPrototype (mod : LLVM.Module llvmctx)
     (retty : LLVM.LLVMType llvmctx) (name : String)
     (args : Array (LLVM.LLVMType llvmctx)) : EmitM llvmctx (LLVM.Value llvmctx) := do
   LLVM.getOrAddFunction mod name <| ← LLVM.functionType retty args (isVarArg := false)
+
+/--
+Get (or lazily create) the named struct type `%lean.object = { i32, i16, i8, i8 }`. The field
+layout mirrors the `lean_object` runtime header (`m_rc : int32; m_cs_sz : u16; m_other : u8;
+m_tag : u8`), matching the natural offsets produced by the C bitfield packing on little-endian
+targets.
+-/
+def getLeanObjectHeaderTy : EmitM llvmctx (LLVM.LLVMType llvmctx) := do
+  if let some t := (← get).leanObjectHeaderTy? then return t
+  let t ← LLVM.structCreateNamed llvmctx "lean.object"
+  LLVM.structSetBody t #[← LLVM.i32Type llvmctx, ← LLVM.i16Type llvmctx,
+                         ← LLVM.i8Type  llvmctx, ← LLVM.i8Type  llvmctx]
+  modify fun s => { s with leanObjectHeaderTy? := some t }
+  return t
+
+/--
+Build a constant `%lean.object` header. `m_rc = 0` matches EmitC and is the convention the
+runtime uses to mark a persistent / never-decref object.
+-/
+def mkHeaderConst (csSz : Nat) (other : Nat) (tag : Nat) :
+    EmitM llvmctx (LLVM.Value llvmctx) := do
+  LLVM.constNamedStruct (← getLeanObjectHeaderTy) #[
+    ← LLVM.constInt32 llvmctx 0,
+    ← LLVM.constInt' llvmctx 16 (UInt64.ofNat csSz),
+    ← LLVM.constInt8  llvmctx (UInt64.ofNat other),
+    ← LLVM.constInt8  llvmctx (UInt64.ofNat tag)]
+
+/--
+Get (or lazily create) the named struct type `%lean.once_cell = { i32, i32 }`, mirroring the
+runtime `lean_once_cell_t = { _Atomic(int) state; _Atomic(int) lock; }`. LLVM doesn't model
+C atomics at the type level; the access ordering lives on the load/store side.
+-/
+def getLeanOnceCellTy : EmitM llvmctx (LLVM.LLVMType llvmctx) := do
+  if let some t := (← get).leanOnceCellTy? then return t
+  let t ← LLVM.structCreateNamed llvmctx "lean.once_cell"
+  LLVM.structSetBody t #[← LLVM.i32Type llvmctx, ← LLVM.i32Type llvmctx]
+  modify fun s => { s with leanOnceCellTy? := some t }
+  return t
+
+/-- Name of the underlying typed value global emitted for a ground decl. -/
+def mkValueName (cppBaseName : String) : String :=
+  cppBaseName ++ "_value"
+
+/-- Name of the auxiliary value-global emitted for the `nameMkStr` chain. -/
+def mkAuxValueName (cppBaseName : String) (idx : Nat) : String :=
+  mkValueName cppBaseName ++ s!"_aux_{idx}"
+
+/-- Name of the once-cell global emitted alongside a closed-term decl. -/
+def toOnceTokenName (cppBaseName : String) : String :=
+  cppBaseName ++ "_once"
 
 def throwInvalidExportName (n : Name) : EmitM llvmctx α :=
   throwError s!"invalid export name '{n}'"
@@ -606,22 +666,316 @@ def getFunIdTy (sig : Signature .impure) : EmitM llvmctx (LLVM.LLVMType llvmctx)
   let argtys ← (paramsWithoutVoid sig.params).mapM (fun p => toLLVMType p.type)
   LLVM.functionType retty argtys
 
+namespace ImpureType
+
+/--
+Runtime once-cell dispatch function for a closed-term value of type `t`. Mirrors EmitC's
+`Lean.Expr.closedTermReadOpName`. The runtime variants are declared in `lean.h` and have
+signature `T lean_X_once(T* loc, lean_once_cell_t* tok, T (*init)(void))` — the LLVM side
+forward-declares them through `getOrCreateFunctionPrototype` below.
+-/
+def Lean.Expr.closedTermLLVMOnceFn (t : Expr) : String :=
+  match t with
+  | float    => "lean_float_once"
+  | float32  => "lean_float32_once"
+  | uint8    => "lean_uint8_once"
+  | uint16   => "lean_uint16_once"
+  | uint32   => "lean_uint32_once"
+  | uint64   => "lean_uint64_once"
+  | usize    => "lean_usize_once"
+  | object | tobject | tagged | void => "lean_obj_once"
+  | _        => "lean_obj_once"
+
+end ImpureType
+
+/--
+Emit a call to the runtime `lean_<type>_once` lazy initializer used by closed-term reads.
+Mirrors EmitC's `emitCApp3 ty.closedTermReadOpName cname token init`.
+-/
+def callLeanClosedTermOnce (builder : LLVM.Builder llvmctx)
+    (ty : Expr) (loc tok initFn : LLVM.Value llvmctx) :
+    EmitM llvmctx (LLVM.Value llvmctx) := do
+  let retty ← toLLVMType ty
+  let ptrTy ← LLVM.voidPtrType llvmctx
+  let argtys := #[ptrTy, ptrTy, ptrTy]
+  let fnName := ty.closedTermLLVMOnceFn
+  let fn ← getOrCreateFunctionPrototype (← getLLVMModule) retty fnName argtys
+  let fnty ← LLVM.functionType retty argtys
+  LLVM.buildCall2 builder fnty fn #[loc, tok, initFn]
+
 /--
 Look up a declaration as a callable LLVM value.
 If the declaration takes arguments, return the function value; otherwise load from a global.
+Ground decls load through their `ptr`-typed outer global; closed-term decls go through the
+runtime once-cell.
 -/
 def getOrAddFunIdValue (builder : LLVM.Builder llvmctx) (f : Name) :
     EmitM llvmctx (LLVM.Value llvmctx) := do
+  let env ← getEnv
   let some sig ← getImpureSignature? f | unreachable!
   let fcname ← toCName f
   let retty ← toLLVMType sig.type
-  if sig.params.isEmpty then
+  if isSimpleGroundDecl env f then
+    -- The ground decl's outer symbol is a `ptr` global whose initializer is the `bitcast` of
+    -- the typed `_value` global. Loading it yields the `lean_object*`.
+    let ptrTy ← LLVM.voidPtrType llvmctx
+    let gslot ← LLVM.getOrAddGlobal (← getLLVMModule) fcname ptrTy
+    LLVM.buildLoad2 builder ptrTy gslot
+  else if isClosedTermName env f then
+    let valSlot ← LLVM.getOrAddGlobal (← getLLVMModule) fcname retty
+    let onceSlot ← LLVM.getOrAddGlobal (← getLLVMModule)
+      (toOnceTokenName fcname) (← getLeanOnceCellTy)
+    let initName ← toCInitName f
+    let initFnTy ← LLVM.functionType retty #[]
+    let initFn ← LLVM.getOrAddFunction (← getLLVMModule) initName initFnTy
+    callLeanClosedTermOnce builder sig.type valSlot onceSlot initFn
+  else if sig.params.isEmpty then
     let gslot ← LLVM.getOrAddGlobal (← getLLVMModule) fcname retty
     LLVM.buildLoad2 builder retty gslot
   else
     let argtys ← (paramsWithoutVoid sig.params).mapM (fun p => toLLVMType p.type)
     let fnty ← LLVM.functionType retty argtys
     LLVM.getOrAddFunction (← getLLVMModule) fcname fnty
+
+/--
+Emit a `SimpleGroundExpr` decl as statically initialized LLVM globals (mirrors the static C
+struct literal pipeline in `EmitC.emitGroundDecl`). Every variant produces an inner typed
+`<cppBaseName>_value` global with `internal` linkage + `hidden` visibility (the LLVM analogue of
+`static const`). The outer `<cppBaseName>` global is a `ptr` initialized to a `bitcast` of the
+value-global, exported for non-closed-term decls and file-local for closed terms.
+
+The aux counter for `nameMkStr` chains lives in an `IO.Ref` passed through the recursion to
+keep all helpers in plain `EmitM llvmctx` and dodge the auto-lift unification trouble we hit
+with a `StateRefT`-wrapped monad transformer over the parameterized `EmitM llvmctx`.
+-/
+partial def emitGroundDecl (decl : Decl .impure) (cppBaseName : String) :
+    EmitM llvmctx Unit := do
+  let some ground := getSimpleGroundExpr (← getEnv) decl.name | unreachable!
+  let auxRef ← IO.mkRef 0
+  compileGround auxRef ground
+where
+  compileGround (auxRef : IO.Ref Nat) (e : SimpleGroundExpr) : EmitM llvmctx Unit := do
+    let mod ← getLLVMModule
+    let valG ← mkValueGlobal auxRef (mkValueName cppBaseName) e
+    let ptrTy ← LLVM.voidPtrType llvmctx
+    let declG ← LLVM.getOrAddGlobal mod cppBaseName ptrTy
+    LLVM.setInitializer declG (← LLVM.constBitCast valG ptrTy)
+    LLVM.setGlobalConstant declG true
+    if isClosedTermName (← getEnv) decl.name then
+      LLVM.setLinkage declG LLVM.Linkage.internal
+      LLVM.setVisibility declG LLVM.Visibility.hidden
+    else
+      LLVM.setDLLStorageClass declG LLVM.DLLStorageClass.export
+
+  /--
+  For non-reference variants, build the constant struct literal and emit it as a `static const`
+  value-global named `name`. For `.reference`, just look up the referenced decl's value-global
+  (no new global is emitted; the outer `cppBaseName` aliases it).
+  -/
+  mkValueGlobal (auxRef : IO.Ref Nat) (name : String) (e : SimpleGroundExpr) :
+      EmitM llvmctx (LLVM.Value llvmctx) := do
+    match e with
+    | .reference refDecl => findValueDecl refDecl
+    | .ctor cidx objArgs usizeArgs scalarArgs =>
+      let (ty, val) ← compileCtor auxRef cidx objArgs usizeArgs scalarArgs
+      emitConstGlobal name ty val
+    | .string data =>
+      let (ty, val) ← compileString data
+      emitConstGlobal name ty val
+    | .pap func args =>
+      let (ty, val) ← compilePap auxRef func args
+      emitConstGlobal name ty val
+    | .nameMkStr args =>
+      let (ty, val) ← compileNameMkStr auxRef args
+      emitConstGlobal name ty val
+    | .array elems =>
+      let (ty, val) ← compileArray auxRef elems
+      emitConstGlobal name ty val
+    | .byteArray data =>
+      let (ty, val) ← compileByteArray data
+      emitConstGlobal name ty val
+
+  emitConstGlobal (name : String) (ty : LLVM.LLVMType llvmctx) (val : LLVM.Value llvmctx) :
+      EmitM llvmctx (LLVM.Value llvmctx) := do
+    let g ← LLVM.addGlobal (← getLLVMModule) name ty
+    LLVM.setInitializer g val
+    LLVM.setGlobalConstant g true
+    LLVM.setLinkage g LLVM.Linkage.internal
+    LLVM.setVisibility g LLVM.Visibility.hidden
+    return g
+
+  /-- Look up (or forward-declare) the `_value` global of a referenced ground decl, chasing
+      `.reference` chains identically to `EmitC.findValueDecl`. -/
+  findValueDecl (refDecl : Name) : EmitM llvmctx (LLVM.Value llvmctx) := do
+    let mut d := refDecl
+    while true do
+      if let some (.reference ref) := getSimpleGroundExpr (← getEnv) d then
+        d := ref
+      else
+        break
+    let name := mkValueName (← toCName d)
+    LLVM.getOrAddGlobal (← getLLVMModule) name (← LLVM.i8Type llvmctx)
+
+  /-- Translate a `SimpleGroundArg` into a constant `lean_object*` (= `ptr`). Tagged scalars
+      become `inttoptr` constant exprs; references and raw references become `bitcast` constant
+      exprs over the looked-up value-global. -/
+  groundArgToLLVMConst (a : SimpleGroundArg) : EmitM llvmctx (LLVM.Value llvmctx) := do
+    let ptrTy ← LLVM.voidPtrType llvmctx
+    match a with
+    | .tagged val =>
+      let raw ← LLVM.constInt' llvmctx 64 (UInt64.ofNat (val * 2 + 1))
+      LLVM.constIntToPtr raw ptrTy
+    | .reference refDecl =>
+      LLVM.constBitCast (← findValueDecl refDecl) ptrTy
+    | .rawReference name =>
+      let g ← LLVM.getOrAddGlobal (← getLLVMModule) name (← LLVM.i8Type llvmctx)
+      LLVM.constBitCast g ptrTy
+
+  compileCtor (auxRef : IO.Ref Nat) (cidx : Nat) (objArgs : Array SimpleGroundArg)
+      (usizeArgs : Array UInt64) (scalarArgs : Array UInt8) :
+      EmitM llvmctx (LLVM.LLVMType llvmctx × LLVM.Value llvmctx) := do
+    let _ := auxRef -- kept in the signature so the symmetric variants share a shape
+    let ptrTy ← LLVM.voidPtrType llvmctx
+    let i64 ← LLVM.i64Type llvmctx
+    let i8  ← LLVM.i8Type  llvmctx
+    -- Mirrors `mkCtorHeader` / `ctorScalarSizeExpression`:
+    --   8 (header) + 8*objs + 8*usizes + scalarBytes.
+    -- Hardcodes `sizeof(void*) = sizeof(size_t) = sizeof(lean_object) = 8` (the same 64-bit
+    -- assumption used at `emitLetDecl.emitAllocCtor` above).
+    let csSz := 8 + 8 * objArgs.size + 8 * usizeArgs.size + scalarArgs.size
+    let hdr ← mkHeaderConst (csSz := csSz) (other := objArgs.size) (tag := cidx)
+    let objVals    ← objArgs.mapM groundArgToLLVMConst
+    let usizeVals  ← usizeArgs.mapM (fun v => LLVM.constInt' llvmctx 64 v)
+    let scalarVals ← scalarArgs.mapM (fun v => LLVM.constInt8 llvmctx v.toUInt64)
+    let mut fieldTys  : Array (LLVM.LLVMType llvmctx) := #[← getLeanObjectHeaderTy]
+    let mut fieldVals : Array (LLVM.Value llvmctx) := #[hdr]
+    unless objVals.isEmpty do
+      fieldTys  := fieldTys.push  (← LLVM.arrayType ptrTy objArgs.size.toUInt64)
+      fieldVals := fieldVals.push (← LLVM.constArray ptrTy objVals)
+    unless usizeVals.isEmpty do
+      fieldTys  := fieldTys.push  (← LLVM.arrayType i64 usizeArgs.size.toUInt64)
+      fieldVals := fieldVals.push (← LLVM.constArray i64 usizeVals)
+    unless scalarVals.isEmpty do
+      fieldTys  := fieldTys.push  (← LLVM.arrayType i8 scalarArgs.size.toUInt64)
+      fieldVals := fieldVals.push (← LLVM.constArray i8 scalarVals)
+    let ty  ← LLVM.structTypeInContext llvmctx fieldTys
+    let val ← LLVM.constStructInContext llvmctx fieldVals
+    return (ty, val)
+
+  compileString (data : String) :
+      EmitM llvmctx (LLVM.LLVMType llvmctx × LLVM.Value llvmctx) := do
+    let i64 ← LLVM.i64Type llvmctx
+    let i8  ← LLVM.i8Type  llvmctx
+    let leanStringTag := 249
+    let size := data.utf8ByteSize + 1
+    let length := data.length
+    -- EmitC encodes the cs_sz field as 0 here; the runtime recomputes string size at use sites.
+    let hdr ← mkHeaderConst (csSz := 0) (other := 0) (tag := leanStringTag)
+    -- `LLVM.constString` produces an `[(byteLen+1) x i8]` constant including a NUL terminator,
+    -- matching the C `.m_data = "..."` literal layout that already includes the null byte.
+    let dataConst ← LLVM.constString llvmctx data
+    let dataTy ← LLVM.arrayType i8 size.toUInt64
+    let ty ← LLVM.structTypeInContext llvmctx #[
+      ← getLeanObjectHeaderTy, i64, i64, i64, dataTy]
+    let val ← LLVM.constStructInContext llvmctx #[
+      hdr,
+      ← LLVM.constInt' llvmctx 64 size.toUInt64,
+      ← LLVM.constInt' llvmctx 64 size.toUInt64,
+      ← LLVM.constInt' llvmctx 64 length.toUInt64,
+      dataConst]
+    return (ty, val)
+
+  compileArray (auxRef : IO.Ref Nat) (elems : Array SimpleGroundArg) :
+      EmitM llvmctx (LLVM.LLVMType llvmctx × LLVM.Value llvmctx) := do
+    let _ := auxRef
+    let ptrTy ← LLVM.voidPtrType llvmctx
+    let i64 ← LLVM.i64Type llvmctx
+    let n := elems.size
+    let leanArrayTag := 246
+    -- `sizeof(lean_array_object) + sizeof(void*)*n = 24 + 8*n`.
+    let csSz := 24 + 8 * n
+    let hdr ← mkHeaderConst (csSz := csSz) (other := 0) (tag := leanArrayTag)
+    let elemVals ← elems.mapM groundArgToLLVMConst
+    let dataTy ← LLVM.arrayType ptrTy n.toUInt64
+    let dataConst ← LLVM.constArray ptrTy elemVals
+    let ty ← LLVM.structTypeInContext llvmctx #[
+      ← getLeanObjectHeaderTy, i64, i64, dataTy]
+    let val ← LLVM.constStructInContext llvmctx #[
+      hdr,
+      ← LLVM.constInt' llvmctx 64 n.toUInt64,
+      ← LLVM.constInt' llvmctx 64 n.toUInt64,
+      dataConst]
+    return (ty, val)
+
+  compileByteArray (data : Array UInt8) :
+      EmitM llvmctx (LLVM.LLVMType llvmctx × LLVM.Value llvmctx) := do
+    let i64 ← LLVM.i64Type llvmctx
+    let i8  ← LLVM.i8Type  llvmctx
+    let n := data.size
+    let leanSarrayTag := 248
+    let elemSize := 1
+    -- `sizeof(lean_sarray_object) + n = 24 + n`.
+    let csSz := 24 + n
+    let hdr ← mkHeaderConst (csSz := csSz) (other := elemSize) (tag := leanSarrayTag)
+    let dataVals ← data.mapM (fun b => LLVM.constInt8 llvmctx b.toUInt64)
+    let dataTy ← LLVM.arrayType i8 n.toUInt64
+    let dataConst ← LLVM.constArray i8 dataVals
+    let ty ← LLVM.structTypeInContext llvmctx #[
+      ← getLeanObjectHeaderTy, i64, i64, dataTy]
+    let val ← LLVM.constStructInContext llvmctx #[
+      hdr,
+      ← LLVM.constInt' llvmctx 64 n.toUInt64,
+      ← LLVM.constInt' llvmctx 64 n.toUInt64,
+      dataConst]
+    return (ty, val)
+
+  compilePap (auxRef : IO.Ref Nat) (func : Name) (args : Array SimpleGroundArg) :
+      EmitM llvmctx (LLVM.LLVMType llvmctx × LLVM.Value llvmctx) := do
+    let _ := auxRef
+    let ptrTy ← LLVM.voidPtrType llvmctx
+    let i16 ← LLVM.i16Type llvmctx
+    let numFixed := args.size
+    let leanClosureTag := 245
+    -- `sizeof(lean_closure_object) + sizeof(void*)*numFixed = 24 + 8*numFixed`.
+    let csSz := 24 + 8 * numFixed
+    let hdr ← mkHeaderConst (csSz := csSz) (other := 0) (tag := leanClosureTag)
+    let some sig ← getImpureSignature? func | unreachable!
+    -- Under opaque pointers, the function's exact type is irrelevant for taking its address;
+    -- we use `getFunIdTy` so the resulting forward-declaration matches the eventual definition's
+    -- shape in the common cases (non-extern-C, ≤ closureMaxArgs).
+    let funTy ← getFunIdTy sig
+    let funG ← LLVM.getOrAddFunction (← getLLVMModule) (← toCName func) funTy
+    let funPtr ← LLVM.constBitCast funG ptrTy
+    let arity := sig.params.size
+    let argVals ← args.mapM groundArgToLLVMConst
+    let argsTy ← LLVM.arrayType ptrTy numFixed.toUInt64
+    let argsConst ← LLVM.constArray ptrTy argVals
+    let ty ← LLVM.structTypeInContext llvmctx #[
+      ← getLeanObjectHeaderTy, ptrTy, i16, i16, argsTy]
+    let val ← LLVM.constStructInContext llvmctx #[
+      hdr,
+      funPtr,
+      ← LLVM.constInt' llvmctx 16 arity.toUInt64,
+      ← LLVM.constInt' llvmctx 16 numFixed.toUInt64,
+      argsConst]
+    return (ty, val)
+
+  compileNameMkStr (auxRef : IO.Ref Nat) (args : Array (Name × UInt64)) :
+      EmitM llvmctx (LLVM.LLVMType llvmctx × LLVM.Value llvmctx) := do
+    assert! args.size > 0
+    if args.size = 1 then
+      let (ref, hash) := args[0]!
+      let hashBytes := uint64ToByteArrayLE hash
+      compileCtor auxRef 1 #[.tagged 0, .reference ref] #[] hashBytes
+    else
+      let (ref, hash) := args.back!
+      let prefixArgs := args.pop
+      let (prefixTy, prefixVal) ← compileNameMkStr auxRef prefixArgs
+      let idx ← auxRef.modifyGet fun n => (n, n + 1)
+      let auxName := mkAuxValueName cppBaseName idx
+      let _ ← emitConstGlobal auxName prefixTy prefixVal
+      let hashBytes := uint64ToByteArrayLE hash
+      compileCtor auxRef 1 #[.rawReference auxName, .reference ref] #[] hashBytes
 
 def emitFnDecls : EmitM llvmctx Unit := do
   (← getOtherModuleDecls).forM fun sig => do
@@ -639,9 +993,28 @@ where
     emitFnDeclAux sig externName extC
 
   emitFnDecl (decl : Decl .impure) (isExternal : Bool) : EmitM llvmctx Unit := do
-    -- TODO: dispatch to `emitGroundDecl` for `isSimpleGroundDecl` and `emitFnDeclClosed` for
-    -- `isClosedTermName` once closed-term static initializers are implemented (see file TODO).
-    emitFnDeclStandard decl.toSignature isExternal
+    let env ← getEnv
+    let cppBaseName ← toCName decl.name
+    if isSimpleGroundDecl env decl.name then
+      emitGroundDecl decl cppBaseName
+    else if isClosedTermName env decl.name then
+      emitFnDeclClosed decl cppBaseName
+    else
+      emitFnDeclStandard decl.toSignature isExternal
+
+  emitFnDeclClosed (decl : Decl .impure) (cppBaseName : String) : EmitM llvmctx Unit := do
+    let mod ← getLLVMModule
+    let llvmty ← toLLVMType decl.type
+    let valG ← LLVM.getOrAddGlobal mod cppBaseName llvmty
+    LLVM.setInitializer valG (← LLVM.getUndef llvmty)
+    LLVM.setLinkage    valG LLVM.Linkage.internal
+    LLVM.setVisibility valG LLVM.Visibility.hidden
+    let onceTy ← getLeanOnceCellTy
+    let onceG ← LLVM.getOrAddGlobal mod (toOnceTokenName cppBaseName) onceTy
+    LLVM.setInitializer onceG (← LLVM.constNamedStruct onceTy
+      #[← LLVM.constInt32 llvmctx 0, ← LLVM.constInt32 llvmctx 0])
+    LLVM.setLinkage    onceG LLVM.Linkage.internal
+    LLVM.setVisibility onceG LLVM.Visibility.hidden
 
   emitFnDeclStandard (sig : Signature .impure) (isExternal : Bool) : EmitM llvmctx Unit := do
     let cppBaseName ← toCName sig.name

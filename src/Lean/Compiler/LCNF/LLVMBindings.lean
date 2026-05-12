@@ -238,6 +238,18 @@ opaque buildCall2 (builder : Builder ctx) (ty: LLVMType ctx) (fn : Value ctx) (a
 @[extern "lean_llvm_set_tail_call"]
 opaque setTailCall (fn : Value ctx) (istail : Bool) : BaseIO Unit
 
+-- https://llvm.org/doxygen/group__LLVMCCoreValueInstructionCall.html
+structure TailCallKind where
+  private mk :: val : UInt64
+
+def TailCallKind.none     : TailCallKind := { val := 0 }
+def TailCallKind.tail     : TailCallKind := { val := 1 }
+def TailCallKind.mustTail : TailCallKind := { val := 2 }
+def TailCallKind.noTail   : TailCallKind := { val := 3 }
+
+@[extern "lean_llvm_set_tail_call_kind"]
+opaque setTailCallKind (fn : Value ctx) (kind : TailCallKind) : BaseIO Unit
+
 @[extern "lean_llvm_build_cond_br"]
 opaque buildCondBr (builder : Builder ctx) (if_ : Value ctx) (thenbb : BasicBlock ctx) (elsebb : BasicBlock ctx) : BaseIO (Value ctx)
 

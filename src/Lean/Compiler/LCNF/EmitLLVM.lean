@@ -1025,10 +1025,20 @@ where
       -- non-external definitions.
       LLVM.setDLLStorageClass global LLVM.DLLStorageClass.export
 
+/--
+A `fap`-let in tail position: `let x = f args ; return x`. We also exclude externs because
+`emitFap`'s `.standard`/`.inline` branches need specialized argument handling we don't replicate
+in `emitTailCall`. Excluding them lets those calls fall through to the regular path; LLVM will
+TCO their `call + store + load + ret` once `mem2reg` promotes the slot — same way the C
+backend relies on the C compiler's tail-call recognition for cross-function returns.
+-/
 def isTailCall (code : Code .impure) : EmitM llvmctx Bool :=
   match code with
-  | .let { fvarId := fvarId, value := .fap declName _, .. } (.return fvarId') =>
-    return fvarId == fvarId' && (← getCurrFn) == declName
+  | .let { fvarId := fvarId, value := .fap declName _, .. } (.return fvarId') => do
+    if fvarId != fvarId' then return false
+    match getExternAttrData? (← getEnv) declName |>.bind (getExternEntryFor · `c) with
+    | some (.standard ..) | some (.inline ..) => return false
+    | _ => return true
   | _ => return false
 
 partial def declareVars (builder : LLVM.Builder llvmctx) (code : Code .impure) :
@@ -1283,16 +1293,33 @@ where
 
 def emitTailCall (builder : LLVM.Builder llvmctx) (decl : LetDecl .impure) :
     EmitM llvmctx Unit := do
-  let .fap _ args := decl.value | unreachable!
-  let ps ← getCurrParams
-  assert! ps.size == args.size
-  let (_, args) := ps.zip args |>.filter (fun (p, _) => !p.type.isVoid) |>.unzip
-  let llvmArgs ← args.mapM (fun a => Prod.snd <$> emitArgVal builder a)
-  let some currSig ← getImpureSignature? (← getCurrFn) | unreachable!
-  let fn ← builderGetInsertionFn builder
-  let call ← LLVM.buildCall2 builder (← getFunIdTy currSig) fn llvmArgs
-  -- TODO(bollu): add 'musttail' attribute using the C API.
-  LLVM.setTailCall call true
+  let .fap declName args := decl.value | unreachable!
+  let some sig ← getImpureSignature? declName | unreachable!
+  assert! sig.params.size == args.size
+  -- 0-param tail-position fap is `let x = f; return x` (reading a constant / once-cell / ground
+  -- decl) — `getOrAddFunIdValue` already returns the loaded value, so this is just `ret value`.
+  -- We never emit a real `call` for it because the loaded "callee" is a `lean_object*`, not a
+  -- function pointer.
+  if sig.params.isEmpty then
+    let v ← getOrAddFunIdValue builder declName
+    let _ ← LLVM.buildRet builder v
+    return
+  let (_, filteredArgs) := sig.params.zip args |>.filter (fun (p, _) => !p.type.isVoid) |>.unzip
+  let llvmArgs ← filteredArgs.mapM (fun a => Prod.snd <$> emitArgVal builder a)
+  let isSelfRec := (← getCurrFn) == declName
+  let fn ←
+    if isSelfRec then
+      -- For self-recursion we already have the current function value; saves a lookup.
+      builderGetInsertionFn builder
+    else
+      getOrAddFunIdValue builder declName
+  let call ← LLVM.buildCall2 builder (← getFunIdTy sig) fn llvmArgs
+  -- For self-recursion, `musttail` mandates LLVM rewrite to a jump (verified by the LLVM
+  -- verifier). For cross-function tail calls, `tail` is just a hint — LLVM's backend takes the
+  -- `call + ret` pair as TCO-eligible at the codegen pass. This is the analogue of EmitC
+  -- emitting `goto _start;` for self-recursion and bare `return f(...);` for cross-fn returns.
+  let kind := if isSelfRec then LLVM.TailCallKind.mustTail else LLVM.TailCallKind.tail
+  LLVM.setTailCallKind call kind
   let _ ← LLVM.buildRet builder call
 
 mutual

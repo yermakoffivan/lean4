@@ -1124,6 +1124,18 @@ extern "C" LEAN_EXPORT lean_object *lean_llvm_set_tail_call(
 #endif  // LEAN_LLVM
 }
 
+extern "C" LEAN_EXPORT lean_object *lean_llvm_set_tail_call_kind(
+    size_t ctx, size_t fnval, uint64_t kind) {
+#ifndef LEAN_LLVM
+    lean_always_assert(
+        false && ("Please build a version of Lean4 with -DLLVM=ON to invoke "
+                  "the LLVM backend function."));
+#else
+    LLVMSetTailCallKind(lean_to_Value(fnval), (LLVMTailCallKind)kind);
+    return lean_box(0);
+#endif  // LEAN_LLVM
+}
+
 extern "C" LEAN_EXPORT size_t
 lean_llvm_create_memory_buffer_with_contents_of_file(size_t ctx, lean_object *path) {
 #ifndef LEAN_LLVM

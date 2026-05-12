@@ -1706,9 +1706,11 @@ def getAutoParamTactic? (e : Expr) : Option Expr :=
     none
 
 /-- Return `true` if `e` is of the form `outParam _` -/
-@[export lean_is_out_param]
 def isOutParam (e : Expr) : Bool :=
   e.isAppOfArity ``outParam 1
+
+@[export lean_is_out_param]
+def isOutParamEx := isOutParam
 
 /-- Return `true` if `e` is of the form `semiOutParam _` -/
 def isSemiOutParam (e : Expr) : Bool :=
@@ -1736,14 +1738,30 @@ Examples:
 - Given `e` of the form `outParam (optParam Nat b)`, `consumeTypeAnnotations e = b`.
 - Given `e` of the form `Nat → outParam (optParam Nat b)`, `consumeTypeAnnotations e = e`.
 -/
-@[export lean_expr_consume_type_annotations]
-partial def consumeTypeAnnotations (e : Expr) : Expr :=
+partial def consumeTypeAnnotations (e : Expr) : Expr := Id.run do
   if e.isOptParam || e.isAutoParam then
-    consumeTypeAnnotations e.appFn!.appArg!
+    let (.app (.app _ e) _) := e | unreachable!
+    consumeTypeAnnotations e
   else if e.isOutParam || e.isSemiOutParam then
-    consumeTypeAnnotations e.appArg!
+    let (.app _ e) := e | unreachable!
+    consumeTypeAnnotations e
   else
     e
+
+@[export lean_expr_consume_type_annotations]
+def consumeTypeAnnotationsEx := consumeTypeAnnotations
+
+-- CPS to enable borrowed value for e, might not be necessary with pseudo projections
+@[specialize]
+partial def consumeTypeAnnotations' (e : Expr) (k : Expr → Expr) : Expr := Id.run do
+  if e.isOptParam || e.isAutoParam then
+    let (.app (.app _ e) _) := e | unreachable!
+    consumeTypeAnnotations e
+  else if e.isOutParam || e.isSemiOutParam then
+    let (.app _ e) := e | unreachable!
+    consumeTypeAnnotations e
+  else
+    k e
 
 /--
 Remove metadata annotations and `outParam`, `optParam`, and `autoParam` applications/annotations from `e`.
@@ -1753,8 +1771,8 @@ Examples:
 - Given `e` of the form `Nat → outParam (optParam Nat b)`, `cleanupAnnotations e = e`.
 -/
 partial def cleanupAnnotations (e : Expr) : Expr :=
-  let e' := e.consumeMData.consumeTypeAnnotations
-  if e' == e then e else cleanupAnnotations e'
+  e.consumeMData.consumeTypeAnnotations' fun e' =>
+    if e' == e then e else cleanupAnnotations e'
 
 /--
 Similar to `appFn`, but also applies `cleanupAnnotations` to resulting function.

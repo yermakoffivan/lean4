@@ -1,17 +1,5 @@
 test: imports done
-test: before empty-by example
-tracerSuggestion: entered
 cancelTokenSet
 tracerSuggestion ready
-tracerSuggestion: returning candidate
-test: after empty-by example
-t1: body entered
 sync received
-test: file end
-test: before empty-by example
-tracerSuggestion: entered
-tracerSuggestion: returning candidate
-test: after empty-by example
-t1: body entered
 sync received
-test: file end

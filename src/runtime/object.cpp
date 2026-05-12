@@ -986,28 +986,6 @@ public:
                 spawn_worker();
             else
                 m_queue_cv.notify_one();
-            // HACK: env-driven runaway detector. Set `LEAN_DEBUG_MAX_WORKERS=N`
-            // to terminate the process if the std worker pool ever exceeds `N`
-            // threads. Intended for diagnosing tests where pool growth under
-            // wait pressure accumulates memory. Uses `write(2,...)` + `_exit`
-            // because we are inside `m_mutex` and standard print / abort paths
-            // can deadlock on other lean locks or hang flushing buffered IO.
-            if (char const * limit_str = std::getenv("LEAN_DEBUG_MAX_WORKERS")) {
-                size_t limit = static_cast<size_t>(std::atoi(limit_str));
-                if (limit > 0 && m_std_workers.size() > limit) {
-                    char buf[256];
-                    int n = snprintf(buf, sizeof(buf),
-                        "[lean_runaway] LEAN_DEBUG_MAX_WORKERS=%zu exceeded: "
-                        "m_std_workers.size()=%zu m_max_std_workers=%u "
-                        "m_idle_std_workers=%u pid=%d\n",
-                        limit, m_std_workers.size(),
-                        m_max_std_workers, m_idle_std_workers,
-                        (int)getpid());
-                    if (n > 0)
-                        (void)!write(2, buf, (size_t)n);
-                    _exit(123);
-                }
-            }
         }
         m_task_finished_cv.wait(lock, [&]() { return t->m_value != nullptr; });
         if (in_pool) {

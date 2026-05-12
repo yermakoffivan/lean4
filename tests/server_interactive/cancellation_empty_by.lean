@@ -49,7 +49,10 @@ opaque UnsolvableProp : Prop
 @[try_suggestion]
 def tracerSuggestion (_goal : MVarId) (_info : Try.Info) :
     MetaM (Array (TSyntax `tactic)) := do
-  dbg_trace "tracerSuggestion: entered"
+  -- Keep dbg_trace output here minimal and gated to the first invocation:
+  -- this function runs in the snapshot task's stderr buffer, which interleaves
+  -- non-deterministically with the main elab thread's output. Every additional
+  -- trace point adds a potential race in `.out.expected`.
   if let some prom ← mkTestTask "cancelTokenSet" then
     if let some cancelTk := (← readThe Core.Context).cancelTk? then
       cancelTk.onSet do
@@ -59,7 +62,6 @@ def tracerSuggestion (_goal : MVarId) (_info : Try.Info) :
       dbg_trace "tracerSuggestion: no cancel token (unexpected -- test setup wrong?)"
     dbg_trace "tracerSuggestion ready"
   resolveSyncPromise "tracerSuggestion"
-  dbg_trace "tracerSuggestion: returning candidate"
   return #[← `(tactic| wait_for_test_task "cancelTokenSet")]
 
 end TestEmptyBy
@@ -76,14 +78,9 @@ example : True := by
        --^ insert: "; skip"
        --^ sync
 
-#eval (IO.eprintln "test: before empty-by example" : IO Unit)
-
 example : TestEmptyBy.UnsolvableProp := by
 
-#eval (IO.eprintln "test: after empty-by example" : IO Unit)
-
 theorem t1 : True := by
-  dbg_trace "t1: body entered"
   wait_for_sync "tracerSuggestion"
   dbg_trace "sync received"
   trace "blocked"

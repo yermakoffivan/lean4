@@ -958,7 +958,7 @@ extern "C" LEAN_EXPORT size_t lean_llvm_const_string(
 
     LLVMValueRef out =
         LLVMConstStringInContext(lean_to_Context(ctx), sref.data(),
-                                 sref.length(), /*DontNullTerminate=*/false);
+                                 sref.num_bytes(), /*DontNullTerminate=*/false);
     return Value_to_lean(out);
 #endif  // LEAN_LLVM
 }

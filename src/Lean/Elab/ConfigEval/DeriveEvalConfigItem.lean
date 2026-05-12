@@ -46,6 +46,8 @@ structure EvalConfigItemHandler where
   body : Term
   /-- Constant to use for terminfo. This is added to the `HandlerTrie`. -/
   projFn? : Option Name := none
+  /-- Constant to use for field completion terminfo. -/
+  struct? : Option Name := none
 
 structure EvalConfigItemView where
   /-- Fields to not automatically synthesize handlers for, in addition to those keys
@@ -80,6 +82,9 @@ private structure HandlerTrie where
   /-- Constant to use for terminfo. The root of the trie does not have this set.
   Collected from `EvalConfigItemHandler.projFn?`. -/
   projFn? : Option Name := none
+  /-- Constant to use for field completion terminfo. The root of the trie has this set.
+  Collected from `EvalConfigItemHandler.struct?`. -/
+  struct? : Option Name := none
   deriving Inhabited
 
 /--
@@ -119,9 +124,10 @@ private partial def HandlerTrie.insert (trie : HandlerTrie) (h : EvalConfigItemH
   let root := key.getRoot
   if root.isAnonymous then
     let projFn? := trie.projFn? <|> h.projFn?
+    let struct? := trie.struct? <|> h.struct?
     match h.kind with
-    | .exact    => { trie with projFn?, exact? := some h }
-    | .wildcard => { trie with projFn?, wildcard? := some h }
+    | .exact    => { trie with projFn?, struct?, exact? := some h }
+    | .wildcard => { trie with projFn?, struct?, wildcard? := some h }
   else
     let s := root.getString!
     let key' := key.replacePrefix root .anonymous
@@ -130,6 +136,22 @@ private partial def HandlerTrie.insert (trie : HandlerTrie) (h : EvalConfigItemH
       { trie with children }
     else
       let child := HandlerTrie.insert {} h key'
+      { trie with children := trie.children.push (s, child)}
+
+private partial def HandlerTrie.insertStruct (trie : HandlerTrie) (key : Name) (struct : Name) :
+    HandlerTrie :=
+  let root := key.getRoot
+  if root.isAnonymous then
+    let struct := trie.struct?.getD struct
+    { trie with struct? := some struct }
+  else
+    let s := root.getString!
+    let key' := key.replacePrefix root .anonymous
+    if let some idx := trie.children.findIdx? (·.1 == s) then
+      let children := trie.children.modify idx fun (s, child) => (s, child.insertStruct key' struct)
+      { trie with children }
+    else
+      let child := HandlerTrie.insertStruct {} key' struct
       { trie with children := trie.children.push (s, child)}
 
 /--
@@ -242,7 +264,7 @@ where
           let mut body ← `(pure { config with $(mkIdent key):ident := value })
           if ← withReducible <| isDefEq fieldTy (mkConst ``Bool) then
             trace[Elab.ConfigEval] "field `{.ofConstName projFn}`, using {.ofConstName ``evalBoolItem}"
-            body ← `(evalBoolItem item >>= fun value => $body:term)
+            body ← `(fun config item => evalBoolItem item >>= fun value => $body:term)
             trie := trie.insert { ref := struct, key, kind := .exact, body, projFn? := projFn }
             hasExact := true
             synthesizedHandler := true
@@ -260,46 +282,50 @@ where
               | false, true  => `(evalExprWithElab ⟨item.value⟩) >>= mkHandler
               | true,  false => `(evalTermWithRef ⟨item.value⟩) >>= mkHandler
               | false, false => `(item.throwCannotSetOption $(quote structName))
+            body ← `(fun _ item => $body)
             trie := trie.insert { ref := struct, key, kind := .exact, body, projFn? := projFn }
-        if !hasWildcard then
-          if let some structName' := (← whnfR fieldTy).constName? then
-            if ← try checkStruct structName'; pure true catch _ => pure false then
-              /-
-              Heuristic: if there is already a handler for an exact match, we shouldn't report errors
-              if sub-keys can't be used. In Mathlib for example, the `linarith` tactic has configuration
-              options that are `structure`s wrapping monadic and functional values. Users are only
-              meant to set the entire `structure`, not the fields within them. We are imagining here
-              that `structure` configuration values are not common, so we shouldn't rigidly expect
-              handlers for sub-keys (saving metaprogram authors the hassle of writing complete `except`
-              clauses). We may consider `(allowFailure := true)` in the future, and/or `except foo.*` clauses.
-              -/
-              trie ← visitStruct trie key structName' (allowFailure := allowFailure || hasExact)
+        if let some structName' := (← whnfR fieldTy).constName? then
+          if isStructure (← getEnv) structName' then
+            trie := trie.insertStruct key structName'
+            if !hasWildcard then
+              if ← try checkStruct structName'; pure true catch _ => pure false then
+                /-
+                Heuristic: if there is already a handler for an exact match, we shouldn't report errors
+                if sub-keys can't be used. In Mathlib for example, the `linarith` tactic has configuration
+                options that are `structure`s wrapping monadic and functional values. Users are only
+                meant to set the entire `structure`, not the fields within them. We are imagining here
+                that `structure` configuration values are not common, so we shouldn't rigidly expect
+                handlers for sub-keys (saving metaprogram authors the hassle of writing complete `except`
+                clauses). We may consider `(allowFailure := true)` in the future, and/or `except foo.*` clauses.
+                -/
+                trie ← visitStruct trie key structName' (allowFailure := allowFailure || hasExact)
         unless allowFailure || hasExact || hasWildcard || synthesizedHandler do
           throwErrorAt struct (m!"Field `{key}` of type{inlineExpr fieldTy}is missing both `{.ofConstName ``EvalTerm}` and `{.ofConstName ``EvalExpr}` instances."
               ++ .note m!"The scoped `ensure_eval_term_instance` and `ensure_eval_expr_instance` commands in `Lean.Elab.ConfigEval` were not able to derive instances.")
       return trie
   mkTrie (structName : Name) (allowFailure : Bool) : M HandlerTrie := do
     let mut trie : HandlerTrie := {}
+    trie := trie.insertStruct Name.anonymous structName
     for handler in view.handlers do
       if handler.key.isAnonymous && handler.kind matches .exact then
         throwErrorAt handler.ref "Unexpected empty key for handler"
       if let some (key, _) := trie.find? handler.key handler.kind then
         throwErrorAt handler.ref "Duplicate handler for key `{key}`"
-      -- Update the handlers to apply them to `config` and `item`
-      let body ← `(($handler.body : $struct → ConfigItem → TermElabM $struct) config item)
-      trie := trie.insert { handler with body }
+      trie := trie.insert handler
     trie ← visitStruct trie .anonymous structName allowFailure
     unless (← hasExcept `config structName) || (trie.find? `config .exact).isSome do
       if ← hasInstance ``EvalExpr (mkConst structName) then
         -- Only use an `EvalExpr` instance; we don't have plans to support structure instance notation with `EvalTerm`.
-        let cfgBody ← `(evalExprWithElab ⟨item.value⟩)
+        let cfgBody ← `(fun _ item => evalExprWithElab ⟨item.value⟩)
         trie := trie.insert { ref := tk, key := `config, kind := .exact, body := cfgBody }
     return trie
   /--
   Assembles the full key matcher from the trie. Makes use of `item` in the current macro scope.
   -/
   assemble (trie : HandlerTrie) (onFail : Term) : TermElabM Term := do
-    let { exact?, children, wildcard?, projFn? } := trie
+    let { exact?, children, wildcard?, projFn?, struct? } := trie
+    let bodyApplied (handler : EvalConfigItemHandler) : TermElabM Term := do
+      `(($handler.body : $struct → ConfigItem → TermElabM $struct) config item')
     let handleChildren (onFail : Term) : TermElabM Term := do
       if children.isEmpty then
         return onFail
@@ -307,35 +333,39 @@ where
         let children ← children.mapM fun (s, trie') => return (s, ← assemble trie' onFail)
         let body ← makeStringMatcher (← `(ident| root)) children onFail
         `(have root := item.getRootStr
+          have item' := item
           have item := item.shift
           $body)
     let handleWildcard : TermElabM Term := do
       if let some h := wildcard? then
+        let body ← bodyApplied h
         if children.isEmpty then
-          return h.body
+          return body
         else
           let jp ← withFreshMacroScope `(ident| doWildcard)
           let body ← handleChildren (← `($jp ()))
-          `(have $jp (_ : Unit) := $h.body; $body)
+          `(have $jp (_ : Unit) := $body; $body)
       else
         handleChildren onFail
     let handleExact : TermElabM Term := do
       let body ← handleWildcard
-      let onAnon := if let some h := exact? then h.body else onFail
+      let onAnon ← if let some h := exact? then bodyApplied h else pure onFail
       `(if item.isAnonymous then $onAnon else $body)
     let mut body ← handleExact
     if let some projFn := projFn? then
-      body ← `(item.addConstInfoForPrevRoot $(quote projFn) >>= fun _ => $body)
+      body ← `(item'.addConstInfo $(quote projFn) >>= fun _ => $body)
+    if let some struct := struct? then
+      body ← `(item.addCompletionInfo $(quote struct) >>= fun _ => $body)
     return body
   mkCmd (structName : Name) : TermElabM Command := do
     let trie ← mkTrie structName false |>.run' { except := view.exceptFields }
-    let body ← assemble trie (← `(invalidOption ()))
+    let body ← assemble trie (← `(invalidOption item))
     `($[$doc?:docComment]?
       $[$vis?:visibility]?
       def $fnIdent $[$extraBinders]* : EvalConfigItem $struct where
         set (config : $struct) (item : ConfigItem) : TermElabM $struct := do
-          addCompletionInfo (CompletionInfo.fieldId item.option item.origOptionName {} $(quote structName))
-          have invalidOption (_ : Unit) : TermElabM $struct := item.throwInvalidOption (some $(quote structName))
+          have invalidOption (item : ConfigItem) : TermElabM $struct := item.throwInvalidOption (some $(quote structName))
+          let item' := item
           $body:term)
 
 end Lean.Elab.ConfigEval

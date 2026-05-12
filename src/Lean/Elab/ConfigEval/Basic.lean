@@ -144,10 +144,15 @@ def ConfigItem.throwCannotSetOption {α} (item : ConfigItem) (structName? : Opti
   let structMsg := if let some structName := structName? then m!" for `{.ofConstName structName}`" else m!""
   throwErrorAt item.option "Cannot set option{nameMsg}{structMsg} using configuration syntax."
 
-def ConfigItem.addConstInfoForPrevRoot (item : ConfigItem) (n : Name) : TermElabM Unit := do
+nonrec def ConfigItem.addConstInfo (item : ConfigItem) (projFn : Name) : TermElabM Unit := do
   if (← getInfoState).enabled then
-    if (← getEnv).contains n then -- in case we are in Lean prelude
-      addConstInfo item.prevRoot n
+    if (← getEnv).contains projFn then -- in case we are in Lean prelude
+      addConstInfo item.root projFn
+
+nonrec def ConfigItem.addCompletionInfo (item : ConfigItem) (structName : Name) : TermElabM Unit := do
+  if (← getInfoState).enabled then
+    if (← getEnv).contains structName then -- in case we are in Lean prelude
+      addCompletionInfo (CompletionInfo.fieldId item.root item.root.getId {} structName)
 
 variable {α : Type} {m : Type → Type} [Monad m] [MonadRef m] in
 mutual

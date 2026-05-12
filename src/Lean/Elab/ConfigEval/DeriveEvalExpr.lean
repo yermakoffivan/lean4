@@ -61,7 +61,7 @@ def ensureEvalExpr
             `(EvalExpr.evalExpr args[$(quote idx)]! >>= fun $v => $val)
         let val ← `(guard (args.size == $(quote xs.size)) *> $val)
         exprCases := exprCases.push (ctorName', val)
-    let exprMatcher ← makeStringMatcher (← `(ident| ctor)) exprCases (← `(failure))
+    let exprMatcher ← makeStringMatcher (← `(ident| ctor)) exprCases (← `(throwUnsupportedExpr))
     `($[$vis?:visibility]? partial def $evalExprDef : Expr → MetaM $indTypeIdent :=
         withSimpleEvalExpr $(quote ival.name) fun ctor args => $exprMatcher
       $[$vis?:visibility]? $kind:attrKind instance%$cmdRef $(mkIdentFrom cmdRef instName (canonical := type == type')):ident : EvalExpr $indTypeIdent where

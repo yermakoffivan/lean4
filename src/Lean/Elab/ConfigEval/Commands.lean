@@ -149,6 +149,36 @@ private meta def getBracketedBinderArgs (stx : Syntax) : MacroM (Array Term) :=
   | `(bracketedBinderF|[$_])                                 => return #[mkHole stx]
   | _                                                        => Macro.throwErrorAt stx "Unsupported binder"
 
+private meta def mkElabConfigCmd
+    (monad : Ident)
+    (mkMonadAdapt : Term → MacroM Term)
+    (logExceptionsDefault : Term)
+    (mkLogExceptionsTerm : Term → MacroM Term)
+    (doc? : Option (TSyntax ``Parser.Command.docComment))
+    (vis? : Option (TSyntax ``Parser.Command.visibility))
+    (tk : Syntax)
+    (elabName type : Ident)
+    (binders : TSyntaxArray ``Parser.Term.bracketedBinder)
+    (entries? : Option (TSyntax ``Elab.ConfigEval.configEntries)) :
+    MacroM Command := do
+  let fnName := mkIdentFrom elabName (elabName.getId ++ `evalConfigItem)
+  let binderArgs ← binders.foldlM (init := #[]) fun args binder => do
+    pure <| args ++ (← getBracketedBinderArgs binder)
+  let cfgIdent := mkIdent `cfg
+  let initIdent := mkIdent `init
+  let logExceptionsIdent := mkIdent `logExceptions
+  let logExceptionsTerm ← mkLogExceptionsTerm logExceptionsIdent
+  let go ← mkMonadAdapt =<< `(eval.setConfig' $initIdent $cfgIdent (onErr := onErr) (logExceptions := $logExceptionsTerm))
+  withRef (mkNullNode #[tk, elabName, type]) do
+    `(section
+      private local def_eval_config_item $fnName $[$binders]* for $type $[$entries?:configEntries]?
+      $[$doc?:docComment]?
+      $[$vis?:visibility]? def $elabName $[$binders]* ($cfgIdent : Lean.Syntax) ($initIdent : $type := {}) ($logExceptionsIdent : Bool := $logExceptionsDefault) : $monad $type := do
+        let eval : EvalConfigItem $type := @$fnName $binderArgs*
+        let onErr := EvalConfigItem.defaultOnErr (cfgType? := mkConst ``$type)
+        $go:term
+      end)
+
 /--
 `declare_core_config_elab f struct binders* [where ...]` defines a configuration elaborator
 ```lean
@@ -170,21 +200,9 @@ See also `declare_term_config_elab`, `declare_config_elab`, and `declare_command
 macro (name := elabDeclareCoreConfigElab) doc?:(docComment)? vis?:(visibility)?
     tk:"declare_core_config_elab" elabName:ident type:ident binders:(bracketedBinder)*
     entries?:(configEntries)? : command => do
-  let fnName := mkIdentFrom elabName (elabName.getId ++ `evalConfigItem)
-  let binderArgs ← binders.foldlM (init := #[]) fun args binder => do
-    pure <| args ++ (← getBracketedBinderArgs binder)
-  let cfg := mkIdent `cfg
-  let init := mkIdent `init
-  let logExceptions := mkIdent `logExceptions
-  withRef (mkNullNode #[tk, elabName, type]) do
-    `(section
-      private local def_eval_config_item $fnName $[$binders]* for $type $[$entries?:configEntries]?
-      $[$doc?:docComment]?
-      $[$vis?:visibility]? def $elabName $[$binders]* ($cfg : Lean.Syntax) ($init : $type := {}) ($logExceptions : Bool := false) : CoreM $type := do
-        let eval : EvalConfigItem $type := @$fnName $binderArgs*
-        let onErr := EvalConfigItem.defaultOnErr (cfgType? := mkConst ``$type)
-        eval.setConfig' $init $cfg (onErr := onErr) (logExceptions := $logExceptions)
-      end)
+  mkElabConfigCmd (mkCIdent ``CoreM) pure (mkCIdent ``false)
+    (fun logExceptions => pure logExceptions)
+    doc? vis? tk elabName type binders entries?
 
 open Linter.MissingDocs in
 @[builtin_missing_docs_handler elabDeclareCoreConfigElab]
@@ -193,15 +211,15 @@ private def checkDeclareCoreConfigElab : SimpleHandler := mkSimpleHandler "confi
 /--
 `declare_term_config_elab f struct binders* [where ...]` defines a configuration elaborator
 ```lean
-f binders* (cfg : Syntax) (init : struct := {}) : TermElabM struct
+f binders* (cfg : Syntax) (init : struct := {}) (logExceptions : Bool := true) : TermElabM struct
 ```
 that evaluates the `cfg` configuration items to update `init`.
 Acceptable configuration syntax is documented in `Lean.Elab.ConfigEval.foldConfigM`,
 which includes anything that looks like `Lean.Parser.Term.optConfig`, possibly wrapped
 in null nodes.
 
-It uses the current `errToSorry` state to decide whether or not to recover by logging errors
-and proceeding when there are invalid options, or raising an exception.
+When `logExceptions` is true, it uses the current `errToSorry` state to decide whether or not to
+recover by logging errors and skipping invalid options.
 
 The command will transitively derive any necessary `ConfigEval.EvalTerm`/`ConfigEval.EvalExpr`
 instances to support evaluation of configuration options for structure fields.
@@ -214,20 +232,9 @@ See also `declare_core_config_elab`, `declare_config_elab`, and `declare_command
 macro (name := elabDeclareTermConfigElab) doc?:(docComment)? vis?:(visibility)?
     tk:"declare_term_config_elab" elabName:ident type:ident binders:(bracketedBinder)*
     entries?:(configEntries)? : command => do
-  let fnName := mkIdentFrom elabName (elabName.getId ++ `evalConfigItem)
-  let binderArgs ← binders.foldlM (init := #[]) fun args binder => do
-    pure <| args ++ (← getBracketedBinderArgs binder)
-  let cfg := mkIdent `cfg
-  let init := mkIdent `init
-  withRef (mkNullNode #[tk, elabName, type]) do
-    `(section
-      private local def_eval_config_item $fnName $[$binders]* for $type $[$entries?:configEntries]?
-      $[$doc?:docComment]?
-      $[$vis?:visibility]? def $elabName $[$binders]* ($cfg : Lean.Syntax) ($init : $type := {}) : TermElabM $type := do
-        let eval : EvalConfigItem $type := @$fnName $binderArgs*
-        let onErr := EvalConfigItem.defaultOnErr (cfgType? := mkConst ``$type)
-        eval.setConfig' $init $cfg (onErr := onErr) (logExceptions := (← read).errToSorry)
-      end)
+  mkElabConfigCmd (mkCIdent ``TermElabM) pure (mkCIdent ``true)
+    (fun logExceptions => `($logExceptions && (← read).errToSorry))
+    doc? vis? tk elabName type binders entries?
 
 open Linter.MissingDocs in
 @[builtin_missing_docs_handler elabDeclareTermConfigElab]
@@ -236,15 +243,15 @@ private def checkDeclareTermConfigElab : SimpleHandler := mkSimpleHandler "confi
 /--
 `declare_config_elab f struct binders* [where ...]` defines a configuration elaborator
 ```lean
-f binders* (cfg : Syntax) (init : struct := {}) : TacticM struct
+f binders* (cfg : Syntax) (init : struct := {}) (logExceptions : Bool := true) : TacticM struct
 ```
 that evaluates the `cfg` configuration items to update `init`.
 Acceptable configuration syntax is documented in `Lean.Elab.ConfigEval.foldConfigM`,
 which includes anything that looks like `Lean.Parser.Term.optConfig`, possibly wrapped
 in null nodes.
 
-It uses the current `recover` state to decide whether or not to recover by logging errors
-and proceeding when there are invalid options, or raising an exception.
+When `logExceptions` is true, it uses the current `recover` state to decide whether or not to
+recover by logging errors and skipping invalid options.
 
 The command will transitively derive any necessary `ConfigEval.EvalTerm`/`ConfigEval.EvalExpr`
 instances to support evaluation of configuration options for structure fields.
@@ -257,21 +264,9 @@ See also `declare_core_config_elab`, `declare_term_config_elab`, and `declare_co
 macro (name := elabDeclareTacticConfig) doc?:(docComment)? vis?:(visibility)?
     tk:"declare_config_elab" elabName:ident type:ident binders:(bracketedBinder)*
     entries?:(configEntries)? : command => do
-  let fnName := mkIdentFrom elabName (elabName.getId ++ `evalConfigItem)
-  let binderArgs ← binders.foldlM (init := #[]) fun args binder => do
-    pure <| args ++ (← getBracketedBinderArgs binder)
-  let cfg := mkIdent `cfg
-  let init := mkIdent `init
-  withRef (mkNullNode #[tk, elabName, type]) do
-    `(section
-      private local def_eval_config_item $fnName $[$binders]* for $type $[$entries?:configEntries]?
-      $[$doc?:docComment]?
-      $[$vis?:visibility]? def $elabName $[$binders]* ($cfg : Lean.Syntax) ($init : $type := {}) : $(mkCIdent ``Tactic.TacticM) $type := do
-        let recover := (← read).recover
-        let eval : EvalConfigItem $type := @$fnName $binderArgs*
-        let onErr := EvalConfigItem.defaultOnErr (cfgType? := mkConst ``$type)
-        Tactic.runTermElab <| eval.setConfig' $init $cfg (onErr := onErr) (logExceptions := recover)
-      end)
+  mkElabConfigCmd (mkCIdent ``Tactic.TacticM) pure (mkCIdent ``true)
+    (fun logExceptions => `($logExceptions && (← read).recover))
+    doc? vis? tk elabName type binders entries?
 
 open Linter.MissingDocs in
 @[builtin_missing_docs_handler elabDeclareTacticConfig]
@@ -298,21 +293,9 @@ See also `declare_core_config_elab`, `declare_term_config_elab`, and `declare_co
 macro (name := elabDeclareCommandConfig) doc?:(docComment)? vis?:(visibility)?
     tk:"declare_command_config_elab" elabName:ident type:ident binders:(bracketedBinder)*
     entries?:(configEntries)? : command => do
-  let fnName := mkIdentFrom elabName (elabName.getId ++ `evalConfigItem)
-  let binderArgs ← binders.foldlM (init := #[]) fun args binder => do
-    pure <| args ++ (← getBracketedBinderArgs binder)
-  let cfg := mkIdent `cfg
-  let init := mkIdent `init
-  let logExceptions := mkIdent `logExceptions
-  withRef (mkNullNode #[tk, elabName, type]) do
-    `(section
-      private local def_eval_config_item $fnName $[$binders]* for $type $[$entries?:configEntries]?
-      $[$doc?:docComment]?
-      $[$vis?:visibility]? def $elabName $[$binders]* ($cfg : Lean.Syntax) ($init : $type := {}) ($logExceptions : Bool := true) : $(mkCIdent ``CommandElabM) $type := do
-        let eval : EvalConfigItem $type := @$fnName $binderArgs*
-        let onErr := EvalConfigItem.defaultOnErr (cfgType? := mkConst ``$type)
-        Command.liftTermElabM <| eval.setConfig' $init $cfg (onErr := onErr) (logExceptions := $logExceptions)
-      end)
+  mkElabConfigCmd (mkCIdent ``CommandElabM) (fun eval => `(Command.liftTermElabM $eval)) (mkCIdent ``true)
+    (fun logExceptions => pure logExceptions)
+    doc? vis? tk elabName type binders entries?
 
 open Linter.MissingDocs in
 @[builtin_missing_docs_handler elabDeclareCommandConfig]

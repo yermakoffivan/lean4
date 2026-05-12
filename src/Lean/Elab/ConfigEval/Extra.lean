@@ -16,6 +16,7 @@ open Meta Term
 
 /--
 Uses global option declarations with the prefix `optionPrefix` when setting `Options`.
+Assumes that `item` is shifted, with the rest of the item being the option name suffix to use.
 -/
 def EvalConfigItem.evalSetOptions (optionPrefix : Name) (opts : Options) (item : ConfigItem) : TermElabM Options := do
   let optName := optionPrefix ++ item.getCurrOptionName

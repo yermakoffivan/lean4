@@ -50,15 +50,15 @@ private declare_config_elab elabSimpConfigAux Simp.ConfigWithOptions (evalConfig
     let config ← evalConfig item.value
     return { cfg with config }
   option user := fun _ item => do
-    addConstInfo item.prevRoot ``Simp.ConfigWithOptions.userConfig
-    throwErrorAt item.prevRoot "User options are of the form `user.optionName`"
+    item.addConstInfo ``Simp.ConfigWithOptions.userConfig
+    throwErrorAt item.root "User options are of the form `user.optionName`"
   option user.* := fun cfg item => do
-    addConstInfo item.prevRoot ``Simp.ConfigWithOptions.userConfig
-    let userConfig ← EvalConfigItem.evalSetOptions `tactic.simp.user cfg.userConfig item
+    item.addConstInfo ``Simp.ConfigWithOptions.userConfig
+    let userConfig ← EvalConfigItem.evalSetOptions `tactic.simp.user cfg.userConfig item.shift
     return { cfg with userConfig }
   option userConfig := fun _ item => do
-    addConstInfo item.prevRoot ``Simp.ConfigWithOptions.userConfig
-    throwErrorAt item.prevRoot "Cannot set `userConfig` directly. User options are of the form `user.optionName`"
+    item.addConstInfo ``Simp.ConfigWithOptions.userConfig
+    throwErrorAt item.root "Cannot set `userConfig` directly. User options are of the form `user.optionName`"
 
 /--
 Specializes the `elabSimpConfigAux` configuration elaborator to a specific `Simp` default configuration.
@@ -86,15 +86,15 @@ converts the result to a `Simp.Config`. -/
 private declare_config_elab elabDSimpConfigCore DSimp.ConfigWithOptions where
   except userConfig
   option user := fun _ item => do
-    addConstInfo item.prevRoot ``DSimp.ConfigWithOptions.userConfig
-    throwErrorAt item.prevRoot "User options are of the form `user.optionName`"
+    item.addConstInfo ``DSimp.ConfigWithOptions.userConfig
+    throwErrorAt item.root "User options are of the form `user.optionName`"
   option user.* := fun cfg item => do
-    addConstInfo item.prevRoot ``DSimp.ConfigWithOptions.userConfig
-    let userConfig ← EvalConfigItem.evalSetOptions `tactic.simp.user cfg.userConfig item
+    item.addConstInfo ``DSimp.ConfigWithOptions.userConfig
+    let userConfig ← EvalConfigItem.evalSetOptions `tactic.simp.user cfg.userConfig item.shift
     return { cfg with userConfig }
   option userConfig := fun _ item => do
-    addConstInfo item.prevRoot ``DSimp.ConfigWithOptions.userConfig
-    throwErrorAt item.prevRoot "Cannot set `userConfig` directly. User options are of the form `user.optionName`"
+    item.addConstInfo ``DSimp.ConfigWithOptions.userConfig
+    throwErrorAt item.root "Cannot set `userConfig` directly. User options are of the form `user.optionName`"
 
 end
 

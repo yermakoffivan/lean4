@@ -27226,7 +27226,7 @@ v_reusejp_8683_:
 uint64_t v___x_8685_; uint64_t v___x_8686_; uint64_t v___x_8687_; uint64_t v___x_8688_; uint64_t v___x_8689_; uint64_t v_key_8690_; lean_object* v___x_8691_; lean_object* v___x_8692_; lean_object* v___x_8693_; uint8_t v_foApprox_8694_; uint8_t v_ctxApprox_8695_; uint8_t v_quasiPatternApprox_8696_; uint8_t v_constApprox_8697_; uint8_t v_isDefEqStuckEx_8698_; uint8_t v_unificationHints_8699_; uint8_t v_proofIrrelevance_8700_; uint8_t v_offsetCnstrs_8701_; uint8_t v_transparency_8702_; uint8_t v_etaStruct_8703_; uint8_t v_univApprox_8704_; uint8_t v_iota_8705_; uint8_t v_beta_8706_; uint8_t v_proj_8707_; uint8_t v_zeta_8708_; uint8_t v_zetaDelta_8709_; uint8_t v_zetaUnused_8710_; uint8_t v_zetaHave_8711_; lean_object* v___x_8713_; uint8_t v_isShared_8714_; uint8_t v_isSharedCheck_8755_; 
 lean_ctor_set_uint8(v_config_8684_, 9, v___x_8682_);
 v___x_8685_ = l_Lean_Meta_Context_configKey(v_a_8643_);
-v___x_8686_ = 2ULL;
+v___x_8686_ = 3ULL;
 v___x_8687_ = lean_uint64_shift_right(v___x_8685_, v___x_8686_);
 v___x_8688_ = lean_uint64_shift_left(v___x_8687_, v___x_8686_);
 v___x_8689_ = lean_uint64_once(&l___private_Lean_Meta_SynthInstance_0__Lean_Meta_assignOutParams___closed__0, &l___private_Lean_Meta_SynthInstance_0__Lean_Meta_assignOutParams___closed__0_once, _init_l___private_Lean_Meta_SynthInstance_0__Lean_Meta_assignOutParams___closed__0);

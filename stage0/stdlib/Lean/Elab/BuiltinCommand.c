@@ -29348,7 +29348,7 @@ v_reusejp_9382_:
 uint64_t v___x_9384_; uint64_t v___x_9385_; uint64_t v___x_9386_; lean_object* v___x_9387_; lean_object* v___x_9388_; lean_object* v___x_9389_; lean_object* v_a_9391_; uint64_t v___x_9394_; uint64_t v___x_9395_; uint64_t v_key_9396_; lean_object* v___x_9397_; lean_object* v___x_9398_; lean_object* v___x_9399_; 
 lean_ctor_set_uint8(v_config_9383_, 9, v___x_9340_);
 v___x_9384_ = l_Lean_Meta_Context_configKey(v___y_9312_);
-v___x_9385_ = 2ULL;
+v___x_9385_ = 3ULL;
 v___x_9386_ = lean_uint64_shift_right(v___x_9384_, v___x_9385_);
 v___x_9387_ = ((lean_object*)(l___private_Lean_Elab_BuiltinCommand_0__Lean_Elab_Command_elabReduce_go___lam__1___closed__2));
 v___x_9388_ = l_Lean_Options_set___at___00__private_Lean_Elab_BuiltinCommand_0__Lean_Elab_Command_elabReduce_go_spec__0(v_options_9323_, v___x_9387_, v___x_9319_);

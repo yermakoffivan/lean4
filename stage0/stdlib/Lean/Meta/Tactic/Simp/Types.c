@@ -28442,7 +28442,7 @@ goto v_resetjp_8590_;
 v_resetjp_8590_:
 {
 uint64_t v___x_8593_; uint64_t v___x_8594_; uint64_t v___x_8595_; uint64_t v___x_8596_; uint64_t v_key_8597_; lean_object* v___x_8598_; lean_object* v___x_8600_; 
-v___x_8593_ = 2ULL;
+v___x_8593_ = 3ULL;
 v___x_8594_ = lean_uint64_shift_right(v___x_8589_, v___x_8593_);
 v___x_8595_ = lean_uint64_shift_left(v___x_8594_, v___x_8593_);
 v___x_8596_ = l_Lean_Meta_TransparencyMode_toUInt64(v___x_8548_);
@@ -30762,7 +30762,7 @@ goto v_resetjp_9364_;
 v_resetjp_9364_:
 {
 uint64_t v___x_9367_; uint64_t v___x_9368_; uint64_t v___x_9369_; uint64_t v___x_9370_; uint64_t v_key_9371_; lean_object* v___x_9372_; lean_object* v___x_9374_; 
-v___x_9367_ = 2ULL;
+v___x_9367_ = 3ULL;
 v___x_9368_ = lean_uint64_shift_right(v___x_9363_, v___x_9367_);
 v___x_9369_ = lean_uint64_shift_left(v___x_9368_, v___x_9367_);
 v___x_9370_ = l_Lean_Meta_TransparencyMode_toUInt64(v___x_9319_);

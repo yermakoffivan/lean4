@@ -8308,7 +8308,7 @@ v_reusejp_2375_:
 uint64_t v___x_2377_; uint64_t v___x_2378_; uint64_t v___x_2379_; uint64_t v___x_2380_; uint64_t v___x_2381_; uint64_t v_key_2382_; lean_object* v___x_2383_; lean_object* v___x_2384_; lean_object* v___x_2385_; 
 lean_ctor_set_uint8(v_config_2376_, 9, v___x_2374_);
 v___x_2377_ = l_Lean_Meta_Context_configKey(v_a_2331_);
-v___x_2378_ = 2ULL;
+v___x_2378_ = 3ULL;
 v___x_2379_ = lean_uint64_shift_right(v___x_2377_, v___x_2378_);
 v___x_2380_ = lean_uint64_shift_left(v___x_2379_, v___x_2378_);
 v___x_2381_ = lean_uint64_once(&l_Lean_Meta_LazyDiscrTree_runMatch___redArg___closed__0, &l_Lean_Meta_LazyDiscrTree_runMatch___redArg___closed__0_once, _init_l_Lean_Meta_LazyDiscrTree_runMatch___redArg___closed__0);
@@ -12381,7 +12381,7 @@ v_reusejp_4101_:
 uint64_t v___x_4103_; uint64_t v___x_4104_; uint64_t v___x_4105_; lean_object* v___x_4106_; uint64_t v___x_4107_; uint64_t v___x_4108_; uint64_t v_key_4109_; lean_object* v___x_4110_; lean_object* v___x_4111_; lean_object* v___x_4112_; 
 lean_ctor_set_uint8(v_config_4102_, 9, v___x_4100_);
 v___x_4103_ = l_Lean_Meta_Context_configKey(v_a_4062_);
-v___x_4104_ = 2ULL;
+v___x_4104_ = 3ULL;
 v___x_4105_ = lean_uint64_shift_right(v___x_4103_, v___x_4104_);
 lean_inc_ref(v_roots_4067_);
 v___x_4106_ = lean_alloc_closure((void*)(l_Lean_Meta_LazyDiscrTree_getMatchCore___boxed), 9, 3);

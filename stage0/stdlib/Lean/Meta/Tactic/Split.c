@@ -2323,7 +2323,7 @@ v_reusejp_538_:
 uint64_t v___x_540_; uint64_t v___x_541_; uint64_t v___x_542_; lean_object* v___x_543_; lean_object* v___x_544_; lean_object* v___x_545_; uint8_t v___x_546_; uint8_t v___x_547_; uint64_t v___x_548_; uint64_t v___x_549_; uint64_t v_key_550_; lean_object* v___x_551_; lean_object* v___x_552_; lean_object* v___x_553_; 
 lean_ctor_set_uint8(v_config_539_, 9, v___x_537_);
 v___x_540_ = l_Lean_Meta_Context_configKey(v_a_471_);
-v___x_541_ = 2ULL;
+v___x_541_ = 3ULL;
 v___x_542_ = lean_uint64_shift_right(v___x_540_, v___x_541_);
 v___x_543_ = ((lean_object*)(l___private_Lean_Meta_Tactic_Split_0__Lean_Meta_Split_simpMatchCore_pre___closed__0));
 v___x_544_ = lean_unsigned_to_nat(1000u);

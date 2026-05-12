@@ -61531,7 +61531,7 @@ v_reusejp_21442_:
 uint64_t v___x_21444_; uint64_t v___x_21445_; uint64_t v___x_21446_; uint64_t v___x_21447_; uint64_t v___x_21448_; uint64_t v_key_21449_; lean_object* v___x_21450_; lean_object* v___x_21451_; lean_object* v___x_21452_; lean_object* v___x_21453_; 
 lean_ctor_set_uint8(v_config_21443_, 9, v___x_21441_);
 v___x_21444_ = l_Lean_Meta_Context_configKey(v_a_21239_);
-v___x_21445_ = 2ULL;
+v___x_21445_ = 3ULL;
 v___x_21446_ = lean_uint64_shift_right(v___x_21444_, v___x_21445_);
 v___x_21447_ = lean_uint64_shift_left(v___x_21446_, v___x_21445_);
 v___x_21448_ = lean_uint64_once(&l_Lean_Doc_assert_x27___closed__8, &l_Lean_Doc_assert_x27___closed__8_once, _init_l_Lean_Doc_assert_x27___closed__8);

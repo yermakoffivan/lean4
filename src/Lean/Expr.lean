@@ -848,6 +848,11 @@ def isApp : Expr → Bool
   | app .. => true
   | _      => false
 
+@[inline, inherit_doc isApp]
+def isAppInline : Expr → Bool
+  | app .. => true
+  | _      => false
+
 /-- Return `true` if the given expression is a projection `.proj ..` -/
 def isProj : Expr → Bool
   | proj ..  => true
@@ -936,6 +941,11 @@ def appArg!' : Expr → Expr
   | _         => panic! "application expected"
 
 def appArg (e : Expr) (h : e.isApp) : Expr :=
+  match e, h with
+  | .app _ a, _ => a
+
+@[inline]
+def appArgInline (e : Expr) (h : e.isAppInline) : Expr :=
   match e, h with
   | .app _ a, _ => a
 
@@ -1751,6 +1761,11 @@ Similar to `appFn`, but also applies `cleanupAnnotations` to resulting function.
 This function is used compile the `match_expr` term.
 -/
 def appFnCleanup (e : Expr) (h : e.isApp) : Expr :=
+  match e, h with
+  | .app f _, _ => f.cleanupAnnotations
+
+@[inline]
+def appFnCleanupInline (e : Expr) (h : e.isAppInline) : Expr :=
   match e, h with
   | .app f _, _ => f.cleanupAnnotations
 

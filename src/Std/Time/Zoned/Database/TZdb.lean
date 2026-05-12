@@ -142,8 +142,8 @@ Call this once at program startup. The `TZ` and `TZDIR` environment variables
 are re-read on every `getLocalZoneRules`/`getZoneRules` call, so runtime changes
 to those variables are always reflected.
 -/
-def default : TZdb :=
-  return { zonesPaths := #["/usr/share/zoneinfo", "/share/zoneinfo", "/etc/zoneinfo", "/usr/share/lib/zoneinfo"] }
+def default : TZdb where
+  zonesPaths := #["/usr/share/zoneinfo", "/share/zoneinfo", "/etc/zoneinfo", "/usr/share/lib/zoneinfo"]
 
 /--
 Builds the effective zoneinfo search path by prepending the current `TZDIR` (if set and

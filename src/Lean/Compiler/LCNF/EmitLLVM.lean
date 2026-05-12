@@ -670,9 +670,10 @@ namespace ImpureType
 
 /--
 Runtime once-cell dispatch function for a closed-term value of type `t`. Mirrors EmitC's
-`Lean.Expr.closedTermReadOpName`. The runtime variants are declared in `lean.h` and have
-signature `T lean_X_once(T* loc, lean_once_cell_t* tok, T (*init)(void))` — the LLVM side
-forward-declares them through `getOrCreateFunctionPrototype` below.
+`Lean.Expr.closedTermReadOpName`. The runtime variants `lean_X_once` are `static inline` in
+`lean.h`; their definitions become callable from LLVM-emitted bitcode via the runtime's
+`lean.h.bc` bitcode (linked in alongside our emitted modules), the same mechanism used for
+`lean_box` etc.
 -/
 def Lean.Expr.closedTermLLVMOnceFn (t : Expr) : String :=
   match t with
@@ -684,7 +685,7 @@ def Lean.Expr.closedTermLLVMOnceFn (t : Expr) : String :=
   | uint64   => "lean_uint64_once"
   | usize    => "lean_usize_once"
   | object | tobject | tagged | void => "lean_obj_once"
-  | _        => "lean_obj_once"
+  | _        => unreachable!
 
 end ImpureType
 
@@ -777,26 +778,27 @@ where
     match e with
     | .reference refDecl => findValueDecl refDecl
     | .ctor cidx objArgs usizeArgs scalarArgs =>
-      let (ty, val) ← compileCtor auxRef cidx objArgs usizeArgs scalarArgs
-      emitConstGlobal name ty val
-    | .string data =>
-      let (ty, val) ← compileString data
-      emitConstGlobal name ty val
-    | .pap func args =>
-      let (ty, val) ← compilePap auxRef func args
-      emitConstGlobal name ty val
-    | .nameMkStr args =>
-      let (ty, val) ← compileNameMkStr auxRef args
-      emitConstGlobal name ty val
-    | .array elems =>
-      let (ty, val) ← compileArray auxRef elems
-      emitConstGlobal name ty val
-    | .byteArray data =>
-      let (ty, val) ← compileByteArray data
-      emitConstGlobal name ty val
+      emitConstGlobal name (← compileCtor auxRef cidx objArgs usizeArgs scalarArgs)
+    | .string data    => emitConstGlobal name (← compileString data)
+    | .pap func args  => emitConstGlobal name (← compilePap auxRef func args)
+    | .nameMkStr args => emitConstGlobal name (← compileNameMkStr auxRef args)
+    | .array elems    => emitConstGlobal name (← compileArray auxRef elems)
+    | .byteArray data => emitConstGlobal name (← compileByteArray data)
 
-  emitConstGlobal (name : String) (ty : LLVM.LLVMType llvmctx) (val : LLVM.Value llvmctx) :
+  /--
+  Emit a `static const` value-global named `name` initialized to `val`. The global's pointee
+  type is derived from `LLVMTypeOf val` rather than constructed separately: the literal struct
+  types produced by `LLVM.constStructInContext` are anonymous and not guaranteed to be the
+  same object as those produced by `LLVM.structTypeInContext` with the same field types, so we
+  take the canonical type from the value to keep the verifier happy.
+
+  Decls are emitted in topological order (so same-module forward references can't happen) and
+  cross-module references go to *other* modules' symbols, so a same-named local forward
+  declaration shouldn't already exist. We use `addGlobal` directly and rely on that invariant.
+  -/
+  emitConstGlobal (name : String) (val : LLVM.Value llvmctx) :
       EmitM llvmctx (LLVM.Value llvmctx) := do
+    let ty ← LLVM.typeOf val
     let g ← LLVM.addGlobal (← getLLVMModule) name ty
     LLVM.setInitializer g val
     LLVM.setGlobalConstant g true
@@ -833,11 +835,9 @@ where
 
   compileCtor (auxRef : IO.Ref Nat) (cidx : Nat) (objArgs : Array SimpleGroundArg)
       (usizeArgs : Array UInt64) (scalarArgs : Array UInt8) :
-      EmitM llvmctx (LLVM.LLVMType llvmctx × LLVM.Value llvmctx) := do
+      EmitM llvmctx (LLVM.Value llvmctx) := do
     let _ := auxRef -- kept in the signature so the symmetric variants share a shape
     let ptrTy ← LLVM.voidPtrType llvmctx
-    let i64 ← LLVM.i64Type llvmctx
-    let i8  ← LLVM.i8Type  llvmctx
     -- Mirrors `mkCtorHeader` / `ctorScalarSizeExpression`:
     --   8 (header) + 8*objs + 8*usizes + scalarBytes.
     -- Hardcodes `sizeof(void*) = sizeof(size_t) = sizeof(lean_object) = 8` (the same 64-bit
@@ -847,25 +847,16 @@ where
     let objVals    ← objArgs.mapM groundArgToLLVMConst
     let usizeVals  ← usizeArgs.mapM (fun v => LLVM.constInt' llvmctx 64 v)
     let scalarVals ← scalarArgs.mapM (fun v => LLVM.constInt8 llvmctx v.toUInt64)
-    let mut fieldTys  : Array (LLVM.LLVMType llvmctx) := #[← getLeanObjectHeaderTy]
     let mut fieldVals : Array (LLVM.Value llvmctx) := #[hdr]
     unless objVals.isEmpty do
-      fieldTys  := fieldTys.push  (← LLVM.arrayType ptrTy objArgs.size.toUInt64)
       fieldVals := fieldVals.push (← LLVM.constArray ptrTy objVals)
     unless usizeVals.isEmpty do
-      fieldTys  := fieldTys.push  (← LLVM.arrayType i64 usizeArgs.size.toUInt64)
-      fieldVals := fieldVals.push (← LLVM.constArray i64 usizeVals)
+      fieldVals := fieldVals.push (← LLVM.constArray (← LLVM.i64Type llvmctx) usizeVals)
     unless scalarVals.isEmpty do
-      fieldTys  := fieldTys.push  (← LLVM.arrayType i8 scalarArgs.size.toUInt64)
-      fieldVals := fieldVals.push (← LLVM.constArray i8 scalarVals)
-    let ty  ← LLVM.structTypeInContext llvmctx fieldTys
-    let val ← LLVM.constStructInContext llvmctx fieldVals
-    return (ty, val)
+      fieldVals := fieldVals.push (← LLVM.constArray (← LLVM.i8Type llvmctx) scalarVals)
+    LLVM.constStructInContext llvmctx fieldVals
 
-  compileString (data : String) :
-      EmitM llvmctx (LLVM.LLVMType llvmctx × LLVM.Value llvmctx) := do
-    let i64 ← LLVM.i64Type llvmctx
-    let i8  ← LLVM.i8Type  llvmctx
+  compileString (data : String) : EmitM llvmctx (LLVM.Value llvmctx) := do
     let leanStringTag := 249
     let size := data.utf8ByteSize + 1
     let length := data.length
@@ -874,43 +865,31 @@ where
     -- `LLVM.constString` produces an `[(byteLen+1) x i8]` constant including a NUL terminator,
     -- matching the C `.m_data = "..."` literal layout that already includes the null byte.
     let dataConst ← LLVM.constString llvmctx data
-    let dataTy ← LLVM.arrayType i8 size.toUInt64
-    let ty ← LLVM.structTypeInContext llvmctx #[
-      ← getLeanObjectHeaderTy, i64, i64, i64, dataTy]
-    let val ← LLVM.constStructInContext llvmctx #[
+    LLVM.constStructInContext llvmctx #[
       hdr,
       ← LLVM.constInt' llvmctx 64 size.toUInt64,
       ← LLVM.constInt' llvmctx 64 size.toUInt64,
       ← LLVM.constInt' llvmctx 64 length.toUInt64,
       dataConst]
-    return (ty, val)
 
   compileArray (auxRef : IO.Ref Nat) (elems : Array SimpleGroundArg) :
-      EmitM llvmctx (LLVM.LLVMType llvmctx × LLVM.Value llvmctx) := do
+      EmitM llvmctx (LLVM.Value llvmctx) := do
     let _ := auxRef
     let ptrTy ← LLVM.voidPtrType llvmctx
-    let i64 ← LLVM.i64Type llvmctx
     let n := elems.size
     let leanArrayTag := 246
     -- `sizeof(lean_array_object) + sizeof(void*)*n = 24 + 8*n`.
     let csSz := 24 + 8 * n
     let hdr ← mkHeaderConst (csSz := csSz) (other := 0) (tag := leanArrayTag)
     let elemVals ← elems.mapM groundArgToLLVMConst
-    let dataTy ← LLVM.arrayType ptrTy n.toUInt64
     let dataConst ← LLVM.constArray ptrTy elemVals
-    let ty ← LLVM.structTypeInContext llvmctx #[
-      ← getLeanObjectHeaderTy, i64, i64, dataTy]
-    let val ← LLVM.constStructInContext llvmctx #[
+    LLVM.constStructInContext llvmctx #[
       hdr,
       ← LLVM.constInt' llvmctx 64 n.toUInt64,
       ← LLVM.constInt' llvmctx 64 n.toUInt64,
       dataConst]
-    return (ty, val)
 
-  compileByteArray (data : Array UInt8) :
-      EmitM llvmctx (LLVM.LLVMType llvmctx × LLVM.Value llvmctx) := do
-    let i64 ← LLVM.i64Type llvmctx
-    let i8  ← LLVM.i8Type  llvmctx
+  compileByteArray (data : Array UInt8) : EmitM llvmctx (LLVM.Value llvmctx) := do
     let n := data.size
     let leanSarrayTag := 248
     let elemSize := 1
@@ -918,22 +897,17 @@ where
     let csSz := 24 + n
     let hdr ← mkHeaderConst (csSz := csSz) (other := elemSize) (tag := leanSarrayTag)
     let dataVals ← data.mapM (fun b => LLVM.constInt8 llvmctx b.toUInt64)
-    let dataTy ← LLVM.arrayType i8 n.toUInt64
-    let dataConst ← LLVM.constArray i8 dataVals
-    let ty ← LLVM.structTypeInContext llvmctx #[
-      ← getLeanObjectHeaderTy, i64, i64, dataTy]
-    let val ← LLVM.constStructInContext llvmctx #[
+    let dataConst ← LLVM.constArray (← LLVM.i8Type llvmctx) dataVals
+    LLVM.constStructInContext llvmctx #[
       hdr,
       ← LLVM.constInt' llvmctx 64 n.toUInt64,
       ← LLVM.constInt' llvmctx 64 n.toUInt64,
       dataConst]
-    return (ty, val)
 
   compilePap (auxRef : IO.Ref Nat) (func : Name) (args : Array SimpleGroundArg) :
-      EmitM llvmctx (LLVM.LLVMType llvmctx × LLVM.Value llvmctx) := do
+      EmitM llvmctx (LLVM.Value llvmctx) := do
     let _ := auxRef
     let ptrTy ← LLVM.voidPtrType llvmctx
-    let i16 ← LLVM.i16Type llvmctx
     let numFixed := args.size
     let leanClosureTag := 245
     -- `sizeof(lean_closure_object) + sizeof(void*)*numFixed = 24 + 8*numFixed`.
@@ -948,20 +922,16 @@ where
     let funPtr ← LLVM.constBitCast funG ptrTy
     let arity := sig.params.size
     let argVals ← args.mapM groundArgToLLVMConst
-    let argsTy ← LLVM.arrayType ptrTy numFixed.toUInt64
     let argsConst ← LLVM.constArray ptrTy argVals
-    let ty ← LLVM.structTypeInContext llvmctx #[
-      ← getLeanObjectHeaderTy, ptrTy, i16, i16, argsTy]
-    let val ← LLVM.constStructInContext llvmctx #[
+    LLVM.constStructInContext llvmctx #[
       hdr,
       funPtr,
       ← LLVM.constInt' llvmctx 16 arity.toUInt64,
       ← LLVM.constInt' llvmctx 16 numFixed.toUInt64,
       argsConst]
-    return (ty, val)
 
   compileNameMkStr (auxRef : IO.Ref Nat) (args : Array (Name × UInt64)) :
-      EmitM llvmctx (LLVM.LLVMType llvmctx × LLVM.Value llvmctx) := do
+      EmitM llvmctx (LLVM.Value llvmctx) := do
     assert! args.size > 0
     if args.size = 1 then
       let (ref, hash) := args[0]!
@@ -970,10 +940,10 @@ where
     else
       let (ref, hash) := args.back!
       let prefixArgs := args.pop
-      let (prefixTy, prefixVal) ← compileNameMkStr auxRef prefixArgs
+      let prefixVal ← compileNameMkStr auxRef prefixArgs
       let idx ← auxRef.modifyGet fun n => (n, n + 1)
       let auxName := mkAuxValueName cppBaseName idx
-      let _ ← emitConstGlobal auxName prefixTy prefixVal
+      let _ ← emitConstGlobal auxName prefixVal
       let hashBytes := uint64ToByteArrayLE hash
       compileCtor auxRef 1 #[.rawReference auxName, .reference ref] #[] hashBytes
 

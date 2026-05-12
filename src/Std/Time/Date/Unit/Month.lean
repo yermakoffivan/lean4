@@ -225,21 +225,27 @@ def toSeconds (leap : Bool) (month : Ordinal) : Second.Offset :=
     else time
 
 /--
-Transforms `Month.Ordinal` into `Minute.Offset`.
+Transforms `Month.Ordinal` into `Minute.Offset`, representing the number of minutes elapsed since
+the beginning of the year up to the start of the given month. For example, January returns 0
+minutes since it is the first month of the year.
 -/
 @[inline]
 def toMinutes (leap : Bool) (month : Ordinal) : Minute.Offset :=
   toSeconds leap month |>.toMinutes
 
 /--
-Transforms `Month.Ordinal` into `Hour.Offset`.
+Transforms `Month.Ordinal` into `Hour.Offset`, representing the number of hours elapsed since
+the beginning of the year up to the start of the given month. For example, January returns 0
+hours since it is the first month of the year.
 -/
 @[inline]
 def toHours (leap : Bool) (month : Ordinal) : Hour.Offset :=
   toMinutes leap month |>.toHours
 
 /--
-Transforms `Month.Ordinal` into `Day.Offset`.
+Transforms `Month.Ordinal` into `Day.Offset`, representing the number of days elapsed since
+the beginning of the year up to the start of the given month. For example, January returns 0
+days since it is the first month of the year.
 -/
 @[inline]
 def toDays (leap : Bool) (month : Ordinal) : Day.Offset :=

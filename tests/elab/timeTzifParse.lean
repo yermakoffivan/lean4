@@ -140,11 +140,3 @@ def testTransitionApply : TimeZone.Transition :=
       wall := .standard, utLocal := .ut, identifier := "Test/Zone"
     }
   }
-
-/--
-info: 4600
--/
-#guard_msgs in
-#eval
-  let t := Timestamp.ofSecondsSinceUnixEpoch 1000
-  (TimeZone.Transition.apply t testTransitionApply).toSecondsSinceUnixEpoch.val

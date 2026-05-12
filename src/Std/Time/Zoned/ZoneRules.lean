@@ -145,28 +145,26 @@ def createTimeZoneFromTransition (transition : Transition) : TimeZone :=
   TimeZone.mk offset name abbreviation transition.localTimeType.isDst
 
 /--
-Applies the transition to a Timestamp.
--/
-def apply (timestamp : Timestamp) (transition : Transition) : Timestamp :=
-  let offsetInSeconds := transition.localTimeType.gmtOffset.second
-  timestamp.addSeconds offsetInSeconds
-
-/--
-Finds the transition corresponding to a given timestamp in `Array Transition`.
-If the timestamp falls between two transitions, it returns the most recent transition before the timestamp.
+Finds the index of the transition in effect at a given timestamp in `Array Transition`.
+Returns the index of the most recent transition that started at or before the timestamp,
+or `none` if the timestamp precedes all transitions.
 -/
 def findTransitionIndexForTimestamp (transitions : Array Transition) (timestamp : Timestamp) : Option Nat :=
   let value := timestamp.toSecondsSinceUnixEpoch
-  transitions.findIdx? (fun t => t.time.val > value.val)
+  match transitions.findIdx? (fun t => t.time.val > value.val) with
+  | some 0 => none
+  | some i => some (i - 1)
+  | none => if transitions.isEmpty then none else some (transitions.size - 1)
 
 /--
-Finds the transition corresponding to a given timestamp in `Array Transition`.
-If the timestamp falls between two transitions, it returns the most recent transition before the timestamp.
+Finds the transition in effect at a given timestamp in `Array Transition`.
+Returns the most recent transition that started at or before the timestamp,
+or `none` if the timestamp precedes all transitions.
 -/
 def findTransitionForTimestamp (transitions : Array Transition) (timestamp : Timestamp) : Option Transition :=
   if let some idx := findTransitionIndexForTimestamp transitions timestamp
-    then if idx == 0 then none else transitions[idx - 1]?
-    else transitions.back?
+    then transitions[idx]?
+    else none
 
 /--
 Find the current `TimeZone` out of a `Transition` in a `Array Transition`

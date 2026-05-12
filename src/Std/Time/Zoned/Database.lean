@@ -29,7 +29,7 @@ files.
 def defaultGetZoneRules (name : String) : IO TimeZone.ZoneRules := do
   if System.Platform.isWindows
     then getZoneRules WindowsDb.default name
-    else getZoneRules (← TZdb.default) name
+    else getZoneRules TZdb.default name
 
 /--
 Gets the local zone rules, accounting for platform differences.
@@ -39,4 +39,4 @@ files.
 def defaultGetLocalZoneRules : IO TimeZone.ZoneRules := do
   if System.Platform.isWindows
     then getLocalZoneRules WindowsDb.default
-    else getLocalZoneRules (← TZdb.default)
+    else getLocalZoneRules TZdb.default

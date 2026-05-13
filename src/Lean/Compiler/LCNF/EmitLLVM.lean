@@ -1563,7 +1563,10 @@ def emitDecl (builder : LLVM.Builder llvmctx) (decl : Decl .impure) :
     let fnty ← LLVM.functionType retty argtys (isVarArg := false)
     let llvmfn ← LLVM.getOrAddFunction (← getLLVMModule) name fnty
     if ps.size == 0 then
-      LLVM.setVisibility llvmfn LLVM.Visibility.hidden -- "static"
+      -- closed-term initializers correspond to `static` C functions; mark them
+      -- `internal` so the LLVM inliner can specialize them and DCE the body
+      LLVM.setLinkage llvmfn LLVM.Linkage.internal
+      LLVM.setVisibility llvmfn LLVM.Visibility.hidden
     else
       -- make the symbol visible to the interpreter for native execution
       LLVM.setDLLStorageClass llvmfn LLVM.DLLStorageClass.export

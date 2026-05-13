@@ -131,6 +131,22 @@ theorem iSup_le {ι : Type v} (f : ι → α) (x : α) : (∀ i, f i ⊑ x) → 
   rw [← hi]
   exact h i
 
+/-- Pointwise characterization of indexed supremum on function lattices. -/
+@[simp] theorem iSup_fun_apply
+    {ι : Type v} {σ : Type w} {β : Type u} [CompleteLattice β]
+    (f : ι → σ → β) (s : σ) :
+    (iSup f) s = iSup (fun i => f i s) := by
+  apply PartialOrder.rel_antisymm
+  · let g : σ → β := fun t => iSup (fun i => f i t)
+    have hg : iSup f ⊑ g := by
+      apply iSup_le
+      intro i t
+      exact le_iSup (fun j => f j t) i
+    exact hg s
+  · apply iSup_le
+    intro i
+    exact (le_iSup f i) s
+
 /-- Pointwise characterization of `CompleteLattice.sup` on function lattices:
 `(sup c) s = sup (fun y => ∃ f, c f ∧ f s = y)`. -/
 theorem sup_fun_apply
@@ -228,6 +244,8 @@ instance : PartialOrder Prop where
   rel_trans := fun h1 h2 x => h2 (h1 x)
   rel_antisymm := fun h1 h2 => propext ⟨h1, h2⟩
 
+@[simp] theorem entails_prop_eq_imp (p q : Prop) : (p ⊑ q) = (p → q) := rfl
+
 /-- Supremum for Prop: true iff some element of the set is true -/
 def propSup (c : Prop → Prop) : Prop := ∃ p, c p ∧ p
 
@@ -257,6 +275,15 @@ theorem prop_pre_elim (x : Prop) : x → True ⊑ x :=
     exact (iInf_le f i) hf
   · intro hall
     exact (le_iInf f (x := ∀ i, f i) (fun i h => h i)) hall
+
+@[simp] theorem iSup_prop_eq_exists {ι : Type u} (f : ι → Prop) :
+    (iSup f : Prop) = (∃ i, f i) := by
+  apply propext
+  constructor
+  · intro hsup
+    exact (iSup_le f (x := ∃ i, f i) (fun i hi => ⟨i, hi⟩)) hsup
+  · intro ⟨i, hi⟩
+    exact (le_iSup f i) hi
 
 @[simp] theorem meet_prop_eq_and (a b : Prop) : (a ⊓ b : Prop) = (a ∧ b) := by
   apply propext

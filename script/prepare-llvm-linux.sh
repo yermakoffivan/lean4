@@ -23,8 +23,6 @@ cp -L llvm/bin/clang stage1/bin/
 cp -L llvm/bin/ld.lld stage1/bin/
 # a static archiver!
 cp -L llvm/bin/llvm-ar stage1/bin/
-# a llvm!
-cp -L llvm/bin/llvm-config stage1/bin/
 # dependencies of the above
 $CP llvm/lib/lib{clang-cpp,LLVM}*.so* stage1/lib/
 $CP $ZLIB/lib/libz.so* stage1/lib/
@@ -71,11 +69,10 @@ echo -n " -DCMAKE_C_COMPILER_WORKS=1 -DCMAKE_CXX_COMPILER_WORKS=1"
 # use target compiler directly when not cross-compiling
 if [[ -L llvm-host ]]; then
   echo -n " -DCMAKE_C_COMPILER=$PWD/stage1/bin/clang"
-  echo -n " -DLLVM_CONFIG=$PWD/stage1/bin/llvm-config"
 else
   echo -n " -DCMAKE_C_COMPILER=$PWD/llvm-host/bin/clang -DLEANC_OPTS='--sysroot $PWD/stage1 -resource-dir $PWD/stage1/lib/clang/15.0.1 ${EXTRA_FLAGS:-}'"
-  echo -n " -DLLVM_CONFIG=$PWD/llvm-host/bin/llvm-config"
 fi
+echo -n " -DLLVM_CONFIG=$PWD/llvm-host/bin/llvm-config"
 # use `-nostdinc` to make sure headers are not visible by default (in particular, not to `#include_next` in the clang headers),
 # but do not change sysroot so users can still link against system libs
 echo -n " -DLEANC_INTERNAL_FLAGS='--sysroot ROOT -nostdinc -isystem ROOT/include/clang' -DLEANC_CC=ROOT/bin/clang"

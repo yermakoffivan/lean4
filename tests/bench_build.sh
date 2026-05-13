@@ -26,5 +26,3 @@ cp -r stage1 stage3
 cd ../..
 make -C build/release -j"$(nproc)" bench-part1
 mv tests/part1.measurements.jsonl "$RADAR_OUT"
-
-tests/bench/build/lakeprof_report_upload.py

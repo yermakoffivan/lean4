@@ -9,13 +9,48 @@ public import Lean.Elab.Tactic.Grind.Basic
 import Lean.Elab.ConfigEval
 
 public section
-namespace Lean.Elab.Tactic.Grind
+namespace Lean.Elab.Tactic
 
-private def_eval_config_item evalConfigItem for Grind.Config
+open ConfigEval
 
-def elabConfigItems (init : Grind.Config) (items : Array Syntax)
-    : TermElabM Grind.Config := do
-  evalConfigItem.setConfigs' init items (logExceptions := false)
+/--
+Elaborator for grind configurations, with the `(config := ...)` elaborator exposed.
+This allows overriding which structure is used as the expected type when elaborating
+the term, which affects which default values are used in `{...}` structure instance notation.
+-/
+private declare_term_config_elab elabGrindConfigCore Grind.Config
+    (evalConfig : Term → TermElabM Grind.Config) where
+  option config := fun _ item => evalConfig ⟨item.value⟩
+
+local macro "make_elab_grind_config" fn:ident struct:ident : command => do
+  let cfg := mkIdent `cfg
+  let init := mkIdent `init
+  let logExceptions := mkIdent `logExceptions
+  `(private local ensure_eval_expr_instance $struct
+    def $fn ($cfg : Syntax)
+        ($init : $struct := {})
+        ($logExceptions : Bool := true) :
+        TacticM Grind.Config := do
+      elabGrindConfigCore $cfg { $init with }
+        (evalConfig := fun c => do
+          let cfg : $struct ← evalExprWithElab c
+          return { cfg with })
+        (logExceptions := $logExceptions && (← read).recover))
+
+make_elab_grind_config elabGrindConfig Grind.Config
+make_elab_grind_config elabGrindConfigInteractive Grind.ConfigInteractive
+make_elab_grind_config elabCutsatConfig Grind.CutsatConfig
+make_elab_grind_config elabLinarithConfig Grind.LinarithConfig
+make_elab_grind_config elabOrderConfig Grind.OrderConfig
+make_elab_grind_config elabGrobnerConfig Grind.GrobnerConfig
+
+namespace Grind
+
+def elabConfigItems (init : Grind.Config) (items : Array Syntax) :
+    TermElabM Grind.Config := do
+  elabGrindConfigCore (mkNullNode items) init
+    (evalConfig := fun c => evalExprWithElab c)
+    (logExceptions := false)
 
 def withConfigItems (items : Array Syntax)
     (k : GrindTacticM α) : GrindTacticM α := do

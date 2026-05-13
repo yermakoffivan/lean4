@@ -68,7 +68,7 @@ local macro "make_elab_simp_config" fn:ident struct:ident : command => do
   let optConfig := mkIdent `optConfig
   let initConfig := mkIdent `initConfig
   let initUserConfig := mkIdent `initUserConfig
-  `(private local ensure_eval_expr_instance $struct in
+  `(private local ensure_eval_expr_instance $struct
     def $fn ($optConfig : Syntax)
         ($initConfig : $struct := {}) ($initUserConfig : Options := {}) :
         TacticM Simp.ConfigWithOptions := do
@@ -80,7 +80,8 @@ local macro "make_elab_simp_config" fn:ident struct:ident : command => do
 make_elab_simp_config elabSimpConfigCore Simp.Config
 make_elab_simp_config elabSimpConfigCtxCore Simp.ConfigCtx
 
-private local ensure_eval_expr_instance DSimp.Config in
+private local ensure_eval_expr_instance DSimp.Config
+
 /-- Elaborates a `dsimp` configuration, which uses only a subset of the options
 of a `simp` configuration. The `elabSimpConfig` function calls this and immediately
 converts the result to a `Simp.Config`. -/

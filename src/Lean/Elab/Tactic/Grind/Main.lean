@@ -7,7 +7,7 @@ module
 prelude
 public import Lean.Meta.Tactic.Grind.Main
 public import Lean.Meta.Tactic.TryThis
-import Lean.Elab.ConfigEval
+public import Lean.Elab.Tactic.Grind.Config
 public import Lean.LibrarySuggestions.Basic
 import Lean.Meta.Tactic.Grind.SimpUtil
 import Lean.Elab.Tactic.Grind.Param
@@ -17,39 +17,6 @@ import Lean.Meta.Tactic.Grind.Parser
 public section
 namespace Lean.Elab.Tactic
 open Meta
-
-section
-open ConfigEval
-
-/--
-Elaborator for grind configurations, with the `(config := ...)` elaborator exposed.
-This allows overriding which structure is used as the expected type when elaborating
-the term, which affects which default values are used in `{...}` structure instance notation.
--/
-declare_config_elab elabGrindConfigCore Grind.Config
-    (evalConfig : Term → TermElabM Grind.Config) where
-  option config := fun _ item => evalConfig ⟨item.value⟩
-
-local macro "make_elab_grind_config" fn:ident struct:ident : command => do
-  let optConfig := mkIdent `optConfig
-  let initConfig := mkIdent `initConfig
-  `(private local ensure_eval_expr_instance $struct in
-    def $fn ($optConfig : Syntax)
-        ($initConfig : $struct := {}) :
-        TacticM Grind.Config := do
-      elabGrindConfigCore $optConfig { $initConfig with }
-        (evalConfig := fun c => do
-          let cfg : $struct ← evalExprWithElab c
-          return { cfg with }))
-
-make_elab_grind_config elabGrindConfig Grind.Config
-make_elab_grind_config elabGrindConfigInteractive Grind.ConfigInteractive
-make_elab_grind_config elabCutsatConfig Grind.CutsatConfig
-make_elab_grind_config elabLinarithConfig Grind.LinarithConfig
-make_elab_grind_config elabOrderConfig Grind.OrderConfig
-make_elab_grind_config elabGrobnerConfig Grind.GrobnerConfig
-
-end
 
 open Command Term in
 open Lean.Parser.Command.GrindCnstr in

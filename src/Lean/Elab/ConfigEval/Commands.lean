@@ -174,14 +174,12 @@ private meta def mkElabConfigCmd
   let logExceptionsTerm ← mkLogExceptionsTerm logExceptionsIdent
   let go ← mkMonadAdapt =<< `(eval.setConfig' $initIdent $cfgIdent (onErr := onErr) (logExceptions := $logExceptionsTerm))
   withRef (mkNullNode #[tk, elabName, type]) do
-    `(section
-      private local def_eval_config_item $fnName $[$binders]* for $type $[$entries?:configEntries]?
+    `(private local def_eval_config_item $fnName $[$binders]* for $type $[$entries?:configEntries]?
       $[$doc?:docComment]?
       $[$vis?:visibility]? def $elabName $[$binders]* ($cfgIdent : Lean.Syntax) ($initIdent : $type := {}) ($logExceptionsIdent : Bool := $logExceptionsDefault) : $monad $type := do
         let eval : EvalConfigItem $type := @$fnName $binderArgs*
         let onErr := EvalConfigItem.defaultOnErr (cfgType? := mkConst ``$type)
-        $go:term
-      end)
+        $go:term)
 
 /--
 `declare_core_config_elab f struct binders* [where ...]` defines a configuration elaborator
@@ -195,7 +193,7 @@ in null nodes.
 
 The command will transitively derive any necessary `ConfigEval.EvalTerm`/`ConfigEval.EvalExpr`
 instances to support evaluation of configuration options for structure fields.
-These instances will be `private local` to this command.
+These instances will be `private local`.
 
 See `ConfigEval.defEvalConfigItemCmd` for further documentation.
 
@@ -227,7 +225,7 @@ recover by logging errors and skipping invalid options.
 
 The command will transitively derive any necessary `ConfigEval.EvalTerm`/`ConfigEval.EvalExpr`
 instances to support evaluation of configuration options for structure fields.
-These instances will be `private local` to this command.
+These instances will be `private local`.
 
 See `ConfigEval.defEvalConfigItemCmd` for further documentation.
 
@@ -259,7 +257,7 @@ recover by logging errors and skipping invalid options.
 
 The command will transitively derive any necessary `ConfigEval.EvalTerm`/`ConfigEval.EvalExpr`
 instances to support evaluation of configuration options for structure fields.
-These instances will be `private local` to this command.
+These instances will be `private local`.
 
 See `ConfigEval.defEvalConfigItemCmd` for further documentation.
 
@@ -288,7 +286,7 @@ in null nodes.
 
 The command will transitively derive any necessary `ConfigEval.EvalTerm`/`ConfigEval.EvalExpr`
 instances to support evaluation of configuration options for structure fields.
-These instances will be `private local` to this command.
+These instances will be `private local`.
 
 See `ConfigEval.defEvalConfigItemCmd` for further documentation.
 

@@ -320,7 +320,7 @@ def EvalConfigItem.setConfig' {α : Type} (eval : EvalConfigItem α)
     (init : α) (cfg : Syntax)
     (onErr : α → Syntax → TermElabM α := defaultOnErr)
     (logExceptions : Bool := false) : CoreM α := do
-  if cfg.getNumArgs == 0 || (cfg.getNumArgs == 1 && (cfg.getArg 0).getNumArgs == 0) then
+  if cfg.matchesNull 0 || (cfg.getNumArgs == 1 && (cfg.getArg 0).matchesNull 0) then
     -- These represent an empty null node or an `optConfig`-like syntax with no arguments.
     -- Return without doing `runConfigElab`.
     return init

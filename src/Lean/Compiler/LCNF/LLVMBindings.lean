@@ -42,6 +42,8 @@ structure AttributeIndex where
 def AttributeIndex.AttributeReturnIndex : AttributeIndex := { val := 0 }
 -- This value is ~0 for 64 bit
 def AttributeIndex.AttributeFunctionIndex : AttributeIndex := { val := 18446744073709551615 }
+/-- Parameter attribute index. Parameter `n` (0-based) maps to attribute index `n+1`. -/
+def AttributeIndex.param (n : UInt64) : AttributeIndex := { val := n + 1 }
 
 structure BasicBlock (ctx : Context)  where
   private mk :: ptr : USize
@@ -395,6 +397,9 @@ opaque createStringAttribute (key : String) (value : String) : BaseIO (Attribute
 
 @[extern "lean_llvm_create_enum_attribute"]
 opaque createEnumAttribute (name : String) : BaseIO (Attribute ctx)
+
+@[extern "lean_llvm_function_type_returns_void"]
+opaque functionTypeReturnsVoid (ty : @&LLVMType ctx) : BaseIO Bool
 
 @[extern "lean_llvm_add_attribute_at_index"]
 opaque addAttributeAtIndex (fn : Value ctx) (idx: AttributeIndex) (attr: Attribute ctx) : BaseIO Unit

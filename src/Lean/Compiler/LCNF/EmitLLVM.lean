@@ -60,6 +60,14 @@ def getOrAddFunction (m : LLVM.Module ctx) (name : String) (type : LLVM.LLVMType
     -- frontend, which marks every C function `nounwind`.
     let nounwindAttr ← LLVM.createEnumAttribute "nounwind"
     LLVM.addAttributeAtIndex fn LLVM.AttributeIndex.AttributeFunctionIndex nounwindAttr
+    -- Lean values are always defined (LCNF has no `undef`), so mirror clang's
+    -- per-parameter / per-return `noundef`. Skipped on void returns.
+    let noundefAttr ← LLVM.createEnumAttribute "noundef"
+    unless (← LLVM.functionTypeReturnsVoid type) do
+      LLVM.addAttributeAtIndex fn LLVM.AttributeIndex.AttributeReturnIndex noundefAttr
+    let nparams ← LLVM.countParams fn
+    for i in [0:nparams.toNat] do
+      LLVM.addAttributeAtIndex fn (LLVM.AttributeIndex.param i.toUInt64) noundefAttr
     return fn
 
 def getOrAddGlobal (m : LLVM.Module ctx) (name : String) (type : LLVM.LLVMType ctx) : BaseIO (LLVM.Value ctx) := do

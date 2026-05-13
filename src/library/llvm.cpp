@@ -1431,6 +1431,17 @@ extern "C" LEAN_EXPORT size_t lean_llvm_create_enum_attribute(size_t ctx, lean_o
 #endif  // LEAN_LLVM
 }
 
+extern "C" LEAN_EXPORT uint8_t lean_llvm_function_type_returns_void(size_t ctx, size_t fnty) {
+#ifndef LEAN_LLVM
+    lean_always_assert(
+        false && ("Please build a version of Lean4 with -DLLVM=ON to invoke "
+                  "the LLVM backend function."));
+#else
+    LLVMTypeRef ret = LLVMGetReturnType(lean_to_Type(fnty));
+    return LLVMGetTypeKind(ret) == LLVMVoidTypeKind ? 1 : 0;
+#endif  // LEAN_LLVM
+}
+
 extern "C" LEAN_EXPORT lean_object *lean_llvm_add_attribute_at_index(size_t ctx, size_t fn, uint64_t idx, size_t attr) {
 #ifndef LEAN_LLVM
     lean_always_assert(

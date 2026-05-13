@@ -745,8 +745,8 @@ This is the same as `#eval show MetaM Unit from discard do doSeq`.
 -/
 syntax (name := runMeta) "run_meta " doSeq : command
 
-/-- Configuration item for the `#reduce` command. -/
-syntax reduceOpts := many(colGt atomic(" (" ident " := ") term ")")
+/-- Configuration for the `#reduce` command. -/
+syntax reduceConfig := many(colGt atomic(" (" ident " := ") term ")")
 /--
 `#reduce <expression>` reduces the expression `<expression>` to its normal form. This
 involves applying reduction rules until no further reduction is possible.
@@ -761,7 +761,7 @@ especially for complex expressions.
 Consider using `#eval <expression>` for simple evaluation/execution
 of expressions.
 -/
-syntax (name := reduceCmd) "#reduce" reduceOpts term : command
+syntax (name := reduceCmd) "#reduce" reduceConfig term : command
 
 set_option linter.missingDocs false in
 syntax guardMsgsFilterAction := &"check" <|> &"drop" <|> &"pass"

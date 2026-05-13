@@ -457,8 +457,8 @@ def elabCheckCore (ignoreStuckTC : Bool) : CommandElab
 declare_command_config_elab elabReduceConfig Command.ReduceConfig
 
 @[builtin_command_elab Lean.reduceCmd] def elabReduce : CommandElab
-  | `(#reduce%$tk $opts $term) => do
-    let cfg ← elabReduceConfig opts
+  | `(#reduce%$tk $cfg $term) => do
+    let cfg ← elabReduceConfig cfg
     go tk term cfg
   | _ => throwUnsupportedSyntax
 where

@@ -56,6 +56,10 @@ def getOrAddFunction (m : LLVM.Module ctx) (name : String) (type : LLVM.LLVMType
     let fn ← LLVM.addFunction m name type
     let attr ← LLVM.createStringAttribute "probe-stack" "inline-asm"
     LLVM.addAttributeAtIndex fn LLVM.AttributeIndex.AttributeFunctionIndex attr
+    -- Lean-generated code does not raise C++ exceptions; mirror the clang
+    -- frontend, which marks every C function `nounwind`.
+    let nounwindAttr ← LLVM.createEnumAttribute "nounwind"
+    LLVM.addAttributeAtIndex fn LLVM.AttributeIndex.AttributeFunctionIndex nounwindAttr
     return fn
 
 def getOrAddGlobal (m : LLVM.Module ctx) (name : String) (type : LLVM.LLVMType ctx) : BaseIO (LLVM.Value ctx) := do

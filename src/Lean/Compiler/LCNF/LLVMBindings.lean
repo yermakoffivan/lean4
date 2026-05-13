@@ -393,6 +393,9 @@ opaque verifyModule (m : Module ctx) : BaseIO (Option String)
 @[extern "lean_llvm_create_string_attribute"]
 opaque createStringAttribute (key : String) (value : String) : BaseIO (Attribute ctx)
 
+@[extern "lean_llvm_create_enum_attribute"]
+opaque createEnumAttribute (name : String) : BaseIO (Attribute ctx)
+
 @[extern "lean_llvm_add_attribute_at_index"]
 opaque addAttributeAtIndex (fn : Value ctx) (idx: AttributeIndex) (attr: Attribute ctx) : BaseIO Unit
 

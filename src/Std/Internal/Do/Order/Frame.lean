@@ -78,6 +78,24 @@ theorem himp_sound [Frame α] (a b : α) : a ⊓ (a ⇨ b) ⊑ b := by
       exact hax'.right hax'.left
     exact (himp_complete (x := (a → b)) (a := a) (b := b) hx) hab
 
+instance : Frame Prop where
+  meet_sup a s := by
+    have sup_eq_propSup (c : Prop → Prop) : CompleteLattice.sup c = propSup c := by
+      apply propext
+      constructor
+      · exact sup_le c (fun y hy hyTrue => ⟨y, hy, hyTrue⟩)
+      · intro ⟨y, hy, hyTrue⟩
+        exact le_sup (c := c) hy hyTrue
+    rw [sup_eq_propSup s, sup_eq_propSup (fun y => ∃ x, s x ∧ y = a ⊓ x)]
+    apply propext
+    simp only [propSup, meet_prop_eq_and]
+    constructor
+    · rintro ⟨ha, x, hsx, hx⟩
+      exact ⟨a ∧ x, ⟨x, hsx, rfl⟩, ha, hx⟩
+    · rintro ⟨p, ⟨x, hsx, hp_eq⟩, hp⟩
+      subst p
+      exact ⟨hp.1, x, hsx, hp.2⟩
+
 /-- Pointwise characterization of Heyting implication on function lattices. -/
 @[simp] theorem himp_fun_apply
     {σ : Type v} {β : Type u} [CompleteLattice β]

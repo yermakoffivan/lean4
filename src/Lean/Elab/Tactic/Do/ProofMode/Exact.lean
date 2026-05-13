@@ -33,7 +33,6 @@ def _root_.Lean.Elab.Tactic.Do.ProofMode.MGoal.exactPure (goal : MGoal) (hyp : S
     | throwError "mexact tactic failed, {hyp} is not an SPred tautology"
   return mkApp6 (mkConst ``Exact.from_tautology [goal.u]) goal.σs φ goal.hyps goal.target inst h
 
-@[builtin_tactic Lean.Parser.Tactic.mexact]
 def elabMExact : Tactic
   | `(tactic| mexact $hyp:term) => do
     let mvar ← getMainGoal
@@ -41,8 +40,66 @@ def elabMExact : Tactic
       let g ← instantiateMVars <| ← mvar.getType
       let some goal := parseMGoal? g | throwError "not in proof mode"
       if let some prf ← liftMetaM (goal.exact hyp) then
-    mvar.assign prf
+        mvar.assign prf
       else
         mvar.assign (← goal.exactPure hyp)
       replaceMainGoal []
   | _ => throwUnsupportedSyntax
+
+end Lean.Elab.Tactic.Do.ProofMode
+
+namespace Lean.Elab.Tactic.Internal.Do.ProofMode
+
+open Lean Elab Tactic Meta
+open Std.Internal.Tactic.Do
+open Lean.Order
+open Std.Internal.Do.CompleteLattice.Tactic
+
+def _root_.Lean.Elab.Tactic.Internal.Do.ProofMode.MGoal.exact (goal : MGoal) (hyp : Syntax) :
+    OptionT MetaM Expr := do
+  if goal.findHyp? hyp.getId |>.isNone then failure
+  let focusRes ← goal.focusHypWithInfo ⟨hyp⟩
+  OptionT.mk do
+  let proof := mkApp6 (mkConst ``Exact.assumption [goal.uType])
+    goal.l goal.cl goal.hyps focusRes.restHyps goal.target focusRes.proof
+  unless ← isDefEq focusRes.focusHyp goal.target do
+    throwError "mexact tactic failed, hypothesis {hyp} is not definitionally equal to {goal.target}"
+  return proof
+
+def _root_.Lean.Elab.Tactic.Internal.Do.ProofMode.MGoal.exactPure (goal : MGoal) (hyp : Syntax) :
+    TacticM Expr := do
+  let φ ← mkFreshExprMVar (mkSort .zero)
+  let h ← elabTermEnsuringType hyp φ
+  let P ← mkFreshExprMVar goal.l
+  let some inst ← synthInstance?
+    (mkApp4 (mkConst ``PropAsCompleteLatticeTautology [goal.uType]) φ goal.l goal.cl P)
+    | throwError "mexact tactic failed, {hyp} is not a CompleteLattice tautology"
+  return mkApp7 (mkConst ``Exact.from_tautology [goal.uType])
+    goal.l goal.cl goal.hyps goal.target φ inst h
+
+def elabMExact : Tactic
+  | `(tactic| mexact $hyp:term) => do
+    let mvar ← getMainGoal
+    mvar.withContext do
+      let g ← instantiateMVars <| ← mvar.getType
+      let some goal := parseMGoal? g | throwError "not in proof mode"
+      if let some prf ← liftMetaM (goal.exact hyp) then
+        mvar.assign prf
+      else
+        mvar.assign (← goal.exactPure hyp)
+      replaceMainGoal []
+  | _ => throwUnsupportedSyntax
+
+end Lean.Elab.Tactic.Internal.Do.ProofMode
+
+namespace Lean.Elab.Tactic.Do.ProofMode
+open Std.Do SPred.Tactic
+open Lean Elab Tactic Meta
+
+@[builtin_tactic Lean.Parser.Tactic.mexact]
+def elabMExactOpt : Tactic := fun stx => do
+  if new_proof_mode.get (← getOptions) then
+    return ← Lean.Elab.Tactic.Internal.Do.ProofMode.elabMExact stx
+  elabMExact stx
+
+end Lean.Elab.Tactic.Do.ProofMode

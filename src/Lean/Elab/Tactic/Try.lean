@@ -975,8 +975,7 @@ private def mkAllIndStx (info : Try.Info) (cont : TSyntax `tactic) : MetaM (TSyn
 
 /-- Returns tactic for `evalAndSuggest` (unsafe version that can evaluate user generators) -/
 private unsafe def mkTryEvalSuggestStxUnsafe (goal : MVarId) (info : Try.Info) : MetaM (TSyntax `tactic) := do
-  -- Collect user-defined suggestions (runs before the early-out check so that
-  -- `debug.tactic.try.onlyUserSuggestions` mode still actually invokes user generators).
+  -- Collect user-defined suggestions.
   let userEntries := trySuggestionExtension.getState (← getEnv)
   let mut userTactics := #[]
   for entry in userEntries do
@@ -996,7 +995,7 @@ private unsafe def mkTryEvalSuggestStxUnsafe (goal : MVarId) (info : Try.Info) :
       return ← `(tactic|
         fail "debug.tactic.try.onlyUserSuggestions is set but no user suggestions were produced")
     else
-      return ← `(tactic| first $[| $userTactics:tactic]*)
+      return ← `(tactic| attempt_all_par $[| $userTactics:tactic]*)
 
   let simple ← mkSimpleTacStx
   let simp ← mkSimpStx

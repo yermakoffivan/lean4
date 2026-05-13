@@ -69,3 +69,62 @@ where
 
 @[builtin_delab app.Std.Tactic.Do.MGoalHypMarker]
 private def delabHypMarker : Delab := do SPred.Notation.unpack (← withAppArg delab)
+
+end Lean.Elab.Tactic.Do.ProofMode
+
+namespace Lean.Elab.Tactic.Internal.Do.ProofMode
+
+open Lean Expr Meta PrettyPrinter Delaborator SubExpr
+open Std.Internal.Tactic.Do
+open Std.Tactic.Do  -- for `mgoalHyp`/`mgoalOrderStx` notations (shared with old foundation)
+
+@[builtin_delab app.Std.Internal.Tactic.Do.MGoalEntails]
+private partial def delabMGoal : Delab := do
+  -- Std.Internal.Tactic.Do.MGoalEntails : ∀ {α} [PartialOrder α], α → α → Prop
+  let e ← getExpr
+  guard <| e.getAppNumArgs >= 4
+  let (_, _, hyps) ← withAppFn <| withAppArg <| delabHypotheses ({}, {}, #[])
+  let target ← withAppArg <| delab
+
+  return ⟨← `(Std.Tactic.Do.mgoalOrderStx| $hyps.reverse* ⊑ $target:term)⟩
+where
+  delabHypotheses
+      (acc : NameMap Nat × NameMap Nat × Array (TSyntax ``mgoalHyp)) :
+      DelabM (NameMap Nat × NameMap Nat × Array (TSyntax ``mgoalHyp)) := do
+    let hyps ← getExpr
+    if let some _ := parseEmptyHyp? hyps then
+      return acc
+    if let some hyp := parseHyp? hyps then
+      let mut (accessibles, inaccessibles, lines) := acc
+      let name := hyp.name.eraseMacroScopes
+      let mIdx :=
+        if hyp.name.hasMacroScopes then
+          .some (inaccessibles.getD name 0)
+        else
+          accessibles.find? name
+      let (idx, name') :=
+        if let some idx := mIdx then
+          (idx + 1, name.appendAfter <| if idx == 0 then "✝" else "✝" ++ idx.toSuperscriptString)
+        else
+          (0, name)
+      let name' := mkIdent name'
+      let stx ← `(Std.Tactic.Do.mgoalHyp| $name' : $(← withMDataExpr <| delab))
+      if hyp.name.hasMacroScopes then
+        inaccessibles := inaccessibles.insert name idx
+      else
+        accessibles := accessibles.insert name idx
+      return (accessibles, inaccessibles, lines.push stx)
+    if (parseAnd? hyps).isSome then
+      -- meet l cl lhs rhs (4 args). delab `rhs` first, then `lhs`.
+      let acc_rhs ← withAppArg <| delabHypotheses acc
+      let acc_lhs ← withAppFn <| withAppArg <| delabHypotheses acc_rhs
+      return acc_lhs
+    else
+      failure
+
+@[builtin_delab app.Std.Internal.Tactic.Do.MGoalHypMarker]
+private def delabHypMarker : Delab := do delab (← withAppArg getExpr)
+
+end Lean.Elab.Tactic.Internal.Do.ProofMode
+
+namespace Lean.Elab.Tactic.Do.ProofMode

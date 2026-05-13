@@ -37,6 +37,9 @@ variable {l : Type u} [CompleteLattice l] {P P' Q Q' R R' T : l} {φ φ₁ φ₂
 
 theorem and_intro_l (h : P ⊑ Q) : P ⊑ Q ⊓ P := le_meet _ _ _ h rel_refl
 theorem and_intro_r (h : P ⊑ Q) : P ⊑ P ⊓ Q := le_meet _ _ _ rel_refl h
+theorem and_intro_eq (hand : T = Q ⊓ R) (hQ : P ⊑ Q) (hR : P ⊑ R) : P ⊑ T := by
+  rw [hand]
+  exact le_meet _ _ _ hQ hR
 theorem and_elim_l' (h : P ⊑ R) : P ⊓ Q ⊑ R := rel_trans (meet_le_left _ _) h
 theorem and_elim_r' (h : Q ⊑ R) : P ⊓ Q ⊑ R := rel_trans (meet_le_right _ _) h
 theorem or_intro_l' (h : P ⊑ Q) : P ⊑ Q ⊔ R := rel_trans h (left_le_join _ _)
@@ -377,6 +380,8 @@ class IsAnd (P : l) (Q₁ Q₂ : outParam l) where
   to_and : P = Q₁ ⊓ Q₂
 
 instance (Q₁ Q₂ : l) : IsAnd (Q₁ ⊓ Q₂) Q₁ Q₂ where to_and := rfl
+instance (priority := high) [inst : IsAnd P P' Q] (R : l) : IsAnd (P ⊓ R) P' (Q ⊓ R) where
+  to_and := by rw [inst.to_and, and_assoc]
 instance (p q : Prop) : IsAnd (l := l) ⌜p ∧ q⌝ ⌜p⌝ ⌜q⌝ where to_and := pure_and.symm
 
 theorem ProofMode.start_entails {P : l} {φ : Prop} [PropAsCompleteLatticeTautology φ P] :
@@ -402,6 +407,9 @@ theorem Cases.and_2 {Q H₁' H₂ T : l} (hgoal : (Q ⊓ H₁') ⊓ H₂ ⊑ T) 
 theorem Cases.and_3 {Q H₁ H₂ H T : l} (hand : H = H₁ ⊓ H₂)
     (hgoal : (Q ⊓ H₂) ⊓ H₁ ⊑ T) : Q ⊓ H ⊑ T := by
   rw [hand, ← and_assoc, and_right_comm]; exact hgoal
+theorem Cases.exists [Frame l] {Q : l} {α} {ψ : α → l} {T : l}
+    (h : ∀ a, Q ⊓ ψ a ⊑ T) : Q ⊓ iSup ψ ⊑ T :=
+  imp_elim' (iSup_le _ _ fun a => imp_intro (rel_trans and_symm (h a)))
 
 theorem Clear.clear {P P' A Q : l} (hfocus : P = P' ⊓ A) (h : P' ⊑ Q) : P ⊑ Q :=
   hfocus ▸ rel_trans (meet_le_left _ _) h

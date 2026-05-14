@@ -309,12 +309,11 @@ def EvalConfigItem.setConfigs {α} (eval : EvalConfigItem α)
 Runs `mx` using a fresh meta and term state.
 This should be used around any configuration elaboration.
 -/
-def runConfigElab {α} (mx : TermElabM α) (errToSorry : Bool) : CoreM α :=
-  MetaM.run' <| TermElabM.run' (ctx := { errToSorry }) <| withSaveInfoContext mx
+def runConfigElab {α} (mx : TermElabM α) : CoreM α :=
+  MetaM.run' <| TermElabM.run' <| withSaveInfoContext mx
 
 /--
 Calls `EvalConfigItem.setConfig'` from within `runConfigElab`.
-If `logExceptions` is true, then `errToSorry` is enabled.
 -/
 def EvalConfigItem.setConfig' {α : Type} (eval : EvalConfigItem α)
     (init : α) (cfg : Syntax)
@@ -325,11 +324,10 @@ def EvalConfigItem.setConfig' {α : Type} (eval : EvalConfigItem α)
     -- Return without doing `runConfigElab`.
     return init
   else
-    runConfigElab (eval.setConfig init cfg onErr logExceptions) logExceptions
+    runConfigElab (eval.setConfig init cfg onErr logExceptions)
 
 /--
 Calls `EvalConfigItem.setConfigs'` from within `runConfigElab`.
-If `logExceptions` is true, then `errToSorry` is enabled.
 -/
 def EvalConfigItem.setConfigs' {α : Type} (eval : EvalConfigItem α)
     (init : α) (cfgs : Array Syntax)
@@ -338,6 +336,6 @@ def EvalConfigItem.setConfigs' {α : Type} (eval : EvalConfigItem α)
   if cfgs.isEmpty then
     return init
   else
-    runConfigElab (eval.setConfigs init cfgs onErr logExceptions) logExceptions
+    runConfigElab (eval.setConfigs init cfgs onErr logExceptions)
 
 end Lean.Elab.ConfigEval

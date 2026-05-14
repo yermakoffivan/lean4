@@ -10,7 +10,7 @@ public import Lean.Elab.ConfigEval.DeriveEvalTerm
 public import Lean.Elab.ConfigEval.DeriveEvalExpr
 import Lean.Elab.ConfigEval.Util
 public import Lean.Elab.ConfigEval.Basic
-import Lean.Elab.ConfigEval.Instances
+public import Lean.Elab.ConfigEval.Instances
 
 /-!
 # Derivation of `EvalConfigItem`
@@ -161,7 +161,7 @@ also makes use of the cached `item.bool?` value.
 def evalBoolItem (item : ConfigItem) : TermElabM Bool := do
   if let some b := item.bool? then
     if (← getInfoState).enabled then
-      addTermInfo' item.value (Expr.const (if b then ``true else ``false) [])
+      addTermInfo' item.value (if b then toExpr true else toExpr false)
     return b
   else
     evalTermOrExprWithElab ⟨item.value⟩

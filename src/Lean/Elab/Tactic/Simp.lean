@@ -88,7 +88,7 @@ converts the result to a `Simp.Config`. -/
 private declare_config_elab elabDSimpConfigCore DSimp.ConfigWithOptions where
   omit userConfig
   option config := fun cfg item => do
-    let config ← evalExprWithElab item.value
+    let config : DSimp.Config ← evalExprWithElab item.value
     return { cfg with config }
   option user := fun _ item => do
     item.addConstInfo ``DSimp.ConfigWithOptions.userConfig
@@ -191,7 +191,7 @@ private def mkDischargeWrapper (optDischargeSyntax : Syntax) : TacticM Simp.Disc
 def elabSimpConfig (optConfig : Syntax) (kind : SimpKind) : TacticM Simp.ConfigWithOptions := do
   match kind with
     | .simp    => elabSimpConfigCore optConfig
-    | .simpAll => elabSimpConfigCtxCore optConfig { ({} : Meta.Simp.ConfigCtx) with }
+    | .simpAll => elabSimpConfigCtxCore optConfig
     | .dsimp   => pure { (← elabDSimpConfigCore optConfig) with }
 
 inductive ResolveSimpIdResult where

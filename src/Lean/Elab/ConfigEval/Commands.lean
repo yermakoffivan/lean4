@@ -172,7 +172,7 @@ private meta def mkElabConfigCmd
   let initIdent := mkIdent `init
   let logExceptionsIdent := mkIdent `logExceptions
   let logExceptionsTerm ← mkLogExceptionsTerm logExceptionsIdent
-  let go ← mkMonadAdapt =<< `(eval.setConfig' $initIdent $cfgIdent (onErr := onErr) (logExceptions := $logExceptionsTerm))
+  let go ← mkMonadAdapt =<< `(EvalConfigItem.setConfig' eval $initIdent $cfgIdent (onErr := onErr) (logExceptions := $logExceptionsTerm))
   withRef (mkNullNode #[tk, elabName, type]) do
     `(private local def_eval_config_item $fnName $[$binders]* for $type $[$entries?:configEntries]?
       $[$doc?:docComment]?

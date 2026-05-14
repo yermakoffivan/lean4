@@ -780,6 +780,7 @@ class task_manager {
         if (m_shutting_down)
             return;
 
+        // NOTE: always called inside lock
         m_num_std_workers++;
         // The `lthread` object is immediately destroyed, which detaches the thread.
         lthread([this]() {
@@ -791,13 +792,10 @@ class task_manager {
                     if (m_shutting_down) {
                         break;
                     }
-                    // Wait for new tasks, with a timeout so idle threads can exit.
-                    // Only exit on actual timeout, not on spurious wakeups or notifications
-                    // (e.g. from another thread's exit notify_all).
-                    if (m_queue_cv.wait_for(lock, chrono::milliseconds(WORKER_IDLE_TIMEOUT_MS))
-                        == std::cv_status::timeout
-                        && m_queues_size == 0 && !m_shutting_down) {
-                        break;
+                    // Wait for new tasks, with a timeout so idle threads can exit
+                    if (!m_queue_cv.wait_for(lock, chrono::milliseconds(WORKER_IDLE_TIMEOUT_MS),
+                            [&]() { return m_queues_size > 0 || m_shutting_down; })) {
+                        break;  // Exit due to timeout
                     }
                     continue;
                 }

@@ -84,7 +84,7 @@ class IntModule (M : Type u) extends AddCommGroup M where
   zsmul_natCast_eq_nsmul : ∀ n : Nat, ∀ a : M, (n : Int) • a = n • a
 
 attribute [implicit_reducible] IntModule.zsmul
-attribute [instance 100] IntModule.toAddCommGroup IntModule.zsmul
+attribute [instance 1100] IntModule.toAddCommGroup IntModule.zsmul
 
 namespace IntModule
 

@@ -58,10 +58,10 @@ trace: [Meta.synthInstance] ❌️ Add String
   [Meta.synthInstance.apply] ✅️ apply @Lean.Grind.AddCommGroup.toAddCommMonoid to Lean.Grind.AddCommMonoid String
     [Meta.synthInstance.tryResolve] ✅️ Lean.Grind.AddCommMonoid String ≟ Lean.Grind.AddCommMonoid String
     [Meta.synthInstance] ✅️ new goal Lean.Grind.AddCommGroup String
-      [Meta.synthInstance.instances] #[@Lean.Grind.IntModule.toAddCommGroup, @Lean.Grind.Ring.toAddCommGroup]
-  [Meta.synthInstance.apply] ✅️ apply @Lean.Grind.Ring.toAddCommGroup to Lean.Grind.AddCommGroup String
-    [Meta.synthInstance.tryResolve] ✅️ Lean.Grind.AddCommGroup String ≟ Lean.Grind.AddCommGroup String
+      [Meta.synthInstance.instances] #[@Lean.Grind.Ring.toAddCommGroup, @Lean.Grind.IntModule.toAddCommGroup]
   [Meta.synthInstance.apply] ✅️ apply @Lean.Grind.IntModule.toAddCommGroup to Lean.Grind.AddCommGroup String
+    [Meta.synthInstance.tryResolve] ✅️ Lean.Grind.AddCommGroup String ≟ Lean.Grind.AddCommGroup String
+  [Meta.synthInstance.apply] ✅️ apply @Lean.Grind.Ring.toAddCommGroup to Lean.Grind.AddCommGroup String
     [Meta.synthInstance.tryResolve] ✅️ Lean.Grind.AddCommGroup String ≟ Lean.Grind.AddCommGroup String
   [Meta.synthInstance] result <not-available>
 -/
@@ -115,10 +115,10 @@ trace: [Meta.synthInstance] ❌️ Add Bool
   [Meta.synthInstance.apply] ✅️ apply @Lean.Grind.AddCommGroup.toAddCommMonoid to Lean.Grind.AddCommMonoid Bool
     [Meta.synthInstance.tryResolve] ✅️ Lean.Grind.AddCommMonoid Bool ≟ Lean.Grind.AddCommMonoid Bool
     [Meta.synthInstance] ✅️ new goal Lean.Grind.AddCommGroup Bool
-      [Meta.synthInstance.instances] #[@Lean.Grind.IntModule.toAddCommGroup, @Lean.Grind.Ring.toAddCommGroup]
-  [Meta.synthInstance.apply] ✅️ apply @Lean.Grind.Ring.toAddCommGroup to Lean.Grind.AddCommGroup Bool
-    [Meta.synthInstance.tryResolve] ✅️ Lean.Grind.AddCommGroup Bool ≟ Lean.Grind.AddCommGroup Bool
+      [Meta.synthInstance.instances] #[@Lean.Grind.Ring.toAddCommGroup, @Lean.Grind.IntModule.toAddCommGroup]
   [Meta.synthInstance.apply] ✅️ apply @Lean.Grind.IntModule.toAddCommGroup to Lean.Grind.AddCommGroup Bool
+    [Meta.synthInstance.tryResolve] ✅️ Lean.Grind.AddCommGroup Bool ≟ Lean.Grind.AddCommGroup Bool
+  [Meta.synthInstance.apply] ✅️ apply @Lean.Grind.Ring.toAddCommGroup to Lean.Grind.AddCommGroup Bool
     [Meta.synthInstance.tryResolve] ✅️ Lean.Grind.AddCommGroup Bool ≟ Lean.Grind.AddCommGroup Bool
   [Meta.synthInstance] result <not-available>
 -/

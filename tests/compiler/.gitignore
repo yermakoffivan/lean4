@@ -1,5 +1,5 @@
-*.lean.out
-*.lean.c
-*.lean.linked.bc
-*.dSYM
-test_flags.sh
+# Tests creating temporary output files should prefix them with `_tmp_` so they're all
+# covered by this one pattern. The tests delete them on success; this entry catches stragglers
+# from failed runs.
+/_tmp_*
+

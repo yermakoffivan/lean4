@@ -315,6 +315,37 @@ private def getFoundNamedArgs : M (Array Name) :=
   return (← get).foundNamedArgs
 
 /--
+Returns a named argument that depends on the next argument, otherwise `none`.
+-/
+private def findNamedArgDependsOn? (fType : Expr) (namedArgs : List NamedArg) : MetaM (Option NamedArg) := do
+  if fType.isArrow then
+    return none
+  else
+    forallTelescopeReducing fType fun xs _ => do
+      let curr := xs[0]!
+      let mut namedArgs := namedArgs
+      for h : i in 1...xs.size do
+        let xDecl ← xs[i].fvarId!.getDecl
+        if let some arg := namedArgs.find? fun arg => arg.name == xDecl.userName then
+          /- Remark: a default value at `optParam` does not count as a dependency -/
+          if (← exprDependsOn xDecl.type.cleanupAnnotations curr.fvarId!) then
+            return arg
+          -- Erase, since `xDecl.userName` can be repeated, and we can otherwise get false dependencies
+          namedArgs := Term.eraseNamedArg namedArgs xDecl.userName
+      return none
+
+/--
+Returns a named argument that depends on the next argument, otherwise `none`.
+-/
+private def findNamedArgDependsOnCurrent? : M (Option NamedArg) := do
+  if (← get).namedArgs.isEmpty then
+    return none
+  else if (← get).fType.isArrow then
+    return none
+  else
+    findNamedArgDependsOn? (← getFType) (← get).namedArgs
+
+/--
   Try to synthesize metavariables are `instMVars` using type class resolution.
   The ones that cannot be synthesized yet stay in the `instMVars` list.
   Remark: we use this method
@@ -411,29 +442,63 @@ private def elabAndAddNewArg (argName : Name) (arg : Arg) : M Unit := do
     let arg ← withRef stx <| ensureArgType s.f val expectedType
     addNewArg argName arg
 
-/-- Return true if `fType` contains `OptParam` or `AutoParams` -/
-private def fTypeHasOptAutoParams : M Bool := do
-  hasOptAutoParams (← getFType)
-
 /--
-   Auxiliary function for retrieving the resulting type of a function application.
-   See `propagateExpectedType`.
-   Remark: `(explicit : Bool) == true` when `@` modifier is used. -/
-private partial def getForallBody (explicit : Bool) : Nat → List NamedArg → Expr → Option Expr
-  | i, namedArgs, type@(.forallE n d b bi) =>
-    match findNamedArg? namedArgs n with
-    | some _ => getForallBody explicit i (Term.eraseNamedArg namedArgs n) b
-    | none =>
-      if !explicit && !bi.isExplicit then
-        getForallBody explicit i namedArgs b
-      else if i > 0 then
-        getForallBody explicit (i-1) namedArgs b
-      else if d.isAutoParam || d.isOptParam then
-        getForallBody explicit i namedArgs b
-      else
-        some type
-  | 0, [], type => some type
-  | _, _,  _    => none
+Auxiliary function for computing the resulting type of a function application.
+Simulates `ElabAppArgs.main` without elaborating anything.
+-/
+private partial def getResultingTypeCore? (explicit ellipsis : Bool) (numImplicitParams : Nat)
+    (paramIdx : Nat) (numArgs : Nat) (namedArgs : List NamedArg) (fType : Expr) : TermElabM (Option Expr) := do
+  trace[Elab.app.propagateExpectedType] "numArgs: {numArgs}, namedArgs.length: {namedArgs.length}"
+  trace[Elab.app.propagateExpectedType] "fType: {fType}"
+  main' paramIdx numArgs namedArgs fType
+where
+  main' (paramIdx : Nat) (numArgs : Nat) (namedArgs : List NamedArg) (fType : Expr) : TermElabM (Option Expr) := do
+    -- Note that we want to return an `fType` that's *not* in WHNF, so we keep the original `fType`
+    -- and compute a separate `fType'`.
+    let fType' ← if fType.isForall || fType.hasLooseBVars then pure fType else whnfForall fType
+    if let .forallE binderName paramType fTypeBody bi := fType' then
+      match Term.findNamedArg? namedArgs binderName with
+      | some _ => main' (paramIdx + 1) numArgs (Term.eraseNamedArg namedArgs binderName) fTypeBody
+      | none =>
+        let processImplicit' (_ : Unit) := main' (paramIdx + 1) numArgs namedArgs fTypeBody
+        if !explicit && bi.isStrictImplicit && numArgs == 0 && namedArgs.isEmpty then
+          finalize' fType
+        else if !explicit && !bi.isExplicit then
+          processImplicit' ()
+        else if paramIdx < numImplicitParams then -- Simulates `processExplicitArg` from this point onward
+          processImplicit' ()
+        else if numArgs > 0 then
+          main' (paramIdx + 1) (numArgs - 1) namedArgs fTypeBody
+        else if ellipsis || !explicit && (paramType.isAutoParam || paramType.isOptParam) then
+          processImplicit' ()
+        else if fType'.hasLooseBVars then
+          trace[Elab.app.propagateExpectedType] "propogation postponed, resulting type depends on arguments that have not yet been elaborated: {fType'}"
+          return none
+        else if !namedArgs.isEmpty then
+          if (← findNamedArgDependsOn? fType' namedArgs).isSome then
+            processImplicit' ()
+          else
+            trace[Elab.app.propagateExpectedType] "propogation postponed, there are still named arguments, and need to use eta arguments"
+            return none
+        else if !explicit then
+          if (← hasOptAutoParams fType') then
+            trace[Elab.app.propagateExpectedType] "propagation postponed, resulting type has opt-params or auto-params: {fType'}"
+            return none
+          else
+            finalize' fType
+        else
+          finalize' fType
+    else if numArgs > 0 || !namedArgs.isEmpty then
+      trace[Elab.app.propagateExpectedType] "propogation postponed, currently more arguments than parameters"
+      return none
+    else
+      finalize' fType
+  finalize' (fType : Expr) : MetaM (Option Expr) := do
+    if fType.hasLooseBVars then
+      trace[Elab.app.propagateExpectedType] "propagation postponed, resulting type depends on arguments that have not yet been elaborated: {fType}"
+      return none
+    else
+      return fType
 
 /--
 Auxiliary function for `propagateExpectedType`. Returns the inferred type of the function
@@ -445,21 +510,8 @@ private partial def getResultingType? : M (Option Expr) := do
         | .ok resultingType => return m!"resulting type: {resultingType}"
         | .error ex => return m!"resulting type failed: {ex.toMessageData}") do
     let fType ← getFType'
-    trace[Elab.app.propagateExpectedType] "args.length: {(← get).args.length}, namedArgs.length: {(← get).namedArgs.length}"
-    trace[Elab.app.propagateExpectedType] "fType: {fType}"
-    match getForallBody (← read).explicit (← get).args.length (← get).namedArgs fType with
-    | none =>
-      trace[Elab.app.propagateExpectedType] "propagation postponed, could not compute resulting type"
-      return none
-    | some resultingType =>
-      if resultingType.hasLooseBVars then
-        trace[Elab.app.propagateExpectedType] "propagation postponed, resulting type depends on arguments that have not yet been elaborated"
-        return none
-      else if ← hasOptAutoParams resultingType then
-        trace[Elab.app.propagateExpectedType] "propagation postponed, resulting type has opt-params or auto-params: {resultingType}"
-        return none
-      else
-        return resultingType
+    getResultingTypeCore? (← read).explicit (← read).ellipsis (← read).numImplicitParams
+      (← get).paramIdx (← get).args.length (← get).namedArgs fType
 
 private def shouldPropagateExpectedTypeFor (nextArg : Arg) : Bool :=
   match nextArg with
@@ -603,26 +655,6 @@ private def finalize : M Expr := do
           return false
     synthesizeAppInstMVars
     return e
-
-/--
-Returns a named argument that depends on the next argument, otherwise `none`.
--/
-private def findNamedArgDependsOnCurrent? : M (Option NamedArg) := do
-  if (← get).namedArgs.isEmpty then
-    return none
-  else
-    forallTelescopeReducing (← getFType) fun xs _ => do
-      let curr := xs[0]!
-      let mut namedArgs := (← get).namedArgs
-      for h : i in 1...xs.size do
-        let xDecl ← xs[i].fvarId!.getDecl
-        if let some arg := namedArgs.find? fun arg => arg.name == xDecl.userName then
-          /- Remark: a default value at `optParam` does not count as a dependency -/
-          if (← exprDependsOn xDecl.type.cleanupAnnotations curr.fvarId!) then
-            return arg
-          -- Erase, since `xDecl.userName` can be repeated, and we can otherwise get false dependencies
-          namedArgs := Term.eraseNamedArg namedArgs xDecl.userName
-      return none
 
 /--
   Return `true` if the next argument to be processed is the outparam of a local instance, and it the result type
@@ -836,7 +868,7 @@ mutual
             trace[Elab.app.args] "using eta arg since there are still named arguments"
             addEtaArg argName
         else if !(← read).explicit then
-          if (← fTypeHasOptAutoParams) then
+          if (← hasOptAutoParams (← getFType)) then
             trace[Elab.app.args] "using eta arg since there are still optParams or autoParams"
             addEtaArg argName
           else

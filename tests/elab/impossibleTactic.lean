@@ -30,13 +30,13 @@ example (n : Nat) : n = n + 1 := by
     intro h
     exact Nat.succ_ne_zero _ ((h 0).symm)
 
--- The tactic accepts arbitrary terms, not just `by` blocks.
+-- Goal `False`: `¬False` is `False → False`, which is closed by `exact id`.
 /--
 warning: declaration uses `sorry`
 -/
 #guard_msgs in
 example : False := by
-  impossible id
+  impossible by exact id
 
 -- The tactic works at any universe, including non-`Prop` goals: it falls back
 -- to `_ → False` instead of `Not _` so the construction is well-typed.

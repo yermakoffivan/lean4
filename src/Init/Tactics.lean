@@ -1131,11 +1131,11 @@ scope of the tactic.
 syntax (name := classical) "classical" ppDedent(tacticSeq) : tactic
 
 /--
-`impossible e` closes the current goal with `sorry`, where `e` is a proof of the
-negation of the goal after reverting all local hypotheses. Typically `e` is a
-`by` block, e.g. `impossible by decide`.
+`impossible by t` closes the current goal with `sorry`, having checked that
+the tactic `t` proves the negation of the goal after reverting all local
+hypotheses.
 -/
-syntax (name := impossible) "impossible " term : tactic
+syntax (name := impossible) "impossible" " by " ppDedent(tacticSeq) : tactic
 
 /--
 The `split` tactic is useful for breaking nested if-then-else and `match` expressions into separate cases.

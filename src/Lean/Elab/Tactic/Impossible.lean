@@ -30,17 +30,20 @@ def evalImpossible : Tactic := fun stx => do
   if goalType.hasLevelMVar then
     throwErrorAt kw "\
       `impossible`: goal contains universe metavariables{indentExpr goalType}"
-  unless (← mainGoal.withContext do Meta.isProp goalType) do
-    throwErrorAt kw "\
-      `impossible`: goal is not a proposition{indentExpr goalType}"
   -- Compute the reverted, negated target from a discardable copy of the main
-  -- goal, so the original `mainGoal` remains assignable below.
+  -- goal, so the original `mainGoal` remains assignable below. We use `Not` on
+  -- propositions and fall back to `_ → False` otherwise so the construction is
+  -- well-typed at any universe.
   let negType ← mainGoal.withContext do
     let dummy ← mkFreshExprSyntheticOpaqueMVar goalType
     let cleaned ← dummy.mvarId!.cleanup
     let (_, reverted) ← cleaned.revert (clearAuxDeclsInsteadOfRevert := true)
       (← cleaned.getDecl).lctx.getFVarIds
-    pure (mkNot (← reverted.getType))
+    let revertedType ← reverted.getType
+    if (← Meta.isProp revertedType) then
+      pure (mkNot revertedType)
+    else
+      mkArrow revertedType (mkConst ``False)
   -- Elaborate the user-supplied proof of the closed-form negation. Any errors
   -- in the term (including inside a `by` block) are reported normally by the
   -- term elaborator. We discard the resulting expression — we are only checking

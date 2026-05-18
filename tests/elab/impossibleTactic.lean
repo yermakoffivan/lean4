@@ -38,14 +38,13 @@ warning: declaration uses `sorry`
 example : False := by
   impossible id
 
--- The tactic should complain (with range = `impossible` keyword) if the goal is
--- not a proposition.
+-- The tactic works at any universe, including non-`Prop` goals: it falls back
+-- to `_ → False` instead of `Not _` so the construction is well-typed.
 /--
-@ +2:2...12
-error: `impossible`: goal is not a proposition
-  Nat
+error: unsolved goals
+⊢ ∀ (x : Nat), False
 -/
-#guard_msgs (positions := true) in
+#guard_msgs in
 example : Nat := by
   impossible by skip
 

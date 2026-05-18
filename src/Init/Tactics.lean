@@ -1131,16 +1131,10 @@ scope of the tactic.
 syntax (name := classical) "classical" ppDedent(tacticSeq) : tactic
 
 /--
-`impossible e` asserts that the current goal is provably impossible and closes it
-with `sorry`. The proof obligation `e` must have type `¬ (∀ xs, G)`, where `xs` are
-the local hypotheses and `G` is the current target — i.e. after reverting all
-hypotheses and negating, the term `e` must inhabit the resulting type.
-
-Typically `e` is a `by` block, e.g. `impossible by decide`.
-
-The original goal is closed with `sorry`, just like the `sorry` tactic, and no new
-axioms are added to the environment. The goal must not contain expression or
-universe metavariables.
+`impossible e` closes the current goal with `sorry`, where `e` is a proof of the
+negation of the goal after reverting all local hypotheses. Typically `e` is a
+`by` block, e.g. `impossible by decide`. No new axioms are added to the
+environment.
 -/
 syntax (name := impossible) "impossible " term : tactic
 

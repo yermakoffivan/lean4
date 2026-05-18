@@ -103,6 +103,11 @@ structure Context where
   -/
   localDecls : Array (Decl .impure)
   /--
+  Set of names of the declarations in `localDecls`, for `O(1)` membership
+  tests when deciding whether a callee is local.
+  -/
+  localDeclNames : Std.HashSet Name
+  /--
   Signatures of declarations from other modules.
   -/
   otherModuleDecls : Array (Signature .impure)
@@ -269,6 +274,49 @@ where
 
 def emitCInitName (n : Name) : EmitM Unit :=
   toCInitName n >>= emit
+
+/--
+C name of the `static`, internal-linkage worker function for `n`. Computed by
+mangling `n` extended with the `_direct` suffix so the resulting symbol is
+distinct from the exported wrapper.
+-/
+def toDirectCName (n : Name) : EmitM String := toCName (n.mkStr "_direct")
+
+@[inline] def isLocalDecl (n : Name) : EmitM Bool :=
+  return (← read).localDeclNames.contains n
+
+/--
+True iff a `static <name>__direct(...)` body should be emitted for the local
+decl `n`, paired with an exported wrapper that delegates to it.
+
+Skipped for: externs, init / closed-term / ground decls (handled by other
+emission paths), `_boxed` wrappers, zero-parameter constants, and trivial
+wrappers that exist solely to call a sibling `<n>._redArg`.
+-/
+def hasDirectBody (n : Name) : EmitM Bool := do
+  unless (← isLocalDecl n) do return false
+  let env ← getEnv
+  if (getExternNameFor env `c n).isSome then return false
+  if hasInitAttr env n then return false
+  if isSimpleGroundDecl env n then return false
+  if isClosedTermName env n then return false
+  if isBoxedName n then return false
+  let some sig ← getImpureSignature? n | return false
+  if sig.params.isEmpty then return false
+  -- `n` is a trivial wrapper for `<n>._redArg`; the body lives in
+  -- `<n>._redArg._direct`, so emitting `<n>._direct` would be redundant.
+  if (← isLocalDecl (n ++ `_redArg)) then return false
+  return true
+
+/--
+If a local `fap` call to `fn` should be rewritten to call its `_direct`
+worker, return that worker's C name.
+-/
+def directCallTarget? (fn : Name) : EmitM (Option String) := do
+  if (← hasDirectBody fn) then
+    return some (← toDirectCName fn)
+  else
+    return none
 
 def emitFileHeader : EmitM Unit := do
   let env ← getEnv
@@ -477,6 +525,8 @@ where
       emitFnDeclClosed decl cppBaseName
     else
       emitFnDeclStandard decl.toSignature isExternal
+      if ← hasDirectBody decl.name then
+        emitDirectFwdDecl decl.toSignature
 
   emitFnDeclClosed (decl : Decl .impure) (cppBaseName : String) : EmitM Unit := do
     emitLn s!"static lean_once_cell_t {toOnceTokenName cppBaseName} = LEAN_ONCE_CELL_INITIALIZER;"
@@ -486,6 +536,23 @@ where
     let env ← getEnv
     let cppBaseName ← toCName sig.name
     emitFnDeclAux sig cppBaseName isExternal
+
+  /--
+  Emit a forward declaration for the internal-linkage `_direct` worker
+  paired with the exported wrapper for `sig`.
+  -/
+  emitDirectFwdDecl (sig : Signature .impure) : EmitM Unit := do
+    emit "static "
+    emit sig.type.toCType
+    emit " "
+    emit (← toDirectCName sig.name)
+    emit "("
+    let ps := paramsWithoutVoid sig.params
+    ps.size.forM fun i _ => do
+      if i > 0 then emit ", "
+      emit ps[i].type.toCType
+    emit ");"
+    emitLn ""
 
   emitFnDeclAux (sig : Signature .impure) (cppBaseName : String) (isExternal : Bool) :
       EmitM Unit := do
@@ -653,13 +720,21 @@ where
       | some (.inline _ pat) =>
         emit (expandExternPattern pat (← toStringArgs args))
       | some .opaque | none =>
-        emitLeanFunReference decl.type fn
-        if args.size > 0 then
+        if let some directName ← directCallTarget? fn then
+          emit directName
           let (_, args) :=
             ps.zip args
               |>.filter (fun (p, _) => !p.type.isVoid)
               |>.unzip
           emit "("; emitArgs args; emit ")"
+        else
+          emitLeanFunReference decl.type fn
+          if args.size > 0 then
+            let (_, args) :=
+              ps.zip args
+                |>.filter (fun (p, _) => !p.type.isVoid)
+                |>.unzip
+            emit "("; emitArgs args; emit ")"
       | _ => throwError s!"failed to emit extern application '{fn}'"
 
   emitPap (fn : Name) (args : Array (Arg .impure)) : EmitM Unit := do
@@ -918,6 +993,30 @@ partial def emitCode (code : Code .impure) : EmitM Unit := do
 
 end
 
+/--
+Emit a typed parameter list `(T1 x1, T2 x2, ...)` for a function header.
+-/
+def emitParamList (ps : Array (Param .impure)) : EmitM Unit := do
+  emit "("
+  ps.size.forM fun i _ => do
+    if i > 0 then emit ", "
+    let p := ps[i]
+    emit p.type.toCType; emit " "; emit p.binderName
+  emit ")"
+
+/--
+Emit the body of an exported wrapper: `{ return <directName>(<args>); }`,
+forwarding each parameter by its binder name.
+-/
+def emitDirectWrapperBody (directName : String) (ps : Array (Param .impure)) :
+    EmitM Unit :=
+  withEmitBlock do
+    emit "return "; emit directName; emit "("
+    ps.size.forM fun i _ => do
+      if i > 0 then emit ", "
+      emit ps[i].binderName
+    emitLn ");"
+
 def emitDecl (decl : Decl .impure) : EmitM Unit := do
   let env ← getEnv
   if hasInitAttr env decl.name || isSimpleGroundDecl env decl.name then
@@ -927,7 +1026,13 @@ def emitDecl (decl : Decl .impure) : EmitM Unit := do
   | .code code =>
     let baseName ← toCName decl.name
     let ps := decl.params
-    if ps.isEmpty then
+    let direct ← hasDirectBody decl.name
+
+    -- Header line for the body-bearing function (either the original or
+    -- the `_direct` worker).
+    if direct then
+      emit "static "
+    else if ps.isEmpty then
       emit "static "
     else
       -- make the symbol visible to the interpreter for native execution
@@ -938,6 +1043,9 @@ def emitDecl (decl : Decl .impure) : EmitM Unit := do
     if ps.isEmpty then
       emitCInitName decl.name
       emit "(void)"
+    else if direct then
+      emit (← toDirectCName decl.name)
+      emitParamList (paramsWithoutVoid ps)
     else
       emit baseName
       emit "("
@@ -952,7 +1060,8 @@ def emitDecl (decl : Decl .impure) : EmitM Unit := do
       emit ")"
 
     withEmitBlock do
-      if ps.size > closureMaxArgs && isBoxedName decl.name then
+      if !direct && ps.size > closureMaxArgs && isBoxedName decl.name then
+        let ps := paramsWithoutVoid ps
         ps.size.forM fun i _ => do
           let p := ps[i]
           emit "lean_object* "; emit p.binderName; emit " = _args["; emit i; emitLn "];"
@@ -960,6 +1069,15 @@ def emitDecl (decl : Decl .impure) : EmitM Unit := do
       emitLn "_start:"
       withReader (fun ctx => { ctx with currFn := decl.name, currParams := ps }) do
         emitCode code
+
+    if direct then
+      -- Emit the exported wrapper that delegates to `_direct`.
+      let psNoVoid := paramsWithoutVoid ps
+      emit "LEAN_EXPORT "
+      emit decl.type.toCType; emit " "
+      emit baseName
+      emitParamList psNoVoid
+      emitDirectWrapperBody (← toDirectCName decl.name) psNoVoid
 
 def emitFns : EmitM Unit := do
   (← getLocalDecls).forM go
@@ -1158,9 +1276,10 @@ public def emitCForDecls (modName : Name) (decls : Array Name) : CoreM String :=
   let env ← getEnv
   let indexMap := getImpureDeclIndices env decls
   let localDecls := localDecls.qsort fun l r => indexMap[l.name]! < indexMap[r.name]!
+  let localDeclNames := localDecls.foldl (init := ({} : Std.HashSet Name)) fun s d => s.insert d.name
   let (_, { buf, .. }) ←
     main
-      |>.run { localDecls, otherModuleDecls, modName }
+      |>.run { localDecls, localDeclNames, otherModuleDecls, modName }
       |>.run {}
       |>.run (phase := .impure)
   return buf

@@ -49,6 +49,7 @@ def matchSuffix (c : NamePart) : Option String :=
   | NamePart.str s =>
     if s == "_redArg" then some "arity↓"
     else if s == "_boxed" then some "boxed"
+    else if s == "_direct" then some "direct"
     else if s == "_impl" then some "impl"
     else if s == "_lam" || s == "_lambda" || s == "_elam" then some "λ"
     else if s == "_jp" then some "jp"

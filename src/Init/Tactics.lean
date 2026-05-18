@@ -1133,8 +1133,7 @@ syntax (name := classical) "classical" ppDedent(tacticSeq) : tactic
 /--
 `impossible e` closes the current goal with `sorry`, where `e` is a proof of the
 negation of the goal after reverting all local hypotheses. Typically `e` is a
-`by` block, e.g. `impossible by decide`. No new axioms are added to the
-environment.
+`by` block, e.g. `impossible by decide`.
 -/
 syntax (name := impossible) "impossible " term : tactic
 

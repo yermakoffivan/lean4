@@ -6,8 +6,8 @@ Authors: Sofia Rodrigues
 module
 
 prelude
-public import Std.Internal.Http.Client.Session
-public import Std.Internal.Http.Data.Cookie
+public import Std.Http.Client.Session
+public import Std.Http.Data.Cookie
 import Init.Data.Array
 
 public section
@@ -18,7 +18,7 @@ namespace Client
 
 set_option linter.all true
 
-open Std Internal IO Async TCP Protocol
+open Std Async TCP Protocol
 open Time
 
 /-!

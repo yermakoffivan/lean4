@@ -8,11 +8,11 @@ module
 prelude
 public import Init.Data.Queue
 public import Std.Sync.Mutex
-public import Std.Internal.Async.Select
+public import Std.Async.Select
 
 public section
 
-open Std.Internal.IO.Async
+open Std.Async
 
 /-!
 This module contains the implementation of `Std.Watch`. `Std.Watch` is a single-value watch
@@ -49,7 +49,7 @@ instance : MonadLift (EIO Watch.Error) IO where
 
 private inductive Watch.Waiter (α : Type) where
   | normal (promise : IO.Promise α)
-  | select (waiter : Internal.IO.Async.Waiter α)
+  | select (waiter : Async.Waiter α)
 
 private def Watch.Waiter.resolve (c : Watch.Waiter α) (x : α) : BaseIO Bool := do
   match c with

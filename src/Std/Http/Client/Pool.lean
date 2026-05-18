@@ -6,8 +6,8 @@ Authors: Sofia Rodrigues
 module
 
 prelude
-public import Std.Internal.Http.Client.Agent
-import Std.Internal.Async.DNS
+public import Std.Http.Client.Agent
+import Std.Async.DNS
 import Std.Data.HashMap
 import Init.Data.Array
 
@@ -19,7 +19,7 @@ namespace Client
 
 set_option linter.all true
 
-open Std Internal IO Async TCP Protocol
+open Std Async TCP Protocol
 open Time
 
 /-!

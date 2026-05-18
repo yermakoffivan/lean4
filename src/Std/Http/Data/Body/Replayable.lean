@@ -6,7 +6,7 @@ Authors: Sofia Rodrigues
 module
 
 prelude
-public import Std.Internal.Http.Data.Body.Basic
+public import Std.Http.Data.Body.Basic
 
 public section
 
@@ -24,7 +24,7 @@ to the caller, matching the behavior of reqwest.
 -/
 
 namespace Std.Http.Body
-open Std Internal IO Async
+open Std Async
 
 set_option linter.all true
 

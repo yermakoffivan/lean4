@@ -6,13 +6,13 @@ Authors: Sofia Rodrigues
 module
 
 prelude
-public import Std.Internal.Http.Client.Connection
+public import Std.Http.Client.Connection
 
 public section
 
 namespace Std.Http.Client
 
-open Std Internal IO Async TCP Protocol
+open Std Async TCP Protocol
 open Time
 
 set_option linter.all true

@@ -1,4 +1,4 @@
-import Std.Internal.Http.Data.Cookie
+import Std.Http.Data.Cookie
 
 open Std.Http
 

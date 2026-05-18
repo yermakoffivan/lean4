@@ -1,9 +1,9 @@
-import Std.Internal.Http
-import Std.Internal.Async
-import Std.Internal.Async.Timer
+import Std.Http
+import Std.Async
+import Std.Async.Timer
 
-open Std.Internal.IO Async
-open Std Http Internal
+open Std.Async
+open Std Http
 
 /-!
 # HTTP Client Edge-Case Tests

@@ -6,8 +6,8 @@ Authors: Sofia Rodrigues
 module
 
 prelude
-public import Std.Internal.Http.Data.Request
-public import Std.Internal.Http.Data.Status
+public import Std.Http.Data.Request
+public import Std.Http.Data.Status
 
 public section
 

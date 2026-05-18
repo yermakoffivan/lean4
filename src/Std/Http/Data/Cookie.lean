@@ -7,9 +7,9 @@ module
 
 prelude
 public import Std.Sync.Mutex
-public import Std.Internal.Http.Data.URI
-public import Std.Internal.Http.Data.Cookie.Parser
-public import Std.Internal.Http.Data.Headers
+public import Std.Http.Data.URI
+public import Std.Http.Data.Cookie.Parser
+public import Std.Http.Data.Headers
 public import Init.Data.String
 public import Init.Data.Array.Basic
 public import Init.Data.List.Basic

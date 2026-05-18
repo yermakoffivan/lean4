@@ -6,18 +6,18 @@ Authors: Sofia Rodrigues
 module
 
 prelude
-public import Std.Internal.Async.TCP
-public import Std.Internal.Async.ContextAsync
-public import Std.Internal.Http.Transport
-public import Std.Internal.Http.Protocol.H1
-public import Std.Internal.Http.Client.Config
+public import Std.Async.TCP
+public import Std.Async.ContextAsync
+public import Std.Http.Transport
+public import Std.Http.Protocol.H1
+public import Std.Http.Client.Config
 public import Std.Sync.Watch
 
 public section
 
 namespace Std.Http.Client
 
-open Std Internal IO Async TCP Protocol
+open Std Async TCP Protocol
 open Time
 
 /-!
@@ -78,7 +78,7 @@ structure RequestPacket where
   /--
   Promise resolved with the eventual response.
   -/
-  responsePromise : IO.Promise (Except Error (Response Body.Stream))
+  responsePromise : IO.Promise (Except IO.Error (Response Body.Stream))
 
   /--
   Shared response-body mode flag used by the connection loop to determine whether
@@ -105,7 +105,7 @@ namespace RequestPacket
 /--
 Resolve the packet with an error.
 -/
-def onError (packet : RequestPacket) (error : Error) : BaseIO Unit :=
+def onError (packet : RequestPacket) (error : IO.Error) : BaseIO Unit :=
   discard <| packet.responsePromise.resolve (.error error)
 
 /--

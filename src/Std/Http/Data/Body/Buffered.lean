@@ -7,7 +7,7 @@ module
 
 prelude
 public import Std.Sync
-public import Std.Internal.Http.Data.Body.Any
+public import Std.Http.Data.Body.Any
 public import Init.Data.ByteArray
 
 public section
@@ -30,7 +30,7 @@ let req ← client.post url |>.sendStream (fun _ => pure ())
 -/
 
 namespace Std.Http.Body
-open Std Internal IO Async
+open Std Async
 
 set_option linter.all true
 

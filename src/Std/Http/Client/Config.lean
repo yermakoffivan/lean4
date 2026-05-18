@@ -7,7 +7,7 @@ module
 
 prelude
 public import Std.Time
-public import Std.Internal.Http.Protocol.H1
+public import Std.Http.Protocol.H1
 
 public section
 

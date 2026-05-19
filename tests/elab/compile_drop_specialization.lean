@@ -22,7 +22,7 @@ trace: [Compiler.explicitRc] size: 47
       | A.ctor1 =>
         let x.1 := oproj[0] x;
         inc[ref] x.1;
-        dec[1 objs] x;
+        dec[ref][1 objs] x;
         let fst.2 := oproj[0] x.1;
         inc fst.2;
         let snd.3 := oproj[1] x.1;
@@ -40,7 +40,7 @@ trace: [Compiler.explicitRc] size: 47
         inc[ref] y.6;
         let z.7 := oproj[1] x;
         inc[ref] z.7;
-        dec[2 objs] x;
+        dec[ref][2 objs] x;
         let fst.8 := oproj[0] y.6;
         inc fst.8;
         let snd.9 := oproj[1] y.6;

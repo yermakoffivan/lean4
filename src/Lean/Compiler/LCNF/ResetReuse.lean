@@ -267,7 +267,6 @@ partial def Code.insertResetReuse (c : Code .impure) : ReuseM (Code .impure) := 
             -- double reset.
             return alt
           else
-            assert! info.isRef
             return alt.updateCode (← D cs.discr info k)
         | .default .. => return alt
       return c.updateAlts! alts

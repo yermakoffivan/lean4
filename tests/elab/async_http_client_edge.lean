@@ -3,7 +3,7 @@ import Std.Async
 import Std.Async.Timer
 
 open Std.Async
-open Std Http
+open Std Http Internal
 
 /-!
 # HTTP Client Edge-Case Tests

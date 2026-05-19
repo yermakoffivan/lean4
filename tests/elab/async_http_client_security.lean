@@ -3,7 +3,7 @@ import Std.Async
 import Std.Async.Timer
 
 open Std.Async
-open Std Http
+open Std Http Internal
 
 /-!
 # HTTP Client Security Tests
@@ -422,5 +422,3 @@ private def rawResp
         s!"Test 'streaming body dropped on 307 redirect' FAILED: \
            expected 307 (no auto-redirect for non-replayable body), \
            got {resp.line.status.toCode}"
-
-

@@ -1,7 +1,7 @@
 import Std.Http.Test.Helpers
 
 open Std.Async
-open Std Http Test
+open Std Http Internal Test
 
 /-!
 # HTTP Server Edge-Case Tests

@@ -404,11 +404,10 @@ def addInc (fvarId : FVarId) (k : Code .impure) (n : Nat := 1) : RcM (Code .impu
 
 def addDec (fvarId : FVarId) (k : Code .impure) : RcM (Code .impure) := do
   let info ← getVarInfo fvarId
-  -- TODO prettier
   match info.ctorInfo with
   | some ctorInfo =>
     if ctorInfo.isRef then
-      return .dec fvarId 1 true info.persistent (some ctorInfo.size) k
+      return .dec fvarId 1 false info.persistent (some ctorInfo.size) k
     else
       return k
   | none =>

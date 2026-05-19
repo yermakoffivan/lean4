@@ -1,5 +1,5 @@
 /-!
-This PR benches specialization of `dec` when the shape of the object is known.
+This test checks specialization of `dec` when the shape of the object is known.
 -/
 
 

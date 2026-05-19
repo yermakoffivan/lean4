@@ -161,7 +161,7 @@ mutual
       else
         return f!"inc{ann} {← ppFVar fvarId};" ++ .line ++ (← ppCode k)
     | .dec fvarId n check persistent objs? k _ =>
-      let mut ann := (if persistent then "[persistent]" else "")
+      let mut ann := ""
       if persistent then ann := ann ++ "[persistent]"
       if !check then ann := ann ++ "[ref]"
       if let some objs := objs? then ann := ann ++ s!"[{objs} objs]"

@@ -164,7 +164,7 @@ mutual
       let mut ann := (if persistent then "[persistent]" else "")
       if persistent then ann := ann ++ "[persistent]"
       if !check then ann := ann ++ "[ref]"
-      if let some objs := objs? then ann := ann ++ s!"[o {objs}]"
+      if let some objs := objs? then ann := ann ++ s!"[{objs} objs]"
       if n != 1 then
         return f!"dec[{n}]{ann} {← ppFVar fvarId};" ++ .line ++ (← ppCode k)
       else

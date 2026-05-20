@@ -46,7 +46,10 @@
               hash = "sha256-EJnbK9ZMdN2ztTTQtb7VsEQvvbMYnY5HJ2LMJlw5FRg=";
             };
             nativeBuildInputs = [ pkgsDist.perl ];
-            configurePhase = "patchShebangs .\\n./config --prefix=$out no-shared no-tests";
+            configurePhase = ''
+              patchShebangs .
+              ./config --prefix=$out no-shared no-tests
+            '';
             buildPhase = "make -j$NIX_BUILD_CORES";
             installPhase = "make install_sw";
           };
@@ -70,7 +73,7 @@
             doCheck = false;
           });
           OPENSSL = opensslForDist;
-          OPENSSL_DEV = opensslForDist;
+          OPENSSL_DEV = opensslForDist.dev;
           GLIBC = pkgsDist.glibc;
           GLIBC_DEV = pkgsDist.glibc.dev;
           GCC_LIB = pkgsDist.gcc.cc.lib;

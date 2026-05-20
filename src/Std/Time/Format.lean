@@ -338,107 +338,107 @@ instance : Repr PlainTime where
 
 end PlainTime
 
-namespace ZonedDateTime
+namespace DateTime
 
 /--
-Formats a `ZonedDateTime` using a specific format.
+Formats a `DateTime` using a specific format.
 -/
-def format (data: ZonedDateTime) (format : String) : String :=
+def format (data: DateTime) (format : String) : String :=
   let format : Except String (GenericFormat .any) := GenericFormat.spec format
   match format with
   | .error err => s!"error: {err}"
   | .ok res => res.format data
 
 /--
-Parses a `String` in the `ISO8601` format and returns a `ZonedDateTime`.
+Parses a `String` in the `ISO8601` format and returns a `DateTime`.
 -/
-def fromISO8601String (input : String) : Except String ZonedDateTime :=
+def fromISO8601String (input : String) : Except String DateTime :=
   Formats.iso8601.parse input
 
 /--
-Formats a `ZonedDateTime` value into an ISO8601 string.
+Formats a `DateTime` value into an ISO8601 string.
 -/
-def toISO8601String (date : ZonedDateTime) : String :=
+def toISO8601String (date : DateTime) : String :=
   Formats.iso8601.format date
 
 /--
-Parses a `String` in the rfc822 format and returns a `ZonedDateTime`.
+Parses a `String` in the rfc822 format and returns a `DateTime`.
 -/
-def fromRFC822String (input : String) : Except String ZonedDateTime :=
+def fromRFC822String (input : String) : Except String DateTime :=
   Formats.rfc822.parse input
 
 /--
-Formats a `ZonedDateTime` value into an RFC822 format string.
+Formats a `DateTime` value into an RFC822 format string.
 -/
-def toRFC822String (date : ZonedDateTime) : String :=
+def toRFC822String (date : DateTime) : String :=
   Formats.rfc822.format date
 
 /--
-Parses a `String` in the rfc850 format and returns a `ZonedDateTime`.
+Parses a `String` in the rfc850 format and returns a `DateTime`.
 -/
-def fromRFC850String (input : String) : Except String ZonedDateTime :=
+def fromRFC850String (input : String) : Except String DateTime :=
   Formats.rfc850.parse input
 
 /--
-Formats a `ZonedDateTime` value into an RFC850 format string.
+Formats a `DateTime` value into an RFC850 format string.
 -/
-def toRFC850String (date : ZonedDateTime) : String :=
+def toRFC850String (date : DateTime) : String :=
   Formats.rfc850.format date
 
 /--
-Parses a `String` in the dateTimeWithZone format and returns a `ZonedDateTime` object in the GMT time zone.
+Parses a `String` in the dateTimeWithZone format and returns a `DateTime` object in the GMT time zone.
 -/
-def fromDateTimeWithZoneString (input : String) : Except String ZonedDateTime :=
+def fromDateTimeWithZoneString (input : String) : Except String DateTime :=
   Formats.dateTimeWithZone.parse input
 
 /--
-Formats a `ZonedDateTime` value into a simple date time with timezone string.
+Formats a `DateTime` value into a simple date time with timezone string.
 -/
-def toDateTimeWithZoneString (pdt : ZonedDateTime) : String :=
+def toDateTimeWithZoneString (pdt : DateTime) : String :=
   Formats.dateTimeWithZone.format pdt
 
 /--
-Parses a `String` in the lean date time format with timezone format and returns a `ZonedDateTime` object.
+Parses a `String` in the lean date time format with timezone format and returns a `DateTime` object.
 -/
-def fromLeanDateTimeWithZoneString (input : String) : Except String ZonedDateTime :=
+def fromLeanDateTimeWithZoneString (input : String) : Except String DateTime :=
   Formats.leanDateTimeWithZone.parse input
   <|> Formats.leanDateTimeWithZoneNoNanos.parse input
 
 /--
-Parses a `String` in the lean date time format with identifier and returns a `ZonedDateTime` object.
+Parses a `String` in the lean date time format with identifier and returns a `DateTime` object.
 -/
-def fromLeanDateTimeWithIdentifierString (input : String) : Except String ZonedDateTime :=
+def fromLeanDateTimeWithIdentifierString (input : String) : Except String DateTime :=
   Formats.leanDateTimeWithIdentifier.parse input
   <|> Formats.leanDateTimeWithIdentifierAndNanos.parse input
 
 /--
-Formats a `ZonedDateTime` value into a simple date time with timezone string that can be parsed by the date% notation.
+Formats a `DateTime` value into a simple date time with timezone string that can be parsed by the date% notation.
 -/
-def toLeanDateTimeWithZoneString (zdt : ZonedDateTime) : String :=
+def toLeanDateTimeWithZoneString (zdt : DateTime) : String :=
   Formats.leanDateTimeWithZone.formatBuilder zdt.year zdt.month zdt.day zdt.hour zdt.minute zdt.date.get.time.second zdt.nanosecond zdt.offset
 /--
-Formats a `ZonedDateTime` value into a simple date time with timezone string that can be parsed by the date% notation with the timezone identifier.
+Formats a `DateTime` value into a simple date time with timezone string that can be parsed by the date% notation with the timezone identifier.
 -/
-def toLeanDateTimeWithIdentifierString (zdt : ZonedDateTime) : String :=
+def toLeanDateTimeWithIdentifierString (zdt : DateTime) : String :=
   Formats.leanDateTimeWithIdentifierAndNanos.formatBuilder zdt.year zdt.month zdt.day zdt.hour zdt.minute zdt.date.get.time.second zdt.nanosecond zdt.timezone.name
 
 /--
-Parses a `String` in the `ISO8601`, `RFC822` or `RFC850` format and returns a `ZonedDateTime`.
+Parses a `String` in the `ISO8601`, `RFC822` or `RFC850` format and returns a `DateTime`.
 -/
-def parse (input : String) : Except String ZonedDateTime :=
+def parse (input : String) : Except String DateTime :=
   fromISO8601String input
   <|> fromRFC822String input
   <|> fromRFC850String input
   <|> fromDateTimeWithZoneString input
   <|> fromLeanDateTimeWithIdentifierString input
 
-instance : ToString ZonedDateTime where
+instance : ToString DateTime where
   toString := toLeanDateTimeWithIdentifierString
 
-instance : Repr ZonedDateTime where
+instance : Repr DateTime where
   reprPrec data := Repr.addAppParen ("zoned(\"" ++ toLeanDateTimeWithZoneString data ++ "\")")
 
-end ZonedDateTime
+end DateTime
 
 namespace PlainDateTime
 
@@ -485,33 +485,33 @@ Parses a `String` in the `AscTime` format and returns a `PlainDateTime` object i
 -/
 def fromAscTimeString (input : String) : Except String PlainDateTime :=
   Formats.ascTime.parse input
-  |>.map ZonedDateTime.toPlainDateTime
+  |>.map DateTime.toPlainDateTime
 
 /--
 Formats a `PlainDateTime` value into an AscTime format string.
 -/
 def toAscTimeString (pdt : PlainDateTime) : String :=
-  Formats.ascTime.format (ZonedDateTime.ofPlainDateTimeWithZone pdt .UTC)
+  Formats.ascTime.format (DateTime.ofPlainDateTimeWithZone pdt .UTC)
 
 /--
 Parses a `String` in the `LongDateFormat` and returns a `PlainDateTime` object in the GMT time zone.
 -/
 def fromLongDateFormatString (input : String) : Except String PlainDateTime :=
   Formats.longDateFormat.parse input
-  |>.map ZonedDateTime.toPlainDateTime
+  |>.map DateTime.toPlainDateTime
 
 /--
 Formats a `PlainDateTime` value into a LongDateFormat string.
 -/
 def toLongDateFormatString (pdt : PlainDateTime) : String :=
-  Formats.longDateFormat.format (ZonedDateTime.ofPlainDateTimeWithZone pdt .UTC)
+  Formats.longDateFormat.format (DateTime.ofPlainDateTimeWithZone pdt .UTC)
 
 /--
 Parses a `String` and returns a `PlainDateTime`.
 -/
 def fromDateTimeString (input : String) : Except String PlainDateTime :=
   Formats.dateTime24Hour.parse input
-  |>.map ZonedDateTime.toPlainDateTime
+  |>.map DateTime.toPlainDateTime
 
 /--
 Formats a `PlainDateTime` value into a date time format string.
@@ -524,7 +524,7 @@ Parses a `String` and returns a `PlainDateTime`.
 -/
 def fromLeanDateTimeString (input : String) : Except String PlainDateTime :=
   (Formats.leanDateTime24Hour.parse input <|> Formats.leanDateTime24HourNoNanos.parse input)
-  |>.map ZonedDateTime.toPlainDateTime
+  |>.map DateTime.toPlainDateTime
 
 /--
 Formats a `PlainDateTime` value into a `leanDateTime24Hour` format string.

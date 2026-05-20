@@ -11,7 +11,7 @@ info: "Monday, June 16, 2014 06:03:03"
 #eval Formats.longDateFormat.format date₁
 
 def tm := date₁.toTimestamp
-def date₂ := ZonedDateTime.ofTimestampWithZone tm brTZ
+def date₂ := DateTime.ofTimestampWithZone tm brTZ
 
 /--
 info: "2014-06-16T03:03:03-03:00"

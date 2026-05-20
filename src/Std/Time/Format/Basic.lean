@@ -21,7 +21,7 @@ namespace Std
 namespace Time
 open Internal
 open Std.Internal.Parsec.String
-open Std.Internal.Parsec Lean PlainTime PlainDate TimeZone ZonedDateTime
+open Std.Internal.Parsec Lean PlainTime PlainDate TimeZone DateTime
 
 set_option linter.all true
 
@@ -877,7 +877,7 @@ private def formatWith (dateformat : DateFormat) (modifier : Modifier) (data : T
         then "Z"
         else  toIsoString data true (data.second.val % 60 ≠ 0) true
 
-private def dateFromModifier (firstDay : Weekday) (date : ZonedDateTime) : TypeFormat modifier :=
+private def dateFromModifier (firstDay : Weekday) (date : DateTime) : TypeFormat modifier :=
   let tz := date.timezone
   match modifier with
   | .G _ => date.era
@@ -1201,7 +1201,7 @@ private def parseWith (config : FormatConfig) : (mod : Modifier) → Parser (Typ
       (skipString "Z" *> pure Offset.zero)
       <|> (parseOffset .yes .optional true)
 
-private def formatPartWithDate (dateformat : DateFormat) (date : ZonedDateTime) (part : FormatPart) : String :=
+private def formatPartWithDate (dateformat : DateFormat) (date : DateTime) (part : FormatPart) : String :=
   match part with
   | .modifier mod => formatWith dateformat mod (dateFromModifier dateformat.firstDayOfWeek date)
   | .string s => s
@@ -1288,7 +1288,7 @@ private def convertYearAndEra (year : Year.Offset) : Year.Era → Year.Offset
   | .ce => year
   | .bce => -(year + 1)
 
-private def build (builder : DateBuilder) (aw : Awareness) : Option ZonedDateTime :=
+private def build (builder : DateBuilder) (aw : Awareness) : Option DateTime :=
   let offset := builder.O <|> builder.X <|> builder.x <|> builder.Z |>.getD Offset.zero
 
   let tz : TimeZone := {
@@ -1343,7 +1343,7 @@ private def build (builder : DateBuilder) (aw : Awareness) : Option ZonedDateTim
     | .only newTz => newTz
     | .any => tz
 
-  (ZonedDateTime.ofPlainDateTime · (ZoneRules.ofTimeZone zoneTz)) <$> datetime
+  (DateTime.ofPlainDateTime · (ZoneRules.ofTimeZone zoneTz)) <$> datetime
 
 end DateBuilder
 
@@ -1371,9 +1371,9 @@ def spec! (input : String) (config : FormatConfig := {}) : GenericFormat tz :=
   | .error res => panic! res
 
 /--
-Formats a `ZonedDateTime` value into a string using the given `GenericFormat`.
+Formats a `DateTime` value into a string using the given `GenericFormat`.
 -/
-def format (format : GenericFormat aw) (date : ZonedDateTime) : String :=
+def format (format : GenericFormat aw) (date : DateTime) : String :=
   let dateformat := format.config.dateformat
   let mapper (part : FormatPart) :=
     match aw with
@@ -1383,8 +1383,8 @@ def format (format : GenericFormat aw) (date : ZonedDateTime) : String :=
   format.string.map mapper
   |> String.join
 
-private def parser (format : FormatString) (config : FormatConfig) (aw : Awareness) : Parser ZonedDateTime :=
-  let rec go (builder : DateBuilder) (x : FormatString) : Parser ZonedDateTime :=
+private def parser (format : FormatString) (config : FormatConfig) (aw : Awareness) : Parser DateTime :=
+  let rec go (builder : DateBuilder) (x : FormatString) : Parser DateTime :=
     match x with
     | x :: xs => parseWithDate builder config x >>= (go · xs)
     | [] =>
@@ -1412,13 +1412,13 @@ def builderParser (format: FormatString) (config : FormatConfig) (func: FormatTy
 /--
 Parses the input string into a `ZoneDateTime`.
 -/
-def parse (format : GenericFormat aw) (input : String) : Except String ZonedDateTime :=
+def parse (format : GenericFormat aw) (input : String) : Except String DateTime :=
   (parser format.string format.config aw <* eof).run input
 
 /--
 Parses the input string into a `ZoneDateTime` and panics if its wrong.
 -/
-def parse! (format : GenericFormat aw) (input : String) : ZonedDateTime :=
+def parse! (format : GenericFormat aw) (input : String) : DateTime :=
   match parse format input with
   | .ok res => res
   | .error err => panic! err

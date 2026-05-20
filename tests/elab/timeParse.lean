@@ -29,29 +29,29 @@ info: "2014-06-16T03:03:03.000000100-03:00"
 -/
 #guard_msgs in
 #eval
-    let t : ZonedDateTime := ISO8601UTC.parse! "2014-06-16T03:03:03.000000100-03:00"
+    let t : DateTime := ISO8601UTC.parse! "2014-06-16T03:03:03.000000100-03:00"
     ISO8601UTC.format t
 
 def tm := date₁.toTimestamp
-def date₂ := ZonedDateTime.ofTimestampWithZone tm brTZ
+def date₂ := DateTime.ofTimestampWithZone tm brTZ
 
 /--
 info: "2014-06-16T03:03:03.000000000-03:00"
 -/
 #guard_msgs in
 #eval
-    let t : ZonedDateTime := RFC1123.parse! "Mon, 16 Jun 2014 03:03:03 -0300"
+    let t : DateTime := RFC1123.parse! "Mon, 16 Jun 2014 03:03:03 -0300"
     ISO8601UTC.format t
 
 def tm₃ := date₁.toTimestamp
-def date₃ := ZonedDateTime.ofTimestampWithZone tm₃ brTZ
+def date₃ := DateTime.ofTimestampWithZone tm₃ brTZ
 
 /--
 info: "2014-06-16T00:00:00.000000000Z"
 -/
 #guard_msgs in
 #eval
-    let t : ZonedDateTime := ShortDate.parse! "06/16/2014"
+    let t : DateTime := ShortDate.parse! "06/16/2014"
     ISO8601UTC.format t
 
 -- the timestamp is always related to UTC.
@@ -63,9 +63,9 @@ BR: 15 August 2024 13:28:12 GMT-03:00
 -/
 def tm₄ : Second.Offset := 1723739292
 
-def dateBR := ZonedDateTime.ofTimestampWithZone (Timestamp.ofSecondsSinceUnixEpoch tm₄) brTZ
-def dateJP := ZonedDateTime.ofTimestampWithZone (Timestamp.ofSecondsSinceUnixEpoch tm₄) jpTZ
-def dateUTC := ZonedDateTime.ofTimestampWithZone (Timestamp.ofSecondsSinceUnixEpoch tm₄) .UTC
+def dateBR := DateTime.ofTimestampWithZone (Timestamp.ofSecondsSinceUnixEpoch tm₄) brTZ
+def dateJP := DateTime.ofTimestampWithZone (Timestamp.ofSecondsSinceUnixEpoch tm₄) jpTZ
+def dateUTC := DateTime.ofTimestampWithZone (Timestamp.ofSecondsSinceUnixEpoch tm₄) .UTC
 
 /--
 info: "2024-08-15T13:28:12.000000000-03:00"
@@ -80,7 +80,7 @@ info: "2024-08-16T01:28:00.000000000Z"
 -/
 #guard_msgs in
 #eval
-    let t : ZonedDateTime := LongDateTime.parse! "August 16, 2024 01:28 AM"
+    let t : DateTime := LongDateTime.parse! "August 16, 2024 01:28 AM"
     ISO8601UTC.format t
 
 /--
@@ -88,7 +88,7 @@ info: "0000-12-31T22:28:12.000000000+09:00"
 -/
 #guard_msgs in
 #eval
-    let t : ZonedDateTime := Time24Hour.parse! "13:28:12"
+    let t : DateTime := Time24Hour.parse! "13:28:12"
     ISO8601UTC.format (t.convertZoneRules (TimeZone.ZoneRules.ofTimeZone jpTZ))
 
 /--
@@ -96,7 +96,7 @@ info: "0000-12-31T00:00:00.000000000-03:00"
 -/
 #guard_msgs in
 #eval
-    let t1 : ZonedDateTime := Time12Hour.parse! "03:00:00 AM"
+    let t1 : DateTime := Time12Hour.parse! "03:00:00 AM"
     ISO8601UTC.format (t1.convertZoneRules (TimeZone.ZoneRules.ofTimeZone brTZ))
 
 /--
@@ -104,7 +104,7 @@ info: "Thu 15 Aug 2024 16:28"
 -/
 #guard_msgs in
 #eval
-    let t2 : ZonedDateTime := FullDayTimeZone.parse! "Thursday, August 15, 2024 16:28:12 -0000"
+    let t2 : DateTime := FullDayTimeZone.parse! "Thursday, August 15, 2024 16:28:12 -0000"
     CustomDayTime.format t2
 
 /--
@@ -112,7 +112,7 @@ info: "2024-08-16T13:28:00.000000000Z"
 -/
 #guard_msgs in
 #eval
-    let t5 : ZonedDateTime := CustomDayTime.parse! "Thu 16 Aug 2024 13:28"
+    let t5 : DateTime := CustomDayTime.parse! "Thu 16 Aug 2024 13:28"
     ISO8601UTC.format t5
 
 /--
@@ -120,7 +120,7 @@ info: "2024-08-16T01:28:12.000000000+09:00"
 -/
 #guard_msgs in
 #eval
-    let t6 : ZonedDateTime := FullDayTimeZone.parse! "Friday, August 16, 2024 01:28:12 +0900"
+    let t6 : DateTime := FullDayTimeZone.parse! "Friday, August 16, 2024 01:28:12 +0900"
     ISO8601UTC.format (t6.convertZoneRules (TimeZone.ZoneRules.ofTimeZone jpTZ))
 
 /--
@@ -128,7 +128,7 @@ info: "2024-08-16T01:28:12.000000000+09:00"
 -/
 #guard_msgs in
 #eval
-    let t7 : ZonedDateTime := FullDayTimeZone.parse! "Friday, August 16, 2024 01:28:12 +0900"
+    let t7 : DateTime := FullDayTimeZone.parse! "Friday, August 16, 2024 01:28:12 +0900"
     ISO8601UTC.format (t7.convertZoneRules (TimeZone.ZoneRules.ofTimeZone jpTZ))
 
 /--
@@ -143,16 +143,16 @@ This PlainDate is relative to the local time.
 -/
 def PlainDate : PlainDateTime := PlainDateTime.ofWallTime (WallTime.ofSeconds localTm)
 
-def dateBR₁ := ZonedDateTime.ofPlainDateTimeWithZone PlainDate brTZ
-def dateJP₁ := ZonedDateTime.ofPlainDateTimeWithZone PlainDate jpTZ
-def dateUTC₁ := ZonedDateTime.ofPlainDateTimeWithZone PlainDate .UTC
+def dateBR₁ := DateTime.ofPlainDateTimeWithZone PlainDate brTZ
+def dateJP₁ := DateTime.ofPlainDateTimeWithZone PlainDate jpTZ
+def dateUTC₁ := DateTime.ofPlainDateTimeWithZone PlainDate .UTC
 
 /--
 info: "2024-08-15T14:03:47.000000000-03:00"
 -/
 #guard_msgs in
 #eval
-    let t : ZonedDateTime := FullDayTimeZone.parse! "Thursday, August 15, 2024 14:03:47 -0300"
+    let t : DateTime := FullDayTimeZone.parse! "Thursday, August 15, 2024 14:03:47 -0300"
     ISO8601UTC.format t
 
 /--
@@ -160,7 +160,7 @@ info: "2024-08-15T14:03:47.000000000+09:00"
 -/
 #guard_msgs in
 #eval
-    let t1 : ZonedDateTime := FullDayTimeZone.parse! "Thursday, August 15, 2024 14:03:47 +0900"
+    let t1 : DateTime := FullDayTimeZone.parse! "Thursday, August 15, 2024 14:03:47 +0900"
     ISO8601UTC.format t1
 
 /--
@@ -168,7 +168,7 @@ info: "2014-06-16T03:03:03.000000000-03:00"
 -/
 #guard_msgs in
 #eval
-    let t2 : ZonedDateTime := FullDayTimeZone.parse! "Monday, June 16, 2014 03:03:03 -0300"
+    let t2 : DateTime := FullDayTimeZone.parse! "Monday, June 16, 2014 03:03:03 -0300"
     ISO8601UTC.format t2
 
 /--

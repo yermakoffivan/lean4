@@ -747,7 +747,7 @@ Std.Time.Weekday.thursday
 -/
 #guard_msgs in
 #eval do
-  let zoned := ZonedDateTime.ofPlainDateTimeWithZone datetime("2024-09-12T02:01:02") timezone("America/Sao_Paulo -03:00")
+  let zoned := DateTime.ofPlainDateTimeWithZone datetime("2024-09-12T02:01:02") timezone("America/Sao_Paulo -03:00")
 
   println! zoned.addDays 1
   println! zoned.addWeeks 1
@@ -783,7 +783,7 @@ Std.Time.Weekday.thursday
 
   println! zoned.toEpochDay
   println! zoned.toTimestamp
-  println! ZonedDateTime.ofEpochDay 1 PlainTime.midnight .UTC
+  println! DateTime.ofEpochDay 1 PlainTime.midnight .UTC
 
 /--
 info: 1997-03-19T02:03:04.000000000[America/Sao_Paulo]
@@ -879,10 +879,10 @@ info: 1970-01-02T00:00:00.000000000[UTC]
 -/
 #guard_msgs in
 #eval do
-  println! ZonedDateTime.ofEpochDay 1 PlainTime.midnight .UTC
-  println! ZonedDateTime.ofLocalDateWithZone date("1997-03-18") .UTC
-  println! ZonedDateTime.ofPlainDateTimeWithZone datetime("1997-03-18T00:01:02") .UTC
-  println! ZonedDateTime.ofTimestampWithZone 1708121234 .UTC
+  println! DateTime.ofEpochDay 1 PlainTime.midnight .UTC
+  println! DateTime.ofLocalDateWithZone date("1997-03-18") .UTC
+  println! DateTime.ofPlainDateTimeWithZone datetime("1997-03-18T00:01:02") .UTC
+  println! DateTime.ofTimestampWithZone 1708121234 .UTC
 
 /--
 info: 1970-01-02T00:00:00.000000000[UTC]
@@ -895,10 +895,10 @@ info: 1970-01-02T00:00:00.000000000[UTC]
 -/
 #guard_msgs in
 #eval do
-  println! ZonedDateTime.ofEpochDay 1 PlainTime.midnight .UTC
-  println! ZonedDateTime.ofLocalDate date("1997-03-18") .UTC
-  println! ZonedDateTime.ofLocalDateWithZone date("1997-03-18") .UTC
-  println! ZonedDateTime.ofPlainDateTime datetime("1997-03-18T00:01:02") .UTC
-  println! ZonedDateTime.ofPlainDateTimeWithZone datetime("1997-03-18T00:01:02") .UTC
-  println! ZonedDateTime.ofTimestamp 1708121234 .UTC
-  println! ZonedDateTime.ofTimestampWithZone 1708121234 .UTC
+  println! DateTime.ofEpochDay 1 PlainTime.midnight .UTC
+  println! DateTime.ofLocalDate date("1997-03-18") .UTC
+  println! DateTime.ofLocalDateWithZone date("1997-03-18") .UTC
+  println! DateTime.ofPlainDateTime datetime("1997-03-18T00:01:02") .UTC
+  println! DateTime.ofPlainDateTimeWithZone datetime("1997-03-18T00:01:02") .UTC
+  println! DateTime.ofTimestamp 1708121234 .UTC
+  println! DateTime.ofTimestampWithZone 1708121234 .UTC

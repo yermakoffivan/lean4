@@ -30,7 +30,7 @@ info: "Monday, June 16, 2014 03:03:03 -0300"
 #eval FullDayTimeZone.format date₁
 
 def tm := date₁.toTimestamp
-def date₂ := ZonedDateTime.ofTimestampWithZone tm brTZ
+def date₂ := DateTime.ofTimestampWithZone tm brTZ
 
 /--
 info: "Monday, June 16, 2014 03:03:03 -0300"
@@ -39,7 +39,7 @@ info: "Monday, June 16, 2014 03:03:03 -0300"
 #eval FullDayTimeZone.format date₂
 
 def tm₃ := date₁.toTimestamp
-def date₃ := ZonedDateTime.ofTimestampWithZone tm₃ brTZ
+def date₃ := DateTime.ofTimestampWithZone tm₃ brTZ
 
 /--
 info: "Monday, June 16, 2014 03:03:03 -0300"
@@ -58,9 +58,9 @@ BR: 15 August 2024 13:28:12 GMT-03:00
 -/
 def tm₄ : Second.Offset := 1723739292
 
-def dateBR := ZonedDateTime.ofTimestampWithZone (Timestamp.ofSecondsSinceUnixEpoch tm₄) brTZ
-def dateJP := ZonedDateTime.ofTimestampWithZone (Timestamp.ofSecondsSinceUnixEpoch tm₄) jpTZ
-def dateUTC := ZonedDateTime.ofTimestampWithZone (Timestamp.ofSecondsSinceUnixEpoch tm₄) .UTC
+def dateBR := DateTime.ofTimestampWithZone (Timestamp.ofSecondsSinceUnixEpoch tm₄) brTZ
+def dateJP := DateTime.ofTimestampWithZone (Timestamp.ofSecondsSinceUnixEpoch tm₄) jpTZ
+def dateUTC := DateTime.ofTimestampWithZone (Timestamp.ofSecondsSinceUnixEpoch tm₄) .UTC
 
 /--
 info: "Thursday, August 15, 2024 13:28:12 -0300"
@@ -134,9 +134,9 @@ This PlainDate is relative to the local time.
 -/
 def PlainDate : PlainDateTime := PlainDateTime.ofWallTime (WallTime.ofSeconds localTm)
 
-def dateBR₁ := ZonedDateTime.ofPlainDateTimeWithZone PlainDate brTZ
-def dateJP₁ := ZonedDateTime.ofPlainDateTimeWithZone PlainDate jpTZ
-def dateUTC₁ := ZonedDateTime.ofPlainDateTimeWithZone PlainDate .UTC
+def dateBR₁ := DateTime.ofPlainDateTimeWithZone PlainDate brTZ
+def dateJP₁ := DateTime.ofPlainDateTimeWithZone PlainDate jpTZ
+def dateUTC₁ := DateTime.ofPlainDateTimeWithZone PlainDate .UTC
 
 /--
 info: "Thursday, August 15, 2024 14:03:47 -0300"
@@ -215,25 +215,25 @@ info: "06/16/2014"
 info: "0053-06-19"
 -/
 #guard_msgs in
-#eval Formats.sqlDate.format (ZonedDateTime.ofLocalDateWithZone (PlainDate.ofEpochDay ⟨-700000⟩) .UTC)
+#eval Formats.sqlDate.format (DateTime.ofLocalDateWithZone (PlainDate.ofEpochDay ⟨-700000⟩) .UTC)
 
 /--
 info: "-0002-09-16"
 -/
 #guard_msgs in
-#eval Formats.sqlDate.format (ZonedDateTime.ofLocalDateWithZone (PlainDate.ofEpochDay ⟨-720000⟩) .UTC)
+#eval Formats.sqlDate.format (DateTime.ofLocalDateWithZone (PlainDate.ofEpochDay ⟨-720000⟩) .UTC)
 
 /--
 info: "-0084-07-28"
 -/
 #guard_msgs in
-#eval Formats.sqlDate.format (ZonedDateTime.ofLocalDateWithZone (PlainDate.ofEpochDay ⟨-750000⟩) .UTC)
+#eval Formats.sqlDate.format (DateTime.ofLocalDateWithZone (PlainDate.ofEpochDay ⟨-750000⟩) .UTC)
 
 /--
 info: "-0221-09-04"
 -/
 #guard_msgs in
-#eval Formats.sqlDate.format (ZonedDateTime.ofLocalDateWithZone (PlainDate.ofEpochDay ⟨-800000⟩) .UTC)
+#eval Formats.sqlDate.format (DateTime.ofLocalDateWithZone (PlainDate.ofEpochDay ⟨-800000⟩) .UTC)
 
 /--
 info: date("-0221-09-04")
@@ -294,7 +294,7 @@ def datetime₄ := datetime("2002-07-14T23:13:12.324354679")
 def zoned₄ := zoned("2002-07-14T23:13:12.324354679+09:00")
 def zoned₅ := zoned("2002-07-14T23:13:12.324354679+00:00")
 def tz : TimeZone := { offset := { second := -3600 }, name := "America/Sao_Paulo", abbreviation := "BRT", isDST := false}
-def zoned₆ := ZonedDateTime.ofPlainDateTime (zoned₄.toPlainDateTime) (TimeZone.ZoneRules.ofTimeZone tz)
+def zoned₆ := DateTime.ofPlainDateTime (zoned₄.toPlainDateTime) (TimeZone.ZoneRules.ofTimeZone tz)
 
 /--
 info: "CE CE CE Common Era C"
@@ -804,7 +804,7 @@ info: 1
 -/
 #guard_msgs in
 #eval
-  let t : ZonedDateTime := .ofPlainDateTime datetime("2018-12-31T12:00:00") (TimeZone.ZoneRules.ofTimeZone TimeZone.UTC)
+  let t : DateTime := .ofPlainDateTime datetime("2018-12-31T12:00:00") (TimeZone.ZoneRules.ofTimeZone TimeZone.UTC)
   IO.println s!"{t.format "w"}"
 
 /--
@@ -949,16 +949,16 @@ info: zoned("2002-07-14T14:13:12.000000000+23:59")
 info: Except.error "offset 22: invalid hour offset: 24. Must be between 0 and 23."
 -/
 #guard_msgs in
-#eval ZonedDateTime.fromLeanDateTimeWithZoneString "2002-07-14T14:13:12+24:59"
+#eval DateTime.fromLeanDateTimeWithZoneString "2002-07-14T14:13:12+24:59"
 
 /--
 info: Except.error "offset 25: invalid minute offset: 60. Must be between 0 and 59."
 -/
 #guard_msgs in
-#eval ZonedDateTime.fromLeanDateTimeWithZoneString "2002-07-14T14:13:12+23:60"
+#eval DateTime.fromLeanDateTimeWithZoneString "2002-07-14T14:13:12+23:60"
 
 /--
 info: Except.ok (zoned("2002-07-14T14:13:12.000000000Z"))
 -/
 #guard_msgs in
-#eval ZonedDateTime.fromLeanDateTimeWithZoneString "2002-07-14T14:13:12+00:00"
+#eval DateTime.fromLeanDateTimeWithZoneString "2002-07-14T14:13:12+00:00"

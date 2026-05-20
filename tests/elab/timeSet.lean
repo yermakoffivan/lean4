@@ -29,7 +29,7 @@ info: "2014-06-16T10:03:03.000000100-03:00"
 -/
 #guard_msgs in
 #eval
-    let t : ZonedDateTime := ISO8601UTC.parse! "2014-06-16T10:03:03.000000100-03:00"
+    let t : DateTime := ISO8601UTC.parse! "2014-06-16T10:03:03.000000100-03:00"
     ISO8601UTC.format t.toDateTime
 
 /--

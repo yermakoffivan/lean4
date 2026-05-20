@@ -6,7 +6,7 @@ Authors: Sofia Rodrigues
 module
 
 prelude
-public import Std.Time.Zoned.ZonedDateTime
+public import Std.Time.Zoned.DateTime
 public import Std.Time.Zoned.Database.Basic
 public import Std.Time.Zoned.Database.TZdb
 public import Std.Time.Zoned.Database.Windows

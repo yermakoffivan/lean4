@@ -507,7 +507,7 @@ def weekYear (date : PlainDateTime) (firstDay : Weekday := .monday) : Year.Offse
 Returns the aligned week of the month for a `PlainDateTime`. Weeks are fixed 7-day slots
 starting from day 1: days 1–7 are week 1, days 8–14 are week 2, etc.
 -/
-def alignedWeekOfMonth (date : PlainDateTime) : Week.OfMonth.Aligned.Ordinal :=
+def alignedWeekOfMonth (date : PlainDateTime) : Week.Aligned.Ordinal :=
   date.date.alignedWeekOfMonth
 
 /--

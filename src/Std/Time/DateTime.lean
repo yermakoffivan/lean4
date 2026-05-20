@@ -203,7 +203,7 @@ def weekYear (date : DateTime) (firstDay : Weekday := .monday) : Year.Offset :=
 Returns the aligned week of the month for a `DateTime`. Weeks are fixed 7-day slots
 starting from day 1: days 1–7 are week 1, days 8–14 are week 2, etc.
 -/
-def alignedWeekOfMonth (date : DateTime) : Week.OfMonth.Aligned.Ordinal :=
+def alignedWeekOfMonth (date : DateTime) : Week.Aligned.Ordinal :=
   date.date.get.alignedWeekOfMonth
 
 /--

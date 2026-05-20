@@ -728,7 +728,7 @@ def TypeFormat : Modifier → Type
   | .W _ => Week.Ordinal
   | .E _ => Weekday
   | .eorc _ => Weekday
-  | .F _ => Week.OfMonth.Aligned.Ordinal
+  | .F _ => Week.Aligned.Ordinal
   | .a _ => HourMarker
   | .h _ => Bounded.LE 1 12
   | .K _ => Bounded.LE 0 11

@@ -96,8 +96,6 @@ def toOffset (ordinal : Ordinal) : Week.Offset :=
 end Ordinal
 end OfYear
 
-namespace OfMonth
-
 namespace Aligned
 
 /--
@@ -118,7 +116,6 @@ instance : TransOrd Ordinal := inferInstanceAs <| TransOrd (Bounded.LE 1 _)
 instance : LawfulEqOrd Ordinal := inferInstanceAs <| LawfulEqOrd (Bounded.LE 1 _)
 
 end Aligned
-end OfMonth
 
 /--
 `Ordinal` represents the number of weeks within a month, ranging between 1 and 6.
@@ -136,11 +133,6 @@ instance : Ord Ordinal := inferInstanceAs <| Ord (Bounded.LE 1 _)
 instance : TransOrd Ordinal := inferInstanceAs <| TransOrd (Bounded.LE 1 _)
 
 instance : LawfulEqOrd Ordinal := inferInstanceAs <| LawfulEqOrd (Bounded.LE 1 _)
-
-namespace OfMonth
-/-- `OfMonth.Ordinal` is an alias for `Week.Ordinal`. -/
-abbrev Ordinal := Week.Ordinal
-end OfMonth
 
 namespace Offset
 

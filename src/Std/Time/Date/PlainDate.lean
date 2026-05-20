@@ -111,7 +111,7 @@ def ofEpochDay (day : Day.Offset) : PlainDate :=
 Returns the aligned week of the month for a `PlainDate`. Weeks are fixed 7-day slots
 starting from day 1: days 1–7 are week 1, days 8–14 are week 2, etc.
 -/
-def alignedWeekOfMonth (date : PlainDate) : Week.OfMonth.Aligned.Ordinal :=
+def alignedWeekOfMonth (date : PlainDate) : Week.Aligned.Ordinal :=
   date.day.sub 1 |>.ediv 7 (by decide) |>.add 1
 
 /--

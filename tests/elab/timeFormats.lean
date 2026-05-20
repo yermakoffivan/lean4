@@ -27,10 +27,10 @@ def time₂ := time("03:11:01")
 info: "Monday, June 16, 2014 03:03:03 -0300"
 -/
 #guard_msgs in
-#eval FullDayTimeZone.format date₁.toDateTime
+#eval FullDayTimeZone.format date₁
 
 def tm := date₁.toTimestamp
-def date₂ := DateTime.ofTimestamp tm brTZ
+def date₂ := ZonedDateTime.ofTimestampWithZone tm brTZ
 
 /--
 info: "Monday, June 16, 2014 03:03:03 -0300"
@@ -39,7 +39,7 @@ info: "Monday, June 16, 2014 03:03:03 -0300"
 #eval FullDayTimeZone.format date₂
 
 def tm₃ := date₁.toTimestamp
-def date₃ := DateTime.ofTimestamp tm₃ brTZ
+def date₃ := ZonedDateTime.ofTimestampWithZone tm₃ brTZ
 
 /--
 info: "Monday, June 16, 2014 03:03:03 -0300"
@@ -58,9 +58,9 @@ BR: 15 August 2024 13:28:12 GMT-03:00
 -/
 def tm₄ : Second.Offset := 1723739292
 
-def dateBR := DateTime.ofTimestamp (Timestamp.ofSecondsSinceUnixEpoch tm₄) brTZ
-def dateJP := DateTime.ofTimestamp (Timestamp.ofSecondsSinceUnixEpoch tm₄) jpTZ
-def dateUTC := DateTime.ofTimestamp (Timestamp.ofSecondsSinceUnixEpoch tm₄) .UTC
+def dateBR := ZonedDateTime.ofTimestampWithZone (Timestamp.ofSecondsSinceUnixEpoch tm₄) brTZ
+def dateJP := ZonedDateTime.ofTimestampWithZone (Timestamp.ofSecondsSinceUnixEpoch tm₄) jpTZ
+def dateUTC := ZonedDateTime.ofTimestampWithZone (Timestamp.ofSecondsSinceUnixEpoch tm₄) .UTC
 
 /--
 info: "Thursday, August 15, 2024 13:28:12 -0300"
@@ -78,13 +78,13 @@ info: "Friday, August 16, 2024 01:28:12 +0900"
 info: "Thursday, August 15, 2024 13:28:12 -0300"
 -/
 #guard_msgs in
-#eval FullDayTimeZone.format (dateUTC.convertTimeZone brTZ)
+#eval FullDayTimeZone.format (dateUTC.convertZoneRules (TimeZone.ZoneRules.ofTimeZone brTZ))
 
 /--
 info: "Thursday, August 15, 2024 13:28:12 -0300"
 -/
 #guard_msgs in
-#eval FullDayTimeZone.format (dateJP.convertTimeZone brTZ)
+#eval FullDayTimeZone.format (dateJP.convertZoneRules (TimeZone.ZoneRules.ofTimeZone brTZ))
 
 /--
 info: "Thursday, August 15, 2024 16:28:12 +0000"
@@ -96,13 +96,13 @@ info: "Thursday, August 15, 2024 16:28:12 +0000"
 info: "Thursday, August 15, 2024 16:28:12 +0000"
 -/
 #guard_msgs in
-#eval FullDayTimeZone.format (dateBR.convertTimeZone .UTC)
+#eval FullDayTimeZone.format (dateBR.convertZoneRules (TimeZone.ZoneRules.ofTimeZone .UTC))
 
 /--
 info: "Thursday, August 15, 2024 16:28:12 +0000"
 -/
 #guard_msgs in
-#eval FullDayTimeZone.format (dateJP.convertTimeZone .UTC)
+#eval FullDayTimeZone.format (dateJP.convertZoneRules (TimeZone.ZoneRules.ofTimeZone .UTC))
 
 /--
 info: "Friday, August 16, 2024 01:28:12 +0900"
@@ -114,13 +114,13 @@ info: "Friday, August 16, 2024 01:28:12 +0900"
 info: "Friday, August 16, 2024 01:28:12 +0900"
 -/
 #guard_msgs in
-#eval FullDayTimeZone.format (dateBR.convertTimeZone jpTZ)
+#eval FullDayTimeZone.format (dateBR.convertZoneRules (TimeZone.ZoneRules.ofTimeZone jpTZ))
 
 /--
 info: "Friday, August 16, 2024 01:28:12 +0900"
 -/
 #guard_msgs in
-#eval FullDayTimeZone.format (dateUTC.convertTimeZone jpTZ)
+#eval FullDayTimeZone.format (dateUTC.convertZoneRules (TimeZone.ZoneRules.ofTimeZone jpTZ))
 
 /--
 TM: 1723730627
@@ -134,9 +134,9 @@ This PlainDate is relative to the local time.
 -/
 def PlainDate : PlainDateTime := PlainDateTime.ofWallTime (WallTime.ofSeconds localTm)
 
-def dateBR₁ := DateTime.ofPlainDateTime PlainDate brTZ
-def dateJP₁ := DateTime.ofPlainDateTime PlainDate jpTZ
-def dateUTC₁ := DateTime.ofPlainDateTime PlainDate .UTC
+def dateBR₁ := ZonedDateTime.ofPlainDateTimeWithZone PlainDate brTZ
+def dateJP₁ := ZonedDateTime.ofPlainDateTimeWithZone PlainDate jpTZ
+def dateUTC₁ := ZonedDateTime.ofPlainDateTimeWithZone PlainDate .UTC
 
 /--
 info: "Thursday, August 15, 2024 14:03:47 -0300"
@@ -154,19 +154,19 @@ info: "Thursday, August 15, 2024 14:03:47 +0900"
 info: "Thursday, August 15, 2024 23:03:47 +0900"
 -/
 #guard_msgs in
-#eval FullDayTimeZone.format (dateUTC₁.convertTimeZone jpTZ)
+#eval FullDayTimeZone.format (dateUTC₁.convertZoneRules (TimeZone.ZoneRules.ofTimeZone jpTZ))
 
 /--
 info: "Friday, August 16, 2024 02:03:47 +0900"
 -/
 #guard_msgs in
-#eval FullDayTimeZone.format (dateBR₁.convertTimeZone jpTZ)
+#eval FullDayTimeZone.format (dateBR₁.convertZoneRules (TimeZone.ZoneRules.ofTimeZone jpTZ))
 
 /--
 info: "Thursday, August 15, 2024 14:03:47 +0900"
 -/
 #guard_msgs in
-#eval FullDayTimeZone.format (dateJP₁.convertTimeZone jpTZ)
+#eval FullDayTimeZone.format (dateJP₁.convertZoneRules (TimeZone.ZoneRules.ofTimeZone jpTZ))
 
 /--
 info: "Monday, June 16, 2014 03:03:03 -0300"
@@ -215,25 +215,25 @@ info: "06/16/2014"
 info: "0053-06-19"
 -/
 #guard_msgs in
-#eval Formats.sqlDate.format (DateTime.ofLocalDate (PlainDate.ofEpochDay ⟨-700000⟩) .UTC)
+#eval Formats.sqlDate.format (ZonedDateTime.ofLocalDateWithZone (PlainDate.ofEpochDay ⟨-700000⟩) .UTC)
 
 /--
 info: "-0002-09-16"
 -/
 #guard_msgs in
-#eval Formats.sqlDate.format (DateTime.ofLocalDate (PlainDate.ofEpochDay ⟨-720000⟩) .UTC)
+#eval Formats.sqlDate.format (ZonedDateTime.ofLocalDateWithZone (PlainDate.ofEpochDay ⟨-720000⟩) .UTC)
 
 /--
 info: "-0084-07-28"
 -/
 #guard_msgs in
-#eval Formats.sqlDate.format (DateTime.ofLocalDate (PlainDate.ofEpochDay ⟨-750000⟩) .UTC)
+#eval Formats.sqlDate.format (ZonedDateTime.ofLocalDateWithZone (PlainDate.ofEpochDay ⟨-750000⟩) .UTC)
 
 /--
 info: "-0221-09-04"
 -/
 #guard_msgs in
-#eval Formats.sqlDate.format (DateTime.ofLocalDate (PlainDate.ofEpochDay ⟨-800000⟩) .UTC)
+#eval Formats.sqlDate.format (ZonedDateTime.ofLocalDateWithZone (PlainDate.ofEpochDay ⟨-800000⟩) .UTC)
 
 /--
 info: date("-0221-09-04")

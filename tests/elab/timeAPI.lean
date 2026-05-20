@@ -712,25 +712,25 @@ Std.Time.Weekday.tuesday
   println! PlainDateTime.ofEpochDay 1 PlainTime.midnight
 
 /--
-info: 2024-09-13T02:01:02.000000000-03:00
-2024-09-19T02:01:02.000000000-03:00
-2024-10-12T02:01:02.000000000-03:00
-2024-10-12T02:01:02.000000000-03:00
-2025-09-12T02:01:02.000000000-03:00
-2025-09-12T02:01:02.000000000-03:00
-2024-09-11T02:01:02.000000000-03:00
-2024-09-05T02:01:02.000000000-03:00
-2024-08-12T02:01:02.000000000-03:00
-2024-08-12T02:01:02.000000000-03:00
-2023-09-12T02:01:02.000000000-03:00
-2023-09-12T02:01:02.000000000-03:00
-2024-09-01T02:01:02.000000000-03:00
-2024-09-01T02:01:02.000000000-03:00
-2024-09-15T02:01:02.000000000-03:00
-2024-01-12T02:01:02.000000000-03:00
-2024-01-12T02:01:02.000000000-03:00
-0001-09-12T02:01:02.000000000-03:00
-0001-09-12T02:01:02.000000000-03:00
+info: 2024-09-13T02:01:02.000000000[America/Sao_Paulo]
+2024-09-19T02:01:02.000000000[America/Sao_Paulo]
+2024-10-12T02:01:02.000000000[America/Sao_Paulo]
+2024-10-12T02:01:02.000000000[America/Sao_Paulo]
+2025-09-12T02:01:02.000000000[America/Sao_Paulo]
+2025-09-12T02:01:02.000000000[America/Sao_Paulo]
+2024-09-11T02:01:02.000000000[America/Sao_Paulo]
+2024-09-05T02:01:02.000000000[America/Sao_Paulo]
+2024-08-12T02:01:02.000000000[America/Sao_Paulo]
+2024-08-12T02:01:02.000000000[America/Sao_Paulo]
+2023-09-12T02:01:02.000000000[America/Sao_Paulo]
+2023-09-12T02:01:02.000000000[America/Sao_Paulo]
+2024-09-01T02:01:02.000000000[America/Sao_Paulo]
+2024-09-01T02:01:02.000000000[America/Sao_Paulo]
+2024-09-15T02:01:02.000000000[America/Sao_Paulo]
+2024-01-12T02:01:02.000000000[America/Sao_Paulo]
+2024-01-12T02:01:02.000000000[America/Sao_Paulo]
+0001-09-12T02:01:02.000000000[America/Sao_Paulo]
+0001-09-12T02:01:02.000000000[America/Sao_Paulo]
 24 2024 2024 2024 24 2024 2024 24 S
 true
 256
@@ -742,12 +742,12 @@ Std.Time.Weekday.thursday
 2
 19978
 1726117262
-1970-01-02T00:00:00.000000000Z
+1970-01-02T00:00:00.000000000[UTC]
 
 -/
 #guard_msgs in
 #eval do
-  let zoned := DateTime.ofPlainDateTime datetime("2024-09-12T02:01:02") timezone("America/Sao_Paulo -03:00")
+  let zoned := ZonedDateTime.ofPlainDateTimeWithZone datetime("2024-09-12T02:01:02") timezone("America/Sao_Paulo -03:00")
 
   println! zoned.addDays 1
   println! zoned.addWeeks 1
@@ -783,7 +783,7 @@ Std.Time.Weekday.thursday
 
   println! zoned.toEpochDay
   println! zoned.toTimestamp
-  println! DateTime.ofEpochDay 1 PlainTime.midnight .UTC
+  println! ZonedDateTime.ofEpochDay 1 PlainTime.midnight .UTC
 
 /--
 info: 1997-03-19T02:03:04.000000000[America/Sao_Paulo]
@@ -871,18 +871,18 @@ info: 2023-06-09T00:00:00.000000000
   println! PlainDateTime.ofEpochDay 23332 time("12:32:43")
 
 /--
-info: 1970-01-02T00:00:00.000000000Z
-1997-03-18T00:00:00.000000000Z
-1997-03-18T00:01:02.000000000Z
-2024-02-16T22:07:14.000000000Z
+info: 1970-01-02T00:00:00.000000000[UTC]
+1997-03-18T00:00:00.000000000[UTC]
+1997-03-18T00:01:02.000000000[UTC]
+2024-02-16T22:07:14.000000000[UTC]
 
 -/
 #guard_msgs in
 #eval do
-  println! DateTime.ofEpochDay 1 PlainTime.midnight .UTC
-  println! DateTime.ofLocalDate date("1997-03-18") .UTC
-  println! DateTime.ofPlainDateTime datetime("1997-03-18T00:01:02") .UTC
-  println! DateTime.ofTimestamp 1708121234 .UTC
+  println! ZonedDateTime.ofEpochDay 1 PlainTime.midnight .UTC
+  println! ZonedDateTime.ofLocalDateWithZone date("1997-03-18") .UTC
+  println! ZonedDateTime.ofPlainDateTimeWithZone datetime("1997-03-18T00:01:02") .UTC
+  println! ZonedDateTime.ofTimestampWithZone 1708121234 .UTC
 
 /--
 info: 1970-01-02T00:00:00.000000000[UTC]

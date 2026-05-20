@@ -6,7 +6,6 @@ Authors: Sofia Rodrigues
 module
 
 prelude
-public import Std.Time.Zoned.DateTime
 public import Std.Time.Zoned.ZoneRules
 import all Std.Time.DateTime.PlainDateTime
 
@@ -48,7 +47,6 @@ instance : Inhabited ZonedDateTime where
   default := private ⟨Thunk.mk Inhabited.default, Inhabited.default, Inhabited.default, Inhabited.default⟩
 
 namespace ZonedDateTime
-open DateTime
 
 /--
 Creates a new `ZonedDateTime` out of a `Timestamp` and a `ZoneRules`.
@@ -104,13 +102,6 @@ Converts a `ZonedDateTime` to a `PlainDateTime`
 @[inline]
 def toPlainDateTime (dt : ZonedDateTime) : PlainDateTime :=
   dt.date.get
-
-/--
-Converts a `ZonedDateTime` to a `PlainDateTime`
--/
-@[inline]
-def toDateTime (dt : ZonedDateTime) : DateTime dt.timezone :=
-  DateTime.ofTimestamp dt.timestamp dt.timezone
 
 /--
 Getter for the `PlainTime` inside of a `ZonedDateTime`

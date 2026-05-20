@@ -22,7 +22,7 @@ namespace PlainDateTime
 
 /--
 Get the current time, in the local timezone.
-To obtain the current time in a specific timezone, use `DateTime.now` or `ZonedDateTime.nowAt`.
+To obtain the current time in a specific timezone, use `ZonedDateTime.nowAt`.
 -/
 @[inline]
 def now : IO PlainDateTime := do
@@ -55,38 +55,6 @@ def now : IO PlainTime :=
 
 end PlainTime
 
-namespace DateTime
-
-/--
-Converts a `PlainDate` with a `TimeZone` to a `DateTime`. It assumes `PlainDate` is local time.
--/
-@[inline]
-def ofLocalDate (pd : PlainDate) (tz : TimeZone) : DateTime tz :=
-  DateTime.ofPlainDateTime (PlainDateTime.ofPlainDate pd) tz
-
-/--
-Converts a `DateTime` to a `PlainDate`.
--/
-@[inline]
-def toPlainDate (dt : DateTime tz) : PlainDate :=
-  dt.toPlainDateTime.toPlainDate
-
-/--
-Converts a `DateTime` to a `PlainTime`
--/
-@[inline]
-def toPlainTime (dt : DateTime tz) : PlainTime :=
-  dt.date.get.time
-
-/--
-Gets the current `DateTime`.
--/
-@[inline]
-def now : IO (DateTime tz) := do
-  let tm ← Timestamp.now
-  return DateTime.ofTimestamp tm tz
-
-end DateTime
 namespace ZonedDateTime
 
 /--

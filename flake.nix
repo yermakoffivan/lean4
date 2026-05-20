@@ -36,7 +36,14 @@
           CTEST_OUTPUT_ON_FAILURE = 1;
         } // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux (let
           opensslForDist = pkgs.openssl.overrideAttrs (p: {
-            version = "3.6.0";
+            # Sync version with CMakeLists.txt
+            version = "3.6.1";
+            src = pkgs.fetchFromGitHub {
+              owner = "openssl";
+              repo = "openssl";
+              rev = "openssl-3.6.1";
+              sha256 = "sha256-pj8ekUqkZPEnevY3i+42uF//cWyr1tgWSaSn0V+DjjU=";
+            };
             configureFlags = (p.configureFlags or [ ]) ++ [
               "no-shared"
               "no-tests"

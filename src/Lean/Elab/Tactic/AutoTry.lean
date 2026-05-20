@@ -7,13 +7,12 @@ Authors: Joachim Breitner
 module
 
 prelude
-public import Init.Prelude
-public meta import Init.Try
-public meta import Lean.Linter.Basic
-public meta import Lean.Server.InfoUtils
-public meta import Lean.Elab.Tactic.Try
-public meta import Lean.Elab.Tactic.Meta
-public meta import Lean.Elab.BuiltinTerm
+import Init.Try
+import Lean.Linter.Basic
+import Lean.Server.InfoUtils
+import Lean.Elab.Tactic.Try
+import Lean.Elab.Tactic.Meta
+import Lean.Elab.BuiltinTerm
 
 /-! # Auto-`try?`
 
@@ -35,8 +34,6 @@ Two heuristics decide when *not* to fire:
    goals" error. If the user is in the middle of fixing a broken proof we don't want to
    distract them with suggestions.
 -/
-
-public meta section
 
 namespace Lean.Elab.Tactic.AutoTry
 

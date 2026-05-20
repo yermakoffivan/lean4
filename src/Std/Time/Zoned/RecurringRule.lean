@@ -29,7 +29,7 @@ inductive TransitionSpec where
   /--
   `Mm.w.d` form: month `m`, week `w` (1–5; 5 = last), ISO weekday `d`.
   -/
-  | mwd (month : Month.Ordinal) (week : Week.OfMonth.Aligned.Ordinal) (day : Weekday.Ordinal)
+  | mwd (month : Month.Ordinal) (week : Week.Aligned.Ordinal) (day : Weekday.Ordinal)
 
   /--
   `Jn` form: Julian day 1–365 (Feb 29 never counted, even in leap years).
@@ -50,7 +50,7 @@ Returns the `Day.Offset` (days since epoch) for a `TransitionSpec.mwd` in the gi
 `Mm.w.d`: month `m`, week `w` (1–5; 5 = last), ISO weekday `d` (1 = Monday, 7 = Sunday).
 Finds the `w`-th occurrence of weekday `d` in month `m`; if `w = 5`, returns the last occurrence.
 -/
-def toEpochDayMWD (year : Year.Offset) (month : Month.Ordinal) (week : Week.Ordinal) (day : Weekday.Ordinal) : Day.Offset :=
+def toEpochDayMWD (year : Year.Offset) (month : Month.Ordinal) (week : Week.Aligned.Ordinal) (day : Weekday.Ordinal) : Day.Offset :=
   if week.val == 5 then
     -- "week 5" means the last occurrence of `day` in `month`.
     -- Start from the last day of the month and walk backwards to the desired weekday.

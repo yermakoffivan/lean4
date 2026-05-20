@@ -7,6 +7,7 @@ module
 
 prelude
 public import Std.Time.Time
+public import Std.Time.DateTime.Timestamp
 
 public section
 
@@ -146,3 +147,43 @@ def toSeconds (tz : TimeZone) : Second.Offset :=
   tz.offset.second
 
 end TimeZone
+
+namespace Timestamp
+
+/--
+Converts a `Timestamp` to a `WallTime` for a given timezone `offset`. The result is the local
+civil time: `wall = UTC + offset`.
+-/
+@[inline]
+def toWallTime (ts : Timestamp) (offset : TimeZone.Offset) : WallTime :=
+  WallTime.ofDuration (ts.val + offset.second)
+
+/--
+Creates a `Timestamp` from a `WallTime` and a timezone `offset`. Assumes the `WallTime` represents
+civil time at the given offset: `UTC = wall − offset`.
+-/
+@[inline]
+def ofWallTime (wt : WallTime) (offset : TimeZone.Offset) : Timestamp :=
+  Timestamp.ofDurationSinceUnixEpoch (wt.val - offset.second)
+
+end Timestamp
+
+namespace WallTime
+
+/--
+Converts a `WallTime` to a `Timestamp` given a timezone `offset`. The `WallTime` is treated as
+civil time at the given offset: `UTC = wall − offset`.
+-/
+@[inline]
+def toTimestamp (wt : WallTime) (offset : TimeZone.Offset) : Timestamp :=
+  Timestamp.ofWallTime wt offset
+
+/--
+Creates a `WallTime` from a `Timestamp` given a timezone `offset`. The result is the local
+civil time: `wall = UTC + offset`.
+-/
+@[inline]
+def ofTimestamp (ts : Timestamp) (offset : TimeZone.Offset) : WallTime :=
+  Timestamp.toWallTime ts offset
+
+end WallTime

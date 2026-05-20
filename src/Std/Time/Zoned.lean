@@ -7,8 +7,8 @@ module
 
 prelude
 public import Std.Time.Zoned.ZoneRules
-public import Std.Time.Zoned.DateTime
 public import Std.Time.Zoned.Database
+public import Std.Time.DateTime
 
 public section
 

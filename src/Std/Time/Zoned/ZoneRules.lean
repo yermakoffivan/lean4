@@ -247,13 +247,22 @@ def UTC : ZoneRules :=
 /--
 Finds the `LocalTimeType` corresponding to a given `Timestamp` in `ZoneRules`.
 If the timestamp falls between two transitions, it returns the most recent transition before the timestamp.
-If no transition is found, it falls back to `initialLocalTimeType`.
+When the timestamp is beyond all stored transitions and a POSIX TZ footer rule is present, the rule is
+consulted. Falls back to `initialLocalTimeType` if no transition or rule applies.
 -/
-@[inline]
-def findLocalTimeTypeForTimestamp (zr : ZoneRules) (timestamp : Timestamp) : LocalTimeType :=
-  Transition.findTransitionForTimestamp zr.transitions timestamp
-  |>.map (·.localTimeType)
-  |>.getD zr.initialLocalTimeType
+def findLocalTimeTypeForTimestamp (zr : ZoneRules) (timestamp : Timestamp) : LocalTimeType := Id.run do
+  let some t := Transition.findTransitionForTimestamp zr.transitions timestamp
+    | return zr.initialLocalTimeType
+
+  let some lastIdx := Transition.findTransitionIndexForTimestamp zr.transitions timestamp
+    | return t.localTimeType
+
+  let some rule := if lastIdx + 1 == zr.transitions.size then zr.transitionRule else none
+    | return t.localTimeType
+
+  let tz := rule.timezoneAt timestamp
+
+  return { t.localTimeType with gmtOffset := tz.offset, isDst := tz.isDST, abbreviation := tz.abbreviation, identifier := tz.name }
 
 /--
 Finds the `LocalTimeType` for a given wall-clock time (seconds since 1970-01-01T00:00:00 in local time).
@@ -284,11 +293,8 @@ def findLocalTimeTypeForWallTime (zr : ZoneRules) (wallTime : WallTime) : LocalT
 /--
 Find the current `TimeZone` out of a `Transition` in a `ZoneRules`
 -/
-@[inline]
 def timezoneAt (zr : ZoneRules) (tm : Timestamp) : TimeZone :=
-  Transition.timezoneAt zr.transitions tm
-  |>.toOption
-  |>.getD (zr.initialLocalTimeType |>.getTimeZone)
+  (zr.findLocalTimeTypeForTimestamp tm).getTimeZone
 
 /--
 Creates `ZoneRules` for the given `TimeZone`.

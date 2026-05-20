@@ -1,12 +1,12 @@
 /-
-Tests for `tactic.tryOnEmptyBy`: empty `by` blocks run `try?` and suggest proofs.
+Tests for `autoTry.onEmptyBy`: empty `by` blocks run `try?` and suggest proofs.
 -/
 
-set_option tactic.tryOnEmptyBy true
+set_option autoTry.onEmptyBy true
 
 -- Basic: empty by reports unsolved goals first (so the user sees it immediately
 -- even when `try?` is slow), then `try?` emits its suggestions as a single info
--- message with the option-disabling hint at the end.
+-- message.
 /--
 error: unsolved goals
 ⊢ True
@@ -18,8 +18,6 @@ info: Try these:
   [apply] by grind
   [apply] by grind only
   [apply] by simp_all
-
-(Disable this with `set_option tactic.tryOnEmptyBy false`.)
 -/
 #guard_msgs in
 example : True := by
@@ -30,7 +28,7 @@ error: unsolved goals
 ⊢ True
 -/
 #guard_msgs in
-set_option tactic.tryOnEmptyBy false in
+set_option autoTry.onEmptyBy false in
 example : True := by
 
 -- Non-empty by is not affected
@@ -48,8 +46,7 @@ error: unsolved goals
 #guard_msgs in
 example : True := by { }
 
--- Unprovable goal: try? finds no suggestions, so the implicit mode is fully silent
--- (no "Try this", no error or warning from try? itself — only the unsolved-goals error).
+-- Unprovable goal: try? finds no suggestions, so we get only the unsolved-goals error.
 /--
 error: unsolved goals
 ⊢ False
@@ -57,12 +54,21 @@ error: unsolved goals
 #guard_msgs in
 example : False := by
 
--- Nested in a backtracking combinator (`errToSorry = false`): try? must stay silent.
--- We only assert the absence of the try? info message; the unsolved-goals error is expected
--- because `exact (by)` succeeds at term-elab time (the empty tactic block fails later).
+-- Nested in a backtracking combinator: the inner empty `by` still triggers a suggestion,
+-- because the linter sees the elaborated form post-hoc and does not have access to the
+-- `errToSorry` flag the elaborator used. The outer proof still succeeds via the second
+-- branch of `first`, but the inner unsolved-goals error is still surfaced.
 /--
 error: unsolved goals
 ⊢ True
+---
+info: Try these:
+  [apply] by solve_by_elim
+  [apply] by simp
+  [apply] by simp only
+  [apply] by grind
+  [apply] by grind only
+  [apply] by simp_all
 -/
 #guard_msgs in
 example : True := by first | exact (by) | trivial

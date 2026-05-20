@@ -1049,8 +1049,11 @@ private def evalAndSuggestWithBy (tk : Syntax) (tac : TSyntax `tactic) (original
 
 /-- Core implementation of `try?`: focus, collect info, build tactic, evaluate and suggest.
 `tk` is the syntax token where "Try this:" appears. The optional `footer` is appended to the
-suggestions message (only when `wrapWithBy := true`). -/
-private def elabTryCore (tk : Syntax) (config : Try.Config) (footer : MessageData := MessageData.nil) :
+suggestions message (only when `wrapWithBy := true`).
+
+Public so that the `autoTry` linter (`Lean.Elab.Tactic.AutoTry`) can drive `try?` from outside
+the normal `try?` syntax entry point. -/
+def elabTryCore (tk : Syntax) (config : Try.Config) (footer : MessageData := MessageData.nil) :
     TacticM Unit :=
   Tactic.focus do withMainContext do
     let originalMaxHeartbeats ← getMaxHeartbeats
@@ -1081,38 +1084,5 @@ private def elabTryCore (tk : Syntax) (config : Try.Config) (footer : MessageDat
       else
         evalAndSuggest tk tac originalMaxHeartbeats config
   | _ => throwUnsupportedSyntax
-
-open Term in
-/-- When the `by` body is empty and `tactic.tryOnEmptyBy` is set, run `try?` for its
-informational side effect (the "Try this" suggestions) and then delegate to the normal
-`by` elaborator so the empty body still produces an unsolved-goals error. The implicit
-mode must not change elaboration behavior beyond emitting messages.
-Disabled when `errToSorry` is false (nested in a combinator like `first`),
-or when `try?` infrastructure is not yet available (e.g. while building the prelude).
-
-We register a *second* `builtin_term_elab` for `byTactic` (rather than folding the
-gate-and-dispatch into `elabByTactic` directly) because `Lean.Elab.Tactic.Try` already
-imports `Lean.Elab.BuiltinTerm`, so the `try?` infrastructure can't be referenced
-from `BuiltinTerm.lean` without breaking the dependency direction. The gate in
-`elabByTactic` skips this elaborator (via `throwUnsupportedSyntax`) when the `try?`
-path doesn't apply. This could be cleaned up later, e.g. via a registered handler ref
-in `BuiltinTerm.lean` populated by `Try.lean`. -/
-@[builtin_term_elab byTactic] def elabEmptyByAsTry : TermElab := fun stx expectedType? => do
-  unless (← shouldElabEmptyByAsTry stx) do
-    throwUnsupportedSyntax
-  let some expectedType := expectedType? | do tryPostpone; throwUnsupportedSyntax
-  -- Run the same body the normal `by` elaborator would.
-  let mvar ← elabByTacticCore stx expectedType?
-  let cancelTk ← IO.CancelToken.new
-  let footer := m!"\n\n(Disable this with `set_option tactic.tryOnEmptyBy false`.)"
-  let act ← Term.wrapAsyncAsSnapshot (cancelTk? := cancelTk) fun (_ : Unit) => do
-    let scratch ← mkFreshExprMVar expectedType MetavarKind.syntheticOpaque
-    try
-      discard <| Tactic.run scratch.mvarId! <|
-        withRef stx do elabTryCore stx[0] { wrapWithBy := true } (footer := footer)
-    catch _ => pure ()
-  let t ← BaseIO.asTask (act ())
-  Core.logSnapshotTask { stx? := none, reportingRange := .skip, task := t, cancelTk? := cancelTk }
-  return mvar
 
 end Lean.Elab.Tactic.Try

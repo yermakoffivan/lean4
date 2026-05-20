@@ -37,7 +37,7 @@
         } // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux (let
           # Build OpenSSL using pkgsDist's old-glibc stdenv,
           # so the resulting static libs don't require newer glibc symbols.
-          opensslForDist = (pkgsDist.callPackage (pkgs.path + "/pkgs/development/libraries/openssl") {}).overrideAttrs (attrs: {
+          opensslForDist = (pkgsDist.callPackage (pkgs.path + "/pkgs/development/libraries/openssl") { inherit (pkgsDist) makeBinaryWrapper; }).overrideAttrs (attrs: {
             src = pkgs.fetchFromGitHub {
               owner = "openssl";
               repo = "openssl";

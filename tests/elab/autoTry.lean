@@ -58,14 +58,38 @@ error: unsolved goals
 #guard_msgs in
 example : False := by
 
--- Nested inside a backtracking combinator: try? must stay silent for the failing
--- branch even though the outer proof succeeds via the second branch of `first`.
+-- Inside `first | ... | ...` the empty `by` still triggers a suggestion: the heuristic
+-- only suppresses tactics whose syntax was elaborated against multiple proof states (rhs
+-- of `<;>`, body of `repeat`, etc.), and each branch of `first` is elaborated against the
+-- same single state -- the speculative branches are not "multi-elab" in that sense.
 /--
 error: unsolved goals
 ⊢ True
+---
+info: Try these:
+  [apply] by solve_by_elim
+  [apply] by simp
+  [apply] by simp only
+  [apply] by grind
+  [apply] by grind only
+  [apply] by simp_all
 -/
 #guard_msgs in
 example : True := by first | exact (by) | trivial
+
+-- Inside `<;>` (which expands to `focus / all_goals`), the rhs runs once per goal so the
+-- heuristic correctly suppresses the per-goal suggestions.
+/--
+error: unsolved goals
+case left
+⊢ True
+
+case right
+⊢ True
+-/
+#guard_msgs in
+example : True ∧ True := by
+  constructor <;> skip
 
 set_option autoTry.onEmptyBy false
 
@@ -95,9 +119,18 @@ warning: declaration uses `sorry`
 #guard_msgs in
 example : True := sorry
 
--- A `sorry` tactic nested in `first | ... | ...` is also suppressed.
+-- A `sorry` tactic nested in `first | ... | ...` still triggers, same reasoning as for
+-- the nested empty-`by` case above.
 /--
 warning: declaration uses `sorry`
+---
+info: Try these:
+  [apply] solve_by_elim
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
 -/
 #guard_msgs in
 example : True := by first | sorry | trivial
@@ -148,3 +181,23 @@ info: Try these:
 example : True := by first | skip | trivial
 
 set_option autoTry.onUnsolvedGoal false
+
+/-! ## Error gate
+
+When a command logs any *non-`unsolved goals`* error, the auto-`try?` hook stays silent
+entirely. The user is presumed to be in the middle of fixing a broken proof; suggestions
+for the unsolved-goal site are noise until the other errors are addressed.
+-/
+
+-- A non-`unsolved goals` error inside the same command suppresses every autoTry trigger
+-- in that command. Here the `sorry` would normally fire `onSorry`, but it is silenced.
+/--
+error: Unknown identifier `this_undefined_name`
+---
+error: No goals to be solved
+-/
+#guard_msgs in
+set_option autoTry.onSorry true in
+example : True := by
+  exact this_undefined_name
+  sorry

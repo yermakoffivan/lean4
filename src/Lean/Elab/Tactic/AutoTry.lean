@@ -23,11 +23,16 @@ surface suggestions for completing the proof. Each trigger is gated by its own o
 attached to the linter hook (`addLinter`), but the feature is not a "linter" in the user-
 facing sense; it just borrows that hook to find a convenient post-elaboration entry point.
 
-Triggers are suppressed for tactics nested inside combinators that elaborate their
-arguments multiple times or in a backtracking context (`first`, `attempt_all`, `<;>`'s
-expansion via `all_goals`, `any_goals`, `repeat`/`repeat'`, `try`, etc.). Without this,
-e.g. `by first | exact (by) | trivial` would report a suggestion for the failed `(by)`
-branch even though the outer proof goes through fine.
+Two heuristics decide when *not* to fire:
+
+1. Tactic positions that were elaborated against more than one proof state are skipped:
+   a single "Try this" suggestion can't replay against multiple goals. This catches the rhs
+   of `<;>` (run once per subgoal via the `focus / all_goals` expansion), `repeat`/`repeat'`,
+   `iterate`, and similar.
+
+2. The whole hook stays silent on commands that logged any error other than an "unsolved
+   goals" error. If the user is in the middle of fixing a broken proof we don't want to
+   distract them with suggestions.
 -/
 
 public meta section
@@ -66,33 +71,6 @@ register_builtin_option autoTry.onSorry : Bool := {
 }
 
 builtin_initialize registerTraceClass `autoTry
-
-/--
-Tactic combinators that elaborate their arguments multiple times or in a backtracking
-context. Triggers inside any of these are suppressed: we don't want to spam suggestions for
-the speculatively-elaborated branches of `first`, or for the rhs of `<;>` that is elaborated
-once per goal, or for `try ...` that may succeed via the implicit `skip` fallback.
-
-`<;>` doesn't appear by this name in the info tree -- the macro at `Init/Tactics.lean:401`
-expands to `focus / all_goals`, so it is `Lean.Parser.Tactic.allGoals` (the expanded form)
-that we have to mark. Likewise `try t` expands to `first | t | skip`, but the original
-`tacticTry_` node is still recorded by the elaborator above the expansion.
--/
-private def isMultiElabCombinator (kind : SyntaxNodeKind) : Bool :=
-  match kind with
-  | `Lean.Parser.Tactic.first
-  | `Lean.Parser.Tactic.firstPar
-  | `Lean.Parser.Tactic.attemptAll
-  | `Lean.Parser.Tactic.attemptAllPar
-  | `Lean.Parser.Tactic.tryTrace
-  | `Lean.Parser.Tactic.tryTraceWith
-  | `Lean.Parser.Tactic.allGoals
-  | `Lean.Parser.Tactic.anyGoals
-  | `Lean.Parser.Tactic.tacticRepeat_
-  | `Lean.Parser.Tactic.tacticRepeat'_
-  | `Lean.Parser.Tactic.tacticIterate____
-  | `Lean.Parser.Tactic.tacticTry_ => true
-  | _ => false
 
 /--
 Run a `MetaM` computation in the context saved in `ctx`, with the given `lctx` and `mctx`,
@@ -161,26 +139,57 @@ private def isStructuralTacticKind (kind : SyntaxNodeKind) : Bool :=
 private abbrev TriggerKind := Nat
 
 /--
-Recursively walk an `InfoTree` collecting trigger points, skipping any subtree that lies
-inside a multi-elaboration combinator (`first`/`<;>`/`try`/…). `depth` counts how many
-combinators we are currently nested inside.
+First pass: count how many `TacticInfo` nodes carry each syntax-tail position. Positions
+that appear more than once correspond to tactics that the elaborator ran in multiple proof
+states (e.g. the rhs of `<;>`, the body of `repeat`/`iterate`); we'll skip triggers there
+because a single "Try this" suggestion can't be replayed against multiple goals.
 -/
-private partial def collectTriggerPoints (opts : Options) :
-    (depth : Nat) → (ctx? : Option ContextInfo) →
+private partial def countTacticInfoPositions
+    (acc : Std.HashMap (SyntaxNodeKind × String.Pos.Raw) Nat) :
+    InfoTree → Std.HashMap (SyntaxNodeKind × String.Pos.Raw) Nat
+  | .context _ t => countTacticInfoPositions acc t
+  | .hole _ => acc
+  | .node info cs =>
+    let acc := match info with
+      | .ofTacticInfo tac =>
+        -- Key by `(kind, pos)` -- not just `pos` -- so that macro expansions of the same
+        -- syntax (e.g. `sorry` -> `exact sorry`, which produces a `tacticSorry` and an
+        -- `exact` `TacticInfo` at identical positions) don't get mis-counted as
+        -- multi-elaboration. We're after the `<;>`-style "same syntax elaborated repeatedly"
+        -- pattern, where kind and position both coincide.
+        if isStructuralTacticKind tac.stx.getKind then
+          acc
+        else if let some p := tac.stx.getPos? then
+          acc.alter (tac.stx.getKind, p) (fun n? => some (n?.getD 0 + 1))
+        else acc
+      | _ => acc
+    cs.foldl (init := acc) fun acc c => countTacticInfoPositions acc c
+
+/--
+Second pass: collect trigger points from the info tree, given a multiplicity map produced
+by `countTacticInfoPositions`. Trigger points at positions with multiplicity > 1 are dropped.
+-/
+private partial def collectTriggerPoints (opts : Options)
+    (counts : Std.HashMap (SyntaxNodeKind × String.Pos.Raw) Nat) :
+    (ctx? : Option ContextInfo) →
     Array (TriggerKind × ContextInfo × Info × Syntax) → InfoTree →
     CommandElabM (Array (TriggerKind × ContextInfo × Info × Syntax))
-  | depth, ctx?, acc, .context ctx t =>
-    collectTriggerPoints opts depth (ctx.mergeIntoOuter? ctx?) acc t
-  | _, _, acc, .hole _ => pure acc
-  | depth, ctx?, acc, .node info cs => do
+  | ctx?, acc, .context ctx t =>
+    collectTriggerPoints opts counts (ctx.mergeIntoOuter? ctx?) acc t
+  | _, acc, .hole _ => pure acc
+  | ctx?, acc, .node info cs => do
     let some ctx := ctx? | pure acc
-    let kind := info.stx.getKind
-    let depth' := if isMultiElabCombinator kind then depth + 1 else depth
     let mut acc := acc
-    -- Emit triggers from THIS node only when not nested in a multi-elab combinator.
-    if depth == 0 then
-      match info with
-      | .ofTacticInfo tacInfo =>
+    match info with
+    | .ofTacticInfo tacInfo =>
+      let kind := tacInfo.stx.getKind
+      -- Skip tactics elaborated against multiple proof states.
+      let multi : Bool :=
+        if let some p := tacInfo.stx.getPos? then
+          (counts.get? (kind, p)).getD 0 > 1
+        else
+          false
+      unless multi do
         let onEmpty := autoTry.onEmptyBy.get opts
         let onUnsolved := autoTry.onUnsolvedGoal.get opts
         let onSorry := autoTry.onSorry.get opts
@@ -190,10 +199,29 @@ private partial def collectTriggerPoints (opts : Options) :
           acc := acc.push (1, ctx, .ofTacticInfo tacInfo, tacInfo.stx)
         if onUnsolved && !isStructuralTacticKind kind && !tacInfo.goalsAfter.isEmpty then
           acc := acc.push (2, ctx, .ofTacticInfo tacInfo, tacInfo.stx)
-      | _ => pure ()
+    | _ => pure ()
     for c in cs do
-      acc ← collectTriggerPoints opts depth' (info.updateContext? ctx) acc c
+      acc ← collectTriggerPoints opts counts (info.updateContext? ctx) acc c
     pure acc
+
+/--
+Returns `true` if the message log contains any error within `stxRange` that is *not* an
+"unsolved goals" error. Used to skip the auto-`try?` hook on commands the user is in the
+middle of fixing -- suggestions for the unsolved goal are not useful while other errors
+need to be addressed first.
+-/
+private def hasNonUnsolvedGoalError (stx : Syntax) : CommandElabM Bool := do
+  let some startPos := stx.getPos? | return false
+  let some endPos := stx.getTailPos? | return false
+  let fileMap := (← read).fileMap
+  let startLine := (fileMap.toPosition startPos).line
+  let endLine := (fileMap.toPosition endPos).line
+  let msgs := (← get).messages
+  return msgs.toArray.any fun m =>
+    let inRange := m.pos.line ≥ startLine && m.pos.line ≤ endLine
+    let isError := m.severity matches .error
+    let isUnsolved := m.data.hasTag (· == `Tactic.unsolvedGoals)
+    inRange && isError && !isUnsolved
 
 /-- The auto-`try?` post-elaboration hook.
 
@@ -201,24 +229,41 @@ Plugged into the linter machinery (`addLinter`) because that's a convenient post
 entry point with infotree access. The feature itself is *not* a linter: it does not bail on
 `messages.hasErrors`, since the triggers we care about (empty `by`, unsolved goals, `sorry`)
 all produce errors or warnings of their own. -/
-def autoTryHook : Linter where run := withSetOptionIn fun _stx => do
+def autoTryHook : Linter where run := withSetOptionIn fun stx => do
   let opts ← getOptions
   let onEmpty := autoTry.onEmptyBy.get opts
   let onUnsolved := autoTry.onUnsolvedGoal.get opts
   let onSorry := autoTry.onSorry.get opts
   unless onEmpty || onUnsolved || onSorry do return
+  if ← hasNonUnsolvedGoalError stx then
+    trace[autoTry] "skipping: command has non-unsolved-goal errors"
+    return
   trace[autoTry] "running: onEmpty={onEmpty} onUnsolved={onUnsolved} onSorry={onSorry}"
   let trees ← getInfoTrees
   for tree in trees do
-    let points ← collectTriggerPoints opts 0 none #[] tree
+    let counts := countTacticInfoPositions {} tree
+    let points ← collectTriggerPoints opts counts none #[] tree
     trace[autoTry] "trigger points: {points.size}"
-    -- Dedupe by source position: a tactic might be reported by multiple triggers at the
-    -- same location (e.g. an unsolved-goal tactic that's also a `sorry`).
-    let mut seen : Std.HashSet String.Pos.Raw := {}
+    -- Dedupe by (trigger-kind, source-position) and by the goal mvar being considered.
+    -- The position-dedupe handles overlapping triggers at the same site (e.g. an
+    -- unsolved-goal tactic that's also a `sorry`). The goal-mvar dedupe handles nested
+    -- tactics that share the same unsolved goal -- in `by first | skip | trivial`, both
+    -- `first` and `skip` have the same `True`-typed mvar in `goalsAfter`, and we keep
+    -- only the first (outer) trigger thanks to the infotree's depth-first traversal.
+    let mut seenPos : Std.HashSet String.Pos.Raw := {}
+    let mut seenGoal : Std.HashSet Name := {}
     for (k, ctx, info, tk) in points do
       let pos := tk.getPos?.getD 0
-      if seen.contains pos then continue
-      seen := seen.insert pos
+      if seenPos.contains pos then continue
+      seenPos := seenPos.insert pos
+      let goal? : Option MVarId := match k, info with
+        | 0, .ofTacticInfo tacInfo => tacInfo.goalsBefore.head?
+        | 1, .ofTacticInfo tacInfo => tacInfo.goalsBefore.head?
+        | 2, .ofTacticInfo tacInfo => tacInfo.goalsAfter.head?
+        | _, _                     => none
+      if let some g := goal? then
+        if seenGoal.contains g.name then continue
+        seenGoal := seenGoal.insert g.name
       match k, info with
       | 0, .ofTacticInfo tacInfo =>
         runTryOnGoals ctx tacInfo.mctxBefore tacInfo.goalsBefore tk (wrapWithBy := true)

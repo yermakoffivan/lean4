@@ -141,7 +141,7 @@ set_option autoTry.onSorry false
 
 set_option autoTry.onUnsolvedGoal true
 
--- A tactic that left a goal unsolved triggers a suggestion at the tactic.
+-- A tactic that left a goal unsolved triggers a suggestion at the failing tactic.
 /--
 error: unsolved goals
 ⊢ True
@@ -159,6 +159,20 @@ example : True := by skip
 
 -- A successful proof leaves no unsolved goals, so no trigger.
 example : True := by trivial
+
+-- Multiple unsolved goals: no suggestion. A single `try?` replacement at `constructor`
+-- can't sensibly close two goals at once; the user is expected to structure the proof
+-- with `·` / `case` first and only then will a per-goal suggestion fire.
+/--
+error: unsolved goals
+case left
+⊢ True
+
+case right
+⊢ True
+-/
+#guard_msgs in
+example : True ∧ True := by constructor
 
 -- An unsolved-goal trigger inside `first | ...` fires at the outer `first` tactic, not at
 -- the individual branches: the branches are speculatively elaborated and we don't want a
@@ -201,3 +215,27 @@ set_option autoTry.onSorry true in
 example : True := by
   exact this_undefined_name
   sorry
+
+/-! ## Suggestion anchoring
+
+Verify -- with `(positions := true)` -- that each trigger anchors its suggestion at the
+expected syntax range. Regressions here would prevent the `[apply]` widget from inserting
+the suggestion at the right place. -/
+
+/--
+@ +2:18...25
+error: unsolved goals
+⊢ True
+---
+@ +2:21...25
+info: Try these:
+  [apply] solve_by_elim
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
+-/
+#guard_msgs (positions := true) in
+set_option autoTry.onUnsolvedGoal true in
+example : True := by skip

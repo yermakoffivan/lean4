@@ -35,8 +35,8 @@
           # more convenient `ctest` output
           CTEST_OUTPUT_ON_FAILURE = 1;
         } // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux (let
-          opensslForDist = pkgsDist.openssl.overrideAttrs (p: {
-            name = "${p.name}-static";
+          opensslForDist = pkgs.openssl.overrideAttrs (p: {
+            version = "3.6.0";
             configureFlags = (p.configureFlags or [ ]) ++ [
               "no-shared"
               "no-tests"

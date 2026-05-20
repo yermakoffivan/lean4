@@ -35,8 +35,13 @@
           # more convenient `ctest` output
           CTEST_OUTPUT_ON_FAILURE = 1;
         } // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux (let
-          opensslForDist = pkgsDist.openssl.overrideAttrs (_: {
-            configureFlags = [ "no-shared" "no-tests" ];
+          opensslForDist = pkgsDist.openssl.overrideAttrs (p: {
+            name = "${p.pname}-static-${p.version}";
+            configureFlags = (p.configureFlags or [ ]) ++ [
+              "no-shared"
+              "no-tests"
+              "no-dso"
+            ];
           });
         in {
           GMP = (pkgsDist.gmp.override { withStatic = true; }).overrideAttrs (attrs:

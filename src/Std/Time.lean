@@ -119,10 +119,8 @@ first resolving to an absolute instant.
 ## Zoned date and times.
 Combines date, time and time zones.
 
-- **`DateTime`**: Represents both date and time but with a time zone in the type constructor.
 - **`ZonedDateTime`**: Is a way to represent date and time that includes `ZoneRules`, which consider
-Daylight Saving Time (DST). This means it can handle local time changes throughout the year better
-than a regular `DateTime`. If you want to use a specific time zone without worrying about DST, you can
+Daylight Saving Time (DST). If you want to use a specific time zone without worrying about DST, you can
 use the `ofTimestampWithZone` function, which gives you a `ZonedDateTime` based only on that time zone,
 without considering the zone rules, otherwise you can use `ofTimestamp` or `ofTimestampWithIdentifier`.
 

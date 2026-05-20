@@ -412,12 +412,12 @@ def fromLeanDateTimeWithIdentifierString (input : String) : Except String ZonedD
   <|> Formats.leanDateTimeWithIdentifierAndNanos.parse input
 
 /--
-Formats a `DateTime` value into a simple date time with timezone string that can be parsed by the date% notation.
+Formats a `ZonedDateTime` value into a simple date time with timezone string that can be parsed by the date% notation.
 -/
 def toLeanDateTimeWithZoneString (zdt : ZonedDateTime) : String :=
   Formats.leanDateTimeWithZone.formatBuilder zdt.year zdt.month zdt.day zdt.hour zdt.minute zdt.date.get.time.second zdt.nanosecond zdt.offset
 /--
-Formats a `DateTime` value into a simple date time with timezone string that can be parsed by the date% notation with the timezone identifier.
+Formats a `ZonedDateTime` value into a simple date time with timezone string that can be parsed by the date% notation with the timezone identifier.
 -/
 def toLeanDateTimeWithIdentifierString (zdt : ZonedDateTime) : String :=
   Formats.leanDateTimeWithIdentifierAndNanos.formatBuilder zdt.year zdt.month zdt.day zdt.hour zdt.minute zdt.date.get.time.second zdt.nanosecond zdt.timezone.name
@@ -507,27 +507,27 @@ def toLongDateFormatString (pdt : PlainDateTime) : String :=
   Formats.longDateFormat.format (ZonedDateTime.ofPlainDateTimeWithZone pdt .UTC)
 
 /--
-Parses a `String` in the `DateTime` format and returns a `PlainDateTime`.
+Parses a `String` and returns a `PlainDateTime`.
 -/
 def fromDateTimeString (input : String) : Except String PlainDateTime :=
   Formats.dateTime24Hour.parse input
   |>.map ZonedDateTime.toPlainDateTime
 
 /--
-Formats a `PlainDateTime` value into a `DateTime` format string.
+Formats a `PlainDateTime` value into a date time format string.
 -/
 def toDateTimeString (pdt : PlainDateTime) : String :=
   Formats.dateTime24Hour.formatBuilder pdt.year pdt.month pdt.day pdt.hour pdt.minute pdt.time.second pdt.nanosecond
 
 /--
-Parses a `String` in the `DateTime` format and returns a `PlainDateTime`.
+Parses a `String` and returns a `PlainDateTime`.
 -/
 def fromLeanDateTimeString (input : String) : Except String PlainDateTime :=
   (Formats.leanDateTime24Hour.parse input <|> Formats.leanDateTime24HourNoNanos.parse input)
   |>.map ZonedDateTime.toPlainDateTime
 
 /--
-Formats a `PlainDateTime` value into a `DateTime` format string.
+Formats a `PlainDateTime` value into a `leanDateTime24Hour` format string.
 -/
 def toLeanDateTimeString (pdt : PlainDateTime) : String :=
   Formats.leanDateTime24Hour.formatBuilder pdt.year pdt.month pdt.day pdt.hour pdt.minute pdt.time.second pdt.nanosecond
@@ -548,4 +548,3 @@ instance : Repr PlainDateTime where
   reprPrec data := Repr.addAppParen ("datetime(\"" ++ toLeanDateTimeString data ++ "\")")
 
 end PlainDateTime
-

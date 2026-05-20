@@ -853,8 +853,9 @@ private def addSuggestions (tk : Syntax) (s : Array Tactic.TryThis.Suggestion) :
   else
     Tactic.TryThis.addSuggestions tk (s.map fun stx => stx) (origSpan? := (← getRef))
 
-def evalAndSuggest (tk : Syntax) (tac : TSyntax `tactic) (originalMaxHeartbeats : Nat) (config : Try.Config := {}) : TacticM Unit := do
-  -- Suppress "Try this" messages from intermediate tactic executions
+/-- Like `evalAndSuggest`, but returns the suggestion array instead of emitting it. -/
+def evalAndCollectSuggestions (tac : TSyntax `tactic) (originalMaxHeartbeats : Nat)
+    (config : Try.Config := {}) : TacticM (Array Tactic.TryThis.Suggestion) := do
   let tac' ← withSuppressedMessages do
     try
       evalSuggest tac |>.run { terminal := true, root := tac, config, originalMaxHeartbeats }
@@ -863,8 +864,11 @@ def evalAndSuggest (tk : Syntax) (tac : TSyntax `tactic) (originalMaxHeartbeats 
   let s := (getSuggestions tac')[*...config.max].toArray
   if s.isEmpty then
     throwEvalAndSuggestFailed config
-  else
-    addSuggestions tk s
+  return s
+
+def evalAndSuggest (tk : Syntax) (tac : TSyntax `tactic) (originalMaxHeartbeats : Nat) (config : Try.Config := {}) : TacticM Unit := do
+  let s ← evalAndCollectSuggestions tac originalMaxHeartbeats config
+  addSuggestions tk s
 
 /-! Helper functions -/
 
@@ -1065,6 +1069,22 @@ def elabTryCore (tk : Syntax) (config : Try.Config) (footer : MessageData := Mes
         evalAndSuggestWithBy tk stx originalMaxHeartbeats config (footer := footer)
       else
         evalAndSuggest tk stx originalMaxHeartbeats config
+
+/-- Like `elabTryCore`, but returns the suggestion array (as raw tactic syntaxes) instead of
+emitting "Try this:" messages. Used by the `autoTry` linter, which formats and emits the
+suggestions itself so they can be rendered as append-to-tactic-sequence edits. -/
+def collectTryCoreSuggestions (config : Try.Config := {}) :
+    TacticM (Array (TSyntax `tactic)) :=
+  Tactic.focus do withMainContext do
+    let originalMaxHeartbeats ← getMaxHeartbeats
+    withUnlimitedHeartbeats do
+      let goal ← getMainGoal
+      let info ← Try.collect goal config
+      let stx ← mkTryEvalSuggestStx goal info
+      let suggs ← evalAndCollectSuggestions stx originalMaxHeartbeats config
+      return suggs.filterMap fun s => match s.suggestion with
+        | .tsyntax (kind := `tactic) tac => some ⟨tac⟩
+        | _ => none
 
 @[builtin_tactic Lean.Parser.Tactic.tryTrace] def evalTryTrace : Tactic := fun stx => do
   match stx with

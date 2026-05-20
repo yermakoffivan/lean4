@@ -66,9 +66,9 @@ like `23:59:60` that is valid in ISO 8601.
 
 - Ordinal types:
   - `Day.Ordinal`: Ranges from 1 to 31.
-  - `Day.Ordinal.OfYear`: Ranges from 1 to (365 or 366).
+  - `Day.OfYear.Ordinal`: Ranges from 1 to (365 or 366).
   - `Month.Ordinal`: Ranges from 1 to 12.
-  - `WeekOfYear.Ordinal`: Ranges from 1 to 53.
+  - `Week.OfYear.Ordinal`: Ranges from 1 to 53.
   - `Hour.Ordinal`: Ranges from 0 to 23.
   - `Millisecond.Ordinal`: Ranges from 0 to 999.
   - `Minute.Ordinal`: Ranges from 0 to 59.

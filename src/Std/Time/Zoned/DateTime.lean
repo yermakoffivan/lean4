@@ -441,7 +441,7 @@ on the day of the month and the weekday. Each week starts on Monday because the 
 based on the Gregorian Calendar.
 -/
 @[inline]
-def alignedWeekOfMonth (date : DateTime tz) : Week.Ordinal.OfMonth :=
+def alignedWeekOfMonth (date : DateTime tz) : Week.Aligned.Ordinal :=
   date.date.get.alignedWeekOfMonth
 
 /--

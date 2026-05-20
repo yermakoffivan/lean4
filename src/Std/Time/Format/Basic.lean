@@ -779,7 +779,7 @@ def TypeFormat : Modifier → Type
   | .d _ => Day.Ordinal
   | .Qorq _ => Month.Quarter
   | .w _ => Week.Ordinal
-  | .W _ => Week.Ordinal.OfMonth
+  | .W _ => Week.Aligned.Ordinal
   | .E _ => Weekday
   | .eorc _ => Weekday
   | .F _ => Bounded.LE 1 5
@@ -1289,7 +1289,7 @@ private structure DateBuilder where
   d : Option Day.Ordinal := none
   Qorq : Option Month.Quarter := none
   w : Option Week.Ordinal := none
-  W : Option Week.Ordinal.OfMonth := none
+  W : Option Week.Aligned.Ordinal := none
   E : Option Weekday := none
   eorc : Option Weekday := none
   F : Option (Bounded.LE 1 5) := none

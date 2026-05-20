@@ -71,13 +71,13 @@ def ofInt (data : Int) (h : 1 ≤ data ∧ data ≤ 53) : Ordinal :=
   Bounded.LE.mk data h
 
 /--
-`OfMonth` represents the number of weeks within a month. It ensures that the week is within the
-correct bounds—either 1 to 6, representing the possible weeks in a month.
+`OfMonth` represents the nth occurrence of a weekday within a month (1–5), as used in POSIX
+`Mm.w.d` rules. Week 5 means the last occurrence of that weekday in the month.
 -/
-@[expose] def OfMonth := Bounded.LE 1 6
+@[expose] def OfMonth := Bounded.LE 1 5
 deriving Repr, DecidableEq
 
-instance : OfNat OfMonth n := inferInstanceAs (OfNat (Bounded.LE 1 (1 + (5 : Nat))) n)
+instance : OfNat OfMonth n := inferInstanceAs (OfNat (Bounded.LE 1 (1 + (4 : Nat))) n)
 
 instance : Inhabited OfMonth where
   default := 1
@@ -110,6 +110,35 @@ def toOffset (ordinal : Ordinal) : Offset :=
   UnitVal.ofInt ordinal.val
 
 end Ordinal
+namespace Aligned
+
+/--
+`Ordinal` represents an aligned (calendar-grid) week within a month, ranging from 1 to 6.
+Week 1 contains the 1st of the month; subsequent weeks start on the following Sunday (or Monday,
+depending on locale). A month can span at most 6 calendar rows.
+-/
+@[expose] def Ordinal := Bounded.LE 1 6
+deriving Repr, DecidableEq, LE, LT
+
+instance : OfNat Ordinal n := inferInstanceAs (OfNat (Bounded.LE 1 (1 + (5 : Nat))) n)
+
+instance {x y : Ordinal} : Decidable (x ≤ y) :=
+  inferInstanceAs (Decidable (x.val ≤ y.val))
+
+instance {x y : Ordinal} : Decidable (x < y) :=
+  inferInstanceAs (Decidable (x.val < y.val))
+
+instance : Inhabited Ordinal where
+  default := 1
+
+instance : Ord Ordinal := inferInstanceAs <| Ord (Bounded.LE 1 _)
+
+instance : TransOrd Ordinal := inferInstanceAs <| TransOrd (Bounded.LE 1 _)
+
+instance : LawfulEqOrd Ordinal := inferInstanceAs <| LawfulEqOrd (Bounded.LE 1 _)
+
+end Aligned
+
 namespace Offset
 
 /--

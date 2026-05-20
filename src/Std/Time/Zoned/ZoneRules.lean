@@ -8,6 +8,7 @@ module
 prelude
 public import Std.Time.DateTime
 public import Std.Time.Zoned.TimeZone
+public import Std.Time.Zoned.RecurringRule
 
 public section
 
@@ -125,7 +126,11 @@ structure ZoneRules where
   -/
   transitions : Array Transition
 
-  deriving Repr, Inhabited
+  /--
+  Recurring rule from the TZif footer, used to extrapolate transitions beyond the last stored entry.
+  -/
+  transitionRule : Option RecurringRule := none
+deriving Repr, Inhabited
 
 namespace Transition
 
@@ -175,6 +180,44 @@ def timezoneAt (transitions : Array Transition) (tm : Timestamp) : Except String
     else .error "cannot find local timezone."
 
 end Transition
+namespace RecurringRule
+
+-- `wallOffset` is the offset in effect at the wall-clock moment of this transition:
+-- DST-start times are given in standard time; DST-end times are given in DST time.
+private def transitionUtcSeconds (rule : TransitionRule) (year : Year.Offset) (wallOffset : Offset) : Second.Offset :=
+  (TransitionSpec.toEpochDay rule.spec year).toSeconds + rule.time - wallOffset.second
+
+/--
+Returns the `TimeZone` in effect for this `RecurringRule` at the given `Timestamp`.
+
+If no DST transition rules are defined (`start` or `end_` is `none`), the standard zone is
+returned unconditionally. Otherwise the function computes the UTC timestamps at which DST starts
+and ends for the year containing `tm`, and returns the DST zone when the timestamp falls inside
+the DST interval (accounting for rules that wrap across a year boundary in the Southern Hemisphere).
+-/
+def timezoneAt (rule : RecurringRule) (tm : Timestamp) : TimeZone := Id.run do
+  let stdTz := TimeZone.mk rule.stdOffset rule.stdName rule.stdName false
+  let dstTz := TimeZone.mk rule.dstOffset rule.dstName rule.dstName true
+
+  let some startRule := rule.start | return stdTz
+  let some endRule   := rule.end_  | return stdTz
+
+  let secs := tm.toSecondsSinceUnixEpoch
+
+  let year  := PlainDate.ofEpochDay (Day.Offset.ofSeconds secs) |>.year
+
+  -- DST-start wall clock is standard time; DST-end wall clock is DST time (POSIX §8.3).
+  let dstStart := transitionUtcSeconds startRule year rule.stdOffset
+  let dstEnd   := transitionUtcSeconds endRule year rule.dstOffset
+
+  if dstStart ≤ dstEnd then
+    if dstStart ≤ secs && secs < dstEnd then dstTz else stdTz
+  else
+    -- Southern Hemisphere: DST spans the year boundary
+    if secs < dstEnd || dstStart ≤ secs then dstTz else stdTz
+
+end RecurringRule
+
 namespace ZoneRules
 
 /--
@@ -215,6 +258,10 @@ def findLocalTimeTypeForTimestamp (zr : ZoneRules) (timestamp : Timestamp) : Loc
 Finds the `LocalTimeType` for a given wall-clock time (seconds since 1970-01-01T00:00:00 in local time).
 Unlike `findLocalTimeTypeForTimestamp`, this compares each transition's UTC time adjusted by the
 previous offset — necessary when converting local time to UTC.
+
+When the wall time falls beyond all stored transitions and a `transitionRule` is present, the
+recurring rule is used to determine the timezone (converting the wall time to UTC via the last
+known offset before consulting the rule).
 -/
 def findLocalTimeTypeForWallTime (zr : ZoneRules) (wallTime : WallTime) : LocalTimeType := Id.run do
   let mut ltt := zr.initialLocalTimeType
@@ -224,6 +271,12 @@ def findLocalTimeTypeForWallTime (zr : ZoneRules) (wallTime : WallTime) : LocalT
     if wallTime < localTransitionTime then
       return ltt
     ltt := t.localTimeType
+
+  if let some rule := zr.transitionRule then
+    -- Convert wall time to an approximate UTC timestamp using the last known offset.
+    let approxUtc : Timestamp := wallTime.toTimestamp ltt.gmtOffset
+    let tz := rule.timezoneAt approxUtc
+    return { ltt with gmtOffset := tz.offset, isDst := tz.isDST, abbreviation := tz.abbreviation, identifier := tz.name }
 
   return ltt
 
@@ -242,6 +295,6 @@ Creates `ZoneRules` for the given `TimeZone`.
 @[inline]
 def ofTimeZone (tz : TimeZone) : ZoneRules :=
   let ltt :=  LocalTimeType.mk tz.offset tz.isDST tz.abbreviation .wall .local tz.name
-  ZoneRules.mk ltt #[]
+  ZoneRules.mk ltt #[] none
 
 end ZoneRules

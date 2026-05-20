@@ -310,7 +310,7 @@ Determines the week of the month for the given `PlainDate`. The week of the mont
 on the day of the month and the weekday. Each week starts on Monday because the entire library is
 based on the Gregorian Calendar.
 -/
-def alignedWeekOfMonth (date : PlainDate) : Week.Ordinal.OfMonth :=
+def alignedWeekOfMonth (date : PlainDate) : Week.Aligned.Ordinal :=
   let weekday := date.withDaysClip 1 |>.weekday |>.toOrdinal |>.sub 1
   let days := date.day |>.sub 1 |>.addBounds weekday
   days |>.ediv 7 (by decide) |>.add 1

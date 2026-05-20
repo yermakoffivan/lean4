@@ -7,14 +7,10 @@ module
 
 prelude
 public import Std.Internal.Parsec
-public import Std.Time.Date.Unit.Month
-public import Std.Time.Date.Unit.Week
-public import Std.Time.Date.Unit.Weekday
-public import Std.Time.Zoned.Offset
+public import Std.Time.Zoned.ZoneRules
 
 /-!
 POSIX TZ string parser for RFC 8536 §3.3 footer strings.
-Used to extend stored TZif transitions into the far future.
 -/
 
 public section
@@ -24,123 +20,31 @@ open Internal
 
 set_option linter.all true
 
-/--
-Specifies how a DST transition date is expressed in a POSIX TZ string.
--/
-inductive PosixTransSpec where
-
-  /--
-  `Mm.w.d` form: month `m`, week `w` (1–5; 5 = last), ISO weekday `d`.
-  -/
-  | mwd (month : Month.Ordinal) (week : Week.Ordinal) (day : Weekday.Ordinal)
-
-  /--
-  `Jn` form: Julian day 1–365 (Feb 29 never counted, even in leap years).
-  -/
-  | julian (day : Bounded.LE 1 365)
-
-  /--
-  `n` form: zero-based day 0–365 (Feb 29 counted in leap years).
-  -/
-  | julian0 (day : Bounded.LE 0 365)
-deriving Repr
-
-/--
-A single DST transition rule: a date specification and a wall-clock time.
--/
-structure PosixTransRule where
-
-  /--
-  How the transition date is specified.
-  -/
-  spec : PosixTransSpec
-
-  /--
-  Time of day as seconds from midnight (default 7200 = 02:00).
-  -/
-  time : Second.Offset
-deriving Repr
-
-/--
-Parsed representation of a POSIX TZ string.
--/
-structure PosixTzInfo where
-
-  /--
-  Standard time abbreviation.
-  -/
-  stdName : String
-
-  /--
-  Standard UTC offset (east-positive).
-  -/
-  stdOffset : TimeZone.Offset
-
-  /--
-  DST abbreviation (empty when no DST).
-  -/
-  dstName : String := ""
-
-  /--
-  DST UTC offset (east-positive).
-  -/
-  dstOffset : TimeZone.Offset
-
-  /--
-  Rule for the start of DST, if any.
-  -/
-  start : Option PosixTransRule := none
-
-  /--
-  Rule for the end of DST, if any.
-  -/
-  end_ : Option PosixTransRule := none
-deriving Repr
-
 open Std.Internal.Parsec Std.Internal.Parsec.String
 
--- POSIX standard max hour for transition times (0–24); TZif v3 extended mode allows 0–167.
-private def posixMaxHour    : Nat := 24
-private def extendedMaxHour : Nat := 167
-
--- Hour bounded to the TZif v3 extended range; wider than `Hour.Ordinal` (0–23).
-private abbrev ExtendedHour := Bounded.LE 0 extendedMaxHour
-
--- Default transition wall-clock time when none is specified: 02:00:00 local (7200 s).
-private def defaultTransitionTime : Int := 7200
-
--- Default DST offset ahead of standard time when none is specified: +1 h (3600 s).
-private def defaultDstAheadSeconds : Int := 3600
-
--- POSIX weekday range: 0 (Sunday) … 6 (Saturday); ISO ordinal maps Sunday → 7.
-private def posixMaxWeekday : Nat := 6
-private def posixSundayIso  : Int := 7
-
--- Maximum week-in-month index accepted in Mm.w.d specs (5 = "last occurrence").
-private def maxWeekInMonth : Nat := 5
-
 -- Parse digits and validate them into a Bounded.LE type, with an optional extra predicate.
-private def parseBoundedNat {lo hi : Int} (name : String) (extra : Nat → Bool := fun _ => true) : Parser (Bounded.LE lo hi) := do
-  let n ← digits
+private def parseBoundedNat {lo hi : Int} (name : String) (extra : Int → Bool := fun _ => true) : Parser (Bounded.LE lo hi) := do
+  let n ← Int.ofNat <$> digits
   if !extra n then fail s!"{name} {n} out of range"
-  match (Bounded.LE.ofInt (Int.ofNat n) : Option (Bounded.LE lo hi)) with
+
+  match Bounded.LE.ofInt n with
   | some b => pure b
   | none => fail s!"{name} {n} out of range"
 
 private def posixParseSign : Parser Int :=
-  attempt (pchar '-' *> pure (-1 : Int)) <|>
-  attempt (pchar '+' *> pure 1) <|>
-  pure 1
+  attempt (pchar '-' *> pure (-1 : Int))
+  <|> attempt (pchar '+' *> pure 1)
+  <|> pure 1
 
 -- <time> ::= <hour> [":" <minute> [":" <second>]]
 -- `maxHour` caps the hour field; POSIX requires 0–24, extended mode allows 0–167.
-private def posixParseHMS (maxHour : Nat := posixMaxHour) : Parser Second.Offset := do
+private def posixParseHMS (maxHour : Nat := 24) : Parser Second.Offset := do
   let rawH ← digits
   if rawH > maxHour then fail s!"hour {rawH} out of range 0-{maxHour}"
 
-  let h : ExtendedHour ← match Bounded.LE.ofNat? rawH with
+  let h : Bounded.LE 0 167 ← match Bounded.LE.ofNat? rawH with
     | some b => pure b
-    | none   => fail s!"hour {rawH} out of range 0-{extendedMaxHour}"
+    | none   => fail s!"hour {rawH} out of range 0-{167}"
 
   let m : Minute.Ordinal ← attempt (pchar ':' *> parseBoundedNat "minute") <|> pure (Bounded.LE.mk 0 (by decide))
   let s : Second.Ordinal false ← attempt (pchar ':' *> parseBoundedNat "second") <|> pure (Bounded.LE.mk 0 (by decide))
@@ -165,29 +69,30 @@ private def posixParseName : Parser String := do
     else manyChars asciiLetter
 
 -- "M" <month> "." <week> "." <weekday>
-private def posixParseMwdSpec : Parser PosixTransSpec := do
+private def posixParseMwdSpec : Parser TransitionSpec := do
   skipChar 'M'
+
   let month ← parseBoundedNat "month" <* skipChar '.'
-  let week ← parseBoundedNat "week" (· ≤ maxWeekInMonth) <* skipChar '.'
+  let week ← parseBoundedNat "week" (· ≤ 5) <* skipChar '.'
 
   -- Convert POSIX day (0=Sunday … 6=Saturday) to ISO ordinal (1=Monday … 7=Sunday).
   let d ← digits
-  if d > posixMaxWeekday then fail s!"day {d} out of range 0-{posixMaxWeekday}"
+  if d > 6 then fail s!"day {d} out of range 0-6"
 
-  let day ← match (Bounded.LE.ofInt (if d == 0 then posixSundayIso else Int.ofNat d)) with
+  let day ← match (Bounded.LE.ofInt (if d == 0 then 7 else Int.ofNat d)) with
     | some wd => pure wd
-    | none => fail s!"day {d} out of range 0-{posixMaxWeekday}"
+    | none => fail s!"day {d} out of range 0-6"
 
   return .mwd month week day
 
 -- "J" <n> where n is 1–365; Feb 29 is never counted.
-private def posixParseJulianSpec : Parser PosixTransSpec := do
+private def posixParseJulianSpec : Parser TransitionSpec := do
   skipChar 'J'
   let day : Bounded.LE 1 365 ← parseBoundedNat "Julian day"
   return .julian day
 
 -- <n> where n is 0–365; Feb 29 is counted in leap years.
-private def posixParseJulian0Spec : Parser PosixTransSpec := do
+private def posixParseJulian0Spec : Parser TransitionSpec := do
   let day : Bounded.LE 0 365 ← parseBoundedNat "day"
   return .julian0 day
 
@@ -196,28 +101,34 @@ private def posixParseDstOffset (stdOffset : TimeZone.Offset) : Parser TimeZone.
   let c ← peek?
   if let some ch := c then
     if ch.isDigit || ch == '+' || ch == '-' then posixParseOffset
-    else pure ⟨Second.Offset.ofInt (stdOffset.second.val + defaultDstAheadSeconds)⟩
-  else pure ⟨Second.Offset.ofInt (stdOffset.second.val + defaultDstAheadSeconds)⟩
+    else pure ⟨Second.Offset.ofInt (stdOffset.second.val + 3600)⟩
+  else pure ⟨Second.Offset.ofInt (stdOffset.second.val + 3600)⟩
 
 -- <rule-spec> ::= "M" <month> "." <week> "." <weekday> | "J" <n> | <n>
-private def posixParseSpec : Parser PosixTransSpec :=
+private def posixParseSpec : Parser TransitionSpec :=
   attempt posixParseMwdSpec <|> attempt posixParseJulianSpec <|> posixParseJulian0Spec
 
 -- <rule> ::= <rule-spec> [ "/" <time> ]
 -- When `extended` is true, hours may range from -167 to 167 (TZif v3+).
-private def posixParseRule (extended : Bool := false) : Parser PosixTransRule := do
+private def posixParseRule (extended : Bool := false) : Parser TransitionRule := do
   let spec ← posixParseSpec
 
-  let time ← attempt (do
+  -- "The time has the same format as offset except that no leading sign ( '-' or '+' ) is allowed. The default, if time is not given, shall be 02:00:00."
+  -- $8.3 https://pubs.opengroup.org/onlinepubs/9699919799/
+  let defaultTime : Hour.Offset := 2
+
+  let parseTime := attempt <| do
     skipChar '/'
     let sign ← posixParseSign
-    let t ← posixParseHMS (maxHour := if extended then extendedMaxHour else posixMaxHour)
-    return Second.Offset.ofInt (sign * t.val)) <|> pure (Second.Offset.ofInt defaultTransitionTime)
+    let t ← posixParseHMS (maxHour := if extended then 167 else 24)
+    return Second.Offset.ofInt (sign * t.val)
+
+  let time ← parseTime <|> pure defaultTime.toSeconds
 
   return { spec, time }
 
--- <TZ> ::= <std> <offset> [ <dst> [ <offset> ] [ "," <rule> "," <rule> ] ]
-private def parsePosixTzP (extended : Bool := false) : Parser PosixTzInfo := do
+-- <TZ> ::= NL <std> <offset> [ <dst> [ <offset> ] [ "," <rule> "," <rule> ] ] NL
+private def parsePosixTzP (extended : Bool := false) : Parser RecurringRule := do
   let stdName ← posixParseName
 
   if stdName.isEmpty then
@@ -228,32 +139,30 @@ private def parsePosixTzP (extended : Bool := false) : Parser PosixTzInfo := do
   if (← isEof) then
     return { stdName, stdOffset, dstOffset := stdOffset }
 
-  -- <dst>
   let dstName ← posixParseName
 
   if dstName.isEmpty then
     return { stdName, stdOffset, dstOffset := stdOffset }
 
-  -- <dst>
   let dstOffset ← posixParseDstOffset stdOffset
 
-  -- [ <offset> ]
   if (← peek?) != some ',' then
     return { stdName, stdOffset, dstName, dstOffset }
 
-  -- [ "," <rule> "," <rule> ]
   let startRule ← skip *> posixParseRule extended
   let endRule ← skipChar ',' *> posixParseRule extended
 
   return { stdName, stdOffset, dstName, dstOffset, start := some startRule, end_ := some endRule }
 
 /--
-Parse a POSIX TZ footer string into a `PosixTzInfo`, returning `none` on failure.
+Parse a POSIX TZ footer string into a `RecurringRule`, returning `none` on failure.
 
 When `extended` is `true`, transition times accept signed hours in the range
--`extendedMaxHour` to `extendedMaxHour` instead of the POSIX-required 0 to `posixMaxHour` (TZif version 3+).
+-`167` to `167` instead of the POSIX-required 0 to `24` (TZif version 3+).
 -/
-def parsePosixTz (s : String) (extended : Bool := false) : Option PosixTzInfo :=
-  ((parsePosixTzP extended).run s).toOption
+def parsePosixTz (s : String) (extended : Bool := false) : Option RecurringRule :=
+  parsePosixTzP extended
+  |>.run s
+  |>.toOption
 
 end Std.Time.TimeZone

@@ -7,6 +7,7 @@ Authors: Joachim Breitner
 module
 
 prelude
+public import Init.Prelude
 public meta import Init.Try
 public meta import Lean.Linter.Basic
 public meta import Lean.Server.InfoUtils
@@ -78,7 +79,7 @@ propagating any messages and traces produced back into the surrounding `CommandE
 The surrounding `CommandElabM` cancel token is forwarded so that long-running `try?` calls
 get cancelled when the linter snapshot is cancelled.
 -/
-private def runMetaMWithMessages (ctx : ContextInfo) (lctx : LocalContext)
+def runMetaMWithMessages (ctx : ContextInfo) (lctx : LocalContext)
     (mctx : MetavarContext) (x : MetaM α) : CommandElabM α := do
   let cmdCtx ← read
   let cmdOpts ← getOptions
@@ -103,7 +104,7 @@ Run `try?` against the first remaining goal in `goals`. `mctx` must be a metavar
 in which `goal` is declared. `wrapWithBy` controls whether suggestions are wrapped in `by`
 (term mode, used for empty-`by` triggers).
 -/
-private def runTryOnGoals (ctx : ContextInfo) (mctx : MetavarContext)
+def runTryOnGoals (ctx : ContextInfo) (mctx : MetavarContext)
     (goals : List MVarId) (tk : Syntax) (wrapWithBy : Bool := false) : CommandElabM Unit := do
   let some goal := goals.head? | return
   let some decl := mctx.decls.find? goal | return
@@ -117,14 +118,14 @@ private def runTryOnGoals (ctx : ContextInfo) (mctx : MetavarContext)
         discard <| Lean.Elab.runTactic goal tryStx
     catch e => trace[autoTry] "try? raised: {e.toMessageData}"
 
-private def isSorryTactic (stx : Syntax) : Bool :=
+def isSorryTactic (stx : Syntax) : Bool :=
   match stx.getKind with
   | `Lean.Parser.Tactic.tacticSorry | `Lean.Parser.Tactic.tacticAdmit => true
   | _ => false
 
 /-- Tactic info nodes whose syntax kind is a sequencing/structural construct rather than a
 real user-written tactic. We skip these when looking for "unsolved goal" positions. -/
-private def isStructuralTacticKind (kind : SyntaxNodeKind) : Bool :=
+def isStructuralTacticKind (kind : SyntaxNodeKind) : Bool :=
   match kind with
   | `Lean.Parser.Term.byTactic
   | `Lean.Parser.Tactic.tacticSeq
@@ -132,11 +133,15 @@ private def isStructuralTacticKind (kind : SyntaxNodeKind) : Bool :=
   | `by => true
   | _ => false
 
--- Trigger kind encoded as `Nat` to avoid declaring an inductive in a meta context.
--- 0 = emptyBy (goalsBefore of a byTactic TacticInfo, wrapped with `by`)
--- 1 = sorryTactic (goalsBefore)
--- 2 = unsolvedGoal (goalsAfter)
-private abbrev TriggerKind := Nat
+/-- Which kind of auto-`try?` trigger this is. -/
+inductive TriggerKind
+  /-- An empty `by` block. Run `try?` on `goalsBefore` of the `byTactic`, with suggestions
+  wrapped in `by` for term-mode insertion. -/
+  | emptyBy
+  /-- A `sorry` tactic. Run `try?` on `goalsBefore`. -/
+  | sorryTactic
+  /-- A non-structural tactic that left non-empty `goalsAfter`. Run `try?` on `goalsAfter`. -/
+  | unsolvedGoal
 
 /--
 First pass: count how many `TacticInfo` nodes carry each syntax-tail position. Positions
@@ -144,7 +149,7 @@ that appear more than once correspond to tactics that the elaborator ran in mult
 states (e.g. the rhs of `<;>`, the body of `repeat`/`iterate`); we'll skip triggers there
 because a single "Try this" suggestion can't be replayed against multiple goals.
 -/
-private partial def countTacticInfoPositions
+partial def countTacticInfoPositions
     (acc : Std.HashMap (SyntaxNodeKind × String.Pos.Raw) Nat) :
     InfoTree → Std.HashMap (SyntaxNodeKind × String.Pos.Raw) Nat
   | .context _ t => countTacticInfoPositions acc t
@@ -169,7 +174,7 @@ private partial def countTacticInfoPositions
 Second pass: collect trigger points from the info tree, given a multiplicity map produced
 by `countTacticInfoPositions`. Trigger points at positions with multiplicity > 1 are dropped.
 -/
-private partial def collectTriggerPoints (opts : Options)
+partial def collectTriggerPoints (opts : Options)
     (counts : Std.HashMap (SyntaxNodeKind × String.Pos.Raw) Nat) :
     (ctx? : Option ContextInfo) →
     Array (TriggerKind × ContextInfo × Info × Syntax) → InfoTree →
@@ -194,11 +199,11 @@ private partial def collectTriggerPoints (opts : Options)
         let onUnsolved := autoTry.onUnsolvedGoal.get opts
         let onSorry := autoTry.onSorry.get opts
         if onEmpty && kind == `Lean.Parser.Term.byTactic && isEmptyByBlock tacInfo.stx then
-          acc := acc.push (0, ctx, .ofTacticInfo tacInfo, tacInfo.stx[0])
+          acc := acc.push (.emptyBy, ctx, .ofTacticInfo tacInfo, tacInfo.stx[0])
         if onSorry && isSorryTactic tacInfo.stx then
-          acc := acc.push (1, ctx, .ofTacticInfo tacInfo, tacInfo.stx)
+          acc := acc.push (.sorryTactic, ctx, .ofTacticInfo tacInfo, tacInfo.stx)
         if onUnsolved && !isStructuralTacticKind kind && !tacInfo.goalsAfter.isEmpty then
-          acc := acc.push (2, ctx, .ofTacticInfo tacInfo, tacInfo.stx)
+          acc := acc.push (.unsolvedGoal, ctx, .ofTacticInfo tacInfo, tacInfo.stx)
     | _ => pure ()
     for c in cs do
       acc ← collectTriggerPoints opts counts (info.updateContext? ctx) acc c
@@ -210,7 +215,7 @@ Returns `true` if the message log contains any error within `stxRange` that is *
 middle of fixing -- suggestions for the unsolved goal are not useful while other errors
 need to be addressed first.
 -/
-private def hasNonUnsolvedGoalError (stx : Syntax) : CommandElabM Bool := do
+def hasNonUnsolvedGoalError (stx : Syntax) : CommandElabM Bool := do
   let some startPos := stx.getPos? | return false
   let some endPos := stx.getTailPos? | return false
   let fileMap := (← read).fileMap
@@ -257,19 +262,19 @@ def autoTryHook : Linter where run := withSetOptionIn fun stx => do
       if seenPos.contains pos then continue
       seenPos := seenPos.insert pos
       let goal? : Option MVarId := match k, info with
-        | 0, .ofTacticInfo tacInfo => tacInfo.goalsBefore.head?
-        | 1, .ofTacticInfo tacInfo => tacInfo.goalsBefore.head?
-        | 2, .ofTacticInfo tacInfo => tacInfo.goalsAfter.head?
-        | _, _                     => none
+        | .emptyBy,      .ofTacticInfo tacInfo => tacInfo.goalsBefore.head?
+        | .sorryTactic,  .ofTacticInfo tacInfo => tacInfo.goalsBefore.head?
+        | .unsolvedGoal, .ofTacticInfo tacInfo => tacInfo.goalsAfter.head?
+        | _, _                                  => none
       if let some g := goal? then
         if seenGoal.contains g.name then continue
         seenGoal := seenGoal.insert g.name
       match k, info with
-      | 0, .ofTacticInfo tacInfo =>
+      | .emptyBy,      .ofTacticInfo tacInfo =>
         runTryOnGoals ctx tacInfo.mctxBefore tacInfo.goalsBefore tk (wrapWithBy := true)
-      | 1, .ofTacticInfo tacInfo =>
+      | .sorryTactic,  .ofTacticInfo tacInfo =>
         runTryOnGoals ctx tacInfo.mctxBefore tacInfo.goalsBefore tk
-      | 2, .ofTacticInfo tacInfo =>
+      | .unsolvedGoal, .ofTacticInfo tacInfo =>
         runTryOnGoals ctx tacInfo.mctxAfter tacInfo.goalsAfter tk
       | _, _ => pure ()
 

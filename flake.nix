@@ -35,7 +35,7 @@
           # more convenient `ctest` output
           CTEST_OUTPUT_ON_FAILURE = 1;
         } // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux (let
-          opensslForDist = pkgs.openssl.overrideAttrs (p: {
+          opensslForDist = pkgsDist.openssl.overrideAttrs (p: {
             # Sync version with CMakeLists.txt
             version = "3.6.1";
             src = pkgs.fetchFromGitHub {
@@ -49,6 +49,8 @@
               "no-tests"
               "no-dso"
             ];
+            doCheck = false;
+            patches = [];
           });
         in {
           GMP = (pkgsDist.gmp.override { withStatic = true; }).overrideAttrs (attrs:

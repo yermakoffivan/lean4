@@ -73,7 +73,7 @@
             doCheck = false;
           });
           OPENSSL = opensslForDist;
-          OPENSSL_DEV = opensslForDist.dev;
+          OPENSSL_DEV = opensslForDist;
           GLIBC = pkgsDist.glibc;
           GLIBC_DEV = pkgsDist.glibc.dev;
           GCC_LIB = pkgsDist.gcc.cc.lib;

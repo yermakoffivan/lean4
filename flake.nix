@@ -35,23 +35,24 @@
           # more convenient `ctest` output
           CTEST_OUTPUT_ON_FAILURE = 1;
         } // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux (let
-          opensslForDist = pkgsDist.openssl.overrideAttrs (p: {
-            # Sync version with CMakeLists.txt
-            version = "3.6.1";
+          # Build OpenSSL 3 statically using pkgsDist's old-glibc stdenv,
+          # so the resulting static libs don't require newer glibc symbols.
+          opensslForDist = pkgsDist.stdenv.mkDerivation {
+            name = "openssl-static-3.6.0";
             src = pkgs.fetchFromGitHub {
               owner = "openssl";
               repo = "openssl";
-              rev = "openssl-3.6.1";
-              sha256 = "sha256-pj8ekUqkZPEnevY3i+42uF//cWyr1tgWSaSn0V+DjjU=";
+              rev = "openssl-3.6.0";
+              hash = "sha256-EJnbK9ZMdN2ztTTQtb7VsEQvvbMYnY5HJ2LMJlw5FRg=";
             };
-            configureFlags = (p.configureFlags or [ ]) ++ [
-              "no-shared"
-              "no-tests"
-              "no-dso"
-            ];
-            doCheck = false;
-            patches = [];
-          });
+            nativeBuildInputs = [ pkgsDist.perl ];
+            configurePhase = ''
+              patchShebangs .
+              ./config --prefix=$out no-shared no-tests
+            '';
+            buildPhase = "make -j$NIX_BUILD_CORES";
+            installPhase = "make install_sw";
+          };
         in {
           GMP = (pkgsDist.gmp.override { withStatic = true; }).overrideAttrs (attrs:
             pkgs.lib.optionalAttrs (pkgs.stdenv.system == "aarch64-linux") {

@@ -116,9 +116,8 @@ set(LEAN_MI_SECURE 0 CACHE STRING "Configure mimalloc memory safety mitigations 
 option(CHECK_OLEAN_VERSION "Only load .olean files compiled with the current version of Lean" OFF)
 option(USE_LAKE_CACHE "Use the Lake artifact cache for stage 1 builds" OFF)
 
-set(LEAN_EXTRA_OPTS "" CACHE STRING "extra options to lean (via lake or make)")
+set(LEAN_EXTRA_OPTS "" CACHE STRING "extra options to lean (via lake)")
 set(LEAN_EXTRA_LAKE_OPTS "" CACHE STRING "extra options to lake")
-set(LEAN_EXTRA_MAKE_OPTS "" CACHE STRING "extra options to leanmake")
 set(LEANC_CC ${CMAKE_C_COMPILER} CACHE STRING "C compiler to use in `leanc`")
 
 # Temporary, core-only flags. Must be synced with stdlib_flags.h.
@@ -128,7 +127,6 @@ string(APPEND LEAN_EXTRA_OPTS " -Dbackward.do.legacy=false")
 option(WFAIL "Fail build if warnings are emitted by Lean" ON)
 if(WFAIL MATCHES "ON")
   string(APPEND LEAN_EXTRA_LAKE_OPTS " --wfail")
-  string(APPEND LEAN_EXTRA_MAKE_OPTS " -DwarningAsError=true")
 endif()
 
 if(LAZY_RC MATCHES "ON")
@@ -663,15 +661,6 @@ else()
 endif()
 configure_file("${LEAN_SOURCE_DIR}/githash.h.in" "${LEAN_BINARY_DIR}/githash.h")
 
-# Windows uses ";" as a path separator. We use `LEAN_PATH_SEPARATOR` on scripts such as lean.mk.in
-if(CMAKE_SYSTEM_NAME MATCHES "Windows")
-  set(LEAN_PATH_SEPARATOR ";")
-else()
-  set(LEAN_PATH_SEPARATOR ":")
-endif()
-
-# inherit genral options for lean.mk.in and stdlib.make.in
-string(APPEND LEAN_EXTRA_MAKE_OPTS " ${LEAN_EXTRA_OPTS}")
 
 # Version
 configure_file("${LEAN_SOURCE_DIR}/version.h.in" "${LEAN_BINARY_DIR}/include/lean/version.h")
@@ -688,8 +677,6 @@ if(USE_MIMALLOC)
   )
 endif()
 install(DIRECTORY ${LEAN_BINARY_DIR}/include/ DESTINATION include)
-configure_file(${LEAN_SOURCE_DIR}/lean.mk.in ${LEAN_BINARY_DIR}/share/lean/lean.mk)
-install(DIRECTORY ${LEAN_BINARY_DIR}/share/ DESTINATION share)
 
 include_directories(${LEAN_SOURCE_DIR})
 include_directories(${CMAKE_BINARY_DIR}) # version.h etc., "private" headers
@@ -806,10 +793,7 @@ if(LEANTAR AND INSTALL_LEANTAR)
   add_dependencies(leancpp copy-leantar)
 endif()
 
-# MSYS2 bash usually handles Windows paths relatively well, but not when putting them in the PATH
-string(REGEX REPLACE "^([a-zA-Z]):" "/\\1" LEAN_BIN "${CMAKE_BINARY_DIR}/bin")
-
-# ...and Make doesn't like absolute Windows paths either
+# Make doesn't like absolute Windows paths
 # (also looks nicer in the build log)
 file(RELATIVE_PATH LIB ${LEAN_SOURCE_DIR} ${CMAKE_BINARY_DIR}/lib)
 
@@ -825,12 +809,6 @@ if(CMAKE_SYSTEM_NAME MATCHES "Emscripten")
     APPEND LEAN_EXE_LINKER_FLAGS
     " ${LIB}/temp/libleanshell.a ${TOOLCHAIN_STATIC_LINKER_FLAGS} ${EMSCRIPTEN_SETTINGS} -lnodefs.js -s EXIT_RUNTIME=1 -s MAIN_MODULE=1 -s LINKABLE=1 -s EXPORT_ALL=1 -s ERROR_ON_UNDEFINED_SYMBOLS=0"
   )
-endif()
-
-# Build the compiler using the bootstrapped C sources for stage0, and use
-# the LLVM build for stage1 and further.
-if(LLVM AND STAGE GREATER 0)
-  set(EXTRA_LEANMAKE_OPTS "LLVM=1")
 endif()
 
 set(
@@ -964,8 +942,6 @@ if(STAGE GREATER 0 AND NOT CMAKE_SYSTEM_NAME MATCHES "Emscripten")
     VERBATIM
   )
 endif()
-
-file(COPY ${LEAN_SOURCE_DIR}/bin/leanmake DESTINATION ${CMAKE_BINARY_DIR}/bin)
 
 install(DIRECTORY "${CMAKE_BINARY_DIR}/bin/" USE_SOURCE_PERMISSIONS DESTINATION bin)
 

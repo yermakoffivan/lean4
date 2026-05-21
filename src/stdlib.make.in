@@ -4,6 +4,10 @@
 LEAN_BASH ?= /usr/bin/env bash
 SHELL := $(LEAN_BASH) -eo pipefail
 
+# This makefile uses only explicit and pattern rules; disable make's built-in
+# rules so a stray `.c` next to a `.o` cannot trigger an unintended C compile.
+MAKEFLAGS += -r
+
 # any absolute path to the stdlib breaks the Makefile
 export LEAN_PATH=
 ifneq "${STAGE}" "0"
@@ -28,25 +32,8 @@ define link-preamble
 @rm -f $@
 endef
 
-# `leanmake`/`LEANMAKE_OPTS` is used only by the stage-0 bootstrap below, which compiles
-# the pre-generated C sources (`C_ONLY`) snapshotted under `stage0/stdlib/`.
-# MORE_DEPS: rebuild the stdlib whenever the compiler has changed.
-LEANMAKE_OPTS=\
-	LEAN="${PREV_STAGE}/bin/lean${PREV_STAGE_CMAKE_EXECUTABLE_SUFFIX}"\
-	LEANC="${CMAKE_BINARY_DIR}/leanc.sh"\
-	OUT="${LIB}"\
-	LIB_OUT="${LIB}/lean"\
-	OLEAN_OUT="${LIB}/lean"\
-	BIN_OUT="${CMAKE_BINARY_DIR}/bin"\
-	LEAN_OPTS+="${LEAN_EXTRA_MAKE_OPTS}"\
-	LEANC_OPTS+="${LEANC_OPTS}"\
-	LEAN_AR="${CMAKE_AR}"\
-	MORE_DEPS+="${PREV_STAGE}/bin/lean${PREV_STAGE_CMAKE_EXECUTABLE_SUFFIX}"\
-	${EXTRA_LEANMAKE_OPTS}\
-	C_ONLY=1 C_OUT=${LEAN_SOURCE_DIR}/../stdlib/\
-	CMAKE_LIKE_OUTPUT=1
-
-# These can be phony since the inner Makefile/Lake will have the correct dependencies and avoid rebuilds
+# `Init` etc. below are phony aliases; the real dependencies are tracked by Lake
+# (stage 1+) or by the archive rules (stage 0).
 .PHONY: Init Std Lean leanshared Lake libLake_shared lake lean LeanChecker leanchecker LeanIR
 
 ifneq "${STAGE}" "0"
@@ -59,30 +46,107 @@ Std Lean Lake Leanc LeanChecker LeanIR: Init
 
 else
 
-# Stage 0 has no Lake yet, so build the snapshotted C sources directly via `leanmake`.
-Init:
-	@mkdir -p "${LIB}/lean/Lean" "${LIB}/lean/Lake" "${LIB}/lean/Std"
-# Use `+` to use the Make jobserver with `leanmake` for parallelized builds
-	+"${LEAN_BIN}/leanmake" objs lib lib.export PKG=Init $(LEANMAKE_OPTS)
+# --- Stage 0 has no Lake yet: compile the pre-generated C sources directly. ---
+# `update-stage0` snapshots the C sources under `stage0/stdlib/`; there are no
+# `.lean` files to elaborate, so this is plain C compilation and archiving.
+STDLIB_C := ${LEAN_SOURCE_DIR}/../stdlib
+OBJ_OUT  := ${LIB}/temp
+# `leanc.sh` reads the exported `LEAN_CC`; `-O3 -DNDEBUG` is the historical default.
+LEANC_COMPILE := $(LEANC_SH) -c -O3 -DNDEBUG ${LEANC_OPTS}
 
-Std: Init
-	+"${LEAN_BIN}/leanmake" lib lib.export PKG=Std $(LEANMAKE_OPTS)
+# $(call c-objs,<pkg>): the `.o` files for package <pkg>, mirroring its `.c` layout.
+# `2> /dev/null`: ignore the find error when a package has no source directory.
+c-objs = $(patsubst %.c,$(OBJ_OUT)/%.o,$(shell cd $(STDLIB_C) && find $(1) $(1).c -name '*.c' 2> /dev/null))
 
-Lean: Std
-	+"${LEAN_BIN}/leanmake" lib lib.export PKG=Lean $(LEANMAKE_OPTS)
+Init_OBJS        := $(call c-objs,Init)
+Std_OBJS         := $(call c-objs,Std)
+Lean_OBJS        := $(call c-objs,Lean)
+Lake_OBJS        := $(call c-objs,Lake)
+LeanChecker_OBJS := $(call c-objs,LeanChecker)
+LeanIR_OBJS      := $(call c-objs,LeanIR)
 
+$(OBJ_OUT)/%.o.export: $(STDLIB_C)/%.c
+	@echo "[    ] Building $<"
+	@mkdir -p "$(@D)"
+	$(LEANC_COMPILE) -o $@ $< -DLEAN_EXPORTING
+
+ifeq "${CMAKE_SYSTEM_NAME}" "Windows"
+# On Windows, also build a `.o` without dllexport because of the symbol limit;
+# elsewhere the plain `.o` is just a hardlink to the `.o.export`.
+$(OBJ_OUT)/%.o: $(STDLIB_C)/%.c
+	@echo "[    ] Building $<"
+	@mkdir -p "$(@D)"
+	$(LEANC_COMPILE) -o $@ $<
+else
+$(OBJ_OUT)/%.o: $(OBJ_OUT)/%.o.export
+	ln -f $< $@
+endif
+
+# Keep the object files: the archive rules and the later link steps consume them,
+# so make must not treat them as deletable intermediates.
+.PRECIOUS: $(OBJ_OUT)/%.o $(OBJ_OUT)/%.o.export
+
+${LIB}/lean $(OUTARC):
+	@mkdir -p "$@"
+
+# Archive `$^` into the static library `$@`. On Windows the object list is passed via
+# a response file (command-line length limit); the `.export` archive is "T"hin so that
+# objects with the same file name stay distinguishable when building `libleanshared_*`.
+ifeq "${CMAKE_SYSTEM_NAME}" "Windows"
+define archive-rcs
+@rm -f $@
+$(file >$@.in) $(foreach O,$^,$(file >>$@.in,"$O"))
+@${CMAKE_AR} rcs $@ @$@.in
+@rm -f $@.in
+endef
+define archive-rcsT
+@rm -f $@
+$(file >$@.in) $(foreach O,$^,$(file >>$@.in,"$O"))
+@${CMAKE_AR} rcsT $@ @$@.in
+@rm -f $@.in
+endef
+else
+define archive-rcs
+@rm -f $@
+@${CMAKE_AR} rcs $@ $^
+endef
+endif
+
+${LIB}/lean/libInit.a: $(Init_OBJS) | ${LIB}/lean
+	$(archive-rcs)
+${LIB}/lean/libStd.a: $(Std_OBJS) | ${LIB}/lean
+	$(archive-rcs)
+${LIB}/lean/libLean.a: $(Lean_OBJS) | ${LIB}/lean
+	$(archive-rcs)
+${LIB}/lean/libLake.a: $(Lake_OBJS) | ${LIB}/lean
+	$(archive-rcs)
+$(OUTARC)/libLeanChecker.a: $(LeanChecker_OBJS) | $(OUTARC)
+	$(archive-rcs)
+$(OUTARC)/libLeanIR.a: $(LeanIR_OBJS) | $(OUTARC)
+	$(archive-rcs)
+
+ifeq "${CMAKE_SYSTEM_NAME}" "Windows"
+${LIB}/lean/libInit.a.export: $(Init_OBJS:.o=.o.export) | ${LIB}/lean
+	$(archive-rcsT)
+${LIB}/lean/libStd.a.export: $(Std_OBJS:.o=.o.export) | ${LIB}/lean
+	$(archive-rcsT)
+${LIB}/lean/libLean.a.export: $(Lean_OBJS:.o=.o.export) | ${LIB}/lean
+	$(archive-rcsT)
+${LIB}/lean/libLake.a.export: $(Lake_OBJS:.o=.o.export) | ${LIB}/lean
+	$(archive-rcsT)
+else
+${LIB}/lean/lib%.a.export: ${LIB}/lean/lib%.a
+	ln -f $< $@
+endif
+
+Init: ${LIB}/lean/libInit.a ${LIB}/lean/libInit.a.export
+Std:  ${LIB}/lean/libStd.a  ${LIB}/lean/libStd.a.export
+Lean: ${LIB}/lean/libLean.a ${LIB}/lean/libLean.a.export
+Lake: ${LIB}/lean/libLake.a ${LIB}/lean/libLake.a.export $(OBJ_OUT)/LakeMain.o.export
+LeanChecker: $(OUTARC)/libLeanChecker.a
+LeanIR: $(OUTARC)/libLeanIR.a
 # `Leanc` has no Lean library to build at stage 0; its C sources are compiled in a later stage.
-Leanc: Lean
-
-Lake: Lean
-# lake is in its own subdirectory, so must adjust relative paths...
-	+"${LEAN_BIN}/leanmake" -C lake lib lib.export ../${LIB}/temp/LakeMain.o.export  PKG=Lake $(LEANMAKE_OPTS) OUT="../${LIB}" LIB_OUT="../${LIB}/lean" TEMP_OUT="../${LIB}/temp" OLEAN_OUT="../${LIB}/lean"
-
-LeanChecker: Lake
-	+"${LEAN_BIN}/leanmake" lib PKG=LeanChecker $(LEANMAKE_OPTS) OUT="$(OUTARC)" LIB_OUT="$(OUTARC)" TEMP_OUT="${LIB}/temp" OLEAN_OUT="$(OUTARC)"
-
-LeanIR: Lean
-	+"${LEAN_BIN}/leanmake" lib PKG=LeanIR $(LEANMAKE_OPTS) OUT="${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}" LIB_OUT="${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}" OLEAN_OUT="${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}"
+Leanc:
 
 endif
 

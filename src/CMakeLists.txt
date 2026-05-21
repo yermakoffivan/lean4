@@ -114,8 +114,7 @@ set(LEAN_MI_SECURE 0 CACHE STRING "Configure mimalloc memory safety mitigations 
 
 # development-specific options
 option(CHECK_OLEAN_VERSION "Only load .olean files compiled with the current version of Lean" OFF)
-option(USE_LAKE "Use Lake instead of lean.mk for building core libs from language server" ON)
-option(USE_LAKE_CACHE "Use the Lake artifact cache for stage 1 builds (requires USE_LAKE)" OFF)
+option(USE_LAKE_CACHE "Use the Lake artifact cache for stage 1 builds" OFF)
 
 set(LEAN_EXTRA_OPTS "" CACHE STRING "extra options to lean (via lake or make)")
 set(LEAN_EXTRA_LAKE_OPTS "" CACHE STRING "extra options to lake")
@@ -618,7 +617,7 @@ if(USE_GITHASH)
     message(STATUS "git commit sha1: ${GIT_SHA1}")
   endif()
 else()
-  if(USE_LAKE AND STAGE EQUAL 0)
+  if(STAGE EQUAL 0)
     # we need to embed *some* hash for Lake to invalidate stage 1 on stage 0 changes
     execute_process(
       COMMAND git ls-tree HEAD "${CMAKE_CURRENT_SOURCE_DIR}/../../stage0" --object-only
@@ -658,20 +657,11 @@ else()
       endif()
     endif()
     message(STATUS "stage0 sha1: ${GIT_SHA1}")
-    # Now that we've prepared the information for the next stage, we can forget that we will use
-    # Lake in the future as we won't use it in this stage
-    set(USE_LAKE OFF)
   else()
     set(GIT_SHA1 "")
   endif()
 endif()
 configure_file("${LEAN_SOURCE_DIR}/githash.h.in" "${LEAN_BINARY_DIR}/githash.h")
-
-if(USE_LAKE AND STAGE EQUAL 0)
-  # Now that we've prepared the information for the next stage, we can forget that we will use
-  # Lake in the future as we won't use it in this stage
-  set(USE_LAKE OFF)
-endif()
 
 # Windows uses ";" as a path separator. We use `LEAN_PATH_SEPARATOR` on scripts such as lean.mk.in
 if(CMAKE_SYSTEM_NAME MATCHES "Windows")
@@ -1083,7 +1073,7 @@ else()
   set(CMAKE_BUILD_TYPE_TOML "Release")
 endif()
 
-if(USE_LAKE)
+if(STAGE GREATER 0)
   configure_file(${LEAN_SOURCE_DIR}/lakefile.toml.in ${CMAKE_BINARY_DIR}/lakefile.toml)
   # copy for editing
   if(STAGE EQUAL 1)

@@ -184,42 +184,23 @@ def collectTriggerPoints (opts : Options) (tree : InfoTree) :
   tree.foldInfoM (init := #[]) fun ctx info acc => do
     match info with
     | .ofTacticInfo tacInfo =>
+      -- Only emit candidates whose anchor has a real source range; otherwise the code
+      -- action has no document range to apply against.
+      if tacInfo.stx.getPos?.isNone then return acc
       let kind := tacInfo.stx.getKind
-      let mut acc := acc
       let onEmpty := autoTry.onEmptyBy.get opts
       let onUnsolved := autoTry.onUnsolvedGoal.get opts
       let onSorry := autoTry.onSorry.get opts
-      -- Only emit a candidate whose anchor syntax has a real source range.
-      let push (k : TriggerKind) (anchor : Syntax) (acc : Array _) :=
-        if anchor.getPos?.isSome then acc.push (k, ctx, tacInfo) else acc
+      let mut acc := acc
       if kind == `Lean.Parser.Term.byTactic && tacInfo.goalsAfter.length == 1 then
-        let isEmpty := isEmptyByBlock tacInfo.stx
         -- `onUnsolved` fires for any open `by` block; `onEmpty` is a narrower variant
         -- that fires only when there are no tactics in the block yet.
-        if onUnsolved || (onEmpty && isEmpty) then
-          acc := push .unsolvedGoal tacInfo.stx acc
+        if onUnsolved || (onEmpty && isEmptyByBlock tacInfo.stx) then
+          acc := acc.push (.unsolvedGoal, ctx, tacInfo)
       if onSorry && isSorryTactic tacInfo.stx then
-        acc := push .sorryTactic tacInfo.stx acc
+        acc := acc.push (.sorryTactic, ctx, tacInfo)
       return acc
     | _ => return acc
-
-/--
-Drop candidates that share a source position with any other candidate. The elaborator
-running the same syntax against multiple proof states (rhs of `<;>`, body of looping
-combinators) produces multiple candidates at the same `pos`; a single "Try this"
-suggestion can't be replayed against multiple goals, so we suppress all of them.
--/
-def dropMultiElabCandidates
-    (candidates : Array (TriggerKind × ContextInfo × TacticInfo)) :
-    Array (TriggerKind × ContextInfo × TacticInfo) := Id.run do
-  let mut counts : Std.HashMap String.Pos.Raw Nat := {}
-  for (_, _, ti) in candidates do
-    if let some p := ti.stx.getPos? then
-      counts := counts.alter p (fun n? => some (n?.getD 0 + 1))
-  return candidates.filter fun (_, _, ti) =>
-    match ti.stx.getPos? with
-    | some p => counts.getD p 0 == 1
-    | none => true
 
 /--
 Drive `try?` from CommandElabM, returning the suggestion array. Sets up TacticM/TermElabM
@@ -334,24 +315,17 @@ def autoTryHook : Linter where run := withSetOptionIn fun stx => do
   let trees ← getInfoTrees
   for tree in trees do
     let candidates ← collectTriggerPoints opts tree
-    let points := dropMultiElabCandidates candidates
-    trace[autoTry] "trigger points: {points.size}"
-    -- Dedupe by source position and by the goal mvar. The position dedupe handles the case
-    -- where two trigger kinds collide at the same site (e.g. a `sorry` that's also an
-    -- unsolved-goal `by` block). The goal-mvar dedupe handles nested triggers that share
-    -- the same target goal -- we keep the first (outer) thanks to depth-first traversal.
-    let mut seenPos : Std.HashSet String.Pos.Raw := {}
-    let mut seenGoal : Std.HashSet MVarId := {}
-    for (k, ctx, ti) in points do
-      let pos := ti.stx.getPos?.getD 0
-      if seenPos.contains pos then continue
-      seenPos := seenPos.insert pos
-      let goal? : Option MVarId := match k with
-        | .unsolvedGoal => ti.goalsAfter.head?
-        | .sorryTactic  => ti.goalsBefore.head?
-      if let some g := goal? then
-        if seenGoal.contains g then continue
-        seenGoal := seenGoal.insert g
+    -- A source position carrying more than one candidate means the elaborator ran the
+    -- same syntax against multiple proof states (rhs of `<;>`, body of `repeat`, ...);
+    -- a single "Try this" suggestion can't be replayed there, so skip such positions.
+    let mut counts : Std.HashMap String.Pos.Raw Nat := {}
+    for (_, _, ti) in candidates do
+      if let some p := ti.stx.getPos? then
+        counts := counts.alter p (fun n? => some (n?.getD 0 + 1))
+    trace[autoTry] "trigger points: {candidates.size}"
+    for (k, ctx, ti) in candidates do
+      let some pos := ti.stx.getPos? | continue
+      if counts.getD pos 0 > 1 then continue
       match k with
       | .unsolvedGoal =>
         let some goal := ti.goalsAfter.head? | continue

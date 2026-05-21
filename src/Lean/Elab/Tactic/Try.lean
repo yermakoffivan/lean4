@@ -1034,22 +1034,12 @@ private def wrapSuggestionWithBy (sugg : Tactic.TryThis.Suggestion) : TacticM Ta
 /-- Version of `evalAndSuggest` that wraps tactic suggestions with `by` for term mode. -/
 private def evalAndSuggestWithBy (tk : Syntax) (tac : TSyntax `tactic) (originalMaxHeartbeats : Nat)
     (config : Try.Config) (footer : MessageData := MessageData.nil) : TacticM Unit := do
-  -- Suppress "Try this" messages from intermediate tactic executions
-  let tac' ← withSuppressedMessages do
-    try
-      evalSuggest tac |>.run { terminal := true, root := tac, config, originalMaxHeartbeats }
-    catch _ =>
-      throwEvalAndSuggestFailed config
-  let suggestions := (getSuggestions tac')[*...config.max].toArray
-  if suggestions.isEmpty then
-    throwEvalAndSuggestFailed config
+  let suggestions ← evalAndCollectSuggestions tac originalMaxHeartbeats config
+  let termSuggestions ← suggestions.mapM wrapSuggestionWithBy
+  if termSuggestions.size == 1 then
+    Tactic.TryThis.addSuggestion tk termSuggestions[0]! (origSpan? := (← getRef)) (footer := footer)
   else
-    -- Wrap each suggestion with `by `
-    let termSuggestions ← suggestions.mapM wrapSuggestionWithBy
-    if termSuggestions.size == 1 then
-      Tactic.TryThis.addSuggestion tk termSuggestions[0]! (origSpan? := (← getRef)) (footer := footer)
-    else
-      Tactic.TryThis.addSuggestions tk termSuggestions (origSpan? := (← getRef)) (footer := footer)
+    Tactic.TryThis.addSuggestions tk termSuggestions (origSpan? := (← getRef)) (footer := footer)
 
 /-- Core implementation of `try?`: focus, collect info, build tactic, evaluate and suggest.
 `tk` is the syntax token where "Try this:" appears. The optional `footer` is appended to the

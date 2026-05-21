@@ -54,9 +54,9 @@ OBJ_OUT  := ${LIB}/temp
 # `leanc.sh` reads the exported `LEAN_CC`; `-O3 -DNDEBUG` is the historical default.
 LEANC_COMPILE := $(LEANC_SH) -c -O3 -DNDEBUG ${LEANC_OPTS}
 
-# $(call c-objs,<pkg>): the `.o` files for package <pkg>, mirroring its `.c` layout.
+# $(call c-objs,<pkg>): the `.o.export` files for package <pkg>, mirroring its `.c` layout.
 # `2> /dev/null`: ignore the find error when a package has no source directory.
-c-objs = $(patsubst %.c,$(OBJ_OUT)/%.o,$(shell cd $(STDLIB_C) && find $(1) $(1).c -name '*.c' 2> /dev/null))
+c-objs = $(patsubst %.c,$(OBJ_OUT)/%.o.export,$(shell cd $(STDLIB_C) && find $(1) $(1).c -name '*.c' 2> /dev/null))
 
 Init_OBJS        := $(call c-objs,Init)
 Std_OBJS         := $(call c-objs,Std)
@@ -65,84 +65,67 @@ Lake_OBJS        := $(call c-objs,Lake)
 LeanChecker_OBJS := $(call c-objs,LeanChecker)
 LeanIR_OBJS      := $(call c-objs,LeanIR)
 
+# Every object is built with `-DLEAN_EXPORTING`: stage 0 links nothing that needs a
+# non-exported variant (the Windows symbol-limit `.o`), so there is a single compile
+# per source file.
 $(OBJ_OUT)/%.o.export: $(STDLIB_C)/%.c
 	@echo "[    ] Building $<"
 	@mkdir -p "$(@D)"
 	$(LEANC_COMPILE) -o $@ $< -DLEAN_EXPORTING
 
-ifeq "${CMAKE_SYSTEM_NAME}" "Windows"
-# On Windows, also build a `.o` without dllexport because of the symbol limit;
-# elsewhere the plain `.o` is just a hardlink to the `.o.export`.
-$(OBJ_OUT)/%.o: $(STDLIB_C)/%.c
-	@echo "[    ] Building $<"
-	@mkdir -p "$(@D)"
-	$(LEANC_COMPILE) -o $@ $<
-else
-$(OBJ_OUT)/%.o: $(OBJ_OUT)/%.o.export
-	ln -f $< $@
-endif
-
 # Keep the object files: the archive rules and the later link steps consume them,
 # so make must not treat them as deletable intermediates.
-.PRECIOUS: $(OBJ_OUT)/%.o $(OBJ_OUT)/%.o.export
+.PRECIOUS: $(OBJ_OUT)/%.o.export
 
 ${LIB}/lean $(OUTARC):
 	@mkdir -p "$@"
 
-# Archive `$^` into the static library `$@`. On Windows the object list is passed via
-# a response file (command-line length limit); the `.export` archive is "T"hin so that
-# objects with the same file name stay distinguishable when building `libleanshared_*`.
+# Archive `$^` into `$@`. On Windows the object list goes through a response file
+# (command-line length limit). `Init`/`Std`/`Lean`/`Lake` feed the shared libraries,
+# so their archives are named `.a.export` and — on Windows — "T"hin, letting the
+# `libleanshared` build manipulate them by path. `LeanChecker`/`LeanIR` are linked
+# statically into executables, so they get a plain archive.
 ifeq "${CMAKE_SYSTEM_NAME}" "Windows"
-define archive-rcs
-@rm -f $@
-$(file >$@.in) $(foreach O,$^,$(file >>$@.in,"$O"))
-@${CMAKE_AR} rcs $@ @$@.in
-@rm -f $@.in
-endef
-define archive-rcsT
+define ar-shared
 @rm -f $@
 $(file >$@.in) $(foreach O,$^,$(file >>$@.in,"$O"))
 @${CMAKE_AR} rcsT $@ @$@.in
 @rm -f $@.in
 endef
+define ar-exe
+@rm -f $@
+$(file >$@.in) $(foreach O,$^,$(file >>$@.in,"$O"))
+@${CMAKE_AR} rcs $@ @$@.in
+@rm -f $@.in
+endef
 else
-define archive-rcs
+define ar-shared
+@rm -f $@
+@${CMAKE_AR} rcs $@ $^
+endef
+define ar-exe
 @rm -f $@
 @${CMAKE_AR} rcs $@ $^
 endef
 endif
 
-${LIB}/lean/libInit.a: $(Init_OBJS) | ${LIB}/lean
-	$(archive-rcs)
-${LIB}/lean/libStd.a: $(Std_OBJS) | ${LIB}/lean
-	$(archive-rcs)
-${LIB}/lean/libLean.a: $(Lean_OBJS) | ${LIB}/lean
-	$(archive-rcs)
-${LIB}/lean/libLake.a: $(Lake_OBJS) | ${LIB}/lean
-	$(archive-rcs)
+${LIB}/lean/libInit.a.export: $(Init_OBJS) | ${LIB}/lean
+	$(ar-shared)
+${LIB}/lean/libStd.a.export: $(Std_OBJS) | ${LIB}/lean
+	$(ar-shared)
+${LIB}/lean/libLean.a.export: $(Lean_OBJS) | ${LIB}/lean
+	$(ar-shared)
+${LIB}/lean/libLake.a.export: $(Lake_OBJS) | ${LIB}/lean
+	$(ar-shared)
 $(OUTARC)/libLeanChecker.a: $(LeanChecker_OBJS) | $(OUTARC)
-	$(archive-rcs)
+	$(ar-exe)
 $(OUTARC)/libLeanIR.a: $(LeanIR_OBJS) | $(OUTARC)
-	$(archive-rcs)
+	$(ar-exe)
 
-ifeq "${CMAKE_SYSTEM_NAME}" "Windows"
-${LIB}/lean/libInit.a.export: $(Init_OBJS:.o=.o.export) | ${LIB}/lean
-	$(archive-rcsT)
-${LIB}/lean/libStd.a.export: $(Std_OBJS:.o=.o.export) | ${LIB}/lean
-	$(archive-rcsT)
-${LIB}/lean/libLean.a.export: $(Lean_OBJS:.o=.o.export) | ${LIB}/lean
-	$(archive-rcsT)
-${LIB}/lean/libLake.a.export: $(Lake_OBJS:.o=.o.export) | ${LIB}/lean
-	$(archive-rcsT)
-else
-${LIB}/lean/lib%.a.export: ${LIB}/lean/lib%.a
-	ln -f $< $@
-endif
-
-Init: ${LIB}/lean/libInit.a ${LIB}/lean/libInit.a.export
-Std:  ${LIB}/lean/libStd.a  ${LIB}/lean/libStd.a.export
-Lean: ${LIB}/lean/libLean.a ${LIB}/lean/libLean.a.export
-Lake: ${LIB}/lean/libLake.a ${LIB}/lean/libLake.a.export $(OBJ_OUT)/LakeMain.o.export
+Init: ${LIB}/lean/libInit.a.export
+Std:  ${LIB}/lean/libStd.a.export
+Lean: ${LIB}/lean/libLean.a.export
+Lake: ${LIB}/lean/libLake.a.export $(OBJ_OUT)/LakeMain.o.export
 LeanChecker: $(OUTARC)/libLeanChecker.a
 LeanIR: $(OUTARC)/libLeanIR.a
 # `Leanc` has no Lean library to build at stage 0; its C sources are compiled in a later stage.
@@ -216,10 +199,10 @@ else
 	$(LEANC_SH) -shared -o $(OUTLIB)/libleanshared_2$(SO) ${LIB}/temp/empty.c ${LEANSHARED_2_LINKER_FLAGS} ${TOOLCHAIN_SHARED_LINKER_FLAGS} ${LEANC_OPTS}
 ifeq "${CMAKE_SYSTEM_NAME}" "Darwin"
 	$(LEANC_SH) -shared -o $@ \
-	  ${LIB}/temp/Lean.*o.export -Wl,-force_load,${LIB}/temp/libleanshell.a -lInit -lStd -lLean -lleancpp ${CMAKE_BINARY_DIR}/runtime/libleanrt_initial-exec.a ${LEANSHARED_LINKER_FLAGS} ${TOOLCHAIN_SHARED_LINKER_FLAGS} ${LEANC_OPTS}
+	  ${LIB}/temp/Lean.*o.export -Wl,-force_load,${LIB}/temp/libleanshell.a ${LIB}/lean/libInit.a.export ${LIB}/lean/libStd.a.export ${LIB}/lean/libLean.a.export ${LIB}/lean/libleancpp.a ${CMAKE_BINARY_DIR}/runtime/libleanrt_initial-exec.a ${LEANSHARED_LINKER_FLAGS} ${TOOLCHAIN_SHARED_LINKER_FLAGS} ${LEANC_OPTS}
 else
 	$(LEANC_SH) -shared -o $@ \
-	  -Wl,--whole-archive ${LIB}/temp/Lean.*o.export ${LIB}/temp/libleanshell.a -Wl,--no-whole-archive -Wl,--start-group -lInit -lStd -lLean -lleancpp -Wl,--end-group ${CMAKE_BINARY_DIR}/runtime/libleanrt_initial-exec.a ${LEANSHARED_LINKER_FLAGS} ${TOOLCHAIN_SHARED_LINKER_FLAGS} ${LEANC_OPTS}
+	  -Wl,--whole-archive ${LIB}/temp/Lean.*o.export ${LIB}/temp/libleanshell.a -Wl,--no-whole-archive -Wl,--start-group ${LIB}/lean/libInit.a.export ${LIB}/lean/libStd.a.export ${LIB}/lean/libLean.a.export ${LIB}/lean/libleancpp.a -Wl,--end-group ${CMAKE_BINARY_DIR}/runtime/libleanrt_initial-exec.a ${LEANSHARED_LINKER_FLAGS} ${TOOLCHAIN_SHARED_LINKER_FLAGS} ${LEANC_OPTS}
 endif
 endif
 ifeq "${STRIP_BINARIES}" "ON"

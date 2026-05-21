@@ -10,7 +10,7 @@ open Lean.Server.Test.Cancel
 #eval (IO.eprintln "test: imports done" : IO Unit)
 
 /-!
-Test that `cancelRec` reaches the snapshot task spawned by the `autoTry.onEmptyBy`
+Test that `cancelRec` reaches the snapshot task spawned by the `autoTry.onUnsolvedGoal`
 post-elab hook on re-elaboration.
 
 Chronological flow:
@@ -66,7 +66,7 @@ def tracerSuggestion (_goal : MVarId) (_info : Try.Info) :
 
 end TestEmptyBy
 
-set_option autoTry.onEmptyBy true
+set_option autoTry.onUnsolvedGoal true
 -- Skip the expensive built-in `try?` branches (`simp`/`grind`/`exact?`/…). The
 -- test only cares about the user-registered `tracerSuggestion` running inside
 -- the snapshot task; the library-search branches are pure overhead here.

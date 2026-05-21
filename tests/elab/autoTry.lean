@@ -1,48 +1,51 @@
 /-
 Tests for the `autoTry.*` post-elab hook options:
-  - `autoTry.onEmptyBy`      -- run `try?` on empty `by` blocks
-  - `autoTry.onUnsolvedGoal` -- run `try?` on tactics that left goals unsolved
-  - `autoTry.onSorry`        -- run `try?` on `sorry` tactics
+  - `autoTry.onUnsolvedGoal` -- run `try?` on each `by` block (incl. empty `by`) whose
+    sequence left exactly one unsolved goal; rendered as an *append* to the sequence.
+  - `autoTry.onSorry` -- run `try?` on `sorry` tactics; rendered as a *replacement* of
+    the `sorry`.
 
-Note: the linter walks info trees and skips subtrees that are inside multi-elab
-combinators (`first | ...`, `<;>` via `all_goals`, `try ...`, `attempt_all`,
-`repeat`/`repeat'`, `iterate`, etc.) -- so e.g. `first | exact (by) | trivial`
-does not report a suggestion for the speculatively-elaborated failing branch.
+The [apply] widget shows the bare tactic for readability; the actual edit text (separator
++ tactic) is verified via `trace[autoTry]` in the dedicated section below.
+
+The linter skips candidates whose syntax was elaborated against multiple proof states
+(rhs of `<;>`, body of `repeat`/`iterate`, etc.) -- a single suggestion can't replay
+against multiple goals.
 -/
 
-/-! ## `autoTry.onEmptyBy` -/
+/-! ## `autoTry.onUnsolvedGoal` -- empty `by` -/
 
-set_option autoTry.onEmptyBy true
+set_option autoTry.onUnsolvedGoal true
 
--- Basic: empty by reports unsolved goals first, then `try?` emits its suggestions.
+-- Empty `by`: trigger fires (one unsolved goal); the widget shows the tactic to apply.
 /--
 error: unsolved goals
 ⊢ True
 ---
 info: Try these:
-  [apply] by solve_by_elim
-  [apply] by simp
-  [apply] by simp only
-  [apply] by grind
-  [apply] by grind only
-  [apply] by simp_all
+  [apply] solve_by_elim
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
 -/
 #guard_msgs in
 example : True := by
 
--- Disabled: empty by gives just unsolved goals
+-- Disabled: empty `by` gives just the unsolved-goals error.
 /--
 error: unsolved goals
 ⊢ True
 -/
 #guard_msgs in
-set_option autoTry.onEmptyBy false in
+set_option autoTry.onUnsolvedGoal false in
 example : True := by
 
--- Non-empty by is not affected
+-- Successful proof: no trigger.
 example : True := by trivial
 
--- `by { }` (empty braces) parses differently and the detector does not match it.
+-- `by { }` (empty braces) parses to a different shape and does not currently trigger.
 /--
 error: unsolved goals
 ⊢ True
@@ -50,7 +53,7 @@ error: unsolved goals
 #guard_msgs in
 example : True := by { }
 
--- Unprovable goal: try? finds no suggestions, so the hook is fully silent.
+-- Unprovable goal: try? finds nothing, the hook is silent.
 /--
 error: unsolved goals
 ⊢ False
@@ -58,27 +61,55 @@ error: unsolved goals
 #guard_msgs in
 example : False := by
 
--- Inside `first | ... | ...` the empty `by` still triggers a suggestion: the heuristic
--- only suppresses tactics whose syntax was elaborated against multiple proof states (rhs
--- of `<;>`, body of `repeat`, etc.), and each branch of `first` is elaborated against the
--- same single state -- the speculative branches are not "multi-elab" in that sense.
+/-! ## `autoTry.onUnsolvedGoal` -- non-empty `by`, append behaviour -/
+
+-- `by skip` is single-line non-empty; the suggestion is appended after `skip`.
 /--
 error: unsolved goals
 ⊢ True
 ---
 info: Try these:
-  [apply] by solve_by_elim
-  [apply] by simp
-  [apply] by simp only
-  [apply] by grind
-  [apply] by grind only
-  [apply] by simp_all
+  [apply] solve_by_elim
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
 -/
 #guard_msgs in
-example : True := by first | exact (by) | trivial
+example : True := by skip
 
--- Inside `<;>` (which expands to `focus / all_goals`), the rhs runs once per goal so the
--- heuristic correctly suppresses the per-goal suggestions.
+-- `by skip; skip` appends *after* the second `skip`, not in place of the first.
+/--
+error: unsolved goals
+⊢ True
+---
+info: Try these:
+  [apply] solve_by_elim
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
+-/
+#guard_msgs in
+example : True := by skip; skip
+
+-- Multiple unsolved goals: the hook is silent. The user is expected to structure the
+-- proof with `·` / `case` so a per-goal byTactic fires its own suggestion.
+/--
+error: unsolved goals
+case left
+⊢ True
+
+case right
+⊢ True
+-/
+#guard_msgs in
+example : True ∧ True := by constructor
+
+-- Inside `<;>` the rhs is elaborated against multiple proof states; the trigger is
+-- correctly suppressed.
 /--
 error: unsolved goals
 case left
@@ -91,13 +122,13 @@ case right
 example : True ∧ True := by
   constructor <;> skip
 
-set_option autoTry.onEmptyBy false
+set_option autoTry.onUnsolvedGoal false
 
-/-! ## `autoTry.onSorry` -/
+/-! ## `autoTry.onSorry` -- `sorry` replacement -/
 
 set_option autoTry.onSorry true
 
--- Tactic-form `sorry` triggers; the suggestion anchors at the `sorry` token.
+-- Tactic-form `sorry`: the suggestion replaces the `sorry` (no separator prefix).
 /--
 warning: declaration uses `sorry`
 ---
@@ -112,15 +143,15 @@ info: Try these:
 #guard_msgs in
 example : True := by sorry
 
--- Term-form `sorry` does NOT trigger: by design we only fire on the tactic form.
+-- Term-form `sorry`: not a tactic, no trigger.
 /--
 warning: declaration uses `sorry`
 -/
 #guard_msgs in
 example : True := sorry
 
--- A `sorry` tactic nested in `first | ... | ...` still triggers, same reasoning as for
--- the nested empty-`by` case above.
+-- `sorry` inside `first | ... | ...` still triggers -- the branches of `first` are
+-- elaborated against the same single state.
 /--
 warning: declaration uses `sorry`
 ---
@@ -137,74 +168,12 @@ example : True := by first | sorry | trivial
 
 set_option autoTry.onSorry false
 
-/-! ## `autoTry.onUnsolvedGoal` -/
-
-set_option autoTry.onUnsolvedGoal true
-
--- A tactic that left a goal unsolved triggers a suggestion at the failing tactic.
-/--
-error: unsolved goals
-⊢ True
----
-info: Try these:
-  [apply] solve_by_elim
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
--/
-#guard_msgs in
-example : True := by skip
-
--- A successful proof leaves no unsolved goals, so no trigger.
-example : True := by trivial
-
--- Multiple unsolved goals: no suggestion. A single `try?` replacement at `constructor`
--- can't sensibly close two goals at once; the user is expected to structure the proof
--- with `·` / `case` first and only then will a per-goal suggestion fire.
-/--
-error: unsolved goals
-case left
-⊢ True
-
-case right
-⊢ True
--/
-#guard_msgs in
-example : True ∧ True := by constructor
-
--- An unsolved-goal trigger inside `first | ...` fires at the outer `first` tactic, not at
--- the individual branches: the branches are speculatively elaborated and we don't want a
--- suggestion at each. (Here `skip` "succeeds" without making progress, so `first` picks
--- it and the second branch is never tried -- but `first` itself is the outer tactic that
--- left goals open.)
-/--
-error: unsolved goals
-⊢ True
----
-info: Try these:
-  [apply] solve_by_elim
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
--/
-#guard_msgs in
-example : True := by first | skip | trivial
-
-set_option autoTry.onUnsolvedGoal false
-
 /-! ## Error gate
 
 When a command logs any *non-`unsolved goals`* error, the auto-`try?` hook stays silent
 entirely. The user is presumed to be in the middle of fixing a broken proof; suggestions
-for the unsolved-goal site are noise until the other errors are addressed.
--/
+for the unsolved-goal site are noise until the other errors are addressed. -/
 
--- A non-`unsolved goals` error inside the same command suppresses every autoTry trigger
--- in that command. Here the `sorry` would normally fire `onSorry`, but it is silenced.
 /--
 error: Unknown identifier `this_undefined_name`
 ---
@@ -216,18 +185,30 @@ example : True := by
   exact this_undefined_name
   sorry
 
-/-! ## Suggestion anchoring
+/-! ## Edit-text verification
 
-Verify -- with `(positions := true)` -- that each trigger anchors its suggestion at the
-expected syntax range. Regressions here would prevent the `[apply]` widget from inserting
-the suggestion at the right place. -/
+The [apply] widget hides the separator characters that the edit inserts. Setting
+`autoTry.debug.showEdits` makes the linter emit an info message per suggestion describing
+the literal replacement text and the (zero-width) insertion position. This is the same
+data the widget hands to the IDE when [apply] is clicked. -/
 
+-- Empty `by` -> insertion right after `by`, leading space.
 /--
-@ +2:18...25
 error: unsolved goals
 ⊢ True
 ---
-@ +2:21...25
+info: autoTry edit: insert " solve_by_elim" at +1:20
+---
+info: autoTry edit: insert " simp" at +1:20
+---
+info: autoTry edit: insert " simp only" at +1:20
+---
+info: autoTry edit: insert " grind" at +1:20
+---
+info: autoTry edit: insert " grind only" at +1:20
+---
+info: autoTry edit: insert " simp_all" at +1:20
+---
 info: Try these:
   [apply] solve_by_elim
   [apply] simp
@@ -236,6 +217,69 @@ info: Try these:
   [apply] grind only
   [apply] simp_all
 -/
-#guard_msgs (positions := true) in
+#guard_msgs in
 set_option autoTry.onUnsolvedGoal true in
+set_option autoTry.debug.showEdits true in
+example : True := by
+
+-- Single-line non-empty `by` -> insertion right after `skip`, leading `"; "`.
+/--
+error: unsolved goals
+⊢ True
+---
+info: autoTry edit: insert "; solve_by_elim" at +1:25
+---
+info: autoTry edit: insert "; simp" at +1:25
+---
+info: autoTry edit: insert "; simp only" at +1:25
+---
+info: autoTry edit: insert "; grind" at +1:25
+---
+info: autoTry edit: insert "; grind only" at +1:25
+---
+info: autoTry edit: insert "; simp_all" at +1:25
+---
+info: Try these:
+  [apply] solve_by_elim
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
+-/
+#guard_msgs in
+set_option autoTry.onUnsolvedGoal true in
+set_option autoTry.debug.showEdits true in
 example : True := by skip
+
+-- Multi-line `by` -> insertion after the last tactic on its own line, leading newline +
+-- indent matching the body's column (2 here, matching `skip`).
+/--
+error: unsolved goals
+⊢ True
+---
+info: autoTry edit: insert "\n  solve_by_elim" at +2:6
+---
+info: autoTry edit: insert "\n  simp" at +2:6
+---
+info: autoTry edit: insert "\n  simp only" at +2:6
+---
+info: autoTry edit: insert "\n  grind" at +2:6
+---
+info: autoTry edit: insert "\n  grind only" at +2:6
+---
+info: autoTry edit: insert "\n  simp_all" at +2:6
+---
+info: Try these:
+  [apply] solve_by_elim
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
+-/
+#guard_msgs in
+set_option autoTry.onUnsolvedGoal true in
+set_option autoTry.debug.showEdits true in
+example : True := by
+  skip

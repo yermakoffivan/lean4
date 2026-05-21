@@ -37,35 +37,42 @@ Two heuristics decide when *not* to fire:
 
 namespace Lean.Elab.Tactic.AutoTry
 
-open Lean Elab Term Tactic Command Try
+open Lean Elab Term Tactic Command Try Meta
 
 /--
-Run `try?` on empty `by` blocks (`by` followed by nothing) and report any suggestions. The
-suggestion is anchored at the `by` keyword's position.
--/
-register_builtin_option autoTry.onEmptyBy : Bool := {
-  defValue := false
-  descr := "after a command is elaborated, run `try?` on each empty `by` block and report \
-    any suggestions"
-}
-
-/--
-Run `try?` on each tactic that left goals unsolved. Fires for every such tactic in a `by`
-sequence; in practice the suggestion at the terminal (rightmost) tactic is the relevant one.
+Run `try?` on each `by` block that still has unsolved goals (including empty `by`),
+and report any suggestions as an *append* to the tactic sequence rather than a
+replacement of any existing tactic. Triggers only when exactly one goal remains,
+so e.g. `by constructor` (two open subgoals) stays silent; the user is expected to
+shape the proof with `·`/`case` first.
 -/
 register_builtin_option autoTry.onUnsolvedGoal : Bool := {
   defValue := false
-  descr := "after a command is elaborated, run `try?` on each tactic that left goals unsolved \
-    and report any suggestions"
+  descr := "after a command is elaborated, run `try?` on each `by` block whose tactic \
+    sequence left exactly one unsolved goal and report any suggestions as an append"
 }
 
 /--
-Run `try?` on each `sorry` tactic and report any suggestions.
+Run `try?` on each `sorry` tactic and report any suggestions; the suggestion replaces
+the `sorry`.
 -/
 register_builtin_option autoTry.onSorry : Bool := {
   defValue := false
   descr := "after a command is elaborated, run `try?` on each `sorry` tactic and report any \
     suggestions"
+}
+
+/--
+When enabled, autoTry logs an info message for each emitted suggestion describing the
+text-edit it represents: the source range to replace and the literal replacement text.
+Intended for tests: the [apply] widget normally hides the separator characters that the
+edit inserts, so without this option there is no way for `#guard_msgs` to verify the
+exact text being inserted on click.
+-/
+register_builtin_option autoTry.debug.showEdits : Bool := {
+  defValue := false
+  descr := "if set, autoTry logs an info message per emitted suggestion showing the edit's \
+    source range and the literal replacement text (for testing the widget data)"
 }
 
 builtin_initialize registerTraceClass `autoTry
@@ -99,53 +106,49 @@ def runMetaMWithMessages (ctx : ContextInfo) (lctx : LocalContext)
     traceState.traces := s.traceState.traces ++ newCoreState.traceState.traces }
   return res
 
-/--
-Run `try?` against the first remaining goal in `goals`. `mctx` must be a metavariable context
-in which `goal` is declared. `wrapWithBy` controls whether suggestions are wrapped in `by`
-(term mode, used for empty-`by` triggers).
--/
-def runTryOnGoals (ctx : ContextInfo) (mctx : MetavarContext)
-    (goals : List MVarId) (tk : Syntax) (wrapWithBy : Bool := false) : CommandElabM Unit := do
-  let some goal := goals.head? | return
-  let some decl := mctx.decls.find? goal | return
-  runMetaMWithMessages ctx decl.lctx mctx do
-    try
-      let tryStx ← if wrapWithBy then
-        `(tactic| try? (wrapWithBy := true))
-      else
-        `(tactic| try?)
-      withRef tk do
-        discard <| Lean.Elab.runTactic goal tryStx
-    catch e =>
-      -- Re-raise control-flow exceptions (cancellation, max-recursion); only swallow
-      -- ordinary `try?` failures, which are expected and just mean "no suggestion".
-      if e.isInterrupt || e.isMaxRecDepth then throw e
-      trace[autoTry] "try? raised: {e.toMessageData}"
-
 def isSorryTactic (stx : Syntax) : Bool :=
   match stx.getKind with
   | `Lean.Parser.Tactic.tacticSorry | `Lean.Parser.Tactic.tacticAdmit => true
   | _ => false
 
-/-- Tactic info nodes whose syntax kind is a sequencing/structural construct rather than a
-real user-written tactic. We skip these when looking for "unsolved goal" positions. -/
-def isStructuralTacticKind (kind : SyntaxNodeKind) : Bool :=
-  match kind with
-  | `Lean.Parser.Term.byTactic
-  | `Lean.Parser.Tactic.tacticSeq
-  | `Lean.Parser.Tactic.tacticSeq1Indented
-  | `by => true
-  | _ => false
-
 /-- Which kind of auto-`try?` trigger this is. -/
 inductive TriggerKind
-  /-- An empty `by` block. Run `try?` on `goalsBefore` of the `byTactic`, with suggestions
-  wrapped in `by` for term-mode insertion. -/
-  | emptyBy
-  /-- A `sorry` tactic. Run `try?` on `goalsBefore`. -/
-  | sorryTactic
-  /-- A non-structural tactic that left non-empty `goalsAfter`. Run `try?` on `goalsAfter`. -/
+  /-- A `by` block whose tactic sequence left exactly one unsolved goal (this includes the
+  empty-`by` case). The suggestion is rendered as an *append* to the existing sequence. -/
   | unsolvedGoal
+  /-- A `sorry` tactic. The suggestion *replaces* the `sorry`. -/
+  | sorryTactic
+
+/--
+Compute the separator string to insert between the existing tail of the `by` block and the
+new appended suggestion. The rule:
+* Empty `by`, single-line: `" "` (so `by  ` becomes `by <sugg>`).
+* Non-empty `by`, single-line: `"; "`.
+* Multi-line: newline followed by spaces aligning with the first tactic in the body, or
+  with `by`'s column + 2 if the body is empty.
+-/
+def computeAppendSep (byStx : Syntax) (fileMap : FileMap) : String := Id.run do
+  let some bp := byStx.getPos? | return "; "
+  let some bt := byStx.getTailPos? | return "; "
+  let bpPos := fileMap.toPosition bp
+  let btPos := fileMap.toPosition bt
+  let body := byStx[1]
+  let bodyStart? := body.getPos?
+  let isEmpty := bodyStart?.isNone
+  if bpPos.line == btPos.line then
+    return if isEmpty then " " else "; "
+  let indentCol : Nat :=
+    if let some bodyStart := bodyStart? then
+      (fileMap.toPosition bodyStart).column
+    else
+      bpPos.column + 2
+  return "\n" ++ String.ofList (List.replicate indentCol ' ')
+
+/-- Build a synthetic atom with zero textual content whose syntactic range is the empty
+range `[p, p)`. Used as the `origSpan?` for append-style suggestions so the IDE inserts
+the replacement text at `p` without overwriting anything. -/
+def mkEmptyRangeStx (p : String.Pos.Raw) : Syntax :=
+  Syntax.atom (.original "".toRawSubstring p "".toRawSubstring p) ""
 
 /--
 Collect candidate trigger points from the info tree. Each candidate carries its trigger
@@ -162,30 +165,21 @@ exactly once, so the position-uniqueness check doesn't suppress it. The cost of 
 false positive is judged acceptable.
 -/
 def collectTriggerPoints (opts : Options) (tree : InfoTree) :
-    CommandElabM (Array (TriggerKind × ContextInfo × Info × Syntax)) :=
+    CommandElabM (Array (TriggerKind × ContextInfo × TacticInfo)) :=
   tree.foldInfoM (init := #[]) fun ctx info acc => do
     match info with
     | .ofTacticInfo tacInfo =>
       let kind := tacInfo.stx.getKind
       let mut acc := acc
-      let onEmpty := autoTry.onEmptyBy.get opts
       let onUnsolved := autoTry.onUnsolvedGoal.get opts
       let onSorry := autoTry.onSorry.get opts
-      -- Only emit a candidate if the anchor syntax has a real source range; without one,
-      -- the code action has no document range to apply against.
-      let push (kind : TriggerKind) (anchor : Syntax) (acc : Array _) :=
-        if anchor.getPos?.isSome then
-          acc.push (kind, ctx, .ofTacticInfo tacInfo, anchor)
-        else acc
-      if onEmpty && kind == `Lean.Parser.Term.byTactic && isEmptyByBlock tacInfo.stx then
-        acc := push .emptyBy tacInfo.stx[0] acc
+      -- Only emit a candidate whose anchor syntax has a real source range.
+      let push (k : TriggerKind) (anchor : Syntax) (acc : Array _) :=
+        if anchor.getPos?.isSome then acc.push (k, ctx, tacInfo) else acc
+      if onUnsolved && kind == `Lean.Parser.Term.byTactic && tacInfo.goalsAfter.length == 1 then
+        acc := push .unsolvedGoal tacInfo.stx acc
       if onSorry && isSorryTactic tacInfo.stx then
         acc := push .sorryTactic tacInfo.stx acc
-      -- Only trigger on a single remaining goal: with 2+ goals the user needs to
-      -- shape the proof with `·`/`case` first, and a `try?` suggestion at the outer
-      -- tactic would not be applicable as a single replacement.
-      if onUnsolved && !isStructuralTacticKind kind && tacInfo.goalsAfter.length == 1 then
-        acc := push .unsolvedGoal tacInfo.stx acc
       return acc
     | _ => return acc
 
@@ -196,16 +190,92 @@ combinators) produces multiple candidates at the same `pos`; a single "Try this"
 suggestion can't be replayed against multiple goals, so we suppress all of them.
 -/
 def dropMultiElabCandidates
-    (candidates : Array (TriggerKind × ContextInfo × Info × Syntax)) :
-    Array (TriggerKind × ContextInfo × Info × Syntax) := Id.run do
+    (candidates : Array (TriggerKind × ContextInfo × TacticInfo)) :
+    Array (TriggerKind × ContextInfo × TacticInfo) := Id.run do
   let mut counts : Std.HashMap String.Pos.Raw Nat := {}
-  for (_, _, _, tk) in candidates do
-    if let some p := tk.getPos? then
+  for (_, _, ti) in candidates do
+    if let some p := ti.stx.getPos? then
       counts := counts.alter p (fun n? => some (n?.getD 0 + 1))
-  return candidates.filter fun (_, _, _, tk) =>
-    match tk.getPos? with
+  return candidates.filter fun (_, _, ti) =>
+    match ti.stx.getPos? with
     | some p => counts.getD p 0 == 1
     | none => true
+
+/--
+Drive `try?` from CommandElabM, returning the suggestion array. Sets up TacticM/TermElabM
+around the saved infotree state and runs `Try.collectTryCoreSuggestions` on `goal`.
+Returns `#[]` on error or interruption (control-flow exceptions are re-raised).
+-/
+def collectSuggestionsForGoal (ctx : ContextInfo) (mctx : MetavarContext) (goal : MVarId) :
+    CommandElabM (Array (TSyntax `tactic)) := do
+  let some decl := mctx.decls.find? goal | return #[]
+  let resultRef ← IO.mkRef (#[] : Array (TSyntax `tactic))
+  runMetaMWithMessages ctx decl.lctx mctx do
+    let tacticAct : TacticM Unit := do
+      try
+        let suggs ← Try.collectTryCoreSuggestions {}
+        resultRef.set suggs
+      catch e =>
+        if e.isInterrupt || e.isMaxRecDepth then throw e
+        trace[autoTry] "try? raised: {e.toMessageData}"
+    let term : TermElabM Unit := withSynthesize <| discard <| Tactic.run goal tacticAct
+    try
+      discard <| term.run {} {}
+    catch e =>
+      if e.isInterrupt || e.isMaxRecDepth then throw e
+      trace[autoTry] "term elab raised: {e.toMessageData}"
+  resultRef.get
+
+/-- Emit a "Try these:" message whose code-action edits *append* each suggestion to the
+end of `byStx`'s tactic sequence (or just after `by` for an empty body). The `messageData?`
+override keeps the rendered widget text clean (no leading separator). `cmdLine` is the
+1-based line of the enclosing command's start, used to render edit positions relative to
+the command (so tests are robust to moving the example up or down the file). -/
+def emitAppendSuggestions (ctx : ContextInfo) (mctx : MetavarContext)
+    (byStx : Syntax) (suggs : Array (TSyntax `tactic)) (cmdLine : Nat) : CommandElabM Unit := do
+  if suggs.isEmpty then return
+  let some byTail := byStx.getTailPos? | return
+  let fileMap := (← read).fileMap
+  let sep := computeAppendSep byStx fileMap
+  let origSpan := mkEmptyRangeStx byTail
+  runMetaMWithMessages ctx {} mctx do
+    let showEdits := autoTry.debug.showEdits.get (← getOptions)
+    let formatted ← suggs.mapM fun tac => do
+      let fmt ← PrettyPrinter.ppTactic tac
+      let cleanText := fmt.pretty
+      -- The widget display uses `messageData?` (the bare tactic) while the actual edit
+      -- text in `suggestion` carries the leading separator -- this keeps the [apply]
+      -- line readable without losing the appending semantics on click.
+      let editText := sep ++ cleanText
+      if showEdits then
+        let fm ← getFileMap
+        let pos := fm.toPosition byTail
+        let dLine := pos.line - cmdLine + 1  -- match `#guard_msgs (positions := true)`: +N:COL
+        logInfoAt byStx
+          m!"autoTry edit: insert {repr editText} at +{dLine}:{pos.column}"
+      return ({
+        suggestion := .string editText
+        messageData? := some (toMessageData tac)
+        toCodeActionTitle? := some (fun _ => "Try this: " ++ cleanText)
+      } : Tactic.TryThis.Suggestion)
+    if formatted.size == 1 then
+      Tactic.TryThis.addSuggestion byStx formatted[0]! (origSpan? := origSpan)
+    else
+      Tactic.TryThis.addSuggestions byStx formatted (origSpan? := origSpan)
+
+/-- Run `try?` via the legacy syntax-driven path, replacing the `tk` syntax with the
+suggestion. Used for the `sorry` trigger, where the suggestion replaces the `sorry`. -/
+def runReplaceTryOnGoal (ctx : ContextInfo) (mctx : MetavarContext)
+    (goal : MVarId) (tk : Syntax) : CommandElabM Unit := do
+  let some decl := mctx.decls.find? goal | return
+  runMetaMWithMessages ctx decl.lctx mctx do
+    try
+      let tryStx ← `(tactic| try?)
+      withRef tk do
+        discard <| Lean.Elab.runTactic goal tryStx
+    catch e =>
+      if e.isInterrupt || e.isMaxRecDepth then throw e
+      trace[autoTry] "try? raised: {e.toMessageData}"
 
 /--
 Returns `true` if the message log contains any error within `stxRange` that is *not* an
@@ -231,47 +301,51 @@ entry point with infotree access. The feature itself is *not* a linter: it does 
 all produce errors or warnings of their own. -/
 def autoTryHook : Linter where run := withSetOptionIn fun stx => do
   let opts ← getOptions
-  let onEmpty := autoTry.onEmptyBy.get opts
   let onUnsolved := autoTry.onUnsolvedGoal.get opts
   let onSorry := autoTry.onSorry.get opts
-  unless onEmpty || onUnsolved || onSorry do return
+  unless onUnsolved || onSorry do return
   if ← hasNonUnsolvedGoalError stx then
     trace[autoTry] "skipping: command has non-unsolved-goal errors"
     return
-  trace[autoTry] "running: onEmpty={onEmpty} onUnsolved={onUnsolved} onSorry={onSorry}"
-  let trees ← getInfoTrees
-  for tree in trees do
-    let candidates ← collectTriggerPoints opts tree
-    let points := dropMultiElabCandidates candidates
-    trace[autoTry] "trigger points: {points.size}"
-    -- Dedupe by (trigger-kind, source-position) and by the goal mvar being considered.
-    -- The position-dedupe handles overlapping triggers at the same site (e.g. an
-    -- unsolved-goal tactic that's also a `sorry`). The goal-mvar dedupe handles nested
-    -- tactics that share the same unsolved goal -- in `by first | skip | trivial`, both
-    -- `first` and `skip` have the same `True`-typed mvar in `goalsAfter`, and we keep
-    -- only the first (outer) trigger thanks to the infotree's depth-first traversal.
-    let mut seenPos : Std.HashSet String.Pos.Raw := {}
-    let mut seenGoal : Std.HashSet MVarId := {}
-    for (k, ctx, info, tk) in points do
-      let pos := tk.getPos?.getD 0
-      if seenPos.contains pos then continue
-      seenPos := seenPos.insert pos
-      let goal? : Option MVarId := match k, info with
-        | .emptyBy,      .ofTacticInfo tacInfo => tacInfo.goalsBefore.head?
-        | .sorryTactic,  .ofTacticInfo tacInfo => tacInfo.goalsBefore.head?
-        | .unsolvedGoal, .ofTacticInfo tacInfo => tacInfo.goalsAfter.head?
-        | _, _                                  => none
-      if let some g := goal? then
-        if seenGoal.contains g then continue
-        seenGoal := seenGoal.insert g
-      match k, info with
-      | .emptyBy,      .ofTacticInfo tacInfo =>
-        runTryOnGoals ctx tacInfo.mctxBefore tacInfo.goalsBefore tk (wrapWithBy := true)
-      | .sorryTactic,  .ofTacticInfo tacInfo =>
-        runTryOnGoals ctx tacInfo.mctxBefore tacInfo.goalsBefore tk
-      | .unsolvedGoal, .ofTacticInfo tacInfo =>
-        runTryOnGoals ctx tacInfo.mctxAfter tacInfo.goalsAfter tk
-      | _, _ => pure ()
+  trace[autoTry] "running: onUnsolved={onUnsolved} onSorry={onSorry}"
+  let fileMap := (← read).fileMap
+  let cmdLine := (fileMap.toPosition (stx.getPos?.getD 0)).line
+  try
+    let trees ← getInfoTrees
+    for tree in trees do
+      let candidates ← collectTriggerPoints opts tree
+      let points := dropMultiElabCandidates candidates
+      trace[autoTry] "trigger points: {points.size}"
+      -- Dedupe by source position and by the goal mvar. The position dedupe handles the case
+      -- where two trigger kinds collide at the same site (e.g. a `sorry` that's also an
+      -- unsolved-goal `by` block). The goal-mvar dedupe handles nested triggers that share
+      -- the same target goal -- we keep the first (outer) thanks to depth-first traversal.
+      let mut seenPos : Std.HashSet String.Pos.Raw := {}
+      let mut seenGoal : Std.HashSet MVarId := {}
+      for (k, ctx, ti) in points do
+        let pos := ti.stx.getPos?.getD 0
+        if seenPos.contains pos then continue
+        seenPos := seenPos.insert pos
+        let goal? : Option MVarId := match k with
+          | .unsolvedGoal => ti.goalsAfter.head?
+          | .sorryTactic  => ti.goalsBefore.head?
+        if let some g := goal? then
+          if seenGoal.contains g then continue
+          seenGoal := seenGoal.insert g
+        match k with
+        | .unsolvedGoal =>
+          let some goal := ti.goalsAfter.head? | continue
+          let suggs ← collectSuggestionsForGoal ctx ti.mctxAfter goal
+          emitAppendSuggestions ctx ti.mctxAfter ti.stx suggs cmdLine
+        | .sorryTactic =>
+          let some goal := ti.goalsBefore.head? | continue
+          runReplaceTryOnGoal ctx ti.mctxBefore goal ti.stx
+  catch e =>
+    -- Anything escaping the inner machinery (e.g. `try?`'s suggestion construction failing
+    -- in contexts that don't have the full standard library available) is logged at trace
+    -- level and swallowed; the linter must never be the source of a user-visible error.
+    if e.isInterrupt || e.isMaxRecDepth then throw e
+    trace[autoTry] "linter raised: {e.toMessageData}"
 
 builtin_initialize addLinter autoTryHook
 

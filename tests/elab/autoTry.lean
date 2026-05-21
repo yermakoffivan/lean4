@@ -1,5 +1,7 @@
 /-
 Tests for the `autoTry.*` post-elab hook options:
+  - `autoTry.onEmptyBy` -- run `try?` on *empty* `by` blocks; rendered as an *append*
+    (a strict subset of `autoTry.onUnsolvedGoal`).
   - `autoTry.onUnsolvedGoal` -- run `try?` on each `by` block (incl. empty `by`) whose
     sequence left exactly one unsolved goal; rendered as an *append* to the sequence.
   - `autoTry.onSorry` -- run `try?` on `sorry` tactics; rendered as a *replacement* of
@@ -12,6 +14,37 @@ The linter skips candidates whose syntax was elaborated against multiple proof s
 (rhs of `<;>`, body of `repeat`/`iterate`, etc.) -- a single suggestion can't replay
 against multiple goals.
 -/
+
+/-! ## `autoTry.onEmptyBy` -- only empty `by` -/
+
+set_option autoTry.onEmptyBy true
+
+-- Empty `by`: fires.
+/--
+error: unsolved goals
+⊢ True
+---
+info: Try these:
+  [apply] solve_by_elim
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
+-/
+#guard_msgs in
+example : True := by
+
+-- Non-empty `by` with unsolved goals: `onEmptyBy` does not fire (the block isn't empty).
+-- This is the difference from `onUnsolvedGoal`, which would fire here.
+/--
+error: unsolved goals
+⊢ True
+-/
+#guard_msgs in
+example : True := by skip
+
+set_option autoTry.onEmptyBy false
 
 /-! ## `autoTry.onUnsolvedGoal` -- empty `by` -/
 

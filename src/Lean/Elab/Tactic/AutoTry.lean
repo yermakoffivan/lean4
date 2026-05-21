@@ -40,11 +40,26 @@ namespace Lean.Elab.Tactic.AutoTry
 open Lean Elab Term Tactic Command Try Meta
 
 /--
+Run `try?` on empty `by` blocks and report any suggestions as a tactic to insert.
+Strictly a subset of `autoTry.onUnsolvedGoal`: fires only when the `by` block has no
+tactics yet. Use this to get suggestions only for "start of proof" sites without the
+noise of in-progress proofs.
+-/
+register_builtin_option autoTry.onEmptyBy : Bool := {
+  defValue := false
+  descr := "after a command is elaborated, run `try?` on each empty `by` block and \
+    report any suggestions"
+}
+
+/--
 Run `try?` on each `by` block that still has unsolved goals (including empty `by`),
 and report any suggestions as an *append* to the tactic sequence rather than a
 replacement of any existing tactic. Triggers only when exactly one goal remains,
 so e.g. `by constructor` (two open subgoals) stays silent; the user is expected to
 shape the proof with `·`/`case` first.
+
+Strictly broader than `autoTry.onEmptyBy`; enabling both is equivalent to enabling
+only `onUnsolvedGoal`.
 -/
 register_builtin_option autoTry.onUnsolvedGoal : Bool := {
   defValue := false
@@ -171,13 +186,18 @@ def collectTriggerPoints (opts : Options) (tree : InfoTree) :
     | .ofTacticInfo tacInfo =>
       let kind := tacInfo.stx.getKind
       let mut acc := acc
+      let onEmpty := autoTry.onEmptyBy.get opts
       let onUnsolved := autoTry.onUnsolvedGoal.get opts
       let onSorry := autoTry.onSorry.get opts
       -- Only emit a candidate whose anchor syntax has a real source range.
       let push (k : TriggerKind) (anchor : Syntax) (acc : Array _) :=
         if anchor.getPos?.isSome then acc.push (k, ctx, tacInfo) else acc
-      if onUnsolved && kind == `Lean.Parser.Term.byTactic && tacInfo.goalsAfter.length == 1 then
-        acc := push .unsolvedGoal tacInfo.stx acc
+      if kind == `Lean.Parser.Term.byTactic && tacInfo.goalsAfter.length == 1 then
+        let isEmpty := isEmptyByBlock tacInfo.stx
+        -- `onUnsolved` fires for any open `by` block; `onEmpty` is a narrower variant
+        -- that fires only when there are no tactics in the block yet.
+        if onUnsolved || (onEmpty && isEmpty) then
+          acc := push .unsolvedGoal tacInfo.stx acc
       if onSorry && isSorryTactic tacInfo.stx then
         acc := push .sorryTactic tacInfo.stx acc
       return acc
@@ -301,51 +321,45 @@ entry point with infotree access. The feature itself is *not* a linter: it does 
 all produce errors or warnings of their own. -/
 def autoTryHook : Linter where run := withSetOptionIn fun stx => do
   let opts ← getOptions
+  let onEmpty := autoTry.onEmptyBy.get opts
   let onUnsolved := autoTry.onUnsolvedGoal.get opts
   let onSorry := autoTry.onSorry.get opts
-  unless onUnsolved || onSorry do return
+  unless onEmpty || onUnsolved || onSorry do return
   if ← hasNonUnsolvedGoalError stx then
     trace[autoTry] "skipping: command has non-unsolved-goal errors"
     return
-  trace[autoTry] "running: onUnsolved={onUnsolved} onSorry={onSorry}"
+  trace[autoTry] "running: onEmpty={onEmpty} onUnsolved={onUnsolved} onSorry={onSorry}"
   let fileMap := (← read).fileMap
   let cmdLine := (fileMap.toPosition (stx.getPos?.getD 0)).line
-  try
-    let trees ← getInfoTrees
-    for tree in trees do
-      let candidates ← collectTriggerPoints opts tree
-      let points := dropMultiElabCandidates candidates
-      trace[autoTry] "trigger points: {points.size}"
-      -- Dedupe by source position and by the goal mvar. The position dedupe handles the case
-      -- where two trigger kinds collide at the same site (e.g. a `sorry` that's also an
-      -- unsolved-goal `by` block). The goal-mvar dedupe handles nested triggers that share
-      -- the same target goal -- we keep the first (outer) thanks to depth-first traversal.
-      let mut seenPos : Std.HashSet String.Pos.Raw := {}
-      let mut seenGoal : Std.HashSet MVarId := {}
-      for (k, ctx, ti) in points do
-        let pos := ti.stx.getPos?.getD 0
-        if seenPos.contains pos then continue
-        seenPos := seenPos.insert pos
-        let goal? : Option MVarId := match k with
-          | .unsolvedGoal => ti.goalsAfter.head?
-          | .sorryTactic  => ti.goalsBefore.head?
-        if let some g := goal? then
-          if seenGoal.contains g then continue
-          seenGoal := seenGoal.insert g
-        match k with
-        | .unsolvedGoal =>
-          let some goal := ti.goalsAfter.head? | continue
-          let suggs ← collectSuggestionsForGoal ctx ti.mctxAfter goal
-          emitAppendSuggestions ctx ti.mctxAfter ti.stx suggs cmdLine
-        | .sorryTactic =>
-          let some goal := ti.goalsBefore.head? | continue
-          runReplaceTryOnGoal ctx ti.mctxBefore goal ti.stx
-  catch e =>
-    -- Anything escaping the inner machinery (e.g. `try?`'s suggestion construction failing
-    -- in contexts that don't have the full standard library available) is logged at trace
-    -- level and swallowed; the linter must never be the source of a user-visible error.
-    if e.isInterrupt || e.isMaxRecDepth then throw e
-    trace[autoTry] "linter raised: {e.toMessageData}"
+  let trees ← getInfoTrees
+  for tree in trees do
+    let candidates ← collectTriggerPoints opts tree
+    let points := dropMultiElabCandidates candidates
+    trace[autoTry] "trigger points: {points.size}"
+    -- Dedupe by source position and by the goal mvar. The position dedupe handles the case
+    -- where two trigger kinds collide at the same site (e.g. a `sorry` that's also an
+    -- unsolved-goal `by` block). The goal-mvar dedupe handles nested triggers that share
+    -- the same target goal -- we keep the first (outer) thanks to depth-first traversal.
+    let mut seenPos : Std.HashSet String.Pos.Raw := {}
+    let mut seenGoal : Std.HashSet MVarId := {}
+    for (k, ctx, ti) in points do
+      let pos := ti.stx.getPos?.getD 0
+      if seenPos.contains pos then continue
+      seenPos := seenPos.insert pos
+      let goal? : Option MVarId := match k with
+        | .unsolvedGoal => ti.goalsAfter.head?
+        | .sorryTactic  => ti.goalsBefore.head?
+      if let some g := goal? then
+        if seenGoal.contains g then continue
+        seenGoal := seenGoal.insert g
+      match k with
+      | .unsolvedGoal =>
+        let some goal := ti.goalsAfter.head? | continue
+        let suggs ← collectSuggestionsForGoal ctx ti.mctxAfter goal
+        emitAppendSuggestions ctx ti.mctxAfter ti.stx suggs cmdLine
+      | .sorryTactic =>
+        let some goal := ti.goalsBefore.head? | continue
+        runReplaceTryOnGoal ctx ti.mctxBefore goal ti.stx
 
 builtin_initialize addLinter autoTryHook
 

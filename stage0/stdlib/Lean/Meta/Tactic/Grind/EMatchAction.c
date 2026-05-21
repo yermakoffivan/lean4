@@ -4803,9 +4803,9 @@ return v___x_1550_;
 v___jp_1553_:
 {
 lean_object* v___x_1558_; 
-v___x_1558_ = l___private_Init_Data_Array_QSort_Basic_0__Array_qsort_sort___at___00__private_Lean_Meta_Tactic_Grind_EMatchAction_0__Lean_Meta_Grind_Action_getAllTheorems_spec__3___redArg(v___y_1555_, v___y_1556_, v___y_1554_, v___y_1557_);
+v___x_1558_ = l___private_Init_Data_Array_QSort_Basic_0__Array_qsort_sort___at___00__private_Lean_Meta_Tactic_Grind_EMatchAction_0__Lean_Meta_Grind_Action_getAllTheorems_spec__3___redArg(v___y_1554_, v___y_1556_, v___y_1555_, v___y_1557_);
 lean_dec(v___y_1557_);
-lean_dec(v___y_1555_);
+lean_dec(v___y_1554_);
 v___y_1539_ = v___x_1558_;
 goto v___jp_1538_;
 }
@@ -4817,16 +4817,16 @@ if (v___x_1564_ == 0)
 {
 lean_dec(v___y_1562_);
 lean_inc(v___y_1563_);
-v___y_1554_ = v___y_1563_;
-v___y_1555_ = v___y_1560_;
+v___y_1554_ = v___y_1560_;
+v___y_1555_ = v___y_1563_;
 v___y_1556_ = v___y_1561_;
 v___y_1557_ = v___y_1563_;
 goto v___jp_1553_;
 }
 else
 {
-v___y_1554_ = v___y_1563_;
-v___y_1555_ = v___y_1560_;
+v___y_1554_ = v___y_1560_;
+v___y_1555_ = v___y_1563_;
 v___y_1556_ = v___y_1561_;
 v___y_1557_ = v___y_1562_;
 goto v___jp_1553_;
@@ -9901,7 +9901,7 @@ goto v_resetjp_3164_;
 v_resetjp_3164_:
 {
 uint8_t v_trace_3167_; 
-v_trace_3167_ = lean_ctor_get_uint8(v_a_3163_, sizeof(void*)*12);
+v_trace_3167_ = lean_ctor_get_uint8(v_a_3163_, sizeof(void*)*13);
 lean_dec(v_a_3163_);
 if (v_trace_3167_ == 0)
 {

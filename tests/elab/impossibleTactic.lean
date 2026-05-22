@@ -48,6 +48,19 @@ error: unsolved goals
 example : Nat := by
   impossible by skip
 
+-- Universe parameters of the surrounding declaration are not abstracted: the
+-- negated target inherits them as fixed `Type u` / `Type v` binders rather than
+-- universe mvars.
+/--
+error: unsolved goals
+α : Type u
+β : Type v
+⊢ ¬∀ (α : Type u) (β : Type v), ¬ULift α = ULift β
+-/
+#guard_msgs in
+example (α : Type u) (β : Type v) : ¬(ULift.{v} α = ULift.{u} β) := by
+  impossible by skip
+
 -- The tactic should complain if the goal contains expression metavariables.
 section
 opaque P : Nat → Prop

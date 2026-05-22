@@ -1133,7 +1133,8 @@ syntax (name := classical) "classical" ppDedent(tacticSeq) : tactic
 /--
 `impossible by t` closes the current goal with `sorry`, having checked that
 the tactic `t` proves the negation of the goal after reverting all local
-hypotheses.
+hypotheses. Universe parameters of the surrounding declaration are *not*
+abstracted, so they appear in the negated target as the same fixed parameters.
 -/
 syntax (name := impossible) "impossible" " by " ppDedent(tacticSeq) : tactic
 

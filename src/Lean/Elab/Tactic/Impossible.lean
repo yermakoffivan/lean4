@@ -9,6 +9,7 @@ prelude
 public import Lean.Elab.Tactic.Basic
 public import Lean.Meta.Tactic.Cleanup
 public import Lean.Meta.Tactic.Revert
+public import Lean.Meta.Tactic.AuxLemma
 
 public section
 
@@ -50,19 +51,30 @@ def evalImpossible : Tactic := fun stx => do
   -- spuriously report as unsolved on top of the inner error.
   admitGoal mainGoal
   let restGoals ← getUnsolvedGoals
-  -- Run the user-supplied tactic against a fresh mvar for the negation. We
-  -- follow it with `done` so that an unsolved negated goal throws an
+  -- Run the user-supplied tactic against a fresh mvar for the negation, using
+  -- an empty local context (the reverted target is closed). We follow the
+  -- tactic with `done` so that an unsolved negated goal throws an
   -- "unsolved goals" error (mirroring how `have h := by …` propagates failure
   -- via its `case`/`closeUsingOrAdmit` expansion). Both inner elaboration
   -- errors and unsolved goals therefore propagate naturally to combinators
   -- like `first`, while direct user-facing uses still observe the inner
   -- messages and get a `sorry` from the outer `by`.
-  let negMVarId := (← mkFreshExprSyntheticOpaqueMVar negType).mvarId!
+  let negMVarId :=
+    (← mkFreshExprMVarAt {} {} negType (kind := .syntheticOpaque)).mvarId!
   try
     setGoals [negMVarId]
     withTacticInfoContext byTk do
       evalTactic tacs
       done
+    -- The user's tactic produced a proof of the negation. Hand it to the
+    -- kernel via a private aux lemma so kernel-level errors (e.g. proof
+    -- irrelevance / typechecking issues) surface here rather than being
+    -- silently absorbed by the `sorry` we put on the outer goal.
+    let proof ← instantiateMVars (mkMVar negMVarId)
+    let lvls := (collectLevelParams {} negType).params
+    let lemmaLvls := (← Term.getLevelNames).reverse.filter lvls.contains
+    discard <| withOptions (Elab.async.set · false) do
+      mkAuxLemma lemmaLvls negType proof
   finally
     setGoals restGoals
 

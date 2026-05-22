@@ -53,13 +53,31 @@ example : Nat := by
 -- universe mvars.
 /--
 error: unsolved goals
-α : Type u
-β : Type v
 ⊢ ¬∀ (α : Type u) (β : Type v), ¬ULift α = ULift β
 -/
 #guard_msgs in
 example (α : Type u) (β : Type v) : ¬(ULift.{v} α = ULift.{u} β) := by
   impossible by skip
+
+-- The proof of the negation is registered as a private aux lemma, which means
+-- the kernel re-checks it. A tactic that produces a syntactically well-formed
+-- but ill-typed mvar assignment (here, a `Nat` literal where a proof is
+-- expected) is therefore rejected by the kernel rather than silently absorbed.
+open Lean Lean.Elab Lean.Elab.Tactic in
+elab "_fake_close" : tactic => do
+  let mvar ← getMainGoal
+  mvar.assign (mkNatLit 0)
+/--
+error: (kernel) declaration type mismatch, '_example._proof_1' has type
+  ¬True → Nat
+but it is expected to have type
+  ¬¬True
+-/
+#guard_msgs in
+example : ¬True := by
+  impossible by
+    intro _
+    _fake_close
 
 -- The tactic should complain if the goal contains expression metavariables.
 section

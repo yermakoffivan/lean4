@@ -181,8 +181,11 @@ def requestCancelled : RequestError :=
 def rpcNeedsReconnect : RequestError :=
   { code := ErrorCode.rpcNeedsReconnect, message := "Outdated RPC session" }
 
-def ofException (e : Lean.Exception) : IO RequestError :=
-  return internalError (← e.toMessageData.toString)
+def ofException (e : Lean.Exception) : BaseIO RequestError :=
+  if e.isInterrupt then
+    return .requestCancelled
+  else
+    return internalError (← e.toMessageData.toString)
 
 def ofIoError (e : IO.Error) : RequestError :=
   internalError (toString e)
@@ -537,7 +540,7 @@ def registerLspRequestHandler (method : String)
 
   requestHandlers.modify fun rhs => rhs.insert method { fileSource, handle }
 
-def lookupLspRequestHandler (method : String) : IO (Option RequestHandler) :=
+def lookupLspRequestHandler (method : String) : BaseIO (Option RequestHandler) :=
   return (← requestHandlers.get).find? method
 
 /-- NB: This method may only be called in `initialize` blocks (user or builtin).
@@ -790,7 +793,7 @@ def handleLspRequest (method : String) (params : Json) : RequestM (RequestTask S
         s!"request '{method}' routed through watchdog but unknown in worker; are both using the same plugins?"
     | some rh => rh.handle params
 
-def routeLspRequest (method : String) (params : Json) : IO (Except RequestError DocumentUri) := do
+def routeLspRequest (method : String) (params : Json) : BaseIO (Except RequestError DocumentUri) := do
   if ← isStatefulLspRequestMethod method then
     match ← lookupStatefulLspRequestHandler method with
     | none => return Except.error <| RequestError.methodNotFound method

@@ -255,7 +255,7 @@ file(
   "${LEAN_SOURCE_DIR}/../tests/lake/examples/test.sh"
   "${LEAN_SOURCE_DIR}/../tests/lake/tests/test.sh"
   "${LEAN_SOURCE_DIR}/../tests/lake/tests/builtin-lint/test.sh"
-  "${LEAN_SOURCE_DIR}/../tests/lake/tests/profile/test.sh"
+  "${LEAN_SOURCE_DIR}/../tests/lake/tests/samply/test.sh"
 )
 foreach(T ${LEANLAKETESTS})
   if(NOT T MATCHES ".*(lake-packages|bootstrap|toolchain|online).*")

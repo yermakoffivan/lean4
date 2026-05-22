@@ -28,7 +28,7 @@ import Lake.CLI.Actions
 import Lake.CLI.Translate
 import Lake.CLI.Serve
 public import Lake.CLI.BuiltinLint
-import Lake.CLI.Profile
+import Lake.CLI.Samply
 import Init.Data.String.Modify
 
 -- # CLI
@@ -80,9 +80,8 @@ public structure LakeOptions where
   runBuiltinLint : Bool := false
   /-- Whether `lake lint` should skip the lint driver (via `--builtin-only`). -/
   builtinOnly : Bool := false
-  profileRate : Nat := 1000
-  profileRaw : Bool := false
-  profileNoServe : Bool := false
+  samplyRaw : Bool := false
+  samplyNoServe : Bool := false
 
 def LakeOptions.outLv (opts : LakeOptions) : LogLevel :=
   opts.outLv?.getD opts.verbosity.minLogLv
@@ -325,12 +324,9 @@ def lakeLongOption : (opt : String) → CliM PUnit
   let name ← takeOptArg "--lint-only" "linter name"
   modifyThe LakeOptions fun opts =>
     {opts with runBuiltinLint := true, builtinLint.only := opts.builtinLint.only.push name.toName}
--- Profile options
-| "--rate" => do
-  let r ← takeOptArg "--rate" "sampling rate"
-  modifyThe LakeOptions ({· with profileRate := r.toNat?.getD 1000})
-| "--raw" => modifyThe LakeOptions ({· with profileRaw := true})
-| "--no-serve" => modifyThe LakeOptions ({· with profileNoServe := true})
+-- Samply options
+| "--raw" => modifyThe LakeOptions ({· with samplyRaw := true})
+| "--no-serve" => modifyThe LakeOptions ({· with samplyNoServe := true})
 -- Shared options
 | "--force" => modifyThe LakeOptions ({· with shake.force := true})
 -- Shake options
@@ -1115,7 +1111,7 @@ protected def exe : CliM PUnit := do
   let exeFile ← ws.runBuild exe.fetch (mkBuildConfig opts)
   exit <| ← (Lake.env exeFile.toString args.toArray).run <| mkLakeContext ws
 
-protected def profile : CliM PUnit := do
+protected def samply : CliM PUnit := do
   processOptions lakeOption
   let opts ← getThe LakeOptions
   let exeSpec ← takeArg "executable target"
@@ -1123,8 +1119,8 @@ protected def profile : CliM PUnit := do
   let ws ← loadWorkspace config
   let exe ← parseExeTargetSpec ws exeSpec
   let exeFile ← ws.runBuild exe.fetch (mkBuildConfig opts)
-  discard <| Profile.run exeFile.toString opts.subArgs.toArray (opts.outputsFile?.map (·.toString))
-    opts.profileRate (raw := opts.profileRaw) (serve := !opts.profileNoServe)
+  discard <| Samply.run exeFile.toString opts.subArgs.toArray (opts.outputsFile?.map (·.toString))
+    (raw := opts.samplyRaw) (serve := !opts.samplyNoServe)
 
 protected def lean : CliM PUnit := do
   processOptions lakeOption
@@ -1245,7 +1241,7 @@ def lakeCli : (cmd : String) → CliM PUnit
 | "serve"               => lake.serve
 | "env"                 => lake.env
 | "exe" | "exec"        => lake.exe
-| "profile"             => lake.profile
+| "samply"              => lake.samply
 | "lean"                => lake.lean
 | "translate-config"    => lake.translateConfig
 | "reservoir-config"    => lake.reservoirConfig

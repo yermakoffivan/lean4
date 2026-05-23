@@ -200,14 +200,15 @@ example (α : Type u) (β : Type v) : ¬(ULift.{v} α = ULift.{u} β) := by
     exact h Unit Unit rfl
 
 -- If the inner tactic doesn't pin down all the level mvars (e.g. it uses
--- `sorry` without constraining them), the resulting auxiliary lemma carries
--- unresolved level metavariables and the kernel rejects it. This surfaces
--- as a `(kernel) declaration has metavariables` diagnostic, which is the
--- expected behaviour — `impossible` doesn't silently accept the proof.
+-- `sorry` without constraining them), `mkAuxTheorem` closes over the
+-- remaining level mvars as fresh universe parameters of the auxiliary
+-- lemma. Semantically: a counter-example that works at any level is a
+-- *parametric* counter-example, which is fine — we don't need to spuriously
+-- pin a universe just to make the kernel happy.
 /--
 warning: declaration uses `sorry`
 ---
-error: (kernel) declaration has metavariables '_example._proof_1'
+warning: declaration uses `sorry`
 -/
 #guard_msgs in
 example (α : Type u) (β : Type v) : ¬(ULift.{v} α = ULift.{u} β) := by

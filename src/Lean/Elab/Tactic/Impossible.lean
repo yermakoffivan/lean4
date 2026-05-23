@@ -130,18 +130,19 @@ def evalImpossible : Tactic := fun stx => do
       evalTactic tacs
       done
     -- The user's tactic produced a proof of the negation. Hand it to the
-    -- kernel via a private aux lemma so kernel-level errors (e.g. proof
+    -- kernel via a private aux theorem so kernel-level errors (e.g. proof
     -- irrelevance / typechecking issues) surface here rather than being
     -- silently absorbed by the `sorry` we put on the outer goal.
+    --
+    -- We use `mkAuxTheorem` rather than `mkAuxLemma` so that any level
+    -- metavariables the user's tactic left unassigned (which is fine: an
+    -- impossibility proof that works at any universe gives a parametric
+    -- counter-example) are closed over as fresh universe parameters of the
+    -- auxiliary lemma, rather than causing a "declaration has metavariables"
+    -- kernel rejection.
     let proof ← instantiateMVars (mkMVar negMVarId)
-    -- Instantiate level mvars in `negType` as well — the user's tactic may
-    -- have assigned them when it concretized the universes (e.g. by
-    -- applying the universal to a witness at `Type 0`).
-    let negType ← instantiateMVars negType
-    let lvls := (collectLevelParams {} negType).params
-    let lemmaLvls := (← Term.getLevelNames).reverse.filter lvls.contains
     discard <| withOptions (Elab.async.set · false) do
-      mkAuxLemma lemmaLvls negType proof
+      mkAuxTheorem (← instantiateMVars negType) proof
   finally
     setGoals restGoals
 

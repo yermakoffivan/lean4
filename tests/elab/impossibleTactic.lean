@@ -19,23 +19,28 @@ error: unsolved goals
 example : 0 = 0 := by
   impossible by skip
 
--- The tactic reverts all hypotheses and pushes the negation under the
--- universal binders, so the user can `intro` witnesses and derive `False`.
+-- The tactic reverts all hypotheses, so the user can refute the original
+-- universal by exhibiting a counter-witness for the local context.
 /--
+trace: ⊢ ¬∀ (n : Nat), n = n + 1
+---
 warning: declaration uses `sorry`
 -/
 #guard_msgs in
 example (n : Nat) : n = n + 1 := by
   impossible by
-    intro n h
-    omega
+    trace_state
+    intro h
+    exact Nat.succ_ne_zero _ ((h 0).symm)
 
--- Expression metavariables in the goal are abstracted as additional universal
--- binders. This is what makes `impossible` usable inside an `∃`-introduction
--- (the user does `refine Exists.intro ?w ?h` and addresses `?h` first while
--- `?w` is still a metavariable). The body is negated under all binders, so the
--- user can `intro` each witness and case-split.
+-- Expression metavariables in the goal are abstracted as additional binders;
+-- those are introduced into the local context *before* the user's tactic runs,
+-- with the negation pushed under the mvar binders but over the reverted ones.
+-- This is what makes `impossible` usable inside an `∃`-introduction.
 /--
+trace: w : Nat
+⊢ ¬w * w = 2
+---
 warning: declaration uses `sorry`
 -/
 #guard_msgs in
@@ -43,17 +48,21 @@ example : ∃ x, x * x = 2 := by
   refine Exists.intro ?w ?h
   case h =>
     impossible by
-      intro x hx
-      cases x <;> grind
+      trace_state
+      intro hx
+      cases w <;> grind
   case w =>
     exact 0
 
 -- An mvar whose *type* depends on a reverted local hypothesis gets generalized
--- to a function type (since `revert` + `abstractMVars` together produce the
--- right Pi). This is less ergonomic than the independent case but logically
--- sound: the user receives a witness function from the dependency.
+-- to a function type (since `revert` produces the right Pi and the original
+-- mvar gets replaced with a fresh anonymous one — hence the fallback name
+-- `x`, rather than `v`).
 /--
 warning: declaration uses `sorry`
+---
+trace: x : (n : Nat) → Vector Nat n
+⊢ ¬∀ (n : Nat), (x n)[0]? = some 0
 ---
 warning: declaration uses `sorry`
 -/
@@ -62,8 +71,7 @@ example (n : Nat) : ∃ v : Vector Nat n, v[0]? = some 0 := by
   refine Exists.intro ?v ?h
   case h =>
     impossible by
-      intro vfun n h
-      -- `vfun : (n : Nat) → Vector Nat n` is the abstracted `?v`.
+      trace_state
       sorry
   case v =>
     exact Vector.replicate n 0
@@ -91,7 +99,7 @@ example : Nat := by
 -- than universe mvars.
 /--
 error: unsolved goals
-⊢ ∀ (α : Type u) (β : Type v), ¬ULift α = ULift β
+⊢ ¬∀ (α : Type u) (β : Type v), ULift α = ULift β
 -/
 #guard_msgs in
 example (α : Type u) (β : Type v) : ULift.{v} α = ULift.{u} β := by
@@ -143,7 +151,7 @@ error: Unknown identifier `this_identifier_does_not_exist`
 -/
 #guard_msgs in
 example (n : Nat) : n = 0 := by
-  impossible by intro n; exact this_identifier_does_not_exist
+  impossible by intro h; exact this_identifier_does_not_exist
 
 -- `impossible` plays well with surrounding tactic combinators.
 /--

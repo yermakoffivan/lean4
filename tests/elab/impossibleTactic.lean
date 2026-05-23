@@ -125,6 +125,39 @@ example : ¬True := by
     intro _
     _fake_close
 
+-- An expression metavariable that lives at a lower `mctx` depth (e.g. from a
+-- surrounding `withNewMCtxDepth`) still gets abstracted: we want every mvar
+-- in the goal to become a universal binder, regardless of its depth, since
+-- the resulting type is only used as a proof obligation. The unrelated
+-- `(kernel) declaration has metavariables` here comes from the synthetic
+-- injection leaving its own outer mvar unassigned and is not part of what
+-- `impossible` is being asserted about.
+section
+open Lean Lean.Elab Lean.Elab.Tactic Lean.Meta in
+elab "_with_lower_depth_mvar_goal" : tactic => do
+  let lowMVar ← mkFreshExprMVar (mkConst ``Nat)
+  let mctx ← Lean.getMCtx
+  Lean.setMCtx { mctx with depth := mctx.depth + 1 }
+  let goalType := mkApp3 (mkConst ``Eq [.succ .zero]) (mkConst ``Nat) lowMVar (mkNatLit 0)
+  let g ← mkFreshExprSyntheticOpaqueMVar goalType
+  setGoals [g.mvarId!]
+/--
+warning: declaration uses `sorry`
+---
+trace: x : Nat
+⊢ ¬x = 0
+---
+error: (kernel) declaration has metavariables '_example'
+-/
+#guard_msgs in
+example : True := by
+  _with_lower_depth_mvar_goal
+  impossible by
+    trace_state
+    intro h
+    exact (by sorry : False)
+end
+
 -- The tactic should complain if the goal contains universe metavariables. We
 -- have to inject one manually since user-level `Sort _` is auto-bound.
 section

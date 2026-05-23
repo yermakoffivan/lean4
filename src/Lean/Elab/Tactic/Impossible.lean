@@ -20,6 +20,65 @@ public section
 namespace Lean.Elab.Tactic
 open Lean Meta
 
+/--
+Like `Meta.abstractMVars` with `levels := false`, but abstracts every
+expression metavariable found in `e` regardless of its mctx depth. This is
+sound for our use here, where the resulting type is only used as a *type*
+(a universally quantified obligation): treating a lower-depth mvar as
+universally quantified is a strictly stronger statement than treating it
+as a constant, so the impossibility witness still applies whatever value the
+parent context might eventually assign.
+
+Level metavariables are deliberately left alone.
+-/
+private partial def abstractAllMVars (e : Expr) : MetaM AbstractMVarsResult := do
+  let e ← instantiateMVars e
+  let s : AbstractMVars.State :=
+    { mctx           := (← getMCtx)
+      lctx           := (← getLCtx)
+      ngen           := (← getNGen)
+      abstractLevels := false }
+  -- We mirror `AbstractMVars.abstractExprMVars`, but with the depth check
+  -- elided so mvars from any depth are abstracted.
+  let (e, s) := (go e).run s
+  setNGen s.ngen
+  setMCtx s.mctx
+  let lam := s.lctx.mkLambda s.fvars e
+  return { paramNames := s.paramNames, mvars := s.mvars, expr := lam }
+where
+  go (e : Expr) : StateM AbstractMVars.State Expr := do
+    if !e.hasMVar then return e
+    match e with
+    | .lit _ | .bvar _ | .fvar _ | .sort _ | .const _ _ => return e
+    | .proj _ _ b      => return e.updateProj! (← go b)
+    | .app f a         => return e.updateApp! (← go f) (← go a)
+    | .mdata _ b       => return e.updateMData! (← go b)
+    | .lam _ d b _     => return e.updateLambdaE! (← go d) (← go b)
+    | .forallE _ d b _ => return e.updateForallE! (← go d) (← go b)
+    | .letE _ t v b _  => return e.updateLetE! (← go t) (← go v) (← go b)
+    | .mvar mvarId =>
+      let decl := (← get).mctx.getDecl mvarId
+      match (← get).emap[mvarId]? with
+      | some e => return e
+      | none =>
+        let (mctxNew, instType) := Lean.instantiateExprMVarsImp (← get).mctx decl.type
+        modify ({ · with mctx := mctxNew })
+        let type ← go instType
+        let s ← get
+        let fresh := s.ngen.curr
+        let fvarId : FVarId := { name := fresh }
+        let fvar := mkFVar fvarId
+        let userName :=
+          if decl.userName.isAnonymous then (`x).appendIndexAfter s.fvars.size
+          else decl.userName
+        set { s with
+          ngen  := s.ngen.next
+          emap  := s.emap.insert mvarId fvar
+          fvars := s.fvars.push fvar
+          mvars := s.mvars.push e
+          lctx  := s.lctx.mkLocalDecl fvarId userName type }
+        return fvar
+
 @[builtin_tactic Lean.Parser.Tactic.impossible]
 def evalImpossible : Tactic := fun stx => do
   let kw := stx[0]
@@ -45,7 +104,7 @@ def evalImpossible : Tactic := fun stx => do
       (clearAuxDeclsInsteadOfRevert := true)
       (← cleaned.getDecl).lctx.getFVarIds
     let revertedType ← reverted.getType
-    let abs ← abstractMVars revertedType (levels := false)
+    let abs ← abstractAllMVars revertedType
     -- Pull the abstracted mvars' user names so we can later `intro` them
     -- under those (sanitized) names rather than under the hygienic ones the
     -- mvars carried internally.

@@ -1131,21 +1131,16 @@ scope of the tactic.
 syntax (name := classical) "classical" ppDedent(tacticSeq) : tactic
 
 /--
-`impossible by t` closes the current goal with `sorry`, having checked that
-the tactic `t` proves the goal is impossible.
+`impossible by t` uses the tactic `t` to prove that the current goal is impossible
+to prove.
 
-The tactic `t` sees the goal `¬(∀ xs, body)`, where `xs` are the local
-hypotheses (so they can be refuted by exhibiting a counter-witness). Any
-expression metavariables in the original goal are already introduced into
-the local context as named hypotheses, so `t` can `intro`/`cases` over each
-existential witness. This makes `impossible` useful after `refine
-Exists.intro ?_ ?h; case h => …` and similar.
+If the goal is `xs ⊢ P`, the tactic `t` sees the goal `¬(∀ xs, P)`. Any expression metavariables in
+the original goal turn into variables in the context.
 
-Universe parameters of the surrounding declaration are kept fixed (not
-abstracted); universe metavariables in the goal are rejected.
+Universe parameters of the surrounding declaration are kept fixed (not abstracted); universe
+metavariables in the goal are rejected.
 
-The proof is registered as a private auxiliary lemma so the kernel
-re-checks it.
+The original goal is closed as if `sorry` was used.
 -/
 syntax (name := impossible) "impossible" " by " ppDedent(tacticSeq) : tactic
 

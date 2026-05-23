@@ -68,6 +68,10 @@ private def mkImpossibleNegType (mainGoal : MVarId) (goalType : Expr)
   -- the surrounding declaration's universes show up unchanged); with `+levels`
   -- we replace them with fresh level metavariables instead, so the user's
   -- tactic can constrain them by picking witnesses at specific universes.
+  --
+  -- The original universe-parameter names are *not* preserved in the display:
+  -- the level pretty-printer (`Lean.Level.toResult`) always renders an mvar
+  -- with a decl in the mctx as `?u.<index>`, ignoring the underlying name.
   let rTypeLevels ←
     if cfg.levels then r.levelParams.mapM fun _ => mkFreshLevelMVar
     else pure r.levelArgs

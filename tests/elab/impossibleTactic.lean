@@ -182,15 +182,20 @@ end
 -- The `+levels` option abstracts universe parameters of the surrounding
 -- declaration as fresh level metavariables in the negated goal, so the user
 -- can refute a universe-polymorphic claim by exhibiting witnesses at
--- specific universes.
+-- specific universes. Note that the level pretty-printer doesn't preserve
+-- the original universe parameter names — they show as `?u.<N>`/`?u.<M>`
+-- in the goal state.
+set_option pp.mvars false in
 /--
+trace: ⊢ ¬∀ (α : Type _) (β : Type _), ¬ULift α = ULift β
+---
 warning: declaration uses `sorry`
 -/
 #guard_msgs in
 example (α : Type u) (β : Type v) : ¬(ULift.{v} α = ULift.{u} β) := by
   impossible +levels by
+    trace_state
     intro h
-    -- `h : ∀ (α : Type ?u) (β : Type ?v), ¬(ULift α = ULift β)`.
     -- Specializing at `Unit : Type 0` unifies both universe mvars.
     exact h Unit Unit rfl
 

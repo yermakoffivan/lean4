@@ -1133,8 +1133,22 @@ syntax (name := classical) "classical" ppDedent(tacticSeq) : tactic
 /--
 `impossible by t` closes the current goal with `sorry`, having checked that
 the tactic `t` proves the negation of the goal after reverting all local
-hypotheses. Universe parameters of the surrounding declaration are *not*
-abstracted, so they appear in the negated target as the same fixed parameters.
+hypotheses and abstracting any expression metavariables.
+
+Concretely, the obligation handed to `t` has the form `∀ ms, ¬(∀ xs, body)`,
+where `xs` are the local hypotheses (so the user can refute the goal by
+exhibiting a counter-witness for the existing context) and `ms` are the
+abstracted metavariables, already introduced into the local context as named
+hypotheses (so the user can `intro` and `case`-split each existential
+witness). This makes `impossible` usable on under-determined goals such as
+the proof obligation left by `refine Exists.intro ?_ ?h; case h => …`.
+
+Universe parameters of the surrounding declaration are *not* abstracted: they
+appear in the negated target as the same fixed parameters. Universe
+metavariables in the goal type are rejected upfront.
+
+The proof produced by `t` is registered as a private auxiliary lemma so the
+kernel re-typechecks it; kernel errors surface as ordinary diagnostics.
 -/
 syntax (name := impossible) "impossible" " by " ppDedent(tacticSeq) : tactic
 

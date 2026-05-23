@@ -20,6 +20,60 @@ public section
 namespace Lean.Elab.Tactic
 open Lean Meta
 
+/--
+Given the main goal of `impossible`, compute the closed *negated reverted
+target* the user will be asked to inhabit, together with the names under which
+the abstracted metavariables should be introduced.
+
+The construction:
+
+* `revert` all local hypotheses, turning the goal into `∀ xs, body`. Cleanup
+  first so that aux decls etc. don't get reverted.
+* Run `Closure.mkValueTypeClosure` on the reverted type to abstract every
+  expression metavariable it mentions. We reuse this builder (rather than
+  `Meta.abstractMVars`) because it walks without the single-`mctx`-depth filter
+  and correctly eta-expands delayed-assignment metavariables — i.e. the same
+  guarantees `grind`'s `mkAuxTheorem` already relies on. The dummy value we
+  hand it is irrelevant; we only consume `.type` and `.exprArgs`.
+* Substitute the freshly-generated universe parameters back to the originals.
+  We don't want the surrounding declaration's universes to be renamed in the
+  error messages or the user-facing goal state.
+* Push the negation *under* the mvar binders but *over* the reverted-fvar
+  binders, yielding `∀ ms, ¬(∀ xs, body)`. The user can then `intro` each
+  mvar witness and reason about the existing local context as a universal.
+
+Returns the negated type together with the user-friendly mvar names
+(`userName.eraseMacroScopes`, with a fallback to `x` for anonymous ones).
+
+Universe metavariables in the *goal type itself* are rejected by the caller
+before this function runs; if they slipped through, `mkValueTypeClosure`
+would happily abstract them too (turning them into fresh universe params),
+but the resulting goal state with `Sort ?u`-style binders is hard to work
+with, hence the upfront check.
+-/
+private def mkImpossibleNegType (mainGoal : MVarId) (goalType : Expr) :
+    MetaM (Expr × Array Name) := mainGoal.withContext do
+  let dummy ← mkFreshExprSyntheticOpaqueMVar goalType
+  let cleaned ← dummy.mvarId!.cleanup
+  let (_, reverted) ← cleaned.revert
+    (clearAuxDeclsInsteadOfRevert := true)
+    (← cleaned.getDecl).lctx.getFVarIds
+  let revertedType ← reverted.getType
+  let r ← Closure.mkValueTypeClosure revertedType (mkConst ``True)
+    (zetaDelta := false)
+  let rType := r.type.instantiateLevelParamsArray r.levelParams r.levelArgs
+  let negType ← forallBoundedTelescope rType (some r.exprArgs.size) fun ms revBody => do
+    let negBody ← if (← Meta.isProp revBody) then
+      pure (mkNot revBody)
+    else
+      mkArrow revBody (mkConst ``False)
+    mkForallFVars ms negBody
+  let mvarNames ← r.exprArgs.mapM fun mvarExpr => do
+    let .mvar mvarId := mvarExpr | return `x
+    let n := (← mvarId.getDecl).userName.eraseMacroScopes
+    return if n.isAnonymous then `x else n
+  return (negType, mvarNames)
+
 @[builtin_tactic Lean.Parser.Tactic.impossible]
 def evalImpossible : Tactic := fun stx => do
   let kw := stx[0]
@@ -30,51 +84,7 @@ def evalImpossible : Tactic := fun stx => do
   if goalType.hasLevelMVar then
     throwErrorAt kw "\
       `impossible`: goal contains universe metavariables{indentExpr goalType}"
-  -- Compute the negated, reverted target. The form we want is
-  --   `∀ ms, ¬(∀ xs, body)`,
-  -- where `ms` are the (universally-quantified) expression metavariables
-  -- abstracted out of the goal and `xs` are the local hypotheses that
-  -- `revert` introduced. The negation sits *between* the two layers:
-  -- under `ms` (so the user can prove impossibility by case-splitting on
-  -- each existential witness) but over `xs` (so they can refute the goal
-  -- by exhibiting a counter-witness for the existing local context).
-  let (negType, mvarNames) ← mainGoal.withContext do
-    let dummy ← mkFreshExprSyntheticOpaqueMVar goalType
-    let cleaned ← dummy.mvarId!.cleanup
-    let (_, reverted) ← cleaned.revert
-      (clearAuxDeclsInsteadOfRevert := true)
-      (← cleaned.getDecl).lctx.getFVarIds
-    let revertedType ← reverted.getType
-    -- Re-use the aux-lemma machinery's closure builder to abstract over every
-    -- expression mvar in the reverted goal type. `mkValueTypeClosure` walks
-    -- the type without filtering by mctx depth (unlike `Meta.abstractMVars`),
-    -- and also correctly eta-expands delayed-assignment mvars — exactly what
-    -- `Closure.mkAuxTheorem` does when grind builds its aux lemma. The
-    -- `value` we pass is a placeholder; we only care about the abstracted
-    -- type and the original mvars (in `exprArgs`).
-    let r ← Closure.mkValueTypeClosure revertedType (mkConst ``True)
-      (zetaDelta := false)
-    -- `mkValueTypeClosure` also re-parameterizes universe parameters into
-    -- fresh names. We don't want to rename surrounding declaration's
-    -- universes (their original names appear in error messages and elsewhere),
-    -- so we substitute the fresh universe parameters back to the originals.
-    let rType := r.type.instantiateLevelParamsArray r.levelParams r.levelArgs
-    -- `rType` is `∀ ms, revertedType[ms]`. Peel exactly those binders so we
-    -- can push the negation under them (yielding `∀ ms, ¬revertedType`).
-    let negType ← forallBoundedTelescope rType (some r.exprArgs.size) fun ms revBody => do
-      let negBody ← if (← Meta.isProp revBody) then
-        pure (mkNot revBody)
-      else
-        mkArrow revBody (mkConst ``False)
-      mkForallFVars ms negBody
-    -- Pull the abstracted mvars' user names from `r.exprArgs` so we can
-    -- later `intro` them under those (sanitized) names rather than under
-    -- the anonymous `_x.N`s the closure builder uses internally.
-    let mvarNames ← r.exprArgs.mapM fun mvarExpr => do
-      let .mvar mvarId := mvarExpr | return `x
-      let n := (← mvarId.getDecl).userName.eraseMacroScopes
-      return if n.isAnonymous then `x else n
-    return (negType, mvarNames)
+  let (negType, mvarNames) ← mkImpossibleNegType mainGoal goalType
   -- Close the original goal with `sorry` (without adding any axioms) *before*
   -- running the user's tactic. That way, if the inner tactic propagates a
   -- failure, no outer goal is left for the surrounding `by`/`runTactic` to

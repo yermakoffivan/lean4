@@ -199,6 +199,22 @@ example (α : Type u) (β : Type v) : ¬(ULift.{v} α = ULift.{u} β) := by
     -- Specializing at `Unit : Type 0` unifies both universe mvars.
     exact h Unit Unit rfl
 
+-- If the inner tactic doesn't pin down all the level mvars (e.g. it uses
+-- `sorry` without constraining them), the resulting auxiliary lemma carries
+-- unresolved level metavariables and the kernel rejects it. This surfaces
+-- as a `(kernel) declaration has metavariables` diagnostic, which is the
+-- expected behaviour — `impossible` doesn't silently accept the proof.
+/--
+warning: declaration uses `sorry`
+---
+error: (kernel) declaration has metavariables '_example._proof_1'
+-/
+#guard_msgs in
+example (α : Type u) (β : Type v) : ¬(ULift.{v} α = ULift.{u} β) := by
+  impossible +levels by
+    intro _
+    exact sorry
+
 -- Errors in the user's term/tactic are surfaced normally.
 /--
 error: Unknown identifier `this_identifier_does_not_exist`

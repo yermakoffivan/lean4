@@ -10,6 +10,7 @@ public import Lean.Elab.Tactic.Basic
 public import Lean.Meta.Tactic.Cleanup
 public import Lean.Meta.Tactic.Revert
 public import Lean.Meta.Tactic.AuxLemma
+public import Lean.Meta.AbstractMVars
 
 public section
 
@@ -25,26 +26,42 @@ def evalImpossible : Tactic := fun stx => do
   let tacs := stx[2]
   let mainGoal ← getMainGoal
   let goalType ← mainGoal.withContext do instantiateMVars (← mainGoal.getType)
-  if goalType.hasExprMVar then
-    throwErrorAt kw "\
-      `impossible`: goal contains metavariables{indentExpr goalType}"
   if goalType.hasLevelMVar then
     throwErrorAt kw "\
       `impossible`: goal contains universe metavariables{indentExpr goalType}"
   -- Compute the reverted, negated target from a discardable copy of the main
-  -- goal, so the original `mainGoal` remains assignable below. We use `Not`
-  -- on propositions and fall back to `_ → False` otherwise so the construction
-  -- is well-typed at any universe.
+  -- goal, so the original `mainGoal` remains assignable below. We:
+  --   * revert all local hypotheses, turning the goal into `∀ xs, body`;
+  --   * abstract over remaining expression metavariables, turning the result
+  --     into `∀ ms, ∀ xs, body` (so `impossible` can be applied to
+  --     under-determined goals like `∃ x, …`); level mvars are left alone
+  --     because abstracting them tends to make tactic state hard to read;
+  --   * push the negation *under* the universal binders, yielding
+  --     `∀ ms, ∀ xs, ¬body` (or `∀ ms, ∀ xs, body → False` when `body` isn't
+  --     a proposition). This lets the user prove impossibility by `intro`ing
+  --     witnesses for the binders and then deriving `False`.
   let negType ← mainGoal.withContext do
     let dummy ← mkFreshExprSyntheticOpaqueMVar goalType
     let cleaned ← dummy.mvarId!.cleanup
-    let (_, reverted) ← cleaned.revert (clearAuxDeclsInsteadOfRevert := true)
+    let (revertedFVars, reverted) ← cleaned.revert
+      (clearAuxDeclsInsteadOfRevert := true)
       (← cleaned.getDecl).lctx.getFVarIds
     let revertedType ← reverted.getType
-    if (← Meta.isProp revertedType) then
-      pure (mkNot revertedType)
-    else
-      mkArrow revertedType (mkConst ``False)
+    let abs ← abstractMVars revertedType (levels := false)
+    -- `abs.expr` is `fun ms => ∀ xs, body`. Telescope through both the
+    -- (lambda) mvar binders and exactly the `revertedFVars.size` (forall)
+    -- fvar binders that `revert` added, negate the original `body`, and
+    -- re-bind everything as a forall. We avoid peeling into deeper foralls
+    -- of the original `body` (e.g. an arrow like `¬X = X → False`), since
+    -- pushing the negation past a non-dependent arrow would change the
+    -- statement (`¬(A → B)` vs. `A → ¬B`).
+    lambdaTelescope abs.expr fun ms revBody => do
+      forallBoundedTelescope revBody (some revertedFVars.size) fun xs body => do
+        let negBody ← if (← Meta.isProp body) then
+          pure (mkNot body)
+        else
+          mkArrow body (mkConst ``False)
+        mkForallFVars (ms ++ xs) negBody
   -- Close the original goal with `sorry` (without adding any axioms) *before*
   -- running the user's tactic. That way, if the inner tactic propagates a
   -- failure, no outer goal is left for the surrounding `by`/`runTactic` to

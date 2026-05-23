@@ -1,11 +1,11 @@
 {"textDocument": {"uri": "file:///impossibleTactic.lean"},
  "position": {"line": 6, "character": 14}}
-{"rendered": "```lean\n⊢ ¬∀ (n : Nat), n = n + 1\n```",
- "goals": ["⊢ ¬∀ (n : Nat), n = n + 1"]}
+{"rendered": "```lean\n⊢ ∀ (n : Nat), ¬n = n + 1\n```",
+ "goals": ["⊢ ∀ (n : Nat), ¬n = n + 1"]}
 {"textDocument": {"uri": "file:///impossibleTactic.lean"},
  "position": {"line": 8, "character": 5}}
 {"range":
- {"start": {"line": 8, "character": 4}, "end": {"line": 8, "character": 11}},
+ {"start": {"line": 8, "character": 4}, "end": {"line": 8, "character": 13}},
  "contents":
  {"value":
   "Introduces one or more hypotheses, optionally naming and/or pattern-matching them.\nFor each hypothesis to be introduced, the remaining main goal's target type must\nbe a `let` or function type.\n\n* `intro` by itself introduces one anonymous hypothesis, which can be accessed\n  by e.g. `assumption`. It is equivalent to `intro _`.\n* `intro x y` introduces two hypotheses and names them. Individual hypotheses\n  can be anonymized via `_`, given a type ascription, or matched against a pattern:\n  ```lean\n  -- ... ⊢ α × β → ...\n  intro (a, b)\n  -- ..., a : α, b : β ⊢ ...\n  ```\n* `intro rfl` is short for `intro h; subst h`, if `h` is an equality where the left-hand or right-hand side\n  is a variable.\n* Alternatively, `intro` can be combined with pattern matching much like `fun`:\n  ```lean\n  intro\n  | n + 1, 0 => tac\n  | ...\n  ```\n",
@@ -13,8 +13,8 @@
 {"textDocument": {"uri": "file:///impossibleTactic.lean"},
  "position": {"line": 10, "character": 5}}
 {"range":
- {"start": {"line": 10, "character": 4}, "end": {"line": 10, "character": 41}},
+ {"start": {"line": 10, "character": 4}, "end": {"line": 10, "character": 9}},
  "contents":
  {"value":
-  "`exact e` closes the main goal if its target type matches that of `e`.\n",
+  "The `omega` tactic, for resolving integer and natural linear arithmetic problems.\n\nIt is not yet a full decision procedure (no \"dark\" or \"grey\" shadows),\nbut should be effective on many problems.\n\nWe handle hypotheses of the form `x = y`, `x < y`, `x ≤ y`, and `k ∣ x` for `x y` in `Nat` or `Int`\n(and `k` a literal), along with negations of these statements.\n\nWe decompose the sides of the inequalities as linear combinations of atoms.\n\nIf we encounter `x / k` or `x % k` for literal integers `k` we introduce new auxiliary variables\nand the relevant inequalities.\n\nOn the first pass, we do not perform case splits on natural subtraction.\nIf `omega` fails, we recursively perform a case split on\na natural subtraction appearing in a hypothesis, and try again.\n\nThe options\n```\nomega +splitDisjunctions +splitNatSub +splitNatAbs +splitMinMax\n```\ncan be used to:\n* `splitDisjunctions`: split any disjunctions found in the context,\n  if the problem is not otherwise solvable.\n* `splitNatSub`: for each appearance of `((a - b : Nat) : Int)`, split on `a ≤ b` if necessary.\n* `splitNatAbs`: for each appearance of `Int.natAbs a`, split on `0 ≤ a` if necessary.\n* `splitMinMax`: for each occurrence of `min a b`, split on `min a b = a ∨ min a b = b`\nCurrently, all of these are on by default.\n",
   "kind": "markdown"}}

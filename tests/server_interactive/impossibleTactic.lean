@@ -6,7 +6,7 @@ Tests that `impossible by ...` provides the same hover / goal info as a regular
 example (n : Nat) : n = n + 1 := by
   impossible by
             --^ $/lean/plainGoal
-    intro h
+    intro n h
    --^ textDocument/hover
-    exact Nat.succ_ne_zero _ ((h 0).symm)
+    omega
    --^ textDocument/hover

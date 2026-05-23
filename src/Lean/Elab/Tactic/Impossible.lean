@@ -7,6 +7,7 @@ module
 
 prelude
 public import Lean.Elab.Tactic.Basic
+public import Lean.Elab.ConfigEval
 public import Lean.Meta.Tactic.Cleanup
 public import Lean.Meta.Tactic.Revert
 public import Lean.Meta.Tactic.AuxLemma
@@ -51,7 +52,8 @@ would happily abstract them too (turning them into fresh universe params),
 but the resulting goal state with `Sort ?u`-style binders is hard to work
 with, hence the upfront check.
 -/
-private def mkImpossibleNegType (mainGoal : MVarId) (goalType : Expr) :
+private def mkImpossibleNegType (mainGoal : MVarId) (goalType : Expr)
+    (cfg : Parser.Tactic.ImpossibleConfig) :
     MetaM (Expr × Array Name) := mainGoal.withContext do
   let dummy ← mkFreshExprSyntheticOpaqueMVar goalType
   let cleaned ← dummy.mvarId!.cleanup
@@ -61,7 +63,15 @@ private def mkImpossibleNegType (mainGoal : MVarId) (goalType : Expr) :
   let revertedType ← reverted.getType
   let r ← Closure.mkValueTypeClosure revertedType (mkConst ``True)
     (zetaDelta := false)
-  let rType := r.type.instantiateLevelParamsArray r.levelParams r.levelArgs
+  -- `mkValueTypeClosure` abstracts both expr mvars and universes. By default we
+  -- substitute the freshly-generated universe params back to the originals (so
+  -- the surrounding declaration's universes show up unchanged); with `+levels`
+  -- we replace them with fresh level metavariables instead, so the user's
+  -- tactic can constrain them by picking witnesses at specific universes.
+  let rTypeLevels ←
+    if cfg.levels then r.levelParams.mapM fun _ => mkFreshLevelMVar
+    else pure r.levelArgs
+  let rType := r.type.instantiateLevelParamsArray r.levelParams rTypeLevels
   let negType ← forallBoundedTelescope rType (some r.exprArgs.size) fun ms revBody => do
     let negBody ← if (← Meta.isProp revBody) then
       pure (mkNot revBody)
@@ -74,17 +84,21 @@ private def mkImpossibleNegType (mainGoal : MVarId) (goalType : Expr) :
     return if n.isAnonymous then `x else n
   return (negType, mvarNames)
 
+declare_config_elab elabImpossibleConfig Parser.Tactic.ImpossibleConfig
+
 @[builtin_tactic Lean.Parser.Tactic.impossible]
 def evalImpossible : Tactic := fun stx => do
   let kw := stx[0]
-  let byTk := stx[1]
-  let tacs := stx[2]
+  let cfg ← elabImpossibleConfig stx[1]
+  let byTk := stx[2]
+  let tacs := stx[3]
   let mainGoal ← getMainGoal
   let goalType ← mainGoal.withContext do instantiateMVars (← mainGoal.getType)
-  if goalType.hasLevelMVar then
+  if goalType.hasLevelMVar && !cfg.levels then
     throwErrorAt kw "\
-      `impossible`: goal contains universe metavariables{indentExpr goalType}"
-  let (negType, mvarNames) ← mkImpossibleNegType mainGoal goalType
+      `impossible`: goal contains universe metavariables{indentExpr goalType}\n\
+      Hint: use `impossible +levels by …` to abstract them."
+  let (negType, mvarNames) ← mkImpossibleNegType mainGoal goalType cfg
   -- Close the original goal with `sorry` (without adding any axioms) *before*
   -- running the user's tactic. That way, if the inner tactic propagates a
   -- failure, no outer goal is left for the surrounding `by`/`runTactic` to
@@ -116,6 +130,10 @@ def evalImpossible : Tactic := fun stx => do
     -- irrelevance / typechecking issues) surface here rather than being
     -- silently absorbed by the `sorry` we put on the outer goal.
     let proof ← instantiateMVars (mkMVar negMVarId)
+    -- Instantiate level mvars in `negType` as well — the user's tactic may
+    -- have assigned them when it concretized the universes (e.g. by
+    -- applying the universal to a witness at `Type 0`).
+    let negType ← instantiateMVars negType
     let lvls := (collectLevelParams {} negType).params
     let lemmaLvls := (← Term.getLevelNames).reverse.filter lvls.contains
     discard <| withOptions (Elab.async.set · false) do

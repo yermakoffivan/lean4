@@ -171,12 +171,28 @@ set_option pp.mvars false in
 /--
 error: `impossible`: goal contains universe metavariables
   Subsingleton (Sort _)
+Hint: use `impossible +levels by …` to abstract them.
 -/
 #guard_msgs in
 example : True := by
   with_level_mvar_goal
   impossible by skip
 end
+
+-- The `+levels` option abstracts universe parameters of the surrounding
+-- declaration as fresh level metavariables in the negated goal, so the user
+-- can refute a universe-polymorphic claim by exhibiting witnesses at
+-- specific universes.
+/--
+warning: declaration uses `sorry`
+-/
+#guard_msgs in
+example (α : Type u) (β : Type v) : ¬(ULift.{v} α = ULift.{u} β) := by
+  impossible +levels by
+    intro h
+    -- `h : ∀ (α : Type ?u) (β : Type ?v), ¬(ULift α = ULift β)`.
+    -- Specializing at `Unit : Type 0` unifies both universe mvars.
+    exact h Unit Unit rfl
 
 -- Errors in the user's term/tactic are surfaced normally.
 /--

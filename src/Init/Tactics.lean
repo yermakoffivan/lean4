@@ -1131,6 +1131,16 @@ scope of the tactic.
 syntax (name := classical) "classical" ppDedent(tacticSeq) : tactic
 
 /--
+Configuration for the `impossible` tactic.
+-/
+structure ImpossibleConfig where
+  /-- If true (default: false), abstract the universe parameters of the surrounding
+  declaration as level metavariables in the goal handed to the inner tactic, so it
+  can constrain them by exhibiting witnesses at specific universes. By default these
+  parameters are kept fixed. -/
+  levels : Bool := false
+
+/--
 `impossible by t` uses the tactic `t` to prove that the current goal is impossible
 to prove.
 
@@ -1138,11 +1148,12 @@ If the goal is `xs ⊢ P`, the tactic `t` sees the goal `¬(∀ xs, P)`. Any exp
 the original goal turn into variables in the context.
 
 Universe parameters of the surrounding declaration are kept fixed (not abstracted); universe
-metavariables in the goal are rejected.
+metavariables in the goal are rejected. The `+levels` option turns the universe parameters
+(and any universe metavariables) into fresh level metavariables instead.
 
 The original goal is closed as if `sorry` was used.
 -/
-syntax (name := impossible) "impossible" " by " ppDedent(tacticSeq) : tactic
+syntax (name := impossible) "impossible" optConfig " by " ppDedent(tacticSeq) : tactic
 
 /--
 The `split` tactic is useful for breaking nested if-then-else and `match` expressions into separate cases.

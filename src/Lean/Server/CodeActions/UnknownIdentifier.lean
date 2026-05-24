@@ -137,7 +137,7 @@ def computeDotQuery?
     (doc : EditableDocument)
     (ctx : Elab.ContextInfo)
     (ti : Elab.TermInfo)
-    : IO (Option Query) := do
+    : EIO Exception (Option Query) := do
   let text := doc.meta.text
   let some pos := ti.stx.getPos? (canonicalOnly := true)
     | return none
@@ -173,7 +173,7 @@ def computeDotIdQuery?
     (id : Name)
     (lctx : LocalContext)
     (expectedType? : Option Expr)
-    : IO (Option Query) := do
+    : EIO Exception (Option Query) := do
   let some pos := stx.getPos? (canonicalOnly := true)
     | return none
   let some tailPos := stx.getTailPos? (canonicalOnly := true)

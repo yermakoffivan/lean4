@@ -135,7 +135,7 @@ def handleDefinition (kind : GoToKind) (p : TextDocumentPositionParams)
             let .ofTermInfo childTi := r.info
               | return true
             return ! (← isInstanceProjectionInfoFor kind ti childTi)
-      let some info ← snap.infoTree.hoverableInfoAtM? (m := IO) hoverPos
+      let some info ← snap.infoTree.hoverableInfoAtM? (m := EIO Exception) hoverPos
           (includeStop := true) (filter := filter)
         | return #[]
       locationLinksOfInfo doc.meta kind info snap.infoTree

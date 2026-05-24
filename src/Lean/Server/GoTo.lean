@@ -87,7 +87,7 @@ structure GoToContext where
 abbrev GoToM α := ReaderT GoToContext MetaM α
 
 def GoToM.run (ctx : GoToContext) (ci : ContextInfo) (lctx : LocalContext) (act : GoToM α) :
-    IO α :=
+    EIO Exception α :=
   ci.runMetaM lctx <| ReaderT.run act ctx
 
 def locationLinksFromDecl (declName : Name) : GoToM (Array LeanLocationLink) := do
@@ -308,7 +308,7 @@ def locationLinksFromCommandInfo (i : CommandInfo) : GoToM (Array LeanLocationLi
   locationLinksFromImport i
 
 def locationLinksOfInfo (doc : DocumentMeta) (kind : GoToKind) (ictx : InfoWithCtx)
-    (infoTree? : Option InfoTree := none) : IO (Array LeanLocationLink) := do
+    (infoTree? : Option InfoTree := none) : EIO Exception (Array LeanLocationLink) := do
   let ctx : GoToContext := {
     doc
     kind

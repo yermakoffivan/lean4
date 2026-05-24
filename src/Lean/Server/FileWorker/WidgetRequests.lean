@@ -403,7 +403,7 @@ private structure Highlighted where
 
 variable (query : String) in
 private partial def highlightMatchesAux (msg : InteractiveMessage) :
-    IO Highlighted := do
+    EIO Exception Highlighted := do
   match msg with
   | .tag (.trace indent cls msg collapsed children) a => do
     let a : HighlightedInteractiveMessage := .ofInteractiveMessage a

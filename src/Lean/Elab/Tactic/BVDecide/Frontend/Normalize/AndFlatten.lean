@@ -71,7 +71,7 @@ where
         hyp := {
           userName := (← fvar.getDecl).userName
           type := type
-          value := ← share <| mkFVar fvar
+          value := mkFVar fvar
         },
         original := fvar
       }
@@ -103,13 +103,13 @@ where
       let leftHyp : Hypothesis := {
         userName := hyp.hyp.userName,
         type := ← mkEqTrue lhs,
-        value := ← share <|
+        value :=
           mkApp3 (mkConst ``Std.Tactic.BVDecide.Normalize.Bool.and_left) lhs rhs hyp.hyp.value
       }
       let rightHyp : Hypothesis := {
         userName := hyp.hyp.userName,
         type := ← mkEqTrue rhs,
-        value := ← share <|
+        value :=
           mkApp3 (mkConst ``Std.Tactic.BVDecide.Normalize.Bool.and_right) lhs rhs hyp.hyp.value
       }
       return some (⟨leftHyp, hyp.original⟩, ⟨rightHyp, hyp.original⟩)

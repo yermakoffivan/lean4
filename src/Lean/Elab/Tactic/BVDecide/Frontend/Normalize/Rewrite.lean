@@ -33,7 +33,7 @@ Responsible for applying the Bitwuzla style rewrite rules.
 -/
 def rewriteRulesPass : PreProcessPass where
   name := `rewriteRules
-  run' goal := do
+  run' goal := goal.withContext do
     let hyps ← getHyps goal
     if hyps.isEmpty then
       return goal
@@ -43,8 +43,9 @@ def rewriteRulesPass : PreProcessPass where
         maxSteps := cfg.maxSteps
       }
       let bvNormalizeThms := (← bvNormalizeExt.getTheorems).rewrite
+      -- TODO: replace simpControl
       let methods := {
-        pre := Sym.Simp.simpControl >> Sym.Simp.simpArrowTelescope
+        pre := Sym.Simp.simpArrowTelescope
         post := Sym.Simp.evalGround >> rewriteSimproc >> bvNormalizeThms
       }
       let (unmodifiedTargets, newTargets) ← Sym.Simp.SimpM.run' (methods := methods) (config := config) do
@@ -57,7 +58,7 @@ def rewriteRulesPass : PreProcessPass where
             newTargets := newTargets.push {
               userName := ← hyp.getUserName,
               type := e'
-              value := ← Sym.share <| mkApp4 (mkConst ``Eq.mp [0]) e e' proof (mkFVar hyp)
+              value := mkApp4 (mkConst ``Eq.mp [0]) e e' proof (mkFVar hyp)
             }
             if e'.isConstOf ``False then
               break
@@ -79,11 +80,10 @@ def rewriteRulesPass : PreProcessPass where
           return goal
 where
   getHyps (goal : MVarId) : PreProcessM (Array FVarId) := do
-    goal.withContext do
-      let hyps ← PreProcessM.getRelevantFVars
-      let filter hyp := do
-        return !(← PreProcessM.checkRewritten hyp)
-      hyps.filterM filter
+    let hyps ← PreProcessM.getRelevantFVars
+    let filter hyp := do
+      return !(← PreProcessM.checkRewritten hyp)
+    hyps.filterM filter
 
 
 end Frontend.Normalize

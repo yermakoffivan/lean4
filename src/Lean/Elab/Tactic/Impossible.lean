@@ -36,9 +36,10 @@ The construction:
   and correctly eta-expands delayed-assignment metavariables — i.e. the same
   guarantees `grind`'s `mkAuxTheorem` already relies on. The dummy value we
   hand it is irrelevant; we only consume `.type` and `.exprArgs`.
-* Substitute the freshly-generated universe parameters back to the originals.
-  We don't want the surrounding declaration's universes to be renamed in the
-  error messages or the user-facing goal state.
+* Substitute the freshly-generated universe parameters back to the originals
+  (so the surrounding declaration's universes show up unchanged) — unless
+  `+levels` is set, in which case the originals are replaced with fresh
+  level metavariables so the user's tactic can specialize them.
 * Push the negation *under* the mvar binders but *over* the reverted-fvar
   binders, yielding `∀ ms, ¬(∀ xs, body)`. The user can then `intro` each
   mvar witness and reason about the existing local context as a universal.
@@ -63,11 +64,12 @@ private def mkImpossibleNegType (mainGoal : MVarId) (goalType : Expr)
   let revertedType ← reverted.getType
   let r ← Closure.mkValueTypeClosure revertedType (mkConst ``True)
     (zetaDelta := false)
-  -- `mkValueTypeClosure` abstracts both expr mvars and universes. By default we
-  -- substitute the freshly-generated universe params back to the originals (so
-  -- the surrounding declaration's universes show up unchanged); with `+levels`
-  -- we replace them with fresh level metavariables instead, so the user's
-  -- tactic can constrain them by picking witnesses at specific universes.
+  -- `mkValueTypeClosure` abstracts the surrounding declaration's universe
+  -- parameters as fresh universe params of its own. By default we substitute
+  -- them back to the originals (so the surrounding declaration's universes
+  -- show up unchanged in the goal); with `+levels` we replace them with
+  -- fresh level metavariables instead, so the user's tactic can specialize
+  -- them by picking witnesses at specific universes.
   --
   -- The original universe-parameter names are *not* preserved in the display:
   -- the level pretty-printer (`Lean.Level.toResult`) always renders an mvar
@@ -98,10 +100,9 @@ def evalImpossible : Tactic := fun stx => do
   let tacs := stx[3]
   let mainGoal ← getMainGoal
   let goalType ← mainGoal.withContext do instantiateMVars (← mainGoal.getType)
-  if goalType.hasLevelMVar && !cfg.levels then
+  if goalType.hasLevelMVar then
     throwErrorAt kw "\
-      `impossible`: goal contains universe metavariables{indentExpr goalType}\n\
-      Hint: use `impossible +levels by …` to abstract them."
+      `impossible`: goal contains universe metavariables{indentExpr goalType}"
   let (negType, mvarNames) ← mkImpossibleNegType mainGoal goalType cfg
   -- Close the original goal with `sorry` (without adding any axioms) *before*
   -- running the user's tactic. That way, if the inner tactic propagates a

@@ -171,7 +171,6 @@ set_option pp.mvars false in
 /--
 error: `impossible`: goal contains universe metavariables
   Subsingleton (Sort _)
-Hint: use `impossible +levels by …` to abstract them.
 -/
 #guard_msgs in
 example : True := by

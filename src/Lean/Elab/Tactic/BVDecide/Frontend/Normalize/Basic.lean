@@ -19,6 +19,15 @@ namespace Frontend.Normalize
 
 open Lean.Meta
 
+abbrev ConfigT (m : Type → Type) := ReaderT BVDecideConfig m
+
+namespace ConfigT
+
+@[inline]
+def getConfig [Monad m] : ConfigT m BVDecideConfig := read
+
+end ConfigT
+
 /--
 The various kinds of matches supported by the match to cond infrastructure.
 -/
@@ -55,6 +64,50 @@ structure TypeAnalysis where
   -/
   uninteresting : Std.HashSet Name := {}
 
+abbrev TypeAnalysisM := ConfigT <| StateRefT TypeAnalysis MetaM
+
+namespace TypeAnalysisM
+
+@[inline]
+def getTypeAnalysis : TypeAnalysisM TypeAnalysis := get
+
+@[inline]
+def modifyTypeAnalysis (f : TypeAnalysis → TypeAnalysis) :
+    TypeAnalysisM Unit := do
+  modify f
+
+@[inline]
+def lookupInterestingStructure (n : Name) : TypeAnalysisM (Option Bool) := do
+  let s ← getTypeAnalysis
+  if s.uninteresting.contains n then
+    return some false
+  else if s.interestingStructures.contains n then
+    return some true
+  else
+    return none
+
+@[inline]
+def markInterestingStructure (n : Name) : TypeAnalysisM Unit := do
+  modifyTypeAnalysis (fun s => { s with interestingStructures := s.interestingStructures.insert n })
+
+@[inline]
+def markInterestingEnum (n : Name) : TypeAnalysisM Unit := do
+  modifyTypeAnalysis (fun s => { s with interestingEnums := s.interestingEnums.insert n })
+
+@[inline]
+def markInterestingMatcher (n : Name) (k : MatchKind) : TypeAnalysisM Unit := do
+  modifyTypeAnalysis (fun s => { s with interestingMatchers := s.interestingMatchers.insert n k })
+
+@[inline]
+def markUninterestingConst (n : Name) : TypeAnalysisM Unit := do
+  modifyTypeAnalysis (fun s => { s with uninteresting := s.uninteresting.insert n })
+
+@[inline]
+def run (cfg : BVDecideConfig) (x : TypeAnalysisM α) : MetaM α := do
+  ReaderT.run x cfg |>.run' {}
+
+end TypeAnalysisM
+
 structure PreProcessState where
   /--
   Contains `FVarId` that we already know are in `bv_normalize` simp normal form and thus don't
@@ -66,17 +119,10 @@ structure PreProcessState where
   don't need to be processed again when we visit the next time.
   -/
   acNfCache : Std.HashSet FVarId := {}
-  /--
-  Analysis results for the structure and enum pass if required.
-  -/
-  typeAnalysis : TypeAnalysis := {}
 
-abbrev PreProcessM : Type → Type := ReaderT BVDecideConfig <| StateRefT PreProcessState MetaM
+abbrev PreProcessM := ConfigT <| StateRefT PreProcessState MetaM
 
 namespace PreProcessM
-
-@[inline]
-def getConfig : PreProcessM BVDecideConfig := read
 
 @[inline]
 def checkRewritten (fvar : FVarId) : PreProcessM Bool := do
@@ -95,41 +141,6 @@ def acNfFinished (fvar : FVarId) : PreProcessM Unit := do
   modify (fun s => { s with acNfCache := s.acNfCache.insert fvar })
 
 @[inline]
-def getTypeAnalysis : PreProcessM TypeAnalysis := do
-  return (← get).typeAnalysis
-
-@[inline]
-def lookupInterestingStructure (n : Name) : PreProcessM (Option Bool) := do
-  let s ← getTypeAnalysis
-  if s.uninteresting.contains n then
-    return some false
-  else if s.interestingStructures.contains n then
-    return some true
-  else
-    return none
-
-@[inline]
-def modifyTypeAnalysis (f : TypeAnalysis → TypeAnalysis) :
-    PreProcessM Unit := do
-  modify fun s => { s with typeAnalysis := f s.typeAnalysis }
-
-@[inline]
-def markInterestingStructure (n : Name) : PreProcessM Unit := do
-  modifyTypeAnalysis (fun s => { s with interestingStructures := s.interestingStructures.insert n })
-
-@[inline]
-def markInterestingEnum (n : Name) : PreProcessM Unit := do
-  modifyTypeAnalysis (fun s => { s with interestingEnums := s.interestingEnums.insert n })
-
-@[inline]
-def markInterestingMatcher (n : Name) (k : MatchKind) : PreProcessM Unit := do
-  modifyTypeAnalysis (fun s => { s with interestingMatchers := s.interestingMatchers.insert n k })
-
-@[inline]
-def markUninterestingConst (n : Name) : PreProcessM Unit := do
-  modifyTypeAnalysis (fun s => { s with uninteresting := s.uninteresting.insert n })
-
-@[inline]
 def run (cfg : BVDecideConfig) (goal : MVarId) (x : PreProcessM α) : MetaM α := do
   let hyps ← goal.withContext do getPropHyps
   ReaderT.run x cfg |>.run' {
@@ -143,14 +154,27 @@ end PreProcessM
 A pass in the normalization pipeline. Takes the current goal and produces a refined one or closes
 the goal fully, indicated by returning `none`.
 -/
-structure Pass where
+structure Pass (m : Type → Type) where
   name : Name
-  run' : MVarId → PreProcessM (Option MVarId)
+  run' : MVarId → m (Option MVarId)
 
-namespace Pass
+abbrev TypeAnalysisPass := Pass TypeAnalysisM
+
+namespace TypeAnalysisPass
 
 @[inline]
-def run (pass : Pass) (goal : MVarId) : PreProcessM (Option MVarId) := do
+def run (pass : TypeAnalysisPass) (goal : MVarId) : TypeAnalysisM (Option MVarId) := do
+  withTraceNode `Meta.Tactic.bv (fun _ => return m!"Running pass: {pass.name} on\n{goal}") do
+    pass.run' goal
+
+end TypeAnalysisPass
+
+abbrev PreProcessPass := Pass PreProcessM
+
+namespace PreProcessPass
+
+@[inline]
+def run (pass : PreProcessPass) (goal : MVarId) : PreProcessM (Option MVarId) := do
   withTraceNode `Meta.Tactic.bv (fun _ => return m!"Running pass: {pass.name} on\n{goal}") do
     pass.run' goal
 
@@ -158,7 +182,7 @@ def run (pass : Pass) (goal : MVarId) : PreProcessM (Option MVarId) := do
 Repeatedly run a list of `Pass` until they either close the goal or an iteration doesn't change
 the goal anymore.
 -/
-partial def fixpointPipeline (passes : List Pass) (goal : MVarId) : PreProcessM (Option MVarId) := do
+partial def fixpointPipeline (passes : List PreProcessPass) (goal : MVarId) : PreProcessM (Option MVarId) := do
   checkSystem "bv_decide"
   let mut newGoal := goal
   for pass in passes do
@@ -175,7 +199,7 @@ partial def fixpointPipeline (passes : List Pass) (goal : MVarId) : PreProcessM 
     trace[Meta.Tactic.bv] "Pipeline reached a fixpoint"
     return newGoal
 
-end Pass
+end PreProcessPass
 
 end Frontend.Normalize
 end Lean.Elab.Tactic.BVDecide

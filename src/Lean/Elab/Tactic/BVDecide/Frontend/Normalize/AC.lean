@@ -346,7 +346,7 @@ def bvAcNfHypMeta (goal : MVarId) (fvarId : FVarId)
     let (res, _) ← Simp.main tgt simpCtx (methods := { post := bvAcNfpost })
     return (← applySimpResultToLocalDecl goal fvarId res false).map (·.snd)
 
-def bvAcNormalizePass : Pass where
+def bvAcNormalizePass : PreProcessPass where
   name := `bv_ac_nf
   run' goal := goal.withContext do
     let hyps ← (← getPropHyps) |>.filterM fun hyp => do

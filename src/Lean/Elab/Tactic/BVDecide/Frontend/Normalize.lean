@@ -33,9 +33,9 @@ namespace Frontend.Normalize
 
 open Lean.Meta
 
-def passPipeline : PreProcessM (List Pass) := do
+def passPipeline : TypeAnalysisM (List PreProcessPass) := do
   let mut passPipeline := [rewriteRulesPass]
-  let cfg ← PreProcessM.getConfig
+  let cfg ← ConfigT.getConfig
 
   if cfg.acNf then
     passPipeline := passPipeline ++ [bvAcNormalizePass]
@@ -50,14 +50,14 @@ def passPipeline : PreProcessM (List Pass) := do
 
 def bvNormalize (g : MVarId) (cfg : BVDecideConfig) : MetaM (Option MVarId) := do
   withTraceNode `Meta.Tactic.bv (fun _ => return "Preprocessing goal") do
-    (go g).run cfg g
+    (go g).run cfg
 where
-  go (g : MVarId) : PreProcessM (Option MVarId) := do
+  go (g : MVarId) : TypeAnalysisM (Option MVarId) := do
     let some g' ← g.falseOrByContra | return none
     let mut g := g'
 
     trace[Meta.Tactic.bv] m!"Running preprocessing pipeline on:\n{g}"
-    let cfg ← PreProcessM.getConfig
+    let cfg ← ConfigT.getConfig
 
     if cfg.structures || cfg.enums then
       let some g' ← typeAnalysisPass.run g | return none
@@ -93,7 +93,7 @@ where
 
     trace[Meta.Tactic.bv] m!"Running fixpoint pipeline on:\n{g}"
     let pipeline ← passPipeline
-    let some g' ← Pass.fixpointPipeline pipeline g | return none
+    let some g' ← (PreProcessM.run (← ConfigT.getConfig) g (PreProcessPass.fixpointPipeline pipeline g)) | return none
     /-
     Run short circuiting once post fixpoint, as it increases the size of terms with
     the aim of exposing potential short-circuit reasoning to the solver.

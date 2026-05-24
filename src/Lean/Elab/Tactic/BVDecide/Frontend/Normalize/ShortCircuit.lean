@@ -27,7 +27,7 @@ open Std.Tactic.BVDecide.Normalize.BitVec
 Responsible for applying short-circuit optimizations for `*`, e.g.,
 translating `x1 * y == x2 * y` to `!(!x1 == x2 && !x1 * y == x2 * y)`.
 -/
-def shortCircuitPass : Pass where
+def shortCircuitPass : TypeAnalysisPass where
   name := `shortCircuitPass
   run' goal := do
     goal.withContext do
@@ -44,7 +44,7 @@ def shortCircuitPass : Pass where
           failIfUnchanged := false,
           zetaDelta := true,
           singlePass := true,
-          maxSteps := (← PreProcessM.getConfig).maxSteps
+          maxSteps := (← ConfigT.getConfig).maxSteps
         })
         (simpTheorems := theorems)
         (congrTheorems := (← getSimpCongrTheorems))

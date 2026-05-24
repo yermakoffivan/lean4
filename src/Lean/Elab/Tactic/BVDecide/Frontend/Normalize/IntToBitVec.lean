@@ -54,11 +54,11 @@ private def addSizeHyp (f : FVarId) : M Unit := do
 
 end M
 
-def intToBitVecPass : Pass where
+def intToBitVecPass : TypeAnalysisPass where
   name := `intToBitVec
   run' goal := do
     let intToBvThms ← intToBitVecExt.getTheorems
-    let cfg ← PreProcessM.getConfig
+    let cfg ← ConfigT.getConfig
     let simpCtx ← Simp.mkContext
       (config := {
         failIfUnchanged := false,

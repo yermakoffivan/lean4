@@ -26,7 +26,7 @@ Substitute embedded constraints. That is look for hypotheses of the form `h : x 
 them to substitute occurrences of `x` within other hypotheses. Additionally this drops all
 redundant top level hypotheses.
 -/
-def embeddedConstraintPass : Pass where
+def embeddedConstraintPass : PreProcessPass where
   name := `embeddedConstraintSubstitution
   run' goal := do
     goal.withContext do
@@ -51,7 +51,7 @@ def embeddedConstraintPass : Pass where
       if relevantHyps.isEmpty then
         return goal
 
-      let cfg ← PreProcessM.getConfig
+      let cfg ← ConfigT.getConfig
       let targets ← goal.withContext getPropHyps
       let simpCtx ← Simp.mkContext
         (config := {

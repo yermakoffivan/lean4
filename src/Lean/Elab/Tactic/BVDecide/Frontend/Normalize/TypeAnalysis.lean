@@ -123,7 +123,7 @@ def builtinTypes : Array Name :=
 @[inline]
 def isBuiltIn (n : Name) : Bool := builtinTypes.contains n
 
-def addDefaultTypeAnalysisLemmas (lemmas : SimpTheoremsArray) : PreProcessM SimpTheoremsArray := do
+def addDefaultTypeAnalysisLemmas (lemmas : SimpTheoremsArray) : TypeAnalysisM SimpTheoremsArray := do
   let mut lemmas := lemmas
 
   let relevantNames := #[
@@ -136,23 +136,23 @@ def addDefaultTypeAnalysisLemmas (lemmas : SimpTheoremsArray) : PreProcessM Simp
 
   return lemmas
 
-partial def typeAnalysisPass : Pass where
+partial def typeAnalysisPass : TypeAnalysisPass where
   name := `typeAnalysis
   run' goal := do
     checkContext goal
-    let analysis ← PreProcessM.getTypeAnalysis
+    let analysis ← TypeAnalysisM.getTypeAnalysis
     trace[Meta.Tactic.bv] m!"Type analysis found structures: {analysis.interestingStructures.toList}"
     trace[Meta.Tactic.bv] m!"Type analysis found enums: {analysis.interestingEnums.toList}"
     trace[Meta.Tactic.bv] m!"Type analysis found matchers: {analysis.interestingMatchers.keys}"
     return goal
 where
-  checkContext (goal : MVarId) : PreProcessM Unit := do
+  checkContext (goal : MVarId) : TypeAnalysisM Unit := do
     goal.withContext do
       for decl in ← getLCtx do
         if !decl.isLet && !decl.isImplementationDetail then
           analyzeType (← instantiateMVars decl.type)
 
-  analyzeType (expr : Expr) : PreProcessM Unit := do
+  analyzeType (expr : Expr) : TypeAnalysisM Unit := do
     expr.forEachWhere Expr.isConst fun e => do
       let .const declName .. := e | unreachable!
       discard <| analyzeConst declName
@@ -161,10 +161,10 @@ where
   Returns true if the const is something that we would like to see revealed by case splitting on
   structures that contain it.
   -/
-  analyzeConst (n : Name) : PreProcessM Bool := do
+  analyzeConst (n : Name) : TypeAnalysisM Bool := do
     if isBuiltIn n then return true
 
-    let analysis ← PreProcessM.getTypeAnalysis
+    let analysis ← TypeAnalysisM.getTypeAnalysis
     if analysis.interestingStructures.contains n || analysis.interestingEnums.contains n then
       return true
     else if analysis.uninteresting.contains n || analysis.interestingMatchers.contains n then
@@ -172,25 +172,25 @@ where
 
     if isStructure (← getEnv) n then
       if ← analyzeStructure n then
-        PreProcessM.markInterestingStructure n
+        TypeAnalysisM.markInterestingStructure n
         return true
       else
-        PreProcessM.markUninterestingConst n
+        TypeAnalysisM.markUninterestingConst n
         return false
     else if ← isEnumType n then
-      PreProcessM.markInterestingEnum n
+      TypeAnalysisM.markInterestingEnum n
       return true
     else if let some kind ← isSupportedMatch n then
-      PreProcessM.markInterestingMatcher n kind
+      TypeAnalysisM.markInterestingMatcher n kind
       return false
     else
-      PreProcessM.markUninterestingConst n
+      TypeAnalysisM.markUninterestingConst n
       return false
 
   /--
   Returns true if the structure is appropriate for case splitting and contains fields of interest.
   -/
-  analyzeStructure (n : Name) : PreProcessM Bool := do
+  analyzeStructure (n : Name) : TypeAnalysisM Bool := do
     let constInfo ← getConstInfoInduct n
     if constInfo.isRec then
       return false
@@ -203,7 +203,7 @@ where
         return state || (← typeCasesRelevant (← arg.fvarId!.getType))
     return interesting
 
-  typeCasesRelevant (expr : Expr) : PreProcessM Bool := do
+  typeCasesRelevant (expr : Expr) : TypeAnalysisM Bool := do
     let some const := expr.getAppFn.constName? | return false
     analyzeConst const
 

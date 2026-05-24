@@ -23,14 +23,14 @@ open Lean.Meta
 /--
 Responsible for applying the Bitwuzla style rewrite rules.
 -/
-def rewriteRulesPass : Pass where
+def rewriteRulesPass : PreProcessPass where
   name := `rewriteRules
   run' goal := do
     let bvThms ← bvNormalizeExt.getTheorems
     let bvSimprocs ← bvNormalizeSimprocExt.getSimprocs
     let sevalThms ← getSEvalTheorems
     let sevalSimprocs ← Simp.getSEvalSimprocs
-    let cfg ← PreProcessM.getConfig
+    let cfg ← ConfigT.getConfig
 
     let simpCtx ← Simp.mkContext
       (config := {

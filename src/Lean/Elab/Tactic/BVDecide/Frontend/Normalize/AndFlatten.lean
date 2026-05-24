@@ -36,7 +36,7 @@ Flatten out ands. That is look for hypotheses of the form `h : (x && y) = true` 
 with `h.left : x = true` and `h.right : y = true`. This can enable more fine grained substitutions
 in embedded constraint substitution.
 -/
-partial def andFlatteningPass : Pass where
+partial def andFlatteningPass : PreProcessPass where
   name := `andFlattening
   run' goal := do
     let (_, { hypsToDelete, hypsToAdd, .. }) ← processGoal goal |>.run {}

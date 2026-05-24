@@ -36,10 +36,10 @@ Add simp lemmas that we want to apply to structures that we find interesting to 
 `lemmas`.
 -/
 def addStructureSimpLemmas (simprocs : Simprocs) (lemmas : SimpTheoremsArray) :
-    PreProcessM (Simprocs × SimpTheoremsArray) := do
+    TypeAnalysisM (Simprocs × SimpTheoremsArray) := do
   let mut simprocs := simprocs
   let mut lemmas := lemmas
-  let interesting := (← PreProcessM.getTypeAnalysis).interestingStructures
+  let interesting := (← TypeAnalysisM.getTypeAnalysis).interestingStructures
   let env ← getEnv
   for const in interesting do
     let constInfo ← getConstInfoInduct const
@@ -60,10 +60,10 @@ def addStructureSimpLemmas (simprocs : Simprocs) (lemmas : SimpTheoremsArray) :
       simprocs := simprocs.addCore path ``applyCondSimproc false (.inl applyCondSimproc)
   return (simprocs, lemmas)
 
-partial def structuresPass : Pass where
+partial def structuresPass : TypeAnalysisPass where
   name := `structures
   run' goal := do
-    let interesting := (← PreProcessM.getTypeAnalysis).interestingStructures
+    let interesting := (← TypeAnalysisM.getTypeAnalysis).interestingStructures
     if interesting.isEmpty then return goal
     let goals ← goal.casesRec fun decl => do
       if decl.isLet || decl.isImplementationDetail then
@@ -76,13 +76,13 @@ partial def structuresPass : Pass where
     | [goal] => postprocess goal
     | _ => throwError "structures preprocessor generated more than 1 goal"
 where
-  postprocess (goal : MVarId) : PreProcessM (Option MVarId) := do
+  postprocess (goal : MVarId) : TypeAnalysisM (Option MVarId) := do
     goal.withContext do
       let mut simprocs : Simprocs := {}
       let mut relevantLemmas : SimpTheoremsArray := #[]
       (simprocs, relevantLemmas) ← addStructureSimpLemmas simprocs relevantLemmas
       relevantLemmas ← addDefaultTypeAnalysisLemmas relevantLemmas
-      let cfg ← PreProcessM.getConfig
+      let cfg ← ConfigT.getConfig
       let simpCtx ← Simp.mkContext
         (config := {
           failIfUnchanged := false,

@@ -405,11 +405,11 @@ private structure PostProcessState where
   -/
   seen : Std.HashSet Expr := {}
 
-partial def enumsPass : Pass where
+partial def enumsPass : TypeAnalysisPass where
   name := `enums
   run' goal :=
     goal.withContext do
-      let analysis ← PreProcessM.getTypeAnalysis
+      let analysis ← TypeAnalysisM.getTypeAnalysis
       let interestingEnums := analysis.interestingEnums
       -- invariant: if there is no interesting enums there also can't be interesting matchers
       if interestingEnums.isEmpty then return goal
@@ -437,7 +437,7 @@ partial def enumsPass : Pass where
       -- Desugaring matches could have potentially revealed new opportunities to do stuff with
       -- structures. Thus we must also re run lemmas that handle structure projections in the
       -- presence of control flow.
-      let cfg ← PreProcessM.getConfig
+      let cfg ← ConfigT.getConfig
       relevantLemmas ← addDefaultTypeAnalysisLemmas relevantLemmas
       if cfg.structures then
         (simprocs, relevantLemmas) ← addStructureSimpLemmas simprocs relevantLemmas

@@ -7,6 +7,14 @@ module
 
 prelude
 public import Lean.Elab.Tactic.BVDecide.Frontend.Normalize.Basic
+import Lean.Meta.Sym.Simp.SimpM
+import Lean.Meta.Sym.Simp.ControlFlow
+import Lean.Meta.Sym.Simp.Forall
+import Lean.Meta.Sym.Simp.EvalGround
+import Lean.Meta.Sym.Simp.Simproc
+import Lean.Elab.Tactic.BVDecide.Frontend.Normalize.Simproc
+import Lean.Meta.Sym.Simp.Rewrite
+import Init.Omega
 
 public section
 
@@ -26,40 +34,53 @@ Responsible for applying the Bitwuzla style rewrite rules.
 def rewriteRulesPass : PreProcessPass where
   name := `rewriteRules
   run' goal := do
-    let bvThms ← bvNormalizeExt.getTheorems
-    let bvSimprocs ← bvNormalizeSimprocExt.getSimprocs
-    let sevalThms ← getSEvalTheorems
-    let sevalSimprocs ← Simp.getSEvalSimprocs
-    let cfg ← ConfigT.getConfig
-
-    let simpCtx ← Simp.mkContext
-      (config := {
-        failIfUnchanged := false,
-        zetaDelta := true,
-        implicitDefEqProofs := false, -- leanprover/lean4/pull/7509
-        maxSteps := cfg.maxSteps,
-        instances := true
-      })
-      (simpTheorems := #[bvThms, sevalThms])
-      (congrTheorems := (← getSimpCongrTheorems))
-
     let hyps ← getHyps goal
     if hyps.isEmpty then
       return goal
     else
-      let ⟨result?, _⟩ ← simpGoal goal
-        (ctx := simpCtx)
-        (simprocs := #[bvSimprocs, sevalSimprocs])
-        (fvarIdsToSimp := hyps)
+      let cfg ← ConfigT.getConfig
+      let config := {
+        maxSteps := cfg.maxSteps
+      }
+      let bvNormalizeThms := (← bvNormalizeExt.getTheorems).rewrite
+      let methods := {
+        pre := Sym.Simp.simpControl >> Sym.Simp.simpArrowTelescope
+        post := Sym.Simp.evalGround >> rewriteSimproc >> bvNormalizeThms
+      }
+      let (unmodifiedTargets, newTargets) ← Sym.Simp.SimpM.run' (methods := methods) (config := config) do
+        let mut newTargets : Array Hypothesis := #[]
+        let mut unmodifiedTargets := #[]
+        for hyp in hyps do
+          let e ← hyp.getType
+          match ← Sym.Simp.simp e with
+          | .step e' proof .. =>
+            newTargets := newTargets.push {
+              userName := ← hyp.getUserName,
+              type := e'
+              value := ← Sym.share <| mkApp4 (mkConst ``Eq.mp [0]) e e' proof (mkFVar hyp)
+            }
+            if e'.isConstOf ``False then
+              break
+          | .rfl .. => unmodifiedTargets := unmodifiedTargets.push hyp
 
-      let some (_, newGoal) := result? | return none
-      newGoal.withContext do
-        (← getPropHyps).forM PreProcessM.rewriteFinished
-      return newGoal
+        return (unmodifiedTargets, newTargets)
+
+      if h : newTargets.size = 0 then
+        return goal
+      else if newTargets.back.type.isConstOf ``False then
+        let (#[falseFVar], goal) ← goal.assertHypotheses #[newTargets.back] | unreachable!
+        goal.assign (mkFVar falseFVar)
+        return none
+      else
+        let (newFVars, goal) ← goal.assertHypotheses newTargets
+        goal.withContext do
+          PreProcessM.modifyRelevantFVars fun _ => unmodifiedTargets ++ newFVars
+          newFVars.forM PreProcessM.rewriteFinished
+          return goal
 where
   getHyps (goal : MVarId) : PreProcessM (Array FVarId) := do
     goal.withContext do
-      let hyps ← getPropHyps
+      let hyps ← PreProcessM.getRelevantFVars
       let filter hyp := do
         return !(← PreProcessM.checkRewritten hyp)
       hyps.filterM filter

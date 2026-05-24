@@ -131,6 +131,19 @@ abbrev evalBinBitVec' (op : {n : Nat} → BitVec n → BitVec n → BitVec n) (�
   else
     return .rfl
 
+abbrev evalBinNatBitVec' (op : {n : Nat} → BitVec n → Nat → BitVec n) (αExpr : Expr) (a b : Expr) : SimpM Result := do
+  let some a := getBitVecValue? a | return .rfl
+  let some b := getNatValue? b | return .rfl
+  let e ← share <| toExpr (op a.val b)
+  return .step e (mkApp2 (mkConst ``Eq.refl [1]) αExpr e) (done := true)
+
+abbrev evalGetBitBitVec (op : {n : Nat} → BitVec n → Nat → Bool) (a b : Expr) : SimpM Result := do
+  let some a := getBitVecValue? a | return .rfl
+  let some b := getNatValue? b | return .rfl
+  let r := op a.val b
+  let e ← share (toExpr r)
+  return .step e (if r then eagerReflBoolTrue else eagerReflBoolFalse) (done := true)
+
 abbrev evalPowNat [ToExpr α] (maxExponent : Nat) (toValue? : Expr → Option α) (op : α → Nat → α) (a b : Expr) : SimpM Result := do
   let some a := toValue? a | return .rfl
   let some b := getNatValue? b | return .rfl
@@ -338,6 +351,21 @@ def evalIntBDiv (a b : Expr) : SimpM Result := do
   let some b := getNatValue? b | return .rfl
   let e ← share <| toExpr (Int.bdiv a b)
   return .step e (mkApp2 (mkConst ``Eq.refl [1]) Int.mkType e) (done := true)
+
+def evalBitVecToNat (a : Expr) : SimpM Result := do
+  let some a := getBitVecValue? a | return .rfl
+  let e ← share <| toExpr a.val.toNat
+  return .step e (mkApp2 (mkConst ``Eq.refl [1]) Nat.mkType e) (done := true)
+
+def evalBitVecToInt (a : Expr) : SimpM Result := do
+  let some a := getBitVecValue? a | return .rfl
+  let e ← share <| toExpr a.val.toInt
+  return .step e (mkApp2 (mkConst ``Eq.refl [1]) Int.mkType e) (done := true)
+
+def evalBitVecAllOnes (nExpr : Expr) : SimpM Result := do
+  let some n := getNatValue? nExpr | return .rfl
+  let e ← share <| toExpr (BitVec.allOnes n)
+  return .step e (mkApp2 (mkConst ``Eq.refl [1]) (mkApp (mkConst ``BitVec) nExpr) e) (done := true)
 
 abbrev evalBinPred (toValue? : Expr → Option α) (trueThm falseThm : Expr) (op : α → α → Bool) (a b : Expr) : SimpM Result := do
   let some va := toValue? a | return .rfl
@@ -573,6 +601,30 @@ public def evalGround (config : EvalStepConfig := {}) : Simproc := fun e =>
   | Int.tmod a b => evalBinInt Int.tmod a b
   | Int.fmod a b => evalBinInt Int.fmod a b
   | Int.bmod a b => evalIntBMod a b
+  | BitVec.abs n a => evalUnaryBitVec' BitVec.abs (mkApp (mkConst ``BitVec) n) a
+  | BitVec.clz n a => evalUnaryBitVec' BitVec.clz (mkApp (mkConst ``BitVec) n) a
+  | BitVec.cpop n a => evalUnaryBitVec' BitVec.cpop (mkApp (mkConst ``BitVec) n) a
+  | BitVec.umod n a b => evalBinBitVec' BitVec.umod (mkApp (mkConst ``BitVec) n) a b
+  | BitVec.udiv n a b => evalBinBitVec' BitVec.udiv (mkApp (mkConst ``BitVec) n) a b
+  | BitVec.smtUDiv n a b => evalBinBitVec' BitVec.smtUDiv (mkApp (mkConst ``BitVec) n) a b
+  | BitVec.smod n a b => evalBinBitVec' BitVec.smod (mkApp (mkConst ``BitVec) n) a b
+  | BitVec.srem n a b => evalBinBitVec' BitVec.srem (mkApp (mkConst ``BitVec) n) a b
+  | BitVec.sdiv n a b => evalBinBitVec' BitVec.sdiv (mkApp (mkConst ``BitVec) n) a b
+  | BitVec.smtSDiv n a b => evalBinBitVec' BitVec.smtSDiv (mkApp (mkConst ``BitVec) n) a b
+  | BitVec.shiftLeft n a b => evalBinNatBitVec' BitVec.shiftLeft (mkApp (mkConst ``BitVec) n) a b
+  | BitVec.ushiftRight n a b => evalBinNatBitVec' BitVec.ushiftRight (mkApp (mkConst ``BitVec) n) a b
+  | BitVec.sshiftRight n a b => evalBinNatBitVec' BitVec.sshiftRight (mkApp (mkConst ``BitVec) n) a b
+  | BitVec.rotateLeft n a b => evalBinNatBitVec' BitVec.rotateLeft (mkApp (mkConst ``BitVec) n) a b
+  | BitVec.rotateRight n a b => evalBinNatBitVec' BitVec.rotateRight (mkApp (mkConst ``BitVec) n) a b
+  | BitVec.ult _ a b => evalBinBoolPredBitVec BitVec.ult a b
+  | BitVec.ule _ a b => evalBinBoolPredBitVec BitVec.ule a b
+  | BitVec.slt _ a b => evalBinBoolPredBitVec BitVec.slt a b
+  | BitVec.sle _ a b => evalBinBoolPredBitVec BitVec.sle a b
+  | BitVec.getLsbD _ a b => evalGetBitBitVec BitVec.getLsbD a b
+  | BitVec.getMsbD _ a b => evalGetBitBitVec BitVec.getMsbD a b
+  | BitVec.toNat _ a => evalBitVecToNat a
+  | BitVec.toInt _ a => evalBitVecToInt a
+  | BitVec.allOnes n => evalBitVecAllOnes n
   | LE.le α _ a b => evalLE α a b
   | LT.lt α _ a b => evalLT α a b
   | Dvd.dvd α _ a b => evalDvd α a b

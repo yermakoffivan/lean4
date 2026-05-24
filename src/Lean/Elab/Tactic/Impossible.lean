@@ -44,8 +44,8 @@ The construction:
   binders, yielding `∀ ms, ¬(∀ xs, body)`. The user can then `intro` each
   mvar witness and reason about the existing local context as a universal.
 
-Returns the negated type together with the user-friendly mvar names
-(`userName.eraseMacroScopes`, with a fallback to `x` for anonymous ones).
+Returns the negated type together with the abstracted mvars' user names
+(verbatim, scopes included).
 
 Universe metavariables in the *goal type itself* are rejected by the caller
 before this function runs; if they slipped through, `mkValueTypeClosure`
@@ -86,7 +86,7 @@ private def mkImpossibleNegType (mainGoal : MVarId) (goalType : Expr)
     mkForallFVars ms negBody
   let mvarNames ← r.exprArgs.mapM fun mvarExpr => do
     let .mvar mvarId := mvarExpr | return `x
-    let n := (← mvarId.getDecl).userName.eraseMacroScopes
+    let n := (← mvarId.getDecl).userName
     return if n.isAnonymous then `x else n
   return (negType, mvarNames)
 
@@ -121,9 +121,9 @@ def evalImpossible : Tactic := fun stx => do
   let negMVarId :=
     (← mkFreshExprMVarAt {} {} negType (kind := .syntheticOpaque)).mvarId!
   -- Intro the abstracted-mvar binders so the user's tactic sees them as
-  -- local hypotheses rather than as a leading `∀`. We pass cleaned-up
-  -- names (with hygiene scopes erased) so the introduced fvars are
-  -- accessible to the user by name.
+  -- local hypotheses rather than as a leading `∀`. The macro-scoped mvar
+  -- names are used as-is; the user can `expose_names` if they need to
+  -- refer to the introduced fvars by surface name.
   let (_, innerMVarId) ← negMVarId.introN mvarNames.size mvarNames.toList
   try
     setGoals [innerMVarId]

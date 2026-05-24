@@ -27,6 +27,12 @@ public def zeta (s : FVarIdSet) : DSimproc := fun e => do
   let some value := decl.value? | return .rfl
   return .step value
 
+public def zetaAll : DSimproc := fun e => do
+  let .fvar fvarId := e | return .rfl
+  let decl ← fvarId.getDecl
+  let some value := decl.value? | return .rfl
+  return .step value
+
 public def dsimpProj : DSimproc := fun e => do
   let f := e.getAppFn
   let .const declName _ := f | return .rfl

@@ -88,7 +88,7 @@ def evalImpossible : Tactic := fun stx => do
     let proof ← instantiateMVars (mkMVar negMVarId)
     let r ← Closure.mkValueTypeClosure (← instantiateMVars negType) proof
       (zetaDelta := false)
-    let auxName ← mkAuxDeclName (kind := `_proof)
+    let auxName ← mkAuxDeclName (kind := `_impossible)
     withOptions (Elab.async.set · false) do
       addDecl <| .thmDecl
         { name := auxName, levelParams := r.levelParams.toList,

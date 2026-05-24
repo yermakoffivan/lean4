@@ -8,7 +8,9 @@ module
 prelude
 public import Lean.Elab.Tactic.Simp
 public import Std.Tactic.BVDecide.Syntax
+public import Lean.Meta.Sym.Simp.Theorems
 import Lean.Elab.ConfigEval
+import Lean.Meta.Sym.Simp.Attr
 
 public section
 
@@ -39,39 +41,11 @@ register_builtin_option sat.solver : String := {
 
 declare_config_elab elabBVDecideConfig Lean.Elab.Tactic.BVDecide.Frontend.BVDecideConfig
 
-builtin_initialize bvNormalizeExt : Meta.SimpExtension ←
-  Meta.registerSimpAttr `bv_normalize "simp theorems used by bv_normalize"
+builtin_initialize bvNormalizeExt : Meta.Sym.Simp.SymSimpExtension ←
+  Meta.Sym.Simp.registerSymSimpAttr `bv_normalize "simp theorems used by bv_normalize"
 
 builtin_initialize intToBitVecExt : Meta.SimpExtension ←
   Meta.registerSimpAttr `int_toBitVec "simp theorems used to convert UIntX/IntX statements into BitVec ones"
-
-/-- Builtin `bv_normalize` simprocs. -/
-builtin_initialize builtinBVNormalizeSimprocsRef : IO.Ref Meta.Simp.Simprocs ← IO.mkRef {}
-
-builtin_initialize bvNormalizeSimprocExt : Meta.Simp.SimprocExtension ←
-  Meta.Simp.registerSimprocAttr `bv_normalize_proc "simprocs used by bv_normalize" (some builtinBVNormalizeSimprocsRef)
-
-private def addBuiltin (declName : Name) (stx : Syntax) (addDeclName : Name) : AttrM Unit := do
-  let post := if stx[1].isNone then true else stx[1][0].getKind == ``Lean.Parser.Tactic.simpPost
-  let procExpr ← match (← getConstInfo declName).type with
-    | .const ``Simproc _  => pure <| mkApp3 (mkConst ``Sum.inl [0, 0]) (mkConst ``Simproc) (mkConst ``DSimproc) (mkConst declName)
-    | _ => throwError "unexpected type at bv_normalize simproc"
-  let val := mkAppN (mkConst addDeclName) #[toExpr declName, toExpr post, procExpr]
-  let initDeclName ← mkFreshUserName (declName ++ `declare)
-  declareBuiltin initDeclName val
-
-def addBVNormalizeProcBuiltinAttr (declName : Name) (post : Bool) (proc : Sum Simproc DSimproc) : IO Unit :=
-  addSimprocBuiltinAttrCore builtinBVNormalizeSimprocsRef declName post proc
-
-builtin_initialize
-  registerBuiltinAttribute {
-    ref             := by exact decl_name%
-    name            := `bvNormalizeProcBuiltinAttr
-    descr           := "Builtin bv_normalize simproc"
-    applicationTime := AttributeApplicationTime.afterCompilation
-    erase           := fun _ => throwError "Not implemented yet, [-builtin_bv_normalize_proc]"
-    add             := fun declName stx _ => addBuiltin declName stx ``addBVNormalizeProcBuiltinAttr
-  }
 
 end Frontend
 namespace Lean.Elab.Tactic.BVDecide

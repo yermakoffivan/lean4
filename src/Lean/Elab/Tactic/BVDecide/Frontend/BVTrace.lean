@@ -8,8 +8,6 @@ module
 prelude
 public import Lean.Elab.Tactic.BVDecide.Frontend.BVCheck
 
-public section
-
 /-!
 This module contains the implementation of `bv_decide?`.
 -/

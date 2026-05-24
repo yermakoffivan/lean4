@@ -7,6 +7,8 @@ module
 
 prelude
 public import Lean.Elab.Tactic.BVDecide.Frontend.Attr
+public import Lean.Meta.Sym.SymM
+import Lean.Meta.Sym.Util
 
 public section
 
@@ -119,8 +121,10 @@ structure PreProcessState where
   don't need to be processed again when we visit the next time.
   -/
   acNfCache : Std.HashSet FVarId := {}
+  relevantFVars : Array FVarId
+  goal : MVarId
 
-abbrev PreProcessM := ConfigT <| StateRefT PreProcessState MetaM
+abbrev PreProcessM := ConfigT <| StateRefT PreProcessState Sym.SymM
 
 namespace PreProcessM
 
@@ -141,12 +145,24 @@ def acNfFinished (fvar : FVarId) : PreProcessM Unit := do
   modify (fun s => { s with acNfCache := s.acNfCache.insert fvar })
 
 @[inline]
-def run (cfg : BVDecideConfig) (goal : MVarId) (x : PreProcessM α) : MetaM α := do
+def getRelevantFVars : PreProcessM (Array FVarId) := do
+  return (← get).relevantFVars
+
+@[inline]
+def modifyRelevantFVars (f : Array FVarId → Array FVarId) : PreProcessM Unit := do
+  modify fun s => { s with relevantFVars := f s.relevantFVars }
+
+def run (cfg : BVDecideConfig) (goal : MVarId) (x : PreProcessM α) :
+    Sym.SymM (α × Array FVarId) := do
+  let goal ← Sym.preprocessMVar goal
   let hyps ← goal.withContext do getPropHyps
-  ReaderT.run x cfg |>.run' {
+  let (a, s) ← ReaderT.run x cfg |>.run {
     rewriteCache := Std.HashSet.emptyWithCapacity hyps.size,
     acNfCache := Std.HashSet.emptyWithCapacity hyps.size,
+    relevantFVars := hyps
+    goal,
   }
+  return (a, s.relevantFVars)
 
 end PreProcessM
 
@@ -182,19 +198,20 @@ def run (pass : PreProcessPass) (goal : MVarId) : PreProcessM (Option MVarId) :=
 Repeatedly run a list of `Pass` until they either close the goal or an iteration doesn't change
 the goal anymore.
 -/
-partial def fixpointPipeline (passes : List PreProcessPass) (goal : MVarId) : PreProcessM (Option MVarId) := do
+partial def fixpointPipeline (passes : List PreProcessPass) : PreProcessM (Option MVarId) := do
   checkSystem "bv_decide"
-  let mut newGoal := goal
+  let origGoal := (← get).goal
   for pass in passes do
-    if let some nextGoal ← pass.run newGoal then
-      newGoal := nextGoal
+    if let some nextGoal ← pass.run (← get).goal then
+      modify fun s => { s with goal := nextGoal }
     else
       trace[Meta.Tactic.bv] "Fixpoint iteration solved the goal"
       return none
 
-  if goal != newGoal then
+  let newGoal := (← get).goal
+  if origGoal != newGoal then
     trace[Meta.Tactic.bv] m!"Rerunning pipeline on:\n{newGoal}"
-    fixpointPipeline passes newGoal
+    fixpointPipeline passes
   else
     trace[Meta.Tactic.bv] "Pipeline reached a fixpoint"
     return newGoal

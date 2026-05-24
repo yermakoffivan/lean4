@@ -35,24 +35,25 @@ open Lean.Meta
 
 def passPipeline : TypeAnalysisM (List PreProcessPass) := do
   let mut passPipeline := [rewriteRulesPass]
-  let cfg ← ConfigT.getConfig
+  --let cfg ← ConfigT.getConfig
 
-  if cfg.acNf then
-    passPipeline := passPipeline ++ [bvAcNormalizePass]
+  -- TODO
+  --if cfg.acNf then
+  --  passPipeline := passPipeline ++ [bvAcNormalizePass]
 
-  if cfg.embeddedConstraintSubst && cfg.andFlattening then
-    passPipeline := passPipeline ++ [andFlatteningPass]
+  --if cfg.embeddedConstraintSubst && cfg.andFlattening then
+  --  passPipeline := passPipeline ++ [andFlatteningPass]
 
-  if cfg.embeddedConstraintSubst then
-    passPipeline := passPipeline ++ [embeddedConstraintPass]
+  --if cfg.embeddedConstraintSubst then
+  --  passPipeline := passPipeline ++ [embeddedConstraintPass]
 
   return passPipeline
 
-def bvNormalize (g : MVarId) (cfg : BVDecideConfig) : MetaM (Option MVarId) := do
+def bvNormalize (g : MVarId) (cfg : BVDecideConfig) : MetaM (Option (MVarId × Array FVarId)) := do
   withTraceNode `Meta.Tactic.bv (fun _ => return "Preprocessing goal") do
     (go g).run cfg
 where
-  go (g : MVarId) : TypeAnalysisM (Option MVarId) := do
+  go (g : MVarId) : TypeAnalysisM (Option (MVarId × Array FVarId)) := do
     let some g' ← g.falseOrByContra | return none
     let mut g := g'
 
@@ -93,15 +94,21 @@ where
 
     trace[Meta.Tactic.bv] m!"Running fixpoint pipeline on:\n{g}"
     let pipeline ← passPipeline
-    let some g' ← (PreProcessM.run (← ConfigT.getConfig) g (PreProcessPass.fixpointPipeline pipeline g)) | return none
+    let cfg ← ConfigT.getConfig
+    let res ← Sym.SymM.run <| PreProcessM.run cfg g do
+      PreProcessPass.fixpointPipeline pipeline
+
+    let (some g', relevantFVars) := res | return none
+    return some (g', relevantFVars)
     /-
     Run short circuiting once post fixpoint, as it increases the size of terms with
     the aim of exposing potential short-circuit reasoning to the solver.
     -/
-    if cfg.shortCircuit then
-      shortCircuitPass |>.run g'
-    else
-      return g'
+    -- TODO
+    --if cfg.shortCircuit then
+    --  shortCircuitPass |>.run g'
+    --else
+    --  return g'
 
 @[builtin_tactic Lean.Parser.Tactic.bvNormalize]
 def evalBVNormalize : Tactic := fun
@@ -109,7 +116,9 @@ def evalBVNormalize : Tactic := fun
     let cfg ← elabBVDecideConfig cfg
     let g ← getMainGoal
     match ← bvNormalize g cfg with
-    | some newGoal => replaceMainGoal [newGoal]
+    | some (newGoal, _) =>
+      -- TODO: clear irrelevant prop fvars
+      replaceMainGoal [newGoal]
     | none => replaceMainGoal []
   | _ => throwUnsupportedSyntax
 

@@ -352,8 +352,11 @@ def lratBitblaster (goal : MVarId) (ctx : TacticContext) (reflectionResult : Ref
     let equations := reconstructCounterExample map assignment aigSize atomsAssignment
     return .error { goal, unusedHypotheses := reflectionResult.unusedHypotheses, equations }
 
-def reflectBV (g : MVarId) : M ReflectionResult := g.withContext do
-  let hyps ← getPropHyps
+def reflectBV (g : MVarId) (hyps : Option (Array FVarId)) : M ReflectionResult := g.withContext do
+  let hyps ←
+    match hyps with
+    | some hyps => pure hyps
+    | none => getPropHyps
   let mut sats := #[]
   let mut unusedHypotheses := {}
   for hyp in hyps do
@@ -379,12 +382,12 @@ def reflectBV (g : MVarId) : M ReflectionResult := g.withContext do
       expr := sat.expr
     }
 
-def closeWithBVReflection (g : MVarId) (unsatProver : UnsatProver) :
+def closeWithBVReflection (g : MVarId) (unsatProver : UnsatProver) (hyps : Option (Array FVarId)) :
     MetaM (Except CounterExample LratCert) := M.run do
   g.withContext do
     let reflectionResult ←
       withTraceNode `Meta.Tactic.bv (fun _ => return "Reflecting goal into BVLogicalExpr") do
-        reflectBV g
+        reflectBV g hyps
     trace[Meta.Tactic.bv] "Reflected bv logical expression: {reflectionResult.bvExpr}"
 
     let flipper := (fun (expr, {width, atomNumber, synthetic}) => (atomNumber, (width, expr, synthetic)))
@@ -397,11 +400,12 @@ def closeWithBVReflection (g : MVarId) (unsatProver : UnsatProver) :
       return .ok cert
     | .error counterExample => return .error counterExample
 
-def bvUnsat (g : MVarId) (ctx : TacticContext) : MetaM (Except CounterExample LratCert) := M.run do
+def bvUnsat (g : MVarId) (ctx : TacticContext) (hyps : Option (Array FVarId)) :
+    MetaM (Except CounterExample LratCert) := M.run do
   let unsatProver : UnsatProver := fun g reflectionResult atomsAssignment => do
     withTraceNode `Meta.Tactic.bv (fun _ => return "Preparing LRAT reflection term") do
       lratBitblaster g ctx reflectionResult atomsAssignment
-  closeWithBVReflection g unsatProver
+  closeWithBVReflection g unsatProver hyps
 
 /--
 The result of calling `bv_decide`.
@@ -418,9 +422,8 @@ Try to close `g` using a bitblaster. Return either a `CounterExample` if one is 
 if `g` is proven.
 -/
 def bvDecide' (g : MVarId) (ctx : TacticContext) : MetaM (Except CounterExample Result) := do
-  let g? ← Normalize.bvNormalize g ctx.config
-  let some g := g? | return .ok ⟨none⟩
-  match ← bvUnsat g ctx with
+  let some (g, hyps) ← Normalize.bvNormalize g ctx.config | return .ok ⟨none⟩
+  match ← bvUnsat g ctx hyps with
   | .ok lratCert => return .ok ⟨some lratCert⟩
   | .error counterExample => return .error counterExample
 

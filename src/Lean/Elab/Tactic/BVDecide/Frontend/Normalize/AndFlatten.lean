@@ -20,16 +20,16 @@ hypotheses of the form `h : x && y = true` and splitting them into `h1 : x = tru
 namespace Lean.Elab.Tactic.BVDecide
 namespace Frontend.Normalize
 
-open Lean.Meta
+open Lean.Meta Sym
 
 structure AndHyp where
   hyp : Hypothesis
   original : FVarId
 
 structure AndFlattenState where
-  hypsToDelete : Array FVarId := #[]
+  hypsToPreserve : Array FVarId := #[]
   hypsToAdd : Array AndHyp := #[]
-  cache : Std.HashSet Expr := {}
+  cache : Std.HashSet ExprPtr := {}
 
 /--
 Flatten out ands. That is look for hypotheses of the form `h : (x && y) = true` and replace them
@@ -39,7 +39,7 @@ in embedded constraint substitution.
 partial def andFlatteningPass : PreProcessPass where
   name := `andFlattening
   run' goal := do
-    let (_, { hypsToDelete, hypsToAdd, .. }) ← processGoal goal |>.run {}
+    let (_, { hypsToPreserve, hypsToAdd, .. }) ← processGoal goal |>.run {}
     if hypsToAdd.isEmpty then
       return goal
     else
@@ -52,33 +52,34 @@ partial def andFlatteningPass : PreProcessPass where
         if ← PreProcessM.checkAcNf orig then
           PreProcessM.acNfFinished new
 
-      -- Given that we collected the hypotheses in the correct order above the invariant is given
-      let goal ← goal.tryClearMany hypsToDelete
+      PreProcessM.modifyRelevantFVars fun _ => hypsToPreserve ++ newFVars
       return goal
 where
-  processGoal (goal : MVarId) : StateRefT AndFlattenState MetaM Unit := do
+  processGoal (goal : MVarId) : StateRefT AndFlattenState PreProcessM Unit := do
     goal.withContext do
-      let hyps ← getPropHyps
+      let hyps ← PreProcessM.getRelevantFVars
+      trace[Meta.Tactic.bv] m!"step1: {hyps.map (mkFVar)}"
       hyps.forM processFVar
+      trace[Meta.Tactic.bv] "step2"
 
-  processFVar (fvar : FVarId) : StateRefT AndFlattenState MetaM Unit := do
+  processFVar (fvar : FVarId) : StateRefT AndFlattenState PreProcessM Unit := do
     let type ← fvar.getType
-    if (← get).cache.contains type then
-      modify (fun s => { s with hypsToDelete := s.hypsToDelete.push fvar })
+    if (← get).cache.contains ⟨type⟩ then
+      return ()
     else
       let hyp := {
         hyp := {
           userName := (← fvar.getDecl).userName
           type := type
-          value := mkFVar fvar
+          value := ← share <| mkFVar fvar
         },
         original := fvar
       }
-      let some (lhs, rhs) ← trySplit hyp | return ()
-      modify (fun s => { s with hypsToDelete := s.hypsToDelete.push fvar })
-      splitAnds fvar [lhs, rhs]
+      match ← trySplit hyp with
+      | some (lhs, rhs) => splitAnds fvar [lhs, rhs]
+      | none => modify fun s => { s with hypsToPreserve := s.hypsToPreserve.push fvar }
 
-  splitAnds (fvar : FVarId)  (worklist : List AndHyp) : StateRefT AndFlattenState MetaM Unit := do
+  splitAnds (fvar : FVarId) (worklist : List AndHyp) : StateRefT AndFlattenState PreProcessM Unit := do
     match worklist with
     | [] => return ()
     | hyp :: worklist =>
@@ -88,27 +89,28 @@ where
         modify (fun s => { s with hypsToAdd := s.hypsToAdd.push hyp })
         splitAnds fvar worklist
 
-  trySplit (hyp : AndHyp) :
-      StateRefT AndFlattenState MetaM (Option (AndHyp × AndHyp)) := do
+  trySplit (hyp : AndHyp) : StateRefT AndFlattenState PreProcessM (Option (AndHyp × AndHyp)) := do
     let typ := hyp.hyp.type
-    if (← get).cache.contains typ then
+    if (← get).cache.contains ⟨typ⟩ then
       return none
     else
-      modify (fun s => { s with cache := s.cache.insert typ })
+      modify (fun s => { s with cache := s.cache.insert ⟨typ⟩ })
       let_expr Eq _ eqLhs eqRhs := typ | return none
       let_expr Bool.and lhs rhs := eqLhs | return none
       let_expr Bool.true := eqRhs | return none
-      let mkEqTrue (lhs : Expr) : Expr :=
-        mkApp3 (mkConst ``Eq [1]) (mkConst ``Bool) lhs (mkConst ``Bool.true)
+      let mkEqTrue (lhs : Expr) :=
+        share <| mkApp3 (mkConst ``Eq [1]) (mkConst ``Bool) lhs (mkConst ``Bool.true)
       let leftHyp : Hypothesis := {
         userName := hyp.hyp.userName,
-        type := mkEqTrue lhs,
-        value := mkApp3 (mkConst ``Std.Tactic.BVDecide.Normalize.Bool.and_left) lhs rhs hyp.hyp.value
+        type := ← mkEqTrue lhs,
+        value := ← share <|
+          mkApp3 (mkConst ``Std.Tactic.BVDecide.Normalize.Bool.and_left) lhs rhs hyp.hyp.value
       }
       let rightHyp : Hypothesis := {
         userName := hyp.hyp.userName,
-        type := mkEqTrue rhs,
-        value := mkApp3 (mkConst ``Std.Tactic.BVDecide.Normalize.Bool.and_right) lhs rhs hyp.hyp.value
+        type := ← mkEqTrue rhs,
+        value := ← share <|
+          mkApp3 (mkConst ``Std.Tactic.BVDecide.Normalize.Bool.and_right) lhs rhs hyp.hyp.value
       }
       return some (⟨leftHyp, hyp.original⟩, ⟨rightHyp, hyp.original⟩)
 

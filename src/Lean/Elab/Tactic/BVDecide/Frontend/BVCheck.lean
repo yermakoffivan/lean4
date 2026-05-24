@@ -9,8 +9,6 @@ prelude
 public import Lean.Elab.Tactic.BVDecide.Frontend.BVDecide
 public import Lean.Meta.Tactic.TryThis
 
-public section
-
 /-!
 This modules provides the implementation of `bv_check`.
 -/
@@ -24,14 +22,14 @@ open Std.Tactic.BVDecide.Reflect
 /--
 Get the directory that contains the Lean file which is currently being elaborated.
 -/
-def getSrcDir : TermElabM System.FilePath := do
+public def getSrcDir : TermElabM System.FilePath := do
   let ctx ← readThe Lean.Core.Context
   let srcPath := System.FilePath.mk ctx.fileName
   let some srcDir := srcPath.parent
     | throwError "cannot compute parent directory of `{srcPath}`"
   return srcDir
 
-def mkContext (lratPath : System.FilePath) (cfg : BVDecideConfig) : TermElabM TacticContext := do
+public def mkContext (lratPath : System.FilePath) (cfg : BVDecideConfig) : TermElabM TacticContext := do
   let lratPath := (← getSrcDir) / lratPath
   TacticContext.new lratPath cfg
 
@@ -43,13 +41,12 @@ def lratChecker (ctx : TacticContext) (reflectionResult : ReflectionResult) : Me
   cert.toReflectionProof ctx reflectionResult
 
 @[inherit_doc Lean.Parser.Tactic.bvCheck]
-def bvCheck (g : MVarId) (ctx : TacticContext) : MetaM Unit := do
+def bvCheck (g : MVarId) (ctx : TacticContext) (hyps : Array FVarId) : MetaM Unit := do
   let unsatProver : UnsatProver := fun _ reflectionResult _ => do
     withTraceNode `Meta.Tactic.sat (fun _ => return "Preparing LRAT reflection term") do
       let proof ← lratChecker ctx reflectionResult
       return .ok ⟨proof, ""⟩
-  let _ ← closeWithBVReflection g unsatProver
-  return ()
+  let _ ← closeWithBVReflection g unsatProver hyps
 
 
 open Lean.Meta.Tactic in
@@ -61,7 +58,7 @@ def evalBvCheck : Tactic := fun
     liftMetaFinishingTactic fun g => do
       let g'? ← Normalize.bvNormalize g cfg
       match g'? with
-      | some g' => bvCheck g' ctx
+      | some (g', hyps) => bvCheck g' ctx hyps
       | none =>
         let bvNormalizeStx ← `(tactic| bv_normalize $cfgStx)
         logWarning m!"This goal can be closed by only applying bv_normalize, no need to keep the LRAT proof around."

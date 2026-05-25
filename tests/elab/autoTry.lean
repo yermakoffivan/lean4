@@ -1,68 +1,83 @@
 /-
 Tests for the `autoTry.*` post-elab hook options:
-  - `autoTry.onEmptyProof` -- run `try?` on *empty* `by` blocks; rendered as an *append*
-    (a strict subset of `autoTry.onUnsolvedGoal`).
-  - `autoTry.onUnsolvedGoal` -- run `try?` on each `by` block (incl. empty `by`) whose
-    sequence left exactly one unsolved goal; rendered as an *append* to the sequence.
+  - `autoTry.onEmptyProof` -- run `try?` on *empty* tactic-sequence containers; rendered
+    as an *append* (a strict subset of `autoTry.onUnsolvedGoal`).
+  - `autoTry.onUnsolvedGoal` -- run `try?` on each tactic-sequence container whose body
+    left exactly one unsolved goal; rendered as an *append* to the sequence.
   - `autoTry.onSorry` -- run `try?` on `sorry` tactics; rendered as a *replacement* of
     the `sorry`.
 
-The [apply] widget shows the bare tactic for readability; the actual edit text (separator
-+ tactic) is verified via `trace[autoTry]` in the dedicated section below.
-
-The linter skips candidates whose syntax was elaborated against multiple proof states
-(rhs of `<;>`, body of `repeat`/`iterate`, etc.) -- a single suggestion can't replay
-against multiple goals.
+Tests use opaque propositions `P`, `Q`, and a user-registered `@[try_suggestion]` that
+returns one deterministic suggestion per goal type. `debug.tactic.try.onlyUserSuggestions`
+disables the expensive built-in branches of `try?` (`simp` / `grind` / `exact?` / …) so
+the test output stays small and stable.
 -/
+import Lean
+import Lean.Elab.Tactic.Try
+open Lean Meta Elab Tactic
+
+opaque P : Prop
+axiom Pintro : P
+
+opaque Q : Prop
+axiom Qintro : Q
+
+opaque UnsolvableProp : Prop
+
+/-- Deterministic single-suggestion generator. Returns one tactic per recognised goal
+type; on `P` it prefers a local `h` of the right type, otherwise the introduction
+axiom. Goals it doesn't recognise (e.g. `UnsolvableProp`) get no suggestion. -/
+@[try_suggestion]
+def autoTryTestSuggestion (goal : MVarId) (_info : Try.Info) :
+    MetaM (Array (TSyntax `tactic)) := goal.withContext do
+  let ty := (← instantiateMVars (← goal.getType)).consumeMData
+  if ty.isConstOf ``P then
+    if (← getLCtx).findFromUserName? `h |>.isSome then
+      return #[← `(tactic| exact $(mkIdent `h))]
+    return #[← `(tactic| exact $(mkIdent ``Pintro))]
+  if ty.isConstOf ``Q then
+    return #[← `(tactic| exact $(mkIdent ``Qintro))]
+  return #[]
+
+set_option debug.tactic.try.onlyUserSuggestions true
 
 /-! ## `autoTry.onEmptyProof` -- empty tactic-sequence containers
 
 Despite the name, this option fires on any tactic-sequence container whose body has no
-tactics yet — empty `by`, empty `· `, empty `case h => `, etc. -/
+tactics yet — empty `by`, empty `· `, empty `case h => `, empty `{ }`. -/
 
 set_option autoTry.onEmptyProof true
 
 -- Empty `by`: fires.
 /--
 error: unsolved goals
-⊢ True
+⊢ P
 ---
-info: Try these:
-  [apply] solve_by_elim
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+info: Try this:
+  [apply] exact Pintro
 -/
 #guard_msgs in
-example : True := by
+example : P := by
 
--- Non-empty `by` with unsolved goals: `onEmptyBy` does not fire (the block isn't empty).
--- This is the difference from `onUnsolvedGoal`, which would fire here.
+-- Non-empty `by skip`: `onEmptyProof` does *not* fire (the block isn't empty).
 /--
 error: unsolved goals
-⊢ True
+⊢ P
 -/
 #guard_msgs in
-example : True := by skip
+example : P := by skip
 
--- Empty `· `: the cdot's body is empty, so the trigger fires at the cdot. The enclosing
--- `by ·` is *not* empty (its body has the cdot), so no second suggestion fires there.
+-- Empty `· `: the cdot's body is empty, so the trigger fires there. The enclosing
+-- `by ·` is *not* empty (its body has the cdot), so no second suggestion fires.
 /--
 error: unsolved goals
-⊢ True
+⊢ P
 ---
-info: Try these:
-  [apply] solve_by_elim
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+info: Try this:
+  [apply] exact Pintro
 -/
 #guard_msgs in
-example : True := by ·
+example : P := by ·
 
 set_option autoTry.onEmptyProof false
 
@@ -70,194 +85,150 @@ set_option autoTry.onEmptyProof false
 
 set_option autoTry.onUnsolvedGoal true
 
--- Empty `by`: trigger fires (one unsolved goal); the widget shows the tactic to apply.
+-- Empty `by`: trigger fires.
 /--
 error: unsolved goals
-⊢ True
+⊢ P
 ---
-info: Try these:
-  [apply] solve_by_elim
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+info: Try this:
+  [apply] exact Pintro
 -/
 #guard_msgs in
-example : True := by
+example : P := by
 
 -- Disabled: empty `by` gives just the unsolved-goals error.
 /--
 error: unsolved goals
-⊢ True
+⊢ P
 -/
 #guard_msgs in
 set_option autoTry.onUnsolvedGoal false in
-example : True := by
+example : P := by
 
 -- Successful proof: no trigger.
-example : True := by trivial
+example : P := by exact Pintro
 
 -- `by { }` (bracketed empty body) still triggers: the inner `tacticSeq` is empty even
 -- though the braces give the `by` block a non-zero width on the source.
 /--
 error: unsolved goals
-⊢ True
+⊢ P
 ---
-info: Try these:
-  [apply] solve_by_elim
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+info: Try this:
+  [apply] exact Pintro
 -/
 #guard_msgs in
-example : True := by { }
+example : P := by { }
 
--- Unprovable goal: try? finds nothing, the hook is silent. We use an opaque Prop so the
--- default branches (including `impossible by decide | impossible by simp | impossible by
--- grind`) cannot dispatch it.
-opaque OpaqueProp : Prop
+-- Unrecognised goal: the suggester returns no candidates, the hook is silent.
 /--
 error: unsolved goals
-⊢ OpaqueProp
+⊢ UnsolvableProp
 -/
 #guard_msgs in
-example : OpaqueProp := by
+example : UnsolvableProp := by
 
 /-! ## `autoTry.onUnsolvedGoal` -- non-empty `by`, append behaviour -/
 
 -- `by skip` is single-line non-empty; the suggestion is appended after `skip`.
 /--
 error: unsolved goals
-⊢ True
+⊢ P
 ---
-info: Try these:
-  [apply] solve_by_elim
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+info: Try this:
+  [apply] exact Pintro
 -/
 #guard_msgs in
-example : True := by skip
+example : P := by skip
 
 -- `by skip; skip` appends *after* the second `skip`, not in place of the first.
 /--
 error: unsolved goals
-⊢ True
+⊢ P
 ---
-info: Try these:
-  [apply] solve_by_elim
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+info: Try this:
+  [apply] exact Pintro
 -/
 #guard_msgs in
-example : True := by skip; skip
+example : P := by skip; skip
 
--- Multiple unsolved goals: the hook is silent. The user is expected to structure the
--- proof with `·` / `case` so a per-goal byTactic fires its own suggestion.
+-- Multiple unsolved goals: the hook is silent at the outer block (one suggestion
+-- can't replay against multiple goals). The user is expected to structure the proof
+-- with `·` / `case` so a per-goal scope fires its own suggestion.
 /--
 error: unsolved goals
 case left
-⊢ True
+⊢ P
 
 case right
-⊢ True
+⊢ P
 -/
 #guard_msgs in
-example : True ∧ True := by constructor
+example : P ∧ P := by constructor
 
 -- Inside `<;>` the rhs is elaborated against multiple proof states; the trigger is
 -- correctly suppressed.
 /--
 error: unsolved goals
 case left
-⊢ True
+⊢ P
 
 case right
-⊢ True
+⊢ P
 -/
 #guard_msgs in
-example : True ∧ True := by
+example : P ∧ P := by
   constructor <;> skip
 
--- `case h => …`: the trigger fires on the case scope when it left an unsolved goal,
--- and *also* on the enclosing `by` block (which still has the sibling goal `right`
--- open). Each scope gets its own suggestion at its own append point. `positions := true`
--- makes the two "Try these" messages distinguishable: the case anchors at `case left =>
--- skip` (line +2:2-2:20) while the outer `by` anchors at the whole block.
+-- `case h => …`: the trigger fires on the case scope and also on the enclosing `by`
+-- block (which still has the sibling goal open). The two "Try this" messages share
+-- the suggestion text (both goals are `P`); `positions := true` makes them
+-- distinguishable by source range.
 /--
 @ +3:12...19
 error: unsolved goals
-⊢ True
+⊢ P
 ---
-@ +1:25...+3:19
+@ +1:19...+3:19
 error: unsolved goals
 case right
-⊢ True
+⊢ P
 ---
 @ +3:12...19
-info: Try these:
-  [apply] solve_by_elim
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+info: Try this:
+  [apply] exact Pintro
 ---
-@ +1:25...+3:19
-info: Try these:
-  [apply] solve_by_elim
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+@ +1:19...+3:19
+info: Try this:
+  [apply] exact Pintro
 -/
 #guard_msgs (positions := true) in
-example : True ∧ True := by
+example : P ∧ P := by
   constructor
   case left => skip
 
--- `· …` (cdot focus): the trigger fires on the cdot scope when its body left an
--- unsolved goal, and on the outer `by` block for the sibling goal.
+-- `· …` (cdot focus): same shape as `case`, but anchored at the cdot scope.
 /--
 @ +3:2...8
 error: unsolved goals
 case left
-⊢ True
+⊢ P
 ---
-@ +1:25...+3:8
+@ +1:19...+3:8
 error: unsolved goals
 case right
-⊢ True
+⊢ P
 ---
 @ +3:2...8
-info: Try these:
-  [apply] solve_by_elim
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+info: Try this:
+  [apply] exact Pintro
 ---
-@ +1:25...+3:8
-info: Try these:
-  [apply] solve_by_elim
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+@ +1:19...+3:8
+info: Try this:
+  [apply] exact Pintro
 -/
 #guard_msgs (positions := true) in
-example : True ∧ True := by
+example : P ∧ P := by
   constructor
   · skip
 
@@ -268,30 +239,20 @@ example : True ∧ True := by
 -- `by` block for the still-open `left` sibling -- but *not* on the `case' left` scope.
 /--
 error: unsolved goals
-⊢ True
+⊢ P
 ---
 error: unsolved goals
 case left
-⊢ True
+⊢ P
 ---
-info: Try these:
-  [apply] solve_by_elim
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+info: Try this:
+  [apply] exact Pintro
 ---
-info: Try these:
-  [apply] solve_by_elim
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+info: Try this:
+  [apply] exact Pintro
 -/
 #guard_msgs in
-example : True ∧ True := by
+example : P ∧ P := by
   constructor
   case' left => skip
   case right => skip
@@ -306,39 +267,29 @@ set_option autoTry.onSorry true
 /--
 warning: declaration uses `sorry`
 ---
-info: Try these:
-  [apply] solve_by_elim
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+info: Try this:
+  [apply] exact Pintro
 -/
 #guard_msgs in
-example : True := by sorry
+example : P := by sorry
 
 -- Term-form `sorry`: not a tactic, no trigger.
 /--
 warning: declaration uses `sorry`
 -/
 #guard_msgs in
-example : True := sorry
+example : P := sorry
 
 -- `sorry` inside `first | ... | ...` still triggers -- the branches of `first` are
 -- elaborated against the same single state.
 /--
 warning: declaration uses `sorry`
 ---
-info: Try these:
-  [apply] solve_by_elim
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+info: Try this:
+  [apply] exact Pintro
 -/
 #guard_msgs in
-example : True := by first | sorry | trivial
+example : P := by first | sorry | exact Pintro
 
 set_option autoTry.onSorry false
 
@@ -346,102 +297,75 @@ set_option autoTry.onSorry false
 
 When an admit-emitting wrapper (`{ }`, `· `, `case h => …`, …) leaves its body
 unsolved, the suggestion runs `try?` against the focused goal *as the wrapper sees
-it after its body ran* -- including any hypotheses the body introduced. The append
-point sits at the wrapper's body, not the outer by-block.
+it after its body ran* -- including any hypotheses the body introduced.
 
-The tests below use `have h : … := …` so the body's effect on the goal state is
-visible in the suggestion: `try?` against `h : True ⊢ True` proposes `assumption`
-as its first candidate, which would not be suggested against the entry state
-`⊢ True`. -/
+The tests below introduce a hypothesis `h : P`; the suggester prefers `exact h` when
+`h` is in scope, so the visible suggestion text changes from `exact Pintro` to
+`exact h` when the hypothesis is correctly threaded through. -/
 
 set_option autoTry.onUnsolvedGoal true
 
 -- Setup runs in the *outer* by-block, then `{ }` admits with `h` already in context.
 /--
 error: unsolved goals
-h : True
-⊢ True
+h : P
+⊢ P
 ---
-info: Try these:
-  [apply] assumption
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+info: Try this:
+  [apply] exact h
 -/
 #guard_msgs in
-example : True := by
-  have h : True := True.intro
+example : P := by
+  have h : P := Pintro
   { }
 
 -- Setup runs *inside* the bracketed body. Verifies the wrapper captures the
--- post-tac state (with `h`), not the entry state.
+-- post-tac state (with `h`), not the entry state (without `h`).
 /--
 error: unsolved goals
-h : True
-⊢ True
+h : P
+⊢ P
 ---
-info: Try these:
-  [apply] assumption
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+info: Try this:
+  [apply] exact h
 -/
 #guard_msgs in
-example : True := by { have h : True := True.intro }
+example : P := by { have h : P := Pintro }
 
 -- Same, inside `· `.
 /--
 error: unsolved goals
-h : True
-⊢ True
+h : P
+⊢ P
 ---
-info: Try these:
-  [apply] assumption
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+info: Try this:
+  [apply] exact h
 -/
 #guard_msgs in
-example : True := by · have h : True := True.intro
+example : P := by · have h : P := Pintro
 
 -- Same, inside `case left => …`. The case binder strips the `case left` tag from the
--- goal, so the error shows `⊢ True` and the suggestion includes `assumption` because
--- the body introduced `h` before running out of tactics.
+-- goal, so the error shows `⊢ P` and the suggestion picks up the `h` introduced by
+-- the body.
 /--
 error: unsolved goals
-h : True
-⊢ True
+h : P
+⊢ P
 ---
 error: unsolved goals
 case right
-⊢ True
+⊢ P
 ---
-info: Try these:
-  [apply] assumption
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+info: Try this:
+  [apply] exact h
 ---
-info: Try these:
-  [apply] solve_by_elim
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+info: Try this:
+  [apply] exact Pintro
 -/
 #guard_msgs in
-example : True ∧ True := by
+example : P ∧ P := by
   constructor
-  case left => have h : True := True.intro
+  case left => have h : P := Pintro
 
 set_option autoTry.onUnsolvedGoal false
 
@@ -449,38 +373,32 @@ set_option autoTry.onUnsolvedGoal false
 
 `case right => …` focuses on the `right` subgoal, not the head of the parent goal list.
 The suggestion at the case scope must run `try?` against the *focused* goal -- otherwise
-e.g. `case right => skip` in a `False ∧ True` proof would mistakenly suggest tactics
-that close `False` (the head of the parent's goal list).
+e.g. `case right => skip` in a `Q ∧ P` proof would mistakenly suggest tactics for
+closing `Q` (the head of the parent's goal list) at the right-side case scope.
 -/
 
 set_option autoTry.onUnsolvedGoal true
 
--- Goal `False ∧ True`. After `constructor`, the goals are `[left: False, right: True]`.
--- `case left => skip` admits left with sorry and emits an unsolved-goals error for left.
--- The two scopes (case and the enclosing `by`) get suggestions for *their own* focused
--- goal: the case scope for `False` (`try?` only finds `impossible by …`), the outer
--- `by` for the still-unsolved `right` (True) — `solve_by_elim` etc.
+-- Goal `Q ∧ P`. After `constructor`, the goals are `[left: Q, right: P]`. The case-left
+-- scope sees `Q` (its suggestion is `exact Qintro`), the enclosing `by` block sees
+-- the still-unsolved `right` (`P`, suggestion `exact Pintro`) — different types,
+-- different suggestions.
 /--
 error: unsolved goals
-⊢ False
+⊢ Q
 ---
 error: unsolved goals
 case right
-⊢ True
+⊢ P
 ---
 info: Try this:
-  [apply] impossible by simp
+  [apply] exact Qintro
 ---
-info: Try these:
-  [apply] solve_by_elim
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+info: Try this:
+  [apply] exact Pintro
 -/
 #guard_msgs in
-example : False ∧ True := by
+example : Q ∧ P := by
   constructor
   case left => skip
 
@@ -490,7 +408,7 @@ set_option autoTry.onUnsolvedGoal false
 
 An unsolved-goals error nested inside another scope (e.g. from a `have := by …`) must
 *not* fire the outer scope's trigger. Below, the outer `by` block is closed by
-`trivial`, but the inner `by skip` proof of `False` emits an unsolved-goals error.
+`exact Pintro`, but the inner `by skip` proof of `Q` emits an unsolved-goals error.
 We expect a suggestion only at the inner `by`, never at the outer one.
 -/
 
@@ -498,15 +416,15 @@ set_option autoTry.onUnsolvedGoal true
 
 /--
 error: unsolved goals
-⊢ False
+⊢ Q
 ---
 info: Try this:
-  [apply] impossible by simp
+  [apply] exact Qintro
 -/
 #guard_msgs in
-example : True := by
-  have h : False := by skip
-  trivial
+example : P := by
+  have h : Q := by skip
+  exact Pintro
 
 set_option autoTry.onUnsolvedGoal false
 
@@ -523,7 +441,7 @@ error: No goals to be solved
 -/
 #guard_msgs in
 set_option autoTry.onSorry true in
-example : True := by
+example : P := by
   exact this_undefined_name
   sorry
 
@@ -537,92 +455,47 @@ data the widget hands to the IDE when [apply] is clicked. -/
 -- Empty `by` -> insertion right after `by`, leading space.
 /--
 error: unsolved goals
-⊢ True
+⊢ P
 ---
-info: autoTry edit: insert " solve_by_elim" at +1:20
+info: autoTry edit: insert " exact Pintro" at +1:17
 ---
-info: autoTry edit: insert " simp" at +1:20
----
-info: autoTry edit: insert " simp only" at +1:20
----
-info: autoTry edit: insert " grind" at +1:20
----
-info: autoTry edit: insert " grind only" at +1:20
----
-info: autoTry edit: insert " simp_all" at +1:20
----
-info: Try these:
-  [apply] solve_by_elim
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+info: Try this:
+  [apply] exact Pintro
 -/
 #guard_msgs in
 set_option autoTry.onUnsolvedGoal true in
 set_option debug.autoTry.showEdits true in
-example : True := by
+example : P := by
 
 -- Single-line non-empty `by` -> insertion right after `skip`, leading `"; "`.
 /--
 error: unsolved goals
-⊢ True
+⊢ P
 ---
-info: autoTry edit: insert "; solve_by_elim" at +1:25
+info: autoTry edit: insert "; exact Pintro" at +1:22
 ---
-info: autoTry edit: insert "; simp" at +1:25
----
-info: autoTry edit: insert "; simp only" at +1:25
----
-info: autoTry edit: insert "; grind" at +1:25
----
-info: autoTry edit: insert "; grind only" at +1:25
----
-info: autoTry edit: insert "; simp_all" at +1:25
----
-info: Try these:
-  [apply] solve_by_elim
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+info: Try this:
+  [apply] exact Pintro
 -/
 #guard_msgs in
 set_option autoTry.onUnsolvedGoal true in
 set_option debug.autoTry.showEdits true in
-example : True := by skip
+example : P := by skip
 
 -- Single-tactic `by` body across multiple source lines: we still use `; ` (newline +
 -- indent is reserved for bodies that *already* have more than one tactic on separate
 -- lines).
 /--
 error: unsolved goals
-⊢ True
+⊢ P
 ---
-info: autoTry edit: insert "; solve_by_elim" at +2:6
+info: autoTry edit: insert "; exact Pintro" at +2:6
 ---
-info: autoTry edit: insert "; simp" at +2:6
----
-info: autoTry edit: insert "; simp only" at +2:6
----
-info: autoTry edit: insert "; grind" at +2:6
----
-info: autoTry edit: insert "; grind only" at +2:6
----
-info: autoTry edit: insert "; simp_all" at +2:6
----
-info: Try these:
-  [apply] solve_by_elim
-  [apply] simp
-  [apply] simp only
-  [apply] grind
-  [apply] grind only
-  [apply] simp_all
+info: Try this:
+  [apply] exact Pintro
 -/
 #guard_msgs in
 set_option autoTry.onUnsolvedGoal true in
 set_option debug.autoTry.showEdits true in
-example : True := by
+example : P := by
   skip

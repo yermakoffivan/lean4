@@ -243,14 +243,14 @@ private def toIsoString (offset : Offset) (withMinutes : Bool) (withSeconds : Bo
   data
 
 /-- Classify a `PlainTime` into a `DayPeriod` for the `b` pattern. -/
-private def classifyDayPeriod (hour : Hour.Ordinal) (minute : Minute.Ordinal) (second : Second.Ordinal true) : DayPeriod :=
+def classifyDayPeriod (hour : Hour.Ordinal) (minute : Minute.Ordinal) (second : Second.Ordinal true) : DayPeriod :=
   if hour.val = 0 ∧ minute.val = 0 ∧ second.val = 0 then .midnight
   else if hour.val = 12 ∧ minute.val = 0 ∧ second.val = 0 then .noon
   else if hour.val < 12 then .am
   else .pm
 
 /-- Classify a `PlainTime` into an `ExtendedDayPeriod` for the `B` pattern (CLDR flexible periods). -/
-private def classifyExtendedDayPeriod (hour : Hour.Ordinal) (minute : Minute.Ordinal) (second : Second.Ordinal true) : ExtendedDayPeriod :=
+def classifyExtendedDayPeriod (hour : Hour.Ordinal) (minute : Minute.Ordinal) (second : Second.Ordinal true) : ExtendedDayPeriod :=
   if hour.val = 0 ∧ minute.val = 0 ∧ second.val = 0 then .midnight
   else if hour.val = 12 ∧ minute.val = 0 ∧ second.val = 0 then .noon
   else if hour.val < 6 then .night

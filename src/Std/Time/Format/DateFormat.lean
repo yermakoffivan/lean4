@@ -14,6 +14,8 @@ public section
 namespace Std
 namespace Time
 
+open Internal
+
 set_option linter.all true
 
 /--
@@ -217,7 +219,7 @@ structure DateFormat where
   ISO 8601 uses 4 (week 1 must contain the first Thursday); US locale uses 1 (any week
   containing Jan 1 is week 1).
   -/
-  minimalDaysInFirstWeek : Nat := 4
+  minimalDaysInFirstWeek : Bounded.LE 0 6
 
   /--
   Locale-specific symbols used for formatting and parsing text fields.
@@ -231,7 +233,7 @@ English (US) locale.
 -/
 def enUS : DateFormat where
   firstDayOfWeek := .sunday
-  minimalDaysInFirstWeek := 1
+  minimalDaysInFirstWeek := Bounded.LE.mk 1 (by decide)
   symbols := DateFormatSymbols.enUS
 
 end DateFormat

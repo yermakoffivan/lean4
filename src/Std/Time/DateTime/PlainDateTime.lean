@@ -493,7 +493,7 @@ Determines the week of the year for the given `PlainDateTime`, using `firstDay` 
 and `minDays` as the minimum number of days a week must have in the new year to count as week 1.
 -/
 @[inline]
-def weekOfYear (date : PlainDateTime) (firstDay : Weekday := .monday) (minDays : Nat := 4) : Week.OfYear.Ordinal :=
+def weekOfYear (date : PlainDateTime) (firstDay : Weekday := .monday) (minDays : Bounded.LE 0 6 := Bounded.LE.mk 4 (by decide)) : Week.OfYear.Ordinal :=
   PlainDate.weekOfYear date.date firstDay minDays
 
 /--
@@ -502,7 +502,7 @@ and `minDays` as the minimum number of days a week must have in the new year to 
 The week-based year may differ from the calendar year for dates near the start or end of the year.
 -/
 @[inline]
-def weekYear (date : PlainDateTime) (firstDay : Weekday := .monday) (minDays : Nat := 4) : Year.Offset :=
+def weekYear (date : PlainDateTime) (firstDay : Weekday := .monday) (minDays : Bounded.LE 0 6 := Bounded.LE.mk 4 (by decide)) : Year.Offset :=
   date.date.weekYear firstDay minDays
 
 /--

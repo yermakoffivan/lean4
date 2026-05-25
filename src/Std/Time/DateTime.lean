@@ -14,6 +14,8 @@ public section
 namespace Std
 namespace Time
 
+open Internal
+
 /--
 Represents a date and time with timezone information.
 -/
@@ -189,7 +191,7 @@ Determines the week of the year for the given `DateTime`, using `firstDay` as th
 and `minDays` as the minimum number of days a week must have in the new year to count as week 1.
 -/
 @[inline]
-def weekOfYear (dt : DateTime) (firstDay : Weekday := .monday) (minDays : Nat := 4) : Week.OfYear.Ordinal :=
+def weekOfYear (dt : DateTime) (firstDay : Weekday := .monday) (minDays : Bounded.LE 0 6 := Bounded.LE.mk 4 (by decide)) : Week.OfYear.Ordinal :=
   PlainDate.weekOfYear dt.date.get.date firstDay minDays
 
 /--
@@ -198,7 +200,7 @@ and `minDays` as the minimum number of days a week must have in the new year to 
 The week-based year may differ from the calendar year for dates near the start or end of the year.
 -/
 @[inline]
-def weekYear (date : DateTime) (firstDay : Weekday := .monday) (minDays : Nat := 4) : Year.Offset :=
+def weekYear (date : DateTime) (firstDay : Weekday := .monday) (minDays : Bounded.LE 0 6 := Bounded.LE.mk 4 (by decide)) : Year.Offset :=
   date.date.get.weekYear firstDay minDays
 
 /--

@@ -367,7 +367,7 @@ def weekOfYear (date : PlainDate) (firstDay : Weekday := .monday) (minDaysBounde
   if date.toEpochDay < thisYearStart.toEpochDay then
     let prevYearStart := startOfWeekBasedYear (year - 1) firstDay minDaysBounded
     let interval := date.toEpochDay - prevYearStart.toEpochDay
-    let interval := Bounded.LE.ofNatWrapping interval.val (by decide) (lo := 0) (hi := 366)
+    let interval := Bounded.LE.ofNatWrapping interval.val (by decide) (lo := 0) (hi := 370)
     let w := interval.ediv 7 (by decide)
     w.add 1
   else
@@ -376,7 +376,7 @@ def weekOfYear (date : PlainDate) (firstDay : Weekday := .monday) (minDaysBounde
       1
     else
       let interval := date.toEpochDay - thisYearStart.toEpochDay
-      let interval := Bounded.LE.ofNatWrapping interval.val (by decide) (lo := 0) (hi := 366)
+      let interval := Bounded.LE.ofNatWrapping interval.val (by decide) (lo := 0) (hi := 370)
       let w := interval.ediv 7 (by decide)
       w.add 1
 
@@ -384,14 +384,13 @@ def weekOfYear (date : PlainDate) (firstDay : Weekday := .monday) (minDaysBounde
 Returns the week-based year for the given `PlainDate`, using `firstDay` as the start of the week
 and `minDays` as the minimum number of days in the first week of the year (default 4 for ISO 8601).
 -/
-def weekYear (date : PlainDate) (firstDay : Weekday := .monday) (minDays : Nat := 4) : Year.Offset :=
-  let minDaysBounded : Bounded.LE 0 6 := Bounded.LE.ofNatWrapping minDays (by decide)
+def weekYear (date : PlainDate) (firstDay : Weekday := .monday) (minDays : Bounded.LE 0 6 := Bounded.LE.mk 4 (by decide)) : Year.Offset :=
   let year := date.year
-  let thisYearStart := startOfWeekBasedYear year firstDay minDaysBounded
+  let thisYearStart := startOfWeekBasedYear year firstDay minDays
   if date.toEpochDay < thisYearStart.toEpochDay then
     year - 1
   else
-    let nextYearStart := startOfWeekBasedYear (year + 1) firstDay minDaysBounded
+    let nextYearStart := startOfWeekBasedYear (year + 1) firstDay minDays
     if date.toEpochDay >= nextYearStart.toEpochDay then
       year + 1
     else

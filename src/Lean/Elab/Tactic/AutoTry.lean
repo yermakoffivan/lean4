@@ -137,6 +137,9 @@ new appended suggestion. The rule:
 * Non-empty `by`, single-line: `"; "`.
 * Multi-line: newline followed by spaces aligning with the first tactic in the body, or
   with `by`'s column + 2 if the body is empty.
+
+This is a heuristic and gets various edge cases wrong (mixed-indentation bodies, comments
+between tactics, etc.). It should be replaced by a proper formatter once one is available.
 -/
 def computeAppendSep (byStx : Syntax) (fileMap : FileMap) : String := Id.run do
   let some bp := byStx.getPos? | return "; "
@@ -155,9 +158,11 @@ def computeAppendSep (byStx : Syntax) (fileMap : FileMap) : String := Id.run do
       bpPos.column + 2
   return "\n" ++ String.ofList (List.replicate indentCol ' ')
 
-/-- Build a synthetic atom with zero textual content whose syntactic range is the empty
+/--
+Build a synthetic atom with zero textual content whose syntactic range is the empty
 range `[p, p)`. Used as the `origSpan?` for append-style suggestions so the IDE inserts
-the replacement text at `p` without overwriting anything. -/
+the replacement text at `p` without overwriting anything.
+-/
 def mkEmptyRangeStx (p : String.Pos.Raw) : Syntax :=
   Syntax.atom (.original "".toRawSubstring p "".toRawSubstring p) ""
 
@@ -221,11 +226,13 @@ def collectSuggestionsForGoal (ctx : ContextInfo) (mctx : MetavarContext) (goal 
       trace[autoTry] "term elab raised: {e.toMessageData}"
       return #[]
 
-/-- Emit a "Try these:" message whose code-action edits *append* each suggestion to the
-end of `byStx`'s tactic sequence (or just after `by` for an empty body). The `messageData?`
+/--
+Emit a "Try these:" message whose code-action edits *append* each suggestion to the end
+of `byStx`'s tactic sequence (or just after `by` for an empty body). The `messageData?`
 override keeps the rendered widget text clean (no leading separator). `cmdLine` is the
 1-based line of the enclosing command's start, used to render edit positions relative to
-the command (so tests are robust to moving the example up or down the file). -/
+the command (so tests are robust to moving the example up or down the file).
+-/
 def emitAppendSuggestions (ctx : ContextInfo)
     (byStx : Syntax) (suggs : Array (TSyntax `tactic)) (cmdLine : Nat) : CommandElabM Unit := do
   if suggs.isEmpty then return
@@ -258,8 +265,11 @@ def emitAppendSuggestions (ctx : ContextInfo)
     else
       Tactic.TryThis.addSuggestions byStx formatted (origSpan? := origSpan)
 
-/-- Run `try?` via the legacy syntax-driven path, replacing the `tk` syntax with the
-suggestion. Used for the `sorry` trigger, where the suggestion replaces the `sorry`. -/
+/--
+Run `try?` by elaborating its tactic syntax against `goal` and letting `try?` emit its
+own "Try this:" message anchored at `tk`. `try?`'s default emission replaces the syntax
+at the current ref, which is exactly what we want for the `sorry` trigger.
+-/
 def runReplaceTryOnGoal (ctx : ContextInfo) (mctx : MetavarContext)
     (goal : MVarId) (tk : Syntax) : CommandElabM Unit := do
   let some decl := mctx.decls.find? goal | return
@@ -288,12 +298,14 @@ def hasNonUnsolvedGoalError (stx : Syntax) : CommandElabM Bool := do
     let isUnsolved := m.data.hasTag (· == `Tactic.unsolvedGoals)
     inRange && isError && !isUnsolved
 
-/-- The auto-`try?` post-elaboration hook.
+/--
+The auto-`try?` post-elaboration hook.
 
-Plugged into the linter machinery (`addLinter`) because that's a convenient post-command-elab
-entry point with infotree access. The feature itself is *not* a linter: it does not bail on
-`messages.hasErrors`, since the triggers we care about (empty `by`, unsolved goals, `sorry`)
-all produce errors or warnings of their own. -/
+Plugged into the linter machinery (`addLinter`) because that's a convenient post-command-
+elab entry point with infotree access. The feature itself is *not* a linter: it does not
+bail on `messages.hasErrors`, since the triggers we care about (empty `by`, unsolved
+goals, `sorry`) all produce errors or warnings of their own.
+-/
 def autoTryHook : Linter where run := withSetOptionIn fun stx => do
   let opts ← getOptions
   let onEmpty := autoTry.onEmptyBy.get opts

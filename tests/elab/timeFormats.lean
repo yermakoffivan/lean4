@@ -156,23 +156,64 @@ def jpTZ : TimeZone := timezone("Asia/Tokyo +09:00")
   let t : DateTime := .ofPlainDateTime datetime("2018-12-31T12:00:00") (TimeZone.ZoneRules.ofTimeZone TimeZone.UTC)
   IO.println s!"{t.format "w"}"
 
--- ISO week-year boundaries, cross-checked with Java `WeekFields.ISO`.
+-- ISO week-year boundaries, cross-checked with Python datetime.isocalendar().
 #guard date("2015-12-28").weekOfYear.val == 53
 #guard date("2015-12-31").weekOfYear.val == 53
+#guard date("2016-01-01").weekOfYear.val == 53
+#guard date("2016-01-04").weekOfYear.val == 1
+#guard date("2018-12-31").weekOfYear.val == 1
+#guard date("2019-01-01").weekOfYear.val == 1
 #guard date("2020-12-28").weekOfYear.val == 53
 #guard date("2020-12-31").weekOfYear.val == 53
-#guard date("2021-12-28").weekOfYear.val == 52
-#guard date("2022-12-31").weekOfYear.val == 52
 #guard date("2021-01-01").weekOfYear.val == 53
 #guard date("2021-01-03").weekOfYear.val == 53
+#guard date("2021-12-28").weekOfYear.val == 52
 #guard date("2022-01-01").weekOfYear.val == 52
+#guard date("2022-12-31").weekOfYear.val == 52
 #guard date("2023-01-01").weekOfYear.val == 52
+#guard date("2000-01-01").weekOfYear.val == 52
+#guard date("2000-01-02").weekOfYear.val == 52
+#guard date("2000-01-03").weekOfYear.val == 1
+#guard date("2004-01-01").weekOfYear.val == 1
+#guard date("2005-01-01").weekOfYear.val == 53
+#guard date("2005-01-02").weekOfYear.val == 53
+#guard date("2024-12-30").weekOfYear.val == 1
+#guard date("2024-12-31").weekOfYear.val == 1
+#guard date("2025-01-01").weekOfYear.val == 1
+#guard date("2026-05-25").weekOfYear.val == 22
+#guard date("2026-01-01").weekOfYear.val == 1
+#guard date("2026-12-28").weekOfYear.val == 53
+#guard date("2026-12-31").weekOfYear.val == 53
+#guard date("2027-01-01").weekOfYear.val == 53
 
 #guard date("2015-12-28").weekYear == 2015
+#guard date("2015-12-31").weekYear == 2015
+#guard date("2016-01-01").weekYear == 2015
+#guard date("2016-01-04").weekYear == 2016
 #guard date("2018-12-31").weekYear == 2019
+#guard date("2019-01-01").weekYear == 2019
+#guard date("2020-12-28").weekYear == 2020
+#guard date("2020-12-31").weekYear == 2020
 #guard date("2021-01-01").weekYear == 2020
+#guard date("2021-01-03").weekYear == 2020
+#guard date("2021-12-28").weekYear == 2021
 #guard date("2022-01-01").weekYear == 2021
+#guard date("2022-12-31").weekYear == 2022
 #guard date("2023-01-01").weekYear == 2022
+#guard date("2000-01-01").weekYear == 1999
+#guard date("2000-01-02").weekYear == 1999
+#guard date("2000-01-03").weekYear == 2000
+#guard date("2004-01-01").weekYear == 2004
+#guard date("2005-01-01").weekYear == 2004
+#guard date("2005-01-02").weekYear == 2004
+#guard date("2024-12-30").weekYear == 2025
+#guard date("2024-12-31").weekYear == 2025
+#guard date("2025-01-01").weekYear == 2025
+#guard date("2026-05-25").weekYear == 2026
+#guard date("2026-01-01").weekYear == 2026
+#guard date("2026-12-28").weekYear == 2026
+#guard date("2026-12-31").weekYear == 2026
+#guard date("2027-01-01").weekYear == 2026
 
 -- ──────────────────────────────────────────────────────────────────────────────
 -- E  Day-of-week (text only)

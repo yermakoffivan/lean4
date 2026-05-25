@@ -339,6 +339,10 @@ private def localizedDayOfWeek (weekday firstDay : Weekday) : Bounded.LE 0 6 :=
   |>.subBounds firstDay.toOrdinal
   |>.emod 7 (by decide)
 
+/--
+Returns the first day of the week-based year for the given `year`, where weeks start on `firstDay`
+and the first week must contain at least `minimalDays` days of the new year.
+-/
 def startOfWeekBasedYear (year : Year.Offset) (firstDay : Weekday) (minimalDays : Bounded.LE 0 6) : PlainDate :=
   let jan1 := PlainDate.ofYearMonthDayClip year 1 1
   let localDay := localizedDayOfWeek jan1.weekday firstDay
@@ -350,23 +354,48 @@ def startOfWeekBasedYear (year : Year.Offset) (firstDay : Weekday) (minimalDays 
   else
     weekStart.addDays 7
 
-def weekOfYear (date : PlainDate) (firstDay : Weekday := .monday) (minDays : Bounded.LE 0 6 := .mk 4 (by decide)) : Week.OfYear.Ordinal :=
+/--
+Returns the week number within the week-based year for the given `PlainDate`, using `firstDay` as
+the start of the week and `minDays` as the minimum number of days required in the first week of the
+year (default 4 for ISO 8601). Dates before the first week of the calendar year are counted as part
+of the last week of the previous year.
+-/
+def weekOfYear (date : PlainDate) (firstDay : Weekday := .monday) (minDaysBounded : Bounded.LE 0 6 := .mk 4 (by decide)) : Week.OfYear.Ordinal :=
   let year := date.year
-  let thisYearStart := startOfWeekBasedYear year firstDay minDays
+  let thisYearStart := startOfWeekBasedYear year firstDay minDaysBounded
 
   if date.toEpochDay < thisYearStart.toEpochDay then
-    let prevYearStart := startOfWeekBasedYear (year - 1) firstDay minDays
-    let week : Bounded.LE 0 53 := Bounded.LE.ofNatWrapping ((date.toEpochDay - prevYearStart.toEpochDay).ediv 7 |>.add 1 |>.val) (by decide)
-    sorry
+    let prevYearStart := startOfWeekBasedYear (year - 1) firstDay minDaysBounded
+    let interval := date.toEpochDay - prevYearStart.toEpochDay
+    let interval := Bounded.LE.ofNatWrapping interval.val (by decide) (lo := 0) (hi := 366)
+    let w := interval.ediv 7 (by decide)
+    w.add 1
   else
-    sorry
+    let nextYearStart := startOfWeekBasedYear (year + 1) firstDay minDaysBounded
+    if date.toEpochDay >= nextYearStart.toEpochDay then
+      1
+    else
+      let interval := date.toEpochDay - thisYearStart.toEpochDay
+      let interval := Bounded.LE.ofNatWrapping interval.val (by decide) (lo := 0) (hi := 366)
+      let w := interval.ediv 7 (by decide)
+      w.add 1
 
 /--
 Returns the week-based year for the given `PlainDate`, using `firstDay` as the start of the week
 and `minDays` as the minimum number of days in the first week of the year (default 4 for ISO 8601).
 -/
 def weekYear (date : PlainDate) (firstDay : Weekday := .monday) (minDays : Nat := 4) : Year.Offset :=
-  sorry
+  let minDaysBounded : Bounded.LE 0 6 := Bounded.LE.ofNatWrapping minDays (by decide)
+  let year := date.year
+  let thisYearStart := startOfWeekBasedYear year firstDay minDaysBounded
+  if date.toEpochDay < thisYearStart.toEpochDay then
+    year - 1
+  else
+    let nextYearStart := startOfWeekBasedYear (year + 1) firstDay minDaysBounded
+    if date.toEpochDay >= nextYearStart.toEpochDay then
+      year + 1
+    else
+      year
 
 instance : HAdd PlainDate Day.Offset PlainDate where
   hAdd := addDays

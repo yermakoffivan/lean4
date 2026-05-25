@@ -189,8 +189,8 @@ Determines the week of the year for the given `DateTime`, using `firstDay` as th
 and `minDays` as the minimum number of days a week must have in the new year to count as week 1.
 -/
 @[inline]
-def weekOfYear (date : DateTime) (firstDay : Weekday := .monday) (minDays : Nat := 4) : Week.OfYear.Ordinal :=
-  date.date.get.weekOfYear firstDay minDays
+def weekOfYear (dt : DateTime) (firstDay : Weekday := .monday) (minDays : Nat := 4) : Week.OfYear.Ordinal :=
+  PlainDate.weekOfYear dt.date.get.date firstDay minDays
 
 /--
 Returns the week-based year for the given `DateTime`, using `firstDay` as the start of the week

@@ -494,7 +494,7 @@ and `minDays` as the minimum number of days a week must have in the new year to 
 -/
 @[inline]
 def weekOfYear (date : PlainDateTime) (firstDay : Weekday := .monday) (minDays : Nat := 4) : Week.OfYear.Ordinal :=
-  date.date.weekOfYear firstDay minDays
+  PlainDate.weekOfYear date.date firstDay minDays
 
 /--
 Returns the week-based year for the given `PlainDateTime`, using `firstDay` as the start of the week

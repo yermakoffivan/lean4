@@ -5,18 +5,13 @@ Authors: Vladimir Gladshtein, Sebastian Graf
 -/
 module
 
-prelude
-public import Lean
-public import Loom.Tactic.Attr
-public import Loom.Tactic.Spec
-public import Loom.Tactic.ShareExt
-public import Lean.Elab.Tactic.Do.VCGen.Split
-
+public import Lean.Elab
+public meta import Lean.Elab
 public section
 
-open Lean Parser Meta Elab Tactic Sym Loom Lean.Order
+open Lean Parser Meta Elab Tactic Sym Lean.Order
 
-namespace Loom.VCGen
+namespace Loom
 
 open Lean.Elab.Tactic.Do in
 /-- Creates a reusable backward rule for splitting `ite`, `dite`, or matchers.
@@ -24,7 +19,7 @@ open Lean.Elab.Tactic.Do in
 Uses `SplitInfo.withAbstract` to introduce abstract fvars for the split components,
 then `SplitInfo.splitWith` to build the splitting proof. Hypothesis types are
 discovered via `rwIfOrMatcher` inside the splitter telescope. -/
-meta def mkBackwardRuleForSplit
+def mkBackwardRuleForSplit
     (splitInfo : SplitInfo) (wpHead m Pred errTy monadInst instAL instEAL instWP : Expr)
     (excessArgs : Array Expr) : SymM BackwardRule := do
   let mTy ← Sym.inferType m
@@ -84,9 +79,7 @@ meta def mkBackwardRuleForSplit
     mkLambdaFVars (#[a] ++ splitFVars ++ ss ++ #[post, epost, pre] ++ subgoalHyps) prf
   let prf ← instantiateMVars prf
   let res ← abstractMVars prf
-  let type ← preprocessExpr (← Meta.inferType res.expr)
-  let prf ← Meta.mkAuxLemma res.paramNames.toList type res.expr
-  mkBackwardRuleFromDecl prf
+  mkBackwardRuleFromExpr res.expr res.paramNames.toList
 
 /-! ## Tests -/
 
@@ -97,7 +90,7 @@ open Lean.Elab.Tactic.Do Std.Internal.Do
 /-- Test helper: build `wp` head and all args for a given monad setup, then
     get the `SplitInfo` from `prog`, call `mkBackwardRuleForSplit`, and return
     the generated backward rule type. -/
-private meta def testSplitBackwardRule
+private def testSplitBackwardRule
     (m Pred errTy monadInst instAL instEAL instWP : Expr) (prog : Expr) (excessArgs : Array Expr)
     : MetaM Expr := do
   let some splitInfo ← getSplitInfo? prog
@@ -108,7 +101,7 @@ private meta def testSplitBackwardRule
   inferType rule.expr
 
 /-- Set up StateM Nat monad infrastructure and run a test body. -/
-private meta def withStateMNat (k : Expr → Expr → Expr → Expr → Expr → Expr → Expr → MetaM α) : MetaM α := do
+private def withStateMNat (k : Expr → Expr → Expr → Expr → Expr → Expr → Expr → MetaM α) : MetaM α := do
   let nat := mkConst ``Nat
   let m ← mkAppM ``StateM #[nat]
   let Pred ← mkArrow nat (mkSort 0)
@@ -121,6 +114,12 @@ private meta def withStateMNat (k : Expr → Expr → Expr → Expr → Expr →
 
 -- Test 1: ite split for StateM Nat
 -- `ite c (alt₁ : StateM Nat Unit) (alt₂ : StateM Nat Unit)` with 1 excess arg
+/--
+info: Test 1 (ite, StateM Nat, n=1): ∀ (a : Type) (c : Prop) (dec : Decidable c) (t e : StateM Nat a) (s : Nat)
+  (post : a → Nat → Prop) (epost : EPost⟨⟩) (pre : Prop),
+  (c → pre ⊑ wp t post epost s) → (¬c → pre ⊑ wp e post epost s) → pre ⊑ wp (if c then t else e) post epost s
+-/
+#guard_msgs in
 #eval! show MetaM Unit from withStateMNat fun m Pred errTy monadInst instAL instEAL instWP => do
   let nat := mkConst ``Nat
   let mUnit ← mkAppM ``StateM #[nat, mkConst ``Unit]
@@ -136,6 +135,13 @@ private meta def withStateMNat (k : Expr → Expr → Expr → Expr → Expr →
 
 -- Test 2: dite split for StateM Nat
 -- `dite c (alt₁ : c → StateM Nat Unit) (alt₂ : ¬c → StateM Nat Unit)` with 1 excess arg
+/--
+info: Test 2 (dite, StateM Nat, n=1): ∀ (a : Type) (c : Prop) (dec : Decidable c) (t : c → StateM Nat a)
+  (e : ¬c → StateM Nat a) (s : Nat) (post : a → Nat → Prop) (epost : EPost⟨⟩) (pre : Prop),
+  (∀ (h : c), pre ⊑ wp (t h) post epost s) →
+    (∀ (h : ¬c), pre ⊑ wp (e h) post epost s) → pre ⊑ wp (dite c t e) post epost s
+-/
+#guard_msgs in
 #eval! show MetaM Unit from withStateMNat fun m Pred errTy monadInst instAL instEAL instWP => do
   let nat := mkConst ``Nat
   let mUnit ← mkAppM ``StateM #[nat, mkConst ``Unit]
@@ -161,6 +167,19 @@ private noncomputable def matchProg (v : Nat) (alt₁ : StateM Nat Unit) (alt₂
   | 0 => alt₁
   | n+1 => alt₂ n
 
+/--
+info: Test 3 (match Nat, StateM Nat, n=1): ∀ (a : Type) (discr_1 : Nat) (alt_1 : Unit → StateM Nat a)
+  (alt_2 : Nat → StateM Nat a) (s : Nat) (post : a → Nat → Prop) (epost : EPost⟨⟩) (pre : Prop),
+  (discr_1 = 0 → pre ⊑ wp (alt_1 ()) post epost s) →
+    (∀ (n : Nat), discr_1 = n.succ → pre ⊑ wp (alt_2 n) post epost s) →
+      pre ⊑
+        wp
+          (match discr_1 with
+          | 0 => fun a_1 => alt_1 a a_1
+          | n.succ => fun a => alt_2 n a)
+          post epost s
+-/
+#guard_msgs in
 #eval! show MetaM Unit from withStateMNat fun m Pred errTy monadInst instAL instEAL instWP => do
   let nat := mkConst ``Nat
   let mUnit ← mkAppM ``StateM #[nat, mkConst ``Unit]
@@ -176,6 +195,6 @@ private noncomputable def matchProg (v : Nat) (alt₁ : StateM Nat Unit) (alt₂
 
 end Test
 
-end Loom.VCGen
+end Loom
 
 end -- public section

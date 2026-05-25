@@ -342,6 +342,68 @@ example : True := by first | sorry | trivial
 
 set_option autoTry.onSorry false
 
+/-! ## Focused goals on `case`
+
+`case right => …` focuses on the `right` subgoal, not the head of the parent goal list.
+The suggestion at the case scope must run `try?` against the *focused* goal -- otherwise
+e.g. `case right => skip` in a `False ∧ True` proof would mistakenly suggest tactics
+that close `False` (the head of the parent's goal list).
+-/
+
+set_option autoTry.onUnsolvedGoal true
+
+-- Goal `False ∧ True`. After `constructor`, the goals are `[left: False, right: True]`.
+-- `case left => skip` admits left with sorry and emits an unsolved-goals error for left.
+-- The two scopes (case and the enclosing `by`) get suggestions for *their own* focused
+-- goal: the case scope for `False` (`try?` only finds `impossible by …`), the outer
+-- `by` for the still-unsolved `right` (True) — `solve_by_elim` etc.
+/--
+error: unsolved goals
+⊢ False
+---
+error: unsolved goals
+case right
+⊢ True
+---
+info: Try these:
+  [apply] solve_by_elim
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
+---
+info: Try this:
+  [apply] impossible by simp
+-/
+#guard_msgs in
+example : False ∧ True := by
+  constructor
+  case left => skip
+
+set_option autoTry.onUnsolvedGoal false
+
+/-! ## Nested-scope error isolation
+
+An unsolved-goals error nested inside another scope (e.g. from a `have := by …`) must
+*not* fire the outer scope's trigger. Below, the outer `by` block is closed by
+`trivial`, but the inner `by skip` proof of `False` emits an unsolved-goals error.
+We expect a suggestion only at the inner `by`, never at the outer one.
+-/
+
+set_option autoTry.onUnsolvedGoal true
+
+/--
+error: unsolved goals
+⊢ False
+-/
+#guard_msgs in
+example : True := by
+  have h : False := by skip
+  trivial
+
+set_option autoTry.onUnsolvedGoal false
+
 /-! ## Error gate
 
 When a command logs any *non-`unsolved goals`* error, the auto-`try?` hook stays silent

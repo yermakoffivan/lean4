@@ -119,6 +119,37 @@ def findBodySeq (stx : Syntax) : Option Syntax :=
   stx.getArgs.findSome? fun arg =>
     if arg.isOfKind ``Lean.Parser.Tactic.tacticSeq then some arg else none
 
+/-- Walk `ts` (the children of an `InfoTree.node`) looking for the first `TacticInfo`
+of kind `tacticSeq`. Returns its `(mctxAfter, goalsAfter.head)` -- the goal still left
+open after the body ran -- provided the body left *exactly one* goal. This is the goal
+the user would see as unsolved, and it's what we want to drive `try?` against.
+
+Reading this off the body's info-tree node is more reliable than inspecting the parent
+container's `goalsBefore`/`goalsAfter`, since the parent may have admitted goals along
+the way and `case right`-style scopes focus on a goal that need not be the head of
+either parent list.
+-/
+partial def findFirstBodyGoal (ts : PersistentArray InfoTree) :
+    Option (MetavarContext × MVarId) :=
+  ts.findSome? findInTree
+where
+  findInTree : InfoTree → Option (MetavarContext × MVarId)
+    | .context _ inner => findInTree inner
+    | .node (.ofTacticInfo ti) cs =>
+      if ti.stx.getKind == ``Lean.Parser.Tactic.tacticSeq then
+        if ti.goalsAfter.length == 1 then
+          ti.goalsAfter.head?.map fun g => (ti.mctxAfter, g)
+        else if ti.goalsAfter.isEmpty then
+          -- Body admitted (e.g. `by { }`, `· ` -- both close the focused goal with
+          -- sorry on an empty body), so `goalsAfter` is empty. The goal the user sees
+          -- as unsolved is the one we entered the body with.
+          ti.goalsBefore.head?.map fun g => (ti.mctxBefore, g)
+        else
+          none
+      else
+        cs.findSome? findInTree
+    | _ => none
+
 /-- Which kind of auto-`try?` trigger this is. -/
 inductive TriggerKind
   /-- A `by` block whose tactic sequence left exactly one unsolved goal (this includes the
@@ -168,19 +199,31 @@ without re-walking the infotree.
 -/
 abbrev Candidate := TriggerKind × ContextInfo × Syntax × MetavarContext × MVarId
 
+/-- Positions of all `Tactic.unsolvedGoals` errors in the message log, in source order. -/
+def unsolvedGoalErrorPositions (fileMap : FileMap) (msgs : MessageLog) :
+    Array String.Pos.Raw :=
+  msgs.reportedPlusUnreported.toList.filterMap (fun m =>
+    if m.severity matches .error && m.data.hasTag (· == `Tactic.unsolvedGoals) then
+      some (fileMap.ofPosition m.pos)
+    else none)
+  |>.toArray
+
 /--
-Returns `true` if the message log contains an "unsolved goals" error within `range`. We
-use this as the trigger criterion for `onUnsolvedGoal` / `onEmptyProof`: only fire when
-the scope actually emitted an unsolved-goals error, so combinators like `case'` (which
-silently admit on body failure without erroring) stay quiet.
+Returns `true` if `candRange` *owns* an unsolved-goals error: the error position is
+inside `candRange`, and no strictly-deeper candidate range (i.e. properly contained in
+`candRange`) also contains the position. This is how we ensure suggestions fire only on
+the *narrowest* scope responsible for an error -- in particular, a `by` block whose
+proof is closed by `trivial` doesn't fire just because a `have := by skip` inside it
+left an unsolved goal.
 -/
-def hasUnsolvedGoalErrorInRange (range : Lean.Syntax.Range) (fileMap : FileMap)
-    (msgs : MessageLog) : Bool :=
-  msgs.reportedPlusUnreported.any fun m =>
-    let inRange := range.contains (fileMap.ofPosition m.pos) (includeStop := true)
-    let isError := m.severity matches .error
-    let isUnsolved := m.data.hasTag (· == `Tactic.unsolvedGoals)
-    inRange && isError && isUnsolved
+def ownsUnsolvedGoalError (candRange : Lean.Syntax.Range)
+    (allRanges : Array Lean.Syntax.Range) (errorPositions : Array String.Pos.Raw) : Bool :=
+  errorPositions.any fun errPos =>
+    candRange.contains errPos (includeStop := true)
+      && !allRanges.any fun other =>
+        other != candRange
+        && candRange.includes other (includeSuperStop := true) (includeSubStop := true)
+        && other.contains errPos (includeStop := true)
 
 /--
 Collect candidate trigger points from the info tree. Per-kind criteria are applied
@@ -192,43 +235,32 @@ Known blind spot: `repeat tac` where `tac` fails on the first attempt elaborates
 exactly once, so the position-uniqueness check doesn't suppress it. The cost of the
 false positive is judged acceptable.
 -/
-def collectTriggerPoints (opts : Options) (tree : InfoTree) (fileMap : FileMap)
-    (msgs : MessageLog) : CommandElabM (Array Candidate) :=
+def collectTriggerPoints (opts : Options) (tree : InfoTree) : Array Candidate :=
   let onEmpty := autoTry.onEmptyProof.get opts
   let onUnsolved := autoTry.onUnsolvedGoal.get opts
   let onSorry := autoTry.onSorry.get opts
-  tree.foldInfoM (init := #[]) fun ctx info acc => do
-    match info with
-    | .ofTacticInfo tacInfo =>
-      -- Only emit candidates whose anchor has a real source range; otherwise the code
-      -- action has no document range to apply against.
-      let some range := tacInfo.stx.getRange? | return acc
-      let mut acc := acc
-      -- Tactic-sequence-container trigger: any `TacticInfo` whose syntax has a
-      -- `tacticSeq` child (`by`, `·`, `case`, `focus`, `(…)`, etc.), where the scope
-      -- emitted an unsolved-goals error. The error gate is what filters out
-      -- combinators like `case'` that silently admit instead of reporting unsolved goals.
-      if let some body := findBodySeq tacInfo.stx then
-        if hasUnsolvedGoalErrorInRange range fileMap msgs then
-          let isEmpty := body.getPos?.isNone
-          if onUnsolved || (onEmpty && isEmpty) then
-            -- Pick the (mctx, goal) for `try?`: if the scope left exactly one goal open
-            -- we use that; if the scope admitted (`·`, `case`) and there's no goalsAfter
-            -- to point at, fall back to the focused goal we entered with.
-            let scope? : Option (MetavarContext × MVarId) :=
-              if tacInfo.goalsAfter.length == 1 then
-                tacInfo.goalsAfter.head?.map fun g => (tacInfo.mctxAfter, g)
-              else if tacInfo.goalsAfter.isEmpty then
-                tacInfo.goalsBefore.head?.map fun g => (tacInfo.mctxBefore, g)
-              else
-                none
-            if let some (mctx, goal) := scope? then
-              acc := acc.push (.unsolvedGoal, ctx, tacInfo.stx, mctx, goal)
-      if onSorry && isSorryTactic tacInfo.stx then
-        if let some goal := tacInfo.goalsBefore.head? then
-          acc := acc.push (.sorryTactic, ctx, tacInfo.stx, tacInfo.mctxBefore, goal)
-      return acc
-    | _ => return acc
+  tree.foldInfoTree (init := #[]) fun ctx t acc => Id.run do
+    let .node (.ofTacticInfo tacInfo) cs := t | return acc
+    -- Only emit candidates whose anchor has a real source range; otherwise the code
+    -- action has no document range to apply against.
+    if tacInfo.stx.getRange?.isNone then return acc
+    let mut acc := acc
+    -- Tactic-sequence-container trigger: any `TacticInfo` whose syntax has a
+    -- `tacticSeq` child (`by`, `·`, `case`, `focus`, `(…)`, etc.). The goal we drive
+    -- `try?` against is the focused goal entering the body, which we read off the
+    -- inner `tacticSeq`'s info-tree node (so `case right`, for example, correctly
+    -- picks the `right` goal rather than the head of the parent list). The
+    -- ownership filter applied after collection ensures we only fire on the
+    -- *narrowest* scope responsible for an unsolved-goals error.
+    if let some body := findBodySeq tacInfo.stx then
+      let isEmpty := body.getPos?.isNone
+      if onUnsolved || (onEmpty && isEmpty) then
+        if let some (mctx, goal) := findFirstBodyGoal cs then
+          acc := acc.push (.unsolvedGoal, ctx, tacInfo.stx, mctx, goal)
+    if onSorry && isSorryTactic tacInfo.stx then
+      if let some goal := tacInfo.goalsBefore.head? then
+        acc := acc.push (.sorryTactic, ctx, tacInfo.stx, tacInfo.mctxBefore, goal)
+    return acc
 
 /--
 Drive `try?` from CommandElabM, returning the suggestion array. Sets up TacticM/TermElabM
@@ -349,9 +381,10 @@ def autoTryHook : Linter where run := withSetOptionIn fun stx => do
   let fileMap := (← read).fileMap
   let cmdLine := (fileMap.toPosition (stx.getPos?.getD 0)).line
   let msgs := (← get).messages
+  let errorPositions := unsolvedGoalErrorPositions fileMap msgs
   let trees ← getInfoTrees
   for tree in trees do
-    let candidates ← collectTriggerPoints opts tree fileMap msgs
+    let candidates := collectTriggerPoints opts tree
     -- A source position carrying more than one candidate means the elaborator ran the
     -- same syntax against multiple proof states (rhs of `<;>`, body of `repeat`, ...);
     -- a single "Try this" suggestion can't be replayed there, so skip such positions.
@@ -359,12 +392,21 @@ def autoTryHook : Linter where run := withSetOptionIn fun stx => do
     for (_, _, ts, _, _) in candidates do
       if let some p := ts.getPos? then
         counts := counts.alter p (fun n? => some (n?.getD 0 + 1))
+    -- Pre-compute the set of unsolvedGoal-candidate ranges. We need this to apply the
+    -- "narrowest-scope owns the error" filter so that e.g. an outer `by` doesn't fire
+    -- just because a nested `have := by skip` left an unsolved goal.
+    let unsolvedRanges := candidates.filterMap fun (k, _, ts, _, _) =>
+      match k with
+      | .unsolvedGoal => ts.getRange?
+      | _ => none
     trace[autoTry] "trigger points: {candidates.size}"
     for (k, ctx, ts, mctx, goal) in candidates do
       let some pos := ts.getPos? | continue
       if counts.getD pos 0 > 1 then continue
       match k with
       | .unsolvedGoal =>
+        let some range := ts.getRange? | continue
+        unless ownsUnsolvedGoalError range unsolvedRanges errorPositions do continue
         let suggs ← collectSuggestionsForGoal ctx mctx goal
         emitAppendSuggestions ts suggs cmdLine
       | .sorryTactic =>

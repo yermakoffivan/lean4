@@ -192,13 +192,13 @@ open Lean Elab Tactic Meta
 
 @[builtin_tactic Lean.Parser.Tactic.mrefine]
 def elabMRefineOpt : Tactic := fun stx => do
-  if new_proof_mode.get (← getOptions) then
+  if new_wp_monad.get (← getOptions) then
     return ← Lean.Elab.Tactic.Internal.Do.ProofMode.elabMRefine stx
   elabMRefine stx
 
 @[builtin_tactic Lean.Parser.Tactic.mexists]
 def elabMExistsOpt : Tactic := fun stx => do
-  if new_proof_mode.get (← getOptions) then
+  if new_wp_monad.get (← getOptions) then
     return ← Lean.Elab.Tactic.Internal.Do.ProofMode.elabMExists stx
   elabMExists stx
 

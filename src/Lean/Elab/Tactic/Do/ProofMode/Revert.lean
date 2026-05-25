@@ -229,7 +229,7 @@ open Lean Elab Tactic Meta
 
 @[builtin_tactic Lean.Parser.Tactic.mrevert]
 def elabMRevertOpt : Tactic := fun stx => do
-  if new_proof_mode.get (← getOptions) then
+  if new_wp_monad.get (← getOptions) then
     return ← Lean.Elab.Tactic.Internal.Do.ProofMode.elabMRevert stx
   elabMRevert stx
 

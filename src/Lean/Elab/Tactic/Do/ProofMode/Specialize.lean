@@ -362,13 +362,13 @@ open Lean Elab Tactic Meta
 
 @[builtin_tactic Lean.Parser.Tactic.mspecialize]
 def elabMSpecializeOpt : Tactic := fun stx => do
-  if new_proof_mode.get (← getOptions) then
+  if new_wp_monad.get (← getOptions) then
     return ← Lean.Elab.Tactic.Internal.Do.ProofMode.elabMSpecialize stx
   elabMSpecialize stx
 
 @[builtin_tactic Lean.Parser.Tactic.mspecializePure]
 def elabMspecializePureOpt : Tactic := fun stx => do
-  if new_proof_mode.get (← getOptions) then
+  if new_wp_monad.get (← getOptions) then
     return ← Lean.Elab.Tactic.Internal.Do.ProofMode.elabMspecializePure stx
   elabMspecializePure stx
 

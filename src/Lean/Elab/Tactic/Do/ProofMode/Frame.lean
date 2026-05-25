@@ -8,7 +8,6 @@ module
 prelude
 public import Std.Tactic.Do.Syntax
 public import Lean.Elab.Tactic.Do.ProofMode.Focus
-
 public section
 
 namespace Lean.Elab.Tactic.Do.ProofMode
@@ -167,7 +166,7 @@ open Lean Elab Tactic Meta
 
 @[builtin_tactic Lean.Parser.Tactic.mframe]
 def elabMFrameOpt : Tactic := fun stx => do
-  if new_proof_mode.get (← getOptions) then
+  if new_wp_monad.get (← getOptions) then
     return ← Lean.Elab.Tactic.Internal.Do.ProofMode.elabMFrame stx
   elabMFrame stx
 

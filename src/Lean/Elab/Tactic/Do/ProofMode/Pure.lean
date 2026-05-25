@@ -287,13 +287,13 @@ open Lean Elab Tactic Meta
 
 @[builtin_tactic Lean.Parser.Tactic.mpure]
 def elabMPureOpt : Tactic := fun stx => do
-  if new_proof_mode.get (← getOptions) then
+  if new_wp_monad.get (← getOptions) then
     return ← Lean.Elab.Tactic.Internal.Do.ProofMode.elabMPure stx
   elabMPure stx
 
 @[builtin_tactic Lean.Parser.Tactic.mpureIntro]
 def elabMPureIntroOpt : Tactic := fun stx => do
-  if new_proof_mode.get (← getOptions) then
+  if new_wp_monad.get (← getOptions) then
     return ← Lean.Elab.Tactic.Internal.Do.ProofMode.elabMPureIntro stx
   elabMPureIntro stx
 

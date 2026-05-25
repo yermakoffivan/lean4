@@ -100,7 +100,7 @@ open Lean Elab Tactic Meta
 
 @[builtin_tactic Lean.Parser.Tactic.massumption]
 def elabMAssumptionOpt : Tactic := fun stx => do
-  if new_proof_mode.get (← getOptions) then
+  if new_wp_monad.get (← getOptions) then
     Lean.Elab.Tactic.Internal.Do.ProofMode.elabMAssumption stx
   else
     elabMAssumption stx

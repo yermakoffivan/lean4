@@ -8,6 +8,7 @@ module
 prelude
 public import Std.Tactic.Do.Syntax
 public import Lean.Elab.Tactic.Do.ProofMode.MGoal
+public import Lean.Elab.Tactic.Do.Options
 
 public section
 
@@ -73,7 +74,7 @@ Mirrors `mStart`/`mStop` above but uses `Std.Internal.Do.CompleteLattice.Tactic`
 infrastructure: `PropAsCompleteLatticeTautology` for goal recognition and
 `ProofMode.start_entails` for the entailment proof. Tactic registration
 (`@[builtin_tactic ...]`) is intentionally omitted — the legacy elaborators
-below dispatch to these based on the `new_proof_mode` option.
+below dispatch to these based on the `new_wp_monad` option.
 -/
 
 namespace Lean.Elab.Tactic.Internal.Do.ProofMode
@@ -147,14 +148,14 @@ open Lean Elab.Tactic Meta
 @[builtin_tactic Lean.Parser.Tactic.mstart]
 def elabMStartOpt : Tactic := fun _stx => do
   let opts ← getOptions
-  if new_proof_mode.get opts then
+  if _root_.new_wp_monad.get opts then
     Lean.Elab.Tactic.Internal.Do.ProofMode.elabMStart _stx
   else
     Lean.Elab.Tactic.Do.ProofMode.elabMStart _stx
 
 @[builtin_tactic Lean.Parser.Tactic.mstop]
 def elabMStopOpt : Tactic := fun _stx => do
-  if new_proof_mode.get (← getOptions) then
+  if new_wp_monad.get (← getOptions) then
     Lean.Elab.Tactic.Internal.Do.ProofMode.elabMStop _stx
   else
     Lean.Elab.Tactic.Do.ProofMode.elabMStop _stx

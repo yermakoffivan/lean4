@@ -10,7 +10,7 @@ public import Std.Do.SPred.DerivedLaws
 public import Std.Tactic.Do.ProofMode
 public import Std.Internal.Do.Order.Lemmas
 public import Lean.Elab.Tactic.Basic
-public import Lean.Elab.Tactic.Do.ProofMode.Options
+public import Lean.Elab.Tactic.Do.Options
 
 public section
 

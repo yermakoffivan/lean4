@@ -180,19 +180,19 @@ open Lean Elab Tactic Meta
 
 @[builtin_tactic Lean.Parser.Tactic.mdup]
 def elabMDupOpt : Tactic := fun stx => do
-  if new_proof_mode.get (← getOptions) then
+  if new_wp_monad.get (← getOptions) then
     return ← Lean.Elab.Tactic.Internal.Do.ProofMode.elabMDup stx
   elabMDup stx
 
 @[builtin_tactic Lean.Parser.Tactic.mhave]
 def elabMHaveOpt : Tactic := fun stx => do
-  if new_proof_mode.get (← getOptions) then
+  if new_wp_monad.get (← getOptions) then
     return ← Lean.Elab.Tactic.Internal.Do.ProofMode.elabMHave stx
   elabMHave stx
 
 @[builtin_tactic Lean.Parser.Tactic.mreplace]
 def elabMReplaceOpt : Tactic := fun stx => do
-  if new_proof_mode.get (← getOptions) then
+  if new_wp_monad.get (← getOptions) then
     return ← Lean.Elab.Tactic.Internal.Do.ProofMode.elabMReplace stx
   elabMReplace stx
 

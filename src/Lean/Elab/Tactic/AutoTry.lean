@@ -49,14 +49,15 @@ register_builtin_option autoTry.onEmptyProof : Bool := {
 }
 
 /--
-Like `autoTry.onEmptyProof`, but also fires on proofs and subproofs that already contain
-some tactics and left a goal unsolved. The suggestion is appended to the existing
-sequence (e.g. `by skip` → `by skip; <found>`).
+Run `try?` on each proof or subproof that left a goal unsolved -- empty `by`, `by skip`,
+empty or unfinished `· `, empty or unfinished `case h => `, and so on -- and report any
+suggestions to insert. The suggestion is appended to the existing sequence
+(e.g. `by skip` → `by skip; <found>`).
 -/
 register_builtin_option autoTry.onUnsolvedGoal : Bool := {
   defValue := false
-  descr := "like `autoTry.onEmptyProof`, but also fires on proofs and subproofs that \
-    already contain some tactics and left a goal unsolved"
+  descr := "run `try?` on each proof or subproof that left a goal unsolved and report \
+    any suggestions"
 }
 
 /--
@@ -130,25 +131,31 @@ the way and `case right`-style scopes focus on a goal that need not be the head 
 either parent list.
 -/
 partial def findFirstBodyGoal (ts : PersistentArray InfoTree) :
-    Option (MetavarContext × MVarId) :=
-  ts.findSome? findInTree
+    Option (MetavarContext × MVarId) := Id.run do
+  let seqs := collectBodyTacticSeqs ts
+  -- If the body was elaborated against multiple proof states (e.g. it sits on the rhs
+  -- of `<;>` so `all_goals` runs it once per goal), several `tacticSeq` info-tree nodes
+  -- share the same source position. A single "Try this" suggestion can't be replayed
+  -- against all of them; stay quiet.
+  if seqs.size != 1 then return none
+  let ti := seqs[0]!
+  if ti.goalsAfter.length == 1 then
+    return ti.goalsAfter.head?.map fun g => (ti.mctxAfter, g)
+  if ti.goalsAfter.isEmpty then
+    -- Body admitted (e.g. `by { }`, `· ` -- both close the focused goal with sorry on
+    -- an empty body), so `goalsAfter` is empty. The goal the user sees as unsolved is
+    -- the one we entered the body with.
+    return ti.goalsBefore.head?.map fun g => (ti.mctxBefore, g)
+  return none
 where
-  findInTree : InfoTree → Option (MetavarContext × MVarId)
-    | .context _ inner => findInTree inner
-    | .node (.ofTacticInfo ti) cs =>
-      if ti.stx.getKind == ``Lean.Parser.Tactic.tacticSeq then
-        if ti.goalsAfter.length == 1 then
-          ti.goalsAfter.head?.map fun g => (ti.mctxAfter, g)
-        else if ti.goalsAfter.isEmpty then
-          -- Body admitted (e.g. `by { }`, `· ` -- both close the focused goal with
-          -- sorry on an empty body), so `goalsAfter` is empty. The goal the user sees
-          -- as unsolved is the one we entered the body with.
-          ti.goalsBefore.head?.map fun g => (ti.mctxBefore, g)
-        else
-          none
-      else
-        cs.findSome? findInTree
-    | _ => none
+  collectBodyTacticSeqs : PersistentArray InfoTree → Array TacticInfo
+    | ts => ts.toArray.flatMap fun t =>
+      match t with
+      | .context _ inner => collectBodyTacticSeqs (#[inner].toPArray')
+      | .node (.ofTacticInfo ti) cs =>
+        if ti.stx.getKind == ``Lean.Parser.Tactic.tacticSeq then #[ti]
+        else collectBodyTacticSeqs cs
+      | _ => #[]
 
 /-- Which kind of auto-`try?` trigger this is. -/
 inductive TriggerKind
@@ -212,9 +219,11 @@ def unsolvedGoalErrorPositions (fileMap : FileMap) (msgs : MessageLog) :
 Returns `true` if `candRange` *owns* an unsolved-goals error: the error position is
 inside `candRange`, and no strictly-deeper candidate range (i.e. properly contained in
 `candRange`) also contains the position. This is how we ensure suggestions fire only on
-the *narrowest* scope responsible for an error -- in particular, a `by` block whose
-proof is closed by `trivial` doesn't fire just because a `have := by skip` inside it
-left an unsolved goal.
+the narrowest scope responsible for an error -- in particular, a `by` block whose proof
+is closed by `trivial` doesn't fire just because a `have := by skip` inside it left an
+unsolved goal, and `case'` (which silently admits without erroring) stays quiet
+because no error lives at its position even though it shares an `MVarId` with the
+enclosing `by`.
 -/
 def ownsUnsolvedGoalError (candRange : Lean.Syntax.Range)
     (allRanges : Array Lean.Syntax.Range) (errorPositions : Array String.Pos.Raw) : Bool :=
@@ -392,9 +401,7 @@ def autoTryHook : Linter where run := withSetOptionIn fun stx => do
     for (_, _, ts, _, _) in candidates do
       if let some p := ts.getPos? then
         counts := counts.alter p (fun n? => some (n?.getD 0 + 1))
-    -- Pre-compute the set of unsolvedGoal-candidate ranges. We need this to apply the
-    -- "narrowest-scope owns the error" filter so that e.g. an outer `by` doesn't fire
-    -- just because a nested `have := by skip` left an unsolved goal.
+    -- Pre-compute the set of unsolvedGoal-candidate ranges for the ownership filter.
     let unsolvedRanges := candidates.filterMap fun (k, _, ts, _, _) =>
       match k with
       | .unsolvedGoal => ts.getRange?

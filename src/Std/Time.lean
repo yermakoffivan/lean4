@@ -110,6 +110,10 @@ Combines date and time into a single representation, useful for precise timestam
 - **`PlainDateTime`**: Represents both date and time in the format `YYYY-MM-DDTHH:mm:ss,sssssssss`.
 - **`Timestamp`**: Represents a specific point in time with nanosecond precision. Its zero value corresponds
 to the UNIX epoch. This type should be used when sending or receiving timestamps between systems.
+- **`WallTime`**: Represents the local civil time shown by a clock in some timezone, stored as a `Duration`
+since `1970-01-01T00:00:00` in local time. Unlike `Timestamp`, it is not tied to UTC; converting between
+the two requires a timezone. It is convenient for performing arithmetic directly on local times without
+first resolving to an absolute instant.
 
 ## Zoned date and times.
 Combines date, time and time zones.
@@ -131,8 +135,7 @@ The table below shows the available format specifiers. Repeating a pattern chara
 text style, minimum width, or offset/fraction form, depending on the field.
 
 The current Lean implementation follows Java's pattern language where practical, but it is not fully
-locale-sensitive. Text forms currently use English data, and localized weekday/week-of-month fields use
-the library's fixed Monday-first interpretation.
+locale-sensitive.
 
 For numeric fields that accept both one- and two-letter forms, the single-letter form parses a
 non-padded number and the two-letter form parses a zero-padded width of two.

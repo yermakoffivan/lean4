@@ -122,22 +122,9 @@ def isSorryTactic (stx : Syntax) : Bool :=
   | `Lean.Parser.Tactic.tacticSorry | `Lean.Parser.Tactic.tacticAdmit => true
   | _ => false
 
-/--
-Tactic-info kinds that *host* a tactic sequence -- `by`, `· ...`, `case h => ...`,
-`focus ...`, `(...)`. These are the scopes where `autoTry.onUnsolvedGoal` fires: after
-the sequence runs, if the host left an unsolved goal, the suggestion is rendered as an
-append to the sequence.
--/
-def isTacticSeqContainer (kind : SyntaxNodeKind) : Bool :=
-  match kind with
-  | `Lean.Parser.Term.byTactic
-  | `Lean.Parser.Tactic.case
-  | `Lean.Parser.Tactic.focus
-  | `Lean.Parser.Tactic.paren
-  | `Lean.cdot => true
-  | _ => false
-
-/-- The first `tacticSeq` child of `stx`, if any. -/
+/-- The first `tacticSeq` child of `stx`, if any. Used to identify "tactic-sequence
+containers" (`by`, `· …`, `case … => …`, `focus …`, `(…)`, `try …`, etc.) generically,
+without hardcoding a list of kinds. -/
 def findBodySeq (stx : Syntax) : Option Syntax :=
   stx.getArgs.findSome? fun arg =>
     if arg.isOfKind ``Lean.Parser.Tactic.tacticSeq then some arg else none
@@ -212,10 +199,11 @@ def collectTriggerPoints (opts : Options) (tree : InfoTree) :
       let onUnsolved := autoTry.onUnsolvedGoal.get opts
       let onSorry := autoTry.onSorry.get opts
       let mut acc := acc
-      if isTacticSeqContainer kind && tacInfo.goalsAfter.length == 1 then
-        -- `onUnsolved` fires for any tactic-sequence container (`by`, `·`, `case`, …)
-        -- whose body left exactly one unsolved goal. `onEmpty` is a narrower variant
-        -- that fires only on empty `by` blocks.
+      if (findBodySeq tacInfo.stx).isSome && tacInfo.goalsAfter.length == 1 then
+        -- `onUnsolved` fires for any tactic-sequence container (`by`, `·`, `case`, …,
+        -- identified generically as a tactic whose syntax has a `tacticSeq` child) whose
+        -- body left exactly one unsolved goal. `onEmpty` is a narrower variant that
+        -- fires only on empty `by` blocks.
         if onUnsolved ||
             (onEmpty && kind == `Lean.Parser.Term.byTactic && isEmptyByBlock tacInfo.stx) then
           acc := acc.push (.unsolvedGoal, ctx, tacInfo)

@@ -343,24 +343,33 @@ def focusAndDone (tactic : TacticM α) : TacticM α :=
 
 /-- Close the main goal using the given tactic. If it fails, log the error and `admit`.
 
-`onAdmit` is invoked with the focused goal and the `MetavarContext` snapshot taken
-*before* the tactic ran. This is used by `autoTry` to record an info-tree marker at
-sites where the user has an unfinishable proof site, so the surrounding hook can run
-`try?` against the goal as it was on entry -- by the time `onAdmit` is called the
-goal is already assigned to `sorry` (`done` admits via `reportUnsolvedGoals`), so we
-need the pre-tactic snapshot to read the actual goal type from. -/
+`onAdmit` is invoked when the tactic ran cleanly but left the focused goal unsolved,
+with the remaining focused goal and the `MetavarContext` as they stand after `tac`
+(but before the goal is assigned to `sorry`). `autoTry` uses this hook to record an
+info-tree marker carrying the live goal at the admit point, so a "Try this:"
+suggestion can be computed against the local context the user actually sees. -/
 def closeUsingOrAdmit (tac : TacticM Unit)
     (onAdmit : MVarId → MetavarContext → TacticM Unit := fun _ _ => pure ()) : TacticM Unit := do
   /- Important: we must define `closeUsingOrAdmit` before we define
      the instance `MonadExcept` for `TacticM` since it backtracks the state including error messages. -/
   let mvarId :: mvarIds ← getUnsolvedGoals | throwNoGoalsToBeSolved
-  let savedMctx ← getMCtx
   tryCatchRuntimeEx
-    (focusAndDone tac)
+    (focus do
+      tac
+      -- Inline `done`'s logic so `onAdmit` can see the post-`tac` state before
+      -- `reportUnsolvedGoals` assigns the remaining goals to `sorry`. We only fire
+      -- the hook when exactly one goal remains -- a single suggestion can't replay
+      -- against multiple subgoals.
+      let remainingGoals ← getUnsolvedGoals
+      unless remainingGoals.isEmpty do
+        if (← read).recover then
+          if let [g] := remainingGoals then
+            onAdmit g (← getMCtx)
+        Term.reportUnsolvedGoals remainingGoals
+        throwAbortTactic)
     fun ex => do
       if (← read).recover then
         logException ex
-        onAdmit mvarId savedMctx
         admitGoal mvarId
         setGoals mvarIds
       else

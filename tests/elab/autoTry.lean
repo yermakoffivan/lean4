@@ -344,17 +344,19 @@ set_option autoTry.onSorry false
 
 /-! ## Admit-wrapped bodies see the surrounding local context
 
-When a `by` block runs setup tactics (e.g. `have h := …`) and then has its body admitted
-by an empty wrapper (`{ }`, `(· `, …), the suggestion runs `try?` against the goal *as
-the wrapper sees it* -- with the setup's hypotheses available -- and the append point
-sits at the wrapper's body, not the outer by-block. This is the elaborator-side hook
-talking: the wrapper pushes its own `AutoTryHook.HookInfo` carrying the live `(mctx,
-goal)` it was about to admit. -/
+When an admit-emitting wrapper (`{ }`, `· `, `case h => …`, …) leaves its body
+unsolved, the suggestion runs `try?` against the focused goal *as the wrapper sees
+it after its body ran* -- including any hypotheses the body introduced. The append
+point sits at the wrapper's body, not the outer by-block.
+
+The tests below use `have h : … := …` so the body's effect on the goal state is
+visible in the suggestion: `try?` against `h : True ⊢ True` proposes `assumption`
+as its first candidate, which would not be suggested against the entry state
+`⊢ True`. -/
 
 set_option autoTry.onUnsolvedGoal true
 
--- `{ }` admits the focused goal with `sorry` and pushes its hook. `try?` sees
--- `h : True ⊢ True`, so `[apply] assumption` is the first suggestion (and works).
+-- Setup runs in the *outer* by-block, then `{ }` admits with `h` already in context.
 /--
 error: unsolved goals
 h : True
@@ -372,6 +374,74 @@ info: Try these:
 example : True := by
   have h : True := True.intro
   { }
+
+-- Setup runs *inside* the bracketed body. Verifies the wrapper captures the
+-- post-tac state (with `h`), not the entry state.
+/--
+error: unsolved goals
+h : True
+⊢ True
+---
+info: Try these:
+  [apply] assumption
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
+-/
+#guard_msgs in
+example : True := by { have h : True := True.intro }
+
+-- Same, inside `· `.
+/--
+error: unsolved goals
+h : True
+⊢ True
+---
+info: Try these:
+  [apply] assumption
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
+-/
+#guard_msgs in
+example : True := by · have h : True := True.intro
+
+-- Same, inside `case left => …`. The case binder strips the `case left` tag from the
+-- goal, so the error shows `⊢ True` and the suggestion includes `assumption` because
+-- the body introduced `h` before running out of tactics.
+/--
+error: unsolved goals
+h : True
+⊢ True
+---
+error: unsolved goals
+case right
+⊢ True
+---
+info: Try these:
+  [apply] assumption
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
+---
+info: Try these:
+  [apply] solve_by_elim
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
+-/
+#guard_msgs in
+example : True ∧ True := by
+  constructor
+  case left => have h : True := True.intro
 
 set_option autoTry.onUnsolvedGoal false
 
@@ -524,9 +594,9 @@ set_option autoTry.onUnsolvedGoal true in
 set_option debug.autoTry.showEdits true in
 example : True := by skip
 
--- Single-tactic `by` body across multiple source lines: per the simplified separator
--- heuristic, we still use `; ` (newline+indent is reserved for bodies that *already*
--- have more than one tactic on separate lines).
+-- Single-tactic `by` body across multiple source lines: we still use `; ` (newline +
+-- indent is reserved for bodies that *already* have more than one tactic on separate
+-- lines).
 /--
 error: unsolved goals
 ⊢ True

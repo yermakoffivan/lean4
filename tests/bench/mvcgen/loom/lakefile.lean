@@ -2,7 +2,7 @@ import Lake
 open Lake DSL
 
 package loom where
-  precompileModules := false
+  precompileModules := true
 
 @[test_driver]
 lean_lib Loom where

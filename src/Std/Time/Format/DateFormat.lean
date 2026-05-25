@@ -180,9 +180,9 @@ def enUS : DateFormatSymbols where
   weekdayShort     := Vector.mk #["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] (by decide)
   weekdayNarrow    := Vector.mk #["M", "T", "W", "T", "F", "S", "S"] (by decide)
   weekdayTwoLetter := Vector.mk #["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"] (by decide)
-  eraShort         := Vector.mk #["BCE", "CE"] (by decide)
-  eraLong          := Vector.mk #["Before Common Era", "Common Era"] (by decide)
-  eraNarrow        := Vector.mk #["B", "C"] (by decide)
+  eraShort         := Vector.mk #["BC", "AD"] (by decide)
+  eraLong          := Vector.mk #["Before Christ", "Anno Domini"] (by decide)
+  eraNarrow        := Vector.mk #["B", "A"] (by decide)
   quarterShort     := Vector.mk #["Q1", "Q2", "Q3", "Q4"] (by decide)
   quarterLong      := Vector.mk #["1st quarter", "2nd quarter", "3rd quarter", "4th quarter"] (by decide)
   quarterNarrow    := Vector.mk #["1", "2", "3", "4"] (by decide)
@@ -213,6 +213,13 @@ structure DateFormat where
   firstDayOfWeek : Weekday
 
   /--
+  The minimum number of days that a week must have in the new year to count as week 1.
+  ISO 8601 uses 4 (week 1 must contain the first Thursday); US locale uses 1 (any week
+  containing Jan 1 is week 1).
+  -/
+  minimalDaysInFirstWeek : Nat := 4
+
+  /--
   Locale-specific symbols used for formatting and parsing text fields.
   -/
   symbols : DateFormatSymbols
@@ -224,6 +231,7 @@ English (US) locale.
 -/
 def enUS : DateFormat where
   firstDayOfWeek := .sunday
+  minimalDaysInFirstWeek := 1
   symbols := DateFormatSymbols.enUS
 
 end DateFormat

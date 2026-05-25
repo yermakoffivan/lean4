@@ -31,13 +31,13 @@ def jpTZ : TimeZone := timezone("Asia/Tokyo +09:00")
 -- G  Era
 -- ──────────────────────────────────────────────────────────────────────────────
 
-/-- info: "CE CE CE Common Era C" -/
+/-- info: "AD AD AD Anno Domini A" -/
 #guard_msgs in #eval zoned₄.format "G GG GGG GGGG GGGGG"
-/-- info: "CE CE CE Common Era C" -/
+/-- info: "AD AD AD Anno Domini A" -/
 #guard_msgs in #eval datetime₄.format "G GG GGG GGGG GGGGG"
-/-- info: "CE CE CE Common Era C" -/
+/-- info: "AD AD AD Anno Domini A" -/
 #guard_msgs in #eval date₄.format "G GG GGG GGGG GGGGG"
-/-- info: "BCE Before Common Era B" -/
+/-- info: "BC Before Christ B" -/
 #guard_msgs in #eval datetime₅.format "GGG GGGG GGGGG"
 
 -- ──────────────────────────────────────────────────────────────────────────────
@@ -68,9 +68,10 @@ def jpTZ : TimeZone := timezone("Asia/Tokyo +09:00")
 #guard_msgs in #eval datetime₅.format "uuuu u"
 
 -- Combined year + era sanity check (matches Java)
-/-- info: "2002 2002 CE" -/
+/-- info: "2002 2002 AD" -/
 #guard_msgs in #eval datetime₄.format "uuuu yyyy G"
-/-- info: "-2000 2001 BCE" -/
+
+/-- info: "-2000 2001 BC" -/
 #guard_msgs in #eval datetime₅.format "uuuu yyyy G"
 
 -- ──────────────────────────────────────────────────────────────────────────────
@@ -154,6 +155,24 @@ def jpTZ : TimeZone := timezone("Asia/Tokyo +09:00")
 #eval
   let t : DateTime := .ofPlainDateTime datetime("2018-12-31T12:00:00") (TimeZone.ZoneRules.ofTimeZone TimeZone.UTC)
   IO.println s!"{t.format "w"}"
+
+-- ISO week-year boundaries, cross-checked with Java `WeekFields.ISO`.
+#guard date("2015-12-28").weekOfYear.val == 53
+#guard date("2015-12-31").weekOfYear.val == 53
+#guard date("2020-12-28").weekOfYear.val == 53
+#guard date("2020-12-31").weekOfYear.val == 53
+#guard date("2021-12-28").weekOfYear.val == 52
+#guard date("2022-12-31").weekOfYear.val == 52
+#guard date("2021-01-01").weekOfYear.val == 53
+#guard date("2021-01-03").weekOfYear.val == 53
+#guard date("2022-01-01").weekOfYear.val == 52
+#guard date("2023-01-01").weekOfYear.val == 52
+
+#guard date("2015-12-28").weekYear == 2015
+#guard date("2018-12-31").weekYear == 2019
+#guard date("2021-01-01").weekYear == 2020
+#guard date("2022-01-01").weekYear == 2021
+#guard date("2023-01-01").weekYear == 2022
 
 -- ──────────────────────────────────────────────────────────────────────────────
 -- E  Day-of-week (text only)
@@ -319,12 +338,10 @@ def timeNight := time("01:00:00")
 /-- info: "23 23" -/
 #guard_msgs in #eval time₄.format "H HH"
 
--- midnight edge: hour=0 → h=0 (0%12=0), K=0, k=24 (shiftTo1Based), H=0
-/-- info: "0 00 0 00 24 24 0 00" -/
+/-- info: "12 12 0 00 24 24 0 00" -/
 #guard_msgs in #eval timeMidnight.format "h hh K KK k kk H HH"
 
--- noon edge: hour=12 → h=0 (12%12=0), K=0 (12%12=0), k=12, H=12
-/-- info: "0 00 0 00 12 12 12 12" -/
+/-- info: "12 12 0 00 12 12 12 12" -/
 #guard_msgs in #eval timeNoon.format "h hh K KK k kk H HH"
 
 -- ──────────────────────────────────────────────────────────────────────────────
@@ -390,9 +407,9 @@ def timeNight := time("01:00:00")
 -- ──────────────────────────────────────────────────────────────────────────────
 
 -- VV = IANA zone ID (or offset string for offset-only zones)
-/-- info: "+09:00" -/
+/-- info: "GMT+09:00" -/
 #guard_msgs in #eval zoned₄.format "VV"
-/-- info: "+00:00" -/
+/-- info: "GMT+00:00" -/
 #guard_msgs in #eval zoned₅.format "VV"
 
 -- ──────────────────────────────────────────────────────────────────────────────
@@ -400,9 +417,10 @@ def timeNight := time("01:00:00")
 -- ──────────────────────────────────────────────────────────────────────────────
 
 -- offset-only zone: short name = abbreviation = "+09:00"; full = name = "+09:00"
-/-- info: "+09:00 +09:00 +09:00 +09:00" -/
+/-- info: "GMT+09:00 GMT+09:00 GMT+09:00 GMT+09:00" -/
 #guard_msgs in #eval zoned₄.format "z zz zzz zzzz"
-/-- info: "+00:00 +00:00 +00:00 +00:00" -/
+
+/-- info: "GMT+00:00 GMT+00:00 GMT+00:00 GMT+00:00" -/
 #guard_msgs in #eval zoned₅.format "z zz zzz zzzz"
 
 -- named zone (brTZ stored with abbreviation "BRT")
@@ -412,9 +430,10 @@ def zoned₆ := DateTime.ofPlainDateTime (zoned₄.toPlainDateTime) (TimeZone.Zo
 #guard_msgs in #eval zoned₆.format "z zz zzz zzzz zzzz"
 
 -- v: generic (no DST distinction) — same abbreviation/name as z for these zones
-/-- info: "+09:00 +09:00" -/
+/-- info: "GMT+09:00 GMT+09:00" -/
 #guard_msgs in #eval zoned₄.format "v vvvv"
-/-- info: "+00:00 +00:00" -/
+
+/-- info: "GMT+00:00 GMT+00:00" -/
 #guard_msgs in #eval zoned₅.format "v vvvv"
 
 -- ──────────────────────────────────────────────────────────────────────────────
@@ -423,8 +442,8 @@ def zoned₆ := DateTime.ofPlainDateTime (zoned₄.toPlainDateTime) (TimeZone.Zo
 
 /-- info: "GMT+9 GMT+09:00" -/
 #guard_msgs in #eval zoned₄.format "O OOOO"
--- +00:00 → short "GMT+0", full "GMT+00:00"
-/-- info: "GMT+0 GMT+00:00" -/
+-- +00:00 → short "GMT" (UTC), full "GMT"
+/-- info: "GMT GMT" -/
 #guard_msgs in #eval zoned₅.format "O OOOO"
 
 -- ──────────────────────────────────────────────────────────────────────────────

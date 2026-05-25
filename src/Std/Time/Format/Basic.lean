@@ -231,12 +231,13 @@ private def formatExtendedDayPeriod (arr : Vector String 6) (period : ExtendedDa
 private def toSigned (data : Int) : String :=
   if data < 0 then toString data else "+" ++ toString data
 
-private def toIsoString (offset : Offset) (withMinutes : Bool) (withSeconds : Bool) (colon : Bool) : String :=
+private def toIsoString (offset : Offset) (withMinutes : Bool) (withSeconds : Bool) (colon : Bool) (padHour : Bool := true) : String :=
   let (sign, time) := if offset.second.val ≥ 0 then ("+", offset.second) else ("-", -offset.second)
   let time := PlainTime.ofSeconds time
   let pad := leftPadAscii 2 '0' ∘ toString
 
-  let data := s!"{sign}{pad time.hour.val}"
+  let hourStr := if padHour then pad time.hour.val else toString time.hour.val
+  let data := s!"{sign}{hourStr}"
   let data := if withMinutes then s!"{data}{if colon then ":" else ""}{pad time.minute.val}" else data
   let data := if withSeconds ∧ time.second.val ≠ 0 then s!"{data}{if colon then ":" else ""}{pad time.second.val}" else data
 
@@ -387,8 +388,8 @@ private def formatWith (dateformat : DateFormat) (modifier : Modifier) (data : T
     | .full   => formatExtendedDayPeriod dateformat.symbols.extendedDayPeriodLong data
     | .narrow => formatExtendedDayPeriod dateformat.symbols.extendedDayPeriodNarrow data
     | .twoLetterShort => formatExtendedDayPeriod dateformat.symbols.extendedDayPeriodShort data
-  | .h format => pad format.padding (data.val % 12)
-  | .K format => pad format.padding (data.val % 12)
+  | .h format => pad format.padding data.val
+  | .K format => pad format.padding data.val
   | .k format => pad format.padding data.val
   | .H format => pad format.padding data.val
   | .m format => pad format.padding data.val
@@ -396,7 +397,10 @@ private def formatWith (dateformat : DateFormat) (modifier : Modifier) (data : T
   | .S format =>
     match format with
     | .nano      => pad 9 data.val
-    | .truncated n => rightTruncate n data.val (cut := true)
+    | .truncated n =>
+      -- Pad to 9 digits first so truncation is from the left of the full nanosecond string
+      let s := leftPadAscii 9 '0' (toString data.val)
+      (s.take n).toString
   | .A format =>
     pad format.padding data.val
   | .n format =>
@@ -418,8 +422,16 @@ private def formatWith (dateformat : DateFormat) (modifier : Modifier) (data : T
     | .full  => data
   | .O format =>
     match format with
-    | .short => s!"GMT{toSigned data.second.toHours.toInt}"
-    | .full  => s!"GMT{toIsoString data true false true}"
+    | .short =>
+      if data.second == 0 then "GMT"
+      else
+        let (sign, time) := if data.second.val ≥ 0 then ("+", data.second) else ("-", -data.second)
+        let t := PlainTime.ofSeconds time
+        let pad := leftPadAscii 2 '0' ∘ toString
+        if t.minute.val == 0
+          then s!"GMT{sign}{t.hour.val}"
+          else s!"GMT{sign}{t.hour.val}:{pad t.minute.val}"
+    | .full  => if data.second == 0 then "GMT" else s!"GMT{toIsoString data true false true}"
   | .X format =>
     if data.second == 0 then
       "Z"
@@ -455,18 +467,20 @@ private def formatWith (dateformat : DateFormat) (modifier : Modifier) (data : T
         then "Z"
         else toIsoString data true (data.second.val % 60 ≠ 0) true
 
-private def dateFromModifier (firstDay : Weekday) (date : DateTime) : TypeFormat modifier :=
+private def dateFromModifier (dateformat : DateFormat) (date : DateTime) : TypeFormat modifier :=
+  let firstDay := dateformat.firstDayOfWeek
+  let minDays := dateformat.minimalDaysInFirstWeek
   let tz := date.timezone
   match modifier with
   | .G _ => date.era
   | .y _ => date.year
   | .u _ => date.year
-  | .Y _ => date.weekYear firstDay
+  | .Y _ => date.weekYear firstDay minDays
   | .D _ => Sigma.mk _ date.dayOfYear
   | .M _ | .L _ => date.month
   | .d _ => date.day
   | .Q _ | .q _ => date.quarter
-  | .w _ => date.weekOfYear firstDay
+  | .w _ => date.weekOfYear firstDay minDays
   | .W _ => date.weekOfMonth firstDay
   | .E _ | .e _ | .c _ => date.weekday
   | .F _ => date.alignedWeekOfMonth
@@ -484,12 +498,24 @@ private def dateFromModifier (firstDay : Weekday) (date : DateTime) : TypeFormat
   | .n _ => date.nanosecond
   | .N _ => date.date.get.time.toNanoseconds
   | .V .unknown => "unk"
-  | .V .short   => tz.name
-  | .V .full    => tz.name
-  | .z .short   => tz.abbreviation
-  | .z .full    => tz.name
-  | .v .short   => tz.abbreviation
-  | .v .full    => tz.name
+  | .V .short   => if tz.name.startsWith "+" || tz.name.startsWith "-"
+                   then s!"GMT{toIsoString tz.offset true false true}"
+                   else tz.name
+  | .V .full    => if tz.name.startsWith "+" || tz.name.startsWith "-"
+                   then s!"GMT{toIsoString tz.offset true false true}"
+                   else tz.name
+  | .z .short   => if tz.abbreviation.startsWith "+" || tz.abbreviation.startsWith "-"
+                   then s!"GMT{toIsoString tz.offset true false true}"
+                   else tz.abbreviation
+  | .z .full    => if tz.name.startsWith "+" || tz.name.startsWith "-"
+                   then s!"GMT{toIsoString tz.offset true false true}"
+                   else tz.name
+  | .v .short   => if tz.abbreviation.startsWith "+" || tz.abbreviation.startsWith "-"
+                   then s!"GMT{toIsoString tz.offset true false true}"
+                   else tz.abbreviation
+  | .v .full    => if tz.name.startsWith "+" || tz.name.startsWith "-"
+                   then s!"GMT{toIsoString tz.offset true false true}"
+                   else tz.name
   | .O _ => tz.offset
   | .X _ => tz.offset
   | .x _ => tz.offset
@@ -821,7 +847,7 @@ private def parseWith (config : FormatConfig) : (mod : Modifier) → Parser (Typ
 
 private def formatPartWithDate (dateformat : DateFormat) (date : DateTime) (part : FormatPart) : String :=
   match part with
-  | .modifier mod => formatWith dateformat mod (dateFromModifier dateformat.firstDayOfWeek date)
+  | .modifier mod => formatWith dateformat mod (dateFromModifier dateformat date)
   | .string s => s
 
 set_option linter.missingDocs false in  -- TODO

@@ -114,7 +114,7 @@ elab "_fake_close" : tactic => do
   let mvar ← getMainGoal
   mvar.assign (mkNatLit 0)
 /--
-error: (kernel) declaration type mismatch, '_example._proof_1' has type
+error: (kernel) declaration type mismatch, '_example._impossible_1' has type
   ¬True → Nat
 but it is expected to have type
   ¬¬True

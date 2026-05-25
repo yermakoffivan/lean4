@@ -91,20 +91,18 @@ register_builtin_option debug.autoTry.showEdits : Bool := {
 builtin_initialize registerTraceClass `autoTry
 
 /--
-Run a `MetaM` computation in the context saved in `ctx`, with the given `lctx` and `mctx`,
-propagating any messages and traces produced back into the surrounding `CommandElabM` state.
-The surrounding `CommandElabM` cancel token is forwarded so that long-running `try?` calls
-get cancelled when the linter snapshot is cancelled.
+Run a `CoreM` computation in the context saved in `ctx`, propagating any messages and
+traces produced back into the surrounding `CommandElabM` state. The surrounding
+`CommandElabM` cancel token is forwarded so that long-running `try?` calls get cancelled
+when the linter snapshot is cancelled.
 -/
-def runMetaMWithMessages (ctx : ContextInfo) (lctx : LocalContext)
-    (mctx : MetavarContext) (x : MetaM α) : CommandElabM α := do
+def runCoreMWithMessages (ctx : ContextInfo) (x : CoreM α) : CommandElabM α := do
   let cmdCtx ← read
   -- `try?` may create temporary auxiliary declarations during library search; running with
   -- a non-exporting environment keeps any such declarations from leaking out as exports.
   let env := ctx.env.setExporting false
-  let core : CoreM α := Prod.fst <$> x.run { lctx } { mctx }
   let (res, newCoreState) ←
-    (withOptions (fun _ => ctx.options) core).toIO
+    (withOptions (fun _ => ctx.options) x).toIO
       { currNamespace := ctx.currNamespace, openDecls := ctx.openDecls
         fileName := cmdCtx.fileName, fileMap := cmdCtx.fileMap
         cancelTk? := cmdCtx.cancelTk? }
@@ -113,6 +111,11 @@ def runMetaMWithMessages (ctx : ContextInfo) (lctx : LocalContext)
     messages := s.messages ++ newCoreState.messages
     traceState.traces := s.traceState.traces ++ newCoreState.traceState.traces }
   return res
+
+/-- Run a `MetaM` computation with the given `lctx`/`mctx` via `runCoreMWithMessages`. -/
+def runMetaMWithMessages (ctx : ContextInfo) (lctx : LocalContext)
+    (mctx : MetavarContext) (x : MetaM α) : CommandElabM α :=
+  runCoreMWithMessages ctx (Prod.fst <$> x.run { lctx } { mctx })
 
 def isSorryTactic (stx : Syntax) : Bool :=
   match stx.getKind with
@@ -223,14 +226,14 @@ end of `byStx`'s tactic sequence (or just after `by` for an empty body). The `me
 override keeps the rendered widget text clean (no leading separator). `cmdLine` is the
 1-based line of the enclosing command's start, used to render edit positions relative to
 the command (so tests are robust to moving the example up or down the file). -/
-def emitAppendSuggestions (ctx : ContextInfo) (mctx : MetavarContext)
+def emitAppendSuggestions (ctx : ContextInfo)
     (byStx : Syntax) (suggs : Array (TSyntax `tactic)) (cmdLine : Nat) : CommandElabM Unit := do
   if suggs.isEmpty then return
   let some byTail := byStx.getTailPos? | return
   let fileMap := (← read).fileMap
   let sep := computeAppendSep byStx fileMap
   let origSpan := mkEmptyRangeStx byTail
-  runMetaMWithMessages ctx {} mctx do
+  runCoreMWithMessages ctx do
     let showEdits := debug.autoTry.showEdits.get (← getOptions)
     let formatted ← suggs.mapM fun tac => do
       let fmt ← PrettyPrinter.ppTactic tac
@@ -321,7 +324,7 @@ def autoTryHook : Linter where run := withSetOptionIn fun stx => do
       | .unsolvedGoal =>
         let some goal := ti.goalsAfter.head? | continue
         let suggs ← collectSuggestionsForGoal ctx ti.mctxAfter goal
-        emitAppendSuggestions ctx ti.mctxAfter ti.stx suggs cmdLine
+        emitAppendSuggestions ctx ti.stx suggs cmdLine
       | .sorryTactic =>
         let some goal := ti.goalsBefore.head? | continue
         runReplaceTryOnGoal ctx ti.mctxBefore goal ti.stx

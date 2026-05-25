@@ -5,14 +5,13 @@ Authors: Vladimir Gladshtein, Sebastian Graf
 -/
 module
 
-prelude
-public import Lean
-public import Loom.Tactic.ShareExt
-public import Std.Internal.Do.Triple.Basic
-
+public import Lean.Elab
+public meta import Lean.Elab
+public import Loom.Tactic.Types
+public import Lean.Meta.Sym.Simp.Goal
 public section
 
-open Lean Parser Meta Elab Tactic Sym Loom Lean.Order
+open Lean Parser Meta Elab Tactic Sym Lean.Order
 open Std.Internal.Do
 
 namespace Loom
@@ -31,26 +30,10 @@ Procedures for introducing variables and hypotheses when unfolding Triples
 and handling preconditions in VCGen goals.
 -/
 
-/-- Cached backward rules for intro procedures. -/
-structure IntroRules where
-  tripleIntro     : BackwardRule
-  meetPreIntro    : BackwardRule
-  trueMeetPreElim : BackwardRule
-  propPreIntro    : BackwardRule
-
-/-- Build the `IntroRules` cache. -/
-def IntroRules.mk' : SymM IntroRules := do
-  return {
-    tripleIntro     := ← mkBackwardRuleFromDecl ``Triple.intro
-    meetPreIntro    := ← mkBackwardRuleFromDecl ``Loom.meet_pre_intro'
-    trueMeetPreElim := ← mkBackwardRuleFromDecl ``Loom.true_meet_pre_elim
-    propPreIntro    := ← mkBackwardRuleFromDecl ``prop_pre_intro
-  }
-
 /-- Expand `pre ⊑ rhs` when the lattice type is a function type `σ₁ → ... → σₙ → BaseTy`
     into `∀ s₁ ... sₙ, pre s₁ ... sₙ ⊑ rhs s₁ ... sₙ`, then intro the `sᵢ`.
     This is needed after unfolding Triple when `Pred` has excess state arguments. -/
-meta def introsExcessArgs (goal : Grind.Goal) : SymM Grind.Goal := goal.withContext do
+def introsExcessArgs (goal : Grind.Goal) : SymM Grind.Goal := goal.withContext do
   let type ← goal.mvarId.getType
   let_expr PartialOrder.rel α _inst pre rhs := type | return goal
   unless α.isForall do return goal
@@ -71,7 +54,7 @@ meta def introsExcessArgs (goal : Grind.Goal) : SymM Grind.Goal := goal.withCont
     - `meet_pre_intro`: `(a → b ⊑ c) → a ⊓ b ⊑ c` — intro left component
     - `true_meet_pre_elim`: `b ⊑ c → True ⊓ b ⊑ c` — skip True
     - `prop_pre_intro`: `(x → True ⊑ y) → x ⊑ y` — base case (non-met pre) -/
-meta partial def introMeetPre (rules : IntroRules) (goal : MVarId) : SymM MVarId :=
+partial def introMeetPre (rules : VCGen.IntroRules) (goal : MVarId) : SymM MVarId :=
   goal.withContext do
   let type ← goal.getType
   let_expr PartialOrder.rel _α _inst pre _rhs := type | return goal
@@ -102,13 +85,44 @@ meta partial def introMeetPre (rules : IntroRules) (goal : MVarId) : SymM MVarId
 
 /-- Unfold `⦃P⦄ x ⦃Q⦄` into `P ⊑ wp⟦x⟧ Q`, expanding excess state args and introing.
     Returns the original goal if not a Triple. -/
-meta def unfoldTriple (rules : IntroRules) (goal : Grind.Goal) : SymM Grind.Goal :=
+def unfoldTriple (rules : VCGen.IntroRules) (goal : Grind.Goal) : SymM Grind.Goal :=
   goal.withContext do
   let type ← goal.mvarId.getType
   unless type.isAppOf ``Triple do return goal
   match ← goal.apply rules.tripleIntro with
   | .goals [goal'] => introsExcessArgs goal'
   | _ => return goal
+
+/-! ## Simplification and intros -/
+
+/-- Simplify `goal` with the given `methods`, threading `simpState` through
+    `VCGenM`'s state to reuse the persistent cache across calls.
+    Returns `none` if simp closes the goal; otherwise returns the (possibly
+    unchanged) goal. -/
+def VCGenM.simpGoal (methods : Sym.Simp.Methods) (goal : Grind.Goal)
+    : VCGenM (Option Grind.Goal) := do
+  let decl ← goal.mvarId.getDecl
+  let (result, simpState') ← Sym.Simp.SimpM.run (Sym.Simp.simp decl.type)
+    methods {} (← get).simpState
+  modify fun s => { s with simpState := simpState' }
+  match ← result.toSimpGoalResult goal.mvarId with
+  | .closed       => return none
+  | .goal mvarId' => return some { goal with mvarId := mvarId' }
+  | .noProgress   => return some goal
+
+/-- Simplify the goal with `Sym.Simp.simpTelescope`
+    (if simp methods are configured), then intro forall-bound variables.
+    Returns `none` if simp closes the goal. -/
+def introsAndSimp (goal : Grind.Goal) : VCGenM (Option Grind.Goal) := do
+  let mut goal := goal
+  if let some methods := (← read).simpMethods then
+    let some goal' ← VCGenM.simpGoal { methods with pre := Sym.Simp.simpTelescope } goal
+      | return none
+    goal := goal'
+  if (← goal.mvarId.getType).isForall then
+    let .goal _ goal' ← goal.intros #[] | failure
+    goal := goal'
+  return some goal
 
 end Loom
 

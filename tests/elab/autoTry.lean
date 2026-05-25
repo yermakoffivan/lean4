@@ -160,15 +160,20 @@ example : True ∧ True := by
 
 -- `case h => …`: the trigger fires on the case scope when it left an unsolved goal,
 -- and *also* on the enclosing `by` block (which still has the sibling goal `right`
--- open). Each scope gets its own suggestion at its own append point.
+-- open). Each scope gets its own suggestion at its own append point. `positions := true`
+-- makes the two "Try these" messages distinguishable: the case anchors at `case left =>
+-- skip` (line +2:2-2:20) while the outer `by` anchors at the whole block.
 /--
+@ +3:12...19
 error: unsolved goals
 ⊢ True
 ---
+@ +1:25...+3:19
 error: unsolved goals
 case right
 ⊢ True
 ---
+@ +1:25...+3:19
 info: Try these:
   [apply] solve_by_elim
   [apply] simp
@@ -177,6 +182,7 @@ info: Try these:
   [apply] grind only
   [apply] simp_all
 ---
+@ +3:2...19
 info: Try these:
   [apply] solve_by_elim
   [apply] simp
@@ -185,7 +191,7 @@ info: Try these:
   [apply] grind only
   [apply] simp_all
 -/
-#guard_msgs in
+#guard_msgs (positions := true) in
 example : True ∧ True := by
   constructor
   case left => skip
@@ -193,14 +199,17 @@ example : True ∧ True := by
 -- `· …` (cdot focus): the trigger fires on the cdot scope when its body left an
 -- unsolved goal, and on the outer `by` block for the sibling goal.
 /--
+@ +3:2...8
 error: unsolved goals
 case left
 ⊢ True
 ---
+@ +1:25...+3:8
 error: unsolved goals
 case right
 ⊢ True
 ---
+@ +1:25...+3:8
 info: Try these:
   [apply] solve_by_elim
   [apply] simp
@@ -209,6 +218,7 @@ info: Try these:
   [apply] grind only
   [apply] simp_all
 ---
+@ +3:2...8
 info: Try these:
   [apply] solve_by_elim
   [apply] simp
@@ -217,7 +227,7 @@ info: Try these:
   [apply] grind only
   [apply] simp_all
 -/
-#guard_msgs in
+#guard_msgs (positions := true) in
 example : True ∧ True := by
   constructor
   · skip

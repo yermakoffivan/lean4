@@ -342,6 +342,51 @@ example : True := by first | sorry | trivial
 
 set_option autoTry.onSorry false
 
+/-! ## Limitation: admit-wrapped bodies with prior setup
+
+When a `by` block runs setup tactics (e.g. `have h := …`) and then has its body admitted
+by a wrapper (`{ … }` empty, `( … )` empty, `· `, or any user macro that calls
+`closeUsingOrAdmit`), our `goalsBefore` fallback in `findFirstBodyGoal` reads off the
+state at the *start* of the by-block's body -- before the setup ran -- rather than the
+state at the wrapper's body. Two consequences:
+
+* The suggestion is computed in the wrong local context (missing the hypotheses the
+  setup introduced).
+* The append point is *after* the admit wrapper, so pasting the suggestion adds a
+  tactic that runs against "no goals to be solved" (the wrapper already closed the
+  goal with `sorry`).
+
+The proper fix is for admit-emitting elaborators (`tacticSeqBracketed`, `cdot`, etc.)
+to push an explicit autoTry info-tree marker carrying the precise `(mctx, goal,
+insertPos)` triple. Until then, we just document the surprising behaviour below.
+-/
+
+set_option autoTry.onUnsolvedGoal true
+
+-- `{ }` admits the focused goal with `sorry`; pasting any of the suggested tactics
+-- below would actually break the proof (`trivial` etc. would run against "no goals to
+-- be solved"). The suggestion is also computed without `h` in the local context,
+-- because the fallback reads off the by-block's entry state.
+/--
+error: unsolved goals
+h : True
+⊢ True
+---
+info: Try these:
+  [apply] solve_by_elim
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
+-/
+#guard_msgs in
+example : True := by
+  have h : True := True.intro
+  { }
+
+set_option autoTry.onUnsolvedGoal false
+
 /-! ## Focused goals on `case`
 
 `case right => …` focuses on the `right` subgoal, not the head of the parent goal list.

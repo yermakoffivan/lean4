@@ -25,8 +25,29 @@ def admitGoal (mvarId : MVarId) (synthetic : Bool := true): MetaM Unit :=
 def goalsToMessageData (goals : List MVarId) : MessageData :=
   MessageData.joinSep (goals.map MessageData.ofGoal) m!"\n\n"
 
+/--
+Info-tree leaf carrying the `(mctx, goal)` of an unsolved goal at the point where it
+is about to be admitted with `sorry`. Used by the `autoTry` feature.
+-/
+structure AdmittedGoalInfo where
+  /-- Metavariable context in which `goal` is well-defined. -/
+  mctx : MetavarContext
+  /-- The unsolved goal about to be admitted. -/
+  goal : MVarId
+  deriving TypeName
+
+/-- Log an "unsolved goals" error for `goals`, push one `AdmittedGoalInfo` info-tree
+leaf per goal at the current ref (so consumers can read the goal state before the
+admit overwrites it), then admit each goal with `sorry`. -/
 def Term.reportUnsolvedGoals (goals : List MVarId) : MetaM Unit := do
   logError <| MessageData.tagged `Tactic.unsolvedGoals <| m!"unsolved goals\n{goalsToMessageData goals}"
+  let ref ← getRef
+  let mctx ← getMCtx
+  for g in goals do
+    pushInfoLeaf <| .ofCustomInfo {
+      stx := ref
+      value := Dynamic.mk ({ mctx, goal := g } : AdmittedGoalInfo)
+    }
   goals.forM fun mvarId => admitGoal mvarId
 
 namespace Tactic
@@ -341,32 +362,13 @@ def focusAndDone (tactic : TacticM α) : TacticM α :=
     done
     pure a
 
-/-- Close the main goal using the given tactic. If it fails, log the error and `admit`.
-
-`onAdmit` is invoked when the tactic ran cleanly but left the focused goal unsolved,
-with the remaining focused goal and the `MetavarContext` as they stand after `tac`
-(but before the goal is assigned to `sorry`). `autoTry` uses this hook to record an
-info-tree marker carrying the live goal at the admit point, so a "Try this:"
-suggestion can be computed against the local context the user actually sees. -/
-def closeUsingOrAdmit (tac : TacticM Unit)
-    (onAdmit : MVarId → MetavarContext → TacticM Unit := fun _ _ => pure ()) : TacticM Unit := do
+/-- Close the main goal using the given tactic. If it fails, log the error and `admit`. -/
+def closeUsingOrAdmit (tac : TacticM Unit) : TacticM Unit := do
   /- Important: we must define `closeUsingOrAdmit` before we define
      the instance `MonadExcept` for `TacticM` since it backtracks the state including error messages. -/
   let mvarId :: mvarIds ← getUnsolvedGoals | throwNoGoalsToBeSolved
   tryCatchRuntimeEx
-    (focus do
-      tac
-      -- Inline `done`'s logic so `onAdmit` can see the post-`tac` state before
-      -- `reportUnsolvedGoals` assigns the remaining goals to `sorry`. We only fire
-      -- the hook when exactly one goal remains -- a single suggestion can't replay
-      -- against multiple subgoals.
-      let remainingGoals ← getUnsolvedGoals
-      unless remainingGoals.isEmpty do
-        if (← read).recover then
-          if let [g] := remainingGoals then
-            onAdmit g (← getMCtx)
-        Term.reportUnsolvedGoals remainingGoals
-        throwAbortTactic)
+    (focusAndDone tac)
     fun ex => do
       if (← read).recover then
         logException ex

@@ -12,7 +12,6 @@ import Lean.Linter.Basic
 import Lean.Server.InfoUtils
 import Lean.Elab.Tactic.Try
 import Lean.Elab.Tactic.Meta
-import Lean.Elab.Tactic.AutoTryHook
 import Lean.Elab.BuiltinTerm
 
 /-! # Auto-`try?`
@@ -116,9 +115,8 @@ def isSorryTactic (stx : Syntax) : Bool :=
 
 /-- Which kind of auto-`try?` trigger this is. -/
 inductive TriggerKind
-  /-- A proof or subproof that left a goal unsolved (signalled by an `AutoTryHook.HookInfo`
-  marker pushed by the elaborator at the admit point). The suggestion is rendered as an
-  *append* to the body. -/
+  /-- A proof or subproof that left a goal unsolved (an `AdmittedGoalInfo` leaf pushed
+  by `Term.reportUnsolvedGoals`). `tacticSeq` is the body to append to. -/
   | unsolvedGoal (tacticSeq : Syntax)
   /-- A `sorry` tactic. The suggestion *replaces* the `sorry`. -/
   | sorryTactic
@@ -154,19 +152,52 @@ def mkEmptyRangeStx (p : String.Pos.Raw) : Syntax :=
 
 /--
 A trigger candidate: enough info for the hook to drive `try?` and emit a suggestion
-without re-walking the infotree.
+without re-walking the infotree. `ref` is the "Try this:" diagnostic anchor (for the
+`sorry` trigger it is also the syntax the suggestion replaces).
 -/
 abbrev Candidate := TriggerKind × ContextInfo × Syntax × MetavarContext × MVarId
 
 /--
+Locate the admit-emitting scope enclosing `leafStx` inside the command syntax `cmd`,
+and return `(body, ref)` for that scope: `body` is the `tacticSeq` to append to, and
+`ref` is the anchor for the "Try this:" diagnostic. Looks for the *smallest* enclosing
+node whose kind is one of `byTactic` / `tacticSeqBracketed` / `Lean.cdot` / `case` /
+`case'`. Returns `none` if `leafStx` has no source range or no matching scope was found.
+-/
+partial def findEnclosingAdmitScope (cmd leafStx : Syntax) : Option (Syntax × Syntax) := do
+  let leafRange ← leafStx.getRange?
+  go cmd leafRange none
+where
+  bodyAndRef (stx : Syntax) : Option (Syntax × Syntax) :=
+    match stx.getKind with
+    -- `by tacs`: `tacs` (a `tacticSeq`) is the body; `stx` itself anchors the diagnostic.
+    | ``Lean.Parser.Term.byTactic | ``Lean.Parser.Term.byTactic' => some (stx[1], stx)
+    -- `{ tacs }`: `stx[1]` is the sepBy body; `stx` anchors the diagnostic.
+    | ``Lean.Parser.Tactic.tacticSeqBracketed => some (stx[1], stx)
+    -- `· tacs`: `stx[1]` is the body.
+    | ``Lean.cdot => some (stx[1], stx)
+    -- `case h => tacs` / `case' h => tacs`: body is `stx[3]`.
+    | ``Lean.Parser.Tactic.case | ``Lean.Parser.Tactic.case' => some (stx[3], stx)
+    | _ => none
+  go (stx : Syntax) (leafRange : Lean.Syntax.Range) (best : Option (Syntax × Syntax))
+      : Option (Syntax × Syntax) := Id.run do
+    let some range := stx.getRange? | return best
+    -- Skip subtrees that don't contain the leaf.
+    unless range.includes leafRange do return best
+    let mut best := if let some hit := bodyAndRef stx then some hit else best
+    for child in stx.getArgs do
+      best := go child leafRange best
+    return best
+
+/--
 Collect candidate trigger points from the info tree. Two sources of candidates:
 
-1. `AutoTryHook.HookInfo` markers pushed by tactic elaborators (`by`, `·`, `case`,
-   `tacticSeqBracketed`, …) at the exact admit/unsolved point. The marker carries the
-   live `(mctx, goal, tacticSeq)`, and its `stx` anchors the diagnostic.
+1. `AdmittedGoalInfo` leaves pushed by `Term.reportUnsolvedGoals`. For each leaf we
+   walk the surrounding command syntax to find the enclosing `byTactic` /
+   `tacticSeqBracketed` / `cdot` / `case` scope and use its body as the append target.
 2. `sorry` tactic info-tree nodes (handled inline).
 -/
-def collectTriggerPoints (opts : Options) (tree : InfoTree) : Array Candidate :=
+def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree) : Array Candidate :=
   let onEmpty := autoTry.onEmptyProof.get opts
   let onUnsolved := autoTry.onUnsolvedGoal.get opts
   let onSorry := autoTry.onSorry.get opts
@@ -174,10 +205,11 @@ def collectTriggerPoints (opts : Options) (tree : InfoTree) : Array Candidate :=
     let mut acc := acc
     if onUnsolved || onEmpty then
       if let .ofCustomInfo ci := info then
-        if let some hook := ci.value.get? AutoTryHook.HookInfo then
-          let isEmpty := hook.tacticSeq.getPos?.isNone
-          if onUnsolved || (onEmpty && isEmpty) then
-            acc := acc.push (.unsolvedGoal hook.tacticSeq, ctx, ci.stx, hook.mctx, hook.goal)
+        if let some hook := ci.value.get? AdmittedGoalInfo then
+          if let some (body, ref) := findEnclosingAdmitScope cmd ci.stx then
+            let isEmpty := body.getPos?.isNone
+            if onUnsolved || (onEmpty && isEmpty) then
+              acc := acc.push (.unsolvedGoal body, ctx, ref, hook.mctx, hook.goal)
     if onSorry then
       if let .ofTacticInfo tacInfo := info then
         if isSorryTactic tacInfo.stx then
@@ -308,24 +340,25 @@ def autoTryHook : Linter where run := withSetOptionIn fun stx => do
   let cmdLine := (fileMap.toPosition (stx.getPos?.getD 0)).line
   let trees ← getInfoTrees
   for tree in trees do
-    let candidates := collectTriggerPoints opts tree
-    -- A source position carrying more than one candidate means the elaborator pushed
-    -- a hook for the same scope multiple times (e.g. on the rhs of `<;>`); a single
-    -- "Try this" suggestion can't be replayed there, so skip such positions.
+    let candidates := collectTriggerPoints stx opts tree
+    -- A source position carrying more than one candidate means either: the same scope
+    -- was entered multiple times (e.g. the rhs of `<;>` runs once per subgoal), or the
+    -- scope left more than one unsolved goal. In both cases a single "Try this"
+    -- suggestion can't be replayed there, so skip duplicates by source position.
     let mut counts : Std.HashMap String.Pos.Raw Nat := {}
-    for (_, _, ts, _, _) in candidates do
-      if let some p := ts.getPos? then
+    for (_, _, ref, _, _) in candidates do
+      if let some p := ref.getPos? then
         counts := counts.alter p (fun n? => some (n?.getD 0 + 1))
     trace[autoTry] "trigger points: {candidates.size}"
-    for (k, ctx, ts, mctx, goal) in candidates do
-      let some pos := ts.getPos? | continue
+    for (k, ctx, ref, mctx, goal) in candidates do
+      let some pos := ref.getPos? | continue
       if counts.getD pos 0 > 1 then continue
       match k with
       | .unsolvedGoal tacticSeq =>
         let suggs ← collectSuggestionsForGoal ctx mctx goal
-        emitAppendSuggestions tacticSeq ts suggs cmdLine
+        emitAppendSuggestions tacticSeq ref suggs cmdLine
       | .sorryTactic =>
-        runReplaceTryOnGoal ctx mctx goal ts
+        runReplaceTryOnGoal ctx mctx goal ref
 
 builtin_initialize addLinter autoTryHook
 

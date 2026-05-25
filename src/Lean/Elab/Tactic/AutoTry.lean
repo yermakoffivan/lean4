@@ -19,7 +19,7 @@ import Lean.Elab.BuiltinTerm
 After a command is elaborated, walk its info trees and run `try?` at positions of interest --
 empty `by` blocks, terminal tactics that left goals unsolved, and `sorry` tactics -- to
 surface suggestions for completing the proof. Each trigger is gated by its own option:
-`autoTry.onEmptyBy`, `autoTry.onUnsolvedGoal`, `autoTry.onSorry`. The infotree walk is
+`autoTry.onEmptyProof`, `autoTry.onUnsolvedGoal`, `autoTry.onSorry`. The infotree walk is
 attached to the linter hook (`addLinter`), but the feature is not a "linter" in the user-
 facing sense; it just borrows that hook to find a convenient post-elaboration entry point.
 
@@ -40,14 +40,15 @@ namespace Lean.Elab.Tactic.AutoTry
 open Lean Elab Term Tactic Command Try Meta
 
 /--
-Run `try?` on empty `by` blocks and report any suggestions as a tactic to insert.
-Strictly a subset of `autoTry.onUnsolvedGoal`: fires only when the `by` block has no
-tactics yet. Use this to get suggestions only for "start of proof" sites without the
-noise of in-progress proofs.
+Run `try?` on tactic-sequence containers whose body has no tactics yet — empty `by`
+blocks, empty `· `, empty `case h => `, and so on. Strictly a subset of
+`autoTry.onUnsolvedGoal`: fires only at "start-of-block" sites, which is useful when you
+want suggestions only when you start writing a scope and not on every in-progress proof.
 -/
-register_builtin_option autoTry.onEmptyBy : Bool := {
+register_builtin_option autoTry.onEmptyProof : Bool := {
   defValue := false
-  descr := "run `try?` on each empty `by` block and report any suggestions"
+  descr := "run `try?` on each tactic-sequence container with an empty body and \
+    report any suggestions"
 }
 
 /--
@@ -57,7 +58,7 @@ any suggestions as an *append* to the sequence rather than a replacement of any 
 tactic. Triggers only when exactly one goal remains, so e.g. `by constructor` (two open
 subgoals) stays silent; the user is expected to shape the proof with `·`/`case` first.
 
-Strictly broader than `autoTry.onEmptyBy`; enabling both is equivalent to enabling
+Strictly broader than `autoTry.onEmptyProof`; enabling both is equivalent to enabling
 only `onUnsolvedGoal`.
 -/
 register_builtin_option autoTry.onUnsolvedGoal : Bool := {
@@ -170,42 +171,70 @@ def mkEmptyRangeStx (p : String.Pos.Raw) : Syntax :=
   Syntax.atom (.original "".toRawSubstring p "".toRawSubstring p) ""
 
 /--
-Collect candidate trigger points from the info tree. Each candidate carries its trigger
-kind, context, the `TacticInfo` it was found at, and the syntax token to use as the
-suggestion anchor.
+A trigger candidate: enough info for the hook to drive `try?` and emit a suggestion
+without re-walking the infotree.
+-/
+abbrev Candidate := TriggerKind × ContextInfo × Syntax × MetavarContext × MVarId
 
-Per-kind criteria are applied inline. Cross-kind filtering -- in particular suppressing
-candidates that share a source position because the elaborator ran the syntax against
-multiple proof states (rhs of `<;>`, body of `repeat`/`iterate`) -- is left to a separate
-pass over the returned candidates.
+/--
+Returns `true` if the message log contains an "unsolved goals" error within `range`. We
+use this as the trigger criterion for `onUnsolvedGoal` / `onEmptyProof`: only fire when
+the scope actually emitted an unsolved-goals error, so combinators like `case'` (which
+silently admit on body failure without erroring) stay quiet.
+-/
+def hasUnsolvedGoalErrorInRange (range : Lean.Syntax.Range) (fileMap : FileMap)
+    (msgs : MessageLog) : Bool :=
+  msgs.reportedPlusUnreported.any fun m =>
+    let inRange := range.contains (fileMap.ofPosition m.pos) (includeStop := true)
+    let isError := m.severity matches .error
+    let isUnsolved := m.data.hasTag (· == `Tactic.unsolvedGoals)
+    inRange && isError && isUnsolved
+
+/--
+Collect candidate trigger points from the info tree. Per-kind criteria are applied
+inline. Cross-kind filtering -- in particular suppressing candidates that share a source
+position because the elaborator ran the syntax against multiple proof states (rhs of
+`<;>`, body of `repeat`/`iterate`) -- is left to a separate pass over the result.
 
 Known blind spot: `repeat tac` where `tac` fails on the first attempt elaborates `tac`
 exactly once, so the position-uniqueness check doesn't suppress it. The cost of the
 false positive is judged acceptable.
 -/
-def collectTriggerPoints (opts : Options) (tree : InfoTree) :
-    CommandElabM (Array (TriggerKind × ContextInfo × TacticInfo)) :=
+def collectTriggerPoints (opts : Options) (tree : InfoTree) (fileMap : FileMap)
+    (msgs : MessageLog) : CommandElabM (Array Candidate) :=
+  let onEmpty := autoTry.onEmptyProof.get opts
+  let onUnsolved := autoTry.onUnsolvedGoal.get opts
+  let onSorry := autoTry.onSorry.get opts
   tree.foldInfoM (init := #[]) fun ctx info acc => do
     match info with
     | .ofTacticInfo tacInfo =>
       -- Only emit candidates whose anchor has a real source range; otherwise the code
       -- action has no document range to apply against.
-      if tacInfo.stx.getPos?.isNone then return acc
-      let kind := tacInfo.stx.getKind
-      let onEmpty := autoTry.onEmptyBy.get opts
-      let onUnsolved := autoTry.onUnsolvedGoal.get opts
-      let onSorry := autoTry.onSorry.get opts
+      let some range := tacInfo.stx.getRange? | return acc
       let mut acc := acc
-      if (findBodySeq tacInfo.stx).isSome && tacInfo.goalsAfter.length == 1 then
-        -- `onUnsolved` fires for any tactic-sequence container (`by`, `·`, `case`, …,
-        -- identified generically as a tactic whose syntax has a `tacticSeq` child) whose
-        -- body left exactly one unsolved goal. `onEmpty` is a narrower variant that
-        -- fires only on empty `by` blocks.
-        if onUnsolved ||
-            (onEmpty && kind == `Lean.Parser.Term.byTactic && isEmptyByBlock tacInfo.stx) then
-          acc := acc.push (.unsolvedGoal, ctx, tacInfo)
+      -- Tactic-sequence-container trigger: any `TacticInfo` whose syntax has a
+      -- `tacticSeq` child (`by`, `·`, `case`, `focus`, `(…)`, etc.), where the scope
+      -- emitted an unsolved-goals error. The error gate is what filters out
+      -- combinators like `case'` that silently admit instead of reporting unsolved goals.
+      if let some body := findBodySeq tacInfo.stx then
+        if hasUnsolvedGoalErrorInRange range fileMap msgs then
+          let isEmpty := body.getPos?.isNone
+          if onUnsolved || (onEmpty && isEmpty) then
+            -- Pick the (mctx, goal) for `try?`: if the scope left exactly one goal open
+            -- we use that; if the scope admitted (`·`, `case`) and there's no goalsAfter
+            -- to point at, fall back to the focused goal we entered with.
+            let scope? : Option (MetavarContext × MVarId) :=
+              if tacInfo.goalsAfter.length == 1 then
+                tacInfo.goalsAfter.head?.map fun g => (tacInfo.mctxAfter, g)
+              else if tacInfo.goalsAfter.isEmpty then
+                tacInfo.goalsBefore.head?.map fun g => (tacInfo.mctxBefore, g)
+              else
+                none
+            if let some (mctx, goal) := scope? then
+              acc := acc.push (.unsolvedGoal, ctx, tacInfo.stx, mctx, goal)
       if onSorry && isSorryTactic tacInfo.stx then
-        acc := acc.push (.sorryTactic, ctx, tacInfo)
+        if let some goal := tacInfo.goalsBefore.head? then
+          acc := acc.push (.sorryTactic, ctx, tacInfo.stx, tacInfo.mctxBefore, goal)
       return acc
     | _ => return acc
 
@@ -301,7 +330,7 @@ def hasNonUnsolvedGoalError (stx : Syntax) : CommandElabM Bool := do
   let some range := stx.getRange? | return false
   let fileMap := (← read).fileMap
   let msgs := (← get).messages
-  return msgs.toArray.any fun m =>
+  return msgs.reportedPlusUnreported.any fun m =>
     let inRange := range.contains (fileMap.ofPosition m.pos) (includeStop := true)
     let isError := m.severity matches .error
     let isUnsolved := m.data.hasTag (· == `Tactic.unsolvedGoals)
@@ -317,7 +346,7 @@ goals, `sorry`) all produce errors or warnings of their own.
 -/
 def autoTryHook : Linter where run := withSetOptionIn fun stx => do
   let opts ← getOptions
-  let onEmpty := autoTry.onEmptyBy.get opts
+  let onEmpty := autoTry.onEmptyProof.get opts
   let onUnsolved := autoTry.onUnsolvedGoal.get opts
   let onSorry := autoTry.onSorry.get opts
   unless onEmpty || onUnsolved || onSorry do return
@@ -327,28 +356,27 @@ def autoTryHook : Linter where run := withSetOptionIn fun stx => do
   trace[autoTry] "running: onEmpty={onEmpty} onUnsolved={onUnsolved} onSorry={onSorry}"
   let fileMap := (← read).fileMap
   let cmdLine := (fileMap.toPosition (stx.getPos?.getD 0)).line
+  let msgs := (← get).messages
   let trees ← getInfoTrees
   for tree in trees do
-    let candidates ← collectTriggerPoints opts tree
+    let candidates ← collectTriggerPoints opts tree fileMap msgs
     -- A source position carrying more than one candidate means the elaborator ran the
     -- same syntax against multiple proof states (rhs of `<;>`, body of `repeat`, ...);
     -- a single "Try this" suggestion can't be replayed there, so skip such positions.
     let mut counts : Std.HashMap String.Pos.Raw Nat := {}
-    for (_, _, ti) in candidates do
-      if let some p := ti.stx.getPos? then
+    for (_, _, ts, _, _) in candidates do
+      if let some p := ts.getPos? then
         counts := counts.alter p (fun n? => some (n?.getD 0 + 1))
     trace[autoTry] "trigger points: {candidates.size}"
-    for (k, ctx, ti) in candidates do
-      let some pos := ti.stx.getPos? | continue
+    for (k, ctx, ts, mctx, goal) in candidates do
+      let some pos := ts.getPos? | continue
       if counts.getD pos 0 > 1 then continue
       match k with
       | .unsolvedGoal =>
-        let some goal := ti.goalsAfter.head? | continue
-        let suggs ← collectSuggestionsForGoal ctx ti.mctxAfter goal
-        emitAppendSuggestions ti.stx suggs cmdLine
+        let suggs ← collectSuggestionsForGoal ctx mctx goal
+        emitAppendSuggestions ts suggs cmdLine
       | .sorryTactic =>
-        let some goal := ti.goalsBefore.head? | continue
-        runReplaceTryOnGoal ctx ti.mctxBefore goal ti.stx
+        runReplaceTryOnGoal ctx mctx goal ts
 
 builtin_initialize addLinter autoTryHook
 

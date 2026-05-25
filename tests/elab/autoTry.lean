@@ -1,6 +1,6 @@
 /-
 Tests for the `autoTry.*` post-elab hook options:
-  - `autoTry.onEmptyBy` -- run `try?` on *empty* `by` blocks; rendered as an *append*
+  - `autoTry.onEmptyProof` -- run `try?` on *empty* `by` blocks; rendered as an *append*
     (a strict subset of `autoTry.onUnsolvedGoal`).
   - `autoTry.onUnsolvedGoal` -- run `try?` on each `by` block (incl. empty `by`) whose
     sequence left exactly one unsolved goal; rendered as an *append* to the sequence.
@@ -15,9 +15,12 @@ The linter skips candidates whose syntax was elaborated against multiple proof s
 against multiple goals.
 -/
 
-/-! ## `autoTry.onEmptyBy` -- only empty `by` -/
+/-! ## `autoTry.onEmptyProof` -- empty tactic-sequence containers
 
-set_option autoTry.onEmptyBy true
+Despite the name, this option fires on any tactic-sequence container whose body has no
+tactics yet — empty `by`, empty `· `, empty `case h => `, etc. -/
+
+set_option autoTry.onEmptyProof true
 
 -- Empty `by`: fires.
 /--
@@ -44,7 +47,24 @@ error: unsolved goals
 #guard_msgs in
 example : True := by skip
 
-set_option autoTry.onEmptyBy false
+-- Empty `· `: the cdot's body is empty, so the trigger fires at the cdot. The enclosing
+-- `by ·` is *not* empty (its body has the cdot), so no second suggestion fires there.
+/--
+error: unsolved goals
+⊢ True
+---
+info: Try these:
+  [apply] solve_by_elim
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
+-/
+#guard_msgs in
+example : True := by ·
+
+set_option autoTry.onEmptyProof false
 
 /-! ## `autoTry.onUnsolvedGoal` -- empty `by` -/
 
@@ -78,10 +98,19 @@ example : True := by
 -- Successful proof: no trigger.
 example : True := by trivial
 
--- `by { }` (empty braces) parses to a different shape and does not currently trigger.
+-- `by { }` (bracketed empty body) still triggers: the inner `tacticSeq` is empty even
+-- though the braces give the `by` block a non-zero width on the source.
 /--
 error: unsolved goals
 ⊢ True
+---
+info: Try these:
+  [apply] solve_by_elim
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
 -/
 #guard_msgs in
 example : True := by { }
@@ -231,6 +260,41 @@ info: Try these:
 example : True ∧ True := by
   constructor
   · skip
+
+-- `case' h => …` (prime variant): `case'` does *not* emit an "unsolved goals" error
+-- when its body doesn't close the focused goal -- it just leaves it open silently.
+-- The error-gated trigger stays quiet on the `case'` scope. Suggestions still fire on
+-- the inner `case right => skip` (which does emit the error) and on the enclosing
+-- `by` block for the still-open `left` sibling -- but *not* on the `case' left` scope.
+/--
+error: unsolved goals
+⊢ True
+---
+error: unsolved goals
+case left
+⊢ True
+---
+info: Try these:
+  [apply] solve_by_elim
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
+---
+info: Try these:
+  [apply] solve_by_elim
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
+-/
+#guard_msgs in
+example : True ∧ True := by
+  constructor
+  case' left => skip
+  case right => skip
 
 set_option autoTry.onUnsolvedGoal false
 

@@ -1,16 +1,18 @@
 import Lean
 import Loom.Test.Driver
-import Loom.Test.Specs
 import Loom.Tactic.VCGen
 import Std.Internal.Do.Triple.SpecLemmas
 
 open Loom Lean Meta Order Std.Internal.Do
 
+set_option new_wp_monad true
+
+
 namespace ConcreteEPostTwoPreds
 
 abbrev M := ExceptT Nat (ExceptT String (StateM Nat))
 
-@[lspec]
+@[spec]
 theorem Spec.M_getThe_Nat :
   Triple (fun s => post s s) (get (m := M)) post epost := by
   rw [Triple.iff]
@@ -30,7 +32,7 @@ def throwNatOrString (n : Nat) : M Nat := do
   else
     pure n
 
-@[lspec]
+@[spec]
 theorem spec_throwNatOrString (n : Nat) :
     Triple (fun _ => True) (throwNatOrString n)
       (fun k s => s = 0 ∧ k = n)

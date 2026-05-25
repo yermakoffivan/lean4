@@ -1,15 +1,15 @@
 import Lean
 import Loom.Test.Driver
-import Std.Internal.Do.Triple.SpecLemmas
-import Loom.Test.Specs
 import Loom.Tactic.VCGen
 
 open Loom Lean Meta Order Std.Internal.Do
 
+set_option new_wp_monad true
+
 namespace AddSubCancel
 
 -- Spec for MonadStateOf.get (defined in VCGen.lean's test section, replicated here)
-@[lspec high] theorem spec_get_StateT {m : Type u → Type v} {Pred EPred : Type u}
+@[spec high] theorem spec_get_StateT {m : Type u → Type v} {Pred EPred : Type u}
     [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred]
     {σ : Type u} (post : σ → σ → Pred) (epost : EPred) :
     Triple (fun s => post s s) (get : StateT σ m σ) post epost := by
@@ -17,11 +17,11 @@ namespace AddSubCancel
 
 -- -- Specs for the standalone `get`/`set` functions (which elaborate to MonadState.get/set,
 -- -- a different head constant from MonadStateOf.get/set used above).
--- @[lspec high] theorem spec_get_StateT' {m : Type u → Type v} {Pred EPred : Type u}
---     [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred]
---     {σ : Type u} (post : σ → σ → Pred) (epost : EPred) :
---     Triple (fun s => post s s) (get : StateT σ m σ) post epost :=
---   by simpa using (spec_get_StateT (m := m) (Pred := Pred) (EPred := EPred) (σ := σ) post epost)
+@[spec high] theorem spec_get_StateT' {m : Type u → Type v} {Pred EPred : Type u}
+    [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred]
+    {σ : Type u} (post : σ → σ → Pred) (epost : EPred) :
+    Triple (fun s => post s s) (get : StateT σ m σ) post epost :=
+  by simpa using (spec_get_StateT (m := m) (Pred := Pred) (EPred := EPred) (σ := σ) post epost)
 
 def step (v : Nat) : StateM Nat Unit := do
   let s ← get
@@ -46,18 +46,13 @@ def runTests := runBenchUsingTactic
     `(tactic| (intro post; lmvcgen with grind))
     `(tactic| fail)
 
--- example : Goal 1 := by
---   intro post s
---   simp only [loop, step]
---   lmvcgen with grind
 
-
--- #eval
---   runBenchUsingTactic
---     ``Goal [``loop, ``step]
---     `(tactic| (intro post s; lmvcgen with grind))
---     `(tactic| skip)
---     [1000]
+#eval
+  runBenchUsingTactic
+    ``Goal [``loop, ``step]
+    `(tactic| (intro post s; lmvcgen with grind))
+    `(tactic| skip)
+    [1000]
 
 -- #eval
 --   runBenchUsingTactic

@@ -89,7 +89,7 @@ def getUnsolvedGoals : TacticM (List MVarId) := do
 @[inline] private def TacticM.runCore (x : TacticM α) (ctx : Context) (s : State) : TermElabM (α × State) :=
   x ctx |>.run s
 
-@[inline] def TacticM.runCore' (x : TacticM α) (ctx : Context) (s : State) : TermElabM α :=
+@[inline] private def TacticM.runCore' (x : TacticM α) (ctx : Context) (s : State) : TermElabM α :=
   Prod.fst <$> x.runCore ctx s
 
 def run (mvarId : MVarId) (x : TacticM Unit) : TermElabM (List MVarId) :=

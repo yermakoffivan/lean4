@@ -224,8 +224,12 @@ def collectSuggestionsForGoal (ctx : ContextInfo) (mctx : MetavarContext) (goal 
         if e.isInterrupt || e.isMaxRecDepth then throw e
         trace[autoTry] "try? raised: {e.toMessageData}"
         return #[]
+    -- Unfold `TacticM` (= `ReaderT Context (StateRefT State TermElabM)`) by hand to
+    -- run `tacticAct` and recover its return value; `Tactic.run` would only let us
+    -- get the leftover goals, not the `α`.
     let term : TermElabM (Array (TSyntax `tactic)) := withSynthesize do
-      goal.withContext <| tacticAct.runCore' { elaborator := .anonymous } { goals := [goal] }
+      goal.withContext <|
+        (tacticAct.run { elaborator := .anonymous }).run' { goals := [goal] }
     try Prod.fst <$> term.run {} {}
     catch e =>
       if e.isInterrupt || e.isMaxRecDepth then throw e

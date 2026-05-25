@@ -203,22 +203,20 @@ Returns `#[]` on error or interruption (control-flow exceptions are re-raised).
 def collectSuggestionsForGoal (ctx : ContextInfo) (mctx : MetavarContext) (goal : MVarId) :
     CommandElabM (Array (TSyntax `tactic)) := do
   let some decl := mctx.decls.find? goal | return #[]
-  let resultRef ← IO.mkRef (#[] : Array (TSyntax `tactic))
   runMetaMWithMessages ctx decl.lctx mctx do
-    let tacticAct : TacticM Unit := do
-      try
-        let suggs ← Try.collectTryCoreSuggestions {}
-        resultRef.set suggs
+    let tacticAct : TacticM (Array (TSyntax `tactic)) := do
+      try Try.collectTryCoreSuggestions {}
       catch e =>
         if e.isInterrupt || e.isMaxRecDepth then throw e
         trace[autoTry] "try? raised: {e.toMessageData}"
-    let term : TermElabM Unit := withSynthesize <| discard <| Tactic.run goal tacticAct
-    try
-      discard <| term.run {} {}
+        return #[]
+    let term : TermElabM (Array (TSyntax `tactic)) := withSynthesize do
+      goal.withContext <| tacticAct.runCore' { elaborator := .anonymous } { goals := [goal] }
+    try Prod.fst <$> term.run {} {}
     catch e =>
       if e.isInterrupt || e.isMaxRecDepth then throw e
       trace[autoTry] "term elab raised: {e.toMessageData}"
-  resultRef.get
+      return #[]
 
 /-- Emit a "Try these:" message whose code-action edits *append* each suggestion to the
 end of `byStx`'s tactic sequence (or just after `by` for an empty body). The `messageData?`

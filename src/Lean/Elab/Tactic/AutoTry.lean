@@ -242,33 +242,32 @@ override keeps the rendered widget text clean (no leading separator). `cmdLine` 
 1-based line of the enclosing command's start, used to render edit positions relative to
 the command (so tests are robust to moving the example up or down the file).
 -/
-def emitAppendSuggestions (ctx : ContextInfo)
+def emitAppendSuggestions
     (byStx : Syntax) (suggs : Array (TSyntax `tactic)) (cmdLine : Nat) : CommandElabM Unit := do
   if suggs.isEmpty then return
   let some byTail := byStx.getTailPos? | return
-  let fileMap := (← read).fileMap
+  let fileMap ← getFileMap
   let sep := computeAppendSep byStx fileMap
   let origSpan := mkEmptyRangeStx byTail
-  runCoreMWithMessages ctx do
-    let showEdits := debug.autoTry.showEdits.get (← getOptions)
-    let formatted ← suggs.mapM fun tac => do
-      let fmt ← PrettyPrinter.ppTactic tac
-      let cleanText := fmt.pretty
-      -- The widget display uses `messageData?` (the bare tactic) while the actual edit
-      -- text in `suggestion` carries the leading separator -- this keeps the [apply]
-      -- line readable without losing the appending semantics on click.
-      let editText := sep ++ cleanText
-      if showEdits then
-        let fm ← getFileMap
-        let pos := fm.toPosition byTail
-        let dLine := pos.line - cmdLine + 1  -- match `#guard_msgs (positions := true)`: +N:COL
-        logInfoAt byStx
-          m!"autoTry edit: insert {repr editText} at +{dLine}:{pos.column}"
-      return ({
-        suggestion := .string editText
-        messageData? := some (toMessageData tac)
-        toCodeActionTitle? := some (fun _ => "Try this: " ++ cleanText)
-      } : Tactic.TryThis.Suggestion)
+  let showEdits := debug.autoTry.showEdits.get (← getOptions)
+  let formatted ← suggs.mapM fun tac => do
+    let fmt ← liftCoreM <| PrettyPrinter.ppTactic tac
+    let cleanText := fmt.pretty
+    -- The widget display uses `messageData?` (the bare tactic) while the actual edit
+    -- text in `suggestion` carries the leading separator -- this keeps the [apply]
+    -- line readable without losing the appending semantics on click.
+    let editText := sep ++ cleanText
+    if showEdits then
+      let pos := fileMap.toPosition byTail
+      let dLine := pos.line - cmdLine + 1  -- match `#guard_msgs (positions := true)`: +N:COL
+      logInfoAt byStx
+        m!"autoTry edit: insert {repr editText} at +{dLine}:{pos.column}"
+    return ({
+      suggestion := .string editText
+      messageData? := some (toMessageData tac)
+      toCodeActionTitle? := some (fun _ => "Try this: " ++ cleanText)
+    } : Tactic.TryThis.Suggestion)
+  liftCoreM <|
     if formatted.size == 1 then
       Tactic.TryThis.addSuggestion byStx formatted[0]! (origSpan? := origSpan)
     else
@@ -345,7 +344,7 @@ def autoTryHook : Linter where run := withSetOptionIn fun stx => do
       | .unsolvedGoal =>
         let some goal := ti.goalsAfter.head? | continue
         let suggs ← collectSuggestionsForGoal ctx ti.mctxAfter goal
-        emitAppendSuggestions ctx ti.stx suggs cmdLine
+        emitAppendSuggestions ti.stx suggs cmdLine
       | .sorryTactic =>
         let some goal := ti.goalsBefore.head? | continue
         runReplaceTryOnGoal ctx ti.mctxBefore goal ti.stx

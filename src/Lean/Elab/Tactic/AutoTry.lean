@@ -178,32 +178,14 @@ where
     | _                          => acc
 
 /--
-Find the smallest `Lean.Elab.TacticInfo` in `tree` whose `goalsAfter` contains
-`mvarId` -- the deepest such tactic is the last tactic that ran without closing the
-goal. Returns its `Syntax` (the tactic itself), which is used to anchor the insertion
-position. Returns `none` for empty bodies (no tactic ever ran on this goal).
--/
-def findLastTacticForGoal (mvarId : MVarId) (tree : InfoTree) : Option Syntax :=
-  let best : Option (Syntax × Nat) :=
-    tree.foldInfo (init := none) fun _ info acc => Id.run do
-      let .ofTacticInfo tacInfo := info | return acc
-      unless tacInfo.goalsAfter.contains mvarId do return acc
-      let some r := tacInfo.stx.getRange? | return acc
-      let sz := r.stop.byteIdx - r.start.byteIdx
-      match acc with
-      | some (_, bestSz) => if sz < bestSz then return some (tacInfo.stx, sz) else return acc
-      | none             => return some (tacInfo.stx, sz)
-  best.map (·.1)
-
-/--
-Locate the admit-emitting scope enclosing `leafStx` inside the command syntax `cmd`,
-and return `(body, ref)` for that scope: `body` is the `tacticSeq` to append to, and
-`ref` is the anchor for the "Try this:" diagnostic. Looks for the smallest enclosing
-node whose kind is one of `byTactic` / `tacticSeqBracketed` / `Lean.cdot` / `case` /
-`case'`. Returns `none` if no enclosing such scope was found. -/
-partial def findEnclosingAdmitScope (cmd leafStx : Syntax) : Option (Syntax × Syntax) := do
-  let leafRange ← leafStx.getRange?
-  go cmd leafRange none
+Locate the admit-emitting scope inside `cmd` whose range contains `range` (the range
+of an `unsolved goals` error message), and return `(body, ref)`: `body` is the
+`tacticSeq` to append to, `ref` is the anchor for the "Try this:" diagnostic. Looks
+for the smallest enclosing node whose kind is one of `byTactic` /
+`tacticSeqBracketed` / `Lean.cdot` / `case` / `case'`. -/
+partial def findEnclosingAdmitScope (cmd : Syntax) (range : Lean.Syntax.Range) :
+    Option (Syntax × Syntax) :=
+  go cmd none
 where
   bodyAndRef (stx : Syntax) : Option (Syntax × Syntax) :=
     match stx.getKind with
@@ -212,13 +194,12 @@ where
     | ``Lean.cdot => some (stx[1], stx)
     | ``Lean.Parser.Tactic.case | ``Lean.Parser.Tactic.case' => some (stx[3], stx)
     | _ => none
-  go (stx : Syntax) (leafRange : Lean.Syntax.Range) (best : Option (Syntax × Syntax))
-      : Option (Syntax × Syntax) := Id.run do
-    let some range := stx.getRange? | return best
-    unless range.includes leafRange do return best
+  go (stx : Syntax) (best : Option (Syntax × Syntax)) : Option (Syntax × Syntax) := Id.run do
+    let some r := stx.getRange? | return best
+    unless r.includes range do return best
     let mut best := if let some hit := bodyAndRef stx then some hit else best
     for child in stx.getArgs do
-      best := go child leafRange best
+      best := go child best
     return best
 
 /--
@@ -249,19 +230,18 @@ def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree)
   unless onUnsolved || onEmpty do return acc
   let some ctx := (tree.foldInfo (init := none) fun ctx _ acc => acc.orElse fun _ => some ctx)
     | return acc
+  let fileMap ← getFileMap
   for msg in msgs do
     unless msg.severity matches .error do continue
     unless msg.data.hasTag (· == `Tactic.unsolvedGoals) do continue
+    let some endPos := msg.endPos | continue
+    let msgRange : Lean.Syntax.Range :=
+      { start := fileMap.ofPosition msg.pos, stop := fileMap.ofPosition endPos }
+    let some (body, ref) := findEnclosingAdmitScope cmd msgRange | continue
+    let isEmpty := body.getPos?.isNone
+    unless onUnsolved || (onEmpty && isEmpty) do continue
     for (mctx, mvarId) in collectGoalsFromMessage msg.data do
-      -- Anchor the scope via the last tactic that left this goal unsolved (for empty
-      -- bodies that admitted directly, the admit elaborator's own TacticInfo serves);
-      -- then walk syntax for the surrounding admit-emitting scope to get the body
-      -- and the diagnostic ref.
-      let some lastTacStx := (findLastTacticForGoal mvarId tree) | continue
-      let some (body, ref) := findEnclosingAdmitScope cmd lastTacStx | continue
-      let isEmpty := body.getPos?.isNone
-      if onUnsolved || (onEmpty && isEmpty) then
-        acc := acc.push (.unsolvedGoal body, ctx, ref, mctx, mvarId)
+      acc := acc.push (.unsolvedGoal body, ctx, ref, mctx, mvarId)
   return acc
 
 /--

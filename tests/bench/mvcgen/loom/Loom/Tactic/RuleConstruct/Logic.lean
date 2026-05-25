@@ -5,16 +5,11 @@ Authors: Vladimir Gladshtein, Sebastian Graf
 -/
 module
 
-prelude
-public import Lean
-public import Loom.Tactic.Attr
-public meta import Loom.Tactic.ShareExt
-public import Std.Internal.Do.WP.Lemmas
-public import Std.Internal.Do.Order.Lemmas
-
+public import Lean.Elab
+public meta import Lean.Elab
 public section
 
-open Lean Meta Sym Sym.Internal Loom Lean.Order
+open Lean Meta Sym Sym.Internal Lean.Order
 open Std.Internal.Do
 
 namespace Loom
@@ -39,31 +34,31 @@ def _root_.Lean.Name.toLogicOp? : Name → Option LogicOp
   | ``Lean.Order.CompleteLattice.ofProp => some .Pure
   | _ => none
 
-meta def LogicOp.mkLatticeExpr (as : Array Expr) (resultType? : Option Expr := none) : LogicOp → MetaM Expr
+def LogicOp.mkLatticeExpr (as : Array Expr) (resultType? : Option Expr := none) : LogicOp → MetaM Expr
   | .And => mkAppM ``meet as
   | .Imp => mkAppM ``himp as
   | .Pure => mkAppOptM ``Lean.Order.CompleteLattice.ofProp #[resultType?, none, some as[0]!]
 
 /-- Map a logic operator to its corresponding `*_fun_apply` lemma. -/
-meta def LogicOp.toApplyLemma : LogicOp → Name
+def LogicOp.toApplyLemma : LogicOp → Name
   | .And => ``meet_fun_apply
   | .Imp => ``himp_fun_apply
   | .Pure => ``Lean.Order.CompleteLattice.ofProp_fun_apply
 
 /-- Map a logic operator to its corresponding proposition-level equivalence lemma. -/
-meta def LogicOp.toPropLemma : LogicOp → Name
+def LogicOp.toPropLemma : LogicOp → Name
   | .And => ``meet_prop_eq_and
   | .Imp => ``himp_prop_eq_imp
   | .Pure => ``Lean.Order.CompleteLattice.ofProp_intro
 
 /-- Map a logic operator to its `⊑`-form splitting lemma. -/
-meta def LogicOp.toRelLemma : LogicOp → Name
+def LogicOp.toRelLemma : LogicOp → Name
   | .And => ``le_meet       -- le_meet (x y z) : x ⊑ y → x ⊑ z → x ⊑ y ⊓ z
   | .Imp => ``himp_complete  -- himp_complete (x a b) : a ⊓ x ⊑ b → x ⊑ a ⇨ b
   | .Pure => ``Loom.le_ofProp -- le_ofProp (x p) : p → x ⊑ ⌜p⌝
 
 /-- Lift an equality `lhs = rhs` to `(lhs args...) = (rhs args...)`. -/
-private meta def liftEqByArgs (eqPrf : Expr) (args : List Expr) : MetaM Expr := do
+private def liftEqByArgs (eqPrf : Expr) (args : List Expr) : MetaM Expr := do
   if args.isEmpty then
     return eqPrf
   let eqTy ← inferType eqPrf
@@ -83,7 +78,7 @@ Example (`lop = .And`, `stepThm = ``meet_fun_apply`, `as = #[a, b]`,
 `ss = [s₁, s₂]`): the resulting proof has type
 `((a ⊓ b) s₁ s₂) = (a s₁ s₂ ⊓ b s₁ s₂)`.
 -/
-meta partial def LogicOp.mkApplyEq
+partial def LogicOp.mkApplyEq
     (stepThm : Name) (lop : LogicOp)
     (as : Array Expr) (ss : List Expr) (resultType? : Option Expr := none) : MetaM Expr := do
   match ss with
@@ -102,7 +97,7 @@ meta partial def LogicOp.mkApplyEq
 /-- Like `mkGoalPremiseEq` but only distributes through function applications
     via `*_fun_apply` lemmas, staying at the lattice level (no Prop simplification).
     Returns `((a ⊓ b) s₁...sₙ, (a s₁...sₙ ⊓ b s₁...sₙ), eq)`. -/
-meta def LogicOp.mkDistributeEq
+def LogicOp.mkDistributeEq
     (lop : LogicOp) (as ss : Array Expr) (resultType? : Option Expr := none) : SymM (Expr × Expr) := do
   let applyLemma := lop.toApplyLemma
   let lat ← lop.mkLatticeExpr as resultType?
@@ -128,7 +123,7 @@ For `Imp`, produces:
 ```
 Works for any `CompleteLattice`, not just `Prop`.
 -/
-meta def LogicOp.mkBackwardRule
+def LogicOp.mkBackwardRule
     (lop : LogicOp) (as : Array Expr) (excessArgs : Array Expr)
     (resultType? : Option Expr := none)
     : SymM BackwardRule := do
@@ -151,7 +146,7 @@ meta def LogicOp.mkBackwardRule
   -- eqMp : (pre ⊑ distributed) → (pre ⊑ goal)
   let eqMp ← mkAppM ``Eq.mp #[relEqSymm]
 
-  -- Instantiate the split lemma (le_meet / himp_complete) via meta telescope
+  -- Instantiate the split lemma (le_meet / himp_complete) via telescope
   let splitLemma ← mkConstWithFreshMVarLevels lop.toRelLemma
   let (xs, _, body) ← forallMetaTelescope (← Meta.inferType splitLemma)
   -- Unify conclusion with eqMp's domain to assign param mvars
@@ -161,24 +156,25 @@ meta def LogicOp.mkBackwardRule
   let prf := mkApp eqMp (mkAppN splitLemma xs)
 
   let res ← abstractMVars prf
-  let type ← preprocessExpr (← Meta.inferType res.expr)
-  let prf ← Meta.mkAuxLemma res.paramNames.toList type res.expr
-  mkBackwardRuleFromDecl prf
+  mkBackwardRuleFromExpr res.expr res.paramNames.toList
 
 /-! ## Tests -/
 
 section Test
 
 /-- Test helper: run `mkBackwardRuleForLogicRel` and return the generated rule type. -/
-meta def testLogicBackwardRuleRel
+def testLogicBackwardRuleRel
     (lop : LogicOp)
     (as excessArgs : Array Expr) (resultType? : Option Expr := none) : MetaM Expr := do
   let rule ← SymM.run do lop.mkBackwardRule as excessArgs resultType?
   inferType rule.expr
 
 -- Test 1: And on Nat → Prop, n = 1 excess arg
--- Should produce: ∀ (a b : Nat → Prop) (s : Nat) (pre : Prop),
---   pre ⊑ (a s ⊓ b s) → pre ⊑ (a ⊓ b) s
+/--
+info: Test Rel-And (Nat→Prop, n=1): ∀ (pre : Prop) (a : Nat → Prop) (s : Nat) (a_1 : Nat → Prop),
+  pre ⊑ a s → pre ⊑ a_1 s → pre ⊑ (a ⊓ a_1) s
+-/
+#guard_msgs in
 #eval! show MetaM Unit from do
   let nat := mkConst ``Nat
   let l ← mkArrow nat (mkSort 0)
@@ -189,8 +185,11 @@ meta def testLogicBackwardRuleRel
         logInfo m!"Test Rel-And (Nat→Prop, n=1): {ty}"
 
 -- Test 2: Imp on Nat → Prop, n = 1 excess arg
--- Should produce: ∀ (a b : Nat → Prop) (s : Nat) (pre : Prop),
---   pre ⊑ (a s ⇨ b s) → pre ⊑ (a ⇨ b) s
+/--
+info: Test Rel-Imp (Nat→Prop, n=1): ∀ (pre : Prop) (a : Nat → Prop) (s : Nat) (a_1 : Nat → Prop),
+  a s ⊓ pre ⊑ a_1 s → pre ⊑ (a ⇨ a_1) s
+-/
+#guard_msgs in
 #eval! show MetaM Unit from do
   let nat := mkConst ``Nat
   let l ← mkArrow nat (mkSort 0)
@@ -201,8 +200,8 @@ meta def testLogicBackwardRuleRel
         logInfo m!"Test Rel-Imp (Nat→Prop, n=1): {ty}"
 
 -- Test 3: And on Prop, n = 0 excess args
--- Should produce: ∀ (a b : Prop) (pre : Prop),
---   pre ⊑ (a ⊓ b) → pre ⊑ (a ⊓ b)  (identity — no distribution needed)
+/-- info: Test Rel-And (Prop, n=0): ∀ (pre a a_1 : Prop), pre ⊑ a → pre ⊑ a_1 → pre ⊑ a ⊓ a_1 -/
+#guard_msgs in
 #eval! show MetaM Unit from do
   let l := mkSort 0
   withLocalDeclD `a l fun a => do
@@ -211,7 +210,12 @@ meta def testLogicBackwardRuleRel
       logInfo m!"Test Rel-And (Prop, n=0): {ty}"
 
 -- Test 4: End-to-end And rule application
--- Goal: True ⊑ (a ⊓ b) s, should produce True ⊑ a s and True ⊑ b s
+/--
+info: Test 4 subgoal: True ⊑ a s
+---
+info: Test 4 subgoal: True ⊑ b s
+-/
+#guard_msgs in
 #eval! show MetaM Unit from do
   let nat := mkConst ``Nat
   let l ← mkArrow nat (mkSort 0)
@@ -229,7 +233,8 @@ meta def testLogicBackwardRuleRel
           logInfo m!"Test 4 subgoal: {← g.getType}"
 
 -- Test 5: End-to-end Imp rule application with pre = True
--- Goal: True ⊑ (a ⇨ b) s, should produce a s ⊓ True ⊑ b s
+/-- info: Test 5 subgoal: a s ⊓ True ⊑ b s -/
+#guard_msgs in
 #eval! show MetaM Unit from do
   let nat := mkConst ``Nat
   let l ← mkArrow nat (mkSort 0)
@@ -247,8 +252,8 @@ meta def testLogicBackwardRuleRel
           logInfo m!"Test 5 subgoal: {← g.getType}"
 
 -- Test 6: Pure on Nat → Prop, n = 1 excess arg
--- Should produce: ∀ (p : Prop) (s : Nat) (pre : Prop),
---   p → pre ⊑ (⌜p⌝) s
+/-- info: Test Rel-Pure (Nat→Prop, n=1): ∀ (pre a : Prop) (s : Nat), a → pre ⊑ ⌜a⌝ s -/
+#guard_msgs in
 #eval! show MetaM Unit from do
   let nat := mkConst ``Nat
   let l ← mkArrow nat (mkSort 0)
@@ -258,13 +263,16 @@ meta def testLogicBackwardRuleRel
       logInfo m!"Test Rel-Pure (Nat→Prop, n=1): {ty}"
 
 -- Test 7: Pure on Prop, n = 0 excess args
+/-- info: Test Rel-Pure (Prop, n=0): ∀ (pre a : Prop), a → pre ⊑ ⌜a⌝ -/
+#guard_msgs in
 #eval! show MetaM Unit from do
   withLocalDeclD `p (mkSort 0) fun p => do
     let ty ← testLogicBackwardRuleRel .Pure #[p] #[] (some (mkSort 0))
     logInfo m!"Test Rel-Pure (Prop, n=0): {ty}"
 
 -- Test 8: End-to-end Pure rule application
--- Goal: True ⊑ (⌜p⌝) s, should produce p
+/-- info: Test Pure subgoal: p -/
+#guard_msgs in
 #eval! show MetaM Unit from do
   let nat := mkConst ``Nat
   let l ← mkArrow nat (mkSort 0)

@@ -25,29 +25,8 @@ def admitGoal (mvarId : MVarId) (synthetic : Bool := true): MetaM Unit :=
 def goalsToMessageData (goals : List MVarId) : MessageData :=
   MessageData.joinSep (goals.map MessageData.ofGoal) m!"\n\n"
 
-/--
-Info-tree leaf carrying the `(mctx, goal)` of an unsolved goal at the point where it
-is about to be admitted with `sorry`. Used by the `autoTry` feature.
--/
-structure AdmittedGoalInfo where
-  /-- Metavariable context in which `goal` is well-defined. -/
-  mctx : MetavarContext
-  /-- The unsolved goal about to be admitted. -/
-  goal : MVarId
-  deriving TypeName
-
-/-- Log an "unsolved goals" error for `goals`, push one `AdmittedGoalInfo` info-tree
-leaf per goal at the current ref (so consumers can read the goal state before the
-admit overwrites it), then admit each goal with `sorry`. -/
 def Term.reportUnsolvedGoals (goals : List MVarId) : MetaM Unit := do
   logError <| MessageData.tagged `Tactic.unsolvedGoals <| m!"unsolved goals\n{goalsToMessageData goals}"
-  let ref ← getRef
-  let mctx ← getMCtx
-  for g in goals do
-    pushInfoLeaf <| .ofCustomInfo {
-      stx := ref
-      value := Dynamic.mk ({ mctx, goal := g } : AdmittedGoalInfo)
-    }
   goals.forM fun mvarId => admitGoal mvarId
 
 namespace Tactic

@@ -115,8 +115,8 @@ def isSorryTactic (stx : Syntax) : Bool :=
 
 /-- Which kind of auto-`try?` trigger this is. -/
 inductive TriggerKind
-  /-- A proof or subproof that left a goal unsolved (an `AdmittedGoalInfo` leaf pushed
-  by `Term.reportUnsolvedGoals`). `tacticSeq` is the body to append to. -/
+  /-- A proof or subproof that left a goal unsolved (detected by walking the message
+  log for `Tactic.unsolvedGoals` errors). `tacticSeq` is the body to append to. -/
   | unsolvedGoal (tacticSeq : Syntax)
   /-- A `sorry` tactic. The suggestion *replaces* the `sorry`. -/
   | sorryTactic
@@ -158,31 +158,63 @@ without re-walking the infotree. `ref` is the "Try this:" diagnostic anchor (for
 abbrev Candidate := TriggerKind × ContextInfo × Syntax × MetavarContext × MVarId
 
 /--
+Walk a `MessageData` tree, collecting each `MessageData.ofGoal mvarId` along with the
+`MetavarContext` of the innermost enclosing `withContext`. Used to recover the
+`(mctx, mvarId)` pairs from a `Tactic.unsolvedGoals` error message without needing the
+producer to push them separately into the info tree. -/
+partial def collectGoalsFromMessage (msg : MessageData) :
+    Array (MetavarContext × MVarId) := go none msg #[]
+where
+  go (ctx? : Option MessageDataContext) (msg : MessageData) (acc : Array _) := match msg with
+    | .withContext ctx msg       => go (some ctx) msg acc
+    | .withNamingContext _ msg   => go ctx? msg acc
+    | .nest _ msg | .group msg   => go ctx? msg acc
+    | .tagged _ msg              => go ctx? msg acc
+    | .compose a b               => go ctx? b (go ctx? a acc)
+    | .ofWidget _ alt            => go ctx? alt acc
+    | .trace _ msg children      => children.foldl (init := go ctx? msg acc) (fun acc m => go ctx? m acc)
+    | .ofGoal mvarId             =>
+      if let some ctx := ctx? then acc.push (ctx.mctx, mvarId) else acc
+    | _                          => acc
+
+/--
+Find the smallest `Lean.Elab.TacticInfo` in `tree` whose `goalsAfter` contains
+`mvarId` -- the deepest such tactic is the last tactic that ran without closing the
+goal. Returns its `Syntax` (the tactic itself), which is used to anchor the insertion
+position. Returns `none` for empty bodies (no tactic ever ran on this goal).
+-/
+def findLastTacticForGoal (mvarId : MVarId) (tree : InfoTree) : Option Syntax :=
+  let best : Option (Syntax × Nat) :=
+    tree.foldInfo (init := none) fun _ info acc => Id.run do
+      let .ofTacticInfo tacInfo := info | return acc
+      unless tacInfo.goalsAfter.contains mvarId do return acc
+      let some r := tacInfo.stx.getRange? | return acc
+      let sz := r.stop.byteIdx - r.start.byteIdx
+      match acc with
+      | some (_, bestSz) => if sz < bestSz then return some (tacInfo.stx, sz) else return acc
+      | none             => return some (tacInfo.stx, sz)
+  best.map (·.1)
+
+/--
 Locate the admit-emitting scope enclosing `leafStx` inside the command syntax `cmd`,
 and return `(body, ref)` for that scope: `body` is the `tacticSeq` to append to, and
-`ref` is the anchor for the "Try this:" diagnostic. Looks for the *smallest* enclosing
+`ref` is the anchor for the "Try this:" diagnostic. Looks for the smallest enclosing
 node whose kind is one of `byTactic` / `tacticSeqBracketed` / `Lean.cdot` / `case` /
-`case'`. Returns `none` if `leafStx` has no source range or no matching scope was found.
--/
+`case'`. Returns `none` if no enclosing such scope was found. -/
 partial def findEnclosingAdmitScope (cmd leafStx : Syntax) : Option (Syntax × Syntax) := do
   let leafRange ← leafStx.getRange?
   go cmd leafRange none
 where
   bodyAndRef (stx : Syntax) : Option (Syntax × Syntax) :=
     match stx.getKind with
-    -- `by tacs`: `tacs` (a `tacticSeq`) is the body; `stx` itself anchors the diagnostic.
     | ``Lean.Parser.Term.byTactic | ``Lean.Parser.Term.byTactic' => some (stx[1], stx)
-    -- `{ tacs }`: `stx[1]` is the sepBy body; `stx` anchors the diagnostic.
     | ``Lean.Parser.Tactic.tacticSeqBracketed => some (stx[1], stx)
-    -- `· tacs`: `stx[1]` is the body.
     | ``Lean.cdot => some (stx[1], stx)
-    -- `case h => tacs` / `case' h => tacs`: body is `stx[3]`.
     | ``Lean.Parser.Tactic.case | ``Lean.Parser.Tactic.case' => some (stx[3], stx)
     | _ => none
   go (stx : Syntax) (leafRange : Lean.Syntax.Range) (best : Option (Syntax × Syntax))
       : Option (Syntax × Syntax) := Id.run do
     let some range := stx.getRange? | return best
-    -- Skip subtrees that don't contain the leaf.
     unless range.includes leafRange do return best
     let mut best := if let some hit := bodyAndRef stx then some hit else best
     for child in stx.getArgs do
@@ -190,32 +222,47 @@ where
     return best
 
 /--
-Collect candidate trigger points from the info tree. Two sources of candidates:
+Collect candidate trigger points.
 
-1. `AdmittedGoalInfo` leaves pushed by `Term.reportUnsolvedGoals`. For each leaf we
-   walk the surrounding command syntax to find the enclosing `byTactic` /
-   `tacticSeqBracketed` / `cdot` / `case` scope and use its body as the append target.
-2. `sorry` tactic info-tree nodes (handled inline).
+* **Unsolved-goal triggers** are recovered from the command's message log. For each
+  `Tactic.unsolvedGoals` error, walk the `MessageData` to pull out each
+  `(mctx, mvarId)` pair, then locate the surrounding admit-emitting scope by finding
+  the *deepest* `TacticInfo` whose `goalsAfter` still contains `mvarId` and walking
+  the command syntax for the enclosing `by` / `{ … }` / `· ` / `case` scope.
+* **Sorry triggers** are read directly off `sorry`-tactic info-tree nodes.
 -/
-def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree) : Array Candidate :=
+def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree)
+    (msgs : PersistentArray Message) : CommandElabM (Array Candidate) := do
   let onEmpty := autoTry.onEmptyProof.get opts
   let onUnsolved := autoTry.onUnsolvedGoal.get opts
   let onSorry := autoTry.onSorry.get opts
-  tree.foldInfo (init := #[]) fun ctx info acc => Id.run do
-    let mut acc := acc
-    if onUnsolved || onEmpty then
-      if let .ofCustomInfo ci := info then
-        if let some hook := ci.value.get? AdmittedGoalInfo then
-          if let some (body, ref) := findEnclosingAdmitScope cmd ci.stx then
-            let isEmpty := body.getPos?.isNone
-            if onUnsolved || (onEmpty && isEmpty) then
-              acc := acc.push (.unsolvedGoal body, ctx, ref, hook.mctx, hook.goal)
-    if onSorry then
+  let mut acc : Array Candidate := #[]
+  -- Sorry triggers still come from the info tree, since they're per-`sorry`-token.
+  if onSorry then
+    acc := tree.foldInfo (init := acc) fun ctx info acc => Id.run do
       if let .ofTacticInfo tacInfo := info then
         if isSorryTactic tacInfo.stx then
           if let some goal := tacInfo.goalsBefore.head? then
-            acc := acc.push (.sorryTactic, ctx, tacInfo.stx, tacInfo.mctxBefore, goal)
-    return acc
+            return acc.push (.sorryTactic, ctx, tacInfo.stx, tacInfo.mctxBefore, goal)
+      return acc
+  -- Unsolved-goal triggers come from the message log.
+  unless onUnsolved || onEmpty do return acc
+  let some ctx := (tree.foldInfo (init := none) fun ctx _ acc => acc.orElse fun _ => some ctx)
+    | return acc
+  for msg in msgs do
+    unless msg.severity matches .error do continue
+    unless msg.data.hasTag (· == `Tactic.unsolvedGoals) do continue
+    for (mctx, mvarId) in collectGoalsFromMessage msg.data do
+      -- Anchor the scope via the last tactic that left this goal unsolved (for empty
+      -- bodies that admitted directly, the admit elaborator's own TacticInfo serves);
+      -- then walk syntax for the surrounding admit-emitting scope to get the body
+      -- and the diagnostic ref.
+      let some lastTacStx := (findLastTacticForGoal mvarId tree) | continue
+      let some (body, ref) := findEnclosingAdmitScope cmd lastTacStx | continue
+      let isEmpty := body.getPos?.isNone
+      if onUnsolved || (onEmpty && isEmpty) then
+        acc := acc.push (.unsolvedGoal body, ctx, ref, mctx, mvarId)
+  return acc
 
 /--
 Drive `try?` from CommandElabM, returning the suggestion array. Sets up TacticM/TermElabM
@@ -338,9 +385,10 @@ def autoTryHook : Linter where run := withSetOptionIn fun stx => do
   trace[autoTry] "running: onEmpty={onEmpty} onUnsolved={onUnsolved} onSorry={onSorry}"
   let fileMap := (← read).fileMap
   let cmdLine := (fileMap.toPosition (stx.getPos?.getD 0)).line
+  let msgs := (← get).messages.reportedPlusUnreported
   let trees ← getInfoTrees
   for tree in trees do
-    let candidates := collectTriggerPoints stx opts tree
+    let candidates ← collectTriggerPoints stx opts tree msgs
     -- A source position carrying more than one candidate means either: the same scope
     -- was entered multiple times (e.g. the rhs of `<;>` runs once per subgoal), or the
     -- scope left more than one unsolved goal. In both cases a single "Try this"

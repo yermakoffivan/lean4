@@ -4,16 +4,18 @@ import Loom.Tactic.VCGen
 
 open Loom Lean Meta Order Std.Internal.Do
 
+set_option new_wp_monad true
+
 namespace ConcretePostEPost
 
 /-
 Benchmark for the spec-generalization path where both `post` and `epost` are concrete in
-an `@[lspec]` theorem. `lmvcgen` must abstract them back out using `WPMonad.wp_consequence_econs`.
+an `@[spec]` theorem. `lmvcgen` must abstract them back out using `WPMonad.wp_consequence_econs`.
 -/
 
 def concreteGet : StateM Nat Nat := get
 
-@[lspec high]
+@[spec high]
 theorem spec_concreteGet :
     ⦃ fun s => s = s ⦄ concreteGet ⦃ x, fun s => x = s ⦄ := by
   simpa [concreteGet] using
@@ -41,6 +43,6 @@ def runTests := runBenchUsingTactic
     `(tactic| (intro s; lmvcgen with grind))
     `(tactic| fail)
 
--- #eval runTests [1000]
+-- #eval runTests [1]
 
 end ConcretePostEPost

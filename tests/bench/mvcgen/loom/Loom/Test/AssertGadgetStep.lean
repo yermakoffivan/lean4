@@ -1,6 +1,5 @@
 import Lean
 import Loom.Test.Driver
-import Loom.Test.Specs
 import Std.Internal.Do.Triple.Gadget
 import Loom.Tactic.VCGen
 
@@ -8,7 +7,9 @@ open Loom Lean Meta Order Lean.Order Std.Internal.Do
 
 namespace AssertGadgetStep
 
-attribute [lspec high] Spec.assertGadget
+set_option new_wp_monad true
+
+attribute [spec high] Spec.assertGadget
 
 instance : Frame (Nat → Prop) := by
   sorry
@@ -34,11 +35,11 @@ def runTests := runBenchUsingTactic
     `(tactic| (intro s; lmvcgen simplifying_assumptions))
     `(tactic| sorry)
 
--- example : Goal 10 := by 
---   intros s; 
+-- example : Goal 10 := by
+--   intros s;
 --   simp only [loop, step]
 --   lmvcgen
-  
+
 
 -- #eval runTests [500]
 

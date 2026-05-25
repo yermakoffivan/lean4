@@ -7,7 +7,7 @@ module
 public import Lean.Meta
 -- import Lean.Meta.InstMVarsAll
 public import Lean.Elab
-public import Loom.Tactic.VCGenTime
+public import Loom.Tactic.VCGen
 
 
 open Lean Parser Meta Elab Tactic Sym Loom
@@ -34,16 +34,7 @@ def driver (goal : Name) (unfold : List Name) (n : Nat) (discharge : MetaM (TSyn
     | .noProgress => throwError "No progress when simping {mvarId}!"
     | .closed => throwError "Simp closed goal {mvarId}"
   IO.println s!"time spent unfolding: {_unfoldMs} ms"
-  vcgenTimingRef.set {}
-  let (mvarIds, ms) ← withOptions (fun o => vcgen.time.set o true) do
-    timeItMs do k mvarId
-  -- Read vcgen.time data (internalizeAll + grind accumulated during tactic execution)
-  let timing ← vcgenTimingRef.get
-  let intMs := (timing.internalizeAllNs.toFloat / 1000000.0).toUInt64
-  let grindMs := (timing.grindSolveNs.toFloat / 1000000.0).toUInt64
-  let grindTotalMs := intMs + grindMs
-  -- Subtract grind time from vcgen time to get pure VC generation time
-  let vcgenMs := ms - grindTotalMs
+  let (mvarIds, vcgenMs) ← timeItMs do k mvarId
   let discharge ← discharge
   let dischargePp ← PrettyPrinter.ppTactic discharge
   let dischargeMs? ← OptionT.run <| do
@@ -67,13 +58,9 @@ def driver (goal : Name) (unfold : List Name) (n : Nat) (discharge : MetaM (TSyn
     pure none
   let mut msg := s!"goal_{n}: {vcgenMs} ms"
   if let some dischargeMs := dischargeMs? then
-    -- Add grind time (internalize + solve) to discharge time
-    let totalDischargeMs := dischargeMs + grindTotalMs
-    msg := msg ++ s!", {mvarIds.length} VCs by {dischargePp}: {totalDischargeMs} ms"
+    msg := msg ++ s!", {mvarIds.length} VCs by {dischargePp}: {dischargeMs} ms"
   else
     msg := msg ++ s!", {mvarIds.length} VCs"
-  msg := msg ++ s!", internalize: {intMs} ms"
-  msg := msg ++ s!", grind: {grindMs} ms"
   match proofStats? with
   | some (instMs, shareMs, kernelMs, proofSize, proofSizeShared) =>
     msg := msg ++ s!", instantiate: {instMs} ms"

@@ -6,10 +6,9 @@ Authors: Sebastian Graf
 import Lean
 import Loom.Tactic.VCGen
 import Loom.Test.Driver
+import Loom.Test.Specs
 
 open Lean Parser Meta Elab Tactic Sym Loom Lean.Order Std.Internal.Do
-
-set_option new_wp_monad true
 
 namespace AddSubCancelDeep
 
@@ -40,13 +39,13 @@ def loop (n : Nat) : M Unit := do
 
 def Goal (n : Nat) : Prop := ∀ post epost s₁ s₂, post s₁ s₂ ⟨⟩ ⊑ wp (loop n) (fun _ => post) epost s₁ s₂ ⟨⟩
 
-@[spec high]
+@[lspec high]
 theorem Spec.M_getThe_Nat :
   Triple (fun s₁ s₂ => post s₂ s₁ s₂) (getThe (m := M) Nat) post epost := by
   sorry
   -- sorry
 
-@[spec high]
+@[lspec high]
 theorem Spec.M_set_Nat (n : Nat) :
   Triple (fun s₁ _ => post ⟨⟩ s₁ n) (set (m := M) n) post epost := by
   sorry
@@ -56,6 +55,6 @@ set_option maxHeartbeats 10000000
 
 def runTests := runBenchUsingTactic ``Goal [``loop, ``step] `(tactic| (intro post epost s₁ s₂; lmvcgen simplifying_assumptions with grind)) `(tactic| fail)
 
--- #eval runTests [1000]
+#eval runTests [1000]
 
 end AddSubCancelDeep

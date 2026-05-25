@@ -5,17 +5,19 @@ import Loom.Tactic.VCGen
 
 open Loom Lean Meta Order Std.Internal.Do
 
+set_option new_wp_monad true
+
 namespace MatchSplitTest
 
 abbrev M := ExceptT String <| StateM Nat
 
-@[lspec high] theorem spec_throw (e : String) {post : α → Nat → Prop} {epost : EPost⟨String → Nat → Prop⟩} :
+@[spec high] theorem spec_throw (e : String) {post : α → Nat → Prop} {epost : EPost⟨String → Nat → Prop⟩} :
     Triple (epost.head e) (throw (m := M) e) post epost := ⟨PartialOrder.rel_refl⟩
 
-@[lspec high] theorem spec_set (x : Nat) {post : PUnit → Nat → Prop} {epost : EPost⟨String → Nat → Prop⟩} :
+@[spec high] theorem spec_set (x : Nat) {post : PUnit → Nat → Prop} {epost : EPost⟨String → Nat → Prop⟩} :
     Triple (fun _ => post ⟨⟩ x) (set (m := M) x) post epost := ⟨PartialOrder.rel_refl⟩
 
-@[lspec high] theorem spec_get (post : Nat → Nat → Prop) {epost : EPost⟨String → Nat → Prop⟩} :
+@[spec high] theorem spec_get (post : Nat → Nat → Prop) {epost : EPost⟨String → Nat → Prop⟩} :
     Triple (fun s => post s s) (get (m := M)) post epost := ⟨PartialOrder.rel_refl⟩
 
 /-- Matches on state `s` — the discriminant IS the excess state arg. -/

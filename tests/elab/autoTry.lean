@@ -202,7 +202,7 @@ error: unsolved goals
 case right
 ⊢ True
 ---
-@ +1:25...+3:19
+@ +3:2...19
 info: Try these:
   [apply] solve_by_elim
   [apply] simp
@@ -211,7 +211,7 @@ info: Try these:
   [apply] grind only
   [apply] simp_all
 ---
-@ +3:2...19
+@ +1:25...+3:19
 info: Try these:
   [apply] solve_by_elim
   [apply] simp
@@ -238,7 +238,7 @@ error: unsolved goals
 case right
 ⊢ True
 ---
-@ +1:25...+3:8
+@ +3:2...8
 info: Try these:
   [apply] solve_by_elim
   [apply] simp
@@ -247,7 +247,7 @@ info: Try these:
   [apply] grind only
   [apply] simp_all
 ---
-@ +3:2...8
+@ +1:25...+3:8
 info: Try these:
   [apply] solve_by_elim
   [apply] simp
@@ -342,38 +342,26 @@ example : True := by first | sorry | trivial
 
 set_option autoTry.onSorry false
 
-/-! ## Limitation: admit-wrapped bodies with prior setup
+/-! ## Admit-wrapped bodies see the surrounding local context
 
 When a `by` block runs setup tactics (e.g. `have h := …`) and then has its body admitted
-by a wrapper (`{ … }` empty, `( … )` empty, `· `, or any user macro that calls
-`closeUsingOrAdmit`), our `goalsBefore` fallback in `findFirstBodyGoal` reads off the
-state at the *start* of the by-block's body -- before the setup ran -- rather than the
-state at the wrapper's body. Two consequences:
-
-* The suggestion is computed in the wrong local context (missing the hypotheses the
-  setup introduced).
-* The append point is *after* the admit wrapper, so pasting the suggestion adds a
-  tactic that runs against "no goals to be solved" (the wrapper already closed the
-  goal with `sorry`).
-
-The proper fix is for admit-emitting elaborators (`tacticSeqBracketed`, `cdot`, etc.)
-to push an explicit autoTry info-tree marker carrying the precise `(mctx, goal,
-insertPos)` triple. Until then, we just document the surprising behaviour below.
--/
+by an empty wrapper (`{ }`, `(· `, …), the suggestion runs `try?` against the goal *as
+the wrapper sees it* -- with the setup's hypotheses available -- and the append point
+sits at the wrapper's body, not the outer by-block. This is the elaborator-side hook
+talking: the wrapper pushes its own `AutoTryHook.HookInfo` carrying the live `(mctx,
+goal)` it was about to admit. -/
 
 set_option autoTry.onUnsolvedGoal true
 
--- `{ }` admits the focused goal with `sorry`; pasting any of the suggested tactics
--- below would actually break the proof (`trivial` etc. would run against "no goals to
--- be solved"). The suggestion is also computed without `h` in the local context,
--- because the fallback reads off the by-block's entry state.
+-- `{ }` admits the focused goal with `sorry` and pushes its hook. `try?` sees
+-- `h : True ⊢ True`, so `[apply] assumption` is the first suggestion (and works).
 /--
 error: unsolved goals
 h : True
 ⊢ True
 ---
 info: Try these:
-  [apply] solve_by_elim
+  [apply] assumption
   [apply] simp
   [apply] simp only
   [apply] grind
@@ -410,6 +398,9 @@ error: unsolved goals
 case right
 ⊢ True
 ---
+info: Try this:
+  [apply] impossible by simp
+---
 info: Try these:
   [apply] solve_by_elim
   [apply] simp
@@ -417,9 +408,6 @@ info: Try these:
   [apply] grind
   [apply] grind only
   [apply] simp_all
----
-info: Try this:
-  [apply] impossible by simp
 -/
 #guard_msgs in
 example : False ∧ True := by
@@ -441,6 +429,9 @@ set_option autoTry.onUnsolvedGoal true
 /--
 error: unsolved goals
 ⊢ False
+---
+info: Try this:
+  [apply] impossible by simp
 -/
 #guard_msgs in
 example : True := by
@@ -533,23 +524,24 @@ set_option autoTry.onUnsolvedGoal true in
 set_option debug.autoTry.showEdits true in
 example : True := by skip
 
--- Multi-line `by` -> insertion after the last tactic on its own line, leading newline +
--- indent matching the body's column (2 here, matching `skip`).
+-- Single-tactic `by` body across multiple source lines: per the simplified separator
+-- heuristic, we still use `; ` (newline+indent is reserved for bodies that *already*
+-- have more than one tactic on separate lines).
 /--
 error: unsolved goals
 ⊢ True
 ---
-info: autoTry edit: insert "\n  solve_by_elim" at +2:6
+info: autoTry edit: insert "; solve_by_elim" at +2:6
 ---
-info: autoTry edit: insert "\n  simp" at +2:6
+info: autoTry edit: insert "; simp" at +2:6
 ---
-info: autoTry edit: insert "\n  simp only" at +2:6
+info: autoTry edit: insert "; simp only" at +2:6
 ---
-info: autoTry edit: insert "\n  grind" at +2:6
+info: autoTry edit: insert "; grind" at +2:6
 ---
-info: autoTry edit: insert "\n  grind only" at +2:6
+info: autoTry edit: insert "; grind only" at +2:6
 ---
-info: autoTry edit: insert "\n  simp_all" at +2:6
+info: autoTry edit: insert "; simp_all" at +2:6
 ---
 info: Try these:
   [apply] solve_by_elim

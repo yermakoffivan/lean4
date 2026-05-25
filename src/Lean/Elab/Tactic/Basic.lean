@@ -341,16 +341,26 @@ def focusAndDone (tactic : TacticM α) : TacticM α :=
     done
     pure a
 
-/-- Close the main goal using the given tactic. If it fails, log the error and `admit` -/
-def closeUsingOrAdmit (tac : TacticM Unit) : TacticM Unit := do
+/-- Close the main goal using the given tactic. If it fails, log the error and `admit`.
+
+`onAdmit` is invoked with the focused goal and the `MetavarContext` snapshot taken
+*before* the tactic ran. This is used by `autoTry` to record an info-tree marker at
+sites where the user has an unfinishable proof site, so the surrounding hook can run
+`try?` against the goal as it was on entry -- by the time `onAdmit` is called the
+goal is already assigned to `sorry` (`done` admits via `reportUnsolvedGoals`), so we
+need the pre-tactic snapshot to read the actual goal type from. -/
+def closeUsingOrAdmit (tac : TacticM Unit)
+    (onAdmit : MVarId → MetavarContext → TacticM Unit := fun _ _ => pure ()) : TacticM Unit := do
   /- Important: we must define `closeUsingOrAdmit` before we define
      the instance `MonadExcept` for `TacticM` since it backtracks the state including error messages. -/
   let mvarId :: mvarIds ← getUnsolvedGoals | throwNoGoalsToBeSolved
+  let savedMctx ← getMCtx
   tryCatchRuntimeEx
     (focusAndDone tac)
     fun ex => do
       if (← read).recover then
         logException ex
+        onAdmit mvarId savedMctx
         admitGoal mvarId
         setGoals mvarIds
       else

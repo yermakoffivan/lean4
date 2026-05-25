@@ -14,6 +14,7 @@ public import Lean.Elab.Tactic.ElabTerm
 public import Lean.Elab.Do
 import Lean.Meta.Tactic.Replace
 import Lean.Elab.Tactic.RenameInaccessibles
+import Lean.Elab.Tactic.AutoTryHook
 public section
 
 namespace Lean.Elab.Tactic
@@ -150,7 +151,7 @@ def evalTacticSeq1Indented : Tactic :=
 @[builtin_tactic tacticSeqBracketed, builtin_incremental]
 def evalTacticSeqBracketed : Tactic := fun stx => do
   let initInfo ← mkInitialTacticInfo stx[0]
-  withRef stx[2] <| closeUsingOrAdmit do
+  withRef stx[2] <| closeUsingOrAdmit (onAdmit := AutoTryHook.push stx[1] stx) do
     -- save state before/after entering focus on `{`
     withInfoContext (pure ()) initInfo
     Term.withNarrowedArgTacticReuse (argIdx := 1) evalSepTactics stx
@@ -162,10 +163,11 @@ def evalTacticCDot : Tactic := fun stx => do
   -- but the token antiquotation does not copy trailing whitespace, leading to
   -- differences in the goal display (#2153)
   let initInfo ← mkInitialTacticInfo stx[0]
-  withCaseRef stx[0] stx[1] <| closeUsingOrAdmit do
-    -- save state before/after entering focus on `·`
-    withInfoContext (pure ()) initInfo
-    Term.withNarrowedArgTacticReuse (argIdx := 1) evalTactic stx
+  withCaseRef stx[0] stx[1] <|
+    closeUsingOrAdmit (onAdmit := AutoTryHook.push stx[1] stx) do
+      -- save state before/after entering focus on `·`
+      withInfoContext (pure ()) initInfo
+      Term.withNarrowedArgTacticReuse (argIdx := 1) evalTactic stx
 
 @[builtin_tactic Parser.Tactic.focus, builtin_incremental] def evalFocus : Tactic := fun stx => do
   let mkInfo ← mkInitialTacticInfo stx[0]
@@ -581,8 +583,10 @@ def evalCase : Tactic
         let g ← renameInaccessibles g hs
         setGoals [g]
         g.setTag Name.anonymous
-        withCaseRef arr tac <| closeUsingOrAdmit <| withTacticInfoContext (mkNullNode #[caseTk, arr]) <|
-          Term.withNarrowedArgTacticReuse (argIdx := 3) (evalTactic ·) stx
+        withCaseRef arr tac <|
+          closeUsingOrAdmit (onAdmit := AutoTryHook.push tac stx) <|
+            withTacticInfoContext (mkNullNode #[caseTk, arr]) <|
+              Term.withNarrowedArgTacticReuse (argIdx := 3) (evalTactic ·) stx
         setGoals gs
   | _ => throwUnsupportedSyntax
 

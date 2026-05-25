@@ -12,6 +12,7 @@ import Lean.Linter.Basic
 import Lean.Server.InfoUtils
 import Lean.Elab.Tactic.Try
 import Lean.Elab.Tactic.Meta
+import Lean.Elab.Tactic.AutoTryHook
 import Lean.Elab.BuiltinTerm
 
 /-! # Auto-`try?`
@@ -113,88 +114,35 @@ def isSorryTactic (stx : Syntax) : Bool :=
   | `Lean.Parser.Tactic.tacticSorry | `Lean.Parser.Tactic.tacticAdmit => true
   | _ => false
 
-/-- The first `tacticSeq` child of `stx`, if any. Used to identify "tactic-sequence
-containers" (`by`, `· …`, `case … => …`, `focus …`, `(…)`, `try …`, etc.) generically,
-without hardcoding a list of kinds. -/
-def findBodySeq (stx : Syntax) : Option Syntax :=
-  stx.getArgs.findSome? fun arg =>
-    if arg.isOfKind ``Lean.Parser.Tactic.tacticSeq then some arg else none
-
-/-- Walk `ts` (the children of an `InfoTree.node`) looking for the first `TacticInfo`
-of kind `tacticSeq`. Returns its `(mctxAfter, goalsAfter.head)` -- the goal still left
-open after the body ran -- provided the body left *exactly one* goal. This is the goal
-the user would see as unsolved, and it's what we want to drive `try?` against.
-
-Reading this off the body's info-tree node is more reliable than inspecting the parent
-container's `goalsBefore`/`goalsAfter`, since the parent may have admitted goals along
-the way and `case right`-style scopes focus on a goal that need not be the head of
-either parent list.
--/
-partial def findFirstBodyGoal (ts : PersistentArray InfoTree) :
-    Option (MetavarContext × MVarId) := Id.run do
-  let seqs := collectBodyTacticSeqs ts
-  -- If the body was elaborated against multiple proof states (e.g. it sits on the rhs
-  -- of `<;>` so `all_goals` runs it once per goal), several `tacticSeq` info-tree nodes
-  -- share the same source position. A single "Try this" suggestion can't be replayed
-  -- against all of them; stay quiet.
-  if seqs.size != 1 then return none
-  let ti := seqs[0]!
-  -- `goalsAfter` is what the user sees as unsolved on hover at the end of the body.
-  -- We require exactly one open goal -- multi-goal cases (`by constructor`) stay
-  -- silent so the user shapes the proof with `·`/`case` first.
-  if ti.goalsAfter.length == 1 then
-    return ti.goalsAfter.head?.map fun g => (ti.mctxAfter, g)
-  -- Body was admitted (`by { }` / `· ` close the focused goal with sorry on an empty
-  -- body, so `goalsAfter` is empty). The goal the user sees as unsolved is the one we
-  -- entered the body with -- a deeper tacticSeq node for the admitted body isn't
-  -- created when the body is empty, so we read it off `goalsBefore` here.
-  if ti.goalsAfter.isEmpty then
-    return ti.goalsBefore.head?.map fun g => (ti.mctxBefore, g)
-  return none
-where
-  collectBodyTacticSeqs : PersistentArray InfoTree → Array TacticInfo
-    | ts => ts.toArray.flatMap fun t =>
-      match t with
-      | .context _ inner => collectBodyTacticSeqs (#[inner].toPArray')
-      | .node (.ofTacticInfo ti) cs =>
-        if ti.stx.getKind == ``Lean.Parser.Tactic.tacticSeq then #[ti]
-        else collectBodyTacticSeqs cs
-      | _ => #[]
-
 /-- Which kind of auto-`try?` trigger this is. -/
 inductive TriggerKind
-  /-- A `by` block whose tactic sequence left exactly one unsolved goal (this includes the
-  empty-`by` case). The suggestion is rendered as an *append* to the existing sequence. -/
-  | unsolvedGoal
+  /-- A proof or subproof that left a goal unsolved (signalled by an `AutoTryHook.HookInfo`
+  marker pushed by the elaborator at the admit point). The suggestion is rendered as an
+  *append* to the body. -/
+  | unsolvedGoal (tacticSeq : Syntax)
   /-- A `sorry` tactic. The suggestion *replaces* the `sorry`. -/
   | sorryTactic
 
 /--
-Compute the separator string to insert between the existing tail of a tactic-sequence
-container (`by`, `·`, `case h =>`, …) and the new appended suggestion. The rule:
-* Empty body, single-line: `" "`.
-* Non-empty body, single-line: `"; "`.
-* Multi-line: newline followed by spaces aligning with the first tactic in the body, or
-  with the container head's column + 2 if the body is empty.
+Compute the separator string to insert between the existing tail of a `tacticSeq` and a
+new appended tactic. Heuristic:
+* Empty `tacticSeq`: `" "` (just a space; the parser will normalise leading whitespace).
+* Non-empty `tacticSeq` whose first and last tactics live on different source lines:
+  newline followed by spaces aligning with the first tactic.
+* Otherwise (non-empty single-line `tacticSeq`): `"; "`.
 
 This is a heuristic and gets various edge cases wrong (mixed-indentation bodies, comments
 between tactics, etc.). It should be replaced by a proper formatter once one is available.
 -/
-def computeAppendSep (containerStx : Syntax) (fileMap : FileMap) : String := Id.run do
-  let some bp := containerStx.getPos? | return "; "
-  let some bt := containerStx.getTailPos? | return "; "
-  let bpPos := fileMap.toPosition bp
-  let btPos := fileMap.toPosition bt
-  let bodyStart? := findBodySeq containerStx >>= (·.getPos?)
-  let isEmpty := bodyStart?.isNone
-  if bpPos.line == btPos.line then
-    return if isEmpty then " " else "; "
-  let indentCol : Nat :=
-    if let some bodyStart := bodyStart? then
-      (fileMap.toPosition bodyStart).column
-    else
-      bpPos.column + 2
-  return "\n" ++ String.ofList (List.replicate indentCol ' ')
+def computeAppendSep (tacticSeq : Syntax) (fileMap : FileMap) : String := Id.run do
+  -- Locate the first tactic of the body; absence means an empty `tacticSeq`.
+  let some bodyStart := tacticSeq.getPos? | return " "
+  let some bodyEnd := tacticSeq.getTailPos? | return " "
+  let startPos := fileMap.toPosition bodyStart
+  let endPos := fileMap.toPosition bodyEnd
+  if startPos.line == endPos.line then
+    return "; "
+  return "\n" ++ String.ofList (List.replicate startPos.column ' ')
 
 /--
 Build a synthetic atom with zero textual content whose syntactic range is the empty
@@ -210,69 +158,31 @@ without re-walking the infotree.
 -/
 abbrev Candidate := TriggerKind × ContextInfo × Syntax × MetavarContext × MVarId
 
-/-- Positions of all `Tactic.unsolvedGoals` errors in the message log, in source order. -/
-def unsolvedGoalErrorPositions (fileMap : FileMap) (msgs : MessageLog) :
-    Array String.Pos.Raw :=
-  msgs.reportedPlusUnreported.toList.filterMap (fun m =>
-    if m.severity matches .error && m.data.hasTag (· == `Tactic.unsolvedGoals) then
-      some (fileMap.ofPosition m.pos)
-    else none)
-  |>.toArray
-
 /--
-Returns `true` if `candRange` *owns* an unsolved-goals error: the error position is
-inside `candRange`, and no strictly-deeper candidate range (i.e. properly contained in
-`candRange`) also contains the position. This is how we ensure suggestions fire only on
-the narrowest scope responsible for an error -- in particular, a `by` block whose proof
-is closed by `trivial` doesn't fire just because a `have := by skip` inside it left an
-unsolved goal, and `case'` (which silently admits without erroring) stays quiet
-because no error lives at its position even though it shares an `MVarId` with the
-enclosing `by`.
--/
-def ownsUnsolvedGoalError (candRange : Lean.Syntax.Range)
-    (allRanges : Array Lean.Syntax.Range) (errorPositions : Array String.Pos.Raw) : Bool :=
-  errorPositions.any fun errPos =>
-    candRange.contains errPos (includeStop := true)
-      && !allRanges.any fun other =>
-        other != candRange
-        && candRange.includes other (includeSuperStop := true) (includeSubStop := true)
-        && other.contains errPos (includeStop := true)
+Collect candidate trigger points from the info tree. Two sources of candidates:
 
-/--
-Collect candidate trigger points from the info tree. Per-kind criteria are applied
-inline. Cross-kind filtering -- in particular suppressing candidates that share a source
-position because the elaborator ran the syntax against multiple proof states (rhs of
-`<;>`, body of `repeat`/`iterate`) -- is left to a separate pass over the result.
-
-Known blind spot: `repeat tac` where `tac` fails on the first attempt elaborates `tac`
-exactly once, so the position-uniqueness check doesn't suppress it. The cost of the
-false positive is judged acceptable.
+1. `AutoTryHook.HookInfo` markers pushed by tactic elaborators (`by`, `·`, `case`,
+   `tacticSeqBracketed`, …) at the exact admit/unsolved point. The marker carries the
+   live `(mctx, goal, tacticSeq)`, and its `stx` anchors the diagnostic.
+2. `sorry` tactic info-tree nodes (handled inline).
 -/
 def collectTriggerPoints (opts : Options) (tree : InfoTree) : Array Candidate :=
   let onEmpty := autoTry.onEmptyProof.get opts
   let onUnsolved := autoTry.onUnsolvedGoal.get opts
   let onSorry := autoTry.onSorry.get opts
-  tree.foldInfoTree (init := #[]) fun ctx t acc => Id.run do
-    let .node (.ofTacticInfo tacInfo) cs := t | return acc
-    -- Only emit candidates whose anchor has a real source range; otherwise the code
-    -- action has no document range to apply against.
-    if tacInfo.stx.getRange?.isNone then return acc
+  tree.foldInfo (init := #[]) fun ctx info acc => Id.run do
     let mut acc := acc
-    -- Tactic-sequence-container trigger: any `TacticInfo` whose syntax has a
-    -- `tacticSeq` child (`by`, `·`, `case`, `focus`, `(…)`, etc.). The goal we drive
-    -- `try?` against is the focused goal entering the body, which we read off the
-    -- inner `tacticSeq`'s info-tree node (so `case right`, for example, correctly
-    -- picks the `right` goal rather than the head of the parent list). The
-    -- ownership filter applied after collection ensures we only fire on the
-    -- *narrowest* scope responsible for an unsolved-goals error.
-    if let some body := findBodySeq tacInfo.stx then
-      let isEmpty := body.getPos?.isNone
-      if onUnsolved || (onEmpty && isEmpty) then
-        if let some (mctx, goal) := findFirstBodyGoal cs then
-          acc := acc.push (.unsolvedGoal, ctx, tacInfo.stx, mctx, goal)
-    if onSorry && isSorryTactic tacInfo.stx then
-      if let some goal := tacInfo.goalsBefore.head? then
-        acc := acc.push (.sorryTactic, ctx, tacInfo.stx, tacInfo.mctxBefore, goal)
+    if onUnsolved || onEmpty then
+      if let .ofCustomInfo ci := info then
+        if let some hook := ci.value.get? AutoTryHook.HookInfo then
+          let isEmpty := hook.tacticSeq.getPos?.isNone
+          if onUnsolved || (onEmpty && isEmpty) then
+            acc := acc.push (.unsolvedGoal hook.tacticSeq, ctx, ci.stx, hook.mctx, hook.goal)
+    if onSorry then
+      if let .ofTacticInfo tacInfo := info then
+        if isSorryTactic tacInfo.stx then
+          if let some goal := tacInfo.goalsBefore.head? then
+            acc := acc.push (.sorryTactic, ctx, tacInfo.stx, tacInfo.mctxBefore, goal)
     return acc
 
 /--
@@ -285,7 +195,8 @@ def collectSuggestionsForGoal (ctx : ContextInfo) (mctx : MetavarContext) (goal 
   let some decl := mctx.decls.find? goal | return #[]
   runMetaMWithMessages ctx decl.lctx mctx do
     let tacticAct : TacticM (Array (TSyntax `tactic)) := do
-      try Try.collectTryCoreSuggestions {}
+      try
+        Try.collectTryCoreSuggestions {}
       catch e =>
         if e.isInterrupt || e.isMaxRecDepth then throw e
         trace[autoTry] "try? raised: {e.toMessageData}"
@@ -309,13 +220,15 @@ override keeps the rendered widget text clean (no leading separator). `cmdLine` 
 1-based line of the enclosing command's start, used to render edit positions relative to
 the command (so tests are robust to moving the example up or down the file).
 -/
-def emitAppendSuggestions
-    (byStx : Syntax) (suggs : Array (TSyntax `tactic)) (cmdLine : Nat) : CommandElabM Unit := do
+def emitAppendSuggestions (tacticSeq ref : Syntax) (suggs : Array (TSyntax `tactic))
+    (cmdLine : Nat) : CommandElabM Unit := do
   if suggs.isEmpty then return
-  let some byTail := byStx.getTailPos? | return
   let fileMap ← getFileMap
-  let sep := computeAppendSep byStx fileMap
-  let origSpan := mkEmptyRangeStx byTail
+  -- Insertion point: end of the body if it has tactics, else end of the wrapper's
+  -- opening token (after `by` / `·` / `{` / `=>`).
+  let insertPos := tacticSeq.getTailPos?.getD <| ref.getTailPos?.getD 0
+  let sep := computeAppendSep tacticSeq fileMap
+  let origSpan := mkEmptyRangeStx insertPos
   let showEdits := debug.autoTry.showEdits.get (← getOptions)
   let formatted ← suggs.mapM fun tac => do
     let fmt ← liftCoreM <| PrettyPrinter.ppTactic tac
@@ -325,9 +238,9 @@ def emitAppendSuggestions
     -- line readable without losing the appending semantics on click.
     let editText := sep ++ cleanText
     if showEdits then
-      let pos := fileMap.toPosition byTail
+      let pos := fileMap.toPosition insertPos
       let dLine := pos.line - cmdLine + 1  -- match `#guard_msgs (positions := true)`: +N:COL
-      logInfoAt byStx
+      logInfoAt ref
         m!"autoTry edit: insert {repr editText} at +{dLine}:{pos.column}"
     return ({
       suggestion := .string editText
@@ -336,9 +249,9 @@ def emitAppendSuggestions
     } : Tactic.TryThis.Suggestion)
   liftCoreM <|
     if formatted.size == 1 then
-      Tactic.TryThis.addSuggestion byStx formatted[0]! (origSpan? := origSpan)
+      Tactic.TryThis.addSuggestion ref formatted[0]! (origSpan? := origSpan)
     else
-      Tactic.TryThis.addSuggestions byStx formatted (origSpan? := origSpan)
+      Tactic.TryThis.addSuggestions ref formatted (origSpan? := origSpan)
 
 /--
 Run `try?` by elaborating its tactic syntax against `goal` and letting `try?` emit its
@@ -393,33 +306,24 @@ def autoTryHook : Linter where run := withSetOptionIn fun stx => do
   trace[autoTry] "running: onEmpty={onEmpty} onUnsolved={onUnsolved} onSorry={onSorry}"
   let fileMap := (← read).fileMap
   let cmdLine := (fileMap.toPosition (stx.getPos?.getD 0)).line
-  let msgs := (← get).messages
-  let errorPositions := unsolvedGoalErrorPositions fileMap msgs
   let trees ← getInfoTrees
   for tree in trees do
     let candidates := collectTriggerPoints opts tree
-    -- A source position carrying more than one candidate means the elaborator ran the
-    -- same syntax against multiple proof states (rhs of `<;>`, body of `repeat`, ...);
-    -- a single "Try this" suggestion can't be replayed there, so skip such positions.
+    -- A source position carrying more than one candidate means the elaborator pushed
+    -- a hook for the same scope multiple times (e.g. on the rhs of `<;>`); a single
+    -- "Try this" suggestion can't be replayed there, so skip such positions.
     let mut counts : Std.HashMap String.Pos.Raw Nat := {}
     for (_, _, ts, _, _) in candidates do
       if let some p := ts.getPos? then
         counts := counts.alter p (fun n? => some (n?.getD 0 + 1))
-    -- Pre-compute the set of unsolvedGoal-candidate ranges for the ownership filter.
-    let unsolvedRanges := candidates.filterMap fun (k, _, ts, _, _) =>
-      match k with
-      | .unsolvedGoal => ts.getRange?
-      | _ => none
     trace[autoTry] "trigger points: {candidates.size}"
     for (k, ctx, ts, mctx, goal) in candidates do
       let some pos := ts.getPos? | continue
       if counts.getD pos 0 > 1 then continue
       match k with
-      | .unsolvedGoal =>
-        let some range := ts.getRange? | continue
-        unless ownsUnsolvedGoalError range unsolvedRanges errorPositions do continue
+      | .unsolvedGoal tacticSeq =>
         let suggs ← collectSuggestionsForGoal ctx mctx goal
-        emitAppendSuggestions ts suggs cmdLine
+        emitAppendSuggestions tacticSeq ts suggs cmdLine
       | .sorryTactic =>
         runReplaceTryOnGoal ctx mctx goal ts
 

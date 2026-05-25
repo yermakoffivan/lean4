@@ -9,6 +9,7 @@ prelude
 public import Lean.Util.ForEachExpr
 public import Lean.Util.OccursCheck
 public import Lean.Elab.Tactic.Basic
+public import Lean.Elab.Tactic.AutoTryHook
 public import Lean.Meta.AbstractNestedProofs
 public import Init.Data.List.Sort.Basic
 import all Lean.Elab.ErrorUtils
@@ -513,6 +514,15 @@ mutual
               synthesizeSyntheticMVars (postpone := .no)
           unless remainingGoals.isEmpty do
             if report then
+              -- Record an `autoTry` info-tree marker at this `by` block so the post-elab
+              -- linter can offer a "Try this:" suggestion against the actual unsolved
+              -- goal. We only push when exactly one goal is left -- a single suggestion
+              -- can't replay against multiple goals, and the user is expected to shape
+              -- the proof with `·` / `case` first. Push *before* `reportUnsolvedGoals`,
+              -- since the latter admits the goal with `sorry` (which would make the
+              -- captured `mctx` see the goal as already assigned).
+              if let [goal] := remainingGoals then
+                Tactic.AutoTryHook.push tacticCode[1] tacticCode goal (← getMCtx)
               kind.logError tacticCode
               reportUnsolvedGoals remainingGoals
             else

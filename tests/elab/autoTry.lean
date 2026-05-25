@@ -404,6 +404,39 @@ example : Q ∧ P := by
 
 set_option autoTry.onUnsolvedGoal false
 
+/-! ## Composite tactics with multiple embedded tacticSequences
+
+`induction n with | zero => … | succ n ih => …` is a single tactic whose syntax
+embeds one `tacticSeq` per branch. Each branch that leaves its goal unsolved should
+fire its own suggestion, anchored at the branch's `=> …` body. -/
+
+set_option autoTry.onUnsolvedGoal true
+
+/--
+error: unsolved goals
+case zero
+⊢ P
+---
+error: unsolved goals
+case succ
+n : Nat
+ih : P
+⊢ P
+---
+info: Try this:
+  [apply] exact Pintro
+---
+info: Try this:
+  [apply] exact Pintro
+-/
+#guard_msgs in
+example (n : Nat) : P := by
+  induction n with
+  | zero => skip
+  | succ n ih => skip
+
+set_option autoTry.onUnsolvedGoal false
+
 /-! ## Nested-scope error isolation
 
 An unsolved-goals error nested inside another scope (e.g. from a `have := by …`) must

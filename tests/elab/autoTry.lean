@@ -224,7 +224,7 @@ example : True := by
 /-! ## Edit-text verification
 
 The [apply] widget hides the separator characters that the edit inserts. Setting
-`autoTry.debug.showEdits` makes the linter emit an info message per suggestion describing
+`debug.autoTry.showEdits` makes the linter emit an info message per suggestion describing
 the literal replacement text and the (zero-width) insertion position. This is the same
 data the widget hands to the IDE when [apply] is clicked. -/
 
@@ -255,7 +255,7 @@ info: Try these:
 -/
 #guard_msgs in
 set_option autoTry.onUnsolvedGoal true in
-set_option autoTry.debug.showEdits true in
+set_option debug.autoTry.showEdits true in
 example : True := by
 
 -- Single-line non-empty `by` -> insertion right after `skip`, leading `"; "`.
@@ -285,7 +285,7 @@ info: Try these:
 -/
 #guard_msgs in
 set_option autoTry.onUnsolvedGoal true in
-set_option autoTry.debug.showEdits true in
+set_option debug.autoTry.showEdits true in
 example : True := by skip
 
 -- Multi-line `by` -> insertion after the last tactic on its own line, leading newline +
@@ -316,6 +316,6 @@ info: Try these:
 -/
 #guard_msgs in
 set_option autoTry.onUnsolvedGoal true in
-set_option autoTry.debug.showEdits true in
+set_option debug.autoTry.showEdits true in
 example : True := by
   skip

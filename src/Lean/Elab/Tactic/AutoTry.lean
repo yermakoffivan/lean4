@@ -82,7 +82,7 @@ Intended for tests: the [apply] widget normally hides the separator characters t
 edit inserts, so without this option there is no way for `#guard_msgs` to verify the
 exact text being inserted on click.
 -/
-register_builtin_option autoTry.debug.showEdits : Bool := {
+register_builtin_option debug.autoTry.showEdits : Bool := {
   defValue := false
   descr := "if set, autoTry logs an info message per emitted suggestion showing the edit's \
     source range and the literal replacement text (for testing the widget data)"
@@ -238,7 +238,7 @@ def emitAppendSuggestions (ctx : ContextInfo) (mctx : MetavarContext)
   let sep := computeAppendSep byStx fileMap
   let origSpan := mkEmptyRangeStx byTail
   runMetaMWithMessages ctx {} mctx do
-    let showEdits := autoTry.debug.showEdits.get (← getOptions)
+    let showEdits := debug.autoTry.showEdits.get (← getOptions)
     let formatted ← suggs.mapM fun tac => do
       let fmt ← PrettyPrinter.ppTactic tac
       let cleanText := fmt.pretty

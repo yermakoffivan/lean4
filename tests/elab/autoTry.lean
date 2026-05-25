@@ -202,7 +202,7 @@ error: unsolved goals
 case right
 ⊢ True
 ---
-@ +3:2...19
+@ +3:12...19
 info: Try these:
   [apply] solve_by_elim
   [apply] simp

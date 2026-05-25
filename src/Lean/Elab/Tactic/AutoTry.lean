@@ -116,8 +116,10 @@ def isSorryTactic (stx : Syntax) : Bool :=
 /-- Which kind of auto-`try?` trigger this is. -/
 inductive TriggerKind
   /-- A proof or subproof that left a goal unsolved (detected by walking the message
-  log for `Tactic.unsolvedGoals` errors). `tacticSeq` is the body to append to. -/
-  | unsolvedGoal (tacticSeq : Syntax)
+  log for `Tactic.unsolvedGoals` errors). `tacticSeq` is the body to append to,
+  `insertPos` is the position at which to insert the new tactic, `msgPos` is the
+  source position of the underlying error (used as the dedup key). -/
+  | unsolvedGoal (tacticSeq : Syntax) (insertPos msgPos : String.Pos.Raw)
   /-- A `sorry` tactic. The suggestion *replaces* the `sorry`. -/
   | sorryTactic
 
@@ -150,6 +152,12 @@ the replacement text at `p` without overwriting anything.
 def mkEmptyRangeStx (p : String.Pos.Raw) : Syntax :=
   Syntax.atom (.original "".toRawSubstring p "".toRawSubstring p) ""
 
+/-- Build a synthetic atom whose source range matches `range`. Used as the
+`addSuggestion ref` argument so the "Try this:" diagnostic appears at exactly the
+same source range as the underlying "unsolved goals" error. -/
+def mkRangeStx (range : Lean.Syntax.Range) : Syntax :=
+  Syntax.atom (.original "".toRawSubstring range.start "".toRawSubstring range.stop) ""
+
 /--
 A trigger candidate: enough info for the hook to drive `try?` and emit a suggestion
 without re-walking the infotree. `ref` is the "Try this:" diagnostic anchor (for the
@@ -178,29 +186,54 @@ where
     | _                          => acc
 
 /--
-Locate the admit-emitting scope inside `cmd` whose range contains `range` (the range
-of an `unsolved goals` error message), and return `(body, ref)`: `body` is the
-`tacticSeq` to append to, `ref` is the anchor for the "Try this:" diagnostic. Looks
-for the smallest enclosing node whose kind is one of `byTactic` /
-`tacticSeqBracketed` / `Lean.cdot` / `case` / `case'`. -/
-partial def findEnclosingAdmitScope (cmd : Syntax) (range : Lean.Syntax.Range) :
-    Option (Syntax × Syntax) :=
-  go cmd none
+Locate the tactic-sequence body in `cmd` "responsible" for an `unsolved goals` error
+at `range`. Returns `(body, insertPos)` where `body` is the null-node holding the
+tactics (used for separator computation) and `insertPos` is where to append a new
+tactic.
+
+Strategy: descend along the path of nodes whose range contains `range`, then take
+the outermost seq-variant in the smallest containing node's subtree -- handling both
+the case where the error is logged inside the body (`case h => skip`, `{ skip }`,
+`· skip`) and the case where it's logged at an adjacent token (`by` keyword for
+`by skip`, the synthetic case-body marker, etc.).
+
+The only syntax-kind knowledge is `tacticSeq1Indented` vs `tacticSeqBracketed`,
+needed to read the tactics-container at child index 0 vs 1 and to know that the
+empty-body insertion point sits before `}` (for bracketed) or right after the
+opening token (for indented -- the message range's `stop` is a reliable proxy). -/
+partial def findTacticSeqBody (cmd : Syntax) (range : Lean.Syntax.Range) :
+    Option (Syntax × String.Pos.Raw) :=
+  walkAndFind cmd
 where
-  bodyAndRef (stx : Syntax) : Option (Syntax × Syntax) :=
+  /- Returns the tactics-container null-node together with its parent seq-variant,
+     if `stx` is a seq-variant we recognise. -/
+  bodyAndKind (stx : Syntax) : Option (Syntax × SyntaxNodeKind) :=
     match stx.getKind with
-    | ``Lean.Parser.Term.byTactic | ``Lean.Parser.Term.byTactic' => some (stx[1], stx)
-    | ``Lean.Parser.Tactic.tacticSeqBracketed => some (stx[1], stx)
-    | ``Lean.cdot => some (stx[1], stx)
-    | ``Lean.Parser.Tactic.case | ``Lean.Parser.Tactic.case' => some (stx[3], stx)
+    | ``Lean.Parser.Tactic.tacticSeq1Indented => some (stx[0], stx.getKind)
+    | k@``Lean.Parser.Tactic.tacticSeqBracketed => some (stx[1], k)
     | _ => none
-  go (stx : Syntax) (best : Option (Syntax × Syntax)) : Option (Syntax × Syntax) := Id.run do
-    let some r := stx.getRange? | return best
-    unless r.includes range do return best
-    let mut best := if let some hit := bodyAndRef stx then some hit else best
+  /- Insertion position. For non-empty bodies it's the body's tail. For empty
+     bodies we fall back to a kind-specific position: just before `}` for a
+     bracketed body, or the message range's `stop` (just past the opening
+     token of the surrounding wrapper) for an indented body. -/
+  insertPosOf (body parent : Syntax) (kind : SyntaxNodeKind) : String.Pos.Raw :=
+    body.getTailPos?.getD <|
+      if kind == ``Lean.Parser.Tactic.tacticSeqBracketed then
+        parent[2].getPos?.getD range.stop
+      else
+        range.stop
+  walkAndFind (stx : Syntax) : Option (Syntax × String.Pos.Raw) := Id.run do
+    let some r := stx.getRange? | return none
+    unless r.includes range do return none
     for child in stx.getArgs do
-      best := go child best
-    return best
+      if let some result := walkAndFind child then return some result
+    outermostSeqInSubtree stx
+  outermostSeqInSubtree (stx : Syntax) : Option (Syntax × String.Pos.Raw) := Id.run do
+    if let some (body, kind) := bodyAndKind stx then
+      return some (body, insertPosOf body stx kind)
+    for child in stx.getArgs do
+      if let some result := outermostSeqInSubtree child then return some result
+    return none
 
 /--
 Collect candidate trigger points.
@@ -237,11 +270,14 @@ def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree)
     let some endPos := msg.endPos | continue
     let msgRange : Lean.Syntax.Range :=
       { start := fileMap.ofPosition msg.pos, stop := fileMap.ofPosition endPos }
-    let some (body, ref) := findEnclosingAdmitScope cmd msgRange | continue
+    let some (body, insertPos) := findTacticSeqBody cmd msgRange | continue
     let isEmpty := body.getPos?.isNone
     unless onUnsolved || (onEmpty && isEmpty) do continue
+    -- The diagnostic anchor is a synthetic Syntax matching the error's source
+    -- range, so the "Try this:" widget appears wherever the user sees the error.
+    let ref := mkRangeStx msgRange
     for (mctx, mvarId) in collectGoalsFromMessage msg.data do
-      acc := acc.push (.unsolvedGoal body, ctx, ref, mctx, mvarId)
+      acc := acc.push (.unsolvedGoal body insertPos msgRange.start, ctx, ref, mctx, mvarId)
   return acc
 
 /--
@@ -279,13 +315,10 @@ override keeps the rendered widget text clean (no leading separator). `cmdLine` 
 1-based line of the enclosing command's start, used to render edit positions relative to
 the command (so tests are robust to moving the example up or down the file).
 -/
-def emitAppendSuggestions (tacticSeq ref : Syntax) (suggs : Array (TSyntax `tactic))
-    (cmdLine : Nat) : CommandElabM Unit := do
+def emitAppendSuggestions (tacticSeq ref : Syntax) (insertPos : String.Pos.Raw)
+    (suggs : Array (TSyntax `tactic)) (cmdLine : Nat) : CommandElabM Unit := do
   if suggs.isEmpty then return
   let fileMap ← getFileMap
-  -- Insertion point: end of the body if it has tactics, else end of the wrapper's
-  -- opening token (after `by` / `·` / `{` / `=>`).
-  let insertPos := tacticSeq.getTailPos?.getD <| ref.getTailPos?.getD 0
   let sep := computeAppendSep tacticSeq fileMap
   let origSpan := mkEmptyRangeStx insertPos
   let showEdits := debug.autoTry.showEdits.get (← getOptions)
@@ -373,18 +406,24 @@ def autoTryHook : Linter where run := withSetOptionIn fun stx => do
     -- was entered multiple times (e.g. the rhs of `<;>` runs once per subgoal), or the
     -- scope left more than one unsolved goal. In both cases a single "Try this"
     -- suggestion can't be replayed there, so skip duplicates by source position.
+    -- Dedup key: for unsolved-goal triggers use the underlying message position
+     -- (catches the same scope reporting multiple times, e.g. rhs of `<;>`); for
+     -- `sorry` use the sorry token's position.
+    let keyOf (k : TriggerKind) (ref : Syntax) : Option String.Pos.Raw := match k with
+      | .unsolvedGoal _ _ p => some p
+      | .sorryTactic        => ref.getPos?
     let mut counts : Std.HashMap String.Pos.Raw Nat := {}
-    for (_, _, ref, _, _) in candidates do
-      if let some p := ref.getPos? then
+    for (k, _, ref, _, _) in candidates do
+      if let some p := keyOf k ref then
         counts := counts.alter p (fun n? => some (n?.getD 0 + 1))
     trace[autoTry] "trigger points: {candidates.size}"
     for (k, ctx, ref, mctx, goal) in candidates do
-      let some pos := ref.getPos? | continue
+      let some pos := keyOf k ref | continue
       if counts.getD pos 0 > 1 then continue
       match k with
-      | .unsolvedGoal tacticSeq =>
+      | .unsolvedGoal tacticSeq insertPos _ =>
         let suggs ← collectSuggestionsForGoal ctx mctx goal
-        emitAppendSuggestions tacticSeq ref suggs cmdLine
+        emitAppendSuggestions tacticSeq ref insertPos suggs cmdLine
       | .sorryTactic =>
         runReplaceTryOnGoal ctx mctx goal ref
 

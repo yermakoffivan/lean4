@@ -40,31 +40,23 @@ namespace Lean.Elab.Tactic.AutoTry
 open Lean Elab Term Tactic Command Try Meta
 
 /--
-Run `try?` on tactic-sequence containers whose body has no tactics yet — empty `by`
-blocks, empty `· `, empty `case h => `, and so on. Strictly a subset of
-`autoTry.onUnsolvedGoal`: fires only at "start-of-block" sites, which is useful when you
-want suggestions only when you start writing a scope and not on every in-progress proof.
+Run `try?` on empty proofs and empty subproofs — empty `by`, empty `· `, empty
+`case h => `, and so on — and report any suggestions to insert.
 -/
 register_builtin_option autoTry.onEmptyProof : Bool := {
   defValue := false
-  descr := "run `try?` on each tactic-sequence container with an empty body and \
-    report any suggestions"
+  descr := "run `try?` on empty proofs and empty subproofs and report any suggestions"
 }
 
 /--
-Run `try?` on each tactic-sequence scope that still has unsolved goals — `by` blocks
-(including empty `by`), focused-goal `·` blocks, `case` blocks, and similar — and report
-any suggestions as an *append* to the sequence rather than a replacement of any existing
-tactic. Triggers only when exactly one goal remains, so e.g. `by constructor` (two open
-subgoals) stays silent; the user is expected to shape the proof with `·`/`case` first.
-
-Strictly broader than `autoTry.onEmptyProof`; enabling both is equivalent to enabling
-only `onUnsolvedGoal`.
+Like `autoTry.onEmptyProof`, but also fires on proofs and subproofs that already contain
+some tactics and left a goal unsolved. The suggestion is appended to the existing
+sequence (e.g. `by skip` → `by skip; <found>`).
 -/
 register_builtin_option autoTry.onUnsolvedGoal : Bool := {
   defValue := false
-  descr := "run `try?` on each tactic-sequence scope (`by`, `·`, `case`, …) that left \
-    exactly one unsolved goal and report any suggestions as an append"
+  descr := "like `autoTry.onEmptyProof`, but also fires on proofs and subproofs that \
+    already contain some tactics and left a goal unsolved"
 }
 
 /--

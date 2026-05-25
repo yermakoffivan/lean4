@@ -8,7 +8,7 @@ import Std.Tactic.Do
 import Std.Internal.Do.Order.Lemmas
 import Lean.Elab.Tactic.Do.ProofMode
 
-set_option new_proof_mode true
+set_option new_wp_monad true
 
 open Std.Internal.Tactic.Do
 open Lean.Order

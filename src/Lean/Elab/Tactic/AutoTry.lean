@@ -99,17 +99,12 @@ get cancelled when the linter snapshot is cancelled.
 def runMetaMWithMessages (ctx : ContextInfo) (lctx : LocalContext)
     (mctx : MetavarContext) (x : MetaM α) : CommandElabM α := do
   let cmdCtx ← read
-  let cmdOpts ← getOptions
   -- `try?` may create temporary auxiliary declarations during library search; running with
   -- a non-exporting environment keeps any such declarations from leaking out as exports.
   let env := ctx.env.setExporting false
-  -- Merge `ctx.options` (frozen at the saved infotree point) on top of the surrounding
-  -- `CommandElabM` options: file-/command-scope knobs from `cmdOpts` provide the base, and
-  -- any `set_option ... in` applied at the saved infotree point wins where it disagrees.
-  let mergedOpts := cmdOpts.mergeBy (fun _ _ v => v) ctx.options
   let core : CoreM α := Prod.fst <$> x.run { lctx } { mctx }
   let (res, newCoreState) ←
-    (withOptions (fun _ => mergedOpts) core).toIO
+    (withOptions (fun _ => ctx.options) core).toIO
       { currNamespace := ctx.currNamespace, openDecls := ctx.openDecls
         fileName := cmdCtx.fileName, fileMap := cmdCtx.fileMap
         cancelTk? := cmdCtx.cancelTk? }

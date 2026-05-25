@@ -47,8 +47,7 @@ noise of in-progress proofs.
 -/
 register_builtin_option autoTry.onEmptyBy : Bool := {
   defValue := false
-  descr := "after a command is elaborated, run `try?` on each empty `by` block and \
-    report any suggestions"
+  descr := "run `try?` on each empty `by` block and report any suggestions"
 }
 
 /--
@@ -63,8 +62,8 @@ only `onUnsolvedGoal`.
 -/
 register_builtin_option autoTry.onUnsolvedGoal : Bool := {
   defValue := false
-  descr := "after a command is elaborated, run `try?` on each `by` block whose tactic \
-    sequence left exactly one unsolved goal and report any suggestions as an append"
+  descr := "run `try?` on each `by` block whose tactic sequence left exactly one \
+    unsolved goal and report any suggestions as an append"
 }
 
 /--
@@ -73,8 +72,7 @@ the `sorry`.
 -/
 register_builtin_option autoTry.onSorry : Bool := {
   defValue := false
-  descr := "after a command is elaborated, run `try?` on each `sorry` tactic and report any \
-    suggestions"
+  descr := "run `try?` on each `sorry` tactic and report any suggestions"
 }
 
 /--

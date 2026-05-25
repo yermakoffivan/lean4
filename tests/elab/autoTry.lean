@@ -158,6 +158,70 @@ case right
 example : True ∧ True := by
   constructor <;> skip
 
+-- `case h => …`: the trigger fires on the case scope when it left an unsolved goal,
+-- and *also* on the enclosing `by` block (which still has the sibling goal `right`
+-- open). Each scope gets its own suggestion at its own append point.
+/--
+error: unsolved goals
+⊢ True
+---
+error: unsolved goals
+case right
+⊢ True
+---
+info: Try these:
+  [apply] solve_by_elim
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
+---
+info: Try these:
+  [apply] solve_by_elim
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
+-/
+#guard_msgs in
+example : True ∧ True := by
+  constructor
+  case left => skip
+
+-- `· …` (cdot focus): the trigger fires on the cdot scope when its body left an
+-- unsolved goal, and on the outer `by` block for the sibling goal.
+/--
+error: unsolved goals
+case left
+⊢ True
+---
+error: unsolved goals
+case right
+⊢ True
+---
+info: Try these:
+  [apply] solve_by_elim
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
+---
+info: Try these:
+  [apply] solve_by_elim
+  [apply] simp
+  [apply] simp only
+  [apply] grind
+  [apply] grind only
+  [apply] simp_all
+-/
+#guard_msgs in
+example : True ∧ True := by
+  constructor
+  · skip
+
 set_option autoTry.onUnsolvedGoal false
 
 /-! ## `autoTry.onSorry` -- `sorry` replacement -/

@@ -51,19 +51,19 @@ register_builtin_option autoTry.onEmptyBy : Bool := {
 }
 
 /--
-Run `try?` on each `by` block that still has unsolved goals (including empty `by`),
-and report any suggestions as an *append* to the tactic sequence rather than a
-replacement of any existing tactic. Triggers only when exactly one goal remains,
-so e.g. `by constructor` (two open subgoals) stays silent; the user is expected to
-shape the proof with `·`/`case` first.
+Run `try?` on each tactic-sequence scope that still has unsolved goals — `by` blocks
+(including empty `by`), focused-goal `·` blocks, `case` blocks, and similar — and report
+any suggestions as an *append* to the sequence rather than a replacement of any existing
+tactic. Triggers only when exactly one goal remains, so e.g. `by constructor` (two open
+subgoals) stays silent; the user is expected to shape the proof with `·`/`case` first.
 
 Strictly broader than `autoTry.onEmptyBy`; enabling both is equivalent to enabling
 only `onUnsolvedGoal`.
 -/
 register_builtin_option autoTry.onUnsolvedGoal : Bool := {
   defValue := false
-  descr := "run `try?` on each `by` block whose tactic sequence left exactly one \
-    unsolved goal and report any suggestions as an append"
+  descr := "run `try?` on each tactic-sequence scope (`by`, `·`, `case`, …) that left \
+    exactly one unsolved goal and report any suggestions as an append"
 }
 
 /--
@@ -122,6 +122,26 @@ def isSorryTactic (stx : Syntax) : Bool :=
   | `Lean.Parser.Tactic.tacticSorry | `Lean.Parser.Tactic.tacticAdmit => true
   | _ => false
 
+/--
+Tactic-info kinds that *host* a tactic sequence -- `by`, `· ...`, `case h => ...`,
+`focus ...`, `(...)`. These are the scopes where `autoTry.onUnsolvedGoal` fires: after
+the sequence runs, if the host left an unsolved goal, the suggestion is rendered as an
+append to the sequence.
+-/
+def isTacticSeqContainer (kind : SyntaxNodeKind) : Bool :=
+  match kind with
+  | `Lean.Parser.Term.byTactic
+  | `Lean.Parser.Tactic.case
+  | `Lean.Parser.Tactic.focus
+  | `Lean.Parser.Tactic.paren
+  | `Lean.cdot => true
+  | _ => false
+
+/-- The first `tacticSeq` child of `stx`, if any. -/
+def findBodySeq (stx : Syntax) : Option Syntax :=
+  stx.getArgs.findSome? fun arg =>
+    if arg.isOfKind ``Lean.Parser.Tactic.tacticSeq then some arg else none
+
 /-- Which kind of auto-`try?` trigger this is. -/
 inductive TriggerKind
   /-- A `by` block whose tactic sequence left exactly one unsolved goal (this includes the
@@ -131,23 +151,22 @@ inductive TriggerKind
   | sorryTactic
 
 /--
-Compute the separator string to insert between the existing tail of the `by` block and the
-new appended suggestion. The rule:
-* Empty `by`, single-line: `" "` (so `by  ` becomes `by <sugg>`).
-* Non-empty `by`, single-line: `"; "`.
+Compute the separator string to insert between the existing tail of a tactic-sequence
+container (`by`, `·`, `case h =>`, …) and the new appended suggestion. The rule:
+* Empty body, single-line: `" "`.
+* Non-empty body, single-line: `"; "`.
 * Multi-line: newline followed by spaces aligning with the first tactic in the body, or
-  with `by`'s column + 2 if the body is empty.
+  with the container head's column + 2 if the body is empty.
 
 This is a heuristic and gets various edge cases wrong (mixed-indentation bodies, comments
 between tactics, etc.). It should be replaced by a proper formatter once one is available.
 -/
-def computeAppendSep (byStx : Syntax) (fileMap : FileMap) : String := Id.run do
-  let some bp := byStx.getPos? | return "; "
-  let some bt := byStx.getTailPos? | return "; "
+def computeAppendSep (containerStx : Syntax) (fileMap : FileMap) : String := Id.run do
+  let some bp := containerStx.getPos? | return "; "
+  let some bt := containerStx.getTailPos? | return "; "
   let bpPos := fileMap.toPosition bp
   let btPos := fileMap.toPosition bt
-  let body := byStx[1]
-  let bodyStart? := body.getPos?
+  let bodyStart? := findBodySeq containerStx >>= (·.getPos?)
   let isEmpty := bodyStart?.isNone
   if bpPos.line == btPos.line then
     return if isEmpty then " " else "; "
@@ -193,10 +212,12 @@ def collectTriggerPoints (opts : Options) (tree : InfoTree) :
       let onUnsolved := autoTry.onUnsolvedGoal.get opts
       let onSorry := autoTry.onSorry.get opts
       let mut acc := acc
-      if kind == `Lean.Parser.Term.byTactic && tacInfo.goalsAfter.length == 1 then
-        -- `onUnsolved` fires for any open `by` block; `onEmpty` is a narrower variant
-        -- that fires only when there are no tactics in the block yet.
-        if onUnsolved || (onEmpty && isEmptyByBlock tacInfo.stx) then
+      if isTacticSeqContainer kind && tacInfo.goalsAfter.length == 1 then
+        -- `onUnsolved` fires for any tactic-sequence container (`by`, `·`, `case`, …)
+        -- whose body left exactly one unsolved goal. `onEmpty` is a narrower variant
+        -- that fires only on empty `by` blocks.
+        if onUnsolved ||
+            (onEmpty && kind == `Lean.Parser.Term.byTactic && isEmptyByBlock tacInfo.stx) then
           acc := acc.push (.unsolvedGoal, ctx, tacInfo)
       if onSorry && isSorryTactic tacInfo.stx then
         acc := acc.push (.sorryTactic, ctx, tacInfo)

@@ -333,6 +333,7 @@ def waitFindSnapAux (notFoundX : RequestM α) (x : Snapshot → RequestM α)
   /- The elaboration task that we're waiting for may be aborted if the file contents change.
   In that case, we reply with the `fileChanged` error by default. Thanks to this, the server doesn't
   get bogged down in requests for an old state of the document. -/
+  -- TODO: Does this also swallow `interrupt` exceptions?
   | Except.error e => throw (RequestError.ofIoError e)
   | Except.ok none => notFoundX
   | Except.ok (some snap) => x snap
@@ -439,20 +440,20 @@ partial def findInfoTreeAtPos
 open Elab.Command in
 def runCommandElabM (snap : Snapshot) (c : RequestT CommandElabM α) : RequestM α := do
   let rc ← readThe RequestContext
-  match ← snap.runCommandElabM rc.doc.meta (c.run rc) with
+  match ← snap.runCommandElabM rc.doc.meta (c.run rc) (← rc.cancelTk.cancelTk) with
   | .ok v => return v
   | .error e => throw e
 
 def runCoreM (snap : Snapshot) (c : RequestT CoreM α) : RequestM α := do
   let rc ← readThe RequestContext
-  match ← snap.runCoreM rc.doc.meta (c.run rc) with
+  match ← snap.runCoreM rc.doc.meta (c.run rc) (← rc.cancelTk.cancelTk) with
   | .ok v => return v
   | .error e => throw e
 
 open Elab.Term in
 def runTermElabM (snap : Snapshot) (c : RequestT TermElabM α) : RequestM α := do
   let rc ← readThe RequestContext
-  match ← snap.runTermElabM rc.doc.meta (c.run rc) with
+  match ← snap.runTermElabM rc.doc.meta (c.run rc) (← rc.cancelTk.cancelTk) with
   | .ok v => return v
   | .error e => throw e
 

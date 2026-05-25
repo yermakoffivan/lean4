@@ -277,6 +277,7 @@ def handleUnknownIdentifierCodeAction
   }
   let r ← ServerTask.waitAny [
     responseTask.mapCheap Sum.inl,
+    -- TODO: does this intentionally ignore edit-based cancellations?
     rc.cancelTk.requestCancellationTask.mapCheap Sum.inr
   ]
   let .inl (.success response) := r

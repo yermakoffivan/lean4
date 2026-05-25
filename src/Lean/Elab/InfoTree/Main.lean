@@ -114,7 +114,8 @@ def InfoState.substituteLazy (s : InfoState) : Task InfoState :=
   }
 
 /-- Embeds a `CoreM` action in `EIO` by supplying the information stored in `info`. -/
-def ContextInfo.runCoreM (info : ContextInfo) (x : CoreM α) : EIO Exception α := do
+def ContextInfo.runCoreM (info : ContextInfo) (x : CoreM α)
+    (cancelTk? : Option IO.CancelToken := none) : EIO Exception α := do
   -- We assume that this function is used only outside elaboration, mostly in the language server,
   -- and so we can and should provide access to information regardless whether it is exported.
   let env := info.env.setExporting false
@@ -124,12 +125,13 @@ def ContextInfo.runCoreM (info : ContextInfo) (x : CoreM α) : EIO Exception α 
   -/
   (withOptions (fun _ => info.options) x).run'
     { currNamespace := info.currNamespace, openDecls := info.openDecls
-      fileName := "<InfoTree>", fileMap := default }
+      fileName := "<InfoTree>", fileMap := default, cancelTk? }
     { env, ngen := info.ngen }
 
-def ContextInfo.runMetaM (info : ContextInfo) (lctx : LocalContext) (x : MetaM α) :
+def ContextInfo.runMetaM (info : ContextInfo) (lctx : LocalContext) (x : MetaM α)
+    (cancelTk? : Option IO.CancelToken := none) :
     EIO Exception α := do
-  (·.1) <$> info.runCoreM (x.run { lctx := lctx } { mctx := info.mctx })
+  info.runCoreM (x.run' { lctx := lctx } { mctx := info.mctx }) cancelTk?
 
 def ContextInfo.toPPContext (info : ContextInfo) (lctx : LocalContext) : PPContext :=
   { env  := info.env, mctx := info.mctx, lctx := lctx,

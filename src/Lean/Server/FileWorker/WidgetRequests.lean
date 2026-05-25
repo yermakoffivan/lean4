@@ -52,7 +52,7 @@ was stored for a particular `SubexprInfo` tag in a `TaggedText` generated with `
 def makePopup : WithRpcRef InfoWithCtx → RequestM (RequestTask InfoPopup)
   | i => RequestM.pureTask do
     let i := i.val
-    i.ctx.runMetaM i.info.lctx do
+    i.ctx.runMetaM i.info.lctx (cancelTk? := ← (← read).cancelTk.cancelTk) do
       let type? ← match (← i.info.type?) with
         | some type => some <$> ppExprTagged type
         | none => pure none
@@ -132,7 +132,7 @@ builtin_initialize
     fun ⟨kind, i⟩ => RequestM.pureTask do
       let i := i.val
       let rc ← read
-      let ls ← locationLinksOfInfo rc.doc.meta kind i
+      let ls ← locationLinksOfInfo rc.doc.meta kind i (cancelTk? := ← (← read).cancelTk.cancelTk)
       let ls := ls.map (·.toLocationLink)
       if !ls.isEmpty then return ls
       -- TODO(WN): unify handling of delab'd (infoview) and elab'd (editor) applications
@@ -146,7 +146,7 @@ builtin_initialize
         originInfo? := none
         children := PersistentArray.empty
       }
-      GoToM.run ctx i.ctx ti.lctx do
+      GoToM.run ctx i.ctx ti.lctx (cancelTk? := ← (← read).cancelTk.cancelTk) do
         let ls ← locationLinksFromDecl nm
         return ls.map (·.toLocationLink)
 

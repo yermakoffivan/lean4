@@ -91,18 +91,20 @@ register_builtin_option debug.autoTry.showEdits : Bool := {
 builtin_initialize registerTraceClass `autoTry
 
 /--
-Run a `CoreM` computation in the context saved in `ctx`, propagating any messages and
-traces produced back into the surrounding `CommandElabM` state. The surrounding
-`CommandElabM` cancel token is forwarded so that long-running `try?` calls get cancelled
-when the linter snapshot is cancelled.
+Run a `MetaM` computation in the context saved in `ctx`, with the given `lctx` and `mctx`,
+propagating any messages and traces produced back into the surrounding `CommandElabM` state.
+The surrounding `CommandElabM` cancel token is forwarded so that long-running `try?` calls
+get cancelled when the linter snapshot is cancelled.
 -/
-def runCoreMWithMessages (ctx : ContextInfo) (x : CoreM α) : CommandElabM α := do
+def runMetaMWithMessages (ctx : ContextInfo) (lctx : LocalContext)
+    (mctx : MetavarContext) (x : MetaM α) : CommandElabM α := do
   let cmdCtx ← read
   -- `try?` may create temporary auxiliary declarations during library search; running with
   -- a non-exporting environment keeps any such declarations from leaking out as exports.
   let env := ctx.env.setExporting false
+  let core : CoreM α := Prod.fst <$> x.run { lctx } { mctx }
   let (res, newCoreState) ←
-    (withOptions (fun _ => ctx.options) x).toIO
+    (withOptions (fun _ => ctx.options) core).toIO
       { currNamespace := ctx.currNamespace, openDecls := ctx.openDecls
         fileName := cmdCtx.fileName, fileMap := cmdCtx.fileMap
         cancelTk? := cmdCtx.cancelTk? }
@@ -111,11 +113,6 @@ def runCoreMWithMessages (ctx : ContextInfo) (x : CoreM α) : CommandElabM α :=
     messages := s.messages ++ newCoreState.messages
     traceState.traces := s.traceState.traces ++ newCoreState.traceState.traces }
   return res
-
-/-- Run a `MetaM` computation with the given `lctx`/`mctx` via `runCoreMWithMessages`. -/
-def runMetaMWithMessages (ctx : ContextInfo) (lctx : LocalContext)
-    (mctx : MetavarContext) (x : MetaM α) : CommandElabM α :=
-  runCoreMWithMessages ctx (Prod.fst <$> x.run { lctx } { mctx })
 
 def isSorryTactic (stx : Syntax) : Bool :=
   match stx.getKind with

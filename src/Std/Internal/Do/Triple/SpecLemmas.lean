@@ -30,6 +30,9 @@ import Init.Data.String.Lemmas.Splits
 import Init.Data.String.Termination
 import Init.Data.String.Lemmas.Iterate
 
+/- TODO : can we make this option work? -/
+-- set_option new_wp_monad true
+
 set_option linter.missingDocs true
 
 @[expose] public section
@@ -2254,5 +2257,25 @@ theorem Spec.forIn_stringSlice
     obtain ⟨-, rfl⟩ := String.Slice.splits_endPos_iff.mp hsp
     simp only [String.toList_empty, List.forIn_nil]
     exact Triple.pure init Lean.Order.PartialOrder.rel_refl
+
+attribute [spec]
+  Spec.pure
+  Spec.bind
+  Spec.map
+  Spec.seq
+  Spec.monadLift_StateT
+  Spec.monadLift_ReaderT
+  Spec.monadLift_ExceptT
+  Spec.monadLift_OptionT
+  Spec.read_ReaderT
+  Spec.get_StateT
+  Spec.set_StateT
+  Spec.modifyGet_StateT
+
+attribute [spec high]
+  Spec.throw_ExceptT
+  Spec.throw_ExceptT_lift
+  Spec.throw_ReaderT
+  Spec.throw_StateT
 
 end Std.Internal.Do

@@ -86,13 +86,16 @@ error: unsolved goals
 #guard_msgs in
 example : True := by { }
 
--- Unprovable goal: try? finds nothing, the hook is silent.
+-- Unprovable goal: try? finds nothing, the hook is silent. We use an opaque Prop so the
+-- default branches (including `impossible by decide | impossible by simp | impossible by
+-- grind`) cannot dispatch it.
+opaque OpaqueProp : Prop
 /--
 error: unsolved goals
-⊢ False
+⊢ OpaqueProp
 -/
 #guard_msgs in
-example : False := by
+example : OpaqueProp := by
 
 /-! ## `autoTry.onUnsolvedGoal` -- non-empty `by`, append behaviour -/
 

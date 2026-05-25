@@ -7568,8 +7568,8 @@ goto v___jp_2186_;
 v___jp_2202_:
 {
 lean_object* v___x_2205_; 
-v___x_2205_ = lean_string_utf8_next(v___y_2203_, v___y_2204_);
-lean_dec(v___y_2204_);
+v___x_2205_ = lean_string_utf8_next(v___y_2204_, v___y_2203_);
+lean_dec(v___y_2203_);
 v___y_2196_ = v___x_2205_;
 goto v___jp_2195_;
 }
@@ -7592,15 +7592,15 @@ goto v___jp_2195_;
 }
 else
 {
-v___y_2203_ = v_inputString_2183_;
-v___y_2204_ = v_i_2207_;
+v___y_2203_ = v_i_2207_;
+v___y_2204_ = v_inputString_2183_;
 goto v___jp_2202_;
 }
 }
 else
 {
-v___y_2203_ = v_inputString_2183_;
-v___y_2204_ = v_i_2207_;
+v___y_2203_ = v_i_2207_;
+v___y_2204_ = v_inputString_2183_;
 goto v___jp_2202_;
 }
 }
@@ -8743,9 +8743,9 @@ v___x_2634_ = lean_alloc_ctor(0, 3, 0);
 lean_ctor_set(v___x_2634_, 0, v_inputString_2626_);
 lean_ctor_set(v___x_2634_, 1, v_pos_2614_);
 lean_ctor_set(v___x_2634_, 2, v_endPos_2627_);
-v___y_2616_ = v___y_2629_;
-v___y_2617_ = v___y_2630_;
-v___y_2618_ = v_leading_2632_;
+v___y_2616_ = v___y_2630_;
+v___y_2617_ = v_leading_2632_;
+v___y_2618_ = v___y_2629_;
 v___y_2619_ = v___x_2634_;
 goto v___jp_2615_;
 }
@@ -8758,9 +8758,9 @@ v___x_2635_ = lean_alloc_ctor(0, 3, 0);
 lean_ctor_set(v___x_2635_, 0, v_inputString_2626_);
 lean_ctor_set(v___x_2635_, 1, v_pos_2614_);
 lean_ctor_set(v___x_2635_, 2, v_pos_2631_);
-v___y_2616_ = v___y_2629_;
-v___y_2617_ = v___y_2630_;
-v___y_2618_ = v_leading_2632_;
+v___y_2616_ = v___y_2630_;
+v___y_2617_ = v_leading_2632_;
+v___y_2618_ = v___y_2629_;
 v___y_2619_ = v___x_2635_;
 goto v___jp_2615_;
 }
@@ -8800,17 +8800,17 @@ v___jp_2615_:
 {
 lean_object* v_info_2620_; lean_object* v___x_2621_; lean_object* v_atom_2622_; lean_object* v___x_2623_; 
 v_info_2620_ = lean_alloc_ctor(0, 4, 0);
-lean_ctor_set(v_info_2620_, 0, v___y_2618_);
+lean_ctor_set(v_info_2620_, 0, v___y_2617_);
 lean_ctor_set(v_info_2620_, 1, v_startPos_2608_);
 lean_ctor_set(v_info_2620_, 2, v___y_2619_);
 lean_ctor_set(v_info_2620_, 3, v_pos_2614_);
 v___x_2621_ = lean_box(0);
 v_atom_2622_ = lean_alloc_ctor(3, 4, 0);
 lean_ctor_set(v_atom_2622_, 0, v_info_2620_);
-lean_ctor_set(v_atom_2622_, 1, v___y_2616_);
+lean_ctor_set(v_atom_2622_, 1, v___y_2618_);
 lean_ctor_set(v_atom_2622_, 2, v_val_2610_);
 lean_ctor_set(v_atom_2622_, 3, v___x_2621_);
-v___x_2623_ = l_Lean_Parser_ParserState_pushSyntax(v___y_2617_, v_atom_2622_);
+v___x_2623_ = l_Lean_Parser_ParserState_pushSyntax(v___y_2616_, v_atom_2622_);
 return v___x_2623_;
 }
 }

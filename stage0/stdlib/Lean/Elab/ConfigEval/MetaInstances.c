@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: Lean.Elab.ConfigEval.MetaInstances
-// Imports: public import Lean.Elab.ConfigEval.Commands public import Lean.Elab.ConfigEval.Instances public import Lean.Elab.DeprecatedSyntax
+// Imports: public import Lean.Elab.ConfigEval.Commands public import Lean.Elab.ConfigEval.Instances import Lean.Elab.ConfigEval.DeriveEvalTerm import Lean.Elab.ConfigEval.DeriveEvalExpr
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -3913,7 +3913,8 @@ return v___x_1258_;
 }
 lean_object* runtime_initialize_Lean_Elab_ConfigEval_Commands(uint8_t builtin);
 lean_object* runtime_initialize_Lean_Elab_ConfigEval_Instances(uint8_t builtin);
-lean_object* runtime_initialize_Lean_Elab_DeprecatedSyntax(uint8_t builtin);
+lean_object* runtime_initialize_Lean_Elab_ConfigEval_DeriveEvalTerm(uint8_t builtin);
+lean_object* runtime_initialize_Lean_Elab_ConfigEval_DeriveEvalExpr(uint8_t builtin);
 static bool _G_runtime_initialized = false;
 LEAN_EXPORT lean_object* runtime_initialize_Lean_Elab_ConfigEval_MetaInstances(uint8_t builtin) {
 lean_object * res;
@@ -3925,7 +3926,10 @@ lean_dec_ref(res);
 res = runtime_initialize_Lean_Elab_ConfigEval_Instances(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = runtime_initialize_Lean_Elab_DeprecatedSyntax(builtin);
+res = runtime_initialize_Lean_Elab_ConfigEval_DeriveEvalTerm(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = runtime_initialize_Lean_Elab_ConfigEval_DeriveEvalExpr(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 l_Lean_Elab_ConfigEval_instEvalTermApplyNewGoals = _init_l_Lean_Elab_ConfigEval_instEvalTermApplyNewGoals();
@@ -3955,7 +3959,8 @@ return lean_io_result_mk_ok(lean_box(0));
 }
 lean_object* initialize_Lean_Elab_ConfigEval_Commands(uint8_t builtin);
 lean_object* initialize_Lean_Elab_ConfigEval_Instances(uint8_t builtin);
-lean_object* initialize_Lean_Elab_DeprecatedSyntax(uint8_t builtin);
+lean_object* initialize_Lean_Elab_ConfigEval_DeriveEvalTerm(uint8_t builtin);
+lean_object* initialize_Lean_Elab_ConfigEval_DeriveEvalExpr(uint8_t builtin);
 static bool _G_initialized = false;
 LEAN_EXPORT lean_object* initialize_Lean_Elab_ConfigEval_MetaInstances(uint8_t builtin) {
 lean_object * res;
@@ -3967,7 +3972,10 @@ lean_dec_ref(res);
 res = initialize_Lean_Elab_ConfigEval_Instances(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_Lean_Elab_DeprecatedSyntax(builtin);
+res = initialize_Lean_Elab_ConfigEval_DeriveEvalTerm(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_Lean_Elab_ConfigEval_DeriveEvalExpr(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = runtime_initialize_Lean_Elab_ConfigEval_MetaInstances(builtin);

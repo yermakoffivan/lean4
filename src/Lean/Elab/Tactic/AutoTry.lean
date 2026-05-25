@@ -139,12 +139,16 @@ partial def findFirstBodyGoal (ts : PersistentArray InfoTree) :
   -- against all of them; stay quiet.
   if seqs.size != 1 then return none
   let ti := seqs[0]!
+  -- `goalsAfter` is what the user sees as unsolved on hover at the end of the body.
+  -- We require exactly one open goal -- multi-goal cases (`by constructor`) stay
+  -- silent so the user shapes the proof with `·`/`case` first.
   if ti.goalsAfter.length == 1 then
     return ti.goalsAfter.head?.map fun g => (ti.mctxAfter, g)
+  -- Body was admitted (`by { }` / `· ` close the focused goal with sorry on an empty
+  -- body, so `goalsAfter` is empty). The goal the user sees as unsolved is the one we
+  -- entered the body with -- a deeper tacticSeq node for the admitted body isn't
+  -- created when the body is empty, so we read it off `goalsBefore` here.
   if ti.goalsAfter.isEmpty then
-    -- Body admitted (e.g. `by { }`, `· ` -- both close the focused goal with sorry on
-    -- an empty body), so `goalsAfter` is empty. The goal the user sees as unsolved is
-    -- the one we entered the body with.
     return ti.goalsBefore.head?.map fun g => (ti.mctxBefore, g)
   return none
 where

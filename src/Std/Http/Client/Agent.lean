@@ -8,7 +8,7 @@ module
 prelude
 public import Std.Http.Client.Session
 public import Std.Http.Data.Cookie
-public import Std.Http.Data.Redirect
+public import Std.Http.Client.Redirect
 import Init.Data.Array
 
 public section

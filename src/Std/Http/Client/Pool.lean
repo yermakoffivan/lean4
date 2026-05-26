@@ -7,7 +7,7 @@ module
 
 prelude
 public import Std.Http.Client.Agent
-import Std.Async.DNS
+public import Std.Http.Client.Connector
 import Std.Data.HashMap
 import Init.Data.Array
 
@@ -33,32 +33,6 @@ sessions. The pool handles cookie injection, redirect following, and middlewares
 -/
 
 /--
-Resolves `host` via DNS, opens a TCP socket to `port`, and creates an HTTP session.
-When `config.proxy` is set the TCP connection is made to the proxy address instead.
--/
-private def createTcpSession (host : URI.Host) (port : UInt16) (config : Config) : Async (Session Socket.Client) := do
-  let (connectHost, connectPort) := config.proxy.getD (toString host, port)
-  let addrs ← DNS.getAddrInfo connectHost (toString connectPort)
-
-  if addrs.isEmpty then
-    throw (IO.userError s!"could not resolve host: {connectHost.quote}")
-
-  let mut lastErr : IO.Error := IO.userError s!"could not connect to {connectHost.quote}:{connectPort}"
-
-  for ipAddr in addrs do
-    let socketAddr : Std.Net.SocketAddress := match ipAddr with
-      | .v4 ip => .v4 ⟨ip, connectPort⟩
-      | .v6 ip => .v6 ⟨ip, connectPort⟩
-    try
-      let socket ← Socket.Client.mk
-      socket.connect socketAddr
-      return ← Session.new socket config
-    catch err =>
-      lastErr := err
-
-  throw lastErr
-
-/--
 Per-origin bucket inside the pool's state map.
 -/
 structure Agent.Pool.Entry where
@@ -66,8 +40,43 @@ structure Agent.Pool.Entry where
   idle : Array (Session Socket.Client)
   /-- All registered sessions, including idle and in-use. -/
   all : Array (Session Socket.Client)
-  /-- Monotonically advancing round-robin index. -/
+  /--
+  Monotonically advancing round-robin index.
+
+  Round-robin is correct for HTTP/1.1 because each connection is fully sequential —
+  no connection is "less loaded" than another while in use. If HTTP/2 multiplexing
+  is added in the future, switch to least-requests-in-flight selection instead.
+  -/
   idx : Nat
+
+/--
+Policy controlling whether a failed request should be retried on a fresh connection.
+
+Retries only apply to connection-level failures (the session died before a response
+was received). Application-level errors (4xx, 5xx) are never retried automatically.
+-/
+structure RetryPolicy where
+  /--
+  Called before evicting a broken session and re-dispatching.
+  `err` is the transport error; `attempt` is 0-based (0 = first failure).
+  Return `true` to retry on a new connection, `false` to propagate the error.
+  -/
+  shouldRetry : IO.Error → Nat → Bool
+  /-- Hard cap on the number of retries regardless of `shouldRetry`. -/
+  maxRetries : Nat
+
+namespace RetryPolicy
+
+/-- Never retries — the default. Mirrors Finch's explicit caller-responsibility approach. -/
+def never : RetryPolicy := { shouldRetry := fun _ _ => false, maxRetries := 0 }
+
+/--
+Retries once on any connection error. Safe for idempotent methods (GET, HEAD, PUT,
+DELETE); callers must take care with non-idempotent methods (POST, PATCH).
+-/
+def once : RetryPolicy := { shouldRetry := fun _ _ => true, maxRetries := 1 }
+
+end RetryPolicy
 
 /--
 A connection pool that manages multiple sessions per `(scheme, host, port)` triple.
@@ -82,26 +91,42 @@ structure Agent.Pool where
   maxPerHost : Nat
   /-- Configuration used when creating new sessions. -/
   config : Config
-  /-- Cookie jar shared across all sessions. -/
+  /--
+  Cookie jar shared across all sessions.
+
+  The jar is decoupled from construction: pass an existing jar to `Pool.new` to share
+  cookies across multiple pools (e.g. a default pool and a TLS pool), or omit it to
+  get a fresh, isolated jar.
+  -/
   cookieJar : Cookie.Jar
   /-- Monotonically increasing counter for unique session IDs. -/
   nextId : Mutex UInt64
   /-- Middlewares applied (outermost-first) around every request/response hop. -/
   middlewares : Array Middleware := #[]
+  /-- Connector used to open new transport sessions. Defaults to plain TCP. -/
+  connector : TcpConnector := {}
+  /-- Retry policy for connection-level failures. Defaults to no retries. -/
+  retryPolicy : RetryPolicy := RetryPolicy.never
 
 namespace Agent.Pool
 
-/-- Creates a new, empty connection pool. -/
-def new (config : Config := {}) (maxPerHost : Nat := 4) : Async Agent.Pool := do
+/--
+Creates a new, empty connection pool.
+
+Pass `cookieJar` to share an existing jar across pools; omit it for a fresh isolated jar.
+-/
+def new (config : Config := {}) (maxPerHost : Nat := 4) (cookieJar : Option Cookie.Jar := none) : Async Agent.Pool := do
   let state ← Mutex.new (∅ : Std.HashMap (String × String × UInt16) Agent.Pool.Entry)
-  let cookieJar ← Cookie.Jar.new
+  let cookieJar ← match cookieJar with
+    | some jar => pure jar
+    | none     => Cookie.Jar.new
   let nextId ← Mutex.new (1 : UInt64)
   pure { state, maxPerHost, config, cookieJar, nextId, middlewares := #[] }
 
 /--
 Returns a session for `(scheme, host, port)`.
 
-Priority: idle session → new session (if under limit) → round-robin.
+Priority: idle session → new session (if under limit) → round-robin across all sessions.
 -/
 def getOrCreateSession (pool : Agent.Pool) (scheme : URI.Scheme) (host : URI.Host) (port : UInt16) : Async (Session Socket.Client) := do
   let key := (scheme.val, toString host, port)
@@ -127,7 +152,7 @@ def getOrCreateSession (pool : Agent.Pool) (scheme : URI.Scheme) (host : URI.Hos
   if let some session := maybeSession then
     return session
 
-  let session ← createTcpSession host port pool.config
+  let session ← Connector.connect pool.connector scheme host port pool.config
   let newId ← pool.nextId.atomically do
     let id ← MonadState.get
     MonadState.set (id + 1)
@@ -163,24 +188,36 @@ private def returnToIdle (pool : Agent.Pool) (scheme : URI.Scheme) (host : URI.H
       MonadState.set (st.insert key { entry with idle := entry.idle.push session })
 
 /--
-Sends a request through a pooled session, following redirects, injecting cookies, and
-applying response interceptors.
+Sends a request through a pooled session, following redirects, injecting cookies,
+and applying middlewares. On connection failure, evicts the broken session and retries
+according to `pool.retryPolicy`.
 -/
 def send {β : Type} [Coe β Body.Any]
     (pool : Agent.Pool) (scheme : URI.Scheme) (host : URI.Host) (port : UInt16)
     (request : Request β) : Async (Response Body.Stream) := do
-  let session ← pool.getOrCreateSession scheme host port
-  Agent.send {
-    session
-    scheme
-    host
-    port
-    cookieJar := pool.cookieJar
-    middlewares := pool.middlewares
-    acquire := some (fun s h p => pool.getOrCreateSession s h p)
-    release := some (fun broken s h p => pool.evictSession s h p broken.id)
-    releaseHealthy := some (fun session s h p => pool.returnToIdle s h p session)
-  } request
+  let attempts := pool.retryPolicy.maxRetries + 1
+  let mut lastErr : IO.Error := .userError "no attempts"
+  for attempt in List.range attempts do
+    let session ← pool.getOrCreateSession scheme host port
+    try
+      return ← Agent.send {
+        session
+        scheme
+        host
+        port
+        cookieJar := pool.cookieJar
+        middlewares := pool.middlewares
+        acquire := some (fun s h p => pool.getOrCreateSession s h p)
+        release := some (fun broken s h p => pool.evictSession s h p broken.id)
+        releaseHealthy := some (fun sess s h p => pool.returnToIdle s h p sess)
+      } request
+    catch err =>
+      pool.evictSession scheme host port session.id
+      if pool.retryPolicy.shouldRetry err attempt then
+        lastErr := err
+      else
+        throw err
+  throw lastErr
 
 end Agent.Pool
 

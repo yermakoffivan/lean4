@@ -193,7 +193,7 @@ def solve (goal : MVarId) : VCGenM SolveResult := goal.withContext do
       match ← (← read).specThms.findSpecs e with
       | .error thms => return .noSpecFoundForProgram e m thms
       | .ok thm =>
-      let some rule ← (mkBackwardRuleFromSpecCached thm l instWP excessArgs).run
+      let some rule ← (mkBackwardRuleFromSpecCached thm m l instWP excessArgs).run
         | return .noSpecFoundForProgram e m #[thm]
       let .goals goals ← rule.apply goal
         | throwError "Failed to apply rule {thm.proof} for {indentExpr e}"

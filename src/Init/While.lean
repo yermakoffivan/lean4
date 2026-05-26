@@ -31,16 +31,28 @@ variable {α : Type u} {m : Type u → Type v} [Monad m]
 public abbrev whileM.IsPlausibleStep (f : α → m (α ⊕ β)) : α → α → Prop :=
   fun a' a => Internal.MayReturn (f a) (.inl a')
 
+/-- One unfolding step of the loop body used by `whileM.fix`. -/
+private noncomputable def whileM.fixF {β : Type u} (f : α → m (α ⊕ β))
+    (hAttach : Exists (Internal.IsAttach (m := m)))
+    (x : α) (ih : ∀ y, whileM.IsPlausibleStep f y x → m β) : m β := do
+  let ⟨s, hp⟩ ← hAttach.choose (f x)
+  match s, hp with
+  | .inl x', hp => ih x' hp
+  | .inr b, _ => pure b
+
 /-- The classical `Acc`-induction defining `whileM`, factored out so it can be referenced from
 `whileM.Pred`, `whileM.impl`, and `whileM_eq` without duplicating the recursion. -/
 private noncomputable def whileM.fix {β : Type u} (f : α → m (α ⊕ β))
     (hAttach : Exists (Internal.IsAttach (m := m))) {a : α}
     (h_a : Acc (whileM.IsPlausibleStep f) a) : m β :=
-  h_a.recOn (motive := fun _ _ => m β) (fun x _ ih => do
-    let ⟨s, hp⟩ ← hAttach.choose (f x)
-    match s, hp with
-    | .inl x', hp => ih x' hp
-    | .inr b, _ => pure b)
+  WellFounded.fixF (whileM.fixF f hAttach) a h_a
+
+private theorem whileM.fix_eq {β : Type u} (f : α → m (α ⊕ β))
+    (hAttach : Exists (Internal.IsAttach (m := m))) {a : α}
+    (h_a : Acc (whileM.IsPlausibleStep f) a) :
+    whileM.fix f hAttach h_a =
+      whileM.fixF f hAttach a (fun _ p => whileM.fix f hAttach (h_a.inv p)) :=
+  WellFounded.fixF_eq _ a h_a
 
 /-- Pinning predicate for `whileM.impl`: trivial unless we have both an `Acc` and
 an attach for `m`, in which case `v` is pinned to the value computed by `whileM.fix`. -/
@@ -66,8 +78,8 @@ private theorem whileM.body_eq_fix
     (g : (a : α) → Subtype (whileM.Pred f a))
     {x : α} (h_x : Acc (whileM.IsPlausibleStep f) x) :
     whileM.body f (g · |>.val) x = whileM.fix f hAttach h_x := by
-  cases h_x with | intro x next =>
-  simp only [whileM.body, whileM.fix]
+  rw [whileM.fix_eq]
+  simp only [whileM.body, whileM.fixF]
   rw [← ((hAttach.choose_spec.erases (f x)).bind_eq)]
   apply bind_congr
   intro ⟨s, hp⟩
@@ -76,7 +88,7 @@ private theorem whileM.body_eq_fix
   | inl x' =>
     have hp_x' := (g x').property
     simp only [whileM.Pred,
-      dif_pos (show Acc _ x' ∧ _ from ⟨next x' hp, hAttach⟩)] at hp_x'
+      dif_pos (show Acc _ x' ∧ _ from ⟨h_x.inv hp, hAttach⟩)] at hp_x'
     exact hp_x'
 
 /-- Computational core of `whileM`: returns the loop value paired with its

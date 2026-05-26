@@ -29,14 +29,30 @@ Author: Leonardo de Moura
 #endif
 
 // POSIX named semaphores for the experimental cross-process jobserver
-// (env var `LEAN_JOB_SEMAPHORE=/name`). Linux + macOS only.
+// (env var `LEAN_JOB_SEMAPHORE=/name`, or `LEAN_JOB_SEMAPHORE_AUTO=N` to
+// auto-create one and propagate it to children). Linux + macOS only.
 #if !defined(_WIN32) && !defined(LEAN_EMSCRIPTEN)
     #define LEAN_JOBSERVER_POSIX 1
     #include <semaphore.h>
     #include <fcntl.h>
     #include <errno.h>
+    #include <unistd.h>
+    #include <cstring>
 #else
     #define LEAN_JOBSERVER_POSIX 0
+#endif
+
+#if LEAN_JOBSERVER_POSIX
+// Name of a semaphore created by this process; unlinked on exit.
+static char * g_owned_sem_name = nullptr;
+
+static void unlink_owned_sem() {
+    if (g_owned_sem_name) {
+        sem_unlink(g_owned_sem_name);
+        free(g_owned_sem_name);
+        g_owned_sem_name = nullptr;
+    }
+}
 #endif
 
 #if LEAN_SUPPORTS_BACKTRACE
@@ -970,9 +986,33 @@ public:
         m_max_std_workers(max_std_workers) {
 #if LEAN_JOBSERVER_POSIX
         if (char const * name = std::getenv("LEAN_JOB_SEMAPHORE")) {
+            // Attach as a participant in an existing jobserver.
             sem_t * s = sem_open(name, 0);
             if (s != SEM_FAILED) {
                 m_jobserver_sem = s;
+            }
+        } else {
+            // No jobserver set up yet; create one with `max_std_workers`
+            // slots (overridable via `LEAN_JOB_SEMAPHORE_AUTO=N`) and hand it
+            // to children via env. Do NOT gate this process: the creator is
+            // typically an orchestrator (e.g. `lake`) whose workers block on
+            // subprocesses, and gating it would deadlock the pool.
+            int count = (int)max_std_workers;
+            if (char const * auto_n = std::getenv("LEAN_JOB_SEMAPHORE_AUTO")) {
+                count = std::atoi(auto_n);
+            }
+            if (count > 0) {
+                char buf[64];
+                std::snprintf(buf, sizeof buf, "/lean-jobs-%d", (int)getpid());
+                sem_unlink(buf);
+                sem_t * s = sem_open(buf, O_CREAT | O_EXCL, 0600, (unsigned)count);
+                if (s != SEM_FAILED) {
+                    sem_close(s);  // the named semaphore persists until unlink
+                    setenv("LEAN_JOB_SEMAPHORE", buf, 1);
+                    unsetenv("LEAN_JOB_SEMAPHORE_AUTO");
+                    g_owned_sem_name = strdup(buf);
+                    std::atexit(unlink_owned_sem);
+                }
             }
         }
 #endif

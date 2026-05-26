@@ -89,18 +89,6 @@ structure Config where
   maxRedirects : Nat := 10
 
   /--
-  Maximum number of times to retry a request after a connection error.
-  Set to 0 to disable automatic retries.
-  -/
-  maxRetries : Nat := 3
-
-  /--
-  Base delay in milliseconds for exponential backoff between retry attempts.
-  The actual delay for attempt `n` (0-indexed) is `min(retryDelay * 2^n, 32000)`.
-  -/
-  retryDelay : Time.Millisecond.Offset := 1000
-
-  /--
   Optional HTTP proxy address as `(host, port)`.
   When set, all TCP connections are routed through this proxy and
   request URIs are rewritten to absolute-form (`GET http://host/path HTTP/1.1`).
@@ -116,28 +104,9 @@ structure Config where
   maxResponseBodySize : Option Nat := none
 
   /--
-  Optional predicate that decides whether a response status is acceptable.
-  When `none`, all status codes are accepted (no error is thrown).
-  When `some f`, the final response status is passed to `f`; if `f` returns `false`
-  an `IO.Error` is thrown with the numeric status code.
-  Only applied to the final (non-redirect) response, not intermediate `3xx` responses.
-
-  Example — reject anything outside 2xx:
-  ```lean
-  validateStatus := some (fun s => s.toCode / 100 == 2)
-  ```
-  -/
-  validateStatus : Option (Status → Bool) := none
-
-  /--
   Maximum number of bytes drained from an intermediate redirect response body before
   -/
   redirectBodyDrainLimit : Nat := 1024 * 1024
-
-  /--
-  Optional predicate called before following each redirect.
-  -/
-  redirectPolicy : Option (URI.Host → UInt16 → Bool) := none
 
 namespace Config
 

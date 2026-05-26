@@ -270,10 +270,8 @@ private def sendInBackground {β : Type} [Coe β Body.Any]
     host := .name domain
     port := 443
     cookieJar
-    transport := some {
-      acquire := fun _ _ _ => Client.Session.new mockServer2 (config := {})
-      release := fun s _ _ _ => discard <| s.close
-    }
+    acquire := some (fun _ _ _ => Client.Session.new mockServer2 (config := {}))
+    release := some (fun s _ _ _ => discard <| s.close)
   }
 
   let request ← Request.new
@@ -322,10 +320,8 @@ private def sendInBackground {β : Type} [Coe β Body.Any]
     host := .name domain
     port := 443
     cookieJar
-    transport := some {
-      acquire := fun _ _ _ => Client.Session.new mockServer2 (config := {})
-      release := fun s _ _ _ => discard <| s.close
-    }
+    acquire := some (fun _ _ _ => Client.Session.new mockServer2 (config := {}))
+    release := some (fun s _ _ _ => discard <| s.close)
   }
 
   let request ← Request.new
@@ -839,13 +835,12 @@ private def sendInBackground {β : Type} [Coe β Body.Any]
       if s.toUTF8.size > 5 then
         throw (IO.userError s!"unfollowed 302 ignored maxResponseBodySize and returned {s.toUTF8.size} bytes")
 
--- A rejected `validateStatus` must not strand unread body bytes on the session.
+-- A status rejection that drains the body must not strand unread body bytes on the session.
 -- After the error, the same keep-alive connection should still handle the next request.
 
-#eval show IO _ from runWithTimeout "validateStatus rejection preserves keep-alive reuse" 4000 <| Async.block do
+#eval show IO _ from runWithTimeout "status rejection preserves keep-alive reuse" 4000 <| Async.block do
   let (mockClient, mockServer) ← Mock.new
   let agent ← mkAgent mockServer
-    (config := { validateStatus := some (fun s => s.toCode / 100 == 2) })
 
   let badReq ← Request.new |>.method .get |>.uri! "/bad"
     |>.header! "Host" "example.com" |>.empty
@@ -856,10 +851,13 @@ private def sendInBackground {β : Type} [Coe β Body.Any]
     #[("Content-Length", "5"),
       ("Connection", "keep-alive")] "error")
 
+  -- Caller checks status and drains body before reusing the connection.
   match ← await badPromise.result! with
-  | Except.ok _ =>
-    throw (IO.userError "expected validateStatus to reject 404")
-  | Except.error _ => pure ()
+  | Except.error e => throw (IO.userError s!"unexpected send error: {e}")
+  | Except.ok resp =>
+    unless resp.line.status.toCode == 404 do
+      throw (IO.userError "expected 404")
+    discard <| resp.body.readAll (α := ByteArray)
 
   let goodReq ← Request.new |>.method .get |>.uri! "/good"
     |>.header! "Host" "example.com" |>.empty
@@ -871,7 +869,7 @@ private def sendInBackground {β : Type} [Coe β Body.Any]
       ("Connection", "close")] "ok")
 
   match ← await goodPromise.result! with
-  | Except.error e => throw (IO.userError s!"follow-up request failed after validateStatus rejection: {e}")
+  | Except.error e => throw (IO.userError s!"follow-up request failed after status rejection: {e}")
   | Except.ok resp =>
     let body ← resp.body.readAll (α := String)
     unless body == "ok" do
@@ -880,7 +878,7 @@ private def sendInBackground {β : Type} [Coe β Body.Any]
   let goodText := String.fromUTF8! goodBytes
   unless goodText.startsWith "GET /good" do
     throw <| IO.userError
-      s!"follow-up request never reached the wire after validateStatus rejection:\n{goodText.quote}"
+      s!"follow-up request never reached the wire after status rejection:\n{goodText.quote}"
 
 -- ============================================================
 -- Section 7 — Keep-alive and Connection: close

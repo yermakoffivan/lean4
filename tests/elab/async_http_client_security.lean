@@ -67,10 +67,8 @@ private def rawResp
     host := .name domain
     port := 443
     cookieJar
-    transport := some {
-      acquire := fun _ _ _ => Client.Session.new mockServer2 (config := {})
-      release := fun s _ _ _ => discard <| s.close
-    }
+    acquire := some (fun _ _ _ => Client.Session.new mockServer2 (config := {}))
+    release := some (fun s _ _ _ => discard <| s.close)
   }
 
   let request ← Request.new

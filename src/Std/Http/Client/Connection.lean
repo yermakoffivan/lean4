@@ -11,7 +11,6 @@ public import Std.Async.ContextAsync
 public import Std.Http.Transport
 public import Std.Http.Protocol.H1
 public import Std.Http.Client.Config
-public import Std.Sync.Watch
 
 public section
 
@@ -32,43 +31,6 @@ set_option linter.all true
 /--
 A request packet queued to the background connection loop.
 -/
-structure ResponseBodyControl where
-  /--
-  Flipped to `true` by the agent when it will drain the response body internally
-  (redirect follow or `validateStatus` rejection). Tells `onBodyInterest` to
-  apply `redirectBodyDrainLimit` instead of the caller-facing `maxResponseBodySize`.
-  -/
-  useRedirectDrainLimit : IO.Ref Bool
-deriving TypeName
-
-namespace ResponseBodyControl
-
-/--
-Creates a new response-body control in its default "caller-facing body limit"
-mode.
--/
-def new : BaseIO ResponseBodyControl :=
-  return { useRedirectDrainLimit := ← IO.mkRef false }
-
-/--
-Switches this response into redirect-drain mode so the connection loop applies
-`redirectBodyDrainLimit` instead of `maxResponseBodySize`.
--/
-def markRedirectDrain (control : ResponseBodyControl) : BaseIO Unit :=
-  control.useRedirectDrainLimit.set true
-
-/--
-Returns `true` when the agent has marked the response as an internally-drained
-redirect body.
--/
-def isRedirectDrain (control : ResponseBodyControl) : BaseIO Bool :=
-  control.useRedirectDrainLimit.get
-
-end ResponseBodyControl
-
-/--
-A request packet queued to the background connection loop.
--/
 structure RequestPacket where
   /--
   The request to send.
@@ -80,25 +42,6 @@ structure RequestPacket where
   -/
   responsePromise : IO.Promise (Except IO.Error (Response Body.Stream))
 
-  /--
-  Shared response-body mode flag used by the connection loop to determine whether
-  to apply `redirectBodyDrainLimit` or `maxResponseBodySize` when body bytes arrive.
-  Set by `markRedirectDrain` before any internally-consumed drain (redirect follows
-  and `validateStatus` rejections).
-  -/
-  responseBodyControl : ResponseBodyControl
-
-  /--
-  Watch channel updated with the cumulative number of request-body bytes sent.
-  `none` when the caller does not need upload-progress tracking.
-  -/
-  uploadProgress : Option (Watch UInt64) := none
-
-  /--
-  Watch channel updated with the cumulative number of response bytes received.
-  `none` when the caller does not need download-progress tracking.
-  -/
-  downloadProgress : Option (Watch UInt64) := none
 
 namespace RequestPacket
 
@@ -172,29 +115,9 @@ structure InFlightState where
   isInformationalResponse : Bool
 
   /--
-  Watch the caller subscribes to for request-body upload progress.
+  Cumulative response-body bytes pulled from the machine. Used to enforce `maxResponseBodySize`.
   -/
-  uploadProgress : Option (Watch UInt64)
-
-  /--
-  Cumulative request-body bytes handed to the wire.
-  -/
-  uploadBytes : UInt64
-
-  /--
-  Watch the caller subscribes to for response download progress.
-  -/
-  downloadProgress : Option (Watch UInt64)
-
-  /--
-  Cumulative wire bytes received for this response (headers + body).
-  -/
-  downloadBytes : UInt64
-
-  /--
-  Cumulative response-body bytes pulled from the machine.
-  -/
-  downloadBodyBytes : UInt64
+  downloadBodyBytes : UInt64 := 0
 
 namespace InFlightState
 
@@ -210,16 +133,11 @@ def ofPacket (packet : RequestPacket) (responseStream : Body.Stream)
   responseStream := some responseStream
   waitingForContinue := hasExpect
   isInformationalResponse := false
-  uploadProgress := packet.uploadProgress
-  uploadBytes := 0
-  downloadProgress := packet.downloadProgress
-  downloadBytes := 0
-  downloadBodyBytes := 0
 
 /--
 Closes every open resource tied to this in-flight exchange: both request
-body handles, the response stream, and the upload/download progress watches.
-Each close is guarded by an `isClosed` check so this is idempotent.
+body handles and the response stream. Each close is guarded by an `isClosed`
+check so this is idempotent.
 -/
 def closeAll (s : InFlightState) : Async Unit := do
   if let some body := s.requestBody then
@@ -228,8 +146,6 @@ def closeAll (s : InFlightState) : Async Unit := do
     if ¬(← body.isClosed) then body.close
   if let some body := s.responseStream then
     if ¬(← Body.isClosed body) then Body.close body
-  if let some w := s.uploadProgress then Watch.close w
-  if let some w := s.downloadProgress then Watch.close w
 
 end InFlightState
 
@@ -324,38 +240,6 @@ before its body may be sent.
 -/
 @[inline] def isInformationalResponse (s : ConnectionState) : Bool :=
   s.inFlight.map (·.isInformationalResponse) |>.getD false
-
-/--
-The upload-progress watch for the in-flight request, if any.
--/
-@[inline] def uploadProgress (s : ConnectionState) : Option (Watch UInt64) :=
-  s.inFlight.bind (·.uploadProgress)
-
-/--
-The cumulative request-body bytes sent for the in-flight request.
--/
-@[inline] def uploadBytes (s : ConnectionState) : UInt64 :=
-  s.inFlight.map (·.uploadBytes) |>.getD 0
-
-/--
-The download-progress watch for the in-flight response, if any.
--/
-@[inline] def downloadProgress (s : ConnectionState) : Option (Watch UInt64) :=
-  s.inFlight.bind (·.downloadProgress)
-
-/--
-The cumulative wire bytes received for the in-flight response, including
-headers and body.
--/
-@[inline] def downloadBytes (s : ConnectionState) : UInt64 :=
-  s.inFlight.map (·.downloadBytes) |>.getD 0
-
-/--
-The cumulative response-body bytes pulled from the H1 machine for the
-in-flight response.
--/
-@[inline] def downloadBodyBytes (s : ConnectionState) : UInt64 :=
-  s.inFlight.map (·.downloadBodyBytes) |>.getD 0
 
 end ConnectionState
 
@@ -500,12 +384,7 @@ private def processH1Events
 
         if let some packet := st.currentRequest then
           if let some incoming := st.responseStream then
-            let extensions := Extensions.empty.insert packet.responseBodyControl
-            packet.onResponse {
-              line := head
-              body := incoming
-              extensions := extensions
-            }
+            packet.onResponse { line := head, body := incoming, extensions := Extensions.empty }
 
     | .closeBody =>
       -- Skip closing for informational (1xx) responses; the channel stays
@@ -585,34 +464,18 @@ private def onBodyInterest
   let mut st := { state with machine := newMachine }
 
   if let some pulled := pulledChunk then
-    let newBodyBytes := st.downloadBodyBytes + pulled.chunk.data.size.toUInt64
-    st := st.mapInFlight fun flight =>
-      { flight with downloadBodyBytes := newBodyBytes }
-
-    let useRedirectDrainLimit ←
-      match st.currentRequest with
-      | some packet => ResponseBodyControl.isRedirectDrain packet.responseBodyControl
-      | none => pure false
-
-    let maxSize? : Option UInt64 :=
-      if useRedirectDrainLimit then
-        some config.redirectBodyDrainLimit.toUInt64
-      else
-        config.maxResponseBodySize.map (·.toUInt64)
-    if let some maxSize := maxSize? then
-      if newBodyBytes > maxSize then
-        let err : IO.Error :=
-          if useRedirectDrainLimit then
-            .userError "redirect response body exceeds redirectBodyDrainLimit"
-          else
-            .userError "response body exceeds maximum allowed size"
-        -- Header stage already resolved `packet`, so rejecting here is typically a
-        -- no-op. The caller is listening on the response stream; surface the error
-        -- through `closeWithError` so a pending `recv`/`readAll` sees it instead
-        -- of a silent truncated EOF.
+    match config.maxResponseBodySize with
+    | some maxSize => do
+      let chunkSize : UInt64 := pulled.chunk.data.size.toUInt64
+      let prevBytes : UInt64 := st.inFlight.map (fun (f : InFlightState) => f.downloadBodyBytes) |>.getD 0
+      let newBodyBytes : UInt64 := prevBytes + chunkSize
+      st := st.mapInFlight fun flight => { flight with downloadBodyBytes := newBodyBytes }
+      if newBodyBytes > maxSize.toUInt64 then
+        let err : IO.Error := .userError "response body exceeds maximum allowed size"
         if let some body := st.responseStream then
           if ¬(← Body.isClosed body) then body.closeWithError err
         return ← abortState (st.mapInFlight fun flight => { flight with responseStream := none }) err
+    | none => pure ()
 
     if let some body := st.responseStream then
       -- If the caller has dropped/closed the incoming side, the write fails.
@@ -631,19 +494,13 @@ Processes a single async I/O event, returning the updated state and a `shouldClo
 -/
 private def handleRecvEvent (config : Config) (state : ConnectionState) : Recv → Async (ConnectionState × Bool)
   | .bytes (some bytes) => do
-    let newDownloadBytes := state.downloadBytes + bytes.size.toUInt64
-    if let some w := state.downloadProgress then Watch.send w newDownloadBytes
-    let st := { state with machine := state.machine.feed bytes }
-    return (st.mapInFlight ({ · with downloadBytes := newDownloadBytes }), false)
+    return ({ state with machine := state.machine.feed bytes }, false)
 
   | .bytes none => do
     return ({ state with machine := state.machine.noMoreInput }, false)
 
   | .requestBody (some chunk) => do
-    let newUploadBytes := state.uploadBytes + chunk.data.size.toUInt64
-    if let some w := state.uploadProgress then Watch.send w newUploadBytes
-    let st := { state with machine := state.machine.sendData #[chunk] }
-    return (st.mapInFlight ({ · with uploadBytes := newUploadBytes }), false)
+    return ({ state with machine := state.machine.sendData #[chunk] }, false)
 
   | .requestBody none => do
     if let some body := state.requestBody then

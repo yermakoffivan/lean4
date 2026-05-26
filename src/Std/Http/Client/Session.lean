@@ -59,12 +59,10 @@ def send [Transport α] {β : Type} [Body β]
     (session : Session α) (request : Request β) : Async (Response Body.Stream) := do
 
   let responsePromise ← IO.Promise.new
-  let responseBodyControl ← ResponseBodyControl.new
 
   let task ← session.requestChannel.send {
     request := { line := request.line, body := Body.Any.ofBody request.body, extensions := request.extensions }
     responsePromise
-    responseBodyControl
   }
 
   let .ok _ ← await task

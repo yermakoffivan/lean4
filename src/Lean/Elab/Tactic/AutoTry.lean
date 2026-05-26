@@ -264,17 +264,24 @@ def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree)
   let some ctx := (tree.foldInfo (init := none) fun ctx _ acc => acc.orElse fun _ => some ctx)
     | return acc
   let fileMap ← getFileMap
+  -- `runLintersAsync` accumulates diagnostics both in the command state's message
+  -- log and in the snapshot tree it then merges back, so the same `Tactic.unsolvedGoals`
+  -- error commonly appears twice in `msgs`. Dedup by source range before processing
+  -- so the later `counts > 1` filter doesn't suppress a single legitimate trigger.
+  let some cmdRange := cmd.getRange? (canonicalOnly := true) | return acc
+  let mut seen : Std.HashMap (String.Pos.Raw × String.Pos.Raw) Unit := {}
   for msg in msgs do
     unless msg.severity matches .error do continue
     unless msg.data.hasTag (· == `Tactic.unsolvedGoals) do continue
     let some endPos := msg.endPos | continue
     let msgRange : Lean.Syntax.Range :=
       { start := fileMap.ofPosition msg.pos, stop := fileMap.ofPosition endPos }
+    unless cmdRange.includes msgRange do continue
+    if seen.contains (msgRange.start, msgRange.stop) then continue
+    seen := seen.insert (msgRange.start, msgRange.stop) ()
     let some (body, insertPos) := findTacticSeqBody cmd msgRange | continue
     let isEmpty := body.getPos?.isNone
     unless onUnsolved || (onEmpty && isEmpty) do continue
-    -- The diagnostic anchor is a synthetic Syntax matching the error's source
-    -- range, so the "Try this:" widget appears wherever the user sees the error.
     let ref := mkRangeStx msgRange
     for (mctx, mvarId) in collectGoalsFromMessage msg.data do
       acc := acc.push (.unsolvedGoal body insertPos msgRange.start, ctx, ref, mctx, mvarId)

@@ -227,9 +227,6 @@ def mkSpecBackwardProof
 
   abstractMVars specApplied
 
--- TODO: implement
--- def mkSpecBackwardSimpProof : Unit := sorry
-
 /--
 Try to build a backward rule from a single spec theorem in `⊑` form.
 
@@ -243,7 +240,7 @@ Given a spec `pre ⊑ wp prog post epost` where the lattice type is
 public def tryMkBackwardRuleFromSpec (specThm : SpecTheoremNew)
   (Pred instWP : Expr) (excessArgs : Array Expr) : OptionT SymM BackwardRule := do
   -- Instantiate the spec theorem, creating metavars for all universally quantified params
-  let (_xs, _bs, specProof, specType) ← specThm.proof.instantiate
+  let (_xs, _bs, specProof, specType) ← specThm.instantiate
   let_expr PartialOrder.rel Pred' _cl' pre rhs := specType
     | throwError "target not a partial order ⊑ application {specType}"
   guard <| ← isDefEqGuarded Pred Pred'

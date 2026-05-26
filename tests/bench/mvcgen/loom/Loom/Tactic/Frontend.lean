@@ -82,7 +82,7 @@ public def mkSpecContext (lemmas : Syntax) (ignoreStarArg := false) : TacticM VC
     else
       throwUnsupportedSyntax
   let stx ← `(tactic| simp +unfoldPartialApp -zeta [$(Syntax.TSepArray.ofElems simpStuff),*])
-  discard <| mkSimpContext stx.raw
+  let simpCtx ← mkSimpContext stx.raw
     (eraseLocal := false)
     (simpTheorems := Lean.Elab.Tactic.Do.SpecAttr.getSpecSimpTheorems)
     (ignoreStarArg := ignoreStarArg)
@@ -94,7 +94,8 @@ public def mkSpecContext (lemmas : Syntax) (ignoreStarArg := false) : TacticM VC
           let thm ← mkSpecTheoremFromLocal fvar
           specThms := specThms.insert thm
         catch _ => continue
-  let specThmsNew ← SymM.run <| migrateSpecTheoremsDatabase specThms
+  let specSimpThms := simpCtx.ctx.simpTheorems[0]?.getD {}
+  let specThmsNew ← SymM.run <| migrateSpecTheoremsDatabase specThms specSimpThms
   let tripleIntro ← mkBackwardRuleFromDecl ``Triple.intro
   let meetPreIntro ← mkBackwardRuleFromDecl ``meet_pre_intro'
   let trueMeetPreElim ← mkBackwardRuleFromDecl ``true_meet_pre_elim
@@ -238,7 +239,7 @@ private def elabRemainingInvariants (alts : Std.HashMap Nat Syntax)
     unless handled.contains n do
       logWarningAt alt s!"Invariant alternative `inv{n}` does not match any invariant goal."
 
-@[builtin_tactic lmvcgen]
+@[builtin_tactic Loom.lmvcgen]
 public def evalLmvcgen : Tactic := fun stx => withMainContext do
   if mvcgen.warning.get (← getOptions) then
     logWarningAt stx "The `lmvcgen` tactic is experimental and still under development. \

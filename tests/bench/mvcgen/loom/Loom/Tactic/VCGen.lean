@@ -9,6 +9,7 @@ prelude
 public import Loom.Tactic.Types
 public import Loom.Tactic.SpecDB
 public import Loom.Tactic.RuleConstruct.Spec
+public import Loom.Tactic.RuleConstruct.Simp
 public import Loom.Tactic.RuleConstruct.Logic
 public import Loom.Tactic.RuleConstruct.Match
 public import Loom.Tactic.Intros
@@ -23,6 +24,7 @@ The `lmvcgen` tactic, split across the modules above.
 - `VCGen.Types` — `VCGenM`, its `Context`/`State`, config-facing types, and shared caches.
 - `VCGen.SpecDB` — `SpecTheoremNew`/`SpecTheoremsNew` plus database migration and lookup.
 - `VCGen.RuleConstruct.Spec` — rule construction from `⊑ wp` spec theorems.
+- `VCGen.RuleConstruct.Simp` — rule construction from equality spec theorems.
 - `VCGen.RuleConstruct.Logic` — rule construction for lattice connectives such as `⊓`, `⇨`,
   and `⌜_⌝`.
 - `VCGen.RuleConstruct.Match` — rule construction for `ite`, `dite`, and matcher splits.

@@ -9,6 +9,7 @@ public import Loom.Tactic.Types
 public import Loom.Tactic.RuleConstruct.Logic
 public import Loom.Tactic.RuleConstruct.Match
 public import Loom.Tactic.RuleConstruct.Spec
+public import Loom.Tactic.RuleConstruct.Simp
 
 public section
 
@@ -19,18 +20,23 @@ open Lean Meta Sym
 /-! ## Cached backward rule construction -/
 
 /--
-Cached version of `tryMkBackwardRuleFromSpec`.
+Cached version of ordinary and equality spec rule construction.
+
+Ordinary `Triple`/`⊑ wp` entries are sent to `tryMkBackwardRuleFromSpec`; equality entries are sent
+to `tryMkBackwardRuleFromSimpSpec`. The caller supplies the concrete monad `m` because equality
+specs must check that their equation type is definitionally equal to `m α`.
 
 Cache key: `(proof key, instWP, excessArgs.size)`.
 -/
 public def mkBackwardRuleFromSpecCached (specThm : SpecTheoremNew)
-    (Pred instWP : Expr) (excessArgs : Array Expr)
+    (m Pred instWP : Expr) (excessArgs : Array Expr)
     : OptionT VCGenM BackwardRule := do
   let key := (specThm.proof.key, instWP, excessArgs.size)
   let s := (← get).specBackwardRuleCache
   if let some rule := s[key]? then return rule
-  let some rule ← (withNewMCtxDepth
-      (tryMkBackwardRuleFromSpec specThm Pred instWP excessArgs).run : SymM _)
+  let some rule ← (withNewMCtxDepth (match specThm.kind with
+    | .spec => (tryMkBackwardRuleFromSpec specThm Pred instWP excessArgs).run
+    | .simp _ => (tryMkBackwardRuleFromSimpSpec specThm m Pred instWP excessArgs).run) : SymM _)
     | failure
   modify fun st => { st with specBackwardRuleCache := st.specBackwardRuleCache.insert key rule }
   return rule

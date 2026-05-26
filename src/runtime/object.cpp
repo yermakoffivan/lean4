@@ -28,6 +28,17 @@ Author: Leonardo de Moura
     #define LEAN_SUPPORTS_BACKTRACE 0
 #endif
 
+// POSIX named semaphores for the experimental cross-process jobserver
+// (env var `LEAN_JOB_SEMAPHORE=/name`). Linux + macOS only.
+#if !defined(_WIN32) && !defined(LEAN_EMSCRIPTEN)
+    #define LEAN_JOBSERVER_POSIX 1
+    #include <semaphore.h>
+    #include <fcntl.h>
+    #include <errno.h>
+#else
+    #define LEAN_JOBSERVER_POSIX 0
+#endif
+
 #if LEAN_SUPPORTS_BACKTRACE
 #include <execinfo.h>
 #include <unistd.h>
@@ -719,6 +730,35 @@ class task_manager {
     condition_variable                            m_task_finished_cv;
     condition_variable                            m_dedicated_finished_cv;
     bool                                          m_shutting_down{false};
+#if LEAN_JOBSERVER_POSIX
+    // Optional cross-process token pool. When non-null, standard workers must
+    // acquire a token before running a task and release it after, so that the
+    // total number of concurrently running standard workers across all
+    // processes sharing the semaphore does not exceed the initial count.
+    sem_t *                                       m_jobserver_sem{nullptr};
+#endif
+
+    // Block until a jobserver token is available; no-op when no semaphore is
+    // configured. Must be called with `lock` held; temporarily releases it.
+    void acquire_token(unique_lock<mutex> & lock) {
+#if LEAN_JOBSERVER_POSIX
+        if (!m_jobserver_sem) return;
+        lock.unlock();
+        while (sem_wait(m_jobserver_sem) != 0 && errno == EINTR) {}
+        lock.lock();
+#else
+        (void)lock;
+#endif
+    }
+
+    // Release a previously acquired token; no-op when no semaphore is
+    // configured. Safe to call without holding `m_mutex`.
+    void release_token() {
+#if LEAN_JOBSERVER_POSIX
+        if (!m_jobserver_sem) return;
+        sem_post(m_jobserver_sem);
+#endif
+    }
 
     lean_task_object * dequeue() {
         lean_assert(m_queues_size != 0);
@@ -808,9 +848,23 @@ class task_manager {
                     continue;
                 }
 
+                // Acquire a jobserver token (drops the mutex while blocked).
+                // After waking we must re-check conditions, because the queue
+                // may have been drained or shutdown may have been requested.
+                acquire_token(lock);
+#if LEAN_JOBSERVER_POSIX
+                if (m_jobserver_sem &&
+                    (m_queues_size == 0 || m_shutting_down ||
+                     m_std_workers.size() - m_idle_std_workers >= m_max_std_workers)) {
+                    release_token();
+                    continue;
+                }
+#endif
+
                 lean_task_object * t = dequeue();
                 m_idle_std_workers--;
                 run_task(lock, t);
+                release_token();
                 m_idle_std_workers++;
                 reset_heartbeat();
             }
@@ -914,6 +968,14 @@ class task_manager {
 public:
     task_manager(unsigned max_std_workers):
         m_max_std_workers(max_std_workers) {
+#if LEAN_JOBSERVER_POSIX
+        if (char const * name = std::getenv("LEAN_JOB_SEMAPHORE")) {
+            sem_t * s = sem_open(name, 0);
+            if (s != SEM_FAILED) {
+                m_jobserver_sem = s;
+            }
+        }
+#endif
     }
 
     ~task_manager() {
@@ -931,6 +993,12 @@ public:
         unique_lock<mutex> lock(m_mutex);
         m_dedicated_finished_cv.wait(lock, [&]() { return m_num_dedicated_workers == 0; });
         // never seems to terminate under Emscripten
+#endif
+#if LEAN_JOBSERVER_POSIX
+        if (m_jobserver_sem) {
+            sem_close(m_jobserver_sem);
+            m_jobserver_sem = nullptr;
+        }
 #endif
     }
 
@@ -986,10 +1054,17 @@ public:
                 spawn_worker();
             else
                 m_queue_cv.notify_one();
+            // Give back our jobserver token so another worker (in this or
+            // another process) can run while we are blocked. We reacquire it
+            // before resuming work below.
+            lock.unlock();
+            release_token();
+            lock.lock();
         }
         m_task_finished_cv.wait(lock, [&]() { return t->m_value != nullptr; });
         if (in_pool) {
             m_max_std_workers--;
+            acquire_token(lock);
         }
     }
 

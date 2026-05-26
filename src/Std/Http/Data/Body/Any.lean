@@ -7,6 +7,7 @@ module
 
 prelude
 public import Std.Http.Data.Body.Basic
+public import Std.Http.Data.Body.Replayable
 
 public section
 
@@ -63,6 +64,30 @@ structure Any where
   Sets the size of the body.
   -/
   setKnownSize : Option Body.Length → Async Unit
+
+  /--
+  `true` when this body can be re-read after being consumed.
+  Set by `Any.ofReplayableBody`; `false` for non-replayable bodies (e.g. `Body.Stream`).
+  The HTTP client uses this to decide whether to follow 307/308 redirects.
+  -/
+  isReplayable : Bool := false
+
+  /--
+  Resets this body's read state so it can be re-read from the start.
+  Only meaningful when `isReplayable = true`. No-op for `Body.Full` (always re-readable);
+  resets the internal cursor for `Body.Buffered`.
+  -/
+  resetInPlace : Async Unit := pure ()
+
+instance : Http.Body Any where
+  recv := Any.recv
+  close := Any.close
+  isClosed := Any.isClosed
+  recvSelector := Any.recvSelector
+  tryRecv := Any.tryRecv
+  getKnownSize := Any.getKnownSize
+  setKnownSize := Any.setKnownSize
+
 namespace Any
 
 /--
@@ -77,15 +102,20 @@ def ofBody [Http.Body α] (body : α) : Any where
   getKnownSize := Http.Body.getKnownSize body
   setKnownSize := Http.Body.setKnownSize body
 
+/--
+Erases a replayable body into a `Body.Any`, preserving replay capability.
+Sets `isReplayable = true` and `resetInPlace` from `Replayable.resetInPlace`.
+-/
+def ofReplayableBody [Http.Body α] [Replayable α] (body : α) : Any where
+  recv := Http.Body.recv body
+  close := Http.Body.close body
+  isClosed := Http.Body.isClosed body
+  recvSelector := Http.Body.recvSelector body
+  tryRecv := Http.Body.tryRecv body
+  getKnownSize := Http.Body.getKnownSize body
+  setKnownSize := Http.Body.setKnownSize body
+  isReplayable := true
+  resetInPlace := Replayable.resetInPlace body
+
 end Any
-
-instance : Http.Body Any where
-  recv := Any.recv
-  close := Any.close
-  isClosed := Any.isClosed
-  recvSelector := Any.recvSelector
-  tryRecv := Any.tryRecv
-  getKnownSize := Any.getKnownSize
-  setKnownSize := Any.setKnownSize
-
 end Std.Http.Body

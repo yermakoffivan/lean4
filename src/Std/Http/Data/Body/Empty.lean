@@ -83,6 +83,8 @@ instance : Http.Body Empty where
   getKnownSize _ := pure (some <| .fixed 0)
   setKnownSize _ _ := pure ()
 
+instance : Replayable Empty where
+  replay e := pure e
 
 instance : Coe Empty Any := ⟨Any.ofBody⟩
 

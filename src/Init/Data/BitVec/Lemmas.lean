@@ -521,7 +521,6 @@ theorem msb_eq_getLsbD_last (x : BitVec w) :
 @[bitvec_to_nat] theorem getLsbD_succ_last (x : BitVec (w + 1)) :
     x.getLsbD w = decide (2 ^ w ≤ x.toNat) := getLsbD_last x
 
-
 @[bitvec_to_nat] theorem msb_eq_decide (x : BitVec w) : BitVec.msb x = decide (2 ^ (w-1) ≤ x.toNat) := by
   simp [msb_eq_getLsbD_last, getLsbD_last]
 

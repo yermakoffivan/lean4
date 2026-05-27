@@ -53,6 +53,14 @@ static void unlink_owned_sem() {
         g_owned_sem_name = nullptr;
     }
 }
+
+// Per-worker-thread flag: does this thread currently hold a jobserver token?
+// Set by `acquire_token` / `wait_for`'s reclaim, cleared by `release_token`
+// or by `wait_for`'s release. When `wait_for` cannot reclaim a token
+// non-blockingly, the worker continues running its task un-gated and this
+// flag stays false; the worker-loop's `release_token` then skips its
+// `sem_post`, keeping per-worker token accounting balanced.
+static thread_local bool g_holds_token = false;
 #endif
 
 #if LEAN_SUPPORTS_BACKTRACE
@@ -752,16 +760,6 @@ class task_manager {
     // total number of concurrently running standard workers across all
     // processes sharing the semaphore does not exceed the initial count.
     sem_t *                                       m_jobserver_sem{nullptr};
-    // In-process direct handoff for `wait_for` reclaim. When a `wait_for`
-    // releases its token globally before blocking, it bumps `m_parked_waiters`;
-    // subsequent `release_token` calls from sibling workers route the freed
-    // token here (`m_parked_tokens++`) instead of `sem_post`, so the
-    // `wait_for` wakes via `m_parked_cv` without a blocking `sem_wait`.
-    // Excess (parked >= waiters) flows back to the global semaphore so the
-    // global pool isn't hoarded.
-    unsigned                                      m_parked_tokens{0};
-    unsigned                                      m_parked_waiters{0};
-    condition_variable                            m_parked_cv;
 #endif
 
     // Acquire a token before running a task. Blocks on the global semaphore.
@@ -772,23 +770,22 @@ class task_manager {
         lock.unlock();
         while (sem_wait(m_jobserver_sem) != 0 && errno == EINTR) {}
         lock.lock();
+        g_holds_token = true;
 #else
         (void)lock;
 #endif
     }
 
-    // Release the token currently held by this worker. If a `wait_for` in
-    // this process is currently waiting for its token back, hand it directly
-    // via the parked-pool cv; otherwise return it to the global semaphore.
-    // Must be called with `lock` held.
+    // Release the token currently held by this worker to the global semaphore,
+    // if any. A `wait_for` that couldn't reclaim its token non-blockingly
+    // continues un-gated and leaves `g_holds_token == false`, in which case
+    // we skip the `sem_post` to keep accounting balanced.
     void release_token() {
 #if LEAN_JOBSERVER_POSIX
         if (!m_jobserver_sem) return;
-        if (m_parked_tokens < m_parked_waiters) {
-            m_parked_tokens++;
-            m_parked_cv.notify_one();
-        } else {
+        if (g_holds_token) {
             sem_post(m_jobserver_sem);
+            g_holds_token = false;
         }
 #endif
     }
@@ -1113,9 +1110,13 @@ public:
                 m_queue_cv.notify_one();
 #if LEAN_JOBSERVER_POSIX
             // Release our token globally so a sibling worker (in this or
-            // another process) can pick up the sub-task.
-            if (m_jobserver_sem) {
+            // another process) can pick up the sub-task while we are
+            // blocked. If we don't currently hold a token (e.g. a previous
+            // un-reclaimed `wait_for` left us running un-gated), skip:
+            // there's no token to release.
+            if (m_jobserver_sem && g_holds_token) {
                 sem_post(m_jobserver_sem);
+                g_holds_token = false;
             }
 #endif
         }
@@ -1123,23 +1124,18 @@ public:
         if (in_pool) {
             m_max_std_workers--;
 #if LEAN_JOBSERVER_POSIX
-            if (m_jobserver_sem) {
-                // The worker that resolved our sub-task may have already
-                // run its `release_token` before we got here (the resolver
-                // holds the lock continuously through `resolve_core` and
-                // `release_token`, so we can't be scheduled in between).
-                // If that release saw `m_parked_waiters == 0`, the token
-                // went to the global semaphore — recover it with a
-                // non-blocking `sem_trywait` first. Only if neither pool
-                // has a token waiting do we register as a parked waiter
-                // and block on `m_parked_cv`.
-                if (m_parked_tokens > 0) {
-                    m_parked_tokens--;
-                } else if (sem_trywait(m_jobserver_sem) != 0) {
-                    m_parked_waiters++;
-                    while (m_parked_tokens == 0) m_parked_cv.wait(lock);
-                    m_parked_tokens--;
-                    m_parked_waiters--;
+            // Try to reclaim a token non-blockingly. If one isn't
+            // immediately available, continue running un-gated rather than
+            // blocking in `sem_wait` — that's what previously let new
+            // `wait_for` calls spawn more workers that piled up in the same
+            // blocking call. The worker-loop's `release_token` will see
+            // `g_holds_token == false` and skip its `sem_post`, so the
+            // initial `sem_post`/`sem_wait` pair stays balanced. The cost is
+            // brief inter-process oversubscription, bounded by the depth of
+            // nested `Task.get`.
+            if (m_jobserver_sem && !g_holds_token) {
+                if (sem_trywait(m_jobserver_sem) == 0) {
+                    g_holds_token = true;
                 }
             }
 #endif

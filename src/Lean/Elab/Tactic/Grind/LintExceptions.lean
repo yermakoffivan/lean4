@@ -11,8 +11,6 @@ import Lean.Elab.Tactic.Grind.Lint
 
 -- We allow these as grind lemmas even though they triggers >20 further instantiations.
 -- See tests/lean/run/grind_lint_*.lean for more details.
-#grind_lint skip BitVec.msb_replicate
-#grind_lint skip BitVec.msb_signExtend
 #grind_lint skip List.replicate_sublist_iff
 #grind_lint skip List.Sublist.append
 #grind_lint skip List.Sublist.middle

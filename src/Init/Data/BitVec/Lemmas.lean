@@ -5429,6 +5429,7 @@ theorem getLsbD_intMin (w : Nat) : (intMin w).getLsbD i = decide (i + 1 = w) := 
   simp only [intMin, getLsbD_twoPow, bool_to_prop]
   omega
 
+@[grind =]
 theorem getMsbD_intMin {w i : Nat} :
     (intMin w).getMsbD i = (decide (0 < w) && decide (i = 0)) := by
   simp only [getMsbD, getLsbD_intMin]

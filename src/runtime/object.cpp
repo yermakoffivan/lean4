@@ -1124,17 +1124,23 @@ public:
             m_max_std_workers--;
 #if LEAN_JOBSERVER_POSIX
             if (m_jobserver_sem) {
-                // Now register as a parked waiter; subsequent in-process
-                // `release_token` calls route freed tokens here instead of
-                // `sem_post`, so we can wake without a blocking `sem_wait`.
-                // Counting waiters only after the `m_task_finished_cv` wait
-                // is critical: if we incremented before, releases would
-                // route to a pool we're not yet listening on, starving the
-                // global semaphore and deadlocking workers in `sem_wait`.
-                m_parked_waiters++;
-                while (m_parked_tokens == 0) m_parked_cv.wait(lock);
-                m_parked_tokens--;
-                m_parked_waiters--;
+                // The worker that resolved our sub-task may have already
+                // run its `release_token` before we got here (the resolver
+                // holds the lock continuously through `resolve_core` and
+                // `release_token`, so we can't be scheduled in between).
+                // If that release saw `m_parked_waiters == 0`, the token
+                // went to the global semaphore — recover it with a
+                // non-blocking `sem_trywait` first. Only if neither pool
+                // has a token waiting do we register as a parked waiter
+                // and block on `m_parked_cv`.
+                if (m_parked_tokens > 0) {
+                    m_parked_tokens--;
+                } else if (sem_trywait(m_jobserver_sem) != 0) {
+                    m_parked_waiters++;
+                    while (m_parked_tokens == 0) m_parked_cv.wait(lock);
+                    m_parked_tokens--;
+                    m_parked_waiters--;
+                }
             }
 #endif
         }

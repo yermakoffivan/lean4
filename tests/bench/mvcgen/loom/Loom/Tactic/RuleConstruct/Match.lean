@@ -5,11 +5,12 @@ Authors: Vladimir Gladshtein, Sebastian Graf
 -/
 module
 
-public import Lean.Elab
-public meta import Lean.Elab
+public import Loom.Tactic.Types
 public section
 
 open Lean Parser Meta Elab Tactic Sym Lean.Order
+
+-- #eval #[1, 2, 3, 4, 5][2:4] ++ #[6]
 
 namespace Loom
 
@@ -20,8 +21,8 @@ Uses `SplitInfo.withAbstract` to introduce abstract fvars for the split componen
 then `SplitInfo.splitWith` to build the splitting proof. Hypothesis types are
 discovered via `rwIfOrMatcher` inside the splitter telescope. -/
 def mkBackwardRuleForSplit
-    (splitInfo : SplitInfo) (wpHead m Pred errTy monadInst instAL instEAL instWP : Expr)
-    (excessArgs : Array Expr) : SymM BackwardRule := do
+    (splitInfo : SplitInfo) (info : WPInfo) : SymM BackwardRule := do
+  let m := info.m
   let mTy ← Sym.inferType m
   let some aTy := if mTy.isForall then some mTy.bindingDomain! else none
     | throwError "Expected monad type constructor at {indentExpr m}"
@@ -36,13 +37,14 @@ def mkBackwardRuleForSplit
       | .ite e | .dite e => e
       | .matcher matcherApp =>
         { matcherApp with alts := matcherApp.alts.map Expr.eta }.toExpr
-    let excessArgNamesTypes ← excessArgs.mapM fun arg =>
+    let excessArgNamesTypes ← info.excessArgs.mapM fun arg =>
       return (`s, ← Sym.inferType arg)
     withLocalDeclsDND excessArgNamesTypes fun ss => do
-    withLocalDeclD `post (← shareCommon (← mkArrow a Pred)) fun post => do
-    withLocalDeclD `epost errTy fun epost => do
+    withLocalDeclD `post (← shareCommon (← mkArrow a info.Pred)) fun post => do
+    withLocalDeclD `epost info.EPred fun epost => do
     let mkWP (prog : Expr) : Expr :=
-      mkAppN (mkAppN wpHead #[m, Pred, errTy, monadInst, instAL, instEAL, instWP, a, prog, post, epost]) ss
+      let args := info.args.take 7 ++ #[a, prog, post, epost]
+      mkAppN (mkAppN info.head args) ss
     let Pred' ← Sym.inferType (mkWP abstractProg)
     withLocalDeclD `pre Pred' fun pre => do
     let sampleGoal ← mkAppM ``PartialOrder.rel #[pre, mkWP abstractProg]
@@ -91,13 +93,18 @@ open Lean.Elab.Tactic.Do Std.Internal.Do
     get the `SplitInfo` from `prog`, call `mkBackwardRuleForSplit`, and return
     the generated backward rule type. -/
 private def testSplitBackwardRule
-    (m Pred errTy monadInst instAL instEAL instWP : Expr) (prog : Expr) (excessArgs : Array Expr)
+    (m Pred EPred monadInst instAL instEAL instWP : Expr) (prog : Expr) (excessArgs : Array Expr)
     : MetaM Expr := do
   let some splitInfo ← getSplitInfo? prog
     | throwError "testSplitBackwardRule: no split info for {indentExpr prog}"
   let wpHead := mkConst ``wp [.zero, .zero, .zero, .zero]
+  let info : WPInfo := {
+    head := wpHead
+    args := #[m, Pred, EPred, monadInst, instAL, instEAL, instWP]
+    excessArgs
+  }
   let rule ← SymM.run do
-    mkBackwardRuleForSplit splitInfo wpHead m Pred errTy monadInst instAL instEAL instWP excessArgs
+    mkBackwardRuleForSplit splitInfo info
   inferType rule.expr
 
 /-- Set up StateM Nat monad infrastructure and run a test body. -/
@@ -105,12 +112,12 @@ private def withStateMNat (k : Expr → Expr → Expr → Expr → Expr → Expr
   let nat := mkConst ``Nat
   let m ← mkAppM ``StateM #[nat]
   let Pred ← mkArrow nat (mkSort 0)
-  let errTy := mkConst ``EPost.nil
+  let EPred := mkConst ``EPost.nil
   let monadM ← synthInstance (← mkAppM ``Monad #[m])
   let instAL ← synthInstance (mkApp (mkConst ``Assertion [.zero]) Pred)
-  let instEAL ← synthInstance (mkApp (mkConst ``Assertion [.zero]) errTy)
-  let instWP ← synthInstance (mkAppN (mkConst ``WPMonad [.zero, .zero, .zero, .zero]) #[m, Pred, errTy, monadM, instAL, instEAL])
-  k m Pred errTy monadM instAL instEAL instWP
+  let instEAL ← synthInstance (mkApp (mkConst ``Assertion [.zero]) EPred)
+  let instWP ← synthInstance (mkAppN (mkConst ``WPMonad [.zero, .zero, .zero, .zero]) #[m, Pred, EPred, monadM, instAL, instEAL])
+  k m Pred EPred monadM instAL instEAL instWP
 
 -- Test 1: ite split for StateM Nat
 -- `ite c (alt₁ : StateM Nat Unit) (alt₂ : StateM Nat Unit)` with 1 excess arg

@@ -5,6 +5,7 @@ Authors: Vladimir Gladshtein, Sebastian Graf
 -/
 module
 
+public import Loom.Tactic.Types
 public import Loom.Tactic.SpecDB
 
 public section
@@ -148,23 +149,23 @@ prf : ∀ (pre : Prop) (α : Type) (x : StateT Nat Id α) (β : Type)
 ```
 
 This construction works with the explicit `wp` application obtained from the instantiated theorem.
-At the moment it does not perform additional `unfoldReducible` preprocessing on the forall
-telescope; any unfolding of `Std.Do` abbreviations and reducible definitions has to happen before or
-around this construction step.
+`tryMkBackwardRuleFromSpec` extracts the program and concrete postconditions from that application
+before calling `mkSpecBackwardProof`; this helper does not inspect the full `wp` term itself. At the
+moment it does not perform additional `unfoldReducible` preprocessing on the forall telescope; any
+unfolding of `Std.Do` abbreviations and reducible definitions has to happen before or around this
+construction step.
 
 The result stays in `⊑` form. After the generated metavariables are abstracted, the returned proof
 has the shape expected by `mkBackwardRuleFromExpr`.
 -/
 def mkSpecBackwardProof
-    (pre rhs specProof : Expr) (ss ssTypes : Array Expr) : SymM AbstractMVarsResult := do
+    (pre prog postSpec epostSpec specProof : Expr) (ss ssTypes : Array Expr) : SymM AbstractMVarsResult := do
   /- we start with `pre ⊑ wp prog post epost` where
   1. `pre` represents the Lean expression for `pre`
-  2. `rhs` represents the Lean expression for `wp prog post epost`
-  3. `specProof` represents the Lean expression for the proof of the spec `pre ⊑ wp prog post epost`
+  2. `prog`, `postSpec`, and `epostSpec` are the selected arguments of the spec's `wp` RHS
+  3. `specProof` is the proof of the spec `pre ⊑ wp prog postSpec epostSpec`
   4. `ss` represents the Lean expressions for the state variables `s1`, `s2`, ..., `sn`
   5. `ssTypes` represents the Lean types for the state variables `s1`, `s2`, ..., `sn` -/
-  let_expr wp _m _Pred _EPred _monadInst _instAL _instEAL _instWP _α prog postSpec epostSpec := rhs
-    | throwError "target not a wp application {rhs}"
   let mut postAbstract := postSpec.consumeMData
   let mut epostAbstract := epostSpec.consumeMData
   let mut specApplied := specProof
@@ -203,7 +204,7 @@ def mkSpecBackwardProof
     specApplied ← mkAppM ``WPMonad.wp_econs_bot_rel #[prog, postAbstract, epostAbstract, specApplied]
 
   /- By default we always abstract `pre`, since in most of the specifications
-    `pre` is not schematic. In exceptional cases, where `pre` is shematic, it
+    `pre` is not schematic. In exceptional cases, where `pre` is schematic, it
     is redundant, but we still do that to keep the code simple.
 
     Here we also apply the excess state arguments to `pre` and `wp prog postAbstract epostAbstract` -/
@@ -231,30 +232,31 @@ def mkSpecBackwardProof
 Try to build a backward rule from a single spec theorem in `⊑` form.
 
 Given a spec `pre ⊑ wp prog post epost` where the lattice type is
-`Pred = σ1 → ... → σn → Prop`, produces an auxiliary lemma.
+`info.Pred = σ1 → ... → σn → Prop`, produces an auxiliary lemma.
 
-- `l`: the goal's lattice type (e.g. `Nat → Prop`)
-- `instWP`: the `WP` instance for the goal monad
-- `excessArgs`: free variables representing state args from `Pred = σ1 → ... → σn → Prop`
+- `info.Pred`: the goal's lattice type (e.g. `Nat → Prop`)
+- `info.instWP`: the `WPMonad` instance for the goal monad
+- `info.excessArgs`: free variables representing state args from
+  `info.Pred = σ1 → ... → σn → Prop`
 -/
-public def tryMkBackwardRuleFromSpec (specThm : SpecTheoremNew)
-  (Pred instWP : Expr) (excessArgs : Array Expr) : OptionT SymM BackwardRule := do
+public def tryMkBackwardRuleFromSpec (specThm : SpecTheoremNew) (info : WPInfo)
+  : OptionT SymM BackwardRule := do
   -- Instantiate the spec theorem, creating metavars for all universally quantified params
   let (_xs, _bs, specProof, specType) ← specThm.instantiate
   let_expr PartialOrder.rel Pred' _cl' pre rhs := specType
     | throwError "target not a partial order ⊑ application {specType}"
-  guard <| ← isDefEqGuarded Pred Pred'
-  let_expr wp _m' _ _ _monadInst' _instAL' _instEAL' instWP' _α _EPred' _post _epost := rhs
+  guard <| ← isDefEqGuarded info.Pred Pred'
+  let_expr wp _m' _Pred' _EPred' _monadInst' _instAL' _instEAL' instWP' _α prog postSpec epostSpec := rhs
     | throwError "target not a wp application {rhs}"
-  guard <| ← isDefEqGuarded instWP instWP'
+  guard <| ← isDefEqGuarded info.instWP instWP'
   -- Use local excess-state binders so explicit post premises can be re-lifted to `⊑`.
   let mut ss := #[]
   let mut ssTypes := #[]
-  for arg in excessArgs do
+  for arg in info.excessArgs do
     let ty ← Sym.inferType arg
     ssTypes := ssTypes.push ty
     ss := ss.push <| ← mkFreshExprMVar (userName := `s) ty
-  let res ← mkSpecBackwardProof pre rhs specProof ss ssTypes
+  let res ← mkSpecBackwardProof pre prog postSpec epostSpec specProof ss ssTypes
   mkBackwardRuleFromExpr res.expr res.paramNames.toList
 
 /-! ## Tests for mkSpecBackwardProof -/
@@ -269,19 +271,29 @@ private def testSpecBackwardProofType' (declName : Name)
   let (_xs, _bs, specProof, specType) ← specThm.proof.instantiate
   let_expr PartialOrder.rel _ _ pre rhs := specType
     | throwError "not a partial order ⊑ application {specType}"
+  let_expr wp _m _Pred _EPred _monadInst _instAL _instEAL _instWP _α prog postSpec epostSpec := rhs
+    | throwError "target not a wp application {rhs}"
   let excessArgNamesTypes := excessArgTypes.map fun ty => (`s, ty)
   let spec ← withLocalDeclsDND excessArgNamesTypes fun ss => do
-    let res ← SymM.run <| mkSpecBackwardProof pre rhs specProof ss excessArgTypes
+    let res ← SymM.run <| mkSpecBackwardProof pre prog postSpec epostSpec specProof ss excessArgTypes
     mkLambdaFVars ss res.expr
   instantiateMVars (← inferType spec)
 
-/-- Test helper: call tryMkBackwardRuleFromSpec and return the backward rule type. -/
+/-- Test helper: build the `WPInfo` needed by `tryMkBackwardRuleFromSpec` and return the rule type. -/
 private def testBackwardRule' (declName : Name) (Pred instWP : Expr)
     (excessArgs : Array Expr) : MetaM Expr := do
   let specThm ← mkSpecTheoremFromConst declName
   let specThm ← SymM.run <| mkSpecTheoremNew specThm
+  let wpInstTy ← whnfR (← Meta.inferType instWP)
+  let_expr WPMonad m _Pred EPred monadInst instAL instEAL := wpInstTy
+    | throwError "expected a WPMonad instance, got {wpInstTy}"
+  let info : WPInfo := {
+    head := mkConst ``wp [.zero, .zero, .zero, .zero]
+    args := #[m, Pred, EPred, monadInst, instAL, instEAL, instWP]
+    excessArgs
+  }
   let rule ← SymM.run do
-    tryMkBackwardRuleFromSpec specThm Pred instWP excessArgs
+    tryMkBackwardRuleFromSpec specThm info
   match rule with
   | some br => inferType br.expr
   | none => throwError "tryMkBackwardRuleFromSpec returned none for {declName}"

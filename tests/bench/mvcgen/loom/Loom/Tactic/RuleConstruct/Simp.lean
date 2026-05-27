@@ -42,11 +42,11 @@ Eq.mpr (congrArg motive eqPrf) h
 The postcondition, exception postcondition and precondition are created as metavariables and then
 abstracted by `abstractMVars`, giving a reusable proof term for `mkBackwardRuleFromExpr`.
 -/
-public def mkSimpSpecBackwardProof
-    (m Pred EPred α lhs rhs eqPrf : Expr) (ss : Array Expr) : SymM AbstractMVarsResult := do
-  let postTy ← mkArrow α Pred
+public def mkSimpBackwardProof
+    (info : WPInfo) (α lhs rhs eqPrf : Expr) (ss : Array Expr) : SymM AbstractMVarsResult := do
+  let postTy ← mkArrow α info.Pred
   let post ← mkFreshExprMVar (userName := `post) postTy
-  let epost ← mkFreshExprMVar (userName := `epost) EPred
+  let epost ← mkFreshExprMVar (userName := `epost) info.EPred
   let mkWpApplyPostEpost (prog : Expr) : SymM Expr := do
     let wpProg ← mkAppM ``wp #[prog, post, epost]
     return mkAppN wpProg ss
@@ -59,7 +59,7 @@ public def mkSimpSpecBackwardProof
   let premiseType ← mkAppM ``PartialOrder.rel #[pre, rhsWp]
   let h ← mkFreshExprMVar (userName := `h) premiseType
   -- let mα ← instantiateMVarsS (mkApp m α)
-  let mα := mkApp m α
+  let mα := mkApp info.m α
   let motive ← withLocalDeclD `prog mα fun prog => do
     let progWp ← mkWpApplyPostEpost prog
     let body ← mkAppM ``PartialOrder.rel #[pre, progWp]
@@ -72,8 +72,8 @@ public def mkSimpSpecBackwardProof
 Try to build a backward rule from a single equality spec theorem.
 
 This is the equality-spec counterpart of `tryMkBackwardRuleFromSpec`. It instantiates the theorem,
-checks that the equation type is definitionally equal to `m α` for the current monad, and checks
-that the `Pred` and `WPMonad` instance match the current goal.
+checks that the equation type is definitionally equal to `info.m α` for the current monad, and
+checks that `info.Pred` and `info.instWP` match the current goal.
 
 After instantiation it tries to synthesize unresolved typeclass metavariables. This is needed for
 abstract monad equations such as `Spec.UnfoldLift.get`, where matching a concrete monad like
@@ -83,25 +83,25 @@ The RHS is normalized by reducing projections and unfolding reducible definition
 class projection unfold lemmas often produce RHS terms containing projections from instance
 dictionaries; reducing them exposes the actual operation that VCGen should continue on.
 
-Finally, excess state arguments are represented by fresh metavariables and
+Finally, `info.excessArgs` are represented by fresh metavariables and
 `mkSimpSpecBackwardProof` builds the proof:
 ```
 pre ⊑ wp rhs post epost s₁ ... sₙ →
 pre ⊑ wp lhs post epost s₁ ... sₙ
 ```
 -/
-public def tryMkBackwardRuleFromSimpSpec (specThm : SpecTheoremNew)
-    (m Pred instWP : Expr) (excessArgs : Array Expr) : OptionT SymM BackwardRule := do
-  let wpInstTy ← whnfR (← Meta.inferType instWP)
-  let_expr WPMonad m' Pred' EPred _monadInst _instAL _instEAL := wpInstTy
+public def tryMkBackwardRuleFromSimp (specThm : SpecTheoremNew) (info : WPInfo)
+    : OptionT SymM BackwardRule := do
+  let wpInstTy ← whnfR (← Meta.inferType info.instWP)
+  let_expr WPMonad m' Pred' _EPred _monadInst _instAL _instEAL := wpInstTy
     | throwError "expected a WPMonad instance, got {wpInstTy}"
-  guard <| ← isDefEqGuarded m m'
-  guard <| ← isDefEqGuarded Pred Pred'
+  guard <| ← isDefEqGuarded info.m m'
+  guard <| ← isDefEqGuarded info.Pred Pred'
   let (xs, _, eqPrf, eqType) ← specThm.instantiate
   let_expr Eq eqα lhs rhs := eqType
     | throwError "simp spec is not an equation: {eqType}"
   let α ← Meta.mkFreshTypeMVar
-  guard <| ← isDefEqGuarded eqα (mkApp m α)
+  guard <| ← isDefEqGuarded eqα (mkApp info.m α)
   for x in xs do
     if x.isMVar && !(← x.mvarId!.isAssigned) then
       let xType ← Meta.inferType x
@@ -113,29 +113,37 @@ public def tryMkBackwardRuleFromSimpSpec (specThm : SpecTheoremNew)
   -- let lhs ← instantiateMVarsS lhs
   -- let rhs ← instantiateMVarsS rhs
   -- -- Reduce projections, for example dictionary projections exposed after instance synthesis.
-  -- let rhs ← liftMetaM <| Grind.foldProjs rhs
   let rhs ← liftMetaM <| Meta.transform rhs (pre := fun e => do
     if let .proj .. := e then
       if let some r ← withDefault <| Meta.reduceProj? e then return .done r
     return .continue)
   -- let rhs ← preprocessSimpSpecExpr rhs
   let mut ss := #[]
-  for arg in excessArgs do
+  for arg in info.excessArgs do
     let ty ← Sym.inferType arg
     ss := ss.push <| ← mkFreshExprMVar (userName := mkStateName ty) ty
-  let res ← mkSimpSpecBackwardProof m Pred EPred α lhs rhs eqPrf ss
+  let res ← mkSimpBackwardProof info α lhs rhs eqPrf ss
   mkBackwardRuleFromExpr res.expr res.paramNames.toList
 
 /-! ## Tests for mkSimpSpecBackwardProof -/
 
 section Test
 
+/-- Test helper: build the `WPInfo` needed by `tryMkBackwardRuleFromSimpSpec` and return the rule type. -/
 private def testSimpBackwardRule' (declName : Name) (m Pred instWP : Expr)
     (excessArgs : Array Expr) : MetaM Expr := do
   let some specThm ← mkSpecTheoremNewFromSimpDecl? declName (prio := eval_prio default)
     | throwError "mkSpecTheoremNewFromSimpDecl? returned none for {declName}"
+  let wpInstTy ← whnfR (← Meta.inferType instWP)
+  let_expr WPMonad _m _Pred EPred monadInst instAL instEAL := wpInstTy
+    | throwError "expected a WPMonad instance, got {wpInstTy}"
+  let info : WPInfo := {
+    head := mkConst ``wp [.zero, .zero, .zero, .zero]
+    args := #[m, Pred, EPred, monadInst, instAL, instEAL, instWP]
+    excessArgs
+  }
   let rule ← SymM.run do
-    tryMkBackwardRuleFromSimpSpec specThm m Pred instWP excessArgs
+    tryMkBackwardRuleFromSimp specThm info
   match rule with
   | some br => inferType br.expr
   | none => throwError "tryMkBackwardRuleFromSimpSpec returned none for {declName}"

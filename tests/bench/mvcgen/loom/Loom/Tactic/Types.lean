@@ -17,6 +17,43 @@ open Lean Elab Meta Sym Grind
 
 public section
 
+namespace Loom
+
+/--
+Common metadata for a goal whose right-hand side is a weakest-precondition application.
+-/
+structure WPInfo where
+  /-- The `wp` function head, separated from its explicit core arguments. -/
+  head : Expr
+  /-- For the `wp` application
+    ```
+    pre ⊑ @wp prog m Pred EPred monadInst instAL instEAL instWP α prog post epost s₁ ... sₙ
+    ```
+    stores the ordered core arguments:
+    `#[m, Pred, EPred, monadInst, instAL, instEAL, instWP, α, prog, post, epost]` -/
+  args : Array Expr
+  /-- Extra arguments applied after `wp ... prog post epost`, usually concrete state arguments. -/
+  excessArgs : Array Expr
+
+namespace WPInfo
+
+variable (info : WPInfo)
+
+/-- Monad type constructor argument of `wp`. -/
+def m      : Expr := info.args[0]!
+/-- Predicate/lattice type argument of `wp`. -/
+def Pred   : Expr := info.args[1]!
+/-- Exception postcondition type argument of `wp`. -/
+def EPred  : Expr := info.args[2]!
+/-- `WPMonad` instance argument of `wp`. -/
+def instWP : Expr := info.args[6]!
+/-- Program expression classified by VCGen. -/
+def prog   : Expr := info.args[8]!
+
+end WPInfo
+
+end Loom
+
 namespace Loom.VCGen
 
 initialize registerTraceClass `Loom.Tactic.vcgen

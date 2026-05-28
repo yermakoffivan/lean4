@@ -232,6 +232,14 @@ def erase [EquivBEq α] [LawfulHashable α] (map : IndexMultiMap α β) (key : �
     |>.foldl (fun acc (k, v) => acc.insert k v) empty
 
 /--
+Removes multiple keys and all their associated values from the map.
+Keys not present in the map are ignored.
+-/
+@[inline]
+def eraseKeys [EquivBEq α] [LawfulHashable α] (map : IndexMultiMap α β) (keys : Array α) : IndexMultiMap α β :=
+  keys.foldl (fun acc k => acc.erase k) map
+
+/--
 Gets the number of entries in the map.
 -/
 @[inline]

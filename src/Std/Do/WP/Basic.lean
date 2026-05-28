@@ -152,7 +152,12 @@ theorem Except.of_wp_eq {ε α : Type u} {x prog : Except ε α} (h : prog = x) 
     (⊢ₛ wp⟦prog⟧ post⟨fun a => ⌜P (.ok a)⌝, fun e => ⌜P (.error e)⌝⟩) → P x := by
   subst h
   intro hspec
-  simp only [wp, ExceptT.run, Id.run, PredTrans.apply_pushExcept, PredTrans.apply_Pure_pure] at hspec
+  -- TODO: Because `ExceptT Id` is not instance-reducible,
+  -- `inferInstanceAs` in `Except.instWP` wraps the `WP.wp` field into an auxiliary lemma that isn't
+  -- a simp lemma (for good reasons since its definitional lemma only holds up to default
+  -- transparency).
+  simp only [wp, instWP._aux_1, ExceptT.run, Id.run, PredTrans.apply_pushExcept,
+    PredTrans.apply_Pure_pure] at hspec
   split at hspec <;> exact hspec True.intro
 
 /--
@@ -164,7 +169,12 @@ Useful if you want to prove a property about an expression `prog : Except ε α`
 theorem Except.of_wp {ε α : Type u} {prog : Except ε α} (P : Except ε α → Prop) :
     (⊢ₛ wp⟦prog⟧ post⟨fun a => ⌜P (.ok a)⌝, fun e => ⌜P (.error e)⌝⟩) → P prog := by
   intro hspec
-  simp only [wp, ExceptT.run, Id.run, PredTrans.apply_pushExcept, PredTrans.apply_Pure_pure] at hspec
+  -- TODO: Because `ExceptT Id` is not instance-reducible,
+  -- `inferInstanceAs` in `Except.instWP` wraps the `WP.wp` field into an auxiliary lemma that isn't
+  -- a simp lemma (for good reasons since its definitional lemma only holds up to default
+  -- transparency).
+  simp only [wp, instWP._aux_1, ExceptT.run, Id.run, PredTrans.apply_pushExcept,
+    PredTrans.apply_Pure_pure] at hspec
   split at hspec <;> exact hspec True.intro
 
 /--
@@ -176,7 +186,11 @@ theorem Option.of_wp_eq {α : Type u} {x prog : Option α} (h : prog = x) (P : O
     (⊢ₛ wp⟦prog⟧ post⟨fun a => ⌜P (some a)⌝, fun _ => ⌜P none⌝⟩) → P x := by
   subst h
   intro hspec
-  simp only [wp, OptionT.run, Id.run, PredTrans.apply_pushOption, PredTrans.apply_Pure_pure] at hspec
+  -- TODO: Because `OptionT Id` is not defeq to `Option` at implicit transparency,
+  -- `inferInstanceAs` wraps the `WP.wp` field into an auxiliary lemma that isn't a simp lemma
+  -- (for good reasons since its definitional lemma only holds up to default transparency).
+  simp only [wp, instWP._aux_1, OptionT.run, Id.run, PredTrans.apply_pushOption,
+    PredTrans.apply_Pure_pure] at hspec
   split at hspec <;> exact hspec True.intro
 
 /--

@@ -275,7 +275,7 @@ unfold it. Use `Rat.add_def` instead.)
 instance : Add Rat := ⟨Rat.add⟩
 
 /-- Negation of rational numbers. -/
-@[instance_reducible]
+@[implicit_reducible]
 protected def neg (a : Rat) : Rat :=
   { a with num := -a.num, reduced := by rw [Int.natAbs_neg]; exact a.reduced }
 

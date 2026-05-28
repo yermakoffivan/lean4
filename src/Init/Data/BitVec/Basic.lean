@@ -140,7 +140,7 @@ section Int
 /--
 Interprets the bitvector as an integer stored in two's complement form.
 -/
-@[instance_reducible]
+@[implicit_reducible]
 protected def toInt (x : BitVec n) : Int :=
   if 2 * x.toNat < 2^n then
     x.toNat
@@ -229,7 +229,7 @@ Usually accessed via the `-` prefix operator.
 
 SMT-LIB name: `bvneg`.
 -/
-@[instance_reducible]
+@[implicit_reducible]
 protected def neg (x : BitVec n) : BitVec n := .ofNat n (2^n - x.toNat)
 instance : Neg (BitVec n) := ⟨.neg⟩
 
@@ -586,7 +586,7 @@ As a numeric operation, this is equivalent to `x / 2^s`, rounding down.
 
 SMT-LIB name: `bvlshr` except this operator uses a `Nat` shift value.
 -/
-@[instance_reducible]
+@[implicit_reducible]
 def ushiftRight (x : BitVec n) (s : Nat) : BitVec n :=
   (x.toNat >>> s)#'(by
   let ⟨x, lt⟩ := x
@@ -604,7 +604,7 @@ As a numeric operation, this is equivalent to `x.toInt >>> s`.
 
 SMT-LIB name: `bvashr` except this operator uses a `Nat` shift value.
 -/
-@[instance_reducible]
+@[implicit_reducible]
 def sshiftRight (x : BitVec n) (s : Nat) : BitVec n := .ofInt n (x.toInt >>> s)
 
 instance {n} : HShiftLeft  (BitVec m) (BitVec n) (BitVec m) := ⟨fun x y => x <<< y.toNat⟩

@@ -75,7 +75,7 @@ Examples:
  * `0 <<< 3 = 0`
  * `0xf1 <<< 4 = 0xf10`
 -/
-@[extern "lean_nat_shiftl", expose]
+@[extern "lean_nat_shiftl", expose, implicit_reducible]
 def shiftLeft : @& Nat → @& Nat → Nat
   | n, 0 => n
   | n, succ m => shiftLeft (2*n) m
@@ -91,7 +91,7 @@ Examples:
  * `0 >>> 3 = 0`
  * `0xf13a >>> 8 = 0xf1`
 -/
-@[extern "lean_nat_shiftr", expose]
+@[extern "lean_nat_shiftr", expose, implicit_reducible]
 def shiftRight : @& Nat → @& Nat → Nat
   | n, 0 => n
   | n, succ m => shiftRight n m / 2

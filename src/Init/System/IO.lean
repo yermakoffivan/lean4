@@ -1265,31 +1265,47 @@ def withStderr [Monad m] [MonadFinally m] [MonadLiftT BaseIO m] (h : FS.Stream) 
 Converts `s` to a string using its `ToString α` instance, and prints it to the current standard
 output (as determined by `IO.getStdout`).
 -/
+@[inline]
 def print [ToString α] (s : α) : IO Unit := do
-  let out ← getStdout
-  out.putStr <| toString s
+  go (toString s)
+where
+  go (s : String) := do
+    let out ← getStdout
+    out.putStr s
 
 /--
 Converts `s` to a string using its `ToString α` instance, and prints it with a trailing newline to
 the current standard output (as determined by `IO.getStdout`).
 -/
+@[inline]
 def println [ToString α] (s : α) : IO Unit :=
-  print ((toString s).push '\n')
+  go (toString s)
+where
+  go (s : String) := do
+    print <| s.push '\n'
 
 /--
 Converts `s` to a string using its `ToString α` instance, and prints it to the current standard
 error (as determined by `IO.getStderr`).
 -/
+@[inline]
 def eprint [ToString α] (s : α) : IO Unit := do
-  let out ← getStderr
-  out.putStr <| toString s
+  go (toString s)
+where
+  go (s : String) := do
+    let out ← getStderr
+    out.putStr s
 
 /--
 Converts `s` to a string using its `ToString α` instance, and prints it with a trailing newline to
 the current standard error (as determined by `IO.getStderr`).
 -/
+@[inline]
 def eprintln [ToString α] (s : α) : IO Unit :=
-  eprint <| toString s |>.push '\n'
+  go (toString s)
+where
+  go (s : String) := do
+    eprint <| s.push '\n'
 
 @[export lean_io_eprint]
 private def eprintAux (s : String) : IO Unit :=

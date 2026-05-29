@@ -208,6 +208,7 @@ variable {β : Type v}
   | leaf vs, i, _, b => vs.foldlM (init := b) (start := i.toNat) f
 
 @[specialize] def foldlM (t : PersistentArray α) (f : β → α → m β) (init : β) (start : Nat := 0) : m β := do
+  if start ≥ t.size then return init
   if start == 0 then
     let b ← foldlMAux f t.root init
     t.tail.foldlM f b

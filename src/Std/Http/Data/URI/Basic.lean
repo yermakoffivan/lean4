@@ -109,6 +109,7 @@ password field in new code, and never include it in logs or error messages.
 Reference: https://www.rfc-editor.org/rfc/rfc3986.html#section-3.2.1
 -/
 structure UserInfo where
+
   /--
   The encoded username.
   -/
@@ -382,6 +383,32 @@ Segments that cannot be decoded as UTF-8 are returned as their raw encoded form.
 def toDecodedSegments (p : Path) : Array String :=
   p.segments.map fun seg =>
     seg.decode.getD (toString seg)
+
+/--
+Returns `true` if `pre` is a segment-wise prefix of `p`. Each segment in `pre` must equal
+the corresponding segment in `p` by encoded value. An absolute `pre` additionally requires
+`p` to be absolute.
+-/
+def startsWith (p pre : Path) : Bool :=
+  (!pre.absolute || p.absolute) &&
+  pre.segments.size ≤ p.segments.size &&
+  (Array.range pre.segments.size).all fun i => p.segments[i]! == pre.segments[i]!
+
+/--
+Returns `true` if the path ends with a trailing slash. The root path (`/`) is considered to
+have a trailing slash.
+-/
+def hasTrailingSlash (p : Path) : Bool :=
+  (p.absolute && p.segments.isEmpty) ||
+  (p.segments.back?.map (toString · == "") |>.getD false)
+
+/--
+Ensures the path ends with a trailing slash by appending an empty segment if needed. Idempotent:
+the root path (`/`) and any path already ending with `/` are returned unchanged.
+-/
+def ensureTrailingSlash (p : Path) : Path :=
+  if p.hasTrailingSlash then p
+  else { p with segments := p.segments.push (EncodedSegment.encode "") }
 
 end Path
 
@@ -842,6 +869,154 @@ def normalize (uri : URI) : URI :=
   { uri with path := uri.path.normalize }
 
 end URI
+
+/--
+The web origin of an HTTP connection: the (scheme, host, port) triple that
+identifies where a connection is established, per RFC 6454.
+
+Two `Origin` values are equal when all three components match, which is the
+standard same-origin check used for redirect and credential decisions.
+-/
+structure URI.Origin where
+
+  /--
+  URI scheme (`"http"` or `"https"`).
+  -/
+  scheme : URI.Scheme
+
+  /--
+  Hostname or IP address.
+  -/
+  host   : URI.Host
+
+  /--
+  Port number.
+  -/
+  port   : UInt16
+deriving Repr, BEq
+
+namespace URI.Origin
+
+/--
+Constructs the canonical `host[:port]` string, omitting the port when it is the default for the scheme.
+-/
+def hostHeader (o : URI.Origin) : String :=
+  let defaultPort := URI.Scheme.defaultPort o.scheme
+  if o.port == defaultPort then toString o.host
+  else s!"{o.host}:{o.port}"
+
+end URI.Origin
+
+/--
+A relative reference as defined in RFC 3986 Section 4.2.
+
+```
+relative-ref  = relative-part [ "?" query ] [ "#" fragment ]
+relative-part = "//" authority path-abempty
+              / path-absolute
+              / path-noscheme
+              / path-empty
+```
+
+Unlike a full URI, a relative reference carries no scheme. The authority is present only when the
+path begins with `"//"`.
+-/
+structure URI.RelativeRef where
+  /--
+  Optional authority component, present only when the reference begins with `"//"`.
+  -/
+  authority : Option URI.Authority
+
+  /--
+  The hierarchical path component.
+  -/
+  path : URI.Path
+
+  /--
+  Optional query string as key-value pairs.
+  -/
+  query : URI.Query
+
+  /--
+  Optional fragment identifier (the part after `'#'`), decoded.
+  -/
+  fragment : Option String
+deriving Repr, Inhabited, BEq
+
+instance : ToString URI.RelativeRef where
+  toString ref :=
+    let authorityPart := ref.authority.map (fun a => s!"//{toString a}") |>.getD ""
+    let pathPart      := toString ref.path
+    let queryPart     := toString ref.query
+    let fragmentPart  := ref.fragment.map (fun f => "#" ++ toString (URI.EncodedFragment.encode f)) |>.getD ""
+    s!"{authorityPart}{pathPart}{queryPart}{fragmentPart}"
+
+/--
+A URI reference as defined in RFC 3986 Section 4.1:
+
+```
+URI-reference = URI / relative-ref
+```
+
+Use `URIReference` when parsing a value that may be either a complete URI (with scheme) or a
+relative reference (without scheme), such as the `Location` response header in HTTP redirects
+(RFC 9110 §10.2.2).
+-/
+inductive URIReference where
+  /--
+  A complete URI with a scheme (e.g., `"http://example.com/path"`).
+  -/
+  | absolute (uri : URI)
+
+  /--
+  A relative reference without a scheme (e.g., `"../other"`, `"//example.com/path"`, `"?q=1"`).
+  -/
+  | relative (ref : URI.RelativeRef)
+deriving Repr, Inhabited
+
+instance : ToString URIReference where
+  toString
+    | .absolute uri => toString uri
+    | .relative ref => toString ref
+
+namespace URIReference
+
+/--
+Returns the path component of this reference.
+-/
+def path : URIReference → URI.Path
+  | .absolute uri => uri.path
+  | .relative ref => ref.path
+
+/--
+Returns the query component of this reference.
+-/
+def query : URIReference → URI.Query
+  | .absolute uri => uri.query
+  | .relative ref => ref.query
+
+/--
+Returns the authority component of this reference, if present.
+-/
+def authority? : URIReference → Option URI.Authority
+  | .absolute uri => uri.authority
+  | .relative ref => ref.authority
+
+/--
+Returns the scheme of this reference, if present (i.e., only for absolute URIs).
+-/
+def scheme? : URIReference → Option URI.Scheme
+  | .absolute uri => some uri.scheme
+  | .relative _ => none
+
+/--
+Returns the fragment of this reference, if present.
+-/
+def fragment? : URIReference → Option String
+  | .absolute uri => uri.fragment
+  | .relative ref => ref.fragment
+
+end URIReference
 
 /--
 HTTP request target forms as defined in RFC 9112 Section 3.3.

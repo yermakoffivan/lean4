@@ -187,6 +187,22 @@ def headerOpt (builder : Builder) (key : Header.Name) (value : Option Header.Val
   | none => builder
 
 /--
+Injects a default `Host` header derived from `host` and `port` unless the builder
+already carries a `Host` header. When `port` matches the scheme's default
+(80 for `http`, 443 for `https`) the port is omitted from the header value.
+-/
+def hostDefault (builder : Builder) (scheme : URI.Scheme) (host : URI.Host)
+    (port : UInt16) : Builder :=
+  if builder.line.headers.contains Header.Name.host then
+    builder
+  else
+    let defaultPort := URI.Scheme.defaultPort scheme
+    let hostValue :=
+      if port == defaultPort then toString host
+      else s!"{host}:{port}"
+    builder.header! "Host" hostValue
+
+/--
 Inserts a typed extension value into the request being built.
 -/
 def extension (builder : Builder) [TypeName α] (data : α) : Builder :=

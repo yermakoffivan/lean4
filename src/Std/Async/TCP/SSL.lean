@@ -26,15 +26,19 @@ Default chunk size used by TLS I/O loops.
 def ioChunkSize : UInt64 := 16 * 1024
 
 /--
-Feeds an encrypted chunk into the SSL input BIO.
-Raises an error if OpenSSL consumed fewer bytes than supplied.
+Feeds an encrypted chunk into the SSL input BIO, retrying on short writes.
+`BIO_write` on a memory BIO can write fewer bytes than requested when its
+internal buffer is full; looping until all bytes are consumed is correct.
 -/
 @[inline]
 private def feedEncryptedChunk (ssl : Session) (encrypted : ByteArray) : IO Unit := do
   if encrypted.size == 0 then return ()
-  let consumed ← ssl.feedEncrypted encrypted
-  if consumed.toNat != encrypted.size then
-    throw <| IO.userError s!"TLS input short write: consumed {consumed} / {encrypted.size} bytes"
+  let mut remaining := encrypted
+  while remaining.size > 0 do
+    let consumed ← ssl.feedEncrypted remaining
+    if consumed == 0 then
+      throw <| IO.userError "TLS BIO_write returned 0 (non-retryable failure)"
+    remaining := remaining.extract consumed.toNat remaining.size
 
 /--
 Drains all pending encrypted bytes from the SSL output BIO and sends them over TCP.
@@ -48,22 +52,29 @@ private def flushEncrypted (native : Socket) (ssl : Session) : Async Unit := do
 Runs the TLS handshake loop to completion, interleaving SSL state machine steps
 with TCP I/O.
 -/
-private partial def doHandshake (native : Socket) (ssl : Session) (chunkSize : UInt64) : Async Unit := do
-  let want ← ssl.handshake
-  flushEncrypted native ssl
-  match want with
-  | none =>
-    return ()
-  | some .write =>
-    doHandshake native ssl chunkSize
-  | some .read =>
-    let encrypted? ← Async.ofPromise <| native.recv? chunkSize
-    match encrypted? with
-    | none =>
-      throw <| IO.userError "connection closed during TLS handshake"
-    | some encrypted =>
-      feedEncryptedChunk ssl encrypted
-      doHandshake native ssl chunkSize
+private partial def doHandshake (native : Socket) (ssl : Session) (chunkSize : UInt64) : Async Unit :=
+  -- `consecutiveWrites` counts WANT_WRITE steps without an intervening recv.
+  -- A real handshake sends at most a handful of flight messages; if we see
+  -- many WANT_WRITE rounds without any TCP receive the output BIO has stalled.
+  loop 0
+where
+  loop (consecutiveWrites : Nat) : Async Unit := do
+    let want ← ssl.handshake
+    flushEncrypted native ssl
+    match want with
+    | none => return ()
+    | some .write =>
+      if consecutiveWrites > 32 then
+        throw <| IO.userError "TLS handshake stalled: too many consecutive WANT_WRITE steps without progress"
+      loop (consecutiveWrites + 1)
+    | some .read =>
+      let encrypted? ← Async.ofPromise <| native.recv? chunkSize
+      match encrypted? with
+      | none =>
+        throw <| IO.userError "connection closed during TLS handshake"
+      | some encrypted =>
+        feedEncryptedChunk ssl encrypted
+        loop 0
 
 -- ## Types
 
@@ -189,7 +200,10 @@ data, so an empty write is a pure flush that does not queue additional bytes.
 -/
 private partial def drainPendingWrites (s : Connection) : Async Unit := do
   match ← s.ssl.write ByteArray.empty with
-  | none => return ()
+  | none =>
+    -- The queue is drained; still flush any encrypted bytes the SSL engine
+    -- may have placed in the output BIO during the final write step.
+    flushEncrypted s.native s.ssl
   | some .write =>
     flushEncrypted s.native s.ssl
     drainPendingWrites s
@@ -315,8 +329,36 @@ def recvSelector (s : Connection) (size : UInt64) : Selector (Option ByteArray) 
   }
 
 /--
+Sends a TLS `close_notify` alert and waits for the peer's reply, then
+performs a TCP-level half-close on the write side.
+
+This is the correct way to close a TLS connection. It ensures the peer
+receives the alert and can distinguish a clean close from a truncation attack.
+After this call, `recv?` will eventually return `none`.
+-/
+partial def tlsShutdown (s : Connection) (chunkSize : UInt64 := ioChunkSize) : Async Unit := do
+  match ← s.ssl.closeNotify with
+  | none =>
+    flushEncrypted s.native s.ssl
+    Async.ofPromise <| s.native.shutdown
+  | some .write =>
+    flushEncrypted s.native s.ssl
+    tlsShutdown s chunkSize
+  | some .read =>
+    flushEncrypted s.native s.ssl
+    let encrypted? ← Async.ofPromise <| s.native.recv? chunkSize
+    match encrypted? with
+    | none =>
+      -- Peer closed TCP before sending close_notify; still close our side.
+      Async.ofPromise <| s.native.shutdown
+    | some encrypted =>
+      feedEncryptedChunk s.ssl encrypted
+      tlsShutdown s chunkSize
+
+/--
 Shuts down the write side of the socket.
 Note: this performs a TCP-level shutdown only; no TLS `close_notify` alert is sent to the peer.
+Use `tlsShutdown` for a proper TLS-level close.
 -/
 def shutdown (s : Connection) : Async Unit :=
   Async.ofPromise <| s.native.shutdown

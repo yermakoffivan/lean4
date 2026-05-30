@@ -425,6 +425,27 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_pending_plaintext(b_obj_arg ssl)
     return lean_io_result_mk_ok(lean_box_uint64((uint64_t)SSL_pending(ssl_obj->ssl)));
 }
 
+/* Std.Internal.SSL.Session.closeNotify (ssl : @& Session) : IO (Option IOWant)  */
+extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_close_notify(b_obj_arg ssl) {
+    ERR_clear_error();
+    lean_ssl_session_object * ssl_obj = lean_to_ssl_session_object(ssl);
+    int rc = SSL_shutdown(ssl_obj->ssl);
+
+    if (rc == 1) {
+        return mk_option_iowant_none();
+    }
+
+    if (rc == 0) {
+        return mk_ssl_result_want_read();
+    }
+
+    int err = SSL_get_error(ssl_obj->ssl, rc);
+    if (err == SSL_ERROR_WANT_READ) return mk_ssl_result_want_read();
+    if (err == SSL_ERROR_WANT_WRITE) return mk_ssl_result_want_write();
+
+    return mk_option_iowant_none();
+}
+
 #else
 
 void initialize_openssl_session() {}
@@ -491,6 +512,11 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_pending_encrypted(b_obj_arg ssl)
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_pending_plaintext(b_obj_arg ssl) {
     (void)ssl;
     return io_result_mk_error("lean_uv_ssl_pending_plaintext is not supported");
+}
+
+extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_close_notify(b_obj_arg ssl) {
+    (void)ssl;
+    return io_result_mk_error("lean_uv_ssl_close_notify is not supported");
 }
 
 #endif

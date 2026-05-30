@@ -165,6 +165,18 @@ Returns the amount of decrypted plaintext bytes currently buffered inside the SS
 @[extern "lean_uv_ssl_pending_plaintext"]
 opaque pendingPlaintext (ssl : @& Session) : IO UInt64
 
+/--
+Sends a TLS `close_notify` alert via `SSL_shutdown`.
+Returns `none` when the bidirectional shutdown is complete.
+Returns `some .read` when our alert has been sent and we are waiting for the
+peer's `close_notify` — the caller should drain the output BIO, wait for more
+encrypted input, then call `closeNotify` again.
+Returns `some .write` when OpenSSL still has encrypted output to drain before
+it can finish the shutdown.
+-/
+@[extern "lean_uv_ssl_close_notify"]
+opaque closeNotify (ssl : @& Session) : IO (Option IOWant)
+
 namespace Server
 
 /--
@@ -220,6 +232,11 @@ Returns the X.509 verification result string for a server session. See `Session.
 -/
 @[inline]
 def verifyResultString (s : Session.Server) := Session.verifyResultString s.toSession
+
+/-- Sends a TLS `close_notify` alert on a server session. See `Session.closeNotify`. -/
+@[inline]
+def closeNotify (s : Session.Server) := Session.closeNotify s.toSession
+
 end Server
 
 namespace Client
@@ -283,6 +300,10 @@ Returns the X.509 verification result string for a client session. See `Session.
 -/
 @[inline]
 def verifyResultString (s : Session.Client) := Session.verifyResultString s.toSession
+
+/-- Sends a TLS `close_notify` alert on a client session. See `Session.closeNotify`. -/
+@[inline]
+def closeNotify (s : Session.Client) := Session.closeNotify s.toSession
 
 end Client
 end Session

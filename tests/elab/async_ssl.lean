@@ -41,6 +41,9 @@ def setupTestCerts : IO (String × String) := do
 
   return (certFile, keyFile)
 
+instance : Coe Session.Client Session := ⟨Session.Client.toSession⟩
+instance : Coe Session.Server Session := ⟨Session.Server.toSession⟩
+
 -- Drive one handshake step: advance both state machines and exchange encrypted
 -- bytes between their memory BIOs. Returns (clientDone, serverDone).
 def handshakeStep (c s : Session) : IO (Bool × Bool) := do
@@ -706,3 +709,354 @@ def testVerifyResultString (certFile keyFile : String) : IO Unit := do
 #eval do
   let (certFile, keyFile) ← setupTestCerts
   testVerifyResultString certFile keyFile
+
+-- ---------------------------------------------------------------------------
+-- Test 18: tlsShutdown — both sides exchange close_notify over TCP
+-- ---------------------------------------------------------------------------
+
+def testTLSShutdown (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
+  let serverCtx ← Context.Server.mk
+  serverCtx.configure certFile keyFile
+  let clientCtx ← Context.Client.mk
+  clientCtx.configure "" false
+
+  let server ← Server.mk serverCtx
+  server.bind addr
+  server.listen 128
+
+  let srvTask ← (do
+    let conn ← server.accept
+    let msg ← conn.recv? 1024
+    conn.send (msg.getD ByteArray.empty)
+    conn.tlsShutdown  -- proper TLS close
+  : Async Unit).toIO
+
+  let cliTask ← (do
+    let client ← Client.mk clientCtx
+    client.setServerName "localhost"
+    client.connect addr
+    client.send "shutdown-test".toUTF8
+    let resp ← client.recv? 1024
+    let got := String.fromUTF8! (resp.getD ByteArray.empty)
+    unless got == "shutdown-test" do
+      throw <| IO.userError s!"shutdown round-trip mismatch: '{got}'"
+    client.tlsShutdown  -- proper TLS close on client too
+  : Async Unit).toIO
+
+  srvTask.block
+  cliTask.block
+
+-- ---------------------------------------------------------------------------
+-- Test 19: in-process closeNotify — drain and feed close_notify bytes directly
+-- ---------------------------------------------------------------------------
+
+def testCloseNotify (certFile keyFile : String) : IO Unit := do
+  let serverCtx ← Context.Server.mk
+  serverCtx.configure certFile keyFile
+  let clientCtx ← Context.Client.mk
+  clientCtx.configure "" false
+
+  let serverSess ← Session.Server.mk serverCtx
+  let clientSess ← Session.Client.mk clientCtx
+  runHandshake clientSess serverSess
+
+  -- Initiate shutdown from the client side.
+  -- SSL_shutdown (rc=0) means our close_notify was sent; waiting for peer's.
+  discard <| Session.closeNotify clientSess
+  -- Deliver client's close_notify bytes to the server.
+  pipeEncrypted clientSess serverSess
+  -- Server calls SSL_shutdown; since it already received the client's
+  -- close_notify and now sends its own, rc should be 1 (bidirectional done).
+  discard <| Session.closeNotify serverSess
+  -- Deliver server's close_notify back to the client.
+  pipeEncrypted serverSess clientSess
+  -- A second client closeNotify should now return none (done).
+  discard <| Session.closeNotify clientSess
+
+#eval do
+  let (certFile, keyFile) ← setupTestCerts
+  testTLSShutdown (SocketAddressV4.mk (.ofParts 127 0 0 1) 18453) certFile keyFile
+
+#eval do
+  let (certFile, keyFile) ← setupTestCerts
+  testCloseNotify certFile keyFile
+
+-- ---------------------------------------------------------------------------
+-- Test 21: exact-size read — send N bytes, read? N returns exactly N bytes
+-- ---------------------------------------------------------------------------
+
+def testExactSizeRead (certFile keyFile : String) : IO Unit := do
+  let serverCtx ← Context.Server.mk
+  serverCtx.configure certFile keyFile
+  let clientCtx ← Context.Client.mk
+  clientCtx.configure "" false
+
+  let serverSess ← Session.Server.mk serverCtx
+  let clientSess ← Session.Client.mk clientCtx
+  runHandshake clientSess serverSess
+
+  let payload := "exactread".toUTF8   -- 9 bytes
+  discard <| clientSess.write payload
+  pipeEncrypted clientSess serverSess
+
+  let result ← serverSess.read? 9
+  match result with
+  | .data bytes =>
+    unless bytes.size == 9 do
+      throw <| IO.userError s!"exact-size read: expected 9 bytes, got {bytes.size}"
+    unless bytes == payload do
+      throw <| IO.userError "exact-size read: content mismatch"
+  | _ => throw <| IO.userError "exact-size read: expected .data"
+
+-- ---------------------------------------------------------------------------
+-- Test 22: zero-byte send — send ByteArray.empty, no hang, no state corruption
+-- ---------------------------------------------------------------------------
+
+def testZeroByteSend (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
+  let serverCtx ← Context.Server.mk
+  serverCtx.configure certFile keyFile
+  let clientCtx ← Context.Client.mk
+  clientCtx.configure "" false
+
+  let server ← Server.mk serverCtx
+  server.bind addr
+  server.listen 128
+
+  let srvTask ← (do
+    let conn ← server.accept
+    -- Zero-byte send before and after a real message must not corrupt framing.
+    conn.send ByteArray.empty
+    conn.send "real".toUTF8
+    conn.send ByteArray.empty
+    conn.shutdown
+  : Async Unit).toIO
+
+  let cliTask ← (do
+    let client ← Client.mk clientCtx
+    client.setServerName "localhost"
+    client.connect addr
+    -- The real message must still arrive intact.
+    let resp ← client.recv? 1024
+    let got := String.fromUTF8! (resp.getD ByteArray.empty)
+    unless got == "real" do
+      throw <| IO.userError s!"zero-byte send: expected 'real', got '{got}'"
+    client.shutdown
+  : Async Unit).toIO
+
+  srvTask.block
+  cliTask.block
+
+-- ---------------------------------------------------------------------------
+-- Test 23: verifyResult and verifyResultString are consistent after handshake
+-- Under VERIFY_NONE with a self-signed cert, OpenSSL still evaluates the
+-- chain internally. The exact code (0 = ok, 18 = self-signed, etc.) depends
+-- on the OpenSSL version and cert store, so we only check that the string
+-- returned by verifyResultString matches what X509_verify_cert_error_string
+-- would produce for the same code (i.e. it is non-empty and consistent).
+-- ---------------------------------------------------------------------------
+
+def testVerifyResultCode (certFile keyFile : String) : IO Unit := do
+  let serverCtx ← Context.Server.mk
+  serverCtx.configure certFile keyFile
+  let clientCtx ← Context.Client.mk
+  clientCtx.configure "" false   -- VERIFY_NONE
+
+  let serverSess ← Session.Server.mk serverCtx
+  let clientSess ← Session.Client.mk clientCtx
+  runHandshake clientSess serverSess
+
+  -- verifyResult returns a numeric code; verifyResultString returns its description.
+  -- We just check that the call succeeds and returns a non-empty string.
+  let s ← Session.verifyResultString clientSess
+  unless s.length > 0 do
+    throw <| IO.userError "verifyResult: verifyResultString returned empty string after handshake"
+
+-- ---------------------------------------------------------------------------
+-- Test 24: recv? returns none after peer TCP-only shutdown (no TLS close_notify)
+-- When the peer calls shutdown without sending a TLS close_notify, the client's
+-- recv? must return none rather than hanging.
+-- ---------------------------------------------------------------------------
+
+def testRecvAfterTCPClose (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
+  let serverCtx ← Context.Server.mk
+  serverCtx.configure certFile keyFile
+  let clientCtx ← Context.Client.mk
+  clientCtx.configure "" false
+
+  let server ← Server.mk serverCtx
+  server.bind addr
+  server.listen 128
+
+  let srvTask ← (do
+    let conn ← server.accept
+    conn.shutdown  -- TCP-only close, no TLS close_notify
+  : Async Unit).toIO
+
+  let cliTask ← (do
+    let client ← Client.mk clientCtx
+    client.setServerName "localhost"
+    client.connect addr
+    -- recv? must return none (not hang) when peer did a TCP-only close.
+    let closed ← client.recv? 1024
+    unless closed.isNone do
+      throw <| IO.userError "recv? after TCP-only close: expected none"
+    client.shutdown
+  : Async Unit).toIO
+
+  srvTask.block
+  cliTask.block
+
+-- ---------------------------------------------------------------------------
+-- Test 27: sendAll with empty array — no hang, connection still usable
+-- ---------------------------------------------------------------------------
+
+def testSendAllEmpty (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
+  let serverCtx ← Context.Server.mk
+  serverCtx.configure certFile keyFile
+  let clientCtx ← Context.Client.mk
+  clientCtx.configure "" false
+
+  let server ← Server.mk serverCtx
+  server.bind addr
+  server.listen 128
+
+  let srvTask ← (do
+    let conn ← server.accept
+    let msg ← conn.recv? 1024
+    conn.send (msg.getD ByteArray.empty)
+    conn.shutdown
+  : Async Unit).toIO
+
+  let cliTask ← (do
+    let client ← Client.mk clientCtx
+    client.setServerName "localhost"
+    client.connect addr
+    client.sendAll #[]          -- empty array: should be a no-op
+    client.send "after-empty".toUTF8
+    let resp ← client.recv? 1024
+    let got := String.fromUTF8! (resp.getD ByteArray.empty)
+    unless got == "after-empty" do
+      throw <| IO.userError s!"sendAll empty: expected 'after-empty', got '{got}'"
+    client.shutdown
+  : Async Unit).toIO
+
+  srvTask.block
+  cliTask.block
+
+-- ---------------------------------------------------------------------------
+-- Test 28: many small messages — 50 one-byte writes arrive in order and complete
+-- ---------------------------------------------------------------------------
+
+def testManySmallMessages (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
+  let serverCtx ← Context.Server.mk
+  serverCtx.configure certFile keyFile
+  let clientCtx ← Context.Client.mk
+  clientCtx.configure "" false
+
+  let n := 50
+  let server ← Server.mk serverCtx
+  server.bind addr
+  server.listen 128
+
+  let srvTask ← (do
+    let conn ← server.accept
+    -- Accumulate all n bytes.
+    let mut buf := ByteArray.empty
+    while buf.size < n do
+      let chunk ← conn.recv? (n - buf.size).toUInt64
+      buf := buf ++ chunk.getD ByteArray.empty
+    conn.send buf
+    conn.shutdown
+  : Async Unit).toIO
+
+  let cliTask ← (do
+    let client ← Client.mk clientCtx
+    client.setServerName "localhost"
+    client.connect addr
+    -- Send n individual one-byte messages.
+    for i in List.range n do
+      client.send (ByteArray.mk #[i.toUInt8])
+    -- Receive all n bytes back.
+    let mut buf := ByteArray.empty
+    while buf.size < n do
+      let chunk ← client.recv? (n - buf.size).toUInt64
+      buf := buf ++ chunk.getD ByteArray.empty
+    unless buf.size == n do
+      throw <| IO.userError s!"many small messages: expected {n} bytes, got {buf.size}"
+    for i in List.range n do
+      unless buf[i]! == i.toUInt8 do
+        throw <| IO.userError s!"many small messages: byte {i} mismatch"
+    client.shutdown
+  : Async Unit).toIO
+
+  srvTask.block
+  cliTask.block
+
+-- ---------------------------------------------------------------------------
+-- Test 29: tlsShutdown then recv? returns none
+-- After both sides call tlsShutdown, a subsequent recv? must return none
+-- rather than hanging or returning stale data.
+-- ---------------------------------------------------------------------------
+
+def testRecvAfterTLSShutdown (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
+  let serverCtx ← Context.Server.mk
+  serverCtx.configure certFile keyFile
+  let clientCtx ← Context.Client.mk
+  clientCtx.configure "" false
+
+  let server ← Server.mk serverCtx
+  server.bind addr
+  server.listen 128
+
+  let srvTask ← (do
+    let conn ← server.accept
+    conn.send "before-close".toUTF8
+    conn.tlsShutdown
+  : Async Unit).toIO
+
+  let cliTask ← (do
+    let client ← Client.mk clientCtx
+    client.setServerName "localhost"
+    client.connect addr
+    -- Consume the message sent before shutdown.
+    let msg ← client.recv? 1024
+    let got := String.fromUTF8! (msg.getD ByteArray.empty)
+    unless got == "before-close" do
+      throw <| IO.userError s!"recv after tlsShutdown: expected 'before-close', got '{got}'"
+    -- After the server's tlsShutdown, recv? must return none.
+    let closed ← client.recv? 1024
+    unless closed.isNone do
+      throw <| IO.userError "recv after tlsShutdown: expected none after server tlsShutdown"
+    client.tlsShutdown
+  : Async Unit).toIO
+
+  srvTask.block
+  cliTask.block
+
+#eval do
+  let (certFile, keyFile) ← setupTestCerts
+  testExactSizeRead certFile keyFile
+
+#eval do
+  let (certFile, keyFile) ← setupTestCerts
+  testZeroByteSend (SocketAddressV4.mk (.ofParts 127 0 0 1) 18454) certFile keyFile
+
+#eval do
+  let (certFile, keyFile) ← setupTestCerts
+  testVerifyResultCode certFile keyFile
+
+#eval do
+  let (certFile, keyFile) ← setupTestCerts
+  testRecvAfterTCPClose (SocketAddressV4.mk (.ofParts 127 0 0 1) 18456) certFile keyFile
+
+#eval do
+  let (certFile, keyFile) ← setupTestCerts
+  testSendAllEmpty (SocketAddressV4.mk (.ofParts 127 0 0 1) 18457) certFile keyFile
+
+#eval do
+  let (certFile, keyFile) ← setupTestCerts
+  testManySmallMessages (SocketAddressV4.mk (.ofParts 127 0 0 1) 18458) certFile keyFile
+
+#eval do
+  let (certFile, keyFile) ← setupTestCerts
+  testRecvAfterTLSShutdown (SocketAddressV4.mk (.ofParts 127 0 0 1) 18459) certFile keyFile

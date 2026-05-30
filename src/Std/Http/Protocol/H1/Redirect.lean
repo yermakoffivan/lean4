@@ -216,8 +216,11 @@ private def scrubHeaders (headers : Headers) (isCrossOrigin methodChangedToSafe 
   -- If the request method has been changed to GET or HEAD, remove content-specific header
   -- fields, including (but not limited to) Content-Encoding, Content-Language, Content-Location,
   -- Content-Type, Content-Length, Digest, Last-Modified.
+  -- Also strip cache-validating headers (If-None-Match, If-Modified-Since) when the method
+  -- changes to GET/HEAD: the original conditional request targets a specific resource state
+  -- that may not apply to the redirect destination.
   if methodChangedToSafe then
-    afterOrigin.eraseKeys resourceSpecificHeaders
+    afterOrigin.eraseKeys (resourceSpecificHeaders ++ validatingHeaders)
   else
     afterOrigin
 
@@ -312,8 +315,10 @@ def decideRedirect
   -- 305 Use Proxy is deprecated (RFC 9110 §15.4.6) and carries a proxy URI in
   -- Location. Following it automatically would silently route traffic through an
   -- attacker-supplied proxy, so we treat it as a terminal response.
+  -- 306 is reserved and undefined (RFC 9110 §15.4.7); auto-following it could
+  -- silently act on an attacker-controlled Location header.
   -- 304 Not Modified and 300 Multiple Choices also never warrant auto-follow.
-  if status == .useProxy || status == .notModified || status == .multipleChoices then
+  if status == .useProxy || status == .unused || status == .notModified || status == .multipleChoices then
     return .done
 
   -- RFC 2616 §10.3: automatic redirection needs to be done with care for methods not known to be

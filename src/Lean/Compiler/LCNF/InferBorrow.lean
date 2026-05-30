@@ -102,7 +102,7 @@ where
       | .extern .. => return ()
 
   initParams (ps : Array (Param .impure)) : Array (Param .impure) :=
-    ps.map fun p => { p with borrow := p.type.isPossibleRef }
+    ps.map fun p => { p with borrow := false }
 
   initParamsIfNotExported (exported : Bool) (ps : Array (Param .impure)) : Array (Param .impure) :=
     if exported then

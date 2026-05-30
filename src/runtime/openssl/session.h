@@ -25,7 +25,7 @@ void initialize_openssl_session();
 #ifndef LEAN_EMSCRIPTEN
 struct lean_ssl_session_object {
     SSL * ssl;
-    std::deque<std::vector<char>> pending_writes;
+    std::deque<std::vector<char>> * pending_writes;
 };
 
 static inline lean_object * lean_ssl_session_object_new(lean_ssl_session_object * s) { return lean_alloc_external(g_ssl_session_external_class, s); }

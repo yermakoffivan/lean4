@@ -105,21 +105,19 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_ctx_configure_client(b_obj_arg c
 void initialize_openssl_context() {}
 
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_ctx_mk_server() {
-    return io_result_mk_error("lean_uv_ssl_ctx_mk_server is not supported");
+    lean_always_assert(false && "Please build a version of Lean4 with OpenSSL to invoke this.");
 }
 
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_ctx_mk_client() {
-    return io_result_mk_error("lean_uv_ssl_ctx_mk_client is not supported");
+    lean_always_assert(false && "Please build a version of Lean4 with OpenSSL to invoke this.");
 }
 
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_ctx_configure_server(b_obj_arg ctx_obj, b_obj_arg cert_file, b_obj_arg key_file) {
-    (void)ctx_obj; (void)cert_file; (void)key_file;
-    return io_result_mk_error("lean_uv_ssl_ctx_configure_server is not supported");
+    lean_always_assert(false && "Please build a version of Lean4 with OpenSSL to invoke this.");
 }
 
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_ctx_configure_client(b_obj_arg ctx_obj, b_obj_arg ca_file, uint8_t verify_peer) {
-    (void)ctx_obj; (void)ca_file; (void)verify_peer;
-    return io_result_mk_error("lean_uv_ssl_ctx_configure_client is not supported");
+    lean_always_assert(false && "Please build a version of Lean4 with OpenSSL to invoke this.");
 }
 
 #endif

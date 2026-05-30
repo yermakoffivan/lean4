@@ -52,21 +52,17 @@ private def flushEncrypted (native : Socket) (ssl : Session) : Async Unit := do
 Runs the TLS handshake loop to completion, interleaving SSL state machine steps
 with TCP I/O.
 -/
-private partial def doHandshake (native : Socket) (ssl : Session) (chunkSize : UInt64) : Async Unit :=
-  -- `consecutiveWrites` counts WANT_WRITE steps without an intervening recv.
-  -- A real handshake sends at most a handful of flight messages; if we see
-  -- many WANT_WRITE rounds without any TCP receive the output BIO has stalled.
-  loop 0
-where
-  loop (consecutiveWrites : Nat) : Async Unit := do
+private partial def doHandshake (native : Socket) (ssl : Session) (chunkSize : UInt64) : Async Unit := do
+  while true do
+    let pendingBefore ← ssl.pendingEncrypted
     let want ← ssl.handshake
+    let pendingAfter ← ssl.pendingEncrypted
     flushEncrypted native ssl
     match want with
     | none => return ()
     | some .write =>
-      if consecutiveWrites > 32 then
-        throw <| IO.userError "TLS handshake stalled: too many consecutive WANT_WRITE steps without progress"
-      loop (consecutiveWrites + 1)
+      if pendingAfter == 0 && pendingBefore == 0 then
+        throw <| IO.userError "TLS handshake stalled: WANT_WRITE but output BIO produced no bytes"
     | some .read =>
       let encrypted? ← Async.ofPromise <| native.recv? chunkSize
       match encrypted? with
@@ -74,7 +70,6 @@ where
         throw <| IO.userError "connection closed during TLS handshake"
       | some encrypted =>
         feedEncryptedChunk ssl encrypted
-        loop 0
 
 -- ## Types
 

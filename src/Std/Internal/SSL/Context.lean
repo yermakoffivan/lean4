@@ -62,4 +62,6 @@ Configures CA trust anchors and peer verification for a client context.
 @[extern "lean_uv_ssl_ctx_configure_client"]
 opaque configure (ctx : @& Context.Client) (caFile : @& String) (verifyPeer : Bool) : IO Unit
 
-end Std.Internal.SSL.Context.Client
+end Client
+end Context
+end Std.Internal.SSL

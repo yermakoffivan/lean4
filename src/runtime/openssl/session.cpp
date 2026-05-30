@@ -7,7 +7,6 @@ Author: Sofia Rodrigues
 #include "runtime/openssl/session.h"
 
 #include <climits>
-#include <new>
 #include <string>
 
 namespace lean {
@@ -92,13 +91,6 @@ Return values:
 */
 static int try_flush_pending_writes(lean_ssl_session_object * obj, int * out_err);
 
-/* After SSL_read returns WANT_READ or WANT_WRITE, attempt to flush any pending
-   writes and return the updated want signal.
-   - If flush is still blocked and needs a different I/O than SSL_read, use the
-     flush's want (it is the more urgent outstanding need).
-   - If the flush fully succeeded and SSL_read had WANT_WRITE (needed a flush),
-     that want is now satisfied; the real next need is WANT_READ.
-   - Otherwise return base_want unchanged. */
 static lean_obj_res flush_and_return_want(lean_ssl_session_object * obj, int base_want) {
     int flush_err = 0;
     int flushed = try_flush_pending_writes(obj, &flush_err);
@@ -115,21 +107,21 @@ static lean_obj_res flush_and_return_want(lean_ssl_session_object * obj, int bas
 }
 
 static int try_flush_pending_writes(lean_ssl_session_object * obj, int * out_err) {
-    while (!obj->pending_writes.empty()) {
-        auto & pw = obj->pending_writes.front();
+    while (!obj->pending_writes->empty()) {
+        auto & pw = obj->pending_writes->front();
         int step = ssl_write_step(obj, pw.data(), pw.size(), out_err);
         if (step < 0) return -1;
         if (step == 0) return 0;
-        obj->pending_writes.pop_front();
+        obj->pending_writes->pop_front();
     }
     return 1;
 }
 
-
 void lean_ssl_session_finalizer(void * ptr) {
     lean_ssl_session_object * obj = (lean_ssl_session_object*)ptr;
     if (obj->ssl != nullptr) SSL_free(obj->ssl);
-    delete obj;
+    delete obj->pending_writes;
+    free(obj);
 }
 
 void initialize_openssl_session() {
@@ -163,13 +155,19 @@ static lean_obj_res mk_ssl_session(SSL_CTX * ctx, uint8_t is_server) {
         SSL_set_connect_state(ssl);
     }
 
-    lean_ssl_session_object * ssl_obj = new (std::nothrow) lean_ssl_session_object();
+    lean_ssl_session_object * ssl_obj = (lean_ssl_session_object*)malloc(sizeof(lean_ssl_session_object));
     if (ssl_obj == nullptr) {
         SSL_free(ssl);
         return mk_openssl_io_error("failed to allocate SSL session object");
     }
 
     ssl_obj->ssl = ssl;
+    ssl_obj->pending_writes = new (std::nothrow) std::deque<std::vector<char>>();
+    if (ssl_obj->pending_writes == nullptr) {
+        SSL_free(ssl);
+        free(ssl_obj);
+        return mk_openssl_io_error("failed to allocate SSL pending_writes queue");
+    }
 
     lean_object * obj = lean_ssl_session_object_new(ssl_obj);
     lean_mark_mt(obj);
@@ -247,7 +245,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_write(b_obj_arg ssl, b_obj_arg d
     // Only attempt the new write directly if the queue fully drains.
     // An empty write (data_len == 0) is used by callers as a pure flush signal;
     // it must not be enqueued, only the want-signal is returned.
-    if (!ssl_obj->pending_writes.empty()) {
+    if (!ssl_obj->pending_writes->empty()) {
         int flush_err = 0;
         int flushed = try_flush_pending_writes(ssl_obj, &flush_err);
 
@@ -257,7 +255,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_write(b_obj_arg ssl, b_obj_arg d
 
         if (flushed == 0) {
             if (data_len > 0) {
-                ssl_obj->pending_writes.emplace_back(payload, payload + data_len);
+                ssl_obj->pending_writes->emplace_back(payload, payload + data_len);
             }
             if (flush_err == SSL_ERROR_WANT_READ) {
                 return mk_ssl_result_want_read();
@@ -284,7 +282,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_write(b_obj_arg ssl, b_obj_arg d
 
     // Queue plaintext so it is retried after the required socket I/O completes.
     if (step == 0) {
-        ssl_obj->pending_writes.emplace_back(payload, payload + data_len);
+        ssl_obj->pending_writes->emplace_back(payload, payload + data_len);
         if (err == SSL_ERROR_WANT_READ) {
             return mk_ssl_result_want_read();
         }
@@ -299,16 +297,10 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_read(b_obj_arg ssl, uint64_t max
     ERR_clear_error();
     lean_ssl_session_object * ssl_obj = lean_to_ssl_session_object(ssl);
 
-    // When max_bytes == 0, use SSL_peek with a 1-byte scratch buffer so that
-    // OpenSSL returns the real WANT_READ/WANT_WRITE signal without consuming
-    // any data from the stream.  The caller (waitReadable) uses the constructor
-    // tag of the result only; it does not use the bytes.
     if (max_bytes == 0) {
         char peek_buf[1];
         int rc = SSL_peek(ssl_obj->ssl, peek_buf, 1);
         if (rc > 0) {
-            // Data is available; return an empty data result so the caller
-            // knows to proceed to a real read.
             return mk_read_result_data(lean_mk_empty_byte_array(lean_box(0)));
         }
         int err = SSL_get_error(ssl_obj->ssl, rc);
@@ -443,7 +435,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_close_notify(b_obj_arg ssl) {
     if (err == SSL_ERROR_WANT_READ) return mk_ssl_result_want_read();
     if (err == SSL_ERROR_WANT_WRITE) return mk_ssl_result_want_write();
 
-    return mk_option_iowant_none();
+    return mk_openssl_io_error("SSL_shutdown failed", err);
 }
 
 #else
@@ -451,72 +443,55 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_close_notify(b_obj_arg ssl) {
 void initialize_openssl_session() {}
 
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_mk_server(b_obj_arg ctx_obj) {
-    (void)ctx_obj;
-    return io_result_mk_error("lean_uv_ssl_mk_server is not supported");
+    lean_always_assert(false && "Please build a version of Lean4 with OpenSSL to invoke this.");
 }
 
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_mk_client(b_obj_arg ctx_obj) {
-    (void)ctx_obj;
-    return io_result_mk_error("lean_uv_ssl_mk_client is not supported");
+    lean_always_assert(false && "Please build a version of Lean4 with OpenSSL to invoke this.");
 }
 
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_set_server_name(b_obj_arg ssl, b_obj_arg host) {
-    (void)ssl;
-    (void)host;
-    return io_result_mk_error("lean_uv_ssl_set_server_name is not supported");
+    lean_always_assert(false && "Please build a version of Lean4 with OpenSSL to invoke this.");
 }
 
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_verify_result(b_obj_arg ssl) {
-    (void)ssl;
-    return io_result_mk_error("lean_uv_ssl_verify_result is not supported");
+    lean_always_assert(false && "Please build a version of Lean4 with OpenSSL to invoke this.");
 }
 
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_verify_result_string(b_obj_arg ssl) {
-    (void)ssl;
-    return io_result_mk_error("lean_uv_ssl_verify_result_string is not supported");
+    lean_always_assert(false && "Please build a version of Lean4 with OpenSSL to invoke this.");
 }
 
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_handshake(b_obj_arg ssl) {
-    (void)ssl;
-    return io_result_mk_error("lean_uv_ssl_handshake is not supported");
+    lean_always_assert(false && "Please build a version of Lean4 with OpenSSL to invoke this.");
 }
 
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_write(b_obj_arg ssl, b_obj_arg data) {
-    (void)ssl;
-    (void)data;
-    return io_result_mk_error("lean_uv_ssl_write is not supported");
+    lean_always_assert(false && "Please build a version of Lean4 with OpenSSL to invoke this.");
 }
 
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_read(b_obj_arg ssl, uint64_t max_bytes) {
-    (void)ssl;
-    (void)max_bytes;
-    return io_result_mk_error("lean_uv_ssl_read is not supported");
+    lean_always_assert(false && "Please build a version of Lean4 with OpenSSL to invoke this.");
 }
 
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_feed_encrypted(b_obj_arg ssl, b_obj_arg data) {
-    (void)ssl;
-    (void)data;
-    return io_result_mk_error("lean_uv_ssl_feed_encrypted is not supported");
+    lean_always_assert(false && "Please build a version of Lean4 with OpenSSL to invoke this.");
 }
 
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_drain_encrypted(b_obj_arg ssl) {
-    (void)ssl;
-    return io_result_mk_error("lean_uv_ssl_drain_encrypted is not supported");
+    lean_always_assert(false && "Please build a version of Lean4 with OpenSSL to invoke this.");
 }
 
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_pending_encrypted(b_obj_arg ssl) {
-    (void)ssl;
-    return io_result_mk_error("lean_uv_ssl_pending_encrypted is not supported");
+    lean_always_assert(false && "Please build a version of Lean4 with OpenSSL to invoke this.");
 }
 
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_pending_plaintext(b_obj_arg ssl) {
-    (void)ssl;
-    return io_result_mk_error("lean_uv_ssl_pending_plaintext is not supported");
+    lean_always_assert(false && "Please build a version of Lean4 with OpenSSL to invoke this.");
 }
 
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_close_notify(b_obj_arg ssl) {
-    (void)ssl;
-    return io_result_mk_error("lean_uv_ssl_close_notify is not supported");
+    lean_always_assert(false && "Please build a version of Lean4 with OpenSSL to invoke this.");
 }
 
 #endif

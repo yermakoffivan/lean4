@@ -93,13 +93,24 @@ Return values:
 static int try_flush_pending_writes(lean_ssl_session_object * obj, int * out_err);
 
 /* After SSL_read returns WANT_READ or WANT_WRITE, attempt to flush any pending
-   writes and return the updated want signal. If flushing reveals the opposite
-   want, return that; otherwise return base_want. */
+   writes and return the updated want signal.
+   - If flush is still blocked and needs a different I/O than SSL_read, use the
+     flush's want (it is the more urgent outstanding need).
+   - If the flush fully succeeded and SSL_read had WANT_WRITE (needed a flush),
+     that want is now satisfied; the real next need is WANT_READ.
+   - Otherwise return base_want unchanged. */
 static lean_obj_res flush_and_return_want(lean_ssl_session_object * obj, int base_want) {
     int flush_err = 0;
     int flushed = try_flush_pending_writes(obj, &flush_err);
     if (flushed < 0) return mk_openssl_io_error("pending SSL write flush failed", flush_err);
-    int want = (flushed == 0 && flush_err != base_want) ? flush_err : base_want;
+    int want;
+    if (flushed == 0) {
+        // Still blocked: use the flush's want if it differs from SSL_read's want.
+        want = (flush_err != base_want) ? flush_err : base_want;
+    } else {
+        // Fully flushed: WANT_WRITE is satisfied; now we need encrypted input.
+        want = (base_want == SSL_ERROR_WANT_WRITE) ? SSL_ERROR_WANT_READ : base_want;
+    }
     return want == SSL_ERROR_WANT_READ ? mk_ssl_result_want_read() : mk_ssl_result_want_write();
 }
 
@@ -159,8 +170,6 @@ static lean_obj_res mk_ssl_session(SSL_CTX * ctx, uint8_t is_server) {
     }
 
     ssl_obj->ssl = ssl;
-    ssl_obj->read_bio = read_bio;
-    ssl_obj->write_bio = write_bio;
 
     lean_object * obj = lean_ssl_session_object_new(ssl_obj);
     lean_mark_mt(obj);
@@ -206,6 +215,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_verify_result_string(b_obj_arg s
 
 /* Std.Internal.SSL.Session.handshake (ssl : @& Session) : IO (Option IOWant) */
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_handshake(b_obj_arg ssl) {
+    ERR_clear_error();
     lean_ssl_session_object * ssl_obj = lean_to_ssl_session_object(ssl);
     int rc = SSL_do_handshake(ssl_obj->ssl);
 
@@ -228,14 +238,15 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_handshake(b_obj_arg ssl) {
 
 /* Std.Internal.SSL.Session.write (ssl : @& Session) (data : @& ByteArray) : IO (Option IOWant) */
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_write(b_obj_arg ssl, b_obj_arg data) {
+    ERR_clear_error();
     lean_ssl_session_object * ssl_obj = lean_to_ssl_session_object(ssl);
     size_t data_len = lean_sarray_size(data);
     char const * payload = (char const*)lean_sarray_cptr(data);
 
     // If there are pending writes, try to flush them first to preserve write order.
     // Only attempt the new write directly if the queue fully drains.
-    // Note: data_len == 0 check is intentionally AFTER this block so that an
-    // empty write can be used to flush the pending queue without queuing new data.
+    // An empty write (data_len == 0) is used by callers as a pure flush signal;
+    // it must not be enqueued, only the want-signal is returned.
     if (!ssl_obj->pending_writes.empty()) {
         int flush_err = 0;
         int flushed = try_flush_pending_writes(ssl_obj, &flush_err);
@@ -245,7 +256,9 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_write(b_obj_arg ssl, b_obj_arg d
         }
 
         if (flushed == 0) {
-            ssl_obj->pending_writes.emplace_back(payload, payload + data_len);
+            if (data_len > 0) {
+                ssl_obj->pending_writes.emplace_back(payload, payload + data_len);
+            }
             if (flush_err == SSL_ERROR_WANT_READ) {
                 return mk_ssl_result_want_read();
             }
@@ -283,6 +296,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_write(b_obj_arg ssl, b_obj_arg d
 
 /* Std.Internal.SSL.Session.read? (ssl : @& Session) (maxBytes : UInt64) : IO ReadResult */
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_read(b_obj_arg ssl, uint64_t max_bytes) {
+    ERR_clear_error();
     lean_ssl_session_object * ssl_obj = lean_to_ssl_session_object(ssl);
 
     // When max_bytes == 0, use SSL_peek with a 1-byte scratch buffer so that
@@ -336,6 +350,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_read(b_obj_arg ssl, uint64_t max
 
 /* Std.Internal.SSL.Session.feedEncrypted (ssl : @& Session) (data : @& ByteArray) : IO UInt64 */
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_feed_encrypted(b_obj_arg ssl, b_obj_arg data) {
+    ERR_clear_error();
     lean_ssl_session_object * ssl_obj = lean_to_ssl_session_object(ssl);
     size_t data_len = lean_sarray_size(data);
 
@@ -347,12 +362,19 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_feed_encrypted(b_obj_arg ssl, b_
         return mk_openssl_io_error("BIO_write input too large");
     }
 
-    int rc = BIO_write(ssl_obj->read_bio, lean_sarray_cptr(data), (int)data_len);
-    if (rc >= 0) {
+    BIO * rbio = SSL_get_rbio(ssl_obj->ssl);
+    int rc = BIO_write(rbio, lean_sarray_cptr(data), (int)data_len);
+    if (rc > 0) {
         return lean_io_result_mk_ok(lean_box_uint64((uint64_t)rc));
     }
 
-    if (BIO_should_retry(ssl_obj->read_bio)) {
+    // rc == 0: non-retryable zero-byte write is a hard error, not a short write.
+    if (rc == 0) {
+        return mk_openssl_io_error("BIO_write: wrote 0 bytes");
+    }
+
+    // rc < 0: check if the BIO wants a retry before treating as fatal.
+    if (BIO_should_retry(rbio)) {
         return lean_io_result_mk_ok(lean_box_uint64(0));
     }
 
@@ -361,8 +383,10 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_feed_encrypted(b_obj_arg ssl, b_
 
 /* Std.Internal.SSL.Session.drainEncrypted (ssl : @& Session) : IO ByteArray */
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_drain_encrypted(b_obj_arg ssl) {
+    ERR_clear_error();
     lean_ssl_session_object * ssl_obj = lean_to_ssl_session_object(ssl);
-    size_t pending = BIO_ctrl_pending(ssl_obj->write_bio);
+    BIO * write_bio = SSL_get_wbio(ssl_obj->ssl);
+    size_t pending = BIO_ctrl_pending(write_bio);
 
     if (pending == 0) {
         return lean_io_result_mk_ok(lean_mk_empty_byte_array(lean_box(0)));
@@ -373,7 +397,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_drain_encrypted(b_obj_arg ssl) {
     }
 
     lean_object * out = lean_alloc_sarray(1, 0, pending);
-    int rc = BIO_read(ssl_obj->write_bio, (void*)lean_sarray_cptr(out), (int)pending);
+    int rc = BIO_read(write_bio, (void*)lean_sarray_cptr(out), (int)pending);
 
     if (rc > 0) {
         lean_sarray_set_size(out, (size_t)rc);
@@ -382,7 +406,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_drain_encrypted(b_obj_arg ssl) {
 
     lean_dec(out);
 
-    if (BIO_should_retry(ssl_obj->write_bio)) {
+    if (BIO_should_retry(write_bio)) {
         return lean_io_result_mk_ok(lean_mk_empty_byte_array(lean_box(0)));
     }
 
@@ -392,7 +416,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_drain_encrypted(b_obj_arg ssl) {
 /* Std.Internal.SSL.Session.pendingEncrypted (ssl : @& Session) : IO UInt64 */
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_pending_encrypted(b_obj_arg ssl) {
     lean_ssl_session_object * ssl_obj = lean_to_ssl_session_object(ssl);
-    return lean_io_result_mk_ok(lean_box_uint64((uint64_t)BIO_ctrl_pending(ssl_obj->write_bio)));
+    return lean_io_result_mk_ok(lean_box_uint64((uint64_t)BIO_ctrl_pending(SSL_get_wbio(ssl_obj->ssl))));
 }
 
 /* Std.Internal.SSL.Session.pendingPlaintext (ssl : @& Session) : IO UInt64 */

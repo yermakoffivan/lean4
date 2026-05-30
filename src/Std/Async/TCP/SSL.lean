@@ -124,7 +124,7 @@ def listen (s : Server) (backlog : UInt32) : IO Unit :=
 
 private def mkServerConn (native : Socket) (ctx : Context.Server) : IO Connection := do
   let ssl ← Session.Server.mk ctx
-  return ⟨native, ssl⟩
+  return ⟨native, ssl.toSession⟩
 
 /--
 Accepts an incoming TLS connection and performs the TLS handshake.
@@ -187,21 +187,20 @@ Flushes any internally-queued plaintext writes by passing an empty buffer to
 `ssl.write`. The C++ layer drains `pending_writes` before checking for new
 data, so an empty write is a pure flush that does not queue additional bytes.
 -/
-private partial def drainPendingWrites (s : Connection) (chunkSize : UInt64) : Async Unit := do
+private partial def drainPendingWrites (s : Connection) : Async Unit := do
   match ← s.ssl.write ByteArray.empty with
-  | none =>
-    flushEncrypted s.native s.ssl
+  | none => return ()
   | some .write =>
     flushEncrypted s.native s.ssl
-    drainPendingWrites s chunkSize
+    drainPendingWrites s
   | some .read =>
     flushEncrypted s.native s.ssl
-    let encrypted? ← Async.ofPromise <| s.native.recv? chunkSize
+    let encrypted? ← Async.ofPromise <| s.native.recv? ioChunkSize
     match encrypted? with
     | none => throw <| IO.userError "connection closed while flushing TLS write"
     | some encrypted =>
       feedEncryptedChunk s.ssl encrypted
-      drainPendingWrites s chunkSize
+      drainPendingWrites s
 
 /--
 Sends data through a TLS-enabled socket, blocking until accepted.
@@ -210,12 +209,13 @@ renegotiation or before the handshake Finished round-trip completes), this
 function performs the required socket I/O and retries until the data is
 accepted rather than throwing.
 -/
-def send (s : Connection) (data : ByteArray) (chunkSize : UInt64 := ioChunkSize) : Async Unit := do
+def send (s : Connection) (data : ByteArray) : Async Unit := do
   match ← s.ssl.write data with
   | none =>
     flushEncrypted s.native s.ssl
   | some _ =>
-    drainPendingWrites s chunkSize
+    drainPendingWrites s
+    flushEncrypted s.native s.ssl
 
 /--
 Sends multiple data buffers through the TLS-enabled socket.
@@ -281,7 +281,6 @@ partial def waitReadable (s : Connection) : Async Unit := do
   match ← s.ssl.read? 0 with
   | .data _ | .closed => return ()
   | .wantIO _ =>
-    flushEncrypted s.native s.ssl
     let encrypted? ← Async.ofPromise <| s.native.recv? ioChunkSize
     match encrypted? with
     | none => return ()
@@ -371,7 +370,7 @@ Creates a new outgoing TLS client connection using the given client context.
 def mk (ctx : Context.Client) : IO Client := do
   let native ← Socket.new
   let ssl ← Session.Client.mk ctx
-  return ⟨native, ssl⟩
+  return ⟨native, ssl.toSession⟩
 
 /--
 Binds the client socket to the specified address.

@@ -12,7 +12,6 @@ Author: Sofia Rodrigues
 
 #ifndef LEAN_EMSCRIPTEN
 #include <openssl/ssl.h>
-#include <openssl/bio.h>
 #endif
 
 #include <deque>
@@ -26,8 +25,6 @@ void initialize_openssl_session();
 #ifndef LEAN_EMSCRIPTEN
 struct lean_ssl_session_object {
     SSL * ssl;
-    BIO * read_bio;
-    BIO * write_bio;
     std::deque<std::vector<char>> pending_writes;
 };
 

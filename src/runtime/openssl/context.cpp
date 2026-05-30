@@ -43,7 +43,7 @@ static lean_obj_res mk_ssl_context(const SSL_METHOD * method) {
     lean_ssl_context_object * obj = (lean_ssl_context_object*)malloc(sizeof(lean_ssl_context_object));
     if (obj == nullptr) {
         SSL_CTX_free(ctx);
-        return lean_io_result_mk_error(lean_mk_io_user_error(mk_string("failed to allocate SSL context object")));
+        return mk_openssl_io_error("failed to allocate SSL context object");
     }
 
     obj->ctx = ctx;

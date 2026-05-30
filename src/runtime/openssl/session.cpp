@@ -79,6 +79,21 @@ Return values:
   0 -> still blocked, *out_err filled with SSL_ERROR_WANT_READ or SSL_ERROR_WANT_WRITE
  -1 -> fatal error, *out_err filled
 */
+static int try_flush_pending_writes(lean_ssl_session_object * obj, int * out_err);
+
+/* After SSL_read returns WANT_READ or WANT_WRITE, attempt to flush any pending
+   writes and return the updated want signal. If flushing reveals the opposite
+   want, return that; otherwise return base_want. */
+static lean_obj_res flush_and_return_want(lean_ssl_session_object * obj, int base_want) {
+    int flush_err = 0;
+    int flushed = try_flush_pending_writes(obj, &flush_err);
+    if (flushed < 0) return mk_openssl_io_error("pending SSL write flush failed", flush_err);
+    if (flushed == 0 && flush_err != base_want) {
+        return flush_err == SSL_ERROR_WANT_READ ? mk_ssl_result_want_read() : mk_ssl_result_want_write();
+    }
+    return base_want == SSL_ERROR_WANT_READ ? mk_ssl_result_want_read() : mk_ssl_result_want_write();
+}
+
 static int try_flush_pending_writes(lean_ssl_session_object * obj, int * out_err) {
     while (!obj->pending_writes.empty()) {
         auto & pw = obj->pending_writes.front();
@@ -119,9 +134,6 @@ static lean_obj_res mk_ssl_session(SSL_CTX * ctx, uint8_t is_server) {
         SSL_free(ssl);
         return mk_openssl_io_error("BIO_new failed");
     }
-
-    BIO_set_nbio(read_bio, 1);
-    BIO_set_nbio(write_bio, 1);
 
     SSL_set_bio(ssl, read_bio, write_bio);
 
@@ -304,20 +316,8 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_read(b_obj_arg ssl, uint64_t max
         return mk_ssl_result_none_or_closed();
     }
 
-    if (err == SSL_ERROR_WANT_READ) {
-        int flush_err = 0;
-        int flushed = try_flush_pending_writes(ssl_obj, &flush_err);
-        if (flushed < 0) return mk_openssl_io_error("pending SSL write flush failed", flush_err);
-        if (flushed == 0 && flush_err == SSL_ERROR_WANT_WRITE) return mk_ssl_result_want_write();
-        return mk_ssl_result_want_read();
-    }
-
-    if (err == SSL_ERROR_WANT_WRITE) {
-        int flush_err = 0;
-        int flushed = try_flush_pending_writes(ssl_obj, &flush_err);
-        if (flushed < 0) return mk_openssl_io_error("pending SSL write flush failed", flush_err);
-        if (flushed == 0 && flush_err == SSL_ERROR_WANT_READ) return mk_ssl_result_want_read();
-        return mk_ssl_result_want_write();
+    if (err == SSL_ERROR_WANT_READ || err == SSL_ERROR_WANT_WRITE) {
+        return flush_and_return_want(ssl_obj, err);
     }
 
     return mk_openssl_io_error("SSL_read failed", err);

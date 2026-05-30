@@ -385,13 +385,6 @@ def mk (ctx : Context.Client) : IO Client := do
   return ⟨native, ssl⟩
 
 /--
-Configures the given client context.
-`caFile` may be empty to use default trust settings.
--/
-def configureContext (ctx : Context.Client) (caFile := "") (verifyPeer := true) : IO Unit :=
-  ctx.configure caFile verifyPeer
-
-/--
 Binds the client socket to the specified address.
 -/
 def bind (s : Client) (addr : SocketAddress) : IO Unit :=

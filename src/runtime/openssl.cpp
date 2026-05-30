@@ -10,7 +10,6 @@ Author: Sofia Rodrigues
 #include <openssl/opensslv.h>
 #include <openssl/ssl.h>
 #include <openssl/err.h>
-#include <openssl/ssl.h>
 
 namespace lean {
 
@@ -24,7 +23,7 @@ void finalize_openssl() {}
 
 }
 
-extern "C" LEAN_EXPORT lean_obj_res lean_openssl_version(lean_obj_arg o) {
+extern "C" LEAN_EXPORT lean_obj_res lean_openssl_version(lean_obj_arg) {
     return lean_unsigned_to_nat(OPENSSL_VERSION_NUMBER);
 }
 
@@ -37,7 +36,7 @@ void finalize_openssl() {}
 
 }
 
-extern "C" LEAN_EXPORT lean_obj_res lean_openssl_version(lean_obj_arg o) {
+extern "C" LEAN_EXPORT lean_obj_res lean_openssl_version(lean_obj_arg) {
     return lean_box(0);
 }
 

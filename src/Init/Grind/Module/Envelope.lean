@@ -216,7 +216,7 @@ def ofNatModule : IntModule (Q α) := {
   zsmul_natCast_eq_nsmul
 }
 
-attribute [instance] ofNatModule
+attribute [instance 1100] ofNatModule
 
 @[local simp] def toQ (a : α) : Q α :=
   Q.mk (a, 0)

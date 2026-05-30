@@ -1,7 +1,7 @@
-import Std.Internal.Async.TCP.SSL
+import Std.Async.TCP.SSL
 import Std.Net.Addr
 
-open Std.Internal.IO Async TCP.SSL
+open Std Async TCP.SSL
 open Std.Net
 open Std.Internal.SSL
 

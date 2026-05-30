@@ -12,13 +12,6 @@ public section
 
 namespace Std.Internal.SSL
 
-/--
-Distinguishes server-side from client-side TLS contexts and sessions at the type level.
--/
-inductive Role where
-  | server
-  | client
-
 private opaque ContextServerImpl : NonemptyType.{0}
 private opaque ContextClientImpl : NonemptyType.{0}
 
@@ -33,6 +26,7 @@ Client-side TLS context (`SSL_CTX` configured with `TLS_client_method`).
 def Context.Client : Type := ContextClientImpl.type
 
 instance : Nonempty Context.Server := ContextServerImpl.property
+
 instance : Nonempty Context.Client := ContextClientImpl.property
 
 namespace Context
@@ -68,8 +62,4 @@ Configures CA trust anchors and peer verification for a client context.
 @[extern "lean_uv_ssl_ctx_configure_client"]
 opaque configure (ctx : @& Context.Client) (caFile : @& String) (verifyPeer : Bool) : IO Unit
 
-end Client
-
-end Context
-
-end Std.Internal.SSL
+end Std.Internal.SSL.Context.Client

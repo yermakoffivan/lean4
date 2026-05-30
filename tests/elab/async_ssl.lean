@@ -21,27 +21,29 @@ def assertEqN (actual expected : UInt64) (label : String) : IO Unit := do
   unless actual == expected do
     throw <| IO.userError s!"{label}: expected {expected}, got {actual}"
 
--- Generate a self-signed certificate for testing.
+-- Generate a self-signed certificate for testing (cached: skips generation if files exist).
 def setupTestCerts : IO (String × String) := do
   IO.FS.createDirAll "/tmp/lean_ssl_test"
   let keyFile  := "/tmp/lean_ssl_test/key.pem"
   let certFile := "/tmp/lean_ssl_test/cert.pem"
 
-  discard <| IO.Process.output {
-    cmd  := "openssl"
-    args := #["genrsa", "-out", keyFile, "2048"]
-  }
-
-  discard <| IO.Process.output {
-    cmd  := "openssl"
-    args := #["req", "-new", "-x509", "-key", keyFile, "-out", certFile, "-days", "1", "-subj", "/CN=localhost"]
-  }
+  let keyExists  ← System.FilePath.pathExists keyFile
+  let certExists ← System.FilePath.pathExists certFile
+  unless keyExists && certExists do
+    discard <| IO.Process.output {
+      cmd  := "openssl"
+      args := #["genrsa", "-out", keyFile, "2048"]
+    }
+    discard <| IO.Process.output {
+      cmd  := "openssl"
+      args := #["req", "-new", "-x509", "-key", keyFile, "-out", certFile, "-days", "1", "-subj", "/CN=localhost"]
+    }
 
   return (certFile, keyFile)
 
 -- Drive one handshake step: advance both state machines and exchange encrypted
 -- bytes between their memory BIOs. Returns (clientDone, serverDone).
-def handshakeStep {rc rs : Role} (c : Session rc) (s : Session rs) : IO (Bool × Bool) := do
+def handshakeStep (c s : Session) : IO (Bool × Bool) := do
   let cd ← c.handshake
   let cOut ← c.drainEncrypted
   if cOut.size > 0 then
@@ -52,12 +54,12 @@ def handshakeStep {rc rs : Role} (c : Session rc) (s : Session rs) : IO (Bool ×
     discard <| c.feedEncrypted sOut
   return (cd.isNone, sd.isNone)
 
-partial def runHandshake {rc rs : Role} (c : Session rc) (s : Session rs) : IO Unit := do
+partial def runHandshake (c s : Session) : IO Unit := do
   let (cd, sd) ← handshakeStep c s
   unless cd && sd do runHandshake c s
 
 -- Pipe all pending encrypted output from src into dst's read BIO.
-def pipeEncrypted {r1 r2 : Role} (src : Session r1) (dst : Session r2) : IO Unit := do
+def pipeEncrypted (src dst : Session) : IO Unit := do
   let bytes ← src.drainEncrypted
   if bytes.size > 0 then
     discard <| dst.feedEncrypted bytes

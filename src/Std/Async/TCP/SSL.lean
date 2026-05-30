@@ -101,7 +101,6 @@ namespace Server
 /--
 Creates a new TLS-enabled TCP server socket using the given context.
 -/
-@[inline]
 def mk (serverCtx : Context.Server) : IO Server := do
   let native ← Socket.new
   return Server.ofNative native serverCtx
@@ -109,32 +108,28 @@ def mk (serverCtx : Context.Server) : IO Server := do
 /--
 Configures the server context with a PEM certificate and private key.
 -/
-@[inline]
 def configureServer (s : Server) (certFile keyFile : String) : IO Unit :=
   s.serverCtx.configure certFile keyFile
 
 /--
 Binds the server socket to the specified address.
 -/
-@[inline]
 def bind (s : Server) (addr : SocketAddress) : IO Unit :=
   s.native.bind addr
 
 /--
 Listens for incoming connections with the given backlog.
 -/
-@[inline]
 def listen (s : Server) (backlog : UInt32) : IO Unit :=
   s.native.listen backlog
 
-@[inline] private def mkServerConn (native : Socket) (ctx : Context.Server) : IO ServerConn := do
+private def mkServerConn (native : Socket) (ctx : Context.Server) : IO ServerConn := do
   let ssl ← Session.Server.mk ctx
   return ⟨native, ssl⟩
 
 /--
 Accepts an incoming TLS connection and performs the TLS handshake.
 -/
-@[inline]
 def accept (s : Server) (chunkSize : UInt64 := ioChunkSize) : Async ServerConn := do
   let native ← Async.ofPromise <| s.native.accept
   let conn ← mkServerConn native s.serverCtx
@@ -159,13 +154,10 @@ def acceptSelector (s : Server) : Selector ServerConn :=
     registerFn waiter := do
       let connTask ← (do
         let native ← Async.ofPromise <| s.native.accept
-        let ssl ← Session.Server.mk s.serverCtx
-        let conn : ServerConn := ⟨native, ssl⟩
+        let conn ← mkServerConn native s.serverCtx
         doHandshake conn.native conn.ssl ioChunkSize
         return conn
       ).asTask
-
-      -- If we get cancelled the promise will be dropped so prepare for that
       discard <| IO.mapTask (t := connTask) fun res => do
         let lose := return ()
         let win promise := do
@@ -182,21 +174,18 @@ def acceptSelector (s : Server) : Selector ServerConn :=
 /--
 Gets the local address of the server socket.
 -/
-@[inline]
 def getSockName (s : Server) : IO SocketAddress :=
   s.native.getSockName
 
 /--
 Disables the Nagle algorithm for all client sockets accepted by this server socket.
 -/
-@[inline]
 def noDelay (s : Server) : IO Unit :=
   s.native.noDelay
 
 /--
 Enables TCP keep-alive for all client sockets accepted by this server socket.
 -/
-@[inline]
 def keepAlive (s : Server) (enable : Bool) (delay : Std.Time.Second.Offset) (_ : delay.val ≥ 1 := by decide) : IO Unit :=
   s.native.keepAlive enable.toInt8 delay.val.toNat.toUInt32
 
@@ -208,7 +197,6 @@ namespace Connection
 Attempts to write plaintext data into TLS. Returns true when accepted.
 Any encrypted TLS output generated is flushed to the socket.
 -/
-@[inline]
 def write {r : Role} (s : Connection r) (data : ByteArray) : Async Bool := do
   match ← s.ssl.write data with
   | none =>
@@ -229,19 +217,11 @@ accepted rather than throwing.
 partial def send {r : Role} (s : Connection r) (data : ByteArray) (chunkSize : UInt64 := ioChunkSize) : Async Unit := do
   match ← s.ssl.write data with
   | none =>
-    -- Write accepted; flush any encrypted output the SSL engine produced.
     flushEncrypted s.native s.ssl
   | some .write =>
-    -- SSL engine needs to flush encrypted output before it can accept more
-    -- plaintext.  Drain and send it, then retry — `ssl.write` will first
-    -- drain its internal pending queue (which holds `data`) and succeed.
     flushEncrypted s.native s.ssl
     send s data chunkSize
   | some .read =>
-    -- SSL engine needs incoming encrypted bytes (e.g. waiting for the peer's
-    -- Finished message) before it can produce encrypted application data.
-    -- Flush anything already in the write BIO, read one encrypted chunk from
-    -- the peer, feed it in, then retry.
     flushEncrypted s.native s.ssl
     let encrypted? ← Async.ofPromise <| s.native.recv? chunkSize
     match encrypted? with
@@ -253,7 +233,6 @@ partial def send {r : Role} (s : Connection r) (data : ByteArray) (chunkSize : U
 /--
 Sends multiple data buffers through the TLS-enabled socket.
 -/
-@[inline]
 def sendAll {r : Role} (s : Connection r) (data : Array ByteArray) : Async Unit :=
   data.forM (s.send ·)
 
@@ -273,8 +252,7 @@ partial def recv? {r : Role} (s : Connection r) (size : UInt64) (chunkSize : UIn
     flushEncrypted s.native s.ssl
     let encrypted? ← Async.ofPromise <| s.native.recv? chunkSize
     match encrypted? with
-    | none =>
-      return none
+    | none => return none
     | some encrypted =>
       feedEncryptedChunk s.ssl encrypted
       recv? s size chunkSize
@@ -291,11 +269,7 @@ partial def tryRecv {r : Role} (s : Connection r) (size : UInt64) (chunkSize : U
     return some (← s.recv? size)
   else
     let readableWaiter ← s.native.waitReadable
-
     flushEncrypted s.native s.ssl
-
-    -- Re-check plaintext after flushing: the flush may have triggered SSL to
-    -- decrypt buffered data that was already in the read BIO.
     let pendingAfterFlush ← s.ssl.pendingPlaintext
     if pendingAfterFlush > 0 then
       s.native.cancelRecv
@@ -303,8 +277,7 @@ partial def tryRecv {r : Role} (s : Connection r) (size : UInt64) (chunkSize : U
     else if ← readableWaiter.isResolved then
       let encrypted? ← Async.ofPromise <| s.native.recv? ioChunkSize
       match encrypted? with
-      | none =>
-        return none
+      | none => return none
       | some encrypted =>
         feedEncryptedChunk s.ssl encrypted
         tryRecv s size chunkSize
@@ -347,8 +320,6 @@ def recvSelector {r : Role} (s : Connection r) (size : UInt64) : Selector (Optio
 
     registerFn waiter := do
       let readableWaiter ← s.waitReadable.asTask
-
-      -- If we get cancelled the promise will be dropped so prepare for that
       discard <| IO.mapTask (t := readableWaiter) fun res => do
         match res with
         | .error _ => return ()
@@ -370,28 +341,24 @@ def recvSelector {r : Role} (s : Connection r) (size : UInt64) : Selector (Optio
 Shuts down the write side of the socket.
 Note: this performs a TCP-level shutdown only; no TLS `close_notify` alert is sent to the peer.
 -/
-@[inline]
 def shutdown {r : Role} (s : Connection r) : Async Unit :=
   Async.ofPromise <| s.native.shutdown
 
 /--
 Gets the remote address of the socket.
 -/
-@[inline]
 def getPeerName {r : Role} (s : Connection r) : IO SocketAddress :=
   s.native.getPeerName
 
 /--
 Gets the local address of the socket.
 -/
-@[inline]
 def getSockName {r : Role} (s : Connection r) : IO SocketAddress :=
   s.native.getSockName
 
 /--
 Returns the X.509 verification result code for this TLS session.
 -/
-@[inline]
 def verifyResult {r : Role} (s : Connection r) : IO UInt64 :=
   s.ssl.verifyResult
 
@@ -399,21 +366,18 @@ def verifyResult {r : Role} (s : Connection r) : IO UInt64 :=
 Returns the human-readable X.509 verification result string for this TLS session,
 equivalent to `X509_verify_cert_error_string` in OpenSSL (e.g. `"ok"` or `"certificate has expired"`).
 -/
-@[inline]
 def verifyResultString {r : Role} (s : Connection r) : IO String :=
   s.ssl.verifyResultString
 
 /--
 Disables the Nagle algorithm for the socket.
 -/
-@[inline]
 def noDelay {r : Role} (s : Connection r) : IO Unit :=
   s.native.noDelay
 
 /--
 Enables TCP keep-alive with a specified delay for the socket.
 -/
-@[inline]
 def keepAlive {r : Role} (s : Connection r) (enable : Bool) (delay : Std.Time.Second.Offset) (_ : delay.val ≥ 1 := by decide) : IO Unit :=
   s.native.keepAlive enable.toInt8 delay.val.toNat.toUInt32
 
@@ -426,7 +390,6 @@ namespace Client
 /--
 Creates a new outgoing TLS client connection using the given client context.
 -/
-@[inline]
 def mk (ctx : Context.Client) : IO Client := do
   let native ← Socket.new
   let ssl ← Session.Client.mk ctx
@@ -436,35 +399,30 @@ def mk (ctx : Context.Client) : IO Client := do
 Configures the given client context.
 `caFile` may be empty to use default trust settings.
 -/
-@[inline]
 def configureContext (ctx : Context.Client) (caFile := "") (verifyPeer := true) : IO Unit :=
   ctx.configure caFile verifyPeer
 
 /--
 Binds the client socket to the specified address.
 -/
-@[inline]
 def bind (s : Client) (addr : SocketAddress) : IO Unit :=
   s.native.bind addr
 
 /--
 Sets SNI server name used during the TLS handshake.
 -/
-@[inline]
 def setServerName (s : Client) (host : String) : IO Unit :=
   Session.Client.setServerName s.ssl host
 
 /--
 Performs the TLS handshake on an established TCP connection.
 -/
-@[inline]
 def handshake (s : Client) (chunkSize : UInt64 := ioChunkSize) : Async Unit :=
   doHandshake (Connection.native s) (Connection.ssl s) chunkSize
 
 /--
 Connects the client socket to the given address and performs the TLS handshake.
 -/
-@[inline]
 def connect (s : Client) (addr : SocketAddress) (chunkSize : UInt64 := ioChunkSize) : Async Unit := do
   Async.ofPromise <| (Connection.native s).connect addr
   s.handshake chunkSize

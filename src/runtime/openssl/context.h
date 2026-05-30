@@ -12,9 +12,29 @@ Author: Sofia Rodrigues
 
 #ifndef LEAN_EMSCRIPTEN
 #include <openssl/ssl.h>
+#include <openssl/err.h>
+#include <string>
 #endif
 
 namespace lean {
+
+#ifndef LEAN_EMSCRIPTEN
+inline lean_object * mk_openssl_error(char const * where, int ssl_err = 0) {
+    unsigned long err = ERR_get_error();
+    char err_buf[256];
+    err_buf[0] = '\0';
+    if (err != 0) ERR_error_string_n(err, err_buf, sizeof(err_buf));
+    ERR_clear_error();
+    std::string msg(where);
+    if (ssl_err != 0) msg += " (ssl_error=" + std::to_string(ssl_err) + ")";
+    if (err_buf[0] != '\0') { msg += ": "; msg += err_buf; }
+    return lean_mk_io_user_error(mk_string(msg.c_str()));
+}
+
+inline lean_obj_res mk_openssl_io_error(char const * where, int ssl_err = 0) {
+    return lean_io_result_mk_error(mk_openssl_error(where, ssl_err));
+}
+#endif
 
 extern lean_external_class * g_ssl_context_external_class;
 void initialize_openssl_context();

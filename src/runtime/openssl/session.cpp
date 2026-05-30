@@ -10,44 +10,11 @@ Author: Sofia Rodrigues
 #include <new>
 #include <string>
 
-#ifndef LEAN_EMSCRIPTEN
-#include <openssl/err.h>
-#endif
-
 namespace lean {
 
 lean_external_class * g_ssl_session_external_class = nullptr;
 
 #ifndef LEAN_EMSCRIPTEN
-
-static inline lean_object * mk_ssl_error(char const * where, int ssl_err = 0) {
-    unsigned long err = ERR_get_error();
-    char err_buf[256];
-    err_buf[0] = '\0';
-
-    if (err != 0) {
-        ERR_error_string_n(err, err_buf, sizeof(err_buf));
-    }
-
-    // Drain remaining errors so they don't pollute future calls.
-    ERR_clear_error();
-
-    std::string msg(where);
-
-    if (ssl_err != 0) {
-        msg += " (ssl_error=" + std::to_string(ssl_err) + ")";
-    }
-    if (err_buf[0] != '\0') {
-        msg += ": ";
-        msg += err_buf;
-    }
-
-    return lean_mk_io_user_error(mk_string(msg.c_str()));
-}
-
-static inline lean_obj_res mk_ssl_io_error(char const * where, int ssl_err = 0) {
-    return lean_io_result_mk_error(mk_ssl_error(where, ssl_err));
-}
 
 /*
  * Lean encoding for `Option IOWant`:
@@ -147,6 +114,7 @@ static int try_flush_pending_writes(lean_ssl_session_object * obj, int * out_err
     return 1;
 }
 
+
 void lean_ssl_session_finalizer(void * ptr) {
     lean_ssl_session_object * obj = (lean_ssl_session_object*)ptr;
     if (obj->ssl != nullptr) SSL_free(obj->ssl);
@@ -163,7 +131,7 @@ void initialize_openssl_session() {
 static lean_obj_res mk_ssl_session(SSL_CTX * ctx, uint8_t is_server) {
     SSL * ssl = SSL_new(ctx);
     if (ssl == nullptr) {
-        return mk_ssl_io_error("SSL_new failed");
+        return mk_openssl_io_error("SSL_new failed");
     }
 
     BIO * read_bio = BIO_new(BIO_s_mem());
@@ -173,7 +141,7 @@ static lean_obj_res mk_ssl_session(SSL_CTX * ctx, uint8_t is_server) {
         if (read_bio != nullptr) BIO_free(read_bio);
         if (write_bio != nullptr) BIO_free(write_bio);
         SSL_free(ssl);
-        return mk_ssl_io_error("BIO_new failed");
+        return mk_openssl_io_error("BIO_new failed");
     }
 
     BIO_set_nbio(read_bio, 1);
@@ -190,7 +158,7 @@ static lean_obj_res mk_ssl_session(SSL_CTX * ctx, uint8_t is_server) {
     lean_ssl_session_object * ssl_obj = new (std::nothrow) lean_ssl_session_object();
     if (ssl_obj == nullptr) {
         SSL_free(ssl);
-        return mk_ssl_io_error("failed to allocate SSL session object");
+        return mk_openssl_io_error("failed to allocate SSL session object");
     }
 
     ssl_obj->ssl = ssl;
@@ -219,7 +187,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_set_server_name(b_obj_arg ssl, b
     lean_ssl_session_object * ssl_obj = lean_to_ssl_session_object(ssl);
     const char * server_name = lean_string_cstr(host);
     if (SSL_set_tlsext_host_name(ssl_obj->ssl, server_name) != 1) {
-        return mk_ssl_io_error("SSL_set_tlsext_host_name failed");
+        return mk_openssl_io_error("SSL_set_tlsext_host_name failed");
     }
     return lean_io_result_mk_ok(lean_box(0));
 }
@@ -258,7 +226,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_handshake(b_obj_arg _role, b_obj
 
     // SSL_ERROR_ZERO_RETURN means the peer sent a TLS close_notify during the
     // handshake — this is a fatal protocol error, not a recoverable retry.
-    return mk_ssl_io_error("SSL_do_handshake failed", err);
+    return mk_openssl_io_error("SSL_do_handshake failed", err);
 }
 
 /* Std.Internal.SSL.Session.write (ssl : @& Session) (data : @& ByteArray) : IO (Option IOWant) */
@@ -278,7 +246,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_write(b_obj_arg _role, b_obj_arg
         int flushed = try_flush_pending_writes(ssl_obj, &flush_err);
 
         if (flushed < 0) {
-            return mk_ssl_io_error("pending SSL write flush failed", flush_err);
+            return mk_openssl_io_error("pending SSL write flush failed", flush_err);
         }
 
         if (flushed == 0) {
@@ -299,7 +267,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_write(b_obj_arg _role, b_obj_arg
     }
 
     if (step == 0 && err == SSL_ERROR_ZERO_RETURN) {
-        return mk_ssl_io_error("SSL_write failed: peer closed the TLS session", err);
+        return mk_openssl_io_error("SSL_write failed: peer closed the TLS session", err);
     }
 
     // Queue plaintext so it is retried after the required socket I/O completes.
@@ -311,7 +279,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_write(b_obj_arg _role, b_obj_arg
         return mk_option_io_want_write();
     }
 
-    return mk_ssl_io_error("SSL_write failed", err);
+    return mk_openssl_io_error("SSL_write failed", err);
 }
 
 /* Std.Internal.SSL.Session.read? (ssl : @& Session) (maxBytes : UInt64) : IO ReadResult */
@@ -328,7 +296,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_read(b_obj_arg _role, b_obj_arg 
         if (rc > 0) {
             int flush_err = 0;
             if (try_flush_pending_writes(ssl_obj, &flush_err) < 0) {
-                return mk_ssl_io_error("pending SSL write flush failed", flush_err);
+                return mk_openssl_io_error("pending SSL write flush failed", flush_err);
             }
             // Data is available; return an empty data result so the caller
             // knows to proceed to a real read.
@@ -355,7 +323,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_read(b_obj_arg _role, b_obj_arg 
         int flush_err = 0;
         if (try_flush_pending_writes(ssl_obj, &flush_err) < 0) {
             lean_dec(out);
-            return mk_ssl_io_error("pending SSL write flush failed", flush_err);
+            return mk_openssl_io_error("pending SSL write flush failed", flush_err);
         }
         lean_sarray_set_size(out, (size_t)rc);
         return mk_read_result_data(out);
@@ -368,7 +336,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_read(b_obj_arg _role, b_obj_arg 
     if (err == SSL_ERROR_ZERO_RETURN) {
         int flush_err = 0;
         if (try_flush_pending_writes(ssl_obj, &flush_err) < 0) {
-            return mk_ssl_io_error("pending SSL write flush failed", flush_err);
+            return mk_openssl_io_error("pending SSL write flush failed", flush_err);
         }
         return mk_read_result_closed();
     }
@@ -376,28 +344,20 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_read(b_obj_arg _role, b_obj_arg 
     if (err == SSL_ERROR_WANT_READ) {
         int flush_err = 0;
         int flushed = try_flush_pending_writes(ssl_obj, &flush_err);
-        if (flushed < 0) {
-            return mk_ssl_io_error("pending SSL write flush failed", flush_err);
-        }
-        if (flushed == 0 && flush_err == SSL_ERROR_WANT_WRITE) {
-            return mk_read_result_want_write();
-        }
+        if (flushed < 0) return mk_openssl_io_error("pending SSL write flush failed", flush_err);
+        if (flushed == 0 && flush_err == SSL_ERROR_WANT_WRITE) return mk_read_result_want_write();
         return mk_read_result_want_read();
     }
 
     if (err == SSL_ERROR_WANT_WRITE) {
         int flush_err = 0;
         int flushed = try_flush_pending_writes(ssl_obj, &flush_err);
-        if (flushed < 0) {
-            return mk_ssl_io_error("pending SSL write flush failed", flush_err);
-        }
-        if (flushed == 0 && flush_err == SSL_ERROR_WANT_READ) {
-            return mk_read_result_want_read();
-        }
+        if (flushed < 0) return mk_openssl_io_error("pending SSL write flush failed", flush_err);
+        if (flushed == 0 && flush_err == SSL_ERROR_WANT_READ) return mk_read_result_want_read();
         return mk_read_result_want_write();
     }
 
-    return mk_ssl_io_error("SSL_read failed", err);
+    return mk_openssl_io_error("SSL_read failed", err);
 }
 
 /* Std.Internal.SSL.Session.feedEncrypted (ssl : @& Session) (data : @& ByteArray) : IO UInt64 */
@@ -410,7 +370,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_feed_encrypted(b_obj_arg _role, 
     }
 
     if (data_len > INT_MAX) {
-        return mk_ssl_io_error("BIO_write input too large");
+        return mk_openssl_io_error("BIO_write input too large");
     }
 
     int rc = BIO_write(ssl_obj->read_bio, lean_sarray_cptr(data), (int)data_len);
@@ -422,7 +382,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_feed_encrypted(b_obj_arg _role, 
         return lean_io_result_mk_ok(lean_box_uint64(0));
     }
 
-    return mk_ssl_io_error("BIO_write failed");
+    return mk_openssl_io_error("BIO_write failed");
 }
 
 /* Std.Internal.SSL.Session.drainEncrypted (ssl : @& Session) : IO ByteArray */
@@ -435,7 +395,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_drain_encrypted(b_obj_arg _role,
     }
 
     if (pending > INT_MAX) {
-        return mk_ssl_io_error("BIO_pending output too large");
+        return mk_openssl_io_error("BIO_pending output too large");
     }
 
     lean_object * out = lean_alloc_sarray(1, 0, pending);
@@ -452,7 +412,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_drain_encrypted(b_obj_arg _role,
         return lean_io_result_mk_ok(mk_empty_byte_array());
     }
 
-    return mk_ssl_io_error("BIO_read failed");
+    return mk_openssl_io_error("BIO_read failed");
 }
 
 /* Std.Internal.SSL.Session.pendingEncrypted (ssl : @& Session) : IO UInt64 */

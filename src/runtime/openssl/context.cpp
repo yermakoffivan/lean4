@@ -6,35 +6,11 @@ Author: Sofia Rodrigues
 
 #include "runtime/openssl/context.h"
 
-#ifndef LEAN_EMSCRIPTEN
-#include <openssl/err.h>
-#endif
-
 namespace lean {
 
 lean_external_class * g_ssl_context_external_class = nullptr;
 
 #ifndef LEAN_EMSCRIPTEN
-
-static inline lean_obj_res mk_ssl_ctx_io_error(char const * where) {
-    unsigned long err = ERR_get_error();
-    char err_buf[256];
-    err_buf[0] = '\0';
-
-    if (err != 0) {
-        ERR_error_string_n(err, err_buf, sizeof(err_buf));
-    }
-
-    ERR_clear_error();
-
-    std::string msg(where);
-    if (err_buf[0] != '\0') {
-        msg += ": ";
-        msg += err_buf;
-    }
-
-    return lean_io_result_mk_error(lean_mk_io_user_error(mk_string(msg.c_str())));
-}
 
 static void configure_ctx_options(SSL_CTX * ctx) {
     SSL_CTX_set_options(ctx, SSL_OP_NO_RENEGOTIATION);
@@ -42,9 +18,7 @@ static void configure_ctx_options(SSL_CTX * ctx) {
 
 static void lean_ssl_context_finalizer(void * ptr) {
     lean_ssl_context_object * obj = (lean_ssl_context_object*)ptr;
-    if (obj->ctx != nullptr) {
-        SSL_CTX_free(obj->ctx);
-    }
+    SSL_CTX_free(obj->ctx);
     free(obj);
 }
 
@@ -58,7 +32,7 @@ void initialize_openssl_context() {
 static lean_obj_res mk_ssl_context(const SSL_METHOD * method) {
     SSL_CTX * ctx = SSL_CTX_new(method);
     if (ctx == nullptr) {
-        return mk_ssl_ctx_io_error("SSL_CTX_new failed");
+        return mk_openssl_io_error("SSL_CTX_new failed");
     }
 
     configure_ctx_options(ctx);
@@ -66,7 +40,7 @@ static lean_obj_res mk_ssl_context(const SSL_METHOD * method) {
     lean_ssl_context_object * obj = (lean_ssl_context_object*)malloc(sizeof(lean_ssl_context_object));
     if (obj == nullptr) {
         SSL_CTX_free(ctx);
-        return mk_ssl_ctx_io_error("failed to allocate SSL context object");
+        return mk_openssl_io_error("failed to allocate SSL context object");
     }
 
     obj->ctx = ctx;
@@ -91,13 +65,13 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_ctx_configure_server(b_obj_arg c
     const char * key = lean_string_cstr(key_file);
 
     if (SSL_CTX_use_certificate_file(obj->ctx, cert, SSL_FILETYPE_PEM) <= 0) {
-        return mk_ssl_ctx_io_error("SSL_CTX_use_certificate_file failed");
+        return mk_openssl_io_error("SSL_CTX_use_certificate_file failed");
     }
     if (SSL_CTX_use_PrivateKey_file(obj->ctx, key, SSL_FILETYPE_PEM) <= 0) {
-        return mk_ssl_ctx_io_error("SSL_CTX_use_PrivateKey_file failed");
+        return mk_openssl_io_error("SSL_CTX_use_PrivateKey_file failed");
     }
     if (SSL_CTX_check_private_key(obj->ctx) != 1) {
-        return mk_ssl_ctx_io_error("SSL_CTX_check_private_key failed");
+        return mk_openssl_io_error("SSL_CTX_check_private_key failed");
     }
 
     return lean_io_result_mk_ok(lean_box(0));
@@ -110,11 +84,11 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_ctx_configure_client(b_obj_arg c
 
     if (ca != nullptr && ca[0] != '\0') {
         if (SSL_CTX_load_verify_locations(obj->ctx, ca, nullptr) != 1) {
-            return mk_ssl_ctx_io_error("SSL_CTX_load_verify_locations failed");
+            return mk_openssl_io_error("SSL_CTX_load_verify_locations failed");
         }
     } else if (verify_peer) {
         if (SSL_CTX_set_default_verify_paths(obj->ctx) != 1) {
-            return mk_ssl_ctx_io_error("SSL_CTX_set_default_verify_paths failed");
+            return mk_openssl_io_error("SSL_CTX_set_default_verify_paths failed");
         }
     }
 

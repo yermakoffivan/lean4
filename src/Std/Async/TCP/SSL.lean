@@ -244,7 +244,10 @@ partial def recv? (s : Connection) (size : UInt64) (chunkSize : UInt64 := ioChun
     return some plain
   | .closed =>
     return none
-  | .wantIO _ =>
+  | .wantIO .write =>
+    flushEncrypted s.native s.ssl
+    recv? s size chunkSize
+  | .wantIO .read =>
     flushEncrypted s.native s.ssl
     let encrypted? ← Async.ofPromise <| s.native.recv? chunkSize
     match encrypted? with
@@ -289,7 +292,9 @@ partial def waitReadable (s : Connection) : Async Unit := do
   flushEncrypted s.native s.ssl
   match ← s.ssl.read? 0 with
   | .data _ | .closed => return ()
-  | .wantIO _ =>
+  | .wantIO .write =>
+    waitReadable s
+  | .wantIO .read =>
     let encrypted? ← Async.ofPromise <| s.native.recv? ioChunkSize
     match encrypted? with
     | none => return ()

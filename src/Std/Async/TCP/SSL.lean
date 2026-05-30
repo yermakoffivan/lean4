@@ -7,14 +7,14 @@ module
 
 prelude
 public import Std.Time
-public import Std.Internal.UV.TCP
-public import Std.Internal.Async.Timer
-public import Std.Internal.Async.Select
+public import Std.Async.Timer
+public import Std.Async.Select
 public import Std.Internal.SSL
+public import Std.Internal.UV.TCP
 
 public section
 
-namespace Std.Internal.IO.Async.TCP.SSL
+namespace Std.Async.TCP.SSL
 
 open Std.Internal.SSL
 open Std.Internal.UV.TCP
@@ -24,8 +24,6 @@ open Std.Net
 Default chunk size used by TLS I/O loops.
 -/
 def ioChunkSize : UInt64 := 16 * 1024
-
--- ## Private helpers: SSL ↔ TCP I/O bridge
 
 /--
 Feeds an encrypted chunk into the SSL input BIO.
@@ -437,4 +435,4 @@ def connect (s : Client) (addr : SocketAddress) (chunkSize : UInt64 := ioChunkSi
   Async.ofPromise <| (Connection.native s).connect addr
   s.handshake chunkSize
 
-end Std.Internal.IO.Async.TCP.SSL.Client
+end Std.Async.TCP.SSL.Client

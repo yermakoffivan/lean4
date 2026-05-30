@@ -378,17 +378,6 @@ if(NOT "${CMAKE_SYSTEM_NAME}" MATCHES "Emscripten")
   endif()
 endif()
 
-if(CMAKE_SYSTEM_NAME MATCHES "Linux")
-  string(APPEND LEANSHARED_LINKER_FLAGS " -Wl,-rpath,\\$$ORIGIN")
-endif()
-
-if(CMAKE_SYSTEM_NAME MATCHES "Windows")
-  string(APPEND LEANSHARED_LINKER_FLAGS " -lcrypt32 -lgdi32")
-  if(NOT LEAN_STANDALONE)
-    string(APPEND LEAN_EXTRA_LINKER_FLAGS " -lcrypt32 -lgdi32")
-  endif()
-endif()
-
 # Windows SDK (for ICU)
 if(CMAKE_SYSTEM_NAME MATCHES "Windows")
   # Pass 'tools' to skip MSVC version check (as MSVC/Visual Studio is not necessarily installed)
@@ -1089,8 +1078,8 @@ configure_file(${LEAN_SOURCE_DIR}/stdlib.make.in ${CMAKE_BINARY_DIR}/stdlib.make
 
 # hacky
 function(toml_escape IN OUTVAR)
-  if(IN)
-    string(STRIP "${IN}" OUT)
+  string(STRIP "${IN}" OUT)
+  if(OUT)
     string(REPLACE " " "\", \"" OUT "${OUT}")
     set(${OUTVAR} "\"${OUT}\"" PARENT_SCOPE)
   endif()
@@ -1100,6 +1089,7 @@ string(REPLACE "ROOT" "${CMAKE_BINARY_DIR}" LEANC_INTERNAL_FLAGS "${LEANC_INTERN
 string(REPLACE "ROOT" "${CMAKE_BINARY_DIR}" LEANC_INTERNAL_LINKER_FLAGS "${LEANC_INTERNAL_LINKER_FLAGS}")
 
 toml_escape("${LEAN_EXTRA_OPTS}" LEAN_EXTRA_OPTS_TOML)
+toml_escape("${LEANC_INTERNAL_FLAGS} ${LEANC_INTERNAL_LINKER_FLAGS}" LEAN_MORE_LEANC_ARGS_TOML)
 
 if(CMAKE_BUILD_TYPE MATCHES "Debug|Release|RelWithDebInfo|MinSizeRel")
   set(CMAKE_BUILD_TYPE_TOML "${CMAKE_BUILD_TYPE}")

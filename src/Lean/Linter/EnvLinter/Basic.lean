@@ -13,6 +13,7 @@ prelude
 public import Lean.Structure
 public import Lean.Elab.InfoTree.Main
 import Lean.ExtraModUses
+public import Lean.Linter.EnvLinter.Nolint
 
 public section
 
@@ -78,7 +79,7 @@ structure EnvLinter where
   noErrorsFound : MessageData
   /-- `errorsFound` is printed when at least one test is positive -/
   errorsFound : MessageData
-  /-- If `isDefault` is false, this linter is only run when `--clippy` is passed. -/
+  /-- If `isDefault` is false, this linter is only run when `--extra` is passed. -/
   isDefault := true
 
 /-- A `NamedEnvLinter` is an environment linter associated to a particular declaration. -/
@@ -104,12 +105,12 @@ builtin_initialize envLinterExt :
 
 /--
 Defines the `@[builtin_env_linter]` attribute for adding a linter to the default set.
-The form `@[builtin_env_linter clippy]` will not add the linter to the default set,
-but it can be selected by `lake builtin-lint --clippy`.
+The form `@[builtin_env_linter extra]` will not add the linter to the default set,
+but it can be selected by `lake builtin-lint --extra`.
 
 Linters are named using their declaration names, without the namespace. These must be distinct.
 -/
-syntax (name := builtin_env_linter) "builtin_env_linter" &" clippy"? : attr
+syntax (name := builtin_env_linter) "builtin_env_linter" &" extra"? : attr
 
 builtin_initialize registerBuiltinAttribute {
   name := `builtin_env_linter
@@ -134,30 +135,5 @@ builtin_initialize registerBuiltinAttribute {
         `{constInfo.type}`"
     modifyEnv fun env => envLinterExt.addEntry env (decl, dflt)
 }
-
-/-- `@[builtin_nolint linterName]` omits the tagged declaration from being checked by
-the linter with name `linterName`. -/
-syntax (name := builtin_nolint) "builtin_nolint" (ppSpace ident)+ : attr
-
-/-- Defines the user attribute `builtin_nolint` for skipping environment linters. -/
-builtin_initialize builtinNolintAttr : ParametricAttribute (Array Name) ←
-  registerParametricAttribute {
-    name := `builtin_nolint
-    descr := "Do not report this declaration in any of the tests of `lake builtin-lint`"
-    getParam := fun _ => fun
-      | `(attr| builtin_nolint $[$ids]*) => ids.mapM fun id => withRef id <| do
-        let shortName := id.getId.eraseMacroScopes
-        let some (declName, _) := (envLinterExt.getState (← getEnv)).find? shortName
-          | throwError "linter '{shortName}' not found"
-        Elab.addConstInfo id declName
-        recordExtraModUseFromDecl (isMeta := false) declName
-        pure shortName
-      | _ => Elab.throwUnsupportedSyntax
-  }
-
-/-- Returns true if `decl` should be checked
-using `linter`, i.e., if there is no `builtin_nolint` attribute. -/
-def shouldBeLinted [Monad m] [MonadEnv m] (linter : Name) (decl : Name) : m Bool :=
-  return !((builtinNolintAttr.getParam? (← getEnv) decl).getD #[]).contains linter
 
 end Lean.Linter.EnvLinter

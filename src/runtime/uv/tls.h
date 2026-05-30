@@ -18,7 +18,7 @@ Author: Sofia Rodrigues
 
 namespace lean {
 
-static lean_external_class* g_uv_tls_socket_external_class = NULL;
+extern lean_external_class* g_uv_tls_socket_external_class;
 void initialize_libuv_tls_socket();
 
 #ifndef LEAN_EMSCRIPTEN
@@ -38,7 +38,7 @@ typedef struct {
 typedef struct {
     SSL_CTX*                        ctx;                 // OpenSSL context for TLS
     uv_loop_t*                      loop;                // LibUV event loop
-    lean_connection_handler_t.      protocol;            // Protocol callback handlers
+    lean_connection_handler_t       protocol;            // Protocol callback handlers
     lean_tls_uv_connection_state_t* pending_writes;      // Queue of connections with pending writes
     int                             is_server;           // Flag: 1 for server mode, 0 for client mode
 } lean_tls_uv_state_t;

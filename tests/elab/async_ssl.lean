@@ -34,8 +34,7 @@ def setupTestCerts : IO (String × String) := do
 
   discard <| IO.Process.output {
     cmd  := "openssl"
-    args := #["req", "-new", "-x509", "-key", keyFile, "-out", certFile,
-              "-days", "1", "-subj", "/CN=localhost"]
+    args := #["req", "-new", "-x509", "-key", keyFile, "-out", certFile, "-days", "1", "-subj", "/CN=localhost"]
   }
 
   return (certFile, keyFile)
@@ -541,6 +540,97 @@ def testBidirectional (addr : SocketAddress) (certFile keyFile : String) : IO Un
   cliTask.block
 
 -- ---------------------------------------------------------------------------
+-- Test 14: write ByteArray.empty returns none without touching the SSL engine
+-- ---------------------------------------------------------------------------
+
+def testEmptyWrite (certFile keyFile : String) : IO Unit := do
+  let serverCtx ← Context.Server.mk
+  serverCtx.configure certFile keyFile
+  let clientCtx ← Context.Client.mk
+  clientCtx.configure "" false
+
+  let serverSess ← Session.Server.mk serverCtx
+  let clientSess ← Session.Client.mk clientCtx
+  runHandshake clientSess serverSess
+
+  let result ← clientSess.write ByteArray.empty
+  unless result.isNone do
+    throw <| IO.userError "empty write should return none"
+
+-- ---------------------------------------------------------------------------
+-- Test 15: read? 0 returns wantIO (not .data empty) when no data is buffered
+-- ---------------------------------------------------------------------------
+
+def testReadZero (certFile keyFile : String) : IO Unit := do
+  let serverCtx ← Context.Server.mk
+  serverCtx.configure certFile keyFile
+  let clientCtx ← Context.Client.mk
+  clientCtx.configure "" false
+
+  let serverSess ← Session.Server.mk serverCtx
+  let clientSess ← Session.Client.mk clientCtx
+  runHandshake clientSess serverSess
+
+  -- No data has been sent; read? 0 must signal wantIO, not return .data empty.
+  let result ← serverSess.read? 0
+  match result with
+  | .wantIO _ => return ()
+  | .data b   => throw <| IO.userError s!"read? 0 returned .data (size={b.size}) instead of wantIO"
+  | .closed   => throw <| IO.userError "read? 0 returned .closed unexpectedly"
+
+-- ---------------------------------------------------------------------------
+-- Test 16: multiple pending writes flush in order (exercises deque pop_front)
+-- ---------------------------------------------------------------------------
+
+def testPendingWriteOrder (certFile keyFile : String) : IO Unit := do
+  let serverCtx ← Context.Server.mk
+  serverCtx.configure certFile keyFile
+  let clientCtx ← Context.Client.mk
+  clientCtx.configure "" false
+
+  let serverSess ← Session.Server.mk serverCtx
+  let clientSess ← Session.Client.mk clientCtx
+  runHandshake clientSess serverSess
+
+  -- Write three distinct messages through the client session and verify the
+  -- server receives them in the same order.  This exercises the pending_writes
+  -- deque: each write drains the queue front-to-back before appending.
+  let msgs := #["first".toUTF8, "second".toUTF8, "third".toUTF8]
+  for m in msgs do
+    discard <| clientSess.write m
+    pipeEncrypted clientSess serverSess
+
+  let mut received : Array String := #[]
+  for _ in msgs do
+    let r ← serverSess.read? 1024
+    match r with
+    | .data b => received := received.push (String.fromUTF8! b)
+    | _       => throw <| IO.userError "expected data in pending write order test"
+
+  for i in List.range msgs.size do
+    let expected := String.fromUTF8! msgs[i]!
+    unless received[i]! == expected do
+      throw <| IO.userError s!"write order mismatch at {i}: expected '{expected}', got '{received[i]!}'"
+
+-- ---------------------------------------------------------------------------
+-- Test 17: verifyResultString returns a non-empty string after handshake
+-- ---------------------------------------------------------------------------
+
+def testVerifyResultString (certFile keyFile : String) : IO Unit := do
+  let serverCtx ← Context.Server.mk
+  serverCtx.configure certFile keyFile
+  let clientCtx ← Context.Client.mk
+  clientCtx.configure "" false
+
+  let serverSess ← Session.Server.mk serverCtx
+  let clientSess ← Session.Client.mk clientCtx
+  runHandshake clientSess serverSess
+
+  let s ← clientSess.verifyResultString
+  if s.isEmpty then
+    throw <| IO.userError "verifyResultString returned empty string"
+
+-- ---------------------------------------------------------------------------
 -- Run all tests
 -- ---------------------------------------------------------------------------
 
@@ -599,3 +689,19 @@ def testBidirectional (addr : SocketAddress) (certFile keyFile : String) : IO Un
 #eval do
   let (certFile, keyFile) ← setupTestCerts
   testBidirectional (SocketAddressV4.mk (.ofParts 127 0 0 1) 18452) certFile keyFile
+
+#eval do
+  let (certFile, keyFile) ← setupTestCerts
+  testEmptyWrite certFile keyFile
+
+#eval do
+  let (certFile, keyFile) ← setupTestCerts
+  testReadZero certFile keyFile
+
+#eval do
+  let (certFile, keyFile) ← setupTestCerts
+  testPendingWriteOrder certFile keyFile
+
+#eval do
+  let (certFile, keyFile) ← setupTestCerts
+  testVerifyResultString certFile keyFile

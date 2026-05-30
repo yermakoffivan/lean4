@@ -16,7 +16,7 @@ Author: Sofia Rodrigues
 
 namespace lean {
 
-static lean_external_class * g_ssl_context_external_class = nullptr;
+extern lean_external_class * g_ssl_context_external_class;
 void initialize_openssl_context();
 
 #ifndef LEAN_EMSCRIPTEN

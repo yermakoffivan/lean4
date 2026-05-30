@@ -16,6 +16,8 @@ Author: Sofia Rodrigues
 
 namespace lean {
 
+lean_external_class * g_ssl_session_external_class = nullptr;
+
 #ifndef LEAN_EMSCRIPTEN
 
 static inline lean_object * mk_ssl_error(char const * where, int ssl_err = 0) {
@@ -140,7 +142,7 @@ static int try_flush_pending_writes(lean_ssl_session_object * obj, int * out_err
         int step = ssl_write_step(obj, pw.data(), pw.size(), out_err);
         if (step < 0) return -1;
         if (step == 0) return 0;
-        obj->pending_writes.erase(obj->pending_writes.begin());
+        obj->pending_writes.pop_front();
     }
     return 1;
 }
@@ -229,6 +231,14 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_verify_result(b_obj_arg _role, b
     return lean_io_result_mk_ok(lean_box_uint64((uint64_t)result));
 }
 
+/* Std.Internal.SSL.Session.verifyResultString (ssl : @& Session) : IO String */
+extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_verify_result_string(b_obj_arg _role, b_obj_arg ssl) {
+    lean_ssl_session_object * ssl_obj = lean_to_ssl_session_object(ssl);
+    long result = SSL_get_verify_result(ssl_obj->ssl);
+    const char * msg = X509_verify_cert_error_string(result);
+    return lean_io_result_mk_ok(lean_mk_string(msg));
+}
+
 /* Std.Internal.SSL.Session.handshake (ssl : @& Session) : IO (Option IOWant) */
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_handshake(b_obj_arg _role, b_obj_arg ssl) {
     lean_ssl_session_object * ssl_obj = lean_to_ssl_session_object(ssl);
@@ -239,13 +249,15 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_handshake(b_obj_arg _role, b_obj
     }
 
     int err = SSL_get_error(ssl_obj->ssl, rc);
-    if (err == SSL_ERROR_WANT_READ || err == SSL_ERROR_ZERO_RETURN) {
+    if (err == SSL_ERROR_WANT_READ) {
         return mk_option_io_want_read();
     }
     if (err == SSL_ERROR_WANT_WRITE) {
         return mk_option_io_want_write();
     }
 
+    // SSL_ERROR_ZERO_RETURN means the peer sent a TLS close_notify during the
+    // handshake — this is a fatal protocol error, not a recoverable retry.
     return mk_ssl_io_error("SSL_do_handshake failed", err);
 }
 
@@ -306,8 +318,30 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_write(b_obj_arg _role, b_obj_arg
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_read(b_obj_arg _role, b_obj_arg ssl, uint64_t max_bytes) {
     lean_ssl_session_object * ssl_obj = lean_to_ssl_session_object(ssl);
 
+    // When max_bytes == 0, use SSL_peek with a 1-byte scratch buffer so that
+    // OpenSSL returns the real WANT_READ/WANT_WRITE signal without consuming
+    // any data from the stream.  The caller (waitReadable) uses the constructor
+    // tag of the result only; it does not use the bytes.
     if (max_bytes == 0) {
-        return mk_read_result_data(mk_empty_byte_array());
+        char peek_buf[1];
+        int rc = SSL_peek(ssl_obj->ssl, peek_buf, 1);
+        if (rc > 0) {
+            int flush_err = 0;
+            if (try_flush_pending_writes(ssl_obj, &flush_err) < 0) {
+                return mk_ssl_io_error("pending SSL write flush failed", flush_err);
+            }
+            // Data is available; return an empty data result so the caller
+            // knows to proceed to a real read.
+            return mk_read_result_data(mk_empty_byte_array());
+        }
+        int err = SSL_get_error(ssl_obj->ssl, rc);
+        if (err == SSL_ERROR_ZERO_RETURN) {
+            return mk_read_result_closed();
+        }
+        if (err == SSL_ERROR_WANT_WRITE) {
+            return mk_read_result_want_write();
+        }
+        return mk_read_result_want_read();
     }
 
     if (max_bytes > INT_MAX) {
@@ -456,6 +490,11 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_set_server_name(b_obj_arg ssl, b
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_verify_result(b_obj_arg _role, b_obj_arg ssl) {
     (void)ssl;
     return io_result_mk_error("lean_uv_ssl_verify_result is not supported");
+}
+
+extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_verify_result_string(b_obj_arg _role, b_obj_arg ssl) {
+    (void)ssl;
+    return io_result_mk_error("lean_uv_ssl_verify_result_string is not supported");
 }
 
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_handshake(b_obj_arg _role, b_obj_arg ssl) {

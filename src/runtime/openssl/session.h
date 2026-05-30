@@ -15,11 +15,12 @@ Author: Sofia Rodrigues
 #include <openssl/bio.h>
 #endif
 
+#include <deque>
 #include <vector>
 
 namespace lean {
 
-static lean_external_class * g_ssl_session_external_class = nullptr;
+extern lean_external_class * g_ssl_session_external_class;
 void initialize_openssl_session();
 
 #ifndef LEAN_EMSCRIPTEN
@@ -27,7 +28,7 @@ struct lean_ssl_session_object {
     SSL * ssl;
     BIO * read_bio;
     BIO * write_bio;
-    std::vector<std::vector<char>> pending_writes;
+    std::deque<std::vector<char>> pending_writes;
 };
 
 static inline lean_object * lean_ssl_session_object_new(lean_ssl_session_object * s) { return lean_alloc_external(g_ssl_session_external_class, s); }
@@ -38,6 +39,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_mk_server(b_obj_arg ctx);
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_mk_client(b_obj_arg ctx);
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_set_server_name(b_obj_arg ssl, b_obj_arg host);
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_verify_result(b_obj_arg _role, b_obj_arg ssl);
+extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_verify_result_string(b_obj_arg _role, b_obj_arg ssl);
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_handshake(b_obj_arg _role, b_obj_arg ssl);
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_write(b_obj_arg _role, b_obj_arg ssl, b_obj_arg data);
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_read(b_obj_arg _role, b_obj_arg ssl, uint64_t max_bytes);

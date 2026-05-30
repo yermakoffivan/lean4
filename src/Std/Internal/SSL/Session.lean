@@ -102,6 +102,13 @@ Gets the X.509 verify result code after handshake.
 opaque verifyResult {r : Role} (ssl : @& Session r) : IO UInt64
 
 /--
+Gets the human-readable X.509 verify result string after handshake.
+Equivalent to `X509_verify_cert_error_string` in OpenSSL.
+-/
+@[extern "lean_uv_ssl_verify_result_string"]
+opaque verifyResultString {r : Role} (ssl : @& Session r) : IO String
+
+/--
 Runs one handshake step.
 Returns `none` when the handshake is complete, or `some w` when OpenSSL needs socket I/O of
 kind `w` before the handshake can proceed.

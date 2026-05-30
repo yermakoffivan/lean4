@@ -12,6 +12,8 @@ Author: Sofia Rodrigues
 
 namespace lean {
 
+lean_external_class * g_ssl_context_external_class = nullptr;
+
 #ifndef LEAN_EMSCRIPTEN
 
 static inline lean_obj_res mk_ssl_ctx_io_error(char const * where) {
@@ -35,7 +37,7 @@ static inline lean_obj_res mk_ssl_ctx_io_error(char const * where) {
 }
 
 static void configure_ctx_options(SSL_CTX * ctx) {
-    SSL_CTX_clear_options(ctx, SSL_OP_NO_RENEGOTIATION);
+    SSL_CTX_set_options(ctx, SSL_OP_NO_RENEGOTIATION);
 }
 
 static void lean_ssl_context_finalizer(void * ptr) {

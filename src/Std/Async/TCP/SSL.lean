@@ -220,15 +220,35 @@ def write {r : Role} (s : Connection r) (data : ByteArray) : Async Bool := do
     return false
 
 /--
-Sends data through a TLS-enabled socket.
-Fails if OpenSSL reports the write as pending additional I/O.
+Sends data through a TLS-enabled socket, blocking until accepted.
+When OpenSSL reports the write as pending additional I/O (e.g. during a
+renegotiation or before the handshake Finished round-trip completes), this
+function performs the required socket I/O and retries until the data is
+accepted rather than throwing.
 -/
-@[inline]
-def send {r : Role} (s : Connection r) (data : ByteArray) : Async Unit := do
-  if ← s.write data then
-    return ()
-  else
-    throw <| IO.userError "TLS write is pending additional I/O; call `recv?` or retry later"
+partial def send {r : Role} (s : Connection r) (data : ByteArray) (chunkSize : UInt64 := ioChunkSize) : Async Unit := do
+  match ← s.ssl.write data with
+  | none =>
+    -- Write accepted; flush any encrypted output the SSL engine produced.
+    flushEncrypted s.native s.ssl
+  | some .write =>
+    -- SSL engine needs to flush encrypted output before it can accept more
+    -- plaintext.  Drain and send it, then retry — `ssl.write` will first
+    -- drain its internal pending queue (which holds `data`) and succeed.
+    flushEncrypted s.native s.ssl
+    send s data chunkSize
+  | some .read =>
+    -- SSL engine needs incoming encrypted bytes (e.g. waiting for the peer's
+    -- Finished message) before it can produce encrypted application data.
+    -- Flush anything already in the write BIO, read one encrypted chunk from
+    -- the peer, feed it in, then retry.
+    flushEncrypted s.native s.ssl
+    let encrypted? ← Async.ofPromise <| s.native.recv? chunkSize
+    match encrypted? with
+    | none => throw <| IO.userError "connection closed while flushing TLS write"
+    | some encrypted =>
+      feedEncryptedChunk s.ssl encrypted
+      send s data chunkSize
 
 /--
 Sends multiple data buffers through the TLS-enabled socket.
@@ -274,7 +294,13 @@ partial def tryRecv {r : Role} (s : Connection r) (size : UInt64) (chunkSize : U
 
     flushEncrypted s.native s.ssl
 
-    if ← readableWaiter.isResolved then
+    -- Re-check plaintext after flushing: the flush may have triggered SSL to
+    -- decrypt buffered data that was already in the read BIO.
+    let pendingAfterFlush ← s.ssl.pendingPlaintext
+    if pendingAfterFlush > 0 then
+      s.native.cancelRecv
+      return some (← s.recv? size)
+    else if ← readableWaiter.isResolved then
       let encrypted? ← Async.ofPromise <| s.native.recv? ioChunkSize
       match encrypted? with
       | none =>
@@ -370,6 +396,14 @@ def verifyResult {r : Role} (s : Connection r) : IO UInt64 :=
   s.ssl.verifyResult
 
 /--
+Returns the human-readable X.509 verification result string for this TLS session,
+equivalent to `X509_verify_cert_error_string` in OpenSSL (e.g. `"ok"` or `"certificate has expired"`).
+-/
+@[inline]
+def verifyResultString {r : Role} (s : Connection r) : IO String :=
+  s.ssl.verifyResultString
+
+/--
 Disables the Nagle algorithm for the socket.
 -/
 @[inline]
@@ -380,7 +414,7 @@ def noDelay {r : Role} (s : Connection r) : IO Unit :=
 Enables TCP keep-alive with a specified delay for the socket.
 -/
 @[inline]
-def keepAlive {r : Role} (s : Connection r) (enable : Bool) (delay : Std.Time.Second.Offset) (_ : delay.val ≥ 0 := by decide) : IO Unit :=
+def keepAlive {r : Role} (s : Connection r) (enable : Bool) (delay : Std.Time.Second.Offset) (_ : delay.val ≥ 1 := by decide) : IO Unit :=
   s.native.keepAlive enable.toInt8 delay.val.toNat.toUInt32
 
 end Connection

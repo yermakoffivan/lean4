@@ -71,7 +71,6 @@ static lean_obj_res mk_ssl_context(const SSL_METHOD * method) {
 
     obj->ctx = ctx;
     lean_object * lean_obj = lean_ssl_context_object_new(obj);
-    lean_mark_mt(lean_obj);
     return lean_io_result_mk_ok(lean_obj);
 }
 

@@ -998,3 +998,11 @@ info: some (some "a%3Db")
   match (parseRequestTarget <* Std.Internal.Parsec.eof).run "http://[::1]/".toUTF8 with
   | .ok (.absoluteForm uri) => uri.authority.any fun a => match a.host with | .ipv6 _ => true | _ => false
   | _ => false
+
+-- RFC 3986 §3.2 allows an empty reg-name, so `file:///path` (empty authority)
+-- must parse as an absolute URI, not fall back to a relative reference.
+-- This ensures the non-http(s) scheme guard in redirect logic fires correctly.
+#guard
+  match URIReference.parse? "file:///etc/passwd" with
+  | some (.absolute af) => af.scheme.val == "file" && af.authority.isNone
+  | _ => false

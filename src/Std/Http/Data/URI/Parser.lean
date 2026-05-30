@@ -313,10 +313,13 @@ private def parseFragment (config : URI.Config) : Parser URI.EncodedFragment := 
 
 private def parseHierPart (config : URI.Config) : Parser (Option URI.Authority × URI.Path) := do
   -- Check for "//" authority path-abempty
+  -- RFC 3986 §3.2 allows an empty reg-name, so `file:///path` (empty host) is valid.
+  -- When parseAuthority fails on an empty host, treat authority as absent so the
+  -- scheme guard in callers fires correctly on non-http(s) URIs.
   if (← tryOpt (skipString "//")).isSome then
-    let authority ← parseAuthority config
+    let authority ← tryOpt (attempt (parseAuthority config))
     let path ← parsePath config true true  -- path-abempty (must start with "/" or be empty)
-    return (some authority, path)
+    return (authority, path)
   else
     -- path-absolute / path-rootless / path-empty
     let path ← parsePath config false true

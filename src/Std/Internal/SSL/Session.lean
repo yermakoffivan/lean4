@@ -67,9 +67,6 @@ inductive ReadResult where
   -/
   | closed
 
-instance : Coe Session.Server Session := ⟨Session.Server.toSession⟩
-instance : Coe Session.Client Session := ⟨Session.Client.toSession⟩
-
 namespace Session
 
 namespace Server
@@ -82,7 +79,7 @@ private opaque mkImpl (ctx : @& Context.Server) : IO Session
 
 /-- Creates a new server-side SSL session from the given context. -/
 def mk (ctx : @& Context.Server) : IO Session.Server :=
-  (⟨·⟩ : Session → Session.Server) <$> mkImpl ctx
+  return ⟨← mkImpl ctx⟩
 
 end Server
 
@@ -96,7 +93,7 @@ private opaque mkImpl (ctx : @& Context.Client) : IO Session
 
 /-- Creates a new client-side SSL session from the given context. -/
 def mk (ctx : @& Context.Client) : IO Session.Client :=
-  (⟨·⟩ : Session → Session.Client) <$> mkImpl ctx
+  return ⟨← mkImpl ctx⟩
 
 end Client
 
@@ -286,8 +283,7 @@ Returns the X.509 verification result string for a client session. See `Session.
 -/
 @[inline]
 def verifyResultString (s : Session.Client) := Session.verifyResultString s.toSession
+
 end Client
-
 end Session
-
 end Std.Internal.SSL

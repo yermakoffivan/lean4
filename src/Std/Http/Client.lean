@@ -52,7 +52,7 @@ structure Client.Builder where
   /--
   Maximum number of pooled connections per host.
   -/
-  maxPerHost : Nat := 4
+  maxPerHost : Nat := 1
 
   /--
   Erased connector function. Set via `.connector`.
@@ -104,13 +104,10 @@ def timeout? (b : Client.Builder) (ms : Time.Millisecond.Offset) : Option Client
 /--
 Sets the request timeout (send + receive).
 DNS resolution and TCP connect are not covered by this timeout.
-Values ≤ 0 are clamped to 1 ms; use `timeout?` to detect an invalid value without clamping.
+Values ≤ 0 are ignored and the builder is returned unchanged; use `timeout?` to detect an invalid value.
 -/
-def timeout (b : Client.Builder) (ms : Time.Millisecond.Offset) : Client.Builder :=
-  if h : 0 < ms then
-    { b with config := { b.config with requestTimeout := ⟨ms, h⟩ } }
-  else
-    { b with config := { b.config with requestTimeout := ⟨1, by decide⟩ } }
+def timeout (b : Client.Builder) (ms : Time.Millisecond.Offset) (h : 0 < ms := by decide) : Client.Builder :=
+  { b with config := { b.config with requestTimeout := ⟨ms, h⟩ } }
 
 /--
 Sets the `User-Agent` header sent with every request.

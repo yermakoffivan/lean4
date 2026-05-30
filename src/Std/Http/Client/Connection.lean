@@ -407,7 +407,6 @@ private def processH1Events
       sawFailure := true
 
     | .«continue» => pure ()
-
     | .close => pure ()
 
   return (st, sawFailure)
@@ -421,6 +420,11 @@ the H1 machine.
 private def abortState (state : ConnectionState) (err : IO.Error) : Async ConnectionState := do
   if let some packet := state.currentRequest then
     packet.onError err
+
+  -- Close the response stream with the error so that a caller blocked in
+  -- `readAll` receives a thrown exception rather than a silent short read.
+  if let some body := state.responseStream then
+    if ¬(← Body.isClosed body) then body.closeWithError err
 
   closeAllRequestState state
   return { state with machine := state.machine.closeWriter.closeReader.noMoreInput, inFlight := none }

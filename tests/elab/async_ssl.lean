@@ -198,10 +198,9 @@ def testTCPSSL (addr : SocketAddress) (certFile keyFile : String) : IO Unit := d
   serverCtx.configure certFile keyFile
 
   let clientCtx ← Context.Client.mk
-  Client.configureContext clientCtx "" false
+  clientCtx.configure "" false
 
   let server ← Server.mk serverCtx
-  server.configureServer certFile keyFile  -- idempotent re-configuration
   server.bind addr
   server.listen 128
 
@@ -221,7 +220,7 @@ def testMultipleRoundTrips (addr : SocketAddress) (certFile keyFile : String) : 
   let serverCtx ← Context.Server.mk
   serverCtx.configure certFile keyFile
   let clientCtx ← Context.Client.mk
-  Client.configureContext clientCtx "" false
+  clientCtx.configure "" false
 
   let server ← Server.mk serverCtx
   server.bind addr
@@ -260,7 +259,7 @@ def testLargePayload (addr : SocketAddress) (certFile keyFile : String) : IO Uni
   let serverCtx ← Context.Server.mk
   serverCtx.configure certFile keyFile
   let clientCtx ← Context.Client.mk
-  Client.configureContext clientCtx "" false
+  clientCtx.configure "" false
 
   let payloadSize := 64 * 1024  -- 64 KB: spans multiple TLS records
   let payload := ByteArray.mk (List.replicate payloadSize 0x42).toArray
@@ -305,7 +304,7 @@ def testRecvAfterShutdown (addr : SocketAddress) (certFile keyFile : String) : I
   let serverCtx ← Context.Server.mk
   serverCtx.configure certFile keyFile
   let clientCtx ← Context.Client.mk
-  Client.configureContext clientCtx "" false
+  clientCtx.configure "" false
 
   let server ← Server.mk serverCtx
   server.bind addr
@@ -346,7 +345,7 @@ def testAcceptSelector (addr : SocketAddress) (certFile keyFile : String) : IO U
   let serverCtx ← Context.Server.mk
   serverCtx.configure certFile keyFile
   let clientCtx ← Context.Client.mk
-  Client.configureContext clientCtx "" false
+  clientCtx.configure "" false
 
   let server ← Server.mk serverCtx
   server.bind addr
@@ -384,7 +383,7 @@ def testSendAll (addr : SocketAddress) (certFile keyFile : String) : IO Unit := 
   let serverCtx ← Context.Server.mk
   serverCtx.configure certFile keyFile
   let clientCtx ← Context.Client.mk
-  Client.configureContext clientCtx "" false
+  clientCtx.configure "" false
 
   -- Three chunks whose concatenation we can verify.
   let chunks  := #["alpha".toUTF8, "beta".toUTF8, "gamma".toUTF8]
@@ -429,7 +428,7 @@ def testRecvSelector (addr : SocketAddress) (certFile keyFile : String) : IO Uni
   let serverCtx ← Context.Server.mk
   serverCtx.configure certFile keyFile
   let clientCtx ← Context.Client.mk
-  Client.configureContext clientCtx "" false
+  clientCtx.configure "" false
 
   let server ← Server.mk serverCtx
   server.bind addr
@@ -471,7 +470,7 @@ def testSequentialConnections (addr : SocketAddress) (certFile keyFile : String)
   let serverCtx ← Context.Server.mk
   serverCtx.configure certFile keyFile
   let clientCtx ← Context.Client.mk
-  Client.configureContext clientCtx "" false
+  clientCtx.configure "" false
 
   let server ← Server.mk serverCtx
   server.bind addr
@@ -510,7 +509,7 @@ def testBidirectional (addr : SocketAddress) (certFile keyFile : String) : IO Un
   let serverCtx ← Context.Server.mk
   serverCtx.configure certFile keyFile
   let clientCtx ← Context.Client.mk
-  Client.configureContext clientCtx "" false
+  clientCtx.configure "" false
 
   let server ← Server.mk serverCtx
   server.bind addr

@@ -14,6 +14,9 @@ lean_external_class * g_ssl_context_external_class = nullptr;
 
 static void configure_ctx_options(SSL_CTX * ctx) {
     SSL_CTX_set_options(ctx, SSL_OP_NO_RENEGOTIATION);
+    // Allow SSL_write to be retried with a different pointer when the same
+    // payload is copied into pending_writes and replayed after WANT_READ/WANT_WRITE.
+    SSL_CTX_set_mode(ctx, SSL_MODE_ACCEPT_MOVING_WRITE_BUFFER);
 }
 
 static void lean_ssl_context_finalizer(void * ptr) {
@@ -45,6 +48,7 @@ static lean_obj_res mk_ssl_context(const SSL_METHOD * method) {
 
     obj->ctx = ctx;
     lean_object * lean_obj = lean_ssl_context_object_new(obj);
+    lean_mark_mt(lean_obj);
     return lean_io_result_mk_ok(lean_obj);
 }
 

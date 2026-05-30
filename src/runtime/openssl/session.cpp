@@ -17,17 +17,28 @@ lean_external_class * g_ssl_session_external_class = nullptr;
 #ifndef LEAN_EMSCRIPTEN
 
 /*
- * `Option IOWant` and `ReadResult` share the same Lean runtime encoding for
- * their overlapping constructors:
+ * `Option IOWant` encoding (used by `handshake` and `write`):
  *
- *   none / closed           = lean_box(0)               (nullary: handshake done / closed)
- *   some .read / wantIO .read  = ctor(1){ lean_box(0) } (SSL_ERROR_WANT_READ)
- *   some .write / wantIO .write = ctor(1){ lean_box(1) } (SSL_ERROR_WANT_WRITE)
+ *   none          = lean_box(0)               (Option.none, cidx=0)
+ *   some .read    = ctor(1){ lean_box(0) }    (Option.some IOWant.read)
+ *   some .write   = ctor(1){ lean_box(1) }    (Option.some IOWant.write)
  *
- *   ReadResult.data bytes   = ctor(0){ bytes }          (non-nullary constructor 0)
+ * `ReadResult` encoding (used by `read?`):
+ *
+ *   data bytes    = ctor(0){ bytes }          (ReadResult.data,    cidx=0, non-nullary)
+ *   wantIO .read  = ctor(1){ lean_box(0) }    (ReadResult.wantIO,  cidx=1, non-nullary)
+ *   wantIO .write = ctor(1){ lean_box(1) }    (ReadResult.wantIO,  cidx=1, non-nullary)
+ *   closed        = lean_box(2)               (ReadResult.closed,  cidx=2, nullary)
+ *
+ * NOTE: these two types do NOT share a common encoding for their nullary constructors.
+ * Option.none = lean_box(0), ReadResult.closed = lean_box(2). Do not conflate them.
  */
-static inline lean_obj_res mk_ssl_result_none_or_closed() {
+static inline lean_obj_res mk_option_iowant_none() {
     return lean_io_result_mk_ok(lean_box(0));
+}
+
+static inline lean_obj_res mk_read_result_closed() {
+    return lean_io_result_mk_ok(lean_box(2));
 }
 
 static inline lean_obj_res mk_ssl_result_want_read() {
@@ -88,10 +99,8 @@ static lean_obj_res flush_and_return_want(lean_ssl_session_object * obj, int bas
     int flush_err = 0;
     int flushed = try_flush_pending_writes(obj, &flush_err);
     if (flushed < 0) return mk_openssl_io_error("pending SSL write flush failed", flush_err);
-    if (flushed == 0 && flush_err != base_want) {
-        return flush_err == SSL_ERROR_WANT_READ ? mk_ssl_result_want_read() : mk_ssl_result_want_write();
-    }
-    return base_want == SSL_ERROR_WANT_READ ? mk_ssl_result_want_read() : mk_ssl_result_want_write();
+    int want = (flushed == 0 && flush_err != base_want) ? flush_err : base_want;
+    return want == SSL_ERROR_WANT_READ ? mk_ssl_result_want_read() : mk_ssl_result_want_write();
 }
 
 static int try_flush_pending_writes(lean_ssl_session_object * obj, int * out_err) {
@@ -201,7 +210,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_handshake(b_obj_arg ssl) {
     int rc = SSL_do_handshake(ssl_obj->ssl);
 
     if (rc == 1) {
-        return mk_ssl_result_none_or_closed();
+        return mk_option_iowant_none();
     }
 
     int err = SSL_get_error(ssl_obj->ssl, rc);
@@ -223,12 +232,10 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_write(b_obj_arg ssl, b_obj_arg d
     size_t data_len = lean_sarray_size(data);
     char const * payload = (char const*)lean_sarray_cptr(data);
 
-    if (data_len == 0) {
-        return mk_ssl_result_none_or_closed();
-    }
-
     // If there are pending writes, try to flush them first to preserve write order.
     // Only attempt the new write directly if the queue fully drains.
+    // Note: data_len == 0 check is intentionally AFTER this block so that an
+    // empty write can be used to flush the pending queue without queuing new data.
     if (!ssl_obj->pending_writes.empty()) {
         int flush_err = 0;
         int flushed = try_flush_pending_writes(ssl_obj, &flush_err);
@@ -247,11 +254,15 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_write(b_obj_arg ssl, b_obj_arg d
         // flushed == 1: queue is clear, fall through to attempt the new write
     }
 
+    if (data_len == 0) {
+        return mk_option_iowant_none();
+    }
+
     int err = 0;
     int step = ssl_write_step(ssl_obj, payload, data_len, &err);
 
     if (step == 1) {
-        return mk_ssl_result_none_or_closed();
+        return mk_option_iowant_none();
     }
 
     if (step == 0 && err == SSL_ERROR_ZERO_RETURN) {
@@ -288,7 +299,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_read(b_obj_arg ssl, uint64_t max
         }
         int err = SSL_get_error(ssl_obj->ssl, rc);
         if (err == SSL_ERROR_ZERO_RETURN) {
-            return mk_ssl_result_none_or_closed();
+            return mk_read_result_closed();
         }
         if (err == SSL_ERROR_WANT_WRITE) {
             return mk_ssl_result_want_write();
@@ -313,7 +324,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_read(b_obj_arg ssl, uint64_t max
     int err = SSL_get_error(ssl_obj->ssl, rc);
 
     if (err == SSL_ERROR_ZERO_RETURN) {
-        return mk_ssl_result_none_or_closed();
+        return mk_read_result_closed();
     }
 
     if (err == SSL_ERROR_WANT_READ || err == SSL_ERROR_WANT_WRITE) {
@@ -364,7 +375,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_ssl_drain_encrypted(b_obj_arg ssl) {
     lean_object * out = lean_alloc_sarray(1, 0, pending);
     int rc = BIO_read(ssl_obj->write_bio, (void*)lean_sarray_cptr(out), (int)pending);
 
-    if (rc >= 0) {
+    if (rc > 0) {
         lean_sarray_set_size(out, (size_t)rc);
         return lean_io_result_mk_ok(out);
     }

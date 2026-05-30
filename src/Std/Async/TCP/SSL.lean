@@ -141,14 +141,9 @@ has completed.
 -/
 def acceptSelector (s : Server) : Selector ServerConn :=
   {
-    tryFn := do
-      let res ← s.native.tryAccept
-      match ← IO.ofExcept res with
-      | none => return none
-      | some native =>
-        let conn ← mkServerConn native s.serverCtx
-        doHandshake conn.native conn.ssl ioChunkSize
-        return some conn
+    -- TLS handshake is multi-round-trip and cannot complete non-blocking;
+    -- always defer to registerFn which runs accept + doHandshake asynchronously.
+    tryFn := return none
 
     registerFn waiter := do
       let connTask ← s.accept.asTask
@@ -188,13 +183,25 @@ end Server
 namespace Connection
 
 /--
-Attempts to write plaintext data into TLS. Returns true when accepted.
-Any encrypted TLS output generated is flushed to the socket.
+Flushes any internally-queued plaintext writes by passing an empty buffer to
+`ssl.write`. The C++ layer drains `pending_writes` before checking for new
+data, so an empty write is a pure flush that does not queue additional bytes.
 -/
-def write (s : Connection) (data : ByteArray) : Async Bool := do
-  let want ← s.ssl.write data
-  flushEncrypted s.native s.ssl
-  return want.isNone
+private partial def drainPendingWrites (s : Connection) (chunkSize : UInt64) : Async Unit := do
+  match ← s.ssl.write ByteArray.empty with
+  | none =>
+    flushEncrypted s.native s.ssl
+  | some .write =>
+    flushEncrypted s.native s.ssl
+    drainPendingWrites s chunkSize
+  | some .read =>
+    flushEncrypted s.native s.ssl
+    let encrypted? ← Async.ofPromise <| s.native.recv? chunkSize
+    match encrypted? with
+    | none => throw <| IO.userError "connection closed while flushing TLS write"
+    | some encrypted =>
+      feedEncryptedChunk s.ssl encrypted
+      drainPendingWrites s chunkSize
 
 /--
 Sends data through a TLS-enabled socket, blocking until accepted.
@@ -203,21 +210,12 @@ renegotiation or before the handshake Finished round-trip completes), this
 function performs the required socket I/O and retries until the data is
 accepted rather than throwing.
 -/
-partial def send (s : Connection) (data : ByteArray) (chunkSize : UInt64 := ioChunkSize) : Async Unit := do
+def send (s : Connection) (data : ByteArray) (chunkSize : UInt64 := ioChunkSize) : Async Unit := do
   match ← s.ssl.write data with
   | none =>
     flushEncrypted s.native s.ssl
-  | some .write =>
-    flushEncrypted s.native s.ssl
-    send s data chunkSize
-  | some .read =>
-    flushEncrypted s.native s.ssl
-    let encrypted? ← Async.ofPromise <| s.native.recv? chunkSize
-    match encrypted? with
-    | none => throw <| IO.userError "connection closed while flushing TLS write"
-    | some encrypted =>
-      feedEncryptedChunk s.ssl encrypted
-      send s data chunkSize
+  | some _ =>
+    drainPendingWrites s chunkSize
 
 /--
 Sends multiple data buffers through the TLS-enabled socket.
@@ -266,7 +264,7 @@ partial def tryRecv (s : Connection) (size : UInt64) (chunkSize : UInt64 := ioCh
     else if ← readableWaiter.isResolved then
       let encrypted? ← Async.ofPromise <| s.native.recv? ioChunkSize
       match encrypted? with
-      | none => return none
+      | none => return some none
       | some encrypted =>
         feedEncryptedChunk s.ssl encrypted
         tryRecv s size chunkSize
@@ -280,17 +278,8 @@ Resolves the returned promise once plaintext is available.
 -/
 partial def waitReadable (s : Connection) : Async Unit := do
   flushEncrypted s.native s.ssl
-
-  let pending ← s.ssl.pendingPlaintext
-  if pending > 0 then
-    return ()
-
   match ← s.ssl.read? 0 with
-  | .data _ =>
-    flushEncrypted s.native s.ssl
-    return ()
-  | .closed =>
-    return ()
+  | .data _ | .closed => return ()
   | .wantIO _ =>
     flushEncrypted s.native s.ssl
     let encrypted? ← Async.ofPromise <| s.native.recv? ioChunkSize
@@ -408,5 +397,12 @@ Connects the client socket to the given address and performs the TLS handshake.
 def connect (s : Client) (addr : SocketAddress) (chunkSize : UInt64 := ioChunkSize) : Async Unit := do
   Async.ofPromise <| (Connection.native s).connect addr
   s.handshake chunkSize
+
+/--
+Configures CA trust anchors and peer verification for the client context.
+`caFile` may be empty to use platform default trust anchors.
+-/
+def configureContext (ctx : Context.Client) (caFile : String) (verifyPeer : Bool) : IO Unit :=
+  ctx.configure caFile verifyPeer
 
 end Std.Async.TCP.SSL.Client

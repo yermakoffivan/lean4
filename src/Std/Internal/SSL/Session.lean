@@ -114,8 +114,11 @@ opaque handshake (ssl : @& Session) : IO (Option IOWant)
 
 /--
 Attempts to write plaintext application data into SSL.
-Returns `none` when the data was accepted, or `some w` when OpenSSL needs socket I/O of kind
-`w` before the write can complete (the data is queued internally and retried after the next read).
+Returns `none` when the data was accepted and encrypted output is ready to drain.
+Returns `some w` when OpenSSL needs socket I/O of kind `w` before the write can
+complete; in that case the data has been queued internally and **must not** be
+submitted again. Call with an empty `ByteArray` to flush the internal queue after
+performing the required I/O.
 -/
 @[extern "lean_uv_ssl_write"]
 opaque write (ssl : @& Session) (data : @& ByteArray) : IO (Option IOWant)

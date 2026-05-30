@@ -8,6 +8,7 @@ module
 prelude
 public import Std.Http.Client.Session
 import Std.Async.DNS
+import Std.Async.TCP.SSL
 
 public section
 
@@ -53,7 +54,7 @@ and the original `host`/`port` are left for the HTTP layer to handle.
 structure TcpConnector where
 
 instance : Connector TcpConnector where
-  connect _ _scheme host port config := do
+  connect _ scheme host port config := do
     let (connectHost, connectPort) := config.proxy.getD (toString host, port)
     let addrs ← DNS.getAddrInfo connectHost (toString connectPort)
 
@@ -67,9 +68,16 @@ instance : Connector TcpConnector where
         | .v4 ip => .v4 ⟨ip, connectPort⟩
         | .v6 ip => .v6 ⟨ip, connectPort⟩
       try
-        let socket ← Socket.Client.mk
-        socket.connect socketAddr
-        return ← Session.new socket config
+        if scheme.val == "https" then
+          let ctx ← Std.Internal.SSL.Context.Client.mk
+          let conn ← TCP.SSL.Client.mk ctx
+          conn.setServerName (toString host)
+          conn.connect socketAddr
+          return ← Session.new conn config
+        else
+          let socket ← Socket.Client.mk
+          socket.connect socketAddr
+          return ← Session.new socket config
       catch err =>
         lastErr := err
 

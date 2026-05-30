@@ -7,6 +7,7 @@ module
 
 prelude
 public import Std.Http.Protocol.H1
+public import Std.Async.TCP.SSL
 
 public section
 
@@ -53,6 +54,12 @@ instance : Transport Socket.Client where
   recv client expect := client.recv? expect
   sendAll client data := client.sendAll data
   recvSelector client expect := client.recvSelector expect
+
+instance : Transport SSL.Connection where
+  recv conn expect := conn.recv? expect
+  sendAll conn data := conn.sendAll data
+  recvSelector conn expect := conn.recvSelector expect
+  close conn := conn.tlsShutdown.block
 
 namespace Internal
 

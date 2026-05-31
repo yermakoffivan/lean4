@@ -16,13 +16,13 @@ macro "test" : tactic => `(tactic| lmvcgen (names := [s₁, s₂]) -trivial)
 /--
 error: unsolved goals
 case vc1
-n s n✝ : Nat
-x✝ : n = n✝.succ
+n s : Nat
+x✝ : n = 0
 ⊢ True
 
 case vc2
-n s : Nat
-x✝ : n = 0
+n s n✝ : Nat
+x✝ : n = n✝.succ
 ⊢ True
 -/
 #guard_msgs in
@@ -35,14 +35,14 @@ example (n s : Nat) :
 /--
 error: unsolved goals
 case vc1
-n s s₁✝ n✝ : Nat
-x✝ : n = n✝.succ
-⊢ 1 = s
-
-case vc2
 n s s₁✝ : Nat
 x✝ : n = 0
 ⊢ 0 = s
+
+case vc2
+n s s₁✝ n✝ : Nat
+x✝ : n = n✝.succ
+⊢ 1 = s
 -/
 #guard_msgs in
 example (n : Nat) (s : Nat) :

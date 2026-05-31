@@ -364,12 +364,14 @@ These lemmas bridge `wp` reasoning to concrete program properties. Each one says
 if `wp prog ...` holds, then a property `P` holds of the program's result.
 -/
 
-/-- Adequacy for `Id`: if `wp prog P` holds, then `P` holds of the result. -/
+/-- Adequacy for `Id`: if `⊤ ⊑ wp prog P` holds, then `P` holds of the result.
+The hypothesis is stated in `⊤ ⊑ wp` form (rather than a bare `wp prog P …`) so that it is the
+shape `mvcgen`/`lmvcgen` decompose directly after `apply Id.of_wp_run_eq`. -/
 theorem Id.of_wp_run_eq {α : Type u} {x : α} {prog : Id α}
   (h : Id.run prog = x) (P : α → Prop)
-  (hwp : wp prog P EPost.nil.mk) : P x := by
+  (hwp : (⊤ : Prop) ⊑ wp prog P EPost.nil.mk) : P x := by
   rw [← h]
-  exact hwp
+  exact hwp (le_top True trivial)
 
 /-- Adequacy for `Option`: if `wp prog P` holds, then `P` holds of the result. -/
 theorem Option.of_wp_eq {α : Type u} {x prog : Option α}

@@ -18,11 +18,11 @@ macro "test" : tactic => `(tactic| lmvcgen (names := [s₁, s₂]) -trivial)
 error: unsolved goals
 case vc1
 P Q : Prop
-⊢ Q
+⊢ P
 
 case vc2
 P Q : Prop
-⊢ P
+⊢ Q
 -/
 #guard_msgs in
 example (P Q : Prop) :
@@ -107,7 +107,7 @@ inst : CompleteLattice l
 P Q : Nat → Bool → l
 s₁✝ : Nat
 s₂✝ : Bool
-⊢ ⊤ ⊑ Q s₁✝ s₂✝
+⊢ ⊤ ⊑ P s₁✝ s₂✝
 
 case vc2
 l : Type
@@ -115,7 +115,7 @@ inst : CompleteLattice l
 P Q : Nat → Bool → l
 s₁✝ : Nat
 s₂✝ : Bool
-⊢ ⊤ ⊑ P s₁✝ s₂✝
+⊢ ⊤ ⊑ Q s₁✝ s₂✝
 -/
 #guard_msgs in
 example {l : Type} [CompleteLattice l] (P Q : Nat → Bool → l) :

@@ -317,6 +317,11 @@ private def pollNextEvent
   if let some responseBody := responseBodySource then
     selectables := selectables.push (.case responseBody.interestSelector (Recv.bodyInterest · |> pure))
 
+    -- When body data is fully buffered (noMoreInput) but no consumer has arrived,
+    -- add a timeout so an abandoned body does not stall the connection indefinitely.
+    if state.machine.reader.noMoreInput && !pollSocket then
+      selectables := selectables.push (.case (← Selector.sleep state.currentTimeout) (fun _ => pure .timeout))
+
   try Selectable.one selectables catch _ => pure .close
 
 /--

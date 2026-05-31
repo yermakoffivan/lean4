@@ -261,10 +261,10 @@ theorem propSup_is_sup (c : Prop → Prop) : is_sup c (propSup c) := by
 instance : CompleteLattice Prop where
   has_sup c := ⟨propSup c, propSup_is_sup c⟩
 
-theorem prop_pre_intro (x y : Prop) : (x → True ⊑ y) → x ⊑ y :=
-  fun h hx => h hx trivial
+theorem prop_pre_intro (x y : Prop) : (x → (⊤ : Prop) ⊑ y) → x ⊑ y :=
+  fun h hx => h hx (le_top True trivial)
 
-theorem prop_pre_elim (x : Prop) : x → True ⊑ x :=
+theorem prop_pre_elim (x : Prop) : x → (⊤ : Prop) ⊑ x :=
   fun hx _ => hx
 
 @[simp] theorem iInf_prop_eq_forall {ι : Type u} (f : ι → Prop) :
@@ -325,6 +325,7 @@ theorem CompleteLattice.ofProp_true (l : Type v) [CompleteLattice l] : ⌜True�
 theorem CompleteLattice.ofProp_false (l : Type v) [CompleteLattice l] : ⌜False⌝ = (⊥ : l) := by
   simp [CompleteLattice.ofProp]
 
+@[grind .]
 theorem CompleteLattice.ofProp_imp [CompleteLattice l]
   (p₁ p₂ : Prop) : (p₁ → p₂) → ⌜p₁⌝ ⊑ (⌜p₂⌝ : l) := by
   simp only [CompleteLattice.ofProp]
@@ -387,5 +388,28 @@ theorem CompleteLattice.ofProp_intro_r [CompleteLattice l] (p : Prop) (x y : l) 
     (⌜p⌝ : σ → β) s = (⌜p⌝ : β) := by
   simp only [CompleteLattice.ofProp]
   rcases Classical.em p with h | h <;> simp [h]
+
+@[grind .]
+theorem top_le_ofProp [CompleteLattice l] (p : Prop) : p → (⊤ : l) ⊑ ⌜p⌝ := by
+  simp only [CompleteLattice.ofProp]
+  rcases Classical.em p with h | h <;> simp [h]
+  rfl
+
+/-- The top element of the `Prop` lattice is `True`. Not a global `@[simp]` lemma: collapsing the
+lattice `⊤`/`⊥`/`⌜·⌝` to `True`/`False`/`p` would change how `mvcgen`/`lmvcgen` discharge lattice
+goals. Tagged `@[grind =]` for use under `grind`. -/
+@[grind =, simp] theorem top_prop_eq : (⊤ : Prop) = True :=
+  propext ⟨fun _ => trivial, fun _ => le_top True trivial⟩
+
+/-- The bottom element of the `Prop` lattice is `False`. See `top_prop_eq` for why this is not
+`@[simp]`. -/
+@[grind =, simp] theorem bot_prop_eq : (⊥ : Prop) = False :=
+  propext ⟨fun h => bot_le False h, fun h => h.elim⟩
+
+/-- Embedding a proposition into the `Prop` lattice (`⌜p⌝`) is the proposition itself. See
+`top_prop_eq` for why this is not `@[simp]`. -/
+@[grind =, simp] theorem ofProp_prop_eq (p : Prop) : (⌜p⌝ : Prop) = p := by
+  simp only [CompleteLattice.ofProp]
+  rcases Classical.em p with hp | hp <;> simp [hp, top_prop_eq, bot_prop_eq]
 
 end Lean.Order

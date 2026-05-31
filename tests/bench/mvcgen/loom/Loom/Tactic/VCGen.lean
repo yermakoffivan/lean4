@@ -12,7 +12,7 @@ public import Loom.Tactic.RuleConstruct.Spec
 public import Loom.Tactic.RuleConstruct.Simp
 public import Loom.Tactic.RuleConstruct.Logic
 public import Loom.Tactic.RuleConstruct.Match
-public import Loom.Tactic.Intros
+public import Loom.Tactic.Utils
 public import Loom.Tactic.RuleCache
 public import Loom.Tactic.Solve
 public import Loom.Tactic.Driver
@@ -28,7 +28,7 @@ The `lmvcgen` tactic, split across the modules above.
 - `VCGen.RuleConstruct.Logic` — rule construction for lattice connectives such as `⊓`, `⇨`,
   and `⌜_⌝`.
 - `VCGen.RuleConstruct.Match` — rule construction for `ite`, `dite`, and matcher splits.
-- `VCGen.Intros` — triple unfolding, excess-state intros, precondition intros, and simp/intros.
+- `VCGen.Utils` — state intro, precondition intros, simp, and backward-rule application helpers.
 - `VCGen.RuleCache` — `VCGenM` cache wrappers around rule constructors.
 - `VCGen.Solve` — the main `solve` step and goal classification.
 - `VCGen.Driver` — the worklist driver (`work`, `emitVC`, `main`, `Result`).

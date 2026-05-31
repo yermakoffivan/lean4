@@ -14,6 +14,8 @@ open Std.Internal.Do
 
 namespace Loom
 
+initialize registerTraceClass `Loom.RuleConstruct.Logic
+
 /-- Proving `pre ⊑ ⌜p⌝` reduces to proving `p`. -/
 theorem le_ofProp {l : Type u} [CompleteLattice l] (x : l) (p : Prop) : p → x ⊑ ⌜p⌝ :=
   fun hp => by
@@ -24,6 +26,9 @@ inductive LogicOp where
   | And
   | Imp
   | Pure
+  /-- The lattice top `⊤`. Has no operands; the split lemma `le_top` has no premise, so this
+      closes the goal (it is the nullary analogue of `Pure`). -/
+  | Top
   -- Temporarily disabled:
   -- | Forall (n : Name)
 
@@ -32,30 +37,54 @@ def _root_.Lean.Name.toLogicOp? : Name → Option LogicOp
   | ``meet => some .And
   | ``himp => some .Imp
   | ``Lean.Order.CompleteLattice.ofProp => some .Pure
+  | ``Lean.Order.top => some .Top
   | _ => none
 
 def LogicOp.mkLatticeExpr (as : Array Expr) (resultType? : Option Expr := none) : LogicOp → MetaM Expr
   | .And => mkAppM ``meet as
   | .Imp => mkAppM ``himp as
   | .Pure => mkAppOptM ``Lean.Order.CompleteLattice.ofProp #[resultType?, none, some as[0]!]
+  | .Top => mkAppOptM ``Lean.Order.top #[resultType?, none]
 
 /-- Map a logic operator to its corresponding `*_fun_apply` lemma. -/
 def LogicOp.toApplyLemma : LogicOp → Name
   | .And => ``meet_fun_apply
   | .Imp => ``himp_fun_apply
   | .Pure => ``Lean.Order.CompleteLattice.ofProp_fun_apply
+  | .Top => ``Lean.Order.top_fun_apply
 
 /-- Map a logic operator to its corresponding proposition-level equivalence lemma. -/
 def LogicOp.toPropLemma : LogicOp → Name
   | .And => ``meet_prop_eq_and
   | .Imp => ``himp_prop_eq_imp
   | .Pure => ``Lean.Order.CompleteLattice.ofProp_intro
+  | .Top => ``le_top -- unused placeholder: there is no `⊤`-Prop equivalence lemma and this is dead code
 
-/-- Map a logic operator to its `⊑`-form splitting lemma. -/
-def LogicOp.toRelLemma : LogicOp → Name
+/-- Whether the operands of this logic operator are functions of the excess (state)
+    arguments, and so must be applied to each excess argument when descending one
+    lattice level during `mkApplyEq`.
+
+    For `meet`/`himp` the operands are themselves elements of the function lattice
+    (`(a ⊓ b) s = a s ⊓ b s`), so each operand `a` becomes `a s`. For `ofProp`/`top` the
+    operand is reused unchanged (`(⌜p⌝ : σ→β) s = (⌜p⌝ : β)`, `(⊤ : σ→β) s = (⊤ : β)`), so it must
+    *not* be applied to `s`. -/
+def LogicOp.needApplyArgs : LogicOp → Bool
+  | .And => true
+  | .Imp => true
+  | .Pure => false
+  | .Top => false
+
+/-- Map a logic operator to its `⊑`-form splitting lemma.
+
+    When `preIsTop` is set, the precondition is `⊤`, so `.Imp` uses the `⊤`-specialized lemma
+    `himp_complete_top` (`a ⊑ b → ⊤ ⊑ a ⇨ b`) instead of `himp_complete`, dropping the redundant
+    `⊓ ⊤`. `.And`/`.Pure` already produce `⊓ ⊤`-free subgoals, so they are unaffected. -/
+def LogicOp.toRelLemma (preIsTop : Bool) : LogicOp → Name
   | .And => ``le_meet       -- le_meet (x y z) : x ⊑ y → x ⊑ z → x ⊑ y ⊓ z
-  | .Imp => ``himp_complete  -- himp_complete (x a b) : a ⊓ x ⊑ b → x ⊑ a ⇨ b
+  | .Imp => if preIsTop then ``himp_complete_top -- himp_complete_top (a b) : a ⊑ b → ⊤ ⊑ a ⇨ b
+            else ``himp_complete                 -- himp_complete (x a b) : a ⊓ x ⊑ b → x ⊑ a ⇨ b
   | .Pure => ``Loom.le_ofProp -- le_ofProp (x p) : p → x ⊑ ⌜p⌝
+  | .Top => ``le_top          -- le_top (x) : x ⊑ ⊤  (no premise ⇒ closes the goal)
 
 /-- Lift an equality `lhs = rhs` to `(lhs args...) = (rhs args...)`. -/
 private def liftEqByArgs (eqPrf : Expr) (args : List Expr) : MetaM Expr := do
@@ -90,7 +119,9 @@ partial def LogicOp.mkApplyEq
     if ss'.isEmpty then
       return step
     let stepLift ← liftEqByArgs step ss'
-    let as := as.map (mkApp · s)
+    -- Descend one lattice level: only operators whose operands depend on the excess
+    -- arguments (see `LogicOp.needApplyArgs`) get their operands applied to `s`.
+    let as := if lop.needApplyArgs then as.map (mkApp · s) else as
     let rest ← lop.mkApplyEq stepThm as ss' rt
     mkEqTrans stepLift rest
 
@@ -122,10 +153,19 @@ For `Imp`, produces:
   a s₁...sₙ ⊓ pre ⊑ b s₁...sₙ → pre ⊑ (a ⇨ b) s₁...sₙ
 ```
 Works for any `CompleteLattice`, not just `Prop`.
+
+When `preIsTop` is set, the precondition `pre` is fixed to `⊤` (rather than abstracted as a
+parameter) and `Imp` uses the `⊤`-specialized split lemma `himp_complete_top`, so the `Imp` rule
+becomes
+```
+∀ (a b : l) (s₁ : σ₁) ... (sₙ : σₙ),
+  a s₁...sₙ ⊑ b s₁...sₙ → ⊤ ⊑ (a ⇨ b) s₁...sₙ
+```
+dropping the redundant `⊓ ⊤`.
 -/
 def LogicOp.mkBackwardRule
     (lop : LogicOp) (as : Array Expr) (excessArgs : Array Expr)
-    (resultType? : Option Expr := none)
+    (resultType? : Option Expr := none) (preIsTop : Bool := false)
     : SymM BackwardRule := do
   let as ← as.mapM fun arg => do
     mkFreshExprMVar (userName := `a) (← Sym.inferType arg)
@@ -136,7 +176,13 @@ def LogicOp.mkBackwardRule
   let (goal, eqGoalDistributed) ← lop.mkDistributeEq as ss resultType?
 
   let goalTy ← Meta.inferType goal
-  let pre ← mkFreshExprMVar (userName := `pre) goalTy
+  -- When the precondition is `⊤`, bake it into the rule (and use a `⊤`-specialized split lemma
+  -- below) so the resulting subgoals avoid the redundant `⊓ ⊤`. Otherwise the precondition is a
+  -- fresh metavariable that becomes a universally quantified parameter of the rule.
+  let pre ← if preIsTop then
+      mkAppOptM ``Lean.Order.top #[goalTy, none]
+    else
+      mkFreshExprMVar (userName := `pre) goalTy
 
   -- Lift equality through `pre ⊑ ·`: (pre ⊑ goal) = (pre ⊑ distributed)
   -- Use partial application (not lambda) to avoid beta redexes
@@ -146,8 +192,8 @@ def LogicOp.mkBackwardRule
   -- eqMp : (pre ⊑ distributed) → (pre ⊑ goal)
   let eqMp ← mkAppM ``Eq.mp #[relEqSymm]
 
-  -- Instantiate the split lemma (le_meet / himp_complete) via telescope
-  let splitLemma ← mkConstWithFreshMVarLevels lop.toRelLemma
+  -- Instantiate the split lemma (le_meet / himp_complete / himp_complete_top) via telescope
+  let splitLemma ← mkConstWithFreshMVarLevels (lop.toRelLemma preIsTop)
   let (xs, _, body) ← forallMetaTelescope (← Meta.inferType splitLemma)
   -- Unify conclusion with eqMp's domain to assign param mvars
   unless ← isDefEq body (← Meta.inferType eqMp).bindingDomain! do
@@ -165,8 +211,9 @@ section Test
 /-- Test helper: run `mkBackwardRuleForLogicRel` and return the generated rule type. -/
 def testLogicBackwardRuleRel
     (lop : LogicOp)
-    (as excessArgs : Array Expr) (resultType? : Option Expr := none) : MetaM Expr := do
-  let rule ← SymM.run do lop.mkBackwardRule as excessArgs resultType?
+    (as excessArgs : Array Expr) (resultType? : Option Expr := none)
+    (preIsTop : Bool := false) : MetaM Expr := do
+  let rule ← SymM.run do lop.mkBackwardRule as excessArgs resultType? preIsTop
   inferType rule.expr
 
 -- Test 1: And on Nat → Prop, n = 1 excess arg
@@ -199,6 +246,19 @@ info: Test Rel-Imp (Nat→Prop, n=1): ∀ (pre : Prop) (a : Nat → Prop) (s : N
         let ty ← testLogicBackwardRuleRel .Imp #[a, b] #[s]
         logInfo m!"Test Rel-Imp (Nat→Prop, n=1): {ty}"
 
+-- Test 2b: Imp on Nat → Prop, n = 1 excess arg, with `⊤` precondition.
+-- Uses `himp_complete_top`, so there is no `pre` binder and the hypothesis drops `⊓ ⊤`.
+/-- info: Test Rel-Imp-Top (Nat→Prop, n=1): ∀ (a : Nat → Prop) (s : Nat) (a_1 : Nat → Prop), a s ⊑ a_1 s → ⊤ ⊑ (a ⇨ a_1) s -/
+#guard_msgs in
+#eval! show MetaM Unit from do
+  let nat := mkConst ``Nat
+  let l ← mkArrow nat (mkSort 0)
+  withLocalDeclD `a l fun a => do
+    withLocalDeclD `b l fun b => do
+      withLocalDeclD `s nat fun s => do
+        let ty ← testLogicBackwardRuleRel .Imp #[a, b] #[s] (preIsTop := true)
+        logInfo m!"Test Rel-Imp-Top (Nat→Prop, n=1): {ty}"
+
 -- Test 3: And on Prop, n = 0 excess args
 /-- info: Test Rel-And (Prop, n=0): ∀ (pre a a_1 : Prop), pre ⊑ a → pre ⊑ a_1 → pre ⊑ a ⊓ a_1 -/
 #guard_msgs in
@@ -211,9 +271,9 @@ info: Test Rel-Imp (Nat→Prop, n=1): ∀ (pre : Prop) (a : Nat → Prop) (s : N
 
 -- Test 4: End-to-end And rule application
 /--
-info: Test 4 subgoal: True ⊑ a s
+info: Test 4 subgoal: ⊤ ⊑ a s
 ---
-info: Test 4 subgoal: True ⊑ b s
+info: Test 4 subgoal: ⊤ ⊑ b s
 -/
 #guard_msgs in
 #eval! show MetaM Unit from do
@@ -224,7 +284,8 @@ info: Test 4 subgoal: True ⊑ b s
       withLocalDeclD `s nat fun s => do
         let rule ← SymM.run do LogicOp.mkBackwardRule .And #[a, b] #[s]
         let meetAB ← mkAppM ``meet #[a, b]
-        let target ← mkAppM ``PartialOrder.rel #[mkConst ``True, mkApp meetAB s]
+        let top ← mkAppOptM ``Lean.Order.top #[some (mkSort 0), none]
+        let target ← mkAppM ``PartialOrder.rel #[top, mkApp meetAB s]
         let goalExpr ← mkFreshExprSyntheticOpaqueMVar target
         let .mvar goal := goalExpr | throwError "expected mvar"
         let .goals goals ← SymM.run do rule.apply goal
@@ -232,8 +293,9 @@ info: Test 4 subgoal: True ⊑ b s
         for g in goals do
           logInfo m!"Test 4 subgoal: {← g.getType}"
 
--- Test 5: End-to-end Imp rule application with pre = True
-/-- info: Test 5 subgoal: a s ⊓ True ⊑ b s -/
+-- Test 5: End-to-end Imp rule application with pre = ⊤ (uses the `⊤`-specialized lemma,
+-- so the subgoal drops the redundant `⊓ ⊤`).
+/-- info: Test 5 subgoal: a s ⊑ b s -/
 #guard_msgs in
 #eval! show MetaM Unit from do
   let nat := mkConst ``Nat
@@ -241,9 +303,10 @@ info: Test 4 subgoal: True ⊑ b s
   withLocalDeclD `a l fun a => do
     withLocalDeclD `b l fun b => do
       withLocalDeclD `s nat fun s => do
-        let rule ← SymM.run do LogicOp.mkBackwardRule .Imp #[a, b] #[s]
+        let rule ← SymM.run do LogicOp.mkBackwardRule .Imp #[a, b] #[s] (preIsTop := true)
         let himpAB ← mkAppM ``himp #[a, b]
-        let target ← mkAppM ``PartialOrder.rel #[mkConst ``True, mkApp himpAB s]
+        let top ← mkAppOptM ``Lean.Order.top #[some (mkSort 0), none]
+        let target ← mkAppM ``PartialOrder.rel #[top, mkApp himpAB s]
         let goalExpr ← mkFreshExprSyntheticOpaqueMVar target
         let .mvar goal := goalExpr | throwError "expected mvar"
         let .goals goals ← SymM.run do rule.apply goal
@@ -280,7 +343,8 @@ info: Test 4 subgoal: True ⊑ b s
     withLocalDeclD `s nat fun s => do
       let rule ← SymM.run do LogicOp.mkBackwardRule .Pure #[p] #[s] (some l)
       let pureP ← mkAppOptM ``Lean.Order.CompleteLattice.ofProp #[some l, none, some p]
-      let target ← mkAppM ``PartialOrder.rel #[mkConst ``True, mkApp pureP s]
+      let top ← mkAppOptM ``Lean.Order.top #[some (mkSort 0), none]
+      let target ← mkAppM ``PartialOrder.rel #[top, mkApp pureP s]
       let goalExpr ← mkFreshExprSyntheticOpaqueMVar target
       let .mvar goal := goalExpr | throwError "expected mvar"
       let .goals goals ← SymM.run do rule.apply goal

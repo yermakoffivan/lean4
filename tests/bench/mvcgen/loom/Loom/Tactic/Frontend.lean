@@ -97,18 +97,26 @@ public def mkSpecContext (lemmas : Syntax) (ignoreStarArg := false) : TacticM VC
   let specSimpThms := simpCtx.ctx.simpTheorems[0]?.getD {}
   let specThmsNew ← SymM.run <| migrateSpecTheoremsDatabase specThms specSimpThms
   let tripleIntro ← mkBackwardRuleFromDecl ``Triple.intro
-  let meetPreIntro ← mkBackwardRuleFromDecl ``meet_pre_intro'
-  let trueMeetPreElim ← mkBackwardRuleFromDecl ``true_meet_pre_elim
+  let stateArgIntro ← mkBackwardRuleFromDecl ``state_arg_intro'
+  let topStateArgIntro ← mkBackwardRuleFromDecl ``top_state_arg_intro'
   let propPreIntro ← mkBackwardRuleFromDecl ``Lean.Order.prop_pre_intro
+  let ofPropPreIntro ← mkBackwardRuleFromDecl ``ofProp_pre_intro'
   let elimPreRule ← mkBackwardRuleFromDecl ``Lean.Order.prop_pre_elim
+  let andIntroRule ← mkBackwardRuleFromDecl ``And.intro
   return {
     specThms := specThmsNew,
-    introRules := { tripleIntro, meetPreIntro, trueMeetPreElim, propPreIntro },
-    elimPreRule }
+    introRules := { tripleIntro, stateArgIntro, topStateArgIntro, propPreIntro, ofPropPreIntro },
+    elimPreRule,
+    andIntroRule }
 
 end VCGen
 
-syntax (name := lmvcgen) "lmvcgen" optConfig
+/-- The `(names := [n, b, …])` clause of `lmvcgen`: positional names for the introduced
+    excess/state arguments. `atomic(" (" &"names")` lets the parser backtrack cleanly when the
+    leading `(` instead begins an ordinary `optConfig` item like `(debug := true)`. -/
+syntax lmvcgenNames := atomic(" (" &"names") " := " "[" ident,*,? "]" ")"
+
+syntax (name := lmvcgen) "lmvcgen" (lmvcgenNames)? optConfig
   (" [" withoutPosition((simpStar <|> simpErase <|> simpLemma),*,?) "] ")?
   (invariantAlts)?
   (&" simplifying_assumptions" (ppSpace colGt ident)? (" [" ident,* "]")?)?
@@ -119,8 +127,6 @@ private def warnIgnoredConfig (config : VCGen.Config) : TacticM Unit := do
   let default : VCGen.Config := {}
   if config.leave != default.leave then
     logWarning "lmvcgen: the `leave` config option is currently ignored."
-  if config.elimLets != default.elimLets then
-    logWarning "lmvcgen: the `elimLets` config option is currently ignored."
 
 /-- Parse grind configuration from the `with grind ...` clause and build `Grind.Params`. -/
 private def elabGrindParams (grindStx : Syntax) (goal : MVarId) : TacticM Grind.Params := do
@@ -244,13 +250,21 @@ public def evalLmvcgen : Tactic := fun stx => withMainContext do
   if mvcgen.warning.get (← getOptions) then
     logWarningAt stx "The `lmvcgen` tactic is experimental and still under development. \
       Avoid using it in production projects."
-  let config ← elabConfig stx[1]
+  -- `stx[1]` is the optional `(names := [...])` clause (before `optConfig`); everything after is
+  -- shifted by one index relative to the no-names syntax.
+  let stateArgNames : Array Name :=
+    match stx[1][0]? with
+    | some s => match s with
+      | `(lmvcgenNames| (names := [$ids,*])) => ids.getElems.map (·.getId)
+      | _ => #[]
+    | none => #[]
+  let config ← elabConfig stx[2]
   warnIgnoredConfig config
   let goal ← getMainGoal
-  let ctx ← VCGen.mkSpecContext stx[2]
-  let simpMethods ← elabSimplifyingAssumptions stx[4]
-  let (disch, params) ← elabDischargeTactic goal stx[5]
-  let invariantAlts? ← parseInvariantMap stx[3]
+  let ctx ← VCGen.mkSpecContext stx[3]
+  let simpMethods ← elabSimplifyingAssumptions stx[5]
+  let (disch, params) ← elabDischargeTactic goal stx[6]
+  let invariantAlts? ← parseInvariantMap stx[4]
   let ctx := { ctx with
     simpMethods,
     disch,
@@ -258,12 +272,13 @@ public def evalLmvcgen : Tactic := fun stx => withMainContext do
     useJP := config.jp,
     errorOnMissingSpec := config.errorOnMissingSpec,
     debug := config.debug,
+    stateArgNames,
     invariantAlts := invariantAlts?.getD {} }
   let result ← Grind.GrindM.run (VCGen.main goal ctx config.stepLimit) params
   if let some alts := invariantAlts? then
     elabRemainingInvariants alts result.invariants result.inlineHandledInvariants
   else
-    elabInvariants stx[3] result.invariants (suggestInvariant result.vcs)
+    elabInvariants stx[4] result.invariants (suggestInvariant result.vcs)
   let invariants ← result.invariants.filterM (not <$> ·.isAssigned)
   replaceMainGoal (invariants ++ result.vcs).toList
   if result.dischTacFailed then

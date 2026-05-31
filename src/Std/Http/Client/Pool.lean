@@ -315,16 +315,6 @@ def send {β : Type} [Coe β Body.Any] (pool : Agent.Pool) (origin : URI.Origin)
       } request
 
       pool.releaseSession origin session
-
-      -- If the caller drops the response without reading or closing the body,
-      -- close it (atomically, only if no consumer is registered) so the
-      -- connection loop can drain via Phase 1b and advance to the next queued
-      -- request. This prevents a keep-alive connection from stalling when the
-      -- caller ignores the response body.
-      let body := response.body
-      background do
-        discard <| body.closeIfAbandoned
-
       return response
 
     catch err =>

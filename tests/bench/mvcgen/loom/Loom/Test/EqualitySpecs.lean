@@ -5,6 +5,8 @@ import Std.Internal.Do.Triple.SpecLemmas
 open Loom Lean Meta Order Std.Internal.Do
 
 set_option new_wp_monad true
+set_option mvcgen.warning false
+
 
 namespace EqualitySpecs
 
@@ -70,13 +72,13 @@ example (s : Nat) :
   lmvcgen with grind
 
 example (s : Nat) :
-    True ⊑
+    (⊤ : Prop) ⊑
       wp (MonadStateOf.set (m := LiftStateM) 5)
         (fun _ s => s = 5) epost⟨fun _ _ => False⟩ s := by
   lmvcgen with grind
 
 example (s : Nat) :
-    True ⊑
+    (⊤ : Prop) ⊑
       wp (MonadStateOf.modifyGet (m := LiftStateM) (fun s => (s, s + 1)))
         (fun r s => s = r + 1) epost⟨fun _ _ => False⟩ s := by
   lmvcgen with grind

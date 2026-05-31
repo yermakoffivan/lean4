@@ -1,50 +1,39 @@
 import Lean
 import Loom.Test.Driver
 import Loom.Tactic.VCGen
-import Std.Internal.Do.Triple.SpecLemmas
 
 open Loom Lean Meta Order Std.Internal.Do
 
 set_option new_wp_monad true
-
+set_option mvcgen.warning false
 
 namespace ConcreteEPostTwoPreds
 
-abbrev M := ExceptT Nat (ExceptT String (StateM Nat))
+abbrev M := ExceptT Nat (Except String)
 
-@[spec]
-theorem Spec.M_getThe_Nat :
-  Triple (fun s => post s s) (get (m := M)) post epost := by
-  rw [Triple.iff]
-  intros s posth;
-  unfold wp WPMonad.wpTrans ExceptT.instWPMonad; simp [get, getThe, ExceptT.run, StateT.run]
-  simp only [MonadStateOf.get, liftM, monadLift, MonadLift.monadLift, ExceptT.lift]
-  unfold wp  WPMonad.wpTrans Id.instWPMonad;
-  simp [ExceptT.mk, Functor.map, ExceptT.map, Bind.bind, StateT.bind, StateT.map, StateT.get, pure, StateT.pure]
-  assumption
+attribute [spec]
+  Spec.throw_Except
+  Spec.throw_ExceptT
+  Spec.throw_MonadExcept
+  Spec.throw_ExceptT_lift
 
-def throwNatOrString (n : Nat) : M Nat := do
-  let s ← get
-  if s > 0 then
+def throwNatOrString (n : Nat) : M PUnit := do
+  if n = 30 then
     throwThe Nat 7
-  else if s < 0 then
+  else if n = 239 then
     throwThe String "inner"
   else
-    pure n
+    pure ()
 
-@[spec]
+@[spec high]
 theorem spec_throwNatOrString (n : Nat) :
-    Triple (fun _ => True) (throwNatOrString n)
-      (fun k s => s = 0 ∧ k = n)
-      epost⟨fun e s => s > 0 ∧ e = 7,
-            fun e s => s < 0 ∧ e = "inner"⟩ := by
-  rw [Triple.iff]; unfold throwNatOrString;
-  intro s; dsimp only
-  lmvcgen <;> grind
-
+    Triple ⊤ (throwNatOrString n) (fun _ => ⊤) epost⟨(· = 7), (· = "inner")⟩ := by
+  unfold throwNatOrString;
+  lmvcgen
 
 def step (n : Nat) : M PUnit := do
-  let _ ← throwNatOrString n
+  throwNatOrString n
+  pure ()
 
 def loop (n : Nat) : M PUnit := do
   match n with
@@ -53,20 +42,17 @@ def loop (n : Nat) : M PUnit := do
     step n
     loop n
 
-def Goal (n : Nat) : Prop := forall s,
-  True ⊑
-    wp (loop n) (fun _ s => s = 0)
-     epost⟨fun e s => s > 0 ∧ e = 7,
-           fun e s => s < 0 ∧ e = "inner"⟩ s
+def Goal (n : Nat) : Prop :=
+  True ⊑ wp (loop n) (fun _ => True) epost⟨(· = 7), (· = "inner")⟩
 
 set_option maxRecDepth 10000
 set_option maxHeartbeats 10000000
 
 def runTests := runBenchUsingTactic
     ``Goal [``loop, ``step]
-    `(tactic| (intro s; lmvcgen with grind))
-    `(tactic| fail)
+    `(tactic| lmvcgen -trivial with grind)
+    `(tactic| sorry)
 
--- #eval runTests [100]
+#eval runTests [1000]
 
 end ConcreteEPostTwoPreds

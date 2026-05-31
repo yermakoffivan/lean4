@@ -237,7 +237,7 @@ callers who intentionally omitted it (e.g. HTTP/1.0 tests) are left alone.
 -/
 private def rewriteHostHeader (headers : Headers) (origin : URI.Origin) : Headers :=
   if headers.contains Header.Name.host then
-    headers.insert Header.Name.host (Header.Value.ofString! origin.hostHeader)
+    (headers.erase Header.Name.host).insert Header.Name.host (Header.Value.ofString! origin.hostHeader)
   else headers
 
 /--

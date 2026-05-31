@@ -132,11 +132,21 @@ private def toAbsoluteForm {t : Type} (request : Request t)
     }
   | _ => request
 
+-- Normalize absolute-form URIs back to origin-form for direct (non-proxy) connections.
+-- RFC 9112 §3.2.2: servers for direct connections expect origin-form; absolute-form is
+-- only required when sending through an HTTP proxy.
+private def toOriginForm {t : Type} (request : Request t) : Request t :=
+  match request.line.uri with
+  | .absoluteForm af =>
+    let query := if af.query.isEmpty then none else some af.query
+    { request with line := { request.line with uri := .originForm af.path query } }
+  | _ => request
+
 private def rewriteForProxy (agent : Agent) (request : Request Body.Any) : Request Body.Any :=
   if agent.session.config.proxy.isSome then
     toAbsoluteForm request agent.origin.scheme agent.origin.host agent.origin.port
   else
-    request
+    toOriginForm request
 
 private def dispatchHop (agent : Agent) (request : Request Body.Any) : Async (Response Body.Stream) := do
   let inner : Request Body.Any → Async (Response Body.Stream) := fun req => do

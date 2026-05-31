@@ -33,8 +33,9 @@ public def mkBackwardRuleFromSpecCached (specThm : SpecTheoremNew) (info : WPInf
   let key := (specThm.proof.key, info.instWP, info.excessArgs.size)
   let s := (← get).specBackwardRuleCache
   if let some rule := s[key]? then return rule
+  let stateArgNames := (← read).stateArgNames
   let some rule ← withNewMCtxDepth <| match specThm.kind with
-      | .spec   => tryMkBackwardRuleFromSpec specThm info |>.run
+      | .spec   => tryMkBackwardRuleFromSpec specThm info stateArgNames |>.run
       | .simp _ => tryMkBackwardRuleFromSimp specThm info |>.run
     | failure
   modify fun st => { st with specBackwardRuleCache := st.specBackwardRuleCache.insert key rule }
@@ -63,15 +64,17 @@ public def mkBackwardRuleForSplitCached (splitInfo : SplitInfo) (info : WPInfo)
 /--
 Cached version of `LogicOp.mkBackwardRule`.
 
-Cache key: `(logic rule lemma, argument types, excessArgs.size)`.
+Cache key: `(logic rule lemma, argument types, excessArgs.size, preIsTop)`. The `preIsTop` flag is
+part of the key because a `⊤` precondition produces a `⊤`-specialized rule whose type differs from
+the general one.
 -/
 public def mkBackwardRuleForLogicCached (lop : LogicOp) (as excessArgs : Array Expr)
-  (resultType? : Option Expr := none) : VCGenM BackwardRule := do
+  (resultType? : Option Expr := none) (preIsTop : Bool := false) : VCGenM BackwardRule := do
   let s := (← get).logicBackwardRuleCache
   let asTypes ← (as.mapM Sym.inferType : SymM (Array Expr))
-  let key := (lop.toApplyLemma, asTypes, excessArgs.size)
+  let key := (lop.toApplyLemma, asTypes, excessArgs.size, preIsTop)
   if let some rule := s[key]? then return rule
-  let rule ← LogicOp.mkBackwardRule lop as excessArgs resultType?
+  let rule ← LogicOp.mkBackwardRule lop as excessArgs resultType? preIsTop
   modify fun st => { st with logicBackwardRuleCache := st.logicBackwardRuleCache.insert key rule }
   return rule
 

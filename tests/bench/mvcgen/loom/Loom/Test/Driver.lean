@@ -45,15 +45,15 @@ def driver (goal : Name) (unfold : List Name) (n : Nat) (discharge : MetaM (TSyn
           | throwError "{dischargePp} failed to solve {mvarId}"
   let proofStats? ← if check then
     let (expr, instMs) ← timeItMs (instantiateMVars mvar)
-    let proofSize ← expr.numObjs
+    -- let proofSize ← expr.numObjs
     -- Emulate the shareCommonPreDefs step before sending the term to the kernel.
     -- If we don't do this, kernel checking time balloons.
     let (expr, shareMs) ← timeItMs fun _ => do
       return ShareCommon.shareCommon' expr
-    let proofSizeShared ← expr.numObjs
+    -- let proofSizeShared ← expr.numObjs
     trace[Loom.Tactic.vcgen] "expr: {expr}"
     let (_, kernelMs) ← timeItMs (checkWithKernel expr)
-    pure (some (instMs, shareMs, kernelMs, proofSize, proofSizeShared))
+    pure (some (/-instMs,-/ /-shareMs,-/ kernelMs/-, proofSize, proofSizeShared-/))
   else
     pure none
   let mut msg := s!"goal_{n}: {vcgenMs} ms"
@@ -62,12 +62,12 @@ def driver (goal : Name) (unfold : List Name) (n : Nat) (discharge : MetaM (TSyn
   else
     msg := msg ++ s!", {mvarIds.length} VCs"
   match proofStats? with
-  | some (instMs, shareMs, kernelMs, proofSize, proofSizeShared) =>
-    msg := msg ++ s!", instantiate: {instMs} ms"
-    msg := msg ++ s!", shareCommon: {shareMs} ms"
+  | some (/-instMs,-/ /-shareMs,-/ kernelMs/-, proofSize, proofSizeShared-/) =>
+    -- msg := msg ++ s!", instantiate: {instMs} ms"
+    -- msg := msg ++ s!", shareCommon: {shareMs} ms"
     msg := msg ++ s!", kernel: {kernelMs} ms"
-    msg := msg ++ s!", proofSize: {proofSize}"
-    msg := msg ++ s!", proofSizeShared: {proofSizeShared}"
+    -- msg := msg ++ s!", proofSize: {proofSize}"
+    -- msg := msg ++ s!", proofSizeShared: {proofSizeShared}"
   | none =>
     msg := msg ++ ", instantiate: skipped, shareCommon: skipped, kernel: skipped"
   IO.println msg

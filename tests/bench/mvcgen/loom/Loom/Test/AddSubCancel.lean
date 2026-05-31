@@ -5,7 +5,7 @@ import Loom.Tactic.VCGen
 open Loom Lean Meta Order Std.Internal.Do
 
 set_option new_wp_monad true
-
+set_option mvcgen.warning false
 namespace AddSubCancel
 
 -- Spec for MonadStateOf.get (defined in VCGen.lean's test section, replicated here)
@@ -13,7 +13,7 @@ namespace AddSubCancel
     [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred]
     {σ : Type u} (post : σ → σ → Pred) (epost : EPred) :
     Triple (fun s => post s s) (get : StateT σ m σ) post epost := by
-  lmvcgen; rfl
+  lmvcgen
 
 -- -- Specs for the standalone `get`/`set` functions (which elaborate to MonadState.get/set,
 -- -- a different head constant from MonadStateOf.get/set used above).
@@ -21,7 +21,7 @@ namespace AddSubCancel
     [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred]
     {σ : Type u} (s : σ) (post : PUnit → σ → Pred) (epost : EPred) :
     Triple (fun _ => post ⟨⟩ s) (set s : StateT σ m PUnit) post epost := by
-  lmvcgen; rfl
+  lmvcgen
 
 def step (v : Nat) : StateM Nat Unit := do
   let s ← get
@@ -50,8 +50,8 @@ def runTests := runBenchUsingTactic
 #eval
   runBenchUsingTactic
     ``Goal [``loop, ``step]
-    `(tactic| (intro post s; lmvcgen))
-    `(tactic| sorry)
+    `(tactic| (intro post s; lmvcgen with grind))
+    `(tactic| fail)
     [1000]
 
 -- #eval

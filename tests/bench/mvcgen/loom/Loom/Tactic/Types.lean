@@ -86,12 +86,14 @@ def dischargeTactic.eval (goal : MVarId) : VCGen.dischargeTactic → MetaM (List
 structure IntroRules where
   /-- Backward rule for intro procedure of `Triple.intro`. -/
   tripleIntro     : BackwardRule
-  /-- Backward rule for intro procedure of `meet_pre_intro'`. -/
-  meetPreIntro    : BackwardRule
-  /-- Backward rule for intro procedure of `true_meet_pre_elim`. -/
-  trueMeetPreElim : BackwardRule
+  /-- Backward rule for intro procedure of `state_arg_intro'`. -/
+  stateArgIntro   : BackwardRule
+  /-- Backward rule for intro procedure of `top_state_arg_intro'`. -/
+  topStateArgIntro : BackwardRule
   /-- Backward rule for intro procedure of `prop_pre_intro`. -/
   propPreIntro    : BackwardRule
+  /-- Backward rule for intro procedure of `ofProp_pre_intro'`. -/
+  ofPropPreIntro  : BackwardRule
 
 /-! ## VCGen monad and caching -/
 
@@ -102,6 +104,8 @@ structure Context where
   introRules   : IntroRules
   /-- Backward rule for `prop_pre_elim`. -/
   elimPreRule  : BackwardRule
+  /-- Backward rule for `And.intro`. -/
+  andIntroRule : BackwardRule
   /-- User-customizable simp methods used to pre-simplify hypotheses and emitted VCs. -/
   simpMethods  : Option Sym.Simp.Methods := none
   /-- Discharge tactic to try on each emitted VC before returning it to the user. -/
@@ -109,12 +113,12 @@ structure Context where
   /-- The `trivial` config option: when `true` (default), `Driver.emitVC` runs
   `repeatAndRfl` to collapse trivial `And.intro` chains; when `false`, the goal is
   emitted as-is. -/
-  trivial : Bool := true -- TODO: implement
+  trivial : Bool := true
   /-- The `jp` config option: when `true`, `tryLetIntro` recognises `__do_jp` lets
   whose body is a splitter and sets up shared-continuation handling instead of
   zeta-unfolding. When `false` (default, matching original `mvcgen`), every call
   site of the JP zeta-unfolds, leading to exponential blow-up on nested splits. -/
-  useJP : Bool := false -- TODO: implement
+  useJP : Bool := false
   /-- The `errorOnMissingSpec` config option: when `true` (default), `Driver.work`
   raises a hard error when `solve` returns `.noSpecFoundForProgram`. When `false`,
   the goal is emitted as an unsolved VC for the user to discharge — useful with
@@ -130,6 +134,10 @@ structure Context where
   the parsed `inv<n>` numbers (out-of-order labels are supported). Empty when no
   `invariants` clause is provided or in `invariants?` (suggest) mode (handled separately). -/
   invariantAlts : Std.HashMap Nat Syntax := {} -- TODO: implement
+  /-- Names supplied via the `lmvcgen (names := [...])` option, used positionally to name the
+  introduced excess/state arguments (state arg `i` ← `stateArgNames[i]?`). Where no entry applies,
+  the quantifier/lemma binder name is kept. `tactic.hygienic` decides accessibility. -/
+  stateArgNames : Array Name := #[]
 
 structure State where
   /--
@@ -146,10 +154,11 @@ structure State where
   splitBackwardRuleCache : Std.HashMap (Name × Expr × Nat) BackwardRule := {}
   /--
   A cache mapping logic rules to their backward rule to apply.
-  The particular rule depends on the rule name, the monad and the number of excess state
-  arguments that the weakest precondition target is applied to.
+  The particular rule depends on the rule name, the monad, the number of excess state
+  arguments that the weakest precondition target is applied to, and whether the precondition
+  is `⊤` (which selects a `⊤`-specialized split lemma).
   -/
-  logicBackwardRuleCache : Std.HashMap (Name × Array Expr × Nat) BackwardRule := {}
+  logicBackwardRuleCache : Std.HashMap (Name × Array Expr × Nat × Bool) BackwardRule := {}
   /--
   Holes of type `Invariant` that have been generated so far.
   -/

@@ -6,7 +6,7 @@ import Loom.Tactic.VCGen
 open Loom Lean Meta Order Std.Internal.Do
 
 set_option new_wp_monad true
-
+set_option mvcgen.warning false
 namespace MatchSplit
 
 abbrev M := ExceptT String <| StateM Nat
@@ -38,16 +38,10 @@ set_option maxHeartbeats 10000000
 
 def runTests := runBenchUsingTactic
     ``Goal [``loop, ``step]
-    `(tactic| (intro post; lmvcgen with grind))
+    `(tactic| (intro post; lmvcgen -trivial with grind))
     `(tactic| fail)
 
--- -- set_option trace.Loom.Tactic.vcgen true in
--- example : Goal 3 := by
---   intro post
---   simp only [loop, step]
---   lmvcgen
---   all_goals sorry
 
--- #eval runTests [1000]
+#eval runTests [1000]
 
 end MatchSplit

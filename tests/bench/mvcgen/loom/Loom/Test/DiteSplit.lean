@@ -1,11 +1,12 @@
 import Lean
 import Loom.Test.Driver
-import Loom.Test.Specs
+-- import Loom.Test.Specs
 import Loom.Tactic.VCGen
 
 open Loom Lean Meta Order Std.Internal.Do
 
 set_option new_wp_monad true
+set_option mvcgen.warning false
 
 namespace DiteSplit
 
@@ -48,6 +49,6 @@ def runTests := runBenchUsingTactic
 --   simp only [loop, step]
 --   lmvcgen with grind
 
--- #eval runTests [1000]
+#eval runTests [1000]
 
 end DiteSplit

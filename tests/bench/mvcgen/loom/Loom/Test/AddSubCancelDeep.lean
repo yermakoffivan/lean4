@@ -10,6 +10,7 @@ import Loom.Test.Driver
 open Lean Parser Meta Elab Tactic Sym Loom Lean.Order Std.Internal.Do
 
 set_option new_wp_monad true
+set_option mvcgen.warning false
 
 namespace AddSubCancelDeep
 
@@ -56,6 +57,6 @@ set_option maxHeartbeats 10000000
 
 def runTests := runBenchUsingTactic ``Goal [``loop, ``step] `(tactic| (intro post epost s₁ s₂; lmvcgen simplifying_assumptions with grind)) `(tactic| fail)
 
--- #eval runTests [1000]
+#eval runTests [1000]
 
 end AddSubCancelDeep

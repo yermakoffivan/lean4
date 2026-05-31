@@ -1,11 +1,11 @@
 import Lean
 import Loom.Test.Driver
-import Loom.Test.Specs
 import Loom.Tactic.VCGen
 
 open Loom Lean Meta Order Std.Internal.Do
 
 set_option new_wp_monad true
+set_option mvcgen.warning false
 
 namespace MatchSplitTest
 
@@ -40,7 +40,7 @@ set_option maxHeartbeats 10000000
 
 def runTests := runBenchUsingTactic
     ``Goal [``loop, ``step]
-    `(tactic| (intro post st; lmvcgen))
+    `(tactic| (intro post st; lmvcgen -trivial))
     `(tactic| sorry)
 
 -- -- #time
@@ -54,8 +54,6 @@ def runTests := runBenchUsingTactic
 
 -- #print foo
 
-
-
--- #eval runTests [1000]
+#eval runTests [1000]
 
 end MatchSplitTest

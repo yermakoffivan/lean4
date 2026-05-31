@@ -1,11 +1,11 @@
 import Lean
 import Loom.Test.Driver
-import Loom.Test.Specs
 import Loom.Tactic.VCGen
 
 open Loom Lean Meta Order Std.Internal.Do
 
 set_option new_wp_monad true
+set_option mvcgen.warning false
 
 namespace GetThrowSet
 
@@ -41,6 +41,6 @@ def runTests := runBenchUsingTactic
     `(tactic| (intro post; lmvcgen with grind))
     `(tactic| fail)
 
--- #eval runTests [1000]
+#eval runTests [1000]
 
 end GetThrowSet

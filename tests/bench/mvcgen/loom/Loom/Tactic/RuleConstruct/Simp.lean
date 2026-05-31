@@ -8,7 +8,6 @@ module
 public import Loom.Tactic.RuleConstruct.Spec
 
 public section
-
 namespace Loom
 
 open Lean Meta Lean.Order Sym Std.Internal.Do
@@ -43,7 +42,7 @@ The postcondition, exception postcondition and precondition are created as metav
 abstracted by `abstractMVars`, giving a reusable proof term for `mkBackwardRuleFromExpr`.
 -/
 public def mkSimpBackwardProof
-    (info : WPInfo) (α lhs rhs eqPrf : Expr) (ss : Array Expr) : SymM AbstractMVarsResult := do
+    (info : WPInfo) (α m lhs rhs eqPrf : Expr) (ss : Array Expr) : SymM AbstractMVarsResult := do
   let postTy ← mkArrow α info.Pred
   let post ← mkFreshExprMVar (userName := `post) postTy
   let epost ← mkFreshExprMVar (userName := `epost) info.EPred
@@ -100,7 +99,8 @@ public def tryMkBackwardRuleFromSimp (specThm : SpecTheoremNew) (info : WPInfo)
   let (xs, _, eqPrf, eqType) ← specThm.instantiate
   let_expr Eq eqα lhs rhs := eqType
     | throwError "simp spec is not an equation: {eqType}"
-  let α ← Meta.mkFreshTypeMVar
+  let wpType ← liftMetaM <| Meta.inferType info.instWP
+  let α ← mkFreshExprMVar (mkSort wpType.getAppFn.constLevels![0]!.succ)
   guard <| ← isDefEqGuarded eqα (mkApp info.m α)
   for x in xs do
     if x.isMVar && !(← x.mvarId!.isAssigned) then
@@ -109,9 +109,6 @@ public def tryMkBackwardRuleFromSimp (specThm : SpecTheoremNew) (info : WPInfo)
         x.mvarId!.assign (← Meta.synthInstance xType)
       catch _ =>
         pure ()
-  -- let eqPrf ← instantiateMVarsS eqPrf
-  -- let lhs ← instantiateMVarsS lhs
-  -- let rhs ← instantiateMVarsS rhs
   -- -- Reduce projections, for example dictionary projections exposed after instance synthesis.
   let rhs ← liftMetaM <| Meta.transform rhs (pre := fun e => do
     if let .proj .. := e then
@@ -122,7 +119,7 @@ public def tryMkBackwardRuleFromSimp (specThm : SpecTheoremNew) (info : WPInfo)
   for arg in info.excessArgs do
     let ty ← Sym.inferType arg
     ss := ss.push <| ← mkFreshExprMVar (userName := mkStateName ty) ty
-  let res ← mkSimpBackwardProof info α lhs rhs eqPrf ss
+  let res ← mkSimpBackwardProof info α info.m lhs rhs eqPrf ss
   mkBackwardRuleFromExpr res.expr res.paramNames.toList
 
 /-! ## Tests for mkSimpSpecBackwardProof -/

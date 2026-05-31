@@ -87,9 +87,9 @@ each in `State.invariants` (1-based stable index) and try to inline-elaborate
 its matching user alt. Returns the remaining non-invariant subgoals for `work`
 to enqueue. Eager handling here ensures dependent VCs see `?inv` assigned by
 the time they reach `emitVC`/`preTac`. -/
-private def handleInvariantSubgoals (subgoals : List MVarId) : VCGenM (Array MVarId) := do
+private def handleInvariantSubgoals (subgoals : List MVarId) : VCGenM (List MVarId) := do
   let env ← getEnv
-  let mut others : Array MVarId := #[]
+  let mut others := []
   for sg in subgoals do
     if isSpecInvariantType env (← sg.getType) then
       let n := (← get).invariants.size + 1
@@ -99,24 +99,27 @@ private def handleInvariantSubgoals (subgoals : List MVarId) : VCGenM (Array MVa
       else
         sg.setKind .syntheticOpaque
     else
-      others := others.push sg
+      others := sg :: others
   return others
 
 /--
 Called when decomposing the goal further did not succeed; in this case we emit a VC for the goal.
 Invariant subgoals are handled separately by `handleInvariantSubgoals` directly inside `work`,
 so they never reach this path.
-If the goal is `True ⊑ x` (on Prop), first eliminate the `True ⊑` wrapper.
+If the goal is `(⊤ : Prop) ⊑ x`, first eliminate the `⊤ ⊑` wrapper.
 -/
 def emitVC (goal : Grind.Goal) : VCGenM Unit := do
   let mut goal := goal
   let ty ← goal.mvarId.getType
-  if let some (_, _, Expr.const ``True _, _) := ty.app4? ``PartialOrder.rel then
-    let rule := (← read).elimPreRule
-    let .goals [goal'] ← goal.apply rule
-      | throwError "Failed to apply elim_pre rule"
-    goal := goal'
-  -- TODO: if goal is trivial, use `repeatAndRfl` to get a subgoal
+  if let some (.sort .zero, _, pre, _) := ty.app4? ``PartialOrder.rel then
+    if pre.isAppOf ``Lean.Order.top then
+      let rule := (← read).elimPreRule
+      let .goals [goal'] ← goal.apply rule
+        | throwError "Failed to apply elim_pre rule"
+      goal := goal'
+  if (← read).trivial then
+    let some goal' ← repeatAndRfl goal.mvarId | return
+    goal := { goal with mvarId := goal' }
   let goals ← (← read).disch.run goal
   for g in goals do g.setKind .syntheticOpaque
   modify fun s => { s with vcs := s.vcs ++ goals }
@@ -124,29 +127,28 @@ def emitVC (goal : Grind.Goal) : VCGenM Unit := do
 /-- Main work loop: decompose the goal repeatedly. -/
 def work (goal : MVarId) : VCGenM Unit := do
   let goal ← Grind.mkGoal goal
-  let rules := (← read).introRules
-  let goal ← unfoldTriple rules goal
   let mut worklist := Std.Queue.empty.enqueue goal
   repeat do
     let some (goal, worklist') := worklist.dequeue? | break
     worklist := worklist'
-    let some goal ← introsAndSimp goal | continue
-    -- Unfold Triple goals that arise from subgoals (e.g., loop invariant specs)
-    let goal ← unfoldTriple rules goal
     let res ← Loom.VCGen.solve goal.mvarId
     match res with
     | .noEntailment .. | .noProgramOrLatticeFoundInTarget .. =>
-      emitVC goal
-    | .noSpecFoundForProgram prog _ #[] =>
-      throwError "No spec found for program {prog}."
+        emitVC goal
     | .noSpecFoundForProgram prog monad thms =>
-      throwError "No spec matching the monad {monad} found for program {prog}. Candidates were {thms.map (·.proof)}."
+      if (← read).errorOnMissingSpec then goal.mvarId.withContext do
+        if thms.isEmpty then
+          throwError "No spec found for program {prog}."
+        else
+          throwError "No spec matching the monad {monad} found for program {prog}. Candidates were {thms.map (·.proof)}."
+      else
+        emitVC goal
     | .noStrategyForProgram prog =>
       throwError "Did not know how to decompose weakest precondition for {prog}"
     | .goals subgoals =>
       -- if we have multiple subgoals, before running the VCGen
       -- we need to share the grind context first.
-      -- TODO: I am afraid of excessive copying of the grind context.
+      let subgoals ← handleInvariantSubgoals subgoals
       let mut grindSharedGoal := goal
       if (← read).disch.isGrind && subgoals.length > 1 then
         grindSharedGoal ← goal.internalizeAll
@@ -163,9 +165,9 @@ structure Result where
   /-- Invariant numbers handled inline by `Driver.emitVC`. Used by `Frontend` to
   avoid spurious "alt does not match any invariant" warnings for inline-consumed
   alts. -/
-  inlineHandledInvariants : Std.HashSet Nat := {} -- TODO: implement
+  inlineHandledInvariants : Std.HashSet Nat := {}
   /-- True iff some non-silent pre-tactic failed during VC generation. -/
-  dischTacFailed : Bool := false -- TODO: implement
+  dischTacFailed : Bool := false
 
 
 /-- Generate VCs for a goal of the form `Triple pre e post epost`, keeping subgoals in `⊑` form. -/

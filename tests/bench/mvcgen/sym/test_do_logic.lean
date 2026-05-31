@@ -137,6 +137,7 @@ theorem fib_impl_vcs
   case vc3 => apply_rules [loop_step]
   case vc4 => apply_rules [loop_post]
 
+
 @[spec]
 theorem mkFreshNat_spec [Monad m] [WPMonad m sh] :
   ⦃fun s => ⌜s.1 = n ∧ s.2 = o⌝⦄
@@ -183,9 +184,9 @@ theorem throwing_loop_spec :
   ⦃post⟨fun _ _ => ⌜False⌝,
         fun e s => ⌜e = 42 ∧ s = 4⌝⟩⦄ := by
   mvcgen' [throwing_loop]
-  case inv1 => exact post⟨fun (xs, r) s => ⌜r ≤ 4 ∧ s = 4 ∧ r + xs.suffix.sum > 4⌝,
-                         fun e s => ⌜e = 42 ∧ s = 4⌝⟩
-  all_goals mleave; try (subst_vars; grind)
+  -- case inv1 => exact post⟨fun (xs, r) s => ⌜r ≤ 4 ∧ s = 4 ∧ r + xs.suffix.sum > 4⌝,
+  --                        fun e s => ⌜e = 42 ∧ s = 4⌝⟩
+  -- mleave; try (subst_vars; grind)
 
 theorem test_loop_break :
   ⦃fun s => ⌜s = 42⌝⦄

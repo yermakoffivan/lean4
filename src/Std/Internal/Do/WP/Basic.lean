@@ -129,6 +129,12 @@ theorem wp_econs_rel (x : m α)
     pre ⊑ wp x post epost' :=
   PartialOrder.rel_trans h' (wp_econs x post epost epost' h)
 
+omit [WPMonad m Pred EPred] in
+theorem wp_econs_nil_rel [WPMonad m Pred EPost.nil] (x : m α)
+  (post : α → Pred) (epost : EPost.nil) {pre : Pred} (h : pre ⊑ wp x post epost') :
+    pre ⊑ wp x post epost :=
+  PartialOrder.rel_trans h (wp_econs x post epost epost' PartialOrder.rel_refl)
+
 theorem wp_econs_bot_rel (x : m α)
   (post : α → Pred) (epost : EPred) {pre : Pred} (h : pre ⊑ wp x post ⊥) :
     pre ⊑ wp x post epost :=

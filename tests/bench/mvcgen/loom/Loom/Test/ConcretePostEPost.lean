@@ -1,10 +1,10 @@
-import Lean
 import Loom.Test.Driver
 import Loom.Tactic.VCGen
 
 open Loom Lean Meta Order Std.Internal.Do
 
 set_option new_wp_monad true
+set_option mvcgen.warning false
 
 namespace ConcretePostEPost
 
@@ -33,16 +33,17 @@ def loop (n : Nat) : StateM Nat Unit := do
   | n + 1 => step n; loop n
 
 def Goal (n : Nat) : Prop :=
-  ∀ s, True ⊑ wp (loop n) (fun _ _ => True) ⟨⟩ s
+  ∀ s, ⊤ ⊑ wp (loop n) (fun _ _ => True) ⟨⟩ s
 
 set_option maxRecDepth 10000
 set_option maxHeartbeats 10000000
 
+
 def runTests := runBenchUsingTactic
     ``Goal [``loop, ``step]
-    `(tactic| (intro s; lmvcgen with grind))
+    `(tactic| (intro s; lmvcgen -trivial with grind))
     `(tactic| fail)
 
--- #eval runTests [1]
+#eval runTests [10]
 
 end ConcretePostEPost

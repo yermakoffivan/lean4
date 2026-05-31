@@ -7,13 +7,13 @@ import Loom.Test.ConcretePostEPost
 import Loom.Test.DiteSplit
 import Loom.Test.EqualitySpecs
 import Loom.Test.GetThrowSet
+import Loom.Test.IntroPre
 import Loom.Test.MatchSplit
 import Loom.Test.MatchSplitTest
+import Loom.Test.Strategies.All
 
 set_option maxRecDepth 10000
 set_option maxHeartbeats 10000000
-
-open Lean Parser Meta Elab Tactic Sym Loom Std.Internal.Do
 
 #eval AddSubCancel.runTests [10]
 #eval AddSubCancelSimp.runTests [10]

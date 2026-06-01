@@ -32,7 +32,6 @@ import Init.Data.String.Lemmas.Iterate
 
 set_option linter.missingDocs true
 -- Register the `@[spec]` lemmas below into the new `WPMonad`-based spec database.
-set_option new_wp_monad true
 
 @[expose] public section
 

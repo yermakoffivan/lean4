@@ -7,55 +7,10 @@ module
 
 public import Lean.Elab
 public meta import Lean.Elab
+public import Std.Internal.Do.Triple.SpecLemmas
 
 public section
 
-set_option new_wp_monad true in
-attribute [spec]
-  Std.Internal.Do.Spec.pure
-  Std.Internal.Do.Spec.bind
-  Std.Internal.Do.Spec.map
-  Std.Internal.Do.Spec.seq
-  Std.Internal.Do.Spec.monadLift_StateT
-  Std.Internal.Do.Spec.monadLift_ReaderT
-  Std.Internal.Do.Spec.monadLift_ExceptT
-  Std.Internal.Do.Spec.monadLift_OptionT
-  Std.Internal.Do.Spec.read_ReaderT
-  Std.Internal.Do.Spec.get_StateT
-  Std.Internal.Do.Spec.set_StateT
-  Std.Internal.Do.Spec.modifyGet_StateT
-
-set_option new_wp_monad true in
-attribute [spec]
-  Std.Internal.Do.Spec.throw_ExceptT
-  Std.Internal.Do.Spec.throw_ExceptT_lift
-  Std.Internal.Do.Spec.throw_ReaderT
-  Std.Internal.Do.Spec.throw_StateT
-  Std.Internal.Do.Spec.throw_MonadExcept
-
-set_option new_wp_monad true in
-attribute [spec]
-  Std.Internal.Do.Spec.forIn_list
-  Std.Internal.Do.Spec.forIn'_list
-  Std.Internal.Do.Spec.foldlM_list
-  Std.Internal.Do.Spec.forIn_range
-  Std.Internal.Do.Spec.forIn'_range
-  Std.Internal.Do.Spec.forIn_array
-  Std.Internal.Do.Spec.forIn'_array
-  Std.Internal.Do.Spec.foldlM_array
-  Std.Internal.Do.Spec.forIn_slice
-  Std.Internal.Do.Spec.forIn_iter
-  Std.Internal.Do.Spec.forIn_iterM_id
-  Std.Internal.Do.Spec.foldM_iter
-  Std.Internal.Do.Spec.foldM_iterM_id
-
-set_option new_wp_monad true in
-attribute [spec high]
-  Std.Internal.Do.Spec.IterM.forIn_map
-  Std.Internal.Do.Spec.IterM.forIn_mapM
-  Std.Internal.Do.Spec.IterM.forIn_filterMapM
-  Std.Internal.Do.Spec.IterM.forIn_filterMap
-  -- Std.Internal.Do.Spec.IterM.forIn_fol
 namespace Loom
 
 open Lean Meta Sym Std.Internal.Do Lean.Order

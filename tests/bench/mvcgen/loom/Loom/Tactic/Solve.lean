@@ -94,7 +94,7 @@ def returnGoals (goals : List MVarId) : Strategy := do
 
 /-- Finish the strategy chain with a final classification or spec-application result. -/
 def returnSolveResult (slv : SolveResult) : StrategyM α := do
-  throwThe SolveResult <| slv
+  throwThe SolveResult slv
 
 def introForall : VCGenM (List MVarId) := do
   match ← VCGenM.introsAndSimp goal with
@@ -355,25 +355,36 @@ def tryRfl (target : Expr) : Strategy := do
 end Strategies
 
 /--
-The main VC generation step. Operates on one worklist goal and either decomposes it into
-subgoals or reports why no strategy applies.
+The main VC generation step. Operates on a plain `MVarId` with no knowledge of grind.
+Returns `.goals subgoals` when the goal was decomposed, or a classification result
+(`.noEntailment`, `.noProgramFoundInTarget`, etc.) when no further decomposition is possible.
 
 The function performs the following steps in order:
 
 1. **Forall introduction**: introduce leading `∀` binders.
 2. **Target-let handling**: zeta-substitute duplicable top-level lets, otherwise introduce them.
 3. **Triple unfolding**: unfold `Triple` into the underlying lattice entailment.
-4. **Precondition/state introduction**: introduce `⌜p⌝` preconditions, state arguments, or plain
-   propositional preconditions from the left side of `⊑`.
-5. **Lattice decomposition**: split supported lattice RHS connectives.
-6. **EPost VC unfolding**: select a concrete exception postcondition component.
-7. **WP decomposition**: try program-let hoisting, match splitting, fvar zeta, then spec lookup.
-8. **Reflexivity**: close already-reflexive lattice entailments.
-
-Every call to a `try...` function either returns normally (strategy did not match)
-or aborts through `StrategyM` with the `SolveResult` to return. This keeps the
-ordering visible without requiring each strategy to return `Option ...` and lets
-the local-spec `Scope` be updated once before the strategies that need it. -/
+4. **Precondition/state introduction**: the goal of this strategy is to reduce the goal to
+  `⊤ ⊑ rhs` where `rhs` is a proposition if possible. This is not possible if assertion type `Pred`
+  is not of the form `σ₁ → ... → σₙ → Prop`. In the latter case, we will at least try to get `⊤` in
+  LHS. To do this, we employ the following sub-strategies:
+  4a. **Introduce pure embedded propositions**: If LHS is `⌜p⌝`, introduce the proposition, turning
+  LHS into `⊤ ⊑ ⌜p⌝`.
+  4b. **Introduce excess state arguments**: If assertion type `Pred` is of the form `σ₁ → ... → σₙ → _`,
+  introduce state arguments `s₁ : σ₁`, ..., `sₙ : σₙ`.
+  4c. **Introduce propositional preconditions**: If assertion type `Pred` is `Prop`, we can just
+  introduce the LHS into the Lean context, turning the goal into `⊤ ⊑ ⌜p⌝`.
+5. **EPost VC unfolding**: If RHS is an `i`ᵗʰ projection of a concrete  `epost⟨p₁, ..., pₙ⟩` reduce
+  RHS to `pᵢ`.
+6. **Lattice decomposition**: If RHS is a lattice operation `⊓`, `⇨`, `⌜p⌝`, or `⊤`, apply a
+  corresponding logic rule.
+7. **WP decomposition**: If RHS is a weakest precondition of a program term `Prog`, try:
+  7a. **Let hoisting**: If `Prog` is a `let`, hoist the let-bound variable to the LHS.
+  7b. **Match splitting**: If `Prog` is a `match`, split the match-cases.
+  7c. **Fvar zeta**: If `Prog` is a local fvar, zeta-unfold it.
+  7d. **Spec lookup**: If `Prog` is a constant or local function, lookup a corresponding spec.
+8. **Syntactic rfl**: If RHS is not a `wp`, try closing by `PartialOrder.rel_refl`.
+-/
 def runStrategies (goal : MVarId) : StrategyM SolveResult := do
   let mut goal := goal
   let mut target ← goal.getType

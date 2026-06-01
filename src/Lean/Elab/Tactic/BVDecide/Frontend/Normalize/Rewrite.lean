@@ -44,6 +44,7 @@ def rewriteRulesPass : PreProcessPass where
       }
       let bvNormalizeThms := (← bvNormalizeExt.getTheorems).rewrite
       -- TODO: replace simpControl
+      -- TODO: thread cache through 
       let methods := {
         pre := Sym.Simp.simpArrowTelescope
         post := Sym.Simp.evalGround >> rewriteSimproc >> bvNormalizeThms

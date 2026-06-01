@@ -493,7 +493,6 @@ def boolAnd (lhs rhs : Expr) : Sym.Simp.SimpM (Sym.Simp.Result) := do
     return .rfl
 
 def bvBeq (wExpr lhs rhs : Expr) : Sym.Simp.SimpM (Sym.Simp.Result) := do
-  let some w ← getNatValue? wExpr | return .rfl
   if lhs == rhs then
     let proof :=
       mkApp2
@@ -502,6 +501,7 @@ def bvBeq (wExpr lhs rhs : Expr) : Sym.Simp.SimpM (Sym.Simp.Result) := do
         lhs
     return .step (← mkLit true) proof
   else
+    let some w ← getNatValue? wExpr | return .rfl
     let addInj : Sym.Simp.SimpM (Option Sym.Simp.Result) := do
       let_expr HAdd.hAdd _ _ _ _ llhs lrhs := lhs | return none
       let_expr HAdd.hAdd _ _ _ _ rlhs rrhs := rhs | return none
@@ -845,7 +845,7 @@ def condSimplify (e α c thenExpr elseExpr : Expr) : Sym.Simp.SimpM (Sym.Simp.Re
     let iteElseIte' : Sym.Simp.SimpM (Option Sym.Simp.Result) := do
       let_expr cond _ c2 eThenExpr eElseExpr := elseExpr | return none
       if thenExpr != eThenExpr then return none
-      let expr := 
+      let expr :=
         mkApp4 (mkConst ``cond [lvl])
           α
           (← Bool.mkAnd (← Bool.mkNot c) (← Bool.mkNot c2))
@@ -863,7 +863,7 @@ def condSimplify (e α c thenExpr elseExpr : Expr) : Sym.Simp.SimpM (Sym.Simp.Re
     let iteThenIte'' : Sym.Simp.SimpM (Option Sym.Simp.Result) := do
       let_expr cond _ c2 tThenExpr tElseExpr := thenExpr | return none
       if tElseExpr != elseExpr then return none
-      let expr := 
+      let expr :=
         mkApp4 (mkConst ``cond [lvl]) α (← Bool.mkAnd c c2) tThenExpr elseExpr
       let proof :=
         mkApp5 (mkConst ``Std.Tactic.BVDecide.Normalize.Bool.ite_then_ite'' [lvl])

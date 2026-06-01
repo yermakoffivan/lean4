@@ -98,8 +98,6 @@ structure IntroRules where
 /-! ## VCGen monad and caching -/
 
 structure Context where
-  /-- Available specification theorems in the hint database. -/
-  specThms     : SpecTheoremsNew
   /-- Cached backward rules for intro procedures. -/
   introRules   : IntroRules
   /-- Backward rule for `prop_pre_elim`. -/
@@ -138,6 +136,13 @@ structure Context where
   introduced excess/state arguments (state arg `i` ← `stateArgNames[i]?`). Where no entry applies,
   the quantifier/lemma binder name is kept. `tactic.hygienic` decides accessibility. -/
   stateArgNames : Array Name := #[]
+
+structure Scope where
+  /-- Spec database in scope: globals plus locals from in-scope hypotheses. -/
+  specs : SpecTheoremsNew
+  /-- Index of the next local declaration to consider for local specs. -/
+  nextDeclIdx : Nat := 0
+  deriving Inhabited
 
 structure State where
   /--
@@ -194,6 +199,22 @@ end VCGen
 
 abbrev VCGenM := ReaderT VCGen.Context (StateRefT VCGen.State GrindM)
 
+def VCGen.Scope.insertSpec (scope : VCGen.Scope) (thm : SpecTheoremNew) : VCGen.Scope :=
+  { scope with specs := scope.specs.insert thm }
+
+/-- Walk `goal`'s local context from `scope.nextDeclIdx` onward and register any
+new spec-shaped hypotheses as local specs. -/
+def VCGen.Scope.collectLocalSpecs (scope : VCGen.Scope) (goal : MVarId) : VCGenM VCGen.Scope :=
+  goal.withContext do
+    let lctx ← getLCtx
+    if scope.nextDeclIdx == lctx.decls.size then return scope
+    let scope ← lctx.foldlM (init := scope) (start := scope.nextDeclIdx) fun scope decl => do
+      if decl.isAuxDecl then return scope
+      if let some thm ← mkSpecTheoremNew? (.local decl.fvarId) (eval_prio low) then
+        return scope.insertSpec thm
+      return scope
+    return { scope with nextDeclIdx := lctx.decls.size }
+
 /-- True iff fuel has been exhausted (`Fuel.limited 0`). -/
 public def VCGen.outOfFuel : VCGenM Bool :=
   return match (← get).fuel with | .limited 0 => true | _ => false
@@ -203,7 +224,6 @@ public def VCGen.burnOne : VCGenM Unit :=
   modify fun s => { s with fuel := match s.fuel with
     | .limited (n+1) => .limited n
     | other => other }
-
 
 end Loom
 

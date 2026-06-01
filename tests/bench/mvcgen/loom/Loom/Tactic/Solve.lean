@@ -36,8 +36,8 @@ inductive SolveResult where
   | noStrategyForProgram (e : Expr)
   /-- Did not find a spec for `e` in `pre ⊑ wp e post epost`. -/
   | noSpecFoundForProgram (e : Expr) (monad : Expr) (thms : Array SpecTheoremNew)
-  /-- Successfully decomposed the goal. These are the subgoals. -/
-  | goals (subgoals : List MVarId)
+  /-- Successfully decomposed the goal. These are the subgoals, sharing `scope`. -/
+  | goals (scope : VCGen.Scope) (subgoals : List MVarId)
 
 /-! ## Private helpers -/
 
@@ -68,16 +68,16 @@ section Strategies
 
 variable (goal : MVarId)
 
-def introForall : VCGenM SolveResult := do
+def introForall (scope : VCGen.Scope) : VCGenM SolveResult := do
   match ← VCGenM.introsAndSimp goal with
-  | .closed => return .goals []
-  | .goal goal => return .goals [goal]
+  | .closed => return .goals scope []
+  | .goal goal => return .goals scope [goal]
   | .failed => throwError "Failed to intro forall target"
 
 /-- Strategy 1: introduce binders if the target is a `∀`. -/
-def tryForallIntro (target : Expr) : VCGenM (Option SolveResult) := do
+def tryForallIntro (scope : VCGen.Scope) (target : Expr) : VCGenM (Option SolveResult) := do
   unless target.isForall do return none
-  return some (← introForall goal)
+  return some (← introForall goal scope)
 
 def throwIfUnsupportedJP (name : Name) (val : Expr) : VCGenM Unit := do
   if (← read).useJP && Lean.Elab.Tactic.Do.isJP name && val.isLambda then
@@ -87,30 +87,30 @@ def throwIfUnsupportedJP (name : Name) (val : Expr) : VCGenM Unit := do
       needs to be ported to the worklist style. Drop `(jp := true)` to fall back \
       to the default zeta-unfold behaviour."
 
-def introOrSubstTargetLet (val body : Expr) : VCGenM SolveResult := do
+def introOrSubstTargetLet (scope : VCGen.Scope) (val body : Expr) : VCGenM SolveResult := do
   -- throwIfUnsupportedJP name val
   if val.isDuplicable then
     let target ← Sym.instantiateRevBetaS body #[val]
-    return .goals [← goal.replaceTargetDefEq target]
+    return .goals scope [← goal.replaceTargetDefEq target]
   else
     let .goal _ goal ← Sym.intros goal
       | throwError "Failed to intro let target"
-    return .goals [goal]
+    return .goals scope [goal]
 
 /-- Strategy 2: zeta-substitute duplicable top-level target lets, otherwise introduce them. -/
-def tryTargetLetIntro (target : Expr) : VCGenM (Option SolveResult) := do
+def tryTargetLetIntro (scope : VCGen.Scope) (target : Expr) : VCGenM (Option SolveResult) := do
   let .letE _ _ val body _ := target | return none
-  return some (← introOrSubstTargetLet goal val body)
+  return some (← introOrSubstTargetLet goal scope val body)
 
-def unfoldTriple : VCGenM SolveResult := do
+def unfoldTriple (scope : VCGen.Scope) : VCGenM SolveResult := do
   let .goals [goal] ← (← read).introRules.tripleIntro.applyChecked goal
     | throwError "Failed to unfold Triple target"
-  return .goals [goal]
+  return .goals scope [goal]
 
 /-- Strategy 3: unfold a `Triple` target into the underlying lattice entailment. -/
-def tryTripleUnfold (target : Expr) : VCGenM (Option SolveResult) := do
+def tryTripleUnfold (scope : VCGen.Scope) (target : Expr) : VCGenM (Option SolveResult) := do
   unless target.isAppOf ``Triple do return none
-  return some (← unfoldTriple goal)
+  return some (← unfoldTriple goal scope)
 
 /-- Count the leading (syntactic) `∀`/`→` binders of a function-valued lattice carrier
     `σ₁ → … → σₙ → Base` — i.e. the number of excess state arguments to introduce. -/
@@ -118,7 +118,7 @@ private partial def numLeadingForalls : Expr → Nat
   | .forallE _ _ b _ => numLeadingForalls b.consumeMData + 1
   | _ => 0
 
-def introStateArg (preIsTop : Bool) (α : Expr) : VCGenM SolveResult := do
+def introStateArg (scope : VCGen.Scope) (preIsTop : Bool) (α : Expr) : VCGenM SolveResult := do
   let ctx ← read
   let rule :=
     if preIsTop then ctx.introRules.topStateArgIntro else ctx.introRules.stateArgIntro
@@ -134,49 +134,52 @@ def introStateArg (preIsTop : Bool) (α : Expr) : VCGenM SolveResult := do
     let some g ← introOneHygienic g ctx.stateArgNames[i]?
       | throwError "Failed to intro state argument"
     goal := g
-  return .goals [goal]
+  return .goals scope [goal]
 
-def introPre (ofProp : Bool) : VCGenM SolveResult := do
+def introPre (scope : VCGen.Scope) (ofProp : Bool) : VCGenM SolveResult := do
   let goal ← introMeetPre (← read).introRules ofProp goal
-  return .goals [goal]
+  return .goals scope [goal]
 
 /-- Strategy 4a: introduce an embedded proposition from the precondition side.
 
 This is tried before state-argument introduction because `ofProp_pre_intro'` works for function
 lattices, while peeling state arguments first would leave `⌜p⌝` applied to excess arguments. -/
-def tryOfPropPreIntro (pre : Expr) : VCGenM (Option SolveResult) := do
+def tryOfPropPreIntro (scope : VCGen.Scope) (pre : Expr) : VCGenM (Option SolveResult) := do
   unless pre.isAppOf ``CompleteLattice.ofProp do return none
-  return some (← introPre goal (ofProp := true))
+  return some (← introPre goal scope (ofProp := true))
 
 /-- Strategy 4b: introduce state arguments for function-valued lattice entailments. -/
-def tryStateArgIntro (α : Expr) (preIsTop : Bool) : VCGenM (Option SolveResult) := do
+def tryStateArgIntro (scope : VCGen.Scope) (α : Expr) (preIsTop : Bool) :
+    VCGenM (Option SolveResult) := do
   unless α.isForall do return none
-  return some (← introStateArg goal preIsTop α)
+  return some (← introStateArg goal scope preIsTop α)
 
 /-- Strategy 4c: introduce a non-trivial propositional precondition from the left side of `⊑`. -/
-def tryPropPreIntro (α : Expr) (preIsTop : Bool) : VCGenM (Option SolveResult) := do
+def tryPropPreIntro (scope : VCGen.Scope) (α : Expr) (preIsTop : Bool) :
+    VCGenM (Option SolveResult) := do
   unless !preIsTop ∧ α.isProp do return none
-  some <$> introPre goal (ofProp := false)
+  some <$> introPre goal scope (ofProp := false)
 
-def applyLattice (target : Expr) (lop : LogicOp) (as excessArgs : Array Expr)
+def applyLattice (scope : VCGen.Scope) (target : Expr) (lop : LogicOp) (as excessArgs : Array Expr)
     (resultType? : Option Expr) (preIsTop : Bool) : VCGenM SolveResult := do
   let rule ← mkBackwardRuleForLogicCached lop as excessArgs resultType? preIsTop
   let .goals goals ← rule.applyChecked goal
     | throwError "Failed to applyChecked logic rule at {indentExpr target}"
-  return .goals goals
+  return .goals scope goals
 
 /-- Strategy 5: decompose supported lattice RHS connectives (`⊓`, `⇨`, `⌜p⌝`, and `⊤`). -/
-def tryLattice (target rhs : Expr) (preIsTop : Bool) : VCGenM (Option SolveResult) :=
+def tryLattice (scope : VCGen.Scope) (target rhs : Expr) (preIsTop : Bool) :
+    VCGenM (Option SolveResult) :=
   rhs.withApp fun head args => do
     match_expr head with
     | meet =>
       let excessArgs := args.drop 4
       let as := args.extract 2 4
-      return some (← applyLattice goal target .And as excessArgs none preIsTop)
+      return some (← applyLattice goal scope target .And as excessArgs none preIsTop)
     | himp =>
       let excessArgs := args.drop 4
       let as := args.extract 2 4
-      return some (← applyLattice goal target .Imp as excessArgs none preIsTop)
+      return some (← applyLattice goal scope target .Imp as excessArgs none preIsTop)
     | CompleteLattice.ofProp =>
       /- We don't want to drop `pre` in `⊢ pre ⊑ ⌜p⌝`, turning the goal into `⊢ p`.
         If `pre` is not `⊤`, we might lose information and the goal might become unprovable.
@@ -185,30 +188,31 @@ def tryLattice (target rhs : Expr) (preIsTop : Bool) : VCGenM (Option SolveResul
       unless preIsTop do return none
       let excessArgs := args.drop 3
       let as := args.extract 2 3
-      return some (← applyLattice goal target .Pure as excessArgs
+      return some (← applyLattice goal scope target .Pure as excessArgs
         (resultType? := args[0]!) (preIsTop := preIsTop))
     | top =>
       -- `pre ⊑ ⊤` closes via `le_top`; `top` has no operands.
       let excessArgs := args.drop 2
-      some <$> applyLattice goal target .Top #[] excessArgs
+      some <$> applyLattice goal scope target .Top #[] excessArgs
         (resultType? := args[0]!) (preIsTop := preIsTop)
     | _ => return none
 
-def unfoldEPostVC (relConst α inst pre epost : Expr) (excessArgs : Array Expr) :
+def unfoldEPostVC (scope : VCGen.Scope) (relConst α inst pre epost : Expr) (excessArgs : Array Expr) :
     VCGenM SolveResult := do
   let rhs ← betaRevS epost excessArgs.reverse
   let newTarget ← mkAppNS relConst #[α, inst, pre, rhs]
   let goal ← goal.replaceTargetDefEq newTarget
-  return .goals [goal]
+  return .goals scope [goal]
 
 /-- Strategy 6: unfold a concrete exception-postcondition component into an ordinary VC. -/
-def tryEPostVC (target α inst pre rhs : Expr) : VCGenM (Option SolveResult) :=
+def tryEPostVC (scope : VCGen.Scope) (target α inst pre rhs : Expr) :
+    VCGenM (Option SolveResult) :=
   rhs.withApp fun head args => do
     unless head.isConstOf ``EPost.cons.head do return none
     let some epostArg := args[2]? | return none
     let (epostTarget, index) := peelEPostTailChain epostArg
     let some epost ← mkEPostAtIndex epostTarget index | return none
-    return some (← unfoldEPostVC goal target.getAppFn α inst pre epost (args.extract 3 args.size))
+    return some (← unfoldEPostVC goal scope target.getAppFn α inst pre epost (args.extract 3 args.size))
 
 def replaceProgDefEq (target : Expr) (info : WPInfo) (prog : Expr) :
     VCGenM MVarId := do
@@ -218,14 +222,14 @@ def replaceProgDefEq (target : Expr) (info : WPInfo) (prog : Expr) :
   let newTarget ← mkAppNS target.getAppFn (relArgs.set! (relArgs.size - 1) rhs)
   goal.replaceTargetDefEq newTarget
 
-def substOrHoistLet (target : Expr) (info : WPInfo)
+def substOrHoistLet (scope : VCGen.Scope) (target : Expr) (info : WPInfo)
     (name : Name) (type val body : Expr) (nondep : Bool)
     (appArgs : Array Expr) : VCGenM SolveResult := do
   throwIfUnsupportedJP name val
   if val.isDuplicable then
     let body' ← Sym.instantiateRevBetaS body #[val]
     let prog ← mkAppRevS body' appArgs
-    return .goals [← replaceProgDefEq goal target info prog]
+    return .goals scope [← replaceProgDefEq goal target info prog]
   else
     let prog ← mkAppRevS body appArgs
     let wp ← mkAppNS info.head <| info.args.set! 8 prog
@@ -236,20 +240,21 @@ def substOrHoistLet (target : Expr) (info : WPInfo)
     let goal ← goal.replaceTargetDefEq target
     let .goal _ goal ← Sym.intros goal
       | throwError "Failed to intro hoisted let"
-    return .goals [goal]
+    return .goals scope [goal]
 
 /-- Strategy 7a: hoist or zeta-substitute a `let` from the program head. -/
-def tryWPLet (target : Expr) (info : WPInfo) : VCGenM (Option SolveResult) := do
+def tryWPLet (scope : VCGen.Scope) (target : Expr) (info : WPInfo) :
+    VCGenM (Option SolveResult) := do
   let .letE name type val body nondep := info.prog.getAppFn | return none
-  some <$> substOrHoistLet goal target info name type val body nondep info.prog.getAppRevArgs
+  some <$> substOrHoistLet goal scope target info name type val body nondep info.prog.getAppRevArgs
 
-def splitMatch (target : Expr) (info : WPInfo) (splitInfo : Do.SplitInfo) :
+def splitMatch (scope : VCGen.Scope) (target : Expr) (info : WPInfo) (splitInfo : Do.SplitInfo) :
     VCGenM SolveResult := do
   -- For matchers, try reduceRecMatcher? to reduce known discriminants.
   if let .matcher .. := splitInfo then
     if let some prog ← reduceRecMatcher? info.prog then
       let prog ← shareCommon prog
-      return .goals [← replaceProgDefEq goal target info prog]
+      return .goals scope [← replaceProgDefEq goal target info prog]
   let rule ← mkBackwardRuleForSplitCached splitInfo info
   let .goals goals ← rule.applyChecked goal
     | throwError "Failed to applyChecked split rule for {indentExpr info.prog}"
@@ -257,26 +262,28 @@ def splitMatch (target : Expr) (info : WPInfo) (splitInfo : Do.SplitInfo) :
     let .goal _ g ← Sym.intros g
       | throwError "Failed to intro split parameters"
     return g
-  return .goals goals
+  return .goals scope goals
 
 /-- Strategy 7b: split an `ite`/`dite`/match program, or iota-reduce a concrete matcher. -/
-def tryWPMatch (target : Expr) (info : WPInfo) : VCGenM (Option SolveResult) := do
+def tryWPMatch (scope : VCGen.Scope) (target : Expr) (info : WPInfo) :
+    VCGenM (Option SolveResult) := do
   let some splitInfo ← Do.getSplitInfo? info.prog | return none
-  some <$> splitMatch goal target info splitInfo
+  some <$> splitMatch goal scope target info splitInfo
 
-def substFvarZeta (target : Expr) (info : WPInfo) (val : Expr)
+def substFvarZeta (scope : VCGen.Scope) (target : Expr) (info : WPInfo) (val : Expr)
     (appArgs : Array Expr) : VCGenM SolveResult := do
   let prog ← shareCommon <| val.betaRev appArgs
-  return .goals [← replaceProgDefEq goal target info prog]
+  return .goals scope [← replaceProgDefEq goal target info prog]
 
 /-- Strategy 7c: zeta-unfold a local let-bound fvar used as the program head. -/
-def tryWPFVarZeta (target : Expr) (info : WPInfo) : VCGenM (Option SolveResult) := do
+def tryWPFVarZeta (scope : VCGen.Scope) (target : Expr) (info : WPInfo) :
+    VCGenM (Option SolveResult) := do
   let f := info.prog.getAppFn
   let some val ← f.fvarId?.bindM (·.getValue?) | return none
-  some <$> substFvarZeta goal target info val info.prog.getAppRevArgs
+  some <$> substFvarZeta goal scope target info val info.prog.getAppRevArgs
 
-def applySpec (target : Expr) (info : WPInfo) : VCGenM SolveResult := do
-  match ← (← read).specThms.findSpecs info.prog with
+def applySpec (scope : VCGen.Scope) (target : Expr) (info : WPInfo) : VCGenM SolveResult := do
+  match ← scope.specs.findSpecs info.prog with
   | .error thms => return .noSpecFoundForProgram info.prog info.m thms
   | .ok thm =>
   let some rule ←
@@ -297,13 +304,14 @@ def applySpec (target : Expr) (info : WPInfo) : VCGenM SolveResult := do
         Pred:{indentExpr info.Pred}\n\
         excessArgs: {info.excessArgs}\n\
         rule type:{indentExpr ruleType}"
-  return .goals goals
+  return .goals scope goals
 
 /-- Strategy 7d: apply a registered spec for a constant or local function program head. -/
-def tryWPCallSpec (target : Expr) (info : WPInfo) : VCGenM (Option SolveResult) := do
+def tryWPCallSpec (scope : VCGen.Scope) (target : Expr) (info : WPInfo) :
+    VCGenM (Option SolveResult) := do
   let f := info.prog.getAppFn
   unless f.isConst || f.isFVar do return none
-  some <$> applySpec goal target info
+  some <$> applySpec goal scope target info
 
 /-- Extract the weakest-precondition metadata from the RHS of a lattice entailment. -/
 def getWPInfo? (rhs : Expr) : VCGenM (Option WPInfo) :=
@@ -312,17 +320,18 @@ def getWPInfo? (rhs : Expr) : VCGenM (Option WPInfo) :=
     return some { head, args := args.take 11, excessArgs := args.drop 11 }
 
 /-- Strategy 7: decompose a `wp` RHS by trying each program-shape strategy in order. -/
-def tryWP (target rhs : Expr) : VCGenM (Option SolveResult) := do
+def tryWP (scope : VCGen.Scope) (target rhs : Expr) : VCGenM (Option SolveResult) := do
   let some info ← getWPInfo? rhs | return none
+  let scope ← scope.collectLocalSpecs goal
   burnOne
-  if let some res ← tryWPLet goal target info then return some res
-  if let some res ← tryWPMatch goal target info then return some res
-  if let some res ← tryWPFVarZeta goal target info then return some res
-  if let some res ← tryWPCallSpec goal target info then return some res
+  if let some res ← tryWPLet goal scope target info then return some res
+  if let some res ← tryWPMatch goal scope target info then return some res
+  if let some res ← tryWPFVarZeta goal scope target info then return some res
+  if let some res ← tryWPCallSpec goal scope target info then return some res
   return some (.noStrategyForProgram info.prog)
 
 /-- Strategy 8: close an already-reflexive lattice entailment. -/
-def tryRfl (target : Expr) : VCGenM (Option SolveResult) := do
+def tryRfl (scope : VCGen.Scope) (target : Expr) : VCGenM (Option SolveResult) := do
   let_expr PartialOrder.rel α inst pre rhs := target
     | return none
   unless ← withAssignableSyntheticOpaque <| isDefEqS pre rhs do
@@ -330,7 +339,7 @@ def tryRfl (target : Expr) : VCGenM (Option SolveResult) := do
   let refl := mkConst ``PartialOrder.rel_refl target.getAppFn.constLevels!
   let proof := mkAppN refl #[α, inst, pre]
   goal.assign proof
-  return some (.goals [])
+  return some (.goals scope [])
 
 end Strategies
 
@@ -350,24 +359,24 @@ The function performs the following steps in order:
 7. **WP decomposition**: try program-let hoisting, match splitting, fvar zeta, then spec lookup.
 8. **Reflexivity**: close already-reflexive lattice entailments.
 -/
-def solve (goal : MVarId) : VCGenM SolveResult := goal.withContext do
+def solve (scope : VCGen.Scope) (goal : MVarId) : VCGenM SolveResult := goal.withContext do
   let mut goal := goal
   let mut target ← goal.getType
   if target.hasExprMVar then
     target ← instantiateMVars target
     goal ← goal.replaceTargetDefEq target
-  if let some res ← tryForallIntro goal target then return res
-  if let some res ← tryTargetLetIntro goal target then return res
-  if let some res ← tryTripleUnfold goal target then return res
+  if let some res ← tryForallIntro goal scope target then return res
+  if let some res ← tryTargetLetIntro goal scope target then return res
+  if let some res ← tryTripleUnfold goal scope target then return res
 
   let_expr PartialOrder.rel α inst pre rhs := target | return .noEntailment target
   let preIsTop := pre.isAppOf ``Lean.Order.top && pre.getAppNumArgs = 2
 
-  if let some res ← tryOfPropPreIntro goal pre then return res
-  if let some res ← tryStateArgIntro goal α preIsTop then return res
-  if let some res ← tryPropPreIntro goal α preIsTop then return res
-  if let some res ← tryLattice goal target rhs preIsTop then return res
-  if let some res ← tryEPostVC goal target α inst pre rhs then return res
-  if let some res ← tryWP goal target rhs then return res
-  if let some res ← tryRfl goal target then return res
+  if let some res ← tryOfPropPreIntro goal scope pre then return res
+  if let some res ← tryStateArgIntro goal scope α preIsTop then return res
+  if let some res ← tryPropPreIntro goal scope α preIsTop then return res
+  if let some res ← tryLattice goal scope target rhs preIsTop then return res
+  if let some res ← tryEPostVC goal scope target α inst pre rhs then return res
+  if let some res ← tryWP goal scope target rhs then return res
+  if let some res ← tryRfl goal scope target then return res
   return .noProgramOrLatticeFoundInTarget target

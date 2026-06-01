@@ -177,6 +177,20 @@ def mkSpecTheoremNew (spec : SpecTheorem) : SymM SpecTheoremNew := do
   let pattern ← mkSpecPattern spec.proof
   return { pattern, proof := spec.proof, kind := .spec, priority := spec.priority }
 
+/-- Build a migrated ordinary spec theorem directly from a proof. Returns `none`
+when the proof is not a `Triple`/`⊑ wp` spec. -/
+def mkSpecTheoremNew? (proof : SpecProof) (prio : Nat) :
+    SymM (Option SpecTheoremNew) := do
+  try
+    let pattern ← mkSpecPattern proof
+    return some { pattern, proof, kind := .spec, priority := prio }
+  catch _ =>
+    return none
+
+def SpecTheoremsNew.insert (database : SpecTheoremsNew) (thm : SpecTheoremNew) :
+    SpecTheoremsNew :=
+  { database with specs := Sym.insertPattern database.specs thm.pattern thm }
+
 /--
 Eta-expand a pattern for a function-level equality.
 

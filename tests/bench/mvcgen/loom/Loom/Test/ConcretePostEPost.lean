@@ -13,7 +13,7 @@ Benchmark for the spec-generalization path where both `post` and `epost` are con
 an `@[spec]` theorem. `lmvcgen` must abstract them back out using `WPMonad.wp_consequence_econs`.
 -/
 
-def concreteGet : StateM Nat Nat := get
+def concreteGet : StateM Nat Nat := MonadStateOf.get
 
 @[spec high]
 theorem spec_concreteGet :

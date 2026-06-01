@@ -38,7 +38,8 @@ Parse the optional `[...]` argument list for `lmvcgen`, partitioning entries int
 spec theorems and simp lemmas. Each entry is first tried as a spec theorem, and on
 failure falls back to a simp/unfold lemma processed via `mkSimpContext`.
 -/
-public def mkSpecContext (lemmas : Syntax) (ignoreStarArg := false) : TacticM VCGen.Context := do
+public def mkContext (lemmas : Syntax) (ignoreStarArg := false) :
+    TacticM (VCGen.Context × VCGen.Scope) := do
   let mut specThms ← getSpecTheorems
   let mut simpStuff := #[]
   let mut starArg := false
@@ -103,11 +104,10 @@ public def mkSpecContext (lemmas : Syntax) (ignoreStarArg := false) : TacticM VC
   let ofPropPreIntro ← mkBackwardRuleFromDecl ``ofProp_pre_intro'
   let elimPreRule ← mkBackwardRuleFromDecl ``Lean.Order.prop_pre_elim
   let andIntroRule ← mkBackwardRuleFromDecl ``And.intro
-  return {
-    specThms := specThmsNew,
+  return ({
     introRules := { tripleIntro, stateArgIntro, topStateArgIntro, propPreIntro, ofPropPreIntro },
     elimPreRule,
-    andIntroRule }
+    andIntroRule }, { specs := specThmsNew })
 
 end VCGen
 
@@ -261,7 +261,7 @@ public def evalLmvcgen : Tactic := fun stx => withMainContext do
   let config ← elabConfig stx[2]
   warnIgnoredConfig config
   let goal ← getMainGoal
-  let ctx ← VCGen.mkSpecContext stx[3]
+  let (ctx, scope) ← VCGen.mkContext stx[3]
   let simpMethods ← elabSimplifyingAssumptions stx[5]
   let (disch, params) ← elabDischargeTactic goal stx[6]
   let invariantAlts? ← parseInvariantMap stx[4]
@@ -274,7 +274,7 @@ public def evalLmvcgen : Tactic := fun stx => withMainContext do
     debug := config.debug,
     stateArgNames,
     invariantAlts := invariantAlts?.getD {} }
-  let result ← Grind.GrindM.run (VCGen.main goal ctx config.stepLimit) params
+  let result ← Grind.GrindM.run (VCGen.main goal ctx scope config.stepLimit) params
   if let some alts := invariantAlts? then
     elabRemainingInvariants alts result.invariants result.inlineHandledInvariants
   else

@@ -603,4 +603,32 @@ example (p : Nat → Prop) [DecidablePred p] (n : Nat) :
 
 end InvariantSyntaxTests
 
+/-! ## LocalSpec -/
+
+namespace LocalSpec
+
+def foo (x : Id Nat → Id Nat) : Id Nat := do
+  let r₁ ← x (pure 42)
+  let r₂ ← x (pure 26)
+  pure (r₁ + r₂)
+
+theorem foo_spec
+    (x : Id Nat → Id Nat)
+    (x_spec : ∀ (k : Id Nat), ⦃ ⊤ ⦄ k ⦃ fun r => r % 2 = 0 ⦄ →
+      ⦃ ⊤ ⦄ x k ⦃ fun r => r % 2 = 0 ⦄) :
+    ⦃ ⊤ ⦄ foo x ⦃ fun r => r % 2 = 0 ⦄ := by
+  lmvcgen [foo, x_spec] with grind
+
+def bar (k : Id Nat) : Id Nat := do
+  let r ← k
+  if r > 30 then
+    return 12
+  else
+    return r
+
+example : ⦃ ⊤ ⦄ foo bar ⦃ fun r => r % 2 = 0 ⦄ := by
+  lmvcgen [foo_spec, bar] with grind
+
+end LocalSpec
+
 end Loom.Test.Bench.TestDoLogic

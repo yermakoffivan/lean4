@@ -21,7 +21,7 @@ public import Loom.Tactic.Frontend
 /-!
 The `lmvcgen` tactic, split across the modules above.
 
-- `VCGen.Types` — `VCGenM`, its `Context`/`State`, config-facing types, and shared caches.
+- `VCGen.Types` — `VCGenM`, its `Context`/`Scope`/`State`, config-facing types, and shared caches.
 - `VCGen.SpecDB` — `SpecTheoremNew`/`SpecTheoremsNew` plus database migration and lookup.
 - `VCGen.RuleConstruct.Spec` — rule construction from `⊑ wp` spec theorems.
 - `VCGen.RuleConstruct.Simp` — rule construction from equality spec theorems.
@@ -32,5 +32,5 @@ The `lmvcgen` tactic, split across the modules above.
 - `VCGen.RuleCache` — `VCGenM` cache wrappers around rule constructors.
 - `VCGen.Solve` — the main `solve` step and goal classification.
 - `VCGen.Driver` — the worklist driver (`work`, `emitVC`, `main`, `Result`).
-- `VCGen.Frontend` — the `lmvcgen` syntax, tactic elaborator, and `mkSpecContext`.
+- `VCGen.Frontend` — the `lmvcgen` syntax, tactic elaborator, and `mkContext`.
 -/

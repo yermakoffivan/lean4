@@ -102,6 +102,10 @@ private def handleInvariantSubgoals (subgoals : List MVarId) : VCGenM (List MVar
       others := sg :: others
   return others
 
+private structure WorkItem where
+  goal : Grind.Goal
+  scope : VCGen.Scope
+
 /--
 Called when decomposing the goal further did not succeed; in this case we emit a VC for the goal.
 Invariant subgoals are handled separately by `handleInvariantSubgoals` directly inside `work`,
@@ -125,13 +129,14 @@ def emitVC (goal : Grind.Goal) : VCGenM Unit := do
   modify fun s => { s with vcs := s.vcs ++ goals }
 
 /-- Main work loop: decompose the goal repeatedly. -/
-def work (goal : MVarId) : VCGenM Unit := do
+def work (scope : VCGen.Scope) (goal : MVarId) : VCGenM Unit := do
   let goal ← Grind.mkGoal goal
-  let mut worklist := Std.Queue.empty.enqueue goal
+  let mut worklist := (Std.Queue.empty : Std.Queue WorkItem).enqueue { goal, scope }
   repeat do
-    let some (goal, worklist') := worklist.dequeue? | break
+    let some (item, worklist') := worklist.dequeue? | break
     worklist := worklist'
-    let res ← Loom.VCGen.solve goal.mvarId
+    let goal := item.goal
+    let res ← Loom.VCGen.solve item.scope goal.mvarId
     match res with
     | .noEntailment .. | .noProgramOrLatticeFoundInTarget .. =>
         emitVC goal
@@ -145,14 +150,15 @@ def work (goal : MVarId) : VCGenM Unit := do
         emitVC goal
     | .noStrategyForProgram prog =>
       throwError "Did not know how to decompose weakest precondition for {prog}"
-    | .goals subgoals =>
+    | .goals scope subgoals =>
       -- if we have multiple subgoals, before running the VCGen
       -- we need to share the grind context first.
       let subgoals ← handleInvariantSubgoals subgoals
       let mut grindSharedGoal := goal
       if (← read).disch.isGrind && subgoals.length > 1 then
         grindSharedGoal ← goal.internalizeAll
-      worklist := worklist.enqueueAll <| subgoals.map ({ grindSharedGoal with mvarId := · })
+      worklist := worklist.enqueueAll <| subgoals.map fun mv =>
+        { goal := { grindSharedGoal with mvarId := mv }, scope }
 
 structure Result where
   /-- All invariant goals emitted during VC generation, in emit order. The MVarId at
@@ -171,10 +177,11 @@ structure Result where
 
 
 /-- Generate VCs for a goal of the form `Triple pre e post epost`, keeping subgoals in `⊑` form. -/
-partial def main (goal : MVarId) (ctx : VCGen.Context) (stepLimit? : Option Nat := none)
+partial def main (goal : MVarId) (ctx : VCGen.Context) (scope : VCGen.Scope)
+    (stepLimit? : Option Nat := none)
   : GrindM Result := do
   let initState : State := { fuel := match stepLimit? with | some n => .limited n | none => .unlimited }
-  let ((), state) ← StateRefT'.run (ReaderT.run (work goal) ctx) initState
+  let ((), state) ← StateRefT'.run (ReaderT.run (work scope goal) ctx) initState
   for h : idx in [:state.invariants.size] do
     let mv := state.invariants[idx]
     mv.setTag (Name.mkSimple ("inv" ++ toString (idx + 1)))

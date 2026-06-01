@@ -262,8 +262,13 @@ theorem set built from `@[spec]` arguments:
 def migrateSpecTheoremsDatabase (database : SpecTheorems) (simpThms : SimpTheorems) :
     SymM SpecTheoremsNew := do
   let mut specs : DiscrTree SpecTheoremNew := DiscrTree.empty
+  -- Erased entries are still inserted into `specs` below; `findSpecs` filters them out
+  -- at lookup time.
+  let erased : PHashSet SpecProof := simpThms.erased.fold (init := database.erased) fun acc o =>
+    match SpecProof.ofOrigin o with
+    | some p => acc.insert p
+    | none => acc
   for spec in database.specs.values do
-    if database.isErased spec.proof then continue
     try
       let newSpec ← mkSpecTheoremNew spec
       specs := Sym.insertPattern specs newSpec.pattern newSpec
@@ -272,7 +277,6 @@ def migrateSpecTheoremsDatabase (database : SpecTheorems) (simpThms : SimpTheore
   -- Migrate simp spec theorems: equational lemmas registered through the `@[spec]` simp path.
   for simpThm in simpThms.post.values do
     if let .decl declName .. := simpThm.origin then
-      if simpThms.erased.contains simpThm.origin then continue
       try
         if let some newSpec ← mkSpecTheoremNewFromSimpDecl? declName simpThm.priority then
           specs := Sym.insertPattern specs newSpec.pattern newSpec
@@ -280,7 +284,6 @@ def migrateSpecTheoremsDatabase (database : SpecTheorems) (simpThms : SimpTheore
         trace[Loom.Tactic.vcgen] "Failed to migrate simp spec {declName}: {e.toMessageData}"
   -- Migrate definitions to unfold, registered via `attribute [spec] foo`.
   for declName in simpThms.toUnfold.toList do
-    if simpThms.erased.contains (.decl declName) then continue
     let eqThms ← match simpThms.toUnfoldThms.find? declName with
       | some eqThms => pure eqThms
       | none =>
@@ -293,7 +296,7 @@ def migrateSpecTheoremsDatabase (database : SpecTheorems) (simpThms : SimpTheore
           specs := Sym.insertPattern specs newSpec.pattern newSpec
       catch e =>
         trace[Loom.Tactic.vcgen] "Failed to migrate unfold spec {declName}/{eqThm}: {e.toMessageData}"
-  return { specs, erased := database.erased }
+  return { specs, erased }
 
 /--
 Look up `SpecTheoremNew`s matching program `e` using pattern-based matching.

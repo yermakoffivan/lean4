@@ -817,7 +817,7 @@ static const lean_string_object l___private_Lean_Meta_Tactic_Simp_SimpTheorems_0
 static const lean_object* l___private_Lean_Meta_Tactic_Simp_SimpTheorems_0__Lean_Meta_mkSimpTheoremCore___lam__0___closed__4 = (const lean_object*)&l___private_Lean_Meta_Tactic_Simp_SimpTheorems_0__Lean_Meta_mkSimpTheoremCore___lam__0___closed__4_value;
 static lean_once_cell_t l___private_Lean_Meta_Tactic_Simp_SimpTheorems_0__Lean_Meta_mkSimpTheoremCore___lam__0___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Meta_Tactic_Simp_SimpTheorems_0__Lean_Meta_mkSimpTheoremCore___lam__0___closed__5;
-static const lean_string_object l___private_Lean_Meta_Tactic_Simp_SimpTheorems_0__Lean_Meta_mkSimpTheoremCore___lam__0___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 152, .m_capacity = 152, .m_length = 151, .m_data = "\nat `.instances` transparency. Possible solutions:\n1- use `(rfl)` as the proof\n2- mark constants occurring in the lhs and rhs as `[implicit_reducible]`"};
+static const lean_string_object l___private_Lean_Meta_Tactic_Simp_SimpTheorems_0__Lean_Meta_mkSimpTheoremCore___lam__0___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 151, .m_capacity = 151, .m_length = 150, .m_data = "\nat `.implicit` transparency. Possible solutions:\n1- use `(rfl)` as the proof\n2- mark constants occurring in the lhs and rhs as `[implicit_reducible]`"};
 static const lean_object* l___private_Lean_Meta_Tactic_Simp_SimpTheorems_0__Lean_Meta_mkSimpTheoremCore___lam__0___closed__6 = (const lean_object*)&l___private_Lean_Meta_Tactic_Simp_SimpTheorems_0__Lean_Meta_mkSimpTheoremCore___lam__0___closed__6_value;
 static lean_once_cell_t l___private_Lean_Meta_Tactic_Simp_SimpTheorems_0__Lean_Meta_mkSimpTheoremCore___lam__0___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l___private_Lean_Meta_Tactic_Simp_SimpTheorems_0__Lean_Meta_mkSimpTheoremCore___lam__0___closed__7;
@@ -11573,7 +11573,7 @@ static uint64_t _init_l___private_Lean_Meta_Tactic_Simp_SimpTheorems_0__Lean_Met
 _start:
 {
 uint8_t v___x_3580_; uint64_t v___x_3581_; 
-v___x_3580_ = 3;
+v___x_3580_ = 5;
 v___x_3581_ = l_Lean_Meta_TransparencyMode_toUInt64(v___x_3580_);
 return v___x_3581_;
 }
@@ -11730,7 +11730,7 @@ v_canUnfold_x3f_3675_ = lean_ctor_get(v___y_3643_, 6);
 v_univApprox_3676_ = lean_ctor_get_uint8(v___y_3643_, sizeof(void*)*7 + 1);
 v_inTypeClassResolution_3677_ = lean_ctor_get_uint8(v___y_3643_, sizeof(void*)*7 + 2);
 v_cacheInferType_3678_ = lean_ctor_get_uint8(v___y_3643_, sizeof(void*)*7 + 3);
-v___x_3679_ = 3;
+v___x_3679_ = 5;
 if (v_isShared_3668_ == 0)
 {
 v_config_3681_ = v___x_3667_;

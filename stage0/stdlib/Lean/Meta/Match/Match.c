@@ -47162,7 +47162,7 @@ v___x_14422_ = l_Lean_isPrivateName(v_name_14344_);
 if (v___x_14422_ == 0)
 {
 uint8_t v___x_14423_; lean_object* v___x_14424_; 
-v___x_14423_ = 3;
+v___x_14423_ = 4;
 lean_inc(v_name_14344_);
 v___x_14424_ = l_Lean_setReducibilityStatus___at___00Lean_Meta_Match_mkMatcherAuxDefinition_spec__4___redArg(v_name_14344_, v___x_14423_, v___y_14351_, v___y_14353_);
 lean_dec_ref(v___x_14424_);

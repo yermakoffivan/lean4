@@ -739,7 +739,7 @@ static const lean_string_object l_Lean_Meta_addInstance___closed__2_value = {.m_
 static const lean_object* l_Lean_Meta_addInstance___closed__2 = (const lean_object*)&l_Lean_Meta_addInstance___closed__2_value;
 static lean_once_cell_t l_Lean_Meta_addInstance___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_addInstance___closed__3;
-static const lean_string_object l_Lean_Meta_addInstance___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 64, .m_capacity = 64, .m_length = 63, .m_data = "` must be marked with `@[reducible]` or `@[implicit_reducible]`"};
+static const lean_string_object l_Lean_Meta_addInstance___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 64, .m_capacity = 64, .m_length = 63, .m_data = "` must be marked with `@[reducible]` or `@[instance_reducible]`"};
 static const lean_object* l_Lean_Meta_addInstance___closed__4 = (const lean_object*)&l_Lean_Meta_addInstance___closed__4_value;
 static lean_once_cell_t l_Lean_Meta_addInstance___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
 static lean_object* l_Lean_Meta_addInstance___closed__5;
@@ -13629,6 +13629,15 @@ v___y_4329_ = v___y_4356_;
 v___y_4330_ = v___y_4357_;
 goto v___jp_4325_;
 }
+case 4:
+{
+v___y_4326_ = v_a_4359_;
+v___y_4327_ = v___y_4354_;
+v___y_4328_ = v___y_4355_;
+v___y_4329_ = v___y_4356_;
+v___y_4330_ = v___y_4357_;
+goto v___jp_4325_;
+}
 case 3:
 {
 v___y_4326_ = v_a_4359_;
@@ -14162,7 +14171,7 @@ LEAN_EXPORT lean_object* l_Lean_Meta_registerInstance(lean_object* v_declName_45
 _start:
 {
 uint8_t v___x_4593_; lean_object* v___x_4594_; lean_object* v___x_4595_; 
-v___x_4593_ = 3;
+v___x_4593_ = 4;
 lean_inc(v_declName_4585_);
 v___x_4594_ = l_Lean_setReducibilityStatus___at___00Lean_Meta_registerInstance_spec__0___redArg(v_declName_4585_, v___x_4593_, v_a_4589_, v_a_4591_);
 lean_dec_ref(v___x_4594_);

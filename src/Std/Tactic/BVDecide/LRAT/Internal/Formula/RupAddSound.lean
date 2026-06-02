@@ -276,6 +276,8 @@ theorem assignmentsInvariant_insertRupUnits_of_assignmentsInvariant {n : Nat} (f
           · have h1 : (insertRupUnits f units).fst.rupUnits[j] = (i, true) := by
               rw [hb'] at h1
               rw [h1]
+              simp only [Prod.mk.injEq, and_true]
+              rfl
             rw [← h1]
             apply Array.getElem_mem_toList
           · rfl
@@ -286,6 +288,8 @@ theorem assignmentsInvariant_insertRupUnits_of_assignmentsInvariant {n : Nat} (f
           · have h1 : (insertRupUnits f units).fst.rupUnits[j] = (i, false) := by
               rw [hb'] at h1
               rw [h1]
+              simp only [Prod.mk.injEq, and_true]
+              rfl
             rw [← h1]
             apply Array.getElem_mem_toList
           · rfl
@@ -318,6 +322,8 @@ theorem assignmentsInvariant_insertRupUnits_of_assignmentsInvariant {n : Nat} (f
       constructor
       · have h1 : (insertRupUnits f units).fst.rupUnits[j1] = (i, true) := by
           rw [h1]
+          simp only [Prod.mk.injEq, and_true]
+          rfl
         rw [← h1]
         apply Array.getElem_mem_toList
       · rfl
@@ -332,6 +338,8 @@ theorem assignmentsInvariant_insertRupUnits_of_assignmentsInvariant {n : Nat} (f
       constructor
       · have h2 : (insertRupUnits f units).fst.rupUnits[j2] = (i, false) := by
           rw [h2]
+          simp only [Prod.mk.injEq, and_true]
+          rfl
         rw [← h2]
         apply Array.getElem_mem_toList
       · rfl

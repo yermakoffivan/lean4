@@ -254,29 +254,22 @@ partial def recv? (s : Connection) (size : UInt64) (chunkSize : UInt64 := ioChun
 Tries to receive decrypted plaintext data without blocking.
 Returns `some (some data)` if plaintext is available, `some none` if the peer closed,
 or `none` if no data is ready yet.
--/
-partial def tryRecv (s : Connection) (size : UInt64) (chunkSize : UInt64 := ioChunkSize) : Async (Option (Option ByteArray)) := do
-  let pending ← s.ssl.pendingPlaintext
 
-  if pending > 0 then
-    return some (← s.recv? size)
-  else
-    let readableWaiter ← s.native.waitReadable
+This checks both the OpenSSL plaintext buffer (`SSL_pending`) and the input BIO
+(`BIO_pending`) via a non-blocking `ssl.read?`. The input BIO may contain encrypted
+bytes that were already consumed from the TCP socket in a previous recv call but not
+yet decrypted, so checking only `pendingPlaintext` would miss those and cause the
+selector to incorrectly wait for new TCP data that will never arrive.
+-/
+def tryRecv (s : Connection) (size : UInt64) : Async (Option (Option ByteArray)) := do
+  match ← s.ssl.read? size with
+  | .data plain =>
     flushEncrypted s.native s.ssl
-    let pendingAfterFlush ← s.ssl.pendingPlaintext
-    if pendingAfterFlush > 0 then
-      s.native.cancelRecv
-      return some (← s.recv? size)
-    else if ← readableWaiter.isResolved then
-      let encrypted? ← Async.ofPromise <| s.native.recv? ioChunkSize
-      match encrypted? with
-      | none => return some none
-      | some encrypted =>
-        feedEncryptedChunk s.ssl encrypted
-        tryRecv s size chunkSize
-    else
-      s.native.cancelRecv
-      return none
+    return some (some plain)
+  | .closed =>
+    return some none
+  | .wantIO _ =>
+    return none
 
 /--
 Feeds encrypted socket data into SSL until plaintext is pending.
@@ -312,7 +305,7 @@ def recvSelector (s : Connection) (size : UInt64) : Selector (Option ByteArray) 
           let win promise := do
             try
               discard <| IO.ofExcept res
-              let task ← s.waitReadable *> s.recv? size |>.asTask
+              let task ← s.recv? size |>.asTask
               IO.chainTask task (fun x => promise.resolve x)
             catch e =>
               promise.resolve (.error e)

@@ -13,7 +13,7 @@ lean_external_class * g_ssl_context_external_class = nullptr;
 #ifndef LEAN_EMSCRIPTEN
 
 static void configure_ctx_options(SSL_CTX * ctx) {
-    SSL_CTX_set_options(ctx, SSL_OP_NO_RENEGOTIATION);
+    SSL_CTX_set_options(ctx, SSL_OP_NO_RENEGOTIATION | SSL_OP_NO_TICKET);
     // Allow SSL_write to be retried with a different pointer when the same
     // payload is copied into pending_writes and replayed after WANT_READ/WANT_WRITE.
     SSL_CTX_set_mode(ctx, SSL_MODE_ACCEPT_MOVING_WRITE_BUFFER);

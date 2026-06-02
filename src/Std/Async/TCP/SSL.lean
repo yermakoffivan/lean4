@@ -147,10 +147,7 @@ has completed.
 -/
 def acceptSelector (s : Server) : Selector ServerConn :=
   {
-    -- TLS handshake is multi-round-trip and cannot complete non-blocking;
-    -- always defer to registerFn which runs accept + doHandshake asynchronously.
-    tryFn := return none
-
+    tryFn := pure none
     registerFn waiter := do
       let connTask ← s.accept.asTask
       discard <| IO.mapTask (t := connTask) fun res => do
@@ -305,17 +302,18 @@ def recvSelector (s : Connection) (size : UInt64) : Selector (Option ByteArray) 
     tryFn := s.tryRecv size
 
     registerFn waiter := do
-      let readableWaiter ← s.waitReadable.asTask
-      discard <| IO.mapTask (t := readableWaiter) fun res => do
+      let readableWaiter ← s.native.waitReadable
+      -- If we get cancelled the promise will be dropped so prepare for that.
+      discard <| IO.mapTask (t := readableWaiter.result?) fun res => do
         match res with
-        | .error _ => return ()
-        | .ok _ =>
+        | none => return ()
+        | some res =>
           let lose := return ()
           let win promise := do
             try
-              -- We know that this read should not block.
-              let result ← (s.recv? size).block
-              promise.resolve (.ok result)
+              discard <| IO.ofExcept res
+              let task ← s.waitReadable *> s.recv? size |>.asTask
+              IO.chainTask task (fun x => promise.resolve x)
             catch e =>
               promise.resolve (.error e)
           waiter.race lose win

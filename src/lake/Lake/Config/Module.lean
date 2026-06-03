@@ -122,6 +122,10 @@ public abbrev pkg (self : Module) : Package :=
 @[inline] public def irDir (self : Module) : FilePath :=
   Lean.modToFilePath self.pkg.irDir self.name.getPrefix ""
 
+/-- The private per-module scratch directory used by `lake build --sandbox`. -/
+@[inline] public def sandboxDir (self : Module) : FilePath :=
+  Lean.modToFilePath (self.pkg.buildDir / "sandbox") self.name ""
+
 @[inline] public def setupFile (self : Module) : FilePath :=
   self.irPath "setup.json"
 

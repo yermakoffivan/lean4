@@ -84,6 +84,21 @@ def relocateSandboxOutput (d : SandboxDirs) (real : FilePath) : LogIO Unit := do
   createParentDirs real
   IO.FS.rename sp real
 
+/--
+Relocate each artifact `lean` produced under the sandbox scratch dir `d` into its
+real path. Artifacts that were not produced (e.g. `.c`/`.ir` in postpone-compile
+mode, which `leanir` writes later) are absent from the scratch dir and skipped by
+`relocateSandboxOutput`.
+-/
+def _root_.Lean.ModuleArtifacts.relocateFrom (arts : ModuleArtifacts) (d : SandboxDirs) : LogIO Unit := do
+  if let some f := arts.olean? then relocateSandboxOutput d f
+  if let some f := arts.oleanServer? then relocateSandboxOutput d f
+  if let some f := arts.oleanPrivate? then relocateSandboxOutput d f
+  if let some f := arts.ilean? then relocateSandboxOutput d f
+  if let some f := arts.ir? then relocateSandboxOutput d f
+  if let some f := arts.c? then relocateSandboxOutput d f
+  if let some f := arts.bc? then relocateSandboxOutput d f
+
 public def compileLeanModule
   (leanFile relLeanFile : FilePath)
   (setup : ModuleSetup) (setupFile : FilePath)
@@ -149,9 +164,7 @@ public def compileLeanModule
   -- (In postpone-compile mode `.c`/`.ir` are produced later by `leanir` and are
   -- simply absent from the scratch dir here, so they are skipped.)
   if let some d := sandbox? then
-    for real in #[arts.olean?, arts.oleanServer?, arts.oleanPrivate?,
-        arts.ilean?, arts.ir?, arts.c?, arts.bc?].filterMap id do
-      relocateSandboxOutput d real
+    arts.relocateFrom d
   if postponeCompile then
     if let (some irFile, some cFile) := (arts.ir?, arts.c?) then
       createParentDirs irFile

@@ -1,150 +1,189 @@
 /-
 Copyright (c) 2026 Lean FRO LLC. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Sebastian Graf
+Authors: Vladimir Gladshtein, Sebastian Graf
 -/
 module
 
 prelude
+public import Lean.Meta.Sym
+public import Std.Internal.Do
+public import Lean.Elab.Command
+public import Lean.Elab.Tactic.Basic
+public import Lean.Elab.Tactic.Meta
+public import Lean.Elab.Tactic.Simp
 public import Lean.Elab.Tactic.Do.Attr
-public import Lean.Meta.Sym.Pattern
-public import Lean.Meta.DiscrTree.Util
-import Lean.Meta.Sym.Simp.DiscrTree
-import Lean.Meta.Sym.Util
+public meta import Lean.Elab.Tactic.Basic
+public meta import Lean.Elab.Tactic.Do.Attr
+public import Std.Internal.Do.Triple.SpecLemmas
 
-open Lean Meta Elab Tactic Sym
-open Lean.Elab.Tactic.Do.SpecAttr
-open Std.Do
+public section
+
+namespace Lean.Elab.Tactic.Do.Internal.VCGen
+
+open Lean Meta Sym Std.Internal.Do Lean.Order
+open Lean.Elab.Tactic.Do.Internal.SpecAttr
 
 /-!
-Spec-theorem database used by `mvcgen'`. Mirrors the legacy `SpecTheorems` /
-`SpecProof` API from `Lean.Elab.Tactic.Do.Attr` but indexes specs in a
-`Sym.DiscrTree` keyed on the program's syntactic shape, with explicit
-`SpecTheoremKind` (triple vs. simp) and per-spec eta-potential metadata.
+Spec-theorem database used by Lean.Elab.Tactic.Do.Internal.VCGen `lmvcgen`.
+
+The original `@[spec]` attribute database stores the legacy `SpecTheorems`/`SpecProof` entries.
+This module migrates them into a `Sym.DiscrTree` keyed by an explicit `Sym.Pattern` for the
+program expression. The migrated database records whether an entry is an ordinary `Triple`/`⊑ wp`
+spec or an equality spec coming from the simp/unfold side of `@[spec]`.
 -/
 
-namespace Lean.Elab.Tactic.Do.SpecAttr
-
 /--
-The kind of a spec theorem.
+The kind of a migrated spec theorem.
 -/
 public inductive SpecTheoremKind where
   /--
-  A Hoare triple spec: `⦃P⦄ prog ⦃Q⦄`.
-  If `etaPotential` is non-zero, then the precondition contains meta variables that can be
-  instantiated after applying `mintro ∀s` `etaPotential` many times.
+  A Hoare/WP spec, either a `Triple` theorem or a theorem already in `⊑ wp` form.
+  The pattern is the program expression extracted from the conclusion.
   -/
-  | triple (etaPotential : Nat := 0)
+  | spec
   /--
-  A simp/equational spec: `lhs = rhs`.
-  The pattern is the LHS.
-  When matched, the VCGen rewrites the program from `lhs` to `rhs` and continues.
-  `etaArgs` is the number of extra arguments introduced by eta-expanding function-level equations
-  (e.g., class projection unfold lemmas). These args need `congrFun` at instantiation time.
+  A simp/equational spec `lhs = rhs`.
+  The pattern is the left-hand side. When matched, VCGen rewrites the program from `lhs` to `rhs`
+  and continues decomposition on `rhs`.
+
+  `etaArgs` is the number of extra arguments introduced by eta-expanding function-level equations,
+  such as class projection unfold lemmas. These arguments are applied with `congrFun` during
+  instantiation.
   -/
   | simp (etaArgs : Nat := 0)
   deriving Inhabited
 
-public structure SpecTheoremNew where
+/--
+Spec theorem used by Lean.Elab.Tactic.Do.Internal.VCGen `lmvcgen` after migrating the `new_wp_monad` `@[spec]` database.
+The original attribute database stores discrimination keys only; this migrated form stores the
+full `Sym.Pattern` used by lookup.
+-/
+structure SpecTheoremNew where
   /--
-  Pattern for the program expression.
-  This is the key used in the discrimination tree.
-  If the proof has type `∀ a b c, Triple prog P Q`, then the pattern is `prog[a:=#2, b:=#1, c:=#0]`.
-  For simp specs with type `∀ a b c, lhs = rhs`, the pattern is `lhs[a:=#2, b:=#1, c:=#0]`.
+  Pattern for matching the program expression.
+
+  If the proof has type `∀ a b c, pre ⊑ wp prog post epost`, then the pattern is
+  `prog[a := #2, b := #1, c := #0]`. For equality specs with type `∀ a b c, lhs = rhs`,
+  the pattern is `lhs[a := #2, b := #1, c := #0]`.
   -/
   pattern : Sym.Pattern
   /-- The proof for the theorem. -/
   proof : SpecProof
-  /-- The kind of spec theorem: triple or simp. -/
+  /-- Whether this entry is an ordinary Hoare/WP spec or an equality spec. -/
   kind : SpecTheoremKind
-  priority : Nat  := eval_prio default
+  priority : Nat := eval_prio default
   deriving Inhabited
 
-public instance : BEq SpecTheoremNew where
-  beq thm₁ thm₂ := thm₁.proof == thm₂.proof
+instance : BEq SpecTheoremNew where
+  beq a b := a.proof == b.proof
 
 /--
 Like `SpecProof.instantiate`, but for simp specs also eta-expands function-level equations.
 
-For unfold equations of class projections (e.g., `MonadState.modifyGet.eq_1`), the equation
-after `forallMetaTelescope` may be between functions rather than values:
-  `@modifyGet σ m self = self.3 : {α} → (σ → α × σ) → m α`
-This method applies `congrFun` for each leading forall to reduce the equation to one between
-values of type `m α`, introducing fresh metavariables for the extra arguments.
-The number of extra args is stored in `SpecTheoremKind.simp etaArgs`.
+For unfold equations of class projections, the equation after instantiation may still be between
+functions rather than monadic values, for example:
+```
+@modifyGet σ m self = self.3 : {α} → (σ → α × σ) → m α
+```
+This method introduces fresh metavariables for the extra arguments and applies `congrFun` once per
+argument, reducing the theorem to an equality between values of type `m α`. The number of extra
+arguments is stored in `SpecTheoremKind.simp etaArgs`.
 -/
-public def SpecTheoremNew.instantiate (specThm : SpecTheoremNew) :
+def SpecTheoremNew.instantiate (specThm : SpecTheoremNew) :
     MetaM (Array Expr × Array BinderInfo × Expr × Expr) := do
   let (xs, bs, eqPrf, eqType) ← specThm.proof.instantiate
   let .simp etaArgs := specThm.kind | return (xs, bs, eqPrf, eqType)
   if etaArgs == 0 then return (xs, bs, eqPrf, eqType)
   let_expr Eq eqα _lhs _rhs := eqType | return (xs, bs, eqPrf, eqType)
-  -- Eta-expand: introduce fresh metavars for leading foralls, then apply congrFun for each.
   let (extraXs, extraBs, _) ← withReducible <| forallMetaBoundedTelescope eqα etaArgs
   let eqPrf ← extraXs.foldlM (init := eqPrf) Meta.mkCongrFun
   let eqType ← inferType eqPrf
   return (xs ++ extraXs, bs ++ extraBs, eqPrf, eqType)
 
-public structure SpecTheoremsNew where
+structure SpecTheoremsNew where
   specs : DiscrTree SpecTheoremNew := DiscrTree.empty
   erased : PHashSet SpecProof := {}
   deriving Inhabited
 
-public def mkTriplePatternFromExpr (expr : Expr) (levelParams : List Name := []) : SymM Pattern := do
-  Prod.fst <$> Sym.mkPatternFromExprWithKey expr levelParams fun type => do
-    let_expr Triple _m _ps _inst _α prog _P _Q := type | throwError "conclusion is not a Triple {indentExpr type}"
-    return (prog, ())
-
-public def mkSpecTheoremNew (proof : SpecProof) (prio : Nat) : SymM (Option SpecTheoremNew) := do
-  -- cf. mkSimpTheoremCore
-  let (levelParams, expr) ← proof.getProof
-  let type ← Meta.inferType expr
-  let type ← instantiateMVars type
-  unless type.getForallBody.getAppFn.isConstOf ``Triple do
-    return none
-  let pattern ← mkTriplePatternFromExpr expr levelParams
-  withNewMCtxDepth do
-  let (xs, _, type) ← withSimpGlobalConfig (forallMetaTelescope type)
+/-- Extract the program expression from a spec conclusion (`Triple` or `⊑ wp` form). -/
+private def selectProg (type : Expr) : MetaM (Expr × Unit) := do
   let type ← whnfR type
-  let_expr c@Triple _m ps _inst _α _prog P _Q := type
-    | throwError "{type} was not a Triple. Should not happen with the previous tests in place."
-  -- beta potential of `P` describes how many times we want to `mintro ∀s`, that is,
-  -- *eta*-expand the goal.
-  let σs := mkApp (mkConst ``PostShape.args [c.constLevels![0]!]) ps
-  let etaPotential ← computeMVarBetaPotentialForSPred xs σs P
-  -- logInfo m!"Beta potential {etaPotential} for {P}"
-  -- logInfo m!"mkSpecTheorem: {keys}, proof: {proof}"
-  return some { pattern, proof, kind := .triple etaPotential, priority := prio }
+  if type.isAppOfArity ``Triple 12 then
+    return (type.getArg! 9, ())
+  else if type.isAppOfArity ``PartialOrder.rel 4 then
+    let rhs := type.getArg! 3
+    let_expr wp _m _Pred _EPred _monad _instAL _instEAL _wpInst _α prog _post _epost := rhs
+      | throwError "RHS of ⊑ is not a wp application{indentExpr rhs}"
+    return (prog, ())
+  else
+    throwError "expected Triple or ⊑ wp{indentExpr type}"
+
+/-- Create a `Sym.Pattern` for a `SpecTheorem` by extracting the program from the proof type. -/
+private def mkSpecPattern (proof : SpecProof) : SymM Sym.Pattern := do
+  match proof with
+  | .global declName =>
+    Prod.fst <$> Sym.mkPatternFromDeclWithKey declName selectProg
+  | .local fvarId =>
+    let e := mkFVar fvarId
+    Prod.fst <$> Sym.mkPatternFromExprWithKey e [] selectProg
+  | .stx _ _ proof =>
+    Prod.fst <$> Sym.mkPatternFromExprWithKey proof [] selectProg
 
 /--
-Eta-expand a pattern for a function-level equation.
+Migrate an ordinary `@[spec]` theorem to `SpecTheoremNew`.
 
-For unfold equations of class projections (e.g., `MonadState.modifyGet.eq_1`), the equation
-may be between functions: `@modifyGet σ m self = self.3` of type `{α} → (σ → α × σ) → m α`.
-The discrimination tree key includes the arg count, so lookup would fail if the pattern has
-fewer args than the actual fully-applied program.
+The generated pattern is keyed by the program extracted from a `Triple` conclusion or from the RHS
+of a `pre ⊑ wp prog post epost` conclusion.
+-/
+def mkSpecTheoremNew (spec : SpecTheorem) : SymM SpecTheoremNew := do
+  let pattern ← mkSpecPattern spec.proof
+  return { pattern, proof := spec.proof, kind := .spec, priority := spec.priority }
 
-This function takes a pattern (keyed on the LHS), the equation type `eqTy`, and:
-1. Decomposes leading foralls of `eqTy` to find the extra argument domains
-2. Extends `varTypes` with those domains
-3. Applies the extra bvars to the pattern expression (lifting existing bvars accordingly)
+/-- Build a migrated ordinary spec theorem directly from a proof. Returns `none`
+when the proof is not a `Triple`/`⊑ wp` spec. -/
+def mkSpecTheoremNew? (proof : SpecProof) (prio : Nat) :
+    SymM (Option SpecTheoremNew) := do
+  try
+    let pattern ← mkSpecPattern proof
+    return some { pattern, proof, kind := .spec, priority := prio }
+  catch _ =>
+    return none
 
-Returns the eta-expanded pattern and the number of extra args (0 if no expansion needed).
+def SpecTheoremsNew.insert (database : SpecTheoremsNew) (thm : SpecTheoremNew) :
+    SpecTheoremsNew :=
+  { database with specs := Sym.insertPattern database.specs thm.pattern thm }
+
+/--
+Eta-expand a pattern for a function-level equality.
+
+For unfold equations of class projections, the equation may be between functions rather than
+monadic values, for example `@modifyGet σ m self = self.3` with type
+`{α} → (σ → α × σ) → m α`. The discrimination tree key includes argument count, so lookup would
+fail if the stored pattern were only the bare left-hand side while the goal contains the fully
+applied program.
+
+This function takes a pattern keyed on the LHS and the equality type `eqTy`, then:
+1. collects leading forall domains of `eqTy`,
+2. extends the pattern variable types with those domains,
+3. applies fresh bound variables to the pattern expression, lifting existing bound variables.
+
+It returns the eta-expanded pattern and the number of extra arguments. If no expansion is needed,
+the count is `0`.
 -/
 private def etaExpandEqPattern (pattern : Sym.Pattern) (eqTy : Expr) : Sym.Pattern × Nat :=
   if !eqTy.isForall then (pattern, 0)
   else
-    -- Collect forall domains from eqTy
+    -- Collect forall domains from `eqTy`.
     let rec collectDomains (ty : Expr) (acc : Array Expr) : Array Expr :=
       if let .forallE _ d b _ := ty then collectDomains b (acc.push d) else acc
     let extraDomains := collectDomains eqTy #[]
     let k := extraDomains.size
-    -- Lift existing bvars in pattern by k, then apply new bvars #(k-1) ... #0
+    -- Lift existing bvars by `k`, then apply the new bvars `#(k-1) ... #0`.
     let liftedPattern := pattern.pattern.liftLooseBVars 0 k
     let newBVars := Array.ofFn (n := k) fun i => mkBVar (k - 1 - i)
     let newPatternExpr := mkAppN liftedPattern newBVars
-    -- Conservatively reset metadata (varInfos?, checkTypeMask?) since we can't
-    -- call the private helpers from here. fnInfos is unchanged (same constants).
+    -- Conservatively reset metadata because the pattern expression and variable telescope changed.
     let newPattern : Sym.Pattern :=
       { pattern with
         varTypes := pattern.varTypes ++ extraDomains
@@ -155,27 +194,36 @@ private def etaExpandEqPattern (pattern : Sym.Pattern) (eqTy : Expr) : Sym.Patte
 
 /--
 Create a `SpecTheoremNew` from a simp/equational declaration `declName : ∀ xs, lhs = rhs`.
-The pattern is keyed on `lhs`.
 
-For unfold equations of class projections (e.g., `MonadState.modifyGet.eq_1`), the equation
-may be between functions rather than values. In that case, the pattern is eta-expanded
-so the discrimination tree key includes all arguments.
+The pattern is keyed on `lhs`. For function-level equations, the pattern is eta-expanded so the
+discrimination tree key includes the same argument count as the fully-applied program seen by
+VCGen.
 -/
-public def mkSpecTheoremNewFromSimpDecl? (declName : Name) (prio : Nat) : MetaM (Option SpecTheoremNew) := do
+def mkSpecTheoremNewFromSimpDecl? (declName : Name) (prio : Nat) :
+    MetaM (Option SpecTheoremNew) := do
   let (pattern, (eqTy, rhs)) ← Sym.mkPatternFromDeclWithKey declName fun body => do
-    let_expr Eq eqTy lhs rhs := body | throwError "conclusion is not an equality{indentExpr body}"
+    let_expr Eq eqTy lhs rhs := body
+      | throwError "conclusion is not an equality{indentExpr body}"
     return (lhs, (eqTy, rhs))
   let (pattern, etaArgs) := etaExpandEqPattern pattern eqTy
-  -- Skip no-op equations where LHS and RHS are the same after `unfoldReducible`.
-  -- E.g., `getThe.eq_1 : getThe σ = MonadStateOf.get` becomes a no-op because
-  -- `preprocessDeclPattern` unfolds `getThe` to `MonadStateOf.get`.
-  -- We use `==` (structural equality) rather than `isSameExpr` (pointer equality)
-  -- because the LHS and RHS are independently constructed.
-  -- Compare the original (non-expanded) pattern with rhs, since both are in the same context.
+  -- Skip no-op equations where LHS and RHS are structurally the same after pattern preprocessing.
+  -- This avoids adding equality specs that would only rewrite a program to itself.
   if etaArgs == 0 && pattern.pattern == rhs then return none
   return some { pattern, proof := .global declName, kind := .simp etaArgs, priority := prio }
 
-public def migrateSpecTheoremsDatabase (database : SpecTheorems) (simpThms : SimpTheorems) :
+/--
+Migrate a `SpecTheorems` database by computing `Sym.Pattern`s for each spec theorem
+and rebuilding the discrimination tree using pattern-derived keys.
+
+In addition to ordinary `Triple`/`⊑ wp` specs, this also migrates equality specs from the simp
+theorem set built from `@[spec]` arguments:
+
+- simp theorem declarations registered directly as `@[spec]`,
+- unfold entries registered with `attribute [spec] foo`, using stored equation lemmas when
+  available and falling back to `Meta.getEqnsFor?`.
+-/
+def migrateSpecTheoremsDatabase (database : Lean.Elab.Tactic.Do.Internal.SpecAttr.SpecTheorems)
+    (simpThms : SimpTheorems) :
     SymM SpecTheoremsNew := do
   let mut specs : DiscrTree SpecTheoremNew := DiscrTree.empty
   -- Erased entries are still inserted into `specs` below; `findSpecs` filters them out
@@ -185,23 +233,25 @@ public def migrateSpecTheoremsDatabase (database : SpecTheorems) (simpThms : Sim
     | some p => acc.insert p
     | none => acc
   for spec in database.specs.values do
-    let some newSpec ← mkSpecTheoremNew spec.proof spec.priority
-      | throwError "could not migrate spec theorem {spec.proof}"
-    specs := Sym.insertPattern specs newSpec.pattern newSpec
-  -- Migrate simp spec theorems (equational lemmas registered via `@[spec]`)
+    try
+      let newSpec ← mkSpecTheoremNew spec
+      specs := Sym.insertPattern specs newSpec.pattern newSpec
+    catch _ =>
+      continue
+  -- Migrate simp spec theorems: equational lemmas registered through the `@[spec]` simp path.
   for simpThm in simpThms.post.values do
     if let .decl declName .. := simpThm.origin then
       try
         if let some newSpec ← mkSpecTheoremNewFromSimpDecl? declName simpThm.priority then
           specs := Sym.insertPattern specs newSpec.pattern newSpec
       catch e =>
-        trace[Elab.Tactic.Do.vcgen] "Failed to migrate simp spec {declName}: {e.toMessageData}"
-  -- Migrate definitions to unfold (registered via `attribute [spec] foo`)
+        trace[Lean.Elab.Tactic.Do.Internal.VCGen.vcgen] "Failed to migrate simp spec {declName}: {e.toMessageData}"
+  -- Migrate definitions to unfold, registered via `attribute [spec] foo`.
   for declName in simpThms.toUnfold.toList do
     let eqThms ← match simpThms.toUnfoldThms.find? declName with
       | some eqThms => pure eqThms
       | none =>
-        -- No explicit equational theorems stored; generate them via `getEqnsFor?`
+        -- No explicit equation theorem list was stored; ask Lean for generated equation lemmas.
         let some eqThms ← liftMetaM <| Meta.getEqnsFor? declName | continue
         pure eqThms
     for eqThm in eqThms do
@@ -209,27 +259,33 @@ public def migrateSpecTheoremsDatabase (database : SpecTheorems) (simpThms : Sim
         if let some newSpec ← mkSpecTheoremNewFromSimpDecl? eqThm (prio := eval_prio default) then
           specs := Sym.insertPattern specs newSpec.pattern newSpec
       catch e =>
-        trace[Elab.Tactic.Do.vcgen] "Failed to migrate unfold spec {declName}/{eqThm}: {e.toMessageData}"
+        trace[Lean.Elab.Tactic.Do.Internal.VCGen.vcgen] "Failed to migrate unfold spec {declName}/{eqThm}: {e.toMessageData}"
   return { specs, erased }
 
 /--
-Look up `SpecTheoremNew`s in the `@[spec]` database.
-Takes all specs that match the given program `e` and sorts by descending priority.
+Look up `SpecTheoremNew`s matching program `e` using pattern-based matching.
+
+Candidates are first fetched from the discrimination tree, erased entries are filtered out, then
+the remaining candidates are sorted by descending priority and checked with the stored
+`Sym.Pattern`.
 -/
-public def SpecTheoremsNew.findSpecs (database : SpecTheoremsNew) (e : Expr) :
+def SpecTheoremsNew.findSpecs (database : SpecTheoremsNew) (e : Expr) :
     SymM (Except (Array SpecTheoremNew) SpecTheoremNew) := do
+  trace[Lean.Elab.Tactic.Do.Internal.VCGen.vcgen] "Finding specs for {e}"
   let e ← instantiateMVars e
   let e ← shareCommon e
   let candidates := Sym.getMatch database.specs e
-  let candidates := candidates.filter fun spec => !database.erased.contains spec.proof
+  trace[Lean.Elab.Tactic.Do.Internal.VCGen.vcgen] "Candidates: {candidates.map (·.proof.key)}"
+  let candidates := candidates.filter (!database.erased.contains ·.proof)
   if h : candidates.size = 1 then
     have : 0 < candidates.size := h ▸ Nat.zero_lt_one
     return .ok candidates[0]
-  -- It appears that insertion sort is *much* faster than qsort here.
   let candidates := candidates.insertionSort (·.priority > ·.priority)
   for spec in candidates do
     let some _res ← spec.pattern.match? e | continue
     return .ok spec
   return .error candidates
 
-end Lean.Elab.Tactic.Do.SpecAttr
+end Lean.Elab.Tactic.Do.Internal.VCGen
+
+end -- public section

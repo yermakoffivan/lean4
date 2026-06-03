@@ -1,33 +1,36 @@
 /-
 Copyright (c) 2026 Lean FRO LLC. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Sebastian Graf
+Authors: Vladimir Gladshtein, Sebastian Graf
 -/
 module
 
 prelude
-public import Lean.Elab.Tactic.Do.Internal.VCGen.Reduce
+public import Lean.Elab.Tactic.Do.Internal.VCGen.Types
 public import Lean.Elab.Tactic.Do.Internal.VCGen.SpecDB
-public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleConstruction
-public import Lean.Elab.Tactic.Do.Internal.VCGen.Context
-public import Lean.Elab.Tactic.Do.Internal.VCGen.Util
+public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleConstruct.Spec
+public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleConstruct.Simp
+public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleConstruct.Logic
+public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleConstruct.Match
+public import Lean.Elab.Tactic.Do.Internal.VCGen.Utils
 public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleCache
-public import Lean.Elab.Tactic.Do.Internal.VCGen.Entails
 public import Lean.Elab.Tactic.Do.Internal.VCGen.Solve
 public import Lean.Elab.Tactic.Do.Internal.VCGen.Driver
 public import Lean.Elab.Tactic.Do.Internal.VCGen.Frontend
 
 /-!
-The `mvcgen'` tactic, split across the modules above.
+The `lmvcgen` tactic, split across the modules above.
 
-- `VCGen.Reduce` — SymM head-redex reducer.
-- `VCGen.SpecDB` — `SpecTheoremNew`/`SpecTheoremsNew` + database operations.
-- `VCGen.RuleConstruction` — SymM rule constructors from spec/simp/split info.
-- `VCGen.Context` — `VCGenM`, its `Context`/`State`, the bundle of pre-built rules.
-- `VCGen.Util` — generic VCGenM helpers (`introsSimp`, `repeatAndRfl`, app builders).
-- `VCGen.RuleCache` — VCGenM cache wrappers around the SymM rule constructors.
-- `VCGen.Entails` — entailment-shaped goal decomposition (`solveSPredEntails` etc.).
-- `VCGen.Solve` — the main `solve` step / `SolveResult`.
+- `VCGen.Types` — `VCGenM`, its `Context`/`Scope`/`State`, config-facing types, and shared caches.
+- `VCGen.SpecDB` — `SpecTheoremNew`/`SpecTheoremsNew` plus database migration and lookup.
+- `VCGen.RuleConstruct.Spec` — rule construction from `⊑ wp` spec theorems.
+- `VCGen.RuleConstruct.Simp` — rule construction from equality spec theorems.
+- `VCGen.RuleConstruct.Logic` — rule construction for lattice connectives such as `⊓`, `⇨`,
+  and `⌜_⌝`.
+- `VCGen.RuleConstruct.Match` — rule construction for `ite`, `dite`, and matcher splits.
+- `VCGen.Utils` — state intro, precondition intros, simp, and backward-rule application helpers.
+- `VCGen.RuleCache` — `VCGenM` cache wrappers around rule constructors.
+- `VCGen.Solve` — the main `solve` step and goal classification.
 - `VCGen.Driver` — the worklist driver (`work`, `emitVC`, `main`, `Result`).
-- `VCGen.Frontend` — the `mvcgen'` syntax + tactic elaborator + `mkSpecContext`.
+- `VCGen.Frontend` — the `lmvcgen` syntax, tactic elaborator, and `mkContext`.
 -/

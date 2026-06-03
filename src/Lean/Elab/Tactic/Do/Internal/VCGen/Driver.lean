@@ -1,21 +1,23 @@
 /-
 Copyright (c) 2026 Lean FRO LLC. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Sebastian Graf
+Authors: Vladimir Gladshtein, Sebastian Graf
 -/
 module
 
 prelude
 public import Lean.Elab.Tactic.Meta
-public import Lean.Elab.Tactic.Do.Internal.VCGen.Context
 public import Lean.Elab.Tactic.Do.Internal.VCGen.Solve
 public import Lean.Meta.Sym.Grind
 
 open Lean Meta Elab Tactic Sym
 open Lean.Elab.Tactic.Do.SpecAttr
-open Std.Do
+open Std.Internal.Do Lean.Order
+open Grind (GrindM)
 
-namespace Lean.Elab.Tactic.Do.Internal
+public section
+
+namespace Lean.Elab.Tactic.Do.Internal.VCGen.VCGen
 
 /-!
 Worklist driver for `mvcgen'`. Wraps `solve` with a queue of pending goals,
@@ -23,19 +25,18 @@ emits VCs (or invariant holes) for those `solve` cannot decompose further,
 and runs the user-configured `preTac` on each emitted VC.
 -/
 
-namespace VCGen
-
 /--
-Runs the `preTac` on the VC:
+Runs the `dischargeTactic` on the VC:
 - `.grind`: tries to solve the VC using the accumulated `Grind.Goal` state via `Grind.Goal.grind`.
   Reports failure via `Lean.logError` unless `silent` is set.
 - `.tactic`: runs the user-provided tactic on the VC, potentially emitting multiple subgoals.
 - `.none`: returns the VC as-is.
 -/
-public def PreTac.run : PreTac → Grind.Goal → VCGenM (List Grind.Goal)
-  | .none, goal => return [goal]
-  | .grind silent, goal => do
+def dischargeTactic.run (goal : Grind.Goal) : dischargeTactic → VCGenM (List MVarId)
+  | .none => return [goal.mvarId]
+  | .grind silent => do
     let savedMCtx ← getMCtx
+    let goal ← goal.internalizeAll
     match ← goal.grind with
     | .closed => return []
     | .failed .. =>
@@ -43,14 +44,11 @@ public def PreTac.run : PreTac → Grind.Goal → VCGenM (List Grind.Goal)
       unless silent do
         goal.mvarId.withContext do
           Lean.logError m!"`grind` failed on goal:{indentD (MessageData.ofGoal goal.mvarId)}"
-        modify fun s => { s with preTacFailed := true }
-      return [goal]
-  | .tactic tac, goal => do
-    let (gs, _) ← Lean.Elab.runTactic goal.mvarId tac {} {}
-    -- Need to wrap `gs` in fresh `Grind.Goal`s, preprocessing the whole goal anew.
-    -- This is important because `tac` might call e.g., `revert` which violates the contract
-    -- of `SymM` (local contexts grow monotonically).
-    gs.mapM fun mv => Grind.mkGoalCore mv
+        modify fun s => { s with dischTacFailed := true }
+      return [goal.mvarId]
+  | .tactic tac => do
+    let (goals, _) ← Lean.Elab.runTactic goal.mvarId tac {} {}
+    pure goals
 
 /--
 Try to elaborate the user's invariant alt for invariant number `n` inline,
@@ -61,18 +59,15 @@ succeeded. Numbering is 1-based; out-of-order labelled forms (e.g. `| inv2 => �
 before `| inv1 => …`) are supported because the map is keyed by parsed number,
 not position.
 -/
-public def elabInvariant (invariantAlts : Std.HashMap Nat Syntax) (n : Nat) (mv : MVarId) : SymM Bool := do
+private def tryInlineInvariant (n : Nat) (mv : MVarId) : VCGenM Bool := do
+  let some alt := (← read).invariantAlts[n]? | return false
   try
-    let some alt := invariantAlts[n]? | return false
     let tac ← match alt with
       | `(Lean.Parser.Tactic.invariantDotAlt| · $rhs) => `(tactic| exact $rhs)
       | `(Lean.Parser.Tactic.invariantCaseAlt| | $_tag $args* => $rhs) =>
           `(tactic| (rename_i $args*; exact $rhs))
       | _ => return false
-    -- `withDefault`: the surrounding grind context forces reducible transparency,
-    -- under which the invariant's binder type (e.g. `List.Cursor _`) isn't
-    -- resolved enough for term elaboration of `xs.suffix.length` to succeed.
-    withRef alt <| discard <| Meta.withDefault <| Lean.Elab.runTactic mv tac {} {}
+    let _ ← Lean.Elab.runTactic mv tac {} {}
     -- The tactic runs without throwing even when it fails to close the goal;
     -- check explicitly that the MVar got assigned.
     if ← mv.isAssigned then
@@ -84,66 +79,67 @@ public def elabInvariant (invariantAlts : Std.HashMap Nat Syntax) (n : Nat) (mv 
       return true
     else
       return false
-  catch _ => return false
+  catch _ =>
+    return false
 
 /-- Pull invariant subgoals out of `subgoals` and handle them eagerly: register
 each in `State.invariants` (1-based stable index) and try to inline-elaborate
 its matching user alt. Returns the remaining non-invariant subgoals for `work`
 to enqueue. Eager handling here ensures dependent VCs see `?inv` assigned by
 the time they reach `emitVC`/`preTac`. -/
-private def handleInvariantSubgoals (subgoals : List MVarId) : VCGenM (Array MVarId) := do
+private def handleInvariantSubgoals (subgoals : List MVarId) : VCGenM (List MVarId) := do
   let env ← getEnv
-  let mut others : Array MVarId := #[]
+  let mut others := []
   for sg in subgoals do
     if isSpecInvariantType env (← sg.getType) then
       let n := (← get).invariants.size + 1
       modify fun s => { s with invariants := s.invariants.push sg }
-      if ← elabInvariant (← read).invariantAlts n sg then
+      if ← tryInlineInvariant n sg then
         modify fun s => { s with inlineHandledInvariants := s.inlineHandledInvariants.insert n }
       else
         sg.setKind .syntheticOpaque
     else
-      others := others.push sg
+      others := sg :: others
   return others
+
+private structure WorkItem where
+  goal : Grind.Goal
+  scope : VCGen.Scope
 
 /--
 Called when decomposing the goal further did not succeed; in this case we emit a VC for the goal.
 Invariant subgoals are handled separately by `handleInvariantSubgoals` directly inside `work`,
 so they never reach this path.
+If the goal is `(⊤ : Prop) ⊑ x`, first eliminate the `⊤ ⊑` wrapper.
 -/
-public def emitVC (goal : Grind.Goal) : VCGenM Unit := do
-  let goal ← (← read).preTac.processHypotheses goal
-  let mut vcs : Array Grind.Goal := #[]
-  -- `trivial`: when false, skip `repeatAndRfl` (which collapses And-chains via rfl);
-  -- emit the goal as-is.
-  let mvarId ←
-    if (← read).trivial then
-      let some mvarId ← repeatAndRfl goal.mvarId | return
-      pure mvarId
-    else
-      pure goal.mvarId
-  let goal := { goal with mvarId }
-  for newGoal in (← (← read).preTac.run goal) do
-    newGoal.mvarId.setKind .syntheticOpaque
-    vcs := vcs.push newGoal
-  modify fun s => { s with vcs := s.vcs ++ vcs }
+def emitVC (goal : Grind.Goal) : VCGenM Unit := do
+  let mut goal := goal
+  let ty ← goal.mvarId.getType
+  if let some (.sort .zero, _, pre, _) := ty.app4? ``PartialOrder.rel then
+    if pre.isAppOf ``Lean.Order.top then
+      let rule := (← read).elimPreRule
+      let .goals [goal'] ← goal.apply rule
+        | throwError "Failed to apply elim_pre rule"
+      goal := goal'
+  if (← read).trivial then
+    let some goal' ← repeatAndRfl goal.mvarId | return
+    goal := { goal with mvarId := goal' }
+  let goals ← (← read).disch.run goal
+  for g in goals do g.setKind .syntheticOpaque
+  modify fun s => { s with vcs := s.vcs ++ goals }
 
-private structure WorkItem where
-  goal : Grind.Goal
-  scope : Scope
-
-public def work (scope : Scope) (goal : Grind.Goal) : VCGenM Unit := do
-  let mvarId ← preprocessMVar goal.mvarId
-  let mut worklist : Array WorkItem := #[{ goal := { goal with mvarId }, scope }]
-  while let some s := worklist.back? do
-    worklist := worklist.pop
-    let goal := s.goal
-    if ← outOfFuel then
-      emitVC goal
-      continue
-    match ← solve s.scope goal.mvarId with
-    | .noEntailment .. | .noProgramFoundInTarget .. =>
-      emitVC goal
+/-- Main work loop: decompose the goal repeatedly. -/
+def work (scope : VCGen.Scope) (goal : MVarId) : VCGenM Unit := do
+  let goal ← Grind.mkGoal goal
+  let mut worklist := (Std.Queue.empty : Std.Queue WorkItem).enqueue { goal, scope }
+  repeat do
+    let some (item, worklist') := worklist.dequeue? | break
+    worklist := worklist'
+    let goal := item.goal
+    let res ← Lean.Elab.Tactic.Do.Internal.VCGen.VCGen.solve item.scope goal.mvarId
+    match res with
+    | .noEntailment .. | .noProgramOrLatticeFoundInTarget .. =>
+        emitVC goal
     | .noSpecFoundForProgram prog monad thms =>
       if (← read).errorOnMissingSpec then goal.mvarId.withContext do
         if thms.isEmpty then
@@ -152,60 +148,49 @@ public def work (scope : Scope) (goal : Grind.Goal) : VCGenM Unit := do
           throwError "No spec matching the monad {monad} found for program {prog}. Candidates were {thms.map (·.proof)}."
       else
         emitVC goal
-    | .noStrategyForProgram prog => goal.mvarId.withContext do
+    | .noStrategyForProgram prog =>
       throwError "Did not know how to decompose weakest precondition for {prog}"
     | .goals scope subgoals =>
-      -- Handle invariant subgoals eagerly here, so that VC subgoals popped
-      -- from the worklist later see the invariant MVar already assigned.
-      -- Non-invariant subgoals go to the worklist as usual and will eventually go through `emitVC`.
+      -- if we have multiple subgoals, before running the VCGen
+      -- we need to share the grind context first.
       let subgoals ← handleInvariantSubgoals subgoals
-      -- In grind mode with multiple subgoals, preprocess pending hypotheses
-      -- to share E-graph context before forking.
-      let goal ←
-        if subgoals.size > 1 then
-          (← read).preTac.processHypotheses goal
-        else
-          pure goal
-      worklist := worklist ++ subgoals.reverse.map (fun mv =>
-        { goal := { goal with mvarId := mv }, scope })
+      let mut grindSharedGoal := goal
+      if (← read).disch.isGrind && subgoals.length > 1 then
+        grindSharedGoal ← goal.internalizeAll
+      worklist := worklist.enqueueAll <| subgoals.map fun mv =>
+        { goal := { grindSharedGoal with mvarId := mv }, scope }
 
-public structure Result where
+structure Result where
   /-- All invariant goals emitted during VC generation, in emit order. The MVarId at
   index `i` carries tag `inv{i+1}`, so callers can treat the array index as the
   invariant number. Some entries may already be assigned (inline-elaborated by
   `Driver.emitVC`); the caller is responsible for filtering before discharging. -/
   invariants : Array MVarId
-  /-- Unassigned VCs. Each shares the parent `Grind.Goal`'s state. -/
-  vcs : Array Grind.Goal
+  /-- Unassigned VCs. -/
+  vcs : Array MVarId
   /-- Invariant numbers handled inline by `Driver.emitVC`. Used by `Frontend` to
   avoid spurious "alt does not match any invariant" warnings for inline-consumed
   alts. -/
   inlineHandledInvariants : Std.HashSet Nat := {}
   /-- True iff some non-silent pre-tactic failed during VC generation. -/
-  preTacFailed : Bool := false
+  dischTacFailed : Bool := false
 
-/--
-Generate verification conditions for a goal of the form `P ⊢ₛ wp⟦e⟧ Q s₁ ... sₙ` by repeatedly
-decomposing `e` using registered `@[spec]` theorems.
-Return the VCs and invariant goals.
 
-`stepLimit?`, when `some n`, seeds the fuel counter to `n`; when `none`, fuel is unlimited.
--/
-public partial def run (goal : Grind.Goal) (ctx : Context) (scope : VCGen.Scope)
-    (stepLimit? : Option Nat := none) : Grind.GrindM Result := do
+/-- Generate VCs for a goal of the form `Triple pre e post epost`, keeping subgoals in `⊑` form. -/
+partial def main (goal : MVarId) (ctx : VCGen.Context) (scope : VCGen.Scope)
+    (stepLimit? : Option Nat := none)
+  : GrindM Result := do
   let initState : State := { fuel := match stepLimit? with | some n => .limited n | none => .unlimited }
   let ((), state) ← StateRefT'.run (ReaderT.run (work scope goal) ctx) initState
-  _ ← state.invariants.mapIdxM fun idx mv => do
+  for h : idx in [:state.invariants.size] do
+    let mv := state.invariants[idx]
     mv.setTag (Name.mkSimple ("inv" ++ toString (idx + 1)))
-  _ ← state.vcs.mapIdxM fun idx g => do
-    g.mvarId.setTag (Name.mkSimple ("vc" ++ toString (idx + 1)) ++ (← g.mvarId.getTag).eraseMacroScopes)
-  let vcs ← state.vcs.filterM (not <$> ·.mvarId.isAssigned)
+  for h : idx in [:state.vcs.size] do
+    let mv := state.vcs[idx]
+    mv.setTag (Name.mkSimple ("vc" ++ toString (idx + 1)) ++ (← mv.getTag).eraseMacroScopes)
+  let vcs ← state.vcs.filterM (not <$> ·.isAssigned)
   return {
     invariants := state.invariants,
-    vcs,
+    vcs := state.vcs,
     inlineHandledInvariants := state.inlineHandledInvariants,
-    preTacFailed := state.preTacFailed }
-
-end VCGen
-
-end Lean.Elab.Tactic.Do.Internal
+    dischTacFailed := state.dischTacFailed }

@@ -58,30 +58,29 @@ set_option maxHeartbeats 10000000
   runBenchUsingTactic ``MatchSplit.Goal [``MatchSplit.loop, ``MatchSplit.step]
     `(tactic| mvcgen') `(tactic| grind) [10]
 
--- TODO: fix
--- -- Verify `simplifying_assumptions [Nat.add_assoc]` works end-to-end with `simp only` unfolding.
--- /--
--- trace: s✝ : Nat
--- h✝⁹ : ¬0 < s✝
--- h✝⁸ : ¬1 < s✝ + 1
--- h✝⁷ : ¬2 < s✝ + 2
--- h✝⁶ : ¬3 < s✝ + 3
--- h✝⁵ : ¬4 < s✝ + 4
--- h✝⁴ : ¬5 < s✝ + 5
--- h✝³ : ¬6 < s✝ + 6
--- h✝² : ¬7 < s✝ + 7
--- h✝¹ : ¬8 < s✝ + 8
--- h✝ : ¬9 < s✝ + 9
--- a✝ : s✝ = 0
--- ⊢ s✝ + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 = 10
--- -/
--- #guard_msgs in
--- open GetThrowSet in
--- example : Goal 10 := by
---   simp only [Goal, loop, step]
---   mvcgen' simplifying_assumptions [Nat.add_assoc]
---   case vc11 => trace_state; grind
---   all_goals grind
+-- Verify `simplifying_assumptions [Nat.add_assoc]` works end-to-end with `simp only` unfolding.
+/--
+trace: s✝ : Nat
+a✝ : s✝ = 0
+h✝⁹ : ¬0 < s✝
+h✝⁸ : ¬1 < s✝ + 1
+h✝⁷ : ¬2 < s✝ + 2
+h✝⁶ : ¬3 < s✝ + 3
+h✝⁵ : ¬4 < s✝ + 4
+h✝⁴ : ¬5 < s✝ + 5
+h✝³ : ¬6 < s✝ + 6
+h✝² : ¬7 < s✝ + 7
+h✝¹ : ¬8 < s✝ + 8
+h✝ : ¬9 < s✝ + 9
+⊢ s✝ + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 = 10
+-/
+#guard_msgs in
+open GetThrowSet in
+example : Goal 10 := by
+  simp only [Goal, loop, step]
+  mvcgen' simplifying_assumptions [Nat.add_assoc]
+  case vc11 => trace_state; grind
+  all_goals grind
 
 -- Verify that the let-binding code paths are exercised.
 -- `unfold` (unlike `simp only`) preserves letE nodes in the program, exercising:

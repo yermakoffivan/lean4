@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: Std.Tactic.Do.ProofMode
-// Imports: public import Std.Do.SPred.SPred
+// Imports: public import Std.Do.SPred.SPred public import Init.Internal.Order
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -97,13 +97,39 @@ static const lean_object* l_Std_Tactic_Do_mgoalStx___closed__17 = (const lean_ob
 static const lean_ctor_object l_Std_Tactic_Do_mgoalStx___closed__18_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 9}, .m_objs = {((lean_object*)&l_Std_Tactic_Do_mgoalStx___closed__0_value),((lean_object*)&l_Std_Tactic_Do_mgoalStx___closed__1_value),((lean_object*)&l_Std_Tactic_Do_mgoalStx___closed__17_value)}};
 static const lean_object* l_Std_Tactic_Do_mgoalStx___closed__18 = (const lean_object*)&l_Std_Tactic_Do_mgoalStx___closed__18_value;
 LEAN_EXPORT const lean_object* l_Std_Tactic_Do_mgoalStx = (const lean_object*)&l_Std_Tactic_Do_mgoalStx___closed__18_value;
+static const lean_string_object l_Std_Tactic_Do_mgoalOrderStx___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 14, .m_capacity = 14, .m_length = 13, .m_data = "mgoalOrderStx"};
+static const lean_object* l_Std_Tactic_Do_mgoalOrderStx___closed__0 = (const lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__0_value;
+static const lean_ctor_object l_Std_Tactic_Do_mgoalOrderStx___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_Tactic_Do_mgoalHyp___closed__1_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
+static const lean_ctor_object l_Std_Tactic_Do_mgoalOrderStx___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__1_value_aux_0),((lean_object*)&l_Std_Tactic_Do_mgoalHyp___closed__2_value),LEAN_SCALAR_PTR_LITERAL(77, 161, 28, 104, 237, 118, 82, 71)}};
+static const lean_ctor_object l_Std_Tactic_Do_mgoalOrderStx___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__1_value_aux_1),((lean_object*)&l_Std_Tactic_Do_mgoalHyp___closed__3_value),LEAN_SCALAR_PTR_LITERAL(193, 32, 213, 253, 69, 208, 115, 14)}};
+static const lean_ctor_object l_Std_Tactic_Do_mgoalOrderStx___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__1_value_aux_2),((lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__0_value),LEAN_SCALAR_PTR_LITERAL(64, 93, 138, 160, 2, 131, 31, 138)}};
+static const lean_object* l_Std_Tactic_Do_mgoalOrderStx___closed__1 = (const lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__1_value;
+static const lean_string_object l_Std_Tactic_Do_mgoalOrderStx___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 5, .m_capacity = 5, .m_length = 2, .m_data = "⊑ "};
+static const lean_object* l_Std_Tactic_Do_mgoalOrderStx___closed__2 = (const lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__2_value;
+static const lean_ctor_object l_Std_Tactic_Do_mgoalOrderStx___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__2_value)}};
+static const lean_object* l_Std_Tactic_Do_mgoalOrderStx___closed__3 = (const lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__3_value;
+static const lean_ctor_object l_Std_Tactic_Do_mgoalOrderStx___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Std_Tactic_Do_mgoalHyp___closed__6_value),((lean_object*)&l_Std_Tactic_Do_mgoalStx___closed__8_value),((lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__3_value)}};
+static const lean_object* l_Std_Tactic_Do_mgoalOrderStx___closed__4 = (const lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__4_value;
+static const lean_ctor_object l_Std_Tactic_Do_mgoalOrderStx___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Std_Tactic_Do_mgoalHyp___closed__6_value),((lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__4_value),((lean_object*)&l_Std_Tactic_Do_mgoalHyp___closed__15_value)}};
+static const lean_object* l_Std_Tactic_Do_mgoalOrderStx___closed__5 = (const lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__5_value;
+static const lean_ctor_object l_Std_Tactic_Do_mgoalOrderStx___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Tactic_Do_mgoalStx___closed__5_value),((lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__5_value)}};
+static const lean_object* l_Std_Tactic_Do_mgoalOrderStx___closed__6 = (const lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__6_value;
+static const lean_ctor_object l_Std_Tactic_Do_mgoalOrderStx___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Std_Tactic_Do_mgoalHyp___closed__6_value),((lean_object*)&l_Std_Tactic_Do_mgoalStx___closed__11_value),((lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__6_value)}};
+static const lean_object* l_Std_Tactic_Do_mgoalOrderStx___closed__7 = (const lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__7_value;
+static const lean_ctor_object l_Std_Tactic_Do_mgoalOrderStx___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 9}, .m_objs = {((lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__0_value),((lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__1_value),((lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__7_value)}};
+static const lean_object* l_Std_Tactic_Do_mgoalOrderStx___closed__8 = (const lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__8_value;
+LEAN_EXPORT const lean_object* l_Std_Tactic_Do_mgoalOrderStx = (const lean_object*)&l_Std_Tactic_Do_mgoalOrderStx___closed__8_value;
 lean_object* runtime_initialize_Std_Do_SPred_SPred(uint8_t builtin);
+lean_object* runtime_initialize_Init_Internal_Order(uint8_t builtin);
 static bool _G_runtime_initialized = false;
 LEAN_EXPORT lean_object* runtime_initialize_Std_Tactic_Do_ProofMode(uint8_t builtin) {
 lean_object * res;
 if (_G_runtime_initialized) return lean_io_result_mk_ok(lean_box(0));
 _G_runtime_initialized = true;
 res = runtime_initialize_Std_Do_SPred_SPred(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = runtime_initialize_Init_Internal_Order(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 return lean_io_result_mk_ok(lean_box(0));
@@ -116,12 +142,16 @@ _G_meta_initialized = true;
 return lean_io_result_mk_ok(lean_box(0));
 }
 lean_object* initialize_Std_Do_SPred_SPred(uint8_t builtin);
+lean_object* initialize_Init_Internal_Order(uint8_t builtin);
 static bool _G_initialized = false;
 LEAN_EXPORT lean_object* initialize_Std_Tactic_Do_ProofMode(uint8_t builtin) {
 lean_object * res;
 if (_G_initialized) return lean_io_result_mk_ok(lean_box(0));
 _G_initialized = true;
 res = initialize_Std_Do_SPred_SPred(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_Init_Internal_Order(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = runtime_initialize_Std_Tactic_Do_ProofMode(builtin);

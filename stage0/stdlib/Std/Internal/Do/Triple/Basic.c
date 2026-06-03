@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: Std.Internal.Do.Triple.Basic
-// Imports: public import Std.Internal.Do.WP
+// Imports: public import Std.Internal.Do.WP public import Std.Internal.Do.ExceptPost
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -32,6 +32,10 @@ lean_object* l_Lean_replaceRef(lean_object*, lean_object*);
 lean_object* l_Lean_Syntax_node7(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* lean_mk_empty_array_with_capacity(lean_object*);
 lean_object* lean_array_push(lean_object*, lean_object*);
+lean_object* l_Lean_Syntax_getArgs(lean_object*);
+lean_object* l_Lean_Syntax_TSepArray_getElems___redArg(lean_object*);
+lean_object* l_Lean_Syntax_SepArray_ofElems(lean_object*, lean_object*);
+lean_object* l_Array_append___redArg(lean_object*, lean_object*);
 static const lean_string_object l_Std_Internal_Do_term_u2983___u2984___u2983___u2984___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 3, .m_data = "Std"};
 static const lean_object* l_Std_Internal_Do_term_u2983___u2984___u2983___u2984___closed__0 = (const lean_object*)&l_Std_Internal_Do_term_u2983___u2984___u2983___u2984___closed__0_value;
 static const lean_string_object l_Std_Internal_Do_term_u2983___u2984___u2983___u2984___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "Internal"};
@@ -223,6 +227,43 @@ LEAN_EXPORT lean_object* l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Bas
 LEAN_EXPORT lean_object* l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__term_u2983___u2984___u2983___x2c___u2984__1___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______unexpand__Std__Internal__Do__Triple__2(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______unexpand__Std__Internal__Do__Triple__2___boxed(lean_object*, lean_object*, lean_object*);
+static const lean_string_object l_Std_Internal_Do_tripleEPost___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 12, .m_capacity = 12, .m_length = 11, .m_data = "tripleEPost"};
+static const lean_object* l_Std_Internal_Do_tripleEPost___closed__0 = (const lean_object*)&l_Std_Internal_Do_tripleEPost___closed__0_value;
+static const lean_ctor_object l_Std_Internal_Do_tripleEPost___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_Internal_Do_term_u2983___u2984___u2983___u2984___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
+static const lean_ctor_object l_Std_Internal_Do_tripleEPost___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Internal_Do_tripleEPost___closed__1_value_aux_0),((lean_object*)&l_Std_Internal_Do_term_u2983___u2984___u2983___u2984___closed__1_value),LEAN_SCALAR_PTR_LITERAL(225, 148, 172, 135, 227, 248, 47, 24)}};
+static const lean_ctor_object l_Std_Internal_Do_tripleEPost___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Internal_Do_tripleEPost___closed__1_value_aux_1),((lean_object*)&l_Std_Internal_Do_term_u2983___u2984___u2983___u2984___closed__2_value),LEAN_SCALAR_PTR_LITERAL(165, 204, 33, 109, 120, 201, 43, 17)}};
+static const lean_ctor_object l_Std_Internal_Do_tripleEPost___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Internal_Do_tripleEPost___closed__1_value_aux_2),((lean_object*)&l_Std_Internal_Do_tripleEPost___closed__0_value),LEAN_SCALAR_PTR_LITERAL(79, 228, 187, 179, 135, 251, 133, 128)}};
+static const lean_object* l_Std_Internal_Do_tripleEPost___closed__1 = (const lean_object*)&l_Std_Internal_Do_tripleEPost___closed__1_value;
+static const lean_string_object l_Std_Internal_Do_tripleEPost___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 3, .m_capacity = 3, .m_length = 2, .m_data = "; "};
+static const lean_object* l_Std_Internal_Do_tripleEPost___closed__2 = (const lean_object*)&l_Std_Internal_Do_tripleEPost___closed__2_value;
+static const lean_ctor_object l_Std_Internal_Do_tripleEPost___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*1 + 0, .m_other = 1, .m_tag = 5}, .m_objs = {((lean_object*)&l_Std_Internal_Do_tripleEPost___closed__2_value)}};
+static const lean_object* l_Std_Internal_Do_tripleEPost___closed__3 = (const lean_object*)&l_Std_Internal_Do_tripleEPost___closed__3_value;
+static const lean_ctor_object l_Std_Internal_Do_tripleEPost___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Std_Internal_Do_term_u2983___u2984___u2983___u2984___closed__6_value),((lean_object*)&l_Std_Internal_Do_term_u2983___u2984___u2983___u2984___closed__20_value),((lean_object*)&l_Std_Internal_Do_tripleEPost___closed__3_value)}};
+static const lean_object* l_Std_Internal_Do_tripleEPost___closed__4 = (const lean_object*)&l_Std_Internal_Do_tripleEPost___closed__4_value;
+static const lean_ctor_object l_Std_Internal_Do_tripleEPost___closed__5_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 8, .m_other = 3, .m_tag = 11}, .m_objs = {((lean_object*)&l_Std_Internal_Do_term_u2983___u2984___u2983___u2984___closed__11_value),((lean_object*)&l_Std_Internal_Do_tripleEPost___closed__2_value),((lean_object*)&l_Std_Internal_Do_tripleEPost___closed__3_value),LEAN_SCALAR_PTR_LITERAL(0, 0, 0, 0, 0, 0, 0, 0)}};
+static const lean_object* l_Std_Internal_Do_tripleEPost___closed__5 = (const lean_object*)&l_Std_Internal_Do_tripleEPost___closed__5_value;
+static const lean_ctor_object l_Std_Internal_Do_tripleEPost___closed__6_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Std_Internal_Do_term_u2983___u2984___u2983___u2984___closed__6_value),((lean_object*)&l_Std_Internal_Do_tripleEPost___closed__4_value),((lean_object*)&l_Std_Internal_Do_tripleEPost___closed__5_value)}};
+static const lean_object* l_Std_Internal_Do_tripleEPost___closed__6 = (const lean_object*)&l_Std_Internal_Do_tripleEPost___closed__6_value;
+static const lean_ctor_object l_Std_Internal_Do_tripleEPost___closed__7_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 2}, .m_objs = {((lean_object*)&l_Std_Internal_Do_term_u2983___u2984___u2983___u2984___closed__6_value),((lean_object*)&l_Std_Internal_Do_tripleEPost___closed__6_value),((lean_object*)&l_Std_Internal_Do_term_u2983___u2984___u2983___u2984___closed__22_value)}};
+static const lean_object* l_Std_Internal_Do_tripleEPost___closed__7 = (const lean_object*)&l_Std_Internal_Do_tripleEPost___closed__7_value;
+static const lean_ctor_object l_Std_Internal_Do_tripleEPost___closed__8_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*3 + 0, .m_other = 3, .m_tag = 3}, .m_objs = {((lean_object*)&l_Std_Internal_Do_tripleEPost___closed__1_value),((lean_object*)(((size_t)(60) << 1) | 1)),((lean_object*)&l_Std_Internal_Do_tripleEPost___closed__7_value)}};
+static const lean_object* l_Std_Internal_Do_tripleEPost___closed__8 = (const lean_object*)&l_Std_Internal_Do_tripleEPost___closed__8_value;
+LEAN_EXPORT const lean_object* l_Std_Internal_Do_tripleEPost = (const lean_object*)&l_Std_Internal_Do_tripleEPost___closed__8_value;
+static const lean_string_object l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 17, .m_capacity = 17, .m_length = 12, .m_data = "termEpost⟨_⟩"};
+static const lean_object* l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__0 = (const lean_object*)&l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__0_value;
+static const lean_ctor_object l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__1_value_aux_0 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)(((size_t)(0) << 1) | 1)),((lean_object*)&l_Std_Internal_Do_term_u2983___u2984___u2983___u2984___closed__0_value),LEAN_SCALAR_PTR_LITERAL(48, 144, 193, 124, 159, 137, 91, 218)}};
+static const lean_ctor_object l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__1_value_aux_1 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__1_value_aux_0),((lean_object*)&l_Std_Internal_Do_term_u2983___u2984___u2983___u2984___closed__1_value),LEAN_SCALAR_PTR_LITERAL(225, 148, 172, 135, 227, 248, 47, 24)}};
+static const lean_ctor_object l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__1_value_aux_2 = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__1_value_aux_1),((lean_object*)&l_Std_Internal_Do_term_u2983___u2984___u2983___u2984___closed__2_value),LEAN_SCALAR_PTR_LITERAL(165, 204, 33, 109, 120, 201, 43, 17)}};
+static const lean_ctor_object l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 8, .m_other = 2, .m_tag = 1}, .m_objs = {((lean_object*)&l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__1_value_aux_2),((lean_object*)&l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__0_value),LEAN_SCALAR_PTR_LITERAL(212, 191, 145, 121, 242, 68, 46, 80)}};
+static const lean_object* l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__1 = (const lean_object*)&l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__1_value;
+static const lean_string_object l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 6, .m_data = "epost⟨"};
+static const lean_object* l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__2 = (const lean_object*)&l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__2_value;
+static const lean_string_object l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 2, .m_capacity = 2, .m_length = 1, .m_data = ","};
+static const lean_object* l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__3 = (const lean_object*)&l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__3_value;
+static const lean_string_object l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 4, .m_capacity = 4, .m_length = 1, .m_data = "⟩"};
+static const lean_object* l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__4 = (const lean_object*)&l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__4_value;
+LEAN_EXPORT lean_object* l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1(lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___boxed(lean_object*, lean_object*, lean_object*);
 static lean_object* _init_l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__term_u2983___u2984___u2983___u2984__1___closed__6(void){
 _start:
 {
@@ -785,13 +826,107 @@ lean_dec(v_a_403_);
 return v_res_405_;
 }
 }
+LEAN_EXPORT lean_object* l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1(lean_object* v_x_446_, lean_object* v_a_447_, lean_object* v_a_448_){
+_start:
+{
+lean_object* v___x_449_; uint8_t v___x_450_; 
+v___x_449_ = ((lean_object*)(l_Std_Internal_Do_tripleEPost___closed__1));
+lean_inc(v_x_446_);
+v___x_450_ = l_Lean_Syntax_isOfKind(v_x_446_, v___x_449_);
+if (v___x_450_ == 0)
+{
+lean_object* v___x_451_; lean_object* v___x_452_; 
+lean_dec(v_x_446_);
+v___x_451_ = lean_box(1);
+v___x_452_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_452_, 0, v___x_451_);
+lean_ctor_set(v___x_452_, 1, v_a_448_);
+return v___x_452_;
+}
+else
+{
+lean_object* v_quotContext_453_; lean_object* v_currMacroScope_454_; lean_object* v_ref_455_; lean_object* v___x_456_; lean_object* v___x_457_; lean_object* v___x_458_; lean_object* v___x_459_; lean_object* v___x_460_; lean_object* v___x_461_; lean_object* v___x_462_; lean_object* v___x_463_; lean_object* v_Es_464_; uint8_t v___x_465_; lean_object* v___x_466_; lean_object* v___x_467_; lean_object* v___x_468_; lean_object* v___x_469_; lean_object* v___x_470_; lean_object* v___x_471_; lean_object* v___x_472_; lean_object* v___x_473_; lean_object* v___x_474_; lean_object* v___x_475_; lean_object* v___x_476_; lean_object* v___x_477_; lean_object* v___x_478_; lean_object* v___x_479_; lean_object* v___x_480_; lean_object* v___x_481_; lean_object* v___x_482_; lean_object* v___x_483_; lean_object* v___x_484_; lean_object* v___x_485_; lean_object* v___x_486_; lean_object* v___x_487_; lean_object* v___x_488_; 
+v_quotContext_453_ = lean_ctor_get(v_a_447_, 1);
+v_currMacroScope_454_ = lean_ctor_get(v_a_447_, 2);
+v_ref_455_ = lean_ctor_get(v_a_447_, 5);
+v___x_456_ = lean_unsigned_to_nat(1u);
+v___x_457_ = l_Lean_Syntax_getArg(v_x_446_, v___x_456_);
+v___x_458_ = lean_unsigned_to_nat(3u);
+v___x_459_ = l_Lean_Syntax_getArg(v_x_446_, v___x_458_);
+v___x_460_ = lean_unsigned_to_nat(5u);
+v___x_461_ = l_Lean_Syntax_getArg(v_x_446_, v___x_460_);
+v___x_462_ = lean_unsigned_to_nat(7u);
+v___x_463_ = l_Lean_Syntax_getArg(v_x_446_, v___x_462_);
+lean_dec(v_x_446_);
+v_Es_464_ = l_Lean_Syntax_getArgs(v___x_463_);
+lean_dec(v___x_463_);
+v___x_465_ = 0;
+v___x_466_ = l_Lean_SourceInfo_fromRef(v_ref_455_, v___x_465_);
+v___x_467_ = ((lean_object*)(l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__term_u2983___u2984___u2983___u2984__1___closed__4));
+v___x_468_ = lean_obj_once(&l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__term_u2983___u2984___u2983___u2984__1___closed__6, &l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__term_u2983___u2984___u2983___u2984__1___closed__6_once, _init_l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__term_u2983___u2984___u2983___u2984__1___closed__6);
+v___x_469_ = ((lean_object*)(l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__term_u2983___u2984___u2983___u2984__1___closed__7));
+lean_inc(v_currMacroScope_454_);
+lean_inc(v_quotContext_453_);
+v___x_470_ = l_Lean_addMacroScope(v_quotContext_453_, v___x_469_, v_currMacroScope_454_);
+v___x_471_ = ((lean_object*)(l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__term_u2983___u2984___u2983___u2984__1___closed__12));
+lean_inc_n(v___x_466_, 6);
+v___x_472_ = lean_alloc_ctor(3, 4, 0);
+lean_ctor_set(v___x_472_, 0, v___x_466_);
+lean_ctor_set(v___x_472_, 1, v___x_468_);
+lean_ctor_set(v___x_472_, 2, v___x_470_);
+lean_ctor_set(v___x_472_, 3, v___x_471_);
+v___x_473_ = ((lean_object*)(l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__term_u2983___u2984___u2983___u2984__1___closed__14));
+v___x_474_ = ((lean_object*)(l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__1));
+v___x_475_ = ((lean_object*)(l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__2));
+v___x_476_ = lean_alloc_ctor(2, 2, 0);
+lean_ctor_set(v___x_476_, 0, v___x_466_);
+lean_ctor_set(v___x_476_, 1, v___x_475_);
+v___x_477_ = lean_obj_once(&l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__term_u2983___u2984___u2983___x2c___u2984__1___closed__19, &l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__term_u2983___u2984___u2983___x2c___u2984__1___closed__19_once, _init_l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__term_u2983___u2984___u2983___x2c___u2984__1___closed__19);
+v___x_478_ = ((lean_object*)(l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__3));
+v___x_479_ = l_Lean_Syntax_TSepArray_getElems___redArg(v_Es_464_);
+lean_dec_ref(v_Es_464_);
+v___x_480_ = l_Lean_Syntax_SepArray_ofElems(v___x_478_, v___x_479_);
+lean_dec_ref(v___x_479_);
+v___x_481_ = l_Array_append___redArg(v___x_477_, v___x_480_);
+lean_dec_ref(v___x_480_);
+v___x_482_ = lean_alloc_ctor(1, 3, 0);
+lean_ctor_set(v___x_482_, 0, v___x_466_);
+lean_ctor_set(v___x_482_, 1, v___x_473_);
+lean_ctor_set(v___x_482_, 2, v___x_481_);
+v___x_483_ = ((lean_object*)(l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___closed__4));
+v___x_484_ = lean_alloc_ctor(2, 2, 0);
+lean_ctor_set(v___x_484_, 0, v___x_466_);
+lean_ctor_set(v___x_484_, 1, v___x_483_);
+v___x_485_ = l_Lean_Syntax_node3(v___x_466_, v___x_474_, v___x_476_, v___x_482_, v___x_484_);
+v___x_486_ = l_Lean_Syntax_node4(v___x_466_, v___x_473_, v___x_457_, v___x_459_, v___x_461_, v___x_485_);
+v___x_487_ = l_Lean_Syntax_node2(v___x_466_, v___x_467_, v___x_472_, v___x_486_);
+v___x_488_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_488_, 0, v___x_487_);
+lean_ctor_set(v___x_488_, 1, v_a_448_);
+return v___x_488_;
+}
+}
+}
+LEAN_EXPORT lean_object* l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1___boxed(lean_object* v_x_489_, lean_object* v_a_490_, lean_object* v_a_491_){
+_start:
+{
+lean_object* v_res_492_; 
+v_res_492_ = l_Std_Internal_Do___aux__Std__Internal__Do__Triple__Basic______macroRules__Std__Internal__Do__tripleEPost__1(v_x_489_, v_a_490_, v_a_491_);
+lean_dec_ref(v_a_490_);
+return v_res_492_;
+}
+}
 lean_object* runtime_initialize_Std_Internal_Do_WP(uint8_t builtin);
+lean_object* runtime_initialize_Std_Internal_Do_ExceptPost(uint8_t builtin);
 static bool _G_runtime_initialized = false;
 LEAN_EXPORT lean_object* runtime_initialize_Std_Internal_Do_Triple_Basic(uint8_t builtin) {
 lean_object * res;
 if (_G_runtime_initialized) return lean_io_result_mk_ok(lean_box(0));
 _G_runtime_initialized = true;
 res = runtime_initialize_Std_Internal_Do_WP(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = runtime_initialize_Std_Internal_Do_ExceptPost(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 return lean_io_result_mk_ok(lean_box(0));
@@ -804,12 +939,16 @@ _G_meta_initialized = true;
 return lean_io_result_mk_ok(lean_box(0));
 }
 lean_object* initialize_Std_Internal_Do_WP(uint8_t builtin);
+lean_object* initialize_Std_Internal_Do_ExceptPost(uint8_t builtin);
 static bool _G_initialized = false;
 LEAN_EXPORT lean_object* initialize_Std_Internal_Do_Triple_Basic(uint8_t builtin) {
 lean_object * res;
 if (_G_initialized) return lean_io_result_mk_ok(lean_box(0));
 _G_initialized = true;
 res = initialize_Std_Internal_Do_WP(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_Std_Internal_Do_ExceptPost(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = runtime_initialize_Std_Internal_Do_Triple_Basic(builtin);

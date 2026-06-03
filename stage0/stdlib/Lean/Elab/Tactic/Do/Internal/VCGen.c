@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: Lean.Elab.Tactic.Do.Internal.VCGen
-// Imports: public import Lean.Elab.Tactic.Do.Internal.VCGen.Reduce public import Lean.Elab.Tactic.Do.Internal.VCGen.SpecDB public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleConstruction public import Lean.Elab.Tactic.Do.Internal.VCGen.Context public import Lean.Elab.Tactic.Do.Internal.VCGen.Util public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleCache public import Lean.Elab.Tactic.Do.Internal.VCGen.Entails public import Lean.Elab.Tactic.Do.Internal.VCGen.Solve public import Lean.Elab.Tactic.Do.Internal.VCGen.Driver public import Lean.Elab.Tactic.Do.Internal.VCGen.Frontend
+// Imports: public import Lean.Elab.Tactic.Do.Internal.VCGen.Types public import Lean.Elab.Tactic.Do.Internal.VCGen.SpecDB public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleConstruct.Spec public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleConstruct.Simp public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleConstruct.Logic public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleConstruct.Match public import Lean.Elab.Tactic.Do.Internal.VCGen.Utils public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleCache public import Lean.Elab.Tactic.Do.Internal.VCGen.Solve public import Lean.Elab.Tactic.Do.Internal.VCGen.Driver public import Lean.Elab.Tactic.Do.Internal.VCGen.Frontend
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -13,13 +13,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Reduce(uint8_t builtin);
+lean_object* runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Types(uint8_t builtin);
 lean_object* runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_SpecDB(uint8_t builtin);
-lean_object* runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleConstruction(uint8_t builtin);
-lean_object* runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Context(uint8_t builtin);
-lean_object* runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Util(uint8_t builtin);
+lean_object* runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleConstruct_Spec(uint8_t builtin);
+lean_object* runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleConstruct_Simp(uint8_t builtin);
+lean_object* runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleConstruct_Logic(uint8_t builtin);
+lean_object* runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleConstruct_Match(uint8_t builtin);
+lean_object* runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Utils(uint8_t builtin);
 lean_object* runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleCache(uint8_t builtin);
-lean_object* runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Entails(uint8_t builtin);
 lean_object* runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Solve(uint8_t builtin);
 lean_object* runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Driver(uint8_t builtin);
 lean_object* runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Frontend(uint8_t builtin);
@@ -28,25 +29,28 @@ LEAN_EXPORT lean_object* runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen(u
 lean_object * res;
 if (_G_runtime_initialized) return lean_io_result_mk_ok(lean_box(0));
 _G_runtime_initialized = true;
-res = runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Reduce(builtin);
+res = runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Types(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_SpecDB(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleConstruction(builtin);
+res = runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleConstruct_Spec(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Context(builtin);
+res = runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleConstruct_Simp(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Util(builtin);
+res = runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleConstruct_Logic(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleConstruct_Match(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Utils(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleCache(builtin);
-if (lean_io_result_is_error(res)) return res;
-lean_dec_ref(res);
-res = runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Entails(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = runtime_initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Solve(builtin);
@@ -67,13 +71,14 @@ if (_G_meta_initialized) return lean_io_result_mk_ok(lean_box(0));
 _G_meta_initialized = true;
 return lean_io_result_mk_ok(lean_box(0));
 }
-lean_object* initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Reduce(uint8_t builtin);
+lean_object* initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Types(uint8_t builtin);
 lean_object* initialize_Lean_Elab_Tactic_Do_Internal_VCGen_SpecDB(uint8_t builtin);
-lean_object* initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleConstruction(uint8_t builtin);
-lean_object* initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Context(uint8_t builtin);
-lean_object* initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Util(uint8_t builtin);
+lean_object* initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleConstruct_Spec(uint8_t builtin);
+lean_object* initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleConstruct_Simp(uint8_t builtin);
+lean_object* initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleConstruct_Logic(uint8_t builtin);
+lean_object* initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleConstruct_Match(uint8_t builtin);
+lean_object* initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Utils(uint8_t builtin);
 lean_object* initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleCache(uint8_t builtin);
-lean_object* initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Entails(uint8_t builtin);
 lean_object* initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Solve(uint8_t builtin);
 lean_object* initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Driver(uint8_t builtin);
 lean_object* initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Frontend(uint8_t builtin);
@@ -82,25 +87,28 @@ LEAN_EXPORT lean_object* initialize_Lean_Elab_Tactic_Do_Internal_VCGen(uint8_t b
 lean_object * res;
 if (_G_initialized) return lean_io_result_mk_ok(lean_box(0));
 _G_initialized = true;
-res = initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Reduce(builtin);
+res = initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Types(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_Lean_Elab_Tactic_Do_Internal_VCGen_SpecDB(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleConstruction(builtin);
+res = initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleConstruct_Spec(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Context(builtin);
+res = initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleConstruct_Simp(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Util(builtin);
+res = initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleConstruct_Logic(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleConstruct_Match(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Utils(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_Lean_Elab_Tactic_Do_Internal_VCGen_RuleCache(builtin);
-if (lean_io_result_is_error(res)) return res;
-lean_dec_ref(res);
-res = initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Entails(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_Lean_Elab_Tactic_Do_Internal_VCGen_Solve(builtin);

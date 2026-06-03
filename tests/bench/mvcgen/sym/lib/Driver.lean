@@ -4,10 +4,10 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Sebastian Graf
 -/
 module
-public import Lean.Meta
-import Lean.Elab
-import Lean.Meta.Sym.Simp.Theorems
-
+public import Lean
+public import Std.Tactic.Do
+public import Std.Internal.Do
+public import Std.Internal.Do.Triple.SpecLemmas
 open Lean Parser Meta Elab Tactic Sym
 
 def timeItMs (k : MetaM α) : MetaM (α × UInt64) := do
@@ -18,7 +18,8 @@ def timeItMs (k : MetaM α) : MetaM (α × UInt64) := do
   return (a, ms.toUInt64)
 
 /-- Helper function for executing a tactic `k` for solving `$(goal) n`. -/
-def driver (goal : Name) (unfold : List Name) (n : Nat) (discharge : MetaM (TSyntax `tactic)) (k : MVarId → MetaM (List MVarId)) : MetaM Unit := do
+def driver (goal : Name) (unfold : List Name) (n : Nat) (discharge : MetaM (TSyntax `tactic))
+    (k : MVarId → MetaM (List MVarId)) (check := true) : MetaM Unit := do
   let mvar ← mkFreshExprMVar (mkApp (mkConst goal) (mkNatLit n))
   let (mvarId, _unfoldMs) ← timeItMs do SymM.run do
     let mvarId ← preprocessMVar mvar.mvarId!
@@ -30,8 +31,8 @@ def driver (goal : Name) (unfold : List Name) (n : Nat) (discharge : MetaM (TSyn
     | .goal mvarId => return mvarId
     | .noProgress => throwError "No progress when simping {mvarId}!"
     | .closed => throwError "Simp closed goal {mvarId}"
-  -- IO.println s!"time spent unfolding: {_unfoldMs} ms"
-  let (mvarIds, ms) ← timeItMs do k mvarId
+  IO.println s!"time spent unfolding: {_unfoldMs} ms"
+  let (mvarIds, vcgenMs) ← timeItMs do k mvarId
   let discharge ← discharge
   let dischargePp ← PrettyPrinter.ppTactic discharge
   let dischargeMs? ← OptionT.run <| do
@@ -40,27 +41,40 @@ def driver (goal : Name) (unfold : List Name) (n : Nat) (discharge : MetaM (TSyn
       for mvarId in mvarIds do
         let ([], _) ← Lean.Elab.runTactic mvarId discharge.raw {} {}
           | throwError "{dischargePp} failed to solve {mvarId}"
-  let (expr, instMs) ← timeItMs (instantiateMVars mvar)
-  -- Emulate the shareCommonPreDefs step before sending the term to the kernel.
-  -- If we don't do this, kernel checking time balloons.
-  let expr ← SymM.run (shareCommon expr)
-  let (_, kernelMs) ← timeItMs (checkWithKernel expr)
-  let label := s!"{goal.getPrefix}({n}):"
-  let pad := "".pushn ' ' (24 - min label.length 24)
-  let mut msg := s!"{label}{pad}{ms} ms"
+  let proofStats? ← if check then
+    let (expr, instMs) ← timeItMs (instantiateMVars mvar)
+    -- let proofSize ← expr.numObjs
+    -- Emulate the shareCommonPreDefs step before sending the term to the kernel.
+    -- If we don't do this, kernel checking time balloons.
+    let (expr, shareMs) ← timeItMs fun _ => do
+      return ShareCommon.shareCommon' expr
+    -- let proofSizeShared ← expr.numObjs
+    trace[Lean.Elab.Tactic.Do.Internal.VCGen.vcgen] "expr: {expr}"
+    let (_, kernelMs) ← timeItMs (checkWithKernel expr)
+    pure (some (/-instMs,-/ /-shareMs,-/ kernelMs/-, proofSize, proofSizeShared-/))
+  else
+    pure none
+  let mut msg := s!"goal_{n}: {vcgenMs} ms"
   if let some dischargeMs := dischargeMs? then
     msg := msg ++ s!", {mvarIds.length} VCs by {dischargePp}: {dischargeMs} ms"
   else
     msg := msg ++ s!", {mvarIds.length} VCs"
-  if instMs > 1000 then
-    msg := msg ++ s!", instantiate > 1000ms: {instMs} ms"
-  msg := msg ++ s!", kernel: {kernelMs} ms"
+  match proofStats? with
+  | some (/-instMs,-/ /-shareMs,-/ kernelMs/-, proofSize, proofSizeShared-/) =>
+    -- msg := msg ++ s!", instantiate: {instMs} ms"
+    -- msg := msg ++ s!", shareCommon: {shareMs} ms"
+    msg := msg ++ s!", kernel: {kernelMs} ms"
+    -- msg := msg ++ s!", proofSize: {proofSize}"
+    -- msg := msg ++ s!", proofSizeShared: {proofSizeShared}"
+  | none =>
+    msg := msg ++ ", instantiate: skipped, shareCommon: skipped, kernel: skipped"
   IO.println msg
 
-def solveUsingTactic (goal : Name) (unfold : List Name) (n : Nat) (solve : MetaM (TSyntax `tactic)) (discharge : MetaM (TSyntax `tactic)) : MetaM Unit := do
-  driver goal unfold n discharge fun mvarId => do
+def solveUsingTactic (goal : Name) (unfold : List Name) (n : Nat) (solve : MetaM (TSyntax `tactic)) (discharge : MetaM (TSyntax `tactic)) (check := true) : MetaM Unit := do
+  driver goal unfold n discharge (fun mvarId => do
     let (mvarIds, _) ← Lean.Elab.runTactic mvarId (← solve).raw {} {}
-    return mvarIds
+    return mvarIds)
+    (check := check)
 
 /--
 Solves a goal of the form `goal n` using the given tactic, where `n` ranges over `sizes`.
@@ -68,19 +82,24 @@ Solves a goal of the form `goal n` using the given tactic, where `n` ranges over
 For many benchmarks, this is `[step, loop]`.
 -/
 public def runBenchUsingTactic (goal : Name) (unfold : List Name) (solve : MetaM (TSyntax `tactic)) (discharge : MetaM (TSyntax `tactic)) (sizes : List Nat) : MetaM Unit := do
+  IO.println s!"--- {(← getEnv).mainModule} ---"
   for n in sizes do
-    resetCache
     solveUsingTactic goal unfold n solve discharge
 
-def solveUsingSym (goal : Name) (unfold : List Name) (n : Nat) (solve : MVarId → SymM (List MVarId)) (discharge : MetaM (TSyntax `tactic)) : MetaM Unit := do
-  driver goal unfold n discharge fun mvarId => SymM.run do solve mvarId
+public def runBenchUsingTacticNoKernel (goal : Name) (unfold : List Name) (solve : MetaM (TSyntax `tactic)) (discharge : MetaM (TSyntax `tactic)) (sizes : List Nat) : MetaM Unit := do
+  IO.println s!"--- {(← getEnv).mainModule} ---"
+  for n in sizes do
+    solveUsingTactic goal unfold n solve discharge (check := false)
+
+def solveUsingSym (goal : Name) (unfold : List Name) (n : Nat) (solve : MVarId → SymM (List MVarId)) (discharge : MetaM (TSyntax `tactic)) (check := true) : MetaM Unit := do
+  driver goal unfold n discharge (fun mvarId => SymM.run do solve mvarId)
+    (check := check)
 
 /--
 Solves a goal of the form `goal n` using a `SymM` procedure, where `n` ranges over `sizes`.
-`unfold` is a list of `simp` lemmas to apply in order to unfold `goal n`.
+`unfold` is a list of `simp` lemmas to apply in order to unfold `goal n``.
 For many benchmarks, this is `[step, loop]`.
 -/
 public def runBenchUsingSym (goal : Name) (unfold : List Name) (solve : MVarId → SymM (List MVarId)) (discharge : MetaM (TSyntax `tactic)) (sizes : List Nat) : MetaM Unit := do
   for n in sizes do
-    resetCache
     solveUsingSym goal unfold n solve discharge

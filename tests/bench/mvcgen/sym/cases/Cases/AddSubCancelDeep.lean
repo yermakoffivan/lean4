@@ -1,31 +1,24 @@
 import Lean
-import Std.Tactic.Do
+import Driver
+/-!
+Port of `Sym/Cases/AddSubCancelDeep` to Loom.
 
-open Lean Meta Elab Tactic Sym Std Do SpecAttr
+Same loop as `AddSubCancel` but threaded through a deep monad transformer stack.
+
+Known issue: the partially-evaluated `getThe`/`set` specs for this deep stack are not yet
+provable by `mvcgen'` in Loom (see the divergence notes in `Loom/Test/AddSubCancelDeep.lean`),
+so they are currently axiomatized with `sorry`. The benchmark still exercises VC generation
+through the deep stack using these specs.
+-/
+
+open Lean Parser Meta Elab Tactic Sym Lean.Order Std.Internal.Do
+
+set_option new_wp_monad true
+set_option mvcgen.warning false
 
 namespace AddSubCancelDeep
 
-set_option mvcgen.warning false
-
-/-!
-Same case as `AddSubCancel` but using a deep transformer stack.
--/
-
 abbrev M := ExceptT String <| ReaderT String <| ExceptT Nat <| StateT Nat <| ExceptT Unit <| StateM Unit
-
--- The following specs partially evaluate the specs for `getThe` and `set` that otherwise would need
--- multiple small substeps in the modular lifting framework. This is good practice for performance
--- sensitive use cases.
-
-@[spec high]
-theorem Spec.M_getThe_Nat :
-    ⦃fun s₁ s₂ => Q.fst s₂ s₁ s₂⦄ getThe (m := M) Nat ⦃Q⦄ := by
-  mvcgen
-
-@[spec high]
-theorem Spec.M_set_Nat (n : Nat) :
-    ⦃fun s₁ _ => Q.fst ⟨⟩ s₁ n⦄ set (m := M) n ⦃Q⦄ := by
-  mvcgen
 
 def step (v : Nat) : M Unit := do
   let s ← getThe Nat
@@ -38,6 +31,25 @@ def loop (n : Nat) : M Unit := do
   | 0 => pure ()
   | n+1 => step n; loop n
 
-def Goal (n : Nat) : Prop := ∀ post, ⦃post⦄ loop n ⦃⇓_ => post⦄
+def Goal (n : Nat) : Prop :=
+  ∀ post epost s₁ s₂, post s₁ s₂ ⟨⟩ ⊑ wp (loop n) (fun _ => post) epost s₁ s₂ ⟨⟩
+
+@[spec high]
+theorem Spec.M_getThe_Nat :
+    Triple (fun s₁ s₂ => post s₂ s₁ s₂) (getThe (m := M) Nat) post epost := by
+  sorry
+
+@[spec high]
+theorem Spec.M_set_Nat (n : Nat) :
+    Triple (fun s₁ _ => post ⟨⟩ s₁ n) (set (m := M) n) post epost := by
+  sorry
+
+set_option maxRecDepth 10000
+set_option maxHeartbeats 10000000
+
+def runTests := runBenchUsingTactic
+    ``Goal [``loop, ``step]
+    `(tactic| (intro post epost s₁ s₂; mvcgen' simplifying_assumptions with grind))
+    `(tactic| fail)
 
 end AddSubCancelDeep

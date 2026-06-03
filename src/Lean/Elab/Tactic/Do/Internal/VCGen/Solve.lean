@@ -329,7 +329,16 @@ def applySpec (scope : VCGen.Scope) (target : Expr) (info : WPInfo) : VCGenM Sol
         rule type:{indentExpr ruleType}"
   return .goals scope goals
 
-/-- Strategy 7d: apply a registered spec for a constant or local function program head. -/
+/-- Strategy 7d: reduce a projection head in the program. -/
+def tryWPHeadReduce (target : Expr) (info : WPInfo) : Strategy := do
+  let f := info.prog.getAppFn
+  if f matches .proj .. then
+    let some f' ← withReducibleAndInstances (reduceProj? f) | return
+    let f' ← shareCommon <| ← unfoldReducible f'
+    let prog ← betaRevS f' info.prog.getAppRevArgs
+    returnGoals [← replaceProgDefEq goal target info prog]
+
+/-- Strategy 7e: apply a registered spec for a constant or local function program head. -/
 def tryWPCallSpec (target : Expr) (info : WPInfo) :
     Strategy := do
   let f := info.prog.getAppFn
@@ -349,6 +358,7 @@ def tryWP (target rhs : Expr) : Strategy := do
     tryWPLet      goal target info
     tryWPMatch    goal target info
     tryWPFVarZeta goal target info
+    tryWPHeadReduce goal target info
     tryWPCallSpec goal target info
     returnSolveResult <| .noStrategyForProgram info.prog
 
@@ -391,7 +401,8 @@ The function performs the following steps in order:
   7a. **Let hoisting**: If `Prog` is a `let`, hoist the let-bound variable to the LHS.
   7b. **Match splitting**: If `Prog` is a `match`, split the match-cases.
   7c. **Fvar zeta**: If `Prog` is a local fvar, zeta-unfold it.
-  7d. **Spec lookup**: If `Prog` is a constant or local function, lookup a corresponding spec.
+  7d. **Head reduction**: If `Prog` is a projection, reduce it.
+  7e. **Spec lookup**: If `Prog` is a constant or local function, lookup a corresponding spec.
 8. **Syntactic rfl**: If RHS is not a `wp`, try closing by `PartialOrder.rel_refl`.
 -/
 def runStrategies (goal : MVarId) : StrategyM SolveResult := do

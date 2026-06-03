@@ -97,14 +97,14 @@ open Code
 theorem fib_triple : ⦃ ⊤ ⦄ fib_impl n ⦃ fun r => r = fib_spec n ⦄ := by
   unfold fib_impl
   mvcgen'
-  case inv1 => exact invariant⟨fun (xs, ⟨a, b⟩) =>
+  case inv1 => exact ⟨fun (xs, ⟨a, b⟩) =>
     a = fib_spec xs.pos ∧ b = fib_spec (xs.pos + 1)⟩
   any_goals grind
 
 theorem fib_triple_step : ⦃ ⊤ ⦄ fib_impl n ⦃ fun r => r = fib_spec n ⦄ := by
   unfold fib_impl
   mvcgen' (stepLimit := some 14)
-  case inv1 => exact invariant⟨fun (xs, ⟨a, b⟩) =>
+  case inv1 => exact ⟨fun (xs, ⟨a, b⟩) =>
     a = fib_spec xs.pos ∧ b = fib_spec (xs.pos + 1)⟩
   any_goals grind
 
@@ -121,7 +121,7 @@ theorem fib_triple_erase : ⦃ ⊤ ⦄ fib_impl n ⦃fun r => r = fib_spec n⦄ 
 theorem fib_impl_vcs
     (Q : Nat → Nat → Prop)
     (I : (n : Nat) → (_ : ¬n = 0) →
-      Invariant [1:n].toList (Prod Nat Nat) Prop EPost⟨⟩)
+      Invariant [1:n].toList (Prod Nat Nat) Prop)
     (ret : Q 0 0)
     (loop_pre : ∀ n (hn : ¬n = 0), (I n hn).inv ⟨⟨[], [1:n].toList, rfl⟩, 0, 1⟩)
     (loop_post : ∀ n (hn : ¬n = 0) r, (I n hn).inv ⟨⟨[1:n].toList, [], by simp⟩, r⟩ ⊑ Q n r.2)
@@ -166,7 +166,7 @@ theorem mkFreshPair_triple :
 
 theorem sum_loop_spec : ⦃ ⊤ ⦄ sum_loop ⦃ fun r => r < 30 ⦄ := by
   mvcgen' [sum_loop]
-  case inv1 => exact invariant⟨fun (⟨c, x⟩) => x = c.«prefix».sum⟩
+  case inv1 => exact ⟨fun (⟨c, x⟩) => x = c.«prefix».sum⟩
   all_goals grind
 
 theorem throwing_loop_spec :
@@ -175,19 +175,19 @@ theorem throwing_loop_spec :
   ⦃fun _ _ => False;
   fun e s => e = 42 ∧ s = 4⦄ := by
   mvcgen' [throwing_loop]
-  case inv1 => exact invariant⟨fun (xs, r) s => r ≤ 4 ∧ s = 4 ∧ r + xs.suffix.sum > 4; fun e s => e = 42 ∧ s = 4⟩
-  all_goals try (simp at *; subst_vars; grind)
+  case inv1 => exact ⟨fun (xs, r) s => r ≤ 4 ∧ s = 4 ∧ r + xs.suffix.sum > 4⟩
+  all_goals (simp_all; try grind)
 
 theorem test_loop_break :
     ⦃ fun s => s = 42 ⦄ breaking_loop ⦃ fun r s => r > 4 ∧ s = 1 ⦄ := by
   mvcgen' [breaking_loop]
-  case inv1 => exact invariant⟨fun (xs, r) s => (r ≤ 4 ∧ r = xs.prefix.sum ∨ r > 4) ∧ s = 42⟩
+  case inv1 => exact ⟨fun (xs, r) s => (r ≤ 4 ∧ r = xs.prefix.sum ∨ r > 4) ∧ s = 42⟩
   all_goals grind
 
 theorem test_loop_early_return :
     ⦃ fun s => s = 4 ⦄ returning_loop ⦃ fun r s => r = 42 ∧ s = 4 ⦄ := by
   mvcgen' [returning_loop]
-  case inv1 => exact invariant⟨fun (xs, r) s => (r.1 = none ∧ r.2 = xs.prefix.sum ∧ r.2 ≤ 4 ∨ r.1 = some 42 ∧ r.2 > 4) ∧ s = 4⟩
+  case inv1 => exact ⟨fun (xs, r) s => (r.1 = none ∧ r.2 = xs.prefix.sum ∧ r.2 ≤ 4 ∨ r.1 = some 42 ∧ r.2 > 4) ∧ s = 4⟩
   all_goals grind
 
 theorem unfold_to_expose_match_spec :
@@ -213,7 +213,7 @@ theorem test_sum :
       pure x : Id _)
     ⦃ fun r => r < 30 ⦄ := by
   mvcgen'
-  case inv1 => exact invariant⟨fun (⟨c, x⟩) => x = c.«prefix».sum⟩
+  case inv1 => exact ⟨fun (⟨c, x⟩) => x = c.«prefix».sum⟩
   all_goals grind
 
 theorem mspec_forwards_mvars {n : Nat} :
@@ -240,7 +240,7 @@ example (p : Nat → Prop) [DecidablePred p] (n : Nat) :
   apply Id.of_wp_run_eq h
   mvcgen'
   case inv1 =>
-    exact Invariant.withEarlyReturnNewDo (EPred := EPost⟨⟩)
+    exact Invariant.withEarlyReturnNewDo
       (onReturn := fun ret _ => ⌜ret = false ∧ ¬ ∀ i < n, p i⌝)
       (onContinue := fun xs _ => ⌜∀ i, i ∈ xs.prefix → p i⌝)
   all_goals simp_all [-Classical.not_forall]; try grind
@@ -265,7 +265,7 @@ theorem max_and_sum_spec (xs : Array Nat) :
     ⦃ ∀ i, (h : i < xs.size) → xs[i] ≥ 0 ⦄
     max_and_sum xs ⦃ fun (m, s) => s ≤ m * xs.size ⦄ := by
   mvcgen' [max_and_sum]
-  case inv1 => exact invariant⟨fun ⟨c, mx, s⟩ => s ≤ mx * c.pos⟩
+  case inv1 => exact ⟨fun ⟨c, mx, s⟩ => s ≤ mx * c.pos⟩
   all_goals simp_all +zetaDelta
   · rename_i h _
     rw [Nat.left_distrib]
@@ -366,7 +366,7 @@ theorem subarraySum_correct {xs : Subarray Nat} : subarraySum xs = xs.toList.sum
   generalize h : subarraySum xs = r
   apply Id.of_wp_run_eq h
   mvcgen'
-  case inv1 => exact invariant⟨fun (⟨c, s⟩) => s = c.«prefix».sum⟩
+  case inv1 => exact ⟨fun (⟨c, s⟩) => s = c.«prefix».sum⟩
   all_goals simp_all +zetaDelta
 
 end Slices
@@ -400,14 +400,14 @@ theorem naive_expo_correct (x n : Nat) : naive_expo x n = x ^ n := by
   generalize h : naive_expo x n = r
   apply Id.of_wp_run_eq h
   mvcgen' [naive_expo, Id.run]
-  case inv1 => exact invariant⟨fun (⟨c, y⟩) => y = x ^ c.pos⟩
+  case inv1 => exact ⟨fun (⟨c, y⟩) => y = x ^ c.pos⟩
   all_goals simp_all +zetaDelta [Nat.pow_add_one]
 
 theorem fast_expo_correct (x n : Nat) : fast_expo x n = x ^ n := by
   generalize h : fast_expo x n = r
   apply Id.of_wp_run_eq h
   mvcgen'
-  case inv1 => exact invariant⟨fun ⟨xs, x', y, e⟩ => x' ^ e * y = x ^ n ∧ e ≤ n - xs.pos⟩
+  case inv1 => exact ⟨fun ⟨xs, x', y, e⟩ => x' ^ e * y = x ^ n ∧ e ≤ n - xs.pos⟩
   all_goals simp_all +zetaDelta
   case vc2 b _ _ ih =>
     obtain ⟨x', y, e⟩ := b
@@ -449,7 +449,7 @@ theorem forIn_eq_sum (xs : Array Nat) {m} [Monad m] [Assertion Pred] [Assertion 
       return sum : m _)
     ⦃ fun r => ⌜r = xs.sum⌝ ⦄ := by
   mvcgen'
-  case inv1 => exact invariant⟨fun (⟨cur, n⟩) => ⌜n = cur.prefix.sum⌝⟩
+  case inv1 => exact ⟨fun (⟨cur, n⟩) => ⌜n = cur.prefix.sum⌝⟩
   all_goals grind
 
 theorem forIn_map_eq_sum_add_size (xs : Array Nat) {m} [Monad m] [Assertion Pred] [Assertion EPred]
@@ -460,7 +460,7 @@ theorem forIn_map_eq_sum_add_size (xs : Array Nat) {m} [Monad m] [Assertion Pred
         sum := sum + n
       return sum) (fun r => ⌜r = xs.sum + xs.size⌝) ⊥ := by
   mvcgen'
-  case inv1 => exact invariant⟨fun ⟨cur, n⟩ => ⌜n = cur.prefix.sum + cur.prefix.length⌝⟩
+  case inv1 => exact ⟨fun ⟨cur, n⟩ => ⌜n = cur.prefix.sum + cur.prefix.length⌝⟩
   all_goals grind
 
 
@@ -472,7 +472,7 @@ theorem forIn_mapM_eq_sum_add_size (xs : Array Nat) {m} [Monad m] [MonadAttach m
         sum := sum + n
       return sum) (fun r => ⌜r = xs.sum + xs.size⌝) ⊥ := by
   mvcgen'
-  case inv1 => exact invariant⟨fun ⟨cur, n⟩ => ⌜n = cur.prefix.sum + cur.prefix.length⌝⟩
+  case inv1 => exact ⟨fun ⟨cur, n⟩ => ⌜n = cur.prefix.sum + cur.prefix.length⌝⟩
   all_goals grind
 
 theorem forIn_filterMapM_eq_sum_add_size (xs : Array Nat) {m}
@@ -483,7 +483,7 @@ theorem forIn_filterMapM_eq_sum_add_size (xs : Array Nat) {m}
         sum := sum + n
       return sum)  (fun r => ⌜r = xs.sum + xs.size⌝) ⊥ := by
   mvcgen'
-  case inv1 => exact invariant⟨fun ⟨cur, n⟩ => ⌜n = cur.prefix.sum + cur.prefix.length⌝⟩
+  case inv1 => exact ⟨fun ⟨cur, n⟩ => ⌜n = cur.prefix.sum + cur.prefix.length⌝⟩
   all_goals grind
 
 theorem foldM_eq_sum (xs : Array Nat) {m} [Monad m] [LawfulMonad m]
@@ -492,7 +492,7 @@ theorem foldM_eq_sum (xs : Array Nat) {m} [Monad m] [LawfulMonad m]
       (xs.iter.foldM (m := m) (init := 0) (pure <| · + ·))
       (fun r => ⌜r = xs.sum⌝) ⊥ := by
   mvcgen'
-  case inv1 => exact invariant⟨fun ⟨cur, n⟩ => ⌜n = cur.prefix.sum⌝⟩
+  case inv1 => exact ⟨fun ⟨cur, n⟩ => ⌜n = cur.prefix.sum⌝⟩
   all_goals grind
 
 end IteratorTests
@@ -555,7 +555,7 @@ example (p : Nat → Prop) [DecidablePred p] (n : Nat) :
   generalize h : check_all p n = x
   apply Id.of_wp_run_eq h
   mvcgen' invariants
-    · Invariant.withEarlyReturnNewDo (EPred := EPost⟨⟩)
+    · Invariant.withEarlyReturnNewDo
       (onReturn := fun ret _ => ⌜ret = false ∧ ¬ ∀ i < n, p i⌝)
       (onContinue := fun xs _ => ⌜∀ i, i ∈ xs.prefix → p i⌝)
   with (simp_all [-Classical.not_forall]; try grind)
@@ -566,7 +566,7 @@ example (p : Nat → Prop) [DecidablePred p] (n : Nat) :
   generalize h : check_all p n = x
   apply Id.of_wp_run_eq h
   mvcgen' invariants
-    | inv1 => Invariant.withEarlyReturnNewDo (EPred := EPost⟨⟩)
+    | inv1 => Invariant.withEarlyReturnNewDo
       (onReturn := fun ret _ => ⌜ret = false ∧ ¬ ∀ i < n, p i⌝)
       (onContinue := fun xs _ => ⌜∀ i, i ∈ xs.prefix → p i⌝)
   with (simp_all [-Classical.not_forall]; try grind)

@@ -273,26 +273,23 @@ def tryWPLet (target : Expr) (info : WPInfo) : Strategy := do
   if let .letE name type val body nondep := info.prog.getAppFn then
     returnGoals [← substOrHoistLet goal target info name type val body nondep info.prog.getAppRevArgs]
 
-def splitMatch (target : Expr) (info : WPInfo) (splitInfo : Do.SplitInfo) : VCGenM (List MVarId) := do
-  -- For matchers, try reduceRecMatcher? to reduce known discriminants.
-  if let .matcher .. := splitInfo then
-    if let some prog ← reduceRecMatcher? info.prog then
-      let prog ← shareCommon prog
-      return [← replaceProgDefEq goal target info prog]
-  let rule ← mkBackwardRuleForSplitCached splitInfo info
-  let .goals goals ← rule.applyChecked goal
-    | throwError "Failed to applyChecked split rule for {indentExpr info.prog}"
-  let goals ← goals.mapM fun g => do
-    let .goal _ g ← Sym.intros g
-      | throwError "Failed to intro split parameters"
-    return g
-  return goals
-
 /-- Strategy 7b: split an `ite`/`dite`/match program, or iota-reduce a concrete matcher. -/
-def tryWPMatch (target : Expr) (info : WPInfo) :
-    Strategy := do
+def tryWPMatch (target : Expr) (info : WPInfo) : Strategy := do
   if let some splitInfo ← Do.getSplitInfo? info.prog then
-    returnGoals =<< splitMatch goal target info splitInfo
+    if splitInfo matches .matcher .. then
+      if let some prog ← reduceRecMatcher? info.prog then
+        let prog ← shareCommon prog
+        returnGoals [← replaceProgDefEq goal target info prog]
+    let rule ← mkBackwardRuleForSplitCached splitInfo info
+    let .goals goals ← rule.applyChecked goal
+      | throwError "Failed to applyChecked split rule for {indentExpr info.prog}"
+    let mut simpGoals := #[]
+    for goal in goals do
+      match ← VCGenM.simpGoal goal with
+      | .goal goal => simpGoals := simpGoals.push goal
+      | .closed => continue
+      | .failed => throwError "Failed to simp split goal"
+    returnGoals simpGoals.toList
 
 def substFvarZeta (target : Expr) (info : WPInfo) (val : Expr)
     (appArgs : Array Expr) : VCGenM MVarId := do

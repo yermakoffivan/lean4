@@ -1,24 +1,29 @@
 import Lean
-import Std.Tactic.Do
+import Driver
+/-!
+Port of `Sym/Cases/AddSubCancel` to Loom.
 
-open Lean Meta Elab Tactic Sym Std Do SpecAttr
+Basic add/sub loop in `StateM`: each `step` adds then subtracts the same value, so the
+loop preserves the state. Exercises the `get`/`set` `StateT` specs in the simplest setting.
+-/
+
+open Lean Meta Order Std.Internal.Do
+
+set_option new_wp_monad true
+set_option mvcgen.warning false
 
 namespace AddSubCancel
 
-set_option mvcgen.warning false
-
--- The following specs partially evaluate the specs for `get` and `set` that otherwise would need
--- multiple small substeps in the modular lifting framework. This is good practice for performance
--- sensitive use cases.
-
-@[spec high]
-theorem Spec.MonadState_get {m ps} [Monad m] [WPMonad m ps] {σ} {Q : PostCond σ (.arg σ ps)} :
-    ⦃fun s => Q.fst s s⦄ get (m := StateT σ m) ⦃Q⦄ := by
+@[spec high] theorem spec_get_StateT {m : Type u → Type v} {Pred EPred : Type u}
+    [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred]
+    {σ : Type u} (post : σ → σ → Pred) (epost : EPred) :
+    Triple (fun s => post s s) (get : StateT σ m σ) post epost := by
   mvcgen'
 
-@[spec high]
-theorem Spec.MonadStateOf_set {m ps} [Monad m] [WPMonad m ps] {σ} {Q : PostCond PUnit (.arg σ ps)} {s : σ} :
-    ⦃fun _ => Q.fst ⟨⟩ s⦄ set (m := StateT σ m) s ⦃Q⦄ := by
+@[spec high] theorem spec_set_StateT' {m : Type u → Type v} {Pred EPred : Type u}
+    [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred]
+    {σ : Type u} (s : σ) (post : PUnit → σ → Pred) (epost : EPred) :
+    Triple (fun _ => post ⟨⟩ s) (set s : StateT σ m PUnit) post epost := by
   mvcgen'
 
 def step (v : Nat) : StateM Nat Unit := do
@@ -32,6 +37,14 @@ def loop (n : Nat) : StateM Nat Unit := do
   | 0 => pure ()
   | n+1 => step n; loop n
 
-def Goal (n : Nat) : Prop := ∀ post, ⦃post⦄ loop n ⦃⇓_ => post⦄
+def Goal (n : Nat) : Prop := ∀ post s, post s ⊑ wp (loop n) (fun _ => post) ⟨⟩ s
+
+set_option maxRecDepth 10000
+set_option maxHeartbeats 10000000
+
+def runTests := runBenchUsingTactic
+    ``Goal [``loop, ``step]
+    `(tactic| (intro post s; mvcgen' with grind))
+    `(tactic| fail)
 
 end AddSubCancel

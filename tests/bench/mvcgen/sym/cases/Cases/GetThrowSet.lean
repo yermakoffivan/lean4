@@ -1,31 +1,30 @@
 import Lean
-import Std.Tactic.Do
+import Driver
+/-!
+Port of `Sym/Cases/GetThrowSet` to Loom.
 
-open Lean Meta Elab Tactic Sym Std Do SpecAttr
+Exception handling with `ExceptT String <| StateM Nat`: each `step` conditionally throws and
+otherwise increments the state by one. With the loop driving the state up from `0` the guard
+never fires, so the program never throws and ends at state `n`.
+-/
+
+open Lean Meta Order Std.Internal.Do
+
+set_option new_wp_monad true
+set_option mvcgen.warning false
 
 namespace GetThrowSet
 
-set_option mvcgen.warning false
-set_option backward.do.legacy false -- exercises asymmetric bind depth from new do elaborator
-
 abbrev M := ExceptT String <| StateM Nat
 
--- Partially evaluated specs for best performance.
+@[spec high] theorem spec_throw (e : String) {post : α → Nat → Prop} {epost : EPost⟨String → Nat → Prop⟩} :
+    Triple (epost.head e) (throw (m := M) e) post epost := ⟨PartialOrder.rel_refl⟩
 
-@[spec high]
-theorem Spec.throw_M {e : String} :
-    ⦃Q.2.1 e⦄ throw (m := M) e ⦃Q⦄ := by
-  mvcgen
+@[spec high] theorem spec_set (x : Nat) {post : PUnit → Nat → Prop} {epost : EPost⟨String → Nat → Prop⟩} :
+    Triple (fun _ => post ⟨⟩ x) (set (m := M) x) post epost := ⟨PartialOrder.rel_refl⟩
 
-@[spec high]
-theorem Spec.set_M {s : Nat} :
-    ⦃fun _ => Q.1 ⟨⟩ s⦄ set (m := M) s ⦃Q⦄ := by
-  mvcgen
-
-@[spec high]
-theorem Spec.get_M :
-    ⦃fun s => Q.1 s s⦄ get (m := M) ⦃Q⦄ := by
-  mvcgen
+@[spec high] theorem spec_get (post : Nat → Nat → Prop) {epost : EPost⟨String → Nat → Prop⟩} :
+    Triple (fun s => post s s) (get (m := M)) post epost := ⟨PartialOrder.rel_refl⟩
 
 def step (lim : Nat) : M Unit := do
   let s ← get
@@ -38,6 +37,14 @@ def loop (n : Nat) : M Unit := do
   | 0 => pure ()
   | n+1 => loop n; step n
 
-def Goal (n : Nat) : Prop := ⦃fun s => ⌜s = 0⌝⦄ loop n ⦃⇓_ s => ⌜s = n⌝⦄
+def Goal (n : Nat) : Prop := ∀ post, post n ⊑ wp (loop n) (fun _ => post) epost⟨fun _ _ => False⟩ 0
+
+set_option maxRecDepth 10000
+set_option maxHeartbeats 10000000
+
+def runTests := runBenchUsingTactic
+    ``Goal [``loop, ``step]
+    `(tactic| (intro post; mvcgen' with grind))
+    `(tactic| fail)
 
 end GetThrowSet

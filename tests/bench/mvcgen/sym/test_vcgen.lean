@@ -25,39 +25,40 @@ Each case exercises a different aspect of the VC generation:
 - `MatchSplit`: Pattern matching with symbolic discriminant (state), exercising match split
 -/
 
-open Lean Parser Meta Elab Tactic Sym Std Do SpecAttr
+open Lean Order Parser Meta Elab Tactic Sym Std Internal.Do Do.Internal.SpecAttr
 
 set_option maxRecDepth 10000
 set_option maxHeartbeats 10000000
 
 #eval do
-  -- runBenchUsingTactic ``AddSubCancel.Goal [``AddSubCancel.loop, ``AddSubCancel.step]
-  --   `(tactic| mvcgen') `(tactic| grind) [10]
-  -- runBenchUsingTactic ``AddSubCancelDeep.Goal [``AddSubCancelDeep.loop, ``AddSubCancelDeep.step]
-  --   `(tactic| mvcgen') `(tactic| grind) [10]
-  -- runBenchUsingTactic ``AddSubCancelSimp.Goal [``AddSubCancelSimp.loop, ``AddSubCancelSimp.step]
-  --   `(tactic| mvcgen') `(tactic| grind) [10]
-  -- runBenchUsingTactic ``LetBinding.Goal [``LetBinding.loop, ``LetBinding.step]
-  --   `(tactic| mvcgen') `(tactic| grind) [10]
-  -- runBenchUsingTactic ``GetThrowSet.Goal [``GetThrowSet.loop, ``GetThrowSet.step]
-  --   `(tactic| mvcgen') `(tactic| sorry) [10]
-  -- -- `mvcgen' with grind`: grind integrated into VCGen loop
-  -- runBenchUsingTactic ``GetThrowSet.Goal [``GetThrowSet.loop, ``GetThrowSet.step]
-  --   `(tactic| mvcgen' with grind) `(tactic| fail) [10]
+  runBenchUsingTactic ``AddSubCancel.Goal [``AddSubCancel.loop, ``AddSubCancel.step]
+    `(tactic| mvcgen') `(tactic| grind) [10]
+  runBenchUsingTactic ``AddSubCancelDeep.Goal [``AddSubCancelDeep.loop, ``AddSubCancelDeep.step]
+    `(tactic| mvcgen') `(tactic| grind) [10]
+  runBenchUsingTactic ``AddSubCancelSimp.Goal [``AddSubCancelSimp.loop, ``AddSubCancelSimp.step]
+    `(tactic| mvcgen') `(tactic| grind) [10]
+  runBenchUsingTactic ``LetBinding.Goal [``LetBinding.loop, ``LetBinding.step]
+    `(tactic| mvcgen') `(tactic| grind) [10]
+  runBenchUsingTactic ``GetThrowSet.Goal [``GetThrowSet.loop, ``GetThrowSet.step]
+    `(tactic| mvcgen') `(tactic| sorry) [10]
+  -- `mvcgen' with grind`: grind integrated into VCGen loop
+  runBenchUsingTactic ``GetThrowSet.Goal [``GetThrowSet.loop, ``GetThrowSet.step]
+    `(tactic| mvcgen' with grind) `(tactic| fail) [10]
   -- `mvcgen' with grind` on AddSubCancel
   runBenchUsingTactic ``AddSubCancel.Goal [``AddSubCancel.loop, ``AddSubCancel.step]
-    `(tactic| mvcgen') `(tactic| sorry) [1000]
-  -- runBenchUsingTactic ``PurePrecond.Goal [``PurePrecond.loop, ``PurePrecond.step]
-  --   `(tactic| mvcgen') `(tactic| fail) [10]
-  -- runBenchUsingTactic ``ReaderState.Goal [``ReaderState.loop, ``ReaderState.step]
-  --   `(tactic| mvcgen') `(tactic| sorry) [10]
-  -- runBenchUsingTactic ``DiteSplit.Goal [``DiteSplit.loop, ``DiteSplit.step]
-  --   `(tactic| mvcgen') `(tactic| sorry) [10]
-  -- runBenchUsingTactic ``MatchIota.Goal [``MatchIota.loop, ``MatchIota.step]
-  --   `(tactic| mvcgen') `(tactic| sorry) [10]
-  -- runBenchUsingTactic ``MatchSplit.Goal [``MatchSplit.loop, ``MatchSplit.step]
-  --   `(tactic| mvcgen') `(tactic| grind) [10]
+    `(tactic| mvcgen' with grind) `(tactic| fail) [10]
+  runBenchUsingTactic ``PurePrecond.Goal [``PurePrecond.loop, ``PurePrecond.step]
+    `(tactic| mvcgen' with grind) `(tactic| fail) [10]
+  runBenchUsingTactic ``ReaderState.Goal [``ReaderState.loop, ``ReaderState.step]
+    `(tactic| mvcgen') `(tactic| sorry) [10]
+  runBenchUsingTactic ``DiteSplit.Goal [``DiteSplit.loop, ``DiteSplit.step]
+    `(tactic| mvcgen') `(tactic| sorry) [10]
+  runBenchUsingTactic ``MatchIota.Goal [``MatchIota.loop, ``MatchIota.step]
+    `(tactic| mvcgen') `(tactic| sorry) [10]
+  runBenchUsingTactic ``MatchSplit.Goal [``MatchSplit.loop, ``MatchSplit.step]
+    `(tactic| mvcgen') `(tactic| grind) [10]
 
+-- TODO: fix
 -- -- Verify `simplifying_assumptions [Nat.add_assoc]` works end-to-end with `simp only` unfolding.
 -- /--
 -- trace: s✝ : Nat
@@ -82,13 +83,13 @@ set_option maxHeartbeats 10000000
 --   case vc11 => trace_state; grind
 --   all_goals grind
 
--- -- Verify that the let-binding code paths are exercised.
--- -- `unfold` (unlike `simp only`) preserves letE nodes in the program, exercising:
--- -- let-hoist, let-intro (non-duplicable value), and fvar-zeta (let-bound program head).
--- -- Run with `set_option trace.Elab.Tactic.Do.vcgen true` to see the traces.
--- open LetBinding in
--- example : ∀ post, ⦃post⦄ step 5 ⦃⇓_ => post⦄ := by
---   unfold step
---   intro post
---   mvcgen'
---   grind
+-- Verify that the let-binding code paths are exercised.
+-- `unfold` (unlike `simp only`) preserves letE nodes in the program, exercising:
+-- let-hoist, let-intro (non-duplicable value), and fvar-zeta (let-bound program head).
+-- Run with `set_option trace.Elab.Tactic.Do.vcgen true` to see the traces.
+open LetBinding in
+example : ∀ post, ⦃post⦄ step 5 ⦃fun _ => post⦄ := by
+  unfold step
+  intro post
+  mvcgen'
+  grind

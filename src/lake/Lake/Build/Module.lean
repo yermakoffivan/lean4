@@ -890,8 +890,13 @@ def Module.buildLean
   let setup := {setup with importArts := transImpArts}
   let arts := mod.mkArtifacts srcFile setup.isModule
   mod.clearOutputArtifacts
+  -- When sandboxing, the `lean`/`leanir` subprocesses may only write beneath a
+  -- private per-module scratch directory (on the same filesystem as the build
+  -- dir, so artifacts can be relocated by a trusted rename).
+  let sandboxDir? := if (← getSandbox) then
+    some (mod.pkg.buildDir / "sandbox" / mod.name.toString) else none
   compileLeanModule srcFile relSrcFile setup mod.setupFile arts args
-    (← getLeanPath) (← getLean) (← getLeanir)
+    (← getLeanPath) (← getLean) (← getLeanir) sandboxDir?
   mod.clearOutputHashes
   mod.computeArtifacts setup.isModule
 

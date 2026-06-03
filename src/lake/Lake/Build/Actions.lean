@@ -25,6 +25,65 @@ open Lean hiding SearchPath
 
 namespace Lake
 
+/--
+Per-module sandbox directories: a private `scratch` directory that a sandboxed
+`lean`/`leanir` subprocess is permitted to write to, and a `tmp` subdirectory
+for the subprocess's temporary files.
+-/
+structure SandboxDirs where
+  scratch : FilePath
+  tmp : FilePath
+
+@[inline] def SandboxDirs.ofScratch (scratch : FilePath) : SandboxDirs where
+  scratch := scratch
+  tmp := scratch / "tmp"
+
+/-- Empty the scratch and tmp directories, ready for a fresh sandboxed run. -/
+def SandboxDirs.reset (d : SandboxDirs) : IO Unit := do
+  removeDirAllIfExists d.scratch
+  IO.FS.createDirAll d.scratch
+  IO.FS.createDirAll d.tmp
+
+/-- Where a sandboxed subprocess should write the artifact whose real path is `real`. -/
+@[inline] def SandboxDirs.outPath (d : SandboxDirs) (real : FilePath) : FilePath :=
+  d.scratch / real.fileName.getD real.toString
+
+/--
+Spawn arguments for running `cmd args` with `LEAN_PATH` set to `leanPath`.
+When `sandbox?` is set, the command is wrapped as
+`lean --sandbox-exec --rw <scratch> --rw <tmp> -- cmd args`, which applies a
+Landlock policy permitting filesystem writes only beneath the scratch and tmp
+directories, and `TMPDIR`/`TMP`/`TEMP`/`XDG_CACHE_HOME` are pointed at `tmp`.
+-/
+def mkLeanSpawn (lean cmd : FilePath) (args : Array String)
+    (leanPath : SearchPath) (sandbox? : Option SandboxDirs) : IO.Process.SpawnArgs :=
+  let leanPathEnv : String × Option String := ("LEAN_PATH", leanPath.toString)
+  match sandbox? with
+  | none => { cmd := cmd.toString, args, env := #[leanPathEnv] }
+  | some d =>
+    { cmd := lean.toString
+      args :=
+        #["--sandbox-exec", "--rw", d.scratch.toString, "--rw", d.tmp.toString,
+          "--", cmd.toString] ++ args
+      env := #[leanPathEnv,
+        ("TMPDIR", some d.tmp.toString), ("TMP", some d.tmp.toString),
+        ("TEMP", some d.tmp.toString), ("XDG_CACHE_HOME", some d.tmp.toString)] }
+
+/--
+Move a sandboxed output from the scratch directory to its real path `real`.
+The scratch contents are produced by an untrusted build, so anything that is not
+a plain regular file (a symlink, FIFO, device node, ...) is rejected rather than
+installed into the trusted build tree. Does nothing if the file was not produced.
+-/
+def relocateSandboxOutput (d : SandboxDirs) (real : FilePath) : LogIO Unit := do
+  let sp := d.outPath real
+  unless (← sp.pathExists) do return
+  let md ← sp.symlinkMetadata
+  unless md.type == .file do
+    error s!"sandbox produced a non-regular file for '{real}'; refusing to install it"
+  createParentDirs real
+  IO.FS.rename sp real
+
 public def compileLeanModule
   (leanFile relLeanFile : FilePath)
   (setup : ModuleSetup) (setupFile : FilePath)
@@ -33,35 +92,40 @@ public def compileLeanModule
   (leanPath : SearchPath := [])
   (lean : FilePath := "lean")
   (leanir : FilePath := "leanir")
+  (sandboxDir? : Option FilePath := none)
 : LogIO Unit := do
+  let sandbox? := sandboxDir?.map SandboxDirs.ofScratch
+  if let some d := sandbox? then d.reset
+  -- Effective output path for an artifact: redirected into the scratch dir when
+  -- sandboxing, so the untrusted subprocess never writes the real build tree.
+  let outArt (real : FilePath) : FilePath :=
+    match sandbox? with | some d => d.outPath real | none => real
   let mut args := leanArgs.push leanFile.toString
   if let some oleanFile := arts.olean? then
-    createParentDirs oleanFile
-    args := args ++ #["-o", oleanFile.toString]
+    let o := outArt oleanFile
+    createParentDirs o
+    args := args ++ #["-o", o.toString]
   if let some ileanFile := arts.ilean? then
-    createParentDirs ileanFile
-    args := args ++ #["-i", ileanFile.toString]
+    let i := outArt ileanFile
+    createParentDirs i
+    args := args ++ #["-i", i.toString]
   let opts := setup.options.toOptions
   let postponeCompile := setup.isModule && Compiler.compiler.postponeCompile.get opts
   if !postponeCompile then
     if let some cFile := arts.c? then
-      createParentDirs cFile
-      args := args ++ #["-c", cFile.toString]
+      let c := outArt cFile
+      createParentDirs c
+      args := args ++ #["-c", c.toString]
   if let some bcFile := arts.bc? then
-    createParentDirs bcFile
-    args := args ++ #["-b", bcFile.toString]
+    let b := outArt bcFile
+    createParentDirs b
+    args := args ++ #["-b", b.toString]
   createParentDirs setupFile
   IO.FS.writeFile setupFile (toJson setup).pretty
   args := args ++ #["--setup", setupFile.toString]
   args := args.push "--json"
   withLogErrorPos do
-  let out ← rawProc {
-    args
-    cmd := lean.toString
-    env := #[
-      ("LEAN_PATH", leanPath.toString)
-    ]
-  }
+  let out ← rawProc (mkLeanSpawn lean lean args leanPath sandbox?)
   unless out.stdout.isEmpty do
     let txt ← out.stdout.split '\n' |>.foldM (init := "") fun (txt : String) ln => do
       let ln := ln.copy
@@ -81,18 +145,34 @@ public def compileLeanModule
     logInfo s!"stderr:\n{out.stderr.trimAscii}"
   if out.exitCode ≠ 0 then
     error s!"Lean exited with code {out.exitCode}"
+  -- Relocate the artifacts the sandboxed `lean` produced into the real build tree.
+  -- (In postpone-compile mode `.c`/`.ir` are produced later by `leanir` and are
+  -- simply absent from the scratch dir here, so they are skipped.)
+  if let some d := sandbox? then
+    for real in #[arts.olean?, arts.oleanServer?, arts.oleanPrivate?,
+        arts.ilean?, arts.ir?, arts.c?, arts.bc?].filterMap id do
+      relocateSandboxOutput d real
   if postponeCompile then
     if let (some irFile, some cFile) := (arts.ir?, arts.c?) then
       createParentDirs irFile
       createParentDirs cFile
       try
-        proc {
-          cmd := leanir.toString
-          args := #[setupFile.toString, irFile.toString, cFile.toString]
-          env := #[
-            ("LEAN_PATH", leanPath.toString)
-          ]
-        }
+        match sandbox? with
+        | some d =>
+          d.reset
+          proc <| mkLeanSpawn lean leanir
+            #[setupFile.toString, (d.outPath irFile).toString, (d.outPath cFile).toString]
+            leanPath sandbox?
+          relocateSandboxOutput d irFile
+          relocateSandboxOutput d cFile
+        | none =>
+          proc {
+            cmd := leanir.toString
+            args := #[setupFile.toString, irFile.toString, cFile.toString]
+            env := #[
+              ("LEAN_PATH", leanPath.toString)
+            ]
+          }
       catch e =>
         if let some oleanFile := arts.olean? then
           removeFileIfExists oleanFile

@@ -9,6 +9,7 @@ Author: Leonardo de Moura
 #include <signal.h>
 #include <cctype>
 #include <cstdlib>
+#include <cstring>
 #include <string>
 #include <utility>
 #include <vector>
@@ -23,6 +24,7 @@ Author: Leonardo de Moura
 #include "runtime/object_ref.h"
 #include "runtime/option_ref.h"
 #include "runtime/utf8.h"
+#include "runtime/landlock.h"
 #include "util/timer.h"
 #include "util/macros.h"
 #include "util/io.h"
@@ -281,6 +283,11 @@ static void report_task_get_blocked_time(std::chrono::nanoseconds d) {
 }
 
 extern "C" LEAN_EXPORT int lean_main(int argc, char ** argv) {
+    // Self-exec sandbox mode: apply a Landlock write-isolation policy and exec
+    // the inner program. This must run before any runtime/thread state exists so
+    // the inherited Landlock domain covers all of the inner process's threads.
+    if (argc >= 2 && strcmp(argv[1], "--sandbox-exec") == 0)
+        return lean_sandbox_exec(argc, argv);
 #ifdef LEAN_EMSCRIPTEN
     // When running in command-line mode under Node.js, we make system directories available in the virtual filesystem.
     // This mode is used to compile 32-bit oleans.

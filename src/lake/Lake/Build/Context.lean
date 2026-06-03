@@ -28,6 +28,14 @@ public structure BuildConfig extends LogConfig where
   /-- File to save input-to-output mappings from the build of the workspace's root -/
   outputsFile? : Option FilePath := none
   /--
+  Sandbox each module compilation so the `lean`/`leanir` subprocess can only
+  write beneath a private per-module scratch directory (Linux Landlock). Trusted
+  Lake relocates the produced artifacts afterwards. Prevents one module's build
+  from poisoning another module's `.olean`. Hard-fails if Landlock is
+  unavailable.
+  -/
+  sandbox : Bool := false
+  /--
   Per-package Lean option overrides, applied to every module whose owning
   package's `baseName` appears as a key. When `recFetchSetup` builds module
   `M`, the `LeanOptions` associated with `M.pkg.baseName` (if any) are appended
@@ -93,6 +101,9 @@ public instance [Pure m] : MonadLift LakeM (BuildT m) where
 
 @[inline] public def getNoBuild [Functor m] [MonadBuild m] : m Bool :=
   (·.noBuild) <$> getBuildConfig
+
+@[inline] public def getSandbox [Functor m] [MonadBuild m] : m Bool :=
+  (·.sandbox) <$> getBuildConfig
 
 @[inline] public def getVerbosity [Functor m] [MonadBuild m] : m Verbosity :=
   (·.verbosity) <$> getBuildConfig

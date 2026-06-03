@@ -447,11 +447,21 @@ def mkSpecAttrOpt : AttributeImpl where
   descr := "Marks Hoare triple specifications and simp theorems for use with `mvcgen` tactics"
   applicationTime := AttributeApplicationTime.afterCompilation
   add := fun declName stx attrKind => do
-    if new_wp_monad.get (← getOptions) then
+    -- Classify by the statement's type (no dependency on `new_wp_monad`): first try the legacy
+    -- `Std.Do.Triple` path directly — `mkSpecTheorem` throws if the statement is not an old `Triple`
+    -- (and we deliberately do NOT use the full `mkSpecAttr`, whose `mvcgen_simp` fallback would
+    -- swallow a new-metatheory triple as a `P ↔ True` simp lemma). On failure, hand off to the
+    -- new-metatheory attribute, which routes `⊑ wp`/`Triple` into `internalSpecMap` and otherwise
+    -- falls back to the shared `mvcgen_simp` simp set.
+    try
+      let go : MetaM Unit := do
+        let _ ← getAsyncConstInfo declName
+        let prio ← getAttrParamOptPrio stx[1]
+        specAttr.addSpecTheoremFromConst declName prio attrKind
+      discard <| go.run {} {}
+    catch _ =>
       (Lean.Elab.Tactic.Do.Internal.SpecAttr.mkSpecAttr
         Lean.Elab.Tactic.Do.Internal.SpecAttr.specAttr).add declName stx attrKind
-    else
-      (mkSpecAttr specAttr).add declName stx attrKind
 
 builtin_initialize registerBuiltinAttribute mkSpecAttrOpt
 

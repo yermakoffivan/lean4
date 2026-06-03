@@ -126,6 +126,7 @@ noncomputable def bot : α := csup (chain_empty α)
 
 scoped notation "⊥" => bot
 
+@[grind .]
 theorem bot_le (x : α) : ⊥ ⊑ x := by
   apply csup_le
   intro x y; contradiction

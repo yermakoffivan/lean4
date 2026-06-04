@@ -217,7 +217,7 @@ def VCGen.Scope.collectLocalSpecs (scope : VCGen.Scope) (goal : MVarId) : VCGenM
     if scope.nextDeclIdx == lctx.decls.size then return scope
     let scope ← lctx.foldlM (init := scope) (start := scope.nextDeclIdx) fun scope decl => do
       if decl.isAuxDecl then return scope
-      if let some thm ← mkSpecTheoremNew? (.local decl.fvarId) (eval_prio low) then
+      if let some thm ← mkSpecTheoremNew (.local decl.fvarId) (eval_prio low) then
         return scope.insertSpec thm
       return scope
     return { scope with nextDeclIdx := lctx.decls.size }

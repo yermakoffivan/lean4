@@ -54,10 +54,19 @@ partial def decomposeEPostRel (EPred epostSpec epostAbstract : Expr)
     -- Collect state types: e.g. String → Nat → Prop → skip first (exc type), rest are state types
     let ssTypes ← forallTelescope ehTy fun xs _ => do
       xs.drop 1 |>.mapM (Meta.inferType ·)
-    let hHeadTy ← mkPostPointwisePremise head absHead headTy ssTypes stateArgNames
-    let hHead ← mkFreshExprMVar (userName := `epostImpl) hHeadTy
     let hTail ← decomposeEPostRel _etTy tail absTail stateArgNames
-    mkAppM ``EPost.cons_rel #[head, tail, epostAbstract, hHead, hTail]
+    /- Sometimes, even though `epost` is not schematic itself, its components might be schematic.
+      Think of a triple of a kind `⦃ pre ⦄ x ⦃ post; epost₁, ⊥, epost₃, ⊥, ... ⦄`.
+      In this case we do not want to create new metavariables for `epost₁`, `epost₃`, etc.
+      Instead, we will just assign them to `epostAbstract.tail.head` and
+      `epostAbstract.tail.tail.head`, etc. -/
+    if head.isMVar then
+      head.mvarId!.assign absHead
+      mkAppM ``EPost.cons_rel_tail #[tail, epostAbstract, hTail]
+    else
+      let hHeadTy ← mkPostPointwisePremise head absHead headTy ssTypes stateArgNames
+      let hHead ← mkFreshExprMVar (userName := `epostImpl) hHeadTy
+      mkAppM ``EPost.cons_rel #[head, tail, epostAbstract, hHead, hTail]
   | EPost.nil.mk =>
     mkAppM ``EPost.nil_rel #[epostAbstract]
   | _ =>
@@ -247,7 +256,7 @@ def mkSpecBackwardProof
 
     Here we also apply the excess state arguments to `pre` and `wp prog postAbstract epostAbstract` -/
   /- use `betaRevS` to create `pre s₁ ... sₙ`  to avoid creating beta redexes when `pre` is a lambda -/
-  let preApplied ← betaRevS pre ss.reverse
+  let preApplied := pre.betaRev ss.reverse
   /- proof of the original theorem with abstracted `post` and `epost` specialized to the excess state arguments -/
   specApplied := mkAppN specApplied ss
   /- `wp prog postAbstract epostAbstract s₁ ... sₙ` -/
@@ -296,6 +305,7 @@ public def tryMkBackwardRuleFromSpec (specThm : SpecTheoremNew) (info : WPInfo)
     ssTypes := ssTypes.push ty
     ss := ss.push <| ← mkFreshExprMVar (userName := stateArgNames[i]?.getD `s) ty
   let res ← mkSpecBackwardProof pre prog postSpec epostSpec specProof info.EPred ss ssTypes stateArgNames
+  dbg_trace "res: {← ppExpr <| ← Meta.inferType res.expr}"
   mkBackwardRuleFromExpr res.expr res.paramNames.toList
 
 /-! ## Tests for mkSpecBackwardProof -/

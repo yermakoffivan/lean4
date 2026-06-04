@@ -43,12 +43,12 @@ The postcondition, exception postcondition and precondition are created as metav
 abstracted by `abstractMVars`, giving a reusable proof term for `mkBackwardRuleFromExpr`.
 -/
 public def mkSimpBackwardProof
-    (info : WPInfo) (α _m lhs rhs eqPrf : Expr) (ss : Array Expr) : SymM AbstractMVarsResult := do
+    (info : WPInfo) (α m lhs rhs eqPrf : Expr) (ss : Array Expr) : SymM AbstractMVarsResult := do
   let postTy ← mkArrow α info.Pred
   let post ← mkFreshExprMVar (userName := `post) postTy
   let epost ← mkFreshExprMVar (userName := `epost) info.EPred
   let mkWpApplyPostEpost (prog : Expr) : SymM Expr := do
-    let wpProg ← mkAppM ``wp #[prog, post, epost]
+    let wpProg ← mkAppOptM ``wp #[m, none, none, none, none, none, none, α, prog, post, epost]
     return mkAppN wpProg ss
   let lhsWp ← mkWpApplyPostEpost lhs
   let rhsWp ← mkWpApplyPostEpost rhs

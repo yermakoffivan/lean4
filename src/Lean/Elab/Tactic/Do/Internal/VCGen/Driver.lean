@@ -118,11 +118,12 @@ def emitVC (goal : Grind.Goal) : VCGenM Unit := do
   if let some (.sort .zero, _, pre, _) := ty.app4? ``PartialOrder.rel then
     if pre.isAppOf ``Lean.Order.top then
       let rule := (← read).elimPreRule
-      let .goals [goal'] ← goal.apply rule
-        | throwError "Failed to apply elim_pre rule"
-      goal := goal'
-  if (← read).trivial then
-    let some goal' ← repeatAndRfl goal.mvarId | return
+      let .goals [goal'] ← rule.apply goal.mvarId
+        | throwError "Failed to apply elim_pre rule to {goal.mvarId}"
+      goal := { goal with mvarId := goal' }
+  let (trivial, assumption) := ((← read).trivial, (← read).assumption)
+  if trivial || assumption then
+    let some goal' ← repeatAndRflAssump assumption trivial goal.mvarId | return
     goal := { goal with mvarId := goal' }
   let goals ← (← read).disch.run goal
   for g in goals do g.setKind .syntheticOpaque

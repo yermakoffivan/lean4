@@ -253,6 +253,7 @@ public def  evalMVCGen' : Tactic := fun stx => withMainContext do
     simpMethods,
     disch,
     trivial := config.trivial,
+    assumption := config.assumption,
     useJP := config.jp,
     errorOnMissingSpec := config.errorOnMissingSpec,
     debug := config.debug,

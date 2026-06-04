@@ -255,9 +255,11 @@ def _root_.Lean.Sym.assumptionCore (mvarId : MVarId) : SymM Bool :=
     | some fvarId => mvarId.assign (mkFVar fvarId); return true
 
 /-- Close goal `mvarId` using an assumption. Throw error message if failed. -/
-def  _root_.Lean.Sym.assumption (mvarId : MVarId) : SymM Unit :=
-  unless (← mvarId.assumptionCore) do
-    throwTacticEx `assumption mvarId
+def  _root_.Lean.Sym.assumption (mvarId : MVarId) : SymM (Option MVarId) := do
+  if ← mvarId.assumptionCore then
+    return none
+  else
+    return some mvarId
 
 /--
 Solves conjunctions whose leaves are `True` or `e₁ = e₂`, and returns a residual goal containing
@@ -265,40 +267,40 @@ exactly the conjuncts that could not be solved.
 This procedure may assign metavariables in `e₁`/`e₂`, for example for `e = ?m` it will assign
 `?m := e`.
 -/
-public partial def repeatAndRfl (goal : MVarId) : VCGenM (Option MVarId) := goal.withContext do
-  let ctx ← read
-  let ty ← instantiateMVars (← goal.getType)
-  if ty.isAppOf ``True then
-    goal.assign (mkConst ``True.intro)
-    return none
-  else if ty.isAppOf ``And then
-    let .goals [g₁, g₂] ← ctx.andIntroRule.applyChecked goal
-      | throwError "repeatAndRfl: failed to apply {.ofConstName ``And.intro} to{indentExpr ty}"
-    match ← repeatAndRfl g₁, ← repeatAndRfl g₂ with
-    | none,    none    => return none
-    | some g,  none    => return some g
-    | none,    some g  => return some g
-    | some g₁', some g₂' =>
-      let t₁ ← g₁'.getType
-      let t₂ ← g₂'.getType
-      let combined ← mkFreshExprSyntheticOpaqueMVar (mkApp2 (mkConst ``And) t₁ t₂)
-      g₁'.assign (mkApp3 (mkConst ``And.left) t₁ t₂ combined)
-      g₂'.assign (mkApp3 (mkConst ``And.right) t₁ t₂ combined)
-      return combined.mvarId!
-  else if let some (ty, lhs, rhs) := ty.app3? ``Eq then
-    let lhs ← reduceHead lhs
-    let rhs ← reduceHead rhs
-    let u ← Meta.getLevel ty
-    let goal ← goal.replaceTargetDefEq (mkApp3 (mkConst ``Eq [u]) ty lhs rhs)
-    if ← withAssignableSyntheticOpaque <| isDefEqS lhs rhs then
-      goal.assign (mkApp2 (mkConst ``Eq.refl [← Meta.getLevel ty]) ty lhs)
+public partial def repeatAndRflAssump (assumption : Bool := false) (trivial : Bool := true) (goal : MVarId) : VCGenM (Option MVarId) := goal.withContext do
+  unless assumption || trivial do return goal
+  if assumption && !trivial then Sym.assumption goal
+  else
+    let ctx ← read
+    let ty ← instantiateMVars (← goal.getType)
+    if ty.isAppOf ``True then
+      goal.assign (mkConst ``True.intro)
       return none
-    else
-      return goal
-  -- Assumption might be quite costly if context gets large. Maybe we need a special flag for that
-  -- else if ← Sym.assumptionCore goal then
-  --   return none
-  else return goal
+    else if ty.isAppOf ``And then
+      let .goals [g₁, g₂] ← ctx.andIntroRule.applyChecked goal
+        | throwError "repeatAndRfl: failed to apply {.ofConstName ``And.intro} to{indentExpr ty}"
+      match ← repeatAndRflAssump assumption trivial g₁, ← repeatAndRflAssump assumption trivial g₂ with
+      | none,    none    => return none
+      | some g,  none    => return some g
+      | none,    some g  => return some g
+      | some g₁', some g₂' =>
+        let t₁ ← g₁'.getType
+        let t₂ ← g₂'.getType
+        let combined ← mkFreshExprSyntheticOpaqueMVar (mkApp2 (mkConst ``And) t₁ t₂)
+        g₁'.assign (mkApp3 (mkConst ``And.left) t₁ t₂ combined)
+        g₂'.assign (mkApp3 (mkConst ``And.right) t₁ t₂ combined)
+        return combined.mvarId!
+    else if let some (ty, lhs, rhs) := ty.app3? ``Eq then
+      let lhs ← reduceHead lhs
+      let rhs ← reduceHead rhs
+      let u ← Meta.getLevel ty
+      let goal ← goal.replaceTargetDefEq (mkApp3 (mkConst ``Eq [u]) ty lhs rhs)
+      if ← withAssignableSyntheticOpaque <| isDefEqS lhs rhs then
+        goal.assign (mkApp2 (mkConst ``Eq.refl [← Meta.getLevel ty]) ty lhs)
+        return none
+      else if assumption then Sym.assumption goal else return goal
+    -- Assumption might be quite costly if context gets large. Maybe we need a special flag for that
+    else if assumption then Sym.assumption goal else return goal
 
 end Lean.Elab.Tactic.Do.Internal.VCGen
 

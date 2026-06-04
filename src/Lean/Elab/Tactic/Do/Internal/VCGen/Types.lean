@@ -119,6 +119,11 @@ structure Context where
   `repeatAndRfl` to collapse trivial `And.intro` chains; when `false`, the goal is
   emitted as-is. -/
   trivial : Bool := true
+  /-- The `assumption` config option: when `true` (default), `Driver.emitVC` runs
+  `Sym.assumption` to close goals that can be solved by an assumption.
+  If both `trivial` and `assumption` are `true`, then `Sym.assumption` runs on
+  `repeatAndRfl` leafs. -/
+  assumption : Bool := false
   /-- The `jp` config option: when `true`, `tryLetIntro` recognises `__do_jp` lets
   whose body is a splitter and sets up shared-continuation handling instead of
   zeta-unfolding. When `false` (default, matching original `mvcgen`), every call

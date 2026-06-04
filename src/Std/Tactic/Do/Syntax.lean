@@ -25,6 +25,10 @@ structure Config where
   -/
   trivial : Bool := true
   /--
+  If `true` (the default), we will try to prove VCs via `Sym.assumption`
+  -/
+  assumption : Bool := false
+  /--
   If `true` (the default), we will simplify every generated VC after trying
   `mvcgen_trivial` by running `mleave`. (Note that this can be expensive.)
   -/

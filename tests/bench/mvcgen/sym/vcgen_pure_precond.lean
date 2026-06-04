@@ -16,7 +16,7 @@ set_option maxHeartbeats 10000000
 
 example : Goal 10 := by
   simp only [Goal, loop, step]
-  mvcgen' with grind
+  mvcgen' +assumption
 
-#eval runBenchUsingTactic ``Goal [``loop, ``step] `(tactic| mvcgen' with grind) `(tactic| fail)
+#eval runBenchUsingTactic ``Goal [``loop, ``step] `(tactic| mvcgen' +assumption) `(tactic| fail)
   [100, 400, 700]

@@ -1,5 +1,5 @@
 import Lean
-import Driver
+import Std.Tactic.Do
 /-!
 Port of `Sym/Cases/MatchIota` to Loom.
 
@@ -38,14 +38,6 @@ def loop (n : Nat) : M Unit := do
   | 0 => pure ()
   | n+1 => step n; loop n
 
-def Goal (n : Nat) : Prop := ∀ post, post n ⊑ wp (loop n) (fun _ => post) epost⟨fun _ _ => True⟩ 0
-
-set_option maxRecDepth 10000
-set_option maxHeartbeats 10000000
-
-def runTests := runBenchUsingTactic
-    ``Goal [``loop, ``step]
-    `(tactic| (intro post; mvcgen' with grind))
-    `(tactic| fail)
+def Goal (n : Nat) : Prop := ⦃fun s => s = 0⦄ loop n ⦃fun _ s => s = n⦄
 
 end MatchIota

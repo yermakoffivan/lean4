@@ -1,5 +1,5 @@
 import Lean
-import Driver
+import Std.Tactic.Do
 /-!
 Port of `Sym/Cases/PurePrecond` to Loom.
 
@@ -40,14 +40,6 @@ def loop (n : Nat) : StateM Bool Unit := do
   | n+1 => step; loop n
 
 def Goal (n : Nat) : Prop :=
-  ∀ b, (b = true) ⊑ wp (loop n) (fun _ b => b = true) (⟨⟩ : EPost.nil) b
-
-set_option maxRecDepth 10000
-set_option maxHeartbeats 10000000
-
-def runTests := runBenchUsingTactic
-    ``Goal [``loop, ``step]
-    `(tactic| (intro b; mvcgen' with grind))
-    `(tactic| fail)
+  ⦃fun b => b = true⦄ loop n ⦃fun _ b => b = true⦄
 
 end PurePrecond

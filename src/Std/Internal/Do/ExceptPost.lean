@@ -117,6 +117,15 @@ theorem EPost.nil_rel (epost : EPost.nil) :
     EPost.nil.mk ⊑ epost := by
   simp [PartialOrder.rel]
 
+/-- The head component of the bottom `EPost.cons` is the bottom element. Propositional (not
+definitional), because `⊥` of a complete lattice is `csup ∅`, not a constructor application. -/
+theorem EPost.cons.head_bot {eh : Type u} {et : Type v}
+    [CompleteLattice eh] [CompleteLattice et] :
+    EPost.cons.head (⊥ : EPost.cons eh et) = (⊥ : eh) := by
+  refine PartialOrder.rel_antisymm ?_ (bot_le _)
+  have h : (⊥ : EPost.cons eh et) ⊑ EPost.cons.mk (⊥ : eh) (⊥ : et) := bot_le _
+  exact EPost.cons.rel_head h
+
 /-!
 ## Notation
 

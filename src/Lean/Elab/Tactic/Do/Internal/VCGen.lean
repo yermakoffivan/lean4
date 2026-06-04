@@ -14,6 +14,7 @@ public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleConstruct.Logic
 public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleConstruct.Match
 public import Lean.Elab.Tactic.Do.Internal.VCGen.Utils
 public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleCache
+public import Lean.Elab.Tactic.Do.Internal.VCGen.EPost
 public import Lean.Elab.Tactic.Do.Internal.VCGen.Solve
 public import Lean.Elab.Tactic.Do.Internal.VCGen.Driver
 public import Lean.Elab.Tactic.Do.Internal.VCGen.Frontend

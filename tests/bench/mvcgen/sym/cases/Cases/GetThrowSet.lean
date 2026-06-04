@@ -1,5 +1,5 @@
 import Lean
-import Driver
+import Std.Tactic.Do
 /-!
 Port of `Sym/Cases/GetThrowSet` to Loom.
 
@@ -20,11 +20,13 @@ abbrev M := ExceptT String <| StateM Nat
 @[spec high] theorem spec_throw (e : String) {post : α → Nat → Prop} {epost : EPost⟨String → Nat → Prop⟩} :
     Triple (epost.head e) (throw (m := M) e) post epost := ⟨PartialOrder.rel_refl⟩
 
-@[spec high] theorem spec_set (x : Nat) {post : PUnit → Nat → Prop} {epost : EPost⟨String → Nat → Prop⟩} :
-    Triple (fun _ => post ⟨⟩ x) (set (m := M) x) post epost := ⟨PartialOrder.rel_refl⟩
+@[spec high] theorem spec_set (x : Nat) :
+    ⦃fun _ => post ⟨⟩ x⦄ (set (m := M) x) ⦃post⦄ := by
+  mvcgen'; assumption
 
-@[spec high] theorem spec_get (post : Nat → Nat → Prop) {epost : EPost⟨String → Nat → Prop⟩} :
-    Triple (fun s => post s s) (get (m := M)) post epost := ⟨PartialOrder.rel_refl⟩
+@[spec high] theorem spec_get :
+    ⦃fun s => post s s⦄ (get (m := M)) ⦃post⦄ := by
+  mvcgen'; assumption
 
 def step (lim : Nat) : M Unit := do
   let s ← get
@@ -38,13 +40,5 @@ def loop (n : Nat) : M Unit := do
   | n+1 => loop n; step n
 
 def Goal (n : Nat) : Prop := ⦃fun s => s = 0⦄ loop n ⦃fun _ s => s = n⦄
-
-set_option maxRecDepth 10000
-set_option maxHeartbeats 10000000
-
-def runTests := runBenchUsingTactic
-    ``Goal [``loop, ``step]
-    `(tactic| mvcgen' with grind)
-    `(tactic| fail)
 
 end GetThrowSet

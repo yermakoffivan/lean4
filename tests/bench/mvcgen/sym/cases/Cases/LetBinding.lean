@@ -1,5 +1,5 @@
 import Lean
-import Driver
+import Std.Tactic.Do
 /-!
 Port of `Sym/Cases/LetBinding` to Loom.
 
@@ -39,15 +39,7 @@ def loop (n : Nat) : StateM Nat Unit := do
   | 0 => pure ()
   | n+1 => step n; loop n
 
-def Goal (n : Nat) : Prop := ∀ post s, post s ⊑ wp (loop n) (fun _ => post) ⟨⟩ s
-
-set_option maxRecDepth 10000
-set_option maxHeartbeats 10000000
-
-def runTests := runBenchUsingTactic
-    ``Goal [``loop, ``step]
-    `(tactic| (intro post s; mvcgen' with grind))
-    `(tactic| fail)
+def Goal (n : Nat) : Prop := ∀ post, ⦃post⦄ loop n ⦃fun _ => post⦄
 
 
 end LetBinding

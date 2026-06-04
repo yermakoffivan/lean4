@@ -1,5 +1,5 @@
 import Lean
-import Driver
+import Std.Tactic.Do
 /-!
 Port of `Sym/Cases/AddSubCancelDeep` to Loom.
 
@@ -18,7 +18,25 @@ set_option mvcgen.warning false
 
 namespace AddSubCancelDeep
 
+/-!
+Same case as `AddSubCancel` but using a deep transformer stack.
+-/
+
 abbrev M := ExceptT String <| ReaderT String <| ExceptT Nat <| StateT Nat <| ExceptT Unit <| StateM Unit
+
+-- The following specs partially evaluate the specs for `getThe` and `set` that otherwise would need
+-- multiple small substeps in the modular lifting framework. This is good practice for performance
+-- sensitive use cases.
+
+@[spec high]
+theorem Spec.M_getThe_Nat :
+    ⦃fun s₁ s₂ => post s₂ s₁ s₂⦄ (getThe (m := M) Nat) ⦃post⦄ := by
+  mvcgen' +assumption
+
+@[spec high]
+theorem Spec.M_set_Nat (n : Nat) :
+    ⦃fun s₁ _ => post ⟨⟩ s₁ n⦄ (set (m := M) n) ⦃post⦄ := by
+  mvcgen' +assumption
 
 def step (v : Nat) : M Unit := do
   let s ← getThe Nat
@@ -31,25 +49,6 @@ def loop (n : Nat) : M Unit := do
   | 0 => pure ()
   | n+1 => step n; loop n
 
-def Goal (n : Nat) : Prop :=
-  ∀ post epost s₁ s₂, post s₁ s₂ ⟨⟩ ⊑ wp (loop n) (fun _ => post) epost s₁ s₂ ⟨⟩
-
-@[spec high]
-theorem Spec.M_getThe_Nat :
-    Triple (fun s₁ s₂ => post s₂ s₁ s₂) (getThe (m := M) Nat) post epost := by
-  sorry
-
-@[spec high]
-theorem Spec.M_set_Nat (n : Nat) :
-    Triple (fun s₁ _ => post ⟨⟩ s₁ n) (set (m := M) n) post epost := by
-  sorry
-
-set_option maxRecDepth 10000
-set_option maxHeartbeats 10000000
-
-def runTests := runBenchUsingTactic
-    ``Goal [``loop, ``step]
-    `(tactic| (intro post epost s₁ s₂; mvcgen' simplifying_assumptions with grind))
-    `(tactic| fail)
+def Goal (n : Nat) : Prop := ∀ post, ⦃post⦄ loop n ⦃fun _ => post⦄
 
 end AddSubCancelDeep

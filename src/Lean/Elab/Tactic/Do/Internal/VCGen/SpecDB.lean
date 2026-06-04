@@ -64,8 +64,9 @@ structure SpecTheoremNew where
   Pattern for matching the program expression.
 
   If the proof has type `∀ a b c, pre ⊑ wp prog post epost`, then the pattern is
-  `prog[a := #2, b := #1, c := #0]`. For equality specs with type `∀ a b c, lhs = rhs`,
-  the pattern is `lhs[a := #2, b := #1, c := #0]`.
+  `prog[a := #2, b := #1, c := #0]`, except that binders `prog` does not mention are pruned and the
+  remaining de Bruijn indices renumbered (see `eraseUnusedVarsFromPattern`). For equality specs with
+  type `∀ a b c, lhs = rhs`, the pattern is `lhs[a := #2, b := #1, c := #0]`.
   -/
   pattern : Sym.Pattern
   /-- The proof for the theorem. -/
@@ -106,29 +107,71 @@ structure SpecTheoremsNew where
   erased : PHashSet SpecProof := {}
   deriving Inhabited
 
-/-- Extract the program expression from a spec conclusion (`Triple` or `⊑ wp` form). -/
-private def selectProg (type : Expr) : MetaM (Expr × Unit) := do
-  let type ← whnfR type
-  if type.isAppOfArity ``Triple 12 then
-    return (type.getArg! 9, ())
-  else if type.isAppOfArity ``PartialOrder.rel 4 then
-    let rhs := type.getArg! 3
-    let_expr wp _m _Pred _EPred _monad _instAL _instEAL _wpInst _α prog _post _epost := rhs
-      | throwError "RHS of ⊑ is not a wp application{indentExpr rhs}"
-    return (prog, ())
-  else
-    throwError "expected Triple or ⊑ wp{indentExpr type}"
+/--
+Drops pattern variables that the pattern expression does not depend on.
 
-/-- Create a `Sym.Pattern` for a `SpecTheorem` by extracting the program from the proof type. -/
-private def mkSpecPattern (proof : SpecProof) : SymM Sym.Pattern := do
-  match proof with
-  | .global declName =>
-    Prod.fst <$> Sym.mkPatternFromDeclWithKey declName selectProg
-  | .local fvarId =>
-    let e := mkFVar fvarId
-    Prod.fst <$> Sym.mkPatternFromExprWithKey e [] selectProg
-  | .stx _ _ proof =>
-    Prod.fst <$> Sym.mkPatternFromExprWithKey proof [] selectProg
+`Sym.mkPatternFromExprWithKey`/`Sym.mkPatternFromDeclWithKey` turn *every* leading `∀`-binder of the
+source type into a pattern variable, even binders the selected key (e.g. the program of a `Triple`
+conclusion) never mentions. During matching those variables only ever become fresh metavariables
+(see `Sym.mkPreResult`); for instance binders they additionally trigger spurious `trySynthInstance`
+calls. This keeps only the variables that the pattern expression references, together with the
+transitive closure of variables their types depend on, and renumbers the remaining de Bruijn
+indices. `varInfos?` and `checkTypeMask?` are filtered to the surviving telescope; `fnInfos`,
+`levelParams`, and the discrimination-tree key are unchanged because the pattern expression's
+structure is untouched (bound variables are wildcards in the key).
+
+**Important:** only use this when the matched arguments are *not* reused to rebuild a proof term,
+as `Sym.BackwardRule`/`Sym.mkValue` do — dropping variables would drop arguments those need. It is
+meant for databases such as `lmvcgen`'s spec table, where the proof is re-elaborated independently
+of the pattern.
+-/
+def eraseUnusedVarsFromPattern (p : Sym.Pattern) : Sym.Pattern := Id.run do
+  let n := p.varTypes.size
+  -- Variable `j` (0 = outermost binder) is bound variable `#(ctx-1-j)` in a context of `ctx`
+  -- binders. `used[j]` becomes `true` once we know variable `j` is reachable from the pattern.
+  let mut used := Array.replicate n false
+  for j in *...n do
+    if p.pattern.hasLooseBVar (n - 1 - j) then
+      used := used.set! j true
+  -- A variable's type may reference earlier variables, so propagate top-down: when a kept variable
+  -- is reached, mark every variable occurring in its type as kept too.
+  for j in *...n do
+    let i := n - 1 - j
+    if used[i]! then
+      for k in *...i do
+        if p.varTypes[i]!.hasLooseBVar (i - 1 - k) then
+          used := used.set! k true
+  if used.all (· == true) then return p
+  let kept := (Array.range n).filter (used[·]!)
+  -- Rebuild the telescope via fvar placeholders to avoid manual de Bruijn arithmetic.
+  let fvars := (Array.range n).map fun i => mkFVar ⟨.num `_sym_prune i⟩
+  let keptFVars := kept.map (fvars[·]!)
+  let newPattern := (p.pattern.instantiateRev fvars).abstract keptFVars
+  let newVarTypes := kept.mapIdx fun k i =>
+    (p.varTypes[i]!.instantiateRev (fvars.extract 0 i)).abstract (keptFVars.extract 0 k)
+  -- `varInfos?`/`checkTypeMask?` are parallel to `varTypes`; their per-variable meaning does not
+  -- depend on the de Bruijn numbering, so we simply keep the surviving entries.
+  let newVarInfos? := p.varInfos?.bind fun infos =>
+    let argsInfo := kept.map (infos.argsInfo[·]!)
+    if argsInfo.any fun a => a.isProof || a.isInstance then some { argsInfo } else none
+  let newCheckTypeMask? := p.checkTypeMask?.bind fun mask =>
+    let newMask := kept.map (mask[·]!)
+    if newMask.all (· == false) then none else some newMask
+  return { p with
+    varTypes := newVarTypes
+    pattern := newPattern
+    varInfos? := newVarInfos?
+    checkTypeMask? := newCheckTypeMask? }
+
+public def mkTriplePatternFromExpr (expr : Expr) (levelParams : List Name := []) : SymM Pattern := do
+  let (pattern, _) ← Sym.mkPatternFromExprWithKey expr levelParams fun type => do
+    let_expr Triple _m _Pred _EPred _α _monad _instAL _instEAL _wpInst _pre prog _post _epost := type
+      | throwError "conclusion is not a Triple {indentExpr type}"
+    return (prog, ())
+  -- The pattern only matches the program `prog`, so drop binders `prog` does not mention (e.g. the
+  -- pre/postconditions and their `Assertion` instances). The proof is rebuilt independently of the
+  -- pattern (see `SpecTheoremNew.instantiate`), so this keeps matching cheap without losing args.
+  return eraseUnusedVarsFromPattern pattern
 
 /--
 Migrate an ordinary `@[spec]` theorem to `SpecTheoremNew`.
@@ -136,19 +179,14 @@ Migrate an ordinary `@[spec]` theorem to `SpecTheoremNew`.
 The generated pattern is keyed by the program extracted from a `Triple` conclusion or from the RHS
 of a `pre ⊑ wp prog post epost` conclusion.
 -/
-def mkSpecTheoremNew (spec : SpecTheorem) : SymM SpecTheoremNew := do
-  let pattern ← mkSpecPattern spec.proof
-  return { pattern, proof := spec.proof, kind := .spec, priority := spec.priority }
-
-/-- Build a migrated ordinary spec theorem directly from a proof. Returns `none`
-when the proof is not a `Triple`/`⊑ wp` spec. -/
-def mkSpecTheoremNew? (proof : SpecProof) (prio : Nat) :
-    SymM (Option SpecTheoremNew) := do
-  try
-    let pattern ← mkSpecPattern proof
-    return some { pattern, proof, kind := .spec, priority := prio }
-  catch _ =>
+def mkSpecTheoremNew (proof : SpecProof) (prio : Nat) : SymM (Option SpecTheoremNew) := do
+  let (levelParams, expr) ← proof.getProof
+  let type ← Meta.inferType expr
+  let type ← instantiateMVars type
+  unless type.getForallBody.getAppFn.isConstOf ``Triple do
     return none
+  let pattern ← mkTriplePatternFromExpr expr levelParams
+  return some { pattern, proof, kind := .spec, priority := prio }
 
 def SpecTheoremsNew.insert (database : SpecTheoremsNew) (thm : SpecTheoremNew) :
     SpecTheoremsNew :=
@@ -234,7 +272,8 @@ def migrateSpecTheoremsDatabase (database : Lean.Elab.Tactic.Do.Internal.SpecAtt
     | none => acc
   for spec in database.specs.values do
     try
-      let newSpec ← mkSpecTheoremNew spec
+      let some newSpec ← mkSpecTheoremNew spec.proof spec.priority
+        | continue
       specs := Sym.insertPattern specs newSpec.pattern newSpec
     catch _ =>
       continue

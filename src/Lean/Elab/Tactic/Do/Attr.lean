@@ -6,7 +6,6 @@ Authors: Sebastian Graf
 module
 
 prelude
-public import Lean.Elab.Tactic.Do.Options
 public import Lean.Meta.Tactic.Simp
 public import Std.Tactic.Do.Syntax
 public import Std.Internal.Do.Triple.Basic

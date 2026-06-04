@@ -124,15 +124,22 @@ theorem Spec.monadLift_OptionT (x : m α) (post : α → Pred) (epost : EPost.co
 
 /-! # `MonadLiftT` -/
 
-omit [Monad m] in
-theorem Spec.UnfoldLift.monadLift_trans [MonadLift n o] [MonadLiftT m n] (x : m α) :
-    (MonadLiftT.monadLift x : o α) = MonadLift.monadLift (m := n) (monadLift x) := rfl
+/- TODO:
+  Since, `mvcgen_simp` database is shared between `mvcgen` and `mvcgen'`, declaing these lemmas
+  here would duplicate then in the `mvcgen` spec database. We should uncomment it when `mvcgen'`
+  relaces `mvcgen` -/
 
-omit [Monad m] in
-theorem Spec.UnfoldLift.monadLift_refl (x : m α) :
-    (MonadLiftT.monadLift x : m α) = x := rfl
+-- omit [Monad m] in
+-- @[spec]
+-- theorem Spec.UnfoldLift.monadLift_trans [MonadLift n o] [MonadLiftT m n] (x : m α) :
+--     (MonadLiftT.monadLift x : o α) = MonadLift.monadLift (m := n) (monadLift x) := rfl
 
-attribute [spec] liftM Spec.UnfoldLift.monadLift_trans Spec.UnfoldLift.monadLift_refl
+-- omit [Monad m] in
+-- @[spec]
+-- theorem Spec.UnfoldLift.monadLift_refl (x : m α) :
+--     (MonadLiftT.monadLift x : m α) = x := rfl
+
+-- attribute [spec] liftM
 
 /-! # `MonadFunctor` -/
 
@@ -271,11 +278,17 @@ theorem Spec.restoreM_refl (x : stM m m α) :
       (MonadControlT.restoreM (m:=m) x : m α) post epost :=
   Triple.iff.mpr (by rw [WPMonad.restoreM_refl_wp])
 
-attribute [spec] controlAt control
+/- TODO:
+  Since, `mvcgen_simp` database is shared between `mvcgen` and `mvcgen'`, declaing these lemmas
+  here would duplicate then in the `mvcgen` spec database. We should uncomment it when `mvcgen'`
+  relaces `mvcgen` -/
+
+
+-- attribute [spec] controlAt control
 
 /-! # `ReaderT` -/
 
-attribute [spec] ReaderT.run
+-- attribute [spec] ReaderT.run
 
 @[spec]
 theorem Spec.read_ReaderT (post : ρ → ρ → Pred) :
@@ -297,7 +310,7 @@ theorem Spec.adapt_ReaderT (f : ρ → ρ') (x : ReaderT ρ' m α) (post : α �
 
 /-! # `StateT` -/
 
-attribute [spec] StateT.run
+-- attribute [spec] StateT.run
 
 @[spec]
 theorem Spec.get_StateT (post : σ → σ → Pred) :
@@ -458,45 +471,50 @@ theorem Spec.tryCatch_EStateM (x : EStateM ε σ α) (h : ε → EStateM ε σ �
       (MonadExceptOf.tryCatch x h : EStateM ε σ α) post epost :=
   Triple.iff.mpr (by rw [WPMonad.tryCatch_EStateM_wp]; rfl)
 
+/- TODO:
+  Since, `mvcgen_simp` database is shared between `mvcgen` and `mvcgen'`, declaing these lemmas
+  here would duplicate then in the `mvcgen` spec database. We should uncomment it when `mvcgen'`
+  relaces `mvcgen` -/
+
+
 /-! # Lifting `MonadStateOf` -/
 
-omit [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] in
-@[spec]
-theorem Spec.UnfoldLift.get [MonadLift m n] [MonadStateOf σ m] :
-    (MonadStateOf.get : n σ) = monadLift (MonadStateOf.get : m σ) := rfl
+-- omit [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] in
+-- @[spec]
+-- theorem Spec.UnfoldLift.get [MonadLift m n] [MonadStateOf σ m] :
+--     (MonadStateOf.get : n σ) = monadLift (MonadStateOf.get : m σ) := rfl
 
-omit [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] in
-@[spec]
-theorem Spec.UnfoldLift.set [MonadLift m n] [MonadStateOf σ m] (s : σ) :
-    (MonadStateOf.set (m := n) s) = monadLift (MonadStateOf.set (m := m) s) := rfl
+-- omit [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] in
+-- @[spec]
+-- theorem Spec.UnfoldLift.set [MonadLift m n] [MonadStateOf σ m] (s : σ) :
+--     (MonadStateOf.set (m := n) s) = monadLift (MonadStateOf.set (m := m) s) := rfl
 
-omit [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] in
-@[spec]
-theorem Spec.UnfoldLift.modifyGet [MonadLift m n] [MonadStateOf σ m] (f : σ → α × σ) :
-    MonadStateOf.modifyGet (m := n) f = monadLift (MonadStateOf.modifyGet (m := m) f) := rfl
+-- omit [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] in
+-- @[spec]
+-- theorem Spec.UnfoldLift.modifyGet [MonadLift m n] [MonadStateOf σ m] (f : σ → α × σ) :
+--     MonadStateOf.modifyGet (m := n) f = monadLift (MonadStateOf.modifyGet (m := m) f) := rfl
 
-attribute [spec] modify modifyThe getThe getModify modifyGetThe
-  MonadState.get MonadState.set MonadState.modifyGet
-  Spec.UnfoldLift.get Spec.UnfoldLift.set Spec.UnfoldLift.modifyGet
+-- attribute [spec] modify modifyThe getThe getModify modifyGetThe
+--   MonadState.get MonadState.set MonadState.modifyGet
 
 /-! # Lifting `MonadReaderOf` -/
 
-omit [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] in
-@[spec]
-theorem Spec.UnfoldLift.read [MonadLift m n] [MonadReaderOf ρ m] :
-    (MonadReaderOf.read : n ρ) = monadLift (MonadReaderOf.read : m ρ) := rfl
+-- omit [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] in
+-- @[spec]
+-- theorem Spec.UnfoldLift.read [MonadLift m n] [MonadReaderOf ρ m] :
+--     (MonadReaderOf.read : n ρ) = monadLift (MonadReaderOf.read : m ρ) := rfl
 
-omit [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] in
-@[spec]
-theorem Spec.UnfoldLift.withReader [MonadFunctor m n] [MonadWithReaderOf ρ m] (f : ρ → ρ) :
-    (MonadWithReaderOf.withReader f : n α → n α) = monadMap (m := m) (MonadWithReaderOf.withReader f) := rfl
+-- omit [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred] in
+-- @[spec]
+-- theorem Spec.UnfoldLift.withReader [MonadFunctor m n] [MonadWithReaderOf ρ m] (f : ρ → ρ) :
+--     (MonadWithReaderOf.withReader f : n α → n α) = monadMap (m := m) (MonadWithReaderOf.withReader f) := rfl
 
-attribute [spec] readThe withTheReader
-  read withReader Spec.UnfoldLift.read Spec.UnfoldLift.withReader
+-- attribute [spec] readThe withTheReader
+--   read withReader Spec.UnfoldLift.read Spec.UnfoldLift.withReader
 
 /-! # Lifting `MonadExceptOf` -/
 
-attribute [spec] throwThe tryCatchThe
+-- attribute [spec] throwThe tryCatchThe
 
 @[spec]
 theorem Spec.throw_MonadExcept [MonadExceptOf ε m] (err : ε) :

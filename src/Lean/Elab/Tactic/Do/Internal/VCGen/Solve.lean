@@ -225,13 +225,6 @@ def tryLattice (target rhs : Expr) (preIsTop : Bool) : Strategy :=
         (resultType? := args[0]!) (preIsTop := preIsTop)
     | _ => return ()
 
-def unfoldEPostVC (relConst α inst pre epost : Expr) (excessArgs : Array Expr) :
-    VCGenM MVarId := do
-  let rhs ← betaRevS epost excessArgs.reverse
-  let newTarget ← mkAppNS relConst #[α, inst, pre, rhs]
-  let goal ← goal.replaceTargetDefEq newTarget
-  return goal
-
 /-- Strategy 6: unfold a concrete exception-postcondition component into an ordinary VC. -/
 def tryEPostVC (target α inst pre rhs : Expr) : Strategy :=
   rhs.withApp fun head args => do
@@ -239,7 +232,10 @@ def tryEPostVC (target α inst pre rhs : Expr) : Strategy :=
       let some epostArg := args[2]? | return ()
       let (epostTarget, index) := peelEPostTailChain epostArg
       let some epost ← mkEPostAtIndex epostTarget index | return ()
-      returnGoals [← unfoldEPostVC goal target.getAppFn α inst pre epost (args.extract 3 args.size)]
+      let excessArgs := args.drop 3
+      let rhs ← betaS epost excessArgs
+      let newTarget ← mkAppNS target.getAppFn #[α, inst, pre, rhs]
+      returnGoals [← goal.replaceTargetDefEq newTarget]
 
 def replaceProgDefEq (target : Expr) (info : WPInfo) (prog : Expr) : VCGenM MVarId := do
   let wp ← mkAppNS info.head <| info.args.set! 8 prog

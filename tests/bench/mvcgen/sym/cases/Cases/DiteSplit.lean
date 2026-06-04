@@ -38,6 +38,7 @@ def loop (n : Nat) : M Unit := do
   | 0 => pure ()
   | n+1 => step n; loop n
 
+def Goal (n : Nat) : Prop := ⦃fun s => s = 0⦄ loop n ⦃fun _ s => s = 0⦄
 
 
 end DiteSplit

@@ -19,6 +19,7 @@ public meta import Lean.Elab.Tactic.Do.Attr
 public import Lean.Meta.Sym.AlphaShareBuilder
 public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleCache
 public import Lean.Elab.Tactic.Do.Internal.VCGen.Utils
+public import Lean.Elab.Tactic.Do.Internal.VCGen.EPost
 
 open Lean Meta Elab Tactic Sym Internal
 open Std.Internal.Do Lean.Order
@@ -49,23 +50,6 @@ inductive SolveResult where
   | goals (scope : VCGen.Scope) (subgoals : List MVarId)
 
 /-! ## Private helpers -/
-
-/-- Get the `index`-th component from an `EPost` target. -/
-private def mkEPostAtIndex (target : Expr) (index : Nat) : SymM (Option Expr) := do
-  let mut curr := target
-  for _ in [:index] do
-    let_expr EPost.cons.mk _ _ _ tail := curr | return none
-    curr := tail
-  let_expr EPost.cons.mk _ _ head _ := curr | return none
-  return head
-
-/-- Peel a chain of `.tail` projections, returning the base `EPost` and the number of tails. -/
-private partial def peelEPostTailChain (curr : Expr) (idx : Nat := 0) : Expr × Nat :=
-  curr.consumeMData.withApp fun fn args =>
-    if fn.isConstOf ``EPost.cons.tail && args.size > 0 then
-      peelEPostTailChain args[args.size - 1]! (idx + 1)
-    else
-      (curr, idx)
 
 private def _root_.Lean.Expr.isDuplicable (e : Expr) : Bool := match e with
   | .bvar .. | .mvar .. | .fvar .. | .const .. | .lit .. | .sort .. => true
@@ -230,6 +214,11 @@ def tryEPostVC (target α inst pre rhs : Expr) : Strategy :=
   rhs.withApp fun head args => do
     if head.isConstOf ``EPost.cons.head then
       let some epostArg := args[2]? | return ()
+      -- `⊥.head x₁ … xₙ` is propositionally `⊥`; reduce it to a clean `pre ⊑ ⊥` VC.
+      if epostArg.isAppOf ``Lean.Order.bot then
+        if let some goal' ← replaceEPostHeadBot? goal target head args then
+          returnGoals [goal']
+        return ()
       let (epostTarget, index) := peelEPostTailChain epostArg
       let some epost ← mkEPostAtIndex epostTarget index | return ()
       let excessArgs := args.drop 3

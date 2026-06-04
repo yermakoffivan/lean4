@@ -305,7 +305,6 @@ public def tryMkBackwardRuleFromSpec (specThm : SpecTheoremNew) (info : WPInfo)
     ssTypes := ssTypes.push ty
     ss := ss.push <| ← mkFreshExprMVar (userName := stateArgNames[i]?.getD `s) ty
   let res ← mkSpecBackwardProof pre prog postSpec epostSpec specProof info.EPred ss ssTypes stateArgNames
-  dbg_trace "res: {← ppExpr <| ← Meta.inferType res.expr}"
   mkBackwardRuleFromExpr res.expr res.paramNames.toList
 
 /-! ## Tests for mkSpecBackwardProof -/

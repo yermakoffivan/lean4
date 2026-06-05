@@ -165,10 +165,9 @@ instance : Http.Body Full where
 
 /--
 `Full` is replayable: `resetInPlace` resets the cursor to zero so the body can be re-read
-from the start. `replay` creates a new `Full` sharing the same data with a fresh cursor.
+from the start.
 -/
 instance : Replayable Full where
-  replay := Full.replay
   resetInPlace := Full.resetInPlace
 
 instance : Coe Full Any := ⟨Any.ofReplayableBody⟩

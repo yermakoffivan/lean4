@@ -84,7 +84,7 @@ instance : Http.Body Empty where
   setKnownSize _ _ := pure ()
 
 instance : Replayable Empty where
-  replay e := pure e
+  resetInPlace _ := pure ()
 
 instance : Coe Empty Any := ⟨Any.ofBody⟩
 

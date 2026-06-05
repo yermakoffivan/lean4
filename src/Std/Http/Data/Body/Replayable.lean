@@ -15,8 +15,8 @@ public section
 
 A typeclass for HTTP body types whose content can be re-read from the start.
 
-`Body.Full` and `Body.Buffered` implement `Replayable`; `Body.Stream` does not because its
-bytes come from a live producer that has already been consumed and cannot be rewound.
+`Body.Full` implements `Replayable`; `Body.Stream` does not because its bytes come from a live
+producer that has already been consumed and cannot be rewound.
 
 The HTTP client uses this to decide whether to follow method-preserving redirects (307/308):
 if the body is not replayable the redirect is not followed and the 307/308 response is returned
@@ -31,22 +31,13 @@ set_option linter.all true
 /--
 A body that can be re-read from the start.
 
-- `replay`: returns a fresh body (or `self` for re-readable bodies like `Full`).
-- `resetInPlace`: resets the body's read position without allocating. Used by `Body.Any` on
-  method-preserving (307/308) redirects. Defaults to a no-op.
+- `resetInPlace`: resets the body's read position.
 -/
 class Replayable (α : Type) where
-  /--
-  Returns a fresh body positioned at the start.
-  For `Body.Full` this is `pure self`; for `Body.Buffered` it creates a new cursor at zero.
-  -/
-  replay : α → Async α
 
   /--
   Resets this body's read state in place so it can be read from the start again.
-  Defaults to a no-op (suitable for `Body.Full`, which is always re-readable).
-  `Body.Buffered` overrides this to reset its internal cursor.
   -/
-  resetInPlace : α → Async Unit := fun _ => pure ()
+  resetInPlace : α → Async Unit
 
 end Std.Http.Body

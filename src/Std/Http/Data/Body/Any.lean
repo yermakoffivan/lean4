@@ -74,8 +74,7 @@ structure Any where
 
   /--
   Resets this body's read state so it can be re-read from the start.
-  Only meaningful when `isReplayable = true`. No-op for `Body.Full` (always re-readable);
-  resets the internal cursor for `Body.Buffered`.
+  Only meaningful when `isReplayable = true`.
   -/
   resetInPlace : Async Unit := pure ()
 
@@ -104,7 +103,7 @@ def ofBody [Http.Body α] (body : α) : Any where
 
 /--
 Erases a replayable body into a `Body.Any`, preserving replay capability.
-Sets `isReplayable = true` and `resetInPlace` from `Replayable.resetInPlace`.
+Sets `isReplayable = true` and wires `resetInPlace` from the `Replayable` instance.
 -/
 def ofReplayableBody [Http.Body α] [Replayable α] (body : α) : Any where
   recv := Http.Body.recv body

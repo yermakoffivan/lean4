@@ -12,9 +12,8 @@ OpenSSL context types for server and client TLS sessions. Contexts configure the
 certificate/key, peer-verification mode, and protocol options shared across all sessions created
 from the same context.
 
-For clients session tickets (`SSL_OP_NO_TICKET`) and TLS compression are disabled globally; TLS 1.2 is the
-minimum version. Session resumption and client certificate authentication (mutual TLS) are not
-supported.
+For clients session tickets and TLS compression are disabled globally; TLS 1.2 is the minimum version.
+Session resumption and client certificate authentication (mutual TLS) are not supported.
 -/
 
 public section
@@ -42,9 +41,8 @@ instance : Nonempty Context.Client := ContextClientImpl.property
 namespace Context.Server
 
 /--
-Creates a new server-side TLS context using `TLS_server_method`. Only the server certificate is
-authenticated; Set `defaultVerify := true` if you want the server context to start with peer
-verification enabled.
+Creates a new server-side TLS context. Only the server certificate is authenticated; Set
+`defaultVerify := true` if you want the server context to start with peer verification enabled.
 -/
 @[extern "lean_ssl_ctx_mk_server"]
 opaque mk (defaultVerify : Bool := false) : IO Context.Server
@@ -60,12 +58,8 @@ end Server
 namespace Client
 
 /--
-Creates a new client-side TLS context using `TLS_client_method`. By default, peer certificates are
-verified against the system trust anchors (`SSL_VERIFY_PEER`). Connecting to a server with a
-self-signed or unknown CA certificate will fail unless `configure` is called first with that CA file.
-
-- Call `configure` to override the CA store or to disable peer verification.
-- Set `defaultVerify := false` if you want to construct a client context with peer verification off.
+Creates a new client-side TLS context. Connecting to a server with a self-signed or unknown CA
+certificate will fail unless `configure` is called first with that CA file.
 -/
 @[extern "lean_ssl_ctx_mk_client"]
 opaque mk (defaultVerify : Bool := true) : IO Context.Client
@@ -78,9 +72,8 @@ platform default trust anchors.
 opaque configure (ctx : @& Context.Client) (caFile : @& String) (verifyPeer : Bool) : IO Unit
 
 /--
-Configures CA trust anchors from an in-memory PEM string instead of a file path.
-Accepts one or more PEM-encoded certificates (same format as a CA bundle file).
-`verifyPeer` works the same as in `configure`.
+Configures CA trust anchors from an in-memory PEM string instead of a file path. Accepts one or more
+PEM-encoded certificates (same format as a CA bundle file). `verifyPeer` works the same as in `configure`.
 
 Use this when the CA certificate is embedded in the binary rather than on disk.
 -/

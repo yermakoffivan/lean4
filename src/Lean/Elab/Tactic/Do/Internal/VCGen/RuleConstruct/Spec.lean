@@ -47,14 +47,10 @@ def mkPostPointwisePremise (postSpec postTarget postTy : Expr) (ssTypes : Array 
 partial def decomposeEPostRel (EPred epostSpec epostAbstract : Expr)
     (stateArgNames : Array Name := #[]) : SymM Expr := do
   match_expr epostSpec with
-  | EPost.cons.mk ehTy _etTy head tail =>
+  | EPost.cons.mk ehTy etTy head tail =>
     let absHead ← mkAppM ``EPost.cons.head #[epostAbstract]
     let absTail ← mkAppM ``EPost.cons.tail #[epostAbstract]
-    let headTy ← Sym.inferType head
-    -- Collect state types: e.g. String → Nat → Prop → skip first (exc type), rest are state types
-    let ssTypes ← forallTelescope ehTy fun xs _ => do
-      xs.drop 1 |>.mapM (Meta.inferType ·)
-    let hTail ← decomposeEPostRel _etTy tail absTail stateArgNames
+    let hTail ← decomposeEPostRel etTy tail absTail stateArgNames
     /- Sometimes, even though `epost` is not schematic itself, its components might be schematic.
       Think of a triple of a kind `⦃ pre ⦄ x ⦃ post; epost₁, ⊥, epost₃, ⊥, ... ⦄`.
       In this case we do not want to create new metavariables for `epost₁`, `epost₃`, etc.
@@ -64,11 +60,13 @@ partial def decomposeEPostRel (EPred epostSpec epostAbstract : Expr)
       head.mvarId!.assign absHead
       mkAppM ``EPost.cons_rel_tail #[tail, epostAbstract, hTail]
     else
+      -- Collect state types: e.g. String → Nat → Prop → skip first (exc type), rest are state types
+      let ssTypes ← forallTelescope ehTy fun xs _ => xs.drop 1 |>.mapM (Meta.inferType ·)
+      let headTy ← Sym.inferType head
       let hHeadTy ← mkPostPointwisePremise head absHead headTy ssTypes stateArgNames
       let hHead ← mkFreshExprMVar (userName := `epostImpl) hHeadTy
       mkAppM ``EPost.cons_rel #[head, tail, epostAbstract, hHead, hTail]
-  | EPost.nil.mk =>
-    mkAppM ``EPost.nil_rel #[epostAbstract]
+  | EPost.nil.mk => mkAppM ``EPost.nil_rel #[epostAbstract]
   | _ =>
     match_expr EPred.consumeMData with
     | EPost.cons ehTy etTy =>
@@ -78,18 +76,15 @@ partial def decomposeEPostRel (EPred epostSpec epostAbstract : Expr)
       let absTail ← mkAppM ``EPost.cons.tail #[epostAbstract]
       let headTy ← Sym.inferType specHead
       -- Collect state types: e.g. String → Nat → Prop → skip first (exc type), rest are state types
-      let ssTypes ← forallTelescope ehTy fun xs _ => do
-        xs.drop 1 |>.mapM (Meta.inferType ·)
+      let ssTypes ← forallTelescope ehTy fun xs _ => xs.drop 1 |>.mapM (Meta.inferType ·)
       let hHeadTy ← mkPostPointwisePremise specHead absHead headTy ssTypes stateArgNames
       let hHead ← mkFreshExprMVar (userName := `epostImpl) hHeadTy
       let hTail ← decomposeEPostRel etTy specTail absTail stateArgNames
       mkAppM ``EPost.cons_rel #[specHead, specTail, epostAbstract, hHead, hTail]
-    | EPost.nil =>
-      mkAppM ``EPost.nil_rel #[epostAbstract]
+    | EPost.nil => mkAppM ``EPost.nil_rel #[epostAbstract]
     | _ =>
       let hTy ← mkAppM ``PartialOrder.rel #[epostSpec, epostAbstract]
-      let h ← mkFreshExprMVar (userName := `epostImpl) hTy
-      return h
+      mkFreshExprMVar (userName := `epostImpl) hTy
 
 /--
 Create the proof term for the backward rule built from an instantiated spec theorem.
@@ -255,8 +250,8 @@ def mkSpecBackwardProof
     is redundant, but we still do that to keep the code simple.
 
     Here we also apply the excess state arguments to `pre` and `wp prog postAbstract epostAbstract` -/
-  /- use `betaRevS` to create `pre s₁ ... sₙ`  to avoid creating beta redexes when `pre` is a lambda -/
-  let preApplied := pre.betaRev ss.reverse
+  /- use `beta` to create `pre s₁ ... sₙ`  to avoid creating beta redexes when `pre` is a lambda -/
+  let preApplied := pre.beta ss
   /- proof of the original theorem with abstracted `post` and `epost` specialized to the excess state arguments -/
   specApplied := mkAppN specApplied ss
   /- `wp prog postAbstract epostAbstract s₁ ... sₙ` -/

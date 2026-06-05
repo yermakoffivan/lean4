@@ -4,7 +4,10 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Sofia Rodrigues
 -/
 module
-
 prelude
 public import Std.Internal.SSL.Context
 public import Std.Internal.SSL.Session
+
+/-!
+Re-exports `Std.Internal.SSL.Context` and `Std.Internal.SSL.Session`.
+-/

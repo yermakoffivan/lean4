@@ -137,13 +137,6 @@ def recvSelector (full : Full) : Selector (Option Chunk) where
   unregisterFn := pure ()
 
 /--
-Returns a new `Full` sharing the same data with a fresh cursor at position zero.
--/
-def replay (full : Full) : Async Full := do
-  let state ← Mutex.new .ready
-  return { full with state }
-
-/--
 Resets the cursor to position zero so the body can be re-read from the start.
 Since `Full.data` is always preserved in the struct, this always works regardless of
 whether `close` was previously called (e.g. by the connection loop after EOF).

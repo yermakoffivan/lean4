@@ -493,9 +493,6 @@ endif()
 string(APPEND TOOLCHAIN_STATIC_LINKER_FLAGS " ${LEAN_CXX_STDLIB}")
 string(APPEND TOOLCHAIN_SHARED_LINKER_FLAGS " ${LEAN_CXX_STDLIB}")
 
-# OpenSSL is provided via LEAN_EXTRA_LINKER_FLAGS (leanc.sh) and resolved at runtime from the
-# loading executable, matching the same strategy as GMP and libuv.
-
 # in local builds, link executables and not just dynlibs against C++ stdlib as well,
 # which is required for e.g. asan
 if(NOT LEAN_STANDALONE)

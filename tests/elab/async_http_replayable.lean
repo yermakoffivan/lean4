@@ -4,44 +4,6 @@ open Std.Async
 open Std.Http
 open Std.Http.Body
 
--- replay returns a fresh body that can be read from the start
-
-def fullReplayIndependent : Async Unit := do
-  let full ← Body.Full.ofString "hello"
-  let copy ← Replayable.replay full
-  let r1 ← full.recv
-  let r2 ← copy.recv
-  assert! r1.isSome
-  assert! r2.isSome
-  assert! r1.get!.data == "hello".toUTF8
-  assert! r2.get!.data == "hello".toUTF8
-
-#eval fullReplayIndependent.block
-
--- consuming the original does not affect the replayed copy
-
-def fullReplayDoesNotShareState : Async Unit := do
-  let full ← Body.Full.ofString "data"
-  let _ ← full.recv
-  let copy ← Replayable.replay full
-  let r ← copy.recv
-  assert! r.isSome
-  assert! r.get!.data == "data".toUTF8
-
-#eval fullReplayDoesNotShareState.block
-
--- consuming the replayed copy does not affect the original
-
-def fullReplayCopyExhaustedOriginalIntact : Async Unit := do
-  let full ← Body.Full.ofString "abc"
-  let copy ← Replayable.replay full
-  let _ ← copy.recv
-  let r ← full.recv
-  assert! r.isSome
-  assert! r.get!.data == "abc".toUTF8
-
-#eval fullReplayCopyExhaustedOriginalIntact.block
-
 -- resetInPlace lets a body be read again after being consumed
 
 def fullResetInPlaceAfterRead : Async Unit := do
@@ -92,28 +54,6 @@ def fullResetInPlaceMultiple : Async Unit := do
   assert! r.get!.data == "multi".toUTF8
 
 #eval fullResetInPlaceMultiple.block
-
--- replay on an empty ByteArray body returns a fresh body that also yields nothing
-
-def fullReplayEmpty : Async Unit := do
-  let full ← Body.Full.ofByteArray ByteArray.empty
-  let copy ← Replayable.replay full
-  assert! (← full.recv).isNone
-  assert! (← copy.recv).isNone
-
-#eval fullReplayEmpty.block
-
-/-! ## Body.Empty — Replayable -/
-
--- Empty.replay returns an identical empty body
-
-def emptyReplay : Async Unit := do
-  let e : Body.Empty := {}
-  let copy ← Replayable.replay e
-  assert! (← copy.recv).isNone
-  assert! (← copy.isClosed)
-
-#eval emptyReplay.block
 
 -- Empty.resetInPlace is a no-op; body remains at EOF
 

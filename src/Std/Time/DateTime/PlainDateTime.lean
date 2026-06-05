@@ -604,13 +604,6 @@ def toPlainDate (pdt : PlainDateTime) : PlainDate :=
   pdt.date
 
 /--
-Wraps a `PlainTime` in a `PlainDateTime` with year 1, month 1, day 1 as the date component.
--/
-@[inline]
-def ofPlainTime (time : PlainTime) : PlainDateTime :=
-  { date := PlainDate.ofYearMonthDayClip 1 1 1, time }
-
-/--
 Extracts the `PlainTime` component from a `PlainDateTime`.
 -/
 @[inline]

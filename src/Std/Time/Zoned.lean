@@ -21,7 +21,7 @@ namespace PlainDateTime
 
 /--
 Get the current time, in the local timezone.
-To obtain the current time in a specific timezone, use `DateTime.nowAt`.
+To obtain the current time in a specific timezone, use `DateTime.now` or `DateTime.nowAt`.
 -/
 @[inline]
 def now : IO PlainDateTime := do

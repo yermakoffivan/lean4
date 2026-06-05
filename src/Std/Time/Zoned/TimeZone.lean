@@ -19,7 +19,7 @@ set_option linter.all true
 namespace TimeZone
 
 /--
-Represents a timezone offset with an hour and second component.
+Represents a timezone offset as a total number of seconds from UTC.
 -/
 @[ext]
 structure Offset where

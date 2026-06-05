@@ -519,46 +519,6 @@ extern "C" LEAN_EXPORT lean_obj_res lean_ssl_close_notify(b_obj_arg ssl) {
     return mk_openssl_io_error("SSL_shutdown failed", err);
 }
 
-/* Std.Internal.SSL.Session.getPeerCertCDPURIs (ssl : @& Session) : IO (Array String) */
-extern "C" LEAN_EXPORT lean_obj_res lean_ssl_get_peer_cert_cdp_uris(b_obj_arg ssl) {
-    lean_ssl_session_object * ssl_obj = lean_to_ssl_session_object(ssl);
-
-    X509 * cert = SSL_get_peer_certificate(ssl_obj->ssl);
-    if (cert == nullptr) {
-        return lean_io_result_mk_ok(lean_mk_empty_array());
-    }
-
-    STACK_OF(DIST_POINT) * dps =
-        (STACK_OF(DIST_POINT) *)X509_get_ext_d2i(cert, NID_crl_distribution_points, nullptr, nullptr);
-
-    X509_free(cert);
-
-    if (dps == nullptr) {
-        return lean_io_result_mk_ok(lean_mk_empty_array());
-    }
-
-    lean_object * arr = lean_mk_empty_array();
-
-    for (int i = 0; i < sk_DIST_POINT_num(dps); i++) {
-        DIST_POINT * dp = sk_DIST_POINT_value(dps, i);
-        if (dp->distpoint == nullptr || dp->distpoint->type != 0) continue;
-
-        GENERAL_NAMES * names = dp->distpoint->name.fullname;
-        for (int j = 0; j < sk_GENERAL_NAME_num(names); j++) {
-            GENERAL_NAME * name = sk_GENERAL_NAME_value(names, j);
-            if (name->type != GEN_URI) continue;
-
-            const char * uri = (const char *)ASN1_STRING_get0_data(name->d.uniformResourceIdentifier);
-            int uri_len = ASN1_STRING_length(name->d.uniformResourceIdentifier);
-            lean_object * s = lean_mk_string_from_bytes(uri, uri_len);
-            arr = lean_array_push(arr, s);
-        }
-    }
-
-    CRL_DIST_POINTS_free(dps);
-    return lean_io_result_mk_ok(arr);
-}
-
 #else
 
 void initialize_openssl_session() {}
@@ -629,11 +589,6 @@ extern "C" LEAN_EXPORT lean_obj_res lean_ssl_close_notify(b_obj_arg /*ssl*/) {
 }
 
 extern "C" LEAN_EXPORT lean_obj_res lean_ssl_negotiated_version(b_obj_arg /*ssl*/) {
-    lean_always_assert(false && "Please build a version of Lean4 with OpenSSL to invoke this.");
-    return nullptr;
-}
-
-extern "C" LEAN_EXPORT lean_obj_res lean_ssl_get_peer_cert_cdp_uris(b_obj_arg /*ssl*/) {
     lean_always_assert(false && "Please build a version of Lean4 with OpenSSL to invoke this.");
     return nullptr;
 }

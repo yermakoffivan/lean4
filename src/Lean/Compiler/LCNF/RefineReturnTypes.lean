@@ -117,7 +117,7 @@ partial def inferReturnType (code : Code .impure) : RefinM (Option Expr) := do
     withLocalType decl.fvarId type do
       inferReturnType k
   | .uset _ _ _ k _ | .sset _ _ _ _ _ k _ => inferReturnType k
-  | .fun .. | .inc .. | .dec .. => unreachable!
+  | .fun .. | .inc .. | .dec .. | .oset .. | .setTag .. | .del .. => unreachable!
 
 def analyzeStep : RefinM Unit := do
   let decls := (← read).decls
@@ -184,7 +184,7 @@ partial def updateCode (code : Code .impure) (decls : Array (Decl .impure)) (res
     return code.updateCont! (← updateCode k decls result newType)
   | .unreach _ => return code.updateUnreach! newType
   | .return _ | .jmp _ _ => return code
-  | .fun .. | .inc .. | .dec .. => unreachable!
+  | .fun .. | .inc .. | .dec .. | .oset .. | .setTag .. | .del .. => unreachable!
 
 end RefineReturnTypes
 

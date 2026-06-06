@@ -125,8 +125,8 @@ if(USE_MIMALLOC)
     mimalloc
     GIT_REPOSITORY https://github.com/microsoft/mimalloc
     GIT_BRANCH dev3
-    # 3.3.2 + trivial header fix (only relevant for building Lean with lean-llvm)
-    GIT_TAG 64b0a02690224b66eaa24a89e48c63b715ce27cb
+    # v3.3.2 + thread-teardown fixes + `wchar.h` header fix for lean-llvm
+    GIT_TAG e504759126c1ae7c8f8d0dd975307e8c1ba40736
     # Unnecessarily deep directory structure, but it saves us from a complicated
     # stage0 update for now. If we ever update the other dependencies like
     # cadical, it might be worth reorganizing the directory structure.

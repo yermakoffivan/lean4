@@ -395,6 +395,7 @@ void * malloc(size_t);  // avoid including big `stdlib.h`
 #endif
 
 static inline lean_object * lean_alloc_small_object(unsigned sz) {
+    // NOTE: `sz` is known at compile time for most callers
 #ifdef LEAN_SMALL_ALLOCATOR
     sz = lean_align(sz, LEAN_OBJECT_SIZE_DELTA);
     unsigned slot_idx = lean_get_slot_idx(sz);
@@ -405,7 +406,7 @@ static inline lean_object * lean_alloc_small_object(unsigned sz) {
 #ifdef LEAN_MIMALLOC
     // HACK: emulate behavior of small allocator to avoid `leangz` breakage for now
     sz = lean_align(sz, LEAN_OBJECT_SIZE_DELTA);
-    void * mem = mi_malloc_small(sz);
+    void * mem = sz <= MI_SMALL_SIZE_MAX ? mi_malloc_small(sz) : mi_malloc(sz);
     if (mem == 0) lean_internal_panic_out_of_memory();
     lean_object * o = (lean_object*)mem;
     o->m_cs_sz = sz;

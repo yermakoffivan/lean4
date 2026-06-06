@@ -7,6 +7,7 @@ module
 
 prelude
 import Init.Control.Do
+public import Lake.Util.Git
 public import Lake.Util.Log
 public import Lake.Util.Version
 public import Lake.Config.Artifact
@@ -469,7 +470,7 @@ public def readOutputs? (cache : Cache) (scope : String) (inputHash : Hash) : Lo
   cache.dir / "revisions"
 
 /-- Returns path to the input-to-output mappings of a downloaded package revision. -/
-@[inline] public def revisionPath (cache : Cache) (scope : String) (rev : String)   : FilePath :=
+@[inline] public def revisionPath (cache : Cache) (scope : String) (rev : GitRev) : FilePath :=
   cache.revisionDir / scope / s!"{rev}.jsonl"
 
 end Cache
@@ -496,7 +497,7 @@ public def system : CachePlatform := ⟨System.Platform.target⟩
 @[inline] public def ofString (s : String) : CachePlatform := ⟨s⟩
 
 /-- Returns the length of the platform identifier in Unicode code points. -/
-public def length (self : CachePlatform) : Nat := self.raw.length
+public def length (self : CachePlatform) : Nat := self.raw.chars.length
 
 /-- Returns a string representation of the platform identifier. -/
 public protected def toString (self : CachePlatform) : String :=
@@ -528,7 +529,7 @@ public def ofString (s : String) : CacheToolchain := ⟨normalizeToolchain s⟩
 @[inline] public def ofElanToolchain (s : String) : CacheToolchain := ⟨s⟩
 
 /-- Returns the length of the toolchain identifier in Unicode code points. -/
-public def length (self : CacheToolchain) : Nat := self.raw.length
+public def length (self : CacheToolchain) : Nat := self.raw.chars.length
 
 /-- Returns a string representation of the toolchain identifier. -/
 public protected def toString (self : CacheToolchain) : String :=
@@ -942,7 +943,7 @@ public def uploadArtifacts
 public def mapContentType : String := "application/vnd.reservoir.outputs+json-lines"
 
 def s3RevisionUrl
-  (rev : String) (service : CacheService) (scope : CacheServiceScope)
+  (rev : GitRev) (service : CacheService) (scope : CacheServiceScope)
   (platform := CachePlatform.none) (toolchain := CacheToolchain.none)
 : String :=
   match scope.impl with
@@ -956,7 +957,7 @@ def s3RevisionUrl
     return s!"{url}/{rev}.jsonl"
 
 public def revisionUrl
-  (rev : String) (service : CacheService) (scope : CacheServiceScope)
+  (rev : GitRev) (service : CacheService) (scope : CacheServiceScope)
   (platform := CachePlatform.none) (toolchain := CacheToolchain.none)
 : String :=
   if service.isReservoir then Id.run do
@@ -974,7 +975,7 @@ public def revisionUrl
     service.s3RevisionUrl rev scope platform toolchain
 
 public def downloadRevisionOutputs?
-  (rev : String) (cache : Cache) (service : CacheService)
+  (rev : GitRev) (cache : Cache) (service : CacheService)
   (localScope : String) (remoteScope : CacheServiceScope)
   (platform := CachePlatform.none) (toolchain := CacheToolchain.none) (force := false)
 : LoggerIO (Option CacheMap) := do
@@ -998,7 +999,7 @@ public def downloadRevisionOutputs?
   CacheMap.load path platform.isNone
 
 public def uploadRevisionOutputs
-  (rev : String) (outputs : FilePath) (service : CacheService) (scope : CacheServiceScope)
+  (rev : GitRev) (outputs : FilePath) (service : CacheService) (scope : CacheServiceScope)
   (platform := CachePlatform.none) (toolchain := CacheToolchain.none)
 : LoggerIO Unit := do
   let url := service.s3RevisionUrl rev scope platform toolchain

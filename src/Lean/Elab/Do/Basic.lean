@@ -45,6 +45,15 @@ def ContInfoRef : Type := ContInfoRefPointed.type
 instance : Nonempty ContInfoRef :=
   by exact ContInfoRefPointed.property
 
+-- Same pattern as `ContInfoRef` above; used so `Context` can carry `DoOps` without
+-- depending on `DoElabM`.
+private opaque DoOpsRefPointed : NonemptyType.{0}
+
+def DoOpsRef : Type := DoOpsRefPointed.type
+
+instance : Nonempty DoOpsRef :=
+  by exact DoOpsRefPointed.property
+
 /-- Whether a code block is alive or dead. -/
 inductive CodeLiveness where
   /-- We inferred the code is semantically dead and don't need to elaborate it at all. -/
@@ -90,8 +99,40 @@ structure Context where
   Whether the current `do` element is dead code. `elabDoElem` will emit a warning if not `.alive`.
   -/
   deadCode : CodeLiveness := .alive
+  /-- Pluggable builders for `pure` and `bind` applications. -/
+  ops : DoOpsRef
 
 abbrev DoElabM := ReaderT Context Term.TermElabM
+
+/-- Pluggable builders for the `pure` / `bind` applications emitted by the `do` elaborator. -/
+structure DoOps where
+  /-- Build `pure (α:=α) e : m α`. -/
+  mkPureApp : (α e : Expr) → DoElabM Expr
+  /-- Build `bind (α:=α) (β:=β) e k : m β`. -/
+  mkBindApp : (α β e k : Expr) → DoElabM Expr
+  /--
+  If `e` is syntactically a `pure …` application, return the pure value; otherwise `none`.
+  Used by `DoElemCont.mkBindUnlessPure` to contract `e >>= pure` to `e` and
+  `pure e >>= k` to `let x := e; k x`.
+  -/
+  isPureApp? : Expr → Option Expr
+  /-- Match a monad application `m α`, returning `MonadInfo` for `m` and `α`. -/
+  splitMonadApp? : Expr → Term.TermElabM (Option (MonadInfo × Expr))
+  /-- Construct `m α` from `α`. -/
+  mkMonadApp : Expr → DoElabM Expr
+  deriving Inhabited
+
+unsafe def DoOps.toDoOpsRefImpl (o : DoOps) : DoOpsRef :=
+  unsafeCast o
+
+@[implemented_by DoOps.toDoOpsRefImpl]
+opaque DoOps.toDoOpsRef (o : DoOps) : DoOpsRef
+
+unsafe def DoOpsRef.toDoOpsImpl (r : DoOpsRef) : DoOps :=
+  unsafeCast r
+
+@[implemented_by DoOpsRef.toDoOpsImpl]
+opaque DoOpsRef.toDoOps (r : DoOpsRef) : DoOps
 
 /--
 Whether the continuation of a `do` element is duplicable and if so whether it is just `pure r` for
@@ -188,8 +229,8 @@ unsafe def ContInfoRef.toContInfoImpl (m : ContInfoRef) : ContInfo :=
 opaque ContInfoRef.toContInfo (m : ContInfoRef) : ContInfo
 
 /-- Constructs `m α` from `α`. -/
-def mkMonadicType (resultType : Expr) : DoElabM Expr :=
-  return mkApp (← read).monadInfo.m resultType
+def mkMonadApp (resultType : Expr) : DoElabM Expr := do
+  (← read).ops.toDoOps.mkMonadApp resultType
 
 /-- The cached `PUnit` expression. -/
 def mkPUnit : DoElabM Expr := do
@@ -201,16 +242,7 @@ def mkPUnitUnit : DoElabM Expr := do
 
 /-- The expression ``pure (α:=α) e``. -/
 def mkPureApp (α e : Expr) : DoElabM Expr := do
-  let info := (← read).monadInfo
-  if (← read).deadCode matches .deadSyntactically then
-    -- There is no dead syntax here. Just return a fresh metavariable so that we don't
-    -- do the `Term.ensureHasType` check below.
-    return ← mkFreshExprMVar (mkApp info.m α)
-  let α ← Term.ensureHasType (mkSort (mkLevelSucc info.u)) α
-  let e ← Term.ensureHasType α e
-  let instPure ← Term.mkInstMVar (mkApp (mkConst ``Pure [info.u, info.v]) info.m)
-  let instPure ← instantiateMVars instPure
-  return mkApp4 (mkConst ``Pure.pure [info.u, info.v]) info.m instPure α e
+  (← read).ops.toDoOps.mkPureApp α e
 
 /-- Create a `DoElemCont` returning the result using `pure`. -/
 def DoElemCont.mkPure (resultType : Expr) : TermElabM DoElemCont := do
@@ -229,13 +261,39 @@ def ReturnCont.mkPure (resultType : Expr) : TermElabM ReturnCont := do
 
 /-- The expression ``Bind.bind (α:=α) (β:=β) e k``. -/
 def mkBindApp (α β e k : Expr) : DoElabM Expr := do
-  let info := (← read).monadInfo
-  let α ← Term.ensureHasType (mkSort (mkLevelSucc info.u)) α
-  let mα := mkApp info.m α
-  let e ← Term.ensureHasType mα e
-  let k ← Term.ensureHasType (← mkArrow α (mkApp info.m β)) k
-  let instBind ← Term.mkInstMVar (mkApp (mkConst ``Bind [info.u, info.v]) info.m)
-  return mkApp6 (mkConst ``Bind.bind [info.u, info.v]) info.m instBind α β e k
+  (← read).ops.toDoOps.mkBindApp α β e k
+
+/-- `DoOps` emitting `Pure.pure` / `Bind.bind`. -/
+def DoOps.default : DoOps where
+  mkPureApp α e := do
+    let info := (← read).monadInfo
+    if (← read).deadCode matches .deadSyntactically then
+      -- There is no dead syntax here. Just return a fresh metavariable so that we don't
+      -- do the `Term.ensureHasType` check below.
+      return ← mkFreshExprMVar (mkApp info.m α)
+    let α ← Term.ensureHasType (mkSort (mkLevelSucc info.u)) α
+    let e ← Term.ensureHasType α e
+    let instPure ← Term.mkInstMVar (mkApp (mkConst ``Pure [info.u, info.v]) info.m)
+    let instPure ← instantiateMVars instPure
+    return mkApp4 (mkConst ``Pure.pure [info.u, info.v]) info.m instPure α e
+  mkBindApp α β e k := do
+    let info := (← read).monadInfo
+    let α ← Term.ensureHasType (mkSort (mkLevelSucc info.u)) α
+    let mα := mkApp info.m α
+    let e ← Term.ensureHasType mα e
+    let k ← Term.ensureHasType (← mkArrow α (mkApp info.m β)) k
+    let instBind ← Term.mkInstMVar (mkApp (mkConst ``Bind [info.u, info.v]) info.m)
+    return mkApp6 (mkConst ``Bind.bind [info.u, info.v]) info.m instBind α β e k
+  isPureApp? e :=
+    if e.isAppOfArity ``Pure.pure 4 then some (e.getArg! 3) else none
+  splitMonadApp? type := do
+    let .app m resultType := type.consumeMData | return none
+    unless ← isType resultType do return none
+    let u ← getDecLevel resultType
+    let v ← getDecLevel type
+    return some ({ m, u := u.normalize, v := v.normalize }, resultType)
+  mkMonadApp α := do
+    return mkApp (← read).monadInfo.m α
 
 /-- Register the given name as that of a `mut` variable. -/
 def declareMutVar (x : Ident) (k : DoElabM α) : DoElabM α := do
@@ -374,32 +432,79 @@ def withLCtxKeepingMutVarDefs (oldLCtx : LocalContext) (oldCtx : Context) (resul
     mutVarDefs := oldMutVarDefs
   }) k
 
+def mkMonadicResultTypeMismatchError (contType : Expr) (elementType : Expr) : MessageData :=
+  m!"Type mismatch. The `do` element has monadic result type{indentExpr elementType}\n\
+    but the rest of the `do` block has monadic result type{indentExpr contType}"
+
+/--
+Given a continuation `dec`, a reference `ref`, and an element result type `elementType`, returns a
+continuation derived from `dec` with result type `elementType`.
+If `dec` already has result type `elementType`, simply returns `dec`.
+Otherwise, an error is logged and a new continuation is returned that calls `dec` with `sorry` as a
+result. The error is reported at `ref`.
+-/
+def DoElemCont.ensureHasTypeAt (dec : DoElemCont) (ref : Syntax) (elementType : Expr) : DoElabM DoElemCont := do
+  if ← isDefEqGuarded dec.resultType elementType then
+    return dec
+  let errMessage := mkMonadicResultTypeMismatchError dec.resultType elementType
+  unless (← readThe Term.Context).errToSorry do
+    throwErrorAt ref errMessage
+  logErrorAt ref errMessage
+  return {
+    resultName := ← mkFreshUserName `__r
+    resultType := elementType
+    k := do
+      mapLetDecl dec.resultName dec.resultType (← mkSorry dec.resultType true)
+          (nondep := true) (kind := .implDetail) fun _ => dec.k
+    kind := dec.kind
+  }
+
+/--
+Given a continuation `dec` and a reference `ref`, returns a continuation derived from `dec` with result type `PUnit`.
+If `dec` already has result type `PUnit`, simply returns `dec`. Otherwise, an error is logged and a
+new continuation is returned that calls `dec` with `sorry` as a result. The error is reported at `ref`.
+-/
+def DoElemCont.ensureUnitAt (dec : DoElemCont) (ref : Syntax) : DoElabM DoElemCont := do
+  dec.ensureHasTypeAt ref (← mkPUnit)
+
+/--
+Given a continuation `dec`, returns a continuation derived from `dec` with result type `PUnit`.
+If `dec` already has result type `PUnit`, simply returns `dec`. Otherwise, an error is logged and a
+new continuation is returned that calls `dec` with `sorry` as a result.
+-/
+def DoElemCont.ensureUnit (dec : DoElemCont) : DoElabM DoElemCont := do
+  dec.ensureUnitAt (← getRef)
+
 /--
 Return `$e >>= fun ($dec.resultName : $dec.resultType) => $(← dec.k)`, cancelling
 the bind if `$(← dec.k)` is `pure $dec.resultName` or `e` is some `pure` computation.
 -/
 def DoElemCont.mkBindUnlessPure (dec : DoElemCont) (e : Expr) : DoElabM Expr := do
+  -- let eResultTy ← mkFreshResultType
+  -- let e ← Term.ensureHasType (← mkMonadApp eResultTy) e
+  -- let dec ← dec.ensureHasType eResultTy
   let x := dec.resultName
-  let eResultTy := dec.resultType
   let k := dec.k
+  let eResultTy := dec.resultType
   -- The .ofBinderName below is mainly to interpret `__do_lift` binders as implementation details.
   let declKind := .ofBinderName x
   let kResultTy ← mkFreshResultType `kResultTy
   withLocalDecl x .default eResultTy (kind := declKind) fun xFVar => do
     let body ← k
     let body' := body.consumeMData
+    let ops := (← read).ops.toDoOps
     -- First try to contract `e >>= pure` into `e`.
     -- Reason: for `pure e >>= pure`, we want to get `pure e` and not `have xFVar := e; pure xFVar`.
-    if body'.isAppOfArity ``Pure.pure 4 && body'.getArg! 3 == xFVar then
-      let body'' ← mkPureApp eResultTy xFVar
-      if ← withNewMCtxDepth do isDefEq body' body'' then
-        return e
+    if let some pureArg := ops.isPureApp? body' then
+      if pureArg == xFVar then
+        let body'' ← mkPureApp eResultTy xFVar
+        if ← withNewMCtxDepth do isDefEq body' body'' then
+          return e
 
     -- Now test whether we can contract `pure e >>= k` into `have xFVar := e; k xFVar`. We zeta `xFVar` when
     -- `e` is duplicable; we don't look at `k` to see whether it is used at most once.
     let e' := e.consumeMData
-    if e'.isAppOfArity ``Pure.pure 4 then
-      let eRes := e'.getArg! 3
+    if let some eRes := ops.isPureApp? e' then
       let e' ← mkPureApp eResultTy eRes
       let (isPure, isDuplicable) ← withNewMCtxDepth do
         let isPure ← isDefEq e e'
@@ -412,7 +517,7 @@ def DoElemCont.mkBindUnlessPure (dec : DoElemCont) (e : Expr) : DoElabM Expr := 
         -- else -- would be too aggressive
         --   return ← mapLetDecl (nondep := true) (kind := declKind) x eResultTy eRes fun _ => k ref
 
-    let body ← Term.ensureHasType (← mkMonadicType kResultTy) body
+    let body ← Term.ensureHasType (← mkMonadApp kResultTy) body
     let k ← mkLambdaFVars #[xFVar] body
     mkBindApp eResultTy kResultTy e k
 
@@ -421,9 +526,8 @@ Return `let $k.resultName : PUnit := PUnit.unit; $(← k.k)`, ensuring that the 
 is `PUnit` and then immediately zeta-reduce the `let`.
 -/
 def DoElemCont.continueWithUnit (dec : DoElemCont) : DoElabM Expr := do
-  let unit ← mkPUnitUnit
-  discard <| Term.ensureHasType dec.resultType unit
-  mapLetDeclZeta dec.resultName (← mkPUnit) unit (nondep := true) (kind := .ofBinderName dec.resultName) fun _ =>
+  let dec ← dec.ensureUnit
+  mapLetDeclZeta dec.resultName (← mkPUnit) (← mkPUnitUnit) (nondep := true) (kind := .ofBinderName dec.resultName) fun _ =>
     dec.k
 
 /-- Elaborate the `DoElemCont` with the `deadCode` flag set to `deadSyntactically` to emit warnings. -/
@@ -511,7 +615,7 @@ def DoElemCont.withDuplicableCont (nondupDec : DoElemCont) (callerInfo : Control
   if nondupDec.kind matches .duplicable .. then
     return ← caller nondupDec
   let γ := (← read).doBlockResultType
-  let mγ ← mkMonadicType γ
+  let mγ ← mkMonadApp γ
   let mutVars := (← read).mutVars |>.filter (callerInfo.reassigns.contains ·.getId)
   let mutVarNames := mutVars.map (·.getId)
   let joinName ← mkFreshUserName `__do_jp
@@ -542,7 +646,7 @@ def DoElemCont.withDuplicableCont (nondupDec : DoElemCont) (callerInfo : Control
     withLocalDeclD nondupDec.resultName nondupDec.resultType fun r => do
     withLocalDeclsDND (mutDecls.map fun (d : LocalDecl) => (d.userName, d.type)) fun muts => do
     for (x, newX) in mutVars.zip muts do Term.addTermInfo' x newX
-    withDeadCode (if callerInfo.numRegularExits > 0 then .alive else .deadSemantically) do
+    withDeadCode (if callerInfo.noFallthrough then .deadSemantically else .alive) do
     let e ← nondupDec.k
     mkLambdaFVars (#[r] ++ muts) e
   unless ← joinRhsMVar.mvarId!.checkedAssign joinRhs do
@@ -602,18 +706,11 @@ def enterFinally (resultType : Expr) (k : DoElabM Expr) : DoElabM Expr := do
   withDoBlockResultType resultType k
 
 /-- Extracts `MonadInfo` and monadic result type `α` from the expected type of a `do` block `m α`. -/
-private partial def extractMonadInfo (expectedType? : Option Expr) : Term.TermElabM (MonadInfo × Expr) := do
+private partial def extractMonadInfo (ops : DoOps) (expectedType? : Option Expr) : Term.TermElabM (MonadInfo × Expr) := do
   let some expectedType := expectedType? | mkUnknownMonadResult
-  let extractStep? (type : Expr) : Term.TermElabM (Option (MonadInfo × Expr)) := do
-    let .app m resultType := type.consumeMData | return none
-    unless ← isType resultType do return none
-    let u ← getDecLevel resultType
-    let v ← getDecLevel type
-    let u := u.normalize
-    let v := v.normalize
-    return some ({ m, u, v }, resultType)
+  let expectedType ← instantiateMVars expectedType
   let rec extract? (type : Expr) : Term.TermElabM (Option (MonadInfo × Expr)) := do
-    match (← extractStep? type) with
+    match (← ops.splitMonadApp? type) with
     | some r => return r
     | none =>
       let typeNew ← whnfCore type
@@ -637,11 +734,12 @@ where
     return ({ m, u, v }, resultType)
 
 /-- Create the `Context` for `do` elaboration from the given expected type of a `do` block. -/
-def mkContext (expectedType? : Option Expr) : TermElabM Context := do
-  let (mi, resultType) ← extractMonadInfo expectedType?
+def mkContext (expectedType? : Option Expr) (ops : DoOps := .default) : TermElabM Context := do
+  let (mi, resultType) ← extractMonadInfo ops expectedType?
   let returnCont ← ReturnCont.mkPure resultType
   let contInfo := ContInfo.toContInfoRef { returnCont }
-  return { monadInfo := mi, doBlockResultType := resultType, contInfo }
+  return { monadInfo := mi, doBlockResultType := resultType, contInfo,
+           ops := ops.toDoOpsRef }
 
 section NestedActions
 
@@ -672,8 +770,8 @@ private def letDeclArgHasBinders (letDeclArg : Syntax) : Bool :=
 private def letDeclHasBinders (letDecl : Syntax) : Bool :=
   letDeclArgHasBinders letDecl[0]
 
-/-- Return true if we should generate an error message when lifting a method over this kind of syntax. -/
-private def liftMethodForbiddenBinder (stx : Syntax) : Bool :=
+/-- Return true if we should generate an error message when lifting a nested action over this kind of syntax. -/
+private def nestedActionForbiddenBinder (stx : Syntax) : Bool :=
   let k := stx.getKind
   -- TODO: make this extensible in the future.
   if k == ``Parser.Term.fun || k == ``Parser.Term.matchAlts ||
@@ -692,7 +790,7 @@ private partial def hasNestedActionsToLift : Syntax → Bool
     if liftNestedActionDelimiter k then false
     -- NOTE: We don't check for lifts in quotations here, which doesn't break anything but merely makes this rare case a
     -- bit slower
-    else if k == ``Parser.Term.liftMethod then true
+    else if k == ``Parser.Term.nestedAction then true
     -- For `pure` if-then-else, we only lift `(<- ...)` occurring in the condition.
     else if k == ``termDepIfThenElse || k == ``termIfThenElse then args.size >= 2 && hasNestedActionsToLift args[1]!
     else args.any hasNestedActionsToLift
@@ -716,7 +814,7 @@ private partial def expandNestedActionsAux (baseId : Name) (inQuot : Bool) (inBi
       let arg1 ← expandNestedActionsAux baseId (inQuot && !inAntiquot || stx.isQuot) inBinder args[1]
       let args := args.set! 1 arg1
       return Syntax.node i k args
-    else if k == ``Parser.Term.liftMethod && !inQuot then withFreshMacroScope do
+    else if k == ``Parser.Term.nestedAction && !inQuot then withFreshMacroScope do
       if inBinder then
         throwErrorAt stx "Cannot lift nested action `{stx}` over a binder.\nThis error usually happens when you are trying to lift a method nested in a `fun`, `let`, or `match`-alternative, and it can often be fixed by adding a missing `do`."
       let term := args[1]!
@@ -728,7 +826,7 @@ private partial def expandNestedActionsAux (baseId : Name) (inQuot : Bool) (inBi
       return id
     else do
       let inAntiquot := stx.isAntiquot && !stx.isEscapedAntiquot
-      let inBinder   := inBinder || (!inQuot && liftMethodForbiddenBinder stx)
+      let inBinder   := inBinder || (!inQuot && nestedActionForbiddenBinder stx)
       let args ← args.mapM (expandNestedActionsAux baseId (inQuot && !inAntiquot || stx.isQuot) inBinder)
       return Syntax.node i k args
   | stx => return stx
@@ -775,7 +873,7 @@ private def elabDoElemFns (stx : TSyntax `doElem) (cont : DoElemCont)
   match fns with
   | [] => throwError "unexpected `do` element syntax{indentD stx}"
   | elabFn :: elabFns =>
-    let expectedType ← mkMonadicType (← read).doBlockResultType
+    let expectedType ← mkMonadApp (← read).doBlockResultType
     withTermInfoContext' elabFn.declName stx (expectedType := expectedType) do
       try
         elabFn.value stx cont
@@ -803,7 +901,7 @@ partial def elabDoElem (stx : TSyntax `doElem) (cont : DoElemCont) (catchExPostp
   checkSystem "do element elaborator"
   profileitM Exception "do element elaborator" (decl := k) (← getOptions) <|
   withRef stx <| withIncRecDepth <| withFreshMacroScope <| do
-  let mγ ← mkMonadicType (← read).doBlockResultType
+  let mγ ← mkMonadApp (← read).doBlockResultType
   if (← read).deadCode matches .deadSyntactically then
     logWarningAt stx "This `do` element and its control-flow region are dead code. Consider removing it."
     return ← mkFreshExprMVar mγ (userName := `deadCode)
@@ -846,22 +944,22 @@ partial def elabDoSeq (doSeq : TSyntax ``doSeq) (cont : DoElemCont) (catchExPost
     | .internal id _ =>
       if catchExPostpone && id == postponeExceptionId then
         s.restore
-        let expectedType ← mkMonadicType (← read).doBlockResultType
+        let expectedType ← mkMonadApp (← read).doBlockResultType
         doElabToSyntax m!"do sequence {doSeq}" (elabDoSeq doSeq cont) (Term.postponeElabTerm · expectedType)
       else
         throw ex
     | _ => throw ex
 
--- @[builtin_term_elab liftMethod]
+-- @[builtin_term_elab nestedAction]
 def elabNestedAction : Term.TermElab := fun stx _ty? => do
   let `(← $_rhs) := stx | throwUnsupportedSyntax
   throwErrorAt stx "Nested action `{stx}` must be nested inside a `do` expression."
 
--- @[builtin_term_elab «do»] -- once the legacy `do` elaborator has been phased out
-def elabDo : Term.TermElab := fun e expectedType? => do
-  let `(do $doSeq) := e | throwError "unexpected `do` block syntax{indentD e}"
+/-- Elaborate `doSeq` using `ops` for pure/bind construction. -/
+def elabDoWith (ops : DoOps) (doSeq : TSyntax ``doSeq)
+    (expectedType? : Option Expr) : TermElabM Expr := do
   Term.tryPostponeIfNoneOrMVar expectedType?
-  let ctx ← mkContext expectedType?
+  let ctx ← mkContext expectedType? (ops := ops)
   let cont ← DoElemCont.mkPure ctx.doBlockResultType
   let res ← elabDoSeq doSeq cont |>.run ctx
   -- Synthesizing default instances here is harmful for expressions such as
@@ -874,3 +972,8 @@ def elabDo : Term.TermElab := fun e expectedType? => do
   -- Term.synthesizeSyntheticMVarsUsingDefault
   trace[Elab.do] "{← instantiateMVars res}"
   pure res
+
+-- @[builtin_term_elab «do»] -- once the legacy `do` elaborator has been phased out
+def elabDo : Term.TermElab := fun e expectedType? => do
+  let `(do $doSeq) := e | throwError "unexpected `do` block syntax{indentD e}"
+  elabDoWith .default doSeq expectedType?

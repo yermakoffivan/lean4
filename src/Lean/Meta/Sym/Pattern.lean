@@ -232,12 +232,12 @@ already exposed the intended binders).
 public partial def Pattern.forallTelescope (type : Expr) (num? : Option Nat) (k : Array Expr → Expr → MetaM α) : MetaM α := do
   let hugeNumber := 10000000
   let num := num?.getD hugeNumber
-  let rec go (fvars : Array Expr) (type : Expr) : MetaM α := do
-    if let .forallE n d b bi := type then
-      if fvars.size < num then
-        return ← withLocalDecl n bi (d.instantiateRev fvars) fun fvar => go (fvars.push fvar) b
+  let rec go (i : Nat) (fvars : Array Expr) (type : Expr) : MetaM α := do
+    if i < num then
+      if let .forallE n d b bi := type then
+        return ← withLocalDecl n bi (d.instantiateRev fvars) fun fvar => go (i+1) (fvars.push fvar) b
     k fvars (type.instantiateRev fvars)
-  go #[] type
+  go 0 #[] type
 
 def mkPatternFromType (levelParams : List Name) (type : Expr) (num? : Option Nat) : MetaM Pattern :=
   Pattern.forallTelescope type num? fun xs body => mkPatternFVars xs body levelParams

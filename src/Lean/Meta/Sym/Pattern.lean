@@ -221,8 +221,8 @@ public def mkPatternFVars (xs : Array Expr) (e : Expr) (levelParams : List Name 
   return { levelParams, varTypes, pattern, fnInfos, varInfos?, checkTypeMask? }
 
 def mkPatternFromType (levelParams : List Name) (type : Expr) (num? : Option Nat) : MetaM Pattern :=
-  -- `forallTelescope` is non-reducing, so only literal binders are peeled; a reducing telescope could
-  -- unfold a reducible conclusion (e.g. `⊢ₛ`) into further binders, changing the pattern.
+  -- A reducing telescope would unfold a reducible conclusion into extra binders, changing the
+  -- pattern, so the unbounded case peels only literal binders via `forallTelescope`.
   match num? with
   | none   => forallTelescope type fun xs body => mkPatternFVars xs body levelParams
   | some n => forallBoundedTelescope type (some n) fun xs body => mkPatternFVars xs body levelParams

@@ -9,6 +9,7 @@ Author: Leonardo de Moura
 #include <vector>
 #include <deque>
 #include <cmath>
+#include <charconv>
 #include <lean/lean.h>
 #include "runtime/object.h"
 #include "runtime/thread.h"
@@ -2454,7 +2455,11 @@ extern "C" LEAN_EXPORT uint64 lean_string_hash(b_obj_arg s) {
 }
 
 extern "C" LEAN_EXPORT obj_res lean_string_of_usize(size_t n) {
-    return mk_ascii_string_unchecked(std::to_string(n));
+    char buf[21];
+    std::to_chars_result result = std::to_chars(buf, buf + sizeof(buf) - 1, n, 10);
+    assert(result.ec == std::errc());
+    *result.ptr = '\0';
+    return mk_ascii_string_unchecked(buf);
 }
 
 extern "C" LEAN_EXPORT uint8_t lean_string_memcmp(b_obj_arg s1, b_obj_arg s2, b_obj_arg lstart, b_obj_arg rstart, b_obj_arg len) {

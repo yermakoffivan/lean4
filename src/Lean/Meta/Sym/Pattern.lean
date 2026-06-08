@@ -221,11 +221,10 @@ public def mkPatternFVars (xs : Array Expr) (e : Expr) (levelParams : List Name 
   return { levelParams, varTypes, pattern, fnInfos, varInfos?, checkTypeMask? }
 
 def mkPatternFromType (levelParams : List Name) (type : Expr) (num? : Option Nat) : MetaM Pattern :=
-  -- A reducing telescope would unfold a reducible conclusion into extra binders, changing the
-  -- pattern, so the unbounded case peels only literal binders via `forallTelescope`.
-  match num? with
-  | none   => forallTelescope type fun xs body => mkPatternFVars xs body levelParams
-  | some n => forallBoundedTelescope type (some n) fun xs body => mkPatternFVars xs body levelParams
+  -- `forallBoundedTelescope` whnf-reduces the conclusion; at the default transparency it would unfold
+  -- a definition expanding to `∀ …` into extra pattern variables. `withReducible` peels only what
+  -- `preprocessType` already exposed.
+  withReducible <| forallBoundedTelescope type num? fun xs body => mkPatternFVars xs body levelParams
 
 /--
 Creates a `Pattern` from the type of a theorem.

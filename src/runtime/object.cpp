@@ -281,6 +281,7 @@ extern "C" LEAN_EXPORT void lean_free_object(lean_object * o) {
 
 static inline lean_object * get_next(lean_object * o) {
     if (sizeof(void*) == 8) {
+        o = (lean_object*)__builtin_assume_aligned(o, 4);
         size_t header = ((size_t*)o)[0];
         LEAN_BYTE(header, 7) = 0;
         LEAN_BYTE(header, 6) = 0;

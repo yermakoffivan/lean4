@@ -92,7 +92,7 @@ public structure SpecTheoremsNew where
 
 public def mkTriplePatternFromExpr (expr : Expr) (levelParams : List Name := []) : SymM Pattern := do
   let (levelParams, type) ← Sym.preprocessExprPattern expr levelParams
-  forallTelescope type fun xs body => do
+  Sym.Pattern.forallTelescope type none fun xs body => do
     let_expr Triple _m _ps _inst _α prog _P _Q := body | throwError "conclusion is not a Triple {indentExpr body}"
     Sym.mkPatternFVars xs prog levelParams
 
@@ -164,7 +164,7 @@ so the discrimination tree key includes all arguments.
 -/
 public def mkSpecTheoremNewFromSimpDecl? (declName : Name) (prio : Nat) : MetaM (Option SpecTheoremNew) := do
   let (levelParams, type) ← Sym.preprocessDeclPattern declName
-  let (pattern, eqTy, rhs) ← forallTelescope type fun xs body => do
+  let (pattern, eqTy, rhs) ← Sym.Pattern.forallTelescope type none fun xs body => do
     let_expr Eq eqTy lhs rhs := body | throwError "conclusion is not an equality{indentExpr body}"
     return (← Sym.mkPatternFVars xs lhs levelParams, eqTy.abstract xs, rhs.abstract xs)
   let (pattern, etaArgs) := etaExpandEqPattern pattern eqTy

@@ -4,7 +4,8 @@ open Lean Meta Sym
 /-!
 Tests for `mkPatternFVars`, the telescope-agnostic `Sym.Pattern` constructor. Covers abstracting
 over an array that mixes free variables (from `forallTelescope`) and metavariables (from
-`forallMetaTelescope`), the `usedOnly` option, and building patterns from lambda/let telescopes.
+`forallMetaTelescope`), the `usedOnly` option, building patterns from lambda/let telescopes, and
+building a simproc-style pattern from an expression with a metavariable wildcard (#12569).
 -/
 
 opaque a : Nat
@@ -79,3 +80,25 @@ def testLet : SymM Unit := do
 /-- info: a -/
 #guard_msgs in
 #eval SymM.run testLet
+
+/--
+Regression test for #12569: a simproc trigger pattern given as an expression with a metavariable
+wildcard (`Nat.succ ?m`) is built directly with `mkPatternFVars`, abstracting the metavariable.
+The discrimination-tree keys are `[Nat.succ, *]` and it matches `Nat.succ 42`. `mkPatternFVars`
+handles the metavariable directly, so no `abstractMVars`/lambda detour is needed.
+-/
+def testMVarWildcard : MetaM Unit := do
+  let natMVar ← mkFreshExprMVar (mkConst ``Nat)
+  let e := mkApp (mkConst ``Nat.succ) natMVar
+  let pattern ← mkPatternFVars #[natMVar] e
+  let d : DiscrTree Bool := Sym.insertPattern {} pattern true
+  let tgt := mkApp (mkConst ``Nat.succ) (mkNatLit 42)
+  logInfo m!"keys: {pattern.mkDiscrTreeKeys}\nmatch: {Sym.getMatch d tgt}\nover-applied: {Sym.getMatchWithExtra d tgt}"
+
+/--
+info: keys: [Nat.succ, *]
+match: [true]
+over-applied: [(true, 0)]
+-/
+#guard_msgs in
+#eval testMVarWildcard

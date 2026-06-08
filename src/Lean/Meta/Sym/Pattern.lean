@@ -221,14 +221,6 @@ public def mkPatternFVars (xs : Array Expr) (e : Expr) (levelParams : List Name 
   let varInfos? ← mkProofInstArgInfo? xs
   return { levelParams, varTypes, pattern, fnInfos, varInfos?, checkTypeMask? }
 
-private partial def forallTelescopeAux (num : Nat) (k : Array Expr → Expr → MetaM α)
-    (fvars : Array Expr) (type : Expr) : MetaM α := do
-  if let .forallE n d b bi := type then
-    if fvars.size < num then
-      return ← withLocalDecl n bi (d.instantiateRev fvars) fun fvar =>
-        forallTelescopeAux num k (fvars.push fvar) b
-  k fvars (type.instantiateRev fvars)
-
 /--
 Opens the leading binders of a (preprocessed) pattern `type` as free variables and runs `k` with
 them and the conclusion. If `num? = some n`, at most `n` binders are opened.
@@ -237,9 +229,15 @@ Only literal `∀`-binders are peeled; the conclusion is never reduced, so a con
 unfold to `∀ …` is left intact rather than peeled into extra pattern variables (`preprocessType`
 already exposed the intended binders).
 -/
-public def Pattern.forallTelescope (type : Expr) (num? : Option Nat) (k : Array Expr → Expr → MetaM α) : MetaM α :=
+public partial def Pattern.forallTelescope (type : Expr) (num? : Option Nat) (k : Array Expr → Expr → MetaM α) : MetaM α := do
   let hugeNumber := 10000000
-  forallTelescopeAux (num?.getD hugeNumber) k #[] type
+  let num := num?.getD hugeNumber
+  let rec go (fvars : Array Expr) (type : Expr) : MetaM α := do
+    if let .forallE n d b bi := type then
+      if fvars.size < num then
+        return ← withLocalDecl n bi (d.instantiateRev fvars) fun fvar => go (fvars.push fvar) b
+    k fvars (type.instantiateRev fvars)
+  go #[] type
 
 def mkPatternFromType (levelParams : List Name) (type : Expr) (num? : Option Nat) : MetaM Pattern :=
   Pattern.forallTelescope type num? fun xs body => mkPatternFVars xs body levelParams

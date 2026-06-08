@@ -91,7 +91,7 @@ public structure SpecTheoremsNew where
   deriving Inhabited
 
 public def mkTriplePatternFromExpr (expr : Expr) (levelParams : List Name := []) : SymM Pattern := do
-  Prod.fst <$> Sym.mkPatternFromExprWithKey expr levelParams fun type => do
+  Prod.fst <$> Sym.mkPatternFromExprWithKey expr levelParams fun _abstract type => do
     let_expr Triple _m _ps _inst _α prog _P _Q := type | throwError "conclusion is not a Triple {indentExpr type}"
     return (prog, ())
 
@@ -162,9 +162,9 @@ may be between functions rather than values. In that case, the pattern is eta-ex
 so the discrimination tree key includes all arguments.
 -/
 public def mkSpecTheoremNewFromSimpDecl? (declName : Name) (prio : Nat) : MetaM (Option SpecTheoremNew) := do
-  let (pattern, (eqTy, rhs)) ← Sym.mkPatternFromDeclWithKey declName fun body => do
+  let (pattern, (eqTy, rhs)) ← Sym.mkPatternFromDeclWithKey declName fun abstract body => do
     let_expr Eq eqTy lhs rhs := body | throwError "conclusion is not an equality{indentExpr body}"
-    return (lhs, (eqTy, rhs))
+    return (lhs, (abstract eqTy, abstract rhs))
   let (pattern, etaArgs) := etaExpandEqPattern pattern eqTy
   -- Skip no-op equations where LHS and RHS are the same after `unfoldReducible`.
   -- E.g., `getThe.eq_1 : getThe σ = MonadStateOf.get` becomes a no-op because

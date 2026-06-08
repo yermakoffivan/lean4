@@ -29,7 +29,7 @@ info: Match SUCCEEDED: 2 levels, 6 args
   let info ← getConstInfo ``Spec.get_StateT
   let levelParams := info.levelParams
   let proof := mkConst ``Spec.get_StateT (levelParams.map mkLevelParam)
-  let (pat, _) ← Sym.mkPatternFromExprWithKey proof levelParams fun type => do
+  let (pat, _) ← Sym.mkPatternFromExprWithKey proof levelParams fun _abstract type => do
     let_expr Triple _m _ps _inst _α prog _P _Q := type
       | throwError "not a Triple: {type}"
     return (prog, ())

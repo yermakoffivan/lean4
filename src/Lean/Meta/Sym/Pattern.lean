@@ -19,6 +19,8 @@ import Lean.Meta.Sym.Offset
 import Lean.Meta.Sym.Eta
 import Lean.Meta.Sym.Util
 import Lean.Meta.HasAssignableMVar
+import Lean.Util.CollectFVars
+import Lean.Util.CollectMVars
 import Init.Data.List.MapIdx
 import Init.Data.Nat.Linear
 import Std.Do.Triple.Basic
@@ -174,23 +176,54 @@ where
       else
         mask
 
-def mkPatternCore (type : Expr) (levelParams : List Name) (varTypes : Array Expr) (pattern : Expr) : MetaM Pattern := do
+/--
+Keeps only the variables in `xs` that `e` depends on, transitively through binder-domain types,
+preserving order. Used to implement the `usedOnly` option of `mkPatternFVars`.
+
+This computes the same set as the `usedOnly` option of `Meta.mkForallFVars`/`MetavarContext.mkBinding`:
+`xs[i]` is kept iff it occurs in `e` or in the type of some kept `xs[j]` with `j > i`. Both free
+variables and metavariables are tracked, so `xs` may freely mix the two.
+-/
+def usedVars (xs : Array Expr) (e : Expr) : MetaM (Array Expr) := do
+  let mut sf := collectFVars {} e
+  let mut sm := e.collectMVars {}
+  let mut keep := #[]
+  for x in xs.reverse do
+    let used := if x.isMVar then sm.result.contains x.mvarId! else sf.fvarSet.contains x.fvarId!
+    if used then
+      keep := keep.push x
+      let t ← inferType x
+      sf := collectFVars sf t
+      sm := t.collectMVars sm
+  return keep.reverse
+
+/--
+Creates a `Pattern` by abstracting the free variables and metavariables `xs` out of `e`.
+
+`xs` are the binders opened by some telescope (`forallTelescope`, `lambdaTelescope`,
+`lambdaLetTelescope`, `forallMetaTelescope`, ...) and `e` is the selected key. Each entry of `xs`
+becomes a pattern variable, in order, and may be either a free variable or a metavariable.
+
+If `usedOnly := true`, only the variables `e` actually depends on become pattern variables; the
+rest are dropped (see `usedVars`).
+-/
+public def mkPatternFVars (xs : Array Expr) (e : Expr) (levelParams : List Name := []) (usedOnly := false) : MetaM Pattern := do
+  let xs ← if usedOnly then usedVars xs e else pure xs
+  let pattern := e.abstract xs
+  let mut varTypes := #[]
+  for h : i in [0:xs.size] do
+    varTypes := varTypes.push ((← inferType xs[i]).abstractRange i xs)
   let fnInfos ← mkProofInstInfoMapFor pattern
-  let checkTypeMask := mkCheckTypeMask pattern varTypes.size
+  let checkTypeMask := mkCheckTypeMask pattern xs.size
   let checkTypeMask? := if checkTypeMask.all (· == false) then none else some checkTypeMask
-  let varInfos? ← forallBoundedTelescope type varTypes.size fun xs _ =>
-    mkProofInstArgInfo? xs
+  let varInfos? ← mkProofInstArgInfo? xs
   return { levelParams, varTypes, pattern, fnInfos, varInfos?, checkTypeMask? }
 
 def mkPatternFromType (levelParams : List Name) (type : Expr) (num? : Option Nat) : MetaM Pattern := do
-  let hugeNumber := 10000000
-  let num := num?.getD hugeNumber
-  let rec go (i : Nat) (pattern : Expr) (varTypes : Array Expr) : MetaM Pattern := do
-    if i < num then
-      if let .forallE _ d b _ := pattern then
-        return (← go (i+1) b (varTypes.push d))
-    mkPatternCore type levelParams varTypes pattern
-  go 0 type #[]
+  -- Peel only literal binders: a reducing telescope could unfold a reducible conclusion (e.g. `⊢ₛ`)
+  -- into further binders, changing the pattern.
+  let n := min (num?.getD type.getNumHeadForalls) type.getNumHeadForalls
+  forallBoundedTelescope type (some n) fun xs body => mkPatternFVars xs body levelParams
 
 /--
 Creates a `Pattern` from the type of a theorem.
@@ -214,15 +247,10 @@ public def mkPatternFromExpr (e : Expr) (levelParams : List Name := []) (num? : 
   mkPatternFromType levelParams type num?
 
 @[inline]
-def mkPatternFromTypeWithKey (levelParams : List Name) (type : Expr) (selectKey : Expr → MetaM (Expr × α)) : MetaM (Pattern × α) := do
-  let rec go (pattern : Expr) (varTypes : Array Expr) : MetaM (Pattern × α) := do
-    if let .forallE _ d b _ := pattern then
-      return (← go b (varTypes.push d))
-    else
-      let (key, a) ← selectKey pattern
-      let pattern ← mkPatternCore type levelParams varTypes key
-      return (pattern, a)
-  go type #[]
+def mkPatternFromTypeWithKey (levelParams : List Name) (type : Expr) (selectKey : (Expr → Expr) → Expr → MetaM (Expr × α)) : MetaM (Pattern × α) :=
+  forallBoundedTelescope type (some type.getNumHeadForalls) fun xs body => do
+    let (key, a) ← selectKey (·.abstract xs) body
+    return (← mkPatternFVars xs key levelParams, a)
 
 /--
 Creates a `Pattern` from a theorem, using the supplied selection function to extract the key from
@@ -233,11 +261,16 @@ Like `mkPatternFromDecl`, this strips all leading universal quantifiers, recordi
 types and instance status. However, instead of using the entire resulting type as the pattern,
 it uses the selection function to extract the key.
 
+`selectKey` runs under the stripped binders, which are presented as free variables, and receives an
+`abstract` function. The returned key is abstracted automatically; apply `abstract` to any other
+expressions carried out in the result so they refer to the pattern variables instead of the free
+variables.
+
 For a theorem `∀ x₁ ... xₙ, type`, returns a pattern matching the first component of `selectKey type`
 with `n` pattern variables.
 -/
 @[inline]
-public def mkPatternFromDeclWithKey (declName : Name) (selectKey : Expr → MetaM (Expr × α)) : MetaM (Pattern × α) := do
+public def mkPatternFromDeclWithKey (declName : Name) (selectKey : (Expr → Expr) → Expr → MetaM (Expr × α)) : MetaM (Pattern × α) := do
   let (levelParams, type) ← preprocessDeclPattern declName
   mkPatternFromTypeWithKey levelParams type selectKey
 
@@ -246,7 +279,7 @@ Like `mkPatternFromDeclWithKey`, but for a complex proof expression instead of t
 theorem.
 -/
 @[inline]
-public def mkPatternFromExprWithKey (e : Expr) (levelParams : List Name := []) (selectKey : Expr → MetaM (Expr × α)) : MetaM (Pattern × α) := do
+public def mkPatternFromExprWithKey (e : Expr) (levelParams : List Name := []) (selectKey : (Expr → Expr) → Expr → MetaM (Expr × α)) : MetaM (Pattern × α) := do
   let (levelParams, type) ← preprocessExprPattern e levelParams
   mkPatternFromTypeWithKey levelParams type selectKey
 
@@ -262,9 +295,9 @@ For a theorem `∀ x₁ ... xₙ, lhs = rhs`, returns a pattern matching `lhs` w
 Throws an error if the theorem's conclusion is not an equality.
 -/
 public def mkEqPatternFromDecl (declName : Name) : MetaM (Pattern × Expr) := do
-  mkPatternFromDeclWithKey declName fun type => do
+  mkPatternFromDeclWithKey declName fun abstract type => do
     let_expr Eq _ lhs rhs := type | throwError "conclusion is not a equality{indentExpr type}"
-    return (lhs, rhs)
+    return (lhs, abstract rhs)
 
 structure UnifyM.Context where
   pattern   : Pattern

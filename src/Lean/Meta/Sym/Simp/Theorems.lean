@@ -112,11 +112,11 @@ rewrite rule in `Sym.simp`. Handles:
 - `p ↔ q` — adapted to `p = q`
 - `p` (proposition) — adapted to `p = True`
 -/
-private def selectEqKey (type : Expr) : MetaM (Expr × Expr × EqAdaptation) := do
+private def selectEqKey (abstract : Expr → Expr) (type : Expr) : MetaM (Expr × Expr × EqAdaptation) := do
   match_expr type with
-  | Eq _ lhs rhs => return (lhs, rhs, .eq)
+  | Eq _ lhs rhs => return (lhs, abstract rhs, .eq)
   | Not p => return (p, mkConst ``False, .eqFalse)
-  | Iff lhs rhs => return (lhs, rhs, .iff)
+  | Iff lhs rhs => return (lhs, abstract rhs, .iff)
   | _ =>
     unless (← isProp type) do
       throwError "cannot use as a simp theorem, conclusion is not a proposition{indentExpr type}"

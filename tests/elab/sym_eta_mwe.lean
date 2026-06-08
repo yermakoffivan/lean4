@@ -14,7 +14,7 @@ open Lean Meta Sym Std Do
 private def mkProgPattern (declName : Name) : MetaM Pattern := do
   let ci ← getConstInfo declName
   let expr ← mkExpectedTypeHint (← mkConstWithLevelParams declName) ci.type
-  Prod.fst <$> (mkPatternFromExprWithKey expr ci.levelParams fun type => do
+  Prod.fst <$> (mkPatternFromExprWithKey expr ci.levelParams fun _abstract type => do
     let type ← whnfR type
     let_expr Triple _m _ps _inst _α prog _P _Q := type
       | throwError "not a Triple: {indentExpr type}"

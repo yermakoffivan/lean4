@@ -105,8 +105,8 @@ def isUVar? (n : Name) : Option Nat := Id.run do
   unless p == uvarPrefix do return none
   return some idx
 
-/-- Helper function for implementing `mkPatternFromDecl` and `mkEqPatternFromDecl` -/
-def preprocessDeclPattern (declName : Name) : MetaM (List Name × Expr) := do
+/-- Renames the universe parameters of `declName` to `_uvar.*` and normalizes its type for use as a pattern. -/
+public def preprocessDeclPattern (declName : Name) : MetaM (List Name × Expr) := do
   let info ← getConstInfo declName
   let levelParams := info.levelParams.mapIdx fun i _ => Name.num uvarPrefix i
   let us := levelParams.map mkLevelParam
@@ -115,7 +115,8 @@ def preprocessDeclPattern (declName : Name) : MetaM (List Name × Expr) := do
   let type ← normalizeLevels type
   return (levelParams, type)
 
-def preprocessExprPattern (e : Expr) (levelParams₀ : List Name) : MetaM (List Name × Expr) := do
+/-- Renames `levelParams₀` to `_uvar.*` and normalizes the type of `e` for use as a pattern. -/
+public def preprocessExprPattern (e : Expr) (levelParams₀ : List Name) : MetaM (List Name × Expr) := do
   let type ← inferType e
   let levelParams := levelParams₀.mapIdx fun i _ => Name.num uvarPrefix i
   let us := levelParams.map mkLevelParam
@@ -219,11 +220,12 @@ public def mkPatternFVars (xs : Array Expr) (e : Expr) (levelParams : List Name 
   let varInfos? ← mkProofInstArgInfo? xs
   return { levelParams, varTypes, pattern, fnInfos, varInfos?, checkTypeMask? }
 
-def mkPatternFromType (levelParams : List Name) (type : Expr) (num? : Option Nat) : MetaM Pattern := do
-  -- Peel only literal binders: a reducing telescope could unfold a reducible conclusion (e.g. `⊢ₛ`)
-  -- into further binders, changing the pattern.
-  let n := min (num?.getD type.getNumHeadForalls) type.getNumHeadForalls
-  forallBoundedTelescope type (some n) fun xs body => mkPatternFVars xs body levelParams
+def mkPatternFromType (levelParams : List Name) (type : Expr) (num? : Option Nat) : MetaM Pattern :=
+  -- `forallTelescope` is non-reducing, so only literal binders are peeled; a reducing telescope could
+  -- unfold a reducible conclusion (e.g. `⊢ₛ`) into further binders, changing the pattern.
+  match num? with
+  | none   => forallTelescope type fun xs body => mkPatternFVars xs body levelParams
+  | some n => forallBoundedTelescope type (some n) fun xs body => mkPatternFVars xs body levelParams
 
 /--
 Creates a `Pattern` from the type of a theorem.
@@ -246,43 +248,6 @@ public def mkPatternFromExpr (e : Expr) (levelParams : List Name := []) (num? : 
   let (levelParams, type) ← preprocessExprPattern e levelParams
   mkPatternFromType levelParams type num?
 
-@[inline]
-def mkPatternFromTypeWithKey (levelParams : List Name) (type : Expr) (selectKey : (Expr → Expr) → Expr → MetaM (Expr × α)) : MetaM (Pattern × α) :=
-  forallBoundedTelescope type (some type.getNumHeadForalls) fun xs body => do
-    let (key, a) ← selectKey (·.abstract xs) body
-    return (← mkPatternFVars xs key levelParams, a)
-
-/--
-Creates a `Pattern` from a theorem, using the supplied selection function to extract the key from
-the theorem's result type.
-
-This function is used to implement `mkEqPatternFromDecl`.
-Like `mkPatternFromDecl`, this strips all leading universal quantifiers, recording variable
-types and instance status. However, instead of using the entire resulting type as the pattern,
-it uses the selection function to extract the key.
-
-`selectKey` runs under the stripped binders, which are presented as free variables, and receives an
-`abstract` function. The returned key is abstracted automatically; apply `abstract` to any other
-expressions carried out in the result so they refer to the pattern variables instead of the free
-variables.
-
-For a theorem `∀ x₁ ... xₙ, type`, returns a pattern matching the first component of `selectKey type`
-with `n` pattern variables.
--/
-@[inline]
-public def mkPatternFromDeclWithKey (declName : Name) (selectKey : (Expr → Expr) → Expr → MetaM (Expr × α)) : MetaM (Pattern × α) := do
-  let (levelParams, type) ← preprocessDeclPattern declName
-  mkPatternFromTypeWithKey levelParams type selectKey
-
-/--
-Like `mkPatternFromDeclWithKey`, but for a complex proof expression instead of the declaration of a
-theorem.
--/
-@[inline]
-public def mkPatternFromExprWithKey (e : Expr) (levelParams : List Name := []) (selectKey : (Expr → Expr) → Expr → MetaM (Expr × α)) : MetaM (Pattern × α) := do
-  let (levelParams, type) ← preprocessExprPattern e levelParams
-  mkPatternFromTypeWithKey levelParams type selectKey
-
 /--
 Creates a `Pattern` from an equational theorem, using the left-hand side of the equation.
 It also returns the right-hand side of the equation
@@ -295,9 +260,10 @@ For a theorem `∀ x₁ ... xₙ, lhs = rhs`, returns a pattern matching `lhs` w
 Throws an error if the theorem's conclusion is not an equality.
 -/
 public def mkEqPatternFromDecl (declName : Name) : MetaM (Pattern × Expr) := do
-  mkPatternFromDeclWithKey declName fun abstract type => do
-    let_expr Eq _ lhs rhs := type | throwError "conclusion is not a equality{indentExpr type}"
-    return (lhs, abstract rhs)
+  let (levelParams, type) ← preprocessDeclPattern declName
+  forallTelescope type fun xs body => do
+    let_expr Eq _ lhs rhs := body | throwError "conclusion is not a equality{indentExpr body}"
+    return (← mkPatternFVars xs lhs levelParams, rhs.abstract xs)
 
 structure UnifyM.Context where
   pattern   : Pattern

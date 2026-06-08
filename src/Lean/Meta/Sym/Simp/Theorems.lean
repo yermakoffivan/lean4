@@ -112,11 +112,11 @@ rewrite rule in `Sym.simp`. Handles:
 - `p ↔ q` — adapted to `p = q`
 - `p` (proposition) — adapted to `p = True`
 -/
-private def selectEqKey (abstract : Expr → Expr) (type : Expr) : MetaM (Expr × Expr × EqAdaptation) := do
+private def selectEqKey (type : Expr) : MetaM (Expr × Expr × EqAdaptation) := do
   match_expr type with
-  | Eq _ lhs rhs => return (lhs, abstract rhs, .eq)
+  | Eq _ lhs rhs => return (lhs, rhs, .eq)
   | Not p => return (p, mkConst ``False, .eqFalse)
-  | Iff lhs rhs => return (lhs, abstract rhs, .iff)
+  | Iff lhs rhs => return (lhs, rhs, .iff)
   | _ =>
     unless (← isProp type) do
       throwError "cannot use as a simp theorem, conclusion is not a proposition{indentExpr type}"
@@ -145,17 +145,25 @@ where
       mkLambdaFVars xs (← wrap h)
 
 def mkTheoremFromDecl (declName : Name) : MetaM Theorem := do
-  let (pattern, (rhs, adaptation)) ← mkPatternFromDeclWithKey declName selectEqKey
-  let expr ← wrapProof pattern.varTypes.size (mkConst declName) adaptation
-  let perm := isPerm pattern.varTypes.size pattern.pattern rhs
-  return { expr, pattern, rhs, perm }
+  let (levelParams, type) ← preprocessDeclPattern declName
+  forallTelescope type fun xs body => do
+    let (key, rhs, adaptation) ← selectEqKey body
+    let pattern ← mkPatternFVars xs key levelParams
+    let rhs := rhs.abstract xs
+    let expr ← wrapProof pattern.varTypes.size (mkConst declName) adaptation
+    let perm := isPerm pattern.varTypes.size pattern.pattern rhs
+    return { expr, pattern, rhs, perm }
 
 /-- Create a `Theorem` from a proof expression. Handles equalities, `¬`, `↔`, and propositions. -/
 def mkTheoremFromExpr (e : Expr) : MetaM Theorem := do
-  let (pattern, (rhs, adaptation)) ← mkPatternFromExprWithKey e [] selectEqKey
-  let expr ← wrapProof pattern.varTypes.size e adaptation
-  let perm := isPerm pattern.varTypes.size pattern.pattern rhs
-  return { expr, pattern, rhs, perm }
+  let (levelParams, type) ← preprocessExprPattern e []
+  forallTelescope type fun xs body => do
+    let (key, rhs, adaptation) ← selectEqKey body
+    let pattern ← mkPatternFVars xs key levelParams
+    let rhs := rhs.abstract xs
+    let expr ← wrapProof pattern.varTypes.size e adaptation
+    let perm := isPerm pattern.varTypes.size pattern.pattern rhs
+    return { expr, pattern, rhs, perm }
 
 /--
 Environment extension storing a set of `Sym.Simp` theorems.

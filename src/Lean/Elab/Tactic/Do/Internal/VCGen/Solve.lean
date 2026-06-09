@@ -18,7 +18,7 @@ public meta import Lean.Elab.Tactic.Basic
 public meta import Lean.Elab.Tactic.Do.Attr
 public import Lean.Meta.Sym.AlphaShareBuilder
 public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleCache
-public import Lean.Elab.Tactic.Do.Internal.VCGen.Utils
+public import Lean.Elab.Tactic.Do.Internal.VCGen.Util
 public import Lean.Elab.Tactic.Do.Internal.VCGen.EPost
 
 open Lean Meta Elab Tactic Sym Internal Std.Internal Do Internal.SpecAttr

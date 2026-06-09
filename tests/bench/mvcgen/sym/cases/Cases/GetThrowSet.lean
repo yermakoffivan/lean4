@@ -10,7 +10,6 @@ never fires, so the program never throws and ends at state `n`.
 
 open Lean Meta Order Std.Internal.Do
 
-set_option new_wp_monad true
 set_option mvcgen.warning false
 
 namespace GetThrowSet

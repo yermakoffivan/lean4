@@ -13,7 +13,6 @@ through the deep stack using these specs.
 
 open Lean Parser Meta Elab Tactic Sym Lean.Order Std.Internal.Do
 
-set_option new_wp_monad true
 set_option mvcgen.warning false
 
 namespace AddSubCancelDeep

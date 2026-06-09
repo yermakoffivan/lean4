@@ -10,7 +10,6 @@ Exercises partially-evaluated `read`/`get`/`set` specs for the reader+state stac
 
 open Lean Meta Order Std.Internal.Do
 
-set_option new_wp_monad true
 set_option mvcgen.warning false
 
 namespace ReaderState

@@ -11,7 +11,9 @@ public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleConstruct.Spec
 public section
 namespace Lean.Elab.Tactic.Do.Internal.VCGen
 
-open Lean Meta Lean.Order Sym Std.Internal.Do
+open Lean Meta Sym Internal Std.Internal Do Internal.SpecAttr
+open Lean.Order
+
 
 /-!
 Construction of backward rules from equality specs.

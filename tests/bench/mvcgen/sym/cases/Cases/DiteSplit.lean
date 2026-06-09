@@ -9,7 +9,6 @@ program. The add/sub around the guarded `throw` keeps the state unchanged on the
 
 open Lean Meta Order Std.Internal.Do
 
-set_option new_wp_monad true
 set_option mvcgen.warning false
 
 namespace DiteSplit

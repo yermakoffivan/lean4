@@ -9,7 +9,6 @@ loop preserves the state. Exercises the `get`/`set` `StateT` specs in the simple
 
 open Lean Meta Order Std.Internal.Do
 
-set_option new_wp_monad true
 set_option mvcgen.warning false
 
 namespace AddSubCancel

@@ -20,7 +20,7 @@ public import Lean.Elab.Tactic.Do.Internal.VCGen.Driver
 public import Lean.Elab.Tactic.Do.Internal.VCGen.Frontend
 
 /-!
-The `lmvcgen` tactic, split across the modules above.
+The `mvcgen` tactic, split across the modules above.
 
 - `VCGen.Types` — `VCGenM`, its `Context`/`Scope`/`State`, config-facing types, and shared caches.
 - `VCGen.SpecDB` — spec theorem database migration and lookup.
@@ -33,5 +33,5 @@ The `lmvcgen` tactic, split across the modules above.
 - `VCGen.RuleCache` — `VCGenM` cache wrappers around rule constructors.
 - `VCGen.Solve` — the main `solve` step and goal classification.
 - `VCGen.Driver` — the worklist driver (`work`, `emitVC`, `main`, `Result`).
-- `VCGen.Frontend` — the `lmvcgen` syntax, tactic elaborator, and `mkContext`.
+- `VCGen.Frontend` — the `mvcgen` syntax, tactic elaborator, and `mkContext`.
 -/

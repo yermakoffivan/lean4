@@ -23,7 +23,7 @@ open Lean Meta Sym Std.Internal.Do Lean.Order
 open Lean.Elab.Tactic.Do.Internal.SpecAttr
 
 /-!
-Spec-theorem database used by Lean.Elab.Tactic.Do.Internal.VCGen `lmvcgen`.
+Spec-theorem database used by `mvcgen`.
 
 The original `@[spec]` attribute database stores the legacy `SpecTheorems`/`SpecProof` entries.
 This module migrates them into a `Sym.DiscrTree` keyed by an explicit `Sym.Pattern` for the

@@ -366,7 +366,7 @@ if `wp prog ...` holds, then a property `P` holds of the program's result.
 
 /-- Adequacy for `Id`: if `⊤ ⊑ wp prog P` holds, then `P` holds of the result.
 The hypothesis is stated in `⊤ ⊑ wp` form (rather than a bare `wp prog P …`) so that it is the
-shape `mvcgen`/`lmvcgen` decompose directly after `apply Id.of_wp_run_eq`. -/
+shape `mvcgen` decompose directly after `apply Id.of_wp_run_eq`. -/
 theorem Id.of_wp_run_eq {α : Type u} {x : α} {prog : Id α}
   (h : Id.run prog = x) (P : α → Prop)
   (hwp : (⊤ : Prop) ⊑ wp prog P EPost.nil.mk) : P x := by

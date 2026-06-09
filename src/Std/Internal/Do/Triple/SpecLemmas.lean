@@ -598,7 +598,7 @@ variable [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred]
 
 /-- A loop invariant for the specifications of `for ... in ...` loops.
 
-This is a *structure* (not a bare function) so that, when `mvcgen`/`lmvcgen` applies a loop spec,
+This is a *structure* (not a bare function) so that, when `mvcgen` applies a loop spec,
 the loop's entry verification condition has the shape `pre ⊑ Invariant.inv ?s beginCursor` — a
 **projection of the invariant metavariable** `?s` rather than a bare application `?s beginCursor`.
 A bare application would let the reflexivity step higher-order-unify `?s := fun _ => ⊤`, silently

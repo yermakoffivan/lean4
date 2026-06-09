@@ -144,7 +144,7 @@ structure Context where
   the parsed `inv<n>` numbers (out-of-order labels are supported). Empty when no
   `invariants` clause is provided or in `invariants?` (suggest) mode (handled separately). -/
   invariantAlts : Std.HashMap Nat Syntax := {} -- TODO: implement
-  /-- Names supplied via the `lmvcgen (names := [...])` option, used positionally to name the
+  /-- Names supplied via the `mvcgen (names := [...])` option, used positionally to name the
   introduced excess/state arguments (state arg `i` ← `stateArgNames[i]?`). Where no entry applies,
   the quantifier/lemma binder name is kept. `tactic.hygienic` decides accessibility. -/
   stateArgNames : Array Name := #[]

@@ -27,7 +27,7 @@ open Std.Internal.Do
 namespace Lean.Elab.Tactic.Do.Internal.VCGen
 
 /-!
-`lmvcgen` tactic frontend: parse the user-facing argument syntax into a
+`mvcgen` tactic frontend: parse the user-facing argument syntax into a
 `VCGen.Context`, run `VCGen.main`, and replace the main goal with the
 resulting invariants and VCs.
 -/
@@ -35,7 +35,7 @@ resulting invariants and VCs.
 namespace VCGen
 
 /--
-Parse the optional `[...]` argument list for `lmvcgen`, partitioning entries into
+Parse the optional `[...]` argument list for `mvcgen`, partitioning entries into
 spec theorems and simp lemmas. Each entry is first tried as a spec theorem, and on
 failure falls back to a simp/unfold lemma processed via `mkSimpContext`.
 -/

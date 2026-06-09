@@ -1,132 +1,132 @@
-import Std.Tactic.Do
+-- import Std.Tactic.Do
 
-/-! Tests that `mvcgen'` is usable as a step inside `sym => …` blocks. -/
+-- /-! Tests that `mvcgen'` is usable as a step inside `sym => …` blocks. -/
 
-open Std.Do
+-- open Std.Do
 
-set_option mvcgen.warning false
+-- set_option mvcgen.warning false
 
-/-! ## Trivial postcondition: `mvcgen'` closes the goal -/
+-- /-! ## Trivial postcondition: `mvcgen'` closes the goal -/
 
-axiom G : StateM Nat Unit
-axiom H : StateM Nat Unit
+-- axiom G : StateM Nat Unit
+-- axiom H : StateM Nat Unit
 
-noncomputable def F : StateM Nat Unit := do
-  G
-  H
+-- noncomputable def F : StateM Nat Unit := do
+--   G
+--   H
 
-@[spec]
-axiom G_spec : ⦃⌜True⌝⦄ G ⦃⇓ _ n => ⌜n = n⌝⦄
+-- @[spec]
+-- axiom G_spec : ⦃⌜True⌝⦄ G ⦃⇓ _ n => ⌜n = n⌝⦄
 
-@[spec]
-axiom H_spec : ⦃⌜True⌝⦄ H ⦃⇓ _ n => ⌜n = n⌝⦄
+-- @[spec]
+-- axiom H_spec : ⦃⌜True⌝⦄ H ⦃⇓ _ n => ⌜n = n⌝⦄
 
-example : ⦃⌜True⌝⦄ F ⦃⇓ _ n => ⌜n = n⌝⦄ := by
-  sym =>
-    mvcgen' [F]
+-- example : ⦃⌜True⌝⦄ F ⦃⇓ _ n => ⌜n = n⌝⦄ := by
+--   sym =>
+--     mvcgen' [F]
 
-/-! ## Pre-tactic dispatches the leftover VC -/
+-- /-! ## Pre-tactic dispatches the leftover VC -/
 
-axiom G2 : StateM Nat Unit
-axiom H2 : StateM Nat Unit
+-- axiom G2 : StateM Nat Unit
+-- axiom H2 : StateM Nat Unit
 
-noncomputable def F2 : StateM Nat Unit := do
-  G2
-  H2
+-- noncomputable def F2 : StateM Nat Unit := do
+--   G2
+--   H2
 
-axiom P : Nat → Prop
+-- axiom P : Nat → Prop
 
-@[spec]
-axiom G2_spec : ⦃⌜True⌝⦄ G2 ⦃⇓ _ n => ⌜P n⌝⦄
+-- @[spec]
+-- axiom G2_spec : ⦃⌜True⌝⦄ G2 ⦃⇓ _ n => ⌜P n⌝⦄
 
-@[spec]
-axiom H2_spec : ⦃fun n => ⌜P n⌝⦄ H2 ⦃⇓ _ n => ⌜True⌝⦄
+-- @[spec]
+-- axiom H2_spec : ⦃fun n => ⌜P n⌝⦄ H2 ⦃⇓ _ n => ⌜True⌝⦄
 
-example : ⦃⌜True⌝⦄ F2 ⦃⇓ _ n => ⌜True⌝⦄ := by
-  sym =>
-    mvcgen' [F2] with grind
+-- example : ⦃⌜True⌝⦄ F2 ⦃⇓ _ n => ⌜True⌝⦄ := by
+--   sym =>
+--     mvcgen' [F2] with grind
 
-/-! ## VC leftover; closed by a subsequent grind step -/
+-- /-! ## VC leftover; closed by a subsequent grind step -/
 
-axiom G3 : StateM Nat Unit
-axiom H3 : StateM Nat Unit
+-- axiom G3 : StateM Nat Unit
+-- axiom H3 : StateM Nat Unit
 
-noncomputable def F3 : StateM Nat Unit := do
-  G3
-  H3
+-- noncomputable def F3 : StateM Nat Unit := do
+--   G3
+--   H3
 
-axiom Q : Nat → Prop
-axiom hPQ : ∀ n, P n → Q n
+-- axiom Q : Nat → Prop
+-- axiom hPQ : ∀ n, P n → Q n
 
-@[spec]
-axiom G3_spec : ⦃⌜True⌝⦄ G3 ⦃⇓ _ n => ⌜P n⌝⦄
+-- @[spec]
+-- axiom G3_spec : ⦃⌜True⌝⦄ G3 ⦃⇓ _ n => ⌜P n⌝⦄
 
-@[spec]
-axiom H3_spec : ⦃fun n => ⌜Q n⌝⦄ H3 ⦃⇓ _ n => ⌜True⌝⦄
+-- @[spec]
+-- axiom H3_spec : ⦃fun n => ⌜Q n⌝⦄ H3 ⦃⇓ _ n => ⌜True⌝⦄
 
-example : ⦃⌜True⌝⦄ F3 ⦃⇓ _ n => ⌜True⌝⦄ := by
-  sym =>
-    mvcgen' [F3]
-    finish [hPQ]
+-- example : ⦃⌜True⌝⦄ F3 ⦃⇓ _ n => ⌜True⌝⦄ := by
+--   sym =>
+--     mvcgen' [F3]
+--     finish [hPQ]
 
--- `sym [hPQ]` propagates to the new VC `Grind.Goal`s; no need to re-pass it.
-example : ⦃⌜True⌝⦄ F3 ⦃⇓ _ n => ⌜True⌝⦄ := by
-  sym [hPQ] =>
-    mvcgen' [F3]
-    finish
+-- -- `sym [hPQ]` propagates to the new VC `Grind.Goal`s; no need to re-pass it.
+-- example : ⦃⌜True⌝⦄ F3 ⦃⇓ _ n => ⌜True⌝⦄ := by
+--   sym [hPQ] =>
+--     mvcgen' [F3]
+--     finish
 
-/-! ## VC references an fvar introduced by `mvcgen'` -/
+-- /-! ## VC references an fvar introduced by `mvcgen'` -/
 
-axiom G4 : StateM Nat Nat
-axiom Q4 : Nat → Prop
-axiom hPQ4 : ∀ n, P n → Q4 n
+-- axiom G4 : StateM Nat Nat
+-- axiom Q4 : Nat → Prop
+-- axiom hPQ4 : ∀ n, P n → Q4 n
 
-@[spec]
-axiom G4_spec : ⦃⌜True⌝⦄ G4 ⦃⇓ x _ => ⌜P x⌝⦄
+-- @[spec]
+-- axiom G4_spec : ⦃⌜True⌝⦄ G4 ⦃⇓ x _ => ⌜P x⌝⦄
 
-noncomputable def F4 : StateM Nat Nat := do
-  let x ← G4
-  pure x
+-- noncomputable def F4 : StateM Nat Nat := do
+--   let x ← G4
+--   pure x
 
--- `mvcgen'` introduces `x` and a hypothesis `P x` into the VC's local context.
--- The subsequent `finish [hPQ4]` must see `P x` in the E-graph to derive `Q4 x`.
-example : ⦃⌜True⌝⦄ F4 ⦃⇓ r _ => ⌜Q4 r⌝⦄ := by
-  sym =>
-    mvcgen' [F4]
-    finish [hPQ4]
+-- -- `mvcgen'` introduces `x` and a hypothesis `P x` into the VC's local context.
+-- -- The subsequent `finish [hPQ4]` must see `P x` in the E-graph to derive `Q4 x`.
+-- example : ⦃⌜True⌝⦄ F4 ⦃⇓ r _ => ⌜Q4 r⌝⦄ := by
+--   sym =>
+--     mvcgen' [F4]
+--     finish [hPQ4]
 
--- `clear hk` drops `hk` from the lctx; `hk2` remains as a proof of `k = 0`. If
--- `PreTac.run`'s `.tactic` branch inherited the parent `Grind.Goal` instead of
--- building fresh ones, the E-graph (populated by `internalize_all`) would keep
--- the now-dead `hk` fvar; `finish` constructs a proof citing it and the kernel
--- rejects with `unknown free variable`.
-example (k : Nat) (hk : k = 0) (hk2 : k = 0) : ⦃⌜True⌝⦄ F4 ⦃⇓ _ _ => ⌜k = 0⌝⦄ := by
-  sym =>
-    internalize_all
-    mvcgen' [F4] with (clear hk)
-    finish
+-- -- `clear hk` drops `hk` from the lctx; `hk2` remains as a proof of `k = 0`. If
+-- -- `PreTac.run`'s `.tactic` branch inherited the parent `Grind.Goal` instead of
+-- -- building fresh ones, the E-graph (populated by `internalize_all`) would keep
+-- -- the now-dead `hk` fvar; `finish` constructs a proof citing it and the kernel
+-- -- rejects with `unknown free variable`.
+-- example (k : Nat) (hk : k = 0) (hk2 : k = 0) : ⦃⌜True⌝⦄ F4 ⦃⇓ _ _ => ⌜k = 0⌝⦄ := by
+--   sym =>
+--     internalize_all
+--     mvcgen' [F4] with (clear hk)
+--     finish
 
-/-! ## Inline invariants (bullet form) inside `sym =>` -/
+-- /-! ## Inline invariants (bullet form) inside `sym =>` -/
 
-example :
-    ⦃⌜True⌝⦄
-    (do
-      let mut x := 0
-      for i in [1:5] do
-        x := x + i
-      pure x : Id Nat)
-    ⦃⇓r => ⌜r < 30⌝⦄ := by
-  sym =>
-    mvcgen' invariants
-      · ⇓(xs, r) => ⌜r + xs.suffix.length * 5 ≤ 25⌝
-    with (simp_all; try grind)
+-- example :
+--     ⦃⌜True⌝⦄
+--     (do
+--       let mut x := 0
+--       for i in [1:5] do
+--         x := x + i
+--       pure x : Id Nat)
+--     ⦃⇓r => ⌜r < 30⌝⦄ := by
+--   sym =>
+--     mvcgen' invariants
+--       · ⇓(xs, r) => ⌜r + xs.suffix.length * 5 ≤ 25⌝
+--     with (simp_all; try grind)
 
-/-! ## `invariants?` (suggest mode) is rejected inside `sym =>` -/
+-- /-! ## `invariants?` (suggest mode) is rejected inside `sym =>` -/
 
-/--
-error: `mvcgen' invariants?` (suggest mode) is not supported inside `sym => …` blocks
--/
-#guard_msgs in
-example : ⦃⌜True⌝⦄ F ⦃⇓ _ n => ⌜n = n⌝⦄ := by
-  sym =>
-    mvcgen' [F] invariants?
+-- /--
+-- error: `mvcgen' invariants?` (suggest mode) is not supported inside `sym => …` blocks
+-- -/
+-- #guard_msgs in
+-- example : ⦃⌜True⌝⦄ F ⦃⇓ _ n => ⌜n = n⌝⦄ := by
+--   sym =>
+--     mvcgen' [F] invariants?

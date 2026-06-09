@@ -23,7 +23,7 @@ public import Lean.Elab.Tactic.Do.Internal.VCGen.Frontend
 The `lmvcgen` tactic, split across the modules above.
 
 - `VCGen.Types` — `VCGenM`, its `Context`/`Scope`/`State`, config-facing types, and shared caches.
-- `VCGen.SpecDB` — `SpecTheoremNew`/`SpecTheoremsNew` plus database migration and lookup.
+- `VCGen.SpecDB` — spec theorem database migration and lookup.
 - `VCGen.RuleConstruct.Spec` — rule construction from `⊑ wp` spec theorems.
 - `VCGen.RuleConstruct.Simp` — rule construction from equality spec theorems.
 - `VCGen.RuleConstruct.Logic` — rule construction for lattice connectives such as `⊓`, `⇨`,

@@ -90,14 +90,15 @@ pre ⊑ wp rhs post epost s₁ ... sₙ →
 pre ⊑ wp lhs post epost s₁ ... sₙ
 ```
 -/
-public def tryMkBackwardRuleFromSimp (specThm : SpecTheoremNew) (info : WPInfo)
+public def tryMkBackwardRuleFromSimp
+    (specThm : Lean.Elab.Tactic.Do.Internal.SpecAttr.SpecTheorem) (info : WPInfo)
     : OptionT SymM BackwardRule := do
   let wpInstTy ← whnfR (← Meta.inferType info.instWP)
   let_expr WPMonad m' Pred' _EPred _monadInst _instAL _instEAL := wpInstTy
     | throwError "expected a WPMonad instance, got {wpInstTy}"
   guard <| ← isDefEqGuarded info.m m'
   guard <| ← isDefEqGuarded info.Pred Pred'
-  let (xs, _, eqPrf, eqType) ← specThm.instantiate
+  let (xs, _, eqPrf, eqType) ← SpecTheorem.instantiate specThm
   let_expr Eq eqα lhs rhs := eqType
     | throwError "simp spec is not an equation: {eqType}"
   let wpType ← liftMetaM <| Meta.inferType info.instWP

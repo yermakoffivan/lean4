@@ -21,8 +21,8 @@ public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleCache
 public import Lean.Elab.Tactic.Do.Internal.VCGen.Utils
 public import Lean.Elab.Tactic.Do.Internal.VCGen.EPost
 
-open Lean Meta Elab Tactic Sym Internal
-open Std.Internal.Do Lean.Order
+open Lean Meta Elab Tactic Sym Internal Std.Internal Do Internal.SpecAttr
+open Lean.Order
 open Grind (GrindM)
 
 public section
@@ -45,7 +45,7 @@ inductive SolveResult where
   /-- Don't know how to handle `e` in `pre ⊑ wp e post epost`. -/
   | noStrategyForProgram (e : Expr)
   /-- Did not find a spec for `e` in `pre ⊑ wp e post epost`. -/
-  | noSpecFoundForProgram (e : Expr) (monad : Expr) (thms : Array SpecTheoremNew)
+  | noSpecFoundForProgram (e : Expr) (monad : Expr) (thms : Array SpecTheorem)
   /-- Successfully decomposed the goal. These are the subgoals, sharing `scope`. -/
   | goals (scope : VCGen.Scope) (subgoals : List MVarId)
 
@@ -288,7 +288,7 @@ def tryWPFVarZeta (target : Expr) (info : WPInfo) : Strategy := do
     returnGoals [← substFvarZeta goal target info val info.prog.getAppRevArgs]
 
 def applySpec (scope : VCGen.Scope) (target : Expr) (info : WPInfo) : VCGenM SolveResult := do
-  match ← scope.specs.findSpecs info.prog with
+  match ← SpecTheorems.findSpecs scope.specs info.prog with
   | .error thms => return .noSpecFoundForProgram info.prog info.m thms
   | .ok thm =>
   let some rule ←

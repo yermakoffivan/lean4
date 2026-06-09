@@ -29,14 +29,15 @@ specs must check that their equation type is definitionally equal to `m α`.
 
 Cache key: `(proof key, instWP, excessArgs.size)`.
 -/
-public def mkBackwardRuleFromSpecCached (specThm : SpecTheoremNew) (info : WPInfo)
+public def mkBackwardRuleFromSpecCached
+    (specThm : Lean.Elab.Tactic.Do.Internal.SpecAttr.SpecTheorem) (info : WPInfo)
   : OptionT VCGenM BackwardRule := do
   let key := (specThm.proof.key, info.instWP, info.excessArgs.size)
   let s := (← get).specBackwardRuleCache
   if let some rule := s[key]? then return rule
   let stateArgNames := (← read).stateArgNames
   let some rule ← withNewMCtxDepth <| match specThm.kind with
-      | .spec   => tryMkBackwardRuleFromSpec specThm info stateArgNames |>.run
+      | .triple => tryMkBackwardRuleFromSpec specThm info stateArgNames |>.run
       | .simp _ => tryMkBackwardRuleFromSimp specThm info |>.run
     | failure
   modify fun st => { st with specBackwardRuleCache := st.specBackwardRuleCache.insert key rule }

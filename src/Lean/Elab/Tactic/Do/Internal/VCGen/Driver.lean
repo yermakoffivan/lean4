@@ -154,12 +154,15 @@ def work (scope : VCGen.Scope) (goal : MVarId) : VCGenM Unit := do
     | .goals scope subgoals =>
       -- if we have multiple subgoals, before running the VCGen
       -- we need to share the grind context first.
-      let subgoals ← handleInvariantSubgoals subgoals
+      let subgoals ←
+        match subgoals with
+        | [] => pure []
+        | _ => handleInvariantSubgoals subgoals
       let mut grindSharedGoal := goal
       if (← read).disch.isGrind && subgoals.length > 1 then
         grindSharedGoal ← goal.internalizeAll
-      worklist := worklist.enqueueAll <| subgoals.map fun mv =>
-        { goal := { grindSharedGoal with mvarId := mv }, scope }
+      for mv in subgoals do
+        worklist := worklist.enqueue { goal := { grindSharedGoal with mvarId := mv }, scope }
 
 structure Result where
   /-- All invariant goals emitted during VC generation, in emit order. The MVarId at

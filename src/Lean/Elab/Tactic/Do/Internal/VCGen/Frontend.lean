@@ -47,7 +47,7 @@ public def mkContext (lemmas : Syntax) (ignoreStarArg := false) :
   for arg in lemmas[1].getSepArgs do
     if arg.getKind == ``simpErase then
       try
-        let specThm ←
+        let some specThm ←
           if let some fvar ← Term.isLocalIdent? arg[1] then
             mkSpecTheoremFromLocal fvar.fvarId!
           else
@@ -56,6 +56,7 @@ public def mkContext (lemmas : Syntax) (ignoreStarArg := false) :
               mkSpecTheoremFromConst declName
             else
               withRef id <| throwUnknownConstant id.getId.eraseMacroScopes
+          | failure
         specThms := specThms.erase specThm.proof
       catch _ =>
         simpStuff := simpStuff.push ⟨arg⟩
@@ -67,13 +68,13 @@ public def mkContext (lemmas : Syntax) (ignoreStarArg := false) :
       match ← Term.resolveId? term (withInfo := true) <|> Term.elabCDotFunctionAlias? ⟨term⟩ with
       | some (.const declName _) =>
         try
-          let thm ← mkSpecTheoremFromConst declName
+          let some thm ← mkSpecTheoremFromConst declName | failure
           specThms := specThms.insert thm
         catch _ =>
           simpStuff := simpStuff.push ⟨arg⟩
       | some (.fvar fvar) =>
         try
-          let thm ← mkSpecTheoremFromLocal fvar
+          let some thm ← mkSpecTheoremFromLocal fvar | failure
           specThms := specThms.insert thm
         catch _ =>
           simpStuff := simpStuff.push ⟨arg⟩
@@ -93,7 +94,7 @@ public def mkContext (lemmas : Syntax) (ignoreStarArg := false) :
     for fvar in fvars do
       unless specThms.isErased (.local fvar) do
         try
-          let thm ← mkSpecTheoremFromLocal fvar
+          let some thm ← mkSpecTheoremFromLocal fvar | failure
           specThms := specThms.insert thm
         catch _ => continue
   let specSimpThms := simpCtx.ctx.simpTheorems[0]?.getD {}

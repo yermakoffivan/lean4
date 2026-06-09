@@ -79,7 +79,7 @@ open GetThrowSet in
 example : Goal 10 := by
   simp only [Goal, loop, step]
   mvcgen' simplifying_assumptions [Nat.add_assoc]
-  case vc11 => trace_state; grind
+  case vc10 => trace_state; grind
   all_goals grind
 
 -- Verify that the let-binding code paths are exercised.

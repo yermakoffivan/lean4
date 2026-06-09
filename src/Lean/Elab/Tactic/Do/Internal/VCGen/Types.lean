@@ -20,7 +20,7 @@ public import Lean.Meta.Sym.Simp.SimpM
 public import Lean.Meta.Sym.Apply
 public import Lean.Elab.Tactic.Do.Internal.VCGen.SpecDB
 
-open Lean Elab Meta Sym Grind
+open Lean Meta Elab Grind Tactic Sym Internal Std.Internal Do Internal.SpecAttr
 
 public section
 
@@ -151,7 +151,7 @@ structure Context where
 
 structure Scope where
   /-- Spec database in scope: globals plus locals from in-scope hypotheses. -/
-  specs : SpecTheoremsNew
+  specs : SpecTheorems
   /-- Index of the next local declaration to consider for local specs. -/
   nextDeclIdx : Nat := 0
   deriving Inhabited
@@ -211,7 +211,8 @@ end VCGen
 
 abbrev VCGenM := ReaderT VCGen.Context (StateRefT VCGen.State GrindM)
 
-def VCGen.Scope.insertSpec (scope : VCGen.Scope) (thm : SpecTheoremNew) : VCGen.Scope :=
+def VCGen.Scope.insertSpec (scope : VCGen.Scope)
+    (thm : SpecTheorem) : VCGen.Scope :=
   { scope with specs := scope.specs.insert thm }
 
 /-- Walk `goal`'s local context from `scope.nextDeclIdx` onward and register any
@@ -222,7 +223,7 @@ def VCGen.Scope.collectLocalSpecs (scope : VCGen.Scope) (goal : MVarId) : VCGenM
     if scope.nextDeclIdx == lctx.decls.size then return scope
     let scope ← lctx.foldlM (init := scope) (start := scope.nextDeclIdx) fun scope decl => do
       if decl.isAuxDecl then return scope
-      if let some thm ← mkSpecTheoremNew (.local decl.fvarId) (eval_prio low) then
+      if let some thm ← mkSpecTheoremFromLocal decl.fvarId (eval_prio low) then
         return scope.insertSpec thm
       return scope
     return { scope with nextDeclIdx := lctx.decls.size }

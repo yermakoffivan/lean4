@@ -13,7 +13,8 @@ public section
 
 namespace Lean.Elab.Tactic.Do.Internal.VCGen
 
-open Lean Meta Lean.Order Sym Std.Internal.Do
+open Lean Meta Sym Internal Std.Internal Do Internal.SpecAttr
+open Lean.Order
 open Lean.Elab.Tactic.Do.Internal.SpecAttr
 open Lean.Elab.Tactic.Do.Internal.VCGen
 
@@ -281,7 +282,7 @@ Given a spec `pre ⊑ wp prog post epost` where the lattice type is
 - `info.excessArgs`: free variables representing state args from
   `info.Pred = σ1 → ... → σn → Prop`
 -/
-public def tryMkBackwardRuleFromSpec (specThm : SpecTheoremNew) (info : WPInfo)
+public def tryMkBackwardRuleFromSpec (specThm : SpecTheorem) (info : WPInfo)
   (stateArgNames : Array Name := #[]) : OptionT SymM BackwardRule := do
   -- Instantiate the spec theorem, creating metavars for all universally quantified params
   let (_xs, _bs, specProof, specType) ← specThm.instantiate

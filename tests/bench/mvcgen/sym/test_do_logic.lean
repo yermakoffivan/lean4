@@ -267,13 +267,13 @@ theorem max_and_sum_spec (xs : Array Nat) :
   mvcgen' [max_and_sum]
   case inv1 => exact ⟨fun ⟨c, mx, s⟩ => s ≤ mx * c.pos⟩
   all_goals simp_all +zetaDelta
+  · rw [Nat.left_distrib]
+    grind
   · rename_i h _
     rw [Nat.left_distrib]
     simp +zetaDelta only [Nat.mul_one, Nat.add_le_add_iff_right]
     apply Nat.le_trans h
     apply Nat.mul_le_mul_right
-    grind
-  · rw [Nat.left_distrib]
     grind
 
 end MaxAndSum
@@ -413,7 +413,14 @@ theorem fast_expo_correct (x n : Nat) : fast_expo x n = x ^ n := by
     obtain ⟨x', y, e⟩ := b
     simp at *
     rw [← ih.1, ih.2, Nat.pow_zero, Nat.one_mul]
-  case vc4 b _ _ _ _ _ _ ih _ _ =>
+  case vc4 b _ _ _ _ _ _ _ _ _ =>
+    obtain ⟨x', y, e⟩ := b
+    simp at *
+    constructor
+    · rw [← Nat.pow_two, ← Nat.pow_mul]
+      grind
+    · grind
+  case vc5 b _ _ _ _ _ _ ih _ _ =>
     obtain ⟨x', y, e⟩ := b
     simp at *
     constructor
@@ -421,13 +428,7 @@ theorem fast_expo_correct (x n : Nat) : fast_expo x n = x ^ n := by
       have : e - 1 + 1 = e := by grind
       rw [this]
     · grind
-  case vc5 b _ _ _ _ _ _ _ _ _ =>
-    obtain ⟨x', y, e⟩ := b
-    simp at *
-    constructor
-    · rw [← Nat.pow_two, ← Nat.pow_mul]
-      grind
-    · grind
+
 
 theorem same_func (x n : Nat) : fast_expo x n = naive_expo x n := by
   rw [naive_expo_correct, fast_expo_correct]

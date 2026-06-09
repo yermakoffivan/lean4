@@ -64,6 +64,8 @@ section WindowsRoundtrip
 #guard (win "C:\\a\\.\\..\\b").toWindowsString = "C:\\a\\.\\..\\b"
 -- POSIX path through Windows parser: only '/' is also a separator
 #guard (win "/foo/bar").toWindowsString = "\\foo\\bar"
+-- toPosixString on a Windows path silently drops the drive prefix
+#guard (win "C:\\foo").toPosixString = "/foo"
 
 end WindowsRoundtrip
 
@@ -161,6 +163,10 @@ section Normalize
 #guard (posix "../../a").normalize.toPosixString = "../../a"
 -- trailing dot
 #guard (posix "a/b/.").normalize.toPosixString = "a/b"
+-- Windows: normalize resolves .. across drive-rooted path
+#guard (win "C:\\a\\..\\b").normalize.toWindowsString = "C:\\b"
+-- empty default path normalizes to "."
+#guard (default : Path).normalize.toPosixString = "."
 
 end Normalize
 
@@ -187,6 +193,8 @@ section Parent
 #guard (posix "..").parent.map (·.toPosixString) = some "."
 -- empty path has no parent
 #guard (default : Path).parent = none
+-- Windows drive-relative: parent of "C:foo" is the bare drive "C:"
+#guard (win "C:foo").parent.map (·.toWindowsString) = some "C:"
 
 end Parent
 
@@ -204,6 +212,8 @@ private def collectParents (p : Path) : List String :=
 #guard collectParents (posix "a/b/c")  = ["a/b", "a", "."]
 #guard collectParents (posix "/")      = []
 #guard collectParents (posix "a")      = ["."]
+-- path with leading ".." components: each ".." is its own parent step
+#guard collectParents (posix "../../a") = ["../..", "..", "."]
 
 end ParentsIter
 
@@ -267,6 +277,10 @@ section Suffixes
 -- invariant: suffixes unchanged
 #guard ((posix "archive.tar.gz").withStem "backup").suffixes =
        (posix "archive.tar.gz").suffixes
+-- dotfile: stem is the whole name (including dot), so withStem replaces entirely
+#guard ((posix ".gitignore").withStem "profile").toPosixString = "profile"
+-- dotfile: withExtension appends since fileStem is the whole name and there's no extension
+#guard ((posix ".gitignore").withExtension "bak").toPosixString = ".gitignore.bak"
 
 end Suffixes
 
@@ -281,6 +295,8 @@ section Modification
 #guard ((posix "a/b/c").setFileName "d").toPosixString = "a/b/d"
 #guard ((posix "/").setFileName "d").toPosixString = "/"  -- no-op on root
 #guard ((posix "a/..").setFileName "d").toPosixString = "a/.."  -- no-op on parent component
+-- single-segment relative path: result has no parent prefix
+#guard ((posix "foo").setFileName "bar").toPosixString = "bar"
 
 -- withFileName
 #guard ((posix "a/b/c").withFileName "d").toPosixString = "a/b/d"
@@ -321,6 +337,8 @@ section StartEnd
 #guard (posix "/usr/local/bin").endsWith (posix "usr/local/bin") = false  -- root missing
 #guard (posix "a/b/c").endsWith (posix "b/c") = true
 #guard (posix "a/b/c").endsWith (posix "a") = false
+-- anchor blocks matching a relative suffix against a single-segment absolute path
+#guard (posix "/a").endsWith (posix "a") = false
 
 end StartEnd
 
@@ -337,6 +355,8 @@ section DropPrefix
 #guard ((posix "a/b/c").dropPrefix? (posix "a/b")).map (·.toPosixString) = some "c"
 -- not a prefix
 #guard (posix "a/b/c").dropPrefix? (posix "b") = none
+-- prefix longer than path → none
+#guard (posix "a/b").dropPrefix? (posix "a/b/c") = none
 
 end DropPrefix
 
@@ -402,5 +422,11 @@ section Glob
 #guard (posix "a/b/c").matchGlob "a/b" = false
 -- ** matching zero segments
 #guard (posix "foo.lean").matchGlob "**/*.lean" = true
+-- ** in the middle: matches multiple segments between fixed anchors
+#guard (posix "a/b/c/d").matchGlob "a/**/d" = true
+-- ** in the middle: matches zero segments between fixed anchors
+#guard (posix "a/d").matchGlob "a/**/d" = true
+-- ** on absolute path with single non-root segment (must skip the "" root component)
+#guard (posix "/foo.lean").matchGlob "**/foo.lean" = true
 
 end Glob

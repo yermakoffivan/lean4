@@ -489,11 +489,19 @@ def inLeapYear (date : PlainDateTime) : Bool :=
   date.year.isLeap
 
 /--
-Determines the week of the year for the given `PlainDateTime`.
+Determines the week of the year for the given `PlainDateTime`, using `firstDay` as the start of the week.
 -/
 @[inline]
-def weekOfYear (date : PlainDateTime) : Week.Ordinal :=
-  date.date.weekOfYear
+def weekOfYear (date : PlainDateTime) (firstDay : Weekday := .monday) : Week.Ordinal :=
+  date.date.weekOfYear firstDay
+
+/--
+Returns the week-based year for the given `PlainDateTime`, using `firstDay` as the start of the week.
+The week-based year may differ from the calendar year for dates near the start or end of the year.
+-/
+@[inline]
+def weekYear (date : PlainDateTime) (firstDay : Weekday := .monday) : Year.Offset :=
+  date.date.weekYear firstDay
 
 /--
 Returns the unaligned week of the month for a `PlainDateTime` (day divided by 7, plus 1).
@@ -502,13 +510,11 @@ def weekOfMonth (date : PlainDateTime) : Bounded.LE 1 5 :=
   date.date.weekOfMonth
 
 /--
-Determines the week of the month for the given `PlainDateTime`. The week of the month is calculated based
-on the day of the month and the weekday. Each week starts on Monday because the entire library is
-based on the Gregorian Calendar.
+Determines the week of the month for the given `PlainDateTime`, using `firstDay` as the start of the week.
 -/
 @[inline]
-def alignedWeekOfMonth (date : PlainDateTime) : Week.Ordinal.OfMonth :=
-  date.date.alignedWeekOfMonth
+def alignedWeekOfMonth (date : PlainDateTime) (firstDay : Weekday := .monday) : Week.Ordinal.OfMonth :=
+  date.date.alignedWeekOfMonth firstDay
 
 /--
 Transforms a tuple of a `PlainDateTime` into a `Day.Ordinal.OfYear`.
@@ -583,8 +589,49 @@ instance : HSub PlainDateTime Nanosecond.Offset PlainDateTime where
 instance : HAdd PlainDateTime Duration PlainDateTime where
   hAdd x y := addNanoseconds x y.toNanoseconds
 
+/--
+Wraps a `PlainDate` in a `PlainDateTime` with midnight as the time component.
+-/
+@[inline]
+def ofPlainDate (date : PlainDate) : PlainDateTime :=
+  { date, time := PlainTime.midnight }
+
+/--
+Extracts the `PlainDate` component from a `PlainDateTime`.
+-/
+@[inline]
+def toPlainDate (pdt : PlainDateTime) : PlainDate :=
+  pdt.date
+
+/--
+Extracts the `PlainTime` component from a `PlainDateTime`.
+-/
+@[inline]
+def toPlainTime (pdt : PlainDateTime) : PlainTime :=
+  pdt.time
+
+instance : HSub PlainDateTime PlainDateTime Duration where
+  hSub x y := x.toWallTime - y.toWallTime
+
 end PlainDateTime
 namespace PlainDate
+
+/--
+Converts a `PlainDate` to a `WallTime`.
+-/
+@[inline]
+def toWallTime (pd : PlainDate) : WallTime :=
+  WallTime.ofSeconds pd.toEpochDay.toSeconds
+
+/--
+Converts a `WallTime` to a `PlainDate`.
+-/
+@[inline]
+def ofWallTime (wt : WallTime) : PlainDate :=
+  PlainDate.ofEpochDay wt.toDays
+
+instance : HSub PlainDate PlainDate Duration where
+  hSub x y := x.toWallTime - y.toWallTime
 
 /--
 Combines a `PlainDate` and `PlainTime` into a `PlainDateTime`.
@@ -595,6 +642,20 @@ def atTime : PlainDate → PlainTime → PlainDateTime :=
 
 end PlainDate
 namespace PlainTime
+
+/--
+Converts a `PlainTime` to a `WallTime`.
+-/
+@[inline]
+def toWallTime (pt : PlainTime) : WallTime :=
+  WallTime.ofNanoseconds pt.toNanoseconds
+
+/--
+Converts a `WallTime` to a `PlainTime`.
+-/
+@[inline]
+def ofWallTime (wt : WallTime) : PlainTime :=
+  PlainTime.ofNanoseconds wt.toNanoseconds
 
 /--
 Combines a `PlainTime` and `PlainDate` into a `PlainDateTime`.

@@ -1,6 +1,5 @@
 #include "util/options.h"
 
-// stage0 update needed for grind_annotated command
 namespace lean {
 options get_default_options() {
     options opts;
@@ -23,6 +22,7 @@ options get_default_options() {
     opts = opts.update({"quotPrecheck"}, true);
 
     opts = opts.update({"pp", "rawOnError"}, true);
+
 #endif
     return opts;
 }

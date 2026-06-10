@@ -6,7 +6,10 @@ Authors: Leonardo de Moura
 module
 
 prelude
-public import Init.Data.Nat.Div.Basic
+public import Init.Grind.Tactics
+import Init.Data.Nat.Div.Basic
+meta import Init.MetaTypes
+import Init.WFTactics
 
 public section
 
@@ -99,6 +102,12 @@ instance : XorOp Nat := ⟨Nat.xor⟩
 instance : ShiftLeft Nat := ⟨Nat.shiftLeft⟩
 instance : ShiftRight Nat := ⟨Nat.shiftRight⟩
 
+@[simp] theorem land_eq {m n : Nat} : m.land n = m &&& n := rfl
+@[simp] theorem lor_eq {m n : Nat} : m.lor n = m ||| n := rfl
+@[simp] theorem xor_eq {m n : Nat} : m.xor n = m ^^^ n := rfl
+@[simp] theorem shiftLeft_eq' {m n : Nat} : m.shiftLeft n = m <<< n := rfl
+@[simp] theorem shiftRight_eq' {m n : Nat} : m.shiftRight n = m >>> n := rfl
+
 theorem shiftLeft_eq (a b : Nat) : a <<< b = a * 2 ^ b :=
   match b with
   | 0 => (Nat.mul_one _).symm
@@ -144,7 +153,10 @@ Asserts that the `(n+1)`th least significant bit of `m` is not set.
 
 (This definition is used by Lean internally for compact bitmaps.)
 -/
-@[expose, reducible] protected def hasNotBit (m n : Nat) : Prop :=
+@[expose] protected def hasNotBit (m n : Nat) : Prop :=
   Nat.land 1 (Nat.shiftRight m n) ≠ 1
+
+@[grind =]
+theorem hasNotBit_eq (m n : Nat) : Nat.hasNotBit m n = (1 &&& (m >>> n) ≠ 1) := rfl
 
 end Nat

@@ -8,6 +8,7 @@ module
 prelude
 public import Init.Data.UInt.Log2
 public import Lean.Compiler.LCNF.InferType
+import Init.Data.UInt.Lemmas
 
 public section
 
@@ -18,14 +19,14 @@ namespace ConstantFold
 A constant folding monad, the additional state stores auxiliary declarations
 required to build the new constant.
 -/
-abbrev FolderM := StateRefT (Array CodeDecl) CompilerM
+abbrev FolderM := StateRefT (Array (CodeDecl .pure)) CompilerM
 
 /--
 A constant folder for a specific function, takes all the arguments of a
 certain function and produces a new `Expr` + auxiliary declarations in
 the `FolderM` monad on success. If the folding fails it returns `none`.
 -/
-abbrev Folder := Array Arg → FolderM (Option LetValue)
+abbrev Folder := Array (Arg .pure) → FolderM (Option (LetValue .pure))
 
 /--
 A typeclass for detecting and producing literals of arbitrary types
@@ -43,7 +44,7 @@ class Literal (α : Type) where
   final `Expr` putting them all together into a literal of type `α`,
   where again the idea of what a literal is depends on `α`.
   -/
-  mkLit : α → FolderM LetValue
+  mkLit : α → FolderM (LetValue .pure)
 
 export Literal (getLit mkLit)
 
@@ -51,7 +52,7 @@ export Literal (getLit mkLit)
 A wrapper around `LCNF.mkAuxLetDecl` that will automatically store the
 `LetDecl` in the state of `FolderM`.
 -/
-def mkAuxLetDecl (e : LetValue) (prefixName := `_x) : FolderM FVarId := do
+def mkAuxLetDecl (e : LetValue .pure) (prefixName := `_x) : FolderM FVarId := do
   let decl ← LCNF.mkAuxLetDecl e prefixName
   modify fun s => s.push <| .let decl
   return decl.fvarId
@@ -65,11 +66,11 @@ def mkAuxLit [Literal α] (x : α) (prefixName := `_x) : FolderM FVarId := do
   let lit ← mkLit x
   mkAuxLetDecl lit prefixName
 
-partial def getNatLit (fvarId : FVarId) : CompilerM (Option Nat) := do
-  let some (.lit (.nat n)) ← findLetValue? fvarId | return none
+def getNatLit (fvarId : FVarId) : CompilerM (Option Nat) := do
+  let some (.lit (.nat n)) ← findLetValue? (pu := .pure) fvarId | return none
   return n
 
-def mkNatLit (n : Nat) : FolderM LetValue :=
+def mkNatLit (n : Nat) : FolderM (LetValue .pure) :=
   return .lit (.nat n)
 
 instance : Literal Nat where
@@ -77,10 +78,10 @@ instance : Literal Nat where
   mkLit := mkNatLit
 
 def getStringLit (fvarId : FVarId) : CompilerM (Option String) := do
-  let some (.lit (.str s)) ← findLetValue? fvarId | return none
+  let some (.lit (.str s)) ← findLetValue? (pu := .pure) fvarId | return none
   return s
 
-def mkStringLit (n : String) : FolderM LetValue :=
+def mkStringLit (n : String) : FolderM (LetValue .pure) :=
   return .lit (.str n)
 
 instance : Literal String where
@@ -88,10 +89,13 @@ instance : Literal String where
   mkLit := mkStringLit
 
 def getBoolLit (fvarId : FVarId) : CompilerM (Option Bool) := do
-  let some (.const ctor [] #[]) ← findLetValue? fvarId | return none
-  return ctor == ``Bool.true
+  let some (.const name [] #[]) ← findLetValue? fvarId | return none
+  match name with
+  | ``Bool.true => return some true
+  | ``Bool.false => return some false
+  | _ => return none
 
-def mkBoolLit (b : Bool) : FolderM LetValue :=
+def mkBoolLit (b : Bool) : FolderM (LetValue .pure) :=
   let ctor := if b then ``Bool.true else ``Bool.false
   return .const ctor [] #[]
 
@@ -105,6 +109,7 @@ private def getLitAux (fvarId : FVarId) (ofNat : Nat → α) (ofNatName : Name) 
   let some natLit ← getLit fvarId | return none
   return ofNat natLit
 
+@[implicit_reducible]
 def mkNatWrapperInstance (ofNat : Nat → α) (ofNatName : Name) (toNat : α → Nat) : Literal α where
   getLit := (getLitAux · ofNat ofNatName)
   mkLit x := do
@@ -113,9 +118,10 @@ def mkNatWrapperInstance (ofNat : Nat → α) (ofNatName : Name) (toNat : α →
 
 instance : Literal Char := mkNatWrapperInstance Char.ofNat ``Char.ofNat Char.toNat
 
+@[implicit_reducible]
 def mkUIntInstance (matchLit : LitValue → Option α) (litValueCtor : α → LitValue) : Literal α where
   getLit fvarId := do
-    let some (.lit litVal) ← findLetValue? fvarId | return none
+    let some (.lit litVal) ← findLetValue? (pu := .pure) fvarId | return none
     return matchLit litVal
   mkLit x :=
     return .lit <| litValueCtor x
@@ -124,6 +130,10 @@ instance : Literal UInt8 := mkUIntInstance (fun | .uint8 x => some x | _ => none
 instance : Literal UInt16 := mkUIntInstance (fun | .uint16 x => some x | _ => none) .uint16
 instance : Literal UInt32 := mkUIntInstance (fun | .uint32 x => some x | _ => none) .uint32
 instance : Literal UInt64 := mkUIntInstance (fun | .uint64 x => some x | _ => none) .uint64
+
+def getUSizeLit (fvarId : FVarId) : CompilerM (Option UInt64) := do
+  let some (.lit (.usize n)) ← findLetValue? (pu := .pure) fvarId | return none
+  return n
 
 end Literals
 
@@ -162,7 +172,7 @@ let _x.26 := @Array.push _ _x.24 z
 _x.26
 ```
 -/
-def mkPseudoArrayLiteral (elements : Array FVarId) (typ : Expr) (typLevel : Level) : FolderM LetValue := do
+def mkPseudoArrayLiteral (elements : Array FVarId) (typ : Expr) (typLevel : Level) : FolderM (LetValue .pure) := do
   let sizeLit ← mkAuxLit elements.size
   let mut literal ← mkAuxLetDecl <| .const ``Array.mkEmpty [typLevel] #[.type typ, .fvar sizeLit]
   for element in elements do
@@ -213,13 +223,37 @@ def Folder.mkBinary [Literal α] [Literal β] [Literal γ] (folder : α → β �
   mkLit <| folder arg₁ arg₂
 
 def Folder.mkBinaryDecisionProcedure [Literal α] [Literal β] {r : α → β → Prop} (folder : (a : α) → (b : β) → Decidable (r a b)) : Folder := fun args => do
-  if (← getPhase) < .mono then
-    return none
   let #[.fvar fvarId₁, .fvar fvarId₂] := args | return none
   let some arg₁ ← getLit fvarId₁ | return none
   let some arg₂ ← getLit fvarId₂ | return none
-  let boolLit := folder arg₁ arg₂ |>.decide
-  mkLit boolLit
+  let result := folder arg₁ arg₂ |>.decide
+  if (← getPhase) < .mono then
+    if result then
+      return some <| .const ``Decidable.isTrue [] #[.erased, .erased]
+    else
+      return some <| .const ``Decidable.isFalse [] #[.erased, .erased]
+  else
+    mkLit result
+
+/-
+We handle `USize` separately as the interpretation of `USize` literals is in general platform dependent
+-/
+def Folder.mkBinaryUSizeDecisionProcedure {r64 : UInt64 → UInt64 → Prop} {r32 : UInt32 → UInt32 → Prop}
+    (f64 : (a b : UInt64) → Decidable (r64 a b)) (f32 : (a b : UInt32) → Decidable (r32 a b)) :
+    Folder := fun args => do
+  let #[.fvar fvarId₁, .fvar fvarId₂] := args | return none
+  let some arg₁ ← getUSizeLit fvarId₁ | return none
+  let some arg₂ ← getUSizeLit fvarId₂ | return none
+  let res64 := (f64 arg₁ arg₂).decide
+  let res32 := (f32 arg₁.toUInt32 arg₂.toUInt32).decide
+  if res64 != res32 then return none
+  if (← getPhase) < .mono then
+    if res64 then
+      return some <| .const ``Decidable.isTrue [] #[.erased, .erased]
+    else
+      return some <| .const ``Decidable.isFalse [] #[.erased, .erased]
+  else
+    mkLit res64
 
 /--
 Provide a folder for an operation with a left neutral element.
@@ -262,7 +296,7 @@ def Folder.rightAnnihilator [Literal α] [BEq α] (annihilator : α) (zero : α)
   mkLit zero
 
 def Folder.divShift [Literal α] [BEq α] (shiftRight : Name) (pow2 : α → α) (log2 : α → α) : Folder := fun args => do
-  unless (← getEnv).contains shiftRight do return none
+  unless (← getDecl? shiftRight).isSome do return none
   let #[lhs, .fvar fvarId] := args | return none
   let some rhs ← getLit fvarId | return none
   let exponent := log2 rhs
@@ -271,7 +305,7 @@ def Folder.divShift [Literal α] [BEq α] (shiftRight : Name) (pow2 : α → α)
   return some <| .const shiftRight [] #[lhs, .fvar shiftLit]
 
 def Folder.mulRhsShift [Literal α] [BEq α] (shiftLeft : Name) (pow2 : α → α) (log2 : α → α) : Folder := fun args => do
-  unless (← getEnv).contains shiftLeft do return none
+  unless (← getDecl? shiftLeft).isSome do return none
   let #[lhs, .fvar fvarId] := args | return none
   let some rhs ← getLit fvarId | return none
   let exponent := log2 rhs
@@ -280,7 +314,7 @@ def Folder.mulRhsShift [Literal α] [BEq α] (shiftLeft : Name) (pow2 : α → �
   return some <| .const shiftLeft [] #[lhs, .fvar shiftLit]
 
 def Folder.mulLhsShift [Literal α] [BEq α] (shiftLeft : Name) (pow2 : α → α) (log2 : α → α) : Folder := fun args => do
-  unless (← getEnv).contains shiftLeft do return none
+  unless (← getDecl? shiftLeft).isSome do return none
   let #[.fvar fvarId, rhs] := args | return none
   let some lhs ← getLit fvarId | return none
   let exponent := log2 lhs
@@ -331,7 +365,7 @@ def Folder.mulShift [Literal α] [BEq α] (shiftLeft : Name) (pow2 : α → α) 
 -- TODO: add option for controlling the limit
 def natPowThreshold := 256
 
-def foldNatPow (args : Array Arg) : FolderM (Option LetValue) := do
+def foldNatPow (args : Array (Arg .pure)) : FolderM (Option (LetValue .pure)) := do
   let #[.fvar fvarId₁, .fvar fvarId₂] := args | return none
   let some value₁ ← getNatLit fvarId₁ | return none
   let some value₂ ← getNatLit fvarId₂ | return none
@@ -343,14 +377,14 @@ def foldNatPow (args : Array Arg) : FolderM (Option LetValue) := do
 /--
 Folder for ofNat operations on fixed-sized integer types.
 -/
-def Folder.ofNat (f : Nat → LitValue) (args : Array Arg) : FolderM (Option LetValue) := do
+def Folder.ofNat (f : Nat → LitValue) (args : Array (Arg .pure)) : FolderM (Option (LetValue .pure)) := do
   let #[.fvar fvarId] := args | return none
   let some value ← getNatLit fvarId | return none
   return some (.lit (f value))
 
-def Folder.toNat (args : Array Arg) : FolderM (Option LetValue) := do
+def Folder.toNat (args : Array (Arg .pure)) : FolderM (Option (LetValue .pure)) := do
   let #[.fvar fvarId] := args | return none
-  let some (.lit lit) ← findLetValue? fvarId | return none
+  let some (.lit lit) ← findLetValue? (pu := .pure) fvarId | return none
   match lit with
   | .uint8 v | .uint16 v | .uint32 v | .uint64 v | .usize v => return some (.lit (.nat v.toNat))
   | .nat _ | .str _ => return none
@@ -372,6 +406,7 @@ def arithmeticFolders : List (Name × Folder) := [
   (``UInt64.sub,  Folder.first #[Folder.mkBinary UInt64.sub, Folder.rightNeutral (0 : UInt64) (· - ·)]),
   -- We don't convert Nat multiplication by a power of 2 into a left shift, because the fast path
   -- for multiplication isn't any slower than a fast path for left shift that checks for overflow.
+  (``Nat.mul, Folder.first #[Folder.mkBinary Nat.mul, Folder.leftRightNeutral (1 : Nat) (· * ·), Folder.leftRightAnnihilator (0 : Nat) 0 (· * ·)]),
   (``UInt8.mul,  Folder.first #[Folder.mkBinary UInt8.mul, Folder.leftRightNeutral (1 : UInt8) (· * ·), Folder.leftRightAnnihilator (0 : UInt8) 0 (· * ·), Folder.mulShift ``UInt8.shiftLeft (UInt8.shiftLeft 1 ·) UInt8.log2]),
   (``UInt16.mul,  Folder.first #[Folder.mkBinary UInt16.mul, Folder.leftRightNeutral (1 : UInt16) (· * ·), Folder.leftRightAnnihilator (0 : UInt16) 0 (· * ·), Folder.mulShift ``UInt16.shiftLeft (UInt16.shiftLeft 1 ·) UInt16.log2]),
   (``UInt32.mul,  Folder.first #[Folder.mkBinary UInt32.mul, Folder.leftRightNeutral (1 : UInt32) (· * ·), Folder.leftRightAnnihilator (0 : UInt32) 0 (· * ·), Folder.mulShift ``UInt32.shiftLeft (UInt32.shiftLeft 1 ·) UInt32.log2]),
@@ -401,6 +436,9 @@ def relationFolders : List (Name × Folder) := [
   (``UInt64.decEq, Folder.mkBinaryDecisionProcedure UInt64.decEq),
   (``UInt64.decLt, Folder.mkBinaryDecisionProcedure UInt64.decLt),
   (``UInt64.decLe, Folder.mkBinaryDecisionProcedure UInt64.decLe),
+  (``USize.decEq, Folder.mkBinaryUSizeDecisionProcedure UInt64.decEq UInt32.decEq),
+  (``USize.decLt, Folder.mkBinaryUSizeDecisionProcedure UInt64.decLt UInt32.decLt),
+  (``USize.decLe, Folder.mkBinaryUSizeDecisionProcedure UInt64.decLe UInt32.decLe),
   (``Bool.decEq, Folder.mkBinaryDecisionProcedure Bool.decEq),
   (``String.decEq, Folder.mkBinaryDecisionProcedure String.decEq)
 ]
@@ -428,10 +466,22 @@ def stringFolders : List (Name × Folder) := [
   (``String.push, Folder.mkBinary String.push)
 ]
 
+def foldTaskGet (args : Array (Arg .pure)) : FolderM (Option (LetValue .pure)) := do
+  let #[_, .fvar taskFVar] := args | return none
+  let some (.const ``Task.pure _ #[_, val]) ← findLetValue? (pu := .pure) taskFVar | return none
+  match val with
+  | .erased => return some .erased
+  | .fvar fvarId => return some (.fvar fvarId #[])
+  | _ => return none
+
+def taskFolders : List (Name × Folder) := [
+  (``Task.get, foldTaskGet)
+]
+
 /--
 Apply all known folders to `decl`.
 -/
-def applyFolders (decl : LetDecl) (folders : SMap Name Folder) : CompilerM (Option (Array CodeDecl)) := do
+def applyFolders (decl : LetDecl .pure) (folders : SMap Name Folder) : CompilerM (Option (Array (CodeDecl .pure))) := do
   match decl.value with
   | .const name _ args =>
     if let some folder := folders.find? name then
@@ -451,7 +501,12 @@ private def getFolder (declName : Name) : CoreM Folder := do
   ofExcept <| getFolderCore (← getEnv) (← getOptions) declName
 
 def builtinFolders : SMap Name Folder :=
-  (arithmeticFolders ++ relationFolders ++ conversionFolders ++ higherOrderLiteralFolders ++ stringFolders).foldl (init := {}) fun s (declName, folder) =>
+  (arithmeticFolders
+    ++ relationFolders
+    ++ conversionFolders
+    ++ higherOrderLiteralFolders
+    ++ stringFolders
+    ++ taskFolders).foldl (init := {}) fun s (declName, folder) =>
     s.insert declName folder
 
 structure FolderOleanEntry where
@@ -490,7 +545,7 @@ def getFolders : CoreM (SMap Name Folder) :=
 /--
 Apply a list of default folders to `decl`
 -/
-def foldConstants (decl : LetDecl) : CompilerM (Option (Array CodeDecl)) := do
+def foldConstants (decl : LetDecl .pure) : CompilerM (Option (Array (CodeDecl .pure))) := do
   applyFolders decl (← getFolders)
 
 end ConstantFold

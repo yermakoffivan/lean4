@@ -16,7 +16,7 @@ set_option autoImplicit false
 /-!
 # Hash maps with unbundled well-formedness invariant
 
-This module develops the type `Std.HashMap.Raw` of dependent hash maps with unbundled
+This module develops the type `Std.HashMap.Raw` of hash maps with unbundled
 well-formedness invariant.
 
 This version is safe to use in nested inductive types. The well-formedness predicate is
@@ -241,9 +241,19 @@ instance {m : Type w → Type w'} [Monad m] : ForIn m (Raw α β) (α × β) whe
 @[inherit_doc DHashMap.Raw.inter, inline] def inter [BEq α] [Hashable α] (m₁ m₂ : Raw α β) : Raw α β :=
   ⟨DHashMap.Raw.inter m₁.inner m₂.inner⟩
 
+@[inherit_doc DHashMap.Raw.inter, inline] def diff [BEq α] [Hashable α] (m₁ m₂ : Raw α β) : Raw α β :=
+  ⟨DHashMap.Raw.diff m₁.inner m₂.inner⟩
+
 instance [BEq α] [Hashable α] : Union (Raw α β) := ⟨union⟩
 
 instance [BEq α] [Hashable α] : Inter (Raw α β) := ⟨inter⟩
+
+instance [BEq α] [Hashable α] : SDiff (Raw α β) := ⟨diff⟩
+
+@[inherit_doc DHashMap.Raw.beq] def beq {β : Type v} [BEq α] [Hashable α] [BEq β] (m₁ m₂ : Raw α β) : Bool :=
+  DHashMap.Raw.Const.beq m₁.inner m₂.inner
+
+instance [BEq α] [Hashable α] [BEq β] : BEq (Raw α β) := ⟨beq⟩
 
 section Unverified
 
@@ -360,6 +370,10 @@ theorem WF.union [BEq α] [Hashable α] {m₁ m₂ : Raw α β} (h₁ : m₁.WF)
 
 theorem WF.inter [BEq α] [Hashable α] {m₁ m₂ : Raw α β} (h₁ : m₁.WF) (h₂ : m₂.WF) : (m₁ ∩ m₂).WF :=
   ⟨DHashMap.Raw.WF.inter h₁.out h₂.out⟩
+
+theorem WF.diff [BEq α] [Hashable α] {m₁ m₂ : Raw α β} (h₁ : m₁.WF) (h₂ : m₂.WF) : (m₁ \ m₂).WF :=
+  ⟨DHashMap.Raw.WF.diff h₁.out h₂.out⟩
+
 end Raw
 
 end HashMap

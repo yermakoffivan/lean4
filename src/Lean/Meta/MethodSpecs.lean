@@ -3,12 +3,11 @@ Copyright (c) 2025 Lean FRO, LLC. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Joachim Breitner
 -/
-
 module
 prelude
 public import Lean.Meta.Tactic.Simp.SimpTheorems
 import Lean.Meta.Tactic.Simp.Main
-
+import Lean.Structure
 namespace Lean
 
 open Meta
@@ -128,7 +127,7 @@ def mkSpecTheoremName (env : Environment) (instName : Name) (privateSpecs : Bool
   if privateSpecs then mkPrivateName env thmName else thmName
 
 def startsWithFollowedByNumber (s p : String) : Bool :=
-  s.startsWith p && (s.drop p.length).isNat
+  (s.dropPrefix? p).any (·.isNat)
 
 def isSpecThmLikeSuffix (fieldName : Name) (s : String) : Bool :=
   s == s!"{fieldName}_spec" || startsWithFollowedByNumber s s!"{fieldName}_spec_"

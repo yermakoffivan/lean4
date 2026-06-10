@@ -9,6 +9,10 @@ prelude
 public import Std.Data.DTreeMap.Internal.Balancing
 public import Std.Data.DTreeMap.Internal.Queries
 public import Init.Data.List.Control
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Linear
+import Init.Omega
+import Init.WFTactics
 
 @[expose] public section
 
@@ -481,6 +485,36 @@ def eraseMany! [Ord α] {ρ : Type w} [ForIn Id ρ α] (t : Impl α β) (l : ρ)
     r := ⟨r.val.erase! a, fun h₀ h₁ => h₁ _ _ (r.2 h₀ h₁)⟩
   return r
 
+/-- A tree map obtained by erasing elements from `t`, bundled with an inductive principle. -/
+abbrev IteratedEntryErasureFrom [Ord α] (t) :=
+  { t' // ∀ {P : Impl α β → Prop}, P t → (∀ t'' a h, P t'' → P (t''.erase a h).impl) → P t' }
+
+/-- Iterate over `l` and erase all of its elements from `t`. -/
+@[inline]
+def eraseManyEntries [Ord α] {ρ : Type w} [ForIn Id ρ ((a : α) × β a)] (t : Impl α β) (l : ρ) (h : t.Balanced) :
+    IteratedEntryErasureFrom t := Id.run do
+  let mut r := ⟨t, fun h _ => h⟩
+  for ⟨a, _⟩ in l do
+    let hr := r.2 h (fun t'' a h _ => (t''.erase a h).balanced_impl)
+    r := ⟨r.val.erase a hr |>.impl, fun h₀ h₁ => h₁ _ _ _ (r.2 h₀ h₁)⟩
+  return r
+
+/-- A tree map obtained by erasing elements from `t`, bundled with an inductive principle. -/
+abbrev IteratedSlowEntryErasureFrom [Ord α] (t) :=
+  { t' // ∀ {P : Impl α β → Prop}, P t → (∀ t'' a, P t'' → P (t''.erase! a)) → P t' }
+
+/--
+Slower version of `eraseManyEntries` which can be used in absence of balance information but still
+assumes the preconditions of `eraseManyEntries`, otherwise might panic.
+-/
+@[inline]
+def eraseManyEntries! [Ord α] {ρ : Type w} [ForIn Id ρ ((a : α) × β a)] (t : Impl α β) (l : ρ) :
+    IteratedSlowErasureFrom t := Id.run do
+  let mut r := ⟨t, fun h _ => h⟩
+  for ⟨a, _⟩ in l do
+    r := ⟨r.val.erase! a, fun h₀ h₁ => h₁ _ _ (r.2 h₀ h₁)⟩
+  return r
+
 /-- A tree map obtained by inserting elements into `t`, bundled with an inductive principle. -/
 abbrev IteratedInsertionInto [Ord α] (t) :=
   { t' // ∀ {P : Impl α β → Prop}, P t → (∀ t'' a b h, P t'' → P (t''.insert a b h).impl) → P t' }
@@ -792,6 +826,24 @@ information but still assumes the preconditions of `filter`, otherwise might pan
 def inter! [Ord α] (m₁ m₂ : Impl α β): Impl α β :=
   if m₁.size ≤ m₂.size then m₁.filter! (fun k _ => m₂.contains k) else interSmaller m₁ m₂
 
+/-- Internal implementation detail of the tree map -/
+def beq [Ord α] [LawfulEqOrd α] [∀ k, BEq (β k)] (t₁ t₂ : Impl α β) : Bool :=
+  if t₁.size ≠ t₂.size then false else t₁.all (fun k v => t₂.get? k == some v)
+
+/--
+Computes the difference of the given tree maps.
+This function always iterates through the smaller map.
+-/
+def diff [Ord α] (t₁ t₂ : Impl α β) (h₁ : t₁.Balanced) : Impl α β :=
+  if t₁.size ≤ t₂.size then (t₁.filter (fun p _ => !t₂.contains p) h₁).impl else (t₁.eraseManyEntries t₂ h₁)
+
+/--
+Slower version of `diff` which can be used in the absence of balance
+information but still assumes the preconditions of `diff`, otherwise might panic.
+-/
+def diff! [Ord α] (t₁ t₂ : Impl α β) : Impl α β :=
+  if t₁.size ≤ t₂.size then t₁.filter! (fun p _ => !t₂.contains p) else t₁.eraseManyEntries! t₂
+
 /--
 Changes the mapping of the key `k` by applying the function `f` to the current mapped value
 (if any). This function can be used to insert a new mapping, modify an existing one or delete it.
@@ -906,6 +958,11 @@ def mergeWith! [Ord α] [LawfulEqOrd α] (mergeFn : (a : α) → β a → β a �
 namespace Const
 
 variable {β : Type v}
+
+/-- Internal implementation detail of the hash map -/
+def beq [Ord α] [BEq β] (t₁ t₂ : Impl α fun _ => β) : Bool :=
+  if t₁.size ≠ t₂.size then false else t₁.all (fun k v => Const.get? t₂ k == some v)
+
 local instance : Coe (Type v) (α → Type v) where coe γ := fun _ => γ
 
 /--

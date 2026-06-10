@@ -11,7 +11,6 @@ import Init.GrindInstances.ToInt
 import Lean.Meta.Tactic.Grind.SynthInstance
 import Lean.Meta.Tactic.Grind.Simp
 import Lean.Meta.Tactic.Grind.Arith.EvalNum
-import Lean.Meta.Tactic.Grind.Arith.Cutsat.Norm
 public section
 namespace Lean.Meta.Grind.Arith.Cutsat
 
@@ -422,6 +421,13 @@ private partial def toInt' (e : Expr) : ToIntM (Expr × Expr) := do
       if let some (k, neZeroInst) ← isFinInstOfNat? inst then
         let h := mkApp2 (mkConst ``Lean.Grind.ofNat_FinZero) k neZeroInst
         return (mkIntLit 0, h)
+    toIntOfNat e n
+  | BitVec.ofNat _ n =>
+    let some n ← getNatValue? n | mkToIntVar e
+    toIntOfNat e n
+  | _ => mkToIntVar e
+where
+  toIntOfNat (e : Expr) (n : Nat) : ToIntM (Expr × Expr) := do
     let some thm ← getOfNatThm? | mkToIntVar e
     let h := mkApp thm (toExpr n)
     if (← hasNumericLoHi) then
@@ -429,8 +435,7 @@ private partial def toInt' (e : Expr) : ToIntM (Expr × Expr) := do
       return (r, h)
     else
       expandWrap e (mkIntLit n) h
-  | _ => mkToIntVar e
-where
+
   toIntBin (toIntOp : ToIntThms) (mkBinOp : Expr → Expr → Expr) (a b : Expr) : ToIntM (Expr × Expr) := do
     unless toIntOp.c?.isSome do return (← mkToIntVar e)
     let (a', h₁) ← toInt' a

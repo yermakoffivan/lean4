@@ -9,9 +9,14 @@ module
 
 prelude
 public import Init.SizeOf
+public import Init.Tactics
 
 public section
 set_option linter.missingDocs true -- keep it documented
+
+-- BEq instance for Option defined here so it's available early in the import chain
+-- (before Init.Grind.Config and Init.MetaTypes which need BEq (Option Nat))
+deriving instance BEq for Option
 
 @[expose] section
 
@@ -49,7 +54,7 @@ eq_norm ctx p q (eagerReduce (Eq.refl true)) h
 to instruct the kernel to use eager reduction when establishing that `(p.norm == q) = true` is
 definitionally equal to `true = true`.
 -/
-@[expose] def eagerReduce {α : Sort u} (a : α) : α := a
+def eagerReduce {α : Sort u} (a : α) : α := a
 
 /--
 `flip f a b` is `f b a`. It is useful for "point-free" programming,
@@ -167,6 +172,8 @@ instance thunkCoe : CoeTail α (Thunk α) where
   -- Since coercions are expanded eagerly, `a` is evaluated lazily.
   coe a := ⟨fun _ => a⟩
 
+instance [Inhabited α] : Inhabited (Thunk α) := ⟨.pure default⟩
+
 /-- A variation on `Eq.ndrec` with the equality argument first. -/
 abbrev Eq.ndrecOn.{u1, u2} {α : Sort u2} {a : α} {motive : α → Sort u1} {b : α} (h : a = b) (m : motive a) : motive b :=
   Eq.ndrec m h
@@ -201,6 +208,7 @@ An element of `α ⊕ β` is either an `a : α` wrapped in `Sum.inl` or a `b : �
 indication of which of the two types was chosen. The union of a singleton set with itself contains
 one element, while `Unit ⊕ Unit` contains distinct values `inl ()` and `inr ()`.
 -/
+@[suggest_for Either]
 inductive Sum (α : Type u) (β : Type v) where
   /-- Left injection into the sum type `α ⊕ β`. -/
   | inl (val : α) : Sum α β
@@ -336,7 +344,7 @@ inductive Exists {α : Sort u} (p : α → Prop) : Prop where
 An indication of whether a loop's body terminated early that's used to compile the `for x in xs`
 notation.
 
-A collection's `ForIn` or `ForIn'` instance describe's how to iterate over its elements. The monadic
+A collection's `ForIn` or `ForIn'` instance describes how to iterate over its elements. The monadic
 action that represents the body of the loop returns a `ForInStep α`, where `α` is the local state
 used to implement features such as `let mut`.
 -/
@@ -483,6 +491,8 @@ class HasEquiv (α : Sort u) where
   the notion of equivalence is type-dependent. -/
   Equiv : α → α → Sort v
 
+attribute [reducible] HasEquiv.Equiv
+
 @[inherit_doc] infix:50 " ≈ "  => HasEquiv.Equiv
 
 recommended_spelling "equiv" for "≈" in [HasEquiv.Equiv, «term_≈_»]
@@ -509,12 +519,12 @@ abbrev SSuperset [HasSSubset α] (a b : α) := SSubset b a
 
 /-- Notation type class for the union operation `∪`. -/
 class Union (α : Type u) where
-  /-- `a ∪ b` is the union of`a` and `b`. -/
+  /-- `a ∪ b` is the union of `a` and `b`. -/
   union : α → α → α
 
 /-- Notation type class for the intersection operation `∩`. -/
 class Inter (α : Type u) where
-  /-- `a ∩ b` is the intersection of`a` and `b`. -/
+  /-- `a ∩ b` is the intersection of `a` and `b`. -/
   inter : α → α → α
 
 /-- Notation type class for the set difference `\`. -/
@@ -537,10 +547,10 @@ infix:50 " ⊇ " => Superset
 /-- Strict superset relation: `a ⊃ b`  -/
 infix:50 " ⊃ " => SSuperset
 
-/-- `a ∪ b` is the union of`a` and `b`. -/
+/-- `a ∪ b` is the union of `a` and `b`. -/
 infixl:65 " ∪ " => Union.union
 
-/-- `a ∩ b` is the intersection of`a` and `b`. -/
+/-- `a ∩ b` is the intersection of `a` and `b`. -/
 infixl:70 " ∩ " => Inter.inter
 
 /--
@@ -927,6 +937,14 @@ noncomputable def HEq.ndrec.{u1, u2} {α : Sort u2} {a : α} {motive : {β : Sor
 noncomputable def HEq.ndrecOn.{u1, u2} {α : Sort u2} {a : α} {motive : {β : Sort u2} → β → Sort u1} {β : Sort u2} {b : β} (h : a ≍ b) (m : motive a) : motive b :=
   h.rec m
 
+/-- `HEq.ndrec` specialized to homogeneous heterogeneous equality -/
+noncomputable def HEq.homo_ndrec.{u1, u2} {α : Sort u2} {a : α} {motive : α → Sort u1} (m : motive a) {b : α} (h : a ≍ b) : motive b :=
+  (eq_of_heq h).ndrec m
+
+/-- `HEq.ndrec` specialized to homogeneous heterogeneous equality, symmetric variant -/
+noncomputable def HEq.homo_ndrec_symm.{u1, u2} {α : Sort u2} {a : α} {motive : α → Sort u1} (m : motive a) {b : α} (h : b ≍ a) : motive b :=
+  (eq_of_heq h).ndrec_symm m
+
 /-- `HEq.ndrec` variant -/
 noncomputable def HEq.elim {α : Sort u} {a : α} {p : α → Sort v} {b : α} (h₁ : a ≍ b) (h₂ : p a) : p b :=
   eq_of_heq h₁ ▸ h₂
@@ -939,9 +957,7 @@ theorem HEq.subst {p : (T : Sort u) → T → Prop} (h₁ : a ≍ b) (h₂ : p �
 @[symm] theorem HEq.symm (h : a ≍ b) : b ≍ a :=
   h.rec (HEq.refl a)
 
-/-- Propositionally equal terms are also heterogeneously equal. -/
-theorem heq_of_eq (h : a = a') : a ≍ a' :=
-  Eq.subst h (HEq.refl a)
+
 
 /-- Heterogeneous equality is transitive. -/
 theorem HEq.trans (h₁ : a ≍ b) (h₂ : b ≍ c) : a ≍ c :=
@@ -1325,10 +1341,10 @@ transitive and contains `r`. `TransGen r a z` if and only if there exists a sequ
 -/
 inductive Relation.TransGen {α : Sort u} (r : α → α → Prop) : α → α → Prop
   /-- If `r a b`, then `TransGen r a b`. This is the base case of the transitive closure. -/
-  | single {a b} : r a b → TransGen r a b
+  | single {a b : α} : r a b → TransGen r a b
   /-- If `TransGen r a b` and `r b c`, then `TransGen r a c`.
   This is the inductive case of the transitive closure. -/
-  | tail {a b c} : TransGen r a b → r b c → TransGen r a c
+  | tail {a b c : α} : TransGen r a b → r b c → TransGen r a c
 
 /-- The transitive closure is transitive. -/
 theorem Relation.TransGen.trans {α : Sort u} {r : α → α → Prop} {a b c} :
@@ -1370,7 +1386,7 @@ instance {α : Type u} {p : α → Prop} [BEq α] [LawfulBEq α] : LawfulBEq {x 
 instance {α : Sort u} {p : α → Prop} [DecidableEq α] : DecidableEq {x : α // p x} :=
   fun ⟨a, h₁⟩ ⟨b, h₂⟩ =>
     if h : a = b then isTrue (by subst h; exact rfl)
-    else isFalse (fun h' => Subtype.noConfusion h' (fun h' => absurd h' h))
+    else isFalse (fun h' => Subtype.noConfusion rfl .rfl (heq_of_eq h') (fun h' => absurd (eq_of_heq h') h))
 
 end Subtype
 
@@ -1429,8 +1445,8 @@ instance [DecidableEq α] [DecidableEq β] : DecidableEq (α × β) :=
     | isTrue e₁ =>
       match decEq b b' with
       | isTrue e₂  => isTrue (e₁ ▸ e₂ ▸ rfl)
-      | isFalse n₂ => isFalse fun h => Prod.noConfusion h fun _   e₂' => absurd e₂' n₂
-    | isFalse n₁ => isFalse fun h => Prod.noConfusion h fun e₁' _   => absurd e₁' n₁
+      | isFalse n₂ => isFalse fun h => Prod.noConfusion rfl rfl (heq_of_eq h) fun _   e₂' => absurd (eq_of_heq e₂') n₂
+    | isFalse n₁ => isFalse fun h => Prod.noConfusion rfl rfl (heq_of_eq h) fun e₁' _   => absurd (eq_of_heq e₁') n₁
 
 instance [BEq α] [BEq β] : BEq (α × β) where
   beq := fun (a₁, b₁) (a₂, b₂) => a₁ == a₂ && b₁ == b₂
@@ -1474,6 +1490,29 @@ def Prod.map {α₁ : Type u₁} {α₂ : Type u₂} {β₁ : Type v₁} {β₂ 
 @[simp] theorem Prod.map_snd (f : α → β) (g : γ → δ) (x) : (Prod.map f g x).2 = g x.2 := rfl
 
 /-! # Dependent products -/
+
+instance {α : Type u} {β : α → Type v} [h₁ : DecidableEq α] [h₂ : ∀ a, DecidableEq (β a)] :
+    DecidableEq (Sigma β)
+  | ⟨a₁, b₁⟩, ⟨a₂, b₂⟩ =>
+    match a₁, b₁, a₂, b₂, h₁ a₁ a₂ with
+    | _, b₁, _, b₂, isTrue (Eq.refl _) =>
+      match b₁, b₂, h₂ _ b₁ b₂ with
+      | _, _, isTrue (Eq.refl _) => isTrue rfl
+      | _, _, isFalse n => isFalse fun h ↦
+        Sigma.noConfusion rfl .rfl (heq_of_eq h) fun _ e₂ ↦ n (eq_of_heq e₂)
+    | _, _, _, _, isFalse n => isFalse fun h ↦
+      Sigma.noConfusion rfl .rfl (heq_of_eq h) fun e₁ _ ↦ n (eq_of_heq e₁)
+
+instance {α : Sort u} {β : α → Sort v} [h₁ : DecidableEq α] [h₂ : ∀ a, DecidableEq (β a)] : DecidableEq (PSigma β)
+  | ⟨a₁, b₁⟩, ⟨a₂, b₂⟩ =>
+    match a₁, b₁, a₂, b₂, h₁ a₁ a₂ with
+    | _, b₁, _, b₂, isTrue (Eq.refl _) =>
+      match b₁, b₂, h₂ _ b₁ b₂ with
+      | _, _, isTrue (Eq.refl _) => isTrue rfl
+      | _, _, isFalse n => isFalse fun h ↦
+        PSigma.noConfusion rfl .rfl (heq_of_eq h) fun _ e₂ ↦ n (eq_of_heq e₂)
+    | _, _, _, _, isFalse n => isFalse fun h ↦
+      PSigma.noConfusion rfl .rfl (heq_of_eq h) fun e₁ _ ↦ n (eq_of_heq e₁)
 
 theorem Exists.of_psigma_prop {α : Sort u} {p : α → Prop} : (PSigma (fun x => p x)) → Exists (fun x => p x)
   | ⟨x, hx⟩ => ⟨x, hx⟩
@@ -1561,6 +1600,10 @@ instance {p q : Prop} [d : Decidable (p ↔ q)] : Decidable (p = q) :=
   match d with
   | isTrue h => isTrue (propext h)
   | isFalse h => isFalse fun heq => h (heq ▸ Iff.rfl)
+
+/-- Helper theorem for proving injectivity theorems -/
+theorem Lean.injEq_helper {P Q R : Prop} :
+  (P → Q → R) → (P ∧ Q → R) := by intro h ⟨h₁,h₂⟩; exact h h₁ h₂
 
 gen_injective_theorems% Array
 gen_injective_theorems% BitVec
@@ -2272,6 +2315,13 @@ instance Pi.instSubsingleton {α : Sort u} {β : α → Sort v} [∀ a, Subsingl
 
 /-! # Squash -/
 
+theorem equivalence_true (α : Sort u) : Equivalence fun _ _ : α => True :=
+  ⟨fun _ => trivial, fun _ => trivial, fun _ _ => trivial⟩
+
+/-- Always-true relation as a `Setoid`. -/
+protected def Setoid.trivial (α : Sort u) : Setoid α :=
+  ⟨_, equivalence_true α⟩
+
 /--
 The quotient of `α` by the universal relation. The elements of `Squash α` are those of `α`, but all
 of them are equal and cannot be distinguished.
@@ -2285,8 +2335,11 @@ and its representation in compiled code is identical to that of `α`.
 
 Consequently, `Squash.lift` may extract an `α` value into any subsingleton type `β`, while
 `Nonempty.rec` can only do the same when `β` is a proposition.
+
+`Squash` is defined in terms of `Quotient`, so `Squash` can be used when a `Quotient` argument is
+expected.
 -/
-def Squash (α : Sort u) := Quot (fun (_ _ : α) => True)
+def Squash (α : Sort u) := Quotient (Setoid.trivial α)
 
 /--
 Places a value into its squash type, in which it cannot be distinguished from any other.
@@ -2322,8 +2375,10 @@ namespace Lean
 /--
 Depends on the correctness of the Lean compiler, interpreter, and all `[implemented_by ...]` and `[extern ...]` annotations.
 -/
+@[deprecated "in-kernel native reduction is deprecated; assert native evaluations with axioms instead" (since := "2026-02-01")]
 axiom trustCompiler : True
 
+set_option linter.deprecated false in
 /--
 When the kernel tries to reduce a term `Lean.reduceBool c`, it will invoke the Lean interpreter to evaluate `c`.
 The kernel will not use the interpreter if `c` is not a constant.
@@ -2343,11 +2398,13 @@ Recall that the compiler trusts the correctness of all `[implemented_by ...]` an
 If an extern function is executed, then the trusted code base will also include the implementation of the associated
 foreign function.
 -/
+@[deprecated "in-kernel native reduction is deprecated; assert native evaluations with axioms instead" (since := "2026-02-01")]
 opaque reduceBool (b : Bool) : Bool :=
   -- This ensures that `#print axioms` will track use of `reduceBool`.
   have := trustCompiler
   b
 
+set_option linter.deprecated false in
 /--
 Similar to `Lean.reduceBool` for closed `Nat` terms.
 
@@ -2355,12 +2412,14 @@ Remark: we do not have plans for supporting a generic `reduceValue {α} (a : α)
 The main issue is that it is non-trivial to convert an arbitrary runtime object back into a Lean expression.
 We believe `Lean.reduceBool` enables most interesting applications (e.g., proof by reflection).
 -/
+@[deprecated "in-kernel native reduction is deprecated; assert native evaluations with axioms instead" (since := "2026-02-01")]
 opaque reduceNat (n : Nat) : Nat :=
   -- This ensures that `#print axioms` will track use of `reduceNat`.
   have := trustCompiler
   n
 
 
+set_option linter.deprecated false in
 /--
 The axiom `ofReduceBool` is used to perform proofs by reflection. See `reduceBool`.
 
@@ -2374,8 +2433,10 @@ external type checkers that do not implement this feature.
 Keep in mind that if you are using Lean as programming language, you are already trusting the Lean compiler and interpreter.
 So, you are mainly losing the capability of type checking your development using external checkers.
 -/
+@[deprecated "in-kernel native reduction is deprecated; assert native evaluations with axioms instead" (since := "2026-02-01")]
 axiom ofReduceBool (a b : Bool) (h : reduceBool a = b) : a = b
 
+set_option linter.deprecated false in
 /--
 The axiom `ofReduceNat` is used to perform proofs by reflection. See `reduceBool`.
 
@@ -2385,6 +2446,7 @@ external type checkers that do not implement this feature.
 Keep in mind that if you are using Lean as programming language, you are already trusting the Lean compiler and interpreter.
 So, you are mainly losing the capability of type checking your development using external checkers.
 -/
+@[deprecated "in-kernel native reduction is deprecated; assert native evaluations with axioms instead" (since := "2026-02-01")]
 axiom ofReduceNat (a b : Nat) (h : reduceNat a = b) : a = b
 
 
@@ -2435,7 +2497,7 @@ class IdempotentOp (op : α → α → α) : Prop where
   idempotent : (x : α) → op x x = x
 
 /--
-`LeftIdentify op o` indicates `o` is a left identity of `op`.
+`LeftIdentity op o` indicates `o` is a left identity of `op`.
 
 This class does not require a proof that `o` is an identity, and
 is used primarily for inferring the identity using class resolution.
@@ -2443,7 +2505,7 @@ is used primarily for inferring the identity using class resolution.
 class LeftIdentity (op : α → β → β) (o : outParam α) : Prop
 
 /--
-`LawfulLeftIdentify op o` indicates `o` is a verified left identity of
+`LawfulLeftIdentity op o` indicates `o` is a verified left identity of
 `op`.
 -/
 class LawfulLeftIdentity (op : α → β → β) (o : outParam α) : Prop extends LeftIdentity op o where
@@ -2451,7 +2513,7 @@ class LawfulLeftIdentity (op : α → β → β) (o : outParam α) : Prop extend
   left_id : ∀ a, op o a = a
 
 /--
-`RightIdentify op o` indicates `o` is a right identity `o` of `op`.
+`RightIdentity op o` indicates `o` is a right identity `o` of `op`.
 
 This class does not require a proof that `o` is an identity, and is used
 primarily for inferring the identity using class resolution.
@@ -2459,7 +2521,7 @@ primarily for inferring the identity using class resolution.
 class RightIdentity (op : α → β → α) (o : outParam β) : Prop
 
 /--
-`LawfulRightIdentify op o` indicates `o` is a verified right identity of
+`LawfulRightIdentity op o` indicates `o` is a verified right identity of
 `op`.
 -/
 class LawfulRightIdentity (op : α → β → α) (o : outParam β) : Prop extends RightIdentity op o where
@@ -2533,3 +2595,11 @@ class Trichotomous (r : α → α → Prop) : Prop where
   trichotomous (a b : α) : ¬ r a b → ¬ r b a → a = b
 
 end Std
+
+@[simp] theorem flip_flip {α : Sort u} {β : Sort v} {φ : Sort w} {f : α → β → φ} :
+    flip (flip f) = f := by
+  apply funext
+  intro a
+  apply funext
+  intro b
+  rw [flip, flip]

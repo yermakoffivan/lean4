@@ -430,3 +430,105 @@ section Glob
 #guard (posix "/foo.lean").matchGlob "**/foo.lean" = true
 
 end Glob
+
+
+-- ---------------------------------------------------------------------------
+-- Section: empty / isEmpty
+-- ---------------------------------------------------------------------------
+
+section EmptyPath
+
+-- empty has no components
+#guard Path.empty.components = #[]
+-- isEmpty on empty
+#guard Path.empty.isEmpty = true
+-- Inhabited default is also empty
+#guard (default : Path).isEmpty = true
+-- non-empty paths
+#guard (posix "a").isEmpty = false
+#guard (posix "/").isEmpty = false
+#guard (posix ".").isEmpty = false
+-- joining empty with a path gives that path
+#guard (Path.empty.join (posix "a/b")).toPosixString = "a/b"
+-- joining a path with empty gives that path
+#guard ((posix "a/b").join Path.empty).toPosixString = "a/b"
+
+end EmptyPath
+
+
+-- ---------------------------------------------------------------------------
+-- Section: isRoot
+-- ---------------------------------------------------------------------------
+
+section IsRoot
+
+-- POSIX root
+#guard (posix "/").isRoot = true
+-- Windows drive root
+#guard (win "C:\\").isRoot = true
+-- Windows root without drive
+#guard (win "\\").isRoot = true
+-- absolute but not root (has normal components)
+#guard (posix "/usr").isRoot = false
+#guard (win "C:\\foo").isRoot = false
+-- relative paths are never root
+#guard (posix "a").isRoot = false
+#guard (posix ".").isRoot = false
+-- empty path is not root
+#guard Path.empty.isRoot = false
+
+end IsRoot
+
+-- ---------------------------------------------------------------------------
+-- Section: depth
+-- ---------------------------------------------------------------------------
+
+section Depth
+
+-- typical absolute paths
+#guard (posix "/usr/local/bin").depth = 3
+#guard (posix "/usr").depth = 1
+-- root only: no normal components
+#guard (posix "/").depth = 0
+-- relative paths
+#guard (posix "a/b/c").depth = 3
+#guard (posix "a").depth = 1
+-- special components do not count
+#guard (posix "..").depth = 0
+#guard (posix ".").depth = 0
+-- mixed: "a" and "b" are normal, ".." is not
+#guard (posix "a/../b").depth = 2
+-- empty path
+#guard Path.empty.depth = 0
+-- Windows
+#guard (win "C:\\Users\\foo\\bar").depth = 3
+
+end Depth
+
+
+-- ---------------------------------------------------------------------------
+-- Section: filePrefix
+-- ---------------------------------------------------------------------------
+
+section FilePrefix
+
+-- removes everything from first dot
+#guard (posix "foo.tar.gz").filePrefix = some "foo"
+-- single extension
+#guard (posix "foo.txt").filePrefix = some "foo"
+-- no extension: whole name is the prefix
+#guard (posix "Makefile").filePrefix = some "Makefile"
+-- leading-dot file with no extension: whole name preserved
+#guard (posix ".gitignore").filePrefix = some ".gitignore"
+-- leading-dot file with extension: leading dot kept, rest up to first dot
+#guard (posix ".hidden.tar.gz").filePrefix = some ".hidden"
+#guard (posix ".hidden.lean").filePrefix = some ".hidden"
+-- no file name → none
+#guard (posix "/").filePrefix = none
+#guard (posix "a/..").filePrefix = none
+#guard Path.empty.filePrefix = none
+-- consistency with fileStem: filePrefix drops all extensions, fileStem only last
+#guard (posix "a.b.c").filePrefix = some "a"
+#guard (posix "a.b.c").fileStem    = some "a.b"
+
+end FilePrefix

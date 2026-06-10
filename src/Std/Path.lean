@@ -17,6 +17,7 @@ public import Init.System.Platform
 public import Std.Path.Internal.Parser
 public import Std.Path.Internal.Glob
 public import Std.Async.Process
+public import Std.Internal.UV.System
 
 public section
 
@@ -108,6 +109,18 @@ abbrev ValidExtension (x : String) : Prop :=
   ¬x.isEmpty ∧ x.toList.all (not <| · matches '\\' | '/' | '\x00' | '.')
 
 /--
+The empty path: no components. Joining any path with `empty` yields that path unchanged.
+-/
+def empty : Path := { components := #[] }
+
+/--
+True if `p` has no components.
+-/
+@[inline]
+def isEmpty (p : Path) : Bool :=
+  p.components.isEmpty
+
+/--
 True if the first component of `p` is `root` (or `drivePrefix` followed by `root`).
 -/
 def isAbsolute (p : Path) : Bool :=
@@ -122,6 +135,7 @@ True if `p` is not absolute.
 @[inline]
 def isRelative (p : Path) : Bool :=
   ¬p.isAbsolute
+
 
 /--
 Append `other` to `p`.
@@ -158,6 +172,16 @@ Drive concatenated with root (e.g. `"C:\\"`, `"/"`, or `""` for a relative path)
 -/
 def anchor (p : Path) : String :=
   (p.drive?.getD "") ++ (p.root?.getD "")
+
+/--
+The number of `normal` components in `p` (drive prefix, root, `.`, and `..` are not counted).
+
+Examples:
+- `depth (ofPosixString "/usr/local/bin" |>.get!) = 3`
+- `depth (ofPosixString ".." |>.get!) = 0`
+-/
+def depth (p : Path) : Nat :=
+  p.components.foldl (fun acc c => match c with | .normal _ => acc + 1 | _ => acc) 0
 
 /--
 Resolve `.` components and eliminate `..` components syntactically.
@@ -199,6 +223,13 @@ def parent (path : Path) : Option Path :=
     else some { components := cs }
 
 /--
+True if `p` is an absolute path with no further components (i.e. only a root, with an optional
+drive prefix). Examples: `"/"`, `"C:\\"`.
+-/
+def isRoot (p : Path) : Bool :=
+  p.isAbsolute && p.parent.isNone
+
+/--
 The last `normal` component as a string (i.e. the file or directory name).
 
 Returns `none` when the path ends with `root`, `current`, or `parent` components,
@@ -215,8 +246,8 @@ The filename without the last extension.
 Returns `none` when there is no file name (see `fileName`).
 
 Examples:
-- `Path.fromPosixString "src/Main.lean" |>.fileStem = some "Main"`
-- `Path.fromPosixString "archive.tar.gz" |>.fileStem = some "archive.tar"`
+- `(ofPosixString "src/Main.lean" |>.get!).fileStem = some "Main"`
+- `(ofPosixString "archive.tar.gz" |>.get!).fileStem = some "archive.tar"`
 -/
 def fileStem (p : Path) : Option String := do
   let name ← p.fileName
@@ -228,6 +259,27 @@ def fileStem (p : Path) : Option String := do
   match splitAtLastDot searchIn with
   | none => some name
   | some (stem, _)  => if hadLeadingDot then some <| "." ++ stem else some stem.toString
+
+/--
+The filename stem before the first extension (i.e. before the first `.` after any leading dot).
+
+Returns `none` when there is no file name (see `fileName`).
+
+Examples:
+- `(ofPosixString "foo.tar.gz" |>.get!).filePrefix = some "foo"`
+- `(ofPosixString ".hidden" |>.get!).filePrefix = some ".hidden"`
+- `(ofPosixString ".hidden.tar.gz" |>.get!).filePrefix = some ".hidden"`
+- `(ofPosixString "Makefile" |>.get!).filePrefix = some "Makefile"`
+-/
+def filePrefix (p : Path) : Option String :=
+  p.fileName.map fun name =>
+    let (leadingDot, rest) :=
+      if name.startsWith "." && name.length > 1 then (".", name.drop 1 |>.toString)
+      else ("", name)
+
+    let parts := rest.split "." |>.toArray
+    if parts.isEmpty then name
+    else leadingDot ++ parts[0]!.toString
 
 /--
 The last file extension, without the leading `.`.
@@ -513,6 +565,19 @@ def ofWindowsString (s : String) : Option Path :=
   | .ok cs => some { components := cs }
   | .error _ => none
 
+/--
+Append a child name to `p`, treating `name` as a single normal path component.
+
+This is the safe building block for path construction from runtime strings (e.g., file names
+returned by `IO.FS.readDir`).  The resulting path is the same as `p / Path.ofPosixString name`
+when `name` is a valid single-segment string.
+
+Note: this function is intentionally simple — it does not check whether `name` is a valid file
+name. Invalid names (empty string, `..`, containing `/`) result in a malformed path.
+-/
+def withChild (p : Path) (name : String) : Path :=
+  { components := p.components.push (.normal name) }
+
 section IO
 
 /--
@@ -554,5 +619,117 @@ def toAbsoluteCwd (p : Path) : IO Path := do
   let cwdPath ← fromString (← IO.Process.getCwd).toString
   return cwdPath.join p |>.normalize
 
+/--
+Make `p` absolute and resolve all symlinks, returning the canonical path.
+
+Fails with an `IO.Error` if any component of the path does not exist on the file system.
+Unlike `toAbsoluteCwd`, this performs actual file system access and resolves symlinks.
+-/
+def resolve (p : Path) : IO Path :=
+  fromString =<< Internal.UV.System.realPath =<< p.toString
+
 end IO
+
+/--
+Iterator state for `Path.glob`. Each step reads one filesystem entry, loading new directory
+entries into the state when the current batch is exhausted.
+-/
+structure GlobIterator where
+  /-- Original string pattern for `matchGlob` checks. -/
+  pattern       : String
+  /-- True if the pattern contains a `**` segment. -/
+  hasDoublestar : Bool
+  /-- Maximum recursion depth (= number of segments when there is no `**`). -/
+  maxDepth      : Nat
+  /-- Stack of `(relDir, absDir, depth)` directories waiting to be explored. -/
+  pending       : Array (Path × Path × Nat)
+  /-- File names of entries in the directory currently being iterated. -/
+  entries       : Array String
+  /-- Index of the next entry to process in `entries`. -/
+  idx           : Nat
+  /-- Relative path (from the base) of the directory whose entries are in `entries`. -/
+  relDir        : Path
+  /-- Absolute path of the directory whose entries are in `entries`. -/
+  absDir        : Path
+  /-- Depth of the directory whose entries are in `entries`. -/
+  depth         : Nat
+
+-- The `Iterator` instance is defined here (inside `namespace Std.Path`) rather than inside a
+-- `namespace GlobIterator` sub-namespace so that `step` can access Path's private constructor.
+instance instGlobIterator : Iterator GlobIterator IO Path where
+  IsPlausibleStep _ _ := True
+  step it := do
+    let s := it.internalState
+    if h : s.idx < s.entries.size then
+      let name := s.entries[s.idx]'h
+      let entryRel := s.relDir.withChild name
+      let entryAbs := s.absDir.withChild name
+      let entryStr ← entryAbs.toString
+      let isDir ← (⟨entryStr⟩ : System.FilePath).isDir
+      let newPending :=
+        if (s.hasDoublestar || s.depth + 1 < s.maxDepth) && isDir then
+          s.pending.push (entryRel, entryAbs, s.depth + 1)
+        else
+          s.pending
+      let newIt : IterM (α := GlobIterator) IO Path :=
+        ⟨{ s with idx := s.idx + 1, pending := newPending }⟩
+      if entryRel.matchGlob s.pattern then
+        return .deflate ⟨.yield newIt entryAbs, trivial⟩
+      else
+        return .deflate ⟨.skip newIt, trivial⟩
+    else
+      match s.pending.back? with
+      | none => return .deflate ⟨.done, trivial⟩
+      | some (relDir', absDir', depth') =>
+        let dirStr ← absDir'.toString
+        let newEntries :=
+          (← try (⟨dirStr⟩ : System.FilePath).readDir catch _ => pure #[])
+          |>.map IO.FS.DirEntry.fileName
+        let newIt : IterM (α := GlobIterator) IO Path :=
+          ⟨{ s with
+              entries := newEntries
+              idx     := 0
+              relDir  := relDir'
+              absDir  := absDir'
+              depth   := depth'
+              pending := s.pending.pop }⟩
+        return .deflate ⟨.skip newIt, trivial⟩
+
+instance instGlobIteratorLoop [Monad n] : IteratorLoop GlobIterator IO n :=
+  .defaultImplementation
+
+/--
+Walk `dir` lazily and yield every path (file or directory) whose path relative to `dir` matches
+`pattern`. Returns an `IterM IO Path`; use `for p in dir.glob pat do …` or `.toArray` to consume.
+
+Supported wildcards:
+- `*` — any characters within a single path segment (does not cross `/`)
+- `**` — zero or more segments, enabling recursive descent
+- `?` — any single character within a segment
+- `[abc]` / `[a-z]` — character class
+
+Directories that cannot be read (e.g., insufficient permissions) are silently skipped.
+
+Examples:
+```lean
+-- Iterate lazily over all Lean files directly in `dir`
+for src in dir.glob "*.lean" do
+  IO.println (← src.toString)
+
+-- Collect all Lean files anywhere under `dir` into an array
+let srcs ← (dir.glob "**/*.lean").toArray
+```
+-/
+def glob (dir : Path) (pattern : String) : IterM (α := GlobIterator) IO Path :=
+  let g := Internal.parseGlob pattern
+  ⟨{ pattern       := pattern
+     hasDoublestar := g.any (· matches .doublestar)
+     maxDepth      := g.size
+     pending       := #[(Path.empty, dir, 0)]
+     entries       := #[]
+     idx           := 0
+     relDir        := Path.empty
+     absDir        := dir
+     depth         := 0 }⟩
+
 end Std.Path

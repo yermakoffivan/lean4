@@ -736,6 +736,10 @@ struct scoped_current_task_object : flet<lean_task_object *> {
 class task_manager {
     mutex                                         m_mutex;
     std::vector<std::unique_ptr<lthread>>         m_std_workers;
+    // `m_std_workers` minus workers that have exited: retired surplus workers
+    // (jobserver mode only) remain in `m_std_workers` so the destructor can
+    // join them, but must not count towards any worker accounting.
+    unsigned                                      m_live_std_workers{0};
     unsigned                                      m_idle_std_workers{0};
     unsigned                                      m_max_std_workers{0};
     unsigned                                      m_num_dedicated_workers{0};
@@ -765,7 +769,7 @@ class task_manager {
     // Pool workers currently executing a task, i.e. excluding idle workers
     // and workers blocked in `wait_for`.
     unsigned active_std_workers() const {
-        return (unsigned)m_std_workers.size() - m_idle_std_workers - m_blocked_std_workers;
+        return m_live_std_workers - m_idle_std_workers - m_blocked_std_workers;
     }
 
     // May a worker start executing a task right now? This is the
@@ -778,7 +782,7 @@ class task_manager {
     // Number of slots this process currently has use for: workers already
     // executing a task plus queued tasks the local throttle would admit.
     unsigned token_demand() const {
-        unsigned running = (unsigned)m_std_workers.size() - m_idle_std_workers;
+        unsigned running = m_live_std_workers - m_idle_std_workers;
         unsigned can_start = running < m_max_std_workers ?
             std::min(m_queues_size, m_max_std_workers - running) : 0;
         return active_std_workers() + can_start;
@@ -811,7 +815,7 @@ class task_manager {
                 m_granted++;
                 // Hand the new slot to a worker; if all live workers are
                 // busy, spawn one for it.
-                if (m_idle_std_workers == 0 && m_std_workers.size() < m_max_std_workers && m_queues_size > 0)
+                if (m_idle_std_workers == 0 && m_live_std_workers < m_max_std_workers && m_queues_size > 0)
                     spawn_worker();
                 else
                     m_queue_cv.notify_one();
@@ -862,7 +866,7 @@ class task_manager {
             m_max_prio = prio;
         m_queues[prio].push_back(t);
         m_queues_size++;
-        if (!m_idle_std_workers && m_std_workers.size() < m_max_std_workers
+        if (!m_idle_std_workers && m_live_std_workers < m_max_std_workers
 #if LEAN_JOBSERVER_POSIX
             // only spawn a worker that is allowed to run; otherwise the broker
             // spawns or wakes one when it acquires a token for this task
@@ -899,11 +903,27 @@ class task_manager {
         if (m_shutting_down)
             return;
 
+        m_live_std_workers++;
         m_std_workers.emplace_back(new lthread([this]() {
             save_stack_info(false);
             unique_lock<mutex> lock(m_mutex);
             m_idle_std_workers++;
             while (true) {
+#if LEAN_JOBSERVER_POSIX
+                // Retire surplus workers so that a gated process does not
+                // accumulate threads up to its high-water mark as tokens move
+                // between processes: keep just enough to service every
+                // granted slot plus two spares (slack against spawn/retire
+                // churn around blocking `Task.get`s). If this worker was
+                // woken for a queued task it could have run (free slot), the
+                // retire condition implies several other idle workers exist,
+                // so pass the wakeup on to one of them.
+                if (m_jobserver_sem && !m_shutting_down &&
+                    m_live_std_workers > m_granted + m_blocked_std_workers + 2) {
+                    m_queue_cv.notify_one();
+                    break;
+                }
+#endif
                 if (m_queues_size == 0) {
                     if (m_shutting_down) {
                         // We're done
@@ -924,7 +944,7 @@ class task_manager {
                 // because the finalizer might have called m_queue_cv.notify_all() for the last
                 // time, we don't want to get stuck behind the wait().
                 if (!m_shutting_down &&
-                    (m_std_workers.size() - m_idle_std_workers >= m_max_std_workers
+                    (m_live_std_workers - m_idle_std_workers >= m_max_std_workers
 #if LEAN_JOBSERVER_POSIX
                      || !jobserver_admits()
 #endif
@@ -944,6 +964,7 @@ class task_manager {
                 reset_heartbeat();
             }
             m_idle_std_workers--;
+            m_live_std_workers--;
         }));
     }
 

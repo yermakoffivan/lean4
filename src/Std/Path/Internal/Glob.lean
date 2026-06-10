@@ -42,7 +42,7 @@ A compiled glob pattern: a sequence of segments separated by `/`.
 -/
 abbrev Glob := Array GlobSegment
 
-open Std.Internal.Parsec Std.Internal.Parsec.String
+open Std Internal Parsec String
 
 /--
 Parse the body of a `[...]` character class, after the opening `[`.
@@ -105,8 +105,8 @@ private def matchParts (parts : Array GlobPart) (s : String) : Bool :=
   | .error _ => false
 
 partial def matchSegments (glob : Glob) (comps : Array String) (gi ci : Nat) : Bool :=
-  if gi >= glob.size then ci >= comps.size
-  else match glob[gi]! with
+  if h : gi >= glob.size then ci >= comps.size
+  else match glob[gi]'(Nat.lt_of_not_le h) with
   | .doublestar =>
     let rec tryFrom (ci' : Nat) : Bool :=
       matchSegments glob comps (gi + 1) ci' ||

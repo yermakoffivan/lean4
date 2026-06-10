@@ -29,12 +29,9 @@ private def classifySegment (s : String) : Path.Component :=
 private def isWinSep (c : Char) : Bool :=
   c == '\\' || c == '/'
 
-private def isDriveLetter (c : Char) : Bool :=
-  ('A' ≤ c && c ≤ 'Z') || ('a' ≤ c && c ≤ 'z')
-
 private def parseDrive : Parser (Option String) :=
   attempt (do
-    let c ← satisfy isDriveLetter
+    let c ← satisfy Char.isAlpha
     discard <| pchar ':'
     return some (String.singleton c ++ ":")) <|> pure none
 
@@ -47,10 +44,12 @@ private def winSeg : Parser Path.Component :=
 def posixPathParser : Parser (Array Path.Component) := do
   let hasRoot ← flag (pchar '/')
   discard <| manyChars (attempt (pchar '/'))
-  let init : Array Path.Component := if hasRoot then #[.root "/"] else #[]
-  let first? ← optional posixSeg
-  match first? with
-  | none => return init
+
+  let init := if hasRoot then #[.root "/"] else #[]
+
+  match ← optional posixSeg with
+  | none =>
+    return init
   | some first =>
     let rest ← many (attempt (many1Chars (pchar '/') *> posixSeg))
     discard <| manyChars (pchar '/')

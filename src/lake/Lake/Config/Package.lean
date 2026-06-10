@@ -6,360 +6,60 @@ Authors: Gabriel Ebner, Sebastian Ullrich, Mac Malone
 module
 
 prelude
-public import Lake.Config.Defaults
-public import Lake.Config.OutFormat
-public import Lake.Config.WorkspaceConfig
-public import Lake.Config.Dependency
-public import Lake.Config.ConfigDecl
-public import Lake.Config.Script
 public import Lake.Config.Cache
-public import Lake.Config.MetaClasses
+public import Lake.Config.Script
+public import Lake.Config.ConfigDecl
+public import Lake.Config.Dependency
+public import Lake.Config.PackageConfig
 public import Lake.Util.FilePath -- use scoped instance downstream
 public import Lake.Util.OrdHashSet
-public import Lake.Util.Version
 public import Lake.Util.Name
-meta import all Lake.Config.Meta
 meta import all Lake.Util.OpaqueType
+import Lake.Util.OpaqueType
+import Lake.Util.IO
 
 open System Lean
 
 namespace Lake
 
-/-- The default `buildArchive` configuration for a package with `name`. -/
-@[inline] public def defaultBuildArchive (name : Name) : String :=
-  s!"{name.toString false}-{System.Platform.target}.tar.gz"
-
---------------------------------------------------------------------------------
-/-! # PackageConfig -/
---------------------------------------------------------------------------------
-
-set_option linter.unusedVariables false in
-/-- A `Package`'s declarative configuration. -/
-public configuration PackageConfig (name : Name) extends WorkspaceConfig, LeanConfig where
-  /-- **For internal use.** Whether this package is Lean itself. -/
-  bootstrap : Bool := false
-
-  /--
-  **This field is deprecated.**
-
-  The path of a package's manifest file, which stores the exact versions
-  of its resolved dependencies.
-
-  Defaults to `defaultManifestFile` (i.e., `lake-manifest.json`).
-  -/
-  manifestFile : Option FilePath := none
-
-  /-- An `Array` of target names to build whenever the package is used. -/
-  extraDepTargets : Array Name := #[]
-
-  /--
-  Whether to compile each of the package's module into a native shared library
-  that is loaded whenever the module is imported. This speeds up evaluation of
-  metaprograms and enables the interpreter to run functions marked `@[extern]`.
-
-  Defaults to `false`.
-  -/
-  precompileModules : Bool := false
-
-  /--
-  Additional arguments to pass to the Lean language server
-  (i.e., `lean --server`) launched by `lake serve`, both for this package and
-  also for any packages browsed from this one in the same session.
-  -/
-  moreGlobalServerArgs, moreServerArgs : Array String := #[]
-
-  /--
-  The directory containing the package's Lean source files.
-  Defaults to the package's directory.
-
-  (This will be passed to `lean` as the `-R` option.)
-  -/
-  srcDir : FilePath := "."
-
-  /--
-  The directory to which Lake should output the package's build results.
-  Defaults to `defaultBuildDir` (i.e., `.lake/build`).
-  -/
-  buildDir : FilePath := defaultBuildDir
-
-  /--
-  The build subdirectory to which Lake should output the package's
-  binary Lean libraries (e.g., `.olean`, `.ilean` files).
-  Defaults to  `defaultLeanLibDir` (i.e., `lib`).
-  -/
-  leanLibDir : FilePath := defaultLeanLibDir
-
-  /--
-  The build subdirectory to which Lake should output the package's
-  native libraries (e.g., `.a`, `.so`, `.dll` files).
-  Defaults to `defaultNativeLibDir` (i.e., `lib`).
-  -/
-  nativeLibDir : FilePath := defaultNativeLibDir
-
-  /--
-  The build subdirectory to which Lake should output the package's binary executable.
-  Defaults to `defaultBinDir` (i.e., `bin`).
-  -/
-  binDir : FilePath := defaultBinDir
-
-  /--
-  The build subdirectory to which Lake should output
-  the package's intermediary results (e.g., `.c` and `.o` files).
-  Defaults to `defaultIrDir` (i.e., `ir`).
-  -/
-  irDir : FilePath := defaultIrDir
-
-  /--
-  The URL of the GitHub repository to upload and download releases of this package.
-  If `none` (the default), for downloads, Lake uses the URL the package was download
-  from (if it is a dependency) and for uploads, uses `gh`'s default.
-  -/
-  releaseRepo, releaseRepo? : Option String := none
-
-  /--
-  A custom name for the build archive for the GitHub cloud release.
-  If `none` (the default), Lake defaults to `{(pkg-)name}-{System.Platform.target}.tar.gz`.
-  -/
-  buildArchive, buildArchive? : Option String := none
-
-  /--
-  Whether to prefer downloading a prebuilt release (from GitHub) rather than
-  building this package from the source when this package is used as a dependency.
-  -/
-  preferReleaseBuild : Bool := false
-
-  /--
-  The name of the script, executable, or library by `lake test` when
-  this package is the workspace root. To point to a definition in another
-  package, use the syntax `<pkg>/<def>`.
-
-  A script driver will be run by `lake test` with the arguments
-  configured in `testDriverArgs`  followed by any specified on the CLI
-  (e.g., via  `lake lint -- <args>...`). An executable driver will be built
-  and then run like a script. A library will just be built.
-  -/
-  testDriver, testRunner : String := ""
-
-  /--
-  Arguments to pass to the package's test driver.
-  These arguments will come before those passed on the command line via
-  `lake test -- <args>...`.
-  -/
-  testDriverArgs : Array String := #[]
-
-  /--
-  The name of the script or executable used by `lake lint` when this package
-  is the workspace root. To point to a definition in another package, use the
-  syntax `<pkg>/<def>`.
-
-  A script driver will be run by `lake lint` with the arguments
-  configured in `lintDriverArgs` followed by any specified on the CLI
-  (e.g., via  `lake lint -- <args>...`). An executable driver will be built
-  and then run like a script.
-  -/
-  lintDriver : String := ""
-
-  /--
-  Arguments to pass to the package's linter.
-  These arguments will come before those passed on the command line via
-  `lake lint -- <args>...`.
-  -/
-  lintDriverArgs : Array String := #[]
-
-  /--
-  The package version. Versions have the form:
-
-  ```
-  v!"<major>.<minor>.<patch>[-<specialDescr>]"
-  ```
-
-  A version with a `-` suffix is considered a "prerelease".
-
-  Lake suggest the following guidelines for incrementing versions:
-
-  * **Major version increment** *(e.g., v1.3.0 → v2.0.0)*
-    Indicates significant breaking changes in the package.
-    Package users are not expected to update to the new version
-    without manual intervention.
-
-  * **Minor version increment** *(e.g., v1.3.0 → v1.4.0)*
-    Denotes notable changes that are expected to be
-    generally backwards compatible.
-    Package users are expected to update to this version automatically
-    and should be able to fix any breakages and/or warnings easily.
-
-  * **Patch version increment** *(e.g., v1.3.0 → v1.3.1)*
-    Reserved for bug fixes and small touchups.
-    Package users are expected to update automatically and should not expect
-    significant breakage, except in the edge case of users relying on the
-    behavior of patched bugs.
-
-  **Note that backwards-incompatible changes may occur at any version increment.**
-  The is because the current nature of Lean (e.g., transitive imports,
-  rich metaprogramming, reducibility in proofs), makes it infeasible to
-  define a completely stable interface for a package.
-  Instead, the different version levels indicate a change's intended significance
-  and how difficult migration is expected to be.
-
-  Versions of form the `0.x.x` are considered development versions prior to
-  first official release. Like prerelease, they are not expected to closely
-  follow the above guidelines.
-
-  Packages without a defined version default to `0.0.0`.
-  -/
-  version : StdVer := {}
-
-  /--
-  Git tags of this package's repository that should be treated as versions.
-  Package indices (e.g., Reservoir) can make use of this information to determine
-  the Git revisions corresponding to released versions.
-
-  Defaults to tags that are "version-like".
-  That is, start with a `v` followed by a digit.
-  -/
-  versionTags : StrPat := defaultVersionTags
-
-  /-- A short description for the package (e.g., for Reservoir). -/
-  description : String := ""
-
-  /--
-  Custom keywords associated with the package.
-  Reservoir can make use of a package's keywords to group related packages
-  together and make it easier for users to discover them.
-
-  Good keywords include the domain (e.g., `math`, `software-verification`,
-  `devtool`), specific subtopics (e.g., `topology`,  `cryptology`), and
-  significant implementation details (e.g., `dsl`, `ffi`, `cli`).
-  For instance, Lake's keywords could be `devtool`, `cli`, `dsl`,
-  `package-manager`, and `build-system`.
-  -/
-  keywords : Array String := #[]
-
-  /--
-  A URL to information about the package.
-
-  Reservoir will already include a link to the package's GitHub repository
-  (if the package is sourced from there). Thus, users are advised to specify
-  something else for this (if anything).
-  -/
-  homepage : String := ""
-
-  /--
-  The package's license (if one).
-  Should be a valid [SPDX License Expression][1].
-
-  Reservoir requires that packages uses an OSI-approved license to be
-  included in its index, and currently only supports single identifier
-  SPDX expressions. For, a list of OSI-approved SPDX license identifiers,
-  see the [SPDX LIcense List][2].
-
-  [1]: https://spdx.github.io/spdx-spec/v3.0/annexes/SPDX-license-expressions/
-  [2]: https://spdx.org/licenses/
-  -/
-  license : String := ""
-
-  /--
-  Files containing licensing information for the package.
-
-  These should be the license files that users are expected to include when
-  distributing package sources, which may be more then one file for some licenses.
-  For example, the Apache 2.0 license requires the reproduction of a `NOTICE`
-  file along with the license (if such a file exists).
-
-  Defaults to `#["LICENSE"]`.
-  -/
-  licenseFiles : Array FilePath := #["LICENSE"]
-
-  /--
-  The path to the package's README.
-
-  A README should be a Markdown file containing an overview of the package.
-  Reservoir displays the rendered HTML of this file on a package's page.
-  A nonstandard location can be used to provide a different README for Reservoir
-  and GitHub.
-
-  Defaults to `README.md`.
-  -/
-  readmeFile : FilePath := "README.md"
-
-  /--
-  Whether Reservoir should include the package in its index.
-  When set to `false`, Reservoir will not add the package to its index
-  and will remove it if it was already there (when Reservoir is next updated).
-  -/
-  reservoir : Bool := true
-
-  /--
-  Whether to enables Lake's local, offline artifact cache for the package.
-
-  Artifacts (i.e., build products) of packages will be shared across
-  local copies by storing them in a cache associated with the Lean toolchain.
-  This can significantly reduce initial build times and disk space usage when
-  working with multiple copies of large projects or large dependencies.
-
-  As a caveat, build targets which support the artifact cache will not be stored
-  in their usual location within the build directory. Thus, projects with custom build
-  scripts that rely on specific location of artifacts may wish to disable this feature.
-
-  If `none` (the default), the cache will be disabled by default unless
-  the `LAKE_ARTIFACT_CACHE` environment variable is set to true.
-  -/
-  enableArtifactCache?, enableArtifactCache : Option Bool := none
-  /--
-  Whether native libraries (of this package) should be prefixed with `lib` on Windows.
-
-  Unlike Unix, Windows does not require native libraries to start with `lib` and,
-  by convention, they usually do not. However, for consistent naming across all platforms,
-  users may wish to enable this.
-
-  Defaults to `false`.
-  -/
-  libPrefixOnWindows : Bool := false
-deriving Inhabited
-
-/-- The package's name. -/
-public abbrev PackageConfig.name (_ : PackageConfig n) := n
-
-public section -- for `TypeName`
-/-- A package declaration from a configuration written in Lean. -/
-public structure PackageDecl where
-  name : Name
-  config : PackageConfig name
-  deriving TypeName
-end
-
---------------------------------------------------------------------------------
-/-! # Package -/
---------------------------------------------------------------------------------
-
 public nonempty_type OpaquePostUpdateHook (pkg : Name)
 
 /-- A Lake package -- its location plus its configuration. -/
 public structure Package where
-  /-- The name of the package. -/
-  name : Name
+  /-- The index of the package in the workspace. Used to disambiguate packages with the same name. -/
+  wsIdx : Nat
+  /-- The assigned name of the package. -/
+  baseName : Name
+  /-- The package identifier used in target keys and configuration types. -/
+  keyName : Name := baseName.num wsIdx
+  /-- The name specified by the package. -/
+  origName : Name
   /-- The absolute path to the package's directory. -/
   dir : FilePath
   /-- The path to the package's directory relative to the workspace. -/
   relDir : FilePath
   /-- The package's user-defined configuration. -/
-  config : PackageConfig name
+  config : PackageConfig keyName origName
   /-- The absolute path to the package's configuration file. -/
   configFile : FilePath
   /-- The path to the package's configuration file (relative to `dir`). -/
   relConfigFile : FilePath
   /-- The path to the package's JSON manifest of remote dependencies (relative to `dir`). -/
-  relManifestFile : FilePath := config.manifestFile.getD defaultManifestFile |>.normalize
+  relManifestFile : FilePath
   /-- The package's scope (e.g., in Reservoir). -/
   scope : String
   /-- The URL to this package's Git remote. -/
   remoteUrl : String
   /-- Dependency configurations for the package. -/
   depConfigs : Array Dependency := #[]
+  /-- **For internal use only.** Workspace indices of the resolved direct dependencies of the package. -/
+  depIdxs : Array Nat := #[]
+  /-- **For internal use only.** Resolved direct dependences of the package. -/
+  depPkgs : Array Package := #[]
   /-- Target configurations in the order declared by the package. -/
-  targetDecls : Array (PConfigDecl name) := #[]
+  targetDecls : Array (PConfigDecl keyName) := #[]
   /-- Name-declaration map of target configurations in the package. -/
-  targetDeclMap : DNameMap (NConfigDecl name) :=
+  targetDeclMap : DNameMap (NConfigDecl keyName) :=
     targetDecls.foldl (fun m d => m.insert d.name (.mk d rfl)) {}
   /--
   The names of the package's targets to build by default
@@ -374,24 +74,37 @@ public structure Package where
   -/
   defaultScripts : Array Script := #[]
   /-- Post-`lake update` hooks for the package. -/
-  postUpdateHooks : Array (OpaquePostUpdateHook name) := #[]
+  postUpdateHooks : Array (OpaquePostUpdateHook keyName) := #[]
   /-- The package's `buildArchive`/`buildArchive?` configuration. -/
   buildArchive : String :=
-    if let some n := config.buildArchive then n else defaultBuildArchive name
+    if let some n := config.buildArchive then n else defaultBuildArchive baseName
   /-- The driver used for `lake test` when this package is the workspace root. -/
   testDriver : String := config.testDriver
   /-- The driver used for `lake lint` when this package is the workspace root. -/
   lintDriver : String := config.lintDriver
-  /--
-  Input-to-content map for hashes of package artifacts.
-  If `none`, the artifact cache is disabled for the package.
-  -/
-  cacheRef? : Option CacheRef := none
 
 deriving Inhabited
 
-public instance : Hashable Package where hash pkg := hash pkg.name
-public instance : BEq Package where beq p1 p2 := p1.name == p2.name
+namespace Package
+
+public instance : Hashable Package where hash pkg := hash pkg.keyName
+public instance : BEq Package where beq p1 p2 := p1.wsIdx == p2.wsIdx
+
+/-- Pretty prints the package's name. Used when outputting package names. -/
+@[inline] public def prettyName (self : Package) : String :=
+  self.baseName.toString (escape := false)
+
+public instance : QueryJson Package := ⟨(toJson ·.keyName)⟩
+public instance : QueryText Package := ⟨(·.prettyName)⟩
+
+@[deprecated "Use `baseName`, `keyName`, or `prettyName` instead" (since := "2025-12-03")]
+public abbrev name := @baseName
+
+/-- The (unscoped) name of the package as it appears in Reservoir URLs (before URI-encoding). -/
+@[inline] public def reservoirName (self : Package) : String :=
+  self.origName.toString (escape := false)
+
+end Package
 
 public abbrev PackageSet := Std.HashSet Package
 @[inline] public def PackageSet.empty : PackageSet := ∅
@@ -399,17 +112,22 @@ public abbrev PackageSet := Std.HashSet Package
 public abbrev OrdPackageSet := OrdHashSet Package
 @[inline] public def OrdPackageSet.empty : OrdPackageSet := OrdHashSet.empty
 
-public instance : ToJson Package := ⟨(toJson ·.name)⟩
-public instance : ToString Package := ⟨(·.name.toString)⟩
-
 /-- A package with a name known at type-level. -/
 public structure NPackage (n : Name) extends Package where
-  name_eq : toPackage.name = n
+  keyName_eq : toPackage.keyName = n
 
-attribute [simp] NPackage.name_eq
+namespace NPackage
+
+set_option linter.deprecated false in
+@[deprecated keyName_eq (since := "2025-12-03")]
+public theorem name_eq {self : NPackage n} : self.toPackage.keyName = n := self.keyName_eq
+
+attribute [simp] NPackage.keyName_eq
 
 public instance : CoeOut (NPackage n) Package := ⟨NPackage.toPackage⟩
-public instance : CoeDep Package pkg (NPackage pkg.name) := ⟨⟨pkg, rfl⟩⟩
+public instance : CoeDep Package pkg (NPackage pkg.keyName) := ⟨⟨pkg, rfl⟩⟩
+
+end NPackage
 
 /--
 The type of a post-update hooks monad.
@@ -423,21 +141,27 @@ public structure PostUpdateHook (pkgName : Name) where
 
 public hydrate_opaque_type OpaquePostUpdateHook PostUpdateHook name
 
-public section -- for `TypeName`
 public structure PostUpdateHookDecl where
   pkg : Name
   fn : PostUpdateFn pkg
   deriving TypeName
-end
 
 namespace Package
+
+/-- Returns whether this package is root package of the workspace. -/
+@[inline] public def isRoot (self : Package) : Bool  :=
+  self.wsIdx == 0
 
 /-- **For internal use.** Whether this package is Lean itself.  -/
 @[inline] public def bootstrap (self : Package) : Bool  :=
   self.config.bootstrap
 
+/-- The identifier passed to Lean to disambiguate the package's native symbols. -/
+public def id? (self : Package) : Option PkgId :=
+  if self.bootstrap then none else some <| self.origName.toString (escape := false)
+
 /-- The package version. -/
-@[inline] public def version (self : Package) : LeanVer  :=
+@[inline] public def version (self : Package) : StdVer  :=
   self.config.version
 
 /-- The package's `versionTags` configuration. -/
@@ -520,6 +244,14 @@ namespace Package
 @[inline] public def platformIndependent (self : Package) : Option Bool :=
   self.config.platformIndependent
 
+/-- Whether the package's  has been configured with `platformIndependent = true`. -/
+@[inline] public def isPlatformIndependent (self : Package) : Bool :=
+  self.config.platformIndependent == some true
+
+/-- The package's `fixedToolchain` configuration. -/
+@[inline] public def fixedToolchain (self : Package) : Bool :=
+  self.config.fixedToolchain
+
 /-- The package's `releaseRepo`/`releaseRepo?` configuration. -/
 @[inline] public def releaseRepo? (self : Package) : Option String :=
   self.config.releaseRepo
@@ -559,6 +291,10 @@ namespace Package
 /-- The package's `backend` configuration. -/
 @[inline] public def backend (self : Package) : Backend :=
   self.config.backend
+
+/-- The package's `allowImportAll` configuration. -/
+@[inline] public def allowImportAll (self : Package) : Bool :=
+  self.config.allowImportAll
 
 /-- The package's `dynlibs` configuration. -/
 @[inline] public def dynlibs (self : Package) : TargetArray Dynlib :=
@@ -630,11 +366,6 @@ The package's `buildDir` joined with its `nativeLibDir` configuration.
 @[inline] public def sharedLibDir (self : Package) : FilePath :=
   self.buildDir / self.config.nativeLibDir.normalize
 
-/-- The package's `buildDir` joined with its `nativeLibDir` configuration. -/
-@[inline, deprecated "Use staticLibDir or sharedLibDir instead." (since := "2025-03-29")]
-public def nativeLibDir (self : Package) : FilePath :=
-  self.buildDir / self.config.nativeLibDir.normalize
-
 /-- The package's `buildDir` joined with its `binDir` configuration. -/
 @[inline] public def binDir (self : Package) : FilePath :=
   self.buildDir / self.config.binDir.normalize
@@ -651,13 +382,24 @@ public def nativeLibDir (self : Package) : FilePath :=
 @[inline] public def enableArtifactCache? (self : Package) : Option Bool :=
   self.config.enableArtifactCache?
 
-/-- The file where the package's input-to-content mapping is stored in the Lake cache. -/
-public def inputsFileIn (cache : Cache) (self : Package) : FilePath :=
-  let pkgName := self.name.toString (escape := false)
-  cache.inputsFile pkgName
+/-- The package's `restoreAllArtifacts?` configuration. -/
+@[inline] public def restoreAllArtifacts? (self : Package) : Option Bool :=
+  self.config.restoreAllArtifacts?
+
+/-- The directory within the Lake cache were package-scoped files are stored. -/
+public def cacheScope (self : Package) : String :=
+  self.baseName.toString (escape := false)
+
+/-- The cache scope used to identify the package on Reservoir. -/
+def reservoirScope (self : Package) : CacheServiceScope :=
+  .ofString s!"{self.scope}/{self.origName.toString (escape := false)}"
+
+/-- The cache scope used to identify the package on Reservoir (if the package is availa ble there). -/
+@[inline] public def reservoirScope? (self : Package) : Option CacheServiceScope :=
+  if self.scope.isEmpty then none else some self.reservoirScope
 
 /-- Try to find a target configuration in the package with the given name. -/
-public def findTargetDecl? (name : Name) (self : Package) : Option (NConfigDecl self.name name) :=
+public def findTargetDecl? (name : Name) (self : Package) : Option (NConfigDecl self.keyName name) :=
   self.targetDeclMap.get? name
 
 /-- Whether the given module is considered local to the package. -/
@@ -672,5 +414,4 @@ public def isBuildableModule (mod : Name) (self : Package) : Bool :=
 
 /-- Remove the package's build outputs (i.e., delete its build directory). -/
 public def clean (self : Package) : IO PUnit := do
-  if (← self.buildDir.pathExists) then
-    IO.FS.removeDirAll self.buildDir
+  removeDirAllIfExists self.buildDir

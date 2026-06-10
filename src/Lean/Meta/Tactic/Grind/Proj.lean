@@ -4,14 +4,9 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Leonardo de Moura
 -/
 module
-
 prelude
-public import Lean.ProjFns
 public import Lean.Meta.Tactic.Grind.Types
-public import Lean.Meta.Tactic.Grind.Internalize
-
 public section
-
 namespace Lean.Meta.Grind
 
 /--
@@ -50,6 +45,8 @@ def propagateProjEq (parent : Expr) : GoalM Unit := do
   let idx := info.numParams + info.i
   unless idx < ctor.getAppNumArgs do return ()
   let v := ctor.getArg! idx
-  pushEq parentNew v (← mkEqRefl v)
+  let h ← mkEqRefl v
+  let h := mkExpectedPropHint h (← mkEq parentNew v)
+  pushEq parentNew v h
 
 end Lean.Meta.Grind

@@ -26,5 +26,4 @@ public import Init.Data.Nat.Compare
 public import Init.Data.Nat.Simproc
 public import Init.Data.Nat.Fold
 public import Init.Data.Nat.Order
-
-public section
+public import Init.Data.Nat.ToString

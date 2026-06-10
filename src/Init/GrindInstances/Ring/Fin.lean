@@ -6,12 +6,13 @@ Authors: Leonardo de Moura
 module
 
 prelude
-public import Init.Data.Zero
 import all Init.Data.Zero
-public import Init.Grind.Ring.Basic
 public import Init.GrindInstances.ToInt
 import all Init.GrindInstances.ToInt
 public import Init.Data.Fin.Lemmas
+public import Init.Grind.Ring.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.MinMax
 
 public section
 
@@ -141,18 +142,25 @@ instance (n : Nat) [NeZero n] : IsCharP (Fin n) n := IsCharP.mk' _ _
 example [NeZero n] : ToInt.Neg (Fin n) (.co 0 n) := inferInstance
 example [NeZero n] : ToInt.Sub (Fin n) (.co 0 n) := inferInstance
 
+set_option backward.isDefEq.respectTransparency false in
 instance [i : NeZero n] : ToInt.Pow (Fin n) (.co 0 n) where
   toInt_pow x k := by
     induction k with
     | zero =>
       match n, i with
-      | 1, _ => rfl
+      | 1, _ => simp
       | (n + 2), _ =>
         simp [IntInterval.wrap, Int.sub_zero, Int.add_zero]
         rw [Int.emod_eq_of_lt] <;> omega
     | succ k ih =>
       rw [pow_succ, ToInt.Mul.toInt_mul, ih, ← ToInt.wrap_toInt,
         ← IntInterval.wrap_mul (by simp), Int.pow_succ, ToInt.wrap_toInt]
+
+instance : PowIdentity (Fin 2) 2 where
+  pow_eq x := by
+    match x with
+    | ⟨0, _⟩ => rfl
+    | ⟨1, _⟩ => rfl
 
 end Fin
 

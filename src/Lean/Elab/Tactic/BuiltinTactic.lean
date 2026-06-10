@@ -4,24 +4,16 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Leonardo de Moura
 -/
 module
-
 prelude
 public import Lean.Meta.Diagnostics
-public import Lean.Meta.Hint
-public import Lean.Meta.Tactic.Apply
-public import Lean.Meta.Tactic.Assumption
-public import Lean.Meta.Tactic.Contradiction
 public import Lean.Meta.Tactic.Refl
-public import Lean.Elab.Binders
 public import Lean.Elab.Open
 public import Lean.Elab.Eval
 public import Lean.Elab.SetOption
-public import Lean.Elab.Tactic.Basic
 public import Lean.Elab.Tactic.ElabTerm
 public import Lean.Elab.Do
 import Lean.Meta.Tactic.Replace
-meta import Lean.Parser.Command
-
+import Lean.Elab.Tactic.RenameInaccessibles
 public section
 
 namespace Lean.Elab.Tactic
@@ -46,6 +38,12 @@ where
   -- `stx[0]` is the next tactic step, if any
   goEven stx := do
     if stx.getNumArgs == 0 then
+      -- No more tactic steps, but if the parent still passed us a tactic snapshot
+      -- bundle (e.g. for an empty `by` body) we must resolve its promise so that
+      -- consumers walking the snapshot tree (like the language-server info-tree
+      -- lookup) don't block waiting on a promise nothing else will resolve.
+      if let some snap := (← readThe Term.Context).tacSnap? then
+        snap.new.resolve default
       return
     let tac := stx[0]
     /-
@@ -91,8 +89,20 @@ where
         diagnostics := .empty
         stx := tac
         inner? := some { stx? := tac, task := inner.resultD default, cancelTk? }
-        finished := { stx? := tac, task := finished.resultD default, cancelTk? }
-        next := #[{ stx? := stxs, task := next.resultD default, cancelTk? }]
+        finished := {
+          stx? := tac, task := finished.resultD default, cancelTk?
+          -- Do not report range as it is identical to `inner?`'s and should not cover up
+          -- incremental reporting done in the latter.
+          reportingRange := .skip
+        }
+        next := #[{
+          stx? := stxs, task := next.resultD default, cancelTk?
+          -- Do not fall back to `inherit` if there are no more tactics as that would cover up
+          -- incremental reporting done in `inner?`. Do use default range in all other cases so that
+          -- reporting ranges are properly nested.
+          reportingRange :=
+            if stxs.getNumArgs == 0 then .skip else SnapshotTask.defaultReportingRange stxs
+        }]
       }
       -- Run `tac` in a fresh info tree state and store resulting state in snapshot for
       -- incremental reporting, then add back saved trees. Here we rely on `evalTactic`
@@ -186,7 +196,8 @@ private def getOptRotation (stx : Syntax) : Nat :=
     popScope
 
 @[builtin_tactic Parser.Tactic.set_option] def elabSetOption : Tactic := fun stx => do
-  let options ← Elab.elabSetOption stx[1] stx[3]
+  let (options, decl) ← Elab.elabSetOption stx[1] stx[3]
+  withRef stx[1] <| Elab.checkDeprecatedOption (stx[1].getId.eraseMacroScopes) decl
   withOptions (fun _ => options) do
     try
       evalTactic stx[5]
@@ -284,7 +295,8 @@ partial def evalChoiceAux (tactics : Array Syntax) (i : Nat) : TacticM Unit :=
   liftMetaTactic fun mvarId => do mvarId.contradiction; pure []
 
 @[builtin_tactic Lean.Parser.Tactic.eqRefl] def evalRefl : Tactic := fun _ =>
-  liftMetaTactic fun mvarId => do mvarId.refl; pure []
+  -- Allow assigning synthetic opaque so that it is as capable as `exact rfl`.
+  liftMetaTactic fun mvarId => do withAssignableSyntheticOpaque mvarId.refl; pure []
 
 @[builtin_tactic Lean.Parser.Tactic.intro] def evalIntro : Tactic := fun stx => do
   match stx with
@@ -491,58 +503,21 @@ def forEachVar (hs : Array Syntax) (tac : MVarId → FVarId → MetaM MVarId) : 
 /--
   Searches for a metavariable `g` s.t. `tag` is its exact name.
   If none then searches for a metavariable `g` s.t. `tag` is a suffix of its name.
-  If none, then it searches for a metavariable `g` s.t. `tag` is a prefix of its name. -/
+  If none, then it searches for a metavariable `g` s.t. `tag` is a prefix of its name.
+
+  We erase macro scopes from the metavariable's user name before comparing, so that
+  user-written tags match even when a previous tactic left hygienic macro scopes at
+  the end of the tag (e.g. `e_a.yield._@._internal._hyg.0`, where `yield` is not the
+  literal last component of the name). Case tags written by the user are never
+  macro-scoped, so erasing scopes on the mvar side is sufficient.
+-/
 private def findTag? (mvarIds : List MVarId) (tag : Name) : TacticM (Option MVarId) := do
-  match (← mvarIds.findM? fun mvarId => return tag == (← mvarId.getDecl).userName) with
+  match (← mvarIds.findM? fun mvarId => return tag == (← mvarId.getDecl).userName.eraseMacroScopes) with
   | some mvarId => return mvarId
   | none =>
-  match (← mvarIds.findM? fun mvarId => return tag.isSuffixOf (← mvarId.getDecl).userName) with
+  match (← mvarIds.findM? fun mvarId => return tag.isSuffixOf (← mvarId.getDecl).userName.eraseMacroScopes) with
   | some mvarId => return mvarId
-  | none => mvarIds.findM? fun mvarId => return tag.isPrefixOf (← mvarId.getDecl).userName
-
-def renameInaccessibles (mvarId : MVarId) (hs : TSyntaxArray ``binderIdent) : TacticM MVarId := do
-  if hs.isEmpty then
-    return mvarId
-  else
-    let mvarDecl ← mvarId.getDecl
-    let mut lctx  := mvarDecl.lctx
-    let mut hs    := hs
-    let mut info  := #[]
-    let mut found : NameSet := {}
-    let n := lctx.numIndices
-    -- hypotheses are inaccessible if their scopes are different from the caller's (we assume that
-    -- the scopes are the same for all the hypotheses in `hs`, which is reasonable to expect in
-    -- practice and otherwise the expected semantics of `rename_i` really are not clear)
-    let some callerScopes := hs.findSome? (fun
-        | `(binderIdent| $h:ident) => some <| extractMacroScopes h.getId
-        | _ => none)
-      | return mvarId
-    for i in *...n do
-      let j := n - i - 1
-      match lctx.getAt? j with
-      | none => pure ()
-      | some localDecl =>
-        if localDecl.isImplementationDetail then
-          continue
-        let inaccessible := !(extractMacroScopes localDecl.userName |>.equalScope callerScopes)
-        let shadowed := found.contains localDecl.userName
-        if inaccessible || shadowed then
-          if let `(binderIdent| $h:ident) := hs.back! then
-            let newName := h.getId
-            lctx := lctx.setUserName localDecl.fvarId newName
-            info := info.push (localDecl.fvarId, h)
-          hs := hs.pop
-          if hs.isEmpty then
-            break
-        found := found.insert localDecl.userName
-    unless hs.isEmpty do
-      logError m!"too many variable names provided"
-    let mvarNew ← mkFreshExprMVarAt lctx mvarDecl.localInstances mvarDecl.type MetavarKind.syntheticOpaque mvarDecl.userName
-    withSaveInfoContext <| mvarNew.mvarId!.withContext do
-      for (fvarId, stx) in info do
-        Term.addLocalVarInfo stx (mkFVar fvarId)
-    mvarId.assign mvarNew
-    return mvarNew.mvarId!
+  | none => mvarIds.findM? fun mvarId => return tag.isPrefixOf (← mvarId.getDecl).userName.eraseMacroScopes
 
 private def getCaseGoals (tag : TSyntax ``binderIdent) : TacticM (MVarId × List MVarId) := do
   let gs ← getUnsolvedGoals

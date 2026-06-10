@@ -7,11 +7,17 @@ Authors: Kim Morrison, Mario Carneiro
 module
 
 prelude
-public import Init.Data.Array.Lemmas
-public import Init.Data.List.Nat.Range
-public import Init.Data.List.OfFn
-public import Init.Data.Fin.Lemmas
 public import Init.Data.Option.Attach
+public import Init.Data.List.OfFn
+import Init.ByCases
+import Init.Data.Array.Bootstrap
+import Init.Data.List.Nat.Range
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Range
+import Init.Data.List.TakeDrop
+import Init.Data.Prod
+import Init.Data.Subtype.Basic
+import Init.Omega
 
 public section
 
@@ -100,7 +106,7 @@ theorem mapFinIdx_nil {f : (i : Nat) → α → (h : i < 0) → β} : mapFinIdx 
 @[simp] theorem length_mapFinIdx_go :
     (mapFinIdx.go as f bs acc h).length = as.length := by
   induction bs generalizing acc with
-  | nil => simpa using h
+  | nil => simpa using! h
   | cons _ _ ih => simp [mapFinIdx.go, ih]
 
 @[simp, grind =] theorem length_mapFinIdx {as : List α} {f : (i : Nat) → α → (h : i < as.length) → β} :
@@ -504,7 +510,7 @@ theorem mapIdx_eq_mapIdx_iff {l : List α} :
     (mapIdx f l).getLast? = (getLast? l).map (f (l.length - 1)) := by
   cases l
   · simp
-  · rw [getLast?_eq_getLast, getLast?_eq_getLast, getLast_mapIdx] <;> simp
+  · rw [getLast?_eq_some_getLast, getLast?_eq_some_getLast, getLast_mapIdx] <;> simp
 
 @[simp, grind =] theorem mapIdx_mapIdx {l : List α} {f : Nat → α → β} {g : Nat → β → γ} :
     (l.mapIdx f).mapIdx g = l.mapIdx (fun i => g i ∘ f i) := by

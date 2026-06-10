@@ -8,6 +8,11 @@ module
 prelude
 public import Std.Tactic.BVDecide.LRAT.Internal.Formula.Implementation
 public import Std.Tactic.BVDecide.LRAT.Internal.CNF
+import Init.ByCases
+import Init.Data.Array.Bootstrap
+import Init.Data.Int.OfNat
+import Init.Data.List.Pairwise
+import Init.Data.Nat.Linear
 
 @[expose] public section
 
@@ -418,8 +423,16 @@ theorem deleteOne_preserves_strongAssignmentsInvariant {n : Nat} (f : DefaultFor
         · exact Or.inr hf
     · simp only [Prod.exists, Bool.exists_bool, not_exists, not_or, unit] at hl
       split
-      next some_eq_none => grind
-      next l _ _ heq => grind [cases Bool]
+      next some_eq_none => simp at some_eq_none
+      next l _ _ heq =>
+        simp only [Option.some.injEq] at heq
+        rw [heq] at hl
+        specialize hl l.1
+        simp only [DefaultClause.mk.injEq, List.cons.injEq, and_true] at hl
+        by_cases hl2 : l.2
+        · simp only [← hl2, not_true, and_false] at hl
+        · simp only [Bool.not_eq_true] at hl2
+          simp only [← hl2, not_true, false_and] at hl
       · have deleteOne_f_rw : deleteOne f id = ⟨Array.set! f.clauses id none, f.rupUnits, f.ratUnits, f.assignments⟩ := by
           simp only [deleteOne]
           grind
@@ -430,16 +443,24 @@ theorem deleteOne_preserves_strongAssignmentsInvariant {n : Nat} (f : DefaultFor
         simp only [toList, List.append_assoc, List.mem_append, List.mem_filterMap, id_eq,
           exists_eq_right, List.mem_map, Prod.exists, Bool.exists_bool]
         rcases hf with hf | hf
-        · apply Or.inl
-          simp only [Array.set!, Array.setIfInBounds]
-          split
-          · rcases List.getElem_of_mem hf with ⟨idx, hbound, hidx⟩
-            rw [List.mem_iff_get]
-            have idx_in_bounds : idx < List.length (List.set f.clauses.toList id none) := by
-              grind
-            apply Exists.intro ⟨idx, idx_in_bounds⟩
-            grind [unit]
-          · exact hf
+        · left
+          by_cases hid : id < f.clauses.size
+          · rw [Array.mem_toList_iff] at hf ⊢
+            rcases Array.getElem_of_mem hf with ⟨idx, hbound, hidx⟩
+            simp only [Array.set!_eq_setIfInBounds, Array.setIfInBounds_def, hid, ↓reduceDIte]
+            rw [Array.mem_iff_getElem]
+            exists idx, (by simp [hbound])
+            by_cases id_eq_idx : id = idx
+            · exfalso
+              subst id_eq_idx
+              simp only [hid, getElem!_pos, hidx, Option.some.injEq] at heq
+              rw [← heq] at hl
+              specialize hl i
+              cases b <;> simp [unit] at hl
+            · rw [Array.getElem_set_ne hid hbound id_eq_idx]
+              exact hidx
+          · rw [Array.set!_eq_setIfInBounds, Array.setIfInBounds_eq_of_size_le (h := by omega)]
+            exact hf
         · exact Or.inr hf
 
 theorem readyForRupAdd_delete {n : Nat} (f : DefaultFormula n) (arr : Array Nat) :

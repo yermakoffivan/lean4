@@ -6,7 +6,6 @@ Authors: Leonardo de Moura
 module
 
 prelude
-public import Lean.Meta.Transform
 public import Lean.Meta.Inductive
 public import Lean.Elab.Deriving.Basic
 public import Lean.Elab.Deriving.Util
@@ -42,7 +41,7 @@ def mkBodyForStruct (header : Header) (indVal : InductiveVal) : TermElabM Term :
       if (← isType x <||> isProof x) then
         fields ← `($fields ++ $fieldNameLit ++ " := " ++ "_")
       else
-        let indent := Syntax.mkNumLit <| toString ((toString fieldName |>.length) + " := ".length)
+        let indent := Syntax.mkNumLit <| toString ((toString fieldName |>.chars.length) + " := ".lengthAssumingAscii)
         fields ← `($fields ++ $fieldNameLit ++ " := " ++ (Format.group (Format.nest $indent (repr ($target.$(mkIdent fieldName):ident)))))
     `(Format.bracket "{ " $fields:term " }")
 
@@ -100,11 +99,10 @@ def mkAuxFunction (ctx : Context) (i : Nat) : TermElabM Command := do
     let letDecls ← mkLocalInstanceLetDecls ctx `Repr header.argNames
     body ← mkLet letDecls body
   let binders    := header.binders
-  let vis := ctx.mkVisibilityFromTypes
   if ctx.usePartial then
-    `(@[no_expose] $vis:visibility partial def $(mkIdent auxFunName):ident $binders:bracketedBinder* : Format := $body:term)
+    `(@[no_expose] partial def $(mkIdent auxFunName):ident $binders:bracketedBinder* : Format := $body:term)
   else
-    `(@[no_expose] $vis:visibility def $(mkIdent auxFunName):ident $binders:bracketedBinder* : Format := $body:term)
+    `(@[no_expose] def $(mkIdent auxFunName):ident $binders:bracketedBinder* : Format := $body:term)
 
 def mkMutualBlock (ctx : Context) : TermElabM Syntax := do
   let mut auxDefs := #[]
@@ -115,7 +113,7 @@ def mkMutualBlock (ctx : Context) : TermElabM Syntax := do
     end)
 
 private def mkReprInstanceCmd (declName : Name) : TermElabM (Array Syntax) := do
-  let ctx ← mkContext "repr" declName
+  let ctx ← mkContext ``Repr "repr" declName
   let cmds := #[← mkMutualBlock ctx] ++ (← mkInstanceCmds ctx `Repr #[declName])
   trace[Elab.Deriving.repr] "\n{cmds}"
   return cmds
@@ -125,8 +123,9 @@ open Command
 def mkReprInstanceHandler (declNames : Array Name) : CommandElabM Bool := do
   if (← declNames.allM isInductive) then
     for declName in declNames do
-      let cmds ← liftTermElabM <| mkReprInstanceCmd declName
-      cmds.forM elabCommand
+      withoutExposeFromCtors declName do
+        let cmds ← liftTermElabM <| mkReprInstanceCmd declName
+        cmds.forM elabCommand
     return true
   else
     return false

@@ -6,9 +6,7 @@ Authors: Leonardo de Moura
 module
 
 prelude
-public import Lean.ScopedEnvExtension
 public import Lean.Compiler.InitAttr
-public import Lean.Meta.DiscrTree
 public import Lean.Meta.Tactic.Simp.Types
 
 public section
@@ -155,9 +153,9 @@ def addSimprocAttrCore (ext : SimprocExtension) (declName : Name) (kind : Attrib
 def Simprocs.addCore (s : Simprocs) (keys : Array SimpTheoremKey) (declName : Name) (post : Bool) (proc : Sum Simproc DSimproc) : Simprocs :=
   let s := { s with simprocNames := s.simprocNames.insert declName, erased := s.erased.erase declName }
   if post then
-    { s with post := s.post.insertCore keys { declName, keys, post, proc } }
+    { s with post := s.post.insertKeyValue keys { declName, keys, post, proc } }
   else
-    { s with pre := s.pre.insertCore keys { declName, keys, post, proc } }
+    { s with pre := s.pre.insertKeyValue keys { declName, keys, post, proc } }
 
 /--
 Implements attributes `builtin_simproc` and `builtin_sevalproc`.
@@ -338,7 +336,6 @@ def dsimprocArrayCore (post : Bool) (ss : SimprocsArray) (e : Expr) : SimpM DSte
 
 register_builtin_option simprocs : Bool := {
   defValue := true
-  group    := "backward compatibility"
   descr    := "Enable/disable `simproc`s (simplification procedures)."
 }
 
@@ -371,7 +368,8 @@ def mkSimprocExt (name : Name := by exact decl_name%) (ref? : Option (IO.Ref Sim
     addEntry      := fun s e => s.addCore e.keys e.declName e.post e.proc
   }
 
-def addSimprocAttr (ext : SimprocExtension) (declName : Name) (stx : Syntax) (attrKind : AttributeKind) : AttrM Unit := do
+def addSimprocAttr (attrName : Name) (ext : SimprocExtension) (declName : Name) (stx : Syntax) (attrKind : AttributeKind) : AttrM Unit := do
+  ensureAttrDeclIsMeta attrName declName attrKind
   let go : MetaM Unit := do
     let post := if stx[1].isNone then true else stx[1][0].getKind == ``Lean.Parser.Tactic.simpPost
     addSimprocAttrCore ext declName attrKind post
@@ -383,7 +381,7 @@ def mkSimprocAttr (attrName : Name) (attrDescr : String) (ext : SimprocExtension
     name  := attrName
     descr := attrDescr
     applicationTime := AttributeApplicationTime.afterCompilation
-    add   := addSimprocAttr ext
+    add   := addSimprocAttr attrName ext
     erase := eraseSimprocAttr ext
   }
 

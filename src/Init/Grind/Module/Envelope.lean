@@ -7,8 +7,9 @@ module
 
 prelude
 public import Init.Grind.Ordered.Module
-public import Init.Data.AC
 import all Init.Data.AC
+import Init.Omega
+import Init.RCases
 
 public section
 
@@ -46,7 +47,7 @@ theorem r_trans {a b c : α × α} : r α a b → r α b c → r α a c := by
   simp [r]
   intro k₁ h₁ k₂ h₂
   refine ⟨(k₁ + k₂ + b₁ + b₂), ?_⟩
-  replace h₁ := congrArg (· + (b₁ + c₂ + k₂)) h₁; simp at h₁
+  replace h₁ := congrArg (· + (b₁ + c₂ + k₂)) h₁; try simp at h₁ -- TODO(kmill) remove simp after stage0 update
   have haux₁ : a₁ + b₂ + k₁ + (b₁ + c₂ + k₂) = (a₁ + c₂) + (k₁ + k₂ + b₁ + b₂) := by ac_rfl
   have haux₂ : a₂ + b₁ + k₁ + (b₁ + c₂ + k₂) = (a₂ + c₁) + (k₁ + k₂ + b₁ + b₂) := by rw [h₂]; ac_rfl
   rw [haux₁, haux₂] at h₁
@@ -67,7 +68,7 @@ def Q.liftOn₂ (q₁ q₂ : Q α)
 
 attribute [local simp] Q.mk Q.liftOn₂ AddCommMonoid.add_zero
 
-def Q.ind {β : Q α → Prop} (mk : ∀ (a : α × α), β (Q.mk a)) (q : Q α) : β q :=
+theorem Q.ind {β : Q α → Prop} (mk : ∀ (a : α × α), β (Q.mk a)) (q : Q α) : β q :=
   Quot.ind mk q
 
 @[local simp] def nsmul (n : Nat) (q : Q α) : (Q α) :=
@@ -203,6 +204,7 @@ theorem zsmul_natCast_eq_nsmul (n : Nat) (a : Q α) : zsmul (n : Int) a = nsmul 
   induction a using Q.ind with | _ a
   rcases a with ⟨a₁, a₂⟩; simp; omega
 
+@[implicit_reducible]
 def ofNatModule : IntModule (Q α) := {
   nsmul := ⟨nsmul⟩,
   zsmul := ⟨zsmul⟩,
@@ -227,7 +229,7 @@ theorem toQ_add (a b : α) : toQ (a + b) = toQ a + toQ b := by
 theorem toQ_zero : toQ (0 : α) = 0 := by
   simp; apply Quot.sound; simp
 
-theorem toQ_smul (n : Nat) (a : α) : toQ (n • a) = (↑n : Int) • toQ a := by
+theorem toQ_smul (n : Nat) (a : α) : toQ (n • a) = n • toQ a := by
   simp; apply Quot.sound; simp
 
 /-!
@@ -304,7 +306,7 @@ instance [LE α] [IsPreorder α] [OrderedAdd α] : IsPreorder (OfNatModule.Q α)
     obtain ⟨⟨a₁, a₂⟩⟩ := a
     change Q.mk _ ≤ Q.mk _
     simp only [mk_le_mk]
-    simp [AddCommMonoid.add_comm]; exact le_refl (a₁ + a₂)
+    simp [AddCommMonoid.add_comm]
   le_trans {a b c} h₁ h₂ := by
     induction a using Q.ind with | _ a
     induction b using Q.ind with | _ b
@@ -317,6 +319,29 @@ instance [LE α] [IsPreorder α] [OrderedAdd α] : IsPreorder (OfNatModule.Q α)
     have : a₂ + c₁ + (b₁ + b₂) = a₂ + b₁ + (b₂ + c₁) := by ac_rfl
     rw [this]; clear this
     exact OrderedAdd.add_le_add h₁ h₂
+
+instance [LE α] [IsPartialOrder α] [OrderedAdd α] : IsPartialOrder (OfNatModule.Q α) where
+  le_antisymm a b h₁ h₂ := by
+    induction a using Q.ind with | _ a
+    induction b using Q.ind with | _ b
+    rcases a with ⟨a₁, a₂⟩; rcases b with ⟨b₁, b₂⟩
+    simp only [mk_le_mk] at h₁ h₂
+    rw [AddCommMonoid.add_comm b₁ a₂, AddCommMonoid.add_comm b₂ a₁] at h₂
+    have := IsPartialOrder.le_antisymm _ _ h₁ h₂
+    apply Quot.sound
+    simp; exists 0
+    rw [this]
+
+instance [LE α] [IsLinearPreorder α] [OrderedAdd α] : IsLinearPreorder (OfNatModule.Q α) where
+  le_total a b := by
+    induction a using Q.ind with | _ a
+    induction b using Q.ind with | _ b
+    rcases a with ⟨a₁, a₂⟩; rcases b with ⟨b₁, b₂⟩
+    simp only [mk_le_mk]
+    rw [AddCommMonoid.add_comm b₁ a₂, AddCommMonoid.add_comm b₂ a₁]
+    apply le_total
+
+instance [LE α] [IsLinearOrder α] [OrderedAdd α] : IsLinearOrder (OfNatModule.Q α) where
 
 attribute [-simp] Q.mk
 

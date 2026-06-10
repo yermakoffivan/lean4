@@ -6,7 +6,6 @@ Authors: Mac Malone
 module
 
 prelude
-public import Init.Control.Except
 public import Init.Data.ToString
 
 namespace Lake

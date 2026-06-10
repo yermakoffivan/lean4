@@ -7,6 +7,11 @@ module
 
 prelude
 public import Init.Data.Ord.Basic
+public import Lean.Data.Json
+import Lake.Util.String
+import Init.Data.String.Search
+import Init.Data.Iterators.Consumers.Collect
+import Init.Data.ToString.Macro
 
 /-!
 #  Date
@@ -15,25 +20,16 @@ A year-mont-day date. Used by Lake's TOML parser and its toolchain version
 parser (for nightlies).
 -/
 
+open Lean (Json FromJson ToJson fromJson? toJson)
+
 namespace Lake
 
-public def lpad (s : String) (c : Char) (len : Nat) : String :=
-  "".pushn c (len - s.length) ++ s
-
-public def rpad (s : String) (c : Char) (len : Nat) : String :=
-  s.pushn c (len - s.length)
-
-public def zpad (n : Nat) (len : Nat) : String :=
-  lpad (toString n) '0' len
-
-public section -- for `Ord`
 /-- A date (year-month-day). -/
 public structure Date where
   year : Nat
   month : Nat
   day : Nat
   deriving Inhabited, DecidableEq, Ord, Repr
-end
 
 namespace Date
 
@@ -64,12 +60,26 @@ public def ofValid? (year month day : Nat) : Option Date := do
   return {year, month, day}
 
 public def ofString? (t : String) : Option Date := do
-  match t.split (· == '-') with
+  match t.split '-' |>.toList with
   | [y,m,d] =>
     ofValid? (← y.toNat?) (← m.toNat?) (← d.toNat?)
   | _ => none
+
+public protected def fromJson? (j : Json) : Except String Date := do
+  let .str s := j
+    | throw "expected date"
+  let some d := ofString? s
+    | throw "expected date"
+  return d
+
+public instance : FromJson Date := ⟨Date.fromJson?⟩
 
 public protected def toString (d : Date) : String :=
   s!"{zpad d.year 4}-{zpad d.month 2}-{zpad d.day 2}"
 
 public instance : ToString Date := ⟨Date.toString⟩
+
+@[inline] public protected def toJson (d : Date) : Json :=
+  d.toString
+
+public instance : ToJson Date := ⟨Date.toJson⟩

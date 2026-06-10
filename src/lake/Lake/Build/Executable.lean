@@ -6,9 +6,7 @@ Authors: Mac Malone
 module
 
 prelude
-public import Lake.Util.Name
 public import Lake.Config.FacetConfig
-import Lake.Config.OutFormat
 import Lake.Build.Job.Register
 import Lake.Build.Target.Fetch
 import Lake.Build.Common
@@ -21,7 +19,7 @@ open System (FilePath)
 The build function definition for a Lean executable.
 -/
 
-private def LeanExe.recBuildExe (self : LeanExe) : FetchM (Job FilePath) :=
+def LeanExe.recBuildExe (self : LeanExe) : FetchM (Job FilePath) :=
   withRegisterJob s!"{self.name}:exe" <| withCurrPackage self.pkg do
   /-
   Remark: We must build the root before we fetch the transitive imports
@@ -38,12 +36,16 @@ private def LeanExe.recBuildExe (self : LeanExe) : FetchM (Job FilePath) :=
   for mod in imports do
     for facet in mod.nativeFacets shouldExport do
       objJobs := objJobs.push <| ← facet.fetch mod
+  for link in self.moreLinkObjs do
+    objJobs := objJobs.push <| ← link.fetchIn self.pkg
   let libs := imports.foldl (·.insert ·.lib) OrdHashSet.empty |>.toArray
   for lib in libs do
     for link in lib.moreLinkObjs do
       objJobs := objJobs.push <| ← link.fetchIn lib.pkg
     for link in lib.moreLinkLibs do
       libJobs := libJobs.push <| ← link.fetchIn lib.pkg
+  for link in self.moreLinkLibs do
+    libJobs := libJobs.push <| ← link.fetchIn self.pkg
   let deps := (← (← self.pkg.transDeps.fetch).await).push self.pkg
   for dep in deps do
     for lib in dep.externLibs do
@@ -54,7 +56,7 @@ private def LeanExe.recBuildExe (self : LeanExe) : FetchM (Job FilePath) :=
 public def LeanExe.exeFacetConfig : LeanExeFacetConfig exeFacet :=
   mkFacetJobConfig recBuildExe
 
-private def LeanExe.recBuildDefault (lib : LeanExe) : FetchM (Job FilePath) :=
+def LeanExe.recBuildDefault (lib : LeanExe) : FetchM (Job FilePath) :=
   lib.exe.fetch
 
 /-- The facet configuration for the builtin `ExternLib.dynlibFacet`. -/

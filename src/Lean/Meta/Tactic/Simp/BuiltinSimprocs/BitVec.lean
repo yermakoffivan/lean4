@@ -6,10 +6,8 @@ Authors: Leonardo de Moura
 module
 
 prelude
-public import Lean.Meta.LitValues
-public import Lean.Meta.Tactic.Simp.BuiltinSimprocs.Nat
 public import Lean.Meta.Tactic.Simp.BuiltinSimprocs.Int
-public import Init.Data.BitVec.Basic
+import Init.Data.BitVec.Lemmas
 
 public section
 
@@ -168,6 +166,8 @@ builtin_dsimproc [simp, seval] reduceGetLsb (getLsbD _ _) := reduceGetBit ``getL
 builtin_dsimproc [simp, seval] reduceGetMsb (getMsbD _ _) := reduceGetBit ``getMsbD getMsbD
 /-- Simplification procedure for `clz` (count leading zeros) on `BitVec`. -/
 builtin_dsimproc [simp, seval] reduceClz (clz _) := reduceUnary ``BitVec.clz 2 BitVec.clz
+/-- Simplification procedure for `cpop` (population count) on `BitVec`. -/
+builtin_dsimproc [simp, seval] reduceCpop (cpop _) := reduceUnary ``BitVec.cpop 2 BitVec.cpop
 
 /-- Simplification procedure for `getElem`  on `BitVec`. -/
 builtin_dsimproc [simp, seval] reduceGetElem ((_ : BitVec _)[_]) := fun e => do

@@ -4,13 +4,10 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Leonardo de Moura
 -/
 module
-
 prelude
-public import Init.Grind.ToInt
 public import Lean.Meta.Tactic.Grind.Arith.Util
-
+import Lean.Meta.LitValues
 public section
-
 namespace Lean.Meta.Grind.Arith.Cutsat
 open Lean Grind
 

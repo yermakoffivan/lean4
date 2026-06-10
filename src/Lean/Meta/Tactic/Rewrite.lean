@@ -9,8 +9,6 @@ prelude
 public import Lean.Meta.AppBuilder
 public import Lean.Meta.MatchUtil
 public import Lean.Meta.KAbstract
-public import Lean.Meta.Check
-public import Lean.Meta.Tactic.Util
 public import Lean.Meta.Tactic.Apply
 public import Lean.Meta.BinderNameHint
 
@@ -24,7 +22,8 @@ structure RewriteResult where
   mvarIds  : List MVarId -- new goals
 
 /--
-Rewrite goal `mvarId`
+Rewrite `e` using `heq` in the context of `mvarId`.
+Returns the result of the rewrite, the metavariable `mvarId` is not assigned.
 -/
 def _root_.Lean.MVarId.rewrite (mvarId : MVarId) (e : Expr) (heq : Expr)
     (symm : Bool := false) (config := { : Rewrite.Config }) : MetaM RewriteResult :=
@@ -83,6 +82,7 @@ def _root_.Lean.MVarId.rewrite (mvarId : MVarId) (e : Expr) (heq : Expr)
           postprocessAppMVars `rewrite mvarId newMVars binderInfos
             (synthAssignedInstances := !tactic.skipAssignedInstances.get (← getOptions))
           let newMVarIds ← newMVars.map Expr.mvarId! |>.filterM fun mvarId => not <$> mvarId.isAssigned
+          appendParentTag mvarId newMVars binderInfos
           let otherMVarIds ← getMVarsNoDelayed heqIn
           let otherMVarIds := otherMVarIds.filter (!newMVarIds.contains ·)
           let newMVarIds := newMVarIds ++ otherMVarIds

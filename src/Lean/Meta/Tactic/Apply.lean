@@ -6,12 +6,10 @@ Authors: Leonardo de Moura, Siddhartha Gadgil
 module
 
 prelude
-public import Lean.Util.FindMVar
-public import Lean.Meta.SynthInstance
-public import Lean.Meta.CollectMVars
 public import Lean.Meta.Tactic.Util
 public import Lean.PrettyPrinter
 import Lean.Meta.AppBuilder
+import Init.Omega
 
 public section
 
@@ -37,7 +35,7 @@ private def throwApplyError {α} (mvarId : MVarId)
     let (conclusionType, targetType) ← addPPExplicitToExposeDiff conclusionType targetType
     let conclusion := if conclusionType?.isNone then "type" else "conclusion"
     return m!"could not unify the {conclusion} of {term?.getD "the term"}{indentExpr conclusionType}\n\
-      with the goal{indentExpr targetType}{note}"
+      with the goal{indentExpr targetType}{note}{← mkUnfoldAxiomsNote conclusionType targetType}"
 
 def synthAppInstances (tacticName : Name) (mvarId : MVarId) (mvarsNew : Array Expr) (binderInfos : Array BinderInfo)
     (synthAssignedInstances : Bool) (allowSynthFailures : Bool) : MetaM Unit := do
@@ -130,7 +128,6 @@ def postprocessAppMVars (tacticName : Name) (mvarId : MVarId) (newMVars : Array 
     (synthAssignedInstances := true) (allowSynthFailures := false) : MetaM Unit := do
   synthAppInstances tacticName mvarId newMVars binderInfos synthAssignedInstances allowSynthFailures
   -- TODO: default and auto params
-  appendParentTag mvarId newMVars binderInfos
 
 private def dependsOnOthers (mvar : Expr) (otherMVars : Array Expr) : MetaM Bool :=
   otherMVars.anyM fun otherMVar => do
@@ -225,6 +222,7 @@ def _root_.Lean.MVarId.apply (mvarId : MVarId) (e : Expr) (cfg : ApplyConfig := 
     let e ← instantiateMVars e
     mvarId.assign (mkAppN e newMVars)
     let newMVars ← newMVars.filterM fun mvar => not <$> mvar.mvarId!.isAssigned
+    appendParentTag mvarId newMVars binderInfos
     let otherMVarIds ← getMVarsNoDelayed e
     let newMVarIds ← reorderGoals newMVars cfg.newGoals
     let otherMVarIds := otherMVarIds.filter fun mvarId => !newMVarIds.contains mvarId

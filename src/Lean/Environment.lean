@@ -6,15 +6,12 @@ Authors: Leonardo de Moura
 module
 
 prelude
-public import Init.Control.StateRef
 public import Init.Data.Array.BinSearch
 public import Init.Data.Stream
 public import Init.System.Promise
-public import Lean.ImportingFlag
+public import Init.System.CancelToken
 public import Lean.Data.NameTrie
-public import Lean.Data.SMap
 public import Lean.Setup
-public import Lean.Declaration
 public import Lean.LocalContext
 public import Lean.Util.Path
 public import Lean.Util.FindExpr
@@ -23,8 +20,12 @@ public import Lean.Util.InstantiateLevelParams
 public import Lean.Util.FoldConsts
 public import Lean.PrivateName
 public import Lean.LoadDynlib
+public import Lean.CompactedRegion
 public import Init.Dynamic
 import Init.Data.Slice
+import Init.Data.String.TakeDrop
+import Init.Data.Range.Polymorphic.Iterators
+import Init.While
 
 public section
 
@@ -74,7 +75,6 @@ paths back together.
 namespace Lean
 register_builtin_option debug.skipKernelTC : Bool := {
   defValue := false
-  group    := "debug"
   descr    := "skip kernel type checker. WARNING: setting this option to true may compromise soundness because your proofs will not be checked by the Lean kernel"
 }
 
@@ -84,7 +84,7 @@ opaque EnvExtensionStateSpec : (α : Type) × Inhabited α := ⟨Unit, ⟨()⟩�
 instance : Inhabited EnvExtensionState := EnvExtensionStateSpec.snd
 
 @[expose] def ModuleIdx := Nat
-  deriving BEq, ToString
+  deriving BEq, ToString, Hashable
 
 abbrev ModuleIdx.toNat (midx : ModuleIdx) : Nat := midx
 
@@ -98,23 +98,6 @@ instance : GetElem? (Array α) ModuleIdx α (fun a i => i.toNat < a.size) where
   getElem! a i := a[i.toNat]!
 
 abbrev ConstMap := SMap Name ConstantInfo
-
-/--
-  A compacted region holds multiple Lean objects in a contiguous memory region, which can be read/written to/from disk.
-  Objects inside the region do not have reference counters and cannot be freed individually. The contents of .olean
-  files are compacted regions. -/
-@[expose] def CompactedRegion := USize
-
-@[extern "lean_compacted_region_is_memory_mapped"]
-opaque CompactedRegion.isMemoryMapped : CompactedRegion → Bool
-
-/-- Size in bytes. -/
-@[extern "lean_compacted_region_size"]
-opaque CompactedRegion.size : CompactedRegion → USize
-
-/-- Free a compacted region and its contents. No live references to the contents may exist at the time of invocation. -/
-@[extern "lean_compacted_region_free"]
-unsafe opaque CompactedRegion.free : CompactedRegion → IO Unit
 
 /-- Opaque persistent environment extension entry. -/
 opaque EnvExtensionEntrySpec : NonemptyType.{0}
@@ -144,20 +127,13 @@ structure ModuleData where
   entries         : Array (Name × Array EnvExtensionEntry)
   deriving Inhabited
 
-/-- Phases for which some IR is available for execution. -/
-inductive IRPhases where
-  /-- Available for execution in the final native code. -/
-  | runtime
-  /-- Available for execution during elaboration. -/
-  | comptime
-  /-- Available during run time and compile time. -/
-  | all
-deriving Inhabited, BEq, Repr
-
 /-- Import including information resulting from processing of the entire import DAG. -/
 structure EffectiveImport extends Import where
   /-- Phases for which the import's IR is available. -/
   irPhases : IRPhases
+  /-- Whether the import's `.olean*` data has been loaded (otherwise only the `.ir` is). -/
+  hasData : Bool
+deriving Inhabited
 
 /-- Environment fields that are not used often. -/
 structure EnvironmentHeader where
@@ -182,6 +158,19 @@ structure EnvironmentHeader where
   `ModuleIdx` for the same module.
   -/
   modules      : Array EffectiveImport := #[]
+  /-- For `getModuleIdx?` -/
+  private moduleName2Idx : Std.HashMap Name ModuleIdx := Id.run do
+    let mut m := {}
+    for _h : idx in [0:modules.size] do
+      let mod := modules[idx]
+      m := m.insert mod.module idx
+    return m
+  /--
+  Subset of `modules` for which `importAll` is `true`. This is assumed to be a much smaller set so
+  we precompute it instead of iterating over all of `modules` multiple times. However, note that
+  in a non-`module` file, this is identical to `modules`.
+  -/
+  importAllModules : Array EffectiveImport := modules.filter (·.importAll)
   /-- Module data for all imported modules. -/
   moduleData   : Array ModuleData := #[]
   deriving Nonempty
@@ -264,7 +253,7 @@ structure Environment where
   -/
   private irBaseExts      : Array EnvExtensionState
   /-- The header contains additional information that is set at import time. -/
-  header                  : EnvironmentHeader := {}
+  header                  : EnvironmentHeader := private_decl% {}
 deriving Nonempty
 
 /-- Exceptions that can be raised by the kernel when type checking new declarations. -/
@@ -429,6 +418,12 @@ also `AsyncContext.declPrefix`.
 private def AsyncContext.mayContain (ctx : AsyncContext) (n : Name) : Bool :=
   ctx.declPrefix.isPrefixOf <| privateToUserName n.eraseMacroScopes
 
+private def AsyncContext.descr (ctx : AsyncContext) : String :=
+  if let (n :: _) := ctx.realizingStack then
+    s!"realization context '{n}'"
+  else
+    s!"async context '{ctx.declPrefix}'"
+
 /--
 Constant info and environment extension states eventually resulting from async elaboration.
 -/
@@ -436,7 +431,7 @@ private structure AsyncConst where
   constInfo   : AsyncConstantInfo
   /--
   Reported extension state eventually fulfilled by promise; may be missing for tasks (e.g. kernel
-  checking) that can eagerly guarantee they will not report any state.
+  checking, synchronous decl addition) that can eagerly guarantee they will not report any state.
   -/
   exts?       : Option (Task (Array EnvExtensionState))
   /--
@@ -517,11 +512,12 @@ where go parent? aconsts := do
   go (some c) c.aconsts.get
 
 /-- Accessibility levels of declarations in `Lean.Environment`. -/
-private inductive Visibility where
+inductive Environment.Visibility where
   /-- Information private to the module. -/
   | «private»
   /-- Information to be exported to other modules. -/
   | «public»
+deriving Inhabited, BEq
 
 /-- Maps `Visibility` to `α`. -/
 private structure VisibilityMap (α : Type) where
@@ -607,7 +603,13 @@ structure Environment where
   /--
   Indicates whether the environment is being used in an exported context, i.e. whether it should
   provide access to only the data to be imported by other modules participating in the module
-  system.
+  system. Apart from controlling access, some operations such as `mkAuxDeclName` may also change
+  their output based on this flag.
+
+  By default, `isExporting` is set to false when command elaborators are invoked such that they have
+  access to the full local environment. Use `with(out)Exporting` to modify based on context. For
+  example, `elabDeclaration` sets it based on `(← getScope).isPublic` on the top level, then
+  `elabMutualDef` may switch from public to private when e.g. entering the proof of a theorem.
   -/
   isExporting : Bool := false
 deriving Nonempty
@@ -750,6 +752,7 @@ private def lakeAdd (env : Environment) (cinfo : ConstantInfo) : Environment :=
   }
 
 -- forward reference due to too many cyclic dependencies
+set_option compiler.ignoreBorrowAnnotation true in
 @[extern "lean_is_reserved_name"]
 private opaque isReservedName (env : Environment) (name : Name) : Bool
 
@@ -1171,7 +1174,7 @@ def isSafeDefinition (env : Environment) (declName : Name) : Bool :=
   | _ => false
 
 def getModuleIdx? (env : Environment) (moduleName : Name) : Option ModuleIdx :=
-  env.header.modules.findIdx? (·.module == moduleName)
+  env.header.moduleName2Idx[moduleName]?
 
 end Environment
 
@@ -1183,8 +1186,8 @@ namespace ConstantInfo
 def instantiateTypeLevelParams (c : ConstantInfo) (ls : List Level) : Expr :=
   c.toConstantVal.instantiateTypeLevelParams ls
 
-def instantiateValueLevelParams! (c : ConstantInfo) (ls : List Level) : Expr :=
-  c.value!.instantiateLevelParams c.levelParams ls
+def instantiateValueLevelParams! (c : ConstantInfo) (ls : List Level) (allowOpaque := false) : Expr :=
+  (c.value! (allowOpaque := allowOpaque)).instantiateLevelParams c.levelParams ls
 
 end ConstantInfo
 
@@ -1354,7 +1357,7 @@ def asyncMayModify (ext : EnvExtension σ) (env : Environment) (asyncDecl : Name
     -- common case of confusing `mainEnv` and `asyncEnv`.
     | .async .mainEnv => ctx.mayContain asyncDecl && ctx.declPrefix != asyncDecl
     -- The async env's async context should either be `asyncDecl` itself or `asyncDecl` is a nested
-    -- declaration that is not itself async.
+    -- declaration that is known not to contribute env ext state (e.g. synchronously added decls).
     | .async .asyncEnv => ctx.declPrefix == asyncDecl ||
       (ctx.mayContain asyncDecl && (env.findAsyncConst? asyncDecl).any (·.exts?.isNone))
     | _ => true
@@ -1374,8 +1377,7 @@ def modifyState {σ : Type} (ext : EnvExtension σ) (env : Environment) (f : σ 
   match asyncMode with
   | .mainOnly =>
     if let some asyncCtx := env.asyncCtx? then
-      return panic! s!"environment extension is marked as `mainOnly` but used in \
-        {if env.isRealizing then "realization" else "async"} context '{asyncCtx.declPrefix}'"
+      return panic! s!"environment extension is marked as `mainOnly` but used in {asyncCtx.descr}"
     return { env with base.private.extensions := unsafe ext.modifyStateImpl env.base.private.extensions f }
   | .local =>
     return { env with base.private.extensions := unsafe ext.modifyStateImpl env.base.private.extensions f }
@@ -1499,7 +1501,8 @@ def mkEmptyEnvironment (trustLevel : UInt32 := 0) : IO Environment := do
   return {
     base := .const {
       const2ModIdx    := {}
-      constants       := {}
+      -- Make sure we return a sharing-friendly map set to stage 2, like in `finalizeImport`.
+      constants       := SMap.empty.switch
       header          := { trustLevel }
       extensions      := exts
       irBaseExts      := exts
@@ -1529,6 +1532,23 @@ deriving DecidableEq, Ord, Repr
 
 instance : LE OLeanLevel := leOfOrd
 instance : LT OLeanLevel := ltOfOrd
+
+/-- Data computed once per extension for all three olean levels. Avoids calling the export function
+    three separate times so that expensive computations can be shared. -/
+structure OLeanEntries (α : Type) where
+  exported : α
+  server   : α
+  «private» : α
+  deriving Inhabited
+
+/-- Create `OLeanEntries` with the same value for all levels. -/
+def OLeanEntries.uniform (a : α) : OLeanEntries α := ⟨a, a, a⟩
+
+/-- Look up the entry for a given level. -/
+def OLeanEntries.get (e : OLeanEntries α) : OLeanLevel → α
+  | .exported => e.exported
+  | .server   => e.server
+  | .private  => e.private
 
 /--
 An environment extension with support for storing/retrieving entries from a .olean file.
@@ -1581,16 +1601,17 @@ structure PersistentEnvExtension (α : Type) (β : Type) (σ : Type) where
   addImportedFn   : Array (Array α) → ImportM σ
   addEntryFn      : σ → β → σ
   /--
-  Function to transform state into data that should be imported into other modules. When using the
+  Function to transform state into data that should be imported into other modules. Returns entries
+  for all three olean levels at once so that expensive computations can be shared. When using the
   module system without `import all`, `OLeanLevel.exported` is imported, else `OLeanLevel.private`.
   Additionally, when using the module system in the language server, the `OLeanLevel.server` data is
   accessible via `getModuleEntries (level := .server)`. By convention, each level should include all
   data of previous levels.
 
-  This function is run after elaborating the file and joining all asynchronous threads. It is run
-  once for each level when the module system is enabled, otherwise once for `private`.
+  This function is run once after elaborating the file and joining all asynchronous threads.
+  For non-module files, only the `private` field is used.
   -/
-  exportEntriesFn : Environment → σ → OLeanLevel → Array α
+  exportEntriesFn : Environment → σ → OLeanEntries (Array α)
   statsFn         : σ → Format
 
 instance {α σ} [Inhabited σ] : Inhabited (PersistentEnvExtensionState α σ) :=
@@ -1602,7 +1623,7 @@ instance {α β σ} [Inhabited σ] : Inhabited (PersistentEnvExtension α β σ)
      name := default,
      addImportedFn := fun _ => default,
      addEntryFn := fun s _ => s,
-     exportEntriesFn := fun _ _ _ => #[],
+     exportEntriesFn := fun _ _ => .uniform #[],
      statsFn := fun _ => Format.nil
   }
 
@@ -1645,8 +1666,8 @@ def setState {α β σ : Type} (ext : PersistentEnvExtension α β σ) (env : En
 
 /-- Modify the state of the given extension in the given environment by applying the given function. -/
 def modifyState {α β σ : Type} (ext : PersistentEnvExtension α β σ) (env : Environment) (f : σ → σ)
-    (asyncMode := ext.toEnvExtension.asyncMode) : Environment :=
-  ext.toEnvExtension.modifyState (asyncMode := asyncMode) env fun ps => { ps with state := f (ps.state) }
+    (asyncMode := ext.toEnvExtension.asyncMode) (asyncDecl : Name := Name.anonymous) : Environment :=
+  ext.toEnvExtension.modifyState (asyncMode := asyncMode) (asyncDecl := asyncDecl) env fun ps => { ps with state := f (ps.state) }
 
 end PersistentEnvExtension
 
@@ -1658,7 +1679,7 @@ structure PersistentEnvExtensionDescrCore (α β σ : Type) where
   mkInitial         : IO σ
   addImportedFn     : Array (Array α) → ImportM σ
   addEntryFn        : σ → β → σ
-  exportEntriesFnEx : Environment → σ → OLeanLevel → Array α
+  exportEntriesFnEx : Environment → σ → OLeanEntries (Array α)
   statsFn           : σ → Format := fun _ => Format.nil
   asyncMode         : EnvExtension.AsyncMode := .mainOnly
   replay?           : Option (ReplayFn σ) := none
@@ -1677,11 +1698,11 @@ def useDefaultIfOtherFieldGiven (default : α) (_otherField : β) : α :=
 structure PersistentEnvExtensionDescr (α β σ : Type) extends PersistentEnvExtensionDescrCore α β σ where
   -- The cyclic default values force the user to specify at least one of the two following fields.
   /--
-  Obsolete simpler version of `exportEntriesFnEx`. Its value is ignored if the latter is also
-  specified.
+  Obsolete simpler version of `exportEntriesFnEx` that returns the same entries for all levels.
+  Its value is ignored if the latter is also specified.
   -/
   exportEntriesFn : σ → Array α := useDefaultIfOtherFieldGiven (fun _ => #[]) exportEntriesFnEx
-  exportEntriesFnEx := fun _ s _ => exportEntriesFn s
+  exportEntriesFnEx := fun _ s => .uniform (exportEntriesFn s)
 
 unsafe def registerPersistentEnvExtensionUnsafe {α β σ : Type} [Inhabited σ] (descr : PersistentEnvExtensionDescr α β σ) : IO (PersistentEnvExtension α β σ) := do
   let pExts ← persistentEnvExtensionsRef.get
@@ -1715,24 +1736,31 @@ duplicated. Thus the data cannot be loaded with individual `readModuleData` call
 passing (a prefix of) the file names to `readModuleDataParts`. `mod` is used to determine an
 arbitrary but deterministic base address for `mmap`.
 -/
-@[extern "lean_save_module_data_parts"]
-opaque saveModuleDataParts (mod : @& Name) (parts : Array (System.FilePath × ModuleData)) : IO Unit
+def saveModuleDataParts (mod : Name) (parts : Array (System.FilePath × ModuleData)) : IO Unit := do
+  let mut cs : Option Compactor := none
+  for h : i in [:parts.size] do
+    let (fname, data) := parts[i]
+    cs := some (← unsafe CompactedRegion.save fname mod data #[] cs)
 
 /--
 Loads the module data from the given file names. The files must be (a prefix of) the result of a
 `saveModuleDataParts` call.
 -/
-@[extern "lean_read_module_data_parts"]
-opaque readModuleDataParts (fnames : @& Array System.FilePath) : IO (Array (ModuleData × CompactedRegion))
+def readModuleDataParts (fnames : Array System.FilePath) :
+    IO (Array (ModuleData × CompactedRegion)) := do
+  let mut depRegions : Array CompactedRegion := #[]
+  let mut result : Array (ModuleData × CompactedRegion) := #[]
+  for fname in fnames do
+    let part ← unsafe CompactedRegion.read (α := ModuleData) fname depRegions
+    result := result.push part
+    depRegions := depRegions.push part.2
+  return result
 
-def saveModuleData (fname : System.FilePath) (mod : Name) (data : ModuleData) : IO Unit :=
-  saveModuleDataParts mod #[(fname, data)]
+def saveModuleData (fname : System.FilePath) (mod : Name) (data : ModuleData) : IO Unit := do
+  let _ ← unsafe CompactedRegion.save fname mod data #[] none
 
-def readModuleData (fname : @& System.FilePath) : IO (ModuleData × CompactedRegion) := do
-  let parts ← readModuleDataParts #[fname]
-  assert! parts.size == 1
-  let some part := parts[0]? | unreachable!
-  return part
+def readModuleData (fname : @& System.FilePath) : IO (ModuleData × CompactedRegion) :=
+  unsafe CompactedRegion.read fname #[]
 
 /--
   Free compacted regions of imports. No live references to imported objects may exist at the time of invocation; in
@@ -1765,20 +1793,45 @@ private def looksLikeOldCodegenName : Name → Bool
   | .str _ s => s.startsWith "_cstage" || s.startsWith "_spec_" || s.startsWith "_elambda"
   | _        => false
 
+set_option compiler.ignoreBorrowAnnotation true in
 @[extern "lean_get_ir_extra_const_names"]
-private opaque getIRExtraConstNames : Environment → OLeanLevel → Array Name
+private opaque getIRExtraConstNames (env : Environment) (level : OLeanLevel) (includeDecls := false) : Array Name
 
-def mkModuleData (env : Environment) (level : OLeanLevel := .private) : IO ModuleData := do
+/--
+Compute extension entries for all levels at once by calling `exportEntriesFn` once per extension.
+Returns an `OLeanEntries` of arrays mapping extension names to their exported data.
+-/
+private def computeExtEntries (env : Environment) :
+    IO (OLeanEntries (Array (Name × Array EnvExtensionEntry))) := do
   let pExts ← persistentEnvExtensionsRef.get
-  let entries := pExts.map fun pExt => Id.run do
-    -- get state from `checked` at the end if `async`; it would otherwise panic
-    let mut asyncMode := pExt.toEnvExtension.asyncMode
-    if asyncMode matches .async _ then
-      asyncMode := .sync
+  let allEntries := pExts.map fun pExt =>
+    let asyncMode := match pExt.toEnvExtension.asyncMode with
+      | .async _ => .sync
+      | m => m
     let state := pExt.getState (asyncMode := asyncMode) env
-    (pExt.name, pExt.exportEntriesFn env state level)
-  let kenv := env.toKernelEnv
+    let oe := pExt.exportEntriesFn env state
+    (pExt.name, oe)
+  let filterNonEmpty (level : OLeanLevel) :=
+    allEntries.filterMap fun (name, oe) => do
+      let ents := oe.get level
+      guard !ents.isEmpty
+      pure (name, ents)
+  return {
+    exported := filterNonEmpty .exported
+    server   := filterNonEmpty .server
+    «private» := filterNonEmpty .private
+  }
+
+def mkModuleData (env : Environment) (level : OLeanLevel := .private)
+    (extEntries? : Option (OLeanEntries (Array (Name × Array EnvExtensionEntry))) := none) :
+    IO ModuleData := do
   let env := env.setExporting (level != .private)
+  let entries ← match extEntries? with
+    | some ee => pure (ee.get level)
+    | none => do
+      let ee ← computeExtEntries env
+      pure (ee.get level)
+  let kenv := env.toKernelEnv
   let constNames := kenv.constants.foldStage2 (fun names name _ => names.push name) #[]
   -- not all kernel constants may be exported at `level < .private`
   let constants := if level == .private then
@@ -1798,6 +1851,7 @@ def mkModuleData (env : Environment) (level : OLeanLevel := .private) : IO Modul
     constNames, constants, entries
   }
 
+set_option compiler.ignoreBorrowAnnotation true in
 @[extern "lean_ir_export_entries"]
 private opaque exportIREntries (env : Environment) : Array (Name × Array EnvExtensionEntry)
 
@@ -1807,21 +1861,22 @@ private def mkIRData (env : Environment) : ModuleData :=
     entries := exportIREntries env
     constants := default
     constNames := default
-    -- make sure to add names of private constants as well as they may not be visible in all
-    -- importers.
-    extraConstNames := getIRExtraConstNames (env.setExporting true) .private
+    -- make sure to include all names in case only `.ir` is loaded
+    extraConstNames := getIRExtraConstNames env .private (includeDecls := true)
   }
 
-def writeModule (env : Environment) (fname : System.FilePath) : IO Unit := do
+def writeModule (env : Environment) (fname : System.FilePath) (writeIR := true) : IO Unit := do
   if env.header.isModule then
+    let extEntries ← computeExtEntries env
     let mkPart (level : OLeanLevel) :=
-      return (level.adjustFileName fname, (← mkModuleData env level))
+      return (level.adjustFileName fname, (← mkModuleData env level extEntries))
     saveModuleDataParts env.mainModule #[
       (← mkPart .exported),
       (← mkPart .server),
       (← mkPart .private)]
-    -- Make sure to change the module name so we derive a different base address
-    saveModuleData (fname.withExtension "ir") (env.mainModule ++ `ir) (mkIRData env)
+    if writeIR then
+      -- Make sure to change the module name so we derive a different base address
+      saveModuleData (fname.withExtension "ir") (env.mainModule ++ `ir) (mkIRData env)
   else
     saveModuleData fname env.mainModule (← mkModuleData env)
 
@@ -1857,6 +1912,7 @@ private def setImportedEntries (states : Array EnvExtensionState) (mods : Array 
           { s with importedEntries := s.importedEntries.set! modIdx entries }
   return states
 
+set_option compiler.ignoreBorrowAnnotation true in
 /--
   "Forward declaration" needed for updating the attribute table with user-defined attributes.
   User-defined attributes are declared using the `initialize` command. The `initialize` command is just syntax sugar for the `init` attribute.
@@ -1867,8 +1923,14 @@ private def setImportedEntries (states : Array EnvExtensionState) (mods : Array 
   Later, we set this method with code that adds the user-defined attributes that were imported after we initialized `attributeExtension`.
 -/
 @[extern "lean_update_env_attributes"] opaque updateEnvAttributes : Environment → IO Environment
+
+set_option compiler.ignoreBorrowAnnotation true in
 /-- "Forward declaration" for retrieving the number of builtin attributes. -/
 @[extern "lean_get_num_attributes"] opaque getNumBuiltinAttributes : IO Nat
+
+set_option compiler.ignoreBorrowAnnotation true in
+@[extern "lean_run_init_attrs"]
+private opaque runInitAttrs (env : Environment) (opts : Options) : IO Unit
 
 private def ensureExtensionsArraySize (env : Environment) : IO Environment := do
   let exts ← EnvExtension.ensureExtensionsArraySize env.base.private.extensions
@@ -1889,6 +1951,11 @@ where
       let prevAttrSize ← getNumBuiltinAttributes
       let newState ← extDescr.addImportedFn s.importedEntries { env := env, opts := opts }
       let mut env := extDescr.toEnvExtension.setState (asyncMode := .sync) env { s with state := newState }
+      if extDescr.name == `Lean.regularInitAttr then
+        -- Run `[init]` attributes now. We do this after `setState` so `runInitAttrs` can access
+        -- `getModule(IR)Entries` but we should also do it before attempting to run user-defined
+        -- extensions further down in `pExtDescrs` so they can access initialized declarations.
+        runInitAttrs env opts
       env ← ensureExtensionsArraySize env
       if (← persistentEnvExtensionsRef.get).size > prevSize || (← getNumBuiltinAttributes) > prevAttrSize then
         -- This branch is executed when `pExtDescrs[i]` is the extension associated with the `init` attribute, and
@@ -1902,13 +1969,20 @@ where
       return env
 
 private structure ImportedModule extends EffectiveImport where
-  /-- All loaded incremental compacted regions. -/
+  /-- All loaded incremental compacted regions from `.olean*`. -/
   parts     : Array (ModuleData × CompactedRegion)
+  /-- `.ir` data, if loaded. -/
+  irData?   : Option (ModuleData × CompactedRegion)
+  /-- If true, IR is loaded transitively. -/
+  needsIRTrans : Bool
 
 /-- The main module data that will eventually be used to construct the publicly accessible constants. -/
 private def ImportedModule.publicModule? (self : ImportedModule) : Option ModuleData := do
-  let (baseMod, _) ← self.parts[0]?
-  return baseMod
+  if self.hasData then
+    self.parts[0]?.map (·.1)
+  else
+    -- (should not have any constants)
+    self.irData?.map (·.1)
 
 private def ImportedModule.getData? (self : ImportedModule) (level : OLeanLevel) : Option ModuleData := do
   -- Without the module system, we only have the exported level.
@@ -1917,7 +1991,10 @@ private def ImportedModule.getData? (self : ImportedModule) (level : OLeanLevel)
 
 /-- The main module data that will eventually be used to construct the kernel environment. -/
 private def ImportedModule.mainModule? (self : ImportedModule) : Option ModuleData :=
-  self.getData? (if self.importAll then .private else .exported)
+  if self.hasData then
+    self.getData? (if self.importAll then .private else .exported)
+  else
+    self.irData?.map (·.1)
 
 /-- The module data that should be used for server purposes. -/
 private def ImportedModule.serverData? (self : ImportedModule) (level : OLeanLevel) :
@@ -1926,26 +2003,25 @@ private def ImportedModule.serverData? (self : ImportedModule) (level : OLeanLev
   self.getData? (if level ≥ .server then level else .exported)
 
 /-- The module data that should be used for accessing IR for interpretation. -/
-private def ImportedModule.loadIRData? (self : ImportedModule) (arts : NameMap ImportArtifacts)
-    (level : OLeanLevel):
-    IO (Option (ModuleData × Option CompactedRegion)) := do
+private def ImportedModule.interpData? (self : ImportedModule) (level : OLeanLevel) :
+    Option ModuleData :=
   if (level < .server && self.irPhases == .runtime) || !self.mainModule?.any (·.isModule) then
-    return self.mainModule?.map (·, none)
-  let fname ← do
-    if let some arts := arts.find? self.module then
-      let some ir := arts.ir?
-        | return none -- If Lake tells us we don't need IR, we should not look for it ourselves
-      pure ir
-    else
-      let mFile ← findOLean self.module
-      pure <| mFile.withExtension "ir"
-  let (data, region) ← readModuleData fname
-  return some (data, some region)
+    self.mainModule?
+  else
+    self.irData?.map (·.1)
 
 structure ImportState where
   private moduleNameMap : Std.HashMap Name ImportedModule := {}
   private moduleNames   : Array Name := #[]
 deriving Inhabited
+
+/-- Bumps all modules' `isExported` flag to true, intended for use in `shake` only. -/
+def ImportState.markAllExported (self : ImportState) : ImportState := Id.run do
+  let mut self := self
+  for (k, v) in self.moduleNameMap do
+    unless v.isExported do
+      self := { self with moduleNameMap := self.moduleNameMap.insert k { v with isExported := true } }
+  return self
 
 def throwAlreadyImported (s : ImportState) (const2ModIdx : Std.HashMap Name ModuleIdx) (modIdx : Nat) (cname : Name) : IO α := do
   let modName := s.moduleNames[modIdx]!
@@ -1973,14 +2049,15 @@ private def findOLeanParts (mod : Name) : IO (Array System.FilePath) := do
   return fnames
 
 partial def importModulesCore
-    (imports : Array Import) (globalLevel : OLeanLevel := .private) (arts : NameMap ImportArtifacts := {}) :
+    (imports : Array Import) (globalLevel : OLeanLevel := .private)
+    (arts : NameMap ImportArtifacts := {}) (isExported : Bool := globalLevel < .private) :
     ImportStateM Unit := do
-  go imports (importAll := true) (isExported := globalLevel < .private) (isMeta := false)
+  go imports (importAll := true) (isExported := isExported) (needsData := true) (needsIRTrans := false)
   if globalLevel < .private then
     for i in imports do
       if let some mod := (← get).moduleNameMap[i.module]?.bind (·.mainModule?) then
         if !mod.isModule then
-          throw <| IO.userError s!"cannot import non`-module` {i.module} from `module`"
+          throw <| IO.userError s!"cannot import non-`module` {i.module} from `module`"
 /-
 When the module system is disabled for the root, we import all transitively referenced modules and
 ignore any module system annotations on the way.
@@ -1992,7 +2069,7 @@ following levels:
 * public: import public information into public scope
 * privateAll: import public and private information into private scope
 * private: import public information into private scope
-* none: do not import
+* none: do not import any `.olean*`
 
 These levels form a lattice in the following way:
 
@@ -2003,13 +2080,29 @@ The level at which a module then is to be imported based on the given `import` r
 determined by the least fixed point of the following rules:
 
 * Root ≥ all
-* A ≥ privateAll ∧ A `(private)? import all` B → B ≥ privateAll
-* A ≥ private ∧ A `import (all)?` B → B ≥ private
-* A ≥ public ∧ A `import (all)?` B → B ≥ public
-* A ≥ privateAll ∧ A `private import` B → B ≥ private
+* A ≥ privateAll ∧ A `import all` B → B ≥ privateAll
+* A ≥ private ∧ A `public (meta)? import` B → B ≥ private
+* A ≥ public ∧ A `public (meta)? import` B → B ≥ public
+* A ≥ privateAll ∧ A `(meta)? import` B → B ≥ private
 
 As imports are a DAG, we may need to visit the same module multiple times until its minimum
 necessary level is established.
+
+The `meta` flag is special in that it only affects whether IR is needed. The rules for determining
+this are as follows:
+
+* A ≥ privateAll ∧ `meta import` B → needsIRTrans(B)
+* A ≥ private ∧ A `public meta import` B → needsIRTrans(B)
+* needsIRTrans(A) ∧ A `(public)? (meta)? import (all)?` B → needsIRTrans(B)
+
+Note that in particular, A `meta import` B `import` C implies A `meta import` C, but
+A `import` B `meta import` C does not.
+
+As a final special case, we also load IR for `import all`, but non-transitively, to provide the same
+information as for the current module.
+
+* A ≥ privateAll → needsIR(A)
+* needsIRTrans(A) → needsIR(A)
 
 For implementation purposes, we represent elements in the lattice using two flags as follows:
 
@@ -2018,50 +2111,74 @@ For implementation purposes, we represent elements in the lattice using two flag
 * private = !isExported && !importAll
 * public = isExported && !importAll
 
-`none` then is represented by not visiting a module at all.
+When neither `needsIR(A)` nor `A != none` is true, the module is not visited at all and missing from
+the module map.
 -/
-where go (imports : Array Import) (importAll isExported isMeta : Bool) := do
-  for i in imports do
-    -- `B = none`?
-    if !(i.isExported || importAll) then
-      continue
-    -- `B ≥ privateAll`?
-    let importAll := globalLevel == .private || (importAll && i.importAll)
-    -- `B ≥ public`?
-    let isExported := isExported && i.isExported
-    let irPhases :=
-      if importAll then .all
-      else if isMeta || i.isMeta then .comptime
-      else .runtime
-    let goRec imports := do
-      go (importAll := importAll) (isExported := isExported) (isMeta := isMeta || i.isMeta) imports
-    if let some mod := (← get).moduleNameMap[i.module]? then
-      -- when module is already imported, bump flags
-      let importAll := importAll || mod.importAll
-      let isExported := isExported || mod.isExported
-      let irPhases := if irPhases == mod.irPhases then irPhases else .all
-      if importAll != mod.importAll || isExported != mod.isExported || irPhases != mod.irPhases then
-        modify fun s => { s with moduleNameMap := s.moduleNameMap.insert i.module { mod with
-          importAll, isExported, irPhases }}
-        -- bump entire closure
+where
+  go (imports : Array Import) (importAll isExported needsData needsIRTrans : Bool) := do
+    for i in imports do
+      -- `B > none`?
+      let needsData := needsData && (i.isExported || importAll)
+      -- `B ≥ privateAll`?
+      let importAll := globalLevel == .private || importAll && i.importAll
+      -- `B ≥ public`?
+      let isExported := isExported && i.isExported
+      let needsIRTrans := needsIRTrans || needsData && i.isMeta
+      let needsIR := needsIRTrans || importAll || globalLevel > .exported
+      if !needsData && !needsIR then
+        continue
+
+      let irPhases :=
+        if importAll then .all
+        else if needsIRTrans then .comptime  -- `globalLevel` should *not* be considered here
+        else .runtime
+
+      let goRec mod := do
         if let some mod := mod.mainModule? then
-          goRec mod.imports
-      continue
-    let fnames ←
-      if let some arts := arts.find? i.module then
-        -- Opportunistically load all available parts.
-        -- Producer (e.g., Lake) should limit parts to the proper import level.
-        pure <| arts.oleanParts (inServer := globalLevel ≥ .server)
-      else
-        findOLeanParts i.module
-    let parts ← readModuleDataParts fnames
-    -- `imports` is identical for each part
-    let some (baseMod, _) := parts[0]? | unreachable!
-    goRec baseMod.imports
-    modify fun s => { s with
-      moduleNameMap := s.moduleNameMap.insert i.module { i with importAll, isExported, irPhases, parts }
-      moduleNames := s.moduleNames.push i.module
-    }
+          go (importAll := importAll) (isExported := isExported) (needsData := needsData) (needsIRTrans := needsIRTrans) mod.imports
+
+      if let some mod := (← get).moduleNameMap[i.module]? then
+        -- when module is already imported, bump flags
+        let importAll := importAll || mod.importAll
+        let isExported := isExported || mod.isExported
+        let needsData := needsData || mod.hasData
+        let needsIRTrans := needsIRTrans || mod.needsIRTrans
+        let needsIR := needsIRTrans || importAll
+        let irPhases := if irPhases == mod.irPhases then irPhases else .all
+        let parts ← if needsData && mod.parts.isEmpty then loadData i else pure mod.parts
+        let irData? ← if needsIR && mod.irData?.isNone then loadIR? i else pure mod.irData?
+        if importAll != mod.importAll || isExported != mod.isExported ||
+            needsIRTrans != mod.needsIRTrans || needsData != mod.hasData || irPhases != mod.irPhases then
+          modify fun s => { s with moduleNameMap := s.moduleNameMap.insert i.module { mod with
+            importAll, isExported, irPhases, parts, irData?, hasData := needsData, needsIRTrans }}
+          -- bump entire closure
+          goRec mod
+        continue
+
+      -- newly discovered module
+      let parts ← if needsData then loadData i else pure #[]
+      let irData? ← if needsIR then loadIR? i else pure none
+      let mod := { i with importAll, isExported, irPhases, parts, irData?, needsIRTrans, hasData := needsData }
+      goRec mod
+      modify fun s => { s with
+        moduleNameMap := s.moduleNameMap.insert i.module mod
+        moduleNames := s.moduleNames.push i.module
+      }
+  loadData i := do
+    let fnames ← if let some arts := arts.find? i.module then
+      -- Opportunistically load all available parts.
+      -- Producer (e.g., Lake) should limit parts to the proper import level.
+      pure (arts.oleanParts (inServer := globalLevel ≥ .server))
+    else
+      findOLeanParts i.module
+    readModuleDataParts fnames
+  loadIR? i := do
+    let irFile? ← if let some arts := arts.find? i.module then
+      pure arts.ir?
+    else
+      let irFile := (← findOLean i.module).withExtension "ir"
+      pure (guard (← irFile.pathExists) *> irFile)
+    irFile?.mapM (readModuleData ·)
 
 /--
 Returns `true` if `cinfo₁` and `cinfo₂` represent the same theorem/axiom, with `cinfo₁` potentially
@@ -2083,15 +2200,39 @@ and theorems are (mostly) opaque in Lean. For `Acc.rec`, we may unfold theorems
 during type-checking, but we are assuming this is not an issue in practice,
 and we are planning to address this issue in the future.
 -/
-private def subsumesInfo (cinfo₁ cinfo₂ : ConstantInfo) : Bool :=
+private def subsumesInfo (constMap : Std.HashMap Name ConstantInfo) (cinfo₁ cinfo₂ : ConstantInfo) : Bool :=
   cinfo₁.name == cinfo₂.name &&
     cinfo₁.type == cinfo₂.type &&
     cinfo₁.levelParams == cinfo₂.levelParams &&
     match cinfo₁, cinfo₂ with
     | .thmInfo tval₁, .thmInfo tval₂ => tval₁.all == tval₂.all
     | .thmInfo tval₁, .axiomInfo aval₂ => tval₁.all == [aval₂.name] && !aval₂.isUnsafe
-    | .axiomInfo aval₁, .axiomInfo aval₂ => aval₁.isUnsafe == aval₂.isUnsafe
+    | .axiomInfo aval₁, .axiomInfo aval₂ =>
+      -- In this case, we cannot a priori assume that both axioms came from theorems and thus their
+      -- former bodies are irrelevant - they could be both from definitions with different bodies
+      -- that were used to derive statements that would be contradictory if the axioms were merged.
+      -- Thus we do a rough, pure approximation of `Lean.Meta.isProp` that is sufficient for the
+      -- restricted types we use for realizable theorems and ensures the former bodies of the two
+      -- axioms must be irrelevant after all.
+      aval₁.isUnsafe == aval₂.isUnsafe && isPropCheap aval₁.type
     | _, _ => false
+where
+  /--
+  Check if `ty = ∀ ..., p xs...` and `p : ∀ args..., Prop` where `xs` and `args` are of the same
+  length.
+  -/
+  isPropCheap (ty : Expr) : Bool := Id.run do
+    let mut ty := ty
+    while ty.isForall do
+      let .forallE (body := body) .. := ty | return false
+      ty := body
+    let .const n .. := ty.getAppFn | return false
+    let some decl := constMap[n]? | return false
+    let mut p := decl.type
+    for _ in 0...ty.getAppNumArgs do
+      let .forallE (body := body) .. := p | return false
+      p := body
+    p.isProp
 
 /--
 Constructs environment from `importModulesCore` results.
@@ -2099,28 +2240,26 @@ Constructs environment from `importModulesCore` results.
 See also `importModules` for parameter documentation.
 -/
 def finalizeImport (s : ImportState) (imports : Array Import) (opts : Options) (trustLevel : UInt32 := 0)
-    (leakEnv loadExts : Bool) (level := OLeanLevel.private) (arts : NameMap ImportArtifacts := {}) :
+    (leakEnv loadExts : Bool) (level := OLeanLevel.private) (isModule := level != .private) :
     IO Environment := do
-  let isModule := level != .private
   let modules := s.moduleNames.filterMap (s.moduleNameMap[·]?)
   let moduleData ← modules.mapM fun mod => do
     let some data := mod.mainModule? |
       throw <| IO.userError s!"missing data file for module {mod.module}"
     return data
   let irData ← modules.mapM fun mod => do
-    let some data ← mod.loadIRData? arts level |
+    let some data := mod.interpData? level |
       throw <| IO.userError s!"missing IR data file for module {mod.module}"
     return data
-  let (irData, irRegions) := irData.unzip
   let numPrivateConsts := moduleData.foldl (init := 0) fun numPrivateConsts data =>
     numPrivateConsts + data.constants.size
-  let numPrivateConsts := irData.foldl (init := numPrivateConsts) fun numPrivateConsts data =>
-    numPrivateConsts + data.extraConstNames.size
+  let numExtraConsts := irData.foldl (init := 0) fun numExtraConsts data =>
+    numExtraConsts + data.extraConstNames.size
   let numPublicConsts := modules.foldl (init := 0) fun numPublicConsts mod => Id.run do
     if !mod.isExported then numPublicConsts else
       let some data := mod.publicModule? | numPublicConsts
       numPublicConsts + data.constants.size
-  let mut const2ModIdx : Std.HashMap Name ModuleIdx := Std.HashMap.emptyWithCapacity (capacity := numPrivateConsts + numPublicConsts)
+  let mut const2ModIdx : Std.HashMap Name ModuleIdx := Std.HashMap.emptyWithCapacity (capacity := numPrivateConsts + numExtraConsts)
   let mut privateConstantMap : Std.HashMap Name ConstantInfo := Std.HashMap.emptyWithCapacity (capacity := numPrivateConsts)
   let mut publicConstantMap : Std.HashMap Name ConstantInfo := Std.HashMap.emptyWithCapacity (capacity := numPublicConsts)
   for h : modIdx in *...moduleData.size do
@@ -2131,9 +2270,9 @@ def finalizeImport (s : ImportState) (imports : Array Import) (opts : Options) (
         privateConstantMap := constantMap'
         if let some cinfoPrev := cinfoPrev? then
           -- Recall that the map has not been modified when `cinfoPrev? = some _`.
-          if subsumesInfo cinfo cinfoPrev then
+          if subsumesInfo privateConstantMap cinfo cinfoPrev then
             privateConstantMap := privateConstantMap.insert cname cinfo
-          else if !subsumesInfo cinfoPrev cinfo then
+          else if !subsumesInfo privateConstantMap cinfoPrev cinfo then
             throwAlreadyImported s const2ModIdx modIdx cname
       const2ModIdx := const2ModIdx.insertIfNew cname modIdx
     if let some data := irData[modIdx]? then
@@ -2148,7 +2287,7 @@ def finalizeImport (s : ImportState) (imports : Array Import) (opts : Options) (
         | (cinfoPrev?, constantMap') =>
           publicConstantMap := constantMap'
           if let some cinfoPrev := cinfoPrev? then
-            if subsumesInfo cinfo cinfoPrev then
+            if subsumesInfo publicConstantMap cinfo cinfoPrev then
               publicConstantMap := publicConstantMap.insert cname cinfo
             -- no need to check for duplicates again, `privateConstMap` should be a superset
 
@@ -2162,7 +2301,7 @@ def finalizeImport (s : ImportState) (imports : Array Import) (opts : Options) (
     header     := {
       trustLevel, imports, moduleData, isModule
       modules      := modules.map (·.toEffectiveImport)
-      regions      := modules.flatMap (·.parts.map (·.2))
+      regions      := modules.flatMap (·.parts.map (·.2)) ++ modules.filterMap (·.irData?.map (·.2))
     }
   }
   let publicConstants : ConstMap := SMap.fromHashMap publicConstantMap false
@@ -2173,7 +2312,6 @@ def finalizeImport (s : ImportState) (imports : Array Import) (opts : Options) (
   let privateBase := { privateBase with
     extensions
     irBaseExts := (← setImportedEntries privateBase.extensions irData)
-    header.regions := privateBase.header.regions ++ irRegions.filterMap id
   }
   let mut env : Environment := {
     base.private := privateBase
@@ -2231,16 +2369,16 @@ system and imports will be restricted accordingly. If it is `server`, the data f
 as if no `module` annotations were present in the imports.
 -/
 def importModules (imports : Array Import) (opts : Options) (trustLevel : UInt32 := 0)
-    (plugins : Array System.FilePath := #[]) (leakEnv := false) (loadExts := false)
+    (plugins : Array Plugin := #[]) (leakEnv := false) (loadExts := false)
     (level := OLeanLevel.private) (arts : NameMap ImportArtifacts := {})
     : IO Environment := profileitIO "import" opts do
   for imp in imports do
     if imp.module matches .anonymous then
       throw <| IO.userError "import failed, trying to import module with anonymous name"
   withImporting do
-    plugins.forM Lean.loadPlugin
+    plugins.forM fun {path, initFn?} => Lean.loadPlugin path initFn?
     let (_, s) ← importModulesCore (globalLevel := level) imports arts |>.run
-    finalizeImport (leakEnv := leakEnv) (loadExts := loadExts) (level := level) (arts := arts)
+    finalizeImport (leakEnv := leakEnv) (loadExts := loadExts) (level := level)
       s imports opts trustLevel
 
 /--
@@ -2313,24 +2451,25 @@ def displayStats (env : Environment) : IO Unit := do
 @[extern "lean_eval_const"]
 private unsafe opaque evalConstCore (α) (env : @& Environment) (opts : @& Options) (constName : @& Name) : Except String α
 
-@[extern "lean_get_ir_phases"]
-private opaque getIRPhases (env : Environment) (constName : Name) : IRPhases
+set_option compiler.ignoreBorrowAnnotation true in
+@[extern "lean_eval_check_meta"]
+private opaque evalCheckMeta (env : Environment) (constName : Name) : Except String Unit
 
 /--
 Evaluates the given declaration under the given environment to a value of the given type.
 This function is only safe to use if the type matches the declaration's type in the environment
 and if `enableInitializersExecution` has been used before importing any modules.
 
-If `checkMeta` is true (the default), the function checks that the constant is declared or imported
-as `meta` or otherwise fails with an error. It should only be set to `false` in cases where it is
-acceptable for code to work only in the language server, where more IR is loaded, such as in
-`#eval`.
+If `checkMeta` is true (the default), the function checks that all referenced imported constants are
+marked or imported as `meta` or otherwise fails with an error. It should only be set to `false` in
+cases where it is acceptable for code to work only in the language server, where more IR is loaded,
+such as in `#eval`.
 -/
-unsafe def evalConst (α) (env : @& Environment) (opts : @& Options) (constName : @& Name) (checkMeta := true) : Except String α :=
-  if checkMeta && getIRPhases env constName == .runtime then
-    throw ("cannot evaluate non-`meta` constant '" ++ toString constName ++ "'")
-  else
-    evalConstCore α env opts constName
+-- `[noinline]` helps with `prefer_native` so as to avoid trying to interpret the extern function
+@[noinline] unsafe def evalConst (α) (env : @& Environment) (opts : @& Options) (constName : @& Name) (checkMeta := true) : Except String α := do
+  if checkMeta then
+    evalCheckMeta env constName
+  evalConstCore α env opts constName
 
 private def throwUnexpectedType {α} (typeName : Name) (constName : Name) : ExceptT String Id α :=
   throw ("unexpected type at '" ++ toString constName ++ "', `" ++ toString typeName ++ "` expected")
@@ -2361,10 +2500,17 @@ def replayConsts (dest : Environment) (oldEnv newEnv : Environment) (skipExistin
         else
           consts.add c
     }
-    checked := dest.checked.map fun kenv => replayKernel exts newPrivateConsts kenv |>.toOption.getD kenv
+    checked := dest.checked.map fun kenv =>
+      replayKernel
+        oldEnv.checked newEnv.checked exts newPrivateConsts kenv
+      |>.toOption.getD kenv
+    allRealizations := dest.allRealizations.map (sync := true) fun allRealizations =>
+      newPrivateConsts.foldl (init := allRealizations) fun allRealizations c =>
+        allRealizations.insert c.constInfo.name c
   }
 where
-  replayKernel (exts : Array (EnvExtension EnvExtensionState)) (consts : List AsyncConst)
+  replayKernel (oldEnv newEnv : Task Kernel.Environment)
+      (exts : Array (EnvExtension EnvExtensionState)) (consts : List AsyncConst)
       (kenv : Kernel.Environment) : Except Kernel.Exception Kernel.Environment := do
     let mut kenv := kenv
     -- replay extensions first in case kernel checking needs them (`IR.declMapExt`)
@@ -2374,8 +2520,8 @@ where
           -- safety: like in `modifyState`, but that one takes an elab env instead of a kernel env
           extensions := unsafe (ext.modifyStateImpl kenv.extensions <|
             replay
-              (ext.getStateImpl oldEnv.toKernelEnv.extensions)
-              (ext.getStateImpl newEnv.toKernelEnv.extensions)
+              (ext.getStateImpl oldEnv.get.extensions)
+              (ext.getStateImpl newEnv.get.extensions)
               (consts.map (·.constInfo.name))) }
     for c in consts do
       if skipExisting && (kenv.find? c.constInfo.name).isSome then
@@ -2393,6 +2539,7 @@ where
       let decl ← match info with
         | .thmInfo thm   => pure <| .thmDecl thm
         | .defnInfo defn => pure <| .defnDecl defn
+        | .axiomInfo ax  => pure <| .axiomDecl ax
         | _              =>
           return panic! s!"{c.constInfo.name} must be definition/theorem"
       -- realized kernel additions cannot be interrupted - which would be bad anyway as they can be
@@ -2413,6 +2560,10 @@ unsafe def evalConstCheck (α) (env : Environment) (opts : Options) (typeName : 
     | _ => throwUnexpectedType typeName constName
 
 def hasUnsafe (env : Environment) (e : Expr) : Bool :=
+  -- This line should not affect the result value but it avoids potential blocking in `isUnsafe` as
+  -- there is a fast path for theorems, so we want to make sure we do not perceive them merely as
+  -- axioms (for imported theorems this does not matter as there is nothing to block on).
+  let env := env.setExporting false
   let c? := e.find? fun e => match e with
     | Expr.const c _ =>
       match env.findAsync? c with
@@ -2517,7 +2668,14 @@ def realizeConst (env : Environment) (forConst : Name) (constName : Name)
         { c with exts? := some <| .pure realizeEnv'.base.private.extensions }
       else c
     let exts ← EnvExtension.envExtensionsRef.get
-    let replayKernel := replayConsts.replayKernel (skipExisting := true) realizeEnv realizeEnv' exts newPrivateConsts
+    -- NOTE: We must ensure that `realizeEnv.localRealizationCtxMap` is not reachable via `res`
+    -- (such as by storing `realizeEnv` or `realizeEnv'` in a field or the closure) as `res` will be
+    -- stored in a promise in there, creating a cycle. The closures stored in
+    -- `realizeEnv(').checked` should uphold this property as they are only concerned about the
+    -- kernel env but this cannot directly be enforced or checked except through the leak sanitizer
+    -- CI build.
+    let replayKernel := replayConsts.replayKernel (skipExisting := true)
+      realizeEnv.checked realizeEnv'.checked exts newPrivateConsts
     let res : RealizeConstResult := { newConsts.private := newPrivateConsts, newConsts.public := newPublicConsts, replayKernel, dyn }
     pure (.mk res)
   let some res := res.get? RealizeConstResult | unreachable!
@@ -2603,7 +2761,6 @@ instance (m n) [MonadLift m n] [MonadEnv m] : MonadEnv n where
 Sets `Environment.isExporting` to the given value while executing `x`. No-op if
 `EnvironmentHeader.isModule` is false.
 -/
-@[inline]
 def withExporting [Monad m] [MonadEnv m] [MonadFinally m] [MonadOptions m] (x : m α)
     (isExporting := true) : m α := do
   let old := (← getEnv).isExporting
@@ -2628,13 +2785,36 @@ def mkDefinitionValInferringUnsafe [Monad m] [MonadEnv m] (name : Name) (levelPa
   let safety := if env.hasUnsafe type || env.hasUnsafe value then DefinitionSafety.unsafe else DefinitionSafety.safe
   return { name, levelParams, type, value, hints, safety }
 
+/-- Constructs a declaration from a theorem, resorting to an unsafe def if needed -/
+def mkThmOrUnsafeDef [Monad m] [MonadEnv m] (thm : TheoremVal) : m Declaration := do
+  let env ← getEnv
+  if env.hasUnsafe thm.type || env.hasUnsafe thm.value then
+    return .defnDecl { thm with safety := DefinitionSafety.unsafe, hints := .opaque }
+  else
+    return .thmDecl thm
+
+/-- Environment extension for overriding the height that `getMaxHeight` assigns to a definition.
+This is consulted for all definitions regardless of their reducibility hints. Currently used by
+structural recursion to ensure that parent definitions get the correct height even though the
+`_f` helper definitions are marked as `.abbrev` (which `getMaxHeight` would otherwise ignore). -/
+builtin_initialize defHeightOverrideExt : EnvExtension (NameMap UInt32) ←
+  registerEnvExtension (pure {}) (asyncMode := .local)
+
+/-- Register a height override for a definition so that `getMaxHeight` uses it. -/
+def setDefHeightOverride (env : Environment) (declName : Name) (height : UInt32) : Environment :=
+  defHeightOverrideExt.modifyState env fun m => m.insert declName height
+
 def getMaxHeight (env : Environment) (e : Expr) : UInt32 :=
+  let overrides := defHeightOverrideExt.getState env
   e.foldConsts 0 fun constName max =>
-    match env.findAsync? constName with
-    | some { kind := .defn, constInfo := info, .. } =>
-      match info.get.hints with
-      | ReducibilityHints.regular h => if h > max then h else max
-      | _                           => max
-    | _ => max
+    match overrides.find? constName with
+    | some h => if h > max then h else max
+    | none =>
+      match env.findAsync? constName with
+      | some { kind := .defn, constInfo := info, .. } =>
+        match info.get.hints with
+        | ReducibilityHints.regular h => if h > max then h else max
+        | _                           => max
+      | _ => max
 
 end Lean

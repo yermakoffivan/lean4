@@ -8,7 +8,10 @@ module
 prelude
 public import Lake.Toml.Encode
 public import Lake.Config.Package
-meta import Lake.Config.Package
+meta import Lake.Config.LeanLibConfig
+meta import Lake.Config.LeanExeConfig
+meta import Lake.Config.InputFileConfig
+meta import Lake.Config.PackageConfig
 
 /-! # TOML Translation
 
@@ -20,7 +23,7 @@ open Lean System Toml
 
 /-! ## General Helpers -/
 
-private local instance : BEq FilePath where
+local instance : BEq FilePath where
   beq a b := a.normalize == b.normalize
 
 class EncodeField (σ : Type u) (name : Name) (α : Type u) where
@@ -66,7 +69,7 @@ public def Toml.encodeLeanOptions (opts : Array LeanOption) : Table :=
 public instance : ToToml (Array LeanOption) where
   toToml opts := .table .missing <| encodeLeanOptions opts
 
-@[inline] private def encodeSingleton? [ToToml? α] (name : Name) (a : α) : Option Value :=
+@[inline] def encodeSingleton? [ToToml? α] (name : Name) (a : α) : Option Value :=
   toToml? a |>.map fun v => toToml <| Table.empty.insert name v
 
 mutual
@@ -129,14 +132,24 @@ public protected def Dependency.toToml (dep : Dependency) (t : Table  := {}) : T
   let t := t
     |>.insert `name dep.name
     |>.insertD `scope dep.scope ""
-    |>.smartInsert `version dep.version?
+  let t :=
+    match dep.version with
+    | .none => t
+    | .git rev =>
+      match dep.src? with
+      | some (.git (rev := some gitRev) ..) =>
+        if gitRev == rev then
+          t -- `rev` will be set below
+        else t.insert `version s!"git#{rev}"
+      | _ => t.insert `rev rev
+    | .ver ver => t.insert `version ver.toString
   let t :=
     if let some src := dep.src? then
       match src with
       | .path dir => t.insert `path (toToml dir)
-      | .git url rev subDir? =>
+      | .git url rev? subDir? =>
         t.insert `git url
-        |>.smartInsert `rev rev
+        |>.smartInsert `rev rev?
         |>.smartInsert `subDir subDir?
     else
       t
@@ -146,13 +159,16 @@ public instance : ToToml Dependency := ⟨(toToml ·.toToml)⟩
 
 /-! ## Package & Target Configuration Encoders -/
 
-private def genToToml
+meta def genToToml
   (cmds : Array Command)
-  (tyName : Name) [info : ConfigInfo tyName] (takesName : Bool)
+  (tyName : Name) [info : ConfigInfo tyName]
   (exclude : Array Name := #[])
 : MacroM (Array Command) := do
-  let val ← if takesName then `(t.insert `name $(mkIdent `n)) else `(t)
-  let ty := if takesName then Syntax.mkCApp tyName #[mkIdent `n] else mkCIdent tyName
+  let val ← if info.arity == 0 then `(t) else
+    `(t.insert `name $(mkIdent <| .mkSimple s!"x_{info.arity}"))
+  let tyArgs := info.arity.fold (init := Array.emptyWithCapacity info.arity) fun i _ as =>
+    as.push (mkIdent <| .mkSimple s!"x_{i+1}")
+  let ty := Syntax.mkCApp tyName tyArgs
   let val ← info.fields.foldlM (init := val) fun val {name, canonical, ..} => do
     if !canonical || exclude.contains name then
       return val
@@ -167,23 +183,23 @@ private def genToToml
 local macro "gen_toml_encoders%" : command => do
   let cmds := #[]
   -- Targets
-  let cmds ← genToToml cmds ``LeanConfig false
-  let cmds ← genToToml cmds ``LeanLibConfig true
+  let cmds ← genToToml cmds ``LeanConfig
+  let cmds ← genToToml cmds ``LeanLibConfig
     (exclude := #[`nativeFacets])
-  let cmds ← genToToml cmds ``LeanExeConfig true
+  let cmds ← genToToml cmds ``LeanExeConfig
     (exclude := #[`nativeFacets])
-  let cmds ← genToToml cmds ``InputFileConfig true
-  let cmds ← genToToml cmds ``InputDirConfig true
+  let cmds ← genToToml cmds ``InputFileConfig
+  let cmds ← genToToml cmds ``InputDirConfig
   -- Package
-  let cmds ← genToToml cmds ``WorkspaceConfig false
-  let cmds ← genToToml cmds ``PackageConfig true
+  let cmds ← genToToml cmds ``WorkspaceConfig
+  let cmds ← genToToml cmds ``PackageConfig
   return ⟨mkNullNode cmds⟩
 
 gen_toml_encoders%
 
 @[inline] def Package.mkTomlTargets
   (pkg : Package) (kind : Name)
-  (toToml : {n : Name} → ConfigType kind pkg.name n → Table)
+  (toToml : {n : Name} → ConfigType kind pkg.keyName n → Table)
 : Array Table :=
   pkg.targetDecls.filterMap (·.config? kind |>.map toToml)
 
@@ -191,7 +207,7 @@ gen_toml_encoders%
 
 /-- Create a TOML table that encodes the declarative configuration of the package. -/
 public def Package.mkTomlConfig (pkg : Package) (t : Table := {}) : Table :=
-  let cfg : PackageConfig pkg.name :=
+  let cfg : PackageConfig pkg.keyName pkg.origName :=
     {pkg.config with testDriver := pkg.testDriver, lintDriver := pkg.lintDriver}
   cfg.toToml t
   |>.smartInsert `defaultTargets pkg.defaultTargets

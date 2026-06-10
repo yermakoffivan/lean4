@@ -6,9 +6,9 @@ Authors: Mario Carneiro, Mac Malone
 module
 
 prelude
-public import Init.System.IO
-import Lean.Util.Path
-import Lake.Util.Name
+public import Lean.Util.Path
+import Init.Data.ToString.Name
+import Lean.Data.Name
 
 open Lean (Name)
 open System (FilePath)

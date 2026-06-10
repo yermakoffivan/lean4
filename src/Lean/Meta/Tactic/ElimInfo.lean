@@ -6,9 +6,8 @@ Authors: Leonardo de Moura
 module
 
 prelude
-public import Lean.Meta.Basic
 public import Lean.Meta.Check
-public import Lean.ScopedEnvExtension
+import Init.Data.Range.Polymorphic.Iterators
 
 public section
 

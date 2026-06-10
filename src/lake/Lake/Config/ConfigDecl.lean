@@ -30,7 +30,6 @@ public abbrev ConfigType (kind : Name) (pkgName name : Name) : Type :=
 /-- Forward declared `ConfigTarget` to work around recursion issues (e.g., with `Package`). -/
 public opaque OpaqueConfigTarget (kind : Name) : Type
 
-public section -- for `TypeName`
 public structure ConfigDecl where
   pkg : Name
   name : Name
@@ -38,7 +37,6 @@ public structure ConfigDecl where
   config : ConfigType kind pkg name
   wf_data : ¬ kind.isAnonymous → CustomData pkg name = DataType kind ∧ DataType kind = OpaqueConfigTarget kind
   deriving TypeName
-end
 
 public structure PConfigDecl (p : Name) extends ConfigDecl where
   pkg_eq : toConfigDecl.pkg = p := by rfl
@@ -140,10 +138,10 @@ public abbrev ExternLibDecl := KConfigDecl ExternLib.configKind
     (self : NConfigDecl p n) : Option (OpaqueTargetConfig p n) :=
   cast (by rw [self.name_eq]) self.toPConfigDecl.opaqueTargetConfig?
 
-/-- A input file declaration from a configuration written in Lean. -/
+/-- An input file declaration from a configuration written in Lean. -/
 public abbrev InputFileDecl := KConfigDecl InputFile.configKind
 
-/-- A inpurt directory declaration from a configuration written in Lean. -/
+/-- An input directory declaration from a configuration written in Lean. -/
 public abbrev InputDirDecl := KConfigDecl InputDir.configKind
 
 public instance : TypeName LeanLibDecl := unsafe (.mk _ ``LeanLibDecl)

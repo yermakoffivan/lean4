@@ -7,9 +7,18 @@ module
 
 prelude
 public import Init.Data.Nat.Coprime
-public import Init.Data.Hashable
 public import Init.Data.OfScientific
-import Init.Data.Int.Bitwise
+public import Init.Data.Int.DivMod.Basic
+public import Init.Data.String.Defs
+public import Init.Data.ToString.Macro
+public import Init.Data.ToString.Extra
+import Init.Data.Hashable
+import Init.Data.Int.DivMod.Bootstrap
+import Init.Data.Int.DivMod.Lemmas
+import Init.Data.Int.Lemmas
+import Init.Data.Int.Order
+import Init.Data.Int.Pow
+import Init.Data.Nat.Dvd
 
 @[expose] public section
 
@@ -20,6 +29,7 @@ Rational numbers, implemented as a pair of integers `num / den` such that the
 denominator is positive and the numerator and denominator are coprime.
 -/
 -- `Rat` is not tagged with the `ext` attribute, since this is more often than not undesirable
+@[suggest_for ℚ]
 structure Rat where
   /-- Constructs a rational number from components.
   We rename the constructor to `mk'` to avoid a clash with the smart constructor. -/
@@ -150,6 +160,9 @@ instance : LE Rat := ⟨fun a b => b.blt a = false⟩
 instance (a b : Rat) : Decidable (a ≤ b) :=
   inferInstanceAs (Decidable (_ = false))
 
+instance : Min Rat := minOfLe
+instance : Max Rat := maxOfLe
+
 /-- Multiplication of rational numbers. (This definition is `@[irreducible]` because you don't
 want to unfold it. Use `Rat.mul_def` instead.) -/
 @[irreducible] protected def mul (a b : Rat) : Rat :=
@@ -178,12 +191,12 @@ because you don't want to unfold it. Use `Rat.inv_def` instead.)
 @[irreducible] protected def inv (a : Rat) : Rat :=
   if h : a.num < 0 then
     { num := -a.den, den := a.num.natAbs
-      den_nz := Nat.ne_of_gt (Int.natAbs_pos.2 (Int.ne_of_lt h))
-      reduced := Int.natAbs_neg a.den ▸ a.reduced.symm }
+      den_nz := by exact Nat.ne_of_gt (Int.natAbs_pos.2 (Int.ne_of_lt h))
+      reduced := by exact Int.natAbs_neg a.den ▸ a.reduced.symm }
   else if h : a.num > 0 then
     { num := a.den, den := a.num.natAbs
-      den_nz := Nat.ne_of_gt (Int.natAbs_pos.2 (Int.ne_of_gt h))
-      reduced := a.reduced.symm }
+      den_nz := by exact Nat.ne_of_gt (Int.natAbs_pos.2 (Int.ne_of_gt h))
+      reduced := by exact a.reduced.symm }
   else
     a
 
@@ -309,5 +322,9 @@ protected def ceil (a : Rat) : Int :=
     a.num
   else
     a.num / a.den + 1
+
+/-- The absolute value of a rational number `a` is `a` if `a ≥ 0` and `-a` if `a ≤ 0`. -/
+protected def abs (a : Rat) : Rat :=
+  if 0 ≤ a then a else -a
 
 end Rat

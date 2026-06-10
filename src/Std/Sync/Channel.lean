@@ -6,12 +6,17 @@ Authors: Henrik Böving
 module
 
 prelude
-public import Init.System.Promise
 public import Init.Data.Queue
 public import Std.Sync.Mutex
-public import Std.Internal.Async.Select
+public import Std.Async.IO
+import Init.Data.Vector.Basic
+import Init.Data.Option.BasicAux
+import Init.Omega
 
 public section
+
+open Std.Async.IO
+open Std.Async
 
 /-!
 This module contains the implementation of `Std.Channel`. `Std.Channel` is a multi-producer
@@ -24,7 +29,6 @@ for cleaner code.
 -/
 
 namespace Std
-
 namespace CloseableChannel
 
 /--
@@ -49,7 +53,7 @@ instance : ToString Error where
 instance : MonadLift (EIO Error) IO where
   monadLift x := EIO.toIO (.userError <| toString ·) x
 
-open Internal.IO.Async in
+open Async in
 private inductive Consumer (α : Type) where
   | normal (promise : IO.Promise (Option α))
   | select (finished : Waiter (Option α))
@@ -170,7 +174,7 @@ private def recvReady' [Monad m] [MonadLiftT (ST IO.RealWorld) m] :
   let st ← get
   return !st.values.isEmpty || st.closed
 
-open Internal.IO.Async in
+open Async in
 private def recvSelector (ch : Unbounded α) : Selector (Option α) where
   tryFn := do
     ch.state.atomically do
@@ -320,7 +324,7 @@ private def recvReady' [Monad m] [MonadLiftT (ST IO.RealWorld) m] :
   let st ← get
   return !st.producers.isEmpty || st.closed
 
-open Internal.IO.Async in
+open Async in
 private def recvSelector (ch : Zero α) : Selector (Option α) where
   tryFn := do
     ch.state.atomically do
@@ -354,7 +358,7 @@ private def recvSelector (ch : Zero α) : Selector (Option α) where
 
 end Zero
 
-open Internal.IO.Async in
+open Async in
 private structure Bounded.Consumer (α : Type) where
   promise : IO.Promise Bool
   waiter : Option (Waiter (Option α))
@@ -556,7 +560,7 @@ private def recvReady' [Monad m] [MonadLiftT (ST IO.RealWorld) m] :
   let st ← get
   return st.bufCount != 0 || st.closed
 
-open Internal.IO.Async in
+open Async in
 private partial def recvSelector (ch : Bounded α) : Selector (Option α) where
   tryFn := do
     ch.state.atomically do
@@ -566,7 +570,7 @@ private partial def recvSelector (ch : Bounded α) : Selector (Option α) where
       else
         return none
 
-  registerFn := registerAux ch
+  registerFn x := registerAux ch x
 
   unregisterFn := do
     ch.state.atomically do
@@ -597,8 +601,7 @@ where
         let promise ← IO.Promise.new
         modify fun st => { st with consumers := st.consumers.enqueue ⟨promise, some waiter⟩ }
 
-        IO.chainTask promise.result? fun res? => do
-          match res? with
+        IO.chainTask promise.result? fun
           | none => return ()
           | some res =>
             if res then
@@ -613,10 +616,10 @@ end Bounded
 /--
 This type represents all flavors of channels that we have available.
 -/
-private inductive Flavors (α : Type) where
-  | unbounded (ch : Unbounded α)
-  | zero (ch : Zero α)
-  | bounded (ch : Bounded α)
+inductive Flavors (α : Type) where
+  | private unbounded (ch : Unbounded α)
+  | private zero (ch : Zero α)
+  | private bounded (ch : Bounded α)
 deriving Nonempty
 
 end CloseableChannel
@@ -629,6 +632,7 @@ Additionally `Std.CloseableChannel` can be closed if necessary, unlike `Std.Chan
 This introduces a need for error handling in some cases, thus it is usually easier to use
 `Std.Channel` if applicable.
 -/
+@[expose] -- for codegen
 def CloseableChannel (α : Type) : Type := CloseableChannel.Flavors α
 
 /--
@@ -640,6 +644,7 @@ Additionally `Std.CloseableChannel.Sync` can be closed if necessary, unlike `Std
 This introduces the need to handle errors in some cases, thus it is usually easier to use
 `Std.Channel` if applicable.
 -/
+@[expose] -- for codegen
 def CloseableChannel.Sync (α : Type) : Type := CloseableChannel α
 
 instance : Nonempty (CloseableChannel α) :=
@@ -729,9 +734,9 @@ def recv (ch : CloseableChannel α) : BaseIO (Task (Option α)) :=
   | .zero ch => CloseableChannel.Zero.recv ch
   | .bounded ch => CloseableChannel.Bounded.recv ch
 
-open Internal.IO.Async in
+open Async in
 /--
-Creates a `Selector` that resolves once `ch` has data available and provides that that data.
+Creates a `Selector` that resolves once `ch` has data available and provides that data.
 In particular if `ch` is closed while waiting on this `Selector` and no data is available already
 this will resolve to `none`.
 -/
@@ -751,6 +756,17 @@ partial def forAsync (f : α → BaseIO Unit) (ch : CloseableChannel α)
   BaseIO.bindTask (prio := prio) (← ch.recv) fun
     | none => return .pure ()
     | some v => do f v; ch.forAsync f prio
+
+instance [Inhabited α] : AsyncStream (CloseableChannel α) (Option α) where
+  next channel := channel.recvSelector
+
+instance [Inhabited α] : AsyncRead (CloseableChannel α) (Option α) where
+  read receiver := Async.ofIOTask receiver.recv
+
+instance [Inhabited α] : AsyncWrite (CloseableChannel α) α where
+  write receiver x := do
+    let task ← receiver.send x
+    Async.ofAsyncTask <| task.map (Except.mapError (IO.userError ∘ toString))
 
 /--
 This function is a no-op and just a convenient way to expose the synchronous API of the channel.
@@ -799,11 +815,10 @@ private partial def forIn [Monad m] [MonadLiftT BaseIO m]
   | none => pure b
 
 /-- `for msg in ch.sync do ...` receives all messages in the channel until it is closed. -/
-instance [MonadLiftT BaseIO m] : ForIn m (Sync α) α where
+instance [Monad m] [MonadLiftT BaseIO m] : ForIn m (Sync α) α where
   forIn ch b f := private ch.forIn f b
 
 end Sync
-
 end CloseableChannel
 
 /--
@@ -864,7 +879,7 @@ def recv [Inhabited α] (ch : Channel α) : BaseIO (Task α) := do
       | some val => return .pure val
       | none => unreachable!
 
-open Internal.IO.Async in
+open Async in
 /--
 Creates a `Selector` that resolves once `ch` has data available and provides that data.
 -/
@@ -891,6 +906,17 @@ def recvSelector [Inhabited α] (ch : Channel α) : Selector α :=
 partial def forAsync [Inhabited α] (f : α → BaseIO Unit) (ch : Channel α)
     (prio : Task.Priority := .default) : BaseIO (Task Unit) := do
   BaseIO.bindTask (prio := prio) (← ch.recv) fun v => do f v; ch.forAsync f prio
+
+instance [Inhabited α] : AsyncStream (Channel α) α where
+  next channel := channel.recvSelector
+
+instance [Inhabited α] : AsyncRead (Channel α) α where
+  read receiver := Async.ofIOTask receiver.recv
+
+instance [Inhabited α] : AsyncWrite (Channel α) α where
+  write receiver x := do
+    let task ← receiver.send x
+    Async.ofTask task
 
 @[inherit_doc CloseableChannel.sync, inline]
 def sync (ch : Channel α) : Channel.Sync α := ch
@@ -926,7 +952,7 @@ private partial def forIn [Inhabited α] [Monad m] [MonadLiftT BaseIO m]
   | .yield b => ch.forIn f b
 
 /-- `for msg in ch.sync do ...` receives all messages in the channel until it is closed. -/
-instance [Inhabited α] [MonadLiftT BaseIO m] : ForIn m (Sync α) α where
+instance [Inhabited α] [Monad m] [MonadLiftT BaseIO m] : ForIn m (Sync α) α where
   forIn ch b f := private ch.forIn f b
 
 end Sync

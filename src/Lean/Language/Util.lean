@@ -10,9 +10,8 @@ Authors: Sebastian Ullrich
 module
 
 prelude
-public import Lean.Language.Basic
-public import Lean.CoreM
 public import Lean.Elab.InfoTree
+import Init.Data.Format.Macro
 
 public section
 

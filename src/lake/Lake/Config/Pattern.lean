@@ -6,9 +6,14 @@ Authors: Mac Malone
 module
 
 prelude
-public import Init.Data.Array.Basic
 public import Init.System.FilePath
+public import Std.Data.TreeMap.Basic
+public import Lean.Data.Name
 import Lake.Util.Name
+import Init.Data.String.TakeDrop
+public import Init.Data.String.Basic
+import Init.Data.Option.Coe
+import Init.Omega
 
 open System Lean
 
@@ -31,7 +36,7 @@ mutual
 A pattern. Matches some subset of the values of a type.
 May also include a declarative description.
 -/
-public structure Pattern (α : Type u) (β : Type v) where
+structure Pattern (α : Type u) (β : Type v) where
   /-- Returns whether the value matches the pattern. -/
   filter : α → Bool
    /-- An optional name for the filter. -/
@@ -44,7 +49,7 @@ public structure Pattern (α : Type u) (β : Type v) where
 An abstract declarative pattern.
 Augments another pattern description `β` with logical connectives.
 -/
-public inductive PatternDescr (α : Type u) (β : Type v)
+inductive PatternDescr (α : Type u) (β : Type v)
 /-- Matches a value that does not satisfy the pattern. -/
 | not (p : Pattern α β)
 /-- Matches a value that satisfies every pattern. Short-circuits. -/
@@ -149,13 +154,6 @@ public instance : IsPattern StrPatDescr String := ⟨flip StrPatDescr.matches⟩
 /-- A `String` pattern. Matches some subset of strings. -/
 public abbrev StrPat := Pattern String StrPatDescr
 
-@[inherit_doc Pattern.empty, deprecated Pattern.empty (since := "2025-03-27")]
-public abbrev StrPat.none : StrPat := Pattern.empty
-
-@[inherit_doc Pattern.ofFn, deprecated Pattern.ofFn (since := "2025-03-27")]
-public abbrev StrPat.satisfies (f : String → Bool) (name := Name.anonymous) : StrPat :=
-  Pattern.ofFn f name
-
 @[inherit_doc StrPatDescr.mem, inline]
 public def StrPat.mem (xs : Array String) : StrPat :=
   StrPatDescr.mem xs
@@ -229,8 +227,8 @@ That is, a `v` followed by a digit.
 -/
 public def isVerLike (s : String) : Bool :=
   if h : s.utf8ByteSize ≥ 2 then
-    s.get' 0 (by simp [String.atEnd]; omega) == 'v' &&
-    (s.get' ⟨1⟩ (by simp [String.atEnd]; omega)).isDigit
+    String.Pos.Raw.get' s 0 (by simp [-String.utf8ByteSize_eq_zero_iff, String.Pos.Raw.atEnd]; omega) == 'v' &&
+    (String.Pos.Raw.get' s ⟨1⟩ (by simp [String.Pos.Raw.atEnd]; omega)).isDigit
   else
     false
 

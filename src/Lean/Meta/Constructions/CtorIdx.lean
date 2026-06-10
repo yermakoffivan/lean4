@@ -9,9 +9,7 @@ module
 prelude
 public import Lean.Meta.Basic
 import Lean.AddDecl
-import Lean.Meta.AppBuilder
 import Lean.Meta.CompletionName
-import Lean.Meta.Injective
 import Lean.Linter.Deprecated
 
 open Lean Meta
@@ -27,16 +25,24 @@ public def mkToCtorIdxName (indName : Name) : Name :=
 public def mkCtorIdxName (indName : Name) : Name :=
   Name.mkStr indName "ctorIdx"
 
+public def isCtorIdxCore? (env : Environment) (declName : Name) : Option InductiveVal := do
+  let .str indName "ctorIdx" := declName | none
+  let indInfo ← isInductiveCore? env indName
+  return indInfo
+
+public def isCtorIdx? (declName : Name) : MetaM (Option InductiveVal) := do
+  return isCtorIdxCore? (← getEnv) declName
+
 /--
 For an inductive type `T` with more than one function builds a function `T.ctorIdx : T → Nat` that
 returns the constructor index of the given value.
 Does nothing if `T` does not eliminate into `Type` or if `T` is unsafe.
 Assumes `T.casesOn` to be defined already.
 -/
-public def mkCtorIdx (indName : Name) : MetaM Unit := do
+public def mkCtorIdx (indName : Name) : MetaM Unit :=
+  withExporting (isExporting := ! isPrivateName indName) do
   prependError m!"failed to construct `T.ctorIdx` for `{.ofConstName indName}`:" do
     unless genCtorIdx.get (← getOptions) do return
-    unless genInjectivity.get (← getOptions)  do return
     let declName := mkCtorIdxName indName
     if (← hasConst declName) then return
     let ConstantInfo.inductInfo info ← getConstInfo indName | unreachable!
@@ -47,7 +53,7 @@ public def mkCtorIdx (indName : Name) : MetaM Unit := do
 
     let us := info.levelParams.map mkLevelParam
     forallBoundedTelescope info.type (info.numParams + info.numIndices) fun xs _ => do
-      withNewBinderInfos (xs.map (⟨·.fvarId!, .implicit⟩)) do
+    withImplicitBinderInfos xs do
       let params : Array Expr := xs[:info.numParams]
       let indices : Array Expr := xs[info.numParams:]
       let indType := mkAppN (mkConst indName us) xs
@@ -59,7 +65,7 @@ public def mkCtorIdx (indName : Name) : MetaM Unit := do
           pure (mkRawNatLit 0)
         else
           let motive ← mkLambdaFVars (indices.push x) natType
-          let mut value := mkConst casesOnName (levelOne::us)
+          let mut value := mkConst casesOnName (Level.one::us)
           value := mkAppN value params
           value := mkApp value motive
           value := mkAppN value indices
@@ -72,27 +78,37 @@ public def mkCtorIdx (indName : Name) : MetaM Unit := do
             value := mkApp value alt
           pure value
         mkLambdaFVars (xs.push x) value
-      addAndCompile (.defnDecl (← mkDefinitionValInferringUnsafe
+      let hints := ReducibilityHints.regular (getMaxHeight (← getEnv) declValue + 1)
+      let decl := .defnDecl (← mkDefinitionValInferringUnsafe
         (name        := declName)
         (levelParams := info.levelParams)
         (type        := declType)
         (value       := declValue)
-        (hints       := ReducibilityHints.abbrev)
-      ))
+        (hints       := hints)
+      )
+      addDecl decl
       modifyEnv fun env => addToCompletionBlackList env declName
       modifyEnv fun env => addProtected env declName
-      setReducibleAttribute declName
+      if info.numCtors = 1 then
+        setInlineAttribute declName .macroInline
+      if isMarkedMeta (← getEnv) indName then
+        modifyEnv (markMeta · declName)
+      compileDecl decl
+      enableRealizationsForConst declName
 
       -- Deprecated alias for enumeration types (which used to have `toCtorIdx`)
       if (← isEnumType indName) then
         let aliasName := mkToCtorIdxName indName
-        addAndCompile (.defnDecl (← mkDefinitionValInferringUnsafe
+        addDecl (.defnDecl (← mkDefinitionValInferringUnsafe
           (name        := aliasName)
           (levelParams := info.levelParams)
           (type        := declType)
           (value       := mkConst declName us)
           (hints       := ReducibilityHints.abbrev)
         ))
+        if isMarkedMeta (← getEnv) indName then
+          modifyEnv (markMeta · aliasName)
+        compileDecls #[aliasName]
         modifyEnv fun env => addToCompletionBlackList env aliasName
         modifyEnv fun env => addProtected env aliasName
         setReducibleAttribute aliasName

@@ -6,8 +6,13 @@ Authors: Parikshit Khanna, Jeremy Avigad, Leonardo de Moura, Floris van Doorn, M
 module
 
 prelude
-public import Init.Data.List.Pairwise
-public import Init.Data.List.Zip
+public import Init.BinderPredicates
+public import Init.Ext
+public import Init.NotationExtra
+import Init.Data.List.Lemmas
+import Init.Data.List.Sublist
+import Init.Data.List.Zip
+import Init.Data.Option.Lemmas
 
 public section
 
@@ -37,7 +42,7 @@ open Nat
   rw [← length_eq_zero_iff, length_range']
 
 theorem range'_ne_nil_iff (s : Nat) {n step : Nat} : range' s n step ≠ [] ↔ n ≠ 0 := by
-  cases n <;> simp
+  simp
 
 theorem range'_eq_cons_iff : range' s n step = a :: xs ↔ s = a ∧ 0 < n ∧ xs = range' (a + step) (n - 1) step := by
   induction n generalizing s with
@@ -70,8 +75,8 @@ theorem mem_range' : ∀ {n}, m ∈ range' s n step ↔ ∃ i < n, m = s + step 
   | 0 => by simp [range', Nat.not_lt_zero]
   | n + 1 => by
     have h (i) : i ≤ n ↔ i = 0 ∨ ∃ j, i = succ j ∧ j < n := by
-      cases i <;> simp [Nat.succ_le, Nat.succ_inj]
-    simp [range', mem_range', Nat.lt_succ, h]; simp only [← exists_and_right, and_assoc]
+      cases i <;> simp [Nat.succ_le_iff, Nat.succ_inj]
+    simp [range', mem_range', Nat.lt_succ_iff, h]; simp only [← exists_and_right, and_assoc]
     rw [exists_comm]; simp [Nat.mul_succ, Nat.add_assoc, Nat.add_comm]
 
 theorem getElem?_range' {s step} :

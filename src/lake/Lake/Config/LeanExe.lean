@@ -49,7 +49,6 @@ namespace LeanExe
 @[inline] public def root (self : LeanExe) : Module where
   lib := self.toLeanLib
   name := self.config.root
-  keyName := self.pkg.name ++ self.config.root
 
 /-- Return the root module if the name matches; otherwise, return `none`. -/
 public def isRoot? (name : Name) (self : LeanExe) : Option Module :=
@@ -82,13 +81,15 @@ The arguments to pass to `leanc` when linking the binary executable.
 
 By default, the package's plus the executable's `moreLinkArgs`.
 If `supportInterpreter := true`, Lake prepends `-rdynamic` on non-Windows
-systems.
+systems. On Windows, it links in a manifest for Unicode path support.
 -/
-public def linkArgs (self : LeanExe) : Array String :=
+public def linkArgs (self : LeanExe) : Array String := Id.run do
+  let mut linkArgs := self.pkg.moreLinkArgs ++ self.config.moreLinkArgs
   if self.config.supportInterpreter && !Platform.isWindows then
-    #["-rdynamic"] ++ self.pkg.moreLinkArgs ++ self.config.moreLinkArgs
-  else
-    self.pkg.moreLinkArgs ++ self.config.moreLinkArgs
+    linkArgs := #["-rdynamic"] ++ linkArgs
+  else if System.Platform.isWindows then
+    linkArgs := linkArgs ++ #["-Wl,--whole-archive", "-lleanmanifest", "-Wl,--no-whole-archive"]
+  return linkArgs
 
 /--
 Whether the Lean shared library should be dynamically linked to the executable.
@@ -107,6 +108,14 @@ That is, the package's `weakLinkArgs` plus the executable's  `weakLinkArgs`.
 -/
 @[inline] public def weakLinkArgs (self : LeanExe) : Array String :=
   self.pkg.weakLinkArgs ++ self.config.weakLinkArgs
+
+/-- Additional objects (e.g., `.o` files, static libraries) to link to the executable. -/
+@[inline] public def moreLinkObjs (self : LeanExe) : TargetArray FilePath :=
+  self.config.moreLinkObjs
+
+/-- Additional shared libraries to link to the executable. -/
+@[inline] public def moreLinkLibs (self : LeanExe) : TargetArray Dynlib :=
+  self.config.moreLinkLibs
 
 end LeanExe
 

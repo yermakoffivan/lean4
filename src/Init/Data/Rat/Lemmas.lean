@@ -7,7 +7,14 @@ module
 prelude
 
 public import Init.Data.Rat.Basic
-import Init.Data.Int.Bitwise.Lemmas
+public import Init.Data.Int.Gcd
+import Init.ByCases
+import Init.Data.Bool
+import Init.Data.Int.DivMod.Lemmas
+import Init.Data.Int.Pow
+import Init.Data.Nat.Dvd
+import Init.Omega
+import Init.TacticsExtra
 
 @[expose] public section
 
@@ -27,6 +34,8 @@ theorem ext : {p q : Rat} → p.num = q.num → p.den = q.den → p = q
 @[simp] theorem one_num : (1 : Rat).num = 1 := rfl
 @[simp] theorem one_den : (1 : Rat).den = 1 := rfl
 
+@[simp] theorem neg_zero : -(0 : Rat) = 0 := rfl
+
 @[simp] theorem maybeNormalize_eq {num den g} (dvd_num dvd_den den_nz reduced) :
     maybeNormalize num den g dvd_num dvd_den den_nz reduced =
     { num := num.divExact g dvd_num, den := den / g, den_nz, reduced } := by
@@ -40,6 +49,14 @@ theorem normalize_eq {num den} (den_nz) : normalize num den den_nz =
       den_nz := normalize.den_nz den_nz rfl
       reduced := normalize.reduced den_nz rfl } := by
   simp only [normalize, maybeNormalize_eq, Int.divExact_eq_ediv]
+
+@[simp]
+theorem num_normalize {num den} (den_nz) : (normalize num den den_nz).num = num / num.natAbs.gcd den := by
+  simp [normalize_eq]
+
+@[simp]
+theorem den_normalize {num den} (den_nz) : (normalize num den den_nz).den = den / num.natAbs.gcd den := by
+  simp [normalize_eq]
 
 @[simp] theorem normalize_zero (nz) : normalize 0 d nz = 0 := by
   simp [normalize, Int.natAbs_zero, Nat.div_self (Nat.pos_of_ne_zero nz)]; rfl
@@ -111,6 +128,14 @@ theorem mkRat_num_den (z : d ≠ 0) (h : mkRat n d = ⟨n', d', z', c⟩) :
 
 theorem mkRat_def (n d) : mkRat n d = if d0 : d = 0 then 0 else normalize n d d0 := rfl
 
+theorem num_mkRat (n d) : (mkRat n d).num = if d = 0 then 0 else n / d.gcd n.natAbs := by
+  rw [mkRat_def]
+  split <;> simp [Nat.gcd_comm]
+
+theorem den_mkRat (n d) : (mkRat n d).den = if d = 0 then 1 else d / d.gcd n.natAbs := by
+  rw [mkRat_def]
+  split <;> simp [Nat.gcd_comm]
+
 @[simp]
 theorem mkRat_self (a : Rat) : mkRat a.num a.den = a := by
   rw [← normalize_eq_mkRat a.den_nz, normalize_self]
@@ -143,16 +168,10 @@ theorem mkRat_eq_iff (z₁ : d₁ ≠ 0) (z₂ : d₂ ≠ 0) :
 @[simp] theorem divInt_ofNat (num den) : num /. (den : Nat) = mkRat num den := by
   simp [divInt]
 
-theorem mk_eq_divInt (num den nz c) : ⟨num, den, nz, c⟩ = num /. (den : Nat) := by
+theorem mk_eq_divInt {num den nz c} : ⟨num, den, nz, c⟩ = num /. (den : Nat) := by
   simp [mk_eq_mkRat]
 
 theorem num_divInt_den (a : Rat) : a.num /. a.den = a := by rw [divInt_ofNat, mkRat_self]
-
-theorem mk'_eq_divInt {n d h c} : (⟨n, d, h, c⟩ : Rat) = n /. d := (num_divInt_den _).symm
-
-@[deprecated num_divInt_den (since := "2025-08-22")]
-abbrev divInt_self := @num_divInt_den
-
 @[simp] theorem zero_divInt (n) : 0 /. n = 0 := by cases n <;> simp [divInt]
 
 @[simp] theorem divInt_zero (n) : n /. 0 = 0 := mkRat_zero n
@@ -176,9 +195,6 @@ theorem divInt_eq_divInt_iff (z₁ : d₁ ≠ 0) (z₂ : d₂ ≠ 0) :
   simp_all [divInt_neg', Int.neg_eq_zero,
     mkRat_eq_iff, Int.neg_mul, Int.mul_neg, Int.eq_neg_comm, eq_comm]
 
-@[deprecated divInt_eq_divInt_iff (since := "2025-08-22")]
-abbrev divInt_eq_iff := @divInt_eq_divInt_iff
-
 theorem divInt_mul_left {a : Int} (a0 : a ≠ 0) : (a * n) /. (a * d) = n /. d := by
   if d0 : d = 0 then simp [d0] else
   simp [divInt_eq_divInt_iff (Int.mul_ne_zero a0 d0) d0, Int.mul_assoc, Int.mul_left_comm]
@@ -187,7 +203,7 @@ theorem divInt_mul_right {a : Int} (a0 : a ≠ 0) : (n * a) /. (d * a) = n /. d 
   simp [← divInt_mul_left (d := d) a0, Int.mul_comm]
 
 theorem divInt_self' {n : Int} (hn : n ≠ 0) : n /. n = 1 := by
-  simpa using divInt_mul_right (n := 1) (d := 1) hn
+  simpa using! divInt_mul_right (n := 1) (d := 1) hn
 
 theorem divInt_num_den (z : d ≠ 0) (h : n /. d = ⟨n', d', z', c⟩) :
     ∃ m, m ≠ 0 ∧ n = n' * m ∧ d = d' * m := by
@@ -199,12 +215,33 @@ theorem divInt_num_den (z : d ≠ 0) (h : n /. d = ⟨n', d', z', c⟩) :
     rw [← Int.neg_inj, Int.neg_neg] at h₂
     simp [Int.natCast_mul, h₁, h₂, Int.mul_neg, Int.neg_eq_zero]
 
+theorem num_divInt (a b : Int) : (a /. b).num = b.sign * a / b.gcd a := by
+  rw [divInt.eq_def]
+  simp only [inline, Nat.succ_eq_add_one]
+  split <;> rename_i d
+  · simp only [num_mkRat, Int.ofNat_eq_natCast]
+    split <;> rename_i h
+    · simp_all
+    · rw [Int.sign_natCast_of_ne_zero h, Int.one_mul, Int.gcd]
+      simp
+  · simp [Int.gcd, Nat.gcd_comm]
+
+theorem den_divInt (a b : Int) : (a /. b).den = if b = 0 then 1 else b.natAbs / b.gcd a := by
+  rw [divInt.eq_def]
+  simp only [inline, Nat.succ_eq_add_one]
+  split <;> rename_i d
+  · simp only [den_mkRat, Int.ofNat_eq_natCast, Int.natAbs_natCast]
+    split <;> rename_i h
+    · simp_all
+    · simp [if_neg (by omega), Int.gcd]
+  · simp [Int.gcd, Nat.gcd_comm]
+
 /-- Define a (dependent) function or prove `∀ r : Rat, p r` by dealing with rational
 numbers of the form `n /. d` with `0 < d` and coprime `n`, `d`. -/
 @[elab_as_elim]
 def numDenCasesOn.{u} {C : Rat → Sort u} :
     ∀ (a : Rat) (_ : ∀ n d, 0 < d → (Int.natAbs n).Coprime d → C (n /. d)), C a
-  | ⟨n, d, h, c⟩, H => by rw [mk'_eq_divInt]; exact H n d (Nat.pos_of_ne_zero h) c
+  | ⟨n, d, h, c⟩, H => by rw [mk_eq_divInt]; exact H n d (Nat.pos_of_ne_zero h) c
 
 /-- Define a (dependent) function or prove `∀ r : Rat, p r` by dealing with rational
 numbers of the form `n /. d` with `d ≠ 0`. -/
@@ -218,20 +255,20 @@ numbers of the form `mk' n d` with `d ≠ 0`. -/
 @[elab_as_elim]
 def numDenCasesOn''.{u} {C : Rat → Sort u} (a : Rat)
     (H : ∀ (n : Int) (d : Nat) (nz red), C (mk' n d nz red)) : C a :=
-  numDenCasesOn a fun n d h h' ↦ by rw [← mk_eq_divInt _ _ (Nat.ne_of_gt h) h']; exact H n d (Nat.ne_of_gt h) _
+  numDenCasesOn a fun n d h h' ↦ by
+    rw [← mk_eq_divInt (c := h')]
+    exact H n d (Nat.ne_of_gt h) _
 
 @[simp] protected theorem ofInt_ofNat : ofInt (OfNat.ofNat n) = OfNat.ofNat n := rfl
 
 @[simp] theorem ofInt_num : (ofInt n : Rat).num = n := rfl
 @[simp] theorem ofInt_den : (ofInt n : Rat).den = 1 := rfl
 
-@[simp] theorem num_ofNat : (OfNat.ofNat n : Rat).num = OfNat.ofNat n := rfl
-@[simp] theorem den_ofNat : (OfNat.ofNat n : Rat).den = 1 := rfl
+@[simp] theorem num_ofNat : (no_index (OfNat.ofNat n : Rat)).num = OfNat.ofNat n := rfl
+@[simp] theorem den_ofNat : (no_index (OfNat.ofNat n : Rat)).den = 1 := rfl
 
-@[deprecated num_ofNat (since := "2025-08-22")]
-abbrev ofNat_num := @num_ofNat
-@[deprecated den_ofNat (since := "2025-08-22")]
-abbrev ofNat_den := @den_ofNat
+@[simp] theorem num_natCast (n : Nat) : (n : Rat).num = n := rfl
+@[simp] theorem den_natCast (n : Nat) : (n : Rat).den = 1 := rfl
 
 theorem add_def (a b : Rat) :
     a + b = normalize (a.num * b.den + b.num * a.den) (a.den * b.den)
@@ -250,6 +287,15 @@ theorem add_def (a b : Rat) :
 
 theorem add_def' (a b : Rat) : a + b = mkRat (a.num * b.den + b.num * a.den) (a.den * b.den) := by
   rw [add_def, normalize_eq_mkRat]
+
+theorem num_add (a b : Rat) : (a + b).num =
+    (a.num * ↑b.den + b.num * ↑a.den) /
+      ↑((a.num * ↑b.den + b.num * ↑a.den).natAbs.gcd (a.den * b.den)) := by
+  rw [add_def, num_normalize]
+
+theorem den_add (a b : Rat) : (a + b).den =
+    a.den * b.den / (a.num * ↑b.den + b.num * ↑a.den).natAbs.gcd (a.den * b.den) := by
+  rw [add_def, den_normalize]
 
 @[local simp]
 protected theorem add_zero (a : Rat) : a + 0 = a := by simp [add_def', mkRat_self]
@@ -298,7 +344,7 @@ theorem neg_normalize (n d z) : -normalize n d z = normalize (-n) d z := by
   rfl
 
 theorem neg_mkRat (n d) : -mkRat n d = mkRat (-n) d := by
-  if z : d = 0 then simp [z]; rfl else simp [← normalize_eq_mkRat z, neg_normalize]
+  if z : d = 0 then simp [z]; else simp [← normalize_eq_mkRat z, neg_normalize]
 
 @[simp]
 theorem neg_divInt (n d) : -(n /. d) = -n /. d := by
@@ -312,6 +358,15 @@ protected theorem add_neg_cancel (a : Rat) : a + -a = 0 := by
 
 protected theorem add_right_cancel {a b : Rat} (c : Rat) (h : a + c = b + c) : a = b := by
   simpa only [Rat.add_assoc, Rat.add_zero, Rat.add_neg_cancel] using congrArg (· + -c) h
+
+protected theorem add_left_cancel (a : Rat) {b c : Rat} (h : a + b = a + c) : b = c := by
+  simp only [Rat.add_comm a] at h
+  exact Rat.add_right_cancel a h
+
+protected theorem neg_add {a b : Rat} : -(a + b) = -a + -b := by
+  apply Rat.add_left_cancel (a := a + b)
+  rw [Rat.add_neg_cancel, Rat.add_comm a, ← Rat.add_assoc, Rat.add_assoc b,
+    Rat.add_neg_cancel, Rat.add_zero, Rat.add_neg_cancel]
 
 theorem sub_def (a b : Rat) :
     a - b = normalize (a.num * b.den - b.num * a.den) (a.den * b.den)
@@ -333,6 +388,15 @@ theorem sub_def' (a b : Rat) : a - b = mkRat (a.num * b.den - b.num * a.den) (a.
 
 protected theorem sub_eq_add_neg (a b : Rat) : a - b = a + -b := by
   simp [add_def, sub_def, Int.neg_mul, Int.sub_eq_add_neg]
+
+protected theorem sub_self {a : Rat} : a - a = 0 := by
+  simp only [Rat.sub_eq_add_neg, Rat.add_neg_cancel]
+
+protected theorem add_sub_cancel {a b : Rat} : a + b - b = a := by
+  simp [Rat.sub_eq_add_neg, Rat.add_assoc, Rat.add_neg_cancel]
+
+protected theorem sub_add_cancel {a b : Rat} : a - b + b = a := by
+  simp [Rat.sub_eq_add_neg, Rat.add_assoc, Rat.neg_add_cancel]
 
 protected theorem neg_sub (a b : Rat) : -(a - b) = b - a := by
   apply Rat.add_right_cancel (a - b)
@@ -361,6 +425,13 @@ theorem mul_def (a b : Rat) :
 
 theorem mul_def' (a b : Rat) : a * b = mkRat (a.num * b.num) (a.den * b.den) := by
   rw [mul_def, normalize_eq_mkRat]
+
+theorem num_mul (a b : Rat) :
+    (a * b).num = a.num * b.num / ↑((a.num * b.num).natAbs.gcd (a.den * b.den)) := by
+  rw [mul_def, num_normalize]
+theorem den_mul (a b : Rat) :
+    (a * b).den = a.den * b.den / (a.num * b.num).natAbs.gcd (a.den * b.den) := by
+  rw [mul_def, den_normalize]
 
 protected theorem mul_comm (a b : Rat) : a * b = b * a := by
   simp [mul_def, normalize_eq_mkRat, Int.mul_comm, Nat.mul_comm]
@@ -426,6 +497,22 @@ theorem inv_def (a : Rat) : a⁻¹ = (a.den : Int) /. a.num := by
     apply (num_divInt_den _).symm.trans
     simp [Int.le_antisymm (Int.not_lt.1 h₂) (Int.not_lt.1 h₁)]
 
+@[simp] theorem num_inv (a : Rat) : (a⁻¹).num = a.num.sign * a.den := by
+  simp only [inv_def]
+  rw [num_divInt]
+  have := a.reduced
+  dsimp [Nat.Coprime] at this
+  simp [Int.gcd, this]
+
+@[simp] theorem den_inv (a : Rat) : (a⁻¹).den = if a.num = 0 then 1 else a.num.natAbs := by
+  simp only [inv_def]
+  rw [den_divInt]
+  split
+  · rfl
+  · have := a.reduced
+    dsimp [Nat.Coprime] at this
+    simp [Int.gcd, this]
+
 @[simp] protected theorem inv_zero : (0 : Rat)⁻¹ = 0 := by
   change Rat.inv 0 = 0; unfold Rat.inv; rfl
 
@@ -472,7 +559,7 @@ protected theorem mul_eq_zero {a b : Rat} : a * b = 0 ↔ a = 0 ∨ b = 0 := by
 theorem div_def (a b : Rat) : a / b = a * b⁻¹ := rfl
 
 theorem divInt_eq_div (a b : Int) : a /. b = a / b := by
-  rw [← Rat.mk_den_one, ← Rat.mk_den_one, Rat.mk'_eq_divInt, Rat.mk'_eq_divInt, div_def,
+  rw [← Rat.mk_den_one, ← Rat.mk_den_one, Rat.mk_eq_divInt, Rat.mk_eq_divInt, div_def,
     inv_divInt, divInt_mul_divInt, Int.cast_ofNat_Int, Int.mul_one, Int.one_mul]
 
 theorem mkRat_eq_div (a : Int) (b : Nat) : mkRat a b = a / b := by
@@ -488,12 +575,17 @@ theorem pow_def (q : Rat) (n : Nat) :
     q ^ n = ⟨q.num ^ n, q.den ^ n, by simp [q.den_nz],
       by rw [Int.natAbs_pow]; exact q.reduced.pow _ _⟩ := rfl
 
-@[simp] protected theorem pow_zero (q : Rat) : q ^ 0 = 1 := rfl
+@[simp] theorem num_pow (q : Rat) (n : Nat) : (q ^ n).num = q.num ^ n := rfl
+@[simp] theorem den_pow (q : Rat) (n : Nat) : (q ^ n).den = q.den ^ n := rfl
+
+@[simp] protected theorem pow_zero (q : Rat) : q ^ 0 = 1 := by
+  simp only [pow_def, Int.pow_zero, Nat.pow_zero, mk_den_one]
+  rfl
 
 protected theorem pow_succ (q : Rat) (n : Nat) : q ^ (n + 1) = q ^ n * q := by
   rcases q with ⟨n, d, hn, r⟩
   simp only [pow_def, Int.pow_succ, Nat.pow_succ]
-  simp only [mk'_eq_divInt, Int.natCast_mul, divInt_mul_divInt]
+  simp only [mk_eq_divInt, Int.natCast_mul, divInt_mul_divInt]
 
 @[simp] protected theorem pow_one (q : Rat) : q ^ 1 = q := by simp [Rat.pow_succ]
 
@@ -504,7 +596,8 @@ protected theorem zpow_natCast (q : Rat) (n : Nat) : q ^ (n : Int) = q ^ n := rf
 
 protected theorem zpow_neg (q : Rat) (n : Int) : q ^ (-n : Int) = (q ^ n)⁻¹ := by
   rcases n with (_ | n) | n
-  · with_unfolding_all rfl
+  · simp only [Int.ofNat_eq_natCast, Int.cast_ofNat_Int, Int.neg_zero, Rat.zpow_zero]
+    with_unfolding_all rfl
   · rfl
   · exact (Rat.inv_inv _).symm
 
@@ -540,6 +633,7 @@ theorem ofScientific_true_def : Rat.ofScientific m true e = mkRat m (10 ^ e) := 
 theorem ofScientific_false_def : Rat.ofScientific m false e = (m * 10 ^ e : Nat) := by
   unfold Rat.ofScientific; rfl
 
+-- See also `ofScientific_def'` below.
 theorem ofScientific_def : Rat.ofScientific m s e =
     if s then mkRat m (10 ^ e) else (m * 10 ^ e : Nat) := by
   cases s; exact ofScientific_false_def; exact ofScientific_true_def
@@ -553,14 +647,15 @@ theorem ofScientific_ofNat_ofNat :
 /-! ### `≤` and `<` -/
 
 @[simp] theorem num_nonneg {q : Rat} : 0 ≤ q.num ↔ 0 ≤ q := by
-  simp [instLE, Rat.blt, imp.swap]
+  show 0 ≤ q.num ↔ q.blt 0 = false
+  simp [Rat.blt, imp.swap]
 
 @[simp]
 theorem num_eq_zero {q : Rat} : q.num = 0 ↔ q = 0 := by
   induction q
   constructor
   · rintro rfl
-    rw [mk'_eq_divInt, zero_divInt]
+    rw [mk_eq_divInt, zero_divInt]
   · exact congrArg Rat.num
 
 protected theorem nonneg_antisymm {q : Rat} : 0 ≤ q → 0 ≤ -q → q = 0 := by
@@ -573,7 +668,7 @@ protected theorem nonneg_total (a : Rat) : 0 ≤ a ∨ 0 ≤ -a := by
 @[simp] theorem divInt_nonneg_iff_of_pos_right {a b : Int} (hb : 0 < b) :
     0 ≤ a /. b ↔ 0 ≤ a := by
   rcases hab : a /. b with ⟨n, d, hd, hnd⟩
-  rw [mk'_eq_divInt, divInt_eq_divInt_iff (Int.ne_of_gt hb) (mod_cast hd)] at hab
+  rw [mk_eq_divInt, divInt_eq_divInt_iff (Int.ne_of_gt hb) (mod_cast hd)] at hab
   rw [← num_nonneg, ← Int.mul_nonneg_iff_of_pos_right hb, ← hab,
     Int.mul_nonneg_iff_of_pos_right (mod_cast Nat.pos_of_ne_zero hd)]
 
@@ -589,7 +684,7 @@ protected theorem add_nonneg {a b : Rat} : 0 ≤ a → 0 ≤ b → 0 ≤ a + b :
     simp only [d₁0, d₂0, h₁, h₂, Int.mul_pos, divInt_nonneg_iff_of_pos_right, divInt_add_divInt,
       ne_eq, Int.natCast_eq_zero, not_false_eq_true]
     intro n₁0 n₂0
-    apply Int.add_nonneg <;> apply Int.mul_nonneg <;> · first | assumption | apply Int.ofNat_zero_le
+    apply Int.add_nonneg <;> apply Int.mul_nonneg <;> · first | assumption | apply Int.natCast_nonneg
 
 protected theorem mul_nonneg {a b : Rat} : 0 ≤ a → 0 ≤ b → 0 ≤ a * b :=
   numDenCasesOn' a fun n₁ d₁ h₁ =>
@@ -657,6 +752,15 @@ protected theorem le_antisymm {a b : Rat} (hab : a ≤ b) (hba : b ≤ a) : a = 
   have := congrArg (· + b) (Rat.nonneg_antisymm hba hab)
   simpa only [Rat.add_assoc, Rat.neg_add_cancel, Rat.zero_add, Rat.add_zero] using this
 
+protected theorem le_antisymm_iff {a b : Rat} :
+    a = b ↔ a ≤ b ∧ b ≤ a := by
+  apply Iff.intro
+  · simp +contextual [Rat.le_refl]
+  · exact fun h => Rat.le_antisymm h.1 h.2
+
+theorem eq_iff_mul_eq_mul {p q : Rat} : p = q ↔ p.num * q.den = q.num * p.den := by
+  simp [Rat.le_antisymm_iff, Rat.le_iff, ← Int.le_antisymm_iff]
+
 protected theorem le_of_lt {a b : Rat} (ha : a < b) : a ≤ b :=
   Rat.le_total.resolve_left (Rat.not_le.mpr ha)
 
@@ -674,6 +778,18 @@ protected theorem ne_of_gt {a b : Rat} (ha : a < b) : b ≠ a :=
 protected theorem lt_of_le_of_ne {a b : Rat} (ha : a ≤ b) (hb : a ≠ b) : a < b :=
   Rat.not_le.mp fun h => hb (Rat.le_antisymm ha h)
 
+protected theorem lt_iff_le_and_not_ge {a b : Rat} : a < b ↔ a ≤ b ∧ ¬ b ≤ a := by
+  simpa [Rat.le_iff, Rat.lt_iff] using Int.le_of_lt
+
+protected theorem lt_iff_le_and_ne {a b : Rat} : a < b ↔ a ≤ b ∧ a ≠ b := by
+  simp [Rat.lt_iff, Rat.le_iff, Rat.eq_iff_mul_eq_mul, Int.lt_iff_le_and_ne]
+
+protected theorem le_iff_lt_or_eq {a b : Rat} : a ≤ b ↔ a < b ∨ a = b := by
+  simp [Rat.le_iff, Rat.lt_iff, Rat.eq_iff_mul_eq_mul, Int.le_iff_lt_or_eq]
+
+protected theorem le_iff_eq_or_lt {a b : Rat} : a ≤ b ↔ a < b ∨ a = b := by
+  simp [Rat.le_iff_lt_or_eq, or_comm]
+
 protected theorem add_le_add_left {a b c : Rat} : c + a ≤ c + b ↔ a ≤ b := by
   rw [Rat.le_iff_sub_nonneg, Rat.le_iff_sub_nonneg a, ← propext_iff]
   congr 1
@@ -684,6 +800,12 @@ protected theorem add_le_add_left {a b c : Rat} : c + a ≤ c + b ↔ a ≤ b :=
 
 protected theorem add_le_add_right {a b c : Rat} : a + c ≤ b + c ↔ a ≤ b := by
   rw [Rat.add_comm _ c, Rat.add_comm _ c, Rat.add_le_add_left]
+
+protected theorem add_lt_add_left {a b c : Rat} : c + a < c + b ↔ a < b := by
+  simp [Rat.lt_iff_le_and_not_ge, Rat.add_le_add_left]
+
+protected theorem add_lt_add_right {a b c : Rat} : a + c < b + c ↔ a < b := by
+  simp [Rat.lt_iff_le_and_not_ge, Rat.add_le_add_right]
 
 protected theorem lt_iff_sub_pos (a b : Rat) : a < b ↔ 0 < b - a := by
   simp only [← Rat.not_le]
@@ -696,9 +818,50 @@ protected theorem lt_iff_sub_pos (a b : Rat) : a < b ↔ 0 < b - a := by
     simpa [Rat.sub_eq_add_neg, Rat.add_left_comm a, Rat.add_neg_cancel]
       using (Rat.add_le_add_left (c := a)).mpr h
 
+@[simp]
+protected theorem neg_neg (a : Rat) : -(-a) = a := by
+  apply Rat.le_antisymm <;> simp [Rat.le_iff]
+
+@[simp]
+protected theorem neg_le_neg_iff {a b : Rat} : -a ≤ -b ↔ b ≤ a := by
+  simp [Rat.le_iff, Int.neg_mul]
+
+protected theorem neg_le_neg {a b : Rat} (h : a ≤ b) : -b ≤ -a := by
+  simpa
+
+protected theorem neg_le_iff {a b : Rat} : -a ≤ b ↔ -b ≤ a := by
+  rw [← Rat.neg_neg a, Rat.neg_le_neg_iff, Rat.neg_neg a]
+
+protected theorem le_neg_iff {a b : Rat} : a ≤ -b ↔ b ≤ -a := by
+  rw [← Rat.neg_neg a, Rat.neg_le_neg_iff, Rat.neg_neg a]
+
+@[simp]
+protected theorem neg_lt_neg_iff {a b : Rat} : -a < -b ↔ b < a := by
+  simp [Rat.lt_iff, Int.neg_mul]
+
+protected theorem neg_lt_neg {a b : Rat} (h : a < b) : -b < -a := by
+  simpa
+
+protected theorem neg_lt_iff {a b : Rat} : -a < b ↔ -b < a := by
+  rw [← Rat.neg_neg a, Rat.neg_lt_neg_iff, Rat.neg_neg a]
+
+protected theorem lt_neg_iff {a b : Rat} : a < -b ↔ b < -a := by
+  rw [← Rat.neg_neg a, Rat.neg_lt_neg_iff, Rat.neg_neg a]
+
 protected theorem mul_pos {a b : Rat} (ha : 0 < a) (hb : 0 < b) : 0 < a * b := by
   refine Rat.lt_of_le_of_ne (Rat.mul_nonneg (Rat.le_of_lt ha) (Rat.le_of_lt hb)) ?_
   simp [eq_comm, Rat.mul_eq_zero, Rat.ne_of_gt ha, Rat.ne_of_gt hb]
+
+protected theorem mul_le_mul_of_nonneg_left {a b c : Rat} (ha : a ≤ b) (hc : 0 ≤ c) :
+    c * a ≤ c * b := by
+  rw [Rat.le_iff_sub_nonneg, Rat.sub_eq_add_neg] at ha ⊢
+  rw [← Rat.mul_neg, ← Rat.mul_add]
+  exact Rat.mul_nonneg hc ha
+
+protected theorem mul_le_mul_of_nonneg_right {a b c : Rat} (ha : a ≤ b) (hc : 0 ≤ c) :
+    a * c ≤ b * c := by
+  rw [Rat.mul_comm _ c, Rat.mul_comm _ c]
+  exact Rat.mul_le_mul_of_nonneg_left ha hc
 
 protected theorem mul_lt_mul_of_pos_left {a b c : Rat} (ha : a < b) (hc : 0 < c) :
     c * a < c * b := by
@@ -818,11 +981,6 @@ protected theorem lt_div_iff' {a b c : Rat} (hc : 0 < c) : a < b / c ↔ c * a <
 
 @[simp] theorem num_intCast (a : Int) : (a : Rat).num = a := rfl
 
-@[deprecated den_intCast (since := "2025-08-22")]
-abbrev intCast_den := @den_intCast
-@[deprecated num_intCast (since := "2025-08-22")]
-abbrev intCast_num := @num_intCast
-
 /-!
 The following lemmas are later subsumed by e.g. `Int.cast_add` and `Int.cast_mul` in Mathlib
 but it is convenient to have these earlier, for users who only need `Int` and `Rat`.
@@ -935,3 +1093,268 @@ theorem intCast_nonpos {a : Int} :
 theorem intCast_neg_iff {a : Int} :
     (a : Rat) < 0 ↔ a < 0 :=
   Rat.intCast_lt_intCast
+
+/--
+Alternative statement of `ofScientific_def`.
+-/
+theorem ofScientific_def' :
+    (OfScientific.ofScientific m s e : Rat) = m * (10 ^ (if s then -e else e : Int)) := by
+  change Rat.ofScientific _ _ _ = _
+  rw [ofScientific_def]
+  split
+  · rw [Rat.zpow_neg, ← Rat.div_def, Rat.zpow_natCast, mkRat_eq_div]
+    push_cast
+    rfl
+  · push_cast
+    rfl
+
+theorem ofScientific_def_eq_if :
+    (OfScientific.ofScientific m s e : Rat) = if s then (m : Rat) / (10 : Rat) ^ e else (m : Rat) * (10 : Rat) ^ e := by
+  simp [ofScientific_def']
+  split
+  next => rw [Rat.zpow_neg, ← Rat.div_def, Rat.zpow_natCast]
+  next => rw [Rat.zpow_natCast]
+
+/-!
+# min and max
+-/
+
+@[grind =] protected theorem max_def {n m : Rat} : max n m = if n ≤ m then m else n := rfl
+
+@[grind =] protected theorem min_def {n m : Rat} : min n m = if n ≤ m then n else m := rfl
+
+
+/-!
+# floor
+-/
+
+theorem floor_def (a : Rat) : a.floor = a.num / a.den := by
+  rw [Rat.floor]
+  split <;> simp_all
+
+@[simp]
+theorem floor_intCast (a : Int) : (a : Rat).floor = a := by
+  simp [floor_def]
+
+theorem floor_monotone {a b : Rat} (h : a ≤ b) : a.floor ≤ b.floor := by
+  rw [floor_def, floor_def]
+  rw [Rat.le_iff] at h
+  rw [Int.ediv_le_iff_le_mul (by have := a.den_nz; omega),
+    ← Int.mul_lt_mul_right (a := b.den) (by have := b.den_nz; omega)]
+  apply Int.lt_of_le_of_lt h
+  conv =>
+    rhs; congr; congr; rfl
+    rw [← Int.one_mul a.den]
+  rw [← Int.add_mul, Int.mul_right_comm,
+    Int.mul_lt_mul_right (a := a.den) (by have := a.den_nz; omega),
+    Int.add_mul, Int.one_mul, ← Int.sub_lt_iff]
+  exact Int.lt_ediv_mul b.num (b := b.den) (by have := b.den_nz; omega)
+
+theorem floor_le (a : Rat) : (a.floor : Rat) ≤ a := by
+  rw [floor_def, Rat.le_iff, num_intCast, den_intCast, Int.cast_ofNat_Int, Int.mul_one]
+  apply Int.ediv_mul_le _ (by simpa using a.den_nz)
+
+theorem lt_floor_add_one (a : Rat) : a < ((a.floor + 1 : Int): Rat) := by
+  rw [floor_def, Rat.lt_iff]
+  have : a.num / ↑a.den + 1 = (a.num + ↑a.den) / ↑a.den := by
+    rw [Int.add_ediv_of_dvd_right] <;> simp [a.den_nz]
+  simp [this]
+  simpa using Int.lt_ediv_mul (a.num + a.den) (b := a.den) (by have := a.den_nz; omega)
+
+theorem le_floor_iff {x : Int} {a : Rat} : x ≤ a.floor ↔ (x : Rat) ≤ a := by
+  constructor
+  · intro h
+    rw [← intCast_le_intCast] at h
+    exact Rat.le_trans h (floor_le a)
+  · intro h
+    simpa using floor_monotone h
+
+theorem floor_lt_iff {a : Rat} {x : Int} : a.floor < x ↔ a < (x : Rat) := by
+  rw [← Decidable.not_iff_not, Int.not_lt, le_floor_iff, Rat.not_lt]
+
+theorem floor_add_le_floor_add_intCast {x : Rat} {y : Int} :
+    x.floor + y ≤ (x + y).floor := by
+  simpa [Rat.le_floor_iff, Rat.add_le_add_right] using Rat.floor_le x
+
+protected theorem add_le_iff_le_sub {a b c : Rat} : a + b ≤ c ↔ a ≤ c - b := by
+  conv => rhs; rw [← Rat.add_le_add_right (c := b)]
+  simp [Rat.sub_add_cancel]
+
+protected theorem le_sub_iff {a b c : Rat} : a ≤ c - b ↔ a + b ≤ c :=
+  Rat.add_le_iff_le_sub.symm
+
+protected theorem le_add_iff_sub_le {a b c : Rat} : a ≤ b + c ↔ a - c ≤ b := by
+  conv => rhs; rw [← Rat.add_le_add_right (c := c)]
+  simp [Rat.sub_add_cancel]
+
+protected theorem sub_right_le_iff_le_add {a b c : Rat} : a - c ≤ b ↔ a ≤ b + c :=
+  Rat.le_add_iff_sub_le.symm
+
+protected theorem lt_sub_right_iff_add_lt {a b c : Rat} : a < c - b ↔ a + b < c := by
+  conv => lhs; rw [← Rat.add_lt_add_right (c := b)]
+  simp [Rat.sub_add_cancel]
+
+protected theorem sub_lt_iff {a b c : Rat} : a - c < b ↔ a < b + c := by
+  conv => lhs; rw [← Rat.add_lt_add_right (c := c)]
+  simp [Rat.sub_add_cancel]
+
+theorem floor_add_intCast {x : Rat} {y : Int} :
+    (x + y).floor = x.floor + y := by
+  apply Std.le_antisymm
+  · have := floor_add_le_floor_add_intCast (x := x + y) (y := - y)
+    simpa [← Rat.sub_eq_add_neg, Rat.add_sub_cancel, Int.le_add_iff_sub_le]
+  · apply floor_add_le_floor_add_intCast
+
+theorem floor_add_one {x : Rat} :
+    (x + 1).floor = x.floor + 1 := by
+  simpa using! floor_add_intCast
+
+theorem floor_sub_one {x : Rat} :
+    (x - 1).floor = x.floor - 1 := by
+  simpa [Rat.sub_eq_add_neg] using! floor_add_intCast
+
+theorem lt_floor {x : Rat} :
+    x - 1 < x.floor := by
+  rw [← Rat.floor_lt_iff, Rat.floor_sub_one]
+  simp [Int.sub_lt_iff, Int.lt_add_one_iff]
+
+/-!
+# ceil
+-/
+
+theorem ceil_eq_neg_floor_neg (a : Rat) : a.ceil = -((-a).floor) := by
+  rw [Rat.ceil, Rat.floor]
+  simp only [neg_den, neg_num]
+  split
+  · simp
+  · rw [Int.neg_ediv, if_neg, Int.sign_eq_one_of_pos, Int.neg_sub, Int.sub_neg, Int.add_comm]
+    · have := a.den_nz; omega
+    · intro h
+      rw [Int.ofNat_dvd_left] at h
+      exact Nat.not_coprime_of_dvd_of_dvd (by have := a.den_nz; omega) h (Nat.dvd_refl _) a.reduced
+
+@[simp]
+theorem ceil_intCast (a : Int) : (a : Rat).ceil = a := rfl
+
+theorem ceil_le_iff {x : Rat} {y : Int} :
+    x.ceil ≤ y ↔ x ≤ y := by
+  simp [Rat.ceil_eq_neg_floor_neg, Int.neg_le_iff, Rat.le_floor_iff]
+
+theorem lt_ceil_iff {x : Rat} {y : Int} :
+    y < x.ceil ↔ y < x := by
+  simp [Rat.ceil_eq_neg_floor_neg, Int.lt_neg_iff, Rat.floor_lt_iff]
+
+theorem le_ceil {x : Rat} :
+    x ≤ x.ceil := by
+  simp only [Rat.ceil_eq_neg_floor_neg, Rat.intCast_neg, Rat.le_neg_iff, Rat.floor_le]
+
+theorem ceil_add_intCast_le_ceil_add {x : Rat} {y : Int} :
+    (x + y).ceil ≤ x.ceil + y := by
+  simpa [Rat.ceil_eq_neg_floor_neg, Int.neg_le_iff, Rat.neg_add, Int.neg_add] using!
+    floor_add_le_floor_add_intCast
+
+theorem ceil_add_intCast {x : Rat} {y : Int} :
+    (x + y).ceil = x.ceil + y := by
+  simp [Rat.ceil_eq_neg_floor_neg, Rat.neg_add, ← Rat.intCast_neg, floor_add_intCast, Int.neg_add]
+
+theorem ceil_add_one {x : Rat} :
+    (x + 1).ceil = x.ceil + 1 := by
+  simp [Rat.ceil_eq_neg_floor_neg, Rat.neg_add, ← Rat.sub_eq_add_neg, floor_sub_one,
+    Int.sub_eq_add_neg, Int.neg_add]
+
+theorem ceil_sub_one {x : Rat} :
+    (x - 1).ceil = x.ceil - 1 := by
+  simp [Rat.ceil_eq_neg_floor_neg, Rat.sub_eq_add_neg, Rat.neg_add, floor_add_one,
+    Int.neg_add, Int.sub_eq_add_neg]
+
+theorem ceil_lt {x : Rat} :
+    x.ceil < x + 1 := by
+  simpa [Rat.ceil_eq_neg_floor_neg, Rat.neg_lt_iff, Rat.neg_add, Rat.sub_eq_add_neg] using lt_floor
+
+/-!
+# abs
+-/
+
+@[simp, grind =]
+protected theorem abs_zero :
+    (0 : Rat).abs = 0 := by
+  simp [Rat.abs]
+
+@[simp]
+protected theorem abs_nonneg {x : Rat} :
+    0 ≤ x.abs := by
+  simp only [Rat.abs]
+  split <;> rename_i hle
+  · assumption
+  · apply Rat.le_of_lt
+    simp only [Rat.not_le] at hle
+    rwa [Rat.lt_neg_iff, Rat.neg_zero]
+
+protected theorem abs_of_nonneg {x : Rat} (h : 0 ≤ x) :
+    x.abs = x := by
+  rw [Rat.abs, if_pos h]
+
+protected theorem abs_of_nonpos {x : Rat} (h : x ≤ 0) :
+    x.abs = -x := by
+  rw [Rat.abs]
+  split
+  · simp [show x = 0 from Rat.le_antisymm ‹_› ‹_›]
+  · rfl
+
+@[simp, grind =]
+protected theorem abs_neg {x : Rat} :
+    (-x).abs = x.abs := by
+  simp only [Rat.abs]
+  split <;> split
+  · rw [Rat.le_neg_iff, Rat.neg_zero] at *
+    simp [show x = 0 from Rat.le_antisymm ‹_› ‹_›]
+  · simp
+  · simp
+  · have : x < 0 := Rat.not_le.mp ‹_›
+    rw [Rat.le_neg_iff, Rat.neg_zero] at *
+    have : ¬ x ≤ 0 := ‹_›
+    apply this.elim
+    apply Rat.le_of_lt
+    assumption
+
+protected theorem abs_sub_comm {x y : Rat} :
+    (x - y).abs = (y - x).abs := by
+  rw [← Rat.neg_sub, Rat.abs_neg]
+
+@[simp]
+protected theorem abs_eq_zero_iff {x : Rat} :
+    x.abs = 0 ↔ x = 0 := by
+  simp only [Rat.abs]
+  split
+  · rfl
+  · apply Iff.intro
+    · intro h
+      rw [← Rat.neg_neg (a := x), h, Rat.neg_zero]
+    · simp +contextual
+
+protected theorem abs_pos_iff {x : Rat} :
+    0 < x.abs ↔ x ≠ 0 := by
+  apply Iff.intro
+  · intro hpos
+    by_cases h : 0 ≤ x
+    · rw [Rat.abs_of_nonneg h] at hpos
+      exact Rat.ne_of_gt hpos
+    · exact Rat.ne_of_lt (Rat.not_le.mp h)
+  · intro hne
+    simp only [ne_eq] at hne
+    rw [← Rat.abs_eq_zero_iff] at hne
+    apply Rat.lt_of_le_of_ne
+    · apply Rat.abs_nonneg
+    · exact .symm hne
+
+/-!
+# instances
+-/
+
+instance instAssociativeHAdd : Std.Associative (α := Rat) (· + ·) := ⟨Rat.add_assoc⟩
+instance instCommutativeHAdd : Std.Commutative (α := Rat) (· + ·) := ⟨Rat.add_comm⟩
+instance : Std.LawfulIdentity (· + ·) (0 : Rat) where
+  left_id := Rat.zero_add
+  right_id := Rat.add_zero
+
+end Rat

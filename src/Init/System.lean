@@ -10,5 +10,4 @@ public import Init.System.IO
 public import Init.System.Platform
 public import Init.System.Uri
 public import Init.System.Promise
-
-public section
+public import Init.System.CancelToken

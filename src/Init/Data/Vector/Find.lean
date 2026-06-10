@@ -6,14 +6,15 @@ Authors: Kim Morrison
 module
 
 prelude
-public import Init.Data.Array.Basic
 import all Init.Data.Array.Basic
-public import Init.Data.Vector.Basic
 import all Init.Data.Vector.Basic
-public import Init.Data.Vector.Lemmas
 public import Init.Data.Vector.Attach
-public import Init.Data.Vector.Range
-public import Init.Data.Array.Find
+import Init.Data.Array.Find
+import Init.Data.Bool
+import Init.Data.Fin.Lemmas
+import Init.Data.List.Find
+import Init.Data.List.Impl
+import Init.Data.Subtype.Basic
 
 public section
 
@@ -32,11 +33,11 @@ open Nat
 
 /-! ### findSome? -/
 
-@[simp, grind] theorem findSome?_empty : (#v[] : Vector α 0).findSome? f = none := rfl
-@[simp, grind] theorem findSome?_push {xs : Vector α n} : (xs.push a).findSome? f = (xs.findSome? f).or (f a) := by
+@[simp, grind =] theorem findSome?_empty : (#v[] : Vector α 0).findSome? f = none := rfl
+@[simp, grind =] theorem findSome?_push {xs : Vector α n} : (xs.push a).findSome? f = (xs.findSome? f).or (f a) := by
   cases xs; simp
 
-@[grind]
+@[grind =]
 theorem findSome?_singleton {a : α} {f : α → Option β} : #v[a].findSome? f = f a := by
   simp
 
@@ -87,6 +88,10 @@ theorem findSome?_eq_some_iff {f : α → Option β} {xs : Vector α n} {b : β}
   · rintro ⟨k₁, k₂, h, ys, a, zs, w, h₁, h₂⟩
     exact ⟨ys.toArray, a, zs.toArray, by simp [w], h₁, by simpa using h₂⟩
 
+theorem isSome_findSome? {xs : Vector α n} {f : α → Option β} :
+    (xs.findSome? f).isSome = xs.any (f · |>.isSome) := by
+  simp [← findSome?_toList, List.isSome_findSome?]
+
 @[simp, grind =] theorem findSome?_guard {xs : Vector α n} : findSome? (Option.guard p) xs = find? p xs := by
   rcases xs with ⟨xs, rfl⟩
   simp
@@ -135,30 +140,18 @@ theorem getElem_zero_flatten {xss : Vector (Vector α m) n} (h : 0 < n * m) :
 theorem findSome?_replicate : findSome? f (replicate n a) = if n = 0 then none else f a := by
   rw [replicate_eq_mk_replicate, findSome?_mk, Array.findSome?_replicate]
 
-@[deprecated findSome?_replicate (since := "2025-03-18")]
-abbrev findSome?_mkVector := @findSome?_replicate
-
 @[simp] theorem findSome?_replicate_of_pos (h : 0 < n) : findSome? f (replicate n a) = f a := by
   simp [findSome?_replicate, Nat.ne_of_gt h]
-
-@[deprecated findSome?_replicate_of_pos (since := "2025-03-18")]
-abbrev findSome?_mkVector_of_pos := @findSome?_replicate_of_pos
 
 -- Argument is unused, but used to decide whether `simp` should unfold.
 @[simp] theorem findSome?_replicate_of_isSome (_ : (f a).isSome) :
    findSome? f (replicate n a) = if n = 0 then none else f a := by
   simp [findSome?_replicate]
 
-@[deprecated findSome?_replicate_of_isSome (since := "2025-03-18")]
-abbrev findSome?_mkVector_of_isSome := @findSome?_replicate_of_isSome
-
 @[simp] theorem findSome?_replicate_of_isNone (h : (f a).isNone) :
     findSome? f (replicate n a) = none := by
   rw [Option.isNone_iff_eq_none] at h
   simp [findSome?_replicate, h]
-
-@[deprecated findSome?_replicate_of_isNone (since := "2025-03-18")]
-abbrev findSome?_mkVector_of_isNone := @findSome?_replicate_of_isNone
 
 /-! ### find? -/
 
@@ -175,9 +168,6 @@ abbrev findSome?_mkVector_of_isNone := @findSome?_replicate_of_isNone
 @[simp] theorem findRev?_push_of_neg {xs : Vector α n} (h : ¬p a) :
     findRev? p (xs.push a) = findRev? p xs := by
   cases xs; simp [h]
-
-@[deprecated findRev?_push_of_neg (since := "2025-06-12")]
-abbrev findRev?_cons_of_neg := @findRev?_push_of_neg
 
 @[grind =]
 theorem finRev?_push {xs : Vector α n} :
@@ -204,6 +194,10 @@ theorem find?_eq_some_iff_append {xs : Vector α n} :
   · rintro ⟨h, k₁, k₂, w, as, bs, h', w'⟩
     exact ⟨h, as.toArray, bs.toArray, by simp [h'], by simpa using w'⟩
 
+theorem isSome_find? {xs : Vector α n} {f : α → Bool} :
+    (xs.find? f).isSome = xs.any (f ·) := by
+  simp [← find?_toList, List.isSome_find?]
+
 theorem find?_push {xs : Vector α n} : (xs.push a).find? p = (xs.find? p).or (if p a then some a else none) := by
   rcases xs with ⟨xs, rfl⟩
   simp [Array.find?_push]
@@ -228,10 +222,11 @@ theorem mem_of_find?_eq_some {xs : Vector α n} (h : find? p xs = some a) : a �
   simp at h
   simpa using Array.mem_of_find?_eq_some h
 
-@[grind]
 theorem get_find?_mem {xs : Vector α n} (h) : (xs.find? p).get h ∈ xs := by
   cases xs
   simp [Array.get_find?_mem]
+
+grind_pattern get_find?_mem => (xs.find? p).get h
 
 @[simp, grind =] theorem find?_map {f : β → α} {xs : Vector β n} :
     find? p (xs.map f) = (xs.find? (p ∘ f)).map f := by
@@ -267,52 +262,31 @@ theorem find?_replicate :
     find? p (replicate n a) = if n = 0 then none else if p a then some a else none := by
   rw [replicate_eq_mk_replicate, find?_mk, Array.find?_replicate]
 
-@[deprecated find?_replicate (since := "2025-03-18")]
-abbrev find?_mkVector := @find?_replicate
-
 @[simp] theorem find?_replicate_of_size_pos (h : 0 < n) :
     find? p (replicate n a) = if p a then some a else none := by
   simp [find?_replicate, Nat.ne_of_gt h]
-
-@[deprecated find?_replicate_of_size_pos (since := "2025-03-18")]
-abbrev find?_mkVector_of_length_pos := @find?_replicate_of_size_pos
 
 @[simp] theorem find?_replicate_of_pos (h : p a) :
     find? p (replicate n a) = if n = 0 then none else some a := by
   simp [find?_replicate, h]
 
-@[deprecated find?_replicate_of_pos (since := "2025-03-18")]
-abbrev find?_mkVector_of_pos := @find?_replicate_of_pos
-
 @[simp] theorem find?_replicate_of_neg (h : ¬ p a) : find? p (replicate n a) = none := by
   simp [find?_replicate, h]
-
-@[deprecated find?_replicate_of_neg (since := "2025-03-18")]
-abbrev find?_mkVector_of_neg := @find?_replicate_of_neg
 
 -- This isn't a `@[simp]` lemma since there is already a lemma for `l.find? p = none` for any `l`.
 theorem find?_replicate_eq_none_iff {n : Nat} {a : α} {p : α → Bool} :
     (replicate n a).find? p = none ↔ n = 0 ∨ !p a := by
   simp [Classical.or_iff_not_imp_left]
 
-@[deprecated find?_replicate_eq_none_iff (since := "2025-03-18")]
-abbrev find?_mkVector_eq_none_iff := @find?_replicate_eq_none_iff
-
 @[simp] theorem find?_replicate_eq_some_iff {n : Nat} {a b : α} {p : α → Bool} :
     (replicate n a).find? p = some b ↔ n ≠ 0 ∧ p a ∧ a = b := by
   rw [replicate_eq_mk_replicate, find?_mk]
   simp
 
-@[deprecated find?_replicate_eq_some_iff (since := "2025-03-18")]
-abbrev find?_mkVector_eq_some_iff := @find?_replicate_eq_some_iff
-
 @[simp] theorem get_find?_replicate {n : Nat} {a : α} {p : α → Bool} (h) :
     ((replicate n a).find? p).get h = a := by
   simp only [replicate_eq_mk_replicate, find?_mk]
   simp
-
-@[deprecated get_find?_replicate (since := "2025-03-18")]
-abbrev get_find?_mkVector := @get_find?_replicate
 
 @[grind =]
 theorem find?_pmap {P : α → Prop} {f : (a : α) → P a → β} {xs : Vector α n}
@@ -380,5 +354,17 @@ theorem isNone_findFinIdx? {xs : Vector α n} {p : α → Bool} :
     xs.findFinIdx? f = xs.unattach.findFinIdx? g := by
   rcases xs with ⟨xs, rfl⟩
   simp [hf, Function.comp_def]
+
+/-! ### find? and findFinIdx? -/
+
+theorem find?_eq_map_findFinIdx?_getElem {xs : Vector α n} {p : α → Bool} :
+    xs.find? p = (xs.findFinIdx? p).map (xs[·]) := by
+  rcases xs with ⟨xs, rfl⟩
+  simp [Array.find?_eq_map_findFinIdx?_getElem]
+
+theorem findFinIdx?_eq_bind_find?_finIdxOf? [BEq α] [LawfulBEq α] {xs : Vector α n} {p : α → Bool} :
+    xs.findFinIdx? p = (xs.find? p).bind (xs.finIdxOf? ·) := by
+  rcases xs with ⟨xs, rfl⟩
+  simp [Array.findFinIdx?_eq_bind_find?_finIdxOf?]
 
 end Vector

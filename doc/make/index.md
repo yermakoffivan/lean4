@@ -1,6 +1,6 @@
 These are instructions to set up a working development environment for those who wish to make changes to Lean itself. It is part of the [Development Guide](../dev/index.md).
 
-We strongly suggest that new users instead follow the [Quickstart](../quickstart.md) to get started using Lean, since this sets up an environment that can automatically manage multiple Lean toolchain versions, which is necessary when working within the Lean ecosystem.
+We strongly suggest that new users instead follow the [Installation Instructions](https://lean-lang.org/install/) to get started using Lean, since this sets up an environment that can automatically manage multiple Lean toolchain versions, which is necessary when working within the Lean ecosystem.
 
 Requirements
 ------------
@@ -9,6 +9,7 @@ Requirements
 - [CMake](http://www.cmake.org)
 - [GMP (GNU multiprecision library)](http://gmplib.org/)
 - [LibUV](https://libuv.org/)
+- [OpenSSL](https://www.openssl.org/)
 
 Platform-Specific Setup
 -----------------------
@@ -30,6 +31,9 @@ cd lean4
 cmake --preset release
 make -C build/release -j$(nproc || sysctl -n hw.logicalcpu)
 ```
+
+For development, `cmake --preset dev-release` (reusing the same `build/release` output directory) is recommended instead.
+
 You can replace `$(nproc || sysctl -n hw.logicalcpu)` with the desired parallelism amount.
 
 The above commands will compile the Lean library and binaries into the

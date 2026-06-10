@@ -6,7 +6,11 @@ Authors: Leonardo de Moura
 module
 
 prelude
-public import Init.Data.Array.Bootstrap
+public import Init.Ext
+import Init.Data.Array.Bootstrap
+import Init.Data.Bool
+import Init.Data.List.Lemmas
+import Init.Data.Option.Lemmas
 
 public section
 
@@ -38,7 +42,7 @@ The following operations are still missing `@[csimp]` replacements:
 The following operations are not recursive to begin with
 (or are defined in terms of recursive primitives):
 `isEmpty`, `isSuffixOf`, `isSuffixOf?`, `rotateLeft`, `rotateRight`, `insert`, `zip`, `enum`,
-`min?`, `max?`, and `removeAll`.
+`min?`, `max?`, `min`, `max` and `removeAll`.
 
 The following operations were already given `@[csimp]` replacements in `Init/Data/List/Basic.lean`:
 `length`, `map`, `filter`, `replicate`, `leftPad`, `unzip`, `range'`, `iota`, `intersperse`.
@@ -115,6 +119,12 @@ Example:
         filterMap]
       split <;> simp [*]
   exact (go l #[]).symm
+
+/-! ### reduceOption -/
+
+/-- Drop `none`s from a list, and replace each remaining `some a` with `a`. -/
+@[inline, expose] def reduceOption {α} : List (Option α) → List α :=
+  List.filterMap id
 
 /-! ### foldr -/
 

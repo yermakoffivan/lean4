@@ -7,7 +7,6 @@ module
 
 prelude
 public import Lean.Elab.Tactic.Do.ProofMode.MGoal
-public import Lean.PrettyPrinter.Delaborator.Basic
 
 public section
 

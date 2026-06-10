@@ -7,13 +7,16 @@ Authors: Joe Hendrix
 module
 
 prelude
-public import Init.Data.Bool
-public import Init.Data.Int.Pow
-public import Init.Data.Nat.Bitwise.Basic
 import all Init.Data.Nat.Bitwise.Basic
-public import Init.Data.Nat.Lemmas
-public import Init.Data.Nat.Simproc
-public import Init.TacticsExtra
+public import Init.BinderPredicates
+public import Init.Data.Bool
+public import Init.Data.Nat.Log2
+import Init.ByCases
+import Init.Data.Int.Pow
+import Init.Data.Nat.Lemmas
+import Init.Omega
+import Init.RCases
+import Init.TacticsExtra
 
 public section
 
@@ -134,9 +137,6 @@ theorem testBit_eq_decide_div_mod_eq {x : Nat} : testBit x i = decide (x / 2^i %
   | succ i hyp =>
     simp [hyp, Nat.div_div_eq_div_mul, Nat.pow_succ']
 
-@[deprecated testBit_eq_decide_div_mod_eq (since := "2025-04-04")]
-abbrev testBit_to_div_mod := @testBit_eq_decide_div_mod_eq
-
 theorem toNat_testBit (x i : Nat) :
     (x.testBit i).toNat = x / 2 ^ i % 2 := by
   rw [testBit_eq_decide_div_mod_eq]
@@ -156,9 +156,6 @@ theorem exists_testBit_of_ne_zero {x : Nat} (xnz : x ≠ 0) : ∃ i, testBit x i
     | Or.inr mod2_eq =>
       apply Exists.intro 0
       simp_all
-
-@[deprecated exists_testBit_of_ne_zero (since := "2025-04-04")]
-abbrev ne_zero_implies_bit_true := @exists_testBit_of_ne_zero
 
 theorem exists_testBit_ne_of_ne {x y : Nat} (p : x ≠ y) : ∃ i, testBit x i ≠ testBit y i := by
   induction y using Nat.div2Induction generalizing x with
@@ -185,9 +182,6 @@ theorem exists_testBit_ne_of_ne {x y : Nat} (p : x ≠ y) : ∃ i, testBit x i �
         cases mod_two_eq_zero_or_one x with
         | _ p => cases mod_two_eq_zero_or_one y with | _ q => simp [p,q]
 
-@[deprecated exists_testBit_ne_of_ne (since := "2025-04-04")]
-abbrev ne_implies_bit_diff := @exists_testBit_ne_of_ne
-
 /--
 `eq_of_testBit_eq` allows proving two natural numbers are equal
 if their bits are all equal.
@@ -211,7 +205,7 @@ theorem exists_ge_and_testBit_of_ge_two_pow {x : Nat} (p : x ≥ 2^n) : ∃ i �
       exact Exists.intro j (And.intro (Nat.zero_le _) jp)
     | succ n =>
       have x_ge_n : x / 2 ≥ 2 ^ n := by
-          simpa [le_div_iff_mul_le, ← Nat.pow_succ'] using p
+          simpa [le_div_iff_mul_le, ← Nat.pow_succ'] using! p
       have ⟨j, jp⟩ := @hyp x_pos n x_ge_n
       apply Exists.intro (j+1)
       apply And.intro
@@ -220,18 +214,12 @@ theorem exists_ge_and_testBit_of_ge_two_pow {x : Nat} (p : x ≥ 2^n) : ∃ i �
       case right =>
         simpa using jp.right
 
-@[deprecated exists_ge_and_testBit_of_ge_two_pow (since := "2025-04-04")]
-abbrev ge_two_pow_implies_high_bit_true := @exists_ge_and_testBit_of_ge_two_pow
-
 theorem ge_two_pow_of_testBit {x : Nat} (p : testBit x i = true) : x ≥ 2^i := by
   simp only [Nat.testBit_eq_decide_div_mod_eq] at p
   apply Decidable.by_contra
   intro not_ge
   have x_lt : x < 2^i := Nat.lt_of_not_le not_ge
   simp [div_eq_of_lt x_lt] at p
-
-@[deprecated ge_two_pow_of_testBit (since := "2025-04-04")]
-abbrev testBit_implies_ge := @ge_two_pow_of_testBit
 
 theorem testBit_lt_two_pow {x i : Nat} (lt : x < 2^i) : x.testBit i = false := by
   match p : x.testBit i with
@@ -240,6 +228,16 @@ theorem testBit_lt_two_pow {x i : Nat} (lt : x < 2^i) : x.testBit i = false := b
     exfalso
     exact Nat.not_le_of_gt lt (ge_two_pow_of_testBit p)
 
+theorem testBit_of_two_pow_le_and_two_pow_add_one_gt {n i : Nat}
+    (hle : 2^i ≤ n) (hgt : n < 2^(i + 1)) : n.testBit i = true := by
+  rcases exists_ge_and_testBit_of_ge_two_pow hle with ⟨i', ⟨_, _⟩⟩
+  have : i = i' := by
+    false_or_by_contra
+    have : 2 ^ (i + 1) ≤ 2 ^ i' := Nat.pow_le_pow_of_le (by decide) (by omega)
+    have : n.testBit i' = false := testBit_lt_two_pow (by omega)
+    simp_all only [Bool.false_eq_true]
+  rwa [this]
+
 theorem lt_pow_two_of_testBit (x : Nat) (p : ∀i, i ≥ n → testBit x i = false) : x < 2^n := by
   apply Decidable.by_contra
   intro not_lt
@@ -247,6 +245,10 @@ theorem lt_pow_two_of_testBit (x : Nat) (p : ∀i, i ≥ n → testBit x i = fal
   have ⟨i, ⟨i_ge_n, test_true⟩⟩ := exists_ge_and_testBit_of_ge_two_pow x_ge_n
   have test_false := p _ i_ge_n
   simp [test_true] at test_false
+
+theorem testBit_log2 {n : Nat} (h : n ≠ 0) : n.testBit n.log2 = true := by
+  have := log2_eq_iff (n := n) (k := n.log2) (by omega)
+  apply testBit_of_two_pow_le_and_two_pow_add_one_gt <;> omega
 
 private theorem succ_mod_two : succ x % 2 = 1 - x % 2 := by
   induction x with
@@ -354,9 +356,6 @@ theorem testBit_bool_toNat (b : Bool) (i : Nat) :
   cases b <;> cases i <;>
   simp [testBit_eq_decide_div_mod_eq,
         Nat.mod_eq_of_lt]
-
-@[deprecated testBit_bool_toNat (since := "2025-06-22")]
-abbrev testBit_bool_to_nat := @testBit_bool_toNat
 
 /-- `testBit 1 i` is true iff the index `i` equals 0. -/
 theorem testBit_one_eq_true_iff_self_eq_zero {i : Nat} :
@@ -502,10 +501,15 @@ protected theorem and_comm (x y : Nat) : x &&& y = y &&& x := by
    apply Nat.eq_of_testBit_eq
    simp [Bool.and_comm]
 
-@[grind _=_]
 protected theorem and_assoc (x y z : Nat) : (x &&& y) &&& z = x &&& (y &&& z) := by
    apply Nat.eq_of_testBit_eq
    simp [Bool.and_assoc]
+
+grind_pattern Nat.and_assoc => (x &&& y) &&& z where
+  x =/= 0; y =/= 0; z =/= 0
+
+grind_pattern Nat.and_assoc => x &&& (y &&& z) where
+  x =/= 0; y =/= 0; z =/= 0
 
 instance : Std.Associative (α := Nat) (· &&& ·) where
   assoc := Nat.and_assoc
@@ -531,15 +535,9 @@ theorem and_lt_two_pow (x : Nat) {y n : Nat} (right : y < 2^n) : (x &&& y) < 2^n
   simp only [testBit_and, testBit_mod_two_pow]
   cases testBit x i <;> simp
 
-@[deprecated and_two_pow_sub_one_eq_mod (since := "2025-03-18")]
-abbrev and_pow_two_sub_one_eq_mod := @and_two_pow_sub_one_eq_mod
-
 theorem and_two_pow_sub_one_of_lt_two_pow {x : Nat} (lt : x < 2^n) : x &&& 2^n - 1 = x := by
   rw [and_two_pow_sub_one_eq_mod]
   apply Nat.mod_eq_of_lt lt
-
-@[deprecated and_two_pow_sub_one_of_lt_two_pow (since := "2025-03-18")]
-abbrev and_pow_two_sub_one_of_lt_two_pow := @and_two_pow_sub_one_of_lt_two_pow
 
 @[simp] theorem and_mod_two_eq_one : (a &&& b) % 2 = 1 ↔ a % 2 = 1 ∧ b % 2 = 1 := by
   simp only [mod_two_eq_one_iff_testBit_zero]
@@ -590,7 +588,7 @@ theorem and_or_distrib_left (x y z : Nat) : x &&& (y ||| z) = (x &&& y) ||| (x &
    simp [Bool.and_or_distrib_left]
 
 @[grind =]
-theorem and_distrib_right (x y z : Nat) : (x ||| y) &&& z = (x &&& z) ||| (y &&& z) := by
+theorem and_or_distrib_right (x y z : Nat) : (x ||| y) &&& z = (x &&& z) ||| (y &&& z) := by
    apply Nat.eq_of_testBit_eq
    simp [Bool.and_or_distrib_right]
 
@@ -727,9 +725,6 @@ theorem testBit_two_pow_mul_add (a : Nat) {b i : Nat} (b_lt : b < 2^i) (j : Nat)
           Nat.div_eq_of_lt b_lt,
           Nat.two_pow_pos i]
 
-@[deprecated testBit_two_pow_mul_add (since := "2025-03-18")]
-abbrev testBit_mul_pow_two_add := @testBit_two_pow_mul_add
-
 @[grind =]
 theorem testBit_two_pow_mul :
     testBit (2 ^ i * a) j = (decide (j ≥ i) && testBit a (j-i)) := by
@@ -743,9 +738,6 @@ theorem testBit_two_pow_mul :
 theorem testBit_mul_two_pow (x j i : Nat) :
     (x * 2 ^ i).testBit j = (decide (i ≤ j) && x.testBit (j - i)) := by
   rw [Nat.mul_comm, testBit_two_pow_mul]
-
-@[deprecated testBit_two_pow_mul (since := "2025-03-18")]
-abbrev testBit_mul_pow_two := @testBit_two_pow_mul
 
 theorem two_pow_add_eq_or_of_lt {b : Nat} (b_lt : b < 2^i) (a : Nat) :
     2^i * a + b = 2^i * a ||| b := by
@@ -761,9 +753,6 @@ theorem two_pow_add_eq_or_of_lt {b : Nat} (b_lt : b < 2^i) (a : Nat) :
             calc b < 2 ^ i := b_lt
                  _ ≤ 2 ^ j := Nat.pow_le_pow_right Nat.zero_lt_two i_le
     simp [i_le, j_lt, testBit_lt_two_pow, b_lt_j]
-
-@[deprecated two_pow_add_eq_or_of_lt (since := "2025-03-18")]
-abbrev mul_add_lt_is_or := @two_pow_add_eq_or_of_lt
 
 /-! ### shiftLeft and shiftRight -/
 
@@ -875,7 +864,7 @@ theorem and_le_right {n m : Nat} : n &&& m ≤ m :=
   le_of_testBit (by simp)
 
 theorem left_le_or {n m : Nat} : n ≤ n ||| m :=
-  le_of_testBit (by simpa using fun i => Or.inl)
+  le_of_testBit (by simp [imp_or_left_iff_true])
 
 theorem right_le_or {n m : Nat} : m ≤ n ||| m :=
-  le_of_testBit (by simpa using fun i => Or.inr)
+  le_of_testBit (by simp [imp_or_right_iff_true])

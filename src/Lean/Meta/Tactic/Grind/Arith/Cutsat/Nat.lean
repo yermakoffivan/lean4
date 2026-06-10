@@ -5,11 +5,10 @@ Authors: Leonardo de Moura
 -/
 module
 prelude
-public import Init.Data.Int.OfNat
-public import Lean.Meta.Tactic.Grind.Simp
-public import Lean.Meta.Tactic.Simp.Arith.Nat.Basic
-public import Lean.Meta.Tactic.Grind.Arith.Cutsat.Norm
-public import Lean.Meta.Tactic.Grind.Arith.Cutsat.ToInt
+public import Lean.Meta.Tactic.Grind.Arith.Cutsat.Types
+import Init.Data.Int.OfNat
+import Lean.Meta.Tactic.Grind.Simp
+import Lean.Meta.Tactic.Grind.Arith.Cutsat.ToInt
 import Lean.Meta.NatInstTesters
 public section
 namespace Lean.Meta.Grind.Arith.Cutsat
@@ -24,11 +23,15 @@ def mkNatVar (e : Expr) : GoalM (Expr × Expr) := do
   modify' fun s => { s with
     natToIntMap := s.natToIntMap.insert { expr := e } r
   }
-  markAsCutsatTerm e
+  cutsatExt.markTerm e
   return r
 
 private def intIte : Expr := mkApp (mkConst ``ite [1]) Int.mkType
 
+/-
+**Note**: It is safe to use (the more efficient) structural instances tests here because `grind` uses the canonicalizer.
+-/
+open Structural in
 private partial def natToInt' (e : Expr) : GoalM (Expr × Expr) := do
   match_expr e with
   | HAdd.hAdd _ _ _ inst a b =>
@@ -115,6 +118,10 @@ def assertNatCast (e : Expr) (x : Var) : GoalM Unit := do
 def isNatTerm (e : Expr) : GoalM Bool :=
   return (← get').natToIntMap.contains { expr := e }
 
+/-
+**Note**: It is safe to use (the more efficient) structural instances tests here because `grind` uses the canonicalizer.
+-/
+open Structural in
 private partial def isNonneg (e : Expr) : MetaM Bool := do
   match_expr e with
   | OfNat.ofNat _ _ _ =>

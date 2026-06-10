@@ -6,28 +6,11 @@ Authors: Leonardo de Moura, Joachim Breitner
 module
 
 prelude
-public import Lean.Meta.Basic
 public import Lean.Meta.ForEachExpr
 
 public section
 
 namespace Lean.Elab.Structural
-
-structure State where
-  /-- As part of the inductive predicates case, we keep adding more and more discriminants from the
-     local context and build up a bigger matcher application until we reach a fixed point.
-     As a side-effect, this creates matchers. Here we capture all these side-effects, because
-     the construction rolls back any changes done to the environment and the side-effects
-     need to be replayed. -/
-  addMatchers : Array (MetaM Unit) := #[]
-
-abbrev M := StateRefT State MetaM
-
-instance : Inhabited (M α) where
-  default := throwError "failed"
-
-def run (x : M α) (s : State := {}) : MetaM (α × State) :=
-  StateRefT'.run x s
 
 /--
   Return true iff `e` contains an application `recFnName .. t ..` where the term `t` is
@@ -69,16 +52,6 @@ The number of indices in the array.
 -/
 def Positions.numIndices (positions : Positions) : Nat :=
     positions.foldl (fun s poss => s + poss.size) 0
-
-/--
-`positions.inverse[k] = i` means that function `i` has type k
--/
-def Positions.inverse (positions : Positions) : Array Nat := Id.run do
-  let mut r := .replicate positions.numIndices 0
-  for _h : i in *...positions.size do
-    for k in positions[i] do
-      r := r.set! k i
-  return r
 
 /--
 Groups the `xs` by their `f` value, and puts these groups into the order given by `ys`.

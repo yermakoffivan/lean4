@@ -6,7 +6,7 @@ Authors: Mac Malone
 module
 
 prelude
-public import Lake.Util.Log
+public import Lake.Config.Cache
 public import Lake.Config.Context
 public import Lake.Build.Job.Basic
 
@@ -14,7 +14,7 @@ open System
 namespace Lake
 
 /-- Configuration options for a Lake build. -/
-public structure BuildConfig where
+public structure BuildConfig extends LogConfig where
   /-- Use modification times for trace checking. -/
   oldMode : Bool := false
   /-- Whether to trust `.hash` files. -/
@@ -23,25 +23,21 @@ public structure BuildConfig where
   noBuild : Bool := false
   /-- Verbosity level (`-q`, `-v`, or neither). -/
   verbosity : Verbosity := .normal
-  /--
-  Fail the top-level build if entries of at least this level have been logged.
-
-  Unlike some build systems, this does **NOT** convert such log entries to
-  errors, and it does not abort jobs when warnings are logged (i.e.,
-  dependent jobs will still continue unimpeded).
-  -/
-  failLv : LogLevel := .error
-  /-- The minimum log level for an log entry to be reported. -/
-  outLv : LogLevel := verbosity.minLogLv
-  /--
-  The stream to which Lake reports build progress.
-  By default, Lake uses `stderr`.
-  -/
-  out : OutStream := .stderr
-  /-- Whether to use ANSI escape codes in build output. -/
-  ansiMode : AnsiMode := .auto
   /-- Whether to print a message when the build finishes successfully (if not quiet). -/
   showSuccess : Bool := false
+  /-- File to save input-to-output mappings from the build of the workspace's root -/
+  outputsFile? : Option FilePath := none
+  /--
+  Per-package Lean option overrides, applied to every module whose owning
+  package's `baseName` appears as a key. When `recFetchSetup` builds module
+  `M`, the `LeanOptions` associated with `M.pkg.baseName` (if any) are appended
+  to `M.leanOptions`, overriding clashing entries.
+
+  Used by `lake lint` to inject `linter.extra`/`linter.all` into every module
+  of a target package (so transitively-imported first-party modules capture
+  linter-tagged warnings), without touching dependencies.
+  -/
+  leanOptOverrides : Lean.NameMap Lean.LeanOptions := {}
 
 /--
 Whether the build should show progress information.
@@ -52,10 +48,23 @@ Whether the build should show progress information.
 public def BuildConfig.showProgress (cfg : BuildConfig) : Bool :=
   (cfg.noBuild ∧ cfg.verbosity == .verbose) ∨ cfg.verbosity != .quiet
 
+/-- Mutable reference of registered build jobs. -/
+@[expose] -- for codegen
+public def JobQueue := IO.Ref (Array OpaqueJob)
+
+/-- Returns a new empty job queue. -/
+@[inline] public def mkJobQueue : BaseIO JobQueue :=
+  IO.mkRef #[]
+
 /-- A Lake context with a build configuration and additional build data. -/
 public structure BuildContext extends BuildConfig, Context where
   leanTrace : BuildTrace
-  registeredJobs : IO.Ref (Array OpaqueJob)
+  registeredJobs : JobQueue
+  /--
+  Input-to-output(s) map for hashes of the root package's artifacts.
+  If `none`, tracking outputs is disabled for this build.
+  -/
+  outputsRef? : Option CacheRef := none
 
 /-- A transformer to equip a monad with a `BuildContext`. -/
 public abbrev BuildT := ReaderT BuildContext
@@ -93,3 +102,7 @@ public instance [Pure m] : MonadLift LakeM (BuildT m) where
 
 @[inline] public def getIsQuiet [Functor m] [MonadBuild m] : m Bool :=
   (· == .quiet) <$> getVerbosity
+
+@[inline] public def getLeanOptOverrides [Functor m] [MonadBuild m]
+    : m (Lean.NameMap Lean.LeanOptions) :=
+  (·.leanOptOverrides) <$> getBuildConfig

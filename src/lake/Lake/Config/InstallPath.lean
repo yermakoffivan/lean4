@@ -10,6 +10,8 @@ public import Lean.Compiler.FFI
 public import Lake.Config.Dynlib
 public import Lake.Config.Defaults
 public import Lake.Util.NativeLib
+import Init.Data.String.Modify
+import Init.System.Platform
 
 open System Lean.Compiler.FFI
 
@@ -35,12 +37,12 @@ public structure ElanInstall where
 @[inline] public partial def toolchain2Dir (toolchain : String) : FilePath :=
   go "" 0
 where
-  go (acc : String) (pos : String.Pos) : FilePath :=
-    if h : toolchain.atEnd pos then
+  go (acc : String) (pos : String.Pos.Raw) : FilePath :=
+    if h : pos.atEnd toolchain then
       FilePath.mk acc
     else
-      let c := toolchain.get' pos h
-      let pos' := toolchain.next' pos h
+      let c := pos.get' toolchain h
+      let pos' := pos.next' toolchain h
       if c = '/' then
         go (acc ++ "--") pos'
       else if c = ':'  then
@@ -55,9 +57,17 @@ where
 public def leanExe (sysroot : FilePath) :=
   sysroot / "bin" / "lean" |>.addExtension FilePath.exeExtension
 
+/-- Standard path of `leanir` in a Lean installation. -/
+public def leanirExe (sysroot : FilePath) :=
+  sysroot / "bin" / "leanir" |>.addExtension FilePath.exeExtension
+
 /-- Standard path of `leanc` in a Lean installation. -/
 public def leancExe (sysroot : FilePath) :=
   sysroot / "bin" / "leanc" |>.addExtension FilePath.exeExtension
+
+/-- Standard path of `leantar` in a Lean installation. -/
+public def leantarExe (sysroot : FilePath) :=
+  sysroot / "bin" / "leantar" |>.addExtension FilePath.exeExtension
 
 /-- Standard path of `llvm-ar` in a Lean installation. -/
 public def leanArExe (sysroot : FilePath) :=
@@ -92,7 +102,9 @@ public structure LeanInstall where
   systemLibDir := sysroot / "lib"
   binDir := sysroot / "bin"
   lean := leanExe sysroot
+  leanir := leanirExe sysroot
   leanc := leancExe sysroot
+  leantar := leantarExe sysroot
   sharedLib := leanSharedLibDir sysroot / leanSharedLib
   initSharedLib := leanSharedLibDir sysroot / initSharedLib
   ar : FilePath := "ar"
@@ -165,7 +177,7 @@ environment variables. If `ELAN` is set but empty, Elan is considered disabled.
 public def findElanInstall? : BaseIO (Option ElanInstall) := do
   if let some home ← IO.getEnv "ELAN_HOME" then
     let elan := (← IO.getEnv "ELAN").getD "elan"
-    if elan.trim.isEmpty then
+    if elan.trimAscii.isEmpty then
       return none
     else
       return some {elan, home}
@@ -183,7 +195,7 @@ public def findLeanSysroot? (lean := "lean") : BaseIO (Option FilePath) := do
       args := #["--print-prefix"]
     }
     if out.exitCode == 0 then
-      pure <| some <| FilePath.mk <| out.stdout.trim
+      pure <| some <| FilePath.mk <| out.stdout.trimAscii.copy
     else
       pure <| none
   act.catchExceptions fun _ => pure none
@@ -233,7 +245,7 @@ where
         cmd := leanExe sysroot |>.toString,
         args := #["--githash"]
       }
-      return out.stdout.trim
+      return out.stdout.trimAscii.copy
   findAr := do
     if let some ar ← IO.getEnv "LEAN_AR" then
       return FilePath.mk ar
@@ -321,7 +333,7 @@ public def findLeanInstall? : BaseIO (Option LeanInstall) := do
     return some <| ← LeanInstall.get sysroot
   let lean ← do
     if let some lean ← IO.getEnv "LEAN" then
-      if lean.trim.isEmpty then
+      if lean.trimAscii.isEmpty then
         return none
       else
         pure lean

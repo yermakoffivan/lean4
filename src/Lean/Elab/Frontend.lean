@@ -7,9 +7,11 @@ module
 
 prelude
 public import Lean.Language.Lean
-public import Lean.Util.Profile
 public import Lean.Server.References
 public import Lean.Util.Profiler
+import Lean.Compiler.Options
+import Lean.Linter.PersistentLintLog
+import Lean.Util.ProfilerServer
 
 public section
 
@@ -18,7 +20,7 @@ namespace Lean.Elab.Frontend
 structure State where
   commandState : Command.State
   parserState  : Parser.ModuleParserState
-  cmdPos       : String.Pos
+  cmdPos       : String.Pos.Raw
   commands     : Array Syntax := #[]
 deriving Nonempty
 
@@ -46,10 +48,7 @@ def setCommandState (commandState : Command.State) : FrontendM Unit :=
 
 def elabCommandAtFrontend (stx : Syntax) : FrontendM Unit := do
   runCommandElabM do
-    let initMsgs ← modifyGet fun st => (st.messages, { st with messages := {} })
-    Command.elabCommandTopLevel stx
-    let mut msgs := (← get).messages
-    modify ({ · with messages := initMsgs ++ msgs })
+    Command.elabCommandTopLevel stx #[]
 
 def updateCmdPos : FrontendM Unit := do
   modify fun s => { s with cmdPos := s.parserState.pos }
@@ -146,7 +145,7 @@ def runFrontend
     (ileanFileName? : Option System.FilePath := none)
     (jsonOutput : Bool := false)
     (errorOnKinds : Array Name := #[])
-    (plugins : Array System.FilePath := #[])
+    (plugins : Array Plugin := #[])
     (printStats : Bool := false)
     (setup? : Option ModuleSetup := none)
     : IO (Option Environment) := do
@@ -161,6 +160,7 @@ def runFrontend
       liftM <| setup.dynlibs.forM Lean.loadDynlib
       return .ok {
         trustLevel
+        package? := setup.package?
         mainModuleName := setup.name
         isModule := strictOr setup.isModule stx.isModule
         imports := setup.imports?.getD stx.imports
@@ -197,15 +197,20 @@ def runFrontend
 
   if let some oleanFileName := oleanFileName? then
     profileitIO ".olean serialization" finalOpts do
-      writeModule env oleanFileName
+      let allMessages := snaps.getAll.foldl
+        (init := (.empty : MessageLog)) (fun acc s => acc ++ s.diagnostics.msgLog)
+      let env ← Linter.recordLints env allMessages
+      writeModule (writeIR := !Compiler.compiler.postponeCompile.get finalOpts) env oleanFileName
 
   if let some ileanFileName := ileanFileName? then
     let trees := snaps.getAll.flatMap (match ·.infoTree? with | some t => #[t] | _ => #[])
     let references := Lean.Server.findModuleRefs inputCtx.fileMap trees (localVars := false)
+    let (moduleRefs, decls) ← references.toLspModuleRefs
     let ilean := {
       module        := mainModuleName
       directImports := Server.collectImports ⟨snap.stx⟩
-      references    := ← references.toLspModuleRefs
+      references    := moduleRefs
+      decls
       : Lean.Server.Ilean
     }
     IO.FS.writeFile ileanFileName $ Json.compress $ toJson ilean
@@ -214,6 +219,10 @@ def runFrontend
     let traceStates := snaps.getAll.map (·.traces)
     let profile ← Firefox.Profile.export mainModuleName.toString startTime traceStates opts
     IO.FS.writeFile ⟨out⟩ <| Json.compress <| toJson profile
+  else if trace.profiler.serve.get finalOpts then
+    let traceStates := snaps.getAll.map (·.traces)
+    let profile ← Firefox.Profile.export mainModuleName.toString startTime traceStates opts
+    Firefox.Profile.serve <| Json.compress <| toJson profile
 
   -- no point in freeing the snapshot graph and all referenced data this close to process exit
   Runtime.forget snaps

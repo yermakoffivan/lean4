@@ -6,7 +6,7 @@ Authors: Leonardo de Moura, Jeremy Avigad, Mario Carneiro
 module
 
 prelude
-public import Init.Data.Ord.Basic
+public import Init.Data.Order.ClassesExtra
 import all Init.Data.Ord.Basic
 
 public section
@@ -30,9 +30,6 @@ theorem compare_eq_ite_lt (a b : Nat) :
     | .inl h => simp [h, Nat.ne_of_gt h]
     | .inr rfl => simp
 
-@[deprecated compare_eq_ite_lt (since := "2025-03_28")]
-def compare_def_lt := compare_eq_ite_lt
-
 theorem compare_eq_ite_le (a b : Nat) :
     compare a b = if a ≤ b then if b ≤ a then .eq else .lt else .gt := by
   rw [compare_eq_ite_lt]
@@ -42,9 +39,6 @@ theorem compare_eq_ite_le (a b : Nat) :
     split
     next hgt => simp [Nat.not_le.2 hgt]
     next hle => simp [Nat.not_lt.1 hge, Nat.not_lt.1 hle]
-
-@[deprecated compare_eq_ite_le (since := "2025-03_28")]
-def compare_def_le := compare_eq_ite_le
 
 protected theorem compare_swap (a b : Nat) : (compare a b).swap = compare b a := by
   simp only [compare_eq_ite_le]; (repeat' split) <;> try rfl
@@ -75,5 +69,9 @@ protected theorem isGE_compare {a b : Nat} :
     (compare a b).isGE ↔ b ≤ a := by
   rw [← Nat.compare_swap, Ordering.isGE_swap]
   exact Nat.isLE_compare
+
+instance : Std.LawfulOrderOrd Nat where
+  isLE_compare _ _ := Nat.isLE_compare
+  isGE_compare _ _ := Nat.isGE_compare
 
 end Nat

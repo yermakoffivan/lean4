@@ -7,7 +7,10 @@ module
 
 prelude
 public import Init.Data.Order.Ord
-public import Init.Data.SInt.Lemmas
+public import Init.Data.Order.ClassesExtra
+public import Init.Data.SInt.Basic
+import Init.Data.SInt.Lemmas
+import Init.Data.Order.Lemmas
 
 public section
 
@@ -23,6 +26,9 @@ open Std
 
 namespace Int8
 
+instance : Ord Int8 where
+  compare x y := compareOfLessAndEq x y
+
 instance : TransOrd Int8 :=
   TransOrd.compareOfLessAndEq_of_antisymm_of_trans_of_total_of_not_le
     Int8.le_antisymm Int8.le_trans Int8.le_total Int8.not_le
@@ -30,9 +36,16 @@ instance : TransOrd Int8 :=
 instance : LawfulEqOrd Int8 where
   eq_of_compare h := compareOfLessAndEq_eq_eq Int8.le_refl Int8.not_le |>.mp h
 
+instance : LawfulOrderOrd Int8 where
+  isLE_compare _ _ := isLE_compareOfLessAndEq Std.le_antisymm Std.not_le (fun _ _ => Std.le_total)
+  isGE_compare _ _ := isGE_compareOfLessAndEq Std.le_antisymm Std.not_le (fun _ _ => Std.le_total)
+
 end Int8
 
 namespace Int16
+
+instance : Ord Int16 where
+  compare x y := compareOfLessAndEq x y
 
 instance : TransOrd Int16 :=
   TransOrd.compareOfLessAndEq_of_antisymm_of_trans_of_total_of_not_le
@@ -41,9 +54,16 @@ instance : TransOrd Int16 :=
 instance : LawfulEqOrd Int16 where
   eq_of_compare h := compareOfLessAndEq_eq_eq Int16.le_refl Int16.not_le |>.mp h
 
+instance : LawfulOrderOrd Int16 where
+  isLE_compare _ _ := isLE_compareOfLessAndEq Std.le_antisymm Std.not_le (fun _ _ => Std.le_total)
+  isGE_compare _ _ := isGE_compareOfLessAndEq Std.le_antisymm Std.not_le (fun _ _ => Std.le_total)
+
 end Int16
 
 namespace Int32
+
+instance : Ord Int32 where
+  compare x y := compareOfLessAndEq x y
 
 instance : TransOrd Int32 :=
   TransOrd.compareOfLessAndEq_of_antisymm_of_trans_of_total_of_not_le
@@ -52,9 +72,16 @@ instance : TransOrd Int32 :=
 instance : LawfulEqOrd Int32 where
   eq_of_compare h := compareOfLessAndEq_eq_eq Int32.le_refl Int32.not_le |>.mp h
 
+instance : LawfulOrderOrd Int32 where
+  isLE_compare _ _ := isLE_compareOfLessAndEq Std.le_antisymm Std.not_le (fun _ _ => Std.le_total)
+  isGE_compare _ _ := isGE_compareOfLessAndEq Std.le_antisymm Std.not_le (fun _ _ => Std.le_total)
+
 end Int32
 
 namespace Int64
+
+instance : Ord Int64 where
+  compare x y := compareOfLessAndEq x y
 
 instance : TransOrd Int64 :=
   TransOrd.compareOfLessAndEq_of_antisymm_of_trans_of_total_of_not_le
@@ -63,9 +90,16 @@ instance : TransOrd Int64 :=
 instance : LawfulEqOrd Int64 where
   eq_of_compare h := compareOfLessAndEq_eq_eq Int64.le_refl Int64.not_le |>.mp h
 
+instance : LawfulOrderOrd Int64 where
+  isLE_compare _ _ := isLE_compareOfLessAndEq Std.le_antisymm Std.not_le (fun _ _ => Std.le_total)
+  isGE_compare _ _ := isGE_compareOfLessAndEq Std.le_antisymm Std.not_le (fun _ _ => Std.le_total)
+
 end Int64
 
 namespace ISize
+
+instance : Ord ISize where
+  compare x y := compareOfLessAndEq x y
 
 instance : TransOrd ISize :=
   TransOrd.compareOfLessAndEq_of_antisymm_of_trans_of_total_of_not_le
@@ -73,5 +107,9 @@ instance : TransOrd ISize :=
 
 instance : LawfulEqOrd ISize where
   eq_of_compare h := compareOfLessAndEq_eq_eq ISize.le_refl ISize.not_le |>.mp h
+
+instance : LawfulOrderOrd ISize where
+  isLE_compare _ _ := isLE_compareOfLessAndEq Std.le_antisymm Std.not_le (fun _ _ => Std.le_total)
+  isGE_compare _ _ := isGE_compareOfLessAndEq Std.le_antisymm Std.not_le (fun _ _ => Std.le_total)
 
 end ISize

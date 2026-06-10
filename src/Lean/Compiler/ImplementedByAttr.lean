@@ -6,11 +6,7 @@ Authors: Leonardo de Moura
 module
 
 prelude
-public import Lean.Attributes
-public import Lean.Declaration
-public import Lean.MonadEnv
 public import Lean.Elab.InfoTree
-public import Lean.Compiler.LCNF.PhaseExt
 
 public section
 

@@ -6,47 +6,16 @@ Authors: Lars König, Sebastian Graf
 module
 
 prelude
-public import Std.Do.SPred.SPred
-meta import Init.NotationExtra
+public meta import Std.Do.SPred.Notation.Basic
+public import Std.Do.SPred.Notation.Basic
 
-@[expose] public section
+public section
+
+set_option linter.missingDocs true
 
 namespace Std.Do
 
 open Lean Macro Parser PrettyPrinter
-
--- define `spred` embedding in `term`.
--- An explicit `spred` marker avoids exponential blowup in terms
--- that do not opt into the extended syntax.
-scoped syntax:max "spred(" term ")" : term
-scoped syntax:max "term(" term ")" : term
-
--- allow fallback to `term`
-macro_rules
-  | `(spred(term($t))) => pure t
-  | `(spred($t))       => pure t
-
--- push `spred` inside some `term` constructs
-macro_rules
-  | `(spred(($P)))                  => ``((spred($P)))
-  | `(spred(fun $xs* => $b))        => ``(fun $xs* => spred($b))
-  | `(spred(if $c then $t else $e)) => ``(if $c then spred($t) else spred($e))
-  | `(spred(($P : $t)))             => ``((spred($P) : $t))
-
-/-- Remove an `spred` layer from a `term` syntax object. -/
--- inverts the rules above.
-partial def SPred.Notation.unpack [Monad m] [MonadRef m] [MonadQuotation m] : Term → m Term
-  | `(spred($P))             => do `($P)
-  | `(($P))                  => do `(($(← unpack P)))
-  | `(if $c then $t else $e) => do
-    let t ← unpack t
-    let e ← unpack e
-    `(if $c then $t else $e)
-  | `(fun $xs* => $b)        => do
-    let b ← unpack b
-    `(fun $xs* => $b)
-  | `(($P : $t))             => do ``(($(← unpack P) : $t))
-  | `($t)                    => `($t)
 
 /-! # Idiom notation -/
 
@@ -86,12 +55,18 @@ macro_rules
 
 namespace SPred.Notation
 
+/--
+Unexpander that reconstructs `⌜...⌝` syntax from applications of `SPred.pure`.
+-/
 @[app_unexpander SPred.pure]
 meta def unexpandPure : Unexpander
   | `($_ $t $ts*) => do
     if ts.isEmpty then ``(⌜$t⌝) else ``(⌜$t⌝ $ts*)
   | _ => throw ()
 
+/--
+Unexpander that reconstructs `... ⊢ₛ ...⌝` syntax from applications of `SPred.entails`.
+-/
 @[app_unexpander SPred.entails]
 meta def unexpandEntails : Unexpander
   | `($_ $P $Q)  => do
@@ -101,6 +76,9 @@ meta def unexpandEntails : Unexpander
     | _ => ``($P ⊢ₛ $Q)
   | _ => throw ()
 
+/--
+Unexpander that reconstructs `... ⊣⊢ₛ ...⌝` syntax from applications of `SPred.entails`.
+-/
 @[app_unexpander SPred.bientails]
 meta def unexpandBientails : Unexpander
   | `($_ $P $Q)  => do
@@ -108,6 +86,10 @@ meta def unexpandBientails : Unexpander
     ``($P ⊣⊢ₛ $Q)
   | _ => throw ()
 
+/--
+Unexpander that reconstructs `spred(... ∧ ...)⌝` syntax from applications of `SPred.and`, lifting
+nested applications of `spred(...)` from the arguments.
+-/
 @[app_unexpander SPred.and]
 meta def unexpandAnd : Unexpander
   | `($_ $P $Q) => do
@@ -115,6 +97,10 @@ meta def unexpandAnd : Unexpander
     ``(spred($P ∧ $Q))
   | _ => throw ()
 
+/--
+Unexpander that reconstructs `spred(... ∨ ...)⌝` syntax from applications of `SPred.or`, lifting
+nested applications of `spred(...)` from the arguments.
+-/
 @[app_unexpander SPred.or]
 meta def unexpandOr : Unexpander
   | `($_ $P $Q) => do
@@ -122,6 +108,10 @@ meta def unexpandOr : Unexpander
     ``(spred($P ∨ $Q))
   | _ => throw ()
 
+/--
+Unexpander that reconstructs `spred(¬ ...)⌝` syntax from applications of `SPred.not`, lifting
+nested applications of `spred(...)` from the argument.
+-/
 @[app_unexpander SPred.not]
 meta def unexpandNot : Unexpander
   | `($_ $P) => do
@@ -129,6 +119,10 @@ meta def unexpandNot : Unexpander
     ``(spred(¬ $P))
   | _ => throw ()
 
+/--
+Unexpander that reconstructs `spred(... → ...)⌝` syntax from applications of `SPred.imp`, lifting
+nested applications of `spred(...)` from the arguments.
+-/
 @[app_unexpander SPred.imp]
 meta def unexpandImp : Unexpander
   | `($_ $P $Q) => do
@@ -136,6 +130,10 @@ meta def unexpandImp : Unexpander
     ``(spred($P → $Q))
   | _ => throw ()
 
+/--
+Unexpander that reconstructs `spred(∀ ..., ...)⌝` syntax from applications of `SPred.forall`, lifting
+nested applications of `spred(...)` from the body.
+-/
 @[app_unexpander SPred.forall]
 meta def unexpandForall : Unexpander
   | `($_ fun $x:ident => ∀ $y:ident $[$z:ident]*, $Ψ) => do
@@ -146,6 +144,10 @@ meta def unexpandForall : Unexpander
     ``(spred(∀ $x:ident, $Ψ))
   | _ => throw ()
 
+/--
+Unexpander that reconstructs `spred(∃ ..., ...)⌝` syntax from applications of `SPred.exists`, lifting
+nested applications of `spred(...)` from the body.
+-/
 @[app_unexpander SPred.exists]
 meta def unexpandExists : Unexpander
   | `($_ fun $x:ident => ∃ $y:ident $[$z:ident]*, $Ψ) => do
@@ -156,6 +158,10 @@ meta def unexpandExists : Unexpander
     ``(spred(∃ $x:ident, $Ψ))
   | _ => throw ()
 
+/--
+Unexpander that reconstructs `spred(... ↔ ...)⌝` syntax from applications of `SPred.iff`, lifting
+nested applications of `spred(...)` from the arguments.
+-/
 @[app_unexpander SPred.iff]
 meta def unexpandIff : Unexpander
   | `($_ $P $Q) => do

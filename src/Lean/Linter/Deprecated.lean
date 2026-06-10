@@ -7,8 +7,10 @@ module
 
 prelude
 public import Lean.Meta.Basic
-import Lean.Linter.Basic
+import Lean.Linter.Init
 import Lean.Elab.InfoTree.Main
+import Lean.ExtraModUses
+import Init.Omega
 
 public section
 
@@ -33,6 +35,8 @@ builtin_initialize deprecatedAttr : ParametricAttribute DeprecationEntry ←
       let `(attr| deprecated $[$id?]? $[$text?]? $[(since := $since?)]?) := stx
         | throwError "Invalid `[deprecated]` attribute syntax"
       let newName? ← id?.mapM Elab.realizeGlobalConstNoOverloadWithInfo
+      if let some newName := newName? then
+        recordExtraModUseFromDecl (isMeta := false) newName
       let text? := text?.map TSyntax.getString
       let since? := since?.map TSyntax.getString
       if id?.isNone && text?.isNone then

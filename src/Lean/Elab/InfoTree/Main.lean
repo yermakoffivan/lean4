@@ -10,6 +10,7 @@ prelude
 public import Init.Task
 public import Lean.Meta.PPGoal
 public import Lean.ReservedNameAction
+import Init.Data.Format.Macro
 
 public section
 
@@ -49,10 +50,14 @@ def PartialContextInfo.mergeIntoOuter?
     some { info with }
   | .parentDeclCtx _, none =>
     panic! "Unexpected incomplete InfoTree context info."
+  | .autoImplicitCtx _, none =>
+    panic! "Unexpected incomplete InfoTree context info."
   | .commandCtx innerInfo, some outer =>
-    some { outer with toCommandContextInfo := innerInfo }
+    some { outer with toCommandContextInfo := { innerInfo with cmdEnv? := outer.cmdEnv? <|> innerInfo.cmdEnv? } }
   | .parentDeclCtx innerParentDecl, some outer =>
     some { outer with parentDecl? := innerParentDecl }
+  | .autoImplicitCtx innerAutoImplicits, some outer =>
+    some { outer with autoImplicits := innerAutoImplicits }
 
 def CompletionInfo.stx : CompletionInfo → Syntax
   | dot i ..          => i.stx
@@ -211,15 +216,31 @@ def FVarAliasInfo.format (info : FVarAliasInfo) : Format :=
 def FieldRedeclInfo.format (ctx : ContextInfo) (info : FieldRedeclInfo) : Format :=
   f!"[FieldRedecl] @ {formatStxRange ctx info.stx}"
 
+def DelabTermInfo.docString? (ppCtx : PPContext) (info : DelabTermInfo) : IO (Option String) := do
+  match info.mkDocString? with
+  | none => return none
+  | some act =>
+    try
+      act ppCtx
+    catch ex =>
+      return s!"[Error: {ex.toString}]"
+
 def DelabTermInfo.format (ctx : ContextInfo) (info : DelabTermInfo) : IO Format := do
   let loc := if let some loc := info.location? then f!"{loc.module} {loc.range.pos}-{loc.range.endPos}" else "none"
+  let docString? ← info.docString? (ctx.toPPContext info.lctx)
   return f!"[DelabTerm] @ {← TermInfo.format ctx info.toTermInfo}\n\
     Location: {loc}\n\
-    Docstring: {repr info.docString?}\n\
+    Docstring: {repr docString?}\n\
     Explicit: {info.explicit}"
 
 def ChoiceInfo.format (ctx : ContextInfo) (info : ChoiceInfo) : Format :=
   f!"[Choice] @ {formatElabInfo ctx info.toElabInfo}"
+
+def DocInfo.format (ctx : ContextInfo) (info : DocInfo) : Format :=
+  f!"[Doc] {info.stx.getKind} @ {formatElabInfo ctx info.toElabInfo}"
+
+def DocElabInfo.format (ctx : ContextInfo) (info : DocElabInfo) : Format :=
+  f!"[DocElab] {info.name} ({repr info.kind}) @ {formatElabInfo ctx info.toElabInfo}"
 
 def Info.format (ctx : ContextInfo) : Info → IO Format
   | ofTacticInfo i         => i.format ctx
@@ -237,6 +258,8 @@ def Info.format (ctx : ContextInfo) : Info → IO Format
   | ofFieldRedeclInfo i    => pure <| i.format ctx
   | ofDelabTermInfo i      => i.format ctx
   | ofChoiceInfo i         => pure <| i.format ctx
+  | ofDocInfo i            => pure <| i.format ctx
+  | ofDocElabInfo i        => pure <| i.format ctx
 
 def Info.toElabInfo? : Info → Option ElabInfo
   | ofTacticInfo i         => some i.toElabInfo
@@ -254,6 +277,8 @@ def Info.toElabInfo? : Info → Option ElabInfo
   | ofFieldRedeclInfo _    => none
   | ofDelabTermInfo i      => some i.toElabInfo
   | ofChoiceInfo i         => some i.toElabInfo
+  | ofDocInfo i            => some i.toElabInfo
+  | ofDocElabInfo i        => some i.toElabInfo
 
 /--
   Helper function for propagating the tactic metavariable context to its children nodes.
@@ -272,6 +297,12 @@ def Info.toElabInfo? : Info → Option ElabInfo
 def Info.updateContext? : Option ContextInfo → Info → Option ContextInfo
   | some ctx, ofTacticInfo i => some { ctx with mctx := i.mctxAfter }
   | ctx?, _ => ctx?
+
+def PartialContextInfo.format (ctx : PartialContextInfo) : Format :=
+  match ctx with
+  | .commandCtx _ => "command"
+  | .parentDeclCtx n => s!"parent[{n}]"
+  | .autoImplicitCtx implicits => s!"autoImplicits[{implicits}]"
 
 partial def InfoTree.format (tree : InfoTree) (ctx? : Option ContextInfo := none) : IO Format := do
   match tree with
@@ -443,6 +474,16 @@ def withSaveParentDeclInfoContext [MonadFinally m] [MonadParentDecl m] (x : m α
       | return none
     return some <| .parentDeclCtx declName
 
+/--
+Resets the trees state `t₀`, runs `x` to produce a new trees state `t₁` and sets the state to be
+`t₀ ++ (InfoTree.context (PartialContextInfo.autoImplicitCtx Γ) <$> t₁)` where `Γ` is the set of
+auto-implicits provided by `MonadAutoImplicits m`.
+-/
+def withSaveAutoImplicitInfoContext [MonadFinally m] [MonadAutoImplicits m] (x : m α) : m α := do
+  withSavedPartialInfoContext x do
+    let autoImplicits ← getAutoImplicits
+    return some <| .autoImplicitCtx autoImplicits
+
 def getInfoHoleIdAssignment? (mvarId : MVarId) : m (Option InfoTree) :=
   return (← getInfoState).assignment[mvarId]
 
@@ -459,6 +500,10 @@ def withMacroExpansionInfo [MonadFinally m] [Monad m] [MonadInfoTree m] [MonadLC
     }
   withInfoContext x mkInfo
 
+/--
+Runs `x`. The last info tree that is pushed while running `x` is assigned to `mvarId`. All other
+pushed info trees are silently discarded.
+-/
 @[inline] def withInfoHole [MonadFinally m] [Monad m] [MonadInfoTree m] (mvarId : MVarId) (x : m α) : m α := do
   if (← getInfoState).enabled then
     let treesSaved ← getResetInfoTrees

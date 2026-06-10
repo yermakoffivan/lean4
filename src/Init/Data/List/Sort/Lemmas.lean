@@ -6,20 +6,26 @@ Authors: Kim Morrison, Eric Wieser, François G. Dorais
 module
 
 prelude
-public import Init.Data.List.Perm
 public import Init.Data.List.Sort.Basic
 import all Init.Data.List.Sort.Basic
-public import Init.Data.List.Nat.Range
+public import Init.BinderPredicates
 public import Init.Data.Bool
+import Init.Data.List.Nat.Range
+import Init.Data.List.Pairwise
+import Init.Data.List.Perm
+import Init.Data.List.Range
+import Init.Data.List.Sublist
+import Init.Data.Nat.Linear
+import Init.Data.Prod
 
 public section
 
 /-!
 # Basic properties of `mergeSort`.
 
-* `sorted_mergeSort`: `mergeSort` produces a sorted list.
+* `pairwise_mergeSort`: `mergeSort` produces a sorted list.
 * `mergeSort_perm`: `mergeSort` is a permutation of the input list.
-* `mergeSort_of_sorted`: `mergeSort` does not change a sorted list.
+* `mergeSort_of_pairwise`: `mergeSort` does not change a sorted list.
 * `mergeSort_cons`: proves `mergeSort le (x :: xs) = l₁ ++ x :: l₂` for some `l₁, l₂`
   so that `mergeSort le xs = l₁ ++ l₂`, and no `a ∈ l₁` satisfies `le a x`.
 * `sublist_mergeSort`: if `c` is a sorted sublist of `l`, then `c` is still a sublist of `mergeSort le l`.
@@ -78,11 +84,11 @@ theorem splitInTwo_cons_cons_zipIdx_snd (i : Nat) (l : List α) :
       congr
       ext <;> simp; omega
 
-theorem splitInTwo_fst_sorted (l : { l : List α // l.length = n }) (h : Pairwise le l.1) : Pairwise le (splitInTwo l).1.1 := by
+theorem splitInTwo_fst_pairwise (l : { l : List α // l.length = n }) (h : Pairwise le l.1) : Pairwise le (splitInTwo l).1.1 := by
   rw [splitInTwo_fst]
   exact h.take
 
-theorem splitInTwo_snd_sorted (l : { l : List α // l.length = n }) (h : Pairwise le l.1) : Pairwise le (splitInTwo l).2.1 := by
+theorem splitInTwo_snd_pairwise (l : { l : List α // l.length = n }) (h : Pairwise le l.1) : Pairwise le (splitInTwo l).2.1 := by
   rw [splitInTwo_snd]
   exact h.drop
 
@@ -209,7 +215,7 @@ attribute [local instance] boolRelToRel
 If the ordering relation `le` is transitive and total (i.e. `le a b || le b a` for all `a, b`)
 then the `merge` of two sorted lists is sorted.
 -/
-theorem sorted_merge
+theorem pairwise_merge
     (trans : ∀ (a b c : α), le a b → le b c → le a c)
     (total : ∀ (a b : α), le a b || le b a)
     (l₁ l₂ : List α) (h₁ : l₁.Pairwise le) (h₂ : l₂.Pairwise le) : (merge l₁ l₂ le).Pairwise le := by
@@ -296,7 +302,7 @@ and total in the sense that `le a b || le b a`.
 
 The comparison function need not be irreflexive, i.e. `le a b` and `le b a` is allowed even when `a ≠ b`.
 -/
-theorem sorted_mergeSort
+theorem pairwise_mergeSort
     (trans : ∀ (a b c : α), le a b → le b c → le a c)
     (total : ∀ (a b : α), le a b || le b a) :
     (l : List α) → (mergeSort l le).Pairwise le
@@ -304,23 +310,23 @@ theorem sorted_mergeSort
   | [a] => by simp
   | a :: b :: xs => by
     rw [mergeSort]
-    apply sorted_merge @trans @total
-    apply sorted_mergeSort trans total
-    apply sorted_mergeSort trans total
+    apply pairwise_merge @trans @total
+    apply pairwise_mergeSort trans total
+    apply pairwise_mergeSort trans total
 termination_by l => l.length
 
 /--
 If the input list is already sorted, then `mergeSort` does not change the list.
 -/
-theorem mergeSort_of_sorted : ∀ {l : List α} (_ : Pairwise le l), mergeSort l le = l
+theorem mergeSort_of_pairwise : ∀ {l : List α} (_ : Pairwise le l), mergeSort l le = l
   | [], _ => by simp
   | [a], _ => by simp
   | a :: b :: xs, h => by
     have : (splitInTwo ⟨a :: b :: xs, rfl⟩).1.1.length < xs.length + 1 + 1 := by simp [splitInTwo_fst]; omega
     have : (splitInTwo ⟨a :: b :: xs, rfl⟩).2.1.length < xs.length + 1 + 1 := by simp [splitInTwo_snd]; omega
     rw [mergeSort]
-    rw [mergeSort_of_sorted (splitInTwo_fst_sorted ⟨a :: b :: xs, rfl⟩ h)]
-    rw [mergeSort_of_sorted (splitInTwo_snd_sorted ⟨a :: b :: xs, rfl⟩ h)]
+    rw [mergeSort_of_pairwise (splitInTwo_fst_pairwise ⟨a :: b :: xs, rfl⟩ h)]
+    rw [mergeSort_of_pairwise (splitInTwo_snd_pairwise ⟨a :: b :: xs, rfl⟩ h)]
     rw [merge_of_le (splitInTwo_fst_le_splitInTwo_snd h)]
     rw [splitInTwo_fst_append_splitInTwo_snd]
 termination_by l => l.length
@@ -360,8 +366,6 @@ where go : ∀ (i : Nat) (l : List α),
       omega
 termination_by _ l => l.length
 
-
-
 theorem mergeSort_cons {le : α → α → Bool}
     (trans : ∀ (a b c : α), le a b → le b c → le a c)
     (total : ∀ (a b : α), le a b || le b a)
@@ -374,7 +378,7 @@ theorem mergeSort_cons {le : α → α → Bool}
   have m₁ : (a, 0) ∈ mergeSort ((a :: l).zipIdx) (zipIdxLE le) :=
     mem_mergeSort.mpr mem_cons_self
   obtain ⟨l₁, l₂, h⟩ := append_of_mem m₁
-  have s := sorted_mergeSort (zipIdxLE_trans trans) (zipIdxLE_total total) ((a :: l).zipIdx)
+  have s := pairwise_mergeSort (zipIdxLE_trans trans) (zipIdxLE_total total) ((a :: l).zipIdx)
   rw [h] at s
   have p := mergeSort_perm ((a :: l).zipIdx) (zipIdxLE le)
   rw [h] at p
@@ -385,8 +389,8 @@ theorem mergeSort_cons {le : α → α → Bool}
     have q : mergeSort (l.zipIdx 1) (zipIdxLE le) ~ l₁ ++ l₂ :=
       (mergeSort_perm (l.zipIdx 1) (zipIdxLE le)).trans
         (p.symm.trans perm_middle).cons_inv
-    apply Perm.eq_of_sorted (le := zipIdxLE le)
-    · rintro ⟨a, i⟩ ⟨b, j⟩  ha hb
+    apply Perm.eq_of_pairwise (le := zipIdxLE le)
+    · rintro ⟨a, i⟩ ⟨b, j⟩ ha hb
       simp only [mem_mergeSort] at ha
       simp only [← q.mem_iff, mem_mergeSort] at hb
       simp only [zipIdxLE]
@@ -401,7 +405,7 @@ theorem mergeSort_cons {le : α → α → Bool}
         have := mem_zipIdx hb
         simp_all
       · rfl
-    · exact sorted_mergeSort (zipIdxLE_trans trans) (zipIdxLE_total total) ..
+    · exact pairwise_mergeSort (zipIdxLE_trans trans) (zipIdxLE_total total) ..
     · exact s.sublist ((sublist_cons_self (a, 0) l₂).append_left l₁)
     · exact q
   · intro b m
@@ -433,7 +437,7 @@ theorem sublist_mergeSort
     have h' := sublist_mergeSort trans total hc h
     rw [h₂] at h'
     exact h'.middle a
-  | _, _, @Sublist.cons₂ _ l₁ l₂ a h => by
+  | _, _, @Sublist.cons_cons _ l₁ l₂ a h => by
     rename_i hc
     obtain ⟨l₃, l₄, h₁, h₂, h₃⟩ := mergeSort_cons trans total a l₂
     rw [h₁]
@@ -441,7 +445,7 @@ theorem sublist_mergeSort
     rw [h₂] at h'
     simp only [Bool.not_eq_true', tail_cons] at h₃ h'
     exact
-      sublist_append_of_sublist_right (Sublist.cons₂ a
+      sublist_append_of_sublist_right (Sublist.cons_cons a
         ((fun w => Sublist.of_sublist_append_right w h') fun b m₁ m₃ =>
           (Bool.eq_not_self true).mp ((rel_of_pairwise_cons hc m₁).symm.trans (h₃ b m₃))))
 

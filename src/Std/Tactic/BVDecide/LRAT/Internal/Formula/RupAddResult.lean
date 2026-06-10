@@ -7,6 +7,16 @@ module
 
 prelude
 public import Std.Tactic.BVDecide.LRAT.Internal.Formula.Lemmas
+public import Init.GrindInstances.ToInt
+import Init.ByCases
+import Init.Data.Array.Bootstrap
+import Init.Data.Fin.Lemmas
+import Init.Data.Int.OfNat
+import Init.Data.Nat.Linear
+import Init.Data.Nat.Simproc
+
+-- TODO: remove after stage0 update
+set_option linter.unusedSimpArgs false
 
 @[expose] public section
 
@@ -175,7 +185,7 @@ theorem insertUnitInvariant_insertUnit {n : Nat} (assignments0 : Array Assignmen
           refine ⟨⟨j.1, j_lt_updatedUnits_size⟩, mostRecentUnitIdx, i_gt_zero, ?_⟩
           simp only [insertUnit, h5, ite_false, reduceCtorEq]
           constructor
-          · rw [Array.getElem_push_lt, h1]
+          · rw [Array.getElem_push_lt j.2, h1]
           · constructor
             · simp +zetaDelta [i_eq_l, ← hl]
               rfl
@@ -215,7 +225,7 @@ theorem insertUnitInvariant_insertUnit {n : Nat} (assignments0 : Array Assignmen
           · simp +zetaDelta [i_eq_l, ← hl]
             rfl
           · constructor
-            · rw [Array.getElem_push_lt, h1]
+            · rw [Array.getElem_push_lt j.2, h1]
             · constructor
               · simp only [i_eq_l]
                 rw [Array.getElem_modify_self]
@@ -258,7 +268,7 @@ theorem insertUnitInvariant_insertUnit {n : Nat} (assignments0 : Array Assignmen
         refine ⟨⟨j.1, j_lt_updatedUnits_size⟩, b,i_gt_zero, ?_⟩
         simp only [insertUnit, h5, ite_false, reduceCtorEq]
         constructor
-        · rw [Array.getElem_push_lt, h1]
+        · rw [Array.getElem_push_lt j.2, h1]
         · constructor
           · grind
           · constructor
@@ -470,7 +480,7 @@ theorem clear_insert_inductive_case {n : Nat} (f : DefaultFormula n) (f_assignme
     next idx_eq_j =>
       apply Or.inl
       constructor
-      · simp only [clearUnit, idx_eq_j, Array.getInternal_eq_getElem, ih1]
+      · simp only [Fin.getElem_fin, clearUnit, idx_eq_j, Array.getInternal_eq_getElem, ih1]
         rw [Array.getElem_modify_self, ih2, remove_add_cancel]
         exact ih3
       · intro k k_ge_idx_add_one
@@ -504,7 +514,7 @@ theorem clear_insert_inductive_case {n : Nat} (f : DefaultFormula n) (f_assignme
         · simp only [Fin.getElem_fin]
           exact ih2
         · constructor
-          · simp only [clearUnit, idx_eq_j1, Array.getInternal_eq_getElem, ih1]
+          · simp only [Fin.getElem_fin, clearUnit, idx_eq_j1, Array.getInternal_eq_getElem, ih1]
             rw [Array.getElem_modify_self, ih3, ih4]
             decide
           · constructor
@@ -536,7 +546,7 @@ theorem clear_insert_inductive_case {n : Nat} (f : DefaultFormula n) (f_assignme
           · simp only [Fin.getElem_fin]
             exact ih1
           · constructor
-            · simp only [clearUnit, idx_eq_j2, Array.getInternal_eq_getElem, ih2]
+            · simp only [Fin.getElem_fin, clearUnit, idx_eq_j2, Array.getInternal_eq_getElem, ih2]
               rw [Array.getElem_modify_self, ih3, ih4]
               decide
             · constructor
@@ -942,9 +952,7 @@ theorem nodup_derivedLits {n : Nat} (f : DefaultFormula n)
         simp only [← j_eq_k] at k_eq_i
         exact i_ne_j <| Fin.eq_of_val_eq (Eq.symm k_eq_i)
       specialize h3 ⟨j.1, j_in_bounds⟩ j_ne_k
-      simp only [derivedLits_arr_def, Fin.getElem_fin] at li_eq_lj
-      simp only [Fin.getElem_fin, derivedLits_arr_def, ne_eq, li, li_eq_lj] at h3
-      simp only [List.get_eq_getElem, ← Array.getElem_toList, not_true_eq_false] at h3
+      grind
     next k_ne_i =>
       have i_ne_k : ⟨i.1, i_in_bounds⟩ ≠ k := by intro i_eq_k; simp only [← i_eq_k, not_true] at k_ne_i
       specialize h3 ⟨i.1, i_in_bounds⟩ i_ne_k

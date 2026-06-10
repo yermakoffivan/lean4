@@ -31,7 +31,7 @@ Author: Leonardo de Moura
 // POSIX named semaphores for the experimental cross-process jobserver
 // (env var `LEAN_JOB_SEMAPHORE=/name`, or `LEAN_JOB_SEMAPHORE_AUTO=N` to
 // auto-create one and propagate it to children). Linux + macOS only.
-#if !defined(_WIN32) && !defined(LEAN_EMSCRIPTEN)
+#if !defined(_WIN32) && !defined(LEAN_EMSCRIPTEN) && defined(LEAN_MULTI_THREAD)
     #define LEAN_JOBSERVER_POSIX 1
     #include <semaphore.h>
     #include <fcntl.h>
@@ -53,14 +53,6 @@ static void unlink_owned_sem() {
         g_owned_sem_name = nullptr;
     }
 }
-
-// Per-worker-thread flag: does this thread currently hold a jobserver token?
-// Set by `acquire_token` / `wait_for`'s reclaim, cleared by `release_token`
-// or by `wait_for`'s release. When `wait_for` cannot reclaim a token
-// non-blockingly, the worker continues running its task un-gated and this
-// flag stays false; the worker-loop's `release_token` then skips its
-// `sem_post`, keeping per-worker token accounting balanced.
-static thread_local bool g_holds_token = false;
 #endif
 
 #if LEAN_SUPPORTS_BACKTRACE
@@ -755,40 +747,88 @@ class task_manager {
     condition_variable                            m_dedicated_finished_cv;
     bool                                          m_shutting_down{false};
 #if LEAN_JOBSERVER_POSIX
-    // Optional cross-process token pool. When non-null, standard workers must
-    // acquire a token before running a task and release it after, so that the
-    // total number of concurrently running standard workers across all
-    // processes sharing the semaphore does not exceed the initial count.
+    // Optional cross-process token pool (see `broker_loop` for the design).
+    // Non-null only when attached to a jobserver created by another process.
     sem_t *                                       m_jobserver_sem{nullptr};
+    // Local worker slots: one implicit slot plus one per token currently held
+    // from the global pool. Workers may only start executing a task while
+    // `active_std_workers() < m_granted`.
+    unsigned                                      m_granted{1};
+    // Pool workers currently blocked in `wait_for`; they give up their slot
+    // while blocked.
+    unsigned                                      m_blocked_std_workers{0};
+    condition_variable                            m_broker_cv;
+    std::unique_ptr<lthread>                      m_broker;
 #endif
 
-    // Acquire a token before running a task. Blocks on the global semaphore.
-    // Must be called with `lock` held; temporarily releases it.
-    void acquire_token(unique_lock<mutex> & lock) {
 #if LEAN_JOBSERVER_POSIX
-        if (!m_jobserver_sem) return;
-        lock.unlock();
-        while (sem_wait(m_jobserver_sem) != 0 && errno == EINTR) {}
-        lock.lock();
-        g_holds_token = true;
-#else
-        (void)lock;
-#endif
+    // Pool workers currently executing a task, i.e. excluding idle workers
+    // and workers blocked in `wait_for`.
+    unsigned active_std_workers() const {
+        return (unsigned)m_std_workers.size() - m_idle_std_workers - m_blocked_std_workers;
     }
 
-    // Release the token currently held by this worker to the global semaphore,
-    // if any. A `wait_for` that couldn't reclaim its token non-blockingly
-    // continues un-gated and leaves `g_holds_token == false`, in which case
-    // we skip the `sem_post` to keep accounting balanced.
-    void release_token() {
-#if LEAN_JOBSERVER_POSIX
-        if (!m_jobserver_sem) return;
-        if (g_holds_token) {
-            sem_post(m_jobserver_sem);
-            g_holds_token = false;
+    // May a worker start executing a task right now? This is the
+    // cross-process gate, applied in addition to the local
+    // `m_max_std_workers` throttle.
+    bool jobserver_admits() const {
+        return !m_jobserver_sem || active_std_workers() < m_granted;
+    }
+
+    // Number of slots this process currently has use for: workers already
+    // executing a task plus queued tasks the local throttle would admit.
+    unsigned token_demand() const {
+        unsigned running = (unsigned)m_std_workers.size() - m_idle_std_workers;
+        unsigned can_start = running < m_max_std_workers ?
+            std::min(m_queues_size, m_max_std_workers - running) : 0;
+        return active_std_workers() + can_start;
+    }
+
+    // Wake the broker after a change that may affect `token_demand()`.
+    void notify_broker() {
+        if (m_jobserver_sem)
+            m_broker_cv.notify_one();
+    }
+
+    // The broker is the only thread that ever touches the global semaphore: it
+    // adjusts `m_granted` to follow `token_demand()`, acquiring tokens
+    // non-blockingly (macOS lacks `sem_timedwait`) with a short condvar
+    // timeout between attempts. Workers themselves only ever block on
+    // `m_queue_cv`, so they keep observing shutdown and `wait_for`
+    // notifications as usual and never pile up inside `sem_wait`. The process
+    // always keeps one implicit slot (`m_granted >= 1`) that is not backed by
+    // a token, so no process can be starved into a deadlock by token loss or
+    // contention; the worst case is one oversubscribed worker per process.
+    void broker_loop() {
+        unique_lock<mutex> lock(m_mutex);
+        while (!m_shutting_down) {
+            unsigned demand = token_demand();
+            if (m_granted > demand && m_granted > 1) {
+                // Return surplus tokens to the global pool.
+                sem_post(m_jobserver_sem);
+                m_granted--;
+            } else if (m_granted < demand && sem_trywait(m_jobserver_sem) == 0) {
+                m_granted++;
+                // Hand the new slot to a worker; if all live workers are
+                // busy, spawn one for it.
+                if (m_idle_std_workers == 0 && m_std_workers.size() < m_max_std_workers && m_queues_size > 0)
+                    spawn_worker();
+                else
+                    m_queue_cv.notify_one();
+            } else if (m_granted < demand) {
+                // The global pool is empty; poll again shortly.
+                m_broker_cv.wait_for(lock, chrono::milliseconds(10));
+            } else {
+                m_broker_cv.wait(lock);
+            }
         }
-#endif
+        // Return all tokens before shutdown completes.
+        while (m_granted > 1) {
+            sem_post(m_jobserver_sem);
+            m_granted--;
+        }
     }
+#endif
 
     lean_task_object * dequeue() {
         lean_assert(m_queues_size != 0);
@@ -822,10 +862,19 @@ class task_manager {
             m_max_prio = prio;
         m_queues[prio].push_back(t);
         m_queues_size++;
-        if (!m_idle_std_workers && m_std_workers.size() < m_max_std_workers)
+        if (!m_idle_std_workers && m_std_workers.size() < m_max_std_workers
+#if LEAN_JOBSERVER_POSIX
+            // only spawn a worker that is allowed to run; otherwise the broker
+            // spawns or wakes one when it acquires a token for this task
+            && jobserver_admits()
+#endif
+            )
             spawn_worker();
         else
             m_queue_cv.notify_one();
+#if LEAN_JOBSERVER_POSIX
+        notify_broker();
+#endif
     }
 
     void deactivate_task_core(unique_lock<mutex> & lock, lean_task_object * t) {
@@ -868,34 +917,30 @@ class task_manager {
                 // There's work to be done.
                 // If we have reached the maximum number of standard workers (because the
                 // maximum was decreased by `task_get`), wait for someone else to become
-                // idle before picking up new work.
+                // idle before picking up new work. Likewise if the cross-process
+                // jobserver has not granted us enough slots; the broker wakes us
+                // up when it acquires another token.
                 // But during shutdown, we skip this throttling:
                 // because the finalizer might have called m_queue_cv.notify_all() for the last
                 // time, we don't want to get stuck behind the wait().
                 if (!m_shutting_down &&
-                    m_std_workers.size() - m_idle_std_workers >= m_max_std_workers) {
+                    (m_std_workers.size() - m_idle_std_workers >= m_max_std_workers
+#if LEAN_JOBSERVER_POSIX
+                     || !jobserver_admits()
+#endif
+                     )) {
                     m_queue_cv.wait(lock);
                     continue;
                 }
 
-                // Acquire a jobserver token (drops the mutex while blocked).
-                // After waking we must re-check conditions, because the queue
-                // may have been drained or shutdown may have been requested.
-                acquire_token(lock);
-#if LEAN_JOBSERVER_POSIX
-                if (m_jobserver_sem &&
-                    (m_queues_size == 0 || m_shutting_down ||
-                     m_std_workers.size() - m_idle_std_workers >= m_max_std_workers)) {
-                    release_token();
-                    continue;
-                }
-#endif
-
                 lean_task_object * t = dequeue();
                 m_idle_std_workers--;
                 run_task(lock, t);
-                release_token();
                 m_idle_std_workers++;
+#if LEAN_JOBSERVER_POSIX
+                // demand may have dropped; let the broker return surplus tokens
+                notify_broker();
+#endif
                 reset_heartbeat();
             }
             m_idle_std_workers--;
@@ -1004,6 +1049,7 @@ public:
             sem_t * s = sem_open(name, 0);
             if (s != SEM_FAILED) {
                 m_jobserver_sem = s;
+                m_broker.reset(new lthread([this]() { broker_loop(); }));
             }
         } else {
             // No jobserver set up yet; create one with `max_std_workers`
@@ -1039,6 +1085,11 @@ public:
             // we can assume that `m_std_workers` will not be changed after this line
         }
         m_queue_cv.notify_all();
+#if LEAN_JOBSERVER_POSIX
+        m_broker_cv.notify_all();
+        if (m_broker)
+            m_broker->join();
+#endif
 #ifndef LEAN_EMSCRIPTEN
         // wait for all workers to finish
         for (auto & t : m_std_workers)
@@ -1104,40 +1155,34 @@ public:
         }
         if (in_pool) {
             m_max_std_workers++;
-            if (m_idle_std_workers == 0)
+#if LEAN_JOBSERVER_POSIX
+            // We give up our slot while blocked: a replacement worker can use
+            // it right away, or the broker may return the backing token to
+            // the global pool if there is no local demand.
+            m_blocked_std_workers++;
+            notify_broker();
+#endif
+            if (m_idle_std_workers == 0
+#if LEAN_JOBSERVER_POSIX
+                && jobserver_admits()
+#endif
+                )
                 spawn_worker();
             else
                 m_queue_cv.notify_one();
-#if LEAN_JOBSERVER_POSIX
-            // Release our token globally so a sibling worker (in this or
-            // another process) can pick up the sub-task while we are
-            // blocked. If we don't currently hold a token (e.g. a previous
-            // un-reclaimed `wait_for` left us running un-gated), skip:
-            // there's no token to release.
-            if (m_jobserver_sem && g_holds_token) {
-                sem_post(m_jobserver_sem);
-                g_holds_token = false;
-            }
-#endif
         }
         m_task_finished_cv.wait(lock, [&]() { return t->m_value != nullptr; });
         if (in_pool) {
             m_max_std_workers--;
 #if LEAN_JOBSERVER_POSIX
-            // Try to reclaim a token non-blockingly. If one isn't
-            // immediately available, continue running un-gated rather than
-            // blocking in `sem_wait` — that's what previously let new
-            // `wait_for` calls spawn more workers that piled up in the same
-            // blocking call. The worker-loop's `release_token` will see
-            // `g_holds_token == false` and skip its `sem_post`, so the
-            // initial `sem_post`/`sem_wait` pair stays balanced. The cost is
-            // brief inter-process oversubscription, bounded by the depth of
-            // nested `Task.get`.
-            if (m_jobserver_sem && !g_holds_token) {
-                if (sem_trywait(m_jobserver_sem) == 0) {
-                    g_holds_token = true;
-                }
-            }
+            m_blocked_std_workers--;
+            // Resume immediately even if this exceeds `m_granted`: blocking
+            // here is what previously piled up threads. While
+            // `active_std_workers() > m_granted`, other workers are gated and
+            // the broker sees the elevated demand and acquires a covering
+            // token, so the oversubscription is transient and bounded by the
+            // number of simultaneously resumed waiters.
+            notify_broker();
 #endif
         }
     }

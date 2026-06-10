@@ -272,12 +272,6 @@ inline obj_res thunk_get_own(b_obj_arg t) { return lean_thunk_get_own(t); }
 // =======================================
 // Tasks
 
-class LEAN_EXPORT scoped_task_manager {
-public:
-    scoped_task_manager(unsigned num_workers);
-    ~scoped_task_manager();
-};
-
 inline obj_res task_spawn(obj_arg c, unsigned prio = 0, bool keep_alive = false) { return lean_task_spawn_core(c, prio, keep_alive); }
 inline obj_res task_pure(obj_arg a) { return lean_task_pure(a); }
 inline obj_res task_bind(obj_arg x, obj_arg f, unsigned prio = 0, bool sync = false, bool keep_alive = false) { return lean_task_bind_core(x, f, prio, sync, keep_alive); }

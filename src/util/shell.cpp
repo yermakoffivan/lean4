@@ -344,7 +344,10 @@ extern "C" LEAN_EXPORT int lean_main(int argc, char ** argv) {
         report_profiling_time("initialization", init_time);
     }
 
-    scoped_task_manager scope_task_man(get_shell_num_threads(shell_opts));
+    // The task manager needs the thread count, which is only known after option parsing, so
+    // it is initialized here. It is finalized (together with libuv) in `finalize()` via the
+    // `initializer` destructor below.
+    lean_init_task_manager_using(get_shell_num_threads(shell_opts));
 
     try {
         return run_shell_main(argc - optind, argv + optind, shell_opts);

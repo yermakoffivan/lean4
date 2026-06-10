@@ -7,6 +7,7 @@ Author: Leonardo de Moura
 #include "runtime/stackinfo.h"
 #include "runtime/thread.h"
 #include "runtime/init_module.h"
+#include "runtime/libuv.h"
 #include "util/init_module.h"
 #include "util/io.h"
 #include "kernel/init_module.h"
@@ -43,6 +44,9 @@ extern "C" LEAN_EXPORT void lean_initialize() {
 }
 
 void finalize() {
+    // NOTE: must be run before finalizing the task manager
+    finalize_libuv();
+    lean_finalize_task_manager();
     run_thread_finalizers();
     finalize_constructions_module();
     finalize_library_module();

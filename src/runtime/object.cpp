@@ -904,25 +904,47 @@ class task_manager {
             return;
 
         m_live_std_workers++;
-        m_std_workers.emplace_back(new lthread([this]() {
+        size_t worker_idx = m_std_workers.size();
+        m_std_workers.emplace_back(new lthread([this, worker_idx]() {
             save_stack_info(false);
+            // Set on retirement: destroying the `lthread` detaches the
+            // thread (see `lthread::imp`), so its resources -- most notably
+            // the large default stack reservation -- are released when it
+            // exits instead of accumulating until the destructor's `join`.
+            std::unique_ptr<lthread> self;
             unique_lock<mutex> lock(m_mutex);
             m_idle_std_workers++;
+#if LEAN_JOBSERVER_POSIX
+            bool retiring = false;
+#endif
             while (true) {
 #if LEAN_JOBSERVER_POSIX
                 // Retire surplus workers so that a gated process does not
                 // accumulate threads up to its high-water mark as tokens move
                 // between processes: keep just enough to service every
-                // granted slot plus two spares (slack against spawn/retire
-                // churn around blocking `Task.get`s). If this worker was
-                // woken for a queued task it could have run (free slot), the
-                // retire condition implies several other idle workers exist,
-                // so pass the wakeup on to one of them.
+                // granted slot plus two spares. Only consider retiring when
+                // this worker could not run a task right now anyway -- a
+                // surplus worker woken for runnable work must run it, not
+                // stall it. Only retire after the surplus persisted for a
+                // grace period: `m_granted` follows demand, so without
+                // hysteresis workers would be retired and respawned at task
+                // granularity when tokens are plentiful. On retirement, pass
+                // any pending wakeup on to another idle worker.
                 if (m_jobserver_sem && !m_shutting_down &&
-                    m_live_std_workers > m_granted + m_blocked_std_workers + 2) {
+                    m_live_std_workers > m_granted + m_blocked_std_workers + 2 &&
+                    (m_queues_size == 0 ||
+                     m_live_std_workers - m_idle_std_workers >= m_max_std_workers ||
+                     !jobserver_admits())) {
+                    if (!retiring) {
+                        retiring = true;
+                        m_queue_cv.wait_for(lock, chrono::milliseconds(100));
+                        continue;
+                    }
+                    self = std::move(m_std_workers[worker_idx]);
                     m_queue_cv.notify_one();
                     break;
                 }
+                retiring = false;
 #endif
                 if (m_queues_size == 0) {
                     if (m_shutting_down) {
@@ -1112,9 +1134,17 @@ public:
             m_broker->join();
 #endif
 #ifndef LEAN_EMSCRIPTEN
-        // wait for all workers to finish
-        for (auto & t : m_std_workers)
-            t->join();
+        // Wait for all workers to finish; retired workers have removed (and
+        // detached) themselves from `m_std_workers`. Take the vector under
+        // the lock so we cannot race with an in-flight retirement that
+        // started before `m_shutting_down` was set.
+        std::vector<std::unique_ptr<lthread>> workers;
+        {
+            unique_lock<mutex> lock(m_mutex);
+            workers.swap(m_std_workers);
+        }
+        for (auto & t : workers)
+            if (t) t->join();
 
         unique_lock<mutex> lock(m_mutex);
         m_dedicated_finished_cv.wait(lock, [&]() { return m_num_dedicated_workers == 0; });

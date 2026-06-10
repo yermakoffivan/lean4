@@ -736,10 +736,6 @@ struct scoped_current_task_object : flet<lean_task_object *> {
 class task_manager {
     mutex                                         m_mutex;
     std::vector<std::unique_ptr<lthread>>         m_std_workers;
-    // `m_std_workers` minus workers that have exited: retired surplus workers
-    // (jobserver mode only) remain in `m_std_workers` so the destructor can
-    // join them, but must not count towards any worker accounting.
-    unsigned                                      m_live_std_workers{0};
     unsigned                                      m_idle_std_workers{0};
     unsigned                                      m_max_std_workers{0};
     unsigned                                      m_num_dedicated_workers{0};
@@ -758,8 +754,11 @@ class task_manager {
     // from the global pool. Workers may only start executing a task while
     // `active_std_workers() < m_granted`.
     unsigned                                      m_granted{1};
-    // Pool workers currently blocked in `wait_for`; they give up their slot
-    // while blocked.
+    // Pool workers currently blocked in `wait_for`. A blocked worker does not
+    // count as active, so its slot immediately admits a replacement worker
+    // under the same grant: the chain of tasks resolving a blocked worker
+    // never waits for a token (see also the surplus grace period in
+    // `broker_loop`).
     unsigned                                      m_blocked_std_workers{0};
     condition_variable                            m_broker_cv;
     std::unique_ptr<lthread>                      m_broker;
@@ -769,7 +768,7 @@ class task_manager {
     // Pool workers currently executing a task, i.e. excluding idle workers
     // and workers blocked in `wait_for`.
     unsigned active_std_workers() const {
-        return m_live_std_workers - m_idle_std_workers - m_blocked_std_workers;
+        return (unsigned)m_std_workers.size() - m_idle_std_workers - m_blocked_std_workers;
     }
 
     // May a worker start executing a task right now? This is the
@@ -779,10 +778,13 @@ class task_manager {
         return !m_jobserver_sem || active_std_workers() < m_granted;
     }
 
-    // Number of slots this process currently has use for: workers already
-    // executing a task plus queued tasks the local throttle would admit.
+    // Number of slots this process currently has use for: workers executing
+    // a task plus queued tasks the local throttle would admit. Workers
+    // blocked in `wait_for` are not counted: a chain of blocked tasks has a
+    // single runnable tip, and the slot freed by the blocked worker already
+    // admits its replacement under the same grant.
     unsigned token_demand() const {
-        unsigned running = m_live_std_workers - m_idle_std_workers;
+        unsigned running = (unsigned)m_std_workers.size() - m_idle_std_workers;
         unsigned can_start = running < m_max_std_workers ?
             std::min(m_queues_size, m_max_std_workers - running) : 0;
         return active_std_workers() + can_start;
@@ -805,9 +807,27 @@ class task_manager {
     // contention; the worst case is one oversubscribed worker per process.
     void broker_loop() {
         unique_lock<mutex> lock(m_mutex);
+        // Time since which `m_granted > token_demand()` has held continuously;
+        // the epoch value means "not currently in surplus". Surplus tokens are
+        // only returned to the global pool after a grace period: demand
+        // briefly dips whenever a worker blocks in `wait_for` before the
+        // tasks resolving it are enqueued, and giving the backing token away
+        // in that window would stall the chain on cross-process token
+        // re-acquisition.
+        chrono::steady_clock::time_point surplus_since{};
         while (!m_shutting_down) {
             unsigned demand = token_demand();
+            if (m_granted <= demand)
+                surplus_since = {};
             if (m_granted > demand && m_granted > 1) {
+                auto now = chrono::steady_clock::now();
+                if (surplus_since == chrono::steady_clock::time_point{}) {
+                    surplus_since = now;
+                }
+                if (now - surplus_since < chrono::milliseconds(25)) {
+                    m_broker_cv.wait_for(lock, chrono::milliseconds(25));
+                    continue;
+                }
                 // Return surplus tokens to the global pool.
                 sem_post(m_jobserver_sem);
                 m_granted--;
@@ -815,7 +835,7 @@ class task_manager {
                 m_granted++;
                 // Hand the new slot to a worker; if all live workers are
                 // busy, spawn one for it.
-                if (m_idle_std_workers == 0 && m_live_std_workers < m_max_std_workers && m_queues_size > 0)
+                if (m_idle_std_workers == 0 && m_std_workers.size() < m_max_std_workers && m_queues_size > 0)
                     spawn_worker();
                 else
                     m_queue_cv.notify_one();
@@ -866,7 +886,7 @@ class task_manager {
             m_max_prio = prio;
         m_queues[prio].push_back(t);
         m_queues_size++;
-        if (!m_idle_std_workers && m_live_std_workers < m_max_std_workers
+        if (!m_idle_std_workers && m_std_workers.size() < m_max_std_workers
 #if LEAN_JOBSERVER_POSIX
             // only spawn a worker that is allowed to run; otherwise the broker
             // spawns or wakes one when it acquires a token for this task
@@ -903,49 +923,11 @@ class task_manager {
         if (m_shutting_down)
             return;
 
-        m_live_std_workers++;
-        size_t worker_idx = m_std_workers.size();
-        m_std_workers.emplace_back(new lthread([this, worker_idx]() {
+        m_std_workers.emplace_back(new lthread([this]() {
             save_stack_info(false);
-            // Set on retirement: destroying the `lthread` detaches the
-            // thread (see `lthread::imp`), so its resources -- most notably
-            // the large default stack reservation -- are released when it
-            // exits instead of accumulating until the destructor's `join`.
-            std::unique_ptr<lthread> self;
             unique_lock<mutex> lock(m_mutex);
             m_idle_std_workers++;
-#if LEAN_JOBSERVER_POSIX
-            bool retiring = false;
-#endif
             while (true) {
-#if LEAN_JOBSERVER_POSIX
-                // Retire surplus workers so that a gated process does not
-                // accumulate threads up to its high-water mark as tokens move
-                // between processes: keep just enough to service every
-                // granted slot plus two spares. Only consider retiring when
-                // this worker could not run a task right now anyway -- a
-                // surplus worker woken for runnable work must run it, not
-                // stall it. Only retire after the surplus persisted for a
-                // grace period: `m_granted` follows demand, so without
-                // hysteresis workers would be retired and respawned at task
-                // granularity when tokens are plentiful. On retirement, pass
-                // any pending wakeup on to another idle worker.
-                if (m_jobserver_sem && !m_shutting_down &&
-                    m_live_std_workers > m_granted + m_blocked_std_workers + 2 &&
-                    (m_queues_size == 0 ||
-                     m_live_std_workers - m_idle_std_workers >= m_max_std_workers ||
-                     !jobserver_admits())) {
-                    if (!retiring) {
-                        retiring = true;
-                        m_queue_cv.wait_for(lock, chrono::milliseconds(100));
-                        continue;
-                    }
-                    self = std::move(m_std_workers[worker_idx]);
-                    m_queue_cv.notify_one();
-                    break;
-                }
-                retiring = false;
-#endif
                 if (m_queues_size == 0) {
                     if (m_shutting_down) {
                         // We're done
@@ -966,7 +948,7 @@ class task_manager {
                 // because the finalizer might have called m_queue_cv.notify_all() for the last
                 // time, we don't want to get stuck behind the wait().
                 if (!m_shutting_down &&
-                    (m_live_std_workers - m_idle_std_workers >= m_max_std_workers
+                    (m_std_workers.size() - m_idle_std_workers >= m_max_std_workers
 #if LEAN_JOBSERVER_POSIX
                      || !jobserver_admits()
 #endif
@@ -986,7 +968,6 @@ class task_manager {
                 reset_heartbeat();
             }
             m_idle_std_workers--;
-            m_live_std_workers--;
         }));
     }
 
@@ -1134,17 +1115,9 @@ public:
             m_broker->join();
 #endif
 #ifndef LEAN_EMSCRIPTEN
-        // Wait for all workers to finish; retired workers have removed (and
-        // detached) themselves from `m_std_workers`. Take the vector under
-        // the lock so we cannot race with an in-flight retirement that
-        // started before `m_shutting_down` was set.
-        std::vector<std::unique_ptr<lthread>> workers;
-        {
-            unique_lock<mutex> lock(m_mutex);
-            workers.swap(m_std_workers);
-        }
-        for (auto & t : workers)
-            if (t) t->join();
+        // wait for all workers to finish
+        for (auto & t : m_std_workers)
+            t->join();
 
         unique_lock<mutex> lock(m_mutex);
         m_dedicated_finished_cv.wait(lock, [&]() { return m_num_dedicated_workers == 0; });
@@ -1207,9 +1180,9 @@ public:
         if (in_pool) {
             m_max_std_workers++;
 #if LEAN_JOBSERVER_POSIX
-            // We give up our slot while blocked: a replacement worker can use
-            // it right away, or the broker may return the backing token to
-            // the global pool if there is no local demand.
+            // We lend our slot to a replacement worker while blocked; the
+            // broker keeps the backing token around for a grace period even
+            // if there is no local demand at this instant.
             m_blocked_std_workers++;
             notify_broker();
 #endif
@@ -1226,13 +1199,11 @@ public:
         if (in_pool) {
             m_max_std_workers--;
 #if LEAN_JOBSERVER_POSIX
-            m_blocked_std_workers--;
-            // Resume immediately even if this exceeds `m_granted`: blocking
-            // here is what previously piled up threads. While
+            // Resume immediately even if this exceeds `m_granted`: while
             // `active_std_workers() > m_granted`, other workers are gated and
             // the broker sees the elevated demand and acquires a covering
-            // token, so the oversubscription is transient and bounded by the
-            // number of simultaneously resumed waiters.
+            // token, so any oversubscription is transient.
+            m_blocked_std_workers--;
             notify_broker();
 #endif
         }

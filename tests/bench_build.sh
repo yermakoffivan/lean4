@@ -5,11 +5,6 @@
 # The radar environment variables must be provided.
 # See also the https://github.com/leanprover/radar readme.
 
-# Allow a little oversubscription in the cross-process jobserver: strict
-# one-token-per-core leaves cores idle during short blocking waits and token
-# redistribution, costing wall-clock time.
-export LEAN_JOB_SEMAPHORE_AUTO=$(( $(nproc) * 3 / 2 ))
-
 LLVM_RELEASE=22.1.4
 LLVM_TARBALL="$RADAR_CACHE/llvm/$LLVM_RELEASE.tar.zst"
 

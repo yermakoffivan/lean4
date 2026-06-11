@@ -247,6 +247,112 @@ example : Id Nat := do (label := blk)
   return 1
 
 /-!
+`(capture := false)`: the loop does not rebind the default `break`/`continue` targets, so
+unlabeled jumps tunnel to the enclosing loop; the loop itself is addressable only via its label.
+-/
+
+def captureFalseBreak : Id (Array Nat) := do
+  let mut out := #[]
+  for i in [0:3] do
+    repeat (label := m) (capture := false)
+      if i == 1 then
+        break
+      out := out.push i
+      break (label := m)
+  return out
+
+/-- info: #[0] -/
+#guard_msgs in #eval captureFalseBreak
+
+def captureFalseContinue : Id (Array Nat) := do
+  let mut out := #[]
+  for i in [0:3] do
+    repeat (label := m) (capture := false)
+      if i == 1 then
+        continue
+      out := out.push i
+      break (label := m)
+    out := out.push 100
+  return out
+
+/-- info: #[0, 100, 2, 100] -/
+#guard_msgs in #eval captureFalseContinue
+
+def whileNoCapture : Id Nat := do
+  let mut n := 0
+  for _ in [0:3] do
+    let mut k := 0
+    while (label := w) (capture := false) k < 2 do
+      k := k + 1
+      if k == 2 then
+        continue
+      n := n + 1
+  return n
+
+/-- info: 3 -/
+#guard_msgs in #eval whileNoCapture
+
+/-!
+A `machine`-style encoding: states as a `mut` variable, `goto` as labeled `continue` on a
+non-capturing `repeat`; user `break` inside a state body still targets the enclosing `for`.
+-/
+
+def scan (xs : List Nat) : Id (Array Nat) := do
+  let mut out := #[]
+  for x in xs do
+    let mut state := 0
+    repeat (label := step) (capture := false)
+      match state with
+      | 0 =>
+        if x == 0 then
+          break
+        state := 1
+        continue (label := step)
+      | _ =>
+        out := out.push (x * 10)
+        break (label := step)
+  return out
+
+/-- info: #[10, 20] -/
+#guard_msgs in #eval scan [1, 2, 0, 3]
+
+/-- error: `break` must be nested inside a loop -/
+#guard_msgs in
+example : Id Unit := do
+  repeat (label := m) (capture := false)
+    break
+
+/-- error: `(capture := false)` on `while` requires a `(label := ...)` option -/
+#guard_msgs in
+example : Id Unit := do
+  let mut n := 0
+  while (capture := false) n < 3 do
+    n := n + 1
+
+/-- error: The `capture` configuration option is only allowed on loops -/
+#guard_msgs in
+example : Id Nat := do
+  return (capture := false) 1
+
+/-- error: Expected `true` or `false` -/
+#guard_msgs in
+example : Id Unit := do
+  repeat (capture := maybe)
+    break
+
+-- `(capture := true)` is the default behavior
+def captureTrue : Id Nat := do
+  let mut n := 0
+  for (capture := true) i in [0:5] do
+    if i == 2 then
+      break
+    n := n + 1
+  return n
+
+/-- info: 2 -/
+#guard_msgs in #eval captureTrue
+
+/-!
 Syntax that must keep parsing as before: parenthesized terms after `do`/`return` are not
 configuration items.
 -/

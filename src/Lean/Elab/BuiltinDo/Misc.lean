@@ -31,6 +31,7 @@ open InternalSyntax in
 @[builtin_doElem_elab Lean.Parser.Term.doNested] def elabDoNested : DoElab := fun stx dec => do
   let `(doNested| do $cfg:optConfig $doSeq) := stx | throwUnsupportedSyntax
   let config ← elabDoConfig cfg
+  config.checkNoCapture
   let some l := config.label? | elabDoSeq ⟨doSeq⟩ dec
   -- A labeled nested `do` block is a jump target: `return (label := l) v` makes the block
   -- evaluate to `v`. Its labeled returns become regular exits of the block, all flowing into the

@@ -66,16 +66,27 @@ and subsequent children sit one index lower than in freshly parsed syntax.
 def getDoOptConfig (stx : Syntax) (i : Nat) : Option Syntax × Nat :=
   if stx[i].isOfKind ``optConfig then (some stx[i], 1) else (none, 0)
 
-/-- Extracts the label identifier of the `(label := l)` item from an `optConfig` node. -/
-def getDoConfigLabel? (cfg : Syntax) : Option Ident :=
+/-- Extracts the value of the `(key := value)` item with the given key from an `optConfig` node. -/
+def getDoConfigItem? (cfg : Syntax) (key : Name) : Option Syntax :=
   cfg[0].getArgs.findSome? fun item =>
     -- configItem wraps valConfigItem := "(" >> ident >> " := " >> term >> ")"
     let inner := item[0]
-    if inner.isOfKind ``valConfigItem && inner[1].getId.eraseMacroScopes == `label
-        && inner[3].isIdent then
-      some ⟨inner[3]⟩
+    if inner.isOfKind ``valConfigItem && inner[1].getId.eraseMacroScopes == key then
+      some inner[3]
     else
       none
+
+/-- Extracts the label identifier of the `(label := l)` item from an `optConfig` node. -/
+def getDoConfigLabel? (cfg : Syntax) : Option Ident :=
+  match getDoConfigItem? cfg `label with
+  | some v => if v.isIdent then some ⟨v⟩ else none
+  | none => none
+
+/-- Whether the `(capture := false)` item is absent from an `optConfig` node of a loop. -/
+def getDoConfigCapture (cfg : Syntax) : Bool :=
+  match getDoConfigItem? cfg `capture with
+  | some v => !(v.isIdent && v.getId.eraseMacroScopes == `false)
+  | none => true
 
 private def nodeNoAnonAntiquot (name : String) (kind : SyntaxNodeKind) (p : Parser) : Parser :=
   withAntiquot (mkAntiquot name kind (anonymous := false)) <| node kind p

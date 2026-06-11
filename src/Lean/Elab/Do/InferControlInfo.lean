@@ -205,10 +205,12 @@ partial def ofElem (stx : TSyntax `doElem) : TermElabM ControlInfo := do
     ControlInfo.alternative {} <$> ofSeq elseSeq
   -- For/Repeat
   | `(doElem| for $cfg:optConfig $[$[$_ :]? $_ in $_],* do $bodySeq) =>
-    -- The loop handles the `break`s and `continue`s targeting it (unlabeled ones and those
-    -- naming its own label); jumps to enclosing constructs remain effects of the loop element.
+    -- The loop handles the `break`s and `continue`s targeting it: those naming its own label,
+    -- and the unlabeled ones unless `(capture := false)` is set. Jumps to enclosing constructs
+    -- remain effects of the loop element.
     let info ← ofSeq bodySeq
-    let ownLabels := Name.anonymous :: ((getDoConfigLabel? cfg).map (·.getId)).toList
+    let ownLabels := ((getDoConfigLabel? cfg).map (·.getId)).toList
+      ++ (if getDoConfigCapture cfg then [Name.anonymous] else [])
     return { info with
       numRegularExits := 1,
       breaks := ownLabels.foldl (·.erase ·) info.breaks,
@@ -220,7 +222,8 @@ partial def ofElem (stx : TSyntax `doElem) : TermElabM ControlInfo := do
     -- surrounding continuation still has a polymorphic value to hand back, and any dead-code
     -- warning on subsequent elements is actionable.
     let info ← ofSeq bodySeq
-    let ownLabels := Name.anonymous :: ((getDoConfigLabel? cfg).map (·.getId)).toList
+    let ownLabels := ((getDoConfigLabel? cfg).map (·.getId)).toList
+      ++ (if getDoConfigCapture cfg then [Name.anonymous] else [])
     let breaksThis := ownLabels.any info.breaks.contains
     return { info with
       numRegularExits := if breaksThis then 1 else 0,

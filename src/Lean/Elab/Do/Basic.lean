@@ -699,12 +699,15 @@ def withDoBlockResultType (doBlockResultType : Expr) (k : DoElabM α) : DoElabM 
 
 /--
 Prepare the context for elaborating the body of a loop.
-This includes setting the return continuation, break continuation, continue continuation, the
-loop's own label, and overrides for labeled targets whose jumps tunnel through the loop, as well
-as the changed result type of the `do` block in the loop body.
+This includes setting the return continuation, the loop's own label, overrides for labeled targets
+whose jumps tunnel through the loop, and the targets of unlabeled `break`/`continue`: the loop's
+own continuations when the loop captures them (the default), or the given tunneled continuations
+to an enclosing loop otherwise.
 -/
 def enterLoopBody (label? : Option Ident) (breakCont continueCont : DoElabM Expr) (returnCont : ReturnCont)
-    (labeledOverrides : List (Name × LabeledTarget) := []) (body : DoElabM α) : DoElabM α := do
+    (labeledOverrides : List (Name × LabeledTarget) := []) (capture : Bool := true)
+    (tunneledBreakCont tunneledContinueCont : Option (DoElabM Expr) := none)
+    (body : DoElabM α) : DoElabM α := do
   let contInfo := (← read).contInfo.toContInfo
   let mut labeled := contInfo.labeled
   for (l, target) in labeledOverrides do
@@ -713,6 +716,9 @@ def enterLoopBody (label? : Option Ident) (breakCont continueCont : DoElabM Expr
     if labeled.contains l.getId then
       throwErrorAt l "Label `{l}` is already in scope"
     labeled := labeled.insert l.getId (.loop breakCont continueCont)
+  let (breakCont, continueCont) :=
+    if capture then (some breakCont, some continueCont)
+    else (tunneledBreakCont, tunneledContinueCont)
   let contInfo := { contInfo with returnCont, breakCont, continueCont, labeled }.toContInfoRef
   withReader (fun ctx => { ctx with contInfo }) body
 
@@ -998,6 +1004,8 @@ def elabNestedAction : Term.TermElab := fun stx _ty? => do
 structure DoConfig where
   /-- The block or loop label introduced by `(label := l)`. -/
   label? : Option Ident := none
+  /-- Whether the loop rebinds the default `break`/`continue` targets, set by `(capture := b)`. -/
+  capture? : Option Bool := none
 
 /-- Elaborates the `optConfig` of a `do`-related element. -/
 def elabDoConfig (cfg : Syntax) : TermElabM DoConfig := do
@@ -1016,8 +1024,22 @@ def elabDoConfig (cfg : Syntax) : TermElabM DoConfig := do
       unless config.label?.isNone do
         throwErrorAt item "Duplicate `do` configuration option `label`"
       config := { config with label? := some ⟨v⟩ }
+    | `capture =>
+      let v := inner[3]
+      let b ← match v.isIdent, v.getId.eraseMacroScopes with
+        | true, `true => pure true
+        | true, `false => pure false
+        | _, _ => throwErrorAt v "Expected `true` or `false`"
+      unless config.capture?.isNone do
+        throwErrorAt item "Duplicate `do` configuration option `capture`"
+      config := { config with capture? := some b }
     | k => throwErrorAt key "Unsupported `do` configuration option `{k}`"
   return config
+
+/-- Throws an error if the configuration contains the `capture` option, which only loops accept. -/
+def DoConfig.checkNoCapture (config : DoConfig) : TermElabM Unit := do
+  if config.capture?.isSome then
+    throwError "The `capture` configuration option is only allowed on loops"
 
 /-- Elaborate `doSeq` using `ops` for pure/bind construction. -/
 def elabDoWith (ops : DoOps) (doSeq : TSyntax ``doSeq)
@@ -1041,4 +1063,5 @@ def elabDoWith (ops : DoOps) (doSeq : TSyntax ``doSeq)
 def elabDo : Term.TermElab := fun e expectedType? => do
   let `(do $cfg:optConfig $doSeq) := e | throwError "unexpected `do` block syntax{indentD e}"
   let config ← elabDoConfig cfg
+  config.checkNoCapture
   elabDoWith .default doSeq expectedType? (label? := config.label?)

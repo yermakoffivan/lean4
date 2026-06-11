@@ -19,6 +19,7 @@ open Lean.Meta
 @[builtin_doElem_elab Lean.Parser.Term.doReturn] def elabDoReturn : DoElab := fun stx dec => do
   let `(doReturn| return $cfg:optConfig $[$e?]?) := stx | throwUnsupportedSyntax
   let config ← elabDoConfig cfg
+  config.checkNoCapture
   -- When using the ControlLifter framework, `returnCont.resultType` can be different than the
   -- result type of the `do` block. That's why we track it separately.
   -- trace[Elab.do] "return e: {e} with type {returnCont.resultType}"
@@ -38,6 +39,7 @@ open Lean.Meta
 @[builtin_doElem_elab Lean.Parser.Term.doBreak] def elabDoBreak : DoElab := fun stx dec => do
   let `(doBreak| break $cfg:optConfig) := stx | throwUnsupportedSyntax
   let config ← elabDoConfig cfg
+  config.checkNoCapture
   let breakCont ← match config.label? with
     | none => (← getBreakCont).getDM (throwError "`break` must be nested inside a loop")
     | some l => match ← getLabeledTarget? l.getId with
@@ -51,6 +53,7 @@ open Lean.Meta
 @[builtin_doElem_elab Lean.Parser.Term.doContinue] def elabDoContinue : DoElab := fun stx dec => do
   let `(doContinue| continue $cfg:optConfig) := stx | throwUnsupportedSyntax
   let config ← elabDoConfig cfg
+  config.checkNoCapture
   let continueCont ← match config.label? with
     | none => (← getContinueCont).getDM (throwError "`continue` must be nested inside a loop")
     | some l => match ← getLabeledTarget? l.getId with

@@ -65,6 +65,14 @@ where expand (tk : Syntax) (decls : Array (TSyntax ``doForDecl)) (cfg : TSyntax 
     let `(doForDecl| $[$h? : ]? $y in $ys) := doForDecl | Macro.throwUnsupported
     if let some h := h? then
       Macro.throwErrorAt h "The proof annotation here has not been implemented yet."
+    -- The injected exhaustion `break` must stop this loop even when it does not capture
+    -- unlabeled jumps, in which case it needs to address the loop by its label.
+    let breakStx ← match getDoConfigLabel? cfg with
+      | some l => `(doElem| break (label := $l))
+      | none =>
+        unless getDoConfigCapture cfg do
+          Macro.throwErrorAt cfg "`(capture := false)` on a multi-collection `for` requires a `(label := ...)` option"
+        `(doElem| break)
     /- Recall that `@` (explicit) disables `coeAtOutParam`.
        We used `@` at `Stream` functions to make sure `resultIsOutParamSupport` is not used. -/
     let toStreamApp ← withRef ys `(@Std.toStream _ _ _ $ys)
@@ -72,7 +80,7 @@ where expand (tk : Syntax) (decls : Array (TSyntax ``doForDecl)) (cfg : TSyntax 
     doElems := doElems.push (← `(doSeqItem| let mut $s := $toStreamApp:term))
     body ← `(doSeq|
       match @Std.Stream.next? _ _ _ $s with
-        | none => break
+        | none => $breakStx:doElem
         | some ($y, s') =>
           $s:ident := s'
           do $body)
@@ -116,9 +124,12 @@ private structure TunneledJump where
   let oldReturnCont ← getReturnCont
   let loopMutVars := mutVars.filter fun x => info.reassigns.contains x.getId
 
-  -- Collect the jumps that tunnel through the `forIn` state tuple. Jumps to unknown or
+  -- Collect the jumps that tunnel through the `forIn` state tuple. With `(capture := false)`,
+  -- unlabeled `break`/`continue` tunnel to the enclosing loop. Jumps to unknown or
   -- kind-mismatched labels are not tunneled; they are reported when the jump itself is elaborated.
-  let ownLabels := Name.anonymous :: (config.label?.map (·.getId)).toList
+  let capture := config.capture?.getD true
+  let ownLabels := (config.label?.map (·.getId)).toList
+    ++ (if capture then [Name.anonymous] else [])
   let mut tunnelsAcc : Array TunneledJump := #[]
   for (l, _) in info.returns.toList do
     let returnCont? ←
@@ -133,12 +144,26 @@ private structure TunneledJump where
                                       payloadType := returnCont.resultType, afterLoop := returnCont.k }
   for l in info.breaks.toList do
     unless ownLabels.contains l do
-      if let some (.loop breakCont _) ← getLabeledTarget? l then
+      let breakCont? ←
+        if l == Name.anonymous then
+          getBreakCont
+        else
+          match ← getLabeledTarget? l with
+          | some (.loop breakCont _) => pure (some breakCont)
+          | _ => pure none
+      if let some breakCont := breakCont? then
         tunnelsAcc := tunnelsAcc.push { label := l, kind := .break, varName := ← mkFreshUserName `__b,
                                         payloadType := ← mkPUnit, afterLoop := fun _ => breakCont }
   for l in info.continues.toList do
     unless ownLabels.contains l do
-      if let some (.loop _ continueCont) ← getLabeledTarget? l then
+      let continueCont? ←
+        if l == Name.anonymous then
+          getContinueCont
+        else
+          match ← getLabeledTarget? l with
+          | some (.loop _ continueCont) => pure (some continueCont)
+          | _ => pure none
+      if let some continueCont := continueCont? then
         tunnelsAcc := tunnelsAcc.push { label := l, kind := .continue, varName := ← mkFreshUserName `__c,
                                         payloadType := ← mkPUnit, afterLoop := fun _ => continueCont }
   let tunnels := tunnelsAcc
@@ -215,6 +240,8 @@ private structure TunneledJump where
         throwError "Early returning {e} but the info said there is no early return" : DoElabM Expr) }
     let mut loopOverrides : NameMap (Option (DoElabM Expr) × Option (DoElabM Expr)) := {}
     let mut blockOverrides : List (Name × LabeledTarget) := []
+    let mut tunneledBreakCont := none
+    let mut tunneledContinueCont := none
     for (t, i) in tunnels.zipIdx do
       match t.kind with
       | .return =>
@@ -225,17 +252,24 @@ private structure TunneledJump where
           blockOverrides := (t.label, .block { resultType := t.payloadType, k }) :: blockOverrides
       | .break =>
         let jump := do mkDone (some (i, ← mkPUnitUnit))
-        let (_, c?) := loopOverrides.getD t.label (none, none)
-        loopOverrides := loopOverrides.insert t.label (some jump, c?)
+        if t.label == Name.anonymous then
+          tunneledBreakCont := some jump
+        else
+          let (_, c?) := loopOverrides.getD t.label (none, none)
+          loopOverrides := loopOverrides.insert t.label (some jump, c?)
       | .continue =>
         let jump := do mkDone (some (i, ← mkPUnitUnit))
-        let (b?, _) := loopOverrides.getD t.label (none, none)
-        loopOverrides := loopOverrides.insert t.label (b?, some jump)
+        if t.label == Name.anonymous then
+          tunneledContinueCont := some jump
+        else
+          let (b?, _) := loopOverrides.getD t.label (none, none)
+          loopOverrides := loopOverrides.insert t.label (b?, some jump)
     let unused : DoElabM Expr :=
       throwError "Internal error in the `do` elaborator: unused tunneled jump continuation"
     let labeledOverrides := blockOverrides ++ loopOverrides.toList.map fun (l, b?, c?) =>
       (l, LabeledTarget.loop (b?.getD unused) (c?.getD unused))
-    enterLoopBody config.label? breakCont continueCont returnCont labeledOverrides do
+    enterLoopBody config.label? breakCont continueCont returnCont labeledOverrides
+      capture tunneledBreakCont tunneledContinueCont do
     -- Elaborate the loop body, which must have result type `PUnit`, just like the whole `for` loop.
     elabDoSeq body { dec with k := continueCont, kind := .duplicable }
 

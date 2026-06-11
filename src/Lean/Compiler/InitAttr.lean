@@ -158,33 +158,65 @@ def declareBuiltin (forDecl : Name) (value : Expr) : CoreM Unit :=
     addAndCompile decl
     IO.ofExcept (setBuiltinInitAttr (← getEnv) name) >>= setEnv
 
+private unsafe def runInitAttrForMod
+    (env : Environment) (opts : Options) (mod : Name) (modIdx : Nat) : IO Unit := do
+  -- any native Lean code reachable by the interpreter (i.e. from shared
+  -- libraries with their corresponding module in the Environment) must
+  -- first be initialized
+  let pkg? := env.getModulePackageByIdx? modIdx
+  if (← runModInit mod pkg?) then
+    return
+  -- As `[init]` decls can have global side effects, ensure we run them at most once,
+  -- just like the compiled code does.
+  if (← interpretedModInits.get).contains mod then
+    return
+  interpretedModInits.modify (·.insert mod)
+  let modEntries := regularInitAttr.ext.getModuleEntries env modIdx
+  -- `getModuleIREntries` is identical to `getModuleEntries` if we loaded only one of .olean/.ir
+  -- so deduplicate (these lists should be very short)
+  let modEntries := modEntries ++ (regularInitAttr.ext.getModuleIREntries env modIdx).filter (!modEntries.contains ·)
+  for (decl, initDecl) in modEntries do
+    -- Skip initializers we do not have IR for; they should not be reachable by interpretation.
+    if !Elab.inServer.get opts && getIRPhases env decl == .runtime then
+      continue
+    if initDecl.isAnonymous then
+      let initFn ← IO.ofExcept <| env.evalConst (IO Unit) opts decl
+      initFn
+    else
+      runInit env opts decl initDecl
+
 @[export lean_run_init_attrs]
 private unsafe def runInitAttrs (env : Environment) (opts : Options) : IO Unit := do
   if (← isInitializerExecutionEnabled) then
     for mod in env.header.moduleNames, modIdx in 0...* do
-      -- any native Lean code reachable by the interpreter (i.e. from shared
-      -- libraries with their corresponding module in the Environment) must
-      -- first be initialized
-      let pkg? := env.getModulePackageByIdx? modIdx
-      if (← runModInit mod pkg?) then
-        continue
-      -- As `[init]` decls can have global side effects, ensure we run them at most once,
-      -- just like the compiled code does.
-      if (← interpretedModInits.get).contains mod then
-        continue
-      interpretedModInits.modify (·.insert mod)
-      let modEntries := regularInitAttr.ext.getModuleEntries env modIdx
-      -- `getModuleIREntries` is identical to `getModuleEntries` if we loaded only one of .olean/.ir
-      -- so deduplicate (these lists should be very short)
-      let modEntries := modEntries ++ (regularInitAttr.ext.getModuleIREntries env modIdx).filter (!modEntries.contains ·)
-      for (decl, initDecl) in modEntries do
-        -- Skip initializers we do not have IR for; they should not be reachable by interpretation.
-        if !Elab.inServer.get opts && getIRPhases env decl == .runtime then
-          continue
-        if initDecl.isAnonymous then
-          let initFn ← IO.ofExcept <| env.evalConst (IO Unit) opts decl
-          initFn
-        else
-          runInit env opts decl initDecl
+      runInitAttrForMod env opts mod modIdx
+
+/--
+Like `runInitAttrs`, but walks only the given module indices. Used by `--incr-load`: the indices
+identify modules with non-empty `regularInitAttr` entries, so the loader skips page-faulting
+dep-region pages for modules without `[init]` work. Assumes the host process has already
+initialized the saved env's native `builtin_initialize` side effects (typically because the
+statically-linked Lean runtime ran them at startup) and skips `runModInit` for the omitted modules.
+-/
+unsafe def runInitAttrsForModules
+    (env : Environment) (modIdxs : Array Nat) (opts : Options) : IO Unit := do
+  if !(← isInitializerExecutionEnabled) then
+    throw <| IO.userError "`enableInitializersExecution` must be run before reusing a `--incr-load` snapshot"
+  for modIdx in modIdxs do
+    if h : modIdx < env.header.moduleNames.size then
+      runInitAttrForMod env opts env.header.moduleNames[modIdx] modIdx
+
+/--
+Returns the indices of modules in `env.header.moduleNames` whose `regularInitAttr` has non-empty
+entries. Computed at `--incr-(header-)save` time and consumed by `runInitAttrsForModules` on
+`--incr-load`.
+-/
+def getRegularInitAttrModIdxs (env : Environment) : Array Nat := Id.run do
+  let mut idxs := #[]
+  for _mod in env.header.moduleNames, modIdx in 0...* do
+    if !(regularInitAttr.ext.getModuleEntries env modIdx).isEmpty
+        || !(regularInitAttr.ext.getModuleIREntries env modIdx).isEmpty then
+      idxs := idxs.push modIdx
+  idxs
 
 end Lean

@@ -9,6 +9,7 @@ prelude
 public import Lean.Language.Lean
 public import Lean.Server.References
 public import Lean.Util.Profiler
+import Lean.Compiler.InitAttr  -- for `runInitAttrsForModules` on snapshot load
 
 public section
 
@@ -132,6 +133,40 @@ def process (input : String) (env : Environment) (opts : Options) (fileName : Op
   let s ← IO.processCommands inputCtx { : Parser.ModuleParserState } (Command.mkState env {} opts)
   pure (s.commandState.env, s.commandState.messages)
 
+/--
+On-disk wrapper for `--incr-(header-)save`: bundles the snapshot with the indices
+`runInitAttrsForModules` walks on load so we skip page-faulting dep-region `Name`s for modules
+without `[init]` work.
+-/
+private structure IncrSnapshot where
+  snap        : Language.Lean.InitialSnapshot
+  initModIdxs : Array Nat
+
+/-- Loads a snapshot saved by `--incr-(header-)save`. -/
+private unsafe def loadIncrSnapshot (fname : System.FilePath) :
+    IO IncrSnapshot := do
+  let depsFile := fname.addExtension "deps"
+  let depPaths : Array System.FilePath := (← IO.FS.lines depsFile).map (⟨·⟩)
+  let mut depRegions : Array CompactedRegion := #[]
+  for p in depPaths do
+    -- `depRegions` must be passed for `.olean <- .olean.server <- ...` pointer reuse.
+    let (_, region) ← CompactedRegion.read (α := ModuleData) p depRegions
+    depRegions := depRegions.push region
+  let (data, _region) ←
+    CompactedRegion.read (α := IncrSnapshot) fname depRegions
+  return data
+
+/--
+Resolves every `SnapshotTask.cancelTk?` reachable from the given snapshot tree so that the
+unresolved `CancelToken.promise` tasks they would otherwise leave behind don't block the
+compactor's traversal during the subsequent save.
+-/
+private partial def resolveCancelTokensForSave (s : Language.SnapshotTree) : BaseIO Unit := do
+  for child in s.children do
+    if let some tk := child.cancelTk? then
+      tk.set
+    resolveCancelTokensForSave child.get
+
 def runFrontend
     (input : String)
     (opts : Options)
@@ -145,10 +180,15 @@ def runFrontend
     (plugins : Array System.FilePath := #[])
     (printStats : Bool := false)
     (setup? : Option ModuleSetup := none)
+    (incrSaveFileName? : Option System.FilePath := none)
+    (incrLoadFileName? : Option System.FilePath := none)
+    (incrHeaderSaveFileName? : Option System.FilePath := none)
     : IO (Option Environment) := do
   let startTime := (← IO.monoNanosNow).toFloat / 1000000000
   let inputCtx := Parser.mkInputContext input fileName
-  let opts := Lean.internal.cmdlineSnapshots.setIfNotSet opts true
+  -- default `cmdlineSnapshots` to true (not done as default value for API back-compat reasons)
+  -- except when full-snapshotting so that enough information for resumption is available
+  let opts := Lean.internal.cmdlineSnapshots.setIfNotSet opts incrSaveFileName?.isNone
   -- default to async elaboration; see also `Elab.async` docs
   let opts := Elab.async.setIfNotSet opts true
   let ctx := { inputCtx with }
@@ -172,8 +212,18 @@ def runFrontend
         isModule := stx.isModule
         mainModuleName, opts, trustLevel, plugins
       }
+  let old? ← incrLoadFileName?.mapM fun incrFile => do
+    let incr ← unsafe loadIncrSnapshot incrFile
+    if let some res := incr.snap.processedResult.get then
+      withImporting do
+        unsafe Lean.runInitAttrsForModules res.cmdState.env incr.initModIdxs opts
+      -- `withImporting` resets the initializer-execution flag in `finally`, but the slow path in
+      -- `Language.Lean.process` (taken when the loaded header doesn't match the new file's
+      -- imports) calls `importModules`, which in turn requires the flag to be set. Restore it.
+      unsafe enableInitializersExecution
+    return incr.snap
   let processor := Language.Lean.process
-  let snap ← processor setup none ctx
+  let snap ← processor setup old? ctx
   let snaps := Language.toSnapshotTree snap
   let severityOverrides := errorOnKinds.foldl (·.insert · .error) {}
 
@@ -184,6 +234,33 @@ def runFrontend
     | return none
   let env := cmdState.env
   let finalOpts := cmdState.scopes[0]!.opts
+
+  -- Saves `snapToSave` wrapped with the init-mod indices used by `runInitAttrsForModules` on load.
+  -- Writes a `<incrFile>.deps` helper alongside: the dep paths parallel to `env.header.regions`,
+  -- needed to map the snapshot back in before we can access `env`.
+  let saveSnap (incrFile : System.FilePath) (snapToSave : Language.Lean.InitialSnapshot) :
+      IO Unit := do
+    let toSave : IncrSnapshot :=
+      { snap := snapToSave, initModIdxs := getRegularInitAttrModIdxs env }
+    let compactor ← (unsafe CompactedRegion.save incrFile `_snap toSave
+      env.header.regions none (allowClosures := true))
+    let depPaths : Array System.FilePath := env.header.regions.map CompactedRegion.filePath
+    IO.FS.writeFile (incrFile.addExtension "deps") <|
+      String.intercalate "\n" (depPaths.toList.map (·.toString))
+    Runtime.forget compactor
+
+  -- save full incremental snapshot for next invocation
+  if let some incrFile := incrSaveFileName? then
+    -- Per-command `CancelToken`s are left unresolved on success; their internal `Promise`
+    -- tasks would block the compactor's `lean_task_get`. Fire them all before save.
+    -- `truncateToHeader` discards everything below the header so this isn't needed for the
+    -- header-only save below.
+    resolveCancelTokensForSave (Language.toSnapshotTree snap)
+    saveSnap incrFile snap
+
+  -- save header-only snapshot (skips elaborated command bodies)
+  if let some incrFile := incrHeaderSaveFileName? then
+    saveSnap incrFile (Language.Lean.truncateToHeader snap)
 
   -- stats should be displayed even if there are (non-import) errors
   if printStats then

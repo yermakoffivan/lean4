@@ -252,16 +252,17 @@ private def recv' (stream : Stream) : BaseIO (AsyncTask (Option Chunk)) := do
   stream.state.atomically do
     Channel.pruneFinishedWaiters
 
+    let { closed, closeError, .. } ← get
+
+    if closed then
+      match closeError with
+      | some err => return Task.pure (.error err)
+      | none => return AsyncTask.pure none
+
     if let some chunk ← Channel.tryRecv' then
       return AsyncTask.pure (some chunk)
 
     let st ← get
-    if st.closed then
-      -- A terminal error recorded by the producer (e.g. Content-Length underflow)
-      -- must surface to the consumer instead of silent EOF.
-      match st.closeError with
-      | some err => return Task.pure (.error err)
-      | none => return AsyncTask.pure none
 
     if st.pendingConsumer.isSome then
       return Task.pure (.error (IO.Error.userError "only one blocked consumer is allowed"))
@@ -274,22 +275,12 @@ private def recv' (stream : Stream) : BaseIO (AsyncTask (Option Chunk)) := do
       | some res => .ok res
 
 /--
-Receives a chunk from the channel. Blocks until a producer sends one.
-Returns `none` if the channel is closed and no producer is waiting.
-If the channel was closed with a terminal error (via `closeWithError`) after
-all buffered chunks have been consumed, that error is thrown instead of EOF.
+Receives a chunk from the channel. Blocks until a producer sends one. Returns `none` if the channel
+is closed and no producer is waiting. If the channel was closed with a terminal error
+(via `closeWithError`) after all buffered chunks have been consumed, that error is thrown instead of EOF.
 -/
 def recv (stream : Stream) : Async (Option Chunk) := do
-  let result ← Async.ofAsyncTask (← recv' stream)
-  match result with
-  | some _ => return result
-  | none =>
-    let err? ← stream.state.atomically do
-      let st ← get
-      pure st.closeError
-    match err? with
-    | some err => throw err
-    | none => return none
+  Async.ofAsyncTask (← recv' stream)
 
 /--
 Closes the channel.

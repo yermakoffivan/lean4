@@ -662,6 +662,23 @@ protected def flattenList {n : Nat} (xs : List (BitVec n)) : BitVec (n * xs.leng
       simp [List.length_cons, Nat.mul_add, Nat.add_comm]
     BitVec.cast h (x ++ (BitVec.flattenList rest))
 
+/--
+Tail-recursive worker for `BitVec.flattenList`: `go acc xs` shifts the
+accumulator `acc` left by `n` and ors in the bits of each element of `xs` in
+turn, so the head of the list ends up in the most significant bits.
+-/
+def flattenList.go {n : Nat} (acc : Nat) : List (BitVec n) → Nat
+  | [] => acc
+  | x :: xs => BitVec.flattenList.go (acc <<< n ||| x.toNat) xs
+
+/--
+Tail-recursive implementation of `BitVec.flattenList`, swapped in at runtime via
+`@[csimp]` so that flattening a long list does not consume stack proportional to
+its length.
+-/
+def flattenListTR {n : Nat} (xs : List (BitVec n)) : BitVec (n * xs.length) :=
+  .ofNat (n * xs.length) (BitVec.flattenList.go 0 xs)
+
 /-!
 ### Cons and Concat
 We give special names to the operations of adding a single bit to either end of a bitvector.

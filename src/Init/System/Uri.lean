@@ -3,10 +3,20 @@ Copyright (c) 2019 Microsoft Corporation. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Chris Lovett
 -/
+module
+
 prelude
-import Init.Data.String.Extra
-import Init.Data.Nat.Linear
-import Init.System.FilePath
+public import Init.System.FilePath
+import Init.Data.String.TakeDrop
+import Init.Data.String.Modify
+import Init.Data.String.Search
+import Init.Omega
+import Init.System.Platform
+import Init.While
+import Init.Data.String.Length
+import Init.Data.Iterators.Combinators.Take
+
+public section
 
 namespace System
 namespace Uri
@@ -29,13 +39,13 @@ def decodeUri (uri : String) : String := Id.run do
   let len := rawBytes.size
   let mut i := 0
   let percent := '%'.toNat.toUInt8
-  while i < len do
-    let c := rawBytes[i]!
-    (decoded, i) := if c == percent && i + 1 < len then
-      let h1 := rawBytes[i + 1]!
+  while h : i < len do
+    let c := rawBytes[i]
+    (decoded, i) := if h₁ : c == percent ∧ i + 1 < len then
+      let h1 := rawBytes[i + 1]
       if let some hd1 := hexDigitToUInt8? h1 then
-        if i + 2 < len then
-          let h2 := rawBytes[i + 2]!
+        if h₂ : i + 2 < len then
+          let h2 := rawBytes[i + 2]
           if let some hd2 := hexDigitToUInt8? h2 then
             -- decode the hex digits into a byte.
             (decoded.push (hd1 * 16 + hd2), i + 3)
@@ -50,7 +60,7 @@ def decodeUri (uri : String) : String := Id.run do
         ((decoded.push c).push h1, i + 2)
     else
       (decoded.push c, i + 1)
-  return String.fromUTF8Unchecked decoded
+  return String.fromUTF8! decoded
 where hexDigitToUInt8? (c : UInt8) : Option UInt8 :=
   if zero ≤ c ∧ c ≤ nine then some (c - zero)
   else if lettera ≤ c ∧ c ≤ letterf then some (c - lettera + 10)
@@ -84,33 +94,42 @@ a single unicode code point and these will also be decoded correctly. -/
 def unescapeUri (s: String) : String :=
   UriEscape.decodeUri s
 
+private def normalizeDriveLetter (uri : String) : String :=
+  -- lower-case drive letters seem to be preferred in URIs
+  match (uri.chars.take 2).toList with
+  | [driveLetter, ':'] => if driveLetter.isUpper then uri.decapitalize else uri
+  | _ => uri
+
 /-- Convert the given FilePath to a "file:///encodedpath" Uri. -/
 def pathToUri (fname : System.FilePath) : String := Id.run do
   let mut uri := fname.normalize.toString
   if System.Platform.isWindows then
-    -- normalize drive letter
-    -- lower-case drive letters seem to be preferred in URIs
-    if uri.length >= 2 && (uri.get 0).isUpper && uri.get ⟨1⟩ == ':' then
-      uri := uri.set 0 (uri.get 0).toLower
+    uri := normalizeDriveLetter uri
     uri := uri.map (fun c => if c == '\\' then '/' else c)
   uri := uri.foldl (fun s c => s ++ UriEscape.uriEscapeAsciiChar c) ""
   let result := if uri.startsWith "/" then "file://" ++ uri else "file:///" ++ uri
   result
 
+-- On Windows, the path "/c:/temp" needs to become "C:/temp"
+private def normalizeDriveExpression (p : String.Slice) : String :=
+  match (p.chars.take 3).toList with
+  | ['/', driveLetter, ':'] =>
+    if driveLetter.isAlpha then
+      (p.drop 1).copy.capitalize
+    else p.copy
+  | _ => p.copy
+
 /-- Convert the given uri to a FilePath stripping the 'file://' prefix,
 ignoring the optional host name. -/
-def fileUriToPath? (uri : String) : Option System.FilePath := Id.run do
-  if !uri.startsWith "file://" then
-    none
-  else
-    let mut p := (unescapeUri uri).drop "file://".length
-    p := p.dropWhile (λ c => c != '/') -- drop the hostname.
-    -- On Windows, the path "/c:/temp" needs to become "C:/temp"
-    if System.Platform.isWindows && p.length >= 2 &&
-        p.get 0 == '/' && (p.get ⟨1⟩).isAlpha && p.get ⟨2⟩ == ':' then
-      -- see also `pathToUri`
-      p := p.drop 1 |>.modify 0 .toUpper
-    some p
+def fileUriToPath? (uri : String) : Option System.FilePath :=
+  match (unescapeUri uri).dropPrefix? "file://" with
+  | none => none
+  | some p =>
+    let p := p.dropWhile (fun c => c != '/') -- drop the hostname.
+    if System.Platform.isWindows then
+      some ((normalizeDriveExpression p).map (fun c => if c == '/' then '\\' else c))
+    else
+      some p.copy
 
 end Uri
 end System

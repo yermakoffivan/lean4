@@ -4,12 +4,13 @@ Released under Apache 2.0 license as described in the file LICENSE.
 
 Authors: Wojciech Nawrocki
 -/
-prelude
-import Lean.Elab.Command
-import Lean.Elab.Term
-import Lean.Elab.Deriving.Basic
+module
 
-import Lean.Server.Rpc.Basic
+prelude
+public import Lean.Elab.Deriving.Basic
+
+
+public section
 
 namespace Lean.Server.RpcEncodable
 
@@ -29,6 +30,9 @@ private def deriveStructureInstance (indVal : InductiveVal) (params : Array Expr
   let mut encInits := #[]
   let mut decInits := #[]
   for fieldName in fields do
+    if fieldName == `__rpcref then
+        throwError "'__rpcref' is reserved and cannot be used as a field name. \
+          See the `RpcEncodable` docstring."
     let fid := mkIdent fieldName
     fieldIds := fieldIds.push fid
     if isOptField fieldName then
@@ -41,10 +45,7 @@ private def deriveStructureInstance (indVal : InductiveVal) (params : Array Expr
       decInits := decInits.push (← `(structInstField| $fid:ident := ← rpcDecode a.$fid))
 
   let paramIds ← params.mapM fun p => return mkIdent (← getFVarLocalDecl p).userName
-  let indName := mkIdent indVal.name
-  `(-- Workaround for https://github.com/leanprover/lean4/issues/2044
-    namespace $indName
-    structure RpcEncodablePacket where
+  `(structure RpcEncodablePacket where
       $[($fieldIds : $fieldTys)]*
       deriving FromJson, ToJson
 
@@ -57,11 +58,10 @@ private def deriveStructureInstance (indVal : InductiveVal) (params : Array Expr
       dec j := do
         let a : RpcEncodablePacket ← fromJson? j
         return { $decInits:structInstField,* }
-    end $indName
   )
 
-private def matchAltTerm := Lean.Parser.Term.matchAlt (rhsParser := Lean.Parser.termParser)
-instance : Coe (TSyntax ``matchAltTerm) (TSyntax ``Parser.Term.matchAlt) where coe s := ⟨s⟩
+private meta def matchAltTerm := Lean.Parser.Term.matchAlt (rhsParser := Lean.Parser.termParser)
+private instance : Coe (TSyntax ``matchAltTerm) (TSyntax ``Parser.Term.matchAlt) where coe s := ⟨s⟩
 
 private def deriveInductiveInstance (indVal : InductiveVal) (params : Array Expr)
     (encInstBinders : Array (TSyntax ``bracketedBinder)) : TermElabM Command := do
@@ -75,6 +75,9 @@ private def deriveInductiveInstance (indVal : InductiveVal) (params : Array Expr
     -- create the constructor
     let fieldStxs ← argVars.mapM fun arg => do
       let name := (← getFVarLocalDecl arg).userName
+      if name == `__rpcref then
+        throwError "'__rpcref' is reserved and cannot be used as an argument name. \
+          See the `RpcEncodable` docstring."
       `(bracketedBinderF| ($(mkIdent name) : Json))
     let pktCtor ← `(Parser.Command.ctor|
       | $ctorId:ident $[$fieldStxs]* : RpcEncodablePacket)
@@ -93,12 +96,9 @@ private def deriveInductiveInstance (indVal : InductiveVal) (params : Array Expr
 
   -- helpers for type name syntax
   let paramIds ← params.mapM fun p => return mkIdent (← getFVarLocalDecl p).userName
-  let typeId ← `(@$(mkIdent indVal.name) $paramIds*)
+  let typeId ← `(@$(mkCIdent indVal.name) $paramIds*)
 
-  let indName := mkIdent indVal.name
-  `(-- Workaround for https://github.com/leanprover/lean4/issues/2044
-    namespace $indName
-    inductive RpcEncodablePacket where
+  `(inductive RpcEncodablePacket where
       $[$ctors:ctor]*
       deriving FromJson, ToJson
 
@@ -113,7 +113,6 @@ private def deriveInductiveInstance (indVal : InductiveVal) (params : Array Expr
         have inst : RpcEncodable $typeId := { rpcEncode := enc, rpcDecode := dec }
         let pkt : RpcEncodablePacket ← fromJson? j
         id <| match pkt with $[$decodes:matchAlt]*
-    end $indName
   )
 
 /-- Creates an `RpcEncodablePacket` for `typeName`. For structures, the packet is a structure

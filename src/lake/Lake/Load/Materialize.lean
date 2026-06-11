@@ -3,10 +3,17 @@ Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Gabriel Ebner, Sebastian Ullrich, Mac Malone
 -/
+module
+
+prelude
+public import Lake.Config.Env
+public import Lake.Load.Manifest
+public import Lake.Config.Package
 import Lake.Util.Git
-import Lake.Load.Manifest
-import Lake.Config.Dependency
-import Lake.Config.Package
+import Lake.Util.IO
+import Lake.Reservoir
+
+set_option doc.verso true
 
 open System Lean
 
@@ -18,32 +25,45 @@ or resolve a local path dependency.
 
 namespace Lake
 
-/-- Update the Git package in `repo` to `rev` if not already at it. -/
-def updateGitPkg (name : String) (repo : GitRepo) (rev? : Option String) : LogIO PUnit := do
+/--
+Update the Git package in {lean}`repo` to the revision {lean}`rev?` if not already at it.
+IF no revision is specified (i.e., {lean}`rev? = none`), then uses the latest {lit}`master`.
+-/
+def updateGitPkg
+  (name : String) (repo : GitRepo) (rev? : Option GitRev)
+: LoggerIO PUnit := do
   let rev ← repo.findRemoteRevision rev?
   if (← repo.getHeadRevision) = rev then
     if (← repo.hasDiff) then
       logWarning s!"{name}: repository '{repo.dir}' has local changes"
   else
-    logInfo s!"{name}: updating repository '{repo.dir}' to revision '{rev}'"
+    logInfo s!"{name}: checking out revision '{rev}'"
     repo.checkoutDetach rev
+    -- Remove untracked files from tracked folders the package.
+    -- This helps ensure reproducible behavior by removing leftovers.
+    -- For example, Lake will trust leftover `.hash` files unconditionally,
+    -- so stale ones from the previous revision cause incorrect trace computations.
+    repo.clean
 
-/-- Clone the Git package as `repo`. -/
-def cloneGitPkg (name : String) (repo : GitRepo)
-(url : String) (rev? : Option String) : LogIO PUnit := do
-  logInfo s!"{name}: cloning {url} to '{repo.dir}'"
+/-- Clone the Git package as {lean}`repo`. -/
+def cloneGitPkg
+  (name : String) (repo : GitRepo) (url : String) (rev? : Option GitRev)
+: LoggerIO PUnit := do
+  logInfo s!"{name}: cloning {url}"
   repo.clone url
   if let some rev := rev? then
-    let hash ← repo.resolveRemoteRevision rev
-    repo.checkoutDetach hash
+    let rev ← repo.resolveRemoteRevision rev
+    logInfo s!"{name}: checking out revision '{rev}'"
+    repo.checkoutDetach rev
 
 /--
-Update the Git repository from `url` in `repo` to `rev?`.
-If `repo` is already from `url`, just checkout the new revision.
-Otherwise, delete the local repository and clone a fresh copy from `url`.
+Update the Git repository from {lean}`url` in {lean}`repo` to {lean}`rev?`.
+If {lean}`repo` is already from {lean}`url`, just checkout the new revision.
+Otherwise, delete the local repository and clone a fresh copy from {lean}`url`.
 -/
-def updateGitRepo (name : String) (repo : GitRepo)
-(url : String) (rev? : Option String) : LogIO Unit := do
+def updateGitRepo
+  (name : String) (repo : GitRepo) (url : String) (rev? : Option String)
+: LoggerIO Unit := do
   let sameUrl ← EIO.catchExceptions (h := fun _ => pure false) <| show IO Bool from do
     let some remoteUrl ← repo.getRemoteUrl? | return false
     if remoteUrl = url then return true
@@ -60,94 +80,170 @@ def updateGitRepo (name : String) (repo : GitRepo)
       IO.FS.removeDirAll repo.dir
       cloneGitPkg name repo url rev?
 
+
 /--
-Materialize the Git repository from `url` into `repo` at `rev?`.
+Materialize the Git repository from {lean}`url` into {lean}`repo` at {lean}`rev?`.
 Clone it if no local copy exists, otherwise update it.
 -/
-def materializeGitRepo (name : String) (repo : GitRepo)
-(url : String) (rev? : Option String) : LogIO Unit := do
+def materializeGitRepo
+  (name : String) (repo : GitRepo) (url : String) (rev? : Option String)
+: LoggerIO Unit := do
   if (← repo.dirExists) then
     updateGitRepo name repo url rev?
   else
     cloneGitPkg name repo url rev?
 
-structure MaterializedDep where
+public structure MaterializedDep where
+  /-- Absolute path to the materialized package. -/
+  pkgDir : FilePath
   /-- Path to the materialized package relative to the workspace's root directory. -/
   relPkgDir : FilePath
   /--
   URL for the materialized package.
   Used as the endpoint from which to fetch cloud releases for the package.
   -/
-  remoteUrl? : Option String
+  remoteUrl : String
+  /-- The manifest for the dependency or the error produced when trying to load it. -/
+  manifest? : Except IO.Error Manifest
   /-- The manifest entry for the dependency. -/
   manifestEntry : PackageEntry
-  /-- The configuration-specified dependency. -/
-  configDep : Dependency
   deriving Inhabited
 
-@[inline] def MaterializedDep.name (self : MaterializedDep) :=
+namespace MaterializedDep
+
+@[inline] public def name (self : MaterializedDep) : Name :=
   self.manifestEntry.name
 
-/-- Path to the dependency's configuration file (relative to `relPkgDir`). -/
-@[inline] def MaterializedDep.manifestFile? (self : MaterializedDep) :=
+@[inline] public def prettyName (self : MaterializedDep) : String :=
+  self.manifestEntry.name.toString (escape := false)
+
+@[inline] public def scope (self : MaterializedDep) : String :=
+  self.manifestEntry.scope
+
+/-- Path to the dependency's manfiest file (relative to {lean}`relPkgDir`). -/
+@[inline] public def relManifestFile? (self : MaterializedDep) : Option FilePath :=
   self.manifestEntry.manifestFile?
 
-/-- Path to the dependency's configuration file (relative to `relPkgDir`). -/
-@[inline] def MaterializedDep.configFile (self : MaterializedDep) :=
+/-- Path to the dependency's manfiest file (relative to {lean}`relPkgDir`). -/
+@[inline] public def relManifestFile (self : MaterializedDep) : FilePath :=
+  self.relManifestFile?.getD defaultManifestFile
+
+/-- Absolute path to the dependency's manfiest file. -/
+@[inline] public def manifestFile (self : MaterializedDep) : FilePath :=
+  self.pkgDir / self.relManifestFile
+
+/-- Path to the dependency's configuration file (relative to {lean}`relPkgDir`). -/
+@[inline] public def relConfigFile (self : MaterializedDep) : FilePath :=
   self.manifestEntry.configFile
 
- /-- Lake configuration options for the dependency. -/
-@[inline] def MaterializedDep.configOpts (self : MaterializedDep) :=
-  self.configDep.opts
+/-- Absolute path to the dependency's configuration file. -/
+@[inline] public def configFile (self : MaterializedDep) : FilePath :=
+  self.pkgDir / self.relConfigFile
+
+public def fixedToolchain (self : MaterializedDep) : Bool :=
+  match self.manifest? with
+  | .ok manifest => manifest.fixedToolchain
+  | _ => false
+
+end MaterializedDep
+
+def pkgNotIndexed (dep : Dependency) : String :=
+  let (leanVer, tomlVer) :=
+    match dep.version with
+    | .none => ("", "")
+    | .git rev => (s!" @ {repr rev}", s!"\n    rev = {repr rev}")
+    | .ver ver => (s!" @ {repr ver.toString}", s!"\n    version = {repr ver.toString}")
+s!"{dep.fullName}: package not found on Reservoir.
+
+  If the package is on GitHub, you can add a Git source. For example:
+
+    require ...
+      from git \"https://github.com/{dep.scope}/{dep.reservoirName}\"{leanVer}
+
+  or, if using TOML:
+
+    [[require]]
+    git = \"https://github.com/{dep.scope}/{dep.reservoirName}\"{tomlVer}
+    ...
+"
 
 /--
 Materializes a configuration dependency.
 For Git dependencies, updates it to the latest input revision.
 -/
-def Dependency.materialize (dep : Dependency) (inherited : Bool)
-(wsDir relPkgsDir relParentDir : FilePath) (pkgUrlMap : NameMap String)
-: LogIO MaterializedDep :=
-  match dep.src with
-  | .path dir =>
-    let relPkgDir := relParentDir / dir
-    return {
-      relPkgDir
-      remoteUrl? := none
-      manifestEntry := .path dep.name inherited defaultConfigFile none relPkgDir
-      configDep := dep
-    }
-  | .git url inputRev? subDir? => do
-    let sname := dep.name.toString (escape := false)
-    let relGitDir := relPkgsDir / sname
-    let repo := GitRepo.mk (wsDir / relGitDir)
-    let materializeUrl := pkgUrlMap.find? dep.name |>.getD url
-    materializeGitRepo sname repo materializeUrl inputRev?
+public def Dependency.materialize
+  (dep : Dependency) (inherited : Bool)
+  (lakeEnv : Env) (wsDir relPkgsDir relParentDir : FilePath)
+: LoggerIO MaterializedDep := do
+  if let some src := dep.src? then
+    match src with
+    | .path dir =>
+      let relPkgDir := relParentDir / dir
+      mkDep dep.prettyName relPkgDir "" (.path relPkgDir)
+    | .git url inputRev? subDir? => do
+      let repoUrl := Git.filterUrl? url |>.getD ""
+      materializeGit dep.prettyName (relPkgsDir / dep.dirName) url repoUrl inputRev? subDir?
+  else
+    if dep.scope.isEmpty then
+      error s!"{dep.prettyName}: ill-formed dependency: \
+        dependency is missing a source and is missing a scope for Reservoir"
+    let pkg ← id do
+      match (← Reservoir.fetchPkg? lakeEnv dep.scope dep.reservoirName |>.toLogT) with
+      | .ok (some pkg) => return pkg
+      | .ok none => error <| pkgNotIndexed dep
+      | .error .. => error s!"{dep.fullName}: could not materialize package: \
+        this may be a transient error or a bug in Lake or Reservoir"
+    let relPkgDir := relPkgsDir / pkg.name
+    match pkg.gitSrc? with
+    | some (.git _ url githubUrl? defaultBranch? subDir?) =>
+      let rev? ← id do
+        match dep.version with
+        | .none => defaultBranch?
+        | .git rev => some rev
+        | .ver ver =>
+          match (← Reservoir.fetchPkgVersions lakeEnv dep.scope dep.reservoirName |>.toLogT) with
+          | .ok vers =>
+            if let some ver := vers.find? (ver.test ·.version) then
+              logInfo s!"{dep.fullName}: using version `{ver.version}` at revision `{ver.revision}`"
+              return ver.revision
+            else
+              error s!"{dep.fullName}: version `{ver}` not found on Reservoir"
+          | .error .. => error s!"{dep.fullName}: could not fetch package versions: \
+            this may be a transient error or a bug in Lake or Reservoir"
+      materializeGit pkg.fullName relPkgDir url (githubUrl?.getD "") rev? subDir?
+    | _ => error s!"{pkg.fullName}: Git source not found on Reservoir"
+where
+  materializeGit name relPkgDir gitUrl remoteUrl inputRev? subDir? : LoggerIO MaterializedDep := do
+    let gitDir := wsDir / relPkgDir
+    let repo := GitRepo.mk gitDir
+    let gitUrl := lakeEnv.pkgUrlMap.find? dep.name |>.getD gitUrl
+    materializeGitRepo name repo gitUrl inputRev?
     let rev ← repo.getHeadRevision
-    let relPkgDir := match subDir? with | .some subDir => relGitDir / subDir | .none => relGitDir
+    let relPkgDir := if let some subDir := subDir? then relPkgDir / subDir else relPkgDir
+    mkDep name relPkgDir remoteUrl <| .git gitUrl rev inputRev? subDir?
+  @[inline] mkDep name relPkgDir remoteUrl src : LoggerIO MaterializedDep := do
+    let pkgDir := wsDir / relPkgDir
+    let some pkgDir ← resolvePath? pkgDir
+      | error s!"{name}: package directory not found: {pkgDir}"
     return {
-      relPkgDir
-      remoteUrl? := Git.filterUrl? url
-      manifestEntry := .git dep.name inherited defaultConfigFile none url rev inputRev? subDir?
-      configDep := dep
+      pkgDir, relPkgDir, remoteUrl,
+      manifest? :=  ← Manifest.load (pkgDir / defaultManifestFile) |>.toBaseIO
+      manifestEntry := {name := dep.name, scope := dep.scope, inherited, src}
     }
 
 /--
 Materializes a manifest package entry, cloning and/or checking it out as necessary.
 -/
-def PackageEntry.materialize (manifestEntry : PackageEntry)
-(configDep : Dependency) (wsDir relPkgsDir : FilePath) (pkgUrlMap : NameMap String)
-: LogIO MaterializedDep :=
-  match manifestEntry with
+public def PackageEntry.materialize
+  (manifestEntry : PackageEntry)
+  (lakeEnv : Env) (wsDir relPkgsDir : FilePath)
+: LoggerIO MaterializedDep :=
+  match manifestEntry.src with
   | .path (dir := relPkgDir) .. =>
-    return {
-      relPkgDir
-      remoteUrl? := none
-      manifestEntry
-      configDep
-    }
-  | .git name (url := url) (rev := rev) (subDir? := subDir?) .. => do
-    let sname := name.toString (escape := false)
-    let relGitDir := relPkgsDir / sname
+    mkDep relPkgDir ""
+  | .git (url := url) (rev := rev) (subDir? := subDir?) .. => do
+    let prettyName := manifestEntry.prettyName
+    let relGitDir := relPkgsDir / manifestEntry.dirName
     let gitDir := wsDir / relGitDir
     let repo := GitRepo.mk gitDir
     /-
@@ -159,17 +255,23 @@ def PackageEntry.materialize (manifestEntry : PackageEntry)
     if (← repo.dirExists) then
       if (← repo.getHeadRevision?) = rev then
         if (← repo.hasDiff) then
-          logWarning s!"{sname}: repository '{repo.dir}' has local changes"
+          logWarning s!"{prettyName}: repository '{repo.dir}' has local changes"
       else
-        let url := pkgUrlMap.find? name |>.getD url
-        updateGitRepo sname repo url rev
+        let url := lakeEnv.pkgUrlMap.find? manifestEntry.name |>.getD url
+        updateGitRepo prettyName repo url rev
     else
-      let url := pkgUrlMap.find? name |>.getD url
-      cloneGitPkg sname repo url rev
+      let url := lakeEnv.pkgUrlMap.find? manifestEntry.name |>.getD url
+      cloneGitPkg prettyName repo url rev
     let relPkgDir := match subDir? with | .some subDir => relGitDir / subDir | .none => relGitDir
-    return {
-      relPkgDir
-      remoteUrl? := Git.filterUrl? url
-      manifestEntry
-      configDep
-    }
+    mkDep relPkgDir (Git.filterUrl? url |>.getD "")
+where
+  @[inline] mkDep relPkgDir remoteUrl : LoggerIO MaterializedDep := do
+    let pkgDir := wsDir / relPkgDir
+    let some pkgDir ← resolvePath? pkgDir
+      | error s!"{manifestEntry.prettyName}: package directory not found: {pkgDir}"
+    let manifest? ← id do
+      if let some manifestFile := manifestEntry.manifestFile? then
+        Manifest.load (pkgDir / manifestFile) |>.toBaseIO
+      else
+        return .error (.noFileOrDirectory "" 0 "")
+    return {pkgDir, relPkgDir, remoteUrl, manifest?, manifestEntry}

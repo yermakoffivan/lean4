@@ -3,10 +3,12 @@ Copyright (c) 2021 Microsoft Corporation. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Sebastian Ullrich, Daniel Selsam, Wojciech Nawrocki
 -/
+module
+
 prelude
-import Lean.Meta.Basic
-import Lean.SubExpr
-import Lean.Data.RBMap
+public import Lean.SubExpr
+
+public section
 
 /-!
 # Subexpr utilities for delaborator.
@@ -16,7 +18,15 @@ in sync with the `Nat` "position" values that refer to them.
 
 namespace Lean.PrettyPrinter.Delaborator
 
-abbrev OptionsPerPos := RBMap SubExpr.Pos Options compare
+abbrev OptionsPerPos := Std.TreeMap SubExpr.Pos Options
+
+def OptionsPerPos.insertAt (optionsPerPos : OptionsPerPos) (pos : SubExpr.Pos) (name : Name) (value : DataValue) : OptionsPerPos :=
+  let opts := optionsPerPos.get? pos |>.getD {}
+  optionsPerPos.insert pos <| opts.set name value
+
+/-- Merges two collections of options, where the second overrides the first. -/
+def OptionsPerPos.merge : OptionsPerPos → OptionsPerPos → OptionsPerPos :=
+  Std.TreeMap.mergeWith (fun _ => Options.mergeBy (fun _ _ dv => dv))
 
 namespace SubExpr
 
@@ -77,10 +87,24 @@ def withBoundedAppFn (maxArgs : Nat) (xf : m α) : m α := do
 
 def withBindingDomain (x : m α) : m α := do descend (← getExpr).bindingDomain! 0 x
 
-def withBindingBody (n : Name) (x : m α) : m α := do
+/--
+Assumes the `SubExpr` is a lambda or forall.
+1. Creates a local declaration for this binder using the name `n`.
+2. Evaluates `v` using the fvar for the local declaration.
+3. Enters the binding body, and evaluates `x` using this result.
+-/
+def withBindingBody' (n : Name) (v : Expr → m β) (x : β → m α) : m α := do
   let e ← getExpr
-  Meta.withLocalDecl n e.binderInfo e.bindingDomain! fun fvar =>
-    descend (e.bindingBody!.instantiate1 fvar) 1 x
+  Meta.withLocalDecl n e.binderInfo e.bindingDomain! fun fvar => do
+    let b ← v fvar
+    descend (e.bindingBody!.instantiate1 fvar) 1 (x b)
+
+/--
+Assumes the `SubExpr` is a lambda or forall.
+Creates a local declaration for this binder using the name `n`, enters the binding body, and evaluates `x`.
+-/
+def withBindingBody (n : Name) (x : m α) : m α :=
+  withBindingBody' n (fun _ => pure ()) (fun _ => x)
 
 def withProj (x : m α) : m α := do
   let Expr.proj _ _ e ← getExpr | unreachable!
@@ -99,8 +123,8 @@ def withLetValue (x : m α) : m α := do
   descend v 1 x
 
 def withLetBody (x : m α) : m α := do
-  let Expr.letE n t v b _ ← getExpr | unreachable!
-  Meta.withLetDecl n t v fun fvar =>
+  let Expr.letE n t v b nondep ← getExpr | unreachable!
+  Meta.withLetDecl n t v (nondep := nondep) fun fvar =>
     let b := b.instantiate1 fvar
     descend b 2 x
 
@@ -138,7 +162,10 @@ def HoleIterator.next (iter : HoleIterator) : HoleIterator :=
 
 /-- The positioning scheme guarantees that there will be an infinite number of extra positions
 which are never used by `Expr`s. The `HoleIterator` always points at the next such "hole".
-We use these to attach additional `Elab.Info`. -/
+We use these to attach additional `Elab.Info`.
+
+Note: these positions are incompatible with `Lean.SubExpr.Pos.push` since the iterator
+will eventually yield every child of every returned position. -/
 def nextExtraPos : m Pos := do
   let iter ← getThe HoleIterator
   let pos := iter.toPos

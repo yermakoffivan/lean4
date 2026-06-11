@@ -1,8 +1,0 @@
-badIhName.lean:13:2-13:6: error: unsolved goals
-case z
-⊢ add Nat.z Nat.z = Nat.z
-
-case s
-a✝ : Nat
-a_ih✝ : add Nat.z a✝ = a✝
-⊢ add Nat.z (Nat.s a✝) = Nat.s a✝

@@ -1,11 +1,16 @@
 /-
-Copyright (c) 2021 Scott Morrison. All rights reserved.
+Copyright (c) 2021 Kim Morrison. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Scott Morrison, David Renshaw
+Authors: Kim Morrison, David Renshaw
 -/
+module
+
 prelude
-import Lean.Meta.Tactic.SolveByElim
-import Lean.Elab.Tactic.Config
+public import Lean.Meta.Tactic.SolveByElim
+public import Lean.LibrarySuggestions.Basic
+import Lean.Elab.ConfigEval
+
+public section
 
 namespace Lean.Elab.Tactic.SolveByElim
 open Meta
@@ -17,13 +22,21 @@ open Lean.Meta.SolveByElim (SolveByElimConfig mkAssumptionSet)
 
 /--
 Allow elaboration of `Config` arguments to tactics.
+
+Note: does not generate a `(config := ...)` option due to the fields in the `omit`
+clause, which are all function-valued and have no `EvalExpr` instances.
 -/
-declare_config_elab elabConfig Lean.Meta.SolveByElim.SolveByElimConfig
+declare_config_elab elabConfig Lean.Meta.SolveByElim.SolveByElimConfig where
+  omit proc, suspend, discharge
 
 /--
 Allow elaboration of `ApplyRulesConfig` arguments to tactics.
+
+Note: does not generate a `(config := ...)` option due to the fields in the `omit`
+clause, which are all function-valued and have no `EvalExpr` instances.
 -/
-declare_config_elab elabApplyRulesConfig Lean.Meta.SolveByElim.ApplyRulesConfig
+declare_config_elab elabApplyRulesConfig Lean.Meta.SolveByElim.ApplyRulesConfig where
+  omit proc, suspend, discharge
 
 /--
 Parse the lemma argument of a call to `solve_by_elim`.
@@ -68,10 +81,10 @@ def processSyntax (cfg : SolveByElimConfig := {}) (only star : Bool) (add remove
 @[builtin_tactic Lean.Parser.Tactic.applyAssumption]
 def evalApplyAssumption : Tactic := fun stx =>
   match stx with
-  | `(tactic| apply_assumption $[$cfg]? $[only%$o]? $[$t:args]? $[$use:using_]?) => do
+  | `(tactic| apply_assumption $cfg:optConfig $[only%$o]? $[$t:args]? $[$use:using_]?) => do
     let (star, add, remove) := parseArgs t
     let use := parseUsing use
-    let cfg ← elabConfig (mkOptionalNode cfg)
+    let cfg ← elabConfig cfg
     let cfg := { cfg with
       backtracking := false
       maxDepth := 1 }
@@ -86,27 +99,41 @@ See `Lean.MVarId.applyRules` for a `MetaM` level analogue of this tactic.
 @[builtin_tactic Lean.Parser.Tactic.applyRules]
 def evalApplyRules : Tactic := fun stx =>
   match stx with
-  | `(tactic| apply_rules $[$cfg]? $[only%$o]? $[$t:args]? $[$use:using_]?) => do
+  | `(tactic| apply_rules $cfg:optConfig $[only%$o]? $[$t:args]? $[$use:using_]?) => do
     let (star, add, remove) := parseArgs t
     let use := parseUsing use
-    let cfg ← elabApplyRulesConfig (mkOptionalNode cfg)
+    let cfg ← elabApplyRulesConfig cfg
     let cfg := { cfg with backtracking := false }
     liftMetaTactic fun g => processSyntax cfg o.isSome star add remove use [g]
   | _ => throwUnsupportedSyntax
 
 @[builtin_tactic Lean.Parser.Tactic.solveByElim]
-def evalSolveByElim : Tactic := fun stx =>
-  match stx with
-  | `(tactic| solve_by_elim $[*%$s]? $[$cfg]? $[only%$o]? $[$t:args]? $[$use:using_]?) => do
+def evalSolveByElim : Tactic
+  | `(tactic| solve_by_elim $[*%$s]? $cfg:optConfig $[only%$o]? $[$t:args]? $[$use:using_]?) => do
     let (star, add, remove) := parseArgs t
     let use := parseUsing use
     let goals ← if s.isSome then
       getGoals
     else
       pure [← getMainGoal]
-    let cfg ← elabConfig (mkOptionalNode cfg)
+    let cfg ← elabConfig cfg
+    -- Add library suggestions if +suggestions is enabled
+    let add ← if cfg.suggestions then
+      let mainGoal ← getMainGoal
+      let suggestions ← LibrarySuggestions.select mainGoal { caller := some "solve_by_elim" }
+      let suggestionTerms ← suggestions.toList.filterMapM fun s => do
+        -- Only include suggestions for constants that exist
+        let env ← getEnv
+        if env.contains s.name then
+          let ident := mkCIdentFrom (← getRef) s.name (canonical := true)
+          return some (⟨ident⟩ : Term)
+        else
+          return none
+      pure (add ++ suggestionTerms)
+    else
+      pure add
     let [] ← processSyntax cfg o.isSome star add remove use goals |
-      throwError "solve_by_elim unexpectedly returned subgoals"
+      throwError "Internal error: `solve_by_elim` unexpectedly returned subgoals"
     pure ()
   | _ => throwUnsupportedSyntax
 

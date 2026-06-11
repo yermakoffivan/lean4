@@ -1,3 +1,0 @@
-x x✝ y : Nat
-h : g x = Nat.succ y
-⊢ g x = 2 * x + 1

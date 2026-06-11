@@ -270,8 +270,8 @@ void heap::export_objs() {
 }
 
 void heap::alloc_segment() {
-    LEAN_RUNTIME_STAT_CODE(g_num_segments++);
     segment * s = new segment();
+    LEAN_RUNTIME_STAT_CODE(g_num_segments++);
     s->m_next   = m_curr_segment;
     m_curr_segment = s;
 }
@@ -283,8 +283,13 @@ static page * alloc_page(heap * h, unsigned obj_size) {
     page * p    = new (s->m_next_page_mem) page();
     s->m_next_page_mem += LEAN_PAGE_SIZE;
     if (s->is_full()) {
-        /* s is full, we need to allocate a new one. */
-        h->alloc_segment();
+        try {
+            /* s is full, we need to allocate a new one. */
+            h->alloc_segment();
+        } catch (std::bad_alloc const&) {
+            /* `s` is now in an inconsistent state so it would be unsafe to propagate the exception */
+            lean_internal_panic_out_of_memory();
+        }
     }
     unsigned slot_idx        = lean_get_slot_idx(obj_size);
     p->m_header.m_heap       = h;
@@ -437,7 +442,7 @@ void dealloc(void * o, size_t sz) {
     LEAN_RUNTIME_STAT_CODE(g_num_dealloc++);
     sz = lean_align(sz, LEAN_OBJECT_SIZE_DELTA);
     if (LEAN_UNLIKELY(sz > LEAN_MAX_SMALL_OBJECT_SIZE)) {
-        return free(o);
+        return free_sized(o, sz);
     }
     dealloc_small_core(o);
 }
@@ -467,14 +472,27 @@ void finalize_alloc() {
 LEAN_THREAD_VALUE(uint64_t, g_heartbeat, 0);
 #endif
 
-/* Helper function for increasing heartbeat even when LEAN_SMALL_ALLOCATOR is not defined */
-extern "C" LEAN_EXPORT void lean_inc_heartbeat() {
+void set_heartbeats(uint64_t count) {
 #ifdef LEAN_SMALL_ALLOCATOR
     if (g_heap)
-        g_heap->m_heartbeat++;
+        g_heap->m_heartbeat = count;
 #else
-    g_heartbeat++;
+    g_heartbeat = count;
 #endif
+}
+
+void add_heartbeats(uint64_t count) {
+#ifdef LEAN_SMALL_ALLOCATOR
+    if (g_heap)
+        g_heap->m_heartbeat += count;
+#else
+    g_heartbeat += count;
+#endif
+}
+
+/* Helper function for increasing heartbeat even when LEAN_SMALL_ALLOCATOR is not defined */
+extern "C" LEAN_EXPORT void lean_inc_heartbeat() {
+    add_heartbeats(1);
 }
 
 uint64_t get_num_heartbeats() {

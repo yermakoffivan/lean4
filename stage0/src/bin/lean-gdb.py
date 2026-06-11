@@ -10,13 +10,13 @@ import gdb
 import gdb.printing
 
 def is_scalar(o):
-    return o.cast(gdb.lookup_type('uintptr_t')) & 1 == 1
+    return o.cast(gdb.lookup_type('size_t')) & 1 == 1
 
 def box(n):
     return gdb.Value(n << 1 | 1).cast(gdb.lookup_type('lean_object').pointer())
 
 def unbox(o):
-    return o.cast(gdb.lookup_type('uintptr_t')) >> 1
+    return o.cast(gdb.lookup_type('size_t')) >> 1
 
 def to_cnstr(o):
     return o.cast(gdb.lookup_type('lean_ctor_object').pointer())
@@ -49,8 +49,9 @@ class LeanObjectPrinter:
     """Print a lean_object object."""
 
     kinds = [
-        # 244, ...
+        # 243, ...
         ('ctor', []),
+        ('promise', ['m_result']),
         ('closure', ['m_arity', 'm_fun', 'm_num_fixed']),
         ('array', ['m_size', 'm_capacity']),
         ('sarray', ['m_size', 'm_capacity']),
@@ -62,7 +63,7 @@ class LeanObjectPrinter:
         ('ref', ['m_value']),
         ('external', ['m_class', 'm_data']),
     ]
-    lean_max_ctor_tag = 244
+    lean_max_ctor_tag = 243
 
     def __init__(self, val):
         self.val = val.address

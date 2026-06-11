@@ -3,30 +3,37 @@ Copyright (c) 2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Leonardo de Moura
 -/
+module
+
 prelude
-import Init.NotationExtra
+public meta import Init.Data.ToString.Name  -- shake: keep (transitive public meta dep, fix)
+public import Init.Tactics
+import Init.Meta.Defs
+
+public section
 
 namespace Lean.Parser
 /--
 A user-defined simplification procedure used by the `simp` tactic, and its variants.
 Here is an example.
 ```lean
-simproc reduce_add (_ + _) := fun e => do
-  unless (e.isAppOfArity ``HAdd.hAdd 6) do return none
-  let some n ← getNatValue? (e.getArg! 4) | return none
-  let some m ← getNatValue? (e.getArg! 5) | return none
-  return some (.done { expr := mkNatLit (n+m) })
+theorem and_false_eq {p : Prop} (q : Prop) (h : p = False) : (p ∧ q) = False := by simp [*]
+
+open Lean Meta Simp
+simproc ↓ shortCircuitAnd (And _ _) := fun e => do
+  let_expr And p q := e | return .continue
+  let r ← simp p
+  let_expr False := r.expr | return .continue
+  let proof ← mkAppM ``and_false_eq #[q, (← r.getProof)]
+  return .done { expr := r.expr, proof? := some proof }
 ```
-The `simp` tactic invokes `reduce_add` whenever it finds a term of the form `_ + _`.
+The `simp` tactic invokes `shortCircuitAnd` whenever it finds a term of the form `And _ _`.
 The simplification procedures are stored in an (imperfect) discrimination tree.
 The procedure should **not** assume the term `e` perfectly matches the given pattern.
 The body of a simplification procedure must have type `Simproc`, which is an alias for
-`Expr → SimpM (Option Step)`.
+`Expr → SimpM Step`
 You can instruct the simplifier to apply the procedure before its sub-expressions
-have been simplified by using the modifier `↓` before the procedure name. Example.
-```lean
-simproc ↓ reduce_add (_ + _) := fun e => ...
-```
+have been simplified by using the modifier `↓` before the procedure name.
 Simplification procedures can be also scoped or local.
 -/
 syntax (docComment)? attrKind "simproc " (Tactic.simpPre <|> Tactic.simpPost)? ("[" ident,* "]")? ident " (" term ")" " := " term : command
@@ -104,13 +111,13 @@ end Attr
 macro_rules
   | `($[$doc?:docComment]? simproc_decl $n:ident ($pattern:term) := $body) => do
     let simprocType := `Lean.Meta.Simp.Simproc
-    `($[$doc?:docComment]? def $n:ident : $(mkIdent simprocType) := $body
+    `($[$doc?:docComment]? meta def $n:ident : $(mkIdent simprocType) := $body
       simproc_pattern% $pattern => $n)
 
 macro_rules
   | `($[$doc?:docComment]? dsimproc_decl $n:ident ($pattern:term) := $body) => do
     let simprocType := `Lean.Meta.Simp.DSimproc
-    `($[$doc?:docComment]? def $n:ident : $(mkIdent simprocType) := $body
+    `($[$doc?:docComment]? meta def $n:ident : $(mkIdent simprocType) := $body
       simproc_pattern% $pattern => $n)
 
 macro_rules
@@ -125,7 +132,7 @@ macro_rules
     `($[$doc?:docComment]? def $n:ident : $(mkIdent simprocType) := $body
       builtin_simproc_pattern% $pattern => $n)
 
-private def mkAttributeCmds
+private meta def mkAttributeCmds
     (kind : TSyntax `Lean.Parser.Term.attrKind)
     (pre? : Option (TSyntax [`Lean.Parser.Tactic.simpPre, `Lean.Parser.Tactic.simpPost]))
     (ids? : Option (Syntax.TSepArray `ident ","))

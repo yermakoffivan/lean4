@@ -3,39 +3,66 @@ Copyright (c) 2021 Microsoft Corporation. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Leonardo de Moura
 -/
+module
+
 prelude
-import Lean.Elab.Term
+public import Lean.Elab.Term
+
+public section
 
 namespace Lean.Elab.Term
 
 /--
-  Auxiliary inductive datatype for combining unelaborated syntax
-  and already elaborated expressions. It is used to elaborate applications. -/
+Auxiliary inductive datatype for combining unelaborated syntax
+and already elaborated expressions. It is used to elaborate applications.
+-/
 inductive Arg where
   | stx  (val : Syntax)
   | expr (val : Expr)
   deriving Inhabited
 
-/-- Named arguments created using the notation `(x := val)` -/
+instance : ToString Arg where
+  toString
+    | .stx stx => toString stx
+    | .expr e  => toString e
+
+instance : ToMessageData Arg where
+  toMessageData
+    | .stx stx => toMessageData stx
+    | .expr e  => toMessageData e
+
+/-- Named arguments created using the notation `(x := val)`. -/
 structure NamedArg where
   ref  : Syntax := Syntax.missing
   name : Name
   val  : Arg
+  /-- Overrides the binder infos for the first `numImplicitParams` parameters
+  to make them be implicit if they were explicit.
+  This is used for expanding projection notation. The primary motivation for this field
+  is that class projections may feature explicit structure parameters.
+  See the note at `Lean.Elab.Term.ElabAppArgs.processExplicitArg`. -/
+  numImplicitParams : Nat := 0
   deriving Inhabited
+
+instance : ToString NamedArg where
+  toString s := s!"({s.name} := {s.val})"
+
+instance : ToMessageData NamedArg where
+  toMessageData s := m!"({s.name} := {s.val})"
 
 /--
   Add a new named argument to `namedArgs`, and throw an error if it already contains a named argument
   with the same name. -/
 def addNamedArg (namedArgs : Array NamedArg) (namedArg : NamedArg) : MetaM (Array NamedArg) := do
   if namedArgs.any (namedArg.name == ·.name) then
-    throwError "argument '{namedArg.name}' was already set"
+    throwErrorAt namedArg.ref "Argument `{namedArg.name}` was already set"
   return namedArgs.push namedArg
 
 partial def expandArgs (args : Array Syntax) : MetaM (Array NamedArg × Array Arg × Bool) := do
   let (args, ellipsis) :=
     if args.isEmpty then
       (args, false)
-    else if args.back.isOfKind ``Lean.Parser.Term.ellipsis then
+    else if args.back!.isOfKind ``Lean.Parser.Term.ellipsis then
       (args.pop, true)
     else
       (args, false)

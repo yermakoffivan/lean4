@@ -1,19 +1,19 @@
 /-
-Copyright (c) 2020 Microsoft Corporation. All rights reserved.
+Copyright (c) 2023 Microsoft Corporation. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
-Author: Leonardo de Moura
+Author: Kim Morrison
 -/
+module
+
 prelude
-import Lean.CoreM
+public import Lean.CoreM
+
+public section
 
 /-!
-# Lean.Heartbeats
+# Heartbeats
 
-This provides some utilities is the first file in the Lean import hierarchy. It is responsible for setting
-up basic definitions, most of which Lean already has "built in knowledge" about,
-so it is important that they be set up in exactly this way. (For example, Lean will
-use `PUnit` in the desugaring of `do` notation, or in the pattern match compiler.)
-
+Functions for interacting with the deterministic timeout heartbeat mechanism.
 -/
 
 namespace Lean
@@ -25,7 +25,6 @@ Remember that user facing heartbeats (e.g. as used in `set_option maxHeartbeats`
 differ from the internally tracked heartbeats by a factor of 1000,
 so you need to divide the results here by 1000 before comparing with user facing numbers.
 -/
--- See also `Lean.withSeconds`
 def withHeartbeats [Monad m] [MonadLiftT BaseIO m] (x : m α) : m (α × Nat) := do
   let start ← IO.getNumHeartbeats
   let r ← x

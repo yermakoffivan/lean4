@@ -226,14 +226,117 @@ example : Id Unit := do
     for (label := l) _y in [1, 2] do
       pure ()
 
-/-- error: Labeled jumps out of `try` blocks are not yet supported -/
+/-! Labeled jumps out of `try` blocks. -/
+
+def tryReturn (b : Bool) : Except String Nat := do
+  let x ← do (label := blk)
+    try
+      if b then
+        return (label := blk) 1
+      throw "boom"
+    catch _ =>
+      pure ()
+    pure 2
+  return x + 10
+
+/-- info: Except.ok 11 -/
+#guard_msgs in #eval tryReturn true
+/-- info: Except.ok 12 -/
+#guard_msgs in #eval tryReturn false
+
+def tryBreak : Except String Nat := do
+  let mut n := 0
+  for (label := loop) i in [0:10] do
+    try
+      if i == 3 then
+        break (label := loop)
+      if i == 1 then
+        throw "skip"
+      n := n + 10
+    catch _ =>
+      n := n + 1
+  return n
+
+/-- info: Except.ok 21 -/
+#guard_msgs in #eval tryBreak
+
+def tryContinue : Except String Nat := do
+  let mut n := 0
+  for (label := loop) i in [0:4] do
+    try
+      if i % 2 == 0 then
+        continue (label := loop)
+      throw "odd"
+    catch _ =>
+      n := n + 1
+    n := n + 10
+  return n
+
+/-- info: Except.ok 22 -/
+#guard_msgs in #eval tryContinue
+
+-- Crosses both the inner loop and the `try`.
+def tryBreakNested : Except String Nat := do
+  let mut n := 0
+  for (label := outer) i in [0:3] do
+    try
+      for j in [0:3] do
+        if i == 1 && j == 1 then
+          break (label := outer)
+        n := n + 1
+      n := n + 100
+    catch _ =>
+      pure ()
+  return n
+
+/-- info: Except.ok 104 -/
+#guard_msgs in #eval tryBreakNested
+
+-- Labeled jump from a `catch` arm.
+def tryCatchBreak : Except String Nat := do
+  let mut n := 0
+  for (label := loop) i in [0:10] do
+    try
+      if i == 2 then
+        throw "stop"
+      n := n + 1
+    catch _ =>
+      break (label := loop)
+  return n
+
+/-- info: Except.ok 2 -/
+#guard_msgs in #eval tryCatchBreak
+
+-- Mut writes before a labeled return out of a `try` survive; writes before a caught exception
+-- are rolled back, as for any mut var across `try`.
+def tryMutReturn (b : Bool) : Except String Nat := do
+  let mut acc := 0
+  let r ← do (label := blk)
+    try
+      acc := acc + 1
+      if b then
+        return (label := blk) 5
+      throw "e"
+    catch _ =>
+      acc := acc + 10
+    pure 7
+  return acc * 100 + r
+
+/-- info: Except.ok 105 -/
+#guard_msgs in #eval tryMutReturn true
+/-- info: Except.ok 1007 -/
+#guard_msgs in #eval tryMutReturn false
+
+-- `finally` blocks still support no control flow.
+/-- error: This `do` block does not support `break`, `continue` or `return`. -/
 #guard_msgs in
-example : EIO String Nat := do (label := blk)
-  try
-    return (label := blk) 1
-  catch _ =>
-    pure ()
-  return 2
+example : Except String Nat := do
+  for (label := loop) _i in [0:3] do
+    try
+      pure ()
+    finally
+      break (label := loop)
+  return 0
 
 /-- error: Unsupported `do` configuration option `foo` -/
 #guard_msgs in

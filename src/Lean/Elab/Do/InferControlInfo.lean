@@ -97,15 +97,6 @@ def ControlInfo.alternative (a b : ControlInfo) : ControlInfo := {
 def ControlInfo.returnsEarly (info : ControlInfo) : Bool :=
   info.returns.contains Name.anonymous
 
-/--
-Whether the `do` block contains a jump to a label, which enclosing constructs must forward to
-the labeled target.
--/
-def ControlInfo.hasLabeledJump (info : ControlInfo) : Bool :=
-  info.breaks.toList.any (· != Name.anonymous) ||
-  info.continues.toList.any (· != Name.anonymous) ||
-  info.returns.toList.any (·.1 != Name.anonymous)
-
 instance : ToMessageData ControlInfo where
   toMessageData info := m!"breaks: {info.breaks.toList}, continues: {info.continues.toList},
     returns: {info.returns.toList.map (·.1)}, numRegularExits: {info.numRegularExits},

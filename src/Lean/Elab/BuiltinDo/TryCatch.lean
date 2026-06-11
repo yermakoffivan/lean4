@@ -56,10 +56,7 @@ private def elabDoCatch (lifter : ControlLifter) (body : Expr) (catch_ : TSyntax
   -- So we need to pack up our effects and unpack them after the `try`.
   -- We could optimize for the terminal action case by omitting the state tuple ... in the future.
   let mi := (← read).monadInfo
-  let info ← inferControlInfoElem stx
-  if info.hasLabeledJump then
-    throwError "Labeled jumps out of `try` blocks are not yet supported"
-  let lifter ← ControlLifter.ofCont info dec
+  let lifter ← ControlLifter.ofCont (← inferControlInfoElem stx) dec
   let body ← do
     let body ← lifter.lift (elabDoSeq trySeq)
     let body ← catches.foldlM (init := body) fun body catch_ => do

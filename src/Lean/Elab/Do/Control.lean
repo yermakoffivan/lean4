@@ -20,6 +20,8 @@ structure ControlStack where
   description : Unit → MessageData
   m : DoElabM Expr
   stM : Expr → DoElabM Expr
+  /-- The result-type wrapper this layer adds; `stM` composes it with the layers below. -/
+  localStM : Expr → DoElabM Expr
   runInBase : Expr → DoElabM Expr
   restoreCont : DoElemCont → DoElabM DoElemCont
 
@@ -34,6 +36,7 @@ def ControlStack.base (mi : MonadInfo) : ControlStack where
   description _ := "base"
   m := pure mi.m
   stM α := pure α
+  localStM α := pure α
   runInBase e := pure e
   restoreCont dec := pure dec
 
@@ -41,6 +44,7 @@ def ControlStack.stateT (baseMonadInfo : MonadInfo) (mutVarIdents : Array Ident)
   description _ := m!"StateT {σ} over {base.description ()}"
   m := return mkApp2 (mkConst ``StateT [baseMonadInfo.u, baseMonadInfo.v]) (← getσ) (← base.m)
   stM α := stM α >>= base.stM
+  localStM := stM
   runInBase e := do
     -- `e : StateT σ m α`. Fetch the state tuple `s : σ` and apply it to `e`, `e.run s`.
     -- See also `StateT.monadControl.liftWith`.
@@ -72,6 +76,7 @@ def ControlStack.optionT (baseMonadInfo : MonadInfo) (optionTWrapper casesOnWrap
   description _ := m!"OptionT over {base.description ()}"
   m := return mkApp (mkConst optionTWrapper [baseMonadInfo.u, baseMonadInfo.v]) (← base.m)
   stM := base.stM ∘ stM
+  localStM α := pure (stM α)
   runInBase e := do
     -- `e : OptionT m α`. Return `e`, which is defeq to `OptionT.run e`.
     -- See also `instMonadControlOptionTOfMonad.liftWith`.
@@ -100,6 +105,7 @@ def ControlStack.exceptT (baseMonadInfo : MonadInfo) (exceptTWrapper casesOnWrap
   description _ := m!"ExceptT ({ε}) over {base.description ()}"
   m := return mkApp2 (mkConst exceptTWrapper [baseMonadInfo.u, baseMonadInfo.v]) ε (← base.m)
   stM α := stM α >>= base.stM
+  localStM := stM
   runInBase e := do
     -- `e : ExceptT ε m α`. Return `e`, which is defeq to `ExceptT.run e`.
     -- See also `instMonadControlExceptTOfMonad.liftWith`.
@@ -136,6 +142,30 @@ def ControlStack.continueT (baseMonadInfo : MonadInfo) (m : ControlStack) : Cont
   let getCont := getContinueCont >>= (·.getDM (throwError "`continue` must be nested inside a loop"))
   optionT baseMonadInfo ``ContinueT ``Continue.runK getCont m
 
+/-- An `EarlyReturnT` layer for `return` to the labeled `do` block `l`. -/
+def ControlStack.labeledReturnT (baseMonadInfo : MonadInfo) (l : Name) (ρ : Expr) (m : ControlStack) : ControlStack :=
+  let getCont : DoElabM ReturnCont := do
+    match ← getLabeledTarget? l with
+    | some (.block returnCont) => pure returnCont
+    | _ => throwError "Internal error in the `do` elaborator: labeled block `{l}` is not in scope"
+  exceptT baseMonadInfo ``EarlyReturnT ``EarlyReturn.runK getCont ρ m
+
+/-- A `BreakT` layer for `break` to the labeled loop `l`. -/
+def ControlStack.labeledBreakT (baseMonadInfo : MonadInfo) (l : Name) (m : ControlStack) : ControlStack :=
+  let getCont : DoElabM (DoElabM Expr) := do
+    match ← getLabeledTarget? l with
+    | some (.loop breakCont _) => pure breakCont
+    | _ => throwError "Internal error in the `do` elaborator: labeled loop `{l}` is not in scope"
+  optionT baseMonadInfo ``BreakT ``Break.runK getCont m
+
+/-- A `ContinueT` layer for `continue` to the labeled loop `l`. -/
+def ControlStack.labeledContinueT (baseMonadInfo : MonadInfo) (l : Name) (m : ControlStack) : ControlStack :=
+  let getCont : DoElabM (DoElabM Expr) := do
+    match ← getLabeledTarget? l with
+    | some (.loop _ continueCont) => pure continueCont
+    | _ => throwError "Internal error in the `do` elaborator: labeled loop `{l}` is not in scope"
+  optionT baseMonadInfo ``ContinueT ``Continue.runK getCont m
+
 private def mkInstMonad (mi : MonadInfo) : TermElabM Expr := do
   Term.mkInstMVar (mkApp (mkConst ``Monad [mi.u, mi.v]) mi.m)
 
@@ -143,40 +173,39 @@ private def synthUsingDefEq (msg : String) (expected : Expr) (actual : Expr) : D
   unless ← isDefEq expected actual do
     throwError "Failed to synthesize {msg}. {expected} is not definitionally equal to {actual}."
 
-def ControlStack.mkBreak (base : ControlStack) (hasContinue : Bool) : DoElabM Expr := do
-  let mi := { (← read).monadInfo with m := (← base.m) }
+/--
+The layer of a jump in a `ControlStack`, together with what is needed to construct jump
+expressions: the stack below the layer, and the composed result-type wrappers of the layers above,
+which the jump's fresh result type must pass through.
+-/
+structure ControlStack.JumpLayer where
+  base : ControlStack
+  stMAbove : Expr → DoElabM Expr
+
+/-- Builds a jump expression for an `OptionT`-encoded layer (`BreakT.break`/`ContinueT.continue`). -/
+def ControlStack.JumpLayer.mkOptionJump (jp : JumpLayer) (jumpFn : Name) : DoElabM Expr := do
+  let mi := { (← read).monadInfo with m := (← jp.base.m) }
   let inst ← mkInstMonad mi
-  let α ← mkFreshResultType `α
-  -- When there's an outer `continue` layer as well, we account for that by applying `stM` of
-  -- `OptionT` to `α`.
-  let α := if hasContinue then mkApp (mkConst ``Option [mi.u]) α else α
+  let α ← jp.stMAbove (← mkFreshResultType `α)
   let mγ ← mkMonadApp (← read).doBlockResultType
-  let res ← base.runInBase <| mkApp3 (mkConst ``BreakT.break [mi.u, mi.v]) α mi.m inst
+  let res ← jp.base.runInBase <| mkApp3 (mkConst jumpFn [mi.u, mi.v]) α mi.m inst
   let ty ← inferType res
   -- Now instantiate `α`
-  synthUsingDefEq "break result type" mγ ty
+  synthUsingDefEq "lifted jump result type" mγ ty
   return res
 
-def ControlStack.mkContinue (base : ControlStack) : DoElabM Expr := do
-  let mi := { (← read).monadInfo with m := (← base.m) }
-  let inst ← mkInstMonad mi
-  let α ← mkFreshResultType `α
-  let mγ ← mkMonadApp (← read).doBlockResultType
-  let res ← base.runInBase <| mkApp3 (mkConst ``ContinueT.continue [mi.u, mi.v]) α mi.m inst
-  let ty ← inferType res
-  -- Now instantiate `α`
-  synthUsingDefEq "continue result type" mγ ty
-  return res
-
-def ControlStack.mkReturn (base : ControlStack) (r : Expr) : DoElabM Expr := do
-  let mi := { (← read).monadInfo with m := (← base.m) }
+/-- Builds a jump expression for an `EarlyReturnT` layer. -/
+def ControlStack.JumpLayer.mkReturn (jp : JumpLayer) (r : Expr) : DoElabM Expr := do
+  let mi := { (← read).monadInfo with m := (← jp.base.m) }
   let instMonad ← mkInstMonad mi
   let ρ ← inferType r
-  let δ ← mkFreshResultType `δ
+  let δ ← jp.stMAbove (← mkFreshResultType `δ)
   let mγ ← mkMonadApp (← read).doBlockResultType
-  let mγ' := mkApp mi.m (mkApp2 (mkConst ``Except [mi.u, mi.v]) ρ δ)
-  synthUsingDefEq "early return result type" mγ mγ'
-  base.runInBase <| mkApp5 (mkConst ``EarlyReturnT.return [mi.u, mi.v]) ρ mi.m δ instMonad r
+  let res ← jp.base.runInBase <| mkApp5 (mkConst ``EarlyReturnT.return [mi.u, mi.v]) ρ mi.m δ instMonad r
+  let ty ← inferType res
+  -- Now instantiate `δ`
+  synthUsingDefEq "early return result type" mγ ty
+  return res
 
 def ControlStack.mkPure (base : ControlStack) (resultName : Name) : DoElabM Expr := do
   let mi := { (← read).monadInfo with m := (← base.m) }
@@ -188,9 +217,12 @@ def ControlStack.mkPure (base : ControlStack) (resultName : Name) : DoElabM Expr
 
 structure ControlLifter where
   origCont : DoElemCont
-  returnBase? : Option ControlStack
-  breakBase? : Option ControlStack
-  continueBase? : Option ControlStack
+  returnJump? : Option ControlStack.JumpLayer
+  breakJump? : Option ControlStack.JumpLayer
+  continueJump? : Option ControlStack.JumpLayer
+  labeledReturnJumps : List (Name × Expr × ControlStack.JumpLayer)
+  labeledBreakJumps : List (Name × ControlStack.JumpLayer)
+  labeledContinueJumps : List (Name × ControlStack.JumpLayer)
   pureBase : ControlStack
   pureDeadCode : CodeLiveness
   liftedDoBlockResultType : Expr
@@ -199,42 +231,98 @@ structure ControlLifter where
 -- #reduce (types := true) M (Except Nat (Option (Option Bool) × String))
 -- #reduce (types := true) OptionT (OptionT (StateT String (ExceptT Nat M))) Bool
 
+private inductive LiftedJump where
+  | ret (l : Name) (resultType : Expr)
+  | brk (l : Name)
+  | cont (l : Name)
+
 def ControlLifter.ofCont (info : ControlInfo) (dec : DoElemCont) : DoElabM ControlLifter := do
   let mi := (← read).monadInfo
   let reassignedMutVars := (← read).mutVars |>.filter (info.reassigns.contains ·.getId)
   let reassignedMutVarNames := reassignedMutVars.map (·.getId)
-  let ρ := (← getReturnCont).resultType
   let σ ← mkProdN (← reassignedMutVarNames.mapM (LocalDecl.type <$> getLocalDeclFromUserName ·)) mi.u
 
-  let needEarlyReturn := if info.returnsEarly then some ρ else none
-  let needBreak := info.breaks.contains Name.anonymous && (← getBreakCont).isSome
-  let needContinue := info.continues.contains Name.anonymous && (← getContinueCont).isSome
-  let needState := if reassignedMutVars.isEmpty then none else some (reassignedMutVars, σ)
-  let mut returnBase? := none
-  let mut breakBase? := none
-  let mut continueBase? := none
-  let mut controlStack := ControlStack.base mi
+  -- Build the transformer stack bottom-up: default return, labeled returns, state, default
+  -- break/continue, labeled breaks/continues. For each jump, record the stack below its layer
+  -- and the position of the layers above it (`Name.anonymous` keys the unlabeled jumps). Jumps to
+  -- unknown or kind-mismatched labels get no layer; they are reported when the jump is elaborated.
+  let mut pending : Array (LiftedJump × ControlStack × Nat) := #[]
+  let mut top := ControlStack.base mi
+  let mut locals : Array (Expr → DoElabM Expr) := #[]
+  if info.returns.contains Name.anonymous then
+    let ρ := (← getReturnCont).resultType
+    pending := pending.push (.ret Name.anonymous ρ, top, locals.size + 1)
+    top := ControlStack.earlyReturnT mi ρ top
+    locals := locals.push top.localStM
+  unless reassignedMutVars.isEmpty do
+    top := ControlStack.stateT mi reassignedMutVars σ top
+    locals := locals.push top.localStM
+  -- Labeled returns sit above the state layer: the jump resumes after the labeled block with the
+  -- mut vars alive, so it must capture the state tuple at the jump site, like `break`/`continue`.
+  for (l, _) in info.returns.toList do
+    unless l == Name.anonymous do
+      if let some (.block returnCont) ← getLabeledTarget? l then
+        pending := pending.push (.ret l returnCont.resultType, top, locals.size + 1)
+        top := ControlStack.labeledReturnT mi l returnCont.resultType top
+        locals := locals.push top.localStM
+  if info.breaks.contains Name.anonymous && (← getBreakCont).isSome then
+    pending := pending.push (.brk Name.anonymous, top, locals.size + 1)
+    top := ControlStack.breakT mi top
+    locals := locals.push top.localStM
+  if info.continues.contains Name.anonymous && (← getContinueCont).isSome then
+    pending := pending.push (.cont Name.anonymous, top, locals.size + 1)
+    top := ControlStack.continueT mi top
+    locals := locals.push top.localStM
+  for l in info.breaks.toList do
+    unless l == Name.anonymous do
+      if let some (.loop ..) ← getLabeledTarget? l then
+        pending := pending.push (.brk l, top, locals.size + 1)
+        top := ControlStack.labeledBreakT mi l top
+        locals := locals.push top.localStM
+  for l in info.continues.toList do
+    unless l == Name.anonymous do
+      if let some (.loop ..) ← getLabeledTarget? l then
+        pending := pending.push (.cont l, top, locals.size + 1)
+        top := ControlStack.labeledContinueT mi l top
+        locals := locals.push top.localStM
 
-  if let some ρ := needEarlyReturn then
-    returnBase? := some controlStack -- Yes, this is correct. We need to store the super layer
-    controlStack := ControlStack.earlyReturnT mi ρ controlStack
-  if let some (reassignedMutVars, σ) := needState then
-    controlStack := ControlStack.stateT mi reassignedMutVars σ controlStack
-  if needBreak then
-    breakBase? := some controlStack
-    controlStack := ControlStack.breakT mi controlStack
-  if needContinue then
-    continueBase? := some controlStack
-    controlStack := ControlStack.continueT mi controlStack
+  -- The composed wrappers of the layers above the one at `aboveFrom - 1`, innermost-first from
+  -- the topmost layer down.
+  let allLocals := locals
+  let mkLayer (base : ControlStack) (aboveFrom : Nat) : ControlStack.JumpLayer := {
+    base
+    stMAbove := fun α => do
+      let mut a := α
+      for f in (allLocals.toList.drop aboveFrom).reverse do
+        a ← f a
+      return a
+  }
+  let mut returnJump? := none
+  let mut breakJump? := none
+  let mut continueJump? := none
+  let mut labeledReturnJumps := []
+  let mut labeledBreakJumps := []
+  let mut labeledContinueJumps := []
+  for (jump, base, aboveFrom) in pending do
+    let layer := mkLayer base aboveFrom
+    match jump with
+    | .ret l ρ =>
+      if l == Name.anonymous then returnJump? := some layer
+      else labeledReturnJumps := (l, ρ, layer) :: labeledReturnJumps
+    | .brk l =>
+      if l == Name.anonymous then breakJump? := some layer
+      else labeledBreakJumps := (l, layer) :: labeledBreakJumps
+    | .cont l =>
+      if l == Name.anonymous then continueJump? := some layer
+      else labeledContinueJumps := (l, layer) :: labeledContinueJumps
   return {
     origCont := dec,
-    returnBase?,
-    breakBase?,
-    continueBase?,
-    pureBase := controlStack,
+    returnJump?, breakJump?, continueJump?,
+    labeledReturnJumps, labeledBreakJumps, labeledContinueJumps,
+    pureBase := top,
     -- The success continuation `origCont` is dead code iff the `ControlInfo` says so semantically.
     pureDeadCode := if info.noFallthrough then .deadSemantically else .alive,
-    liftedDoBlockResultType := (← controlStack.stM dec.resultType),
+    liftedDoBlockResultType := (← top.stM dec.resultType),
   }
 
 /--
@@ -246,22 +334,41 @@ What `t` looks like depends on whether reassignments, early `return`, `break` an
 used, considering *all* the use sites of `ControlLifter.lift`.
 -/
 def ControlLifter.lift (l : ControlLifter) (elabElem : DoElemCont → DoElabM Expr) : DoElabM Expr := do
-  let oldBreakCont ← getBreakCont
-  let oldContinueCont ← getContinueCont
-  let oldReturnCont ← getReturnCont
+  let old := (← read).contInfo.toContInfo
   let breakCont :=
-    match oldBreakCont, l.breakBase? with
-    | some _, some breakBase => some <| breakBase.mkBreak (l.continueBase?.isSome)
-    | _, _ => oldBreakCont
+    match l.breakJump? with
+    | some jp => some <| jp.mkOptionJump ``BreakT.break
+    | none => old.breakCont
   let continueCont :=
-    match oldContinueCont, l.continueBase? with
-    | some _, some continueBase => some <| continueBase.mkContinue
-    | _, _ => oldContinueCont
+    match l.continueJump? with
+    | some jp => some <| jp.mkOptionJump ``ContinueT.continue
+    | none => old.continueCont
   let returnCont :=
-    match l.returnBase? with
-    | some returnBase => { oldReturnCont with k := returnBase.mkReturn }
-    | _ => oldReturnCont
-  let contInfo := ContInfo.toContInfoRef { breakCont, continueCont, returnCont }
+    match l.returnJump? with
+    | some jp => { old.returnCont with k := jp.mkReturn }
+    | none => old.returnCont
+  -- Labeled targets with a layer get lifted jumps. Control-flow analysis accounts for every jump
+  -- in the lifted element, so the remaining targets cannot be jumped to from inside; they turn
+  -- into internal errors while keeping their kind for diagnostics.
+  let unusedJump : DoElabM Expr :=
+    throwError "Internal error in the `do` elaborator: jump to a label that was not lifted"
+  let mut labeled : NameMap LabeledTarget := {}
+  for (n, target) in old.labeled do
+    labeled := labeled.insert n <| match target with
+      | .block returnCont => .block { returnCont with k := fun _ => unusedJump }
+      | .loop .. => .loop unusedJump unusedJump
+  for (n, ρ, jp) in l.labeledReturnJumps do
+    labeled := labeled.insert n (.block { resultType := ρ, k := jp.mkReturn })
+  let mut loopJumps : NameMap (Option (DoElabM Expr) × Option (DoElabM Expr)) := {}
+  for (n, jp) in l.labeledBreakJumps do
+    let (_, c?) := loopJumps.getD n (none, none)
+    loopJumps := loopJumps.insert n (some (jp.mkOptionJump ``BreakT.break), c?)
+  for (n, jp) in l.labeledContinueJumps do
+    let (b?, _) := loopJumps.getD n (none, none)
+    loopJumps := loopJumps.insert n (b?, some (jp.mkOptionJump ``ContinueT.continue))
+  for (n, b?, c?) in loopJumps.toList do
+    labeled := labeled.insert n (.loop (b?.getD unusedJump) (c?.getD unusedJump))
+  let contInfo := ContInfo.toContInfoRef { breakCont, continueCont, returnCont, labeled }
   let pureCont := { l.origCont with k := l.pureBase.mkPure l.origCont.resultName, kind := .duplicable }
   withReader (fun ctx => { ctx with contInfo, doBlockResultType := l.liftedDoBlockResultType }) do
     elabElem pureCont

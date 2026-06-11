@@ -911,7 +911,13 @@ class task_manager {
         return result;
     }
 
-    void enqueue_core(unique_lock<mutex> & lock, lean_task_object * t) {
+    // `front`: enqueue ahead of already queued tasks of the same priority.
+    // Used for re-activated dependents, i.e. continuations of dependency
+    // chains: when the queue is backed up (such as under a constrained
+    // jobserver grant), queueing them behind fresh tasks multiplies the
+    // queueing delay down sequential chains, which `Task.get`s of the chain
+    // and ultimately module build times wait on.
+    void enqueue_core(unique_lock<mutex> & lock, lean_task_object * t, bool front = false) {
         lean_assert(t->m_imp);
         unsigned prio = t->m_imp->m_prio;
         if (prio == LEAN_SYNC_PRIO) {
@@ -924,7 +930,10 @@ class task_manager {
         }
         if (prio > m_max_prio)
             m_max_prio = prio;
-        m_queues[prio].push_back(t);
+        if (front)
+            m_queues[prio].push_front(t);
+        else
+            m_queues[prio].push_back(t);
         m_queues_size++;
         if (!m_idle_std_workers && m_std_workers.size() < m_max_std_workers
 #if LEAN_JOBSERVER_POSIX
@@ -1090,7 +1099,14 @@ class task_manager {
             if (it->m_imp->m_deleted) {
                 free_task(it);
             } else {
-                enqueue_core(lock, it);
+                // re-activated dependents jump the queue (see `enqueue_core`);
+                // restricted to jobserver mode to leave the default scheduling
+                // order untouched
+                bool front = false;
+#if LEAN_JOBSERVER_POSIX
+                front = m_jobserver_sem != nullptr;
+#endif
+                enqueue_core(lock, it, front);
             }
             it = next_it;
         }

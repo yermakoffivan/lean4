@@ -1759,7 +1759,7 @@ theorem mul_sub_mod {x n p : Nat} (h : x < n * p) : (n * p - (x + 1)) % n = n - 
     Nat.mul_comm _ n, ← Nat.mul_sub_left_distrib, Nat.sub_sub_self, mul_succ, Nat.add_comm]
   · conv in (_ + 1) => rw [← mod_add_div x n, Nat.add_right_comm]
     apply Nat.add_sub_add_right
-  rw [Nat.succ_le, Nat.div_lt_iff_lt_mul]
+  rw [Nat.succ_le_iff, Nat.div_lt_iff_lt_mul]
   · rwa [Nat.mul_comm]
   · refine Nat.pos_of_mul_pos_right (by omega : 0 < n * p)
 

@@ -207,8 +207,8 @@ def ControlLifter.ofCont (info : ControlInfo) (dec : DoElemCont) : DoElabM Contr
   let σ ← mkProdN (← reassignedMutVarNames.mapM (LocalDecl.type <$> getLocalDeclFromUserName ·)) mi.u
 
   let needEarlyReturn := if info.returnsEarly then some ρ else none
-  let needBreak := info.breaks && (← getBreakCont).isSome
-  let needContinue := info.continues && (← getContinueCont).isSome
+  let needBreak := info.breaks.contains Name.anonymous && (← getBreakCont).isSome
+  let needContinue := info.continues.contains Name.anonymous && (← getContinueCont).isSome
   let needState := if reassignedMutVars.isEmpty then none else some (reassignedMutVars, σ)
   let mut returnBase? := none
   let mut breakBase? := none

@@ -27,47 +27,24 @@ dead-code warning that fires on the surrounding continuation is actionable — t
 remove the following code without breaking the do block's type.
 -/
 @[builtin_doElem_elab Lean.Parser.Term.doRepeat] def elabDoRepeat : DoElab := fun stx dec => do
-  -- "repeat " >> optConfig >> doSeq
-  -- The node is accessed by index because old-shape syntax from quotations compiled against
-  -- stage0 lacks the `optConfig` child.
-  let (cfg?, shift) := getDoOptConfig stx.raw 1
-  checkNoDoConfig cfg?
-  let tk := stx.raw[0]
-  let seq : TSyntax ``doSeq := ⟨stx.raw[1 + shift]⟩
-  let mut expanded ← `(doElem| for%$tk _ in Loop.mk do $seq)
-  if let some cfg := cfg? then
-    -- Forward the configuration onto the generated `for` loop, which the quotation above
-    -- constructed without the `optConfig` child.
-    expanded := ⟨setDoOptConfig expanded.raw 1 cfg⟩
+  let `(doElem| repeat%$tk $cfg:optConfig $seq) := stx | throwUnsupportedSyntax
+  let mut expanded ← `(doElem| for%$tk $cfg:optConfig _ in Loop.mk do $seq)
   let info ← inferControlInfoSeq seq
-  if !info.breaks then
+  let ownLabels := Name.anonymous :: ((getDoConfigLabel? cfg).map (·.getId)).toList
+  if !ownLabels.any info.breaks.contains then
     if !(← Meta.isDefEqGuarded dec.resultType (← mkPUnit)) then
       expanded ← `(doElem| do $expanded:doElem; unreachable!)
   Term.withMacroExpansion stx expanded <|
     withRef expanded <| elabDoElem ⟨expanded⟩ dec
 
-@[builtin_macro Lean.Parser.Term.doWhile] def expandDoWhile : Macro := fun stx => do
-  -- "while " >> optConfig >> withForbidden "do" doIfCond >> " do " >> doSeq
-  let tk := stx[0]
-  let (cfg?, shift) := getDoOptConfig stx 1
-  let cond : TSyntax ``doIfCond := ⟨stx[1 + shift]⟩
-  let seq : TSyntax ``doSeq := ⟨stx[3 + shift]⟩
-  let expanded ← `(doElem| repeat%$tk if $cond:doIfCond then $seq else break)
-  let some cfg := cfg? | return expanded
-  -- Forward the configuration onto the generated `repeat`, which the quotation above constructed
-  -- without the `optConfig` child.
-  return setDoOptConfig expanded.raw 1 cfg
+@[builtin_macro Lean.Parser.Term.doWhile] def expandDoWhile : Macro
+  | `(doElem| while%$tk $cfg:optConfig $cond:doIfCond do $seq) =>
+    `(doElem| repeat%$tk $cfg:optConfig if $cond:doIfCond then $seq else break)
+  | _ => Macro.throwUnsupported
 
-@[builtin_macro Lean.Parser.Term.doRepeatUntil] def expandDoRepeatUntil : Macro := fun stx => do
-  -- "repeat " >> optConfig >> doSeq >> "until " >> termParser
-  let tk := stx[0]
-  let (cfg?, shift) := getDoOptConfig stx 1
-  let seq : TSyntax ``doSeq := ⟨stx[1 + shift]⟩
-  let cond : Term := ⟨stx[3 + shift]⟩
-  let expanded ← `(doElem| repeat%$tk do $seq:doSeq; if $cond then break)
-  let some cfg := cfg? | return expanded
-  -- Forward the configuration onto the generated `repeat`, which the quotation above constructed
-  -- without the `optConfig` child.
-  return setDoOptConfig expanded.raw 1 cfg
+@[builtin_macro Lean.Parser.Term.doRepeatUntil] def expandDoRepeatUntil : Macro
+  | `(doElem| repeat%$tk $cfg:optConfig $seq until $cond) =>
+    `(doElem| repeat%$tk $cfg:optConfig do $seq:doSeq; if $cond then break)
+  | _ => Macro.throwUnsupported
 
 end Lean.Elab.Do

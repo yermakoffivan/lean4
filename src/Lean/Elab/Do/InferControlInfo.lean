@@ -21,7 +21,7 @@ Represents information about what control effects a `do` block has.
 
 The fields split by flavor:
 
-* `breaks`, `continues`, `returnsEarly`, and `reassigns` are **syntactic**: `true`/non-empty iff
+* `breaks`, `continues`, `returns`, and `reassigns` are **syntactic**: non-empty iff
   the corresponding construct appears anywhere in the source text of the block, independent of
   whether it is semantically reachable. Downstream elaborators must assume every such syntactic
   effect may occur, because the elaborator visits every doElem (only top-level
@@ -36,12 +36,15 @@ The fields split by flavor:
 Invariant: `numRegularExits = 0 → noFallthrough`. The converse does not hold.
 -/
 structure ControlInfo where
-  /-- The `do` block syntactically contains a `break`. -/
-  breaks : Bool := false
-  /-- The `do` block syntactically contains a `continue`. -/
-  continues : Bool := false
-  /-- The `do` block syntactically contains an early `return`. -/
-  returnsEarly : Bool := false
+  /-- The labels of the `break`s the `do` block syntactically contains;
+  `Name.anonymous` denotes unlabeled `break`. -/
+  breaks : NameSet := {}
+  /-- The labels of the `continue`s the `do` block syntactically contains;
+  `Name.anonymous` denotes unlabeled `continue`. -/
+  continues : NameSet := {}
+  /-- Maps the label of each early `return` the `do` block syntactically contains
+  (`Name.anonymous` for unlabeled `return`) to its number of occurrences. -/
+  returns : NameMap Nat := {}
   /--
   The number of times the block wires the enclosing continuation into its elaborated expression.
   Consumed by `withDuplicableCont` to decide whether to introduce a join point (`> 1`).
@@ -64,13 +67,16 @@ at all (so no regular exits and the next element is trivially unreachable).
 -/
 def ControlInfo.empty : ControlInfo := { numRegularExits := 0, noFallthrough := true }
 
+private def addReturnCounts (a b : NameMap Nat) : NameMap Nat :=
+  b.foldl (init := a) fun m l n => m.insert l (m.getD l 0 + n)
+
 def ControlInfo.sequence (a b : ControlInfo) : ControlInfo := {
     -- Syntactic fields aggregate unconditionally; the elaborator keeps visiting `b` unless `a` is
     -- a syntactically-terminal element (only top-level `return`/`break`/`continue` are, via
     -- `elabAsSyntacticallyDeadCode`).
-    breaks := a.breaks || b.breaks,
-    continues := a.continues || b.continues,
-    returnsEarly := a.returnsEarly || b.returnsEarly,
+    breaks := a.breaks ++ b.breaks,
+    continues := a.continues ++ b.continues,
+    returns := addReturnCounts a.returns b.returns,
     reassigns := a.reassigns ++ b.reassigns,
     numRegularExits := b.numRegularExits,
     -- Semantic: the sequence is dead if either part is dead.
@@ -78,18 +84,31 @@ def ControlInfo.sequence (a b : ControlInfo) : ControlInfo := {
   }
 
 def ControlInfo.alternative (a b : ControlInfo) : ControlInfo := {
-    breaks := a.breaks || b.breaks,
-    continues := a.continues || b.continues,
-    returnsEarly := a.returnsEarly || b.returnsEarly,
+    breaks := a.breaks ++ b.breaks,
+    continues := a.continues ++ b.continues,
+    returns := addReturnCounts a.returns b.returns,
     reassigns := a.reassigns ++ b.reassigns,
     numRegularExits := a.numRegularExits + b.numRegularExits,
     -- Semantic: alternatives are dead only if all branches are dead.
     noFallthrough := a.noFallthrough && b.noFallthrough,
   }
 
+/-- The `do` block syntactically contains an unlabeled early `return`. -/
+def ControlInfo.returnsEarly (info : ControlInfo) : Bool :=
+  info.returns.contains Name.anonymous
+
+/--
+Whether the `do` block contains a jump to a label, which enclosing constructs must forward to
+the labeled target.
+-/
+def ControlInfo.hasLabeledJump (info : ControlInfo) : Bool :=
+  info.breaks.toList.any (· != Name.anonymous) ||
+  info.continues.toList.any (· != Name.anonymous) ||
+  info.returns.toList.any (·.1 != Name.anonymous)
+
 instance : ToMessageData ControlInfo where
-  toMessageData info := m!"breaks: {info.breaks}, continues: {info.continues},
-    returnsEarly: {info.returnsEarly}, numRegularExits: {info.numRegularExits},
+  toMessageData info := m!"breaks: {info.breaks.toList}, continues: {info.continues.toList},
+    returns: {info.returns.toList.map (·.1)}, numRegularExits: {info.numRegularExits},
     noFallthrough: {info.noFallthrough}, reassigns: {info.reassigns.toList}"
 
 /-- A handler for inferring `ControlInfo` from a `doElem` syntax. Register with `@[doElem_control_info parserName]`. -/
@@ -114,6 +133,10 @@ builtin_initialize controlInfoElemAttribute : KeyedDeclsAttribute ControlInfoHan
 
 namespace InferControlInfo
 
+/-- The label a jump with the given `optConfig` targets; `Name.anonymous` if unlabeled. -/
+private def jumpLabel (cfg : Syntax) : Name :=
+  (getDoConfigLabel? cfg).map (·.getId) |>.getD Name.anonymous
+
 open InternalSyntax in
 mutual
 
@@ -123,43 +146,28 @@ partial def ofElem (stx : TSyntax `doElem) : TermElabM ControlInfo := do
     let stxNew ← liftMacroM <| liftExcept stxNew?
     return ← ofElem ⟨stxNew⟩
 
-  -- The following kinds carry an `optConfig` child in freshly parsed syntax but not in syntax
-  -- constructed by quotations compiled against stage0, so they are matched by kind and index
-  -- rather than by quotation.
-  let k := stx.raw.getKind
-  if k == ``Parser.Term.doBreak then
-    return { breaks := true, numRegularExits := 0, noFallthrough := true }
-  if k == ``Parser.Term.doContinue then
-    return { continues := true, numRegularExits := 0, noFallthrough := true }
-  if k == ``Parser.Term.doReturn then
-    return { returnsEarly := true, numRegularExits := 0, noFallthrough := true }
-  if k == ``Parser.Term.doNested then
-    let (_, shift) := getDoOptConfig stx.raw 1
-    return ← ofSeq ⟨stx.raw[1 + shift]⟩
-  if k == ``Parser.Term.doFor then
-    let (_, shift) := getDoOptConfig stx.raw 1
-    let info ← ofSeq ⟨stx.raw[3 + shift]⟩
-    return { info with  -- keep only reassigns and earlyReturn
-      numRegularExits := 1,
-      continues := false,
-      breaks := false,
-      noFallthrough := false,
-    }
-  if k == ``Parser.Term.doRepeat then
-    -- A break-less `repeat` never falls through; the elaborator injects an `unreachable!` so the
-    -- surrounding continuation still has a polymorphic value to hand back, and any dead-code
-    -- warning on subsequent elements is actionable.
-    let (_, shift) := getDoOptConfig stx.raw 1
-    let info ← ofSeq ⟨stx.raw[1 + shift]⟩
-    return { info with  -- keep only reassigns and earlyReturn
-      numRegularExits := if info.breaks then 1 else 0,
-      continues := false,
-      breaks := false,
-      noFallthrough := !info.breaks,
-    }
-
   match stx with
+  | `(doElem| break $cfg:optConfig) =>
+    return { breaks := ({} : NameSet).insert (jumpLabel cfg),
+             numRegularExits := 0, noFallthrough := true }
+  | `(doElem| continue $cfg:optConfig) =>
+    return { continues := ({} : NameSet).insert (jumpLabel cfg),
+             numRegularExits := 0, noFallthrough := true }
+  | `(doElem| return $cfg:optConfig $[$_]?) =>
+    return { returns := ({} : NameMap Nat).insert (jumpLabel cfg) 1,
+             numRegularExits := 0, noFallthrough := true }
   | `(doExpr| $_:term) => return { numRegularExits := 1 }
+  | `(doElem| do $cfg:optConfig $doSeq) =>
+    -- A labeled nested `do` block absorbs the `return`s targeting its own label; they become
+    -- regular exits flowing into the continuation of the block.
+    let info ← ofSeq doSeq
+    let some l := (getDoConfigLabel? cfg).map (·.getId) | return info
+    let cnt := info.returns.getD l 0
+    return { info with
+      returns := info.returns.erase l,
+      numRegularExits := info.numRegularExits + cnt,
+      noFallthrough := info.noFallthrough && cnt == 0,
+    }
   -- Let
   | `(doElem| let $[mut]? $_:letConfig $_:letDecl) => return .pure
   | `(doElem| have $_:letConfig $_:letDecl) => return .pure
@@ -195,6 +203,31 @@ partial def ofElem (stx : TSyntax `doElem) : TermElabM ControlInfo := do
     return thenInfo.alternative info
   | `(doElem| unless $_ do $elseSeq) =>
     ControlInfo.alternative {} <$> ofSeq elseSeq
+  -- For/Repeat
+  | `(doElem| for $cfg:optConfig $[$[$_ :]? $_ in $_],* do $bodySeq) =>
+    -- The loop handles the `break`s and `continue`s targeting it (unlabeled ones and those
+    -- naming its own label); jumps to enclosing constructs remain effects of the loop element.
+    let info ← ofSeq bodySeq
+    let ownLabels := Name.anonymous :: ((getDoConfigLabel? cfg).map (·.getId)).toList
+    return { info with
+      numRegularExits := 1,
+      breaks := ownLabels.foldl (·.erase ·) info.breaks,
+      continues := ownLabels.foldl (·.erase ·) info.continues,
+      noFallthrough := false,
+    }
+  | `(doRepeat| repeat $cfg:optConfig $bodySeq) =>
+    -- A break-less `repeat` never falls through; the elaborator injects an `unreachable!` so the
+    -- surrounding continuation still has a polymorphic value to hand back, and any dead-code
+    -- warning on subsequent elements is actionable.
+    let info ← ofSeq bodySeq
+    let ownLabels := Name.anonymous :: ((getDoConfigLabel? cfg).map (·.getId)).toList
+    let breaksThis := ownLabels.any info.breaks.contains
+    return { info with
+      numRegularExits := if breaksThis then 1 else 0,
+      breaks := ownLabels.foldl (·.erase ·) info.breaks,
+      continues := ownLabels.foldl (·.erase ·) info.continues,
+      noFallthrough := !breaksThis,
+    }
   -- Try
   | `(doElem| try $trySeq:doSeq $[$catches]* $[finally $finSeq?]?) =>
     let mut info ← ofSeq trySeq

@@ -29,10 +29,28 @@ open InternalSyntax in
   dec.mkBindUnlessPure e
 
 @[builtin_doElem_elab Lean.Parser.Term.doNested] def elabDoNested : DoElab := fun stx dec => do
-  -- "do " >> optConfig >> doSeq
-  let (cfg?, shift) := getDoOptConfig stx.raw 1
-  checkNoDoConfig cfg?
-  elabDoSeq ⟨stx.raw[1 + shift]⟩ dec
+  let `(doNested| do $cfg:optConfig $doSeq) := stx | throwUnsupportedSyntax
+  let config ← elabDoConfig cfg
+  let some l := config.label? | elabDoSeq ⟨doSeq⟩ dec
+  -- A labeled nested `do` block is a jump target: `return (label := l) v` makes the block
+  -- evaluate to `v`. Its labeled returns become regular exits of the block, all flowing into the
+  -- (hence duplicable) continuation; unlabeled `return` and outer labels pass through unchanged.
+  let info ← inferControlInfoSeq ⟨doSeq⟩
+  let cnt := info.returns.getD l.getId 0
+  let callerInfo := { info with
+    returns := info.returns.erase l.getId,
+    numRegularExits := info.numRegularExits + cnt,
+    noFallthrough := info.noFallthrough && cnt == 0,
+  }
+  dec.withDuplicableCont callerInfo fun dec => do
+    let returnCont : ReturnCont := {
+      resultType := dec.resultType,
+      k e := do
+        mapLetDeclZeta dec.resultName (← inferType e) e (nondep := true)
+          (kind := .ofBinderName dec.resultName) fun _ => dec.k
+    }
+    declareLabel l (.block returnCont) do
+      elabDoSeq ⟨doSeq⟩ dec
 
 open InternalSyntax in
 @[builtin_doElem_elab Lean.Parser.Term.doUnless] def elabDoUnless : DoElab := fun stx dec => do

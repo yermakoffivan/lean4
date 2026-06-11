@@ -206,6 +206,13 @@ structure ReturnCont where
   k : Expr → DoElabM Expr
   deriving Inhabited
 
+/-- A jump target named by a `(label := l)` configuration option. -/
+inductive LabeledTarget where
+  /-- A `do` block, the target of labeled `return`. -/
+  | block (returnCont : ReturnCont)
+  /-- A loop, the target of labeled `break` and `continue`. -/
+  | loop (breakCont continueCont : DoElabM Expr)
+
 /--
 Information about a success, `return`, `break` or `continue` continuation that will be filled in
 after the code using it has been elaborated.
@@ -214,6 +221,8 @@ structure ContInfo where
   returnCont : ReturnCont
   breakCont : Option (DoElabM Expr) := none
   continueCont : Option (DoElabM Expr) := none
+  /-- Maps labels to their jump targets. -/
+  labeled : NameMap LabeledTarget := {}
 deriving Inhabited
 
 unsafe def ContInfo.toContInfoRefImpl (m : ContInfo) : ContInfoRef :=
@@ -672,6 +681,17 @@ def getBreakCont : DoElabM (Option (DoElabM Expr)) := do
 def getContinueCont : DoElabM (Option (DoElabM Expr)) := do
   return (← read).contInfo.toContInfo.continueCont
 
+def getLabeledTarget? (l : Name) : DoElabM (Option LabeledTarget) := do
+  return (← read).contInfo.toContInfo.labeled.find? l
+
+/-- Registers `l` as a labeled jump target for the scope of `k`. -/
+def declareLabel (l : Ident) (target : LabeledTarget) (k : DoElabM α) : DoElabM α := do
+  let contInfo := (← read).contInfo.toContInfo
+  if contInfo.labeled.contains l.getId then
+    throwErrorAt l "Label `{l}` is already in scope"
+  let contInfo := { contInfo with labeled := contInfo.labeled.insert l.getId target }
+  withReader (fun ctx => { ctx with contInfo := contInfo.toContInfoRef }) k
+
 /-- Set the new `do` block result type for the scope of the continuation `k`. -/
 @[inline]
 def withDoBlockResultType (doBlockResultType : Expr) (k : DoElabM α) : DoElabM α := do
@@ -679,11 +699,21 @@ def withDoBlockResultType (doBlockResultType : Expr) (k : DoElabM α) : DoElabM 
 
 /--
 Prepare the context for elaborating the body of a loop.
-This includes setting the return continuation, break continuation, continue continuation, as
-well as the changed result type of the `do` block in the loop body.
+This includes setting the return continuation, break continuation, continue continuation, the
+loop's own label, and overrides for labeled targets whose jumps tunnel through the loop, as well
+as the changed result type of the `do` block in the loop body.
 -/
-def enterLoopBody (breakCont continueCont : DoElabM Expr) (returnCont : ReturnCont) (body : DoElabM α) : DoElabM α := do
-  let contInfo := { (← read).contInfo.toContInfo with returnCont, breakCont, continueCont }.toContInfoRef
+def enterLoopBody (label? : Option Ident) (breakCont continueCont : DoElabM Expr) (returnCont : ReturnCont)
+    (labeledOverrides : List (Name × LabeledTarget) := []) (body : DoElabM α) : DoElabM α := do
+  let contInfo := (← read).contInfo.toContInfo
+  let mut labeled := contInfo.labeled
+  for (l, target) in labeledOverrides do
+    labeled := labeled.insert l target
+  if let some l := label? then
+    if labeled.contains l.getId then
+      throwErrorAt l "Label `{l}` is already in scope"
+    labeled := labeled.insert l.getId (.loop breakCont continueCont)
+  let contInfo := { contInfo with returnCont, breakCont, continueCont, labeled }.toContInfoRef
   withReader (fun ctx => { ctx with contInfo }) body
 
 /--
@@ -693,7 +723,13 @@ Prepare the context for elaborating the body of a `do` block that does not suppo
 def withoutControl (k : DoElabM Expr) : DoElabM Expr := do
   let error := throwError "This `do` block does not support `break`, `continue` or `return`."
   let rc ← getReturnCont
-  let contInfo := { breakCont := error, continueCont := error, returnCont := { rc with k _ := error }}
+  let labeled := (← read).contInfo.toContInfo.labeled.foldl (init := ({} : NameMap LabeledTarget))
+    fun m l target =>
+      m.insert l <| match target with
+        | .block rc => .block { rc with k _ := error }
+        | .loop .. => .loop error error
+  let contInfo := { breakCont := error, continueCont := error,
+                    returnCont := { rc with k _ := error }, labeled : ContInfo }
   let contInfo := ContInfo.toContInfoRef contInfo
   withReader (fun ctx => { ctx with contInfo }) k
 
@@ -734,10 +770,13 @@ where
     return ({ m, u, v }, resultType)
 
 /-- Create the `Context` for `do` elaboration from the given expected type of a `do` block. -/
-def mkContext (expectedType? : Option Expr) (ops : DoOps := .default) : TermElabM Context := do
+def mkContext (expectedType? : Option Expr) (label? : Option Ident := none) (ops : DoOps := .default) : TermElabM Context := do
   let (mi, resultType) ← extractMonadInfo ops expectedType?
   let returnCont ← ReturnCont.mkPure resultType
-  let contInfo := ContInfo.toContInfoRef { returnCont }
+  let labeled : NameMap LabeledTarget := match label? with
+    | some l => ({} : NameMap LabeledTarget).insert l.getId (.block returnCont)
+    | none => {}
+  let contInfo := ContInfo.toContInfoRef { returnCont, labeled }
   return { monadInfo := mi, doBlockResultType := resultType, contInfo,
            ops := ops.toDoOpsRef }
 
@@ -955,17 +994,36 @@ def elabNestedAction : Term.TermElab := fun stx _ty? => do
   let `(← $_rhs) := stx | throwUnsupportedSyntax
   throwErrorAt stx "Nested action `{stx}` must be nested inside a `do` expression."
 
-/-- Throws an error on `do` configuration items. -/
-def checkNoDoConfig (cfg? : Option Syntax) : TermElabM Unit := do
-  let some cfg := cfg? | return ()
-  unless cfg[0].getNumArgs == 0 do
-    throwErrorAt cfg "Configuration options in `do` notation are not yet supported."
+/-- Configuration options of a `do`-related element. -/
+structure DoConfig where
+  /-- The block or loop label introduced by `(label := l)`. -/
+  label? : Option Ident := none
+
+/-- Elaborates the `optConfig` of a `do`-related element. -/
+def elabDoConfig (cfg : Syntax) : TermElabM DoConfig := do
+  let mut config : DoConfig := {}
+  for item in cfg[0].getArgs do
+    -- configItem wraps valConfigItem := "(" >> ident >> " := " >> term >> ")"
+    let inner := item[0]
+    unless inner.isOfKind ``Parser.Term.valConfigItem do
+      throwErrorAt item "Unsupported `do` configuration option"
+    let key := inner[1]
+    match key.getId.eraseMacroScopes with
+    | `label =>
+      let v := inner[3]
+      unless v.isIdent do
+        throwErrorAt v "Expected an identifier"
+      unless config.label?.isNone do
+        throwErrorAt item "Duplicate `do` configuration option `label`"
+      config := { config with label? := some ⟨v⟩ }
+    | k => throwErrorAt key "Unsupported `do` configuration option `{k}`"
+  return config
 
 /-- Elaborate `doSeq` using `ops` for pure/bind construction. -/
 def elabDoWith (ops : DoOps) (doSeq : TSyntax ``doSeq)
-    (expectedType? : Option Expr) : TermElabM Expr := do
+    (expectedType? : Option Expr) (label? : Option Ident := none) : TermElabM Expr := do
   Term.tryPostponeIfNoneOrMVar expectedType?
-  let ctx ← mkContext expectedType? (ops := ops)
+  let ctx ← mkContext expectedType? (label? := label?) (ops := ops)
   let cont ← DoElemCont.mkPure ctx.doBlockResultType
   let res ← elabDoSeq doSeq cont |>.run ctx
   -- Synthesizing default instances here is harmful for expressions such as
@@ -981,8 +1039,6 @@ def elabDoWith (ops : DoOps) (doSeq : TSyntax ``doSeq)
 
 -- @[builtin_term_elab «do»] -- once the legacy `do` elaborator has been phased out
 def elabDo : Term.TermElab := fun e expectedType? => do
-  -- "do " >> optConfig >> doSeq
-  unless e.isOfKind ``Parser.Term.do do throwError "unexpected `do` block syntax{indentD e}"
-  let (cfg?, shift) := getDoOptConfig e 1
-  checkNoDoConfig cfg?
-  elabDoWith .default ⟨e[1 + shift]⟩ expectedType?
+  let `(do $cfg:optConfig $doSeq) := e | throwError "unexpected `do` block syntax{indentD e}"
+  let config ← elabDoConfig cfg
+  elabDoWith .default doSeq expectedType? (label? := config.label?)

@@ -842,25 +842,31 @@ class task_manager {
     void broker_loop() {
         unique_lock<mutex> lock(m_mutex);
         // Time since which `m_granted > token_demand()` has held continuously;
-        // the epoch value means "not currently in surplus". Surplus tokens are
-        // only returned to the global pool after a grace period: demand
-        // briefly dips whenever a worker blocks in `wait_for` before the
-        // tasks resolving it are enqueued, and giving the backing token away
-        // in that window would stall the chain on cross-process token
-        // re-acquisition.
+        // the epoch value means "not currently in surplus". While workers are
+        // blocked in `wait_for`, surplus tokens are only returned to the
+        // global pool after a grace period: demand briefly dips whenever a
+        // worker blocks before the tasks resolving it are enqueued, and
+        // giving the backing token away in that window would stall the chain
+        // on cross-process token re-acquisition. Without blocked workers
+        // there is no such dip and surplus is returned immediately: each
+        // process holding on to its recent peak grant can otherwise drain the
+        // global pool far below the sum of actual demand, starving other
+        // processes' bursts.
         chrono::steady_clock::time_point surplus_since{};
         while (!m_shutting_down) {
             unsigned demand = token_demand();
             if (m_granted <= demand)
                 surplus_since = {};
             if (m_granted > demand && m_granted > 1) {
-                auto now = chrono::steady_clock::now();
-                if (surplus_since == chrono::steady_clock::time_point{}) {
-                    surplus_since = now;
-                }
-                if (now - surplus_since < chrono::milliseconds(25)) {
-                    m_broker_cv.wait_for(lock, chrono::milliseconds(25));
-                    continue;
+                if (m_blocked_std_workers > 0) {
+                    auto now = chrono::steady_clock::now();
+                    if (surplus_since == chrono::steady_clock::time_point{}) {
+                        surplus_since = now;
+                    }
+                    if (now - surplus_since < chrono::milliseconds(25)) {
+                        m_broker_cv.wait_for(lock, chrono::milliseconds(25));
+                        continue;
+                    }
                 }
                 // Return surplus tokens to the global pool.
                 sem_post(m_jobserver_sem);

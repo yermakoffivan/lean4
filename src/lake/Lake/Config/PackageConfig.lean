@@ -9,10 +9,11 @@ prelude
 public import Init.Dynamic
 public import Lake.Util.Version
 public import Lake.Config.Pattern
-public import Lake.Config.Defaults
 public import Lake.Config.LeanConfig
 public import Lake.Config.WorkspaceConfig
 meta import all Lake.Config.Meta
+public import Init.System.Platform
+import Lake.Config.Meta
 
 open System Lean
 
@@ -24,19 +25,9 @@ namespace Lake
 
 set_option linter.unusedVariables false in
 /-- A `Package`'s declarative configuration. -/
-public configuration PackageConfig (name : Name) extends WorkspaceConfig, LeanConfig where
+public configuration PackageConfig (p : Name) (n : Name) extends WorkspaceConfig, LeanConfig where
   /-- **For internal use.** Whether this package is Lean itself. -/
   bootstrap : Bool := false
-
-  /--
-  **This field is deprecated.**
-
-  The path of a package's manifest file, which stores the exact versions
-  of its resolved dependencies.
-
-  Defaults to `defaultManifestFile` (i.e., `lake-manifest.json`).
-  -/
-  manifestFile : Option FilePath := none
 
   /-- An `Array` of target names to build whenever the package is used. -/
   extraDepTargets : Array Name := #[]
@@ -302,10 +293,25 @@ public configuration PackageConfig (name : Name) extends WorkspaceConfig, LeanCo
   in their usual location within the build directory. Thus, projects with custom build
   scripts that rely on specific location of artifacts may wish to disable this feature.
 
-  If `none` (the default), the cache will be disabled by default unless
-  the `LAKE_ARTIFACT_CACHE` environment variable is set to true.
+  If `none` (the default), this will fallback to (in order):
+  * The `LAKE_ARTIFACT_CACHE` environment variable (if set).
+  * The workspace root's `enableArtifactCache` configuration (if set and this package is a dependency).
+  * **Lake's default**: The package can use artifacts from the cache, but cannot write to it.
   -/
   enableArtifactCache?, enableArtifactCache : Option Bool := none
+
+  /--
+  Whether, when the local artifact cache is enabled, Lake should copy all cached
+  artifacts into the build directory. This ensures the build results are available
+  to external consumers who expect them in the build directory.
+
+  If `none` (the default), this will fallback to (in order):
+  * The `LAKE_RESTORE_ARTIFACTS` environment variable (if set).
+  * The workspace root's `restoreAllArtifacts` configuration (if set and this package is a dependency).
+  * **Lake's default**: `false`.
+  -/
+  restoreAllArtifacts?, restoreAllArtifacts : Option Bool := none
+
   /--
   Whether native libraries (of this package) should be prefixed with `lib` on Windows.
 
@@ -316,13 +322,57 @@ public configuration PackageConfig (name : Name) extends WorkspaceConfig, LeanCo
   Defaults to `false`.
   -/
   libPrefixOnWindows : Bool := false
+
+  /--
+  Whether downstream packages can `import all` modules of this package.
+
+  If enabled, downstream users will be able to access the `private` internals of modules,
+  including definition bodies not marked as `@[expose]`.
+  This may also, in the future, prevent compiler optimization which rely on `private`
+  definitions being inaccessible outside their own package.
+
+  Defaults to `false`.
+  -/
+  allowImportAll : Bool := false
+
+  /--
+  Whether to run Lake's built-in linter on the package.
+
+  * `true` — Always run built-in lints. When a lint driver is also configured,
+    built-in lints run before the driver.
+  * `false` — Never run built-in lints by default. `lake check-lint` will exit
+    with a nonzero code if no lint driver is configured either.
+  * `none` (default) — Currently equivalent to `false`. In a future release, `none`
+    will run built-in lints when no lint driver is configured (i.e., act like `true`
+    as a fallback).
+  -/
+  builtinLint?, builtinLint : Option Bool := none
+
+  /--
+  Whether this package is expected to function only on a single toolchain
+  (the package's toolchain).
+
+  This informs Lake's toolchain update procedure (in `lake update`) to prioritize
+  this package's toolchain. It also avoids the need to separate input-to-output mappings
+  for this package by toolchain version in the Lake cache.
+
+  Defaults to `false`.
+  -/
+  fixedToolchain : Bool := false
+
 deriving Inhabited
 
-/-- The package's name. -/
-public abbrev PackageConfig.name (_ : PackageConfig n) := n
+/-- The package's name as specified by the author. -/
+@[deprecated "Deprecated without replacement" (since := "2025-12-10")]
+public abbrev PackageConfig.origName (_ : PackageConfig p n) := n
 
 /-- A package declaration from a configuration written in Lean. -/
 public structure PackageDecl where
-  name : Name
-  config : PackageConfig name
+  baseName : Name
+  keyName : Name
+  origName : Name
+  config : PackageConfig keyName origName
   deriving TypeName
+
+@[deprecated PackageDecl.keyName (since := "2025-12-10")]
+public abbrev PackageDecl.name := @keyName

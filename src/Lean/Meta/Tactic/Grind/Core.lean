@@ -6,15 +6,13 @@ Authors: Leonardo de Moura
 module
 prelude
 public import Lean.Meta.Tactic.Grind.Types
-import Init.Grind.Util
-import Lean.Meta.LitValues
 import Lean.Meta.Tactic.Grind.Inv
 import Lean.Meta.Tactic.Grind.PP
 import Lean.Meta.Tactic.Grind.Ctor
-import Lean.Meta.Tactic.Grind.Util
 import Lean.Meta.Tactic.Grind.Beta
 import Lean.Meta.Tactic.Grind.Simp
 import Lean.Meta.Tactic.Grind.Internalize
+import Init.Omega
 public section
 namespace Lean.Meta.Grind
 
@@ -50,7 +48,7 @@ This is an auxiliary function performed while merging equivalence classes.
 -/
 private def removeParents (root : Expr) : GoalM ParentSet := do
   let parents ← getParents root
-  for parent in parents do
+  for parent in parents.elems do
     -- Recall that we may have `Expr.forallE` in `parents` because of `ForallProp.lean`
     if (← pure (isCongrRelevant parent) <&&> isCongrRoot parent) then
       trace_goal[grind.debug.parent] "remove: {parent}"
@@ -62,7 +60,7 @@ Reinserts parents into the congruence table and detect new equalities.
 This is an auxiliary function performed while merging equivalence classes.
 -/
 private def reinsertParents (parents : ParentSet) : GoalM Unit := do
-  for parent in parents do
+  for parent in parents.elems do
     if (← pure (isCongrRelevant parent) <&&> isCongrRoot parent) then
       trace_goal[grind.debug.parent] "reinsert: {parent}"
       addCongrTable parent
@@ -72,16 +70,19 @@ private def closeGoalWithTrueEqFalse : GoalM Unit := do
   let mvarId := (← get).mvarId
   unless (← mvarId.isAssigned) do
     let trueEqFalse ← mkEqFalseProof (← getTrueExpr)
-    let falseProof := mkApp4 (mkConst ``Eq.mp [levelZero]) (← getTrueExpr) (← getFalseExpr) trueEqFalse (mkConst ``True.intro)
+    let falseProof := mkApp4 (mkConst ``Eq.mp [Level.zero]) (← getTrueExpr) (← getFalseExpr) trueEqFalse (mkConst ``True.intro)
     closeGoal falseProof
 
-/-- Closes the goal when `lhs` and `rhs` are both literal values and belong to the same equivalence class. -/
+/--
+Closes the goal when `lhs` and `rhs` are both literal values and belong to the same equivalence class,
+and have the same type.
+-/
 private def closeGoalWithValuesEq (lhs rhs : Expr) : GoalM Unit := do
   let p ← mkEq lhs rhs
   let hp ← mkEqProof lhs rhs
   let d ← mkDecide p
   let pEqFalse := mkApp3 (mkConst ``eq_false_of_decide) p d.appArg! eagerReflBoolFalse
-  let falseProof := mkApp4 (mkConst ``Eq.mp [levelZero]) p (← getFalseExpr) pEqFalse hp
+  let falseProof := mkApp4 (mkConst ``Eq.mp [Level.zero]) p (← getFalseExpr) pEqFalse hp
   closeGoal falseProof
 
 /--
@@ -90,7 +91,7 @@ The modification time is used to decide which terms are considered during e-matc
 -/
 private partial def updateMT (root : Expr) : GoalM Unit := do
   let gmt := (← get).ematch.gmt
-  for parent in (← getParents root) do
+  for parent in (← getParents root).elems do
     let node ← getENode parent
     if node.mt < gmt then
       setENode parent { node with mt := gmt }
@@ -105,8 +106,8 @@ def propagateBeta (lams : Array Expr) (fns : Array Expr) : GoalM Unit := do
   let lamRoot ← getRoot lams.back!
   trace_goal[grind.debug.beta] "fns: {fns}, lams: {lams}"
   for fn in fns do
-    trace_goal[grind.debug.beta] "fn: {fn}, parents: {(← getParents fn).toArray}"
-    for parent in (← getParents fn) do
+    trace_goal[grind.debug.beta] "fn: {fn}, parents: {(← getParents fn).elems}"
+    for parent in (← getParents fn).elems do
       let mut args := #[]
       let mut curr := parent
       trace_goal[grind.debug.beta] "parent: {parent}"
@@ -116,7 +117,11 @@ def propagateBeta (lams : Array Expr) (fns : Array Expr) : GoalM Unit := do
           propagateBetaEqs lams curr args.reverse
         let .app f arg := curr
           | break
-        -- Remark: recall that we do not eagerly internalize partial applications.
+        /-
+        **Note**: Recall that we do not eagerly internalize all partial applications.
+        We can add a small optimization here. If `useFO parent` is `false`, then
+        we know `curr` has been internalized
+        -/
         internalize curr (← getGeneration parent)
         args := args.push arg
         curr := f
@@ -166,7 +171,10 @@ private partial def addEqStep (lhs rhs proof : Expr) (isHEq : Bool) : GoalM Unit
       markAsInconsistent
       trueEqFalse := true
     else
-      valueInconsistency := true
+      let hasHEq := isHEq || lhsRoot.heqProofs || rhsRoot.heqProofs
+      -- **Note**: We only have to check the types if there are heterogeneous equalities.
+      if (← pure !hasHEq <||> hasSameType lhsRoot.self rhsRoot.self) then
+        valueInconsistency := true
   if    (lhsRoot.interpreted && !rhsRoot.interpreted)
      || (lhsRoot.ctor && !rhsRoot.ctor)
      || (lhsRoot.size > rhsRoot.size && !rhsRoot.interpreted && !rhsRoot.ctor) then
@@ -232,12 +240,22 @@ where
     unless (← isInconsistent) do
       updateMT rhsRoot.self
     unless (← isInconsistent) do
-      for parent in parents do
+      for parent in parents.elems do
         propagateUp parent
       for e in toPropagateDown do
         propagateDown e
       propagateUnitConstFuns lams₁ lams₂
       toPropagateSolvers.propagate
+      if rhsNode.root.isTrue then
+        checkDelayedThmInsts toPropagateDown
+  checkDelayedThmInsts (toPropagateDown : List Expr) : GoalM Unit := do
+    if (← isInconsistent) then return ()
+    if (← get).ematch.delayedThmInsts.isEmpty then return ()
+    for e in toPropagateDown do
+      let some delayedThms := (← get).ematch.delayedThmInsts.find? { expr := e } | pure ()
+      modify fun s => { s with ematch.delayedThmInsts := s.ematch.delayedThmInsts.erase { expr := e } }
+      delayedThms.forM (·.check)
+
   updateRoots (lhs : Expr) (rootNew : Expr) : GoalM Unit := do
     let isFalseRoot ← isFalseExpr rootNew
     traverseEqc lhs fun n => do
@@ -328,8 +346,21 @@ where
     else
       internalize lhs generation p
       internalize rhs generation p
+      /-
+      As an optimization, `p` itself is not internalized in the E-graph, but
+      we still notify satellite solvers about it. Some satellite solvers (e.g.,
+      the homomorphism extension) only see asserted equalities through this
+      notification; others (e.g., `cutsat`) use it to register `lhs` and `rhs`
+      as their internal terms when `α` is a supported type.
+
+      This must run **before** `addEqCore`: `Solvers.mergeTerms` (invoked by
+      `addEqCore`) only fires `processNewEq` for solvers that have already
+      registered both `lhs` and `rhs`.
+      -/
+      Solvers.internalize p none
       addEqCore lhs rhs proof isHEq
 
+set_option compiler.ignoreBorrowAnnotation true in
 @[export lean_grind_process_new_facts]
 private def processNewFactsImpl : GoalM Unit := do
   repeat
@@ -337,8 +368,7 @@ private def processNewFactsImpl : GoalM Unit := do
       resetNewFacts
       return ()
     checkSystem "grind"
-    let some next := (← popNextFact?)
-      | return ()
+    let some next ← popNextFact? | return ()
     match next with
     | .eq lhs rhs proof isHEq => addEqStep lhs rhs proof isHEq
     | .fact prop proof gen => addFactStep prop proof gen

@@ -7,8 +7,9 @@ module
 
 prelude
 public import Std.Tactic.Do.Syntax
-public import Lean.Elab.Tactic.Do.ProofMode.Cases
-public import Lean.Elab.Tactic.Do.ProofMode.Specialize
+public import Lean.Elab.Tactic.Basic
+import Lean.Elab.Tactic.Do.ProofMode.Focus
+import Lean.Elab.Tactic.ElabTerm
 
 public section
 
@@ -53,7 +54,7 @@ def elabMHave : Tactic
     let H := hyp.toExpr
     let T := goal.target
     let (PH, hand) := SPred.mkAnd goal.u goal.σs P H
-    let haveGoal := { goal with target := H }
+    let haveGoal := { goal with target := hyp.p }
     let hhave ← elabTermEnsuringType rhs haveGoal.toExpr
     let newGoal := { goal with hyps := PH }
     let m ← mkFreshExprSyntheticOpaqueMVar newGoal.toExpr
@@ -79,7 +80,7 @@ def elabMReplace : Tactic
     let hyp := Hyp.mk h.raw.getId uniq H'
     addHypInfo h goal.σs hyp (isBinder := true)
     let H' := hyp.toExpr
-    let haveGoal := { goal with target := H' }
+    let haveGoal := { goal with target := hyp.p }
     let hhave ← elabTermEnsuringType rhs haveGoal.toExpr
     let T := goal.target
     let (PH', hand) := SPred.mkAnd goal.u goal.σs P H'

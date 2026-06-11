@@ -6,12 +6,7 @@ Author: David Thrane Christiansen
 module
 prelude
 
-public import Init.System.IO
-public import Lean.Environment
-public import Lean.ToExpr
-public import Lean.CoreM
 public import Lean.Elab.Term.TermElabM
-import Lean.Elab.DocString
 
 set_option linter.missingDocs true
 

@@ -5,10 +5,10 @@ Authors: Leonardo de Moura
 -/
 module
 prelude
-public import Lean.Meta.Tactic.Grind.Types
 public import Lean.Meta.Tactic.Grind.Arith.CommRing.MonadRing
 public section
 namespace Lean.Meta.Grind.Arith.CommRing
+open Sym.Arith
 variable [MonadLiftT MetaM m] [MonadError m] [Monad m] [MonadCanon m]
 
 section

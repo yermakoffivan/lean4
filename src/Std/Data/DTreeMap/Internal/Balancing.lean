@@ -6,9 +6,12 @@ Authors: Markus Himmel
 module
 
 prelude
-public import Init.Data.AC
 public import Init.Data.Ord.Basic
 public import Std.Data.DTreeMap.Internal.Balanced
+import Init.ByCases
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.Omega
 
 @[expose] public section
 

@@ -6,16 +6,20 @@ Authors: Leonardo de Moura
 module
 prelude
 public import Lean.Meta.Tactic.Grind.Arith.Cutsat.Types
-import Lean.Meta.IntInstTesters
-import Lean.Meta.Tactic.Grind.Simp
-import Lean.Meta.Tactic.Grind.Arith.Cutsat.Util
 import Lean.Meta.Tactic.Grind.Arith.Cutsat.Nat
 import Lean.Meta.Tactic.Grind.Arith.Cutsat.ToInt
+import Lean.Meta.IntInstTesters
 public section
 namespace Lean.Meta.Grind.Arith.Cutsat
 
+set_option compiler.ignoreBorrowAnnotation true in
 @[extern "lean_cutsat_propagate_nonlinear"]
 opaque propagateNonlinearTerm (y : Var) (x : Var) : GoalM Bool
+
+/-
+**Note**: It is safe to use (the more efficient) structural instances tests here because `grind` uses the canonicalizer.
+-/
+open Structural
 
 private def isNonlinearTerm (e : Expr) : MetaM Bool := do
   match_expr e with
@@ -44,7 +48,7 @@ private partial def registerNonlinearOccsAt (e : Expr) (x : Var) : GoalM Unit :=
   | HPow.hPow _ _ _ _ a b =>
     if (← getIntValue? a).isNone then
       registerNonlinearOcc a x
-    if (← getIntValue? b).isNone then
+    if (← getIntValue? b).isNone && (← getNatValue? b).isNone then
       -- Recall that `b : Nat`, we must create `NatCast.natCast b` and watch it.
       let (b', _) ← mkNatVar b
       internalize b' (← getGeneration b)
@@ -60,12 +64,13 @@ where
         registerNonlinearOcc e x
     | _ => registerNonlinearOcc e x
 
+set_option compiler.ignoreBorrowAnnotation true in
 @[export lean_grind_cutsat_mk_var]
 def mkVarImpl (expr : Expr) : GoalM Var := do
   if let some var := (← get').varMap.find? { expr } then
     return var
   let var : Var := (← get').vars.size
-  trace[grind.debug.cutsat.internalize] "{expr} ↦ #{var}"
+  trace[grind.debug.lia.internalize] "{expr} ↦ #{var}"
   modify' fun s => { s with
     vars      := s.vars.push expr
     varMap    := s.varMap.insert { expr } var

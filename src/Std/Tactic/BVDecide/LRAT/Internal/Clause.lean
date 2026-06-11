@@ -5,13 +5,11 @@ Authors: Josh Clune
 -/
 module
 prelude
-public import Init.Data.List.Erase
-public import Init.Data.Array.Lemmas
 public import Std.Data.HashMap
 public import Std.Sat.CNF.Basic
-public import Std.Tactic.BVDecide.LRAT.Internal.PosFin
 public import Std.Tactic.BVDecide.LRAT.Internal.Assignment
-public import Init.Grind
+import Init.Data.List.Erase
+import Init.Data.List.Pairwise
 @[expose] public section
 
 namespace Std.Tactic.BVDecide

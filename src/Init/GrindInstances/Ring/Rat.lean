@@ -6,8 +6,10 @@ Authors: Robin Arnez
 module
 
 prelude
-public import Init.Grind.Ring.Field
+public import Init.Grind.Ring.OfScientific
 public import Init.Data.Rat.Lemmas
+import Init.Data.Int.DivMod.Lemmas
+import Init.Data.Int.Lemmas
 
 public section
 
@@ -55,5 +57,8 @@ instance : NoNatZeroDivisors Rat where
   no_nat_zero_divisors k a b h₁ h₂ := by
     change k * a = k * b at h₂
     simpa [← Rat.mul_assoc, Rat.inv_mul_cancel, h₁] using congrArg ((k : Rat)⁻¹ * ·) h₂
+
+instance : LawfulOfScientific Rat where
+  ofScientific_def {m s e} := by rw [Rat.ofScientific_def_eq_if]
 
 end Lean.Grind

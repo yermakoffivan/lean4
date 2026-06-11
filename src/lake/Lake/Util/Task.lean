@@ -6,7 +6,6 @@ Authors: Mac Malone
 module
 
 prelude
-public import Init.Core
 public import Init.Control.Option
 public import Init.Control.Except
 

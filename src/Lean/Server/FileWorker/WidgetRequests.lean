@@ -7,14 +7,11 @@ Authors: Wojciech Nawrocki
 module
 
 prelude
-public import Lean.Widget.Basic
-public import Lean.Widget.InteractiveCode
-public import Lean.Widget.InteractiveGoal
-public import Lean.Widget.InteractiveDiagnostic
 
 public import Lean.Server.Rpc.RequestHandling
 public import Lean.Server.FileWorker.RequestHandling
 import Lean.PrettyPrinter.Delaborator.Builtins
+import Init.Omega
 
 public section
 
@@ -75,12 +72,14 @@ where
   maybeWithoutTopLevelHighlight : Bool → CodeWithInfos → CodeWithInfos
     | true, .tag _ tt => tt
     | _,    tt        => tt
-  ppExprForPopup (e : Expr) (explicit : Bool := false) : MetaM CodeWithInfos := do
-    let mut e := e
+  ppExprForPopup (e : Expr) (explicit : Bool) : MetaM CodeWithInfos := do
     -- When hovering over a metavariable, we want to see its value, even if `pp.instantiateMVars` is false.
-    if explicit && e.isMVar then
-      if let some e' ← getExprMVarAssignment? e.mvarId! then
-        e := e'
+    if explicit then
+      if let .mvar mvarId := e then
+        if let some e' ← getExprMVarAssignment? mvarId then
+          return ← ppExprForPopupAux e' false
+    ppExprForPopupAux e explicit
+  ppExprForPopupAux (e : Expr) (explicit : Bool) : MetaM CodeWithInfos := do
     -- When `explicit` is false, keep the top-level tag so that users can also see the explicit version of the term on an additional hover.
     maybeWithoutTopLevelHighlight explicit <$> ppExprTagged e do
       if explicit then
@@ -160,7 +159,7 @@ def lazyTraceChildrenToInteractive (children : WithRpcRef LazyTraceChildren) :
 
 builtin_initialize registerBuiltinRpcProcedure ``lazyTraceChildrenToInteractive _ _ lazyTraceChildrenToInteractive
 
-private def kmpSearch (query text : String) : Array String.Pos := Id.run do
+private def kmpSearch (query text : String) : Array String.Pos.Raw := Id.run do
   if query.isEmpty then
     return #[]
   let query := query.toUTF8
@@ -191,35 +190,35 @@ where
 private def contains (query text : String) : Bool :=
   ! (kmpSearch query text).isEmpty
 
-private def matchEndPos (query : String) (startPos : String.Pos) : String.Pos :=
-  startPos + ⟨query.utf8ByteSize⟩
+private def matchEndPos (query : String) (startPos : String.Pos.Raw) : String.Pos.Raw :=
+  startPos + query
 
 @[specialize]
-private def hightlightStringMatches? (query text : String) (matchPositions : Array String.Pos)
-    (highlight : α) (offset : String.Pos := ⟨0⟩) (mapIdx : Nat → Nat := id) :
+private def highlightStringMatches? (query text : String) (matchPositions : Array String.Pos.Raw)
+    (highlight : α) (offset : String.Pos.Raw := ⟨0⟩) (mapIdx : Nat → Nat := id) :
     Option (TaggedText α) := Id.run do
   if query.isEmpty || text.isEmpty || matchPositions.isEmpty then
     return none
   let mut anyMatch : Bool := false
   let mut r : Array (TaggedText α) := #[]
-  let mut p : String.Pos := ⟨0⟩
+  let mut p : String.Pos.Raw := ⟨0⟩
   for i in 0...matchPositions.size do
-    if p >= text.endPos then
+    if p >= text.rawEndPos then
       break
     let i := mapIdx i
     let globalMatchPos := matchPositions[i]!
-    let matchPos := globalMatchPos - offset
-    if matchPos >= text.endPos then
+    let matchPos := globalMatchPos.unoffsetBy offset
+    if matchPos >= text.rawEndPos then
       break
     if let some nonMatch := nonMatch? p matchPos then
       r := r.push nonMatch
     let globalMatchEndPos := matchEndPos query globalMatchPos
-    let matchEndPos := globalMatchEndPos - offset
-    let «match» := text.extract matchPos matchEndPos
+    let matchEndPos := globalMatchEndPos.unoffsetBy offset
+    let «match» := String.Pos.Raw.extract text matchPos matchEndPos
     r := r.push <| .tag highlight (.text «match»)
     p := matchEndPos
     anyMatch := true
-  if let some nonMatch := nonMatch? p text.endPos then
+  if let some nonMatch := nonMatch? p text.rawEndPos then
     r := r.push nonMatch
   if ! anyMatch then
     return none
@@ -227,20 +226,20 @@ private def hightlightStringMatches? (query text : String) (matchPositions : Arr
     return some r[0]
   return some (.append r)
 where
-  nonMatch? (p matchPosition : String.Pos) : Option (TaggedText α) := do
+  nonMatch? (p matchPosition : String.Pos.Raw) : Option (TaggedText α) := do
     guard <| p < matchPosition
-    let nonMatch := text.extract p matchPosition
+    let nonMatch := String.Pos.Raw.extract text p matchPosition
     return .text nonMatch
 
 private def findTaggedTextMatches (query : String) (tt : TaggedText α) (toText : α → String) :
-    Array String.Pos :=
+    Array String.Pos.Raw :=
   let tt : TaggedText Empty := tt.rewrite fun t _ => .text (toText t)
   kmpSearch query tt.stripTags
 
 private structure TaggedTextHighlightState where
   query        : String
-  ms           : Array String.Pos
-  p            : String.Pos
+  ms           : Array String.Pos.Raw
+  p            : String.Pos.Raw
   anyHighlight : Bool
 
 private def advanceTaggedTextHighlightState (text : String) (highlighted : α) :
@@ -248,18 +247,18 @@ private def advanceTaggedTextHighlightState (text : String) (highlighted : α) :
   let query := (← get).query
   let p := (← get).p
   let ms := (← get).ms
-  let highlighted? := hightlightStringMatches? query text ms highlighted (offset := p)
+  let highlighted? := highlightStringMatches? query text ms highlighted (offset := p)
     (mapIdx := fun i => ms.size - i - 1)
   updateState text highlighted?.isSome
   return highlighted?.getD (.text text)
 where
   updateState (text : String) (isHighlighted : Bool) : StateM TaggedTextHighlightState Unit :=
     modify fun s =>
-      let p : String.Pos := s.p + ⟨text.utf8ByteSize⟩
+      let p : String.Pos.Raw := s.p.increaseBy text.utf8ByteSize
       let ms := updateMatches s.query s.ms p
       let anyHighlight := s.anyHighlight || isHighlighted
       { s with p, ms, anyHighlight }
-  updateMatches (query : String) (ms : Array String.Pos) (p : String.Pos) : Array String.Pos := Id.run do
+  updateMatches (query : String) (ms : Array String.Pos.Raw) (p : String.Pos.Raw) : Array String.Pos.Raw := Id.run do
     let n := ms.size
     let mut ms := ms
     for i in 0...n do

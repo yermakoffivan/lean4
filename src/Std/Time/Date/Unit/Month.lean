@@ -7,13 +7,13 @@ module
 
 prelude
 public import Std.Time.Date.Unit.Day
+import Init.Data.Fin.Lemmas
 
 public section
 
 namespace Std
 namespace Time
 namespace Month
-open Std.Internal
 open Internal
 
 set_option linter.all true

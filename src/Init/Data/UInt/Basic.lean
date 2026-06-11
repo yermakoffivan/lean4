@@ -6,10 +6,7 @@ Authors: Leonardo de Moura
 module
 
 prelude
-public import Init.Data.UInt.BasicAux
 public import Init.Data.BitVec.Basic
-public import Init.Data.Order.Classes
-import Init.Data.Order.Factories
 
 @[expose] public section
 
@@ -182,6 +179,14 @@ def Bool.toUInt8 (b : Bool) : UInt8 := if b then 1 else 0
 
 instance : Max UInt8 := maxOfLe
 instance : Min UInt8 := minOfLe
+
+/--
+If `b` is the ASCII value of an uppercase character return the corresponding
+lowercase value, otherwise leave it untouched.
+-/
+@[inline]
+def UInt8.toAsciiLower (b : UInt8) : UInt8 :=
+  if b >= 65 && b <= 90 then (b + 32) else b
 
 /-- Converts a `Fin UInt16.size` into the corresponding `UInt16`. -/
 @[inline] def UInt16.ofFin (a : Fin UInt16.size) : UInt16 := ⟨⟨a⟩⟩
@@ -367,7 +372,7 @@ Examples:
  * `(if (5 : UInt16) < 5 then "yes" else "no") = "no"`
  * `show ¬((7 : UInt16) < 7) by decide`
 -/
-@[extern "lean_uint16_dec_lt"]
+@[extern "lean_uint16_dec_lt", implicit_reducible]
 def UInt16.decLt (a b : UInt16) : Decidable (a < b) :=
   inferInstanceAs (Decidable (a.toBitVec < b.toBitVec))
 
@@ -384,7 +389,7 @@ Examples:
  * `(if (5 : UInt16) ≤ 15 then "yes" else "no") = "yes"`
  * `show (7 : UInt16) ≤ 7 by decide`
 -/
-@[extern "lean_uint16_dec_le"]
+@[extern "lean_uint16_dec_le", implicit_reducible]
 def UInt16.decLe (a b : UInt16) : Decidable (a ≤ b) :=
   inferInstanceAs (Decidable (a.toBitVec ≤ b.toBitVec))
 
@@ -399,22 +404,6 @@ instance : Min UInt16 := minOfLe
 /-- Converts an `Int` to a `UInt32` by taking the (non-negative remainder of the division by `2 ^ 32`. -/
 def UInt32.ofInt (x : Int) : UInt32 := ofNat (x % 2 ^ 32).toNat
 
-/--
-Adds two 32-bit unsigned integers, wrapping around on overflow. Usually accessed via the `+`
-operator.
-
-This function is overridden at runtime with an efficient implementation.
--/
-@[extern "lean_uint32_add"]
-protected def UInt32.add (a b : UInt32) : UInt32 := ⟨a.toBitVec + b.toBitVec⟩
-/--
-Subtracts one 32-bit unsigned integer from another, wrapping around on underflow. Usually accessed
-via the `-` operator.
-
-This function is overridden at runtime with an efficient implementation.
--/
-@[extern "lean_uint32_sub"]
-protected def UInt32.sub (a b : UInt32) : UInt32 := ⟨a.toBitVec - b.toBitVec⟩
 /--
 Multiplies two 32-bit unsigned integers, wrapping around on overflow.  Usually accessed via the `*`
 operator.
@@ -511,17 +500,15 @@ protected def UInt32.shiftRight (a b : UInt32) : UInt32 := ⟨a.toBitVec >>> (UI
 Strict inequality of 32-bit unsigned integers, defined as inequality of the corresponding
 natural numbers. Usually accessed via the `<` operator.
 -/
--- These need to be exposed as `Init.Prelude` already has an instance for bootstrapping puproses and
+-- These need to be exposed as `Init.Prelude` already has an instance for bootstrapping purposes and
 -- they should be defeq
-@[expose] protected def UInt32.lt (a b : UInt32) : Prop := a.toBitVec < b.toBitVec
+protected def UInt32.lt (a b : UInt32) : Prop := a.toBitVec < b.toBitVec
 /--
 Non-strict inequality of 32-bit unsigned integers, defined as inequality of the corresponding
 natural numbers. Usually accessed via the `≤` operator.
 -/
-@[expose] protected def UInt32.le (a b : UInt32) : Prop := a.toBitVec ≤ b.toBitVec
+protected def UInt32.le (a b : UInt32) : Prop := a.toBitVec ≤ b.toBitVec
 
-instance : Add UInt32       := ⟨UInt32.add⟩
-instance : Sub UInt32       := ⟨UInt32.sub⟩
 instance : Mul UInt32       := ⟨UInt32.mul⟩
 instance : Pow UInt32 Nat   := ⟨UInt32.pow⟩
 instance : Mod UInt32       := ⟨UInt32.mod⟩
@@ -749,7 +736,7 @@ Examples:
  * `(if (5 : UInt64) < 5 then "yes" else "no") = "no"`
  * `show ¬((7 : UInt64) < 7) by decide`
 -/
-@[extern "lean_uint64_dec_lt"]
+@[extern "lean_uint64_dec_lt", implicit_reducible]
 def UInt64.decLt (a b : UInt64) : Decidable (a < b) :=
   inferInstanceAs (Decidable (a.toBitVec < b.toBitVec))
 
@@ -765,7 +752,7 @@ Examples:
  * `(if (5 : UInt64) ≤ 15 then "yes" else "no") = "yes"`
  * `show (7 : UInt64) ≤ 7 by decide`
 -/
-@[extern "lean_uint64_dec_le"]
+@[extern "lean_uint64_dec_le", implicit_reducible]
 def UInt64.decLe (a b : UInt64) : Decidable (a ≤ b) :=
   inferInstanceAs (Decidable (a.toBitVec ≤ b.toBitVec))
 

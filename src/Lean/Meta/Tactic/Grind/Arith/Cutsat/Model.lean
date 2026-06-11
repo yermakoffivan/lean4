@@ -6,7 +6,6 @@ Authors: Leonardo de Moura
 module
 prelude
 public import Lean.Meta.Tactic.Grind.Arith.Cutsat.Types
-import Init.Grind.ToInt
 import Lean.Meta.Tactic.Grind.Arith.ModelUtil
 public section
 namespace Lean.Meta.Grind.Arith.Cutsat
@@ -73,7 +72,7 @@ def mkModel (goal : Goal) : MetaM (Array (Expr × Rat)) := do
       let some v := model[i]? | pure ()
       model := assignEqc goal n v model
   let r ← finalizeModel goal isIntNatENode model
-  traceModel `grind.cutsat.model r
+  traceModel `grind.lia.model r
   return r
 
 end Lean.Meta.Grind.Arith.Cutsat

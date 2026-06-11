@@ -6,9 +6,9 @@ Author: Leonardo de Moura
 module
 
 prelude
-public import Init.SizeOf
 public import Init.BinderNameHint
-public import Init.Data.Nat.Basic
+public import Init.Grind.Tactics
+import Init.Data.Nat.Basic
 
 public section
 
@@ -103,8 +103,22 @@ theorem fixF_eq (x : α) (acx : Acc r x) : fixF F x acx = F x (fun (y : α) (p :
   induction acx with
   | intro x r _ => exact rfl
 
-@[deprecated fixF_eq (since := "2025-04-04")]
-abbrev fixFEq := @fixF_eq
+/-- Attaches to `x` the proof that `x` is accessible in the given well-founded relation.
+This can be used in recursive function definitions to explicitly use a different relation
+than the one inferred by default:
+
+```
+def otherWF : WellFounded Nat := …
+def foo (n : Nat) := …
+termination_by otherWF.wrap n
+```
+-/
+def wrap {α : Sort u} {r : α → α → Prop} (h : WellFounded r) (x : α) : {x : α // Acc r x} :=
+  ⟨_, h.apply x⟩
+
+@[simp]
+theorem val_wrap {α : Sort u} {r : α → α → Prop} (h : WellFounded r) (x : α) :
+    (h.wrap x).val = x := (rfl)
 
 end
 
@@ -130,6 +144,7 @@ end WellFounded
 open WellFounded
 
 -- Empty relation is well-founded
+@[implicit_reducible]
 def emptyWf {α : Sort u} : WellFoundedRelation α where
   rel := emptyRelation
   wf  := by
@@ -191,12 +206,19 @@ theorem Acc.transGen (h : Acc r a) : Acc (TransGen r) a := by
 theorem acc_transGen_iff : Acc (TransGen r) a ↔ Acc r a :=
   ⟨Subrelation.accessible TransGen.single, Acc.transGen⟩
 
+/--
+If `Acc r x` holds and `y` is transitively related to `x`, then `Acc r y` holds, too.
+-/
+theorem Acc.inv_of_transGen {x y : α} (h₁ : Acc r x) (h₂ : Relation.TransGen r y x) : Acc r y := by
+  simpa [acc_transGen_iff] using h₁.transGen.inv h₂
+
 theorem WellFounded.transGen (h : WellFounded r) : WellFounded (TransGen r) :=
   ⟨fun a ↦ (h.apply a).transGen⟩
 
 namespace Nat
 
 -- less-than is well-founded
+@[implicit_reducible]
 def lt_wfRel : WellFoundedRelation Nat where
   rel := (· < ·)
   wf  := by
@@ -341,6 +363,7 @@ theorem RProdSubLex (a : α × β) (b : α × β) (h : RProd ra rb a b) : Prod.L
   | intro h₁ h₂ => exact Prod.Lex.left _ _ h₁
 
 -- The relational product of well founded relations is well-founded
+@[implicit_reducible]
 def rprod (ha : WellFoundedRelation α) (hb : WellFoundedRelation β) : WellFoundedRelation (α × β) where
   rel := RProd ha.rel hb.rel
   wf  := by
@@ -433,6 +456,7 @@ section
 def SkipLeft (α : Type u) {β : Type v} (s : β → β → Prop) : @PSigma α (fun _ => β) → @PSigma α (fun _ => β) → Prop :=
   RevLex emptyRelation s
 
+@[implicit_reducible]
 def skipLeft (α : Type u) {β : Type v} (hb : WellFoundedRelation β) : WellFoundedRelation (PSigma fun _ : α => β) where
   rel := SkipLeft α hb.rel
   wf  := revLex emptyWf.wf hb.wf
@@ -442,6 +466,53 @@ theorem mkSkipLeft {α : Type u} {β : Type v} {b₁ b₂ : β} {s : β → β �
 end
 
 end PSigma
+
+namespace WellFounded
+
+variable {α : Sort u}
+variable {motive : α → Sort v}
+variable (h : α → Nat)
+variable (F : (x : α) → ((y : α) → InvImage (· < ·) h y x → motive y) → motive x)
+
+/-- Helper gadget that prevents reduction of `Nat.eager n` unless `n` evaluates to a ground term. -/
+def Nat.eager (n : Nat) : Nat :=
+  if Nat.beq n n = true then n else n
+
+theorem Nat.eager_eq (n : Nat) : Nat.eager n = n := ite_self n
+
+/--
+A well-founded fixpoint operator specialized for `Nat`-valued measures. Given a measure `h`, it expects
+its higher order function argument `F` to invoke its argument only on values `y` that are smaller
+than `x` with regard to `h`.
+
+In contrast to `WellFounded.fix`, this fixpoint operator reduces on closed terms. (More precisely:
+when `h x` evaluates to a ground value)
+
+-/
+def Nat.fix : (x : α) → motive x :=
+  let rec go : ∀ (fuel : Nat) (x : α), (h x < fuel) → motive x :=
+    Nat.rec
+      (fun _ hfuel => (Nat.not_succ_le_zero _ hfuel).elim)
+      (fun _ ih x hfuel => F x (fun y hy => ih y (by exact Nat.lt_of_lt_of_le hy (Nat.le_of_lt_add_one hfuel))))
+  fun x => go (Nat.eager (h x + 1)) x (Nat.eager_eq _ ▸ Nat.lt_add_one _)
+
+protected theorem Nat.fix.go_congr (x : α) (fuel₁ fuel₂ : Nat) (h₁ : h x < fuel₁) (h₂ : h x < fuel₂) :
+    Nat.fix.go h F fuel₁ x h₁ = Nat.fix.go h F fuel₂ x h₂ := by
+  induction fuel₁ generalizing x fuel₂ with
+  | zero => contradiction
+  | succ fuel₁ ih =>
+    cases fuel₂ with
+    | zero => contradiction
+    | succ fuel₂ =>
+      exact congrArg (F x) (funext fun y => funext fun hy => ih y fuel₂ _ _ )
+
+theorem Nat.fix_eq (x : α) :
+    Nat.fix h F x = F x (fun y _ => Nat.fix h F y) := by
+  unfold Nat.fix
+  simp [Nat.eager_eq]
+  exact congrArg (F x) (funext fun _ => funext fun _ => Nat.fix.go_congr ..)
+
+end WellFounded
 
 /--
 The `wfParam` gadget is used internally during the construction of recursive functions by

@@ -6,20 +6,12 @@ Authors: Leonardo de Moura
 module
 
 prelude
-public import Init.ShareCommon
-public import Lean.Compiler.MetaAttr
 public import Lean.Compiler.NoncomputableAttr
-public import Lean.Util.CollectLevelParams
-public import Lean.Util.NumObjs
 public import Lean.Util.NumApps
-public import Lean.Meta.AbstractNestedProofs
-public import Lean.Meta.ForEachExpr
 public import Lean.Meta.Eqns
-public import Lean.Meta.LetToHave
 public import Lean.Elab.RecAppSyntax
+public import Lean.Meta.WrapInstance
 public import Lean.Elab.DefView
-public import Lean.Elab.PreDefinition.TerminationHint
-
 public section
 
 namespace Lean.Elab
@@ -42,6 +34,7 @@ structure PreDefinition where
   modifiers   : Modifiers
   declName    : Name
   binders     : Syntax
+  numSectionVars : Nat := 0
   type        : Expr
   value       : Expr
   termination : TerminationHints
@@ -142,11 +135,13 @@ private def shouldGenCodeFor (preDef : PreDefinition) : Bool :=
   !preDef.kind.isTheorem && !preDef.modifiers.isNoncomputable
 
 private def compileDecl (decl : Declaration) : TermElabM Unit := do
-  Lean.compileDecl (logErrors := !(← read).isNoncomputableSection) decl
+  Lean.compileDecl
+    -- `meta` should disregard `noncomputable section`
+    (logErrors := !(← read).isNoncomputableSection || decl.getTopLevelNames.any (isMarkedMeta (← getEnv)))
+    decl
 
 register_builtin_option diagnostics.threshold.proofSize : Nat := {
   defValue := 16384
-  group    := "diagnostics"
   descr    := "only display proof statistics when proof has at least this number of terms"
 }
 
@@ -181,7 +176,9 @@ def addPreDefInfo (preDef : PreDefinition) : TermElabM Unit := do
     addTermInfo' preDef.ref (← mkConstWithLevelParams preDef.declName) (isBinder := true)
 
 
-private def addNonRecAux (docCtx : LocalContext × LocalInstances) (preDef : PreDefinition) (compile : Bool) (all : List Name) (applyAttrAfterCompilation := true) (cacheProofs := true) (cleanupValue := false) : TermElabM Unit :=
+private def addNonRecAux (docCtx : LocalContext × LocalInstances) (preDef : PreDefinition) (compile : Bool)
+    (all : List Name) (applyAttrAfterCompilation := true) (cacheProofs := true) (cleanupValue := false)
+    (isRecursive := false) : TermElabM Unit :=
   withRef preDef.ref do
     let preDef ← abstractNestedProofs (cache := cacheProofs) preDef
     let preDef ← letToHaveType preDef
@@ -215,29 +212,33 @@ private def addNonRecAux (docCtx : LocalContext × LocalInstances) (preDef : Pre
       | DefKind.def | DefKind.example => mkDefDecl
       | DefKind.«instance» => if ← Meta.isProp preDef.type then mkThmDecl else mkDefDecl
     addDecl decl
+    if isRecursive then markAsRecursive preDef.declName
     applyAttributesOf #[preDef] AttributeApplicationTime.afterTypeChecking
     match preDef.modifiers.computeKind with
-    | .meta          => modifyEnv (addMeta · preDef.declName)
-    | .noncomputable => modifyEnv (addNoncomputable · preDef.declName)
-    | _              =>
-      if !preDef.kind.isTheorem then
-        modifyEnv (addNotMeta · preDef.declName)
+    -- Tags may have been added by `elabMutualDef` already, but that is not the only caller
+    | .meta          => if !isMarkedMeta (← getEnv) preDef.declName then modifyEnv (markMeta · preDef.declName)
+    | .noncomputable => if !isNoncomputable (asyncMode := .local) (← getEnv) preDef.declName then modifyEnv (addNoncomputable · preDef.declName)
+    | _              => pure ()
     if compile && shouldGenCodeFor preDef then
       compileDecl decl
     if applyAttrAfterCompilation then
+      saveEqnAffectingOptions preDef.declName
       enableRealizationsForConst preDef.declName
-      generateEagerEqns preDef.declName
     addPreDefDocs docCtx preDef
     if applyAttrAfterCompilation then
       applyAttributesOf #[preDef] AttributeApplicationTime.afterCompilation
     addPreDefInfo preDef
 
 
-def addAndCompileNonRec (docCtx : LocalContext × LocalInstances) (preDef : PreDefinition) (all : List Name := [preDef.declName]) (cleanupValue := false) : TermElabM Unit := do
-  addNonRecAux docCtx preDef (compile := true) (all := all) (cleanupValue := cleanupValue)
+def addAndCompileNonRec (docCtx : LocalContext × LocalInstances) (preDef : PreDefinition)
+    (all : List Name := [preDef.declName]) (cleanupValue := false) (isRecursive := false) : TermElabM Unit := do
+  addNonRecAux docCtx preDef (compile := true) (all := all) (cleanupValue := cleanupValue) (isRecursive := isRecursive)
 
-def addNonRec (docCtx : LocalContext × LocalInstances) (preDef : PreDefinition) (applyAttrAfterCompilation := true) (all : List Name := [preDef.declName]) (cacheProofs := true) (cleanupValue := false) : TermElabM Unit := do
-  addNonRecAux docCtx preDef (compile := false) (applyAttrAfterCompilation := applyAttrAfterCompilation) (all := all) (cacheProofs := cacheProofs) (cleanupValue := cleanupValue)
+def addNonRec (docCtx : LocalContext × LocalInstances) (preDef : PreDefinition)
+    (applyAttrAfterCompilation := true) (all : List Name := [preDef.declName]) (cacheProofs := true)
+    (cleanupValue := false) (isRecursive := false) : TermElabM Unit := do
+  addNonRecAux docCtx preDef (compile := false) (applyAttrAfterCompilation := applyAttrAfterCompilation)
+    (all := all) (cacheProofs := cacheProofs) (cleanupValue := cleanupValue) (isRecursive := isRecursive)
 
 /--
   Eliminate recursive application annotations containing syntax. These annotations are used by the well-founded recursion module

@@ -6,7 +6,6 @@ Authors: Leonardo de Moura
 module
 prelude
 public import Lean.Meta.Tactic.Grind.Arith.Cutsat.Types
-import Lean.Meta.Tactic.Grind.Arith.Util
 import Lean.Meta.Tactic.Simp.Arith.Int.Simp
 public section
 namespace Int.Linear
@@ -42,6 +41,7 @@ def inconsistent : GoalM Bool := do
   if (← isInconsistent) then return true
   return (← get').conflict?.isSome
 
+set_option compiler.ignoreBorrowAnnotation true in
 /-- Creates a new variable in the cutsat module. -/
 @[extern "lean_grind_cutsat_mk_var"] -- forward definition
 opaque mkVar (e : Expr) : GoalM Var
@@ -63,6 +63,7 @@ def isIntTerm (e : Expr) : GoalM Bool :=
 def eliminated (x : Var) : GoalM Bool :=
   return (← get').elimEqs[x]!.isSome
 
+set_option compiler.ignoreBorrowAnnotation true in
 @[extern "lean_grind_cutsat_assert_eq"] -- forward definition
 opaque EqCnstr.assert (c : EqCnstr) : GoalM Unit
 
@@ -115,6 +116,7 @@ def DiseqCnstr.throwUnexpected (c : DiseqCnstr) : GoalM α := do
 def DiseqCnstr.denoteExpr (c : DiseqCnstr) : GoalM Expr := do
   return mkNot (mkIntEq (← c.p.denoteExpr') (mkIntLit 0))
 
+set_option compiler.ignoreBorrowAnnotation true in
 @[extern "lean_grind_cutsat_assert_le"] -- forward definition
 opaque LeCnstr.assert (c : LeCnstr) : GoalM Unit
 
@@ -217,6 +219,14 @@ Returns `.true` if `c` is satisfied by the current partial model,
 def DiseqCnstr.satisfied (c : DiseqCnstr) : GoalM LBool := do
   let some v ← c.p.eval? | return .undef
   return v != 0 |>.toLBool
+
+/--
+Returns `.true` if `c` is satisfied by the current partial model,
+`.undef` if `c` contains unassigned variables, and `.false` otherwise.
+-/
+def EqCnstr.satisfied (c : EqCnstr) : GoalM LBool := do
+  let some v ← c.p.eval? | return .undef
+  return v == 0 |>.toLBool
 
 /--
 Given a polynomial `p`, returns `some (x, k, c)` if `p` contains the monomial `k*x`,

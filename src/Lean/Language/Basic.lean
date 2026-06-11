@@ -11,7 +11,6 @@ Authors: Sebastian Ullrich
 module
 
 prelude
-public import Init.System.Promise
 public import Lean.Parser.Types
 public import Lean.Util.Trace
 
@@ -68,14 +67,16 @@ structure Snapshot where
   `diagnostics`) occurred that prevents processing of the remainder of the file.
   -/
   isFatal := false
-deriving Inhabited
+
+instance : Inhabited Snapshot where
+  default := { desc := "", diagnostics := default }
 
 /-- Range that is marked as being processed by the server while a task is running. -/
 inductive SnapshotTask.ReportingRange where
   /-- Inherit range from outer task if any, or else the entire file. -/
   | inherit
   /-- Use given range. -/
-  | protected some (range : String.Range)
+  | protected some (range : Lean.Syntax.Range)
   /-- Do not mark as being processed. Child nodes are still visited. -/
   | skip
 deriving Inhabited
@@ -84,7 +85,7 @@ deriving Inhabited
 Constructs a reporting range by replacing a missing range with `inherit`, which is a reasonable
 default to ensure that a range is shown in all cases.
 -/
-def SnapshotTask.ReportingRange.ofOptionInheriting : Option String.Range → SnapshotTask.ReportingRange
+def SnapshotTask.ReportingRange.ofOptionInheriting : Option Lean.Syntax.Range → SnapshotTask.ReportingRange
   | some range => .some range
   | none       => .inherit
 
@@ -237,7 +238,10 @@ partial def SnapshotTask.cancelRec [ToSnapshotTree α] (t : SnapshotTask α) : B
 
 /-- Snapshot type without child nodes. -/
 structure SnapshotLeaf extends Snapshot
-deriving Inhabited, TypeName
+deriving TypeName
+
+instance : Inhabited SnapshotLeaf where
+  default := { toSnapshot := default }
 
 instance : ToSnapshotTree SnapshotLeaf where
   toSnapshotTree s := SnapshotTree.mk s.toSnapshot #[]
@@ -313,17 +317,18 @@ private def reportMessages (msgLog : MessageLog) (opts : Options)
     (json : Bool) (severityOverrides : NameMap MessageSeverity) (numErrors : Nat) : IO Nat := do
   let includeEndPos := printMessageEndPos.get opts
   msgLog.unreported.foldlM (init := numErrors) fun numErrors msg => do
+    let msg : Message :=
+      if let some severity := severityOverrides.find? msg.kind then
+        {msg with severity}
+      else
+        msg
     let numErrors := numErrors + (if msg.severity matches .error then 1 else 0)
     let maxErrorsReached := maxErrors.get opts != 0 && numErrors > maxErrors.get opts
     let msg : Message :=
-      if maxErrorsReached then {
-        fileName := ""
-        pos := ⟨0, 0⟩
+      if maxErrorsReached then { msg with
         data := s!"maximum number of errors ({maxErrors.get opts}; from option `maxErrors`) reached, exiting"
         severity := .error
-      } else if let some severity := severityOverrides.find? msg.kind then
-        {msg with severity}
-      else
+      } else
         msg
     unless msg.isSilent do
       if json then
@@ -383,7 +388,7 @@ def diagnosticsOfHeaderError (msg : String) : ProcessingM Snapshot.Diagnostics :
   let msgLog := MessageLog.empty.add {
     fileName := "<input>"
     pos := ⟨1, 0⟩
-    endPos := (← read).fileMap.toPosition (← read).fileMap.source.endPos
+    endPos := (← read).fileMap.toPosition (← read).fileMap.source.rawEndPos
     data := msg
   }
   Snapshot.Diagnostics.ofMessageLog msgLog

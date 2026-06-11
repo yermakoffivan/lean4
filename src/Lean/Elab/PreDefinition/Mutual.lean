@@ -18,18 +18,6 @@ well-founded recursion and partial fixed-points, but independent of the details 
 namespace Lean.Elab.Mutual
 open Meta
 
-partial def withCommonTelescope (preDefs : Array PreDefinition) (k : Array Expr → Array Expr → MetaM α) : MetaM α :=
-  go #[] (preDefs.map (·.value))
-where
-  go (fvars : Array Expr) (vals : Array Expr) : MetaM α := do
-    if !(vals.all fun val => val.isLambda) then
-      k fvars vals
-    else if !(← vals.allM fun val => isDefEq val.bindingDomain! vals[0]!.bindingDomain!) then
-      k fvars vals
-    else
-      withLocalDecl vals[0]!.bindingName! vals[0]!.binderInfo vals[0]!.bindingDomain! fun x =>
-        go (fvars.push x) (vals.map fun val => val.bindingBody!.instantiate1 x)
-
 def addPreDefsFromUnary (docCtx : LocalContext × LocalInstances) (preDefs : Array PreDefinition) (preDefsNonrec : Array PreDefinition)
     (unaryPreDefNonRec : PreDefinition) (cacheProofs := true) : TermElabM Unit := do
   /-
@@ -46,10 +34,14 @@ def addPreDefsFromUnary (docCtx : LocalContext × LocalInstances) (preDefs : Arr
   withOptions (allowUnsafeReducibility.set · true) do
     if unaryPreDefNonRec.declName = preDefs[0]!.declName then
       addNonRec docCtx preDefNonRec (applyAttrAfterCompilation := false) (cacheProofs := cacheProofs)
+        (isRecursive := true)
     else
       withEnableInfoTree false do
         addNonRec docCtx preDefNonRec (applyAttrAfterCompilation := false) (cacheProofs := cacheProofs)
-      preDefsNonrec.forM (addNonRec docCtx · (applyAttrAfterCompilation := false) (all := declNames) (cacheProofs := cacheProofs))
+          (isRecursive := true)
+      preDefsNonrec.forM fun preDefNonRec =>
+        addNonRec docCtx preDefNonRec (applyAttrAfterCompilation := false) (all := declNames)
+          (cacheProofs := cacheProofs) (isRecursive := true)
 
 /--
 Cleans the right-hand-sides of the predefinitions, to prepare for inclusion in the EqnInfos:
@@ -65,19 +57,29 @@ def cleanPreDef (preDef : PreDefinition) (cacheProofs := true) : MetaM PreDefini
 Assign final attributes to the definitions. Assumes the EqnInfos to be already present.
 -/
 def addPreDefAttributes (preDefs : Array PreDefinition) : TermElabM Unit := do
+  /-
+  Set irreducibility attribute, unless the user has requested a different setting.
+  Must appen before `enableRealizationsForConst`, else the equation generation sees
+  a wrong setting and creates bad `defEq` equations.
+  -/
   for preDef in preDefs do
-    markAsRecursive preDef.declName
+    unless preDef.kind.isTheorem do
+      unless preDef.modifiers.attrs.any fun a =>
+          a.name = `reducible || a.name = `semireducible ||
+          a.name = `instance_reducible || a.name = `implicit_reducible do
+        setIrreducibleAttribute preDef.declName
+
+  for preDef in preDefs do
+    saveEqnAffectingOptions preDef.declName
+
+  /-
+  It must happen in reverse order so that constants realized as part of the first decl
+  have realizations for the other ones enabled
+  -/
   for preDef in preDefs.reverse do
-    -- must happen before `generateEagerEqns`
-    -- must happen in reverse order so that constants realized as part of the first decl
-    -- have realizations for the other ones enabled
     enableRealizationsForConst preDef.declName
+
   for preDef in preDefs do
-    generateEagerEqns preDef.declName
     applyAttributesOf #[preDef] AttributeApplicationTime.afterCompilation
-    -- Unless the user asks for something else, mark the definition as irreducible
-    unless preDef.modifiers.attrs.any fun a =>
-      a.name = `reducible || a.name = `semireducible do
-      setIrreducibleAttribute preDef.declName
 
 end Lean.Elab.Mutual

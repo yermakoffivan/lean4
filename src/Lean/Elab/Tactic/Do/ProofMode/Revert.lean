@@ -6,7 +6,6 @@ Authors: Lars König, Mario Carneiro, Sebastian Graf
 module
 
 prelude
-public import Std.Tactic.Do.Syntax
 public import Lean.Elab.Tactic.Do.ProofMode.Focus
 public import Lean.Elab.Tactic.Do.ProofMode.Basic
 
@@ -20,11 +19,12 @@ variable {m : Type → Type u} [Monad m] [MonadControlT MetaM m] [MonadLiftT Met
 
 partial def mRevert (goal : MGoal) (ref : TSyntax `ident) (k : MGoal → m Expr) : m Expr := do
   let res ← goal.focusHypWithInfo ref
+  let some hyp := parseHyp? res.focusHyp | liftMetaM <| throwError "impossible; res.focusHyp not a hypothesis"
   let P := goal.hyps
   let Q := res.restHyps
   let H := res.focusHyp
   let T := goal.target
-  let prf ← k { goal with hyps := Q, target := mkApp3 (mkConst ``SPred.imp [goal.u]) goal.σs H T }
+  let prf ← k { goal with hyps := Q, target := mkApp3 (mkConst ``SPred.imp [goal.u]) goal.σs hyp.p T }
   let prf := mkApp7 (mkConst ``Revert.revert [goal.u]) goal.σs P Q H T res.proof prf
   return prf
 
@@ -95,7 +95,7 @@ def elabMRevert : Tactic
     return m)
   replaceMainGoal (← goals.get)
   | `(tactic| mrevert ∀ $[$n]?) => do
-  let (mvar, goal) ← mStartMVar (← getMainGoal)
+  let (mvar, goal) ← mStartMainGoal
   mvar.withContext do
   let n := ((·.getNat) <$> n).getD 1
   let goals ← IO.mkRef []

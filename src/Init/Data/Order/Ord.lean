@@ -6,7 +6,16 @@ Authors: Markus Himmel, Paul Reichert, Robin Arnez
 module
 
 prelude
-public import Init.Data.Ord.Basic
+import Init.Data.List.Lemmas
+import Init.Data.Array.DecidableEq
+public import Init.Data.Ord.Array
+public import Init.Data.BEq
+public import Init.Data.Array.Basic
+import Init.ByCases
+import Init.Data.Bool
+import Init.Data.Int.Order
+import Init.Data.List.Nat.BEq
+import Init.Data.Option.Lemmas
 
 public section
 
@@ -43,7 +52,7 @@ theorem ne_of_cmp_ne_eq {α : Type u} {cmp : α → α → Ordering} [Std.ReflCm
 
 end ReflCmp
 
-/-- A typeclasses for ordered types for which `compare a a = .eq` for all `a`. -/
+/-- A typeclass for ordered types for which `compare a a = .eq` for all `a`. -/
 abbrev ReflOrd (α : Type u) [Ord α] := ReflCmp (compare : α → α → Ordering)
 
 @[simp]
@@ -267,6 +276,7 @@ theorem TransCmp.gt_of_gt_of_isGE [TransCmp cmp] {a b c : α} (hab : cmp a b = .
   rw [OrientedCmp.gt_iff_lt, OrientedCmp.isGE_iff_isLE] at *
   exact TransCmp.lt_of_isLE_of_lt hbc hab
 
+@[deprecated TransCmp.gt_trans (since := "2025-10-26")]
 theorem TransCmp.gt_of_gt_of_gt [TransCmp cmp] {a b c : α} (hab : cmp a b = .gt)
     (hbc : cmp b c = .gt) : cmp a c = .gt := by
   apply gt_of_gt_of_isGE hab (Ordering.isGE_of_eq_gt hbc)
@@ -465,7 +475,7 @@ end LawfulBEq
 
 attribute [local instance] beqOfOrd in
 instance {α : Type u} {_ : Ord α} : LawfulBEqOrd α where
-  compare_eq_iff_beq {a b} := by simp only [beqOfOrd, Ordering.isEq_iff_eq_eq]
+  compare_eq_iff_beq {a b} := by simp only [BEq.beq, Ordering.isEq_iff_eq_eq]
 
 end Std
 
@@ -630,7 +640,7 @@ instance {α β} [Ord α] [Ord β] [TransOrd α] [TransOrd β] :
 
 instance {α β} [Ord α] [Ord β] [LawfulEqOrd α] [LawfulEqOrd β] : LawfulEqOrd (α × β) where
   eq_of_compare {a b} h := by
-    simp only [lexOrd, compareLex_eq_eq, compareOn] at h
+    simp only [compare, compareLex_eq_eq, compareOn] at h
     ext
     · exact LawfulEqOrd.eq_of_compare h.1
     · exact LawfulEqOrd.eq_of_compare h.2

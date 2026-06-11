@@ -7,7 +7,7 @@ module
 
 prelude
 public import Std.Sat.AIG.CachedGates
-public import Std.Sat.AIG.LawfulOperator
+import Init.Omega
 
 @[expose] public section
 

@@ -6,7 +6,13 @@ Authors: Parikshit Khanna, Jeremy Avigad, Leonardo de Moura, Floris van Doorn, M
 module
 
 prelude
-public import Init.Data.List.Nat.Modify
+public import Init.GetElem
+import Init.Data.List.Erase
+import Init.Data.List.Lemmas
+import Init.Data.List.Nat.Modify
+import Init.Data.Nat.Lemmas
+import Init.Data.Option.Lemmas
+import Init.Omega
 
 public section
 
@@ -120,9 +126,6 @@ theorem insertIdx_of_length_lt {l : List α} {x : α} {i : Nat} (h : l.length < 
 theorem eraseIdx_insertIdx_self {i : Nat} {l : List α} (a : α) : (l.insertIdx i a).eraseIdx i = l := by
   rw [eraseIdx_eq_modifyTailIdx, insertIdx, modifyTailIdx_modifyTailIdx_self]
   exact modifyTailIdx_id _ _
-
-@[deprecated eraseIdx_insertIdx_self (since := "2025-06-18")]
-abbrev eraseIdx_insertIdx := @eraseIdx_insertIdx_self
 
 @[simp]
 theorem insertIdx_length_self {l : List α} {x : α} : l.insertIdx l.length x = l ++ [x] := by

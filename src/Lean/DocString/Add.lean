@@ -7,17 +7,9 @@ Authors: David Thrane Christiansen
 module
 
 prelude
-import Lean.Environment
-import Lean.Exception
-import Lean.Log
 import Lean.Elab.DocString
-import Lean.DocString.Extension
-import Lean.DocString.Links
-import Lean.Parser.Types
 public import Lean.DocString.Parser
-import Lean.ResolveName
 public import Lean.Elab.Term.TermElabM
-import Std.Data.HashMap
 
 public section
 
@@ -45,7 +37,7 @@ def validateDocComment
   for (⟨start, stop⟩, err) in errs do
     -- Report errors at their actual location if possible
     if let some pos := pos? then
-      let urlStx : Syntax := .atom (.synthetic (pos + start) (pos + stop)) (str.extract start stop)
+      let urlStx : Syntax := .atom (.synthetic (start.offsetBy pos) (stop.offsetBy pos)) (String.Pos.Raw.extract str start stop)
       logErrorAt urlStx err
     else
       logError err
@@ -72,9 +64,9 @@ def parseVersoDocString
     | throwErrorAt docComment m!"Documentation comment has no source location, cannot parse"
 
   -- Skip trailing `-/`
-  let endPos := text.source.prev <| text.source.prev endPos
-  let endPos := if endPos ≤ text.source.endPos then endPos else text.source.endPos
-  have endPos_valid : endPos ≤ text.source.endPos := by
+  let endPos := String.Pos.Raw.prev text.source <| endPos.prev text.source
+  let endPos := if endPos ≤ text.source.rawEndPos then endPos else text.source.rawEndPos
+  have endPos_valid : endPos ≤ text.source.rawEndPos := by
     unfold endPos
     split <;> simp [*]
 
@@ -88,10 +80,17 @@ def parseVersoDocString
     currNamespace := (← getCurrNamespace),
     openDecls := (← getOpenDecls)
   }
+  let blockCtxt := .forDocString text startPos endPos
   let s := mkParserState text.source |>.setPos startPos
   -- TODO parse one block at a time for error recovery purposes
-  let s := Doc.Parser.document.run ictx pmctx (getTokenTable env) s
+  let s := (Doc.Parser.document blockCtxt).run ictx pmctx (getTokenTable env) s
 
+  -- If document succeeded but didn't consume everything, try parsing a block at the stopped
+  -- position to get the actual error message (document uses sepByFn which swallows errors).
+  let s :=
+    if s.allErrors.isEmpty && !ictx.atEnd s.pos then
+      (Doc.Parser.block {}).run ictx pmctx (getTokenTable env) (mkParserState text.source |>.setPos s.pos)
+    else s
   if !s.allErrors.isEmpty then
     for (pos, _, err) in s.allErrors do
       logMessage {
@@ -101,9 +100,77 @@ def parseVersoDocString
         data := err.toString
       }
     return none
+  if !ictx.atEnd s.pos then
+    -- Fallback: block parse also didn't produce an error
+    logMessage {
+      fileName := (← getFileName),
+      pos := text.toPosition s.pos,
+      data := s!"unexpected '{ictx.get s.pos}'"
+    }
+    return none
   return some s.stxStack.back
 
 
+
+open Lean.Parser Command in
+/--
+Reports parse errors from a Verso docstring parse failure.
+
+When Verso docstring parsing fails at parse time, a `parseFailure` node is created containing the
+raw text, because emitting an error at that stage could lead to unwanted parser backtracking. This
+function reports the actual error messages with proper source positions.
+-/
+def reportVersoParseFailure
+    [Monad m] [MonadFileMap m] [MonadError m] [MonadEnv m] [MonadOptions m] [MonadLog m]
+    [MonadResolveName m]
+    (parseFailure : Syntax) : m Unit := do
+  let some rawAtom := parseFailure[0]?
+    | return  -- malformed node, nothing to report
+  let some startPos := rawAtom.getPos? (canonicalOnly := true)
+    | return
+  let some endPos := rawAtom.getTailPos? (canonicalOnly := true)
+    | return
+
+  let text ← getFileMap
+  let endPos := if endPos ≤ text.source.rawEndPos then endPos else text.source.rawEndPos
+  have endPos_valid : endPos ≤ text.source.rawEndPos := by
+    unfold endPos; split <;> simp [*]
+
+  let env ← getEnv
+  let ictx : InputContext :=
+    .mk text.source (← getFileName) (fileMap := text)
+      (endPos := endPos) (endPos_valid := endPos_valid)
+  let pmctx : ParserModuleContext := {
+    env,
+    options := ← getOptions,
+    currNamespace := ← getCurrNamespace,
+    openDecls := ← getOpenDecls
+  }
+  let blockCtxt := Doc.Parser.BlockCtxt.forDocString text startPos endPos
+  let s := mkParserState text.source |>.setPos startPos
+  let s := (Doc.Parser.document blockCtxt).run ictx pmctx (getTokenTable env) s
+
+  -- If document succeeded but didn't consume everything, try parsing a block at the stopped
+  -- position to get the actual error message (document uses sepByFn which swallows errors).
+  let s :=
+    if s.allErrors.isEmpty && !ictx.atEnd s.pos then
+      (Doc.Parser.block {}).run ictx pmctx (getTokenTable env) (mkParserState text.source |>.setPos s.pos)
+    else s
+  for (pos, _, err) in s.allErrors do
+    logMessage {
+      fileName := ← getFileName,
+      pos := text.toPosition pos,
+      data := err.toString,
+      severity := .error
+    }
+  if s.allErrors.isEmpty && !ictx.atEnd s.pos then
+    -- Fallback: block parse also didn't produce an error
+    logMessage {
+      fileName := ← getFileName,
+      pos := text.toPosition s.pos,
+      data := s!"unexpected '{ictx.get s.pos}'",
+      severity := .error
+    }
 
 open Lean.Doc in
 open Lean.Parser.Command in
@@ -132,7 +199,7 @@ Parses and elaborates a Verso module docstring.
 def versoModDocString
     (range : DeclarationRange) (doc : TSyntax ``document) :
     TermElabM VersoModuleDocs.Snippet := do
-  let level := getVersoModuleDocs (← getEnv) |>.terminalNesting |>.map (· + 1)
+  let level := getMainVersoModuleDocs (← getEnv) |>.terminalNesting |>.map (· + 1)
   Doc.elabModSnippet range (doc.raw.getArgs.map (⟨·⟩)) (level.getD 0) |>.execForModule
 
 
@@ -206,10 +273,12 @@ Adds an elaborated Verso docstring to the environment.
 -/
 def addVersoDocStringCore [Monad m] [MonadEnv m] [MonadLiftT BaseIO m] [MonadError m]
     (declName : Name) (docs : VersoDocString) : m Unit := do
-  let throwImported {α} : m α :=
-    throwError s!"invalid doc string, declaration '{declName}' is in an imported module"
+  -- The decl name can be anonymous due to attempts to elaborate incomplete syntax. If the name is
+  -- anonymous, the `MapDeclarationExtension.insert` panics due to not being on the right async
+  -- branch. Better to just do nothing.
+  if declName.isAnonymous then return
   unless (← getEnv).getModuleIdxFor? declName |>.isNone do
-    throwImported
+    throwError s!"invalid doc string, declaration '{declName}' is in an imported module"
   modifyEnv fun env =>
     versoDocStringExt.insert env declName docs
 

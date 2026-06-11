@@ -7,9 +7,7 @@ module
 
 prelude
 public import Lean.Data.Json
-public import Lean.Data.NameMap.Basic
 public import Lake.Util.RBArray
-import Init.Data.Ord.String
 import Init.Data.Ord.UInt
 import all Init.Prelude
 import all Lean.Data.Name

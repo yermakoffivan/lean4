@@ -8,7 +8,7 @@ module
 prelude
 import Std.Data.TreeMap.Lemmas
 import Std.Data.DTreeMap.Lemmas
-public import Std.Data.TreeSet.Basic
+public import Init.Data.Array.Perm
 public import Std.Data.TreeSet.AdditionalOperations
 
 @[expose] public section
@@ -92,6 +92,12 @@ theorem isEmpty_iff_forall_not_mem [TransCmp cmp] :
     t.isEmpty = true ↔ ∀ a, ¬a ∈ t :=
   TreeMap.isEmpty_iff_forall_not_mem
 
+theorem toArray_toList : t.toList.toArray = t.toArray :=
+  TreeMap.toArray_keys
+
+theorem toList_toArray : t.toArray.toList = t.toList :=
+  TreeMap.toList_keysArray
+
 @[simp]
 theorem insert_eq_insert {p : α} : Insert.insert p t = t.insert p :=
   rfl
@@ -114,6 +120,8 @@ theorem mem_insert [TransCmp cmp] {k a : α} :
 theorem contains_insert_self [TransCmp cmp] {k : α} :
     (t.insert k).contains k :=
   TreeMap.contains_insertIfNew_self
+
+theorem mem_of_get_eq  {k v : α} {w} (_ : t.get k w = v) : k ∈ t := w
 
 theorem mem_insert_self [TransCmp cmp] {k : α} :
     k ∈ t.insert k :=
@@ -280,6 +288,14 @@ theorem get?_eq_some [TransCmp cmp] [LawfulEqCmp cmp] {k : α} (h' : k ∈ t) :
       if h₂ : cmp k a = .eq ∧ ¬ k ∈ t then k
       else t.get a (mem_of_mem_insert' h₁ h₂) :=
   TreeMap.getKey_insertIfNew
+
+theorem toList_insert_perm [BEq α] [TransCmp cmp] [LawfulBEqCmp cmp] {k : α} :
+    (t.insert k).toList.Perm (if k ∈ t then t.toList else k :: t.toList) :=
+  DTreeMap.keys_insertIfNew_perm
+
+theorem toArray_insert_perm [BEq α] [TransCmp cmp] [LawfulBEqCmp cmp] {k : α} :
+    (t.insert k).toArray.Perm (if k ∈ t then t.toArray else t.toArray.push k) :=
+  DTreeMap.keysArray_insertIfNew_perm
 
 @[simp, grind =] theorem get_erase [TransCmp cmp] {k a : α} {h'} :
     (t.erase k).get a h' = t.get a (mem_of_mem_erase h') :=
@@ -449,23 +465,47 @@ theorem length_toList [TransCmp cmp] :
   TreeMap.length_keys
 
 @[simp, grind =]
+theorem size_toArray [TransCmp cmp] :
+    t.toArray.size = t.size := by
+  simp [← toArray_toList, length_toList]
+
+@[simp, grind =]
 theorem isEmpty_toList :
     t.toList.isEmpty = t.isEmpty :=
   TreeMap.isEmpty_keys
+
+@[simp, grind =]
+theorem isEmpty_toArray :
+    t.toArray.isEmpty = t.isEmpty := by
+  simp [← toArray_toList, isEmpty_toList]
 
 @[simp, grind =]
 theorem contains_toList [BEq α] [LawfulBEqCmp cmp] [TransCmp cmp] {k : α} :
     t.toList.contains k = t.contains k :=
   TreeMap.contains_keys
 
-@[simp]
+@[simp, grind =]
+theorem contains_toArray [BEq α] [LawfulBEqCmp cmp] [TransCmp cmp] {k : α} :
+    t.toArray.contains k = t.contains k := by
+  simp [← toArray_toList, contains_toList]
+
+@[simp, grind =]
 theorem mem_toList [LawfulEqCmp cmp] [TransCmp cmp] {k : α} :
     k ∈ t.toList ↔ k ∈ t :=
   TreeMap.mem_keys
 
+@[simp, grind =]
+theorem mem_toArray [LawfulEqCmp cmp] [TransCmp cmp] {k : α} :
+    k ∈ t.toArray ↔ k ∈ t :=
+  TreeMap.mem_keysArray
+
 theorem mem_of_mem_toList [TransCmp cmp] {k : α} :
     k ∈ t.toList → k ∈ t :=
   TreeMap.mem_of_mem_keys
+
+theorem mem_of_mem_toArray [TransCmp cmp] {k : α} :
+    k ∈ t.toArray → k ∈ t := by
+  simpa [← toArray_toList] using mem_of_mem_toList
 
 theorem distinct_toList [TransCmp cmp] :
     t.toList.Pairwise (fun a b => ¬ cmp a b = .eq) :=
@@ -475,6 +515,466 @@ theorem ordered_toList [TransCmp cmp] :
     t.toList.Pairwise (fun a b => cmp a b = .lt) :=
   TreeMap.ordered_keys
 
+section Union
+
+variable (t₁ t₂ : TreeSet α cmp)
+
+variable {t₁ t₂}
+
+@[simp]
+theorem union_eq : t₁.union t₂ = t₁ ∪ t₂ := by
+  simp only [Union.union]
+
+/- contains -/
+@[simp]
+theorem contains_union [TransCmp cmp] {k : α} :
+    (t₁ ∪ t₂).contains k = (t₁.contains k || t₂.contains k) :=
+  TreeMap.contains_union
+
+/- mem -/
+theorem mem_union_of_left [TransCmp cmp] {k : α} :
+    k ∈ t₁ → k ∈ t₁ ∪ t₂ :=
+  TreeMap.mem_union_of_left
+
+theorem mem_union_of_right [TransCmp cmp] {k : α} :
+    k ∈ t₂ → k ∈ t₁ ∪ t₂ :=
+  TreeMap.mem_union_of_right
+
+@[simp]
+theorem mem_union_iff [TransCmp cmp] {k : α} :
+    k ∈ t₁ ∪ t₂ ↔ k ∈ t₁ ∨ k ∈ t₂ :=
+  TreeMap.mem_union_iff
+
+theorem mem_of_mem_union_of_not_mem_right [TransCmp cmp] {k : α} :
+    k ∈ t₁ ∪ t₂ → ¬k ∈ t₂ → k ∈ t₁ :=
+  TreeMap.mem_of_mem_union_of_not_mem_right
+
+theorem mem_of_mem_union_of_not_mem_left [TransCmp cmp]
+    {k : α} :
+    k ∈ t₁ ∪ t₂ → ¬k ∈ t₁ → k ∈ t₂ :=
+  TreeMap.mem_of_mem_union_of_not_mem_left
+
+theorem Equiv.union_left {t₃ : TreeSet α cmp} [TransCmp cmp] (equiv : t₁.Equiv t₂) :
+    (t₁ ∪ t₃).Equiv (t₂ ∪ t₃) :=
+  ⟨TreeMap.Equiv.union_left equiv.1⟩
+
+theorem Equiv.union_right {t₃ : TreeSet α cmp} [TransCmp cmp] (equiv : t₂.Equiv t₃) :
+    (t₁ ∪ t₂).Equiv (t₁ ∪ t₃) :=
+  ⟨TreeMap.Equiv.union_right equiv.1⟩
+
+theorem Equiv.union_congr {t₃ t₄ : TreeSet α cmp} [TransCmp cmp]
+    (equiv₁ : t₁.Equiv t₃) (equiv₂ : t₂.Equiv t₄) :
+    (t₁ ∪ t₂).Equiv (t₃ ∪ t₄) :=
+  ⟨TreeMap.Equiv.union_congr equiv₁.1 equiv₂.1⟩
+
+/- get? -/
+theorem get?_union [TransCmp cmp]
+    {k : α} :
+    (t₁ ∪ t₂).get? k = (t₂.get? k).or (t₁.get? k) :=
+  TreeMap.getKey?_union
+
+theorem get?_union_of_not_mem_left [TransCmp cmp]
+    {k : α} (not_mem : ¬k ∈ t₁) :
+    (t₁ ∪ t₂).get? k = t₂.get? k :=
+  TreeMap.getKey?_union_of_not_mem_left not_mem
+
+theorem get?_union_of_not_mem_right [TransCmp cmp]
+    {k : α} (not_mem : ¬k ∈ t₂) :
+    (t₁ ∪ t₂).get? k = t₁.get? k :=
+  TreeMap.getKey?_union_of_not_mem_right not_mem
+
+/- get -/
+theorem get_union_of_mem_right [TransCmp cmp]
+    {k : α} (mem : k ∈ t₂) :
+    (t₁ ∪ t₂).get k (mem_union_of_right mem) = t₂.get k mem :=
+  TreeMap.getKey_union_of_mem_right mem
+
+theorem get_union_of_not_mem_left [TransCmp cmp]
+    {k : α} (not_mem : ¬k ∈ t₁) {h'} :
+    (t₁ ∪ t₂).get k h' = t₂.get k (mem_of_mem_union_of_not_mem_left h' not_mem) :=
+  TreeMap.getKey_union_of_not_mem_left not_mem
+
+theorem get_union_of_not_mem_right [TransCmp cmp]
+    {k : α} (not_mem : ¬k ∈ t₂) {h'} :
+    (t₁ ∪ t₂).get k h' = t₁.get k (mem_of_mem_union_of_not_mem_right h' not_mem) :=
+  TreeMap.getKey_union_of_not_mem_right not_mem
+
+/- getD -/
+theorem getD_union [TransCmp cmp] {k fallback : α} :
+    (t₁ ∪ t₂).getD k fallback = t₂.getD k (t₁.getD k fallback) :=
+  TreeMap.getKeyD_union
+
+theorem getD_union_of_not_mem_left [TransCmp cmp] {k fallback : α} (mem : ¬k ∈ t₁) :
+    (t₁ ∪ t₂).getD k fallback = t₂.getD k fallback :=
+  TreeMap.getKeyD_union_of_not_mem_left mem
+
+theorem getD_union_of_not_mem_right [TransCmp cmp] {k fallback : α} (mem : ¬k ∈ t₂) :
+    (t₁ ∪ t₂).getD k fallback = t₁.getD k fallback :=
+   TreeMap.getKeyD_union_of_not_mem_right mem
+
+/- get! -/
+theorem get!_union [TransCmp cmp] [Inhabited α]
+    {k : α} :
+    (t₁ ∪ t₂).get! k = t₂.getD k (t₁.get! k) :=
+  TreeMap.getKey!_union
+
+theorem get!_union_of_not_mem_left [Inhabited α]
+    [TransCmp cmp] {k : α}
+    (not_mem : ¬k ∈ t₁) :
+    (t₁ ∪ t₂).get! k = t₂.get! k :=
+  TreeMap.getKey!_union_of_not_mem_left not_mem
+
+theorem get!_union_of_not_mem_right [Inhabited α]
+    [TransCmp cmp] {k : α}
+    (not_mem : ¬k ∈ t₂) :
+    (t₁ ∪ t₂).get! k = t₁.get! k :=
+  TreeMap.getKey!_union_of_not_mem_right not_mem
+
+/- size -/
+theorem size_union_of_not_mem [TransCmp cmp] : (∀ (a : α), a ∈ t₁ → ¬a ∈ t₂) →
+    (t₁ ∪ t₂).size = t₁.size + t₂.size :=
+  DTreeMap.size_union_of_not_mem
+
+theorem size_left_le_size_union [TransCmp cmp] : t₁.size ≤ (t₁ ∪ t₂).size :=
+  DTreeMap.size_left_le_size_union
+
+theorem size_right_le_size_union [TransCmp cmp] : t₂.size ≤ (t₁ ∪ t₂).size :=
+  DTreeMap.size_right_le_size_union
+
+theorem size_union_le_size_add_size [TransCmp cmp] :
+    (t₁ ∪ t₂).size ≤ t₁.size + t₂.size :=
+  DTreeMap.size_union_le_size_add_size
+
+/- isEmpty -/
+@[simp]
+theorem isEmpty_union [TransCmp cmp] :
+    (t₁ ∪ t₂).isEmpty = (t₁.isEmpty && t₂.isEmpty) :=
+  DTreeMap.isEmpty_union
+
+end Union
+
+section Inter
+
+variable {t₁ t₂ : TreeSet α cmp}
+
+@[simp]
+theorem inter_eq : t₁.inter t₂ = t₁ ∩ t₂ := by
+  simp only [Inter.inter]
+
+/- contains -/
+@[simp]
+theorem contains_inter [TransCmp cmp] {k : α} :
+    (t₁ ∩ t₂).contains k = (t₁.contains k && t₂.contains k) :=
+  TreeMap.contains_inter
+
+/- mem -/
+@[simp]
+theorem mem_inter_iff [TransCmp cmp] {k : α} :
+    k ∈ t₁ ∩ t₂ ↔ k ∈ t₁ ∧ k ∈ t₂ :=
+  TreeMap.mem_inter_iff
+
+theorem not_mem_inter_of_not_mem_left [TransCmp cmp] {k : α}
+    (not_mem : k ∉ t₁) :
+    k ∉ t₁ ∩ t₂ :=
+  TreeMap.not_mem_inter_of_not_mem_left not_mem
+
+theorem not_mem_inter_of_not_mem_right [TransCmp cmp] {k : α}
+    (not_mem : k ∉ t₂) :
+    k ∉ t₁ ∩ t₂ :=
+  TreeMap.not_mem_inter_of_not_mem_right not_mem
+
+/- Equiv -/
+theorem Equiv.inter_left {t₃ : TreeSet α cmp} [TransCmp cmp]
+    (equiv : t₁ ~m t₂) :
+    (t₁ ∩ t₃).Equiv (t₂ ∩ t₃) := by
+  constructor
+  apply TreeMap.Equiv.inter_left equiv.1
+
+theorem Equiv.inter_right {t₃ : TreeSet α cmp} [TransCmp cmp]
+    (equiv : t₂ ~m t₃) :
+    (t₁ ∩ t₂).Equiv (t₁ ∩ t₃) := by
+  constructor
+  apply TreeMap.Equiv.inter_right equiv.1
+
+theorem Equiv.inter_congr {t₃ t₄ : TreeSet α cmp} [TransCmp cmp]
+    (equiv₁ : t₁ ~m t₃) (equiv₂ : t₂ ~m t₄) :
+    (t₁ ∩ t₂).Equiv (t₃ ∩ t₄) := by
+  constructor
+  apply TreeMap.Equiv.inter_congr equiv₁.1 equiv₂.1
+
+/- get? -/
+theorem get?_inter [TransCmp cmp] {k : α} :
+    (t₁ ∩ t₂).get? k =
+    if k ∈ t₂ then t₁.get? k else none :=
+  TreeMap.getKey?_inter
+
+theorem get?_inter_of_mem_right [TransCmp cmp]
+    {k : α} (mem : k ∈ t₂) :
+    (t₁ ∩ t₂).get? k = t₁.get? k :=
+  TreeMap.getKey?_inter_of_mem_right mem
+
+theorem get?_inter_of_not_mem_left [TransCmp cmp]
+    {k : α} (not_mem : k ∉ t₁) :
+    (t₁ ∩ t₂).get? k = none :=
+  TreeMap.getKey?_inter_of_not_mem_left not_mem
+
+theorem get?_inter_of_not_mem_right [TransCmp cmp]
+    {k : α} (not_mem : k ∉ t₂) :
+    (t₁ ∩ t₂).get? k = none :=
+  TreeMap.getKey?_inter_of_not_mem_right not_mem
+
+/- get -/
+@[simp]
+theorem get_inter [TransCmp cmp]
+    {k : α} {h_mem : k ∈ t₁ ∩ t₂} :
+    (t₁ ∩ t₂).get k h_mem =
+    t₁.get k (mem_inter_iff.1 h_mem).1 :=
+  TreeMap.getKey_inter
+
+/- getD -/
+theorem getD_inter [TransCmp cmp] {k fallback : α} :
+    (t₁ ∩ t₂).getD k fallback =
+    if k ∈ t₂ then t₁.getD k fallback else fallback :=
+  TreeMap.getKeyD_inter
+
+theorem getD_inter_of_mem_right [TransCmp cmp]
+    {k fallback : α} (mem : k ∈ t₂) :
+    (t₁ ∩ t₂).getD k fallback = t₁.getD k fallback :=
+  TreeMap.getKeyD_inter_of_mem_right mem
+
+theorem getD_inter_of_not_mem_right [TransCmp cmp]
+    {k fallback : α} (not_mem : k ∉ t₂) :
+    (t₁ ∩ t₂).getD k fallback = fallback :=
+  TreeMap.getKeyD_inter_of_not_mem_right not_mem
+
+theorem getD_inter_of_not_mem_left [TransCmp cmp]
+    {k fallback : α} (not_mem : k ∉ t₁) :
+    (t₁ ∩ t₂).getD k fallback = fallback :=
+  TreeMap.getKeyD_inter_of_not_mem_left not_mem
+
+/- get! -/
+theorem get!_inter [TransCmp cmp] [Inhabited α] {k : α} :
+    (t₁ ∩ t₂).get! k =
+    if k ∈ t₂ then t₁.get! k else default :=
+  TreeMap.getKey!_inter
+
+theorem get!_inter_of_mem_right [TransCmp cmp] [Inhabited α]
+    {k : α} (mem : k ∈ t₂) :
+    (t₁ ∩ t₂).get! k = t₁.get! k :=
+  TreeMap.getKey!_inter_of_mem_right mem
+
+theorem get!_inter_of_not_mem_right [TransCmp cmp] [Inhabited α]
+    {k : α} (not_mem : k ∉ t₂) :
+    (t₁ ∩ t₂).get! k = default :=
+  TreeMap.getKey!_inter_of_not_mem_right not_mem
+
+theorem get!_inter_of_not_mem_left [TransCmp cmp] [Inhabited α]
+    {k : α} (not_mem : k ∉ t₁) :
+    (t₁ ∩ t₂).get! k = default :=
+  TreeMap.getKey!_inter_of_not_mem_left not_mem
+
+/- size -/
+theorem size_inter_le_size_left [TransCmp cmp] :
+    (t₁ ∩ t₂).size ≤ t₁.size :=
+  TreeMap.size_inter_le_size_left
+
+theorem size_inter_le_size_right [TransCmp cmp] :
+    (t₁ ∩ t₂).size ≤ t₂.size :=
+  TreeMap.size_inter_le_size_right
+
+theorem size_inter_eq_size_left [TransCmp cmp]
+    (h : ∀ (a : α), a ∈ t₁ → a ∈ t₂) :
+    (t₁ ∩ t₂).size = t₁.size :=
+  TreeMap.size_inter_eq_size_left h
+
+theorem size_inter_eq_size_right [TransCmp cmp]
+    (h : ∀ (a : α), a ∈ t₂ → a ∈ t₁) :
+    (t₁ ∩ t₂).size = t₂.size :=
+  TreeMap.size_inter_eq_size_right h
+
+theorem size_add_size_eq_size_union_add_size_inter [TransCmp cmp] :
+    t₁.size + t₂.size = (t₁ ∪ t₂).size + (t₁ ∩ t₂).size :=
+  TreeMap.size_add_size_eq_size_union_add_size_inter
+
+/- isEmpty -/
+@[simp]
+theorem isEmpty_inter_left [TransCmp cmp] (h : t₁.isEmpty) :
+    (t₁ ∩ t₂).isEmpty = true :=
+  TreeMap.isEmpty_inter_left h
+
+@[simp]
+theorem isEmpty_inter_right [TransCmp cmp] (h : t₂.isEmpty) :
+    (t₁ ∩ t₂).isEmpty = true :=
+  TreeMap.isEmpty_inter_right h
+
+theorem isEmpty_inter_iff [TransCmp cmp] :
+    (t₁ ∩ t₂).isEmpty ↔ ∀ k, k ∈ t₁ → k ∉ t₂ :=
+  TreeMap.isEmpty_inter_iff
+
+end Inter
+
+section
+variable {m₁ m₂ : TreeSet α cmp}
+
+theorem Equiv.beq [TransCmp cmp] (h : m₁ ~m m₂) : m₁ == m₂ :=
+  TreeMap.Equiv.beq h.1
+
+theorem equiv_of_beq [TransCmp cmp] [LawfulEqCmp cmp] (h : m₁ == m₂) : m₁ ~m m₂ :=
+  ⟨TreeMap.equiv_of_beq h⟩
+
+theorem beq_iff_equiv [TransCmp cmp] [LawfulEqCmp cmp] : (m₁ == m₂) ↔ m₁ ~m m₂ :=
+  ⟨equiv_of_beq, Equiv.beq⟩
+
+theorem Equiv.beq_congr [TransCmp cmp] {m₃ m₄ : TreeSet α cmp} (w₁ : m₁ ~m m₃) (w₂ : m₂ ~m m₄) : (m₁ == m₂) = (m₃ == m₄) :=
+  TreeMap.Equiv.beq_congr w₁.1 w₂.1
+
+end
+
+section Diff
+
+variable {t₁ t₂ : TreeSet α cmp}
+
+@[simp]
+theorem diff_eq : t₁.diff t₂ = t₁ \ t₂ := by
+  simp only [SDiff.sdiff]
+
+/- contains -/
+@[simp]
+theorem contains_diff [TransCmp cmp] {k : α} :
+    (t₁ \ t₂).contains k = (t₁.contains k && !t₂.contains k) :=
+  TreeMap.contains_diff
+
+/- mem -/
+@[simp]
+theorem mem_diff_iff [TransCmp cmp] {k : α} :
+    k ∈ t₁ \ t₂ ↔ k ∈ t₁ ∧ k ∉ t₂ :=
+  TreeMap.mem_diff_iff
+
+theorem not_mem_diff_of_not_mem_left [TransCmp cmp] {k : α}
+    (not_mem : k ∉ t₁) :
+    k ∉ t₁ \ t₂ :=
+  TreeMap.not_mem_diff_of_not_mem_left not_mem
+
+theorem not_mem_diff_of_mem_right [TransCmp cmp] {k : α}
+    (mem : k ∈ t₂) :
+    k ∉ t₁ \ t₂ :=
+  TreeMap.not_mem_diff_of_mem_right mem
+
+/- Equiv -/
+theorem Equiv.diff_left {t₃ : TreeSet α cmp} [TransCmp cmp]
+    (equiv : t₁ ~m t₂) :
+    (t₁ \ t₃).Equiv (t₂ \ t₃) := by
+  constructor
+  apply TreeMap.Equiv.diff_left equiv.1
+
+theorem Equiv.diff_right {t₃ : TreeSet α cmp} [TransCmp cmp]
+    (equiv : t₂ ~m t₃) :
+    (t₁ \ t₂).Equiv (t₁ \ t₃) := by
+  constructor
+  apply TreeMap.Equiv.diff_right equiv.1
+
+theorem Equiv.diff_congr {t₃ t₄ : TreeSet α cmp} [TransCmp cmp]
+    (equiv₁ : t₁ ~m t₃) (equiv₂ : t₂ ~m t₄) :
+    (t₁ \ t₂).Equiv (t₃ \ t₄) := by
+  constructor
+  apply TreeMap.Equiv.diff_congr equiv₁.1 equiv₂.1
+
+/- get? -/
+theorem get?_diff [TransCmp cmp] {k : α} :
+    (t₁ \ t₂).get? k =
+    if k ∈ t₂ then none else t₁.get? k :=
+  TreeMap.getKey?_diff
+
+theorem get?_diff_of_not_mem_right [TransCmp cmp]
+    {k : α} (not_mem : k ∉ t₂) :
+    (t₁ \ t₂).get? k = t₁.get? k :=
+  TreeMap.getKey?_diff_of_not_mem_right not_mem
+
+theorem get?_diff_of_not_mem_left [TransCmp cmp]
+    {k : α} (not_mem : k ∉ t₁) :
+    (t₁ \ t₂).get? k = none :=
+  TreeMap.getKey?_diff_of_not_mem_left not_mem
+
+theorem get?_diff_of_mem_right [TransCmp cmp]
+    {k : α} (mem : k ∈ t₂) :
+    (t₁ \ t₂).get? k = none :=
+  TreeMap.getKey?_diff_of_mem_right mem
+
+/- get -/
+theorem get_diff [TransCmp cmp]
+    {k : α} {h_mem : k ∈ t₁ \ t₂} :
+    (t₁ \ t₂).get k h_mem =
+    t₁.get k (mem_diff_iff.1 h_mem).1 :=
+  TreeMap.getKey_diff
+
+/- getD -/
+theorem getD_diff [TransCmp cmp] {k fallback : α} :
+    (t₁ \ t₂).getD k fallback =
+    if k ∈ t₂ then fallback else t₁.getD k fallback :=
+  TreeMap.getKeyD_diff
+
+theorem getD_diff_of_not_mem_right [TransCmp cmp]
+    {k fallback : α} (not_mem : k ∉ t₂) :
+    (t₁ \ t₂).getD k fallback = t₁.getD k fallback :=
+  TreeMap.getKeyD_diff_of_not_mem_right not_mem
+
+theorem getD_diff_of_mem_right [TransCmp cmp]
+    {k fallback : α} (mem : k ∈ t₂) :
+    (t₁ \ t₂).getD k fallback = fallback :=
+  TreeMap.getKeyD_diff_of_mem_right mem
+
+theorem getD_diff_of_not_mem_left [TransCmp cmp]
+    {k fallback : α} (not_mem : k ∉ t₁) :
+    (t₁ \ t₂).getD k fallback = fallback :=
+  TreeMap.getKeyD_diff_of_not_mem_left not_mem
+
+/- get! -/
+theorem get!_diff [TransCmp cmp] [Inhabited α] {k : α} :
+    (t₁ \ t₂).get! k =
+    if k ∈ t₂ then default else t₁.get! k :=
+  TreeMap.getKey!_diff
+
+theorem get!_diff_of_not_mem_right [TransCmp cmp] [Inhabited α]
+    {k : α} (not_mem : k ∉ t₂) :
+    (t₁ \ t₂).get! k = t₁.get! k :=
+  TreeMap.getKey!_diff_of_not_mem_right not_mem
+
+theorem get!_diff_of_mem_right [TransCmp cmp] [Inhabited α]
+    {k : α} (mem : k ∈ t₂) :
+    (t₁ \ t₂).get! k = default :=
+  TreeMap.getKey!_diff_of_mem_right mem
+
+theorem get!_diff_of_not_mem_left [TransCmp cmp] [Inhabited α]
+    {k : α} (not_mem : k ∉ t₁) :
+    (t₁ \ t₂).get! k = default :=
+  TreeMap.getKey!_diff_of_not_mem_left not_mem
+
+/- size -/
+theorem size_diff_le_size_left [TransCmp cmp] :
+    (t₁ \ t₂).size ≤ t₁.size :=
+  TreeMap.size_diff_le_size_left
+
+theorem size_diff_eq_size_left [TransCmp cmp]
+    (h : ∀ (a : α), a ∈ t₁ → a ∉ t₂) :
+    (t₁ \ t₂).size = t₁.size :=
+  TreeMap.size_diff_eq_size_left h
+
+theorem size_diff_add_size_inter_eq_size_left [TransCmp cmp] :
+    (t₁ \ t₂).size + (t₁ ∩ t₂).size = t₁.size :=
+  TreeMap.size_diff_add_size_inter_eq_size_left
+
+/- isEmpty -/
+@[simp]
+theorem isEmpty_diff_left [TransCmp cmp] (h : t₁.isEmpty) :
+    (t₁ \ t₂).isEmpty = true :=
+  TreeMap.isEmpty_diff_left h
+
+theorem isEmpty_diff_iff [TransCmp cmp] :
+    (t₁ \ t₂).isEmpty ↔ ∀ k, k ∈ t₁ → k ∈ t₂ :=
+  TreeMap.isEmpty_diff_iff
+
+end Diff
+
 section monadic
 
 variable {δ : Type w} {m : Type w → Type w'}
@@ -483,17 +983,33 @@ theorem foldlM_eq_foldlM_toList [Monad m] [LawfulMonad m] {f : δ → α → m �
     t.foldlM f init = t.toList.foldlM f init :=
   TreeMap.foldlM_eq_foldlM_keys
 
+theorem foldlM_eq_foldlM_toArray [Monad m] [LawfulMonad m] {f : δ → α → m δ} {init : δ} :
+    t.foldlM f init = t.toArray.foldlM f init := by
+  simp [foldlM_eq_foldlM_toList, ← toArray_toList]
+
 theorem foldl_eq_foldl_toList {f : δ → α → δ} {init : δ} :
     t.foldl f init = t.toList.foldl f init :=
   TreeMap.foldl_eq_foldl_keys
+
+theorem foldl_eq_foldl_toArray {f : δ → α → δ} {init : δ} :
+    t.foldl f init = t.toArray.foldl f init := by
+  simp [foldl_eq_foldl_toList, ← toArray_toList]
 
 theorem foldrM_eq_foldrM_toList [Monad m] [LawfulMonad m] {f : α → δ → m δ} {init : δ} :
     t.foldrM f init = t.toList.foldrM f init :=
   TreeMap.foldrM_eq_foldrM_keys
 
+theorem foldrM_eq_foldrM_toArray [Monad m] [LawfulMonad m] {f : α → δ → m δ} {init : δ} :
+    t.foldrM f init = t.toArray.foldrM f init := by
+  simp [foldrM_eq_foldrM_toList, ← toArray_toList]
+
 theorem foldr_eq_foldr_toList {f : α → δ → δ} {init : δ} :
     t.foldr f init = t.toList.foldr f init :=
   TreeMap.foldr_eq_foldr_keys
+
+theorem foldr_eq_foldr_toArray {f : α → δ → δ} {init : δ} :
+    t.foldr f init = t.toArray.foldr f init := by
+  simp [foldr_eq_foldr_toList, ← toArray_toList]
 
 @[simp, grind =]
 theorem forM_eq_forM [Monad m] [LawfulMonad m] {f : α → m PUnit} :
@@ -503,6 +1019,10 @@ theorem forM_eq_forM_toList [Monad m] [LawfulMonad m] {f : α → m PUnit} :
     ForM.forM t f = t.toList.forM f :=
   TreeMap.forM_eq_forM_keys
 
+theorem forM_eq_forM_toArray [Monad m] [LawfulMonad m] {f : α → m PUnit} :
+    ForM.forM t f = t.toArray.forM f :=
+  TreeMap.forM_eq_forM_keysArray
+
 @[simp, grind =]
 theorem forIn_eq_forIn [Monad m] [LawfulMonad m] {f : α → δ → m (ForInStep δ)} {init : δ} :
     t.forIn f init = ForIn.forIn t init f := rfl
@@ -510,6 +1030,10 @@ theorem forIn_eq_forIn [Monad m] [LawfulMonad m] {f : α → δ → m (ForInStep
 theorem forIn_eq_forIn_toList [Monad m] [LawfulMonad m] {f : α → δ → m (ForInStep δ)} {init : δ} :
     ForIn.forIn t init f = ForIn.forIn t.toList init f :=
   TreeMap.forIn_eq_forIn_keys
+
+theorem forIn_eq_forIn_toArray [Monad m] [LawfulMonad m] {f : α → δ → m (ForInStep δ)} {init : δ} :
+    ForIn.forIn t init f = ForIn.forIn t.toArray init f := by
+  simp [forIn_eq_forIn_toList, ← toArray_toList]
 
 end monadic
 
@@ -664,9 +1188,7 @@ theorem ofList_cons {hd : α} {tl : List α} :
 
 theorem ofList_eq_insertMany_empty {l : List α} :
     ofList l cmp = insertMany (∅ : TreeSet α cmp) l :=
-  match l with
-  | [] => by simp
-  | hd :: tl => by simp [ofList_cons, insertMany_cons]
+  ext TreeMap.unitOfList_eq_insertManyIfNewUnit_empty
 
 @[simp, grind =]
 theorem contains_ofList [TransCmp cmp] [BEq α] [LawfulBEqCmp cmp] {l : List α} {k : α} :
@@ -756,6 +1278,16 @@ theorem min?_eq_none_iff [TransCmp cmp] :
     t.min? = none ↔ t.isEmpty :=
   TreeMap.minKey?_eq_none_iff
 
+@[simp] theorem min?_toList [TransCmp cmp] [Min α]
+    [LE α] [LawfulOrderCmp cmp] [LawfulOrderMin α][LawfulOrderLeftLeaningMin α] [LawfulEqCmp cmp] :
+    t.toList.min? = t.min? :=
+  TreeMap.min?_keys
+
+@[simp] theorem head?_toList [TransCmp cmp] [Min α]
+    [LE α] [LawfulOrderCmp cmp] [LawfulOrderMin α][LawfulOrderLeftLeaningMin α] [LawfulEqCmp cmp] :
+    t.toList.head? = t.min? :=
+  TreeMap.head?_keys
+
 theorem min?_eq_some_iff_get?_eq_self_and_forall [TransCmp cmp] {km} :
     t.min? = some km ↔ t.get? km = some km ∧ ∀ k ∈ t, (cmp km k).isLE :=
   TreeMap.minKey?_eq_some_iff_getKey?_eq_self_and_forall
@@ -786,6 +1318,22 @@ theorem isSome_min?_iff_isEmpty_eq_false [TransCmp cmp] :
 theorem isSome_min?_insert [TransCmp cmp] {k} :
     (t.insert k).min?.isSome :=
   TreeMap.isSome_minKey?_insertIfNew
+
+theorem min_insert_of_isEmpty [TransCmp cmp] {k} (he : t.isEmpty) :
+    (t.insert k).min isEmpty_insert = k :=
+  TreeMap.minKey_insertIfNew_of_isEmpty he
+
+theorem min?_insert_of_isEmpty [TransCmp cmp] {k} (he : t.isEmpty) :
+    (t.insert k).min? = some k :=
+  TreeMap.minKey?_insertIfNew_of_isEmpty he
+
+theorem min!_insert_of_isEmpty [TransCmp cmp] [Inhabited α] {k} (he : t.isEmpty) :
+    (t.insert k).min! = k :=
+  TreeMap.minKey!_insertIfNew_of_isEmpty he
+
+theorem minD_insert_of_isEmpty [TransCmp cmp] {k} (he : t.isEmpty) {fallback : α} :
+    (t.insert k).minD fallback = k :=
+  TreeMap.minKeyD_insertIfNew_of_isEmpty he
 
 theorem min?_insert_le_min? [TransCmp cmp] {k km kmi} :
     (hkm : t.min? = some km) →
@@ -871,6 +1419,10 @@ theorem min?_le_min?_erase [TransCmp cmp] {k km kme} :
 @[grind =_] theorem min?_eq_head?_toList [TransCmp cmp] :
     t.min? = t.toList.head? :=
   TreeMap.minKey?_eq_head?_keys
+
+@[grind =_] theorem min?_eq_getElem?_toArray [TransCmp cmp] :
+    t.min? = t.toArray[0]? :=
+  TreeMap.minKey?_eq_getElem?_keysArray
 
 theorem min_eq_get_min? [TransCmp cmp] {he} :
     t.min he = t.min?.get (isSome_min?_iff_isEmpty_eq_false.mpr he) :=
@@ -966,6 +1518,10 @@ theorem min_eq_head_toList [TransCmp cmp] {he} :
     t.min he = t.toList.head (List.isEmpty_eq_false_iff.mp <| isEmpty_toList ▸ he) :=
   TreeMap.minKey_eq_head_keys
 
+theorem min_eq_getElem_toArray [TransCmp cmp] {he} :
+   t.min he = t.toArray[0]'(Nat.zero_lt_of_ne_zero (by simpa [isEmpty_eq_size_eq_zero] using he)) :=
+  TreeMap.minKey_eq_getElem_keysArray
+
 theorem min?_eq_some_min! [TransCmp cmp] [Inhabited α] (he : t.isEmpty = false) :
     t.min? = some t.min! :=
   TreeMap.minKey?_eq_some_minKey! he
@@ -1058,6 +1614,10 @@ theorem min!_eq_head!_toList [TransCmp cmp] [Inhabited α] :
     t.min! = t.toList.head! :=
   TreeMap.minKey!_eq_head!_keys
 
+theorem min!_eq_getElem!_toArray [TransCmp cmp] [Inhabited α] :
+    t.min! = t.toArray[0]! :=
+  TreeMap.minKey!_eq_getElem!_keysArray
+
 theorem min?_eq_some_minD [TransCmp cmp] (he : t.isEmpty = false) {fallback} :
     t.min? = some (t.minD fallback) :=
   TreeMap.minKey?_eq_some_minKeyD he
@@ -1145,6 +1705,10 @@ theorem minD_le_minD_erase [TransCmp cmp] {k}
 theorem minD_eq_headD_toList [TransCmp cmp] {fallback} :
     t.minD fallback = t.toList.headD fallback :=
   TreeMap.minKeyD_eq_headD_keys
+
+theorem minD_eq_getD_toArray [TransCmp cmp] {fallback} :
+    t.minD fallback = t.toArray.getD 0 fallback :=
+  TreeMap.minKeyD_eq_getD_keysArray
 
 end Min
 
@@ -1280,6 +1844,10 @@ theorem max?_eq_getLast?_toList [TransCmp cmp] :
     t.max? = t.toList.getLast? :=
   TreeMap.maxKey?_eq_getLast?_keys
 
+theorem max?_eq_back?_toArray [TransCmp cmp] :
+    t.max? = t.toArray.back? := by
+  rw [max?_eq_getLast?_toList, ← Array.getLast?_toList, toList_toArray]
+
 theorem max_eq_get_max? [TransCmp cmp] {he} :
     t.max he = t.max?.get (isSome_max?_iff_isEmpty_eq_false.mpr he) :=
   TreeMap.maxKey_eq_get_maxKey?
@@ -1375,6 +1943,11 @@ theorem max_eq_getLast_toList [TransCmp cmp] {he} :
     t.max he = t.toList.getLast (List.isEmpty_eq_false_iff.mp <| isEmpty_toList ▸ he) :=
   TreeMap.maxKey_eq_getLast_keys
 
+@[grind =_]
+theorem max_eq_back_toArray [TransCmp cmp] {he} :
+    t.max he = t.toArray.back (Nat.zero_lt_of_ne_zero (by simpa [isEmpty_eq_size_eq_zero] using he)) := by
+  exact TreeMap.maxKey_eq_back_keysArray
+
 theorem max?_eq_some_max! [TransCmp cmp] [Inhabited α] (he : t.isEmpty = false) :
     t.max? = some t.max! :=
   TreeMap.maxKey?_eq_some_maxKey! he
@@ -1468,6 +2041,11 @@ theorem max!_eq_getLast!_toList [TransCmp cmp] [Inhabited α] :
     t.max! = t.toList.getLast! :=
   TreeMap.maxKey!_eq_getLast!_keys
 
+@[grind =_]
+theorem max!_eq_back!_toArray [TransCmp cmp] [Inhabited α] :
+    t.max! = t.toArray.back! := by
+  rw [max!_eq_getLast!_toList, ← Array.getLast!_toList, toList_toArray]
+
 theorem max?_eq_some_maxD [TransCmp cmp] (he : t.isEmpty = false) {fallback} :
     t.max? = some (t.maxD fallback) :=
   TreeMap.maxKey?_eq_some_maxKeyD he
@@ -1555,6 +2133,10 @@ theorem maxD_erase_le_maxD [TransCmp cmp] {k}
 theorem maxD_eq_getLastD_toList [TransCmp cmp] {fallback} :
     t.maxD fallback = t.toList.getLastD fallback :=
   TreeMap.maxKeyD_eq_getLastD_keys
+
+theorem maxD_eq_getD_back?_toArray [TransCmp cmp] {fallback} :
+    t.maxD fallback = t.toArray.back?.getD fallback :=
+  TreeMap.maxKeyD_eq_getD_back?_keysArray
 
 end Max
 
@@ -1809,12 +2391,37 @@ theorem empty_equiv_iff_isEmpty : empty ~m t ↔ t.isEmpty :=
 theorem equiv_iff_toList_perm : t₁ ~m t₂ ↔ t₁.toList.Perm t₂.toList :=
   equiv_iff_equiv.trans TreeMap.equiv_iff_keys_unit_perm
 
+theorem equiv_iff_toArray_perm : t₁ ~m t₂ ↔ t₁.toArray.Perm t₂.toArray :=
+  equiv_iff_equiv.trans TreeMap.equiv_iff_keysArray_unit_perm
+
+theorem equiv_iff_forall_mem_iff [TransCmp cmp] [LawfulEqCmp cmp] :
+    t₁ ~m t₂ ↔ (∀ k, k ∈ t₁ ↔ k ∈ t₂) :=
+  ⟨fun h _ => h.mem_iff, Equiv.of_forall_mem_iff⟩
+
 theorem Equiv.of_toList_perm (h : t₁.toList.Perm t₂.toList) : t₁ ~m t₂ :=
   ⟨.of_keys_unit_perm h⟩
+
+theorem Equiv.of_toArray_perm (h : t₁.toArray.Perm t₂.toArray) : t₁ ~m t₂ :=
+  ⟨.of_keysArray_unit_perm h⟩
 
 theorem equiv_iff_toList_eq [TransCmp cmp] :
     t₁ ~m t₂ ↔ t₁.toList = t₂.toList :=
   equiv_iff_equiv.trans TreeMap.equiv_iff_keys_unit_eq
+
+theorem equiv_iff_toArray_eq [TransCmp cmp] :
+    t₁ ~m t₂ ↔ t₁.toArray = t₂.toArray :=
+  equiv_iff_equiv.trans TreeMap.equiv_iff_keysArray_unit_eq
+
+theorem insertMany_list_equiv_foldl {l : List α} :
+    insertMany t₁ l ~m l.foldl (init := t₁) fun acc a => acc.insert a := by
+  constructor
+  rw [← List.foldl_hom inner (g₂ := fun acc a => acc.insertIfNew a ())]
+  · exact TreeMap.insertManyIfNewUnit_list_equiv_foldl
+  · exact fun _ _ => rfl
+
+theorem ofList_equiv_foldl {l : List α} :
+    ofList l cmp ~m l.foldl (init := ∅) fun acc a => acc.insert a := by
+  simpa only [ofList_eq_insertMany_empty] using insertMany_list_equiv_foldl
 
 end Equiv
 
@@ -1825,6 +2432,10 @@ variable {t : TreeSet α cmp}
 theorem toList_filter {f : α → Bool} :
     (t.filter f).toList = t.toList.filter f :=
   TreeMap.keys_filter_key
+
+theorem toArray_filter {f : α → Bool} :
+    (t.filter f).toArray = t.toArray.filter f :=
+  TreeMap.keysArray_filter_key
 
 @[grind =] theorem isEmpty_filter_iff [TransCmp cmp]
     {f : α → Bool} :

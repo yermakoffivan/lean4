@@ -9,8 +9,6 @@ prelude
 public import Lean.Meta.AppBuilder
 public import Lean.Meta.MatchUtil
 public import Lean.Meta.KAbstract
-public import Lean.Meta.Check
-public import Lean.Meta.Tactic.Util
 public import Lean.Meta.Tactic.Apply
 public import Lean.Meta.BinderNameHint
 
@@ -84,6 +82,7 @@ def _root_.Lean.MVarId.rewrite (mvarId : MVarId) (e : Expr) (heq : Expr)
           postprocessAppMVars `rewrite mvarId newMVars binderInfos
             (synthAssignedInstances := !tactic.skipAssignedInstances.get (← getOptions))
           let newMVarIds ← newMVars.map Expr.mvarId! |>.filterM fun mvarId => not <$> mvarId.isAssigned
+          appendParentTag mvarId newMVars binderInfos
           let otherMVarIds ← getMVarsNoDelayed heqIn
           let otherMVarIds := otherMVarIds.filter (!newMVarIds.contains ·)
           let newMVarIds := newMVarIds ++ otherMVarIds

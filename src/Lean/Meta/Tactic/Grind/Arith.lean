@@ -8,9 +8,9 @@ prelude
 public import Lean.Meta.Tactic.Grind.Arith.Util
 public import Lean.Meta.Tactic.Grind.Arith.Types
 public import Lean.Meta.Tactic.Grind.Arith.Main
-public import Lean.Meta.Tactic.Grind.Arith.Offset
 public import Lean.Meta.Tactic.Grind.Arith.CommRing
 public import Lean.Meta.Tactic.Grind.Arith.Linear
 public import Lean.Meta.Tactic.Grind.Arith.Cutsat
 public import Lean.Meta.Tactic.Grind.Arith.Simproc
-public section
+public import Lean.Meta.Tactic.Grind.Arith.Propagate
+public import Lean.Meta.Tactic.Grind.Arith.Model

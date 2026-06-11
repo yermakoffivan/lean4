@@ -6,10 +6,6 @@ Authors: Sofia Rodrigues
 module
 
 prelude
-public import Std.Time.Date
-public import Std.Time.Time
-public import Std.Time.Zoned
-public import Std.Time.DateTime
 public import Std.Time.Format.Basic
 public meta import Std.Time.Format.Basic
 
@@ -61,6 +57,7 @@ private meta def convertModifier : Modifier → MacroM (TSyntax `term)
   | .G p => do `(Std.Time.Modifier.G $(← convertText p))
   | .y p => do `(Std.Time.Modifier.y $(← convertYear p))
   | .u p => do `(Std.Time.Modifier.u $(← convertYear p))
+  | .Y p => do `(Std.Time.Modifier.Y $(← convertYear p))
   | .D p => do `(Std.Time.Modifier.D $(← convertNumber p))
   | .MorL p =>
     match p with

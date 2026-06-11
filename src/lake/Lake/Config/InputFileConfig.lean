@@ -6,11 +6,11 @@ Authors: Mac Malone
 module
 
 prelude
-public import Lean.Data.Name
 public import Lake.Config.Pattern
 public import Lake.Config.MetaClasses
 public import Init.Data.ToString.Name
 meta import all Lake.Config.Meta
+import Lake.Config.Meta
 
 open Lean System
 
@@ -51,7 +51,7 @@ public configuration InputDirConfig (name : Name) where
   text : Bool := false
   /-
   Includes only the files from the directory
-  whose paths statisify the pattern.
+  whose paths satisfy the pattern.
 
   Defaults to including every file.
   -/

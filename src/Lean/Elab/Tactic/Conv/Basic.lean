@@ -6,10 +6,7 @@ Authors: Leonardo de Moura
 module
 
 prelude
-public import Lean.Meta.Reduce
-public import Lean.Meta.Tactic.Apply
 public import Lean.Meta.Tactic.Replace
-public import Lean.Elab.Tactic.Basic
 public import Lean.Elab.Tactic.BuiltinTactic
 
 public section
@@ -110,6 +107,7 @@ target.
 -/
 def convClear (mvarId : MVarId) (fvarId : FVarId) : MetaM MVarId := do
   let (lhs, rhs) ← getLhsRhsCore mvarId
+  let rhs ← instantiateMVars rhs
   unless rhs.isMVar do
     return (← mvarId.clear fvarId)
   let rhsKind ← rhs.mvarId!.getKind

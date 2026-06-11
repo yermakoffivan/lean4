@@ -6,15 +6,12 @@ Authors: Leonardo de Moura, Gabriel Ebner
 module
 
 prelude
-public import Lean.Compiler.BorrowedAnnotation
-public import Lean.Meta.KAbstract
-public import Lean.Meta.Closure
-public import Lean.Meta.MatchUtil
 public import Lean.Compiler.ImplementedByAttr
-public import Lean.Elab.SyntheticMVars
 public import Lean.Elab.Eval
 public import Lean.Elab.Binders
+public import Lean.IdentifierSuggestion
 meta import Lean.Parser.Do
+import Lean.Compiler.BorrowedAnnotation
 
 public section
 
@@ -61,7 +58,7 @@ open Meta
         (fun ival _ => do
           match ival.ctors with
           | [ctor] =>
-            if isInaccessiblePrivateName (← getEnv) ctor then
+            if (← isInaccessiblePrivateName ctor) then
               throwError "Invalid `⟨...⟩` notation: Constructor for `{ival.name}` is marked as private"
             let cinfo ← getConstInfoCtor ctor
             let numExplicitFields ← forallTelescopeReducing cinfo.type fun xs _ => do
@@ -466,7 +463,10 @@ private def withLocalIdentFor (stx : Term) (e : Expr) (k : Term → TermElabM Ex
      let heqType ← inferType heq
      let heqType ← instantiateMVars heqType
      match (← Meta.matchEq? heqType) with
-     | none => throwError "invalid `▸` notation, argument{indentExpr heq}\nhas type{indentExpr heqType}\nequality expected"
+     | none => throwError "invalid `▸` notation, argument{indentExpr heq}\n\
+        has type{indentExpr heqType}\n\
+        equality expected\
+        {← Term.hintAutoImplicitFailure heq (expected := "an equality")}"
      | some (α, lhs, rhs) =>
        let mut lhs := lhs
        let mut rhs := rhs
@@ -542,8 +542,8 @@ private def withLocalIdentFor (stx : Term) (e : Expr) (k : Term → TermElabM Ex
   let mut mStx := stx[2]
   if mStx.getKind == ``Lean.Parser.Term.macroDollarArg then
     mStx := mStx[1]
-  let m ← elabTerm mStx (← mkArrow (mkSort levelOne) (mkSort levelOne))
-  let ω ← mkFreshExprMVar (mkSort levelOne)
+  let m ← elabTerm mStx (← mkArrow (mkSort Level.one) (mkSort Level.one))
+  let ω ← mkFreshExprMVar (mkSort Level.one)
   let stWorld ← mkAppM ``STWorld #[ω, m]
   discard <| mkInstMVar stWorld
   mkAppM ``StateRefT' #[ω, σ, m]
@@ -559,10 +559,14 @@ def elabUnsafe : TermElab := fun stx expectedType? =>
     let t ← elabTermAndSynthesize t expectedType?
     if (← logUnassignedUsingErrorInfos (← getMVars t)) then
       throwAbortTerm
-    let t ← mkAuxDefinitionFor (← mkAuxName `unsafe) t
+    let t ← mkAuxDefinitionFor (compile := false) (← mkAuxName `unsafe) t
     let .const unsafeFn unsafeLvls .. := t.getAppFn | unreachable!
     let .defnInfo unsafeDefn ← getConstInfo unsafeFn | unreachable!
     let implName ← mkAuxName `unsafe_impl
+    if (← read).declName?.any (isMarkedMeta (← getEnv)) then
+      modifyEnv (markMeta · unsafeFn)
+      modifyEnv (markMeta · implName)
+    compileDecls #[unsafeFn]
     addDecl <| Declaration.opaqueDecl {
       name        := implName
       type        := unsafeDefn.type

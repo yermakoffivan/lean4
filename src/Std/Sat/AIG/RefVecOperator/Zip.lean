@@ -6,8 +6,8 @@ Authors: Henrik Böving
 module
 
 prelude
-public import Std.Sat.AIG.RefVec
 public import Std.Sat.AIG.LawfulVecOperator
+import Init.Omega
 
 @[expose] public section
 
@@ -29,6 +29,7 @@ class LawfulZipOperator (α : Type) [Hashable α] [DecidableEq α]
 
 namespace LawfulZipOperator
 
+@[deprecated chainable (since := "2025-10-29")]
 theorem denote_prefix_cast_ref {aig : AIG α} {input1 input2 : BinaryInput aig}
     {f : (aig : AIG α) → BinaryInput aig → Entrypoint α} [LawfulOperator α BinaryInput f]
     [LawfulZipOperator α f] {h} :

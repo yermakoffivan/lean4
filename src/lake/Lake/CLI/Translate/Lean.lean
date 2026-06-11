@@ -8,7 +8,6 @@ module
 prelude
 public import Lake.Config.Package
 import Lake.DSL.Syntax
-import Lake.Config.Package
 meta import Lean.Parser.Module
 meta import Lake.Config.LeanLibConfig
 meta import Lake.Config.LeanExeConfig
@@ -233,12 +232,13 @@ where
         `(`@$(mkSuffixes fs):facetSuffix*)
       else
         `(`@$(mkIdent n)$(mkSuffixes fs)*)
+    | .packageModule p m =>
+      if p.isAnonymous then
+        `(`+$(mkIdent m)$(mkSuffixes fs)*)
+      else
+        `(`@$(mkIdent p)/+$(mkIdent m)$(mkSuffixes fs)*)
     | .packageTarget p t =>
-      let t ←
-        if let some t := t.eraseSuffix? moduleTargetIndicator then
-          `(packageTargetLit|+$(mkIdent t))
-        else
-          `(packageTargetLit|$(mkIdent t):ident)
+      let t ← `(packageTargetLit|$(mkIdent t):ident)
       if p.isAnonymous then
         `(`@/$t$(mkSuffixes fs)*)
       else
@@ -260,14 +260,17 @@ def Dependency.mkRequire (cfg : Dependency) : RequireDecl := Unhygienic.run do
       `(fromSource|$(toLean dir):term)
     | .git url rev? subDir? =>
       `(fromSource|git $(toLean url) $[@ $(rev?.map toLean)]? $[/ $(subDir?.map toLean)]?)
-  let ver? ←
-    if let some ver := cfg.version? then
-      if ver.startsWith "git#" then
-        some <$> `(verSpec|git $(toLean <| ver.drop 4))
-      else
-        some <$> `(verSpec|$(toLean ver):term)
-    else
-      pure none
+  let ver? ← id do
+    match cfg.version with
+    | .none => return none
+    | .git rev =>
+      match cfg.src? with
+      | some (.git (rev := some gitRev) ..) =>
+        if gitRev == rev then
+          return none -- will be derived from the source above
+        else some <$> `(verSpec|git $(toLean rev))
+      | _ => some <$> `(verSpec|git $(toLean rev))
+    | .ver ver => some <$> `(verSpec|$(toLean ver.toString):term)
   let scope? := if cfg.scope.isEmpty then none else some (toLean cfg.scope)
   let opts? := if cfg.opts.isEmpty then none else some <| Unhygienic.run do
     cfg.opts.foldlM (init := mkCIdent ``NameMap.empty) fun stx opt val =>
@@ -279,11 +282,13 @@ def Dependency.mkRequire (cfg : Dependency) : RequireDecl := Unhygienic.run do
 
 private meta def genMkDeclFields
   (cmds : Array Command)
-  (tyName : Name) [info : ConfigInfo tyName] (takesName : Bool)
+  (tyName : Name) [info : ConfigInfo tyName]
   (exclude : Array Name := #[])
 : MacroM (Array Command) := do
   let val ← `(fs)
-  let ty := if takesName then Syntax.mkCApp tyName #[mkIdent `n] else mkCIdent tyName
+  let tyArgs := info.arity.fold (init := Array.emptyWithCapacity info.arity) fun i _ as =>
+    as.push (mkIdent <| .mkSimple s!"x_{i+1}")
+  let ty := Syntax.mkCApp tyName tyArgs
   let val ← info.fields.foldlM (init := val) fun val {name, canonical, ..} => do
     if !canonical || exclude.contains name then
       return val
@@ -298,21 +303,21 @@ private meta def genMkDeclFields
 local macro "gen_lean_encoders%" : command => do
   let cmds := #[]
   -- Targets
-  let cmds ← genMkDeclFields cmds ``LeanConfig false
-  let cmds ← genMkDeclFields cmds ``LeanLibConfig true
+  let cmds ← genMkDeclFields cmds ``LeanConfig
+  let cmds ← genMkDeclFields cmds ``LeanLibConfig
     (exclude := #[`nativeFacets])
-  let cmds ← genMkDeclFields cmds ``LeanExeConfig true
+  let cmds ← genMkDeclFields cmds ``LeanExeConfig
     (exclude := #[`nativeFacets])
-  let cmds ← genMkDeclFields cmds ``InputFileConfig true
-  let cmds ← genMkDeclFields cmds ``InputDirConfig true
+  let cmds ← genMkDeclFields cmds ``InputFileConfig
+  let cmds ← genMkDeclFields cmds ``InputDirConfig
   -- Package
-  let cmds ← genMkDeclFields cmds ``WorkspaceConfig false
-  let cmds ← genMkDeclFields cmds ``PackageConfig true
+  let cmds ← genMkDeclFields cmds ``WorkspaceConfig
+  let cmds ← genMkDeclFields cmds ``PackageConfig
   return ⟨mkNullNode cmds⟩
 
 gen_lean_encoders%
 
-def PackageConfig.mkCommand (cfg : PackageConfig n) : PackageCommand := Unhygienic.run do
+def PackageConfig.mkCommand (cfg : PackageConfig p n) : PackageCommand := Unhygienic.run do
   let declVal? := mkDeclValWhere? (mkDeclFields cfg)
   `(packageCommand|package $(mkIdent n):ident $[$declVal?]?)
 
@@ -346,7 +351,7 @@ protected def InputDirConfig.mkCommand
 
 @[inline] def Package.mkTargetCommands
   (pkg : Package) (defaultTargets : NameSet) (kind : Name)
-  (mkCommand : {n : Name} → ConfigType kind pkg.name n → Bool → Command)
+  (mkCommand : {n : Name} → ConfigType kind pkg.keyName n → Bool → Command)
 : Array Command :=
   pkg.targetDecls.filterMap fun t => (t.config? kind).map fun cfg =>
     mkCommand cfg (defaultTargets.contains t.name)
@@ -355,7 +360,7 @@ protected def InputDirConfig.mkCommand
 
 /-- Create a Lean module that encodes the declarative configuration of the package. -/
 public def Package.mkLeanConfig (pkg : Package) : TSyntax ``module := Unhygienic.run do
-  let pkgConfig : PackageConfig pkg.name :=
+  let pkgConfig : PackageConfig pkg.keyName pkg.origName :=
     {pkg.config with testDriver := pkg.testDriver, lintDriver := pkg.lintDriver}
   let defaultTargets := pkg.defaultTargets.foldl NameSet.insert NameSet.empty
   `(module|

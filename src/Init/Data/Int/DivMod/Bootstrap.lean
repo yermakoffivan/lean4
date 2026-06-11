@@ -7,9 +7,12 @@ module
 
 prelude
 public import Init.Data.Int.DivMod.Basic
-public import Init.Data.Int.Order
-public import Init.Data.Nat.Dvd
-public import Init.RCases
+public import Init.Data.Nat.Div.Basic
+import Init.ByCases
+import Init.Data.Int.Lemmas
+import Init.Data.Int.Order
+import Init.Data.Nat.Dvd
+import Init.RCases
 
 public section
 
@@ -38,7 +41,7 @@ protected theorem dvd_trans : ∀ {a b c : Int}, a ∣ b → b ∣ c → a ∣ c
   refine ⟨fun ⟨a, ae⟩ => ?_, fun ⟨k, e⟩ => ⟨k, by rw [e, Int.natCast_mul]⟩⟩
   match Int.le_total a 0 with
   | .inl h =>
-    have := ae.symm ▸ Int.mul_nonpos_of_nonneg_of_nonpos (ofNat_zero_le _) h
+    have := ae.symm ▸ Int.mul_nonpos_of_nonneg_of_nonpos (natCast_nonneg _) h
     rw [Nat.le_antisymm (ofNat_le.1 this) (Nat.zero_le _)]
     apply Nat.dvd_zero
   | .inr h => match a, eq_ofNat_of_zero_le h with
@@ -92,9 +95,6 @@ theorem ofNat_dvd_left {n : Nat} {z : Int} : (↑n : Int) ∣ z ↔ n ∣ z.natA
 
 @[simp, norm_cast] theorem natCast_emod (m n : Nat) : (↑(m % n) : Int) = m % n := rfl
 
-@[deprecated natCast_emod (since := "2025-04-17")]
-theorem ofNat_emod (m n : Nat) : (↑(m % n) : Int) = m % n := natCast_emod m n
-
 /-! ### mod definitions -/
 
 theorem emod_add_mul_ediv : ∀ a b : Int, a % b + b * (a / b) = a
@@ -111,26 +111,14 @@ where
       ← Int.neg_neg (_-_), Int.neg_sub, Int.sub_sub_self, Int.add_right_comm]
     exact congrArg (fun x => -(ofNat x + 1)) (Nat.mod_add_div ..)
 
-@[deprecated emod_add_mul_ediv (since := "2025-09-01")]
-def emod_add_ediv := @emod_add_mul_ediv
-
 theorem emod_add_ediv_mul (a b : Int) : a % b + a / b * b = a := by
   rw [Int.mul_comm]; exact emod_add_mul_ediv ..
-
-@[deprecated emod_add_ediv_mul (since := "2025-09-01")]
-def emod_add_ediv' := @emod_add_ediv_mul
 
 theorem mul_ediv_add_emod (a b : Int) : b * (a / b) + a % b = a := by
   rw [Int.add_comm]; exact emod_add_mul_ediv ..
 
-@[deprecated mul_ediv_add_emod (since := "2025-09-01")]
-def ediv_add_emod := @mul_ediv_add_emod
-
 theorem ediv_mul_add_emod (a b : Int) : a / b * b + a % b = a := by
   rw [Int.mul_comm]; exact mul_ediv_add_emod ..
-
-@[deprecated ediv_mul_add_emod (since := "2025-09-01")]
-def ediv_add_emod' := @ediv_mul_add_emod
 
 theorem emod_def (a b : Int) : a % b = a - b * (a / b) := by
   rw [← Int.add_sub_cancel (a % b), emod_add_mul_ediv]
@@ -209,7 +197,7 @@ theorem ediv_nonneg_iff_of_pos {a b : Int} (h : 0 < b) : 0 ≤ a / b ↔ 0 ≤ a
 /-! ### emod -/
 
 theorem emod_nonneg : ∀ (a : Int) {b : Int}, b ≠ 0 → 0 ≤ a % b
-  | ofNat _, _, _ => ofNat_zero_le _
+  | ofNat _, _, _ => natCast_nonneg _
   | -[_+1], _, H => Int.sub_nonneg_of_le <| ofNat_le.2 <| Nat.mod_lt _ (natAbs_pos.2 H)
 
 theorem emod_lt_of_pos (a : Int) {b : Int} (H : 0 < b) : a % b < b :=
@@ -232,10 +220,6 @@ theorem emod_lt_of_pos (a : Int) {b : Int} (H : 0 < b) : a % b < b :=
 
 @[simp] theorem mul_add_emod_self_left (a b c : Int) : (a * b + c) % a = c % a := by
   rw [Int.add_comm, add_mul_emod_self_left]
-
-@[deprecated add_mul_emod_self_right (since := "2025-04-11")]
-theorem add_mul_emod_self {a b c : Int} : (a + b * c) % c = a % c :=
-  add_mul_emod_self_right ..
 
 @[simp] theorem emod_add_emod (m n k : Int) : (m % n + k) % n = (m + k) % n := by
   have := (add_mul_emod_self_left (m % n + k) n (m / n)).symm

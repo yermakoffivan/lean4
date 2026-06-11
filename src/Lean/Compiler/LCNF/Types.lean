@@ -8,6 +8,8 @@ module
 prelude
 public import Lean.Compiler.BorrowedAnnotation
 public import Lean.Meta.InferType
+import Init.Omega
+import Lean.OriginalConstKind
 
 public section
 
@@ -19,6 +21,9 @@ namespace LCNF
 
 def erasedExpr := mkConst ``lcErased
 def anyExpr := mkConst ``lcAny
+
+def _root_.Lean.Expr.isVoid (e : Expr) :=
+  e.isAppOf ``lcVoid
 
 def _root_.Lean.Expr.isErased (e : Expr) :=
   e.isAppOf ``lcErased
@@ -138,10 +143,27 @@ partial def toLCNFType (type : Expr) : MetaM Expr := do
     let res'? ← observing <| withExporting <| go type
     if let .ok res' := res'? then
       if res != res' then
-        throwError "Compilation failed, locally inferred compilation type{indentD res}\n\
+        let mut reason := m!"locally inferred compilation type{indentD res}\n\
           differs from type{indentD res'}\n\
           that would be inferred in other modules. This usually means that a type `def` involved \
-          with the mentioned declarations needs to be `@[expose]`d. This is a current compiler \
+          with the mentioned declarations needs to be `@[expose]`d. "
+        -- The above error message is terrible to read, so we'll try to condense it to the essential
+        -- list of non-exposed definitions.
+        let origDiag := (← get).diag
+        try
+          let _ ← observing <| withOptions (diagnostics.set · true)  <| withExporting <| go type
+          let env ← getEnv
+          let blocked := (← get).diag.unfoldAxiomCounter.toList.filterMap fun (n, count) => do
+            let count := count - origDiag.unfoldAxiomCounter.findD n 0
+            guard <| count > 0 && getOriginalConstKind? env n matches some .defn
+            return m!"{.ofConstName n} ↦ {count}"
+          if !blocked.isEmpty then
+            reason := m!"locally inferred compilation type differs from type that would be \
+              inferred in other modules. Some of the following definitions may need to be \
+              `@[expose]`d to fix this mismatch: {indentD <| .joinSep blocked Format.line}\n"
+        finally
+          modify ({ · with diag := origDiag })
+        throwError "Compilation failed, {reason}This is a current compiler \
           limitation for `module`s that may be lifted in the future."
   return res
 where
@@ -163,11 +185,15 @@ where
     | .forallE .. => visitForall type #[]
     | .app ..  => type.withApp visitApp
     | .fvar .. => visitApp type #[]
-    | .proj ``Subtype 0 (.const ``IO.RealWorld.nonemptyType []) =>
-      return mkConst ``lcRealWorld
+    | .proj ``Subtype 0 (.app (.const ``Void.nonemptyType []) _) =>
+      return mkConst ``lcVoid
     | _        => return mkConst ``lcAny
+
   whnfEta (type : Expr) : MetaM Expr := do
-    let type ← whnf type
+    -- We increase transparency here to unfold type aliases of functions that are declared as
+    -- `irreducible`, such that they end up being represented as C functions.
+    let type ← withTransparency .all do
+      whnf type
     let type' := type.eta
     if type' != type then
       whnfEta type'
@@ -191,6 +217,10 @@ where
   visitApp (f : Expr) (args : Array Expr) := do
     let fNew ← match f with
       | .const declName us =>
+        if (← getEnv).isExporting && isPrivateName declName then
+          -- This branch can happen under `backward.privateInPublic`; restore original behavior of
+          -- failing here, which is caught and ignored above by `observing`.
+          throwError "internal compiler error: private in public"
         let .inductInfo _ ← getConstInfo declName | return anyExpr
         pure <| .const declName us
       | .fvar .. => pure f
@@ -322,5 +352,146 @@ def isInductiveWithNoCtors (type : Expr) : CoreM Bool := do
   let .const declName _ := type.getAppFn | return false
   let some (.inductInfo info) := (← getEnv).find? declName | return false
   return info.numCtors == 0
+
+def mkBoxedName (n : Name) : Name :=
+  Name.mkStr n "_boxed"
+
+def isBoxedName (name : Name) : Bool :=
+  name matches .str _ "_boxed"
+
+namespace ImpureType
+
+/-!
+This section defines the low level IR types used in the impure phase of LCNF.
+-/
+
+/--
+`float` is a 64-bit floating point number.
+-/
+@[inline, expose, match_pattern]
+def float : Expr := .const ``Float []
+
+
+/--
+`float32` is a 32-bit floating point number.
+-/
+@[inline, expose, match_pattern]
+def float32 : Expr := .const ``Float32 []
+
+/--
+`uint8` is an 8-bit unsigned integer.
+-/
+@[inline, expose, match_pattern]
+def uint8 : Expr := .const ``UInt8 []
+
+/--
+`uint16` is a 16-bit unsigned integer.
+-/
+@[inline, expose, match_pattern]
+def uint16 : Expr := .const ``UInt16 []
+
+/--
+`uint32` is a 32-bit unsigned integer.
+-/
+@[inline, expose, match_pattern]
+def uint32 : Expr := .const ``UInt32 []
+
+/--
+`uint64` is a 64-bit unsigned integer.
+-/
+@[inline, expose, match_pattern]
+def uint64 : Expr := .const ``UInt64 []
+
+/--
+`usize` represents the C `size_t` type. It has a separate representation because depending on the
+target architecture it has a different width and we try to generate platform independent C code.
+
+We generally assume that `sizeof(size_t) == sizeof(void)`.
+-/
+@[inline, expose, match_pattern]
+def usize : Expr := .const ``USize []
+
+/--
+`erased` represents type arguments, propositions and proofs which are no longer relevant at this
+point in time.
+-/
+@[inline, expose, match_pattern]
+def erased : Expr := .const ``lcErased []
+
+/-
+`object` is a pointer to a value in the heap.
+-/
+@[inline, expose, match_pattern]
+def object : Expr := .const `obj []
+
+/--
+`tobject` is either an `object` or a `tagged` pointer.
+
+Crucially the RC the RC operations for `tobject` are slightly more expensive because we
+first need to test whether the `tobject` is really a pointer or not.
+-/
+@[inline, expose, match_pattern]
+def tobject : Expr := .const `tobj []
+
+/--
+tagged` is a tagged pointer (i.e., the least significant bit is 1) storing a scalar value.
+-/
+@[inline, expose, match_pattern]
+def tagged : Expr := .const `tagged []
+
+/--
+`void` is used to identify uses of the state token from `BaseIO` which do no longer need
+to be passed around etc. at this point in the pipeline.
+-/
+@[inline, expose, match_pattern]
+def void : Expr := .const ``lcVoid []
+
+/--
+Whether the type is a scalar as opposed to a pointer (or a value disguised as a pointer).
+-/
+def Lean.Expr.isScalar : Expr → Bool
+  | ImpureType.float    => true
+  | ImpureType.float32  => true
+  | ImpureType.uint8    => true
+  | ImpureType.uint16   => true
+  | ImpureType.uint32   => true
+  | ImpureType.uint64   => true
+  | ImpureType.usize    => true
+  | _        => false
+
+/--
+Whether the type is an object which is to say a pointer or a value disguised as a pointer.
+-/
+def Lean.Expr.isObj : Expr → Bool
+  | ImpureType.object  => true
+  | ImpureType.tagged  => true
+  | ImpureType.tobject => true
+  | ImpureType.void    => true
+  | _       => false
+
+/--
+Whether the type might be an actual pointer (crucially this excludes `tagged`).
+-/
+def Lean.Expr.isPossibleRef : Expr → Bool
+  | ImpureType.object | ImpureType.tobject => true
+  | _ => false
+
+/--
+Whether the type is a pointer for sure.
+-/
+def Lean.Expr.isDefiniteRef : Expr → Bool
+  | ImpureType.object => true
+  | _ => false
+
+/--
+The boxed version of types.
+-/
+def Lean.Expr.boxed : Expr → Expr
+  | ImpureType.object | ImpureType.float | ImpureType.float32 | ImpureType.uint64 =>
+    ImpureType.object
+  | ImpureType.void | ImpureType.tagged | ImpureType.uint8 | ImpureType.uint16 => ImpureType.tagged
+  | _ => ImpureType.tobject
+
+end ImpureType
 
 end Lean.Compiler.LCNF

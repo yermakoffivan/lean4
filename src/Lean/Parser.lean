@@ -51,6 +51,7 @@ builtin_initialize
   register_parser_alias withoutPosition { stackSz? := none }
   register_parser_alias withoutForbidden { stackSz? := none }
   register_parser_alias (kind := interpolatedStrKind) interpolatedStr
+  register_parser_alias (kind := hexnumKind) hexnum
   register_parser_alias orelse
   register_parser_alias andthen { stackSz? := none }
   register_parser_alias recover
@@ -64,6 +65,7 @@ end Parser
 namespace PrettyPrinter
 namespace Parenthesizer
 
+set_option compiler.ignoreBorrowAnnotation true in
 -- Close the mutual recursion loop; see corresponding `[extern]` in the parenthesizer.
 @[export lean_mk_antiquot_parenthesizer]
 def mkAntiquot.parenthesizer (name : String) (kind : SyntaxNodeKind) (anonymous := true) (isPseudoKind := true) : Parenthesizer :=
@@ -79,6 +81,7 @@ def mkAntiquot.parenthesizer (name : String) (kind : SyntaxNodeKind) (anonymous 
 
 open Lean.Parser
 
+set_option compiler.ignoreBorrowAnnotation true in
 @[export lean_pretty_printer_parenthesizer_interpret_parser_descr]
 unsafe def interpretParserDescr : ParserDescr → CoreM Parenthesizer
   | ParserDescr.const n                             => getConstAlias parenthesizerAliasesRef n
@@ -100,6 +103,7 @@ end Parenthesizer
 
 namespace Formatter
 
+set_option compiler.ignoreBorrowAnnotation true in
 @[export lean_mk_antiquot_formatter]
 def mkAntiquot.formatter (name : String) (kind : SyntaxNodeKind) (anonymous := true) (isPseudoKind := true) : Formatter :=
   Parser.mkAntiquot.formatter name kind anonymous isPseudoKind
@@ -112,6 +116,7 @@ def mkAntiquot.formatter (name : String) (kind : SyntaxNodeKind) (anonymous := t
 
 open Lean.Parser
 
+set_option compiler.ignoreBorrowAnnotation true in
 @[export lean_pretty_printer_formatter_interpret_parser_descr]
 unsafe def interpretParserDescr : ParserDescr → CoreM Formatter
   | ParserDescr.const n                             => getConstAlias formatterAliasesRef n

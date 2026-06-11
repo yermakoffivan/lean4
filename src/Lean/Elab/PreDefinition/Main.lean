@@ -7,10 +7,8 @@ module
 
 prelude
 public import Lean.Util.SCC
-public import Lean.Elab.PreDefinition.Basic
 public import Lean.Elab.PreDefinition.Structural
 public import Lean.Elab.PreDefinition.WF.Main
-public import Lean.Elab.PreDefinition.MkInhabitant
 public import Lean.Elab.PreDefinition.PartialFixpoint
 
 public section
@@ -69,7 +67,7 @@ private def setLevelMVarsAtPreDef (preDef : PreDefinition) : PreDefinition :=
     let value' :=
       preDef.value.replaceLevel fun l =>
         match l with
-        | .mvar _ => levelZero
+        | .mvar _ => Level.zero
         | _       => none
     { preDef with value := value' }
   else
@@ -85,29 +83,12 @@ private partial def ensureNoUnassignedLevelMVarsAtPreDef (preDef : PreDefinition
     else if !(← MonadLog.hasErrors) then
       -- This is a fallback in case we don't have an error info available for the universe level metavariables.
       -- We try to produce an error message containing an expression with one of the universe level metavariables.
-      let rec visitLevel (u : Level) (e : Expr) : TermElabM Unit := do
-        if u.hasMVar then
-          let e' ← exposeLevelMVars e
+      try
+        forEachExprWithExposedLevelMVars preDef.value fun e => do
           throwError "\
             declaration `{preDef.declName}` contains universe level metavariables at the expression\
-            {indentExpr e'}\n\
+            {indentExpr e}\n\
             in the declaration body{indentExpr <| ← exposeLevelMVars preDef.value}"
-      let withExpr (e : Expr) (m : ReaderT Expr (MonadCacheT ExprStructEq Unit TermElabM) Unit) :=
-        withReader (fun _ => e) m
-      let rec visit (e : Expr) (head := false) : ReaderT Expr (MonadCacheT ExprStructEq Unit TermElabM) Unit := do
-        if e.hasLevelMVar then
-          checkCache { val := e : ExprStructEq } fun _ => do
-            match e with
-            | .forallE n d b c | .lam n d b c => withExpr e do visit d; withLocalDecl n c d fun x => visit (b.instantiate1 x)
-            | .letE n t v b nondep => withExpr e do visit t; visit v; withLetDecl n t v (nondep := nondep) fun x => visit (b.instantiate1 x)
-            | .mdata _ b     => withExpr e do visit b
-            | .proj _ _ b    => withExpr e do visit b
-            | .sort u        => visitLevel u (← read)
-            | .const _ us    => (if head then id else withExpr e) <| us.forM (visitLevel · (← read))
-            | .app ..        => withExpr e do e.withApp fun f args => do visit f true; args.forM visit
-            | _              => pure ()
-      try
-        visit preDef.value |>.run preDef.value |>.run {}
       catch e =>
         logException e
         return setLevelMVarsAtPreDef preDef
@@ -331,22 +312,13 @@ def addPreDefinitions (docCtx : LocalContext × LocalInstances) (preDefs : Array
         else if preDefs.any (·.modifiers.isUnsafe) then
           addAndCompileUnsafe docCtx preDefs
           preDefs.forM (·.termination.ensureNone "unsafe")
+        else if preDefs.any (·.modifiers.isPartial) then
+          for preDef in preDefs do
+            if preDef.modifiers.isPartial && !(← whnfD preDef.type).isForall then
+              withRef preDef.ref <| throwError "invalid use of `partial`, `{preDef.declName}` is not a function{indentExpr preDef.type}"
+          addAndCompilePartial docCtx preDefs
+          preDefs.forM (·.termination.ensureNone "partial")
         else
-          if preDefs.any (·.modifiers.isInferredPartial) then
-            let mut isPartial := true
-            for preDef in preDefs do
-              if !(← whnfD preDef.type).isForall then
-                if preDef.modifiers.isPartial then
-                  withRef preDef.ref <| throwError "invalid use of `partial`, `{preDef.declName}` is not a function{indentExpr preDef.type}"
-                else
-                  -- `meta` should not imply `partial` in this case
-                  isPartial := false
-
-            if isPartial then
-              addAndCompilePartial docCtx preDefs
-              preDefs.forM (·.termination.ensureNone "partial")
-              continue
-
           ensureFunIndReservedNamesAvailable preDefs
           try
             checkCodomainsLevel preDefs
@@ -364,7 +336,7 @@ def addPreDefinitions (docCtx : LocalContext × LocalInstances) (preDefs : Array
                   (structuralRecursion docCtx preDefs termMeasures?s)
                   (wfRecursion docCtx preDefs termMeasures?s))
                 (fun msg =>
-                  let preDefMsgs := preDefs.toList.map (MessageData.ofExpr $ mkConst ·.declName)
+                  let preDefMsgs := preDefs.toList.map (MessageData.ofConstName <| ·.declName)
                   m!"fail to show termination for{indentD (MessageData.joinSep preDefMsgs Format.line)}\nwith errors\n{msg}")
           catch ex =>
             logException ex

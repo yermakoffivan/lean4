@@ -7,7 +7,6 @@ Authors: Marc Huisinga, Wojciech Nawrocki
 module
 
 prelude
-public import Init.System.IO
 public import Lean.Data.Json.Stream
 public import Lean.Data.Json.FromToJson.Basic
 
@@ -26,7 +25,7 @@ inductive RequestID where
   | str (s : String)
   | num (n : JsonNumber)
   | null
-  deriving Inhabited, BEq, Ord
+  deriving Inhabited, BEq, Hashable, Ord
 
 instance : OfNat RequestID n := ⟨RequestID.num n⟩
 
@@ -225,7 +224,7 @@ instance : Coe JsonNumber RequestID := ⟨RequestID.num⟩
   | RequestID.num _, RequestID.str _            => true
   | _, _ /- str < *, num < null, null < null -/ => false
 
-@[expose] def RequestID.ltProp : LT RequestID :=
+@[expose, implicit_reducible] def RequestID.ltProp : LT RequestID :=
   ⟨fun a b => RequestID.lt a b = true⟩
 
 instance : LT RequestID :=
@@ -307,6 +306,12 @@ inductive MessageMetaData where
   | response (id : RequestID)
   | responseError (id : RequestID) (code : ErrorCode) (message : String) (data? : Option Json)
   deriving Inhabited
+
+def Message.metaData : Message → MessageMetaData
+  | .request id method .. => .request id method
+  | .notification method .. => .notification method
+  | .response id .. => .response id
+  | .responseError id code message data? => .responseError id code message data?
 
 def MessageMetaData.toMessage : MessageMetaData → Message
   | .request id method => .request id method none
@@ -394,6 +399,24 @@ Namely:
 -/
 def parseMessageMetaData (input : String) : Except String MessageMetaData :=
   messageMetaDataParser input |>.run input
+
+inductive MessageDirection where
+  | clientToServer
+  | serverToClient
+  deriving Inhabited, FromJson, ToJson
+
+inductive MessageKind where
+  | request
+  | notification
+  | response
+  | responseError
+  deriving FromJson, ToJson
+
+def MessageKind.ofMessage : Message → MessageKind
+  | .request .. => .request
+  | .notification .. => .notification
+  | .response .. => .response
+  | .responseError .. => .responseError
 
 end Lean.JsonRpc
 

@@ -6,8 +6,9 @@ Authors: Henrik Böving
 module
 
 prelude
-public import Std.Sat.AIG.Basic
 public import Std.Sat.AIG.Lemmas
+import Init.ByCases
+import Init.Omega
 
 @[expose] public section
 

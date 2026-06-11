@@ -4,23 +4,16 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Leonardo de Moura
 -/
 module
-
 prelude
-public import Init.ByCases
-public import Init.Data.Prod
-public import Init.Data.Int.Lemmas
-public import Init.Data.Int.LemmasAux
-public import Init.Data.Int.DivMod.Bootstrap
-public import Init.Data.Int.Cooper
-public import Init.Data.Int.Gcd
 import all Init.Data.Int.Gcd
-public import Init.Data.RArray
-public import Init.Data.AC
 import all Init.Data.AC
 import Init.LawfulBEqTactics
-
+public import Init.Data.Bool
+public import Init.Data.Int.Gcd
+public import Init.Data.RArray
+import Init.Data.Int.Cooper
+import Init.Data.Int.LemmasAux
 public section
-
 namespace Int.Linear
 
 /-! Helper definitions and theorems for constructing linear arithmetic proofs. -/
@@ -28,8 +21,7 @@ namespace Int.Linear
 abbrev Var := Nat
 abbrev Context := Lean.RArray Int
 
-@[expose]
-def Var.denote (ctx : Context) (v : Var) : Int :=
+abbrev Var.denote (ctx : Context) (v : Var) : Int :=
   ctx.get v
 
 inductive Expr where
@@ -42,8 +34,7 @@ inductive Expr where
   | mulR (a : Expr) (k : Int)
   deriving Inhabited, @[expose] BEq
 
-@[expose]
-def Expr.denote (ctx : Context) : Expr → Int
+abbrev Expr.denote (ctx : Context) : Expr → Int
   | .add a b  => denote ctx a + denote ctx b
   | .sub a b  => denote ctx a - denote ctx b
   | .neg a    => - denote ctx a
@@ -51,6 +42,9 @@ def Expr.denote (ctx : Context) : Expr → Int
   | .var v    => v.denote ctx
   | .mulL k e => k * denote ctx e
   | .mulR e k => denote ctx e * k
+
+set_option allowUnsafeReducibility true
+attribute [semireducible] Var.denote Expr.denote
 
 inductive Poly where
   | num (k : Int)
@@ -74,35 +68,36 @@ protected noncomputable def Poly.beq' (p₁ : Poly) : Poly → Bool :=
   intro _ _; subst k₁ v₁
   simp [← ih p₂, ← Bool.and'_eq_and]; rfl
 
-@[expose]
-def Poly.denote (ctx : Context) (p : Poly) : Int :=
+abbrev Poly.denote (ctx : Context) (p : Poly) : Int :=
   match p with
   | .num k => k
   | .add k v p => k * v.denote ctx + denote ctx p
+
+noncomputable abbrev Poly.denote'.go (ctx : Context) (p : Poly) : Int → Int :=
+  Poly.rec
+    (fun k r => Bool.rec
+      (r + k)
+      r
+      (Int.beq' k 0))
+    (fun k v _ ih r => Bool.rec
+      (ih (r + k * v.denote ctx))
+      (ih (r + v.denote ctx))
+      (Int.beq' k 1))
+    p
 
 /--
 Similar to `Poly.denote`, but produces a denotation better for `simp +arith`.
 Remark: we used to convert `Poly` back into `Expr` to achieve that.
 -/
-@[expose] noncomputable def Poly.denote' (ctx : Context) (p : Poly) : Int :=
+noncomputable abbrev Poly.denote' (ctx : Context) (p : Poly) : Int :=
   Poly.rec (fun k => k)
     (fun k v p _ => Bool.rec
-      (go p (k * v.denote ctx))
-      (go p (v.denote ctx))
+      (denote'.go ctx p (k * v.denote ctx))
+      (denote'.go ctx p (v.denote ctx))
       (Int.beq' k 1))
     p
-where
-  go (p : Poly) : Int → Int :=
-    Poly.rec
-      (fun k r => Bool.rec
-        (r + k)
-        r
-        (Int.beq' k 0))
-      (fun k v _ ih r => Bool.rec
-        (ih (r + k * v.denote ctx))
-        (ih (r + v.denote ctx))
-        (Int.beq' k 1))
-      p
+
+attribute [semireducible] Poly.denote Poly.denote' Poly.denote'.go
 
 @[simp] theorem Poly.denote'_go_eq_denote (ctx : Context) (p : Poly) (r : Int) : denote'.go ctx p r = p.denote ctx + r := by
   induction p generalizing r
@@ -196,7 +191,7 @@ def Poly.combine' (fuel : Nat) (p₁ p₂ : Poly) : Poly :=
     else
       .add a₂ x₂ (combine' fuel (.add a₁ x₁ p₁) p₂)
 
-@[expose] abbrev hugeFuel := 100000000
+abbrev hugeFuel := 100000000
 
 @[expose]
 def Poly.combine (p₁ p₂ : Poly) : Poly :=
@@ -267,6 +262,7 @@ theorem cmod_eq_zero_iff_emod_eq_zero (a b : Int) : cmod a b = 0 ↔ a%b = 0 := 
   simp only [emod_self, sub_emod_left] at this
   rw [Int.neg_eq_zero, ← this, Eq.comm]
 
+set_option linter.defProp false in
 private abbrev div_mul_cancel_of_mod_zero :=
   @Int.ediv_mul_cancel_of_emod_eq_zero
 
@@ -641,7 +637,6 @@ private theorem eq_of_norm_eq_of_divCoeffs {ctx : Context} {p₁ p₂ : Poly} {k
   have hz : k ≠ 0 := Int.ne_of_gt h₀
   replace h₁ := Poly.denote_div_eq_of_divCoeffs ctx p₁ k h₁
   replace h₂ := congrArg (Poly.denote ctx) h₂
-  simp at h₂
   rw [h₂, ← h₁]; clear h₁ h₂
   apply mul_add_cmod_le_iff
   assumption
@@ -1097,7 +1092,7 @@ theorem eq_unsat_coeff (ctx : Context) (p : Poly) (k : Int) : eq_unsat_coeff_cer
   induction p
   next => rfl
   next a y p ih =>
-    simp [coeff_k, coeff, cond_eq_if]; split
+    simp [coeff_k, coeff, cond_eq_ite]; split
     next h => simp [h]
     next h => rw [← Nat.beq_eq, Bool.not_eq_true] at h; simp [h, ← ih]; rfl
 
@@ -1763,11 +1758,11 @@ private theorem ex_of_dvd {α β a b d x : Int}
     rw [one_emod_eq_one h₀] at h₂
     assumption
   have : ((α * a) * x) % d = (- α * b) % d := by
-    replace h₁ := congrArg (α * ·) h₁; simp only at h₁
+    replace h₁ := congrArg (α * ·) h₁; try simp only at h₁ -- TODO(kmill): remove simp after stage0 update
     rw [Int.mul_add] at h₁
     replace h₁ := congrArg (· - α * b) h₁; simp only [Int.add_sub_cancel] at h₁
     rw [← Int.mul_assoc, Int.mul_left_comm, Int.sub_eq_add_neg] at h₁
-    replace h₁ := congrArg (· % d) h₁; simp only at h₁
+    replace h₁ := congrArg (· % d) h₁; try simp only at h₁ -- TODO(kmill): remove simp after stage0 update
     rw [Int.add_emod, Int.mul_emod_right, Int.zero_add, Int.emod_emod, ← Int.neg_mul] at h₁
     assumption
   have : x % d = (- α * b) % d := by

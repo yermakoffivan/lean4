@@ -6,16 +6,8 @@ Authors: Leonardo de Moura
 module
 
 prelude
-public import Lean.Elab.Quotation.Precheck
-public import Lean.Elab.Term
-public import Lean.Elab.BindersUtil
-public import Lean.Elab.SyntheticMVars
-public import Lean.Elab.PreDefinition.TerminationHint
 public import Lean.Elab.Match
-public import Lean.Compiler.MetaAttr
-meta import Lean.Parser.Term
-meta import Lean.Parser.Tactic
-import Lean.Linter.Basic
+import Lean.Linter.Init
 
 public section
 
@@ -73,7 +65,7 @@ partial def quoteAutoTactic : Syntax → CoreM Expr
   | .ident _ _ val preresolved =>
     return mkApp4 (.const ``Syntax.ident [])
       (.const ``SourceInfo.none [])
-      (.app (.const ``String.toSubstring []) (mkStrLit (toString val)))
+      (.app (.const ``String.toRawSubstring []) (mkStrLit (toString val)))
       (toExpr val)
       (toExpr preresolved)
   | stx@(.node _ k args) => do
@@ -99,14 +91,14 @@ Returns the declaration name.
 -/
 def declareTacticSyntax (tactic : Syntax) (name? : Option Name := none) : TermElabM Name :=
   withFreshMacroScope do
-    let name ← name?.getDM do MonadQuotation.addMacroScope ((← getEnv).asyncPrefix?.getD .anonymous ++ `_auto)
+    let name ← name?.getDM (mkAuxDeclName `_auto)
     let type := Lean.mkConst `Lean.Syntax
     let value ← quoteAutoTactic tactic
     trace[Elab.autoParam] value
     let decl := Declaration.defnDecl { name, levelParams := [], type, value, hints := .opaque,
                                        safety := DefinitionSafety.safe }
     addDecl decl
-    modifyEnv (addMeta · name)
+    modifyEnv (markMeta · name)
     compileDecl decl
     return name
 
@@ -582,7 +574,7 @@ private def checkMatchAltPatternCounts (matchAlts : Syntax) (numDiscrs : Nat) (e
   let sepPats (pats : List Syntax) := MessageData.joinSep (pats.map toMessageData) ", "
   let maxDiscrs? ← forallTelescopeReducing expectedType fun xs e =>
     if e.getAppFn.isMVar then pure none else pure (some xs.size)
-  let matchAltViews := matchAlts[0].getArgs.filterMap getMatchAlt
+  let matchAltViews := matchAlts[0].getArgs.filterMap (getMatchAlt `term)
   let numPatternsStr (n : Nat) := s!"{n} {if n == 1 then "pattern" else "patterns"}"
   if h : matchAltViews.size > 0 then
     if let some maxDiscrs := maxDiscrs? then

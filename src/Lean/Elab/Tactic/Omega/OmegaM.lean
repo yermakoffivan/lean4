@@ -6,14 +6,9 @@ Authors: Kim Morrison
 module
 
 prelude
-public import Init.Omega.LinearCombo
-public import Init.Omega.Int
-public import Init.Omega.Logic
-public import Init.Data.BitVec.Basic
 public import Lean.Meta.AppBuilder
 public import Lean.Meta.Canonicalizer
-public import Std.Data.HashMap.Basic
-public import Std.Data.HashSet.Basic
+public import Init.Omega
 
 public section
 
@@ -172,7 +167,7 @@ def analyzeAtom (e : Expr) : OmegaM (List Expr) := do
   match e.getAppFnArgs with
   | (``Nat.cast, #[.const ``Int [], _, e']) =>
     -- Casts of natural numbers are non-negative.
-    let mut r := [Expr.app (.const ``Int.ofNat_nonneg []) e']
+    let mut r := [Expr.app (.const ``Int.natCast_nonneg []) e']
     match (← cfg).splitNatSub, e'.getAppFnArgs with
       | true, (``HSub.hSub, #[_, _, _, _, a, b]) =>
         -- `((a - b : Nat) : Int)` gives a dichotomy

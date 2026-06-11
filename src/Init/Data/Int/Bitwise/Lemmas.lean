@@ -6,10 +6,16 @@ Authors: Siddharth Bhat, Jeremy Avigad
 module
 
 prelude
-public import Init.Data.Nat.Bitwise.Lemmas
 public import Init.Data.Int.Bitwise.Basic
 import all Init.Data.Int.Bitwise.Basic
-public import Init.Data.Int.DivMod.Lemmas
+public import Init.Data.Int.DivMod.Basic
+import Init.ByCases
+import Init.Data.Int.DivMod.Lemmas
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Omega
+import Init.RCases
 
 public section
 
@@ -24,11 +30,16 @@ theorem natCast_shiftRight (n s : Nat) : n >>> s = (n : Int) >>> s := rfl
 theorem negSucc_shiftRight (m n : Nat) :
     -[m+1] >>> n = -[m >>>n +1] := rfl
 
-@[grind _=_]
 theorem shiftRight_add (i : Int) (m n : Nat) :
     i >>> (m + n) = i >>> m >>> n := by
   simp only [shiftRight_eq, Int.shiftRight]
   cases i <;> simp [Nat.shiftRight_add]
+
+grind_pattern shiftRight_add => i >>> (m + n) where
+  i =/= 0
+
+grind_pattern shiftRight_add => i >>> m >>> n where
+  i =/= 0
 
 theorem shiftRight_eq_div_pow (m : Int) (n : Nat) :
     m >>> n = m / ((2 ^ n) : Nat) := by
@@ -47,10 +58,10 @@ theorem shiftRight_zero (n : Int) : n >>> 0 = n := by
   simp [Int.shiftRight_eq_div_pow]
 
 theorem le_shiftRight_of_nonpos {n : Int} {s : Nat} (h : n ≤ 0) : n ≤ n >>> s := by
-  simp only [Int.shiftRight_eq, Int.shiftRight, Int.ofNat_eq_coe]
+  simp only [Int.shiftRight_eq, Int.shiftRight, Int.ofNat_eq_natCast]
   split
   case _ _ _ m =>
-    simp only [ofNat_eq_coe] at h
+    simp only [ofNat_eq_natCast] at h
     by_cases hm : m = 0
     · simp [hm]
     · omega
@@ -61,14 +72,14 @@ theorem le_shiftRight_of_nonpos {n : Int} {s : Nat} (h : n ≤ 0) : n ≤ n >>> 
       omega
 
 theorem shiftRight_le_of_nonneg {n : Int} {s : Nat} (h : 0 ≤ n) : n >>> s ≤ n := by
-  simp only [Int.shiftRight_eq, Int.shiftRight, Int.ofNat_eq_coe]
+  simp only [Int.shiftRight_eq, Int.shiftRight, Int.ofNat_eq_natCast]
   split
   case _ _ _ m =>
-    simp only [Int.ofNat_eq_coe] at h
+    simp only [Int.ofNat_eq_natCast] at h
     by_cases hm : m = 0
     · simp [hm]
     · have := Nat.shiftRight_le m s
-      rw [ofNat_eq_coe]
+      rw [ofNat_eq_natCast]
       omega
   case _ _ _ m =>
     omega
@@ -108,7 +119,7 @@ theorem shiftLeft_succ (m : Int) (n : Nat) : m <<< (n + 1) = (m <<< n) * 2 := by
   change Int.shiftLeft _ _ = Int.shiftLeft _ _ * 2
   match m with
   | (m : Nat) =>
-    dsimp only [Int.shiftLeft, Int.ofNat_eq_coe]
+    dsimp only [Int.shiftLeft, Int.ofNat_eq_natCast]
     rw [Nat.shiftLeft_succ, Nat.mul_comm, natCast_mul, ofNat_two]
   | Int.negSucc m =>
     dsimp only [Int.shiftLeft]

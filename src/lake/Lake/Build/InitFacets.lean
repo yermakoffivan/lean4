@@ -6,7 +6,6 @@ Authors: Mac Malone
 module
 
 prelude
-public import Lake.Util.Name
 public import Lake.Config.FacetConfig
 import Lake.Build.Module
 import Lake.Build.Package
@@ -20,7 +19,7 @@ import Lake.Build.InputFile
 namespace Lake
 
 /-- The initial set of Lake facets. -/
-public def initFacetConfigs : DNameMap FacetConfig :=
+public def initFacetConfigs : FacetConfigMap :=
   DNameMap.empty
   |> insert Module.initFacetConfigs
   |> insert Package.initFacetConfigs
@@ -31,4 +30,4 @@ public def initFacetConfigs : DNameMap FacetConfig :=
   |> insert InputDir.initFacetConfigs
 where
   insert {k} (group : DNameMap (KFacetConfig k)) map :=
-    group.foldl (init := map) fun m k v => m.insert k v.toFacetConfig
+    group.foldl (init := map) fun m _ v => m.insert v.toFacetConfig

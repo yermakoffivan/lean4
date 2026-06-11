@@ -7,6 +7,7 @@ module
 
 prelude
 public import Std.Data.Internal.List.Associative
+import Init.Data.List.Find
 
 @[expose] public section
 
@@ -94,6 +95,12 @@ def get? [Ord α] [OrientedOrd α] [LawfulEqOrd α] {k : α} (c : Cell α β (co
   | none => none
   | some p => some (cast (congrArg β (compare_eq_iff_eq.mp (c.property _ h)).symm) p.2)
 
+/-- Internal implementation detail of the tree map -/
+def getEntry? [Ord α] {k : α} (c : Cell α β (compare k)) : Option ((a : α) × β a) :=
+  match c.inner with
+  | none => none
+  | some p => some ⟨p.1, p.2⟩
+
 @[simp]
 theorem get?_empty [Ord α] [OrientedOrd α] [LawfulEqOrd α] {k : α} :
     (Cell.empty : Cell α β (compare k)).get? = none :=
@@ -104,6 +111,11 @@ def getKey? [Ord α] {k : α} (c : Cell α β (compare k)) : Option α :=
   match c.inner with
   | none => none
   | some p => some p.1
+
+@[simp]
+theorem getEntry?_empty [Ord α] [OrientedOrd α] [LawfulEqOrd α] {k : α} :
+    (Cell.empty : Cell α β (compare k)).getEntry? = none :=
+  rfl
 
 @[simp]
 theorem getKey?_empty [Ord α] {k : α} : (Cell.empty : Cell α β (compare k)).getKey? = none :=

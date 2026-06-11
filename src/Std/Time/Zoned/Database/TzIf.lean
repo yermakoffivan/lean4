@@ -6,11 +6,9 @@ Authors: Sofia Rodrigues
 module
 
 prelude
-public import Init.Data.Range.Polymorphic.Nat
 public import Init.Data.Range.Polymorphic.Iterators
 public import Std.Internal.Parsec
-public import Std.Internal.Parsec.ByteArray
-import Init.Data.ByteArray.Extra
+import Init.Data.Int.Repr
 
 public section
 
@@ -163,6 +161,7 @@ structure TZifV2 extends TZifV1 where
   footer : Option String
   deriving Repr, Inhabited
 
+set_option linter.extra.dupNamespace false in
 /--
 Represents a TZif file, which can be either version 1 or version 2.
 -/

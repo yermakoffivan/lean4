@@ -7,8 +7,9 @@ module
 
 prelude
 public import Init.Data.UInt.Basic
+public import Init.Data.ToString.Extra
 
-public section
+@[expose] public section
 
 set_option linter.missingDocs true
 
@@ -23,7 +24,7 @@ Signed 8-bit integers.
 This type has special support in the compiler so it can be represented by an unboxed 8-bit value.
 -/
 structure Int8 where
-  private ofUInt8 ::
+  ofUInt8 ::
   /--
   Converts an 8-bit signed integer into the 8-bit unsigned integer that is its two's complement
   encoding.
@@ -36,7 +37,7 @@ Signed 16-bit integers.
 This type has special support in the compiler so it can be represented by an unboxed 16-bit value.
 -/
 structure Int16 where
-  private ofUInt16 ::
+  ofUInt16 ::
   /--
   Converts an 16-bit signed integer into the 16-bit unsigned integer that is its two's complement
   encoding.
@@ -49,7 +50,7 @@ Signed 32-bit integers.
 This type has special support in the compiler so it can be represented by an unboxed 32-bit value.
 -/
 structure Int32 where
-  private ofUInt32 ::
+  ofUInt32 ::
   /--
   Converts an 32-bit signed integer into the 32-bit unsigned integer that is its two's complement
   encoding.
@@ -62,7 +63,7 @@ Signed 64-bit integers.
 This type has special support in the compiler so it can be represented by an unboxed 64-bit value.
 -/
 structure Int64 where
-  private ofUInt64 ::
+  ofUInt64 ::
   /--
   Converts an 64-bit signed integer into the 64-bit unsigned integer that is its two's complement
   encoding.
@@ -76,7 +77,7 @@ On a 32-bit architecture, `ISize` is equivalent to `Int32`. On a 64-bit machine,
 `Int64`. This type has special support in the compiler so it can be represented by an unboxed value.
 -/
 structure ISize where
-  private ofUSize ::
+  ofUSize ::
   /--
   Converts a word-sized signed integer into the word-sized unsigned integer that is its two's
   complement encoding.
@@ -89,7 +90,7 @@ abbrev Int8.size : Nat := 256
 /--
 Obtain the `BitVec` that contains the 2's complement representation of the `Int8`.
 -/
-@[inline] def Int8.toBitVec (x : Int8) : BitVec 8 := x.toUInt8.toBitVec
+@[inline] def Int8.toBitVec (x : Int8) : BitVec 8 := x.toUInt8.toBitVec --
 
 theorem Int8.toBitVec.inj : {x y : Int8} → x.toBitVec = y.toBitVec → x = y
   | ⟨⟨_⟩⟩, ⟨⟨_⟩⟩, rfl => rfl
@@ -150,14 +151,14 @@ Converts an 8-bit signed integer to an arbitrary-precision integer that denotes 
 
 This function is overridden at runtime with an efficient implementation.
 -/
-@[extern "lean_int8_to_int"]
+@[extern "lean_int8_to_int", tagged_return]
 def Int8.toInt (i : Int8) : Int := i.toBitVec.toInt
 /--
 Converts an 8-bit signed integer to a natural number, mapping all negative numbers to `0`.
 
 Use `Int8.toBitVec` to obtain the two's complement representation.
 -/
-@[inline] def Int8.toNatClampNeg (i : Int8) : Nat := i.toInt.toNat
+@[suggest_for Int8.toNat, inline] def Int8.toNatClampNeg (i : Int8) : Nat := i.toInt.toNat
 
 /-- Obtains the `Int8` whose 2's complement representation is the given `BitVec 8`. -/
 @[inline] def Int8.ofBitVec (b : BitVec 8) : Int8 := ⟨⟨b⟩⟩
@@ -191,7 +192,7 @@ abbrev Int8.minValue : Int8 := -128
 def Int8.ofIntLE (i : Int) (_hl : Int8.minValue.toInt ≤ i) (_hr : i ≤ Int8.maxValue.toInt) : Int8 :=
   Int8.ofInt i
 /-- Constructs an `Int8` from an `Int`, clamping if the value is too small or too large. -/
-def Int8.ofIntTruncate (i : Int) : Int8 :=
+def Int8.ofIntClamp (i : Int) : Int8 :=
   if hl : Int8.minValue.toInt ≤ i then
     if hr : i ≤ Int8.maxValue.toInt then
       Int8.ofIntLE i hl hr
@@ -199,6 +200,10 @@ def Int8.ofIntTruncate (i : Int) : Int8 :=
       Int8.minValue
   else
     Int8.minValue
+
+@[inherit_doc Int8.ofIntClamp, deprecated Int8.ofIntClamp (since := "2026-05-04")]
+def Int8.ofIntTruncate (i : Int) : Int8 :=
+  Int8.ofIntClamp i
 /--
 Adds two 8-bit signed integers, wrapping around on over- or underflow. Usually accessed via the `+`
 operator.
@@ -409,7 +414,7 @@ Examples:
  * `(if (5 : Int8) < 5 then "yes" else "no") = "no"`
  * `show ¬((7 : Int8) < 7) by decide`
 -/
-@[extern "lean_int8_dec_lt"]
+@[extern "lean_int8_dec_lt", implicit_reducible]
 def Int8.decLt (a b : Int8) : Decidable (a < b) :=
   inferInstanceAs (Decidable (a.toBitVec.slt b.toBitVec))
 
@@ -425,7 +430,7 @@ Examples:
  * `(if (15 : Int8) ≤ 5 then "yes" else "no") = "no"`
  * `show (7 : Int8) ≤ 7 by decide`
 -/
-@[extern "lean_int8_dec_le"]
+@[extern "lean_int8_dec_le", implicit_reducible]
 def Int8.decLe (a b : Int8) : Decidable (a ≤ b) :=
   inferInstanceAs (Decidable (a.toBitVec.sle b.toBitVec))
 
@@ -503,14 +508,14 @@ Converts a 16-bit signed integer to an arbitrary-precision integer that denotes 
 
 This function is overridden at runtime with an efficient implementation.
 -/
-@[extern "lean_int16_to_int"]
+@[extern "lean_int16_to_int", tagged_return]
 def Int16.toInt (i : Int16) : Int := i.toBitVec.toInt
 /--
 Converts a 16-bit signed integer to a natural number, mapping all negative numbers to `0`.
 
 Use `Int16.toBitVec` to obtain the two's complement representation.
 -/
-@[inline] def Int16.toNatClampNeg (i : Int16) : Nat := i.toInt.toNat
+@[suggest_for Int16.toNat, inline] def Int16.toNatClampNeg (i : Int16) : Nat := i.toInt.toNat
 
 /-- Obtains the `Int16` whose 2's complement representation is the given `BitVec 16`. -/
 @[inline] def Int16.ofBitVec (b : BitVec 16) : Int16 := ⟨⟨b⟩⟩
@@ -559,7 +564,7 @@ abbrev Int16.minValue : Int16 := -32768
 def Int16.ofIntLE (i : Int) (_hl : Int16.minValue.toInt ≤ i) (_hr : i ≤ Int16.maxValue.toInt) : Int16 :=
   Int16.ofInt i
 /-- Constructs an `Int16` from an `Int`, clamping if the value is too small or too large. -/
-def Int16.ofIntTruncate (i : Int) : Int16 :=
+def Int16.ofIntClamp (i : Int) : Int16 :=
   if hl : Int16.minValue.toInt ≤ i then
     if hr : i ≤ Int16.maxValue.toInt then
       Int16.ofIntLE i hl hr
@@ -567,6 +572,10 @@ def Int16.ofIntTruncate (i : Int) : Int16 :=
       Int16.minValue
   else
     Int16.minValue
+
+@[inherit_doc Int16.ofIntClamp, deprecated Int16.ofIntClamp (since := "2026-05-04")]
+def Int16.ofIntTruncate (i : Int) : Int16 :=
+  Int16.ofIntClamp i
 
 /--
 Adds two 16-bit signed integers, wrapping around on over- or underflow.  Usually accessed via the `+`
@@ -778,7 +787,7 @@ Examples:
  * `(if (5 : Int16) < 5 then "yes" else "no") = "no"`
  * `show ¬((7 : Int16) < 7) by decide`
 -/
-@[extern "lean_int16_dec_lt"]
+@[extern "lean_int16_dec_lt", implicit_reducible]
 def Int16.decLt (a b : Int16) : Decidable (a < b) :=
   inferInstanceAs (Decidable (a.toBitVec.slt b.toBitVec))
 
@@ -794,7 +803,7 @@ Examples:
  * `(if (15 : Int16) ≤ 5 then "yes" else "no") = "no"`
  * `show (7 : Int16) ≤ 7 by decide`
 -/
-@[extern "lean_int16_dec_le"]
+@[extern "lean_int16_dec_le", implicit_reducible]
 def Int16.decLe (a b : Int16) : Decidable (a ≤ b) :=
   inferInstanceAs (Decidable (a.toBitVec.sle b.toBitVec))
 
@@ -880,7 +889,7 @@ Converts a 32-bit signed integer to a natural number, mapping all negative numbe
 
 Use `Int32.toBitVec` to obtain the two's complement representation.
 -/
-@[inline] def Int32.toNatClampNeg (i : Int32) : Nat := i.toInt.toNat
+@[suggest_for Int32.toNat, inline] def Int32.toNatClampNeg (i : Int32) : Nat := i.toInt.toNat
 
 /-- Obtains the `Int32` whose 2's complement representation is the given `BitVec 32`. -/
 @[inline] def Int32.ofBitVec (b : BitVec 32) : Int32 := ⟨⟨b⟩⟩
@@ -944,7 +953,7 @@ abbrev Int32.minValue : Int32 := -2147483648
 def Int32.ofIntLE (i : Int) (_hl : Int32.minValue.toInt ≤ i) (_hr : i ≤ Int32.maxValue.toInt) : Int32 :=
   Int32.ofInt i
 /-- Constructs an `Int32` from an `Int`, clamping if the value is too small or too large. -/
-def Int32.ofIntTruncate (i : Int) : Int32 :=
+def Int32.ofIntClamp (i : Int) : Int32 :=
   if hl : Int32.minValue.toInt ≤ i then
     if hr : i ≤ Int32.maxValue.toInt then
       Int32.ofIntLE i hl hr
@@ -952,6 +961,10 @@ def Int32.ofIntTruncate (i : Int) : Int32 :=
       Int32.minValue
   else
     Int32.minValue
+
+@[inherit_doc Int32.ofIntClamp, deprecated Int32.ofIntClamp (since := "2026-05-04")]
+def Int32.ofIntTruncate (i : Int) : Int32 :=
+  Int32.ofIntClamp i
 
 /--
 Adds two 32-bit signed integers, wrapping around on over- or underflow.  Usually accessed via the
@@ -1163,7 +1176,7 @@ Examples:
  * `(if (5 : Int32) < 5 then "yes" else "no") = "no"`
  * `show ¬((7 : Int32) < 7) by decide`
 -/
-@[extern "lean_int32_dec_lt"]
+@[extern "lean_int32_dec_lt", implicit_reducible]
 def Int32.decLt (a b : Int32) : Decidable (a < b) :=
   inferInstanceAs (Decidable (a.toBitVec.slt b.toBitVec))
 
@@ -1179,7 +1192,7 @@ Examples:
  * `(if (15 : Int32) ≤ 5 then "yes" else "no") = "no"`
  * `show (7 : Int32) ≤ 7 by decide`
 -/
-@[extern "lean_int32_dec_le"]
+@[extern "lean_int32_dec_le", implicit_reducible]
 def Int32.decLe (a b : Int32) : Decidable (a ≤ b) :=
   inferInstanceAs (Decidable (a.toBitVec.sle b.toBitVec))
 
@@ -1270,7 +1283,7 @@ Converts a 64-bit signed integer to a natural number, mapping all negative numbe
 
 Use `Int64.toBitVec` to obtain the two's complement representation.
 -/
-@[inline] def Int64.toNatClampNeg (i : Int64) : Nat := i.toInt.toNat
+@[suggest_for Int64.toNat, inline] def Int64.toNatClampNeg (i : Int64) : Nat := i.toInt.toNat
 
 /-- Obtains the `Int64` whose 2's complement representation is the given `BitVec 64`. -/
 @[inline] def Int64.ofBitVec (b : BitVec 64) : Int64 := ⟨⟨b⟩⟩
@@ -1349,7 +1362,7 @@ abbrev Int64.minValue : Int64 := -9223372036854775808
 def Int64.ofIntLE (i : Int) (_hl : Int64.minValue.toInt ≤ i) (_hr : i ≤ Int64.maxValue.toInt) : Int64 :=
   Int64.ofInt i
 /-- Constructs an `Int64` from an `Int`, clamping if the value is too small or too large. -/
-def Int64.ofIntTruncate (i : Int) : Int64 :=
+def Int64.ofIntClamp (i : Int) : Int64 :=
   if hl : Int64.minValue.toInt ≤ i then
     if hr : i ≤ Int64.maxValue.toInt then
       Int64.ofIntLE i hl hr
@@ -1357,6 +1370,10 @@ def Int64.ofIntTruncate (i : Int) : Int64 :=
       Int64.minValue
   else
     Int64.minValue
+
+@[inherit_doc Int64.ofIntClamp, deprecated Int64.ofIntClamp (since := "2026-05-04")]
+def Int64.ofIntTruncate (i : Int) : Int64 :=
+  Int64.ofIntClamp i
 
 /--
 Adds two 64-bit signed integers, wrapping around on over- or underflow.  Usually accessed via the
@@ -1568,7 +1585,7 @@ Examples:
  * `(if (5 : Int64) < 5 then "yes" else "no") = "no"`
  * `show ¬((7 : Int64) < 7) by decide`
 -/
-@[extern "lean_int64_dec_lt"]
+@[extern "lean_int64_dec_lt", implicit_reducible]
 def Int64.decLt (a b : Int64) : Decidable (a < b) :=
   inferInstanceAs (Decidable (a.toBitVec.slt b.toBitVec))
 /--
@@ -1583,7 +1600,7 @@ Examples:
  * `(if (15 : Int64) ≤ 5 then "yes" else "no") = "no"`
  * `show (7 : Int64) ≤ 7 by decide`
 -/
-@[extern "lean_int64_dec_le"]
+@[extern "lean_int64_dec_le", implicit_reducible]
 def Int64.decLe (a b : Int64) : Decidable (a ≤ b) :=
   inferInstanceAs (Decidable (a.toBitVec.sle b.toBitVec))
 
@@ -1637,7 +1654,7 @@ Converts a word-sized signed integer to a natural number, mapping all negative n
 
 Use `ISize.toBitVec` to obtain the two's complement representation.
 -/
-@[inline] def ISize.toNatClampNeg (i : ISize) : Nat := i.toInt.toNat
+@[suggest_for ISize.toNat, inline] def ISize.toNatClampNeg (i : ISize) : Nat := i.toInt.toNat
 
 /-- Obtains the `ISize` whose 2's complement representation is the given `BitVec`. -/
 @[inline] def ISize.ofBitVec (b : BitVec System.Platform.numBits) : ISize := ⟨⟨b⟩⟩
@@ -1737,7 +1754,7 @@ abbrev ISize.minValue : ISize := .ofInt (-2 ^ (System.Platform.numBits - 1))
 def ISize.ofIntLE (i : Int) (_hl : ISize.minValue.toInt ≤ i) (_hr : i ≤ ISize.maxValue.toInt) : ISize :=
   ISize.ofInt i
 /-- Constructs an `ISize` from an `Int`, clamping if the value is too small or too large. -/
-def ISize.ofIntTruncate (i : Int) : ISize :=
+def ISize.ofIntClamp (i : Int) : ISize :=
   if hl : ISize.minValue.toInt ≤ i then
     if hr : i ≤ ISize.maxValue.toInt then
       ISize.ofIntLE i hl hr
@@ -1745,6 +1762,10 @@ def ISize.ofIntTruncate (i : Int) : ISize :=
       ISize.minValue
   else
     ISize.minValue
+
+@[inherit_doc ISize.ofIntClamp, deprecated ISize.ofIntClamp (since := "2026-05-04")]
+def ISize.ofIntTruncate (i : Int) : ISize :=
+  ISize.ofIntClamp i
 
 /--
 Adds two word-sized signed integers, wrapping around on over- or underflow.  Usually accessed via
@@ -1958,7 +1979,7 @@ Examples:
  * `(if (5 : ISize) < 5 then "yes" else "no") = "no"`
  * `show ¬((7 : ISize) < 7) by decide`
 -/
-@[extern "lean_isize_dec_lt"]
+@[extern "lean_isize_dec_lt", implicit_reducible]
 def ISize.decLt (a b : ISize) : Decidable (a < b) :=
   inferInstanceAs (Decidable (a.toBitVec.slt b.toBitVec))
 
@@ -1974,7 +1995,7 @@ Examples:
  * `(if (15 : ISize) ≤ 5 then "yes" else "no") = "no"`
  * `show (7 : ISize) ≤ 7 by decide`
 -/
-@[extern "lean_isize_dec_le"]
+@[extern "lean_isize_dec_le", implicit_reducible]
 def ISize.decLe (a b : ISize) : Decidable (a ≤ b) :=
   inferInstanceAs (Decidable (a.toBitVec.sle b.toBitVec))
 

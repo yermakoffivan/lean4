@@ -6,11 +6,9 @@ Authors: Paul Reichert
 module
 
 prelude
-import Init.SimpLemmas
 public import Init.Data.Order.Classes
-public import Init.Data.Order.Lemmas
-import Init.Data.Order.Factories
-import Init.Data.Subtype.Basic
+import Init.Data.Order.Lemmas
+import Init.Ext
 
 namespace Subtype
 open Std

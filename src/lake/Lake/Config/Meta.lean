@@ -11,13 +11,14 @@ public import Lake.Config.MetaClasses
 public meta import Lake.Util.Binder
 public meta import Lean.Parser.Command
 public meta import Lake.Util.Name
+import Lean.Parser.Command
 
 open Lean Syntax Parser Command
 
 namespace Lake
 
 public syntax configField :=
-  atomic(nestedDeclModifiers ident,+) declSig (" := " term)?
+  atomic(nestedDeclModifiers atomic(ident " @ ")? ident,+) declSig (" := " term)?
 
 /--
 An tailored `structure` command for producing Lake configuration data types.
@@ -37,7 +38,7 @@ scoped syntax (name := configDecl)
 instance : Coe Ident (TSyntax ``Term.structInstLVal) where
   coe stx := Unhygienic.run `(Term.structInstLVal| $stx:ident)
 
-private structure FieldView where
+structure FieldView where
   ref : Syntax
   mods : TSyntax ``Command.declModifiers := Unhygienic.run `(declModifiers|)
   id : Ident
@@ -47,7 +48,7 @@ private structure FieldView where
   decl? : Option (TSyntax ``structSimpleBinder) := none
   parent  : Bool := false
 
-private structure FieldMetadata where
+structure FieldMetadata where
   cmds : Array Command := #[]
   fields : Term := Unhygienic.run `(Array.empty)
 
@@ -55,9 +56,9 @@ private structure FieldMetadata where
 -- quotations and are called only by `macro`s, so we disable the option for them manually.
 set_option internal.parseQuotWithCurrentStage false
 
-private meta def mkConfigAuxDecls
+meta def mkConfigAuxDecls
   (vis? : Option (TSyntax ``visibility))
-  (structId : Ident) (structTy : Term) (views : Array FieldView)
+  (structId : Ident) (structArity : Nat) (structTy : Term) (views : Array FieldView)
 : MacroM (Array Command) := do
   let data : FieldMetadata := {}
   -- `..` is used to avoid missing pattern error from an incomplete match.
@@ -104,26 +105,30 @@ private meta def mkConfigAuxDecls
           : ConfigFieldInfo
         })
         return {cmds, fields}
-      let data ← addName true data id
-      let data ← ids.foldlM (start := 1) (addName false) data
-      return data
+      if h : 0 < ids.size then
+        let data ← addName true data (ids[0]'h)
+        let data ← ids.foldlM (start := 1) (addName false) data
+        return data
+      else
+        return data
   let fieldsId := mkIdentFrom structId <| structId.getId.modifyBase (·.str "_fields")
   let fieldsDef ← `( $[$vis?:visibility]? def $fieldsId:ident := $(data.fields))
   let instId := mkIdentFrom structId <| structId.getId.modifyBase (·.str "instConfigFields")
   let fieldsInst ← `( $[$vis?:visibility]? instance $instId:ident : ConfigFields $structTy := ⟨$fieldsId⟩)
   let instId := mkIdentFrom structId <| structId.getId.modifyBase (·.str "instConfigInfo")
   let structNameLit : Term := ⟨mkNode ``Term.doubleQuotedName #[mkAtom "`", mkAtom "`", structId]⟩
-  let infoInst ← `( $[$vis?:visibility]? instance $instId:ident : ConfigInfo $structNameLit := {fields := $fieldsId})
+  let info ← `({fields := $fieldsId, arity := $(quote structArity)})
+  let infoInst ← `( $[$vis?:visibility]? instance $instId:ident : ConfigInfo $structNameLit := $info)
   let instId := mkIdentFrom structId <| structId.getId.modifyBase (·.str "instEmptyCollection")
   let emptyInst ← `( $[$vis?:visibility]? instance $instId:ident : EmptyCollection $structTy := ⟨{}⟩)
   return data.cmds.push fieldsDef |>.push fieldsInst |>.push infoInst |>.push emptyInst
 
-private meta def mkFieldView (stx : TSyntax ``configField) : MacroM FieldView := withRef stx do
-  let `(configField|$mods:declModifiers $ids,* $bs* : $rty $[:= $val?]?) := stx
+meta def mkFieldView (stx : TSyntax ``configField) : MacroM FieldView := withRef stx do
+  let `(configField|$mods:declModifiers $[$id? @]? $ids,* $bs* : $rty $[:= $val?]?) := stx
     | Macro.throwError "ill-formed configuration field declaration"
   let bvs ← expandBinders bs
   let type := mkDepArrow bvs rty
-  let some id := ids.getElems[0]?
+  let some id := id? <|> ids.getElems[0]?
     | Macro.throwError "expected a least one field name"
   withRef id.raw do
   let some val := val?
@@ -132,7 +137,7 @@ private meta def mkFieldView (stx : TSyntax ``configField) : MacroM FieldView :=
   let decl ← `(structSimpleBinder|$mods:declModifiers $id : $type := $defVal)
   return {ref := stx, mods, id, ids, type, defVal, decl? := decl}
 
-private meta def mkParentFieldView (stx : TSyntax ``structParent) : MacroM FieldView := withRef stx do
+meta def mkParentFieldView (stx : TSyntax ``structParent) : MacroM FieldView := withRef stx do
   let `(structParent|$[$id? :]? $type) := stx
     | Macro.throwError "ill-formed parent"
   let id ← do
@@ -166,6 +171,6 @@ public meta def expandConfigDecl : Macro := fun stx => do
     extends $ps,* $(xty?.join)? where $(ctor?.join)? $fields* $drv:optDeriving
   )
   let vis? := mods.raw[2].getOptional?.map (⟨·⟩)
-  let auxDecls ← mkConfigAuxDecls vis? structId structTy views
+  let auxDecls ← mkConfigAuxDecls vis? structId bs.size structTy views
   let cmds := #[struct] ++ auxDecls
   return mkNullNode cmds

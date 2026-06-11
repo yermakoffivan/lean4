@@ -19,6 +19,12 @@ allows the reference manual to document the DSL syntax.
 namespace Lake.DSL
 
 /--
+A macro that expands to the assigned name of package
+during the Lakefile's elaboration.
+-/
+scoped syntax (name := nameConst) "__name__" : term
+
+/--
 A macro that expands to the path of package's directory
 during the Lakefile's elaboration.
 -/
@@ -113,7 +119,7 @@ into the workspace's `packagesDir`.
 from <path>
 ```
 
-Lake loads the package located a fixed `path` relative to the
+Lake loads the package located at a fixed `path` relative to the
 requiring package's directory.
 
 **Git Dependencies**
@@ -158,7 +164,7 @@ public syntax depSpec :=
 Adds a new package dependency to the workspace. The general syntax is:
 
 ```
-require ["<scope>" /] <pkg-name> [@ <version>]
+require ["<scope>" /] <pkg-name> [@ [git]? <version>]
   [from <source>] [with <options>]
 ```
 
@@ -395,6 +401,11 @@ scoped syntax (name := scriptDecl)
 
 Defines the `v!"<ver>"` syntax for version literals.
 -/
+
+/-- Helper gadget for decoding versions from arbitrary terms. -/
+scoped syntax:lead (name := evalVer)
+  "eval_ver%" term
+: term
 
 /-- A Lake version literal. -/
 scoped syntax:max (name := verLit)

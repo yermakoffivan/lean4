@@ -42,11 +42,11 @@ private def warnUnused (stx : Syntax) (i : Nat) : CoreM Unit := do
 
 def unusedSimpArgs : Linter where
   run cmdStx := do
-    if !Tactic.linter.unusedSimpArgs.get (← getOptions) then return
+    if !getLinterValue Tactic.linter.unusedSimpArgs (← getLinterOptions) then return
     let some cmdStxRange := cmdStx.getRange?  | return
 
     let infoTrees := (← get).infoState.trees.toArray
-    let masksMap : IO.Ref (Std.HashMap String.Range (Syntax × Array Bool)) ← IO.mkRef {}
+    let masksMap : IO.Ref (Std.HashMap Lean.Syntax.Range (Syntax × Array Bool)) ← IO.mkRef {}
 
     for tree in infoTrees do
       tree.visitM' (postNode := fun ci info _ => do

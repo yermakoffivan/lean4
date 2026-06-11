@@ -6,9 +6,11 @@ Authors: Luisa Cicolini, Siddharth Bhat, Henrik Böving
 module
 
 prelude
-public import Std.Tactic.BVDecide.Bitblast.BVExpr.Circuit.Lemmas.Basic
 public import Std.Tactic.BVDecide.Bitblast.BVExpr.Circuit.Impl.Operations.Clz
 public import Std.Tactic.BVDecide.Bitblast.BVExpr.Circuit.Lemmas.Const
+import Init.Data.BitVec.Lemmas
+import Init.Data.Int.Pow
+import Init.Omega
 
 @[expose] public section
 
@@ -30,9 +32,6 @@ namespace BVExpr
 
 namespace bitblast
 namespace blastClz
-
-example (x : Nat) (hx : 0 < x) : ∃ y, x = y + 1 := by
-  exact Nat.exists_eq_add_one.mpr hx
 
 theorem go_denote_eq {w : Nat} (aig : AIG α)
     (acc : AIG.RefVec aig w) (xc : AIG.RefVec aig w) (x : BitVec w) (assign : α → Bool)
@@ -61,7 +60,7 @@ theorem go_denote_eq {w : Nat} (aig : AIG α)
         · simp [hx]
         · simp [Ref.hgate]
       · intro idx hidx
-        simp only [Nat.add_eq_zero, Nat.succ_ne_self, and_false, reduceIte,
+        simp only [Nat.add_eq_zero_iff, Nat.succ_ne_self, and_false, reduceIte,
           Nat.add_one_sub_one]
         rw [RefVec.denote_ite]
         split

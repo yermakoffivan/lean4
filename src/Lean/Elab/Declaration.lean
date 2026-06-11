@@ -6,14 +6,9 @@ Authors: Leonardo de Moura, Sebastian Ullrich
 module
 
 prelude
-public import Lean.Util.CollectLevelParams
-public import Lean.Elab.DeclUtil
-public import Lean.Elab.DefView
 public import Lean.Elab.MutualDef
 public import Lean.Elab.MutualInductive
-public import Lean.Elab.DeclarationRange
-public import Lean.Parser.Command
-import Lean.Parser.Command
+import Lean.Compiler.ExternAttr
 
 public section
 namespace Lean.Elab.Command
@@ -113,7 +108,7 @@ def elabAxiom (modifiers : Modifiers) (stx : Syntax) : CommandElabM Unit := do
     addDeclarationRangesForBuiltin declName modifiers.stx stx
     Term.withAutoBoundImplicit do
     Term.withAutoBoundImplicitForbiddenPred (fun n => shortName == n) do
-    Term.withDeclName declName <| Term.withLevelNames allUserLevelNames <| Term.elabBinders binders.getArgs fun xs => do
+    Term.withDeprecationContextFromAttrs modifiers.attrs <| Term.withDeclName declName <| Term.withLevelNames allUserLevelNames <| Term.elabBinders binders.getArgs fun xs => do
       Term.applyAttributesAt declName modifiers.attrs AttributeApplicationTime.beforeElaboration
       let type ← Term.elabType typeStx
       Term.synthesizeSyntheticMVarsNoPostponing
@@ -145,6 +140,7 @@ def elabAxiom (modifiers : Modifiers) (stx : Syntax) : CommandElabM Unit := do
         Term.applyAttributesAt declName modifiers.attrs AttributeApplicationTime.afterCompilation
         withSaveInfoContext do  -- save new env with docstring and decl
           Term.addTermInfo' declId (← mkConstWithLevelParams declName) (isBinder := true)
+        enableRealizationsForConst declName
 open Lean.Parser.Command.InternalSyntax in
 /--
 Macro that expands a declaration with a complex name into an explicit `namespace` block.
@@ -156,8 +152,9 @@ def expandNamespacedDeclaration : Macro := fun stx => do
   | some (ns, newStx) => do
     -- Limit ref variability for incrementality; see Note [Incremental Macros]
     let declTk := stx[1][0]
+    let depth := ns.getNumParts
     let ns := mkIdentFrom declTk ns
-    withRef declTk `(namespace $ns $endLocalScopeSyntax:command $(⟨newStx⟩) end $ns)
+    withRef declTk `(namespace $ns $(endLocalScopeSyntax depth):command $(⟨newStx⟩) end $ns)
   | none => Macro.throwUnsupported
 
 @[builtin_command_elab declaration, builtin_incremental]
@@ -173,11 +170,14 @@ def elabDeclaration : CommandElab := fun stx => do
     -- use hash of declaration name, if any, as stable quot context; `elabMutualDef` has its own
     -- handling
     withInitQuotContext (getDeclName? stx |>.map hash) do
-    let modifiers ← elabModifiers modifiers
+    let mut modifiers ← elabModifiers modifiers
+    if (← getScope).isMeta && modifiers.computeKind == .regular then
+      modifiers := { modifiers with computeKind := .meta }
     withExporting (isExporting := modifiers.isInferredPublic (← getEnv)) do
       if declKind == ``Lean.Parser.Command.«axiom» then
         elabAxiom modifiers decl
       else if declKind == ``Lean.Parser.Command.«inductive»
+          || declKind == ``Lean.Parser.Command.«coinductive»
           || declKind == ``Lean.Parser.Command.classInductive
           || declKind == ``Lean.Parser.Command.«structure» then
         elabInductive modifiers decl
@@ -261,16 +261,15 @@ def expandMutualElement : Macro := fun stx => do
   for elem in stx[1].getArgs do
     -- Don't trigger the `expandNamespacedDecl` macro, the namespace is handled by the mutual def
     -- elaborator directly instead
-    if elem.isOfKind ``Parser.Command.declaration then
-      continue
-    match (← expandMacro? elem) with
-    | some elemNew =>
-      if elemNew.isOfKind nullKind then
-        elemsNew := elemsNew ++ elemNew.getArgs
-      else
-        elemsNew := elemsNew.push elemNew
-      modified := true
-    | none         => elemsNew := elemsNew.push elem
+    if !elem.isOfKind ``Parser.Command.declaration then
+      if let some elemNew ← expandMacro? elem then
+        if elemNew.isOfKind nullKind then
+          elemsNew := elemsNew ++ elemNew.getArgs
+        else
+          elemsNew := elemsNew.push elemNew
+        modified := true
+        continue
+    elemsNew := elemsNew.push elem
   if modified then
     return stx.setArg 1 (mkNullNode elemsNew)
   else
@@ -329,37 +328,42 @@ def elabMutual : CommandElab := fun stx => do
         else
           throwUnknownConstantAt ident name
     let declName ← ensureNonAmbiguous ident declNames
+    withExporting (isExporting := !isPrivateName declName && attrs.any (·.kind != .local)) do
+      recordExtraModUseFromDecl (isMeta := false) declName
     Term.applyAttributes declName attrs
     for attrName in toErase do
       Attribute.erase declName attrName
+    if (← getEnv).isImportedConst declName then
+      if let some attr := attrs.find? (·.kind != .local) then
+        -- If an imported declaration is marked with a non-local attribute, Shake must be informed
+        -- about this indirect reference
+        recordIndirectModUse attr.name.toString declName
 
 @[builtin_command_elab Lean.Parser.Command.«initialize»] def elabInitialize : CommandElab
   | stx@`($declModifiers:declModifiers $kw:initializeKeyword $[$id? : $type? ←]? $doSeq) => do
+    withExporting (isExporting := (← getScope).isPublic) do
     let attrId := mkIdentFrom stx <| if kw.raw[0].isToken "initialize" then `init else `builtin_init
     if let (some id, some type) := (id?, type?) then
       let `(Parser.Command.declModifiersT| $[$doc?:docComment]? $[@[$attrs?,*]]? $(vis?)? $[meta%$meta?]? $[unsafe%$unsafe?]?) := stx[0]
         | throwErrorAt declModifiers "invalid initialization command, unexpected modifiers"
       let defStx ← `($[$doc?:docComment]? @[$attrId:ident initFn, $(attrs?.getD ∅),*] $(vis?)? $[meta%$meta?]? opaque $id : $type)
       let mut fullId := (← getCurrNamespace) ++ id.getId
-      if vis?.any (·.raw.isOfKind ``Parser.Command.private) then
+      let visibility ← elabVisibility vis?
+      if !visibility.isInferredPublic (← getEnv) then
         fullId := mkPrivateName (← getEnv) fullId
       -- We need to add `id`'s ranges *before* elaborating `initFn` (and then `id` itself) as
       -- otherwise the info context created by `with_decl_name` will be incomplete and break the
       -- call hierarchy
       addDeclarationRangesForBuiltin fullId ⟨defStx.raw[0]⟩ defStx.raw[1]
-      let vis := Parser.Command.visibility.ofBool (!isPrivateName fullId)
       elabCommand (← `(
-        $vis:visibility $[meta%$meta?]? $[unsafe%$unsafe?]? def initFn : IO $type := with_decl_name% $(mkIdent fullId) do $doSeq
+        @[no_expose] private $[meta%$meta?]? $[unsafe%$unsafe?]? def initFn : IO $type := with_decl_name% $(mkIdent fullId) do $doSeq
         $defStx:command))
     else
       let `(Parser.Command.declModifiersT| $[$doc?:docComment]? $[@[$attrs?,*]]? $(_)? $[meta%$meta?]? $[unsafe%$unsafe?]?) := declModifiers
         | throwErrorAt declModifiers "invalid initialization command, unexpected modifiers"
       let attrs := (attrs?.map (·.getElems)).getD #[]
       let attrs := attrs.push (← `(Lean.Parser.Term.attrInstance| $attrId:ident))
-      -- `[builtin_init]` can be private as it is used for local codegen only but `[init]` must be
-      -- available for the interpreter.
-      let vis := Parser.Command.visibility.ofBool (attrId.getId == `init)
-      elabCommand (← `($[$doc?:docComment]? @[$[$attrs],*] $vis:visibility $[meta%$meta?]? $[unsafe%$unsafe?]? def initFn : IO Unit := do $doSeq))
+      elabCommand (← `($[$doc?:docComment]? @[no_expose, $[$attrs],*] private $[meta%$meta?]? $[unsafe%$unsafe?]? def initFn : IO Unit := do $doSeq))
   | _ => throwUnsupportedSyntax
 
 builtin_initialize

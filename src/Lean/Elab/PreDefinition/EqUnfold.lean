@@ -7,11 +7,8 @@ module
 
 prelude
 public import Lean.Meta.Eqns
-public import Lean.Meta.Tactic.Util
 public import Lean.Meta.Tactic.Rfl
 public import Lean.Meta.Tactic.Intro
-public import Lean.Meta.Tactic.Apply
-public import Lean.DefEqAttrib
 
 public section
 
@@ -31,7 +28,7 @@ def getConstUnfoldEqnFor? (declName : Name) : MetaM (Option Name) := do
     trace[ReservedNameAction] "getConstUnfoldEqnFor? {declName} failed, no unfold theorem available"
     return none
   let name := mkEqLikeNameFor (← getEnv) declName eqUnfoldThmSuffix
-  realizeConst declName name do
+  realizeConst declName name <| withEqnOptions declName do
     -- we have to call `getUnfoldEqnFor?` again to make `unfoldEqnName` available in this context
     let some unfoldEqnName ← getUnfoldEqnFor? (nonRec := true) declName | unreachable!
     let info ← getConstInfo unfoldEqnName

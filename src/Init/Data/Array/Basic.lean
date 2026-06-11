@@ -6,15 +6,15 @@ Authors: Leonardo de Moura
 module
 
 prelude
-public import Init.WFTactics
-public import Init.Data.Nat.Basic
-public import Init.Data.Fin.Basic
-public import Init.Data.UInt.BasicAux
+public import Init.Control.Do
 public import Init.GetElem
 public import Init.Data.List.ToArrayImpl
 import all Init.Data.List.ToArrayImpl
 public import Init.Data.Array.Set
 import all Init.Data.Array.Set
+public import Init.WF
+meta import Init.MetaTypes
+import Init.WFTactics
 
 public section
 
@@ -148,6 +148,9 @@ end List
 
 namespace Array
 
+@[simp, grind =] theorem getElem!_toList [Inhabited α] {xs : Array α} {i : Nat} : xs.toList[i]! = xs[i]! := by
+  rw [List.getElem!_toArray]
+
 theorem size_eq_length_toList {xs : Array α} : xs.size = xs.toList.length := rfl
 
 /-! ### Externs -/
@@ -170,6 +173,15 @@ This avoids overhead due to unboxing a `Nat` used as an index.
 @[extern "lean_array_uget", simp, expose]
 def uget (xs : @& Array α) (i : USize) (h : i.toNat < xs.size) : α :=
   xs[i.toNat]
+
+/--
+Version of `Array.uget` that does not increment the reference count of its result.
+
+This is only intended for direct use by the compiler.
+-/
+@[extern "lean_array_uget_borrowed"]
+unsafe opaque ugetBorrowed (xs : @& Array α) (i : USize) (h : i.toNat < xs.size) : α :=
+  xs.uget i h
 
 /--
 Low-level modification operator which is as fast as a C array write. The modification is performed
@@ -214,20 +226,6 @@ def replicate {α : Type u} (n : Nat) (v : α) : Array α where
   toList := List.replicate n v
 
 /--
-Creates an array that contains `n` repetitions of `v`.
-
-The corresponding `List` function is `List.replicate`.
-
-Examples:
- * `Array.mkArray 2 true = #[true, true]`
- * `Array.mkArray 3 () = #[(), (), ()]`
- * `Array.mkArray 0 "anything" = #[]`
--/
-@[extern "lean_mk_array", deprecated replicate (since := "2025-03-18")]
-def mkArray {α : Type u} (n : Nat) (v : α) : Array α where
-  toList := List.replicate n v
-
-/--
 Swaps two elements of an array. The modification is performed in-place when the reference to the
 array is unique.
 
@@ -244,7 +242,7 @@ def swap (xs : Array α) (i j : @& Nat) (hi : i < xs.size := by get_elem_tactic)
   let xs'  := xs.set i v₂
   xs'.set j v₁ (Nat.lt_of_lt_of_eq hj (size_set _).symm)
 
-@[simp] theorem size_swap {xs : Array α} {i j : Nat} {hi hj} : (xs.swap i j hi hj).size = xs.size := by
+@[simp, grind =] theorem size_swap {xs : Array α} {i j : Nat} {hi hj} : (xs.swap i j hi hj).size = xs.size := by
   change ((xs.set i xs[j]).set j xs[i]
     (Nat.lt_of_lt_of_eq hj (size_set _).symm)).size = xs.size
   rw [size_set, size_set]
@@ -260,7 +258,7 @@ Examples:
 * `#["red", "green", "blue", "brown"].swapIfInBounds 0 4 = #["red", "green", "blue", "brown"]`
 * `#["red", "green", "blue", "brown"].swapIfInBounds 9 2 = #["red", "green", "blue", "brown"]`
 -/
-@[extern "lean_array_swap", grind]
+@[extern "lean_array_swap", expose]
 def swapIfInBounds (xs : Array α) (i j : @& Nat) : Array α :=
   if h₁ : i < xs.size then
   if h₂ : j < xs.size then swap xs i j
@@ -288,7 +286,7 @@ Examples:
  * `#[1, 2].isEmpty = false`
  * `#[()].isEmpty = false`
 -/
-@[expose]
+@[expose, inline]
 def isEmpty (xs : Array α) : Bool :=
   xs.size = 0
 
@@ -382,6 +380,7 @@ Returns the last element of an array, or panics if the array is empty.
 Safer alternatives include `Array.back`, which requires a proof the array is non-empty, and
 `Array.back?`, which returns an `Option`.
 -/
+@[inline]
 def back! [Inhabited α] (xs : Array α) : α :=
   xs[xs.size - 1]!
 
@@ -391,6 +390,7 @@ Returns the last element of an array, given a proof that the array is not empty.
 See `Array.back!` for the version that panics if the array is empty, or `Array.back?` for the
 version that returns an option.
 -/
+@[inline]
 def back (xs : Array α) (h : 0 < xs.size := by get_elem_tactic) : α :=
   xs[xs.size - 1]'(Nat.sub_one_lt_of_lt h)
 
@@ -400,6 +400,7 @@ Returns the last element of an array, or `none` if the array is empty.
 See `Array.back!` for the version that panics if the array is empty, or `Array.back` for the version
 that requires a proof the array is non-empty.
 -/
+@[inline]
 def back? (xs : Array α) : Option α :=
   xs[xs.size - 1]?
 
@@ -466,7 +467,7 @@ Examples:
 -/
 abbrev take (xs : Array α) (i : Nat) : Array α := extract xs 0 i
 
-@[simp] theorem take_eq_extract {xs : Array α} {i : Nat} : xs.take i = xs.extract 0 i := rfl
+@[simp, grind =] theorem take_eq_extract {xs : Array α} {i : Nat} : xs.take i = xs.extract 0 i := rfl
 
 /--
 Removes the first `i` elements of `xs`. If `xs` has fewer than `i` elements, the new array is empty.
@@ -480,7 +481,7 @@ Examples:
 -/
 abbrev drop (xs : Array α) (i : Nat) : Array α := extract xs i xs.size
 
-@[simp] theorem drop_eq_extract {xs : Array α} {i : Nat} : xs.drop i = xs.extract i xs.size := rfl
+@[simp, grind =] theorem drop_eq_extract {xs : Array α} {i : Nat} : xs.drop i = xs.extract i xs.size := rfl
 
 @[inline]
 unsafe def modifyMUnsafe [Monad m] (xs : Array α) (i : Nat) (f : α → m α) : m (Array α) := do
@@ -558,9 +559,9 @@ def modifyOp (xs : Array α) (idx : Nat) (f : α → α) : Array α :=
   xs.modify idx f
 
 /--
-  We claim this unsafe implementation is correct because an array cannot have more than `usizeSz` elements in our runtime.
+  We claim this unsafe implementation is correct because an array cannot have more than `USize.size` elements in our runtime.
 
-  This kind of low level trick can be removed with a little bit of compiler support. For example, if the compiler simplifies `as.size < usizeSz` to true. -/
+  This kind of low level trick can be removed with a little bit of compiler support. For example, if the compiler simplifies `as.size < USize.size` to true. -/
 @[inline] unsafe def forIn'Unsafe {α : Type u} {β : Type v} {m : Type v → Type w} [Monad m] (as : Array α) (b : β) (f : (a : α) → a ∈ as → β → m (ForInStep β)) : m β :=
   let sz := as.usize
   let rec @[specialize] loop (i : USize) (b : β) : m β := do
@@ -588,7 +589,7 @@ protected def forIn' {α : Type u} {β : Type v} {m : Type v → Type w} [Monad 
       | ForInStep.yield b => loop i (Nat.le_of_lt h') b
   loop as.size (Nat.le_refl _) b
 
-instance : ForIn' m (Array α) α inferInstance where
+instance [Monad m] : ForIn' m (Array α) α inferInstance where
   forIn' := Array.forIn'
 
 -- No separate `ForIn` instance is required because it can be derived from `ForIn'`.
@@ -607,6 +608,8 @@ unsafe def foldlMUnsafe {α : Type u} {β : Type v} {m : Type v → Type w} [Mon
   if start < stop then
     if stop ≤ as.size then
       fold (USize.ofNat start) (USize.ofNat stop) init
+    else if start < as.size then
+      fold (USize.ofNat start) (USize.ofNat as.size) init
     else
       pure init
   else
@@ -752,8 +755,7 @@ of results.
 def mapM {α : Type u} {β : Type v} {m : Type v → Type w} [Monad m] (f : α → m β) (as : Array α) : m (Array β) :=
   -- Note: we cannot use `foldlM` here for the reference implementation because this calls
   -- `bind` and `pure` too many times. (We are not assuming `m` is a `LawfulMonad`)
-  let rec @[semireducible] -- This is otherwise irreducible because it uses well-founded recursion.
-    map (i : Nat) (bs : Array β) : m (Array β) := do
+  let rec map (i : Nat) (bs : Array β) : m (Array β) := do
       if hlt : i < as.size then
         map (i+1) (bs.push (← f as[i]))
       else
@@ -800,6 +802,7 @@ Examples:
 def firstM {α : Type u} {m : Type v → Type w} [Alternative m] (f : α → m β) (as : Array α) : m β :=
   go 0
 where
+  @[specialize]
   go (i : Nat) : m β :=
     if hlt : i < as.size then
       f as[i] <|> go (i+1)
@@ -913,8 +916,7 @@ entire array is checked.
 @[implemented_by anyMUnsafe, expose]
 def anyM {α : Type u} {m : Type → Type w} [Monad m] (p : α → m Bool) (as : Array α) (start := 0) (stop := as.size) : m Bool :=
   let any (stop : Nat) (h : stop ≤ as.size) :=
-    let rec @[semireducible] -- This is otherwise irreducible because it uses well-founded recursion.
-    loop (j : Nat) : m Bool := do
+    let rec loop (j : Nat) : m Bool := do
       if hlt : j < stop then
         have : j < as.size := Nat.lt_of_lt_of_le hlt h
         if (← p as[j]) then
@@ -1021,7 +1023,7 @@ unless `start < stop`. By default, the entire array is used.
 protected def forM {α : Type u} {m : Type v → Type w} [Monad m] (f : α → m PUnit) (as : Array α) (start := 0) (stop := as.size) : m PUnit :=
   as.foldlM (fun _ => f) ⟨⟩ start stop
 
-instance : ForM m (Array α) α where
+instance [Monad m] : ForM m (Array α) α where
   forM xs f := Array.forM f xs
 
 -- We simplify `Array.forM` to `forM`.
@@ -1083,6 +1085,17 @@ Examples:
 @[inline, expose]
 def sum {α} [Add α] [Zero α] : Array α → α :=
   foldr (· + ·) 0
+
+/--
+Computes the product of the elements of an array.
+
+Examples:
+ * `#[a, b, c].prod = a * (b * (c * 1))`
+ * `#[1, 2, 5].prod = 10`
+-/
+@[inline, expose]
+def prod {α} [Mul α] [One α] : Array α → α :=
+  foldr (· * ·) 1
 
 /--
 Counts the number of elements in the array `as` that satisfy the Boolean predicate `p`.
@@ -1252,8 +1265,7 @@ Examples:
 -/
 @[inline, expose]
 def findIdx? {α : Type u} (p : α → Bool) (as : Array α) : Option Nat :=
-  let rec @[semireducible] -- This is otherwise irreducible because it uses well-founded recursion.
-  loop (j : Nat) :=
+  let rec @[specialize] loop (j : Nat) :=
     if h : j < as.size then
       if p as[j] then some j else loop (j + 1)
     else none
@@ -1270,8 +1282,7 @@ Examples:
 -/
 @[inline]
 def findFinIdx? {α : Type u} (p : α → Bool) (as : Array α) : Option (Fin as.size) :=
-  let rec @[semireducible] -- This is otherwise irreducible because it uses well-founded recursion.
-  loop (j : Nat) :=
+  let rec loop (j : Nat) :=
     if h : j < as.size then
       if p as[j] then some ⟨j, h⟩ else loop (j + 1)
     else none
@@ -1307,7 +1318,6 @@ Examples:
 @[inline, expose]
 def findIdx (p : α → Bool) (as : Array α) : Nat := (as.findIdx? p).getD as.size
 
-@[semireducible] -- This is otherwise irreducible because it uses well-founded recursion.
 def idxOfAux [BEq α] (xs : Array α) (v : α) (i : Nat) : Option (Fin xs.size) :=
   if h : i < xs.size then
     if xs[i] == v then some ⟨i, h⟩
@@ -1318,7 +1328,7 @@ decreasing_by simp_wf; decreasing_trivial_pre_omega
 
 
 /--
-Returns the index of the first element equal to `a`, or the size of the array if no element is equal
+Returns the index of the first element equal to `a`, or `none` if no element is equal
 to `a`. The index is returned as a `Fin`, which guarantees that it is in bounds.
 
 Examples:
@@ -1371,7 +1381,7 @@ Examples:
 * `#[2, 4, 5, 6].any (· % 2 = 0) = true`
 * `#[2, 4, 5, 6].any (· % 2 = 1) = true`
 -/
-@[inline, expose]
+@[inline, expose, suggest_for Array.some]
 def any (as : Array α) (p : α → Bool) (start := 0) (stop := as.size) : Bool :=
   Id.run <| as.anyM (pure <| p ·) start stop
 
@@ -1389,7 +1399,7 @@ Examples:
 * `#[2, 4, 6].all (· % 2 = 0) = true`
 * `#[2, 4, 5, 6].all (· % 2 = 0) = false`
 -/
-@[inline]
+@[inline, suggest_for Array.every]
 def all (as : Array α) (p : α → Bool) (start := 0) (stop := as.size) : Bool :=
   Id.run <| as.allM (pure <| p ·) start stop
 
@@ -1717,7 +1727,6 @@ Examples:
  * `#[3, 2, 3, 4].popWhile (· > 2) = #[3, 2]`
  * `(#[] : Array Nat).popWhile (· > 2) = #[]`
 -/
-@[semireducible] -- This is otherwise irreducible because it uses well-founded recursion.
 def popWhile (p : α → Bool) (as : Array α) : Array α :=
   if h : as.size > 0 then
     if p (as[as.size - 1]'(Nat.sub_lt h (by decide))) then
@@ -1728,7 +1737,7 @@ def popWhile (p : α → Bool) (as : Array α) : Array α :=
     as
 decreasing_by simp_wf; decreasing_trivial_pre_omega
 
-@[simp] theorem popWhile_empty {p : α → Bool} :
+@[simp, grind =] theorem popWhile_empty {p : α → Bool} :
     popWhile p #[] = #[] := by
   simp [popWhile]
 
@@ -1742,8 +1751,7 @@ Examples:
  * `#[0, 1, 2, 3, 2, 1].takeWhile (· < 0) = #[]`
 -/
 def takeWhile (p : α → Bool) (as : Array α) : Array α :=
-  let rec @[semireducible] -- This is otherwise irreducible because it uses well-founded recursion.
-  go (i : Nat) (acc : Array α) : Array α :=
+  let rec go (i : Nat) (acc : Array α) : Array α :=
     if h : i < as.size then
       let a := as[i]
       if p a then
@@ -1766,7 +1774,6 @@ Examples:
 * `#["apple", "pear", "orange"].eraseIdx 1 = #["apple", "orange"]`
 * `#["apple", "pear", "orange"].eraseIdx 2 = #["apple", "pear"]`
 -/
-@[semireducible] -- This is otherwise irreducible because it uses well-founded recursion.
 def eraseIdx (xs : Array α) (i : Nat) (h : i < xs.size := by get_elem_tactic) : Array α :=
   if h' : i + 1 < xs.size then
     let xs' := xs.swap (i + 1) i
@@ -1777,7 +1784,8 @@ termination_by xs.size - i
 decreasing_by simp_wf; exact Nat.sub_succ_lt_self _ _ h
 
 -- This is required in `Lean.Data.PersistentHashMap`.
-@[simp] theorem size_eraseIdx {xs : Array α} (i : Nat) (h) : (xs.eraseIdx i h).size = xs.size - 1 := by
+@[simp, grind =]
+theorem size_eraseIdx {xs : Array α} (i : Nat) (h) : (xs.eraseIdx i h).size = xs.size - 1 := by
   induction xs, i, h using Array.eraseIdx.induct with
   | @case1 xs i h h' xs' ih =>
     unfold eraseIdx
@@ -1861,8 +1869,7 @@ Examples:
  * `#["tues", "thur", "sat"].insertIdx 3 "wed" = #["tues", "thur", "sat", "wed"]`
 -/
 @[inline] def insertIdx (as : Array α) (i : Nat) (a : α) (_ : i ≤ as.size := by get_elem_tactic) : Array α :=
-  let rec @[semireducible] -- This is otherwise irreducible because it uses well-founded recursion.
-  loop (as : Array α) (j : Fin as.size) :=
+  let rec loop (as : Array α) (j : Fin as.size) :=
     if i < j then
       let j' : Fin as.size := ⟨j-1, Nat.lt_of_le_of_lt (Nat.pred_le _) j.2⟩
       let as := as.swap j' j
@@ -1916,7 +1923,6 @@ def insertIdxIfInBounds (as : Array α) (i : Nat) (a : α) : Array α :=
   else
     as
 
-@[semireducible] -- This is otherwise irreducible because it uses well-founded recursion.
 def isPrefixOfAux [BEq α] (as bs : Array α) (hle : as.size ≤ bs.size) (i : Nat) : Bool :=
   if h : i < as.size then
     let a := as[i]
@@ -1945,7 +1951,7 @@ def isPrefixOf [BEq α] (as bs : Array α) : Bool :=
   else
     false
 
-@[semireducible, specialize] -- This is otherwise irreducible because it uses well-founded recursion.
+@[specialize]
 def zipWithMAux {m : Type v → Type w} [Monad m] (as : Array α) (bs : Array β) (f : α → β → m γ) (i : Nat) (cs : Array γ) : m (Array γ) := do
   if h : i < as.size then
     let a := as[i]
@@ -2108,7 +2114,6 @@ private def allDiffAuxAux [BEq α] (as : Array α) (a : α) : forall (i : Nat), 
     have : i < as.size := Nat.lt_trans (Nat.lt_succ_self _) h;
     a != as[i] && allDiffAuxAux as a i this
 
-@[semireducible] -- This is otherwise irreducible because it uses well-founded recursion.
 private def allDiffAux [BEq α] (as : Array α) (i : Nat) : Bool :=
   if h : i < as.size then
     allDiffAuxAux as as[i] i h && allDiffAux as (i+1)
@@ -2148,7 +2153,7 @@ Examples:
 
 /-! ### Repr and ToString -/
 
-protected def Array.repr {α : Type u} [Repr α] (xs : Array α) : Std.Format :=
+protected def repr {α : Type u} [Repr α] (xs : Array α) : Std.Format :=
   let _ : Std.ToFormat α := ⟨repr⟩
   if xs.size == 0 then
     "#[]"
@@ -2158,9 +2163,4 @@ protected def Array.repr {α : Type u} [Repr α] (xs : Array α) : Std.Format :=
 instance {α : Type u} [Repr α] : Repr (Array α) where
   reprPrec xs _ := Array.repr xs
 
-instance [ToString α] : ToString (Array α) where
-  toString xs := String.Internal.append "#" (toString xs.toList)
-
 end Array
-
-export Array (mkArray)

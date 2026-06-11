@@ -6,8 +6,8 @@ Authors: Henrik Böving
 module
 
 prelude
-public import Std.Sat.AIG.RefVec
 public import Std.Sat.AIG.LawfulVecOperator
+import Init.Omega
 
 @[expose] public section
 
@@ -29,6 +29,7 @@ class LawfulMapOperator (α : Type) [Hashable α] [DecidableEq α]
 
 namespace LawfulMapOperator
 
+@[deprecated chainable (since := "2025-10-29")]
 theorem denote_prefix_cast_ref {aig : AIG α} {input1 input2 : Ref aig}
     {f : (aig : AIG α) → Ref aig → Entrypoint α} [LawfulOperator α Ref f] [LawfulMapOperator α f]
     {h} :

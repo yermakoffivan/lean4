@@ -2981,7 +2981,7 @@ theorem flattenList.go_eq {n : Nat} (acc : Nat) (xs : List (BitVec n)) :
   | nil => simp [BitVec.flattenList.go, BitVec.flattenList]
   | cons x xs ih =>
     rw [BitVec.flattenList.go, ih]
-    conv_rhs => rw [BitVec.flattenList, toNat_cast, toNat_append]
+    simp only [BitVec.flattenList, toNat_cast, toNat_append]
     rw [Nat.shiftLeft_or_distrib, Nat.or_assoc, List.length_cons, Nat.mul_add, Nat.mul_one,
       Nat.add_comm (n * xs.length) n, Nat.shiftLeft_add]
 

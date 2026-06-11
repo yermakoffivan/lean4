@@ -796,10 +796,26 @@ class task_manager {
             m_broker_cv.notify_one();
     }
 
-    // The broker is the only thread that ever touches the global semaphore: it
-    // adjusts `m_granted` to follow `token_demand()`, acquiring tokens
-    // non-blockingly (macOS lacks `sem_timedwait`) with a short condvar
-    // timeout between attempts. Workers themselves only ever block on
+    // Non-blockingly grab a token from the global pool, accounting it as
+    // granted. This is the fast path used at the points where a worker could
+    // start a task right away if granted another slot: going through the
+    // broker there would add a multi-wakeup round-trip of latency per task
+    // start (and per grant during a fresh process's ramp-up to its working
+    // width) even while the global pool has plenty of free tokens.
+    bool try_acquire_token() {
+        if (m_jobserver_sem && sem_trywait(m_jobserver_sem) == 0) {
+            m_granted++;
+            return true;
+        }
+        return false;
+    }
+
+    // The broker is the slow path of token handling, and the only thread that
+    // ever *holds onto* the global semaphore's wait state: it acquires tokens
+    // when demand goes unmet (non-blockingly, since macOS lacks
+    // `sem_timedwait`, with a short condvar timeout between attempts) and
+    // returns surplus tokens after a grace period. Workers acquire free
+    // tokens directly via `try_acquire_token` but only ever block on
     // `m_queue_cv`, so they keep observing shutdown and `wait_for`
     // notifications as usual and never pile up inside `sem_wait`. The process
     // always keeps one implicit slot (`m_granted >= 1`) that is not backed by
@@ -890,7 +906,7 @@ class task_manager {
 #if LEAN_JOBSERVER_POSIX
             // only spawn a worker that is allowed to run; otherwise the broker
             // spawns or wakes one when it acquires a token for this task
-            && jobserver_admits()
+            && (jobserver_admits() || try_acquire_token())
 #endif
             )
             spawn_worker();
@@ -941,21 +957,24 @@ class task_manager {
                 // There's work to be done.
                 // If we have reached the maximum number of standard workers (because the
                 // maximum was decreased by `task_get`), wait for someone else to become
-                // idle before picking up new work. Likewise if the cross-process
-                // jobserver has not granted us enough slots; the broker wakes us
-                // up when it acquires another token.
+                // idle before picking up new work.
                 // But during shutdown, we skip this throttling:
                 // because the finalizer might have called m_queue_cv.notify_all() for the last
                 // time, we don't want to get stuck behind the wait().
                 if (!m_shutting_down &&
-                    (m_std_workers.size() - m_idle_std_workers >= m_max_std_workers
-#if LEAN_JOBSERVER_POSIX
-                     || !jobserver_admits()
-#endif
-                     )) {
+                    m_std_workers.size() - m_idle_std_workers >= m_max_std_workers) {
                     m_queue_cv.wait(lock);
                     continue;
                 }
+#if LEAN_JOBSERVER_POSIX
+                // Likewise if the cross-process jobserver has not granted us
+                // enough slots and no free token can be grabbed directly; the
+                // broker wakes us up when it acquires one.
+                if (!m_shutting_down && !jobserver_admits() && !try_acquire_token()) {
+                    m_queue_cv.wait(lock);
+                    continue;
+                }
+#endif
 
                 lean_task_object * t = dequeue();
                 m_idle_std_workers--;
@@ -1188,7 +1207,7 @@ public:
 #endif
             if (m_idle_std_workers == 0
 #if LEAN_JOBSERVER_POSIX
-                && jobserver_admits()
+                && (jobserver_admits() || try_acquire_token())
 #endif
                 )
                 spawn_worker();

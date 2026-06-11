@@ -19,67 +19,82 @@ open Lean.Parser.Term
 open Lean.Meta
 
 @[builtin_macro Lean.Parser.Term.doFor] def expandDoFor : Macro := fun stx => do
-  match stx with
-  | `(doFor| for $[$_ : ]? $_:ident in $_ do $_) =>
+  -- "for " >> optConfig >> sepBy1 doForDecl ", " >> "do " >> doSeq
+  -- The node is accessed by index because old-shape syntax from quotations compiled against
+  -- stage0 lacks the `optConfig` child.
+  let tk := stx[0]
+  let (cfg?, shift) := getDoOptConfig stx 1
+  let decls : Array (TSyntax ``doForDecl) := stx[1 + shift].getSepArgs.map (⟨·⟩)
+  if decls.size == 1 && decls[0]!.raw[1].isIdent then
     -- This is the target form of the expander, handled by `elabDoFor` below.
     Macro.throwUnsupported
-  | `(doFor| for%$tk $decls:doForDecl,* do $body) =>
-    let decls := decls.getElems
-    let `(doForDecl| $[$h? : ]? $pattern in $xs) := decls[0]! | Macro.throwUnsupported
-    let mut doElems := #[]
-    let mut body := body
-    -- Expand `pattern` into an `Ident` `x`:
-    let x ←
-      if pattern.raw.isIdent then
-        pure ⟨pattern⟩
-      else if pattern.raw.isOfKind ``Lean.Parser.Term.hole then
-        Term.mkFreshIdent pattern
-      else
-        -- This case is a last resort, because it introduces a `match` and that will cause eager
-        -- defaulting. In practice this means that `mut` vars default to `Nat` too often.
-        -- Hence we try to only generate a `match` if we absolutely must.
-        let x ← Term.mkFreshIdent pattern
-        body ← `(doSeq| match $x:term with | $pattern => $body)
-        pure x
-    -- Expand the remaining `doForDecl`s:
-    for doForDecl in decls[1...*] do
-      /-
-        Expand
-        ```
-        for x in xs, y in ys do
+  let `(doForDecl| $[$h? : ]? $pattern in $xs) := decls[0]! | Macro.throwUnsupported
+  let mut doElems := #[]
+  let mut body : TSyntax ``doSeq := ⟨stx[3 + shift]⟩
+  -- Expand `pattern` into an `Ident` `x`:
+  let x ←
+    if pattern.raw.isIdent then
+      pure ⟨pattern⟩
+    else if pattern.raw.isOfKind ``Lean.Parser.Term.hole then
+      Term.mkFreshIdent pattern
+    else
+      -- This case is a last resort, because it introduces a `match` and that will cause eager
+      -- defaulting. In practice this means that `mut` vars default to `Nat` too often.
+      -- Hence we try to only generate a `match` if we absolutely must.
+      let x ← Term.mkFreshIdent pattern
+      body ← `(doSeq| match $x:term with | $pattern => $body)
+      pure x
+  -- Expand the remaining `doForDecl`s:
+  for doForDecl in decls[1...*] do
+    /-
+      Expand
+      ```
+      for x in xs, y in ys do
+        body
+      ```
+      into
+      ```
+      let mut s := Std.toStream ys
+      for x in xs do
+        match Std.Stream.next? s with
+        | none => break
+        | some (y, s') =>
+          s := s'
           body
-        ```
-        into
-        ```
-        let mut s := Std.toStream ys
-        for x in xs do
-          match Std.Stream.next? s with
-          | none => break
-          | some (y, s') =>
-            s := s'
-            body
-        ```
-      -/
-      let `(doForDecl| $[$h? : ]? $y in $ys) := doForDecl | Macro.throwUnsupported
-      if let some h := h? then
-        Macro.throwErrorAt h "The proof annotation here has not been implemented yet."
-      /- Recall that `@` (explicit) disables `coeAtOutParam`.
-         We used `@` at `Stream` functions to make sure `resultIsOutParamSupport` is not used. -/
-      let toStreamApp ← withRef ys `(@Std.toStream _ _ _ $ys)
-      let s := mkIdentFrom ys (← withFreshMacroScope <| MonadQuotation.addMacroScope `__s)
-      doElems := doElems.push (← `(doSeqItem| let mut $s := $toStreamApp:term))
-      body ← `(doSeq|
-        match @Std.Stream.next? _ _ _ $s with
-          | none => break
-          | some ($y, s') =>
-            $s:ident := s'
-            do $body)
-    doElems := doElems.push (← `(doSeqItem| for%$tk $[$h? : ]? $x:ident in $xs do $body))
-    `(doElem| do $doElems*)
-  | _ => Macro.throwUnsupported
+      ```
+    -/
+    let `(doForDecl| $[$h? : ]? $y in $ys) := doForDecl | Macro.throwUnsupported
+    if let some h := h? then
+      Macro.throwErrorAt h "The proof annotation here has not been implemented yet."
+    /- Recall that `@` (explicit) disables `coeAtOutParam`.
+       We used `@` at `Stream` functions to make sure `resultIsOutParamSupport` is not used. -/
+    let toStreamApp ← withRef ys `(@Std.toStream _ _ _ $ys)
+    let s := mkIdentFrom ys (← withFreshMacroScope <| MonadQuotation.addMacroScope `__s)
+    doElems := doElems.push (← `(doSeqItem| let mut $s := $toStreamApp:term))
+    body ← `(doSeq|
+      match @Std.Stream.next? _ _ _ $s with
+        | none => break
+        | some ($y, s') =>
+          $s:ident := s'
+          do $body)
+  let mut forItem ← `(doSeqItem| for%$tk $[$h? : ]? $x:ident in $xs do $body)
+  if let some cfg := cfg? then
+    -- Forward the configuration onto the generated `for` loop, which the quotation above
+    -- constructed without the `optConfig` child.
+    forItem := ⟨forItem.raw.setArg 0 (setDoOptConfig forItem.raw[0] 1 cfg)⟩
+  doElems := doElems.push forItem
+  `(doElem| do $doElems*)
 
 @[builtin_doElem_elab Lean.Parser.Term.doFor] def elabDoFor : DoElab := fun stx dec => do
-  let `(doFor| for%$tk $[$h? : ]? $x:ident in $xs do $body) := stx | throwUnsupportedSyntax
+  -- "for " >> optConfig >> sepBy1 doForDecl ", " >> "do " >> doSeq
+  -- The node is accessed by index because old-shape syntax from quotations compiled against
+  -- stage0 lacks the `optConfig` child.
+  let (cfg?, shift) := getDoOptConfig stx.raw 1
+  checkNoDoConfig cfg?
+  let tk := stx.raw[0]
+  let #[decl] := stx.raw[1 + shift].getSepArgs | throwUnsupportedSyntax
+  let `(doForDecl| $[$h? : ]? $x:ident in $xs) := (⟨decl⟩ : TSyntax ``doForDecl) | throwUnsupportedSyntax
+  let body : TSyntax ``doSeq := ⟨stx.raw[3 + shift]⟩
   let dec ← dec.ensureUnitAt tk
   checkMutVarsForShadowing #[x]
   let uα ← mkFreshLevelMVar

@@ -49,8 +49,13 @@ def elabPackageCommand : CommandElab := fun stx => do
 @[builtin_macro postUpdateDecl]
 def expandPostUpdateDecl : Macro := fun stx => do
   match stx with
-  | `($[$doc?]? $[$attrs?]? post_update%$kw $[$pkg?]? do $seq $[$wds?:whereDecls]?) =>
-    `($[$doc?]? $[$attrs?]? post_update%$kw $[$pkg?]? := do $seq $[$wds?:whereDecls]?)
+  | `($[$doc?]? $[$attrs?]? post_update%$kw $[$pkg?]? $dv:declValDo) =>
+    -- declValDo := ppSpace Term.do (Term.whereDecls)?
+    -- The `do` term is taken as a whole so that this arm does not depend on its child layout,
+    -- which differs between stage0 and the current parser.
+    let defn : Term := ⟨dv.raw[0]⟩
+    let wds? : Option (TSyntax ``Term.whereDecls) := dv.raw[1].getOptional?.map (⟨·⟩)
+    `($[$doc?]? $[$attrs?]? post_update%$kw $[$pkg?]? := $defn $[$wds?:whereDecls]?)
   | `($[$doc?]? $[$attrs?]? post_update%$kw $[$pkg?]? := $defn $[$wds?:whereDecls]?) => withRef kw do
     let pkg ← expandOptSimpleBinder pkg?
     let attr ← `(Term.attrInstance| «post_update»)

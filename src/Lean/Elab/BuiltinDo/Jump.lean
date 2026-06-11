@@ -17,7 +17,10 @@ open Lean.Parser.Term
 open Lean.Meta
 
 @[builtin_doElem_elab Lean.Parser.Term.doReturn] def elabDoReturn : DoElab := fun stx dec => do
-  let `(doReturn| return $[$e?]?) := stx | throwUnsupportedSyntax
+  -- "return" >> optConfig >> optional termParser
+  let (cfg?, shift) := getDoOptConfig stx.raw 1
+  checkNoDoConfig cfg?
+  let e? := stx.raw[1 + shift].getOptional?
   let returnCont ← getReturnCont
   -- When using the ControlLifter framework, `returnCont.resultType` can be different than the
   -- result type of the `do` block. That's why we track it separately.
@@ -28,13 +31,17 @@ open Lean.Meta
   dec.elabAsSyntacticallyDeadCode -- emit dead code warnings
   returnCont.k e
 
-@[builtin_doElem_elab Lean.Parser.Term.doBreak] def elabDoBreak : DoElab := fun _stx dec => do
+@[builtin_doElem_elab Lean.Parser.Term.doBreak] def elabDoBreak : DoElab := fun stx dec => do
+  -- "break" >> optConfig
+  checkNoDoConfig (getDoOptConfig stx.raw 1).1
   let some breakCont := (← getBreakCont)
     | throwError "`break` must be nested inside a loop"
   dec.elabAsSyntacticallyDeadCode -- emit dead code warnings
   breakCont
 
-@[builtin_doElem_elab Lean.Parser.Term.doContinue] def elabDoContinue : DoElab := fun _stx dec => do
+@[builtin_doElem_elab Lean.Parser.Term.doContinue] def elabDoContinue : DoElab := fun stx dec => do
+  -- "continue" >> optConfig
+  checkNoDoConfig (getDoOptConfig stx.raw 1).1
   let some continueCont := (← getContinueCont)
     | throwError "`continue` must be nested inside a loop"
   dec.elabAsSyntacticallyDeadCode -- emit dead code warnings

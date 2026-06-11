@@ -955,6 +955,12 @@ def elabNestedAction : Term.TermElab := fun stx _ty? => do
   let `(← $_rhs) := stx | throwUnsupportedSyntax
   throwErrorAt stx "Nested action `{stx}` must be nested inside a `do` expression."
 
+/-- Throws an error on `do` configuration items. -/
+def checkNoDoConfig (cfg? : Option Syntax) : TermElabM Unit := do
+  let some cfg := cfg? | return ()
+  unless cfg[0].getNumArgs == 0 do
+    throwErrorAt cfg "Configuration options in `do` notation are not yet supported."
+
 /-- Elaborate `doSeq` using `ops` for pure/bind construction. -/
 def elabDoWith (ops : DoOps) (doSeq : TSyntax ``doSeq)
     (expectedType? : Option Expr) : TermElabM Expr := do
@@ -975,5 +981,8 @@ def elabDoWith (ops : DoOps) (doSeq : TSyntax ``doSeq)
 
 -- @[builtin_term_elab «do»] -- once the legacy `do` elaborator has been phased out
 def elabDo : Term.TermElab := fun e expectedType? => do
-  let `(do $doSeq) := e | throwError "unexpected `do` block syntax{indentD e}"
-  elabDoWith .default doSeq expectedType?
+  -- "do " >> optConfig >> doSeq
+  unless e.isOfKind ``Parser.Term.do do throwError "unexpected `do` block syntax{indentD e}"
+  let (cfg?, shift) := getDoOptConfig e 1
+  checkNoDoConfig cfg?
+  elabDoWith .default ⟨e[1 + shift]⟩ expectedType?

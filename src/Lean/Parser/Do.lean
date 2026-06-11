@@ -7,6 +7,7 @@ module
 
 prelude
 public import Lean.Parser.Term
+import Init.Syntax
 
 public section
 
@@ -56,6 +57,41 @@ def getDoElems (doSeq : TSyntax ``doSeq) : Array (TSyntax `doElem) :=
     doSeq.raw[0].getArgs.map fun arg => ⟨arg[0]⟩
   else
     #[]
+
+/--
+Backward-compatible access to the `optConfig` child at index `i` of a `do`-related syntax node.
+Quotations compiled against stage0 produce nodes without this child; then the result is `(none, 0)`
+and subsequent children sit one index lower than in freshly parsed syntax.
+-/
+def getDoOptConfig (stx : Syntax) (i : Nat) : Option Syntax × Nat :=
+  if stx[i].isOfKind ``optConfig then (some stx[i], 1) else (none, 0)
+
+/-- Extracts the label identifier of the `(label := l)` item from an `optConfig` node. -/
+def getDoConfigLabel? (cfg : Syntax) : Option Ident :=
+  cfg[0].getArgs.findSome? fun item =>
+    -- configItem wraps valConfigItem := "(" >> ident >> " := " >> term >> ")"
+    let inner := item[0]
+    if inner.isOfKind ``valConfigItem && inner[1].getId.eraseMacroScopes == `label
+        && inner[3].isIdent then
+      some ⟨inner[3]⟩
+    else
+      none
+
+private def nodeNoAnonAntiquot (name : String) (kind : SyntaxNodeKind) (p : Parser) : Parser :=
+  withAntiquot (mkAntiquot name kind (anonymous := false)) <| node kind p
+
+/--
+`optConfig` for `do`-related syntax, e.g. `do (label := blk)`. It produces the same syntax tree as
+`optConfig` but accepts only `(opt := value)` items, since the `+opt`/`-opt` shorthands are
+indistinguishable from terms such as `return -x`. It also does not accept anonymous
+antiquotations, so that e.g. `$seq` in `` `(do $seq) `` parses as the `doSeq`; antiquotations with
+explicit kinds (e.g. `$cfg:optConfig`) are accepted.
+-/
+def doOptConfig : Parser :=
+  nodeNoAnonAntiquot "optConfig" ``optConfig <| many <| checkColGt >>
+    nodeNoAnonAntiquot "configItem" ``configItem (
+      nodeNoAnonAntiquot "valConfigItem" ``valConfigItem
+        (atomic (" (" >> ident >> " := ") >> withoutPosition termParser >> ")"))
 
 def notFollowedByRedefinedTermToken :=
   -- Remark: we don't currently support `open` and `set_option` in `do`-blocks,
@@ -183,8 +219,8 @@ def doForDecl := leading_parser
 until at least one of them is exhausted.
 The types of `e2` etc. must implement the `Std.ToStream` typeclass.
 -/
-@[builtin_doElem_parser] def doFor    := leading_parser
-  "for " >> sepBy1 doForDecl ", " >> "do " >> doSeq
+@[builtin_doElem_parser] def doFor    := leading_parser withPosition <|
+  "for " >> doOptConfig >> sepBy1 doForDecl ", " >> "do " >> doSeq
 
 def dependentParam := leading_parser
   atomic ("(" >> nonReservedSymbol "dependent") >> " := " >>
@@ -210,9 +246,11 @@ def doFinally    := leading_parser
   "try " >> doSeq >> many (doCatch <|> doCatchMatch) >> optional doFinally
 
 /-- `break` exits the surrounding `for` loop. -/
-@[builtin_doElem_parser] def doBreak     := leading_parser "break"
+@[builtin_doElem_parser] def doBreak     := leading_parser withPosition <|
+  "break" >> doOptConfig
 /-- `continue` skips to the next iteration of the surrounding `for` loop. -/
-@[builtin_doElem_parser] def doContinue  := leading_parser "continue"
+@[builtin_doElem_parser] def doContinue  := leading_parser withPosition <|
+  "continue" >> doOptConfig
 /--
 `return e` inside of a `do` block makes the surrounding block evaluate to `pure e`,
 skipping any further statements.
@@ -224,7 +262,7 @@ is highlighted when hovering over `return`.
 `return` not followed by a term starting on the same line is equivalent to `return ()`.
 -/
 @[builtin_doElem_parser] def doReturn    := leading_parser:leadPrec
-  withPosition ("return" >> optional (ppSpace >> checkLineEq >> termParser))
+  withPosition ("return" >> doOptConfig >> optional (ppSpace >> checkLineEq >> termParser))
 /--
 `dbg_trace e` prints `e` (which can be an interpolated string literal) to stderr.
 It should only be used for debugging.
@@ -273,12 +311,12 @@ with debug assertions enabled (see the `debugAssertions` option).
 @[builtin_doElem_parser] def doDebugAssert := leading_parser:leadPrec
   "debug_assert! " >> termParser
 
-@[builtin_doElem_parser] def doRepeat      := leading_parser
-  "repeat " >> doSeq
-@[builtin_doElem_parser] def doWhile       := leading_parser
-  "while " >> withForbidden "do" doIfCond >> " do " >> doSeq
-@[builtin_doElem_parser] def doRepeatUntil := leading_parser
-  "repeat " >> doSeq >> ppDedent ppLine >> "until " >> termParser
+@[builtin_doElem_parser] def doRepeat      := leading_parser withPosition <|
+  "repeat " >> doOptConfig >> doSeq
+@[builtin_doElem_parser] def doWhile       := leading_parser withPosition <|
+  "while " >> doOptConfig >> withForbidden "do" doIfCond >> " do " >> doSeq
+@[builtin_doElem_parser] def doRepeatUntil := leading_parser withPosition <|
+  "repeat " >> doOptConfig >> doSeq >> ppDedent ppLine >> "until " >> termParser
 
 /-
 We use `notFollowedBy` to avoid counterintuitive behavior.
@@ -300,11 +338,11 @@ The second `notFollowedBy` prevents this problem.
   notFollowedByRedefinedTermToken >> termParser >>
   notFollowedBy (symbol ":=" <|> leftArrow)
     "unexpected token after 'expr' in 'do' block"
-@[builtin_doElem_parser] def doNested := leading_parser
-  "do " >> doSeq
+@[builtin_doElem_parser] def doNested := leading_parser withPosition <|
+  "do " >> doOptConfig >> doSeq
 
 @[builtin_term_parser] def «do»  := leading_parser:argPrec
-  ppAllowUngrouped >> "do " >> doSeq
+  ppAllowUngrouped >> withPosition ("do " >> doOptConfig) >> doSeq
 
 /-
 macros for using `unless`, `for`, `try`, `return` as terms.
@@ -314,8 +352,8 @@ They expand into `do unless ...`, `do for ...`, `do try ...`, and `do return ...
 /-- `unless e do s` is a nicer way to write `if !e do s`. -/
 @[builtin_term_parser] def termUnless := leading_parser
   "unless " >> withForbidden "do" termParser >> " do " >> doSeq
-@[builtin_term_parser] def termFor := leading_parser
-  "for " >> sepBy1 doForDecl ", " >> " do " >> doSeq
+@[builtin_term_parser] def termFor := leading_parser withPosition <|
+  "for " >> doOptConfig >> sepBy1 doForDecl ", " >> " do " >> doSeq
 @[builtin_term_parser] def termTry    := leading_parser
   "try " >> doSeq >> many (doCatch <|> doCatchMatch) >> optional doFinally
 /--
@@ -323,7 +361,7 @@ They expand into `do unless ...`, `do for ...`, `do try ...`, and `do return ...
 and thus is equivalent to `pure e`, but helps with avoiding parentheses.
 -/
 @[builtin_term_parser] def termReturn := leading_parser:leadPrec
-  withPosition ("return" >> optional (ppSpace >> checkLineEq >> termParser))
+  withPosition ("return" >> doOptConfig >> optional (ppSpace >> checkLineEq >> termParser))
 
 end Term
 end Parser

@@ -31,7 +31,15 @@ private def getDoSeqElems (doSeq : Syntax) : List Syntax :=
     []
 
 private def getDoSeq (doStx : Syntax) : Syntax :=
-  doStx[1]
+  -- "do " >> optConfig >> doSeq; old-shape syntax from quotations compiled against stage0 lacks
+  -- the `optConfig` child.
+  doStx[1 + (getDoOptConfig doStx 1).2]
+
+/-- Throws an error on `do` configuration items, which the legacy `do` elaborator does not support. -/
+private def checkNoLegacyDoConfig (cfg? : Option Syntax) : TermElabM Unit := do
+  let some cfg := cfg? | return ()
+  unless cfg[0].getNumArgs == 0 do
+    throwErrorAt cfg "Configuration options in `do` notation are not supported by the legacy `do` elaborator."
 
 def elabNestedAction : TermElab := fun stx _ =>
   throwErrorAt stx "invalid use of `(<- ...)`, must be nested inside a 'do' expression"
@@ -1375,12 +1383,14 @@ def checkLetArrowRHS (doElem : Syntax) : M Unit := do
 
 /-- Generate `CodeBlock` for `doReturn` which is of the form
    ```
-   "return " >> optional termParser
+   "return" >> optConfig >> optional termParser
    ```
    `doElems` is only used for sanity checking. -/
 def doReturnToCode (doReturn : Syntax) (doElems: List Syntax) : M CodeBlock := withRef doReturn do
   ensureEOS doElems
-  let argOpt := doReturn[1]
+  let (cfg?, shift) := getDoOptConfig doReturn 1
+  checkNoLegacyDoConfig cfg?
+  let argOpt := doReturn[1 + shift]
   let arg ← if argOpt.isNone then liftMacroM mkUnit else pure argOpt[0]
   return mkReturn (← getRef) arg
 
@@ -1551,11 +1561,13 @@ mutual
      `doFor` is of the form
      ```
      def doForDecl := leading_parser termParser >> " in " >> withForbidden "do" termParser
-     def doFor := leading_parser "for " >> sepBy1 doForDecl ", " >> "do " >> doSeq
+     def doFor := leading_parser "for " >> optConfig >> sepBy1 doForDecl ", " >> "do " >> doSeq
      ```
   -/
   partial def doForToCode (doFor : Syntax) (doElems : List Syntax) : M CodeBlock := do
-    let doForDecls := doFor[1].getSepArgs
+    let (cfg?, cfgShift) := getDoOptConfig doFor 1
+    checkNoLegacyDoConfig cfg?
+    let doForDecls := doFor[1 + cfgShift].getSepArgs
     if h : doForDecls.size > 1 then
       /-
         Expand
@@ -1581,7 +1593,7 @@ mutual
       let y  := doForDecl[1]
       let ys := doForDecl[3]
       let doForDecls := doForDecls.eraseIdx 1
-      let body := doFor[3]
+      let body := doFor[3 + cfgShift]
       withFreshMacroScope do
         /- Recall that `@` (explicit) disables `coeAtOutParam`.
            We used `@` at `Stream` functions to make sure `resultIsOutParamSupport` is not used. -/
@@ -1600,7 +1612,7 @@ mutual
       let x         := doForDecls[0]![1]
       withRef x <| checkNotShadowingMutable (← getPatternVarsEx x)
       let xs        := doForDecls[0]![3]
-      let forElems  := getDoSeqElems doFor[3]
+      let forElems  := getDoSeqElems doFor[3 + cfgShift]
       let forInBodyCodeBlock ← withFor (doSeqToCode forElems)
       let ⟨uvars, forInBody⟩ ← mkForInBody x forInBodyCodeBlock
       let ctx ← read
@@ -1783,7 +1795,9 @@ mutual
           else if k == ``Parser.Term.doUnless then
             doUnlessToCode doElem doElems
           else if k == ``Parser.Term.doRepeat then
-            let seq := doElem[1]
+            let (cfg?, shift) := getDoOptConfig doElem 1
+            checkNoLegacyDoConfig cfg?
+            let seq := doElem[1 + shift]
             let expanded ← `(doElem| for _ in Loop.mk do $seq)
             doSeqToCode (expanded :: doElems)
           else if k == ``Parser.Term.doFor then withFreshMacroScope do
@@ -1795,10 +1809,12 @@ mutual
           else if k == ``Parser.Term.doTry then
             doTryToCode doElem doElems
           else if k == ``Parser.Term.doBreak then
+            checkNoLegacyDoConfig (getDoOptConfig doElem 1).1
             ensureInsideFor
             ensureEOS doElems
             return mkBreak ref
           else if k == ``Parser.Term.doContinue then
+            checkNoLegacyDoConfig (getDoOptConfig doElem 1).1
             ensureInsideFor
             ensureEOS doElems
             return mkContinue ref
@@ -1811,7 +1827,9 @@ mutual
           else if k == ``Parser.Term.doDebugAssert then
             return mkSeq doElem (← doSeqToCode doElems)
           else if k == ``Parser.Term.doNested then
-            let nestedDoSeq := doElem[1]
+            let (cfg?, shift) := getDoOptConfig doElem 1
+            checkNoLegacyDoConfig cfg?
+            let nestedDoSeq := doElem[1 + shift]
             doSeqToCode (getDoSeqElems nestedDoSeq ++ doElems)
           else if k == ``Parser.Term.doExpr then
             let term := doElem[0]
@@ -1836,6 +1854,7 @@ def run (doStx : Syntax) (m : Syntax) (returnType : Syntax) : TermElabM CodeBloc
 end ToCodeBlock
 
 def elabDo : TermElab := fun stx expectedType? => do
+  checkNoLegacyDoConfig (getDoOptConfig stx 1).1
   tryPostponeIfNoneOrMVar expectedType?
   let bindInfo ← extractBind expectedType?
   let m ← Term.exprToSyntax bindInfo.m

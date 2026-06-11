@@ -29,8 +29,10 @@ open InternalSyntax in
   dec.mkBindUnlessPure e
 
 @[builtin_doElem_elab Lean.Parser.Term.doNested] def elabDoNested : DoElab := fun stx dec => do
-  let `(doNested| do $doSeq) := stx | throwUnsupportedSyntax
-  elabDoSeq ⟨doSeq.raw⟩ dec
+  -- "do " >> optConfig >> doSeq
+  let (cfg?, shift) := getDoOptConfig stx.raw 1
+  checkNoDoConfig cfg?
+  elabDoSeq ⟨stx.raw[1 + shift]⟩ dec
 
 open InternalSyntax in
 @[builtin_doElem_elab Lean.Parser.Term.doUnless] def elabDoUnless : DoElab := fun stx dec => do

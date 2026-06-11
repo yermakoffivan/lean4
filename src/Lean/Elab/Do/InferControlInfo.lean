@@ -123,12 +123,43 @@ partial def ofElem (stx : TSyntax `doElem) : TermElabM ControlInfo := do
     let stxNew ← liftMacroM <| liftExcept stxNew?
     return ← ofElem ⟨stxNew⟩
 
+  -- The following kinds carry an `optConfig` child in freshly parsed syntax but not in syntax
+  -- constructed by quotations compiled against stage0, so they are matched by kind and index
+  -- rather than by quotation.
+  let k := stx.raw.getKind
+  if k == ``Parser.Term.doBreak then
+    return { breaks := true, numRegularExits := 0, noFallthrough := true }
+  if k == ``Parser.Term.doContinue then
+    return { continues := true, numRegularExits := 0, noFallthrough := true }
+  if k == ``Parser.Term.doReturn then
+    return { returnsEarly := true, numRegularExits := 0, noFallthrough := true }
+  if k == ``Parser.Term.doNested then
+    let (_, shift) := getDoOptConfig stx.raw 1
+    return ← ofSeq ⟨stx.raw[1 + shift]⟩
+  if k == ``Parser.Term.doFor then
+    let (_, shift) := getDoOptConfig stx.raw 1
+    let info ← ofSeq ⟨stx.raw[3 + shift]⟩
+    return { info with  -- keep only reassigns and earlyReturn
+      numRegularExits := 1,
+      continues := false,
+      breaks := false,
+      noFallthrough := false,
+    }
+  if k == ``Parser.Term.doRepeat then
+    -- A break-less `repeat` never falls through; the elaborator injects an `unreachable!` so the
+    -- surrounding continuation still has a polymorphic value to hand back, and any dead-code
+    -- warning on subsequent elements is actionable.
+    let (_, shift) := getDoOptConfig stx.raw 1
+    let info ← ofSeq ⟨stx.raw[1 + shift]⟩
+    return { info with  -- keep only reassigns and earlyReturn
+      numRegularExits := if info.breaks then 1 else 0,
+      continues := false,
+      breaks := false,
+      noFallthrough := !info.breaks,
+    }
+
   match stx with
-  | `(doElem| break) => return { breaks := true, numRegularExits := 0, noFallthrough := true }
-  | `(doElem| continue) => return { continues := true, numRegularExits := 0, noFallthrough := true }
-  | `(doElem| return $[$_]?) => return { returnsEarly := true, numRegularExits := 0, noFallthrough := true }
   | `(doExpr| $_:term) => return { numRegularExits := 1 }
-  | `(doElem| do $doSeq) => ofSeq doSeq
   -- Let
   | `(doElem| let $[mut]? $_:letConfig $_:letDecl) => return .pure
   | `(doElem| have $_:letConfig $_:letDecl) => return .pure
@@ -164,26 +195,6 @@ partial def ofElem (stx : TSyntax `doElem) : TermElabM ControlInfo := do
     return thenInfo.alternative info
   | `(doElem| unless $_ do $elseSeq) =>
     ControlInfo.alternative {} <$> ofSeq elseSeq
-  -- For/Repeat
-  | `(doElem| for $[$[$_ :]? $_ in $_],* do $bodySeq) =>
-    let info ← ofSeq bodySeq
-    return { info with  -- keep only reassigns and earlyReturn
-      numRegularExits := 1,
-      continues := false,
-      breaks := false,
-      noFallthrough := false,
-    }
-  | `(doRepeat| repeat $bodySeq) =>
-    -- A break-less `repeat` never falls through; the elaborator injects an `unreachable!` so the
-    -- surrounding continuation still has a polymorphic value to hand back, and any dead-code
-    -- warning on subsequent elements is actionable.
-    let info ← ofSeq bodySeq
-    return { info with  -- keep only reassigns and earlyReturn
-      numRegularExits := if info.breaks then 1 else 0,
-      continues := false,
-      breaks := false,
-      noFallthrough := !info.breaks,
-    }
   -- Try
   | `(doElem| try $trySeq:doSeq $[$catches]* $[finally $finSeq?]?) =>
     let mut info ← ofSeq trySeq

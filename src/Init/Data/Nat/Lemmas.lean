@@ -1763,18 +1763,6 @@ theorem mul_sub_mod {x n p : Nat} (h : x < n * p) : (n * p - (x + 1)) % n = n - 
   · rwa [Nat.mul_comm]
   · refine Nat.pos_of_mul_pos_right (by omega : 0 < n * p)
 
-@[simp] theorem sub_div_right : (x - y) / y = x / y - 1 := by
-  by_cases p : 0 < y
-  · by_cases h : y ≤ x
-    · obtain ⟨j, rfl⟩ := Nat.exists_eq_add_of_le h
-      simp [Nat.add_sub_cancel_left, Nat.add_div_left, p]
-    · rw [Nat.sub_eq_zero_of_le (by omega)]
-      simp at h
-      simp [Nat.div_eq_of_lt h]
-  · simp at p
-    subst p
-    simp
-
 /-! ### Decidability of predicates -/
 
 -- `noncomputable` so the non-tail-recursive code is never compiled; the tail-recursive

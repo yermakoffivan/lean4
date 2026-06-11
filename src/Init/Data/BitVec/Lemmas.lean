@@ -2947,9 +2947,10 @@ theorem setWidth_append {x : BitVec w} {y : BitVec v} :
       · obtain ⟨j, rfl⟩ := Nat.exists_eq_add_of_le h
         rw [getMsbD_flattenList]
         simp [p, Nat.add_div_left, Nat.add_sub_cancel_left]
-      · have : i / w = 0 := by simp_all [Nat.div_eq_of_lt]
-        have : i % w = i := by simp_all [Nat.mod_eq_sub_mul_div]
-        simp_all
+      · have hi0 : i / w = 0 := Nat.div_eq_of_lt (by omega)
+        have him : i % w = i := Nat.mod_eq_of_lt (by omega)
+        rw [hi0, him]
+        simp
   · simp at p
     subst p
     simp
@@ -2964,9 +2965,9 @@ theorem setWidth_append {x : BitVec w} {y : BitVec v} :
     by_cases h₂ : i < w * vs.length
     · simp only [h₂, decide_true, Bool.true_and]
       congr
-      · rw [Nat.sub_sub, Nat.add_comm, Nat.mul_sub_div h₂, Nat.sub_sub, Nat.add_comm]
+      · rw [Nat.sub_sub, Nat.add_comm, Nat.mul_sub_div _ _ _ h₂, Nat.sub_sub, Nat.add_comm]
       · rw [Nat.sub_sub, Nat.add_comm, Nat.mul_sub_mod h₂, Nat.sub_sub, Nat.add_comm]
-    · simp only [h₂, decide_false, Bool.false_and, Bool.false_eq]
+    · simp only [h₂, decide_false, Bool.false_and]
   · simp_all
 
 @[simp] theorem flattenList_zero_length (vs : List (BitVec 0)) : BitVec.flattenList vs = 0 := by
@@ -2995,13 +2996,13 @@ theorem extractLsb_flattenList (hi lo : Nat) {w  : Nat} (vs : List (BitVec w))
     have h₁ : (lo + i) / w = lo / w := by
       apply Nat.div_eq_of_lt_le <;> rw [Nat.mul_comm]
       · omega
-      · simp only [Nat.succ_eq_add_one, Nat.mul_add]; omega
+      · simp only [Nat.mul_add]; omega
     have h₂ : (lo + i) % w = lo % w + i := by simp [Nat.mod_eq_sub_mul_div, h₁]; omega
     simp only [getLsbD_extractLsb, getLsbD_flattenList, q, q', q'', h₁, h₂, h, getLsbD_cast,
       decide_true, Bool.true_and]
   · simp at p
     subst p
-    simp
+    omega
 
 /-! ### rev -/
 theorem shiftRight_add {w : Nat} (x : BitVec w) (n m : Nat) :

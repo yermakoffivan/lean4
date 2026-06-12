@@ -3183,14 +3183,14 @@ goto v___jp_1005_;
 v___jp_1041_:
 {
 lean_object* v_ref_1049_; lean_object* v___x_1050_; 
-v_ref_1049_ = l_Lean_replaceRef(v_ref_960_, v___y_1043_);
+v_ref_1049_ = l_Lean_replaceRef(v_ref_960_, v___y_1044_);
 v___x_1050_ = l_Lean_Syntax_getPos_x3f(v_ref_1049_, v___y_1046_);
 if (lean_obj_tag(v___x_1050_) == 0)
 {
 lean_object* v___x_1051_; 
 v___x_1051_ = lean_unsigned_to_nat(0u);
 v___y_1031_ = v___y_1042_;
-v___y_1032_ = v___y_1044_;
+v___y_1032_ = v___y_1043_;
 v___y_1033_ = v___y_1045_;
 v___y_1034_ = v___y_1048_;
 v___y_1035_ = v_ref_1049_;
@@ -3206,7 +3206,7 @@ v_val_1052_ = lean_ctor_get(v___x_1050_, 0);
 lean_inc(v_val_1052_);
 lean_dec_ref_known(v___x_1050_, 1);
 v___y_1031_ = v___y_1042_;
-v___y_1032_ = v___y_1044_;
+v___y_1032_ = v___y_1043_;
 v___y_1033_ = v___y_1045_;
 v___y_1034_ = v___y_1048_;
 v___y_1035_ = v_ref_1049_;
@@ -3260,8 +3260,8 @@ v___x_1072_ = 1;
 v___x_1073_ = l_Lean_instBEqMessageSeverity_beq(v_severity_962_, v___x_1072_);
 if (v___x_1073_ == 0)
 {
-v___y_1055_ = v_ref_1067_;
-v___y_1056_ = v_fileMap_1065_;
+v___y_1055_ = v_fileMap_1065_;
+v___y_1056_ = v_ref_1067_;
 v___y_1057_ = v_fileName_1064_;
 v___y_1058_ = v_suppressElabErrors_1068_;
 v___y_1059_ = v___f_1071_;
@@ -3274,8 +3274,8 @@ else
 lean_object* v___x_1074_; uint8_t v___x_1075_; 
 v___x_1074_ = l_Lean_warningAsError;
 v___x_1075_ = l_Lean_Option_get___at___00Lean_logAt___at___00Lean_log___at___00Lean_logError___at___00Lean_Elab_Tactic_renameInaccessibles_spec__4_spec__7_spec__12_spec__20(v_options_1066_, v___x_1074_);
-v___y_1055_ = v_ref_1067_;
-v___y_1056_ = v_fileMap_1065_;
+v___y_1055_ = v_fileMap_1065_;
+v___y_1056_ = v_ref_1067_;
 v___y_1057_ = v_fileName_1064_;
 v___y_1058_ = v_suppressElabErrors_1068_;
 v___y_1059_ = v___f_1071_;

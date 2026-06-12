@@ -910,18 +910,18 @@ v___jp_192_:
 if (v___y_195_ == 0)
 {
 lean_object* v___x_196_; lean_object* v___x_197_; lean_object* v___x_198_; 
-v___x_196_ = lean_string_append(v_b_189_, v___y_194_);
-lean_dec_ref(v___y_194_);
+v___x_196_ = lean_string_append(v_b_189_, v___y_193_);
+lean_dec_ref(v___y_193_);
 v___x_197_ = ((lean_object*)(l_WellFounded_opaqueFix_u2083___at___00Lake_compileLeanModule_spec__1___redArg___closed__0));
 v___x_198_ = lean_string_append(v___x_196_, v___x_197_);
-v_a_188_ = v___y_193_;
+v_a_188_ = v___y_194_;
 v_b_189_ = v___x_198_;
 goto _start;
 }
 else
 {
-lean_dec_ref(v___y_194_);
-v_a_188_ = v___y_193_;
+lean_dec_ref(v___y_193_);
+v_a_188_ = v___y_194_;
 goto _start;
 }
 }
@@ -941,7 +941,7 @@ goto v___jp_192_;
 else
 {
 lean_object* v___x_207_; uint8_t v___x_208_; 
-v___x_207_ = lean_string_utf8_byte_size(v___y_203_);
+v___x_207_ = lean_string_utf8_byte_size(v___y_202_);
 v___x_208_ = lean_nat_dec_eq(v___x_207_, v___x_205_);
 v___y_193_ = v___y_202_;
 v___y_194_ = v___y_203_;
@@ -983,8 +983,8 @@ v___x_220_ = l_Lean_Json_parse(v___x_219_);
 if (lean_obj_tag(v___x_220_) == 0)
 {
 lean_dec_ref_known(v___x_220_, 1);
-v___y_202_ = v_it_216_;
-v___y_203_ = v___x_219_;
+v___y_202_ = v___x_219_;
+v___y_203_ = v_it_216_;
 goto v___jp_201_;
 }
 else
@@ -1035,8 +1035,8 @@ goto v___jp_209_;
 else
 {
 lean_dec_ref(v___x_222_);
-v___y_202_ = v_it_216_;
-v___y_203_ = v___x_219_;
+v___y_202_ = v___x_219_;
+v___y_203_ = v_it_216_;
 goto v___jp_201_;
 }
 }

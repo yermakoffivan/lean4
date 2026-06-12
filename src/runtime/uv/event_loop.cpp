@@ -23,6 +23,9 @@ using namespace std;
 
 event_loop_t global_ev;
 
+// It's only accessed under lock.
+bool g_libuv_finalized = false;
+
 // Helpers
 
 void lean_promise_resolve_with_code(int status, obj_arg promise) {
@@ -54,6 +57,14 @@ void event_loop_interrupt(event_loop_t * event_loop) {
     lean_assert(result == 0);
 }
 
+// Requests that the thread running `event_loop_run_loop` exit. The `shutdown` flag is read at the
+// top of every loop iteration, and the async interrupt wakes the loop in case it is currently
+// blocked inside `uv_run`.
+void event_loop_request_stop(event_loop_t * event_loop) {
+    event_loop->shutdown = true;
+    event_loop_interrupt(event_loop);
+}
+
 // Initializes the event loop
 void event_loop_init(event_loop_t * event_loop) {
     event_loop->loop = uv_default_loop();
@@ -61,6 +72,7 @@ void event_loop_init(event_loop_t * event_loop) {
     check_uv(uv_cond_init(&event_loop->cond_var), "Failed to initialize condition variable");
     check_uv(uv_async_init(event_loop->loop, &event_loop->async, NULL), "Failed to initialize async");
     event_loop->n_waiters = 0;
+    event_loop->shutdown = false;
 }
 
 // Locks the event loop for the side of the requesters.
@@ -81,9 +93,34 @@ void event_loop_unlock(event_loop_t * event_loop) {
     uv_mutex_unlock(&event_loop->mutex);
 }
 
+lean_obj_res lean_uv_loop_finalized_error() {
+    return lean_io_result_mk_error(lean_decode_uv_error(UV_ECANCELED, nullptr));
+}
+
+// See event_loop.h.
+void lean_uv_close_and_free(uv_handle_t * handle, void * obj_mem) {
+    event_loop_lock(&global_ev);
+
+    bool finalized = g_libuv_finalized;
+
+    if (!finalized) {
+        uv_close(handle, [](uv_handle_t * h) {
+            free(h);
+        });
+    }
+
+    event_loop_unlock(&global_ev);
+
+    if (finalized) {
+        free(handle);
+    }
+
+    free(obj_mem);
+}
+
 // Runs the loop and stops when it needs to register new requests.
 void event_loop_run_loop(event_loop_t * event_loop) {
-    while (uv_loop_alive(event_loop->loop)) {
+    while (!event_loop->shutdown && uv_loop_alive(event_loop->loop)) {
         uv_mutex_lock(&event_loop->mutex);
 
         while (event_loop->n_waiters != 0) {
@@ -108,15 +145,28 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_event_loop_configure(b_obj_arg optio
 
     event_loop_lock(&global_ev);
 
-    if (accum) {
-        int result = uv_loop_configure(global_ev.loop, UV_METRICS_IDLE_TIME);
-        if (result != 0) return lean_io_result_mk_error(lean_decode_uv_error(result, NULL));
+    // Vacuous success: the function is `BaseIO Unit`, which cannot carry an error, and
+    // configuring a torn-down loop has no observable effect anyway.
+    if (g_libuv_finalized) {
+        event_loop_unlock(&global_ev);
+        return lean_box(0);
     }
 
-    #if!defined(WIN32) && !defined(_WIN32)
+    if (accum) {
+        int result = uv_loop_configure(global_ev.loop, UV_METRICS_IDLE_TIME);
+        if (result != 0) {
+            event_loop_unlock(&global_ev);
+            return lean_io_result_mk_error(lean_decode_uv_error(result, nullptr));
+        }
+    }
+
+    #if !defined(WIN32) && !defined(_WIN32)
     if (block) {
         int result = uv_loop_configure(global_ev.loop, UV_LOOP_BLOCK_SIGNAL, SIGPROF);
-        if (result != 0) return lean_io_result_mk_error(lean_decode_uv_error(result, NULL));
+        if (result != 0) {
+            event_loop_unlock(&global_ev);
+            return lean_io_result_mk_error(lean_decode_uv_error(result, nullptr));
+        }
     }
     #endif
 
@@ -128,10 +178,65 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_event_loop_configure(b_obj_arg optio
 /* Std.Internal.UV.Loop.alive : BaseIO Bool */
 extern "C" LEAN_EXPORT uint8_t lean_uv_event_loop_alive() {
     event_loop_lock(&global_ev);
-    int is_alive = uv_loop_alive(global_ev.loop);
+
+    if (g_libuv_finalized) {
+        event_loop_unlock(&global_ev);
+        return 0;
+    }
+
+    uint8_t is_alive = uv_loop_alive(global_ev.loop);
+
     event_loop_unlock(&global_ev);
 
     return is_alive;
+}
+
+// Tears down the event loop. Must only be called by `finalize_libuv`, after the thread running
+// `event_loop_run_loop` has been joined and while holding the requester lock, so the loop can be
+// driven from the calling thread without racing FFI calls from still-live task-manager workers.
+//
+// The loop, the async handle, and the mutex/condition-variable pair are intentionally *not*
+// destroyed: workers keep racing into `event_loop_lock` (and, when contended, into
+// `event_loop_interrupt`'s `uv_async_send`, which happens *before* the mutex is held and therefore
+// cannot be excluded by any locking) until `lean_finalize_task_manager` has joined them. Keeping
+// these primitives alive makes those late calls harmless: the mutex stays lockable, and a stray
+// `uv_async_send` just writes to an eventfd nobody reads anymore. All of them live in static
+// storage (`global_ev` and libuv's static default loop), so nothing is reported as leaked.
+void event_loop_cleanup(event_loop_t * event_loop) {
+    // Unreference the async handle (instead of closing it, see above) so the flush below can
+    // terminate: unreferenced handles do not keep `uv_run` alive.
+    uv_unref((uv_handle_t*)&event_loop->async);
+
+    // Close every remaining handle (timers/sockets/etc. whose backing references were already
+    // released) so that their close callbacks can free the handle memory — except the async
+    // handle, which must stay open for late `event_loop_interrupt` calls (see above).
+    uv_walk(event_loop->loop, [](uv_handle_t * handle, void * async) {
+        if (handle != static_cast<uv_handle_t *>(async) && !uv_is_closing(handle)) {
+            uv_close(handle, nullptr);
+        }
+    }, &event_loop->async);
+
+    // Drive the loop to completion: this runs all pending close callbacks, fires the
+    // `UV_ECANCELED` callbacks of in-flight stream requests, and waits for in-flight
+    // threadpool-backed requests (`uv_getaddrinfo`, `uv_random`, ...) to complete and deliver, so
+    // every promise the loop still owes is resolved before the task manager is drained.
+    uv_run(event_loop->loop, UV_RUN_DEFAULT);
+}
+
+// See event_loop.h. Everything `event_loop_cleanup` intentionally kept alive — the loop, the
+// async handle, and the mutex/condition-variable pair — is reused; restarting only needs to take
+// back a reference to the async handle (undoing the teardown's `uv_unref`, so the loop blocks in
+// `uv_run` again instead of exiting), clear the shutdown request, and lift `g_libuv_finalized` so
+// the FFI entry points stop failing. The lock pairs the flag write with its readers; no loop
+// thread exists at this point, so there is nothing else to synchronize with.
+void event_loop_restart(event_loop_t * event_loop) {
+    event_loop_lock(event_loop);
+
+    uv_ref((uv_handle_t *)&event_loop->async);
+    event_loop->shutdown = false;
+    g_libuv_finalized = false;
+
+    event_loop_unlock(event_loop);
 }
 
 void initialize_libuv_loop() {

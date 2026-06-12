@@ -15,20 +15,12 @@ using namespace std;
 void lean_uv_timer_finalizer(void* ptr) {
     lean_uv_timer_object * timer = (lean_uv_timer_object*) ptr;
 
-    /// The timer can be null in two states, it has not started and it got cancelled.
+    // The promise can be null in two states: the timer has not started, or it got cancelled.
     if (timer->m_promise != NULL) {
         lean_dec(timer->m_promise);
     }
 
-    event_loop_lock(&global_ev);
-
-    uv_close((uv_handle_t*)timer->m_uv_timer, [](uv_handle_t* handle) {
-        free(handle);
-    });
-
-    event_loop_unlock(&global_ev);
-
-    free(timer);
+    lean_uv_close_and_free((uv_handle_t*)timer->m_uv_timer, timer);
 }
 
 void initialize_libuv_timer() {
@@ -74,6 +66,22 @@ void handle_timer_event(uv_timer_t* handle) {
     }
 }
 
+void lean_uv_timer_shutdown(lean_object * obj) {
+    lean_uv_timer_object * timer = lean_to_uv_timer(obj);
+
+    if (timer->m_promise != NULL) {
+        lean_dec(timer->m_promise);
+        timer->m_promise = NULL;
+    }
+
+    // While running, the loop keeps the timer alive with an extra reference (see `setup_timer`);
+    // drop it last, as it may run the timer's finalizer.
+    if (timer->m_state == TIMER_STATE_RUNNING) {
+        timer->m_state = TIMER_STATE_FINISHED;
+        lean_dec(obj);
+    }
+}
+
 /* Std.Internal.UV.Timer.mk (timeout : UInt64) (repeating : Bool) : IO Timer */
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_timer_mk(uint64_t timeout, uint8_t repeating) {
     lean_uv_timer_object * timer = (lean_uv_timer_object*)malloc(sizeof(lean_uv_timer_object));
@@ -92,10 +100,18 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_timer_mk(uint64_t timeout, uint8_t r
     }
 
     event_loop_lock(&global_ev);
+
+    if (g_libuv_finalized) {
+        event_loop_unlock(&global_ev);
+        free(uv_timer);
+        free(timer);
+        return lean_uv_loop_finalized_error();
+    }
+
     int result = uv_timer_init(global_ev.loop, uv_timer);
-    event_loop_unlock(&global_ev);
 
     if (result != 0) {
+        event_loop_unlock(&global_ev);
         free(uv_timer);
         free(timer);
         return lean_io_result_mk_error(lean_decode_uv_error(result, NULL));
@@ -103,9 +119,13 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_timer_mk(uint64_t timeout, uint8_t r
 
     timer->m_uv_timer = uv_timer;
 
+    // The handle is visible to the walk in `finalize_libuv` as soon as `uv_timer_init` inserts it
+    // into the loop, so `data` must point to the (mt-marked) object before the lock is released.
     lean_object * obj = lean_uv_timer_new(timer);
     lean_mark_mt(obj);
-    timer->m_uv_timer->data = obj;
+    uv_timer->data = obj;
+
+    event_loop_unlock(&global_ev);
 
     return lean_io_result_mk_ok(obj);
 }
@@ -114,14 +134,17 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_timer_mk(uint64_t timeout, uint8_t r
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_timer_next(b_obj_arg obj) {
     lean_uv_timer_object * timer = lean_to_uv_timer(obj);
 
-    auto create_promise = []() {
-        return lean_io_promise_new();
-    };
+    event_loop_lock(&global_ev);
 
-    auto setup_timer = [create_promise, obj, timer]() {
+    if (g_libuv_finalized) {
+        event_loop_unlock(&global_ev);
+        return lean_uv_loop_finalized_error();
+    }
+
+    auto setup_timer = [obj, timer]() {
         lean_assert(timer->m_promise == NULL);
 
-        lean_object* promise = create_promise();
+        lean_object* promise = lean_io_promise_new();
         timer->m_promise = promise;
         timer->m_state = TIMER_STATE_RUNNING;
 
@@ -147,8 +170,6 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_timer_next(b_obj_arg obj) {
         return lean_io_result_mk_ok(promise);
     };
 
-    event_loop_lock(&global_ev);
-
     if (timer->m_repeating) {
         switch (timer->m_state) {
             case TIMER_STATE_INITIAL:
@@ -162,7 +183,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_timer_next(b_obj_arg obj) {
                             lean_dec(timer->m_promise);
                         }
 
-                        timer->m_promise = create_promise();
+                        timer->m_promise = lean_io_promise_new();
                     }
 
                     lean_inc(timer->m_promise);
@@ -179,7 +200,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_timer_next(b_obj_arg obj) {
                         return lean_io_result_mk_ok(timer->m_promise);
                     } else {
                         // Creates a resolved promise
-                        lean_object* finished_promise = create_promise();
+                        lean_object* finished_promise = lean_io_promise_new();
                         event_loop_unlock(&global_ev);
                         return lean_io_result_mk_ok(finished_promise);
                     }
@@ -196,7 +217,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_timer_next(b_obj_arg obj) {
         } else {
             event_loop_unlock(&global_ev);
             // Creates a resolved promise
-            lean_object* finished_promise = create_promise();
+            lean_object* finished_promise = lean_io_promise_new();
             return lean_io_result_mk_ok(finished_promise);
         }
     }
@@ -209,36 +230,48 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_timer_reset(b_obj_arg obj) {
     // Locking to access the state in order to avoid data-race
     event_loop_lock(&global_ev);
 
-    if (timer->m_state == TIMER_STATE_RUNNING) {
-
-        uv_timer_stop(timer->m_uv_timer);
-
-        int result = uv_timer_start(
-            timer->m_uv_timer,
-            handle_timer_event,
-            timer->m_timeout,
-            timer->m_repeating ? timer->m_timeout : 0
-        );
-
+    if (g_libuv_finalized) {
         event_loop_unlock(&global_ev);
+        return lean_uv_loop_finalized_error();
+    }
 
-        if (result != 0) {
-            return lean_io_result_mk_error(lean_decode_uv_error(result, NULL));
-        } else {
-            return lean_io_result_mk_ok(lean_box(0));
-        }
-    } else {
+    if (timer->m_state != TIMER_STATE_RUNNING) {
         event_loop_unlock(&global_ev);
         return lean_io_result_mk_ok(lean_box(0));
     }
+
+    uv_timer_stop(timer->m_uv_timer);
+
+    int result = uv_timer_start(
+        timer->m_uv_timer,
+        handle_timer_event,
+        timer->m_timeout,
+        timer->m_repeating ? timer->m_timeout : 0
+    );
+
+    event_loop_unlock(&global_ev);
+
+    if (result != 0) {
+        return lean_io_result_mk_error(lean_decode_uv_error(result, NULL));
+    }
+
+    return lean_io_result_mk_ok(lean_box(0));
 }
 
 /* Std.Internal.UV.Timer.stop (timer : @& Timer) : IO Unit */
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_timer_stop(b_obj_arg obj) {
     lean_uv_timer_object * timer = lean_to_uv_timer(obj);
 
-    // Locking to access the state in order to avoid data-race
+    bool was_running = false;
+
+    // Locking to access the state in order to avoid data-race. After finalization this is a
+    // vacuous success: the teardown walk already stopped the timer and dropped its promise.
     event_loop_lock(&global_ev);
+
+    if (g_libuv_finalized) {
+        event_loop_unlock(&global_ev);
+        return lean_io_result_mk_ok(lean_box(0));
+    }
 
     if (timer->m_promise != NULL) {
         lean_dec(timer->m_promise);
@@ -247,17 +280,18 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_timer_stop(b_obj_arg obj) {
 
     if (timer->m_state == TIMER_STATE_RUNNING) {
         uv_timer_stop(timer->m_uv_timer);
-        event_loop_unlock(&global_ev);
-
         timer->m_state = TIMER_STATE_FINISHED;
-
-        // The loop does not need to keep the timer alive anymore.
-        lean_dec(obj);
-
-        return lean_io_result_mk_ok(lean_box(0));
+        was_running = true;
     }
 
     event_loop_unlock(&global_ev);
+
+    if (was_running) {
+        // The loop does not need to keep the timer alive anymore. Dropped after releasing the
+        // lock, as it may run the timer's finalizer, which re-acquires it.
+        lean_dec(obj);
+    }
+
     return lean_io_result_mk_ok(lean_box(0));
 }
 
@@ -265,8 +299,15 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_timer_stop(b_obj_arg obj) {
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_timer_cancel(b_obj_arg obj) {
     lean_uv_timer_object * timer = lean_to_uv_timer(obj);
 
-    // It's locking here to avoid changing the state during other operations.
+    // It's locking here to avoid changing the state during other operations. After finalization
+    // this is a vacuous success: the teardown walk already stopped the timer and dropped its
+    // promise.
     event_loop_lock(&global_ev);
+
+    if (g_libuv_finalized) {
+        event_loop_unlock(&global_ev);
+        return lean_io_result_mk_ok(lean_box(0));
+    }
 
     if (timer->m_state == TIMER_STATE_RUNNING && timer->m_promise != NULL) {
         if (timer->m_repeating) {
@@ -290,8 +331,6 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_timer_cancel(b_obj_arg obj) {
 }
 
 #else
-
-void lean_uv_timer_finalizer(void* ptr);
 
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_timer_mk(uint64_t timeout, uint8_t repeating) {
     lean_always_assert(

@@ -44,6 +44,9 @@ typedef struct {
 static inline lean_object* lean_uv_signal_new(lean_uv_signal_object * s) { return lean_alloc_external(g_uv_signal_external_class, s); }
 static inline lean_uv_signal_object* lean_to_uv_signal(lean_object * o) { return (lean_uv_signal_object*)(lean_get_external_data(o)); }
 
+// Releases the event-loop-held references of a signal handle during libuv finalization.
+void lean_uv_signal_shutdown(lean_object * obj);
+
 #endif
 
 // =======================================

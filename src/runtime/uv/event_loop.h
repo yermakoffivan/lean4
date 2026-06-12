@@ -22,15 +22,20 @@ using namespace std;
 
 // Event loop structure for managing asynchronous events and synchronization across multiple threads.
 typedef struct {
-    uv_loop_t  * loop;      // The libuv event loop.
-    uv_mutex_t   mutex;     // Mutex for protecting `loop`.
-    uv_cond_t    cond_var;  // Condition variable for signaling that `loop` is free.
-    uv_async_t   async;     // Async handle to interrupt `loop`.
-    _Atomic(int) n_waiters; // Atomic counter for managing waiters for `loop`.
+    uv_loop_t  *  loop;      // The libuv event loop.
+    uv_mutex_t    mutex;     // Mutex for protecting `loop`.
+    uv_cond_t     cond_var;  // Condition variable for signaling that `loop` is free.
+    uv_async_t    async;     // Async handle to interrupt `loop`.
+    _Atomic(int)  n_waiters; // Atomic counter for managing waiters for `loop`.
+    _Atomic(bool) shutdown;  // Set to request the loop thread to exit `event_loop_run_loop`.
 } event_loop_t;
 
 // The multithreaded event loop object for all tasks in the task manager.
 extern event_loop_t global_ev;
+
+// Set once `finalize_libuv` has torn down the event loop, and cleared again only if a later
+// `initialize_libuv` restarts it (see `event_loop_restart`). Guarded by `global_ev.mutex`.
+extern bool g_libuv_finalized;
 
 // =======================================
 // Event loop manipulation functions.
@@ -39,6 +44,10 @@ void event_loop_cleanup(event_loop_t *event_loop);
 void event_loop_lock(event_loop_t *event_loop);
 void event_loop_unlock(event_loop_t *event_loop);
 void event_loop_run_loop(event_loop_t *event_loop);
+void event_loop_request_stop(event_loop_t *event_loop);
+void event_loop_restart(event_loop_t *event_loop);
+lean_obj_res lean_uv_loop_finalized_error();
+void lean_uv_close_and_free(uv_handle_t * handle, void * obj_mem);
 
 #endif
 

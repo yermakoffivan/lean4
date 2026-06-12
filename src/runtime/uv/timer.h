@@ -43,6 +43,9 @@ typedef struct {
 static inline lean_object* lean_uv_timer_new(lean_uv_timer_object * s) { return lean_alloc_external(g_uv_timer_external_class, s); }
 static inline lean_uv_timer_object* lean_to_uv_timer(lean_object * o) { return (lean_uv_timer_object*)(lean_get_external_data(o)); }
 
+// Releases the event-loop-held references of a timer handle during libuv finalization.
+void lean_uv_timer_shutdown(lean_object * obj);
+
 #else
 
 // =======================================

@@ -67,8 +67,19 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_dns_get_info(b_obj_arg name, b_obj_a
         default: hints.ai_family = PF_UNSPEC; break;
     }
 
-    event_loop_lock(&global_ev);
     lean_inc(promise);
+
+    event_loop_lock(&global_ev);
+
+    if (g_libuv_finalized) {
+        event_loop_unlock(&global_ev);
+
+        lean_dec(promise);
+        lean_dec(promise);
+        free(resolver);
+
+        return lean_uv_loop_finalized_error();
+    }
 
     int result = uv_getaddrinfo(global_ev.loop, resolver, [](uv_getaddrinfo_t* req, int status, struct addrinfo* res) {
         lean_object* promise = (lean_object*) req->data;
@@ -109,18 +120,16 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_dns_get_info(b_obj_arg name, b_obj_a
         free(req);
     }, name_cstr, service_cstr, &hints);
 
+    event_loop_unlock(&global_ev);
+
     if (result != 0) {
-        lean_dec(promise); // The structure does not own it.
-        lean_dec(promise); // We are not going to return it.
-
+        lean_dec(promise);
+        lean_dec(promise);
         free(resolver);
-
-        event_loop_unlock(&global_ev);
 
         return lean_io_result_mk_error(lean_decode_uv_error(result, nullptr));
     }
 
-    event_loop_unlock(&global_ev);
     return lean_io_result_mk_ok(promise);
 }
 
@@ -138,8 +147,21 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_dns_get_name(b_obj_arg addr) {
     sockaddr_storage addr_ptr;
     lean_socket_address_to_sockaddr_storage(addr, &addr_ptr);
 
-    event_loop_lock(&global_ev);
+    // While the request is in flight the loop owns one promise reference (released by the
+    // callback); the other one is the caller's return value.
     lean_inc(promise);
+
+    event_loop_lock(&global_ev);
+
+    if (g_libuv_finalized) {
+        event_loop_unlock(&global_ev);
+
+        lean_dec(promise);
+        lean_dec(promise);
+        free(req);
+
+        return lean_uv_loop_finalized_error();
+    }
 
     int result = uv_getnameinfo(global_ev.loop, req, [](uv_getnameinfo_t* req, int status, const char* hostname, const char* service) {
         lean_object* promise = (lean_object*) req->data;
@@ -161,18 +183,16 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_dns_get_name(b_obj_arg addr) {
         free(req);
     }, (const struct sockaddr*)&addr_ptr, 0);
 
+    event_loop_unlock(&global_ev);
+
     if (result != 0) {
-        lean_dec(promise); // The structure does not own it.
-        lean_dec(promise); // We are not going to return it.
-
+        lean_dec(promise);
+        lean_dec(promise);
         free(req);
-
-        event_loop_unlock(&global_ev);
 
         return lean_io_result_mk_error(lean_decode_uv_error(result, nullptr));
     }
 
-    event_loop_unlock(&global_ev);
     return lean_io_result_mk_ok(promise);
 }
 

@@ -437,9 +437,22 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_random(uint64_t size) {
 
     req->req.data = req;
 
+    // While the request is in flight the loop owns one promise reference and the byte array
+    // (released by the callback); the other promise reference is the caller's return value.
     lean_inc(promise);
 
     event_loop_lock(&global_ev);
+
+    if (g_libuv_finalized) {
+        event_loop_unlock(&global_ev);
+
+        lean_dec(byte_array);
+        lean_dec(promise);
+        lean_dec(promise);
+        free(req);
+
+        return lean_uv_loop_finalized_error();
+    }
 
     int result = uv_random(
         global_ev.loop,
@@ -634,7 +647,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_os_get_passwd() {
 }
 
 // Std.Internal.UV.System.osGetGroup : IO (Option GroupInfo)
-extern "C" LEAN_EXPORT lean_obj_res lean_uv_os_get_group() {
+extern "C" LEAN_EXPORT lean_obj_res lean_uv_os_get_group(uint64_t gid) {
     lean_always_assert(
         false && ("Please build a version of Lean4 with libuv to invoke this.")
     );

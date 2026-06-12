@@ -35,6 +35,9 @@ typedef struct {
 // Tcp socket object manipulation functions.
 static inline lean_object* lean_uv_tcp_socket_new(lean_uv_tcp_socket_object* s) { return lean_alloc_external(g_uv_tcp_socket_external_class, s); }
 static inline lean_uv_tcp_socket_object* lean_to_uv_tcp_socket(lean_object* o) { return (lean_uv_tcp_socket_object*)(lean_get_external_data(o)); }
+
+// Releases the event-loop-held references of a TCP socket handle during libuv finalization.
+void lean_uv_tcp_socket_shutdown(lean_object * obj);
 #endif
 
 // =======================================

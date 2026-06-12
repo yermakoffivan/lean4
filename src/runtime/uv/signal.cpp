@@ -18,15 +18,7 @@ void lean_uv_signal_finalizer(void* ptr) {
         lean_dec(signal->m_promise);
     }
 
-    event_loop_lock(&global_ev);
-
-    uv_close((uv_handle_t*)signal->m_uv_signal, [](uv_handle_t* handle) {
-        free(handle);
-    });
-
-    event_loop_unlock(&global_ev);
-
-    free(signal);
+    lean_uv_close_and_free((uv_handle_t*)signal->m_uv_signal, signal);
 }
 
 void initialize_libuv_signal() {
@@ -115,10 +107,18 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_mk(uint32_t signum_obj, uint8
     }
 
     event_loop_lock(&global_ev);
+
+    if (g_libuv_finalized) {
+        event_loop_unlock(&global_ev);
+        free(uv_signal);
+        free(signal);
+        return lean_uv_loop_finalized_error();
+    }
+
     int result = uv_signal_init(global_ev.loop, uv_signal);
-    event_loop_unlock(&global_ev);
 
     if (result != 0) {
+        event_loop_unlock(&global_ev);
         free(uv_signal);
         free(signal);
         return lean_io_result_mk_error(lean_decode_uv_error(result, NULL));
@@ -126,16 +126,46 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_mk(uint32_t signum_obj, uint8
 
     signal->m_uv_signal = uv_signal;
 
+    // The handle is visible to the walk in `finalize_libuv` as soon as `uv_signal_init` inserts it
+    // into the loop, so `data` must point to the (mt-marked) object before the lock is released.
     lean_object * obj = lean_uv_signal_new(signal);
     lean_mark_mt(obj);
-    signal->m_uv_signal->data = obj;
+    uv_signal->data = obj;
+
+    event_loop_unlock(&global_ev);
 
     return lean_io_result_mk_ok(obj);
+}
+
+// Releases the references the event loop holds for a running signal handler. Called from
+// `finalize_libuv` while walking the loop's handles, after the loop thread has been joined, so no
+// locking is needed.
+void lean_uv_signal_shutdown(lean_object * obj) {
+    lean_uv_signal_object * signal = lean_to_uv_signal(obj);
+
+    if (signal->m_state == SIGNAL_STATE_RUNNING) {
+        if (signal->m_promise != nullptr) {
+            lean_dec(signal->m_promise);
+            signal->m_promise = nullptr;
+        }
+
+        // While running, the loop keeps the signal alive with an extra reference (see
+        // `setup_signal`); drop it last, as it may run the signal's finalizer.
+        signal->m_state = SIGNAL_STATE_FINISHED;
+        lean_dec(obj);
+    }
 }
 
 /* Std.Internal.UV.Signal.next (signal : @& Signal) : IO (IO.Promise Int) */
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_next(b_obj_arg obj) {
     lean_uv_signal_object * signal = lean_to_uv_signal(obj);
+
+    event_loop_lock(&global_ev);
+
+    if (g_libuv_finalized) {
+        event_loop_unlock(&global_ev);
+        return lean_uv_loop_finalized_error();
+    }
 
     auto setup_signal = [obj, signal]() {
         lean_assert(signal->m_promise == NULL);
@@ -173,8 +203,6 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_next(b_obj_arg obj) {
         event_loop_unlock(&global_ev);
         return lean_io_result_mk_ok(promise);
     };
-
-    event_loop_lock(&global_ev);
 
     if (signal->m_repeating) {
         switch (signal->m_state) {
@@ -228,37 +256,61 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_next(b_obj_arg obj) {
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_stop(b_obj_arg obj) {
     lean_uv_signal_object * signal = lean_to_uv_signal(obj);
 
-    if (signal->m_state == SIGNAL_STATE_RUNNING) {
-        event_loop_lock(&global_ev);
-        int result = uv_signal_stop(signal->m_uv_signal);
-        event_loop_unlock(&global_ev);
+    int result = 0;
+    bool was_running = false;
 
-        if  (signal->m_promise != NULL) {
+    // Locking before reading the state to avoid a data race with the loop thread and with the
+    // teardown walk in `finalize_libuv`. After finalization this is a vacuous success: the
+    // walk already stopped the signal handler and dropped its promise.
+    event_loop_lock(&global_ev);
+
+    if (g_libuv_finalized) {
+        event_loop_unlock(&global_ev);
+        return lean_io_result_mk_ok(lean_box(0));
+    }
+
+    if (signal->m_state == SIGNAL_STATE_RUNNING) {
+        result = uv_signal_stop(signal->m_uv_signal);
+
+        if (signal->m_promise != nullptr) {
             lean_dec(signal->m_promise);
-            signal->m_promise = NULL;
+            signal->m_promise = nullptr;
         }
 
         signal->m_state = SIGNAL_STATE_FINISHED;
+        was_running = true;
+    }
 
-        // The loop does not need to keep the signal alive anymore.
-        lean_dec(obj);
+    event_loop_unlock(&global_ev);
 
-        if (result != 0) {
-            return lean_io_result_mk_error(lean_decode_uv_error(result, NULL));
-        } else {
-            return lean_io_result_mk_ok(lean_box(0));
-        }
-    } else {
+    if (!was_running) {
         return lean_io_result_mk_ok(lean_box(0));
     }
+
+    // The loop does not need to keep the signal alive anymore. Dropped after releasing the lock,
+    // as it may run the signal's finalizer, which re-acquires it.
+    lean_dec(obj);
+
+    if (result != 0) {
+        return lean_io_result_mk_error(lean_decode_uv_error(result, nullptr));
+    }
+
+    return lean_io_result_mk_ok(lean_box(0));
 }
 
 /* Std.Internal.UV.Signal.cancel (signal : @& Signal) : IO Unit */
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_cancel(b_obj_arg obj) {
     lean_uv_signal_object * signal = lean_to_uv_signal(obj);
 
-    // It's locking here to avoid changing the state during other operations.
+    // It's locking here to avoid changing the state during other operations. After finalization
+    // this is a vacuous success: the teardown walk already stopped the signal handler and dropped
+    // its promise.
     event_loop_lock(&global_ev);
+
+    if (g_libuv_finalized) {
+        event_loop_unlock(&global_ev);
+        return lean_io_result_mk_ok(lean_box(0));
+    }
 
     if (signal->m_state == SIGNAL_STATE_RUNNING && signal->m_promise != NULL) {
         if (signal->m_repeating) {

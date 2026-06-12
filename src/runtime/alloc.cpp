@@ -472,6 +472,18 @@ void finalize_alloc() {
 LEAN_THREAD_VALUE(uint64_t, g_heartbeat, 0);
 #endif
 
+#ifdef LEAN_MIMALLOC
+extern "C" LEAN_EXPORT lean_object * lean_alloc_small_object_aligned(unsigned sz) {
+    lean_inc_heartbeat();
+    // HACK: emulate behavior of small allocator to avoid `leangz` breakage for now
+    void * mem = mi_malloc_small(sz);
+    if (mem == 0) lean_internal_panic_out_of_memory();
+    lean_object * o = (lean_object*)mem;
+    o->m_cs_sz = sz;
+    return o;
+}
+#endif
+
 void set_heartbeats(uint64_t count) {
 #ifdef LEAN_SMALL_ALLOCATOR
     if (g_heap)

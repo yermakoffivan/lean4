@@ -441,7 +441,9 @@ static inline lean_object * lean_alloc_small_object(unsigned sz) {
     /* Keep the alignment computation inline so that it can be constant-folded at call sites
        with statically known sizes. */
     sz = lean_align(sz, LEAN_OBJECT_SIZE_DELTA);
-    return lean_alloc_small_object_aligned(sz);
+    lean_object* o = lean_alloc_small_object_aligned(sz);
+    o->m_cs_sz = sz;
+    return o;
 #else
     lean_inc_heartbeat();
     void * mem = malloc(sizeof(size_t) + sz);

@@ -479,7 +479,6 @@ extern "C" LEAN_EXPORT lean_object * lean_alloc_small_object_aligned(unsigned sz
     void * mem = mi_malloc_small(sz);
     if (mem == 0) lean_internal_panic_out_of_memory();
     lean_object * o = (lean_object*)mem;
-    o->m_cs_sz = sz;
     return o;
 }
 #endif

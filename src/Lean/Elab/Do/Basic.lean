@@ -160,9 +160,8 @@ unsafe def DoOpsRef.toDoOpsImpl (r : DoOpsRef) : DoOps :=
 opaque DoOpsRef.toDoOps (r : DoOpsRef) : DoOps
 
 /--
-Whether the continuation of a `do` element is duplicable and if so whether it is just `pure r` for
-the result variable `r`. Saying `nonDuplicable` is always safe; `duplicable` allows for more
-optimizations.
+Whether the continuation of a `do` element is duplicable. Saying `nonDuplicable` is always safe;
+`duplicable` allows for more optimizations.
 -/
 inductive DoElemContKind
   | nonDuplicable

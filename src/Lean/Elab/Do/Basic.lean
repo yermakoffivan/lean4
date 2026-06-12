@@ -449,7 +449,7 @@ pure (x + y + z)
 ```
 Note that the continuation of the `let z ← ...` bind, roughly
 ``k := .cont `z _ `(let y := y + 3; pure (x + y + z))``,
-needs to elaborated in a local context that contains the reassignment of `x`, but not the shadowing
+needs to be elaborated in a local context that contains the reassignment of `x`, but not the shadowing
 mut var definition of `y`.
 -/
 def withLCtxKeepingMutVarDefs (oldLCtx : LocalContext) (oldCtx : Context) (resultName : Name) (k : DoElabM α) : DoElabM α := do

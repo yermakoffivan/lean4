@@ -57,7 +57,10 @@ structure ControlInfo where
   reassigns : NameSet := {}
   deriving Inhabited
 
-/-- A `ControlInfo` for an element that always falls through normally with a single exit. -/
+/--
+The left identity of `ControlInfo.sequence`: a `ControlInfo` describing an element that always
+falls through normally with a single regular exit.
+-/
 def ControlInfo.pure : ControlInfo := {}
 
 /--
@@ -66,7 +69,10 @@ at all (so no regular exits and the next element is trivially unreachable).
 -/
 def ControlInfo.empty : ControlInfo := { numRegularExits := 0, noFallthrough := true }
 
-/-- Combine info for `a; b`: union effect flags, exits/dead follow `b`/either. -/
+/--
+The `ControlInfo` of a sequence `a; b`: effect flags are unioned, the regular exits are those of
+`b`, and the sequence falls through iff both parts fall through.
+-/
 def ControlInfo.sequence (a b : ControlInfo) : ControlInfo := {
     -- Syntactic fields aggregate unconditionally; the elaborator keeps visiting `b` unless `a` is
     -- a syntactically-terminal element (only top-level `return`/`break`/`continue` are, via
@@ -80,7 +86,10 @@ def ControlInfo.sequence (a b : ControlInfo) : ControlInfo := {
     noFallthrough := a.noFallthrough || b.noFallthrough,
   }
 
-/-- Combine info for branches `a | b`: union flags, sum exits, dead iff both dead. -/
+/--
+The `ControlInfo` of branches `a | b`: effect flags are unioned, the regular exits are summed, and
+the alternative falls through iff at least one branch falls through.
+-/
 def ControlInfo.alternative (a b : ControlInfo) : ControlInfo := {
     breaks := a.breaks || b.breaks,
     continues := a.continues || b.continues,

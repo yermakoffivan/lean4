@@ -56,7 +56,7 @@ instance : Nonempty DoOpsRef :=
 
 /-- Whether a code block is alive or dead. -/
 inductive CodeLiveness where
-  /-- We inferred the code is semantically dead and don't need to elaborate it at all. -/
+  /-- We inferred the code is syntactically dead and don't need to elaborate it at all. -/
   | deadSyntactically
   /-- We inferred the code is semantically dead, but we need to elaborate it to produce a program. -/
   | deadSemantically
@@ -115,7 +115,7 @@ structure Context where
   mutVarDefs : Std.HashMap Name MutVar := {}
   /--
   The expected type of the current `do` block.
-  This can be different from `earlyReturnType` in `for` loop `do` blocks, for example.
+  This can be different from `ReturnCont.resultType` in `for` loop `do` blocks, for example.
   -/
   doBlockResultType : Expr
   /-- Information about `return`, `break` and `continue` continuations. -/
@@ -224,7 +224,7 @@ structure ReturnCont where
   /--
   The elaborator constructing a jump site to the return continuation,
   given some return value. The type of this return value determines the type of the jump expression;
-  this could very well be different than the `resultType` in case an intervening `match` as refined
+  this could very well be different than the `resultType` in case an intervening `match` has refined
   `resultType`. So `k` must *not* hardcode the type `resultType` into its definition; rather it
   should infer the type of the return value argument.
   -/

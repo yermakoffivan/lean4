@@ -178,7 +178,7 @@ partial def ofElem (stx : DoElem) : TermElabM ControlInfo := do
   -- For/Repeat
   | `(doElem| for $[$[$_ :]? $_ in $_],* do $bodySeq) =>
     let info ← ofSeq bodySeq
-    return { info with  -- keep only reassigns and earlyReturn
+    return { info with  -- keep only reassigns and returnsEarly
       numRegularExits := 1,
       continues := false,
       breaks := false,
@@ -189,7 +189,7 @@ partial def ofElem (stx : DoElem) : TermElabM ControlInfo := do
     -- surrounding continuation still has a polymorphic value to hand back, and any dead-code
     -- warning on subsequent elements is actionable.
     let info ← ofSeq bodySeq
-    return { info with  -- keep only reassigns and earlyReturn
+    return { info with  -- keep only reassigns and returnsEarly
       numRegularExits := if info.breaks then 1 else 0,
       continues := false,
       breaks := false,

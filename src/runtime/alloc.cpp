@@ -475,11 +475,12 @@ LEAN_THREAD_VALUE(uint64_t, g_heartbeat, 0);
 #ifdef LEAN_MIMALLOC
 extern "C" LEAN_EXPORT lean_object * lean_alloc_small_object_aligned(unsigned sz) {
     lean_inc_heartbeat();
-    // HACK: emulate behavior of small allocator to avoid `leangz` breakage for now
-    void * mem = mi_malloc_small(sz);
-    if (mem == 0) lean_internal_panic_out_of_memory();
-    lean_object * o = (lean_object*)mem;
-    return o;
+    /* This function deliberately does nothing besides the heartbeat and the allocation:
+       without a use of `sz` or the result after the allocation, the call to
+       `mi_malloc_small` becomes a tail call and this function needs no stack frame.
+       The NULL check and the header initialization happen inline at the call sites in
+       `lean.h`, where they can be combined with the other header stores. */
+    return (lean_object*)mi_malloc_small(sz);
 }
 #endif
 

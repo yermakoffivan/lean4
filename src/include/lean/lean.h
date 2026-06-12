@@ -427,8 +427,8 @@ void * malloc(size_t);  // avoid including big `stdlib.h`
 #ifdef LEAN_MIMALLOC
 /* Allocates a small heap object of `sz` bytes, where `sz` must be a positive multiple of
    `LEAN_OBJECT_SIZE_DELTA` and at most `LEAN_MAX_SMALL_OBJECT_SIZE`. Counts as one
-   heartbeat and panics on allocation failure. */
-LEAN_EXPORT LEAN_ATTR_MALLOC LEAN_ATTR_ALLOC_SIZE(1) LEAN_ATTR_RETURNS_NONNULL lean_object * lean_alloc_small_object_aligned(unsigned sz);
+   heartbeat. Returns NULL on allocation failure; the object header is uninitialized. */
+LEAN_EXPORT LEAN_ATTR_MALLOC LEAN_ATTR_ALLOC_SIZE(1) lean_object * lean_alloc_small_object_aligned(unsigned sz);
 #endif
 
 static inline lean_object * lean_alloc_small_object(unsigned sz) {
@@ -438,10 +438,13 @@ static inline lean_object * lean_alloc_small_object(unsigned sz) {
     assert(sz <= LEAN_MAX_SMALL_OBJECT_SIZE);
     return (lean_object*)lean_alloc_small(sz, slot_idx);
 #elif defined(LEAN_MIMALLOC)
-    /* Keep the alignment computation inline so that it can be constant-folded at call sites
-       with statically known sizes. */
+    /* Keep the alignment computation, the NULL check, and the `m_cs_sz` initialization
+       inline: at call sites with statically known sizes the alignment is constant-folded
+       and the `m_cs_sz` store is combined with the other header stores. */
     sz = lean_align(sz, LEAN_OBJECT_SIZE_DELTA);
     lean_object* o = lean_alloc_small_object_aligned(sz);
+    if (o == 0) lean_internal_panic_out_of_memory();
+    // HACK: emulate behavior of small allocator to avoid `leangz` breakage for now
     o->m_cs_sz = sz;
     return o;
 #else

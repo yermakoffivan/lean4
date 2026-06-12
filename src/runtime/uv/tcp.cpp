@@ -65,22 +65,6 @@ void initialize_libuv_tcp_socket() {
     });
 }
 
-// Releases the references the event loop holds for a socket via callback-less operations. Called
-// from `finalize_libuv` while walking the loop's handles, after the loop thread has been joined, so
-// no locking is needed.
-//
-// Only `recv`/`waitReadable` (`m_promise_read`) and `accept` (`m_promise_accept`) are handled here:
-// these are driven by `uv_read_start`/`uv_listen` whose callbacks do *not* fire once the handle is
-// closed, so their references would leak if not released now. Each holds one reference to the socket
-// (see `recv`, `wait_readable` and `accept`), so the socket reference is dropped once per such
-// pending operation, and last, as it may run the socket's finalizer (which asserts the promise/buffer
-// fields have been cleared).
-//
-// Request-based operations (`connect`/`send`/`shutdown`) are deliberately *not* touched here: their
-// `uv_connect_t`/`uv_write_t`/`uv_shutdown_t` callbacks fire with `UV_ECANCELED` when the handle is
-// closed during `event_loop_cleanup`, and own their own teardown (resolving the promise and dropping
-// the socket and promise references). Releasing them here too would double-drop those references and
-// leave the callback dereferencing a now-null `m_promise_shutdown`.
 void lean_uv_tcp_socket_shutdown(lean_object * obj) {
     lean_uv_tcp_socket_object * tcp_socket = lean_to_uv_tcp_socket(obj);
 

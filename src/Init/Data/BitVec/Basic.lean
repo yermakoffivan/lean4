@@ -653,8 +653,14 @@ def replicate : (i : Nat) → BitVec w → BitVec (w*i)
 
 /-! ### flatten -/
 
-/-- Flatten a list of bitvectors into one bitvector. -/
-protected def flattenList {n : Nat} (xs : List (BitVec n)) : BitVec (n * xs.length) :=
+/--
+Flatten a list of bitvectors into one bitvector.
+
+This is `noncomputable` so that the only compiled implementation is the
+divide-and-conquer `BitVec.flattenListFast`, installed via `@[csimp]`; see there
+for the cost analysis.
+-/
+protected noncomputable def flattenList {n : Nat} (xs : List (BitVec n)) : BitVec (n * xs.length) :=
   match xs with
   | [] => 0#0
   | x :: rest =>

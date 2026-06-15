@@ -94,7 +94,9 @@ path-noscheme (`../other`, `foo/bar`), query-only (`?q=1`), fragment-only (`#sec
 -/
 @[inline]
 def parse? (string : String) : Option URIReference :=
-  (URI.Parser.parseURIReference <* Std.Internal.Parsec.eof).run string.toUTF8 |>.toOption
+  (URI.Parser.parseURIReference <* Std.Internal.Parsec.eof)
+  |>.run string.toUTF8
+  |>.toOption
 
 /--
 Parses a `URIReference` from the given string. Panics if parsing fails. Use `parse?` if you need
@@ -124,11 +126,13 @@ def port (uri : URI) : UInt16 :=
   | none => URI.Scheme.defaultPort uri.scheme
 
 /--
-Extracts the host this URI addresses, returning the `Inhabited` default for
-`URI.Host` when the authority is absent.
+The host this URI addresses, or `none` when the URI carries no authority.
+
+A URI without an authority cannot identify an origin to connect to, so callers that need to
+dispatch a request should treat `none` as malformed input rather than substituting a default host.
 -/
-def host (uri : URI) : URI.Host :=
-  (uri.authority.map (·.host)).getD default
+def host? (uri : URI) : Option URI.Host :=
+  uri.authority.map (·.host)
 
 /--
 Returns the origin-form request target corresponding to this URI, dropping the
@@ -141,13 +145,13 @@ def originTarget (uri : URI) : RequestTarget :=
   .originForm uri.path (if uri.query.isEmpty then none else some uri.query)
 
 /--
-Splits this URI into the `(scheme, host, port, origin-form target)` tuple a
-client needs to dispatch a request to the referenced origin. Path, query,
-scheme, and port fall back to their defaults when the URI or its authority
-leave them implicit.
+Splits this URI into the `(scheme, host, port, origin-form target)` tuple a client needs to
+dispatch a request to the referenced origin, or `none` when the URI has no authority (and hence no
+host to connect to). The port falls back to the scheme's default when the authority leaves it
+implicit.
 -/
-def toOriginRequest (uri : URI) : URI.Scheme × URI.Host × UInt16 × RequestTarget :=
-  (uri.scheme, uri.host, uri.port, uri.originTarget)
+def toOriginRequest? (uri : URI) : Option (URI.Scheme × URI.Host × UInt16 × RequestTarget) :=
+  uri.host?.map fun host => (uri.scheme, host, uri.port, uri.originTarget)
 
 /--
 Attempts to parse a `URI` from the given string.

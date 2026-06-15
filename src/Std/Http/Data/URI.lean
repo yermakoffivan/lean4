@@ -45,9 +45,8 @@ def parse! (string : String) : RequestTarget :=
   | none => panic! "invalid request target"
 
 /--
-Creates an origin-form request target from a path string.
-The path should start with '/' (e.g., "/api/users" or "/search?q=test").
-Panics if the string is not a valid origin-form request target.
+Creates an origin-form request target from a path string. The path should start with '/' (e.g.,
+"/api/users" or "/search?q=test"). Panics if the string is not a valid origin-form request target.
 -/
 @[inline]
 def originForm! (path : String) : RequestTarget :=
@@ -56,10 +55,9 @@ def originForm! (path : String) : RequestTarget :=
   | _ => panic! s!"invalid origin-form request target: {path}"
 
 /--
-Returns the path component of the request target, defaulting to the root path `/`
-when the target carries no path (asterisk-form or authority-form).
-Unlike `RequestTarget.path`, the fallback is the absolute root rather than an
-empty relative path — used by clients that need a well-formed absolute path
+Returns the path component of the request target, defaulting to the root path `/` when the target
+carries no path (asterisk-form or authority-form). Unlike `RequestTarget.path`, the fallback is the
+absolute root rather than an empty relative path — used by clients that need a well-formed absolute path
 for cookie matching or logging.
 -/
 def pathOrRoot : RequestTarget → URI.Path
@@ -68,10 +66,9 @@ def pathOrRoot : RequestTarget → URI.Path
   | _ => { segments := #[], absolute := true }
 
 /--
-Inserts or appends a query parameter on this target, preserving its form.
-Origin-form and absolute-form targets gain the parameter on their existing
-query; authority-form and asterisk-form targets are returned unchanged because
-they do not carry a query.
+Inserts or appends a query parameter on this target, preserving its form. Origin-form and absolute-form
+targets gain the parameter on their existing query; authority-form and asterisk-form targets are
+returned unchanged because they do not carry a query.
 -/
 def setQueryParam (target : RequestTarget) (key value : String) : RequestTarget :=
   match target with
@@ -113,9 +110,8 @@ end URIReference
 namespace URI
 
 /--
-Extracts the numeric port this URI addresses. When the authority omits the port
-(or parses as empty) the scheme's default port is returned (`80` for `http`,
-`443` for `https`).
+Extracts the numeric port this URI addresses. When the authority omits the port (or parses as empty)
+the scheme's default port is returned (`80` for `http`, `443` for `https`).
 -/
 def port (uri : URI) : UInt16 :=
   match uri.authority with
@@ -135,23 +131,13 @@ def host? (uri : URI) : Option URI.Host :=
   uri.authority.map (·.host)
 
 /--
-Returns the origin-form request target corresponding to this URI, dropping the
-scheme, authority, user-info, and fragment. An empty query is reported as
-`none` so the target stays canonical.
+Returns the origin-form request target corresponding to this URI, dropping the scheme, authority,
+user-info, and fragment. An empty query is reported as `none` so the target stays canonical.
 
 Reference: https://httpwg.org/specs/rfc9112.html#section-3.2.1
 -/
 def originTarget (uri : URI) : RequestTarget :=
   .originForm uri.path (if uri.query.isEmpty then none else some uri.query)
-
-/--
-Splits this URI into the `(scheme, host, port, origin-form target)` tuple a client needs to
-dispatch a request to the referenced origin, or `none` when the URI has no authority (and hence no
-host to connect to). The port falls back to the scheme's default when the authority leaves it
-implicit.
--/
-def toOriginRequest? (uri : URI) : Option (URI.Scheme × URI.Host × UInt16 × RequestTarget) :=
-  uri.host?.map fun host => (uri.scheme, host, uri.port, uri.originTarget)
 
 /--
 Attempts to parse a `URI` from the given string.
@@ -173,8 +159,7 @@ def parse! (string : String) : URI :=
 namespace Path
 
 /--
-Attempts to parse a URI path from the given string.
-Returns `none` if the string is not a valid path.
+Attempts to parse a URI path from the given string. Returns `none` if the string is not a valid path.
 -/
 @[inline]
 def parse? (s : String) : Option Std.Http.URI.Path :=

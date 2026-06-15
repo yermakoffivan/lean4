@@ -144,15 +144,20 @@ private def resolveOrigin (current : URI.Origin) : URIReference → Option URI.O
 /--
 Computes the method for the redirected request.
 
-HTTP/1.1+ (RFC 9110 §15.4): 303 always becomes GET; 301/302 downgrade POST to GET (prevailing
-practice, explicitly permitted by RFC 9110); 307/308 preserve the original method.
+HTTP/1.1+ (RFC 9110 §15.4): 303 becomes GET (but HEAD is preserved, since a 303 may be retrieved
+with GET or HEAD per RFC 9110 §15.4.4); 301/302 downgrade POST to GET (prevailing practice,
+explicitly permitted by RFC 9110); 307/308 preserve the original method.
 
 HTTP/1.0 (RFC 2616 §10.3 / RFC 9110 note): 301/302 were originally defined as
 method-preserving at CERN, so POST stays POST. The POST→GET downgrade is an
 HTTP/1.1 adjustment that does not apply to HTTP/1.0 responses.
 -/
 private def chooseMethod (originalMethod : Method) (responseVersion : Version) : Status → Method
-  | .seeOther => .get
+  | .seeOther =>
+
+    -- https://httpwg.org/specs/rfc9110.html#status.303
+    -- 303 may be retrieved with GET or HEAD, so a HEAD request keeps HEAD; everything else uses GET.
+    if originalMethod == .head then .head else .get
   | .movedPermanently | .found =>
 
     -- https://httpwg.org/specs/rfc9110.html#status.303
@@ -252,8 +257,12 @@ private def rewriteTarget (ref : URIReference) (isCrossOrigin : Bool)
     (basePath : URI.Path) (currentScheme : URI.Scheme) : RequestTarget :=
   match ref with
   | .absolute af =>
+    -- The fragment is never placed on the wire (RFC 9112 §3.2 / RFC 9110 §7.1), so drop it here
+    -- alongside any `userinfo` in the authority.
     let stripped :=
-      { af with authority := af.authority.map (fun auth => { auth with userInfo := none }) }
+      { af with
+        authority := af.authority.map (fun auth => { auth with userInfo := none }),
+        fragment := none }
     if isCrossOrigin then
       .absoluteForm stripped
     else
@@ -294,6 +303,9 @@ Returns `.done` when:
 
 Returns `.follow plan` otherwise. The caller is expected to drain the redirect response body and,
 when `plan.bodyAction == .replay`, reset the original body before dispatching the rewritten request.
+On a cross-origin hop the original `Host` header is rewritten to the new origin, but only when one
+was present; if the original request carried no `Host`, supplying one for the new origin is the
+caller's responsibility.
 
 Notes on specific status codes that always return `.done`:
 * 300 Multiple Choices — may carry a `Location` naming the server's preferred choice, but

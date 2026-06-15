@@ -123,6 +123,12 @@ private def isReplayBody : RedirectBodyAction → Bool
   | some p => p.method == .get
   | none => false
 
+-- 303 See Other preserves HEAD (RFC 9110 §15.4.4: 303 may be retrieved with GET or HEAD), so a
+-- HEAD request must not be downgraded to GET.
+#guard match plan? (decideRedirect origin (mkReq .head) false false .v11 .seeOther (withLocation "/next")) with
+  | some p => p.method == .head && isEmptyBody p.bodyAction
+  | none => false
+
 /-! ## Target rewriting -/
 
 -- Absolute-path `Location` replaces the path.
@@ -138,6 +144,11 @@ private def isReplayBody : RedirectBodyAction → Bool
 -- Cross-origin absolute `Location` keeps absolute-form on the wire.
 #guard match plan? (decideRedirect origin (mkReq .get credHeaders) false false .v11 .found (withLocation "http://other.com/x")) with
   | some p => p.isCrossOrigin && toString p.target == "http://other.com/x"
+  | none => false
+
+-- The fragment of an absolute `Location` is never placed on the wire (RFC 9112 §3.2).
+#guard match plan? (decideRedirect origin (mkReq .get) false false .v11 .found (withLocation "http://other.com/x#frag")) with
+  | some p => toString p.target == "http://other.com/x"
   | none => false
 
 /-! ## Header scrubbing -/
@@ -159,3 +170,36 @@ private def isReplayBody : RedirectBodyAction → Bool
 #guard match plan? (decideRedirect origin (mkReq .post contentHeaders) false false .v11 .seeOther (withLocation "/next")) with
   | some p => p.method == .get && !p.headers.contains .contentType && !p.headers.contains .contentLength
   | none => false
+
+-- A cross-origin hop on a request that carried no `Host` header leaves the plan without one:
+-- `rewriteHostHeader` only rewrites an existing `Host`, so supplying it is the caller's job.
+#guard match plan? (decideRedirect origin (mkReq .get) false false .v11 .found (withLocation "http://other.com/x")) with
+  | some p => p.isCrossOrigin && !p.headers.contains .host
+  | none => false
+
+/-! ## 303 with unsafe non-GET/HEAD methods -/
+
+-- RFC 9110 §15.4.4: 303 applies to any method, retrieved with GET. With `onlySafeRedirects = false`
+-- a PUT/DELETE/PATCH receiving 303 is followed and rewritten to GET with an empty body.
+#guard match plan? (decideRedirect origin (mkReq .put) false false .v11 .seeOther (withLocation "/x")) with
+  | some p => p.method == .get && isEmptyBody p.bodyAction
+  | none => false
+
+#guard match plan? (decideRedirect origin (mkReq .delete) false false .v11 .seeOther (withLocation "/x")) with
+  | some p => p.method == .get && isEmptyBody p.bodyAction
+  | none => false
+
+#guard match plan? (decideRedirect origin (mkReq .patch) false false .v11 .seeOther (withLocation "/x")) with
+  | some p => p.method == .get && isEmptyBody p.bodyAction
+  | none => false
+
+-- `onlySafeRedirects = true` blocks the same PUT+303 since PUT is not a safe method.
+#guard isDone (decideRedirect origin (mkReq .put) false true .v11 .seeOther (withLocation "/x"))
+
+/-! ## `Status.isRedirection` boundaries -/
+
+-- `isRedirection` is true exactly on the 3xx range and false on the 2xx/4xx boundaries.
+#guard Status.isRedirection .multipleChoices
+#guard Status.isRedirection .permanentRedirect
+#guard !Status.isRedirection .ok
+#guard !Status.isRedirection .badRequest

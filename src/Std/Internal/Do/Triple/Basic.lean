@@ -7,6 +7,7 @@ module
 
 prelude
 public import Std.Internal.Do.WP
+public import Std.Internal.Do.ExceptPost
 @[expose] public section
 
 set_option linter.missingDocs true
@@ -36,12 +37,26 @@ structure Triple [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EP
   /-- Construct a triple from a weakest precondition entailment. -/
   intro ::
   /-- The weakest precondition entailment witnessing the triple. -/
-  (hwp : pre ⊑ wp x post epost)
+  le_wp : pre ⊑ wp x post epost
 
 /-- Hoare triple notation without exception postcondition (defaults to `⊥`). -/
-scoped notation:60 "⦃ " pre " ⦄ " x " ⦃ " post " ⦄" => Triple pre x post ⊥
+scoped notation:60 "⦃ " pre " ⦄ " x " ⦃ " post " ⦄" => Triple pre x post Lean.Order.bot
 /-- Hoare triple notation with a binder for the return value. -/
-scoped notation:60 "⦃ " pre " ⦄ " x " ⦃ " v ", " post " ⦄" => Triple pre x (fun v => post) ⊥
+scoped notation:60 "⦃ " pre " ⦄ " x " ⦃ " v ", " post " ⦄" => Triple pre x (fun v => post) Lean.Order.bot
+/-- Hoare triple notation with explicit exception postconditions:
+`⦃ P ⦄ x ⦃ Q; E₁; … ⦄ := Triple P x Q epost⟨E₁, …⟩`. -/
+scoped syntax:60 (name := tripleEPost)
+  "⦃ " term " ⦄ " term " ⦃ " term "; " sepBy1(term, "; ") " ⦄" : term
+macro_rules (kind := tripleEPost)
+  | `(⦃ $P ⦄ $c ⦃ $Q; $Es;* ⦄) => `(Triple $P $c $Q epost⟨$Es,*⟩)
+
+/-- Pretty-print `Triple P c Q epost⟨E₁, …⟩` back as `⦃ P ⦄ c ⦃ Q; E₁; … ⦄`. -/
+@[app_unexpander Triple]
+meta def unexpandTripleEPost : Lean.PrettyPrinter.Unexpander
+  | `($(_) $P $c $Q epost⟨$Es,*⟩) =>
+    if Es.getElems.isEmpty then throw () else `(⦃ $P ⦄ $c ⦃ $Q; $Es;* ⦄)
+  | _ => throw ()
+
 namespace Triple
 
 variable [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred]
@@ -88,6 +103,16 @@ theorem bind (x : m α) (f : α → m β)
   apply PartialOrder.rel_trans (WPMonad.wp_consequence x mid (fun a => wp (f a) post epost) epost
     (fun a => iff.mp (hf a)))
   exact WPMonad.wp_bind x f post epost
+
+theorem map (f : α → β) (x : m α)
+    (h : Triple pre x (fun a => post (f a)) epost) :
+    Triple pre (f <$> x) post epost :=
+  iff.mpr (PartialOrder.rel_trans (iff.mp h) (WPMonad.wp_map f x post epost))
+
+theorem seq (x : m (α → β)) (y : m α)
+    (h : Triple pre x (fun f => wp y (fun a => post (f a)) epost) epost) :
+    Triple pre (x <*> y) post epost :=
+  iff.mpr (PartialOrder.rel_trans (iff.mp h) (WPMonad.wp_seq x y post epost))
 
 end Triple
 

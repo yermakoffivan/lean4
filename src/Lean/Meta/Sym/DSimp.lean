@@ -14,3 +14,5 @@ public import Lean.Meta.Sym.DSimp.Forall
 public import Lean.Meta.Sym.DSimp.Let
 public import Lean.Meta.Sym.DSimp.Main
 public import Lean.Meta.Sym.DSimp.Reduce
+public import Lean.Meta.Sym.DSimp.Variant
+public import Lean.Meta.Sym.DSimp.EvalGround

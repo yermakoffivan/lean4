@@ -291,6 +291,24 @@ static inline lean_object * get_next(lean_object * o) {
     }
 }
 
+// See the docstring on `lean_object*` for details about pointer packing.
+#if defined(__has_feature)
+    #if __has_feature(hwaddress_sanitizer)
+        #define LEAN_HAS_HWASAN 1
+    #endif
+#endif
+#if defined(LEAN_HAS_HWASAN) || defined(__SANITIZE_HWADDRESS__) || \
+    defined(__ARM_FEATURE_MEMORY_TAGGING)
+    #define LEAN_PTR_PACKING_SAFE false
+#else
+    #define LEAN_PTR_PACKING_SAFE true
+#endif
+
+static_assert(sizeof(void*) != 8 || LEAN_PTR_PACKING_SAFE,
+    "Cannot compile with HWASAN or ARM MTE enabled; on 64-bit machines, "
+    "the pointer packing in `set_next` truncates the top byte used by these features.\n"
+    "See https://github.com/leanprover/lean4/issues/13113.");
+
 static inline void set_next(lean_object * o, lean_object * n) {
     if (sizeof(void*) == 8) {
         uint16_t hi;
@@ -1872,20 +1890,20 @@ extern "C" LEAN_EXPORT obj_res lean_float_frexp(double a) {
 extern "C" LEAN_EXPORT double lean_float_of_bits(uint64_t u)
 {
     static_assert(sizeof(double) == sizeof(u), "`double` unexpected size.");
-    double ret;
-    std::memcpy(&ret, &u, sizeof(double));
-    if (isnan(ret))
-        ret = std::numeric_limits<double>::quiet_NaN();
+    double ret = std::bit_cast<double>(u);
+    if (isnan(ret)) return std::numeric_limits<double>::quiet_NaN();
     return ret;
 }
 
+// We use a specific bit pattern instead of `std::numeric_limits<double>::quiet_NaN()` because
+// the returned bit pattern needs to match exactly with what we return in the logical model and
+// the exact value of `quiet_NaN` is implementation-defined.
+constexpr uint64_t quietNaN64 = 0x7ff8000000000000;
+
 extern "C" LEAN_EXPORT uint64_t lean_float_to_bits(double d)
 {
-    uint64_t ret;
-    if (isnan(d))
-        d = std::numeric_limits<double>::quiet_NaN();
-    std::memcpy(&ret, &d, sizeof(double));
-    return ret;
+    if (isnan(d)) return quietNaN64;
+    return std::bit_cast<uint64_t>(d);
 }
 
 // =======================================
@@ -1924,20 +1942,20 @@ extern "C" LEAN_EXPORT obj_res lean_float32_frexp(float a) {
 extern "C" LEAN_EXPORT float lean_float32_of_bits(uint32_t u)
 {
     static_assert(sizeof(float) == sizeof(u), "`float` unexpected size.");
-    float ret;
-    std::memcpy(&ret, &u, sizeof(float));
-    if (isnan(ret))
-        ret = std::numeric_limits<float>::quiet_NaN();
+    float ret = std::bit_cast<float>(u);
+    if (isnan(ret)) ret = std::numeric_limits<float>::quiet_NaN();
     return ret;
 }
 
+// We use a specific bit pattern instead of `std::numeric_limits<float>::quiet_NaN()` because
+// the returned bit pattern needs to match exactly with what we return in the logical model and
+// the exact value of `quiet_NaN` is implementation-defined.
+constexpr uint32_t quietNaN32 = 0x7fc00000;
+
 extern "C" LEAN_EXPORT uint32_t lean_float32_to_bits(float d)
 {
-    uint32_t ret;
-    if (isnan(d))
-        d = std::numeric_limits<float>::quiet_NaN();
-    std::memcpy(&ret, &d, sizeof(float));
-    return ret;
+    if (isnan(d)) return quietNaN32;
+    return std::bit_cast<uint32_t>(d);
 }
 
 // =======================================
@@ -2768,7 +2786,7 @@ extern "C" LEAN_EXPORT object * lean_dbg_sleep(uint32 ms, obj_arg fn) {
 }
 
 extern "C" LEAN_EXPORT object * lean_dbg_trace_if_shared(obj_arg s, obj_arg a) {
-    if (!lean_is_scalar(a) && lean_is_shared(a)) {
+    if (!lean_is_scalar(a) && !lean_is_exclusive(a)) {
         io_eprintln(mk_string(std::string("shared RC ") + lean_string_cstr(s)));
     }
     return a;

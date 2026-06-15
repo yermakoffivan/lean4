@@ -670,7 +670,6 @@ private def advanceAfterHeaders (machine : Machine dir) (state : Reader.State di
   | .sending, nextState, machine => machine.setReaderState nextState
 
 /--
-Client side, reading a response to a HEAD request: RFC 9110 §8.6 specifies that
 HEAD responses have no body, regardless of any framing headers. Override the
 framing mode to `.fixed 0` so the reader doesn't block waiting for body bytes.
 -/

@@ -185,10 +185,26 @@ structure RequestBuilder where
   -/
   builder : Request.Builder
 
+  /--
+  A deferred construction error, set when the request could not be built (for example, the URL had
+  no host). It is raised when the request is finally sent, mirroring `reqwest`/`fetch`: building the
+  request never fails eagerly, the error surfaces at send time.
+  -/
+  error : Option String := none
+
 namespace RequestBuilder
 
 private def withHostHeader (rb : RequestBuilder) : RequestBuilder :=
   { rb with builder := rb.builder.hostDefault rb.scheme rb.host rb.port }
+
+/--
+Resolves the target origin, raising any deferred construction `error`. Every send variant calls this
+first so that a request that could not be built fails when it is sent rather than when it is created.
+-/
+private def origin (rb : RequestBuilder) : Async URI.Origin := do
+  if let some e := rb.error then
+    throw (.userError e)
+  pure (URI.Origin.mk rb.scheme rb.host rb.port)
 
 /--
 Adds a typed header to the request.
@@ -226,42 +242,53 @@ def queryParam (rb : RequestBuilder) (key : String) (value : String) : RequestBu
 Sends the request with an empty body.
 -/
 def send (rb : RequestBuilder) : Async (Response Body.Stream) := do
+  let origin ← rb.origin
   let rb := rb.withHostHeader
-  rb.client.send (URI.Origin.mk rb.scheme rb.host rb.port) (← rb.builder.empty)
+  rb.client.send origin (← rb.builder.empty)
 
 /--
 Sends the request with a plain-text body. Sets `Content-Type: text/plain; charset=utf-8`.
 -/
 def text (rb : RequestBuilder) (content : String) : Async (Response Body.Stream) := do
+  let origin ← rb.origin
   let rb := rb.withHostHeader
-  rb.client.send (URI.Origin.mk rb.scheme rb.host rb.port) (← rb.builder.text content)
+  rb.client.send origin (← rb.builder.text content)
 
 /--
 Sends the request with a JSON body. Sets `Content-Type: application/json`.
 -/
 def json (rb : RequestBuilder) (content : String) : Async (Response Body.Stream) := do
+  let origin ← rb.origin
   let rb := rb.withHostHeader
-  rb.client.send (URI.Origin.mk rb.scheme rb.host rb.port) (← rb.builder.json content)
+  rb.client.send origin (← rb.builder.json content)
 
 /--
 Sends the request with a raw binary body. Sets `Content-Type: application/octet-stream`.
 -/
 def bytes (rb : RequestBuilder) (content : ByteArray) : Async (Response Body.Stream) := do
+  let origin ← rb.origin
   let rb := rb.withHostHeader
-  rb.client.send (URI.Origin.mk rb.scheme rb.host rb.port) (← rb.builder.bytes content)
+  rb.client.send origin (← rb.builder.bytes content)
 
 /--
 Sends the request with a streaming body produced by `gen`.
 -/
 def stream (rb : RequestBuilder) (gen : Body.Stream → Async Unit) : Async (Response Body.Stream) := do
+  let origin ← rb.origin
   let rb := rb.withHostHeader
-  rb.client.send (URI.Origin.mk rb.scheme rb.host rb.port) (← rb.builder.stream gen)
+  rb.client.send origin (← rb.builder.stream gen)
 
 end RequestBuilder
 
 private def mkRequest (method : Request.Builder → Request.Builder) (client : Client) (url : URI) : RequestBuilder :=
-  let (scheme, host, port, target) := url.toOriginRequest
-  { client, scheme, host, port, builder := method (Request.new |>.uri target) }
+  match url.toOriginRequest? with
+  | some (scheme, host, port, target) =>
+    { client, scheme, host, port, builder := method (Request.new |>.uri target) }
+  | none =>
+
+    -- The URL names no host to connect to (RFC 3986 §3.2): defer the failure to send time.
+    { client, scheme := default, host := default, port := 0,
+      builder := method Request.new, error := some s!"invalid request URL (no host): {url}" }
 
 /--
 Creates a GET request builder for `url`.

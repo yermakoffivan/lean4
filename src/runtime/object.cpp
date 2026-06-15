@@ -335,11 +335,11 @@ static inline lean_object * pop_back(lean_object * & todo) {
 static inline void dec(lean_object * o, lean_object* & todo) {
     if (lean_is_scalar(o))
         return;
-    if (LEAN_LIKELY(o->m_rc > 1)) {
-        o->m_rc--;
-    } else if (o->m_rc == 1) {
+    if (LEAN_LIKELY(lean_read_rc(o) > 1)) {
+        lean_dec_rc(o);
+    } else if (lean_read_rc(o) == 1) {
         push_back(todo, o);
-    } else if (o->m_rc == 0) {
+    } else if (lean_read_rc(o) == 0) {
         return;
     } else if (std::atomic_fetch_add_explicit(lean_get_rc_mt_addr(o), 1, std::memory_order_acq_rel) == -1) {
         push_back(todo, o);
@@ -440,8 +440,9 @@ static void lean_del_core(object * o, object * & todo) {
     }
 }
 
+__attribute__((no_sanitize("thread")))
 extern "C" LEAN_EXPORT void lean_dec_ref_cold(lean_object * o) {
-    if (o->m_rc == 1 || std::atomic_fetch_add_explicit(lean_get_rc_mt_addr(o), 1, std::memory_order_acq_rel) == -1) {
+    if (lean_read_rc(o) == 1 || std::atomic_fetch_add_explicit(lean_get_rc_mt_addr(o), 1, std::memory_order_acq_rel) == -1) {
 #ifdef LEAN_LAZY_RC
         push_back(g_to_free, o);
 #else
@@ -557,7 +558,7 @@ extern "C" LEAN_EXPORT void lean_mark_persistent(object * o) {
         object * o = todo.back();
         todo.pop_back();
         if (!lean_is_scalar(o) && lean_has_rc(o)) {
-            o->m_rc = 0;
+            lean_set_rc(o, 0);
 #if defined(__has_feature)
 #if __has_feature(address_sanitizer)
             // do not report as leak
@@ -642,7 +643,7 @@ extern "C" LEAN_EXPORT void lean_mark_mt(object * o) {
         object * o = todo.back();
         todo.pop_back();
         if (!lean_is_scalar(o) && lean_is_st(o)) {
-            o->m_rc = -o->m_rc;
+            lean_set_rc(o, -lean_read_rc(o));
             uint8_t tag = lean_ptr_tag(o);
             if (tag <= LeanMaxCtorTag) {
                 object ** it  = lean_ctor_obj_cptr(o);
@@ -1123,7 +1124,7 @@ void deactivate_task(lean_task_object * t) {
 }
 
 static inline void lean_set_task_header(lean_object * o) {
-    o->m_rc       = -1;
+    lean_set_rc(o, -1);
     o->m_tag      = LeanTask;
     o->m_other    = 0;
     o->m_cs_sz    = 0;
@@ -1259,8 +1260,8 @@ extern "C" LEAN_EXPORT void lean_io_cancel_core(b_obj_arg t) {
 
 extern "C" LEAN_EXPORT uint8_t lean_io_get_task_state_core(b_obj_arg t) {
     lean_task_object * o = lean_to_task(t);
-    if (!o->m_imp)
-        return 2; // finished
+    //if (!o->m_imp)
+    //    return 2; // finished
     return g_task_manager->get_task_state(o);
 }
 

@@ -299,6 +299,80 @@ typedef struct lean_task {
     lean_task_imp *        m_imp;
 } lean_task_object;
 
+#define ATOMIC_DEBUG 1
+
+#ifdef ATOMIC_DEBUG
+
+static inline _Atomic(int) * lean_get_rc_mt_addr(lean_object* o) {
+    return (_Atomic(int)*)(&(o->m_rc));
+}
+
+
+static inline int lean_read_rc(lean_object* o) {
+#ifdef __cplusplus
+    return std::atomic_load(lean_get_rc_mt_addr(o));
+#else
+    return atomic_load(lean_get_rc_mt_addr(o));
+#endif
+}
+
+static inline void lean_set_rc(lean_object* o, int rc) {
+#ifdef __cplusplus
+    std::atomic_store(lean_get_rc_mt_addr(o), rc);
+#else
+    atomic_store(lean_get_rc_mt_addr(o), rc);
+#endif
+}
+
+static inline void lean_inc_rc(lean_object* o) {
+#ifdef __cplusplus
+    std::atomic_fetch_add(lean_get_rc_mt_addr(o), 1);
+#else
+    atomic_fetch_add(lean_get_rc_mt_addr(o), 1);
+#endif
+}
+
+static inline void lean_add_rc(lean_object* o, int n) {
+#ifdef __cplusplus
+    std::atomic_fetch_add(lean_get_rc_mt_addr(o), n);
+#else
+    atomic_fetch_add(lean_get_rc_mt_addr(o), n);
+#endif
+}
+
+static inline void lean_dec_rc(lean_object* o) {
+#ifdef __cplusplus
+    std::atomic_fetch_sub(lean_get_rc_mt_addr(o), 1);
+#else
+    atomic_fetch_sub(lean_get_rc_mt_addr(o), 1);
+#endif
+}
+
+#else
+
+static inline int lean_read_rc(lean_object* o) {
+    return o->m_rc;
+}
+
+static inline void lean_set_rc(lean_object* o, int rc) {
+    o->m_rc = rc;
+}
+
+static inline void lean_inc_rc(lean_object* o) {
+    o->m_rc++;
+}
+
+static inline void lean_add_rc(lean_object* o, int n) {
+    o->m_rc += n;
+}
+
+static inline void lean_dec_rc(lean_object* o) {
+    o->m_rc--;
+}
+
+#endif
+
+
 typedef struct lean_promise {
     lean_object        m_header;
     lean_task_object * m_result;
@@ -338,6 +412,7 @@ LEAN_EXPORT LEAN_NORETURN void lean_internal_panic_out_of_memory(void);
 LEAN_EXPORT LEAN_NORETURN void lean_internal_panic_unreachable(void);
 LEAN_EXPORT LEAN_NORETURN void lean_internal_panic_rc_overflow(void);
 LEAN_EXPORT LEAN_NORETURN void lean_internal_panic_overflow(void);
+
 
 static inline bool lean_usize_mul_would_overflow(size_t a, size_t b) {
 #if defined(__GNUC__) || defined(__clang__)
@@ -533,30 +608,26 @@ LEAN_EXPORT size_t lean_object_byte_size(lean_object * o);
 LEAN_EXPORT size_t lean_object_data_byte_size(lean_object * o);
 
 static inline bool lean_is_mt(lean_object * o) {
-    return o->m_rc < 0;
+    return lean_read_rc(o) < 0;
 }
 
 static inline bool lean_is_st(lean_object * o) {
-    return o->m_rc > 0;
+    return lean_read_rc(o) > 0;
 }
 
 /* We never update the reference counter of objects stored in compact regions and allocated at initialization time. */
 static inline bool lean_is_persistent(lean_object * o) {
-    return o->m_rc == 0;
+    return lean_read_rc(o) == 0;
 }
 
 static inline bool lean_has_rc(lean_object * o) {
-    return o->m_rc != 0;
-}
-
-static inline _Atomic(int) * lean_get_rc_mt_addr(lean_object* o) {
-    return (_Atomic(int)*)(&(o->m_rc));
+    return lean_read_rc(o) != 0;
 }
 
 static inline void lean_inc_ref_n(lean_object * o, size_t n) {
     if (LEAN_LIKELY(lean_is_st(o))) {
-        o->m_rc += n;
-    } else if (o->m_rc != 0) {
+        lean_add_rc(o, n);
+    } else if (lean_read_rc(o) != 0) {
 #ifdef __cplusplus
         std::atomic_fetch_sub_explicit(lean_get_rc_mt_addr(o), n, std::memory_order_relaxed);
 #else
@@ -572,9 +643,9 @@ static inline void lean_inc_ref(lean_object * o) {
 LEAN_EXPORT void lean_dec_ref_cold(lean_object * o);
 
 static inline LEAN_ALWAYS_INLINE void lean_dec_ref(lean_object * o) {
-    if (LEAN_LIKELY(o->m_rc > 1)) {
-        o->m_rc--;
-    } else if (o->m_rc != 0) {
+    if (LEAN_LIKELY(lean_read_rc(o) > 1)) {
+        lean_dec_rc(o);
+    } else if (lean_read_rc(o) != 0) {
         lean_dec_ref_cold(o);
     }
 }
@@ -611,7 +682,7 @@ static inline lean_external_object * lean_to_external(lean_object * o) { assert(
 
 static inline bool lean_is_exclusive(lean_object * o) {
     if (LEAN_LIKELY(lean_is_st(o))) {
-        return o->m_rc == 1;
+        return lean_read_rc(o) == 1;
     } else {
         return false;
     }
@@ -623,7 +694,7 @@ static inline uint8_t lean_is_exclusive_obj(lean_object * o) {
 
 static inline bool lean_is_shared(lean_object * o) {
     if (LEAN_LIKELY(lean_is_st(o))) {
-        return o->m_rc > 1;
+        return lean_read_rc(o) > 1;
     } else {
         return false;
     }
@@ -633,7 +704,7 @@ LEAN_EXPORT void lean_mark_mt(lean_object * o);
 LEAN_EXPORT void lean_mark_persistent(lean_object * o);
 
 static inline void lean_set_st_header(lean_object * o, unsigned tag, unsigned other) {
-    o->m_rc       = 1;
+    lean_set_rc(o, 1);
     o->m_tag      = tag;
     o->m_other    = other;
 #ifndef LEAN_MIMALLOC
@@ -648,7 +719,7 @@ static inline void lean_set_non_heap_header(lean_object * o, size_t sz, unsigned
     assert(sz > 0);
     assert(sz < (1ull << 16));
     assert(sz == 1 || !lean_is_big_object_tag(tag));
-    o->m_rc       = 0;
+    lean_set_rc(o, 0);
     o->m_tag      = tag;
     o->m_other    = other;
     o->m_cs_sz    = sz;

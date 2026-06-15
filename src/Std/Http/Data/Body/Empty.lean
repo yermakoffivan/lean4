@@ -86,7 +86,7 @@ instance : Http.Body Empty where
 instance : Replayable Empty where
   resetInPlace _ := pure ()
 
-instance : Coe Empty Any := ⟨Any.ofBody⟩
+instance : Coe Empty Any := ⟨Any.ofReplayableBody⟩
 
 instance : Coe (Response Empty) (Response Any) where
   coe f := { f with }

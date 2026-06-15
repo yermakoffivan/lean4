@@ -436,7 +436,15 @@ def checkCloseError (stream : Stream) : Async Unit := do
   | none => pure ()
 
 instance : NextChunk Async where
-  nextChunk := Stream.recv
+  nextChunk stream := do
+    match ← Stream.recv stream with
+    | some chunk => return some chunk
+    | none =>
+      -- A consumer that was already blocked in `recv` when `closeWithError` fired is woken with
+      -- EOF (`none`); re-check the recorded terminal error so it surfaces as a thrown exception
+      -- rather than a silent short read, matching the `ContextAsync` instance below.
+      checkCloseError stream
+      return none
 
 instance : NextChunk ContextAsync where
   nextChunk stream := do

@@ -20,6 +20,8 @@ import Lean.Meta.Sym.DSimp.Variant
 import Lean.Meta.Sym.DSimp.Reduce
 import Lean.Meta.Sym.DSimp.DSimproc
 import Lean.Meta.Tactic.Apply
+import Lean.Meta.Tactic.Cbv.Main
+import Lean.Elab.Tactic.Location
 import Lean.Elab.SyntheticMVars
 namespace Lean.Elab.Tactic.Grind
 open Meta Grind
@@ -292,6 +294,15 @@ def elabDSimpVariant (variantName : Name) (args : DSimpArgs) : GrindTacticM (Sym
       let mvarNew ← mkFreshExprSyntheticOpaqueMVar target' decl.userName
       goal.mvarId.assign mvarNew
       replaceMainGoal [{ goal with mvarId := mvarNew.mvarId! }]
+
+@[builtin_grind_tactic Parser.Tactic.Grind.symCbv] def evalSymCbv : GrindTactic := fun _ => withMainContext do
+  ensureSym
+  let goal ← getMainGoal
+  let result ← liftGrindM <|
+    Lean.Meta.Tactic.Cbv.cbvGoalCore goal.mvarId
+  match result with
+  | none => replaceMainGoal []
+  | some mvarId => replaceMainGoal [{ goal with mvarId }]
 
 end
 

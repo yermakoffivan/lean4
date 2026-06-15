@@ -20,7 +20,7 @@ producer that has already been consumed and cannot be rewound.
 
 The HTTP client uses this to decide whether to follow method-preserving redirects (307/308):
 if the body is not replayable the redirect is not followed and the 307/308 response is returned
-to the caller, matching the behavior of reqwest.
+to the caller.
 -/
 
 namespace Std.Http.Body
@@ -30,8 +30,6 @@ set_option linter.all true
 
 /--
 A body that can be re-read from the start.
-
-- `resetInPlace`: resets the body's read position.
 -/
 class Replayable (α : Type) where
 

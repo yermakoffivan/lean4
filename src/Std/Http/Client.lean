@@ -52,7 +52,7 @@ structure Client.Builder where
   /--
   Maximum number of pooled connections per host.
   -/
-  maxPerHost : Nat := 1
+  maxPerHost : Nat := 4
 
   /--
   Erased connector function. Set via `.connector`.

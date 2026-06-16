@@ -196,10 +196,8 @@ def hostDefault (builder : Builder) (scheme : URI.Scheme) (host : URI.Host)
   if builder.line.headers.contains Header.Name.host then
     builder
   else
-    let defaultPort := URI.Scheme.defaultPort scheme
-    let hostValue :=
-      if port == defaultPort then toString host
-      else s!"{host}:{port}"
+    -- Derive the header value through the single canonical `host[:port]` formatter.
+    let hostValue := URI.Origin.hostHeader { scheme, host, port }
     builder.header! "Host" hostValue
 
 /--

@@ -297,7 +297,6 @@ def send {β : Type} [Coe β Body.Any] (pool : Agent.Pool) (origin : URI.Origin)
   let retries := if request.line.method.isIdempotent then pool.maxRetries else 0
 
   let attempts := retries + 1
-  let mut lastErr : IO.Error := .userError "no attempts"
 
   for attempt in 0...attempts do
     let session ← pool.getOrCreateSession origin
@@ -319,12 +318,12 @@ def send {β : Type} [Coe β Body.Any] (pool : Agent.Pool) (origin : URI.Origin)
 
     catch err =>
       pool.evictSession origin session.id
-      if attempt + 1 < attempts then
-        lastErr := err
-      else
+      -- Re-raise on the final attempt; earlier failures fall through to the next retry.
+      if attempt + 1 ≥ attempts then
         throw err
 
-  throw lastErr
+  -- Unreachable: the loop runs at least once and the final attempt always returns or throws.
+  throw (IO.userError "HTTP client retry loop exhausted without returning")
 
 end Agent.Pool
 end Std.Http.Client

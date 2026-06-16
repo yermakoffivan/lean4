@@ -6,6 +6,7 @@ Authors: Leonardo de Moura, Sebastian Ullrich
 module
 
 prelude
+import Init.System.Platform
 public import Lean.Language.Lean
 public import Lean.Server.References
 public import Lean.Util.Profiler
@@ -155,18 +156,77 @@ private structure IncrSnapshot where
   snap        : Language.Lean.InitialSnapshot
   initModIdxs : Array Nat
 
+/--
+Assembles `ModuleArtifacts`, the `--incr-save` helper file's format, from flat regions so that
+loading can be optimized. This is a subset of `.setup.json` but we don't want to demand `--setup`
+being used with save, so we reconstruct the needed information here.
+-/
+private def regionsToModuleArtifacts (regions : Array CompactedRegion) : Array ModuleArtifacts :=
+  Id.run do
+    -- base `.olean` path (as string) → its `ModuleArtifacts`, plus first-seen order for stability
+    let mut order : Array String := #[]
+    let mut byBase : Std.HashMap String ModuleArtifacts := {}
+    for region in regions do
+      let p := region.filePath
+      let (base, upd) : String × (ModuleArtifacts → ModuleArtifacts) :=
+        match p.extension with
+        | some "server"  => (p.withExtension "" |>.toString, fun a => { a with oleanServer? := p })
+        | some "private" => (p.withExtension "" |>.toString, fun a => { a with oleanPrivate? := p })
+        | some "ir"      => (p.withExtension "olean" |>.toString, fun a => { a with ir? := p })
+        | _              => (p.toString, fun a => { a with olean? := p })
+      unless byBase.contains base do
+        order := order.push base
+      byBase := byBase.insert base (upd (byBase.getD base {}))
+    return order.map (byBase[·]!)
+
+/--
+Reads all the regions of one module's `ModuleArtifacts`: the `.olean` variant chain (each variant
+read with only its prior siblings as deps) plus the `.ir` region (no deps, as in regular import).
+-/
+private unsafe def readModuleArtifactRegions (arts : ModuleArtifacts) :
+    IO (Array CompactedRegion) := do
+  let mut chainDeps : Array CompactedRegion := #[]
+  for partPath in arts.oleanParts do
+    let (_, region) ← CompactedRegion.read (α := ModuleData) partPath chainDeps
+    chainDeps := chainDeps.push region
+  if let some irPath := arts.ir? then
+    let (_, region) ← CompactedRegion.read (α := ModuleData) irPath #[]
+    chainDeps := chainDeps.push region
+  return chainDeps
+
 /-- Loads a snapshot saved by `--incr-(header-)save`. -/
 private unsafe def loadIncrSnapshot (fname : System.FilePath) :
     IO IncrSnapshot := do
   let depsFile := fname.addExtension "deps"
-  let depPaths : Array System.FilePath := (← IO.FS.lines depsFile).map (⟨·⟩)
-  let mut depRegions : Array CompactedRegion := #[]
-  for p in depPaths do
-    -- `depRegions` must be passed for `.olean <- .olean.server <- ...` pointer reuse.
-    let (_, region) ← CompactedRegion.read (α := ModuleData) p depRegions
-    depRegions := depRegions.push region
-  let (data, _region) ←
-    CompactedRegion.read (α := IncrSnapshot) fname depRegions
+  let moduleArts : Array ModuleArtifacts ←
+    match Json.parse (← IO.FS.readFile depsFile) >>= fromJson? with
+    | .ok arts => pure arts
+    | .error e => throw <| IO.userError s!"failed to parse snapshot deps file {depsFile}: {e}"
+  -- Modules are mutually independent (cross-module references go through the constant map, not
+  -- region pointers), so read them in parallel. Spawn exactly `numWorkers` striped tasks.
+  -- Parallelism overlaps each region's cold root-page fault I/O: for an `import Mathlib` snapshot,
+  -- sequential cold load is ~16 s, dropping to ~6 s at 4 workers. More workers help cold further
+  -- (~3 s at 32) but begin shifting the warm-cache case into a slower mode (`mmap` address-space
+  -- lock contention), so the default caps low to keep warm load time unchanged. Raise
+  -- `LEAN_IMPORT_WORKERS` to trade warm parity for faster cold loads.
+  let defaultNumWorkers := min (System.Platform.Internal.getHardwareConcurrency ()).toNat 4
+  let numWorkers := max 1 <|
+    ((← IO.getEnv "LEAN_IMPORT_WORKERS").bind (·.toNat?)).getD defaultNumWorkers
+  let mut chunkTasks := Array.emptyWithCapacity numWorkers
+  for w in 0...numWorkers do
+    -- worker `w` handles modules w, w+numWorkers, w+2·numWorkers, … (stripe for load balance)
+    chunkTasks := chunkTasks.push (← IO.asTask (do
+      let mut regions : Array CompactedRegion := #[]
+      let mut i := w
+      while i < moduleArts.size do
+        regions := regions ++ (← readModuleArtifactRegions moduleArts[i]!)
+        i := i + numWorkers
+      return regions))
+  let mut depRegions : Array CompactedRegion := Array.emptyWithCapacity (moduleArts.size * 4)
+  for t in chunkTasks do
+    depRegions := depRegions ++ (← IO.ofExcept t.get)
+  -- The snapshot region itself references every loaded dep region.
+  let (data, _region) ← CompactedRegion.read (α := IncrSnapshot) fname depRegions
   return data
 
 /--
@@ -229,6 +289,13 @@ def runFrontend
     let incr ← unsafe loadIncrSnapshot incrFile
     if let some res := incr.snap.processedResult.get then
       withImporting do
+        -- The central incr HACK:
+        -- Initializers roughly perform one of two functions: initializing their own variable, or
+        -- contributing to some IO.Ref whose value will likely end up in the environment. Any
+        -- environment changes should already be available in the loaded env, but we still need to
+        -- initialize global vars used even after the environment is assembled, so we run all
+        -- initializers. This works in practice but at least in theory, it could lead to some
+        -- divergence in behavior when strange initializers are involved.
         unsafe Lean.runInitAttrsForModules res.cmdState.env incr.initModIdxs opts
       -- `withImporting` resets the initializer-execution flag in `finally`, but the slow path in
       -- `Language.Lean.process` (taken when the loaded header doesn't match the new file's
@@ -249,17 +316,16 @@ def runFrontend
   let finalOpts := cmdState.scopes[0]!.opts
 
   -- Saves `snapToSave` wrapped with the init-mod indices used by `runInitAttrsForModules` on load.
-  -- Writes a `<incrFile>.deps` helper alongside: the dep paths parallel to `env.header.regions`,
-  -- needed to map the snapshot back in before we can access `env`.
+  -- Writes a `<incrFile>.deps` JSON helper alongside: the dep regions grouped per module (see
+  -- `regionsToModuleArtifacts`), needed to map the snapshot back in before we can access `env`.
   let saveSnap (incrFile : System.FilePath) (snapToSave : Language.Lean.InitialSnapshot) :
       IO Unit := do
     let toSave : IncrSnapshot :=
       { snap := snapToSave, initModIdxs := getRegularInitAttrModIdxs env }
     let compactor ← (unsafe CompactedRegion.save incrFile `_snap toSave
       env.header.regions none (allowClosures := true))
-    let depPaths : Array System.FilePath := env.header.regions.map CompactedRegion.filePath
-    IO.FS.writeFile (incrFile.addExtension "deps") <|
-      String.intercalate "\n" (depPaths.toList.map (·.toString))
+    let moduleArts := regionsToModuleArtifacts env.header.regions
+    IO.FS.writeFile (incrFile.addExtension "deps") (toJson moduleArts).compress
     Runtime.forget compactor
 
   -- save full incremental snapshot for next invocation

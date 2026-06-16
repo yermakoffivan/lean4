@@ -231,6 +231,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_ssl_set_server_name(b_obj_arg ssl, b_ob
 
 /* Std.Internal.SSL.Session.verifyResult (ssl : @& Session) : IO UInt64 */
 extern "C" LEAN_EXPORT lean_obj_res lean_ssl_verify_result(b_obj_arg ssl) {
+    ERR_clear_error();
     lean_ssl_session_object * ssl_obj = lean_to_ssl_session_object(ssl);
     long result = SSL_get_verify_result(ssl_obj->ssl);
 
@@ -242,6 +243,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_ssl_verify_result(b_obj_arg ssl) {
 
 /* Std.Internal.SSL.Session.verifyResultString (ssl : @& Session) : IO String */
 extern "C" LEAN_EXPORT lean_obj_res lean_ssl_verify_result_string(b_obj_arg ssl) {
+    ERR_clear_error();
     lean_ssl_session_object * ssl_obj = lean_to_ssl_session_object(ssl);
     long result = SSL_get_verify_result(ssl_obj->ssl);
 
@@ -469,6 +471,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_ssl_pending_encrypted(b_obj_arg ssl) {
 
 /* Std.Internal.SSL.Session.negotiatedVersion (ssl : @& Session) : IO String */
 extern "C" LEAN_EXPORT lean_obj_res lean_ssl_negotiated_version(b_obj_arg ssl) {
+    ERR_clear_error();
     lean_ssl_session_object * ssl_obj = lean_to_ssl_session_object(ssl);
     const char * version = SSL_get_version(ssl_obj->ssl);
     return lean_io_result_mk_ok(lean_mk_string(version != nullptr ? version : "unknown"));

@@ -36,7 +36,7 @@ let res ← client.get (URI.parse! "https://api.example.com/data")
 
 /--
 A top-level HTTP client backed by a connection pool.
-s-/
+-/
 abbrev Client := Client.Agent.Pool
 
 /--
@@ -86,7 +86,9 @@ def proxy? (b : Client.Builder) (url : String) : Option Client.Builder := do
   let auth ← uri.authority
   let host := toString auth.host
 
-  let port := if let .value v := auth.port then v else 0
+  -- An omitted or empty port falls back to the scheme's default (80 for `http`); never `0`,
+  -- which is not a connectable destination.
+  let port := uri.port
 
   pure { b with config := { b.config with proxy := some (host, port) } }
 

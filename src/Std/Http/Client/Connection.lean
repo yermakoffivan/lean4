@@ -188,6 +188,14 @@ structure ConnectionState where
   -/
   inFlight : Option InFlightState
 
+  /--
+  Absolute wall-clock deadline for the in-flight request/response exchange, or `none` while idle.
+  Enforces `config.requestTimeout` as a bound on the *whole* exchange (send + receive), unlike
+  `currentTimeout`, which only bounds the idle gap between successive I/O events. Set when a request
+  goes in-flight and cleared on completion.
+  -/
+  requestDeadline : Option Timestamp := none
+
 namespace ConnectionState
 
 /--
@@ -291,12 +299,11 @@ private def pollNextEvent
     |>.min config.maxRecvChunkSize
     |>.toUInt64
 
+  -- The connection context is an external shutdown hook; the client never cancels it with a
+  -- `.deadline` reason (request timeouts are enforced via `requestDeadline` below), so any
+  -- cancellation is treated as a shutdown.
   let mut selectables : Array (Selectable Recv) := #[
-    .case connectionContext.doneSelector (fun _ => do
-      let reason ← connectionContext.getCancellationReason
-      match reason with
-      | some .deadline => pure .timeout
-      | _ => pure .shutdown)
+    .case connectionContext.doneSelector (fun _ => pure .shutdown)
   ]
 
   if pollSocket then
@@ -304,6 +311,13 @@ private def pollNextEvent
 
     let timeout := state.keepAliveTimeout.getD state.currentTimeout
     selectables := selectables.push (.case (← Selector.sleep timeout) (fun _ => pure .timeout))
+
+    -- Bound the whole exchange, not just the idle gap: `currentTimeout` is re-armed on every
+    -- event, so on its own it never caps total duration (a server that dribbles bytes could keep
+    -- the exchange alive indefinitely). The absolute `requestDeadline` closes that gap.
+    if let some deadline := state.requestDeadline then
+      selectables := selectables.push
+        (.case (← Selector.sleep (deadline - (← Timestamp.now)).toMilliseconds) (fun _ => pure .timeout))
 
   else if let some idleTimeout := state.keepAliveTimeout then
       selectables := selectables.push (.case (← Selector.sleep idleTimeout) (fun _ => pure .timeout))
@@ -398,6 +412,7 @@ private def processH1Events
       closeAllRequestState st
       st := { st with
         inFlight := none
+        requestDeadline := none
         keepAliveTimeout := some config.keepAliveTimeout.val
         currentTimeout := config.keepAliveTimeout.val
       }
@@ -432,7 +447,10 @@ private def abortState (state : ConnectionState) (err : IO.Error) : Async Connec
     if ¬(← Body.isClosed body) then body.closeWithError err
 
   closeAllRequestState state
-  return { state with machine := state.machine.closeWriter.closeReader.noMoreInput, inFlight := none }
+  return { state with
+    machine := state.machine.closeWriter.closeReader.noMoreInput
+    inFlight := none
+    requestDeadline := none }
 
 /--
 Pure transition for a new request packet that has already had its known body
@@ -519,7 +537,9 @@ private def handleRecvEvent (config : Config) (state : ConnectionState) : Recv �
   | .packet (some packet) => do
     let knownSize ← packet.request.body.getKnownSize
     let responseStream ← Body.mkStream
-    return (onNewPacket config packet knownSize responseStream state, false)
+    let deadline := (← Timestamp.now) + config.requestTimeout.val
+    let state := onNewPacket config packet knownSize responseStream state
+    return ({ state with requestDeadline := some deadline }, false)
 
   | .packet none => do
     return (state, true)

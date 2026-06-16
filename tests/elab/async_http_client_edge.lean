@@ -1152,3 +1152,21 @@ private def sendInBackground {β : Type} [Coe β Body.Any]
   unless reqText.contains "part-1" && reqText.contains "part-2" do
     throw <| IO.userError
       s!"chunked body must contain all streamed parts:\n{reqText.quote}"
+
+-- ============================================================
+-- Section — Proxy URL parsing
+-- ============================================================
+
+-- A proxy URL whose authority omits the port must fall back to the scheme's default
+-- port (80 for `http`), never `0`, which is not a connectable destination.
+#guard
+  (Client.builder.proxy? "http://proxy.example.com").map (·.config.proxy)
+    == some (some ("proxy.example.com", 80))
+
+-- An explicit proxy port is preserved as-is.
+#guard
+  (Client.builder.proxy? "http://proxy.example.com:8080").map (·.config.proxy)
+    == some (some ("proxy.example.com", 8080))
+
+-- Non-`http` proxy schemes are rejected (HTTPS proxies need TLS tunnelling).
+#guard (Client.builder.proxy? "https://proxy.example.com").isNone

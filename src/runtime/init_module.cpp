@@ -16,6 +16,7 @@ Author: Leonardo de Moura
 #include "runtime/libuv.h"
 #include "runtime/openssl.h"
 #include "runtime/openssl/context.h"
+#include "runtime/openssl/session.h"
 
 namespace lean {
 extern "C" LEAN_EXPORT void lean_initialize_runtime_module() {
@@ -29,6 +30,7 @@ extern "C" LEAN_EXPORT void lean_initialize_runtime_module() {
     initialize_stack_overflow();
     initialize_openssl();
     initialize_openssl_context();
+    initialize_openssl_session();
     initialize_libuv();
 }
 void initialize_runtime_module() {

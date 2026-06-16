@@ -84,15 +84,18 @@ def anyFromStreamNotReplayable : Async Unit := do
 
 #eval anyFromStreamNotReplayable.block
 
--- Any wrapping an Empty via Coe sets isReplayable = false
--- (Empty uses ofBody, not ofReplayableBody, so the flag is false)
+-- Any wrapping an Empty via Coe sets isReplayable = true: an empty body is trivially
+-- replayable (reset is a no-op), so method-preserving redirects (307/308) on a bodyless
+-- request may be followed.
 
-def anyFromEmptyNotReplayable : Async Unit := do
+def anyFromEmptyIsReplayable : Async Unit := do
   let e : Body.Empty := {}
   let any : Body.Any := e
-  assert! !any.isReplayable
+  assert! any.isReplayable
+  any.resetInPlace
+  assert! (← any.recv).isNone
 
-#eval anyFromEmptyNotReplayable.block
+#eval anyFromEmptyIsReplayable.block
 
 -- Any.ofReplayableBody sets isReplayable = true and resetInPlace works
 

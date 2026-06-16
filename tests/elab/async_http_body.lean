@@ -791,3 +791,39 @@ def responseBuilderNoBodyAlwaysClosed : Async Unit := do
   assert! result.isNone
 
 #eval responseBuilderNoBodyAlwaysClosed.block
+
+-- Test closeWithError: a recv issued *after* the stream is closed with an error surfaces it.
+
+def recvAfterCloseWithErrorThrows : Async Unit := do
+  let stream ← Body.mkStream
+  stream.closeWithError (IO.userError "boom")
+  let threw ←
+    try
+      let _ ← stream.recv
+      pure false
+    catch _ =>
+      pure true
+  assert! threw
+
+#eval recvAfterCloseWithErrorThrows.block
+
+-- Test closeWithError: a consumer already blocked in `readAll` (Async) when the stream is closed
+-- with an error must observe a thrown exception, not a silent EOF / short read. This is the path
+-- the client's `abortState` relies on (e.g. response body limit exceeded, mid-stream failure).
+
+def asyncReadAllSurfacesCloseError : Async Unit := do
+  let stream ← Body.mkStream
+  -- `readAll` in `Async` goes through the `NextChunk Async` instance; the consumer blocks in `recv`.
+  let readTask ← async (t := AsyncTask) <| (stream.readAll (α := ByteArray) : Async ByteArray)
+  -- Yield so the consumer occupies the single pending-consumer slot before we fail the stream.
+  let _ ← Selectable.one #[ .case (← Selector.sleep 50) pure ]
+  stream.closeWithError (IO.userError "mid-stream failure")
+  let threw ←
+    try
+      let _ ← await readTask
+      pure false
+    catch _ =>
+      pure true
+  assert! threw
+
+#eval asyncReadAllSurfacesCloseError.block

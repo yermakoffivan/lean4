@@ -695,7 +695,6 @@ private def processHeaders (machine : Machine dir) : Machine dir :=
   match checkMessageHead machine.reader.messageHead with
   | .error err => machine.setFailure err
   | .ok mode =>
-    let mode := suppressIncomingBodyIfHead machine mode
     if exceedsBodyLimitForMode machine mode then
       machine.setFailure .entityTooLarge
     else
@@ -1553,15 +1552,7 @@ When upper layers are not pulling body chunks, the machine drains body bytes
 internally to keep parsing/connection progress moving.
 -/
 private partial def processReadBodyState (machine : Machine dir) (bodyState : Reader.BodyState) : Machine dir :=
-  -- Auto-drain when the body is internal (1xx responses on the client), or
-  -- when the client is reading a response with known zero length: `.fixed 0`
-  -- has no bytes to expose, so waiting for a caller `pullBody` would stall the
-  -- connection indefinitely on responses that must not carry a body (204,
-  -- 304, HEAD responses). Server-side (`.receiving`) keeps the existing
-  -- semantics so handlers can observe the body stream explicitly.
-  let autoDrain := drainBodyInternally machine || (dir matches .sending ∧ bodyState matches .fixed 0)
-
-  if autoDrain then
+  if drainBodyInternally machine then
     let (machine, _pulledChunk, shouldContinue) := parseBody machine bodyState
     if shouldContinue then processRead machine else machine
   else
@@ -1650,9 +1641,15 @@ private partial def pullNextChunk (machine : Machine dir) : Machine dir × Optio
   | .readBody bodyState =>
     let (machine, pulledChunk, shouldContinue) := parseBody machine bodyState
     match pulledChunk with
-    | some _ => (machine, pulledChunk)
-    | none => if shouldContinue then pullNextChunk machine else (machine, none)
-  | _ => (machine, none)
+    | some _ =>
+      (machine, pulledChunk)
+    | none =>
+      if shouldContinue then
+        pullNextChunk machine
+      else
+        (machine, none)
+  | _ =>
+    (machine, none)
 
 /--
 Pulls at most one body chunk from the reader.

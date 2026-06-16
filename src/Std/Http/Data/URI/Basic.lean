@@ -384,32 +384,6 @@ def toDecodedSegments (p : Path) : Array String :=
   p.segments.map fun seg =>
     seg.decode.getD (toString seg)
 
-/--
-Returns `true` if `pre` is a segment-wise prefix of `p`. Each segment in `pre` must equal
-the corresponding segment in `p` by encoded value. An absolute `pre` additionally requires
-`p` to be absolute.
--/
-def startsWith (p pre : Path) : Bool :=
-  (!pre.absolute || p.absolute) &&
-  pre.segments.size ≤ p.segments.size &&
-  (Array.range pre.segments.size).all fun i => p.segments[i]! == pre.segments[i]!
-
-/--
-Returns `true` if the path ends with a trailing slash. The root path (`/`) is considered to
-have a trailing slash.
--/
-def hasTrailingSlash (p : Path) : Bool :=
-  (p.absolute && p.segments.isEmpty) ||
-  (p.segments.back?.map (toString · == "") |>.getD false)
-
-/--
-Ensures the path ends with a trailing slash by appending an empty segment if needed. Idempotent:
-the root path (`/`) and any path already ending with `/` are returned unchanged.
--/
-def ensureTrailingSlash (p : Path) : Path :=
-  if p.hasTrailingSlash then p
-  else { p with segments := p.segments.push (EncodedSegment.encode "") }
-
 end Path
 
 /--
@@ -978,45 +952,6 @@ instance : ToString URIReference where
   toString
     | .absolute uri => toString uri
     | .relative ref => toString ref
-
-namespace URIReference
-
-/--
-Returns the path component of this reference.
--/
-def path : URIReference → URI.Path
-  | .absolute uri => uri.path
-  | .relative ref => ref.path
-
-/--
-Returns the query component of this reference.
--/
-def query : URIReference → URI.Query
-  | .absolute uri => uri.query
-  | .relative ref => ref.query
-
-/--
-Returns the authority component of this reference, if present.
--/
-def authority? : URIReference → Option URI.Authority
-  | .absolute uri => uri.authority
-  | .relative ref => ref.authority
-
-/--
-Returns the scheme of this reference, if present (i.e., only for absolute URIs).
--/
-def scheme? : URIReference → Option URI.Scheme
-  | .absolute uri => some uri.scheme
-  | .relative _ => none
-
-/--
-Returns the fragment of this reference, if present.
--/
-def fragment? : URIReference → Option String
-  | .absolute uri => uri.fragment
-  | .relative ref => ref.fragment
-
-end URIReference
 
 /--
 HTTP request target forms as defined in RFC 9112 Section 3.3.

@@ -371,8 +371,10 @@ extern "C" LEAN_EXPORT lean_obj_res lean_ssl_read(b_obj_arg ssl, uint64_t max_by
         max_bytes = INT_MAX;
     }
 
-    lean_object * out = lean_alloc_sarray(1, 0, max_bytes);
-    int rc = SSL_read(ssl_obj->ssl, (void*)lean_sarray_cptr(out), (int)max_bytes);
+    size_t cap = max_bytes < SSL3_RT_MAX_PLAIN_LENGTH ? (size_t)max_bytes : (size_t)SSL3_RT_MAX_PLAIN_LENGTH;
+
+    lean_object * out = lean_alloc_sarray(1, 0, cap);
+    int rc = SSL_read(ssl_obj->ssl, (void*)lean_sarray_cptr(out), (int)cap);
 
     if (rc > 0) {
         lean_sarray_set_size(out, (size_t)rc);

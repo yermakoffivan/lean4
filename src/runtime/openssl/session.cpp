@@ -231,6 +231,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_ssl_set_server_name(b_obj_arg ssl, b_ob
 
 /* Std.Internal.SSL.Session.verifyResult (ssl : @& Session) : IO UInt64 */
 extern "C" LEAN_EXPORT lean_obj_res lean_ssl_verify_result(b_obj_arg ssl) {
+    ERR_clear_error();
     lean_ssl_session_object * ssl_obj = lean_to_ssl_session_object(ssl);
     long result = SSL_get_verify_result(ssl_obj->ssl);
 
@@ -242,6 +243,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_ssl_verify_result(b_obj_arg ssl) {
 
 /* Std.Internal.SSL.Session.verifyResultString (ssl : @& Session) : IO String */
 extern "C" LEAN_EXPORT lean_obj_res lean_ssl_verify_result_string(b_obj_arg ssl) {
+    ERR_clear_error();
     lean_ssl_session_object * ssl_obj = lean_to_ssl_session_object(ssl);
     long result = SSL_get_verify_result(ssl_obj->ssl);
 
@@ -356,16 +358,23 @@ extern "C" LEAN_EXPORT lean_obj_res lean_ssl_read(b_obj_arg ssl, uint64_t max_by
         }
         // Use flush_and_return_want for both WANT_READ and WANT_WRITE so that any
         // pending_writes are flushed before signalling which I/O the caller needs.
-        // This keeps the peek path consistent with the main read path below.
-        return flush_and_return_want(ssl_obj, err);
+        // This keeps the peek path consistent with the main read path below. Any other
+        // error (e.g. SSL_ERROR_SSL on a corrupt record) is fatal and must be surfaced,
+        // not masked as a want-I/O signal.
+        if (err == SSL_ERROR_WANT_READ || err == SSL_ERROR_WANT_WRITE) {
+            return flush_and_return_want(ssl_obj, err);
+        }
+        return mk_openssl_io_error("SSL_peek failed", err);
     }
 
     if (max_bytes > INT_MAX) {
         max_bytes = INT_MAX;
     }
 
-    lean_object * out = lean_alloc_sarray(1, 0, max_bytes);
-    int rc = SSL_read(ssl_obj->ssl, (void*)lean_sarray_cptr(out), (int)max_bytes);
+    size_t cap = max_bytes < SSL3_RT_MAX_PLAIN_LENGTH ? (size_t)max_bytes : (size_t)SSL3_RT_MAX_PLAIN_LENGTH;
+
+    lean_object * out = lean_alloc_sarray(1, 0, cap);
+    int rc = SSL_read(ssl_obj->ssl, (void*)lean_sarray_cptr(out), (int)cap);
 
     if (rc > 0) {
         lean_sarray_set_size(out, (size_t)rc);
@@ -464,6 +473,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_ssl_pending_encrypted(b_obj_arg ssl) {
 
 /* Std.Internal.SSL.Session.negotiatedVersion (ssl : @& Session) : IO String */
 extern "C" LEAN_EXPORT lean_obj_res lean_ssl_negotiated_version(b_obj_arg ssl) {
+    ERR_clear_error();
     lean_ssl_session_object * ssl_obj = lean_to_ssl_session_object(ssl);
     const char * version = SSL_get_version(ssl_obj->ssl);
     return lean_io_result_mk_ok(lean_mk_string(version != nullptr ? version : "unknown"));

@@ -113,6 +113,10 @@ private def isReplayBody : RedirectBodyAction → Bool
   | some p => p.method == .post && isReplayBody p.bodyAction
   | none => false
 
+-- HTTP/1.0 301 preserves POST, so a NON-replayable body must make it terminal: the method is kept,
+-- so it would otherwise be followed with a `.replay` action that the body cannot satisfy.
+#guard isDone (decideRedirect origin (mkReq .post (version := .v10)) false false .v10 .movedPermanently (withLocation "/x"))
+
 -- 307 preserves POST and replays the body when replayable.
 #guard match plan? (decideRedirect origin (mkReq .post) true false .v11 .temporaryRedirect (withLocation "/x")) with
   | some p => p.method == .post && isReplayBody p.bodyAction

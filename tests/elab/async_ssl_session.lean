@@ -308,3 +308,35 @@ def testVerifyResultString (certFile keyFile : String) : IO Unit := do
 #eval do
   let (certFile, keyFile) ← setupTestCerts
   testVerifyResultString certFile keyFile
+
+/-- Returns `true` if `act` raised an `IO` exception. -/
+def threw (act : IO α) : IO Bool := do
+  try
+    discard act; return false
+  catch _ =>
+    return true
+
+#eval do
+  let (certFile, keyFile) ← setupTestCerts
+  let serverCtx ← Context.Server.mk
+  serverCtx.configure certFile keyFile
+  let clientCtx ← Context.Client.mk
+  clientCtx.configure "" false
+  let s ← Session.Server.mk serverCtx
+  let c ← Session.Client.mk clientCtx
+  runHandshake s.toSession c.toSession
+
+  -- A corrupt encrypted record fed into the server's input BIO.
+  let garbage := ByteArray.mk (List.replicate 64 (0x17 : UInt8)).toArray
+
+  -- Normal read raises on the fatal record.
+  discard <| s.feedEncrypted garbage
+  let threwNormal ← threw (s.read? 1)
+
+  -- The peek path (`read? 0`) must ALSO raise, not silently return `.wantIO`.
+  discard <| s.feedEncrypted garbage
+  let threwPeek ← threw (s.read? 0)
+
+  unless threwNormal && threwPeek do
+    throw <| IO.userError
+      s!"read? must raise on a corrupt record: read? 1 threw={threwNormal}, read? 0 threw={threwPeek}"

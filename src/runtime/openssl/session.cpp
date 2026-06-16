@@ -356,8 +356,13 @@ extern "C" LEAN_EXPORT lean_obj_res lean_ssl_read(b_obj_arg ssl, uint64_t max_by
         }
         // Use flush_and_return_want for both WANT_READ and WANT_WRITE so that any
         // pending_writes are flushed before signalling which I/O the caller needs.
-        // This keeps the peek path consistent with the main read path below.
-        return flush_and_return_want(ssl_obj, err);
+        // This keeps the peek path consistent with the main read path below. Any other
+        // error (e.g. SSL_ERROR_SSL on a corrupt record) is fatal and must be surfaced,
+        // not masked as a want-I/O signal.
+        if (err == SSL_ERROR_WANT_READ || err == SSL_ERROR_WANT_WRITE) {
+            return flush_and_return_want(ssl_obj, err);
+        }
+        return mk_openssl_io_error("SSL_peek failed", err);
     }
 
     if (max_bytes > INT_MAX) {

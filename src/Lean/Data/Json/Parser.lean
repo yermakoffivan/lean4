@@ -99,22 +99,24 @@ position at the terminating character (or end of input).
   let stop := skipStrChars it.2
   .success ⟨it.1, stop⟩ (String.extract it.2 stop)
 
-@[inline] partial def str : Parser String := go ""
-where go (acc : String) : Parser String := do
-  -- Scan and copy the next run of unescaped characters in one allocation, only accumulating into
-  -- `acc` across the boundaries that escape sequences force.
-  let run ← strRun
-  let acc := if acc.isEmpty then run else if run.isEmpty then acc else acc ++ run
-  let c ← peek!
-  if c == '"' then
-    skip
-    return acc
-  else if c == '\\' then
-    skip
-    go (acc.push (← escapedChar))
-  else
-    skip
-    fail "unexpected character in string"
+@[inline] partial def str : Parser String :=
+  go ""
+where
+  go (acc : String) : Parser String := do
+    -- Scan and copy the next run of unescaped characters in one allocation, only accumulating into
+    -- `acc` across the boundaries that escape sequences force.
+    let run ← strRun
+    let acc := if acc.isEmpty then run else acc ++ run
+    let c ← peek!
+    if c == '"' then
+      skip
+      return acc
+    else if c == '\\' then
+      skip
+      go (acc.push (← escapedChar))
+    else
+      skip
+      fail "unexpected character in string"
 
 
 partial def natCore (acc : Nat) : Parser Nat := do

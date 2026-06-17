@@ -107,17 +107,13 @@ where
     -- `acc` across the boundaries that escape sequences force.
     let run ← strRun
     let acc := if acc.isEmpty then run else acc ++ run
-    let c ← peek!
+    let c ← any
     if c == '"' then
-      skip
       return acc
     else if c == '\\' then
-      skip
       go (acc.push (← escapedChar))
     else
-      skip
       fail "unexpected character in string"
-
 
 partial def natCore (acc : Nat) : Parser Nat := do
   if ← isEof then

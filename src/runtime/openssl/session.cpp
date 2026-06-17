@@ -11,6 +11,7 @@ Author: Sofia Rodrigues
 
 #ifndef LEAN_EMSCRIPTEN
 #include <openssl/x509v3.h>
+#include <openssl/x509_vfy.h>
 #endif
 
 namespace lean {
@@ -235,9 +236,10 @@ extern "C" LEAN_EXPORT lean_obj_res lean_ssl_verify_result(b_obj_arg ssl) {
     lean_ssl_session_object * ssl_obj = lean_to_ssl_session_object(ssl);
     long result = SSL_get_verify_result(ssl_obj->ssl);
 
-    // X509 error codes are always non-negative. Clamp negative internal sentinels to 0
-    // so the uint64_t representation is always a valid X509_V_* code.
-    uint64_t code = (result < 0) ? 0 : (uint64_t)result;
+    // X509 error codes are always non-negative. Map any unexpected negative sentinel to
+    // X509_V_ERR_UNSPECIFIED rather than 0, since 0 is X509_V_OK (success) and must not be
+    // synthesized for an unknown failure.
+    uint64_t code = (result < 0) ? (uint64_t)X509_V_ERR_UNSPECIFIED : (uint64_t)result;
     return lean_io_result_mk_ok(lean_box_uint64(code));
 }
 

@@ -111,7 +111,10 @@ certificate CN/SAN. Must be called before the handshake.
 opaque setServerName (ssl : @& Session) (host : @& String) : IO Unit
 
 /--
-Gets the X.509 verify result code after handshake.
+Gets the X.509 verification result code after the handshake (`0` is `X509_V_OK`).
+
+OpenSSL also returns `X509_V_OK` when the peer presented no certificate at all, so a `0` result
+does not by itself prove an authenticated peer; confirm a certificate was received when that matters.
 -/
 @[extern "lean_ssl_verify_result"]
 opaque verifyResult (ssl : @& Session) : IO UInt64
@@ -140,6 +143,9 @@ opaque write (ssl : @& Session) (data : @& ByteArray) : IO (Option IOWant)
 
 /--
 Attempts to read decrypted plaintext data.
+
+At most one TLS record's worth of plaintext (16 KiB, `SSL3_RT_MAX_PLAIN_LENGTH`) is returned per
+call, regardless of `maxBytes`; call again to read further data.
 
 When `maxBytes == 0`, performs a non-consuming peek: returns `.data ByteArray.empty` if any data is
 available (without consuming it), or `.wantIO` if not. Used by `waitReadable` to check readability
@@ -176,8 +182,12 @@ Returns the amount of decrypted plaintext bytes currently buffered inside the SS
 opaque pendingPlaintext (ssl : @& Session) : IO UInt64
 
 /--
-Returns the negotiated TLS protocol version string after the handshake completes,
-e.g. `"TLSv1.3"` or `"TLSv1.2"`. Returns `"unknown"` if called before the handshake.
+Returns the negotiated TLS protocol version string, e.g. `"TLSv1.3"` or `"TLSv1.2"`.
+
+Before the handshake completes this returns the highest protocol version the session is configured
+to offer rather than a negotiated value, so only treat the result as authoritative after a
+successful handshake. `"unknown"` is returned only in the unexpected case that OpenSSL reports no
+version at all.
 -/
 @[extern "lean_ssl_negotiated_version"]
 opaque negotiatedVersion (ssl : @& Session) : IO String

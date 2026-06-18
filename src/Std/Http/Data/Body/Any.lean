@@ -66,28 +66,27 @@ structure Any where
   setKnownSize : Option Body.Length → Async Unit
 
   /--
-  `true` when this body can be re-read after being consumed.
-  Set by `Any.ofReplayableBody`; `false` for non-replayable bodies (e.g. `Body.Stream`).
-  The HTTP client uses this to decide whether to follow 307/308 redirects.
+  Reset action for a body that can be re-read after being consumed.
+  Stored privately so `Any.isReplayable` is derived from the presence of a reset action.
   -/
-  isReplayable : Bool := false
-
-  /--
-  Resets this body's read state so it can be re-read from the start.
-  Only meaningful when `isReplayable = true`.
-  -/
-  resetInPlace : Async Unit := pure ()
-
-instance : Http.Body Any where
-  recv := Any.recv
-  close := Any.close
-  isClosed := Any.isClosed
-  recvSelector := Any.recvSelector
-  tryRecv := Any.tryRecv
-  getKnownSize := Any.getKnownSize
-  setKnownSize := Any.setKnownSize
+  private reset? : Option (Async Unit) := none
 
 namespace Any
+
+  /--
+  Returns `true` when this body can be re-read after being consumed.
+  -/
+def isReplayable (body : Any) : Bool :=
+  body.reset?.isSome
+
+/--
+Resets this body's read state so it can be re-read from the start.
+For non-replayable bodies, this is a no-op.
+-/
+def resetInPlace (body : Any) : Async Unit :=
+  match body.reset? with
+  | some reset => reset
+  | none => pure ()
 
 /--
 Erases a body of any `Http.Body` instance into a `Body.Any`.
@@ -102,8 +101,7 @@ def ofBody [Http.Body α] (body : α) : Any where
   setKnownSize := Http.Body.setKnownSize body
 
 /--
-Erases a replayable body into a `Body.Any`, preserving replay capability.
-Sets `isReplayable = true` and wires `resetInPlace` from the `Replayable` instance.
+Erases a replayable body into a `Body.Any`, preserving its reset action.
 -/
 def ofReplayableBody [Http.Body α] [Replayable α] (body : α) : Any where
   recv := Http.Body.recv body
@@ -113,8 +111,17 @@ def ofReplayableBody [Http.Body α] [Replayable α] (body : α) : Any where
   tryRecv := Http.Body.tryRecv body
   getKnownSize := Http.Body.getKnownSize body
   setKnownSize := Http.Body.setKnownSize body
-  isReplayable := true
-  resetInPlace := Replayable.resetInPlace body
+  reset? := some (Replayable.resetInPlace body)
 
 end Any
+
+instance : Http.Body Any where
+  recv := Any.recv
+  close := Any.close
+  isClosed := Any.isClosed
+  recvSelector := Any.recvSelector
+  tryRecv := Any.tryRecv
+  getKnownSize := Any.getKnownSize
+  setKnownSize := Any.setKnownSize
+
 end Std.Http.Body

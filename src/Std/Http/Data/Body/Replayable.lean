@@ -17,10 +17,6 @@ A typeclass for HTTP body types whose content can be re-read from the start.
 
 `Body.Full` implements `Replayable`; `Body.Stream` does not because its bytes come from a live
 producer that has already been consumed and cannot be rewound.
-
-The HTTP client uses this to decide whether to follow method-preserving redirects (307/308):
-if the body is not replayable the redirect is not followed and the 307/308 response is returned
-to the caller.
 -/
 
 namespace Std.Http.Body

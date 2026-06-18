@@ -12,6 +12,9 @@ public import Lean.OriginalConstKind
 public import Lean.AutoDecl
 import Lean.Linter.Init
 import Lean.Compiler.MetaAttr
+import Lean.Meta.Check  -- for the `linter.declCheckImplicit` linter
+import Lean.Meta.Instances  -- for the `linter.declCheckImplicit` linter
+import Lean.ReducibilityAttrs  -- for the `linter.declCheckImplicit` linter
 import all Lean.OriginalConstKind  -- for accessing `privateConstKindsExt`
 
 public section
@@ -92,6 +95,83 @@ def warnIfUsesSorry (decl : Declaration) : CoreM Unit := do
       else
         -- This case should not happen, but it ensures a warning will get logged no matter what.
         logWarning <| .tagged `hasSorry m!"declaration uses `sorry`"
+
+/-- If `linter.declCheckImplicit` is set to true, declarations whose type is type-correct at
+`.default` transparency but not at `.implicit` transparency generate a warning suggesting the
+definitions that should be marked `@[implicit_reducible]`. -/
+register_builtin_option linter.declCheckImplicit : Bool := {
+  defValue := false
+  descr    := "warn when a declaration's type is not type-correct at `.implicit` transparency"
+}
+
+/-- The top-level `(name, type)` pairs whose types `warnIfDeclIllTypedAtImplicit` checks:
+definitions, theorems, opaque constants, and axioms. Inductives and `Quot` are skipped. -/
+private def declTypesToCheck : Declaration → Array (Name × Expr)
+  | .axiomDecl v       => #[(v.name, v.type)]
+  | .defnDecl v        => #[(v.name, v.type)]
+  | .thmDecl v         => #[(v.name, v.type)]
+  | .opaqueDecl v      => #[(v.name, v.type)]
+  | .mutualDefnDecl vs => (vs.map fun v => (v.name, v.type)).toArray
+  | .inductDecl ..     => #[]
+  | .quotDecl          => #[]
+
+/-- Returns the semireducible non-instance definitions that `Meta.check declType .default`
+unfolds but the `.implicit` check would not, or `none` if `declType` is already type-correct at
+`.implicit` transparency (or is not even type-correct at `.default`). Mirrors the inner loop of
+`Lean.Linter.tacticCheckInstances`. -/
+private def checkImplicitTransparency (declType : Expr) : MetaM (Option (Array Name)) := do
+  let origDiag := (← get).diag
+  let result : Option (Array Name) ← withOptions (diagnostics.set · true) do
+    -- A type that is not even correct at `.default` is a more fundamental problem; ignore it here.
+    try Meta.check declType .default catch _ => return none
+    let counterDefault := (← get).diag.unfoldCounter
+    -- Reset the unfold counter and re-check at `.implicit`.
+    modify ({ · with diag := origDiag })
+    try
+      Meta.check declType .implicit
+      return none
+    catch _ =>
+      let counterImplicit := (← get).diag.unfoldCounter
+      let env ← getEnv
+      -- Definitions unfolded by the `.default` check but not the `.implicit` one are the
+      -- candidates for `@[implicit_reducible]`; keep only semireducible non-instances.
+      let mut candidates : Array Name := #[]
+      for (n, countDefault) in counterDefault do
+        let countImplicit := counterImplicit.find? n |>.getD 0
+        if countDefault > countImplicit
+            && getReducibilityStatusCore env n matches .semireducible
+            && !Meta.isInstanceCore env n then
+          candidates := candidates.push n
+      return some candidates
+  -- Always restore the original diagnostics snapshot, mirroring `tacticCheckInstances`.
+  modify ({ · with diag := origDiag })
+  return result
+
+/--
+If `linter.declCheckImplicit` is enabled, warns when a declaration's type is type-correct at
+`.default` transparency but not at `.implicit` transparency, listing the semireducible definitions
+that would need to be marked `@[implicit_reducible]` to fix the mismatch.
+
+Unlike `linter.tacticCheckInstances`, which checks tactic goals, this runs on every declaration
+added to the environment, so the warning also fires for declarations synthesized by attributes
+such as `@[simps]` and `@[reassoc]`. Following the convention of the core tactic linter, it does
+*not* participate in `linter.all`.
+-/
+def warnIfDeclIllTypedAtImplicit (decl : Declaration) : CoreM Unit := do
+  unless linter.declCheckImplicit.get (← getOptions) do return
+  -- Stay quiet on declarations that already produced errors, as `warnIfUsesSorry` does.
+  if ← MonadLog.hasErrors then return
+  for (declName, declType) in declTypesToCheck decl do
+    -- Compiler-internal auto-declarations (equation lemmas, etc.) would be noisy; skip them.
+    if ← isAutoDeclOrPrivate_Internal declName then continue
+    let some candidates ← (checkImplicitTransparency declType).run' | continue
+    if candidates.isEmpty then continue
+    let bullets := MessageData.joinSep
+      (candidates.toList.map (m!"{MessageData.ofConstName ·}")) Format.line
+    Linter.logLint linter.declCheckImplicit (← getRef)
+      m!"declaration {MessageData.ofConstName declName} is not type-correct at \
+        `.implicit` transparency; consider marking some of the following as \
+        `@[implicit_reducible]`:{indentD bullets}"
 
 builtin_initialize
   registerTraceClass `addDecl
@@ -182,6 +262,7 @@ where
     profileitM Exception "type checking" (← getOptions) do
       withTraceNode `Kernel (fun _ => return m!"typechecking declarations {decl.getTopLevelNames}") do
         warnIfUsesSorry decl
+        warnIfDeclIllTypedAtImplicit decl
         try
           let env ← (← getEnv).addDeclAux (← getOptions) decl (← read).cancelTk?
             |> ofExceptKernelException

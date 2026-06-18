@@ -181,6 +181,69 @@ private def isReplayBody : RedirectBodyAction → Bool
   | some p => p.isCrossOrigin && !p.headers.contains .host
   | none => false
 
+/-! ## Blocking redirect invariants -/
+
+-- A protocol-relative redirect to the current origin is still same-origin, so the request target
+-- must be origin-form rather than proxy-style absolute-form.
+
+/--
+info: "crossorigin: false, target: /next"
+-/
+#guard_msgs in
+#eval
+  match plan? (decideRedirect origin (mkReq .get) false false .v11 .found (withLocation "//example.com/next")) with
+    | some p => s!"crossorigin: {p.isCrossOrigin}, target: {toString p.target}"
+    | none => "no plan"
+
+private def baseWithQuery : URI := URI.parse! "http://example.com/a/b?old=1"
+
+private def queryReq : Request.Head :=
+  { method := .get, version := .v11, uri := baseWithQuery.originTarget, headers := .empty }
+
+-- A fragment-only reference inherits the current request target's query.
+
+/--
+info: "target: /a/b?old=1"
+-/
+#guard_msgs in
+#eval
+  match plan? (decideRedirect origin queryReq false false .v11 .found (withLocation "#frag")) with
+  | some p => s!"target: {toString p.target}"
+  | none => "no plan"
+
+private def sameOriginHopHeaders : Headers :=
+  Headers.empty.insert .transferEncoding (Header.Value.ofString! "chunked")
+
+-- Hop-by-hop headers are scoped to one connection and must be stripped even on same-origin
+-- redirects, including when the redirect changes POST to GET and drops the body.
+
+/--
+info: "methodIsGet: true, transferEncoding: false"
+-/
+#guard_msgs in
+#eval
+  match plan? (decideRedirect origin (mkReq .post sameOriginHopHeaders) false false .v11 .seeOther (withLocation "/next")) with
+  | some p => s!"methodIsGet: {p.method == Method.get}, transferEncoding: {p.headers.contains .transferEncoding}"
+  | none => "no plan"
+
+private def xHop : Header.Name := Header.Name.ofString! "x-hop"
+
+private def connectionNominatedHeaders : Headers :=
+  Headers.empty
+    |>.insert .connection (Header.Value.ofString! "x-hop")
+    |>.insert xHop (Header.Value.ofString! "secret")
+
+-- `Connection` can nominate extension hop-by-hop fields; those fields must be removed together
+-- with the `Connection` header itself when planning the next request.
+/--
+info: "connection: false, x-hop: false"
+-/
+#guard_msgs in
+#eval
+  match plan? (decideRedirect origin (mkReq .get connectionNominatedHeaders) false false .v11 .found (withLocation "/next")) with
+  | some p => s!"connection: {p.headers.contains .connection}, x-hop: {p.headers.contains xHop}"
+  | none => "no plan"
+
 /-! ## 303 with unsafe non-GET/HEAD methods -/
 
 -- RFC 9110 §15.4.4: 303 applies to any method, retrieved with GET. With `onlySafeRedirects = false`

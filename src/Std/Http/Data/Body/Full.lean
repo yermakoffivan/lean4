@@ -19,8 +19,7 @@ public section
 
 A body backed by a fixed `ByteArray`. The first call to `recv` returns the full byte array
 as a single chunk; subsequent calls return `none` (end-of-stream). Closing the body marks it
-closed. `resetInPlace` resets state to `ready` so the body can be re-sent (e.g. on 307/308
-redirects).
+closed. `resetInPlace` resets state to `ready` so the body can be read again.
 -/
 
 namespace Std.Http.Body
@@ -38,8 +37,7 @@ deriving BEq, Nonempty
 A body backed by a fixed `ByteArray`.
 
 Unlike `Body.Stream`, a `Full` body is replayable: `resetInPlace` resets the state to
-`ready` so the same body can be re-sent on redirects (307/308), matching the behavior
-of reqwest, axios, and curl.
+`ready` so the same body can be read again.
 -/
 structure Full where
   private mk ::

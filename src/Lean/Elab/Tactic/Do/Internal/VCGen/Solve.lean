@@ -178,7 +178,7 @@ private def barePreIntro? (goal : MVarId) (α pre : Expr) : VCGenM (Option (MVar
 `le_of_forall_le`) to the bare `⊤` via a `top_apply` rewrite. Either way the goal follows the `⊤`
 path instead of lifting into the local context, and a `⊤`-precondition VC reaches `elimTopPre` in the
 bare form that `top_le_prop` can strip. -/
-private def truePre? (goal : MVarId) (pre target : Expr) : VCGenM (Option (List MVarId)) := do
+private def normalizePreToTop? (goal : MVarId) (pre target : Expr) : VCGenM (Option (List MVarId)) := do
   if pre.isTrue then
     let .goals [g] ← (← read).backwardRules.truePreIntro.applyChecked goal
       | throwError "Failed to apply {.ofConstName ``Lean.Order.true_le_of_top_le} to{indentExpr target}"

@@ -39,10 +39,10 @@ namespace Channel
 
 open Async in
 private inductive Consumer where
-  | normal (promise : IO.Promise (Option Chunk))
+  | normal (promise : IO.Promise (Except IO.Error (Option Chunk)))
   | select (finished : Waiter (Option Chunk))
 
-private def Consumer.resolve (c : Consumer) (x : Option Chunk) : BaseIO Bool := do
+private def Consumer.resolve (c : Consumer) (x : Except IO.Error (Option Chunk)) : BaseIO Bool := do
   match c with
   | .normal promise =>
     promise.resolve x
@@ -50,7 +50,7 @@ private def Consumer.resolve (c : Consumer) (x : Option Chunk) : BaseIO Bool := 
   | .select waiter =>
     let lose := return false
     let win promise := do
-      promise.resolve (.ok x)
+      promise.resolve x
       return true
     waiter.race lose win
 
@@ -198,6 +198,17 @@ private def tryRecv' [Monad m] [MonadLiftT (ST IO.RealWorld) m] [MonadLiftT Base
   else
     return none
 
+private def recvReadyResult' [Monad m] [MonadLiftT (ST IO.RealWorld) m] [MonadLiftT BaseIO m] :
+    AtomicT State m (Except IO.Error (Option Chunk)) := do
+  if let some chunk ← tryRecv' then
+    return .ok (some chunk)
+
+  let st ← get
+  if let some err := st.closeError then
+    return .error err
+  else
+    return .ok none
+
 private def close' [Monad m] [MonadLiftT (ST IO.RealWorld) m] [MonadLiftT BaseIO m] :
     AtomicT State m Unit := do
   let st ← get
@@ -205,7 +216,11 @@ private def close' [Monad m] [MonadLiftT (ST IO.RealWorld) m] [MonadLiftT BaseIO
     return ()
 
   if let some consumer := st.pendingConsumer then
-    discard <| consumer.resolve none
+    let result :=
+      match st.closeError with
+      | some err => .error err
+      | none => .ok none
+    discard <| consumer.resolve result
 
   if let some waiter := st.interestWaiter then
     discard <| resolveInterestWaiter waiter false
@@ -244,7 +259,9 @@ def tryRecvBody (stream : Stream) : Async (Option (Option Chunk)) :=
   stream.state.atomically do
     Channel.pruneFinishedWaiters
     if ← Channel.recvReady' then
-      return some (← Channel.tryRecv')
+      match ← Channel.recvReadyResult' with
+      | .ok result => return some result
+      | .error err => throw err
     else
       return none
 
@@ -272,7 +289,7 @@ private def recv' (stream : Stream) : BaseIO (AsyncTask (Option Chunk)) := do
     Channel.signalInterest
     return promise.result?.map (sync := true) fun
       | none => .error (IO.Error.userError "the promise linked to the consumer was dropped")
-      | some res => .ok res
+      | some res => res
 
 /--
 Receives a chunk from the channel. Blocks until a producer sends one. Returns `none` if the channel
@@ -351,7 +368,9 @@ def recvSelector (stream : Stream) : Selector (Option Chunk) where
     stream.state.atomically do
       Channel.pruneFinishedWaiters
       if ← Channel.recvReady' then
-        return some (← Channel.tryRecv')
+        match ← Channel.recvReadyResult' with
+        | .ok result => return some result
+        | .error err => throw err
       else
         return none
 
@@ -361,7 +380,7 @@ def recvSelector (stream : Stream) : Selector (Option Chunk) where
       if ← Channel.recvReady' then
         let lose := return ()
         let win promise := do
-          promise.resolve (.ok (← Channel.tryRecv'))
+          promise.resolve (← Channel.recvReadyResult')
         waiter.race lose win
       else
         let st ← get
@@ -426,25 +445,11 @@ class NextChunk (m : Type → Type) where
   -/
   nextChunk : Stream → m (Option Chunk)
 
-/-- Check for a terminal error after an EOF observation. -/
-def checkCloseError (stream : Stream) : Async Unit := do
-  let err? ← stream.state.atomically do
-    let st ← get
-    pure st.closeError
-  match err? with
-  | some err => throw err
-  | none => pure ()
-
 instance : NextChunk Async where
   nextChunk stream := do
     match ← Stream.recv stream with
     | some chunk => return some chunk
-    | none =>
-      -- A consumer that was already blocked in `recv` when `closeWithError` fired is woken with
-      -- EOF (`none`); re-check the recorded terminal error so it surfaces as a thrown exception
-      -- rather than a silent short read, matching the `ContextAsync` instance below.
-      checkCloseError stream
-      return none
+    | none => return none
 
 instance : NextChunk ContextAsync where
   nextChunk stream := do
@@ -454,9 +459,7 @@ instance : NextChunk ContextAsync where
     ]
     match result with
     | some _ => return result
-    | none =>
-      checkCloseError stream
-      return none
+    | none => return none
 
 /--
 Reads all remaining chunks and decodes them into `α`.
@@ -507,7 +510,7 @@ partial def drain
     | some chunk =>
       let consumed := consumed + chunk.data.size.toUInt64
       if let some limit := drainLimit then
-        if consumed >= limit then
+        if consumed > limit then
           closeStream
           return ()
       loop consumed
@@ -554,7 +557,7 @@ private partial def send' (stream : Stream) (chunk : Chunk) : Async Unit := do
       return .error (IO.Error.userError "channel closed")
 
     if let some consumer := st.pendingConsumer then
-      let success ← consumer.resolve (some chunk)
+      let success ← consumer.resolve (.ok (some chunk))
 
       if success then
         set {
@@ -657,16 +660,17 @@ end Stream
 /--
 Creates a body from a producer function.
 Returns the stream immediately and runs `gen` in a detached task.
-The channel is always closed when `gen` returns or throws.
-Errors from `gen` are not rethrown here; consumers observe end-of-stream via `recv = none`.
+The channel is closed when `gen` returns. If `gen` throws, the channel is closed with that terminal
+error so consumers observe the failure instead of a clean end-of-stream.
 -/
 def stream (gen : Stream → Async Unit) : Async Stream := do
   let s ← mkStream
   background <| do
     try
       gen s
-    finally
       s.close
+    catch err =>
+      s.closeWithError err
   return s
 
 /--

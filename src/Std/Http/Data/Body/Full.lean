@@ -19,8 +19,7 @@ public section
 
 A body backed by a fixed `ByteArray`. The first call to `recv` returns the full byte array
 as a single chunk; subsequent calls return `none` (end-of-stream). Closing the body marks it
-closed. `resetInPlace` resets state to `ready` so the body can be re-sent (e.g. on 307/308
-redirects).
+closed. `resetInPlace` resets state to `ready` so the body can be read again.
 -/
 
 namespace Std.Http.Body
@@ -38,8 +37,7 @@ deriving BEq, Nonempty
 A body backed by a fixed `ByteArray`.
 
 Unlike `Body.Stream`, a `Full` body is replayable: `resetInPlace` resets the state to
-`ready` so the same body can be re-sent on redirects (307/308), matching the behavior
-of reqwest, axios, and curl.
+`ready` so the same body can be read again.
 -/
 structure Full where
   private mk ::
@@ -53,10 +51,10 @@ private def takeChunk (full : Full) : AtomicT State Async (Option Chunk) := do
   match ← get with
   | .closed => pure none
   | .ready =>
+    set State.sent
     if full.data.isEmpty then
       pure none
     else
-      set State.sent
       pure (some (Chunk.ofByteArray full.data))
   | .sent => pure none
 
@@ -90,11 +88,11 @@ def close (full : Full) : Async Unit :=
     set State.closed
 
 /--
-Returns `true` when the body has been closed via `close`.
+Returns `true` when the body has been closed or consumed.
 -/
 def isClosed (full : Full) : Async Bool :=
   full.state.atomically do
-    return (← get) == .closed
+    return (← get) != .ready
 
 /--
 Returns the known size of the remaining data.

@@ -1,5 +1,10 @@
 import Std.Http.Data.Body
 
+/-!
+Tests replayability for HTTP bodies, including reset behavior for full and empty bodies and
+erased replayability through `Body.Any`.
+-/
+
 open Std.Async
 open Std.Http
 open Std.Http.Body
@@ -11,7 +16,9 @@ def fullResetInPlaceAfterRead : Async Unit := do
   let first ← full.recv
   assert! first.isSome
   assert! (← full.recv).isNone
+  assert! (← full.isClosed)
   Replayable.resetInPlace full
+  assert! !(← full.isClosed)
   let second ← full.recv
   assert! second.isSome
   assert! second.get!.data == "reset".toUTF8
@@ -42,6 +49,18 @@ def fullResetInPlaceOnFresh : Async Unit := do
 
 #eval fullResetInPlaceOnFresh.block
 
+-- An empty Full body is closed after reaching EOF and reset makes it fresh again
+
+def fullEmptyIsClosedAfterRead : Async Unit := do
+  let full ← Body.Full.ofByteArray ByteArray.empty
+  assert! !(← full.isClosed)
+  assert! (← full.recv).isNone
+  assert! (← full.isClosed)
+  Replayable.resetInPlace full
+  assert! !(← full.isClosed)
+
+#eval fullEmptyIsClosedAfterRead.block
+
 -- resetInPlace can be called multiple times
 
 def fullResetInPlaceMultiple : Async Unit := do
@@ -54,6 +73,22 @@ def fullResetInPlaceMultiple : Async Unit := do
   assert! r.get!.data == "multi".toUTF8
 
 #eval fullResetInPlaceMultiple.block
+
+-- resetInPlace restores the known size after reads and closes
+
+def fullResetInPlaceKnownSize : Async Unit := do
+  let full ← Body.Full.ofString "sized"
+  assert! (← full.getKnownSize) == some (.fixed 5)
+  let _ ← full.recv
+  assert! (← full.getKnownSize) == some (.fixed 0)
+  Replayable.resetInPlace full
+  assert! (← full.getKnownSize) == some (.fixed 5)
+  full.close
+  assert! (← full.getKnownSize) == some (.fixed 0)
+  Replayable.resetInPlace full
+  assert! (← full.getKnownSize) == some (.fixed 5)
+
+#eval fullResetInPlaceKnownSize.block
 
 -- Empty.resetInPlace is a no-op; body remains at EOF
 
@@ -85,8 +120,7 @@ def anyFromStreamNotReplayable : Async Unit := do
 #eval anyFromStreamNotReplayable.block
 
 -- Any wrapping an Empty via Coe sets isReplayable = true: an empty body is trivially
--- replayable (reset is a no-op), so method-preserving redirects (307/308) on a bodyless
--- request may be followed.
+-- replayable because reset is a no-op.
 
 def anyFromEmptyIsReplayable : Async Unit := do
   let e : Body.Empty := {}
@@ -113,7 +147,20 @@ def anyReplayableResetInPlace : Async Unit := do
 
 #eval anyReplayableResetInPlace.block
 
--- Any.resetInPlace on a non-replayable Any is a no-op (default pure ())
+-- Any.ofBody does not claim replayability, even for an underlying replayable body
+
+def anyOfBodyFullNotReplayable : Async Unit := do
+  let full ← Body.Full.ofString "manual"
+  let any := Body.Any.ofBody full
+  assert! !any.isReplayable
+  let first ← any.recv
+  assert! first.isSome
+  any.resetInPlace
+  assert! (← any.recv).isNone
+
+#eval anyOfBodyFullNotReplayable.block
+
+-- Any.resetInPlace on a non-replayable Any is a no-op
 
 def anyNonReplayableResetIsNoop : Async Unit := do
   let stream ← Body.mkStream

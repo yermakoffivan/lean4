@@ -28,11 +28,9 @@ def assertEqN (actual expected : UInt64) (label : String) : IO Unit := do
 
 -- Generate a self-signed certificate for testing in a per-process directory.
 def setupTestCerts : IO (String × String) := do
-  let pid ← IO.Process.getPID
-  let dir := s!"/tmp/lean_ssl_test_{pid}"
-  IO.FS.createDirAll dir
-  let keyFile  := s!"{dir}/key.pem"
-  let certFile := s!"{dir}/cert.pem"
+  let dir ← IO.FS.createTempDir
+  let keyFile  := toString (dir / "key.pem")
+  let certFile := toString (dir / "cert.pem")
 
   let keyOut ← IO.Process.output {
     cmd  := "openssl"

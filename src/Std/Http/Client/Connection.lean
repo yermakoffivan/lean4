@@ -42,19 +42,32 @@ structure RequestPacket where
   -/
   responsePromise : IO.Promise (Except IO.Error (Response Body.Stream))
 
+  /--
+  Promise resolved when the connection finishes this exchange and is ready for the next request,
+  or when the exchange fails after the response headers were delivered.
+  -/
+  completionPromise : IO.Promise (Except IO.Error Unit)
+
 namespace RequestPacket
 
 /--
 Resolve the packet with an error.
 -/
-def onError (packet : RequestPacket) (error : IO.Error) : BaseIO Unit :=
+def onError (packet : RequestPacket) (error : IO.Error) : BaseIO Unit := do
   discard <| packet.responsePromise.resolve (.error error)
+  discard <| packet.completionPromise.resolve (.error error)
 
 /--
 Resolve the packet with a response.
 -/
 def onResponse (packet : RequestPacket) (response : Response Body.Stream) : BaseIO Unit :=
   discard <| packet.responsePromise.resolve (.ok response)
+
+/--
+Resolve the packet as completed successfully.
+-/
+def onComplete (packet : RequestPacket) : BaseIO Unit :=
+  discard <| packet.completionPromise.resolve (.ok ())
 
 end RequestPacket
 
@@ -406,9 +419,12 @@ private def processH1Events
       if !st.isInformationalResponse then
         if let some body := st.responseStream then
           if ¬(← Body.isClosed body) then Body.close body
+          st := st.mapInFlight fun flight => { flight with responseStream := none }
 
     | .next =>
       -- Reset all per-request state for the next pipelined request.
+      if let some packet := st.currentRequest then
+        packet.onComplete
       closeAllRequestState st
       st := { st with
         inFlight := none

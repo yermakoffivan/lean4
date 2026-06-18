@@ -8,21 +8,17 @@ module
 prelude
 public import Std.Http.Client.Agent
 public import Std.Http.Client.Connector
-import Std.Data.HashMap
 import Init.Data.Array
-import Init.Data.Hashable
 
 public section
 
 /-!
 # Agent.Pool
 
-A connection pool that maintains multiple reusable sessions per `(scheme, host, port)` triple.
+A simple connection pool that keeps at most one reusable session.
 
-Sessions are tracked as idle or busy. `getOrCreateSession` picks the first idle session,
-creating a new one when none are idle and the cap has not been reached, and round-robins
-across all sessions (idle and busy) when at capacity. `releaseSession` returns a session
-from busy back to idle.
+If the next request targets the current session's origin, the session is reused. If the origin
+changes, the current session is retired and a new session is opened for the new origin.
 
 Use `Pool.new` to create a pool, then call `pool.send` to dispatch requests through managed
 sessions. The pool handles redirect following and middlewares.
@@ -36,75 +32,19 @@ open Time
 set_option linter.all true
 
 /--
-Key identifying a unique `(scheme, host, port)` origin in the pool's state map.
-`http://host:443` and `https://host:443` hash to different keys.
+The single reusable session currently held by the pool.
 -/
-structure OriginKey where
+structure Agent.Pool.Slot where
 
   /--
-  URI scheme string, e.g. `"http"` or `"https"`.
+  Origin this session is connected to.
   -/
-  scheme : String
+  origin : URI.Origin
 
   /--
-  Hostname as a string.
+  The current session.
   -/
-  host : String
-
-  /--
-  TCP port.
-  -/
-  port : UInt16
-deriving BEq, Hashable
-
-/--
-Per-origin bucket inside the pool's state map.
-
-`idle` holds connections that are free to accept the next request;
-`busy` holds connections that currently have an in-flight request/response exchange.
--/
-structure Agent.Pool.Entry where
-
-  /--
-  Connections currently waiting for a request.
-  -/
-  idle : Array Session := #[]
-
-  /--
-  Connections currently handling a request.
-  -/
-  busy : Array Session := #[]
-
-namespace Agent.Pool.Entry
-
-/--
-Total number of sessions for this origin.
--/
-def total (e : Agent.Pool.Entry) : Nat := e.idle.size + e.busy.size
-
-/--
-Remove a session from `idle` by ID, returning the updated entry and whether it was found.
--/
-def checkoutById (e : Agent.Pool.Entry) (id : UInt64) : Agent.Pool.Entry × Bool :=
-  match e.idle.find? (·.id == id) with
-  | none => (e, false)
-  | some session => ({ e with idle := e.idle.filter (·.id != id), busy := e.busy.push session }, true)
-
-/--
-Move a session from `busy` back to `idle` by ID. No-op if not found in `busy`.
--/
-def checkinById (e : Agent.Pool.Entry) (id : UInt64) : Agent.Pool.Entry :=
-  match e.busy.find? (·.id == id) with
-  | none => e
-  | some session => { e with busy := e.busy.filter (·.id != id), idle := e.idle.push session }
-
-/--
-Remove a session from either bucket by ID. Returns the updated entry.
--/
-def removeById (e : Agent.Pool.Entry) (id : UInt64) : Agent.Pool.Entry :=
-  { e with idle := e.idle.filter (·.id != id), busy := e.busy.filter (·.id != id) }
-
-end Agent.Pool.Entry
+  session : Session
 
 /--
 Maximum number of times to retry a failed request on a fresh connection.
@@ -120,22 +60,18 @@ value, to prevent unintended duplicate side-effects.
 abbrev MaxRetries := Nat
 
 /--
-A connection pool that manages multiple sessions per `(scheme, host, port)` triple.
+A connection pool that manages one reusable session at a time.
 -/
 structure Agent.Pool where
 
   /--
-  Per-origin buckets guarded by a mutex.
-  The key is `(scheme, host, port)` so `http://host:443` and `https://host:443` are separate.
+  Current reusable session, if any.
   -/
-  state : Mutex (Std.HashMap OriginKey Agent.Pool.Entry)
+  state : Mutex (Option Agent.Pool.Slot)
 
   /--
-  Maximum number of sessions (idle + busy) per host.
-
-  Once the cap is reached, `getOrCreateSession` round-robins over existing sessions
-  rather than opening a new socket. Under HTTP/1.1 each session is sequential, so
-  any session is equally loaded; the cap purely limits open socket count.
+  Compatibility setting retained for the builder API. The simplified pool always keeps
+  at most one session, and this value is clamped to at least `1`.
   -/
   maxPerHost : Nat
 
@@ -170,8 +106,9 @@ namespace Agent.Pool
 /-- Creates a pool using an internal `ConnectFn`. Used by `Client.Builder.build`. -/
 def new (config : Config := {}) (maxPerHost : Nat := 1) (connect : ConnectFn := ConnectFn.tcp)
     (maxRetries : MaxRetries := 0) : Async Agent.Pool := do
-  let state ← Mutex.new (∅ : Std.HashMap _ Agent.Pool.Entry)
+  let state ← Mutex.new (none : Option Agent.Pool.Slot)
   let nextId ← Mutex.new (1 : UInt64)
+  let maxPerHost := if maxPerHost == 0 then 1 else maxPerHost
   pure { state, maxPerHost, config, nextId, middlewares := #[], connect, maxRetries }
 
 /--
@@ -189,106 +126,54 @@ private def nextSessionId (pool : Agent.Pool) : Async UInt64 :=
   pool.nextId.atomically <| modifyGet fun id => (id, id + 1)
 
 /--
-Checks out a session for `(scheme, host, port)` and moves it from `idle` to `busy`.
-
-Returns `some session` if an idle session is available, `none` otherwise.
+Opens a new session for `origin` and assigns it a pool-local ID.
 -/
-private def tryCheckout (pool : Agent.Pool) (key : OriginKey) : BaseIO (Option Session) :=
-  pool.state.atomically <| modifyGet fun st =>
-    let entry := (st.get? key).getD {}
-    match entry.idle[0]? with
-    | none => (none, st)
-    | some session => (some session, st.insert key (entry.checkoutById session.id).1)
+private def openSession (pool : Agent.Pool) (origin : URI.Origin) : Async Session := do
+  let session ← pool.connect origin.scheme origin.host origin.port pool.config
+  let id ← nextSessionId pool
+  return { session with id }
 
 /--
-Returns a session for `(scheme, host, port)`.
+Returns the pool's single session for `origin`.
 
-Selection strategy:
-1. If an idle session exists, check it out and mark it busy.
-2. If below `maxPerHost`, dial a new session and mark it busy.
-3. At cap, round-robin over all sessions (idle or busy) — under HTTP/1.1 each session
-   queues requests internally, so any slot is equally loaded.
-
-**Race-then-evict on new connections.** The cap check and the TCP dial happen outside
-the mutex so that connection establishment does not block other callers. Two concurrent
-callers can both dial past the cap. The losing caller detects the collision inside the
-mutex, closes its socket gracefully, and falls through to the round-robin path. This
-costs at most one extra TCP connection under contention.
+If the current session has the same origin, it is checked out again; HTTP/1.1 requests
+queue on the session. If the origin differs, the current session is retired and replaced.
 -/
 def getOrCreateSession (pool : Agent.Pool) (origin : URI.Origin) : Async Session := do
-  let key : OriginKey := ⟨origin.scheme.val, toString origin.host, origin.port⟩
-
-  -- Fast path: claim an idle session without dialling.
-  if let some session ← tryCheckout pool key then
-    return session
-
-  -- Slow path: check capacity, then dial.
-  let belowCap : Bool ← pool.state.atomically do
-    let st ← get
-    return ((st.get? key).getD {}).total < pool.maxPerHost
-
-  if belowCap then
-    let session ← pool.connect origin.scheme origin.host origin.port pool.config
-    let id ← nextSessionId pool
-    let session := { session with id }
-
-    -- Re-enter the mutex: register only if still below cap; otherwise round-robin.
-    let registered ← pool.state.atomically <| modifyGet fun st =>
-      let entry := (st.get? key).getD {}
-      if entry.total < pool.maxPerHost then
-        (true, st.insert key { entry with busy := entry.busy.push session })
+  pool.state.atomically do
+    match ← get with
+    | some slot =>
+      if slot.origin == origin then
+        return slot.session
       else
-        (false, st)
-    if registered then
+        set (none : Option Agent.Pool.Slot)
+        discard <| slot.session.close
+        let session ← pool.openSession origin
+        set (some ({ origin, session } : Agent.Pool.Slot))
+        return session
+    | none =>
+      let session ← pool.openSession origin
+      set (some ({ origin, session } : Agent.Pool.Slot))
       return session
 
-    -- Lost the race: close the extra socket and fall through to round-robin.
-    discard <| session.close
-
-  -- Round-robin over all sessions (used when at cap or after a lost race).
-  -- Prefer an idle slot first; it might have freed up since the fast-path check.
-  if let some session ← tryCheckout pool key then
-    return session
-
-  -- All slots still busy: pick the first busy one (they queue requests internally).
-  let maybeBusy ← pool.state.atomically do
-    let st ← get
-    return ((st.get? key).getD {}).busy[0]?
-
-  match maybeBusy with
-  | some session => return session
-  | none => throw (.userError "pool is empty after dial — this is a bug")
-
 /--
-Returns a session to the idle pool. Called after a successful request/response cycle.
+Removes a session from the pool and closes its request channel.
 -/
-private def releaseSession (pool : Agent.Pool) (origin : URI.Origin) (session : Session) : Async Unit := do
-  let key : OriginKey := ⟨origin.scheme.val, toString origin.host, origin.port⟩
-
-  pool.state.atomically <| modify fun st =>
-    match st.get? key with
-    | none => st
-    | some entry => st.insert key (entry.checkinById session.id)
-
-/--
-Removes a broken session from both buckets by its unique ID.
--/
-private def evictSession (pool : Agent.Pool) (origin : URI.Origin) (sessionId : UInt64) : Async Unit := do
-  let key : OriginKey := ⟨origin.scheme.val, toString origin.host, origin.port⟩
-
-  pool.state.atomically <| modify fun st =>
-    match st.get? key with
-    | none => st
-    | some entry => st.insert key (entry.removeById sessionId)
+private def retireSession (pool : Agent.Pool) (origin : URI.Origin) (session : Session) : Async Unit := do
+  pool.state.atomically <| modify fun
+    | some slot =>
+      if slot.origin == origin && slot.session.id == session.id then none else some slot
+    | none => none
+  discard <| session.close
 
 /--
-Sends a request through a pooled session, following redirects and applying middlewares.
+Sends a request through the pooled session, following redirects and applying middlewares.
 On connection failure, evicts the broken session and retries up to `pool.maxRetries` times
 on fresh connections.
 
-After each successful hop the session is returned to the idle pool so other callers
-can reuse it. Cross-origin redirect swaps return the outgoing session to its origin
-pool rather than closing it.
+After the connection reports an error for the final response body, the session is retired.
+Cross-origin redirect swaps retire the outgoing session before acquiring the next origin, keeping
+the pool to one live origin at a time.
 -/
 def send {β : Type} [Coe β Body.Any] (pool : Agent.Pool) (origin : URI.Origin) (request : Request β) : Async (Response Body.Stream) := do
 
@@ -302,22 +187,26 @@ def send {β : Type} [Coe β Body.Any] (pool : Agent.Pool) (origin : URI.Origin)
     let session ← pool.getOrCreateSession origin
 
     try
-      let response ← Agent.send {
+      let exchange ← Agent.exchange {
         session
         origin
         middlewares := pool.middlewares
         sessionRouter := some {
           acquire := fun o => pool.getOrCreateSession o
-          release := fun broken o => pool.evictSession o broken.id
-          releaseSwapped := fun sess o => pool.releaseSession o sess
+          release := fun broken o => pool.retireSession o broken
+          releaseSwapped := fun sess o => pool.retireSession o sess
         }
       } request
 
-      pool.releaseSession origin session
-      return response
+      background do
+        match ← await exchange.completion.result! with
+        | .ok _ => pure ()
+        | .error _ => pool.retireSession exchange.origin exchange.session
+
+      return exchange.response
 
     catch err =>
-      pool.evictSession origin session.id
+      pool.retireSession origin session
       -- Re-raise on the final attempt; earlier failures fall through to the next retry.
       if attempt + 1 ≥ attempts then
         throw err

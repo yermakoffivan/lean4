@@ -811,6 +811,424 @@ private def sendInBackground {β : Type} [Coe β Body.Any]
 -- Section 7 — Keep-alive and Connection: close
 -- ============================================================
 
+-- The simplified pool keeps one session at a time. A same-origin request sent
+-- while the previous response body is unread queues on that session and reaches
+-- the wire only after the caller closes or drains the previous body.
+
+#eval show IO _ from runWithTimeout "single-connection pool queues behind unread response body" 4000 <| Async.block do
+  let (mockClient1, mockServer1) ← Mock.new
+  let connectCount ← IO.mkRef 0
+
+  let connect : Client.ConnectFn := fun _ _ _ config => do
+    let n ← connectCount.get
+    connectCount.set (n + 1)
+    match n with
+    | 0 => Client.Session.new mockServer1 (config := config)
+    | _ => throw (IO.userError "pool opened more sessions than expected")
+
+  let pool ← Client.Agent.Pool.new {} 2 connect
+  let some domain := URI.DomainName.ofString? "example.com"
+    | throw (IO.userError "DomainName parse failed")
+  let origin : URI.Origin := {
+    scheme := URI.Scheme.ofString! "http"
+    host := .name domain
+    port := 80
+  }
+
+  let req1 ← Request.new |>.method .get |>.uri! "/one"
+    |>.header! "Host" "example.com" |>.empty
+  let p1 : IO.Promise (Except String (Response Body.Stream)) ← IO.Promise.new
+  background do
+    let result ← try
+        let resp ← pool.send origin req1
+        pure (Except.ok resp)
+      catch e => pure (Except.error (toString e))
+    discard <| p1.resolve result
+
+  let _ ← drainRequest mockClient1
+  mockClient1.send (rawResp "200 OK"
+    #[("Content-Length", "5"), ("Connection", "keep-alive")] "hello")
+
+  let resp1 ← match ← await p1.result! with
+    | Except.error e => throw (IO.userError s!"first pooled request failed: {e}")
+    | Except.ok resp => pure resp
+
+  let req2 ← Request.new |>.method .get |>.uri! "/two"
+    |>.header! "Host" "example.com" |>.empty
+  let p2 : IO.Promise (Except String (Response Body.Stream)) ← IO.Promise.new
+  background do
+    let result ← try
+        let resp ← pool.send origin req2
+        pure (Except.ok resp)
+      catch e => pure (Except.error (toString e))
+    discard <| p2.resolve result
+
+  IO.sleep 50
+  unless (← connectCount.get) == 1 do
+    resp1.body.close
+    mockClient1.close
+    throw (IO.userError "single-connection pool opened a second same-origin session")
+
+  if let some bytes ← mockClient1.tryRecv? then
+    resp1.body.close
+    mockClient1.close
+    throw (IO.userError s!"queued request reached the wire before the first body was closed:\n{(String.fromUTF8! bytes).quote}")
+
+  resp1.body.close
+
+  let secondBytes ← drainRequest mockClient1
+  mockClient1.send (rawResp "200 OK"
+    #[("Content-Length", "3"), ("Connection", "close")] "two")
+
+  match ← await p2.result! with
+  | Except.error e => throw (IO.userError s!"second pooled request failed: {e}")
+  | Except.ok resp2 =>
+    let body ← resp2.body.readAll (α := String)
+    unless body == "two" do
+      throw (IO.userError s!"expected second body 'two', got {body.quote}")
+
+  let secondText := String.fromUTF8! secondBytes
+  unless secondText.startsWith "GET /two" do
+    throw <| IO.userError s!"second request did not use the queued connection:\n{secondText.quote}"
+
+-- Once the caller closes an unread pooled response body, the connection loop
+-- drains the wire body and reports completion. The pool should then return the
+-- session to idle instead of opening another available connection.
+
+#eval show IO _ from runWithTimeout "pool reuses session after unread response body is closed" 4000 <| Async.block do
+  let (mockClient1, mockServer1) ← Mock.new
+  let (_mockClient2, mockServer2) ← Mock.new
+  let connectCount ← IO.mkRef 0
+
+  let connect : Client.ConnectFn := fun _ _ _ config => do
+    let n ← connectCount.get
+    connectCount.set (n + 1)
+    match n with
+    | 0 => Client.Session.new mockServer1 (config := config)
+    | 1 => Client.Session.new mockServer2 (config := config)
+    | _ => throw (IO.userError "pool opened more sessions than expected")
+
+  let pool ← Client.Agent.Pool.new {} 2 connect
+  let some domain := URI.DomainName.ofString? "example.com"
+    | throw (IO.userError "DomainName parse failed")
+  let origin : URI.Origin := {
+    scheme := URI.Scheme.ofString! "http"
+    host := .name domain
+    port := 80
+  }
+
+  let req1 ← Request.new |>.method .get |>.uri! "/one"
+    |>.header! "Host" "example.com" |>.empty
+  let p1 : IO.Promise (Except String (Response Body.Stream)) ← IO.Promise.new
+  background do
+    let result ← try
+        let resp ← pool.send origin req1
+        pure (Except.ok resp)
+      catch e => pure (Except.error (toString e))
+    discard <| p1.resolve result
+
+  let _ ← drainRequest mockClient1
+  mockClient1.send (rawResp "200 OK"
+    #[("Content-Length", "5"), ("Connection", "keep-alive")] "hello")
+
+  let resp1 ← match ← await p1.result! with
+    | Except.error e => throw (IO.userError s!"first pooled request failed: {e}")
+    | Except.ok resp => pure resp
+
+  resp1.body.close
+  IO.sleep 50
+
+  let req2 ← Request.new |>.method .get |>.uri! "/two"
+    |>.header! "Host" "example.com" |>.empty
+  let p2 : IO.Promise (Except String (Response Body.Stream)) ← IO.Promise.new
+  background do
+    let result ← try
+        let resp ← pool.send origin req2
+        pure (Except.ok resp)
+      catch e => pure (Except.error (toString e))
+    discard <| p2.resolve result
+
+  IO.sleep 50
+  if (← connectCount.get) != 1 then
+    mockClient1.close
+    throw (IO.userError "pool opened a second session after the first response body was closed")
+
+  let secondBytes ← drainRequest mockClient1
+  mockClient1.send (rawResp "200 OK"
+    #[("Content-Length", "3"), ("Connection", "close")] "two")
+
+  match ← await p2.result! with
+  | Except.error e => throw (IO.userError s!"second pooled request failed: {e}")
+  | Except.ok resp2 =>
+    let body ← resp2.body.readAll (α := String)
+    unless body == "two" do
+      throw (IO.userError s!"expected second body 'two', got {body.quote}")
+
+  let secondText := String.fromUTF8! secondBytes
+  unless secondText.startsWith "GET /two" do
+    throw <| IO.userError s!"second request did not reuse the first connection:\n{secondText.quote}"
+
+-- A zero-length pooled response still needs to drive the connection through
+-- completion so the session is returned to idle.
+
+#eval show IO _ from runWithTimeout "pool reuses session after zero-length response body completes" 4000 <| Async.block do
+  let (mockClient1, mockServer1) ← Mock.new
+  let (_mockClient2, mockServer2) ← Mock.new
+  let connectCount ← IO.mkRef 0
+
+  let connect : Client.ConnectFn := fun _ _ _ config => do
+    let n ← connectCount.get
+    connectCount.set (n + 1)
+    match n with
+    | 0 => Client.Session.new mockServer1 (config := config)
+    | 1 => Client.Session.new mockServer2 (config := config)
+    | _ => throw (IO.userError "pool opened more sessions than expected")
+
+  let pool ← Client.Agent.Pool.new {} 2 connect
+  let some domain := URI.DomainName.ofString? "example.com"
+    | throw (IO.userError "DomainName parse failed")
+  let origin : URI.Origin := {
+    scheme := URI.Scheme.ofString! "http"
+    host := .name domain
+    port := 80
+  }
+
+  let req1 ← Request.new |>.method .get |>.uri! "/empty"
+    |>.header! "Host" "example.com" |>.empty
+  let p1 : IO.Promise (Except String (Response Body.Stream)) ← IO.Promise.new
+  background do
+    let result ← try
+        let resp ← pool.send origin req1
+        pure (Except.ok resp)
+      catch e => pure (Except.error (toString e))
+    discard <| p1.resolve result
+
+  let _ ← drainRequest mockClient1
+  mockClient1.send (rawResp "200 OK"
+    #[("Content-Length", "0"), ("Connection", "keep-alive")] "")
+
+  match ← await p1.result! with
+  | Except.error e => throw (IO.userError s!"first pooled request failed: {e}")
+  | Except.ok resp1 =>
+    let body ← resp1.body.readAll (α := String)
+    unless body == "" do
+      throw (IO.userError s!"expected empty first body, got {body.quote}")
+
+  IO.sleep 50
+
+  let req2 ← Request.new |>.method .get |>.uri! "/two"
+    |>.header! "Host" "example.com" |>.empty
+  let p2 : IO.Promise (Except String (Response Body.Stream)) ← IO.Promise.new
+  background do
+    let result ← try
+        let resp ← pool.send origin req2
+        pure (Except.ok resp)
+      catch e => pure (Except.error (toString e))
+    discard <| p2.resolve result
+
+  IO.sleep 50
+  if (← connectCount.get) != 1 then
+    mockClient1.close
+    throw (IO.userError "pool opened a second session after a zero-length response completed")
+
+  let secondBytes ← drainRequest mockClient1
+  mockClient1.send (rawResp "200 OK"
+    #[("Content-Length", "3"), ("Connection", "close")] "two")
+
+  match ← await p2.result! with
+  | Except.error e => throw (IO.userError s!"second pooled request failed: {e}")
+  | Except.ok resp2 =>
+    let body ← resp2.body.readAll (α := String)
+    unless body == "two" do
+      throw (IO.userError s!"expected second body 'two', got {body.quote}")
+
+  let secondText := String.fromUTF8! secondBytes
+  unless secondText.startsWith "GET /two" do
+    throw <| IO.userError s!"second request did not reuse the first connection:\n{secondText.quote}"
+
+-- A different origin replaces the pool's single current session.
+
+#eval show IO _ from runWithTimeout "single-connection pool replaces session on origin change" 4000 <| Async.block do
+  let (mockClient1, mockServer1) ← Mock.new
+  let (mockClient2, mockServer2) ← Mock.new
+  let connectCount ← IO.mkRef 0
+
+  let connect : Client.ConnectFn := fun _ _ _ config => do
+    let n ← connectCount.get
+    connectCount.set (n + 1)
+    match n with
+    | 0 => Client.Session.new mockServer1 (config := config)
+    | 1 => Client.Session.new mockServer2 (config := config)
+    | _ => throw (IO.userError "pool opened more sessions than expected")
+
+  let pool ← Client.Agent.Pool.new {} 2 connect
+  let some domain1 := URI.DomainName.ofString? "example.com"
+    | throw (IO.userError "DomainName parse failed")
+  let some domain2 := URI.DomainName.ofString? "other.example"
+    | throw (IO.userError "DomainName parse failed")
+  let origin1 : URI.Origin := {
+    scheme := URI.Scheme.ofString! "http"
+    host := .name domain1
+    port := 80
+  }
+  let origin2 : URI.Origin := {
+    scheme := URI.Scheme.ofString! "http"
+    host := .name domain2
+    port := 80
+  }
+
+  let req1 ← Request.new |>.method .get |>.uri! "/one"
+    |>.header! "Host" "example.com" |>.empty
+  let p1 : IO.Promise (Except String (Response Body.Stream)) ← IO.Promise.new
+  background do
+    let result ← try
+        let resp ← pool.send origin1 req1
+        pure (Except.ok resp)
+      catch e => pure (Except.error (toString e))
+    discard <| p1.resolve result
+
+  let _ ← drainRequest mockClient1
+  mockClient1.send (rawResp "200 OK"
+    #[("Content-Length", "0"), ("Connection", "keep-alive")] "")
+
+  match ← await p1.result! with
+  | Except.error e => throw (IO.userError s!"first pooled request failed: {e}")
+  | Except.ok resp1 =>
+    let body ← resp1.body.readAll (α := String)
+    unless body == "" do
+      throw (IO.userError s!"expected empty body, got {body.quote}")
+
+  IO.sleep 50
+
+  let req2 ← Request.new |>.method .get |>.uri! "/two"
+    |>.header! "Host" "other.example" |>.empty
+  let p2 : IO.Promise (Except String (Response Body.Stream)) ← IO.Promise.new
+  background do
+    let result ← try
+        let resp ← pool.send origin2 req2
+        pure (Except.ok resp)
+      catch e => pure (Except.error (toString e))
+    discard <| p2.resolve result
+
+  match ← mockClient1.recv? with
+  | none => pure ()
+  | some bytes =>
+    mockClient1.close
+    mockClient2.close
+    throw (IO.userError s!"old-origin connection stayed open after origin change:\n{(String.fromUTF8! bytes).quote}")
+
+  let secondBytes ← drainRequest mockClient2
+  mockClient2.send (rawResp "200 OK"
+    #[("Content-Length", "3"), ("Connection", "close")] "two")
+
+  match ← await p2.result! with
+  | Except.error e => throw (IO.userError s!"second-origin request failed: {e}")
+  | Except.ok resp2 =>
+    let body ← resp2.body.readAll (α := String)
+    unless body == "two" do
+      throw (IO.userError s!"expected second body 'two', got {body.quote}")
+
+  unless (← connectCount.get) == 2 do
+    throw (IO.userError "origin change did not open exactly one replacement session")
+  let secondText := String.fromUTF8! secondBytes
+  unless secondText.startsWith "GET /two" do
+    throw <| IO.userError s!"second-origin request did not use the replacement connection:\n{secondText.quote}"
+
+-- If a pooled cross-origin redirect leaves the original origin, the outgoing
+-- session is retired instead of being returned idle. A target-acquire failure
+-- must close that old session and leave the pool able to open a clean
+-- replacement for the original origin.
+
+#eval show IO _ from runWithTimeout "failed cross-origin redirect retires old session and keeps pool usable" 4000 <| Async.block do
+  let (mockClient1, mockServer1) ← Mock.new
+  let (mockClient2, mockServer2) ← Mock.new
+  let originalConnectCount ← IO.mkRef 0
+
+  let connect : Client.ConnectFn := fun _scheme host _port config => do
+    if toString host == "other.example" then
+      throw (IO.userError s!"redirect target dial failed for {host}")
+    else
+      let n ← originalConnectCount.get
+      originalConnectCount.set (n + 1)
+      match n with
+      | 0 => Client.Session.new mockServer1 (config := config)
+      | 1 => Client.Session.new mockServer2 (config := config)
+      | _ => throw (IO.userError "opened too many original-origin sessions")
+
+  let pool ← Client.Agent.Pool.new {} 1 connect
+  let some domain := URI.DomainName.ofString? "example.com"
+    | throw (IO.userError "DomainName parse failed")
+  let origin : URI.Origin := {
+    scheme := URI.Scheme.ofString! "http"
+    host := .name domain
+    port := 80
+  }
+
+  let req1 ← Request.new |>.method .get |>.uri! "/start"
+    |>.header! "Host" "example.com" |>.empty
+  let p1 : IO.Promise (Except String (Response Body.Stream)) ← IO.Promise.new
+  background do
+    let result ← try
+        let resp ← pool.send origin req1
+        pure (Except.ok resp)
+      catch e => pure (Except.error (toString e))
+    discard <| p1.resolve result
+
+  let _ ← drainRequest mockClient1
+  mockClient1.send (rawResp "302 Found"
+    #[("Location", "http://other.example/landing"),
+      ("Content-Length", "0"),
+      ("Connection", "keep-alive")] "")
+
+  match ← await p1.result! with
+  | Except.ok _ =>
+    mockClient1.close
+    mockClient2.close
+    throw (IO.userError "redirect unexpectedly succeeded")
+  | Except.error e =>
+    unless e.contains "redirect target dial failed" do
+      mockClient1.close
+      mockClient2.close
+      throw (IO.userError s!"unexpected redirect failure: {e}")
+
+  match ← mockClient1.recv? with
+  | none => pure ()
+  | some bytes =>
+    mockClient1.close
+    mockClient2.close
+    throw (IO.userError s!"retired redirect source connection stayed readable:\n{(String.fromUTF8! bytes).quote}")
+
+  let req2 ← Request.new |>.method .get |>.uri! "/again"
+    |>.header! "Host" "example.com" |>.empty
+  let p2 : IO.Promise (Except String (Response Body.Stream)) ← IO.Promise.new
+  background do
+    let result ← try
+        let resp ← pool.send origin req2
+        pure (Except.ok resp)
+      catch e => pure (Except.error (toString e))
+    discard <| p2.resolve result
+
+  IO.sleep 50
+  if (← originalConnectCount.get) != 2 then
+    mockClient1.close
+    mockClient2.close
+    throw (IO.userError "pool did not open a replacement original-origin session for the follow-up request")
+
+  let secondBytes ← drainRequest mockClient2
+  mockClient2.send (rawResp "200 OK"
+    #[("Content-Length", "2"), ("Connection", "close")] "ok")
+
+  match ← await p2.result! with
+  | Except.error e => throw (IO.userError s!"original session was not reused after failed redirect acquire: {e}")
+  | Except.ok resp =>
+    let body ← resp.body.readAll (α := String)
+    unless body == "ok" do
+      throw (IO.userError s!"expected second response body 'ok', got {body.quote}")
+
+  let secondText := String.fromUTF8! secondBytes
+  unless secondText.startsWith "GET /again" do
+    throw <| IO.userError s!"second request did not use the replacement connection:\n{secondText.quote}"
+
 -- Two sequential requests on the same session must both succeed, exercising the
 -- `.next` reset path in the connection state machine.
 
@@ -1170,3 +1588,109 @@ private def sendInBackground {β : Type} [Coe β Body.Any]
 
 -- Non-`http` proxy schemes are rejected (HTTPS proxies need TLS tunnelling).
 #guard (Client.builder.proxy? "https://proxy.example.com").isNone
+
+-- Dynamic timeout validation rejects non-positive values and accepts positive ones.
+#guard (Client.builder.timeout? (0 : Time.Millisecond.Offset)).isNone
+#guard (Client.builder.timeout? (1 : Time.Millisecond.Offset)).isSome
+
+-- The builder clamps impossible pool sizes at the public API boundary.
+#guard (Client.builder.maxConnectionsPerHost 0).maxPerHost == 1
+
+-- ============================================================
+-- Section — Client builder and connector validation
+-- ============================================================
+
+-- The default TCP connector must not silently send HTTPS requests as plaintext
+-- HTTP over port 443.
+#eval show IO _ from runWithTimeout "default TCP connector rejects https" 3000 <| Async.block do
+  let url := URI.parse! "https://127.0.0.1:1/"
+  let client ← Client.builder.build
+  let result ← try
+      let _ ← Client.get client url |>.send
+      pure (Except.ok ())
+    catch e => pure (Except.error (toString e))
+  match result with
+  | Except.ok _ => throw (IO.userError "HTTPS request unexpectedly succeeded with default TCP connector")
+  | Except.error e =>
+    unless e.contains "default TCP connector does not support https" do
+      throw (IO.userError s!"expected clear HTTPS rejection, got: {e}")
+
+-- Unsupported direct request schemes are rejected before the connector is
+-- called. Redirects already apply this restriction; direct requests should too.
+#eval show IO _ from runWithTimeout "direct request rejects unsupported scheme before connector" 3000 <| Async.block do
+  let calls ← IO.mkRef 0
+  let connect : Client.ConnectFn := fun _ _ _ config => do
+    calls.modify (· + 1)
+    let (_mockClient, mockServer) ← Mock.new
+    Client.Session.new mockServer (config := config)
+
+  let client ← Client.Agent.Pool.new {} 1 connect
+  let result ← try
+      let _ ← Client.get client (URI.parse! "ftp://example.com/file") |>.send
+      pure (Except.ok ())
+    catch e => pure (Except.error (toString e))
+
+  unless (← calls.get) == 0 do
+    throw (IO.userError "connector was called for unsupported ftp URL")
+  match result with
+  | Except.ok _ => throw (IO.userError "unsupported ftp URL unexpectedly succeeded")
+  | Except.error e =>
+    unless e.contains "unsupported request URL scheme" do
+      throw (IO.userError s!"expected unsupported scheme error, got: {e}")
+
+-- Custom connectors may opt into HTTPS; only the default raw TCP connector
+-- rejects it.
+#eval show IO _ from runWithTimeout "custom connector can handle https" 3000 <| Async.block do
+  let (mockClient, mockServer) ← Mock.new
+  let connect : Client.ConnectFn := fun scheme _host _port config => do
+    unless scheme.val == "https" do
+      throw (IO.userError s!"expected https scheme, got {scheme.val}")
+    Client.Session.new mockServer (config := config)
+
+  let client ← Client.Agent.Pool.new {} 1 connect
+  let p : IO.Promise (Except String (Response Body.Stream)) ← IO.Promise.new
+  background do
+    let result ← try
+        let resp ← Client.get client (URI.parse! "https://example.com/secure") |>.send
+        pure (Except.ok resp)
+      catch e => pure (Except.error (toString e))
+    discard <| p.resolve result
+
+  let reqBytes ← drainRequest mockClient
+  mockClient.send (rawResp "200 OK"
+    #[("Content-Length", "2"), ("Connection", "close")] "ok")
+
+  match ← await p.result! with
+  | Except.error e => throw (IO.userError s!"custom HTTPS connector request failed: {e}")
+  | Except.ok resp =>
+    let body ← resp.body.readAll (α := String)
+    unless body == "ok" do
+      throw (IO.userError s!"expected body 'ok', got {body.quote}")
+
+  let reqText := String.fromUTF8! reqBytes
+  unless reqText.startsWith "GET /secure" do
+    throw (IO.userError s!"unexpected HTTPS request target:\n{reqText.quote}")
+
+-- A public `maxConnectionsPerHost 0` setting must not put the pool into an
+-- impossible internal state.
+#eval show IO _ from runWithTimeout "maxConnectionsPerHost zero clamps to one connection" 3000 <| Async.block do
+  let (_mockClient, mockServer) ← Mock.new
+  let calls ← IO.mkRef 0
+  let connect : Client.ConnectFn := fun _ _ _ config => do
+    calls.modify (· + 1)
+    Client.Session.new mockServer (config := config)
+
+  let pool ← Client.Agent.Pool.new {} 0 connect
+  let some domain := URI.DomainName.ofString? "example.com"
+    | throw (IO.userError "DomainName parse failed")
+  let origin : URI.Origin := {
+    scheme := URI.Scheme.ofString! "http"
+    host := .name domain
+    port := 80
+  }
+
+  let session ← pool.getOrCreateSession origin
+  session.close
+
+  unless (← calls.get) == 1 do
+    throw (IO.userError "expected exactly one connection with clamped maxConnectionsPerHost")

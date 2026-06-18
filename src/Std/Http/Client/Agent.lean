@@ -55,7 +55,7 @@ cross-origin redirect. Supplied by the pool; absent for standalone agents.
 
 * `acquire` — opens (or borrows from the pool) a session to the new origin.
 * `release` — evicts a broken session (connection-level error during `send`).
-* `releaseSwapped` — returns a session that was swapped out for a cross-origin hop but is still alive.
+* `releaseSwapped` — disposes of a session that was swapped out for a cross-origin hop.
 -/
 structure SessionRouter where
 
@@ -70,7 +70,7 @@ structure SessionRouter where
   release : Session → URI.Origin → Async Unit
 
   /--
-  Disposes of a session that was swapped out during a cross-origin redirect but is still alive.
+  Disposes of a session that was swapped out during a cross-origin redirect.
   -/
   releaseSwapped : Session → URI.Origin → Async Unit
 
@@ -98,6 +98,32 @@ structure Agent where
   An empty array means no interception.
   -/
   middlewares : Array Middleware := #[]
+
+/--
+Response plus the session/origin and completion signal for the hop that produced it.
+Used by the pool to release a session only after the connection is ready for reuse.
+-/
+structure Agent.Exchange where
+  /--
+  The response returned to the caller.
+  -/
+  response : Response Body.Stream
+
+  /--
+  The session that produced `response`.
+  -/
+  session : Session
+
+  /--
+  The origin associated with `session`.
+  -/
+  origin : URI.Origin
+
+  /--
+  Resolves when `session` has finished the response-body exchange and is ready for reuse,
+  or with an error if the exchange fails.
+  -/
+  completion : IO.Promise (Except IO.Error Unit)
 
 -- Implementation helpers live here in `namespace Client` so that `Agent` unambiguously
 -- refers to the struct above, not to the `namespace Agent` opened below.
@@ -148,18 +174,30 @@ private def rewriteForProxy (agent : Agent) (request : Request Body.Any) : Reque
   else
     toOriginForm request
 
-private def dispatchHop (agent : Agent) (request : Request Body.Any) : Async (Response Body.Stream) := do
+private def completedPromise : Async (IO.Promise (Except IO.Error Unit)) := do
+  let p ← IO.Promise.new
+  discard <| p.resolve (.ok ())
+  return p
+
+private def dispatchHop (agent : Agent) (request : Request Body.Any) :
+    Async Agent.Exchange := do
+  let completionRef ← IO.mkRef (none : Option (IO.Promise (Except IO.Error Unit)))
   let inner : Request Body.Any → Async (Response Body.Stream) := fun req => do
-    let response ← try
-      agent.session.send req
+    let (response, completion) ← try
+      agent.session.sendTracked req
     catch err =>
       match agent.sessionRouter with
       | some router => router.release agent.session agent.origin
       | none => discard <| agent.session.close
       throw err
+    completionRef.set (some completion)
     return response
   let chain := agent.middlewares.foldr (fun mw next req => mw req next) inner
-  chain request
+  let response ← chain request
+  let completion ← match ← completionRef.get with
+    | some completion => pure completion
+    | none => completedPromise
+  return { response, session := agent.session, origin := agent.origin, completion }
 
 private inductive RedirectStep where
   | final
@@ -201,8 +239,8 @@ private def advanceAgent (agent : Agent) (plan : RedirectPlan) : Async Agent := 
   let some router := agent.sessionRouter
     | return agent
 
-  let newSession ← router.acquire plan.origin
   router.releaseSwapped agent.session agent.origin
+  let newSession ← router.acquire plan.origin
   return {
     session := newSession
     origin := plan.origin
@@ -213,20 +251,20 @@ private def advanceAgent (agent : Agent) (plan : RedirectPlan) : Async Agent := 
 private partial def sendWithRedirects
     (agent : Agent) (request : Request Body.Any)
     (remaining : Nat)
-    (history : Array (URI.Origin × String) := #[]) : Async (Response Body.Stream) := do
+    (history : Array (URI.Origin × String) := #[]) : Async Agent.Exchange := do
 
   let history := history.push (agent.origin, toString request.line.uri)
   let request := rewriteForProxy agent request
-  let response ← dispatchHop agent request
+  let tracked ← dispatchHop agent request
 
-  match evaluateRedirect agent request response remaining history with
+  match evaluateRedirect agent request tracked.response remaining history with
   | .final =>
-    return response
+    return tracked
   | .stop =>
-    return response
+    return tracked
   | .follow plan =>
-    response.body.drain (drainLimit := some agent.session.config.redirectBodyDrainLimit.toUInt64)
-      (closeStream := response.body.close)
+    tracked.response.body.drain (drainLimit := some agent.session.config.redirectBodyDrainLimit.toUInt64)
+      (closeStream := tracked.response.body.close)
     let newRequest ← buildRedirectRequest plan request
     let agent ← advanceAgent agent plan
     sendWithRedirects agent newRequest (remaining - 1) history
@@ -248,6 +286,14 @@ Sends a request, automatically following redirects up to `config.maxRedirects` h
 Middlewares are applied around every hop.
 -/
 def send {β : Type} [Coe β Body.Any] (agent : Agent) (request : Request β) : Async (Response Body.Stream) :=
+  return (← Agent.Impl.sendWithRedirects agent { request with } agent.session.config.maxRedirects).response
+
+/--
+Sends a request and returns the response together with the session completion signal
+for the final hop. This is used by the pool to manage session ownership.
+-/
+def exchange {β : Type} [Coe β Body.Any] (agent : Agent) (request : Request β) :
+    Async Agent.Exchange :=
   Agent.Impl.sendWithRedirects agent { request with } agent.session.config.maxRedirects
 
 end Std.Http.Client.Agent

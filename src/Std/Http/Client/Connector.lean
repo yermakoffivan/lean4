@@ -53,7 +53,14 @@ and the original `host`/`port` are left for the HTTP layer to handle.
 structure TcpConnector where
 
 instance : Connector TcpConnector where
-  connect _ _scheme host port config := do
+  connect _ scheme host port config := do
+
+    if scheme.val == "https" then
+      throw (IO.userError "default TCP connector does not support https.")
+
+    if scheme.val != "http" then
+      throw (IO.userError s!"default TCP connector only supports http, got scheme {scheme.val.quote}")
+
     let (connectHost, connectPort) := config.proxy.getD (toString host, port)
     let addrs ← DNS.getAddrInfo connectHost (toString connectPort)
 

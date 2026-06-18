@@ -58,18 +58,28 @@ structure Session where
 namespace Session
 
 /--
-Queue a request and await its response.
+Queue a request and await its response, together with a completion promise that
+resolves when the connection is ready for the next request.
 -/
-def send {β : Type} [Body β] (session : Session) (request : Request β) : Async (Response Body.Stream) := do
+def sendTracked {β : Type} [Body β] (session : Session) (request : Request β) :
+    Async (Response Body.Stream × IO.Promise (Except IO.Error Unit)) := do
   let responsePromise ← IO.Promise.new
+  let completionPromise ← IO.Promise.new
   let request := { request with body := Body.Any.ofBody request.body }
 
-  let task ← session.requestChannel.send { request, responsePromise }
+  let task ← session.requestChannel.send { request, responsePromise, completionPromise }
 
   let .ok _ ← await task
     | throw (.userError "connection closed before request could be sent")
 
-  Async.ofExcept (← await responsePromise.result!)
+  let response ← Async.ofExcept (← await responsePromise.result!)
+  return (response, completionPromise)
+
+/--
+Queue a request and await its response.
+-/
+def send {β : Type} [Body β] (session : Session) (request : Request β) : Async (Response Body.Stream) := do
+  return (← session.sendTracked request).1
 
 /--
 Wait for the background loop to exit.

@@ -21,14 +21,15 @@ open Time
 # Client
 
 A top-level HTTP client backed by a connection pool.
-Use `Client.builder` to construct, then call `client.get (URI.parse! "https://...")`.
+Use `Client.builder` to construct, then call `client.get (URI.parse! "http://...")`.
+The default connector is plain TCP and supports `http`; install a custom TLS connector for `https`.
 
 ```lean
 let client ← Client.builder
   |>.proxy "proxy.example.com" 8080
   |>.build
 
-let res ← client.get (URI.parse! "https://api.example.com/data")
+let res ← client.get (URI.parse! "http://api.example.com/data")
   |>.header! "Accept" "application/json"
   |>.send
 ```
@@ -50,7 +51,9 @@ structure Client.Builder where
   config : Config := {}
 
   /--
-  Maximum number of pooled connections per host.
+  Requested maximum number of pooled connections per host.
+  The current pool implementation keeps one reusable connection total; this is retained for
+  API compatibility and clamped to at least `1`.
   -/
   maxPerHost : Nat := 4
 
@@ -106,7 +109,7 @@ def timeout? (b : Client.Builder) (ms : Time.Millisecond.Offset) : Option Client
 /--
 Sets the request timeout (send + receive).
 DNS resolution and TCP connect are not covered by this timeout.
-Values ≤ 0 are ignored and the builder is returned unchanged; use `timeout?` to detect an invalid value.
+Requires a proof that `ms` is positive; use `timeout?` to handle invalid values dynamically.
 -/
 def timeout (b : Client.Builder) (ms : Time.Millisecond.Offset) (h : 0 < ms := by decide) : Client.Builder :=
   { b with config := { b.config with requestTimeout := ⟨ms, h⟩ } }
@@ -118,10 +121,11 @@ def userAgent (b : Client.Builder) (ua : String) : Client.Builder :=
   { b with config := { b.config with userAgent := Header.Value.ofString? ua } }
 
 /--
-Sets the maximum number of pooled connections per host.
+Sets the requested maximum number of pooled connections per host.
+The current pool keeps one reusable connection total; values less than `1` are clamped to `1`.
 -/
 def maxConnectionsPerHost (b : Client.Builder) (n : Nat) : Client.Builder :=
-  { b with maxPerHost := n }
+  { b with maxPerHost := if n == 0 then 1 else n }
 
 /--
 Sets the maximum number of redirects to follow automatically.
@@ -168,7 +172,8 @@ structure RequestBuilder where
   client : Client
 
   /--
-  URI scheme (`"http"` or `"https"`).
+  URI scheme (`"http"` or `"https"`). The default connector supports only `http`; custom
+  connectors may support `https`.
   -/
   scheme : URI.Scheme
 
@@ -285,7 +290,11 @@ end RequestBuilder
 private def mkRequest (method : Request.Builder → Request.Builder) (client : Client) (url : URI) : RequestBuilder :=
   match url.toOriginRequest? with
   | some (scheme, host, port, target) =>
-    { client, scheme, host, port, builder := method (Request.new |>.uri target) }
+    if scheme.val == "http" || scheme.val == "https" then
+      { client, scheme, host, port, builder := method (Request.new |>.uri target) }
+    else
+      { client, scheme, host, port, builder := method Request.new,
+        error := some s!"unsupported request URL scheme: {scheme.val}" }
   | none =>
 
     -- The URL names no host to connect to (RFC 3986 §3.2): defer the failure to send time.

@@ -57,8 +57,29 @@ instance : Inhabited (NameTrie β) where
 instance : EmptyCollection (NameTrie β) where
   emptyCollection := NameTrie.empty
 
+/--
+Looks up the value associated with `k`.
+
+Unlike going through `PrefixTree.find?`, this does not allocate an intermediate
+`Array NamePart` key: it walks the trie as the recursion over `k` unwinds, so the
+outermost name component is matched first (the call stack performs the reversal that
+`toKey` would otherwise do with a temporary array).
+-/
 def NameTrie.find? (t : NameTrie β) (k : Name) : Option β :=
-  PrefixTree.find? t (toKey k)
+  match go k with
+  | some (.Node v _) => v
+  | none             => none
+where
+  go : Name → Option (PrefixTreeNode NamePart β NamePart.cmp)
+    | .anonymous => some t.val
+    | .str p s   =>
+      match go p with
+      | some (.Node _ m) => m.get? (.str s)
+      | none             => none
+    | .num p i   =>
+      match go p with
+      | some (.Node _ m) => m.get? (.num i)
+      | none             => none
 
 @[inline, inherit_doc PrefixTree.findLongestPrefix?]
 def NameTrie.findLongestPrefix? (t : NameTrie β) (k : Name) : Option β :=

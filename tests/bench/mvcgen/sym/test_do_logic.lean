@@ -680,7 +680,7 @@ namespace InvalidSpecRejection
 
 end InvalidSpecRejection
 
-namespace WhileLoop
+namespace TopBetaReduction
 
 variable {m : Type → Type u} {Pred EPred} [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred]
 

@@ -112,6 +112,71 @@ where
       xs
 
 /--
+Registers a `Waiter`-backed selection over `selectables`: each `Selector` is registered against
+the shared `finished` ref until one of them wins the race, and then all `Selector.unregisterFn`s are
+called and `target` is resolved with the result of the winning `Selectable.cont`.
+
+This proceeds in two phases. **Phase 1** registers a derived `Waiter` with each still-needed
+`Selector` while merely *building* (not running) an observer for each. **Phase 2** runs the observers once
+registration is fully complete. Splitting the phases is what makes the protocol safe: because no
+observer runs while phase 1 is still in progress, a `Selector` that fires on another thread can
+never call `unregisterFn` concurrently with an in-flight `registerFn` of another `Selector`. The
+ordering is therefore structural, with no runtime synchronization barrier required.
+
+This is the shared core of `Selectable.one` (which owns `finished` and `target` itself) and
+`Selectable.combine` (which threads through the outer waiter's `finished` and `promise`).
+-/
+private def Selectable.register (selectables : Array (Selectable α)) (finished : IO.Ref Bool)
+    (target : IO.Promise (Except IO.Error α)) : Async Unit := do
+  -- Phase 1: register selectors until the shared waiter is finished, capturing a type-erased
+  -- observer for each. The observers are not started here, so nothing can `unregisterFn` while
+  -- registration is still running.
+  let mut observers : Array (Async Unit) := #[]
+
+  for selectable in selectables do
+    if ← finished.get then
+      break
+
+    let waiterPromise ← IO.Promise.new
+    let waiter := Waiter.mk finished waiterPromise
+    selectable.selector.registerFn waiter
+
+    -- The observer runs with `sync := false` so that when a `Selector` resolves its waiter while
+    -- holding its own internal lock (e.g. a zero-capacity channel resolving a consumer inside its
+    -- mutex), the observer's `unregisterFn` runs on a separate task rather than synchronously
+    -- re-entering that lock. With the two-phase structure above this is the only role the old
+    -- synchronization barrier played, so no barrier is needed.
+    let observer : Async Unit :=
+      discard <| IO.bindTask (t := waiterPromise.result?) fun res? => do
+        match res? with
+        | none =>
+          /-
+          If we get `none` that means the waiterPromise was dropped, usually due to cancellation. In
+          this situation just do nothing.
+          -/
+          return (Task.pure (.ok ()))
+        | some res =>
+          let async : Async _ :=
+            try
+              let res ← IO.ofExcept res
+
+              for selectable in selectables do
+                selectable.selector.unregisterFn
+
+              target.resolve (.ok (← selectable.cont res))
+            catch e =>
+              target.resolve (.error e)
+
+          async.toBaseIO
+
+    observers := observers.push observer
+
+  -- Phase 2: registration is complete; start observing. The first selector to resolve its waiter
+  -- unregisters the rest and resolves `target` with the result of its continuation.
+  for observer in observers do
+    observer
+
+/--
 Performs fair and data-loss free multiplexing on the `Selectable`s in `selectables`.
 
 The protocol for this is as follows:
@@ -130,8 +195,6 @@ partial def Selectable.one (selectables : Array (Selectable α)) : Async α := d
   let gen := mkStdGen seed
   let selectables := shuffleIt selectables gen
 
-  let gate ← IO.Promise.new
-
   for selectable in selectables do
     if let some val ← selectable.selector.tryFn then
       let result ← selectable.cont val
@@ -140,38 +203,8 @@ partial def Selectable.one (selectables : Array (Selectable α)) : Async α := d
   let finished ← IO.mkRef false
   let promise ← IO.Promise.new
 
-  for selectable in selectables do
-    if ← finished.get then
-      break
+  Selectable.register selectables finished promise
 
-    let waiterPromise ← IO.Promise.new
-    let waiter := Waiter.mk finished waiterPromise
-    selectable.selector.registerFn waiter
-
-    discard <| IO.bindTask (t := waiterPromise.result?) (sync := true) fun res? => do
-      match res? with
-      | none =>
-        /-
-        If we get `none` that means the waiterPromise was dropped, usually due to cancellation. In
-        this situation just do nothing.
-        -/
-        return (Task.pure (.ok ()))
-      | some res =>
-        let async : Async _ :=
-          try
-            let res ← IO.ofExcept res
-            discard <| await gate.result?
-
-            for selectable in selectables do
-              selectable.selector.unregisterFn
-
-            promise.resolve (.ok (← selectable.cont res))
-          catch e =>
-            promise.resolve (.error e)
-
-        async.toBaseIO
-
-  gate.resolve ()
   let result ← Async.ofPromise (pure promise)
   return result
 
@@ -223,32 +256,8 @@ def Selectable.combine (selectables : Array (Selectable α)) : IO (Selector α) 
           return some result
       return none
 
-    registerFn := fun waiter => do
-      for selectable in selectables do
-        let waiterPromise ← IO.Promise.new
-        let derivedWaiter := Waiter.mk waiter.finished waiterPromise
-        selectable.selector.registerFn derivedWaiter
-
-        let barrier ← IO.Promise.new
-
-        discard <| IO.bindTask (t := waiterPromise.result?) fun res? => do
-          match res? with
-          | none => return (Task.pure (.ok ()))
-          | some res =>
-            let async : Async _ := do
-              let mainPromise := waiter.promise
-
-              await barrier
-              for selectable in selectables do
-                selectable.selector.unregisterFn
-
-              try
-                let val ← IO.ofExcept res
-                let result ← selectable.cont val
-                mainPromise.resolve (.ok result)
-              catch e =>
-                mainPromise.resolve (.error e)
-            async.toBaseIO
+    registerFn := fun waiter =>
+      Selectable.register selectables waiter.finished waiter.promise
 
     unregisterFn := do
       for selectable in selectables do

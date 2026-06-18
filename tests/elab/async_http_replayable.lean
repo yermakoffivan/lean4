@@ -1,4 +1,10 @@
 import Std.Http.Data.Body
+
+/-!
+Tests replayability for HTTP bodies, including reset behavior for full and empty bodies and
+erased replayability through `Body.Any`.
+-/
+
 open Std.Async
 open Std.Http
 open Std.Http.Body
@@ -10,7 +16,9 @@ def fullResetInPlaceAfterRead : Async Unit := do
   let first ← full.recv
   assert! first.isSome
   assert! (← full.recv).isNone
+  assert! (← full.isClosed)
   Replayable.resetInPlace full
+  assert! !(← full.isClosed)
   let second ← full.recv
   assert! second.isSome
   assert! second.get!.data == "reset".toUTF8
@@ -40,6 +48,18 @@ def fullResetInPlaceOnFresh : Async Unit := do
   assert! r.get!.data == "fresh".toUTF8
 
 #eval fullResetInPlaceOnFresh.block
+
+-- An empty Full body is closed after reaching EOF and reset makes it fresh again
+
+def fullEmptyIsClosedAfterRead : Async Unit := do
+  let full ← Body.Full.ofByteArray ByteArray.empty
+  assert! !(← full.isClosed)
+  assert! (← full.recv).isNone
+  assert! (← full.isClosed)
+  Replayable.resetInPlace full
+  assert! !(← full.isClosed)
+
+#eval fullEmptyIsClosedAfterRead.block
 
 -- resetInPlace can be called multiple times
 

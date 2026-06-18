@@ -51,10 +51,10 @@ private def takeChunk (full : Full) : AtomicT State Async (Option Chunk) := do
   match ← get with
   | .closed => pure none
   | .ready =>
+    set State.sent
     if full.data.isEmpty then
       pure none
     else
-      set State.sent
       pure (some (Chunk.ofByteArray full.data))
   | .sent => pure none
 
@@ -88,11 +88,11 @@ def close (full : Full) : Async Unit :=
     set State.closed
 
 /--
-Returns `true` when the body has been closed via `close`.
+Returns `true` when the body has been closed or consumed.
 -/
 def isClosed (full : Full) : Async Bool :=
   full.state.atomically do
-    return (← get) == .closed
+    return (← get) != .ready
 
 /--
 Returns the known size of the remaining data.

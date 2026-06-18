@@ -2481,9 +2481,9 @@ theorem Spec.whileM
     · exact Triple.pure b Lean.Order.PartialOrder.rel_refl
 
 /--
-An way to construct `forIn`/`whileM` invarinat by specifying a condition `inv` which should hold
-at the end of each loop iteation (even the breaking one), and a condition which should hold in the
-end of the loop *in addition to `inv`*.
+A way to construct `forIn`/`whileM` invarinat by specifying a condition `inv` which should hold
+at the end of each loop itreation (even the breaking one), and a condition `onDone` which should
+hold in the end of the loop *in addition to `inv`*.
 In the case of a normal `while` loop the latter one could always be taken as negation of the loop
 condition
 -/

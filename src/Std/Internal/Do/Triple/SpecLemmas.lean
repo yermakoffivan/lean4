@@ -2422,12 +2422,12 @@ An invariant for a `whileM` loop, given as a predicate over the `α ⊕ β` curs
 `.inl a` is the `continue` case at `a`; `.inr b` is the `break` case with result `b`.
 -/
 @[spec_invariant_type, simp, grind =]
-def WhileInvariant (α β : Type u) (Pred : Type u) :=
+def RepeatInvariant (α β : Type u) (Pred : Type u) :=
   α ⊕ β → Pred
 
 /-- A termination measure for a `whileM` loop. -/
 @[spec_invariant_type]
-def WhileVariant (α : Type u) :=
+def RepeatVariant (α : Type u) :=
   α → Nat
 
 /--
@@ -2438,8 +2438,8 @@ invariant.
 @[spec]
 theorem Spec.whileM
     {init : α} {f : α → m (α ⊕ β)} [Nonempty β]
-    (measure : WhileVariant α)
-    (inv : WhileInvariant α β Pred)
+    (measure : RepeatVariant α)
+    (inv : RepeatInvariant α β Pred)
     (einv : EPred)
     (step : ∀ a,
       Triple
@@ -2481,14 +2481,28 @@ theorem Spec.whileM
     · exact Triple.pure b Lean.Order.PartialOrder.rel_refl
 
 /--
+An way to construct `forIn`/`whileM` invarinat by specifying a condition `inv` which should hold
+at the end of each loop iteation (even the breaking one), and a condition which should hold in the
+end of the loop *in addition to `inv`*.
+In the case of a normal `while` loop the latter one could always be taken as negation of the loop
+condition
+-/
+@[simp]
+noncomputable abbrev RepeatInvariant.withOnDone {α : Type u} {Pred : Type u} [Assertion Pred]
+  (inv : α → Pred) (onDone : α → Pred) : RepeatInvariant α α Pred
+  | .inl a => inv a
+  | .inr a => inv a ⊓ onDone a
+
+
+/--
 Specification for `forIn` over a `Lean.Loop`. The cursor is `β ⊕ β`: `.inl b` means
 "still iterating with `b`", `.inr b` means "finished with result `b`".
 -/
 @[spec]
 theorem Spec.forIn_loop
     {l : Lean.Loop} {init : β} {f : Unit → β → m (ForInStep β)}
-    (measure : WhileVariant β)
-    (inv : WhileInvariant β β Pred)
+    (measure : RepeatVariant β)
+    (inv : RepeatInvariant β β Pred)
     (einv : EPred)
     (step : ∀ b,
       Triple

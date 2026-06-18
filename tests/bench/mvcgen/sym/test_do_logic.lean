@@ -750,7 +750,7 @@ theorem countdown_spec (n : Nat) :
   mvcgen' [countdown]
   case inv1 => exact RepeatInvariant.ofInvariantAndBreak (fun i s => s + i = n) (fun i _ => i = 0)
   case inv2 => exact fun i => i
-  any_goals simp [RepeatInvariant.ofInvariantAndBreak] at *
+  any_goals simp at *
   all_goals grind
 
 end RepeatInvariantOfInvariantAndBreak

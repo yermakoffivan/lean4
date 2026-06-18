@@ -218,7 +218,7 @@ request.
 private def validatingHeaders : Array Header.Name :=
   #[.ifNoneMatch, .ifModifiedSince]
 
-/--
+/-
 Resource-specific headers that become meaningless when the method changes to GET/HEAD and no body
 is sent.
 -/

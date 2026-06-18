@@ -131,6 +131,14 @@ Returns `.notApplicable` if unification fails.
 public def BackwardRule.apply (mvarId : MVarId) (rule : BackwardRule) : SymM ApplyResult := mvarId.withContext do
   let decl ← mvarId.getDecl
   if let some result ← rule.pattern.unify? decl.type then
+    -- `mkResultPos` drops instance arguments from `resultPos`, assuming type class
+    -- resolution fills them. One that was neither synthesized nor unified makes
+    -- the rule inapplicable.
+    if let some varInfos := rule.pattern.varInfos? then
+      for h : i in *...result.args.size do
+        if varInfos.argsInfo[i]!.isInstance then
+          if let .mvar m := result.args[i] then
+            unless (← m.isAssigned) do return .failed
     mvarId.assign (mkValue rule.expr rule.pattern result)
     return .goals <| rule.resultPos.map fun i =>
       result.args[i]!.mvarId!

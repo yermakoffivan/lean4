@@ -25,3 +25,9 @@ example (pre rhs : Nat → Prop) : PlainRel pre rhs := by
 
 example (pre rhs : Nat → Prop) : PlainRel pre rhs := by
   sym => apply plainFoo''
+
+-- An unsynthesizable instance argument makes `apply` fail rather than leaving a
+-- loose instance metavariable in the proof.
+/-- error: `apply` failed, rule is not applicable -/
+#guard_msgs in
+example : False := by sym => apply Inhabited.default

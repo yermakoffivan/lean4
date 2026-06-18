@@ -100,7 +100,7 @@ def warnIfUsesSorry (decl : Declaration) : CoreM Unit := do
 `.default` transparency but not at `.implicit` transparency generate a warning suggesting the
 definitions that should be marked `@[implicit_reducible]`. -/
 register_builtin_option linter.declCheckImplicit : Bool := {
-  defValue := false
+  defValue := true
   descr    := "warn when a declaration's type is not type-correct at `.implicit` transparency"
 }
 

@@ -691,7 +691,7 @@ theorem Spec.incr
     (post : PUnit → Nat → Pred) (epost : EPred) (n : Nat) :
     Triple (fun s => post ⟨⟩ (s + n))
       (incr n : StateT Nat m PUnit) post epost := by
-  mvcgen' [WhileLoop.incr]; rfl
+  mvcgen' [TopBetaReduction.incr]; rfl
 
 /--
 error: unsolved goals
@@ -728,4 +728,4 @@ theorem incr_poly (amounts : List Nat) :
   mvcgen' [incr]
 
 
-end WhileLoop
+end TopBetaReduction

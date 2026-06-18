@@ -200,7 +200,7 @@ private def normalizePre? (scope : VCGen.Scope) (goal : MVarId) (α pre target :
   if let some (g, h) ← ofPropPreIntro? goal pre then
     return some ({ scope with lastLiftedPre? := some h }, [g])
   if let some goal' ← introsExcessArgs goal then return some (scope, [goal'])
-  if let some gs ← truePre? goal pre target then
+  if let some gs ← normalizePreToTop? goal pre target then
     return some (scope, gs)
   if let some (g, h) ← barePreIntro? goal α pre then
     return some ({ scope with lastLiftedPre? := some h }, [g])

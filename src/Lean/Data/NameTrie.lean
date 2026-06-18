@@ -38,11 +38,11 @@ def NamePart.lt : NamePart → NamePart → Bool
 @[expose] def NameTrie (β : Type u) := PrefixTree NamePart β NamePart.cmp
 
 private def toKey (n : Name) : Array NamePart :=
-  loop n (Array.emptyWithCapacity 32)
+  loop n (Array.emptyWithCapacity 32) |>.reverse
 where
-  loop
-    | Name.str p s,   parts => (loop p parts).push (NamePart.str s)
-    | Name.num p n,   parts => (loop p parts).push (NamePart.num n)
+  loop : Name → Array NamePart → Array NamePart
+    | Name.str p s,   parts => loop p (parts.push (.str s))
+    | Name.num p n,   parts => loop p (parts.push (.num n))
     | Name.anonymous, parts => parts
 
 def NameTrie.insert (t : NameTrie β) (n : Name) (b : β) : NameTrie β :=

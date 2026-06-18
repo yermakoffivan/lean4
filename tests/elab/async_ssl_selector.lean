@@ -23,21 +23,23 @@ def assertEqN (actual expected : UInt64) (label : String) : IO Unit := do
     throw <| IO.userError s!"{label}: expected {expected}, got {actual}"
 
 def setupTestCerts : IO (String × String) := do
-  IO.FS.createDirAll "/tmp/lean_ssl_test"
-  let keyFile  := "/tmp/lean_ssl_test/key.pem"
-  let certFile := "/tmp/lean_ssl_test/cert.pem"
+  let dir ← IO.FS.createTempDir
+  let keyFile  := toString (dir / "key.pem")
+  let certFile := toString (dir / "cert.pem")
 
-  let keyExists  ← System.FilePath.pathExists keyFile
-  let certExists ← System.FilePath.pathExists certFile
-  unless keyExists && certExists do
-    discard <| IO.Process.output {
-      cmd  := "openssl"
-      args := #["genrsa", "-out", keyFile, "2048"]
-    }
-    discard <| IO.Process.output {
-      cmd  := "openssl"
-      args := #["req", "-new", "-x509", "-key", keyFile, "-out", certFile, "-days", "1", "-subj", "/CN=localhost"]
-    }
+  let keyOut ← IO.Process.output {
+    cmd  := "openssl"
+    args := #["genrsa", "-out", keyFile, "2048"]
+  }
+  unless keyOut.exitCode == 0 do
+    throw <| IO.userError s!"openssl genrsa failed: {keyOut.stderr}"
+
+  let certOut ← IO.Process.output {
+    cmd  := "openssl"
+    args := #["req", "-new", "-x509", "-key", keyFile, "-out", certFile, "-days", "1", "-subj", "/CN=localhost"]
+  }
+  unless certOut.exitCode == 0 do
+    throw <| IO.userError s!"openssl req failed: {certOut.stderr}"
 
   return (certFile, keyFile)
 

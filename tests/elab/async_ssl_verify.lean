@@ -23,21 +23,23 @@ def assertEqN (actual expected : UInt64) (label : String) : IO Unit := do
     throw <| IO.userError s!"{label}: expected {expected}, got {actual}"
 
 def setupTestCerts : IO (String × String) := do
-  IO.FS.createDirAll "/tmp/lean_ssl_test"
-  let keyFile  := "/tmp/lean_ssl_test/key.pem"
-  let certFile := "/tmp/lean_ssl_test/cert.pem"
+  let dir ← IO.FS.createTempDir
+  let keyFile  := toString (dir / "key.pem")
+  let certFile := toString (dir / "cert.pem")
 
-  let keyExists  ← System.FilePath.pathExists keyFile
-  let certExists ← System.FilePath.pathExists certFile
-  unless keyExists && certExists do
-    discard <| IO.Process.output {
-      cmd  := "openssl"
-      args := #["genrsa", "-out", keyFile, "2048"]
-    }
-    discard <| IO.Process.output {
-      cmd  := "openssl"
-      args := #["req", "-new", "-x509", "-key", keyFile, "-out", certFile, "-days", "1", "-subj", "/CN=localhost"]
-    }
+  let keyOut ← IO.Process.output {
+    cmd  := "openssl"
+    args := #["genrsa", "-out", keyFile, "2048"]
+  }
+  unless keyOut.exitCode == 0 do
+    throw <| IO.userError s!"openssl genrsa failed: {keyOut.stderr}"
+
+  let certOut ← IO.Process.output {
+    cmd  := "openssl"
+    args := #["req", "-new", "-x509", "-key", keyFile, "-out", certFile, "-days", "1", "-subj", "/CN=localhost"]
+  }
+  unless certOut.exitCode == 0 do
+    throw <| IO.userError s!"openssl req failed: {certOut.stderr}"
 
   return (certFile, keyFile)
 
@@ -45,44 +47,49 @@ instance : Coe Session.Client Session := ⟨Session.Client.toSession⟩
 instance : Coe Session.Server Session := ⟨Session.Server.toSession⟩
 
 def setupWildcardCert (keyFile : String) : IO String := do
-  let certFile := "/tmp/lean_ssl_test/wildcard_cert.pem"
-  let alreadyExists ← System.FilePath.pathExists certFile
-  unless alreadyExists do
-    discard <| IO.Process.output {
-      cmd  := "openssl"
-      args := #["req", "-new", "-x509", "-key", keyFile, "-out", certFile, "-days", "1",
-                "-subj", "/CN=*.test.local",
-                "-addext", "subjectAltName=DNS:*.test.local,DNS:test.local"]
-    }
+  let dir ← IO.FS.createTempDir
+  let certFile := toString (dir / "wildcard_cert.pem")
+  let out ← IO.Process.output {
+    cmd  := "openssl"
+    args := #["req", "-new", "-x509", "-key", keyFile, "-out", certFile, "-days", "1",
+              "-subj", "/CN=*.test.local",
+              "-addext", "subjectAltName=DNS:*.test.local,DNS:test.local"]
+  }
+  unless out.exitCode == 0 do
+    throw <| IO.userError s!"openssl wildcard cert failed: {out.stderr}"
   return certFile
 
 def setupMultiSANCert (keyFile : String) : IO String := do
-  let certFile := "/tmp/lean_ssl_test/multisan_cert.pem"
-  let alreadyExists ← System.FilePath.pathExists certFile
-  unless alreadyExists do
-    discard <| IO.Process.output {
-      cmd  := "openssl"
-      args := #["req", "-new", "-x509", "-key", keyFile, "-out", certFile, "-days", "1",
-                "-subj", "/CN=alpha.test.local",
-                "-addext", "subjectAltName=DNS:alpha.test.local,DNS:beta.test.local"]
-    }
+  let dir ← IO.FS.createTempDir
+  let certFile := toString (dir / "multisan_cert.pem")
+  let out ← IO.Process.output {
+    cmd  := "openssl"
+    args := #["req", "-new", "-x509", "-key", keyFile, "-out", certFile, "-days", "1",
+              "-subj", "/CN=alpha.test.local",
+              "-addext", "subjectAltName=DNS:alpha.test.local,DNS:beta.test.local"]
+  }
+  unless out.exitCode == 0 do
+    throw <| IO.userError s!"openssl multi-SAN cert failed: {out.stderr}"
   return certFile
 
 def setupExpiredCert (keyFile : String) : IO String := do
-  let csrFile  := "/tmp/lean_ssl_test/expired_csr.pem"
-  let certFile := "/tmp/lean_ssl_test/expired_cert.pem"
-  let alreadyExists ← System.FilePath.pathExists certFile
-  unless alreadyExists do
-    discard <| IO.Process.output {
-      cmd  := "openssl"
-      args := #["req", "-new", "-key", keyFile, "-out", csrFile, "-subj", "/CN=localhost"]
-    }
-    discard <| IO.Process.output {
-      cmd  := "openssl"
-      args := #["x509", "-req", "-in", csrFile, "-signkey", keyFile,
-                "-out", certFile, "-set_serial", "99",
-                "-not_before", "20200101000000Z", "-not_after", "20200102000000Z"]
-    }
+  let dir ← IO.FS.createTempDir
+  let csrFile  := toString (dir / "expired_csr.pem")
+  let certFile := toString (dir / "expired_cert.pem")
+  let csrOut ← IO.Process.output {
+    cmd  := "openssl"
+    args := #["req", "-new", "-key", keyFile, "-out", csrFile, "-subj", "/CN=localhost"]
+  }
+  unless csrOut.exitCode == 0 do
+    throw <| IO.userError s!"openssl expired cert CSR failed: {csrOut.stderr}"
+  let certOut ← IO.Process.output {
+    cmd  := "openssl"
+    args := #["x509", "-req", "-in", csrFile, "-signkey", keyFile,
+              "-out", certFile, "-set_serial", "99",
+              "-not_before", "20200101000000Z", "-not_after", "20200102000000Z"]
+  }
+  unless certOut.exitCode == 0 do
+    throw <| IO.userError s!"openssl expired cert failed: {certOut.stderr}"
   return certFile
 
 def testHostnameMismatchFails (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do

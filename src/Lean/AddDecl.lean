@@ -118,31 +118,48 @@ private def declTypesToCheck : Declaration → Array (Name × Expr)
 /-- Returns the semireducible non-instance definitions that `Meta.check declType .default`
 unfolds but the `.implicit` check would not, or `none` if `declType` is already type-correct at
 `.implicit` transparency (or is not even type-correct at `.default`). Mirrors the inner loop of
-`Lean.Linter.tacticCheckInstances`. -/
-private def checkImplicitTransparency (declType : Expr) : MetaM (Option (Array Name)) := do
+`Lean.Linter.tacticCheckInstances`.
+
+Runs under `Core.withCurrHeartbeats` and treats heartbeat exhaustion as `none` (skip): this
+diagnostic must never abort the surrounding elaboration, nor draw on a tactic's already-spent
+heartbeat budget. Interrupt exceptions are re-raised, never swallowed. -/
+private def checkImplicitTransparency (declType : Expr) : MetaM (Option (Array Name)) :=
+  Core.withCurrHeartbeats do
+  -- Fast path: a type that is already type-correct at `.implicit` needs no report. Checking at
+  -- `.implicit` does not unfold semireducible definitions, so this is cheap even when the
+  -- `.default` check below would unfold large terms (e.g. a `bv_decide` goal mentioning
+  -- semireducible definitions). Only when this fails do we run the expensive `.default` check.
+  let implicitFailed : Bool ←
+    try
+      Meta.check declType .implicit
+      pure false
+    catch e =>
+      if e.isInterrupt then throw e
+      else if e.isMaxHeartbeat then return none
+      else pure true
+  unless implicitFailed do return none
   let origDiag := (← get).diag
   let result : Option (Array Name) ← withOptions (diagnostics.set · true) do
     -- A type that is not even correct at `.default` is a more fundamental problem; ignore it here.
-    try Meta.check declType .default catch _ => return none
+    try Meta.check declType .default
+    catch e => if e.isInterrupt then throw e else return none
     let counterDefault := (← get).diag.unfoldCounter
-    -- Reset the unfold counter and re-check at `.implicit`.
+    -- Reset the unfold counter and re-check at `.implicit` to record what it unfolds.
     modify ({ · with diag := origDiag })
-    try
-      Meta.check declType .implicit
-      return none
-    catch _ =>
-      let counterImplicit := (← get).diag.unfoldCounter
-      let env ← getEnv
-      -- Definitions unfolded by the `.default` check but not the `.implicit` one are the
-      -- candidates for `@[implicit_reducible]`; keep only semireducible non-instances.
-      let mut candidates : Array Name := #[]
-      for (n, countDefault) in counterDefault do
-        let countImplicit := counterImplicit.find? n |>.getD 0
-        if countDefault > countImplicit
-            && getReducibilityStatusCore env n matches .semireducible
-            && !Meta.isInstanceCore env n then
-          candidates := candidates.push n
-      return some candidates
+    try Meta.check declType .implicit
+    catch e => if e.isInterrupt then throw e
+    let counterImplicit := (← get).diag.unfoldCounter
+    let env ← getEnv
+    -- Definitions unfolded by the `.default` check but not the `.implicit` one are the
+    -- candidates for `@[implicit_reducible]`; keep only semireducible non-instances.
+    let mut candidates : Array Name := #[]
+    for (n, countDefault) in counterDefault do
+      let countImplicit := counterImplicit.find? n |>.getD 0
+      if countDefault > countImplicit
+          && getReducibilityStatusCore env n matches .semireducible
+          && !Meta.isInstanceCore env n then
+        candidates := candidates.push n
+    return some candidates
   -- Always restore the original diagnostics snapshot, mirroring `tacticCheckInstances`.
   modify ({ · with diag := origDiag })
   return result

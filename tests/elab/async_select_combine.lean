@@ -17,7 +17,6 @@ def testLateFire : IO (Option Nat) := do
 #guard_msgs in
 #eval testLateFire
 
-/-- A value already ready before selection should be delivered immediately. -/
 def testReady : IO (Option Nat) := do
   let ch ← CloseableChannel.new (α := Nat)
   ch.sync.send 1

@@ -1033,6 +1033,10 @@ def processPendingInst : UnifyM Bool := do
   let us := (← get).us
   let args := (← get).args
   for (t, s) in iPending do
+    -- A pattern instance equal to the target's needs no level/beta instantiation or `isDefEq`:
+    -- it is closed and definitionally equal with nothing to assign. An internalized pattern that
+    -- shares its instance with the target hits this on every match.
+    if t == s then continue
     let t ← instantiateLevelParamsS t pattern.levelParams us
     let t ← instantiateRevBetaS t args
     unless (← isDefEqI t s) do

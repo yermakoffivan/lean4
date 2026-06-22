@@ -95,9 +95,9 @@ termination_by it
 Copies the next maximal run of unescaped string characters in a single allocation, leaving the
 position at the terminating character (or end of input).
 -/
-@[inline] def strRun : Parser String := fun it =>
+@[inline] def strRun : Parser String.Slice := fun it =>
   let stop := skipStrChars it.2
-  .success ⟨it.1, stop⟩ (String.extract it.2 stop)
+  .success ⟨it.1, stop⟩ (it.1.slice it.2 stop sorry)
 
 @[inline] partial def str : Parser String :=
   go ""
@@ -106,7 +106,7 @@ where
     -- Scan and copy the next run of unescaped characters in one allocation, only accumulating into
     -- `acc` across the boundaries that escape sequences force.
     let run ← strRun
-    let acc := if acc.isEmpty then run else acc ++ run
+    let acc := acc ++ run
     let c ← any
     if c == '"' then
       return acc

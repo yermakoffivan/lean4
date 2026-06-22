@@ -20,14 +20,13 @@ def MyFn : Type := Fn
 
 def idFn : MyFn := (⟨id⟩ : Fn)
 
-/-! ## Off by default: no warning even though the type is not correct at `.implicit`. -/
+/-! ## Disabled explicitly: no warning even though the type is not correct at `.implicit`. -/
 
 #guard_msgs in
+set_option linter.declCheckImplicit false in
 theorem idFn_toFun_off : (idFn : Fn).toFun = id := rfl
 
-set_option linter.declCheckImplicit true
-
-/-! ## Enabled: the ill-typed-at-`.implicit` type is reported, blaming `MyFn`. -/
+/-! ## On by default: the ill-typed-at-`.implicit` type is reported, blaming `MyFn`. -/
 
 /--
 warning: declaration idFn_toFun is not type-correct at `.implicit` transparency; consider marking some of the following as `@[implicit_reducible]`:

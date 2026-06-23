@@ -99,48 +99,48 @@ def emptyResetInPlace : Async Unit := do
 
 #eval emptyResetInPlace.block
 
-/-! ## Body.Any — isReplayable flag -/
+/-! ## Body.Any — reset? action -/
 
--- Any wrapping a Full via Coe sets isReplayable = true
+-- Any wrapping a Full via Coe carries a reset action
 
 def anyFromFullIsReplayable : Async Unit := do
   let full ← Body.Full.ofString "r"
   let any : Body.Any := full
-  assert! any.isReplayable
+  assert! any.reset?.isSome
 
 #eval anyFromFullIsReplayable.block
 
--- Any wrapping a Stream (non-replayable) sets isReplayable = false
+-- Any wrapping a Stream (non-replayable) has no reset action
 
 def anyFromStreamNotReplayable : Async Unit := do
   let stream ← Body.mkStream
   let any := Body.Any.ofBody stream
-  assert! !any.isReplayable
+  assert! any.reset?.isNone
 
 #eval anyFromStreamNotReplayable.block
 
--- Any wrapping an Empty via Coe sets isReplayable = true: an empty body is trivially
+-- Any wrapping an Empty via Coe carries a reset action: an empty body is trivially
 -- replayable because reset is a no-op.
 
 def anyFromEmptyIsReplayable : Async Unit := do
   let e : Body.Empty := {}
   let any : Body.Any := e
-  assert! any.isReplayable
-  any.resetInPlace
+  assert! any.reset?.isSome
+  any.reset?.getD (pure ())
   assert! (← any.recv).isNone
 
 #eval anyFromEmptyIsReplayable.block
 
--- Any.ofReplayableBody sets isReplayable = true and resetInPlace works
+-- Any.ofReplayableBody sets reset? and replaying re-reads from the start
 
 def anyReplayableResetInPlace : Async Unit := do
   let full ← Body.Full.ofString "via-any"
   let any := Body.Any.ofReplayableBody full
-  assert! any.isReplayable
+  assert! any.reset?.isSome
   let r1 ← any.recv
   assert! r1.isSome
   assert! r1.get!.data == "via-any".toUTF8
-  any.resetInPlace
+  any.reset?.getD (pure ())
   let r2 ← any.recv
   assert! r2.isSome
   assert! r2.get!.data == "via-any".toUTF8
@@ -152,20 +152,20 @@ def anyReplayableResetInPlace : Async Unit := do
 def anyOfBodyFullNotReplayable : Async Unit := do
   let full ← Body.Full.ofString "manual"
   let any := Body.Any.ofBody full
-  assert! !any.isReplayable
+  assert! any.reset?.isNone
   let first ← any.recv
   assert! first.isSome
-  any.resetInPlace
+  any.reset?.getD (pure ())
   assert! (← any.recv).isNone
 
 #eval anyOfBodyFullNotReplayable.block
 
--- Any.resetInPlace on a non-replayable Any is a no-op
+-- The reset action of a non-replayable Any is absent; running the default is a no-op
 
 def anyNonReplayableResetIsNoop : Async Unit := do
   let stream ← Body.mkStream
   let any := Body.Any.ofBody stream
-  any.resetInPlace  -- should not throw
-  assert! !any.isReplayable
+  any.reset?.getD (pure ())  -- should not throw
+  assert! any.reset?.isNone
 
 #eval anyNonReplayableResetIsNoop.block

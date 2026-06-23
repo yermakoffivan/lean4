@@ -67,10 +67,8 @@ structure Any where
 
   /--
   Reset action for a body that can be re-read after being consumed.
-  Stored privately and surfaced through `Any.tryReset`, which exposes the action only when it
-  exists so the replayability check and the reset itself stay tied to a single value.
   -/
-  private reset? : Option (Async Unit) := none
+  reset? : Option (Async Unit) := none
 
 namespace Any
 

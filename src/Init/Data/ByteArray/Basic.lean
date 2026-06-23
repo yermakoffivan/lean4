@@ -176,6 +176,19 @@ theorem fastAppend_eq {a b : ByteArray} : a.fastAppend b = a ++ b := by
   simp [← append_eq_fastAppend]
 
 /--
+Appends the slice of {name}`a` with byte indices in `[start, start + len)` to the end of {name}`a`,
+ignoring any indices that are at or beyond the end of {name}`a`.
+
+When {name}`a` is not shared, this is done in place with a single allocation and a single copy, which
+is significantly faster than first extracting the slice and then appending it. The argument {name}`a`
+is owned rather than borrowed so that this in-place case is possible; this is the ByteArray analogue
+of Rust's Vec::extend_from_within.
+-/
+@[extern "lean_byte_array_copy_within"]
+def copyWithin (a : ByteArray) (start len : Nat) : ByteArray :=
+  a ++ a.extract start (start + len)
+
+/--
 Converts a packed array of bytes to a linked list.
 -/
 def toList (bs : ByteArray) : List UInt8 :=

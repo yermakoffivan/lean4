@@ -2611,6 +2611,22 @@ extern "C" LEAN_EXPORT obj_res lean_byte_array_push(obj_arg a, uint8 b) {
     return r;
 }
 
+extern "C" LEAN_EXPORT obj_res lean_byte_array_copy_within(obj_arg a, obj_arg o_start, obj_arg o_len) {
+    size_t sz = lean_sarray_size(a);
+    size_t start = lean_nat_to_size_t(o_start);
+    if (start > sz)
+        start = sz;
+    size_t len = std::min(lean_nat_to_size_t(o_len), sz - start);
+    size_t new_sz = sz + len;
+    // `a` is owned, so it can be grown in place when exclusive (one allocation, one `memcpy`).
+    object * r = lean_sarray_ensure_exclusive(lean_sarray_ensure_capacity(a, new_sz, /* exact */ false));
+    lean_to_sarray(r)->m_size = new_sz;
+    // `r` is exclusive, and the source `[start, start + len)` and destination `[sz, sz + len)`
+    // ranges cannot overlap since `start + len <= sz`, so `memcpy` is safe.
+    memcpy(lean_sarray_cptr(r) + sz, lean_sarray_cptr(r) + start, len);
+    return r;
+}
+
 extern "C" LEAN_EXPORT uint64_t lean_byte_array_hash(b_obj_arg a) {
     return hash_str(lean_sarray_size(a), lean_sarray_cptr(a), 11);
 }

@@ -67,26 +67,12 @@ structure Any where
 
   /--
   Reset action for a body that can be re-read after being consumed.
-  Stored privately so `Any.isReplayable` is derived from the presence of a reset action.
+  Stored privately and surfaced through `Any.tryReset`, which exposes the action only when it
+  exists so the replayability check and the reset itself stay tied to a single value.
   -/
   private reset? : Option (Async Unit) := none
 
 namespace Any
-
-  /--
-  Returns `true` when this body can be re-read after being consumed.
-  -/
-def isReplayable (body : Any) : Bool :=
-  body.reset?.isSome
-
-/--
-Resets this body's read state so it can be re-read from the start.
-For non-replayable bodies, this is a no-op.
--/
-def resetInPlace (body : Any) : Async Unit :=
-  match body.reset? with
-  | some reset => reset
-  | none => pure ()
 
 /--
 Erases a body of any `Http.Body` instance into a `Body.Any`.

@@ -134,7 +134,7 @@ private def buildRedirectRequest (plan : RedirectPlan)
   let newBody : Body.Any ← match plan.bodyAction with
     | .empty => pure (Body.Any.ofBody Body.Empty.mk)
     | .replay => do
-      request.body.resetInPlace
+      request.body.reset?.getD (pure ())
       pure request.body
   return {
     line := { request.line with uri := plan.target, method := plan.method, headers := plan.headers }
@@ -214,7 +214,7 @@ private def evaluateRedirect
   else
     let decide :=
       decideRedirect agent.origin
-        request.line request.body.isReplayable agent.session.config.onlySafeRedirects
+        request.line request.body.reset?.isSome agent.session.config.onlySafeRedirects
           response.line.version response.line.status response.line.headers
 
     match decide with

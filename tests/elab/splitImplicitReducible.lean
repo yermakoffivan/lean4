@@ -51,7 +51,7 @@ The declaration becomes implicit-reducible and no longer unfolds at `.instances`
 
 attribute [implicit_reducible] upgradeMe
 
-/-- info: @[instance_reducible] def upgradeMe : Nat → Nat -/
+/-- info: @[implicit_reducible] def upgradeMe : Nat → Nat -/
 #guard_msgs in
 #print sig upgradeMe
 

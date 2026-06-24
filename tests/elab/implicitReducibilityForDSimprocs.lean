@@ -1,11 +1,6 @@
 import Lean.Meta.Basic
 import Lean.Elab.Tactic.Basic
 
-syntax (name := Lean.Parser.Tactic.withImplicit) "with_implicit " tacticSeq : tactic
-
-@[tactic Lean.Parser.Tactic.withImplicit] def evalWithImplicit : Lean.Elab.Tactic.Tactic := fun stx =>
-  Lean.Meta.withImplicit <| Lean.Elab.Tactic.evalTactic stx[1]
-
 set_option allowUnsafeReducibility true in
 attribute [implicit_reducible]
   Char.ofNat Char.ofNatAux

@@ -12,10 +12,10 @@ public import Lean.OriginalConstKind
 public import Lean.AutoDecl
 import Lean.Linter.Init
 import Lean.Compiler.MetaAttr
-import Lean.Meta.Check  -- for the `linter.declCheckImplicit` linter
-import Lean.Meta.Instances  -- for the `linter.declCheckImplicit` linter
-import Lean.ReducibilityAttrs  -- for the `linter.declCheckImplicit` linter
-import all Lean.OriginalConstKind  -- for accessing `privateConstKindsExt`
+import Lean.Meta.Check
+import Lean.Meta.Instances
+import Lean.ReducibilityAttrs
+import all Lean.OriginalConstKind
 
 public section
 

@@ -177,8 +177,6 @@ theorem num_divInt_den (a : Rat) : a.num /. a.den = a := by rw [divInt_ofNat, mk
 
 @[simp] theorem divInt_zero (n) : n /. 0 = 0 := mkRat_zero n
 
--- TODO: We should be able to remove this flag after a stage0 update.
-set_option backward.isDefEq.respectTransparency.types false in
 theorem neg_divInt_neg (num den) : -num /. -den = num /. den := by
   match den with
   | Nat.succ n =>
@@ -218,8 +216,6 @@ theorem divInt_num_den (z : d ≠ 0) (h : n /. d = ⟨n', d', z', c⟩) :
     rw [← Int.neg_inj, Int.neg_neg] at h₂
     simp [Int.natCast_mul, h₁, h₂, Int.mul_neg, Int.neg_eq_zero]
 
--- TODO: We should be able to remove this flag after a stage0 update.
-set_option backward.isDefEq.respectTransparency.types false in
 theorem num_divInt (a b : Int) : (a /. b).num = b.sign * a / b.gcd a := by
   rw [divInt.eq_def]
   simp only [inline, Nat.succ_eq_add_one]
@@ -231,8 +227,6 @@ theorem num_divInt (a b : Int) : (a /. b).num = b.sign * a / b.gcd a := by
       simp
   · simp [Int.gcd, Nat.gcd_comm]
 
--- TODO: We should be able to remove this flag after a stage0 update.
-set_option backward.isDefEq.respectTransparency.types false in
 theorem den_divInt (a b : Int) : (a /. b).den = if b = 0 then 1 else b.natAbs / b.gcd a := by
   rw [divInt.eq_def]
   simp only [inline, Nat.succ_eq_add_one]

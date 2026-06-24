@@ -498,7 +498,6 @@ def Nat.fix : (x : α) → motive x :=
       (fun _ ih x hfuel => F x (fun y hy => ih y (by exact Nat.lt_of_lt_of_le hy (Nat.le_of_lt_add_one hfuel))))
   fun x => go (Nat.eager (h x + 1)) x (Nat.eager_eq _ ▸ Nat.lt_add_one _)
 
--- Workaround: `@[implicit_reducible]` causes inlining as if it was an instance
 attribute [implicit_reducible] Nat.fix.go
 
 protected theorem Nat.fix.go_congr (x : α) (fuel₁ fuel₂ : Nat) (h₁ : h x < fuel₁) (h₂ : h x < fuel₂) :

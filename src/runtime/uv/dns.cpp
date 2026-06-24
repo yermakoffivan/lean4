@@ -67,7 +67,11 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_dns_get_info(b_obj_arg name, b_obj_a
         default: hints.ai_family = PF_UNSPEC; break;
     }
 
-    event_loop_lock(&global_ev);
+    if (!event_loop_lock(&global_ev)) {
+        lean_dec(promise);
+        free(resolver);
+        return lean_uv_loop_unavailable_error();
+    }
     lean_inc(promise);
 
     int result = uv_getaddrinfo(global_ev.loop, resolver, [](uv_getaddrinfo_t* req, int status, struct addrinfo* res) {
@@ -138,7 +142,11 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_dns_get_name(b_obj_arg addr) {
     sockaddr_storage addr_ptr;
     lean_socket_address_to_sockaddr_storage(addr, &addr_ptr);
 
-    event_loop_lock(&global_ev);
+    if (!event_loop_lock(&global_ev)) {
+        lean_dec(promise);
+        free(req);
+        return lean_uv_loop_unavailable_error();
+    }
     lean_inc(promise);
 
     int result = uv_getnameinfo(global_ev.loop, req, [](uv_getnameinfo_t* req, int status, const char* hostname, const char* service) {

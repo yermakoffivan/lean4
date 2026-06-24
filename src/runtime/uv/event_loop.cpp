@@ -61,16 +61,36 @@ void event_loop_init(event_loop_t * event_loop) {
     check_uv(uv_cond_init(&event_loop->cond_var), "Failed to initialize condition variable");
     check_uv(uv_async_init(event_loop->loop, &event_loop->async, NULL), "Failed to initialize async");
     event_loop->n_waiters = 0;
+    event_loop->state = EVENT_LOOP_RUNNING;
 }
 
-// Locks the event loop for the side of the requesters.
-void event_loop_lock(event_loop_t * event_loop) {
+static void event_loop_lock_core(event_loop_t * event_loop) {
     if (uv_mutex_trylock(&event_loop->mutex) != 0) {
         event_loop->n_waiters++;
         event_loop_interrupt(event_loop);
         uv_mutex_lock(&event_loop->mutex);
         event_loop->n_waiters--;
     }
+}
+
+// Locks the event loop for the side of the requesters.
+bool event_loop_lock(event_loop_t * event_loop) {
+    if (event_loop->state != EVENT_LOOP_RUNNING) {
+        return false;
+    }
+
+    event_loop_lock_core(event_loop);
+    if (event_loop->state != EVENT_LOOP_RUNNING) {
+        event_loop_unlock(event_loop);
+        return false;
+    }
+
+    return true;
+}
+
+void event_loop_lock_internal(event_loop_t * event_loop) {
+    lean_assert(event_loop->state != EVENT_LOOP_UNINITIALIZED);
+    event_loop_lock_core(event_loop);
 }
 
 // Unlock event loop
@@ -81,13 +101,32 @@ void event_loop_unlock(event_loop_t * event_loop) {
     uv_mutex_unlock(&event_loop->mutex);
 }
 
+void event_loop_request_stop(event_loop_t * event_loop) {
+    event_loop->state = EVENT_LOOP_STOPPING;
+    event_loop_interrupt(event_loop);
+    uv_cond_signal(&event_loop->cond_var);
+}
+
+void event_loop_mark_finalized(event_loop_t * event_loop) {
+    event_loop->state = EVENT_LOOP_FINALIZED;
+}
+
+lean_obj_res lean_uv_loop_unavailable_error() {
+    return lean_io_result_mk_error(lean_decode_uv_error(UV_ECANCELED, lean_mk_string("libuv event loop is not available")));
+}
+
 // Runs the loop and stops when it needs to register new requests.
 void event_loop_run_loop(event_loop_t * event_loop) {
-    while (uv_loop_alive(event_loop->loop)) {
+    while (true) {
         uv_mutex_lock(&event_loop->mutex);
 
-        while (event_loop->n_waiters != 0) {
+        while (event_loop->n_waiters != 0 && event_loop->state == EVENT_LOOP_RUNNING) {
             uv_cond_wait(&event_loop->cond_var, &event_loop->mutex);
+        }
+
+        if (event_loop->state != EVENT_LOOP_RUNNING || !uv_loop_alive(event_loop->loop)) {
+            uv_mutex_unlock(&event_loop->mutex);
+            break;
         }
 
         uv_run(event_loop->loop, UV_RUN_ONCE);
@@ -106,17 +145,25 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_event_loop_configure(b_obj_arg optio
     bool accum = lean_ctor_get_uint8(options, 0);
     bool block = lean_ctor_get_uint8(options, 1);
 
-    event_loop_lock(&global_ev);
+    if (!event_loop_lock(&global_ev)) {
+        return lean_uv_loop_unavailable_error();
+    }
 
     if (accum) {
         int result = uv_loop_configure(global_ev.loop, UV_METRICS_IDLE_TIME);
-        if (result != 0) return lean_io_result_mk_error(lean_decode_uv_error(result, NULL));
+        if (result != 0) {
+            event_loop_unlock(&global_ev);
+            return lean_io_result_mk_error(lean_decode_uv_error(result, NULL));
+        }
     }
 
     #if!defined(WIN32) && !defined(_WIN32)
     if (block) {
         int result = uv_loop_configure(global_ev.loop, UV_LOOP_BLOCK_SIGNAL, SIGPROF);
-        if (result != 0) return lean_io_result_mk_error(lean_decode_uv_error(result, NULL));
+        if (result != 0) {
+            event_loop_unlock(&global_ev);
+            return lean_io_result_mk_error(lean_decode_uv_error(result, NULL));
+        }
     }
     #endif
 
@@ -127,7 +174,9 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_event_loop_configure(b_obj_arg optio
 
 /* Std.Internal.UV.Loop.alive : BaseIO Bool */
 extern "C" LEAN_EXPORT uint8_t lean_uv_event_loop_alive() {
-    event_loop_lock(&global_ev);
+    if (!event_loop_lock(&global_ev)) {
+        return 0;
+    }
     int is_alive = uv_loop_alive(global_ev.loop);
     event_loop_unlock(&global_ev);
 

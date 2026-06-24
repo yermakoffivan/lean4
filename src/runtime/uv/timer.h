@@ -7,6 +7,7 @@ Author: Sofia Rodrigues, Henrik Böving
 #pragma once
 #include <lean/lean.h>
 #include "runtime/uv/event_loop.h"
+#include "runtime/uv/handle.h"
 
 #ifndef LEAN_EMSCRIPTEN
 #include <uv.h>
@@ -29,7 +30,7 @@ enum uv_timer_state {
 // Structure for managing a single UV timer object, including promise handling, timeout, and
 // repeating behavior.
 typedef struct {
-    uv_timer_t *    m_uv_timer;    // LibUV timer handle.
+    lean_uv_handle_object m_uv;    // LibUV timer handle and pending callback count.
     lean_object *   m_promise;     // The associated promise for asynchronous results.
     uint64_t        m_timeout;     // Timeout duration in milliseconds.
     bool            m_repeating;   // Flag indicating if the timer is repeating.
@@ -42,6 +43,12 @@ typedef struct {
 // Timer object manipulation functions.
 static inline lean_object* lean_uv_timer_new(lean_uv_timer_object * s) { return lean_alloc_external(g_uv_timer_external_class, s); }
 static inline lean_uv_timer_object* lean_to_uv_timer(lean_object * o) { return (lean_uv_timer_object*)(lean_get_external_data(o)); }
+static inline uv_timer_t* lean_uv_timer_handle(lean_uv_timer_object * timer) { return (uv_timer_t*)timer->m_uv.m_uv_handle; }
+
+// Detaches the timer from the event loop during shutdown: stops it, drops the pending promise and
+// clears the handle pointer. Returns the number of references the loop held on the wrapping object,
+// which the caller must drop once the handle has been freed.
+size_t lean_uv_timer_shutdown(lean_uv_timer_object * timer);
 
 #else
 

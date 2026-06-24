@@ -439,7 +439,13 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_random(uint64_t size) {
 
     lean_inc(promise);
 
-    event_loop_lock(&global_ev);
+    if (!event_loop_lock(&global_ev)) {
+        lean_dec(byte_array);
+        lean_dec(promise);
+        lean_dec(promise);
+        free(req);
+        return lean_uv_loop_unavailable_error();
+    }
 
     int result = uv_random(
         global_ev.loop,

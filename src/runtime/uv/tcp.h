@@ -6,6 +6,7 @@ Author: Sofia Rodrigues
 #pragma once
 #include <lean/lean.h>
 #include "runtime/uv/event_loop.h"
+#include "runtime/uv/handle.h"
 #include "runtime/uv/net_addr.h"
 #include "runtime/object_ref.h"
 
@@ -23,7 +24,7 @@ void initialize_libuv_tcp_socket();
 // Structure for managing a single TCP socket object, including promise handling,
 // connection state, and read/write buffers.
 typedef struct {
-    uv_tcp_t*      m_uv_tcp;           // LibUV TCP handle.
+    lean_uv_handle_object m_uv;        // LibUV TCP handle and pending callback count.
     lean_object*   m_promise_accept;   // The associated promise for asynchronous results for accepting new sockets.
     lean_object*   m_promise_read;     // The associated promise for asynchronous results for reading from the socket.
     lean_object*   m_promise_shutdown; // The associated promise for asynchronous results to shutdown the socket.
@@ -35,6 +36,12 @@ typedef struct {
 // Tcp socket object manipulation functions.
 static inline lean_object* lean_uv_tcp_socket_new(lean_uv_tcp_socket_object* s) { return lean_alloc_external(g_uv_tcp_socket_external_class, s); }
 static inline lean_uv_tcp_socket_object* lean_to_uv_tcp_socket(lean_object* o) { return (lean_uv_tcp_socket_object*)(lean_get_external_data(o)); }
+static inline uv_tcp_t* lean_uv_tcp_socket_handle(lean_uv_tcp_socket_object* socket) { return (uv_tcp_t*)socket->m_uv.m_uv_handle; }
+
+// Detaches the socket from the event loop during shutdown: stops reads, drops the pending promises
+// and clears the handle pointer. Returns the number of references the loop held on the wrapping
+// object, which the caller must drop once the handle has been freed.
+size_t lean_uv_tcp_socket_shutdown(lean_uv_tcp_socket_object * socket);
 #endif
 
 // =======================================

@@ -18,9 +18,17 @@ void lean_uv_signal_finalizer(void* ptr) {
         lean_dec(signal->m_promise);
     }
 
-    event_loop_lock(&global_ev);
+    if (!event_loop_lock(&global_ev)) {
+        // After libuv finalization the handle has already been closed and freed and the pointer
+        // cleared, so we only release the remaining struct.
+        if (lean_uv_signal_handle(signal) != nullptr) {
+            free(lean_uv_signal_handle(signal));
+        }
+        free(signal);
+        return;
+    }
 
-    uv_close((uv_handle_t*)signal->m_uv_signal, [](uv_handle_t* handle) {
+    uv_close((uv_handle_t*)lean_uv_signal_handle(signal), [](uv_handle_t* handle) {
         free(handle);
     });
 
@@ -59,11 +67,34 @@ void handle_signal_event(uv_signal_t* handle, int signum) {
             lean_dec(res);
         }
 
-        uv_signal_stop(signal->m_uv_signal);
+        uv_signal_stop(lean_uv_signal_handle(signal));
         signal->m_state = SIGNAL_STATE_FINISHED;
 
+        lean_uv_handle_release(&signal->m_uv);
         lean_dec(obj);
     }
+}
+
+size_t lean_uv_signal_shutdown(lean_uv_signal_object * signal) {
+    size_t release_refs = 0;
+
+    if (signal->m_state == SIGNAL_STATE_RUNNING) {
+        uv_signal_stop(lean_uv_signal_handle(signal));
+        signal->m_state = SIGNAL_STATE_FINISHED;
+
+        if (signal->m_uv.m_uv_ref_count > 0) {
+            lean_uv_handle_release(&signal->m_uv);
+            release_refs++;
+        }
+    }
+
+    if (signal->m_promise != NULL) {
+        lean_dec(signal->m_promise);
+        signal->m_promise = NULL;
+    }
+
+    signal->m_uv.m_uv_handle = nullptr;
+    return release_refs;
 }
 
 /* Std.Internal.UV.Signal.mk (signum : Int32) (repeating : Bool) : IO Signal */
@@ -103,18 +134,23 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_mk(uint32_t signum_obj, uint8
     if (signal == nullptr) {
         return lean_io_result_mk_error(decode_io_error(ENOMEM, nullptr));
     }
-    signal->m_signum = signum;
-    signal->m_repeating = repeating;
-    signal->m_state = SIGNAL_STATE_INITIAL;
-    signal->m_promise = NULL;
-
     uv_signal_t * uv_signal = (uv_signal_t*)malloc(sizeof(uv_signal_t));
     if (uv_signal == nullptr) {
         free(signal);
         return lean_io_result_mk_error(decode_io_error(ENOMEM, nullptr));
     }
 
-    event_loop_lock(&global_ev);
+    lean_uv_handle_init(&signal->m_uv, (uv_handle_t*)uv_signal);
+    signal->m_signum = signum;
+    signal->m_repeating = repeating;
+    signal->m_state = SIGNAL_STATE_INITIAL;
+    signal->m_promise = NULL;
+
+    if (!event_loop_lock(&global_ev)) {
+        free(uv_signal);
+        free(signal);
+        return lean_uv_loop_unavailable_error();
+    }
     int result = uv_signal_init(global_ev.loop, uv_signal);
     event_loop_unlock(&global_ev);
 
@@ -124,11 +160,9 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_mk(uint32_t signum_obj, uint8
         return lean_io_result_mk_error(lean_decode_uv_error(result, NULL));
     }
 
-    signal->m_uv_signal = uv_signal;
-
     lean_object * obj = lean_uv_signal_new(signal);
     lean_mark_mt(obj);
-    signal->m_uv_signal->data = obj;
+    lean_uv_signal_handle(signal)->data = obj;
 
     return lean_io_result_mk_ok(obj);
 }
@@ -145,25 +179,27 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_next(b_obj_arg obj) {
         signal->m_state = SIGNAL_STATE_RUNNING;
 
         // The event loop must keep the signal alive for the duration of the run time.
+        lean_uv_handle_acquire(&signal->m_uv);
         lean_inc(obj);
         lean_inc(promise);
 
         int result;
         if (signal->m_repeating) {
             result = uv_signal_start(
-                signal->m_uv_signal,
+                lean_uv_signal_handle(signal),
                 handle_signal_event,
                 signal->m_signum
             );
         } else {
             result = uv_signal_start_oneshot(
-                signal->m_uv_signal,
+                lean_uv_signal_handle(signal),
                 handle_signal_event,
                 signal->m_signum
             );
         }
 
         if (result != 0) {
+            lean_uv_handle_release(&signal->m_uv);
             lean_dec(obj);
             lean_dec(promise);
             event_loop_unlock(&global_ev);
@@ -174,7 +210,9 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_next(b_obj_arg obj) {
         return lean_io_result_mk_ok(promise);
     };
 
-    event_loop_lock(&global_ev);
+    if (!event_loop_lock(&global_ev)) {
+        return lean_uv_loop_unavailable_error();
+    }
 
     if (signal->m_repeating) {
         switch (signal->m_state) {
@@ -229,11 +267,13 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_stop(b_obj_arg obj) {
     lean_uv_signal_object * signal = lean_to_uv_signal(obj);
 
     if (signal->m_state == SIGNAL_STATE_RUNNING) {
-        event_loop_lock(&global_ev);
-        int result = uv_signal_stop(signal->m_uv_signal);
+        if (!event_loop_lock(&global_ev)) {
+            return lean_uv_loop_unavailable_error();
+        }
+        int result = uv_signal_stop(lean_uv_signal_handle(signal));
         event_loop_unlock(&global_ev);
 
-        if  (signal->m_promise != NULL) {
+        if (signal->m_promise != NULL) {
             lean_dec(signal->m_promise);
             signal->m_promise = NULL;
         }
@@ -241,6 +281,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_stop(b_obj_arg obj) {
         signal->m_state = SIGNAL_STATE_FINISHED;
 
         // The loop does not need to keep the signal alive anymore.
+        lean_uv_handle_release(&signal->m_uv);
         lean_dec(obj);
 
         if (result != 0) {
@@ -258,17 +299,20 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_cancel(b_obj_arg obj) {
     lean_uv_signal_object * signal = lean_to_uv_signal(obj);
 
     // It's locking here to avoid changing the state during other operations.
-    event_loop_lock(&global_ev);
+    if (!event_loop_lock(&global_ev)) {
+        return lean_uv_loop_unavailable_error();
+    }
 
     if (signal->m_state == SIGNAL_STATE_RUNNING && signal->m_promise != NULL) {
         if (signal->m_repeating) {
             lean_dec(signal->m_promise);
             signal->m_promise = NULL;
         } else {
-            uv_signal_stop(signal->m_uv_signal);
+            uv_signal_stop(lean_uv_signal_handle(signal));
             lean_dec(signal->m_promise);
             signal->m_promise = NULL;
             signal->m_state = SIGNAL_STATE_INITIAL;
+            lean_uv_handle_release(&signal->m_uv);
             lean_dec(obj);
         }
     }

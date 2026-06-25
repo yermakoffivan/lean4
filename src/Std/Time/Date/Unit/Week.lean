@@ -100,6 +100,8 @@ namespace Aligned
 
 /--
 `Ordinal` represents the aligned week number within a month, ranging between 1 and 5.
+Aligned weeks are fixed 7-day slots counted from day 1 of the month: days 1-7 are
+week 1, days 8-14 are week 2, and so on, independent of which weekday starts the month.
 -/
 @[expose] def Ordinal := Bounded.LE 1 5
 deriving Repr, DecidableEq

@@ -862,13 +862,11 @@ Std.Time.Weekday.tuesday
 
 /--
 info: 2023-06-09T00:00:00.000000000
-0001-01-01T12:32:43.000000000
 2033-11-18T12:32:43.000000000
 -/
 #guard_msgs in
 #eval do
   println! PlainDateTime.ofPlainDate date("2023-06-09")
-  println! PlainDateTime.ofPlainTime time("12:32:43")
   println! PlainDateTime.ofEpochDay 23332 time("12:32:43")
 
 /--

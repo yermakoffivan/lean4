@@ -80,3 +80,11 @@ example (f : Float) : Bool :=
   match h : f with
   | 6.0 => (h : True)
   | _ => false
+
+-- no warning for overlaps due to lack of normalization for Float literals:
+
+#guard_msgs in
+example : Float → Bool
+  | 5 => true
+  | 5.0 => false
+  | _ => false

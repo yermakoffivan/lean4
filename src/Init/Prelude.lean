@@ -1748,6 +1748,14 @@ class Membership (α : outParam (Type u)) (γ : Type v) where
   /-- The membership relation `a ∈ s : Prop` where `a : α`, `s : γ`. -/
   mem : γ → α → Prop
 
+/-
+This is a workaround for a Mathlib adaptation problem:
+`Membership.mem` is semireducible but `Set.Mem` is implicit-reducible.
+This combination frequently causes metavariable assignment errors in Mathlib.
+See `tests/elab/implicitTransparencyMVarAssignment.lean`.
+-/
+attribute [implicit_reducible] Membership.mem
+
 set_option bootstrap.genMatcherCode false in
 /--
 Addition of natural numbers, typically used via the `+` operator.

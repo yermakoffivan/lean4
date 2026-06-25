@@ -37,6 +37,7 @@ structure Float.Model where
   /-- The underlying bit pattern is valid according to the IEEE `binary64` format. -/
   valid : Float.Model.Format.binary64.Valid toBits.toBitVec
 deriving DecidableEq
+
 namespace Float.Model
 
 /-- Unpack a `Float.Model` into the corresponding `UnpackedFloat`. -/

@@ -1,6 +1,7 @@
 module
 
 import Module.Basic
+import Module.MetaPrivCallee
 
 /-! `private import` should allow only private access to imported decls. -/
 
@@ -25,6 +26,13 @@ Note: A public declaration `f` exists but is imported privately; consider adding
 /-! `initialize` should be run even if imported IR-only. -/
 
 public def publicDefOfPrivatelyInitialized := initialized
+
+/-! An initializer whose IR calls a function from a *privately* imported module. When this module is
+itself a private dependency of a meta dependency (`Module.MetaImported`), that callee's `.olean` is
+not loaded, so the interpreter routes the call via `const2ModIdx` (filled from the loaded `declMapExt`)
+rather than the per-`.ir` side table, which skips publicly-exported symbols like `metaPrivCallee`. -/
+
+public initialize nInitVal : Nat ← pure metaPrivCallee
 
 /-! #12198: `local simp` should be accepted on privately imported theorem -/
 

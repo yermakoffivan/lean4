@@ -191,17 +191,18 @@ private def transitionUtcSeconds (rule : TransitionRule) (year : Year.Offset) (w
 /--
 Returns the `TimeZone` in effect for this `RecurringRule` at the given `Timestamp`.
 
-If no DST transition rules are defined (`start` or `end_` is `none`), the standard zone is
-returned unconditionally. Otherwise the function computes the UTC timestamps at which DST starts
-and ends for the year containing `tm`, and returns the DST zone when the timestamp falls inside
-the DST interval (accounting for rules that wrap across a year boundary in the Southern Hemisphere).
+If no DST rule is defined, or if either transition rule is missing, the standard zone is returned
+unconditionally. Otherwise the function computes the UTC timestamps at which DST starts and ends
+for the year containing `tm`, and returns the DST zone when the timestamp falls inside the DST
+interval (accounting for rules that wrap across a year boundary in the Southern Hemisphere).
 -/
 def timezoneAt (rule : RecurringRule) (tm : Timestamp) : TimeZone := Id.run do
   let stdTz := TimeZone.mk rule.stdOffset rule.stdName rule.stdName false
-  let dstTz := TimeZone.mk rule.dstOffset rule.dstName rule.dstName true
+  let some dst := rule.dst | return stdTz
+  let dstTz := TimeZone.mk dst.offset dst.name dst.name true
 
-  let some startRule := rule.start | return stdTz
-  let some endRule   := rule.end_  | return stdTz
+  let some startRule := dst.start | return stdTz
+  let some endRule   := dst.end_  | return stdTz
 
   let secs := tm.toSecondsSinceUnixEpoch
 
@@ -209,7 +210,7 @@ def timezoneAt (rule : RecurringRule) (tm : Timestamp) : TimeZone := Id.run do
 
   -- DST-start wall clock is standard time; DST-end wall clock is DST time (POSIX §8.3).
   let dstStart := transitionUtcSeconds startRule year rule.stdOffset
-  let dstEnd   := transitionUtcSeconds endRule year rule.dstOffset
+  let dstEnd   := transitionUtcSeconds endRule year dst.offset
 
   if dstStart ≤ dstEnd then
     if dstStart ≤ secs && secs < dstEnd then dstTz else stdTz
@@ -251,11 +252,11 @@ When the timestamp is beyond all stored transitions and a POSIX TZ footer rule i
 consulted. Falls back to `initialLocalTimeType` if no transition or rule applies.
 -/
 def findLocalTimeTypeForTimestamp (zr : ZoneRules) (timestamp : Timestamp) : LocalTimeType := Id.run do
-  let some t := Transition.findTransitionForTimestamp zr.transitions timestamp
+  let some lastIdx := Transition.findTransitionIndexForTimestamp zr.transitions timestamp
     | return zr.initialLocalTimeType
 
-  let some lastIdx := Transition.findTransitionIndexForTimestamp zr.transitions timestamp
-    | return t.localTimeType
+  let some t := zr.transitions[lastIdx]?
+    | return zr.initialLocalTimeType
 
   let some rule := if lastIdx + 1 == zr.transitions.size then zr.transitionRule else none
     | return t.localTimeType

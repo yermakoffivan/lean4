@@ -8,6 +8,28 @@ one second before and at the transition instant in a distinct timezone.
 All expected values are verified against Python's `zoneinfo` module.
 -/
 
+#guard
+  match TimeZone.parsePosixTz "" with
+  | .ok rule => rule.dst.isNone
+  | .error _ => false
+
+#guard
+  match TimeZone.parsePosixTz "UTC0" with
+  | .ok rule => rule.dst.isNone
+  | .error _ => false
+
+#guard
+  match TimeZone.parsePosixTz "EST5EDT,M3.2.0,M11.1.0" with
+  | .ok rule =>
+    match rule.dst with
+    | some dst =>
+      dst.name == "EDT" &&
+        dst.offset.second.val == -14400 &&
+        dst.start.isSome &&
+        dst.end_.isSome
+    | none => false
+  | .error _ => false
+
 -- America/New_York: EST5EDT,M3.2.0,M11.1.0  (spring forward 2038-03-14)
 /-- info: zoned("2038-03-14T01:59:59.000000000-05:00") -/
 #guard_msgs in

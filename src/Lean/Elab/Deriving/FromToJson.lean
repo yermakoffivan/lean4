@@ -33,12 +33,17 @@ def mkJsonField (n : Name) : CoreM (Bool × Term) := do
 
 def mkToJsonBodyForStruct (header : Header) (indName : Name) : TermElabM Term := do
   let fields := getStructureFieldsFlattened (← getEnv) indName (includeSubobjectFields := false)
-  let fields ← fields.mapM fun field => do
+  let target := mkIdent header.targetNames[0]!
+  -- Build the underlying `Std.TreeMap.Raw` directly, inserting one field at a time, to avoid
+  -- constructing an intermediate `List` and converting it via `mkObj`/`ofList`.
+  let mut acc ← `(Std.TreeMap.Raw.empty)
+  for field in fields do
     let (isOptField, nm) ← mkJsonField field
-    let target := mkIdent header.targetNames[0]!
-    if isOptField then ``(opt $nm $target.$(mkIdent field))
-    else ``([($nm, toJson ($target).$(mkIdent field))])
-  `(mkObj <| List.flatten [$fields,*])
+    if isOptField then
+      acc ← ``(optInsert $acc $nm ($target).$(mkIdent field))
+    else
+      acc ← ``(Std.TreeMap.Raw.insert $acc $nm (toJson ($target).$(mkIdent field)))
+  `(Json.obj <| $acc)
 
 def mkToJsonBodyForInduct (ctx : Context) (header : Header) (indName : Name) : TermElabM Term := do
   let indVal ← getConstInfoInduct indName

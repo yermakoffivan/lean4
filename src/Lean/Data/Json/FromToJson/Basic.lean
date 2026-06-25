@@ -282,6 +282,11 @@ def opt [ToJson α] (k : String) : Option α → List (String × Json)
   | none   => []
   | some o => [⟨k, toJson o⟩]
 
+-- used by the `ToJson` deriving handler
+def optInsert [ToJson α] (m : Std.TreeMap.Raw String Json) (k : String) : Option α → Std.TreeMap.Raw String Json
+  | none   => m
+  | some o => m.insert k (toJson o)
+
 /-- Returns the string value or single key name, if any. -/
 def getTag? : Json → Option String
   | .str tag => some tag

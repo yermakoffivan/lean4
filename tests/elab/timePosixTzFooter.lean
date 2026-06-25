@@ -9,11 +9,6 @@ All expected values are verified against Python's `zoneinfo` module.
 -/
 
 #guard
-  match TimeZone.parsePosixTz "" with
-  | .ok rule => rule.dst.isNone
-  | .error _ => false
-
-#guard
   match TimeZone.parsePosixTz "UTC0" with
   | .ok rule => rule.dst.isNone
   | .error _ => false

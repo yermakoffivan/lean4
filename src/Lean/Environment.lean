@@ -841,6 +841,12 @@ def find? (env : Environment) (n : Name) (skipRealize := false) : Option Constan
     return c
   env.findAsyncCore? n (skipRealize := skipRealize) |>.map (·.toConstantInfo)
 
+/-- Checks if, in the public scope (`Environment.isExporting`), the given name refers to a
+definition with a visible body, i.e. `ConstantInfo.hasValue`. Recall that outside the module
+system, this is any definition. -/
+def hasExposedBody (env : Environment) (n : Name) : Bool :=
+  env.setExporting true |>.find? n |>.any (·.hasValue)
+
 /--
 Allows `realizeConst` calls for the given declaration in all derived environment branches.
 Realizations will run using the given environment and options to ensure deterministic results. Note
@@ -1875,8 +1881,11 @@ def writeModule (env : Environment) (fname : System.FilePath) (writeIR := true) 
       (← mkPart .server),
       (← mkPart .private)]
     if writeIR then
+      let irData := mkIRData env
       -- Make sure to change the module name so we derive a different base address
-      saveModuleData (fname.withExtension "ir") (env.mainModule ++ `ir) (mkIRData env)
+      saveModuleDataParts (env.mainModule ++ `ir) #[
+        (fname.withExtension "ir.sig", default),  -- to be filled by leanir instead
+        (fname.withExtension "ir", irData)]
   else
     saveModuleData fname env.mainModule (← mkModuleData env)
 
@@ -1969,10 +1978,10 @@ where
       return env
 
 private structure ImportedModule extends EffectiveImport where
-  /-- All loaded incremental compacted regions from `.olean*`. -/
+  /-- `.olean` + `.olean.server` (optional) + `.olean.private` (optional). -/
   parts     : Array (ModuleData × CompactedRegion)
-  /-- `.ir` data, if loaded. -/
-  irData?   : Option (ModuleData × CompactedRegion)
+  /-- `.ir.sig` (optional) + `.ir` (optional). -/
+  irParts   : Array (ModuleData × CompactedRegion)
   /-- If true, IR is loaded transitively. -/
   needsIRTrans : Bool
 
@@ -1982,7 +1991,7 @@ private def ImportedModule.publicModule? (self : ImportedModule) : Option Module
     self.parts[0]?.map (·.1)
   else
     -- (should not have any constants)
-    self.irData?.map (·.1)
+    self.irParts.back?.map (·.1)
 
 private def ImportedModule.getData? (self : ImportedModule) (level : OLeanLevel) : Option ModuleData := do
   -- Without the module system, we only have the exported level.
@@ -1994,21 +2003,27 @@ private def ImportedModule.mainModule? (self : ImportedModule) : Option ModuleDa
   if self.hasData then
     self.getData? (if self.importAll then .private else .exported)
   else
-    self.irData?.map (·.1)
+    self.irParts.back?.map (·.1)
 
 /-- The module data that should be used for server purposes. -/
 private def ImportedModule.serverData? (self : ImportedModule) (level : OLeanLevel) :
     Option ModuleData :=
-  -- fall back to `exported` outside the server
-  self.getData? (if level ≥ .server then level else .exported)
+  -- allow unconditional access under `import all`, otherwise fall back to `exported` outside the
+  -- server
+  self.getData? (if self.importAll then .private else if level ≥ .server then level else .exported)
 
-/-- The module data that should be used for accessing IR for interpretation. -/
-private def ImportedModule.interpData? (self : ImportedModule) (level : OLeanLevel) :
-    Option ModuleData :=
-  if (level < .server && self.irPhases == .runtime) || !self.mainModule?.any (·.isModule) then
+/--
+The module data that should be used for accessing IR for interpretation (lean) or compilation
+(leanir; loadIRSig = true). -/
+private def ImportedModule.irData? (self : ImportedModule) (loadIRSig : Bool := false) : Option ModuleData :=
+  if self.irParts.isEmpty || !self.mainModule?.any (·.isModule) then
     self.mainModule?
   else
-    self.irData?.map (·.1)
+    -- leanir: for `import all` modules, use `.ir`; otherwise prefer `.ir.sig`
+    if !loadIRSig || self.importAll then
+      self.irParts.back?.map (·.1)
+    else
+      self.irParts[0]?.map (·.1)
 
 structure ImportState where
   private moduleNameMap : Std.HashMap Name ImportedModule := {}
@@ -2033,24 +2048,41 @@ abbrev ImportStateM := StateRefT ImportState IO
 @[inline] nonrec def ImportStateM.run (x : ImportStateM α) (s : ImportState := default) : IO (α × ImportState) :=
   x.run s
 
-private def findOLeanParts (mod : Name) : IO (Array System.FilePath) := do
+private def readModuleDataPartsOfMod (mod : Name) : IO (Array (ModuleData × CompactedRegion)) := do
   let mFile ← findOLean mod
   unless (← mFile.pathExists) do
     throw <| IO.userError s!"object file '{mFile}' of module {mod} does not exist"
-  let mut fnames := #[mFile]
+  let main ← unsafe CompactedRegion.read (α := ModuleData) mFile #[]
+  if !main.1.isModule then
+    return #[main]
   -- Opportunistically load all available parts.
   -- Necessary because the import level may be upgraded a later import.
   let sFile := OLeanLevel.server.adjustFileName mFile
-  if (← sFile.pathExists) then
-    fnames := fnames.push sFile
-    let pFile := OLeanLevel.private.adjustFileName mFile
-    if (← pFile.pathExists) then
-      fnames := fnames.push pFile
-  return fnames
+  let server ← unsafe CompactedRegion.read (α := ModuleData) sFile #[main.2]
+  let pFile := OLeanLevel.private.adjustFileName mFile
+  let priv ← unsafe CompactedRegion.read (α := ModuleData) pFile #[main.2, server.2]
+  return #[main, server, priv]
+
+private def readIRPartsOfMod (mod : Name) : IO (Array (ModuleData × CompactedRegion)) := do
+  let mFile ← findOLean mod
+  let irSigFile := mFile.withExtension "ir.sig"
+  -- TODO: we don't (necessarily) know whether the module is a `module` or not, but file existence
+  -- checks are not great in the face of module-ness changes
+  unless (← irSigFile.pathExists) do
+    return #[]
+  let irSig ← unsafe CompactedRegion.read (α := ModuleData) irSigFile #[]
+  -- Opportunistically load all available parts.
+  -- Necessary because the import level may be upgraded a later import.
+  let irFile := mFile.withExtension "ir"
+  let ir ← unsafe CompactedRegion.read (α := ModuleData) irFile #[irSig.2]
+  return #[irSig, ir]
 
 partial def importModulesCore
     (imports : Array Import) (globalLevel : OLeanLevel := .private)
-    (arts : NameMap ImportArtifacts := {}) (isExported : Bool := globalLevel < .private) :
+    (arts : NameMap ImportArtifacts := {}) (isExported : Bool := globalLevel < .private)
+    -- leanir: ensure (at least) `.ir.sig` is loaded for every module with data; also ignore `meta`
+    -- on imports
+    (loadIRSig : Bool := false) :
     ImportStateM Unit := do
   go imports (importAll := true) (isExported := isExported) (needsData := true) (needsIRTrans := false)
   if globalLevel < .private then
@@ -2123,8 +2155,12 @@ where
       let importAll := globalLevel == .private || importAll && i.importAll
       -- `B ≥ public`?
       let isExported := isExported && i.isExported
-      let needsIRTrans := needsIRTrans || needsData && i.isMeta
-      let needsIR := needsIRTrans || importAll || globalLevel > .exported
+      -- `leanir` (`loadIRSig`) only needs `.ir.sig` of direct imports, not transitive `.ir`
+      -- through `meta` imports, so ignore the `meta` modifier under `loadIRSig`.
+      let needsIRTrans := needsIRTrans || (!loadIRSig && needsData && i.isMeta)
+      -- `loadIRSig` only loads `.ir.sig` for modules whose `.olean` is also loaded
+      -- (i.e., `needsData`), preserving the invariant that IR is never present without its olean.
+      let needsIR := needsIRTrans || importAll || globalLevel > .exported || (loadIRSig && needsData)
       if !needsData && !needsIR then
         continue
 
@@ -2143,42 +2179,44 @@ where
         let isExported := isExported || mod.isExported
         let needsData := needsData || mod.hasData
         let needsIRTrans := needsIRTrans || mod.needsIRTrans
-        let needsIR := needsIRTrans || importAll
+        let needsIR := needsIRTrans || importAll || (loadIRSig && needsData)
         let irPhases := if irPhases == mod.irPhases then irPhases else .all
         let parts ← if needsData && mod.parts.isEmpty then loadData i else pure mod.parts
-        let irData? ← if needsIR && mod.irData?.isNone then loadIR? i else pure mod.irData?
+        let irParts ← if needsIR && mod.irParts.isEmpty then loadIR i else pure mod.irParts
         if importAll != mod.importAll || isExported != mod.isExported ||
             needsIRTrans != mod.needsIRTrans || needsData != mod.hasData || irPhases != mod.irPhases then
           modify fun s => { s with moduleNameMap := s.moduleNameMap.insert i.module { mod with
-            importAll, isExported, irPhases, parts, irData?, hasData := needsData, needsIRTrans }}
+            importAll, isExported, irPhases, parts, irParts, hasData := needsData, needsIRTrans }}
           -- bump entire closure
           goRec mod
         continue
 
       -- newly discovered module
       let parts ← if needsData then loadData i else pure #[]
-      let irData? ← if needsIR then loadIR? i else pure none
-      let mod := { i with importAll, isExported, irPhases, parts, irData?, needsIRTrans, hasData := needsData }
+      let irParts ← if needsIR then loadIR i else pure #[]
+      let mod := { i with importAll, isExported, irPhases, parts, irParts, needsIRTrans, hasData := needsData }
       goRec mod
       modify fun s => { s with
         moduleNameMap := s.moduleNameMap.insert i.module mod
         moduleNames := s.moduleNames.push i.module
       }
+  -- .olean + .olean.server (optional) + .olean.private (optional)
   loadData i := do
-    let fnames ← if let some arts := arts.find? i.module then
+    if let some arts := arts.find? i.module then
       -- Opportunistically load all available parts.
       -- Producer (e.g., Lake) should limit parts to the proper import level.
-      pure (arts.oleanParts (inServer := globalLevel ≥ .server))
+      let fnames := arts.oleanParts (inServer := globalLevel ≥ .server)
+      readModuleDataParts fnames
     else
-      findOLeanParts i.module
-    readModuleDataParts fnames
-  loadIR? i := do
-    let irFile? ← if let some arts := arts.find? i.module then
-      pure arts.ir?
+      readModuleDataPartsOfMod i.module
+  -- .ir.sig + .ir (optional)
+  loadIR i := do
+    if let some arts := arts.find? i.module then
+      -- Opportunistically load all available parts.
+      -- Producer (e.g., Lake) should limit parts to the proper import level.
+      readModuleDataParts arts.irParts
     else
-      let irFile := (← findOLean i.module).withExtension "ir"
-      pure (guard (← irFile.pathExists) *> irFile)
-    irFile?.mapM (readModuleData ·)
+      readIRPartsOfMod i.module
 
 /--
 Returns `true` if `cinfo₁` and `cinfo₂` represent the same theorem/axiom, with `cinfo₁` potentially
@@ -2240,7 +2278,9 @@ Constructs environment from `importModulesCore` results.
 See also `importModules` for parameter documentation.
 -/
 def finalizeImport (s : ImportState) (imports : Array Import) (opts : Options) (trustLevel : UInt32 := 0)
-    (leakEnv loadExts : Bool) (level := OLeanLevel.private) (isModule := level != .private) :
+    (leakEnv loadExts : Bool) (level := OLeanLevel.private) (isModule := level != .private)
+    -- If true, prefer loading `.ir.sig` over `.ir` unless `import all`ed; used by leanir
+    (loadIRSig := false) :
     IO Environment := do
   let modules := s.moduleNames.filterMap (s.moduleNameMap[·]?)
   let moduleData ← modules.mapM fun mod => do
@@ -2248,7 +2288,7 @@ def finalizeImport (s : ImportState) (imports : Array Import) (opts : Options) (
       throw <| IO.userError s!"missing data file for module {mod.module}"
     return data
   let irData ← modules.mapM fun mod => do
-    let some data := mod.interpData? level |
+    let some data := mod.irData? loadIRSig |
       throw <| IO.userError s!"missing IR data file for module {mod.module}"
     return data
   let numPrivateConsts := moduleData.foldl (init := 0) fun numPrivateConsts data =>
@@ -2301,7 +2341,7 @@ def finalizeImport (s : ImportState) (imports : Array Import) (opts : Options) (
     header     := {
       trustLevel, imports, moduleData, isModule
       modules      := modules.map (·.toEffectiveImport)
-      regions      := modules.flatMap (·.parts.map (·.2)) ++ modules.filterMap (·.irData?.map (·.2))
+      regions      := modules.flatMap (·.parts.map (·.2)) ++ modules.flatMap (·.irParts.map (·.2))
     }
   }
   let publicConstants : ConstMap := SMap.fromHashMap publicConstantMap false
@@ -2500,16 +2540,16 @@ def replayConsts (dest : Environment) (oldEnv newEnv : Environment) (skipExistin
         else
           consts.add c
     }
-    checked := dest.checked.map fun kenv =>
-      replayKernel
-        oldEnv.checked newEnv.checked exts newPrivateConsts kenv
-      |>.toOption.getD kenv
+    checked := dest.checked.bind (sync := true) fun kenv =>
+      oldEnv.checked.bind (sync := true) fun oldKEnv =>
+        newEnv.checked.map fun newKEnv =>
+          replayKernel oldKEnv newKEnv exts newPrivateConsts kenv |>.toOption.getD kenv
     allRealizations := dest.allRealizations.map (sync := true) fun allRealizations =>
       newPrivateConsts.foldl (init := allRealizations) fun allRealizations c =>
         allRealizations.insert c.constInfo.name c
   }
 where
-  replayKernel (oldEnv newEnv : Task Kernel.Environment)
+  replayKernel (oldEnv newEnv : Kernel.Environment)
       (exts : Array (EnvExtension EnvExtensionState)) (consts : List AsyncConst)
       (kenv : Kernel.Environment) : Except Kernel.Exception Kernel.Environment := do
     let mut kenv := kenv
@@ -2520,8 +2560,8 @@ where
           -- safety: like in `modifyState`, but that one takes an elab env instead of a kernel env
           extensions := unsafe (ext.modifyStateImpl kenv.extensions <|
             replay
-              (ext.getStateImpl oldEnv.get.extensions)
-              (ext.getStateImpl newEnv.get.extensions)
+              (ext.getStateImpl oldEnv.extensions)
+              (ext.getStateImpl newEnv.extensions)
               (consts.map (·.constInfo.name))) }
     for c in consts do
       if skipExisting && (kenv.find? c.constInfo.name).isSome then
@@ -2634,7 +2674,7 @@ deriving BEq, Hashable, TypeName
 /-- Realization results, to be replayed onto other branches. -/
 private structure RealizeConstResult where
   newConsts : VisibilityMap (List AsyncConst)
-  replayKernel : Kernel.Environment → Except Kernel.Exception Kernel.Environment
+  replayKernel : Kernel.Environment → Task (Except Kernel.Exception Kernel.Environment)
   dyn : Dynamic
 deriving Nonempty, TypeName
 
@@ -2670,13 +2710,22 @@ def realizeConst (env : Environment) (forConst : Name) (constName : Name)
     let exts ← EnvExtension.envExtensionsRef.get
     -- NOTE: We must ensure that `realizeEnv.localRealizationCtxMap` is not reachable via `res`
     -- (such as by storing `realizeEnv` or `realizeEnv'` in a field or the closure) as `res` will be
-    -- stored in a promise in there, creating a cycle. The closures stored in
-    -- `realizeEnv(').checked` should uphold this property as they are only concerned about the
-    -- kernel env but this cannot directly be enforced or checked except through the leak sanitizer
+    -- stored in a promise in there, creating a cycle. Thus we bind only the `checked` tasks below,
+    -- whose stored closures should uphold this property as they are only concerned about the
+    -- kernel env, but this cannot directly be enforced or checked except through the leak sanitizer
     -- CI build.
-    let replayKernel := replayConsts.replayKernel (skipExisting := true)
-      realizeEnv.checked realizeEnv'.checked exts newPrivateConsts
-    let res : RealizeConstResult := { newConsts.private := newPrivateConsts, newConsts.public := newPublicConsts, replayKernel, dyn }
+    let oldChecked := realizeEnv.checked
+    let newChecked := realizeEnv'.checked
+    let replayKernel := fun kenv =>
+      oldChecked.bind (sync := true) fun oldKEnv =>
+        newChecked.map fun newKEnv =>
+          replayConsts.replayKernel (skipExisting := true) oldKEnv newKEnv exts newPrivateConsts kenv
+    let res : RealizeConstResult := {
+      newConsts.private := newPrivateConsts
+      newConsts.public := newPublicConsts
+      replayKernel
+      dyn
+    }
     pure (.mk res)
   let some res := res.get? RealizeConstResult | unreachable!
   let exPromise ← IO.Promise.new
@@ -2693,12 +2742,12 @@ def realizeConst (env : Environment) (forConst : Name) (constName : Name)
         else
           consts.add c
     }
-    checked := (← BaseIO.mapTask (t := env.checked) fun kenv => do
-      match res.replayKernel kenv with
-      | .ok kenv => return kenv
-      | .error e =>
-        exPromise.resolve e
-        return kenv)
+    checked := (← BaseIO.bindTask (t := env.checked) (sync := true) fun kenv =>
+      BaseIO.mapTask (t := res.replayKernel kenv) fun
+        | .ok kenv' => return kenv'
+        | .error e => do
+          exPromise.resolve e
+          return kenv)
     allRealizations := env.allRealizations.map (sync := true) fun allRealizations =>
       res.newConsts.private.foldl (init := allRealizations) fun allRealizations c =>
         allRealizations.insert c.constInfo.name c

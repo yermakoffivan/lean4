@@ -186,7 +186,8 @@ private unsafe def loadIncrSnapshot (fname : System.FilePath) :
     IO IncrSnapshot := do
   let depsFile := fname.addExtension "deps"
   let moduleArts : Array ModuleArtifacts ←
-    match Json.parse (← IO.FS.readFile depsFile) >>= fromJson? with
+    match (Json.parse (← IO.FS.readFile depsFile) >>= fromJson? :
+        Except String (Array ModuleArtifacts)) with
     | .ok arts => pure arts
     | .error e => throw <| IO.userError s!"failed to parse snapshot deps file {depsFile}: {e}"
   -- Modules are mutually independent (cross-module references go through the constant map, not

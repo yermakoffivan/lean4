@@ -9,7 +9,8 @@ prelude
 public import Lean.Meta.Tactic.Constructor
 public import Lean.Meta.Tactic.Replace
 public import Lean.Meta.Tactic.Rename
-public import Lean.Elab.Tactic.Config
+public import Lean.Elab.Tactic.Basic
+public import Lean.Elab.SyntheticMVars
 
 public section
 
@@ -312,6 +313,9 @@ def evalApplyLikeTactic (tac : MVarId → Expr → MetaM (List MVarId)) (e : Syn
 
 @[builtin_tactic Lean.Parser.Tactic.withReducibleAndInstances] def evalWithReducibleAndInstances : Tactic := fun stx =>
   withReducibleAndInstances <| evalTactic stx[1]
+
+@[builtin_tactic Lean.Parser.Tactic.withImplicit] def evalWithImplicit : Tactic := fun stx =>
+  withImplicit <| evalTactic stx[1]
 
 @[builtin_tactic Lean.Parser.Tactic.withUnfoldingAll] def evalWithUnfoldingAll : Tactic := fun stx =>
   withTransparency TransparencyMode.all <| evalTactic stx[1]

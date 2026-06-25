@@ -84,6 +84,12 @@ inductive TraceResult where
   | error
   deriving Inhabited, BEq, Repr
 
+/-- Convert a `TraceResult` to its emoji representation. -/
+def TraceResult.toEmoji : TraceResult → String
+  | .success => "✅️"
+  | .failure => "❌️"
+  | .error   => "💥️"
+
 structure TraceData where
   /-- Trace class, e.g. `Elab.step`. -/
   cls       : Name
@@ -143,6 +149,10 @@ inductive MessageData where
   `hasSyntheticSorry` should return `true`.
   This is used to filter out certain messages. -/
   | ofLazy (f : Option PPContext → BaseIO Dynamic) (hasSyntheticSorry : MetavarContext → Bool)
+  /--
+  Preserves the originating syntax of the message.
+  -/
+  | ofOriginatingSyntax : Syntax → MessageData → MessageData
   deriving Inhabited, TypeName
 
 namespace MessageData
@@ -173,14 +183,15 @@ of interest (like those added by `logLinter`) are expected to be near the root
 of the `MessageData`, and not hidden inside `.ofLazy`.
 -/
 partial def hasTag : MessageData → Bool
-  | withContext _ msg       => hasTag msg
-  | withNamingContext _ msg => hasTag msg
-  | nest _ msg              => hasTag msg
-  | group msg               => hasTag msg
-  | compose msg₁ msg₂       => hasTag msg₁ || hasTag msg₂
-  | tagged n msg            => p n || hasTag msg
-  | trace data msg msgs     => p data.cls || hasTag msg || msgs.any hasTag
-  | _                       => false
+  | withContext _ msg           => hasTag msg
+  | withNamingContext _ msg     => hasTag msg
+  | nest _ msg                  => hasTag msg
+  | group msg                   => hasTag msg
+  | compose msg₁ msg₂           => hasTag msg₁ || hasTag msg₂
+  | tagged n msg                => p n || hasTag msg
+  | trace data msg msgs         => p data.cls || hasTag msg || msgs.any hasTag
+  | ofOriginatingSyntax _ msg    => hasTag msg
+  | _                           => false
 
 /--
 Returns the top-level tag of the message.
@@ -190,27 +201,35 @@ This does not descend into message subtrees (e.g., `.compose`, `.ofLazy`).
 The message kind is expected to describe the whole message.
 -/
 def kind : MessageData → Name
-  | withContext _ msg       => kind msg
-  | withNamingContext _ msg => kind msg
-  | tagged n _              => n
-  | _                       => .anonymous
+  | withContext _ msg         => kind msg
+  | withNamingContext _ msg   => kind msg
+  | tagged n _                => n
+  | trace data _ _            => data.cls
+  | ofOriginatingSyntax _ msg  => kind msg
+  | _                         => .anonymous
+
+def originatingSyntax? : MessageData → Option Syntax × MessageData
+  | ofOriginatingSyntax stx msg => (some stx, msg)
+  | msg => (none, msg)
 
 def isTrace : MessageData → Bool
-  | withContext _ msg       => msg.isTrace
-  | withNamingContext _ msg => msg.isTrace
-  | tagged _ msg            => msg.isTrace
-  | .trace _ _ _            => true
-  | _                       => false
+  | withContext _ msg         => msg.isTrace
+  | withNamingContext _ msg   => msg.isTrace
+  | tagged _ msg              => msg.isTrace
+  | .trace _ _ _              => true
+  | ofOriginatingSyntax _ msg  => msg.isTrace
+  | _                         => false
 
 /--
 `composePreservingKind msg msg'` appends the contents of `msg'` to the end of `msg` but ensures that
 the resulting message preserves the kind (as given by `MessageData.kind`) of `msg`.
 -/
 def composePreservingKind : MessageData → MessageData → MessageData
-  | withContext ctx msg     , msg' => withContext ctx (composePreservingKind msg msg')
-  | withNamingContext nc msg, msg' => withNamingContext nc (composePreservingKind msg msg')
-  | tagged t msg            , msg' => tagged t (compose msg msg')
-  | msg                     , msg' => compose msg msg'
+  | withContext ctx msg         , msg' => withContext ctx (composePreservingKind msg msg')
+  | withNamingContext nc msg    , msg' => withNamingContext nc (composePreservingKind msg msg')
+  | tagged t msg                , msg' => tagged t (compose msg msg')
+  | ofOriginatingSyntax stx msg  , msg' => ofOriginatingSyntax stx (composePreservingKind msg msg')
+  | msg                         , msg' => compose msg msg'
 
 /-- An empty message. -/
 def nil : MessageData :=
@@ -275,19 +294,73 @@ def ofConstName (constName : Name) (fullNames : Bool := false) : MessageData :=
       return Dynamic.mk msg)
     (fun _ => false)
 
+/--
+Creates message data wrapping `fmt` that gives information about `expr` when hovered over.
+
+Options:
+- `location?` overrides what "go to definition" does
+- `docString?` allows overriding the docstring for the expression
+- `mkDocString?` allows generating a dynamic docstring; if this is provided, `docString?` is ignored
+- `explicit` makes the hover pretty print the head application in explicit mode;
+  the default value is `false` (note: delaboration expression hovers normally set this to `true`,
+  since their purpose is to get more information about a given expression)
+-/
+def withExprHover (fmt : Format) (expr : Expr) (lctx : LocalContext)
+    (location? : Option DeclarationLocation := none)
+    (docString? : Option String := none)
+    (mkDocString? : Option (PPContext → IO String) := none)
+    (explicit : Bool := false) : MessageData :=
+  .ofFormatWithInfos {
+      fmt := .tag 0 fmt
+      infos :=
+        .ofList [(0, Elab.Info.ofDelabTermInfo {
+          expr, lctx, location?, explicit,
+          stx := .missing, -- unused for delaborator hovers
+          expectedType? := none, -- unused for delaborator hovers
+          elaborator := `Delab.withExprHover,
+          mkDocString? := mkDocString? <|> docString?.map (fun _ => pure ·)
+        })]
+  }
+
+/--
+Calls `withExprHover`, but uses the current local context if one is not given.
+See `withExprHover` for a description of each parameter.
+-/
+def withExprHoverM {m} [Monad m] [MonadLCtx m]
+    (fmt : Format) (expr : Expr) (lctx? : Option LocalContext := none)
+    (location? : Option DeclarationLocation := none)
+    (docString? : Option String := none)
+    (mkDocString? : Option (PPContext → IO String) := none)
+    (explicit : Bool := false) : m MessageData := do
+  let lctx ← lctx?.getDM getLCtx
+  return withExprHover fmt expr lctx location? docString? mkDocString? explicit
+
+/--
+Render `userName` as `MessageData`, attaching hover information for the local declaration with
+that user-facing name if it is bound in the current `LocalContext`. The lookup uses `userName`
+verbatim (so macro scopes are preserved for matching) and the rendered name uses
+`userName.simpMacroScopes`. Falls back to plain text when the variable is not in scope.
+-/
+def ofUserName {m} [Monad m] [MonadLCtx m] (userName : Name) : m MessageData := do
+  let display := userName.simpMacroScopes
+  match (← getLCtx).findFromUserName? userName with
+  | some decl => withExprHoverM (format display) (.fvar decl.fvarId)
+  | none => pure (ofName display)
+
 partial def hasSyntheticSorry (msg : MessageData) : Bool :=
   visit none msg
 where
   visit (mctx? : Option MetavarContext) : MessageData → Bool
-  | ofLazy _ f              => f (mctx?.getD {})
-  | withContext ctx msg     => visit ctx.mctx msg
-  | withNamingContext _ msg => visit mctx? msg
-  | nest _ msg              => visit mctx? msg
-  | group msg               => visit mctx? msg
-  | compose msg₁ msg₂       => visit mctx? msg₁ || visit mctx? msg₂
-  | tagged _ msg            => visit mctx? msg
-  | trace _ msg msgs        => visit mctx? msg || msgs.any (visit mctx?)
-  | _                       => false
+  | ofLazy _ f                => f (mctx?.getD {})
+  | withContext ctx msg       => visit ctx.mctx msg
+  | withNamingContext _ msg   => visit mctx? msg
+  | nest _ msg                => visit mctx? msg
+  | group msg                 => visit mctx? msg
+  | compose msg₁ msg₂         => visit mctx? msg₁ || visit mctx? msg₂
+  | tagged _ msg              => visit mctx? msg
+  | ofOriginatingSyntax _ msg  => visit mctx? msg
+  | trace _ msg msgs          => visit mctx? msg || msgs.any (visit mctx?)
+  | _                         => false
 
 /--
 Maximum number of trace node children to display by default to prevent slowdowns from rendering. In
@@ -306,6 +379,7 @@ partial def formatAux : NamingContext → Option MessageDataContext → MessageD
   | nCtx, _,         withContext ctx d        => formatAux nCtx ctx d
   | _,    ctx,       withNamingContext nCtx d => formatAux nCtx ctx d
   | nCtx, ctx,       tagged _ d               => formatAux nCtx ctx d
+  | nCtx, ctx,       ofOriginatingSyntax _ d              => formatAux nCtx ctx d
   | nCtx, ctx,       nest n d                 => Format.nest n <$> formatAux nCtx ctx d
   | nCtx, ctx,       compose d₁ d₂            => return (← formatAux nCtx ctx d₁) ++ (← formatAux nCtx ctx d₂)
   | nCtx, ctx,       group d                  => Format.group <$> formatAux nCtx ctx d
@@ -318,7 +392,11 @@ partial def formatAux : NamingContext → Option MessageDataContext → MessageD
     let mut msg := f!"[{data.cls}]"
     if data.startTime != 0 then
       msg := f!"{msg} [{data.stopTime - data.startTime}]"
-    msg := f!"{msg} {(← formatAux nCtx ctx header).nest 2}"
+    let headerFmt ← formatAux nCtx ctx header
+    let headerFmt := match data.result? with
+      | some r => f!"{r.toEmoji} {headerFmt}"
+      | none => headerFmt
+    msg := f!"{msg} {headerFmt.nest 2}"
     let mut children := children
     if let some maxNum := ctx.map (maxTraceChildren.get ·.opts) then
       if maxNum > 0 && children.size > maxNum then
@@ -485,6 +563,7 @@ def MessageData.stripNestedTags : MessageData → MessageData
   | .withContext ctx msg => .withContext ctx msg.stripNestedTags
   | .withNamingContext ctx msg => .withNamingContext ctx msg.stripNestedTags
   | .tagged n msg => .tagged (stripNestedNamePrefix n) msg
+  | ofOriginatingSyntax stx msg => ofOriginatingSyntax stx msg.stripNestedTags
   | msg => msg
 where
   stripNestedNamePrefix : Name → Name

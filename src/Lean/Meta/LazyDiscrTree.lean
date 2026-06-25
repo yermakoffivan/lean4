@@ -937,12 +937,12 @@ def createLocalPreDiscrTree
     BaseIO (PreDiscrTree α) := do
   let modName := env.header.mainModule
   let cacheRef ← IO.mkRef (Cache.empty ngen)
-  -- Iterate locally-added constants via `localConstantInfos` rather than
+  -- Iterate locally-added constants via `getLocalConstantInfos` rather than
   -- `env.constants.map₂.foldlM`: the latter forces `env.checked`, which blocks on every pending
   -- async theorem body in the file (see lean4#13705). The `AsyncConstantInfo` exposes the eagerly
   -- committed signature, which is all the indexer needs.
   let mut tree : PreDiscrTree α := {}
-  for c in ← env.localConstantInfos do
+  for c in ← env.getLocalConstantInfos (skipTheoremSubDecls := true) do
     tree ← addConstImportData cctx env modName d cacheRef tree act c
   return tree
 

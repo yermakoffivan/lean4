@@ -1,8 +1,8 @@
 /-!
-Tests for `Environment.localConstantInfos` (lean4#13705): we walk into the nested `AsyncConsts`
-of non-theorem decls (so `where`-clause helpers inside a `def` are visible to `exact?`), but stop
-at theorems (whose body is elaborated asynchronously, so any nested decls — `where` helpers,
-`match` matchers, etc. — would be race-visible).
+Tests for `Environment.getLocalConstantInfos` (lean4#13705): with `skipTheoremSubDecls := true`
+(as used by `exact?`) we walk into the asynchronous sub-declarations of non-theorem decls (so
+`where`-clause helpers inside a `def` are visible), but stop at theorems, whose sub-decls would
+only become visible after waiting for proof elaboration.
 -/
 
 opaque P : Prop

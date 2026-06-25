@@ -432,13 +432,16 @@ end Closure
   returned where `u_i`s are universe parameters and metavariables `type` and `value` depend on,
   and `t_j`s are free and meta variables `type` and `value` depend on. -/
 def mkAuxDefinition (name : Name) (type : Expr) (value : Expr) (zetaDelta : Bool := false)
-    (compile : Bool := true) (logCompileErrors : Bool := true) : MetaM Expr := do
+    (compile : Bool := true) (logCompileErrors : Bool := true) (exposeBody : Bool := true) :
+    MetaM Expr := do
   let result ← Closure.mkValueTypeClosure type value zetaDelta
   let env ← getEnv
   let hints := ReducibilityHints.regular (getMaxHeight env result.value + 1)
   let decl := Declaration.defnDecl (← mkDefinitionValInferringUnsafe name result.levelParams.toList
     result.type result.value  hints)
-  addDecl decl
+  -- When `exposeBody` is false, the body is kept out of the public scope (the definition is exported
+  -- as a signature-only stub), but the name stays public so exposed declarations may reference it.
+  withoutExporting (when := !exposeBody) <| addDecl decl
   if compile then
     compileDecl decl (logErrors := logCompileErrors)
   return mkAppN (mkConst name result.levelArgs.toList) result.exprArgs

@@ -77,7 +77,16 @@ public def splitLatticeOp? (goal : MVarId) (rhs : Expr) :
     VCGenM (Option (List MVarId)) :=
   rhs.withApp fun head args => do
     let some headName := head.constName? | return none
-    let some c := (← read).customLatticeSplits[headName]? <|> latticeSplits[headName]? | return none
+    let ctx ← read
+    -- For a residual `Residuated.imp conj a b`, dispatch on the inner operator `conj` (its head): a
+    -- custom frame's magic wand goes to its own `impSplit`, while the meet `⇨` (whose `conj` is a
+    -- lambda with no head constant) falls through to the built-in residual split.
+    let custom? :=
+      if headName == ``Lean.Order.Residuated.imp then
+        (args[2]?.bind (·.getAppFn.constName?)).bind (ctx.customImpSplits[·]?)
+      else
+        ctx.customLatticeSplits[headName]?
+    let some c := custom? <|> latticeSplits[headName]? | return none
     let rule ← match c.applyLemma with
       | none => mkBackwardRuleForLatticeDirectCached c
       | some _ =>

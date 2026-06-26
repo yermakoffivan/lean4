@@ -116,10 +116,12 @@ public def mkContext (lemmas : Syntax) (goal : MVarId) (ignoreStarArg := false) 
         catch _ => continue
   let backwardRules ← VCGen.mkBackwardRules
   let allSpecThms ← extendWithSimpSpecs specThms simpThms
-  -- Registered `@[frameproc]` procedures contribute the lattice splits for their frame operators.
-  let customLatticeSplits := (← VCGen.getFrameProcs).splits
+  -- Registered `@[frameproc]` procedures contribute the lattice splits for their frame operators and
+  -- the residual wands of those operators.
+  let frameProcs ← VCGen.getFrameProcs
   let ctx : VCGen.Context :=
-    { backwardRules, frameInferenceProc := VCGen.matchFrame?.toRef, customLatticeSplits }
+    { backwardRules, frameInferenceProc := VCGen.matchFrame?.toRef,
+      customLatticeSplits := frameProcs.splits, customImpSplits := frameProcs.impSplits }
   return (ctx, { specs := allSpecThms })
 
 end VCGen

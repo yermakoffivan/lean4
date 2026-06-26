@@ -348,6 +348,19 @@ theorem le_costConj_point_apply {pre : Prop} (c n : Nat) (R : Nat → Prop)
   obtain ⟨hle, hR⟩ := hm
   exact ⟨c, n - c, by omega, rfl, hR⟩
 
+/-- The applied point-frame split for the cost magic wand, the `costConj` *residual* backward rule:
+to prove `pre ⊑ ((· = c) -⋆ R) n`, prove `pre ⊑ R (n + c)`. The framed continuation runs with the
+frame cost `c` added back. -/
+theorem le_imp_costConj_point_apply {pre : Prop} (c n : Nat) (R : Nat → Prop)
+    (h : pre ⊑ R (n + c)) :
+    pre ⊑ Residuated.imp costConj (· = c) R n := by
+  intro hpre
+  simp only [costConj_imp]
+  intro i hi
+  subst hi
+  rw [Nat.add_comm]
+  exact h hpre
+
 /-- Exact spec for `tick`, registered so `vcgen` can decompose `tick` calls. -/
 @[spec] theorem tick_spec (post : Unit → Nat → Prop) :
     ⦃ fun n => post () (n + 1) ⦄ tick ⦃ post ⦄ := by
@@ -369,6 +382,10 @@ def tickFrameProc : FrameInferenceProc := fun _pre info => do
 `le_costConj_point_apply` (no pointwise distribution). -/
 def costSplit : LatticeSplit := { relLemma := ``le_costConj_point_apply }
 
+/-- The direct lattice split for the `costConj` residual wand, decomposing
+`pre ⊑ Residuated.imp costConj (· = c) R n` via `le_imp_costConj_point_apply`. -/
+def costImpSplit : LatticeSplit := { relLemma := ``le_imp_costConj_point_apply }
+
 /-- Register the cost frame inference procedure for `vcgen`, indexed by the `TickM` program type. -/
 @[frameproc] def tickFP : FrameProc where
   prog := ``TickM
@@ -376,6 +393,7 @@ def costSplit : LatticeSplit := { relLemma := ``le_costConj_point_apply }
   conj := ``costConj
   op := fun _ => pure (mkConst ``costConj)
   split := costSplit
+  impSplit := costImpSplit
 
 /-- End-to-end: plain `vcgen` infers the cost frame `(· = n)`, applies the `costConj` gadget, fires
 the registered `costSplit`, and the meet machinery closes the residual. -/
@@ -404,8 +422,10 @@ def tickList {α : Type} : List α → TickM Unit
       show n + 1 + xs.length = n + (x :: xs).length from by simp only [List.length_cons]; omega]
     exact hn
 
-/-- A loop verified end-to-end: plain `vcgen` infers and applies the cost frame for the `tickList`
-call automatically, with no `frames` annotation. -/
-example {α : Type} (xs : List α) :
-    ⦃ fun n => n = 0 ⦄ (tickList xs : TickM Unit) ⦃ fun _ n => n = xs.length ⦄ := by
+/-- Two loops in sequence: plain `vcgen` infers and applies the cost frame for each call (the `bind`
+itself is not framed), and the residual wands are eliminated by the registered residual split, so the
+costs add up with no `frames` annotation. -/
+example {α : Type} (xs ys : List α) :
+    ⦃ fun n => n = 0 ⦄ (do tickList xs; tickList ys : TickM Unit)
+    ⦃ fun _ n => n = xs.length + ys.length ⦄ := by
   vcgen with finish

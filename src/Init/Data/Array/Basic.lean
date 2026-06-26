@@ -90,9 +90,6 @@ theorem ext' {xs ys : Array α} (h : xs.toList = ys.toList) : xs = ys := by
 
 @[simp, grind =] theorem toArray_toList {xs : Array α} : xs.toList.toArray = xs := rfl
 
--- TODO: Ideally we'd use `xs[i]'(id h)` to avoid defeq abuse, but then
--- `simp only [← getElem_toList]` won't work. For now, the solution is to make `Array.size`
--- implicit-reducible.
 @[simp, grind =] theorem getElem_toList {xs : Array α} {i : Nat} (h : i < xs.toList.length) : xs.toList[i] = xs[i] := rfl
 
 @[simp, grind =] theorem getElem?_toList {xs : Array α} {i : Nat} : xs.toList[i]? = xs[i]? := by

@@ -407,9 +407,14 @@ def tickList {α : Type} : List α → TickM Unit
   | [] => pure ()
   | _ :: xs => do tick; tickList xs
 
-/-- Exact spec for `tickList`: the cost increases by the list length. Proved by induction, composing
-`tick`'s spec and the induction hypothesis with `Triple.bind`. -/
-@[spec] theorem tickList_spec {α : Type} (xs : List α) (post : Unit → Nat → Prop) :
+/-- A *stopwatch* spec: from zero accumulated cost, `prog` ends at cost `n`. -/
+local syntax:60 term:61 " ⏱ " term:61 : term
+local macro_rules
+  | `($prog:term ⏱ $n:term) => `(⦃ (· = 0) ⦄ $prog ⦃ fun _ m => m = $n ⦄)
+
+/-- Schematic cost lemma for `tickList`, threading the offset, proved by induction with `Triple.bind`.
+Kept off `@[spec]` (a schematic post would always autoframe); the stopwatch spec below is registered. -/
+theorem tickList_wp {α : Type} (xs : List α) (post : Unit → Nat → Prop) :
     ⦃ fun n => post () (n + xs.length) ⦄ tickList xs ⦃ post ⦄ := by
   induction xs with
   | nil => exact Triple.pure () (by intro n hn; simpa using hn)
@@ -422,10 +427,13 @@ def tickList {α : Type} : List α → TickM Unit
       show n + 1 + xs.length = n + (x :: xs).length from by simp only [List.length_cons]; omega]
     exact hn
 
-/-- Two loops in sequence: plain `vcgen` infers and applies the cost frame for each call (the `bind`
-itself is not framed), and the residual wands are eliminated by the registered residual split, so the
-costs add up with no `frames` annotation. -/
+/-- The stopwatch spec for `tickList`: timed from zero, it costs exactly `xs.length`. Concrete (not
+schematic in the post), so `vcgen` only frames it where the start cost is not zero. -/
+@[spec] theorem tickList_spec {α : Type} (xs : List α) : tickList xs ⏱ xs.length :=
+  ⟨PartialOrder.rel_trans (by intro n hn; omega) (tickList_wp xs (fun _ m => m = xs.length)).le_wp⟩
+
+/-- Two loops in sequence, timed from zero: plain `vcgen` frames the second call by the cost the first
+accrued (the first starts at zero, so it is not framed), with no `frames` annotation. -/
 example {α : Type} (xs ys : List α) :
-    ⦃ fun n => n = 0 ⦄ (do tickList xs; tickList ys : TickM Unit)
-    ⦃ fun _ n => n = xs.length + ys.length ⦄ := by
+    (do tickList xs; tickList ys : TickM Unit) ⏱ (xs.length + ys.length) := by
   vcgen with finish

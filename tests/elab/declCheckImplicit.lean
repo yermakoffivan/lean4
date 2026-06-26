@@ -1,9 +1,9 @@
 import Lean
 
 /-!
-# The `linter.declCheckImplicit` linter
+# The `linter.checkDeclsAtImplicit` linter
 
-`linter.declCheckImplicit` warns when a declaration's type is type-correct at `.default`
+`linter.checkDeclsAtImplicit` warns when a declaration's type is type-correct at `.default`
 transparency but not at `.implicit` transparency, suggesting the semireducible definitions that
 should be marked `@[implicit_reducible]`.
 
@@ -20,31 +20,40 @@ def MyFn : Type := Fn
 
 def idFn : MyFn := (⟨id⟩ : Fn)
 
-/-! ## Disabled explicitly: no warning even though the type is not correct at `.implicit`. -/
+/-! ## Disabled by default -/
 
 #guard_msgs in
-set_option linter.declCheckImplicit false in
 theorem idFn_toFun_off : (idFn : Fn).toFun = id := rfl
 
-/-! ## On by default: the ill-typed-at-`.implicit` type is reported, blaming `MyFn`. -/
+/-! ## Warn if linter is enabled -/
 
+set_option linter.checkDeclsAtImplicit true in
 /--
 warning: declaration idFn_toFun is not type-correct at `.implicit` transparency; consider marking some of the following as `@[implicit_reducible]`:
   MyFn
 
-Note: This linter can be disabled with `set_option linter.declCheckImplicit false`
+Note: This linter can be disabled with `set_option linter.checkDeclsAtImplicit false`
 -/
 #guard_msgs in
 theorem idFn_toFun : (idFn : Fn).toFun = id := rfl
 
-/-! ## A type that is fine at `.implicit` is not reported. -/
+/-! ## Don't warn when the type is well-typed at implicit transparency -/
 
+set_option linter.checkDeclsAtImplicit true in
 #guard_msgs in
 theorem reflexive_eq : (1 : Nat) = 1 := rfl
 
-/-! ## Marking `MyFn` `@[implicit_reducible]` fixes the mismatch: no more warning. -/
+/-!
+## Warning disappears after marking `MyFn` as implicit-reducible
+
+Note: Marking declarations as implicit-reducible will make the elaborator unfold them more often.
+This comes at a performance cost. Users need to decide which declarations they actually want to make
+more reducible. If unfolding is undesirable, the alternative is to avoid relying on complex
+unfolding.
+-/
 
 attribute [implicit_reducible] MyFn
 
+set_option linter.checkDeclsAtImplicit true in
 #guard_msgs in
 theorem idFn_toFun_fixed : (idFn : Fn).toFun = id := rfl

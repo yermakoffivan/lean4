@@ -97,12 +97,12 @@ def warnIfUsesSorry (decl : Declaration) : CoreM Unit := do
         logWarning <| .tagged `hasSorry m!"declaration uses `sorry`"
 
 /--
-If `linter.declCheckImplicit` is set to true, declarations whose type is type-correct at
+If `linter.checkDeclsAtImplicit` is set to true, declarations whose type is type-correct at
 `.default` transparency but not at `.implicit` transparency generate a warning suggesting
 definitions that could be marked `@[implicit_reducible]`.
 -/
-register_builtin_option linter.declCheckImplicit : Bool := {
-  defValue := true
+register_builtin_option linter.checkDeclsAtImplicit : Bool := {
+  defValue := false
   descr    := "warn when a declaration's type is not type-correct at `.implicit` transparency"
 }
 
@@ -125,11 +125,11 @@ unfolds but the `.implicit` check does not, or `none` if `declType` is already t
 `.implicit` transparency (or is not even type-correct at `.default`). Mirrors the inner loop of
 `Lean.Linter.tacticCheckInstances`.
 
-Runs under `Core.withCurrHeartbeats` and returns `none` in case of heartbeat exhaustion.: this
+Runs under `Core.withCurrHeartbeats` and returns `none` in case of heartbeat exhaustion. this
 diagnostic must never abort the surrounding elaboration, nor draw on a tactic's already-spent
 heartbeat budget. Interrupt exceptions are re-raised, never swallowed.
 -/
-private def checkImplicitTransparency (declType : Expr) : MetaM (Option (Array Name)) :=
+private def checkTypeAtImplicitTransparency (declType : Expr) : MetaM (Option (Array Name)) :=
   Core.withCurrHeartbeats do
   -- Fast path: Check the type at `.implicit`, without `diagnostics true`. Failure should be the
   -- absolute exception, so we optimize for the frequent case.
@@ -140,7 +140,7 @@ private def checkImplicitTransparency (declType : Expr) : MetaM (Option (Array N
     catch e =>
       if e.isInterrupt then throw e
       else if e.isRuntime then
-        logWarning m!"The `declCheckImplicit` linter failed with an unexpected error while checking the type of `{declType}` at implicit transparency.\n{e.toMessageData}"
+        logWarning m!"The `checkDeclsAtImplicit` linter failed with an unexpected error while checking the type of `{declType}` at implicit transparency.\n{e.toMessageData}"
         return none
       else pure true
   unless implicitFailed do return none
@@ -154,7 +154,7 @@ private def checkImplicitTransparency (declType : Expr) : MetaM (Option (Array N
         throw e
       else
         -- Any error while checking the type at default transparency is an unexpected error.
-        logWarning m!"The `declCheckImplicit` linter failed with an unexpected error while checking the type of `{declType}` at default transparency.\n{e.toMessageData}"
+        logWarning m!"The `checkDeclsAtImplicit` linter failed with an unexpected error while checking the type of `{declType}` at default transparency.\n{e.toMessageData}"
         return none
     let counterDefault := (← get).diag.unfoldCounter
     -- Reset the unfold counter and re-check at `.implicit` to record what it unfolds.
@@ -166,7 +166,7 @@ private def checkImplicitTransparency (declType : Expr) : MetaM (Option (Array N
         throw e
       else if e.isRuntime then
         -- Warn if a resource limit has been reached.
-        logWarning m!"The `declCheckImplicit` linter failed with an unexpected error while checking the type of `{declType}` at implicit transparency.\n{e.toMessageData}"
+        logWarning m!"The `checkDeclsAtImplicit` linter failed with an unexpected error while checking the type of `{declType}` at implicit transparency.\n{e.toMessageData}"
         return none
       else
         -- This check is expected to fail, so nothing to do in this case.
@@ -189,24 +189,22 @@ private def checkImplicitTransparency (declType : Expr) : MetaM (Option (Array N
   return result
 
 /--
-If `linter.declCheckImplicit` is enabled, warns when a declaration's type is type-correct at
-`.default` transparency but not at `.implicit` transparency, listing the suggesting semireducible
+If `linter.checkDeclsAtImplicit` is enabled, warns when a declaration's type is type-correct at
+`.default` transparency but not at `.implicit` transparency, suggesting semireducible
 constants that could be be marked `@[implicit_reducible]` to fix the mismatch.
-
-TODO: participate in linter.all?
 -/
 def warnIfDeclIllTypedAtImplicit (decl : Declaration) : CoreM Unit := do
-  unless linter.declCheckImplicit.get (← getOptions) do return
+  unless linter.checkDeclsAtImplicit.get (← getOptions) do return
   -- Stay quiet on declarations that already produced errors.
   if ← MonadLog.hasErrors then return
   for (declName, declType) in declTypesToCheck decl do
     -- Compiler-internal auto-declarations (equation lemmas, etc.) would be noisy; skip them.
     if ← isAutoDeclOrPrivate_Internal declName then continue
-    let some candidates ← (checkImplicitTransparency declType).run' | continue
+    let some candidates ← (checkTypeAtImplicitTransparency declType).run' | continue
     if candidates.isEmpty then continue
     let bullets := MessageData.joinSep
       (candidates.toList.map (m!"{MessageData.ofConstName ·}")) Format.line
-    Linter.logLint linter.declCheckImplicit (← getRef)
+    Linter.logLint linter.checkDeclsAtImplicit (← getRef)
       m!"declaration {MessageData.ofConstName declName} is not type-correct at \
         `.implicit` transparency; consider marking some of the following as \
         `@[implicit_reducible]`:{indentD bullets}"

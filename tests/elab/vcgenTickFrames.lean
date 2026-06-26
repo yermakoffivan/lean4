@@ -250,6 +250,31 @@ instance TickM.instWP {α : Type} : WP (TickM α) α (Nat → Prop) EPost.Nil wh
     intro n hn
     exact TickM.wp_consequence x epost n (fun a n' => hpost a n') hn
 
+instance : LawfulMonad TickM := inferInstanceAs (LawfulMonad (StateM Nat))
+
+/-- `TickM` is a `WPMonad`: `pure`/`bind` are sound for `TickM.wp`. The cost frame `d` threads
+through both: `pure` keeps it, and `bind` passes the same `d` to the continuation. -/
+instance TickM.instWPMonad : WPMonad TickM (Nat → Prop) EPost.Nil where
+  toWP _ := TickM.instWP
+  pure_le_wp_pure x post E := by
+    intro n h
+    show TickM.wp (pure x) post E n
+    rw [TickM.wp_eq_forall]
+    intro d
+    exact WPMonad.pure_le_wp_pure (m := StateM Nat) x _ E (n + d) ⟨n, rfl, h⟩
+  bind_le_wp_bind x f post E := by
+    intro n hn
+    have hn' := (TickM.wp_eq_forall x (fun a => TickM.wp (f a) post E) E n).mp hn
+    show TickM.wp (x >>= f) post E n
+    rw [TickM.wp_eq_forall]
+    intro d
+    refine WPMonad.bind_le_wp_bind (m := StateM Nat) x.run (fun a => (f a).run)
+      (fun b n' => ∃ k, n' = k + d ∧ post b k) E (n + d) ?_
+    refine WP.wp_consequence x.run _ _ E (fun a n1 => ?_) (n + d) (hn' d)
+    rintro ⟨k, rfl, hk⟩
+    rw [TickM.wp_eq_forall] at hk
+    exact hk d
+
 /-- **The frame rule, internalized**, as a corollary of `WP.Frames.of_frameClosure`: since `TickM.wp`
 is a `Residuated.frameClosure`, *every* program `x` frames *every* `F` with respect to `costConj`.
 No cost-additivity hypothesis is required. -/

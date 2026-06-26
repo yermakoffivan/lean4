@@ -435,8 +435,8 @@ private def mkSpecBackwardProof
   abstractMVars specApplied
 
 /--
-Normalize an instantiated equality spec `lhs = rhs` (both of type `info.m α`) to the `⊑ wp` form
-`wp rhs Q E ⊑ wp lhs Q E` by instantiating `wp_le_wp_of_eq` with fresh schematic `Q`/`E`.
+Normalize an instantiated equality spec `lhs = rhs` to the `⊑ wp` form `wp rhs Q E ⊑ wp lhs Q E` by
+instantiating `wp_le_wp_of_eq` with fresh schematic `Q`/`E`.
 
 The schematic `Q`/`E` make the postcondition and exception-postcondition VCs collapse in
 `mkSpecBackwardProof`, so the resulting rule rewrites a `wp lhs` goal to a `wp rhs` premise, matching
@@ -450,15 +450,14 @@ private def eqSpecToWp? (info : WPInfo) (xs : Array Expr) (eqPrf eqType : Expr) 
     OptionT MetaM (Expr × Expr) := do
   let_expr Eq eqα lhs rhs := eqType
     | throwError "simp spec is not an equation: {eqType}"
-  -- Recover the value type `α` and confirm the equation is in the goal's monad. `α` is typed at the
-  -- monad's domain sort so the equation's element type stays well-formed.
-  let α ← mkFreshExprMVar (← inferType info.m).bindingDomain!
-  guard <| ← isDefEqGuarded eqα (mkApp info.m α)
-  -- Pin the schematic instance and state metavariables by unifying the equation's LHS with the goal's
-  -- concrete program, so dictionary projections in `rhs` reduce against the real instance.
-  let _ ← show MetaM Bool from commitWhen <| isDefEqGuarded lhs info.prog
-  -- Synthesize leftover dictionary metavariables (e.g. for an abstract-monad lift equation, whose LHS
-  -- does not unify with a concrete program) so the projections in `rhs` reduce against instances.
+  -- Confirm the equation is at the goal's program type. Reading the value type from the goal rather
+  -- than the equation avoids assuming the program type is a monad application `m α`, so non-monadic
+  -- deep embeddings work too. The program's explicit arguments stay schematic, so the resulting rule
+  -- generalizes over them and matches the goal program at apply time.
+  guard <| ← isDefEqGuarded eqα info.Prog
+  let α := info.Value
+  -- Synthesize leftover instance metavariables (e.g. for an abstract-monad lift equation) so the
+  -- dictionary projections in `rhs` reduce against concrete instances.
   for x in xs do
     if x.isMVar && !(← x.mvarId!.isAssigned) then
       try x.mvarId!.assign (← Meta.synthInstance (← Meta.inferType x))
@@ -473,10 +472,9 @@ private def eqSpecToWp? (info : WPInfo) (xs : Array Expr) (eqPrf eqType : Expr) 
   let epost ← mkFreshExprMVar (userName := `E) info.EPred
   -- Cast to the reduced RHS so the resulting `wp` rewrites onto the exposed operation.
   let eqPrf ← mkExpectedTypeHint eqPrf (← mkEq lhs rhs)
-  -- Pin the monad and assertion instances from the goal's `wp` arguments. Inferring the monad from
-  -- the equation type alone would leave `m β =?= info.m γ` as an underdetermined flex-rigid problem,
-  -- so non-monadic equations like `Option.getD.eq_1` would fail to unify. With `m` fixed, the value
-  -- type is inferred from the equation proof.
+  -- Pin the program type, value type and assertion instances from the goal's `wp` arguments.
+  -- Inferring them from the equation alone would leave `m β =?= info.m γ` as an underdetermined
+  -- flex-rigid problem, so non-monadic equations like `Option.getD.eq_1` would fail to unify.
   let specProof ← mkAppOptM ``Std.Internal.Do.wp_le_wp_of_eq <|
     (info.args.extract 0 7).map some ++ #[none, none, some eqPrf, some post, some epost]
   return (specProof, ← instantiateMVars (← Meta.inferType specProof))
@@ -532,7 +530,7 @@ public def mkBackwardRuleForSplit
     (splitInfo : SplitInfo) (info : WPInfo) : MetaM BackwardRule := do
   -- The split value type is the goal's, so reuse the goal's program type and `WP` instance directly.
   let a := info.Value
-  let ma := info.progTy
+  let ma := info.Prog
   let prf ←
     splitInfo.withAbstract ma fun abstractInfo splitFVars => do
     -- Eta-reduce matcher alts for the backward rule pattern to avoid expensive

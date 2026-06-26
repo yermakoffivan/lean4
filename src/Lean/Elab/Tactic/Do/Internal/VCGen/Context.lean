@@ -82,7 +82,7 @@ public structure VCGen.WPInfo where
 namespace VCGen.WPInfo
 
 /-- Program type argument of `wp` (e.g. `m α` or a non-monadic program type). -/
-public def progTy (info : WPInfo) : Expr := info.args[0]!
+public def Prog (info : WPInfo) : Expr := info.args[0]!
 /-- The monad of an `m α`-shaped program type, obtained by dropping the value type `α`. For a
 non-monadic program type the type itself is returned. -/
 public def m (info : WPInfo) : Expr :=

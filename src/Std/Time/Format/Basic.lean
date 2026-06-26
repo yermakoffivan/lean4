@@ -231,15 +231,31 @@ private def formatExtendedDayPeriod (arr : Vector String 6) (period : ExtendedDa
 private def toSigned (data : Int) : String :=
   if data < 0 then toString data else "+" ++ toString data
 
-private def toIsoString (offset : Offset) (withMinutes : Bool) (withSeconds : Bool) (colon : Bool) (padHour : Bool := true) : String :=
+private inductive Reason
+  | yes
+  | no
+  | optional
+deriving BEq
+
+private def toIsoString (offset : Offset) (withMinutes : Reason) (withSeconds : Reason) (colon : Bool) (padHour : Bool := true) : String :=
   let (sign, time) := if offset.second.val ≥ 0 then ("+", offset.second) else ("-", -offset.second)
   let time := PlainTime.ofSeconds time
   let pad := leftPadAscii 2 '0' ∘ toString
 
   let hourStr := if padHour then pad time.hour.val else toString time.hour.val
   let data := s!"{sign}{hourStr}"
-  let data := if withMinutes then s!"{data}{if colon then ":" else ""}{pad time.minute.val}" else data
-  let data := if withSeconds ∧ time.second.val ≠ 0 then s!"{data}{if colon then ":" else ""}{pad time.second.val}" else data
+
+  let data :=
+    if withMinutes == .yes ∨ (withMinutes == .optional ∧ time.minute.val ≠ 0) then
+      s!"{data}{if colon then ":" else ""}{pad time.minute.val}"
+    else
+      data
+
+  let data :=
+    if withSeconds == .yes ∨ (withSeconds == .optional ∧ time.second.val ≠ 0) then
+      s!"{data}{if colon then ":" else ""}{pad time.second.val}"
+    else
+      data
 
   data
 
@@ -431,41 +447,42 @@ private def formatWith (dateformat : DateFormat) (modifier : Modifier) (data : T
         if t.minute.val == 0
           then s!"GMT{sign}{t.hour.val}"
           else s!"GMT{sign}{t.hour.val}:{pad t.minute.val}"
-    | .full  => if data.second == 0 then "GMT" else s!"GMT{toIsoString data true false true}"
+    | .full  =>
+      if data.second == 0 then "GMT" else s!"GMT{toIsoString data .yes .no true}"
   | .X format =>
     if data.second == 0 then
       "Z"
     else
       match format with
-        | .hour              => toIsoString data false false false
-        | .hourMinute        => toIsoString data true false false
-        | .hourMinuteColon   => toIsoString data true false true
-        | .hourMinuteSecond  => toIsoString data true true false
-        | .hourMinuteSecondColon => toIsoString data true true true
+        | .hour => toIsoString data .optional .no false
+        | .hourMinute => toIsoString data .yes .no false
+        | .hourMinuteColon => toIsoString data .yes .no true
+        | .hourMinuteSecond => toIsoString data .yes .optional false
+        | .hourMinuteSecondColon => toIsoString data .yes .optional true
   | .x format =>
     match format with
     | .hour =>
-      toIsoString data (data.second.toMinutes.val % 60 ≠ 0) false false
+      toIsoString data .optional .no false
     | .hourMinute =>
-      toIsoString data true false false
+      toIsoString data .yes .no false
     | .hourMinuteColon =>
-      toIsoString data true (data.second.val % 60 ≠ 0) true
+      toIsoString data .yes .no true
     | .hourMinuteSecond =>
-      toIsoString data true (data.second.val % 60 ≠ 0) false
+      toIsoString data .yes .optional false
     | .hourMinuteSecondColon =>
-      toIsoString data true true true
+      toIsoString data .yes .optional true
   | .Z format =>
     match format with
     | .hourMinute =>
-      toIsoString data true false false
+      toIsoString data .yes .optional false
     | .full =>
       if data.second.val = 0
         then "GMT"
-        else s!"GMT{toIsoString data true false true}"
+        else s!"GMT{toIsoString data .yes .no true}"
     | .hourMinuteSecondColon =>
       if data.second == 0
         then "Z"
-        else toIsoString data true (data.second.val % 60 ≠ 0) true
+        else toIsoString data .yes .optional true
 
 private def dateFromModifier (dateformat : DateFormat) (date : DateTime) : TypeFormat modifier :=
   let firstDay := dateformat.firstDayOfWeek
@@ -498,24 +515,30 @@ private def dateFromModifier (dateformat : DateFormat) (date : DateTime) : TypeF
   | .n _ => date.nanosecond
   | .N _ => date.date.get.time.toNanoseconds
   | .V .unknown => "unk"
-  | .V .short   => if tz.name.startsWith "+" || tz.name.startsWith "-"
-                   then s!"GMT{toIsoString tz.offset true false true}"
-                   else tz.name
-  | .V .full    => if tz.name.startsWith "+" || tz.name.startsWith "-"
-                   then s!"GMT{toIsoString tz.offset true false true}"
-                   else tz.name
-  | .z .short   => if tz.abbreviation.startsWith "+" || tz.abbreviation.startsWith "-"
-                   then s!"GMT{toIsoString tz.offset true false true}"
-                   else tz.abbreviation
-  | .z .full    => if tz.name.startsWith "+" || tz.name.startsWith "-"
-                   then s!"GMT{toIsoString tz.offset true false true}"
-                   else tz.name
-  | .v .short   => if tz.abbreviation.startsWith "+" || tz.abbreviation.startsWith "-"
-                   then s!"GMT{toIsoString tz.offset true false true}"
-                   else tz.abbreviation
-  | .v .full    => if tz.name.startsWith "+" || tz.name.startsWith "-"
-                   then s!"GMT{toIsoString tz.offset true false true}"
-                   else tz.name
+  | .V .short =>
+    if tz.name.startsWith "+" || tz.name.startsWith "-"
+      then s!"GMT{toIsoString tz.offset .yes .no true}"
+      else tz.name
+  | .V .full =>
+    if tz.name.startsWith "+" || tz.name.startsWith "-"
+      then s!"GMT{toIsoString tz.offset .yes .no true}"
+      else tz.name
+  | .z .short =>
+    if tz.abbreviation.startsWith "+" || tz.abbreviation.startsWith "-"
+      then s!"GMT{toIsoString tz.offset .yes .no true}"
+      else tz.abbreviation
+  | .z .full =>
+    if tz.name.startsWith "+" || tz.name.startsWith "-"
+      then s!"GMT{toIsoString tz.offset .yes .no true}"
+      else tz.name
+  | .v .short =>
+    if tz.abbreviation.startsWith "+" || tz.abbreviation.startsWith "-"
+      then s!"GMT{toIsoString tz.offset .yes .no true}"
+      else tz.abbreviation
+  | .v .full =>
+    if tz.name.startsWith "+" || tz.name.startsWith "-"
+      then s!"GMT{toIsoString tz.offset .yes .no true}"
+      else tz.name
   | .O _ => tz.offset
   | .X _ => tz.offset
   | .x _ => tz.offset
@@ -671,14 +694,15 @@ private def parseNatToBounded { n m : Nat } (parser : Parser Nat) : Parser (Boun
   else
     fail s!"need a natural number in the interval of {n} to {m}"
 
-private inductive Reason
-  | yes
-  | no
-  | optional
+private def parseOneOrTwoNum : Parser Nat := do
+  let first ← satisfy Char.isDigit
+  match ← optional (satisfy Char.isDigit) with
+  | some res => return (first.toNat - 48) * 10 + (res.toNat - 48)
+  | none => return (first.toNat - 48)
 
 private def parseOffset (withMinutes : Reason) (withSeconds : Reason) (withColon : Bool) : Parser Offset := do
   let sign ← (pchar '+' *> pure 1) <|> (pchar '-' *> pure (-1))
-  let hours : Hour.Offset ← UnitVal.ofInt <$> parseNum 2
+  let hours : Hour.Offset ← UnitVal.ofInt <$> parseOneOrTwoNum
 
   if hours.val < 0 ∨ hours.val > 23 then
     fail s!"invalid hour offset: {hours.val}. Must be between 0 and 23."
@@ -687,9 +711,9 @@ private def parseOffset (withMinutes : Reason) (withSeconds : Reason) (withColon
 
   let parseUnit {n} (reason : Reason) : Parser (Option (UnitVal n)) :=
     match reason with
-    | .yes => some <$> (colon *> UnitVal.ofInt <$> parseNum 2)
+    | .yes => some <$> (colon *> UnitVal.ofInt <$> parseOneOrTwoNum)
     | .no => pure none
-    | .optional => optional (colon *> UnitVal.ofInt <$> parseNum 2)
+    | .optional => optional (colon *> UnitVal.ofInt <$> parseOneOrTwoNum)
 
   let minutes : Option Minute.Offset ← parseUnit withMinutes
 
@@ -711,23 +735,23 @@ private def parseWith (config : FormatConfig) : (mod : Modifier) → Parser (Typ
   | .G format =>
     match format with
     | .short | .twoLetterShort => parseEraShort config.dateformat.symbols
-    | .full   => parseEraLong config.dateformat.symbols
+    | .full => parseEraLong config.dateformat.symbols
     | .narrow => parseEraNarrow config.dateformat.symbols
   | .y format =>
     match format with
-    | .any      => Int.ofNat <$> parseAtLeastNum 1
+    | .any => Int.ofNat <$> parseAtLeastNum 1
     | .twoDigit => (2000 + ·) <$> Int.ofNat <$> parseNum 2
     | .fourDigit => Int.ofNat <$> parseNum 4
     | .extended n => Int.ofNat <$> parseNum n
   | .u format =>
     match format with
-    | .any      => parseSigned <| parseAtLeastNum 1
+    | .any => parseSigned <| parseAtLeastNum 1
     | .twoDigit => (2000 + ·) <$> Int.ofNat <$> parseNum 2
     | .fourDigit => parseSigned <| parseNum 4
     | .extended n => parseSigned <| parseNum n
   | .Y format =>
     match format with
-    | .any      => parseSigned <| parseAtLeastNum 1
+    | .any => parseSigned <| parseAtLeastNum 1
     | .twoDigit => (2000 + ·) <$> Int.ofNat <$> parseNum 2
     | .fourDigit => parseSigned <| parseNum 4
     | .extended n => parseSigned <| parseNum n
@@ -750,7 +774,7 @@ private def parseWith (config : FormatConfig) : (mod : Modifier) → Parser (Typ
   | .E format =>
     match format with
     | .short | .twoLetterShort => parseWeekdayShort config.dateformat.symbols
-    | .full   => parseWeekdayLong config.dateformat.symbols
+    | .full => parseWeekdayLong config.dateformat.symbols
     | .narrow => parseWeekdayNarrow config.dateformat.symbols
   | .e format | .c format =>
     match format with
@@ -768,17 +792,17 @@ private def parseWith (config : FormatConfig) : (mod : Modifier) → Parser (Typ
   | .a format =>
     match format with
     | .short | .twoLetterShort => parseMarkerShort config.dateformat.symbols
-    | .full   => parseMarkerLong config.dateformat.symbols
+    | .full => parseMarkerLong config.dateformat.symbols
     | .narrow => parseMarkerNarrow config.dateformat.symbols
   | .b format =>
     match format with
     | .short | .twoLetterShort => parseDayPeriodFrom config.dateformat.symbols.dayPeriodShort
-    | .full   => parseDayPeriodFrom config.dateformat.symbols.dayPeriodLong
+    | .full => parseDayPeriodFrom config.dateformat.symbols.dayPeriodLong
     | .narrow => parseDayPeriodFrom config.dateformat.symbols.dayPeriodNarrow
   | .B format =>
     match format with
     | .short | .twoLetterShort => parseExtendedDayPeriodFrom config.dateformat.symbols.extendedDayPeriodShort
-    | .full   => parseExtendedDayPeriodFrom config.dateformat.symbols.extendedDayPeriodLong
+    | .full => parseExtendedDayPeriodFrom config.dateformat.symbols.extendedDayPeriodLong
     | .narrow => parseExtendedDayPeriodFrom config.dateformat.symbols.extendedDayPeriodNarrow
   | .h format => parseNatToBounded (parseFlexibleNum format.padding)
   | .K format => parseNatToBounded (parseFlexibleNum format.padding)
@@ -793,7 +817,7 @@ private def parseWith (config : FormatConfig) : (mod : Modifier) → Parser (Typ
       return res.expandTop (by decide)
   | .S format =>
     match format with
-    | .nano      => parseNatToBounded (parseFlexibleNum 9)
+    | .nano => parseNatToBounded (parseFlexibleNum 9)
     | .truncated n => parseNatToBounded (parseFractionNum n 9)
   | .A format => Millisecond.Offset.ofNat <$> (parseFlexibleNum format.padding)
   | .n format => parseNatToBounded (parseFlexibleNum format.padding)
@@ -810,16 +834,16 @@ private def parseWith (config : FormatConfig) : (mod : Modifier) → Parser (Typ
     | .short | .full => parseIdentifier
   | .O format =>
     match format with
-    | .short => pstring "GMT" *> parseOffset .no .no false
-    | .full  => pstring "GMT" *> parseOffset .yes .optional false
+    | .short => pstring "GMT" *> parseOffset .optional .no true
+    | .full  => pstring "GMT" *> parseOffset .yes .optional true
   | .X format =>
     let p : Parser Offset :=
       match format with
-        | .hour              => parseOffset .no .no false
-        | .hourMinute        => parseOffset .yes .no false
-        | .hourMinuteColon   => parseOffset .yes .no true
-        | .hourMinuteSecond  => parseOffset .yes .yes false
-        | .hourMinuteSecondColon => parseOffset .yes .yes true
+        | .hour => parseOffset .optional .no false
+        | .hourMinute => parseOffset .yes .no false
+        | .hourMinuteColon => parseOffset .yes .no true
+        | .hourMinuteSecond => parseOffset .yes .optional false
+        | .hourMinuteSecondColon => parseOffset .yes .optional true
     p <|> (pstring "Z" *> pure (Offset.ofSeconds 0))
   | .x format =>
     match format with
@@ -845,6 +869,7 @@ private def parseWith (config : FormatConfig) : (mod : Modifier) → Parser (Typ
       (skipString "Z" *> pure Offset.zero)
       <|> (parseOffset .yes .optional true)
 
+
 private def formatPartWithDate (dateformat : DateFormat) (date : DateTime) (part : FormatPart) : String :=
   match part with
   | .modifier mod => formatWith dateformat mod (dateFromModifier dateformat date)
@@ -860,43 +885,43 @@ def FormatType (result : Type) : FormatString → Type
 namespace GenericFormat
 
 private structure DateBuilder where
-  G    : Option Year.Era := none
-  y    : Option Year.Offset := none
-  u    : Option Year.Offset := none
-  Y    : Option Year.Offset := none
-  D    : Option (Sigma Day.Ordinal.OfYear) := none
-  M    : Option Month.Ordinal := none
-  L    : Option Month.Ordinal := none
-  d    : Option Day.Ordinal := none
-  Q    : Option Month.Quarter := none
-  q    : Option Month.Quarter := none
-  w    : Option Week.OfYear.Ordinal := none
-  W    : Option Week.Ordinal := none
-  E    : Option Weekday := none
-  e    : Option Weekday := none
-  c    : Option Weekday := none
-  F    : Option (Bounded.LE 1 5) := none
-  a    : Option HourMarker := none
-  b    : Option DayPeriod := none
-  B    : Option ExtendedDayPeriod := none
-  h    : Option (Bounded.LE 1 12) := none
-  K    : Option (Bounded.LE 0 11) := none
-  k    : Option (Bounded.LE 1 24) := none
-  H    : Option Hour.Ordinal := none
-  m    : Option Minute.Ordinal := none
-  s    : Option (Second.Ordinal true) := none
-  S    : Option Nanosecond.Ordinal := none
-  A    : Option Millisecond.Offset := none
-  n    : Option Nanosecond.Ordinal := none
-  N    : Option Nanosecond.Offset := none
-  V    : Option String := none
-  z    : Option String := none
+  G : Option Year.Era := none
+  y : Option Year.Offset := none
+  u : Option Year.Offset := none
+  Y : Option Year.Offset := none
+  D : Option (Sigma Day.Ordinal.OfYear) := none
+  M : Option Month.Ordinal := none
+  L : Option Month.Ordinal := none
+  d : Option Day.Ordinal := none
+  Q : Option Month.Quarter := none
+  q : Option Month.Quarter := none
+  w : Option Week.OfYear.Ordinal := none
+  W : Option Week.Ordinal := none
+  E : Option Weekday := none
+  e : Option Weekday := none
+  c : Option Weekday := none
+  F : Option (Bounded.LE 1 5) := none
+  a : Option HourMarker := none
+  b : Option DayPeriod := none
+  B : Option ExtendedDayPeriod := none
+  h : Option (Bounded.LE 1 12) := none
+  K : Option (Bounded.LE 0 11) := none
+  k : Option (Bounded.LE 1 24) := none
+  H : Option Hour.Ordinal := none
+  m : Option Minute.Ordinal := none
+  s : Option (Second.Ordinal true) := none
+  S : Option Nanosecond.Ordinal := none
+  A : Option Millisecond.Offset := none
+  n : Option Nanosecond.Ordinal := none
+  N : Option Nanosecond.Offset := none
+  V : Option String := none
+  z : Option String := none
   zabbrev : Option String := none
-  v    : Option String := none
-  O    : Option Offset := none
-  X    : Option Offset := none
-  x    : Option Offset := none
-  Z    : Option Offset := none
+  v : Option String := none
+  O : Option Offset := none
+  X : Option Offset := none
+  x : Option Offset := none
+  Z : Option Offset := none
 
 namespace DateBuilder
 
@@ -931,13 +956,13 @@ private def insert (date : DateBuilder) (modifier : Modifier) (data : TypeFormat
   | .A _  => { date with A := some data }
   | .n _  => { date with n := some data }
   | .N _  => { date with N := some data }
-  | .V .full    => { date with V := some data }
-  | .V .short   => { date with V := some data }
+  | .V .full => { date with V := some data }
+  | .V .short => { date with V := some data }
   | .V .unknown => { date with V := some data }
-  | .z .full    => { date with z := some data }
-  | .z .short   => { date with zabbrev := some data }
-  | .v .full    => { date with v := some data }
-  | .v .short   => { date with v := some data }
+  | .z .full => { date with z := some data }
+  | .z .short => { date with zabbrev := some data }
+  | .v .full => { date with v := some data }
+  | .v .short => { date with v := some data }
   | .O _  => { date with O := some data }
   | .X _  => { date with X := some data }
   | .x _  => { date with x := some data }

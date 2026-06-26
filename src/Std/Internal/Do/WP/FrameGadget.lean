@@ -27,10 +27,20 @@ def skipFrame {α : Sort u} (a : α) : α := a
 applies for a framed program. The frame `F` is the first explicit argument so that `vcgen` can
 partially apply it (pinning `F`) and feed the result through the ordinary spec machinery, leaving
 `x`, `epost`, `Q`, and `hframe` schematic. -/
-theorem meet_wp_imp_le_wp_skipFrame [Frame Pred] (F : Pred) (x : Prog)
+theorem meet_wp_imp_le_wp_skipFrame [Residuated Pred (· ⊓ ·)] (F : Pred) (x : Prog)
   (E : EPred) (Q : Value → Pred)
-    (hframe : WP.Frames x F) :
+    (hframes : WP.Frames (· ⊓ ·) x F) :
     F ⊓ wp (skipFrame x) (fun a => F ⇨ Q a) E ⊑ wp x Q E :=
-  meet_wp_imp_le_wp hframe
+  hframes.conj_wp_imp_le_wp _ _ _
+
+/-- `meet_wp_imp_le_wp_skipFrame` for an arbitrary residuated frame operator `conj`, the per-call spec
+`vcgen` applies for a program framed with a non-meet operator. `conj` is the first explicit argument
+so that `vcgen` can pin it (to the inferred frame operator) while leaving `F`, `x`, `E`, `Q`, and
+`hframes` schematic. -/
+theorem wp_imp_le_wp_skipFrame (conj : Pred → Pred → Pred) [Residuated Pred conj] (F : Pred)
+  (x : Prog) (E : EPred) (Q : Value → Pred)
+    (hframes : WP.Frames conj x F) :
+    conj F (wp (skipFrame x) (fun a => Residuated.imp conj F (Q a)) E) ⊑ wp x Q E :=
+  hframes.conj_wp_imp_le_wp _ _ _
 
 end Std.Internal.Do.Gadget

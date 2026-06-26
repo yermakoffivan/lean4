@@ -7,6 +7,7 @@ module
 
 prelude
 public import Lean.Elab.Tactic.Do.Internal.VCGen.Context
+public import Lean.Elab.Tactic.Do.Internal.VCGen.FrameProc
 public import Lean.Elab.Tactic.Do.Internal.VCGen.EPost
 public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleCache
 public import Lean.Elab.Tactic.Do.Internal.VCGen.Util
@@ -76,11 +77,15 @@ public def splitLatticeOp? (goal : MVarId) (rhs : Expr) :
     VCGenM (Option (List MVarId)) :=
   rhs.withApp fun head args => do
     let some headName := head.constName? | return none
-    let some c := latticeSplits[headName]? | return none
-    let as := args.extract 2 (2 + c.numOperands)
-    let excessArgs := args.drop (2 + c.numOperands)
-    let resultType? := if c.needApplyArgs then none else args[0]?
-    let rule ← mkBackwardRuleForLatticeCached c as excessArgs resultType?
+    let some c := (← read).customLatticeSplits[headName]? <|> latticeSplits[headName]? | return none
+    let rule ← match c.applyLemma with
+      | none => mkBackwardRuleForLatticeDirectCached c
+      | some _ =>
+        let params := args.extract 2 (2 + c.numParams)
+        let as := args.extract (2 + c.numParams) (2 + c.numParams + c.numOperands)
+        let excessArgs := args.drop (2 + c.numParams + c.numOperands)
+        let resultType? := if c.needApplyArgs then none else args[0]?
+        mkBackwardRuleForLatticeCached c params as excessArgs resultType?
     match ← rule.applyChecked goal with
     | .goals goals => return some goals
     | .failed => return none

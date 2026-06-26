@@ -369,12 +369,11 @@ private def elabFrame (entry : FrameEntry) (res : Sym.MatchUnifyResult) (info : 
       instantiateMVars e
     mkLetFVars fvs frameExpr
 
-/-- Find an unretired `frames` alternative matching the program (earliest source order wins) and
-elaborate its frame, retiring the alternative so it applies at most once. The frame DB is
-materialized into `State` on first use; retirement sets `FrameEntry.retired` in place. -/
-private def matchFrame? (info : WPInfo) : VCGenM (Option Expr) := do
-  let some deferred := (← get).frameDB? | return none
-  let db ← deferred.force (fun d => modify fun s => { s with frameDB? := some d }) info.m
+/-- Find an unretired `frames` alternative matching the program (earliest source order wins),
+elaborate its frame, and retire it so it applies at most once. The frame DB is materialized into
+`State` on first use. Frames with the lattice meet. -/
+public def matchFrame? : VCGen.FrameInferenceProc := fun _pre info => do
+  let db ← (← get).frameDB.force (fun d => modify fun s => { s with frameDB := d }) info.m
   let mut best : Option (FrameEntry × Sym.MatchUnifyResult) := none
   for srcIdx in Sym.getMatch db.tree info.prog do
     let entry := db.entries[srcIdx]!
@@ -384,10 +383,8 @@ private def matchFrame? (info : WPInfo) : VCGenM (Option Expr) := do
       | none => best := some (entry, res)
       | some (b, _) => if entry.srcIdx < b.srcIdx then best := some (entry, res)
   let some (entry, res) := best | return none
-  modify fun s => { s with frameDB? := s.frameDB?.map fun
-    | .elaborated db =>
-      .elaborated { db with entries := db.entries.set! entry.srcIdx { entry with retired := true } }
-    | d => d }
+  modify fun s => { s with frameDB := s.frameDB.modifyElaborated fun db =>
+    { db with entries := db.entries.set! entry.srcIdx { entry with retired := true } } }
   let F ← elabFrame entry res info
   trace[Elab.Tactic.Do.vcgen] "`frames` matched {info.prog}; frame:{indentExpr F}"
   return some F
@@ -400,32 +397,51 @@ inductive FrameResult where
   The caller applies the program's own spec to `goal` with the (possibly updated) `info`. -/
   | notFramed (goal : MVarId) (info : WPInfo)
 
+/-- Find a frame for `info.prog` together with its frame operator. The `frames` clause (the Context's
+default proc) frames with the lattice meet; otherwise the `@[frameproc]` registered for the program's
+type (the monad), if any, frames with its own operator. -/
+private def matchFrameProc? (pre : Expr) (info : WPInfo) :
+    VCGenM (Option (Expr × (WPInfo → MetaM Expr))) := do
+  if let some F ← (← read).frameInferenceProc.toProc pre info then
+    return some (F, fun info => Meta.mkAppOptM ``Lean.Order.meet #[info.Pred, none])
+  let some progHead := info.m.getAppFn.constName? | return none
+  let some fp := (← getFrameProcs).procs[progHead]? | return none
+  let some F ← fp.proc pre info | return none
+  trace[Elab.Tactic.Do.vcgen] "`@[frameproc]` matched {info.prog}; frame:{indentExpr F}"
+  return some (F, fp.op)
+
 /--
 Frame dispatcher for a spec-ready program `info.prog`:
 * If the program is `skipFrame x` (an already-framed program), strip the marker and
   report `.notFramed`, so framing happens at most once per occurrence.
-* If no `frames` alternative matches, report `.notFramed`.
-* Otherwise, apply `meet_wp_imp_le_wp_skipFrame` with the matched
-  frame as an artificial per-call spec.
-  The precondition `F ⊓ wp (skipFrame prog) (F ⇨ Q)` splits into the
-  frame VC `· ⊑ F` and the `skipFrame`-marked Frame-enhanced program,
-  and the frame condition VC `Frames prog F` becomes another VC, reported as `.framed`.
+* If no frame applies, report `.notFramed`.
+* Otherwise, apply the frame gadget for the inferred operator `op` and frame `F` as an artificial
+  per-call spec. The precondition `op F (wp (skipFrame prog) (op F -* Q))` splits into the frame VC
+  `· ⊑ F` and the `skipFrame`-marked frame-enhanced program, and the frame condition VC
+  `Frames op prog F` becomes another VC, reported as `.framed`. The lattice meet keeps the precise
+  meet gadget; any other residuated operator uses the general gadget with the operator pinned.
 -/
-private def applyFrame (scope : VCGen.Scope) (goal : MVarId) (info : WPInfo) :
+private def applyFrame (scope : VCGen.Scope) (goal : MVarId) (pre : Expr) (info : WPInfo) :
     VCGenM FrameResult := goal.withContext do
   if info.prog.getAppFn.isConstOf ``Std.Internal.Do.Gadget.skipFrame then
     let strippedProg := info.prog.appArg!
     let goal ← replaceProgDefEq goal info strippedProg
     return .notFramed goal { info with args := info.args.set! 7 strippedProg }
-  let some F ← matchFrame? info
+  let some (F, opOf) ← matchFrameProc? pre info
     | return .notFramed goal info
-  -- Apply the program's own `wp` arguments (`info.args.take 7`: program type, value, assertions,
-  -- `WP` instance) and the matched frame `F`, letting `mkAppOptM` synthesize the `Frame` instance
-  -- against the assertion's own `CompleteLattice` so it shares the structure the program's `wp` uses.
-  let specProof ← Meta.mkAppOptM ``Std.Internal.Do.Gadget.meet_wp_imp_le_wp_skipFrame
-    ((info.args.take 7).map some ++ #[none, some F])
+  -- `info.args.take 7` are the program's own `wp` arguments (program type, value, assertions, `WP`
+  -- instance); `mkAppOptM` synthesizes the remaining instances against the assertion's own
+  -- `CompleteLattice` so the framing shares the structure the program's `wp` uses.
+  let op ← opOf info
+  let specProof ←
+    if op.eta.getAppFn.isConstOf ``Lean.Order.meet then
+      Meta.mkAppOptM ``Std.Internal.Do.Gadget.meet_wp_imp_le_wp_skipFrame
+        ((info.args.take 7).map some ++ #[none, some F])
+    else
+      Meta.mkAppOptM ``Std.Internal.Do.Gadget.wp_imp_le_wp_skipFrame
+        ((info.args.take 7).map some ++ #[some op, none, some F])
   let some specThm ← mkSpecTheoremFromStx (← getRef) specProof
-    | throwError "frame: could not build spec from meet_wp_imp_le_wp_skipFrame for{indentExpr info.prog}"
+    | throwError "frame: could not build spec from the frame gadget for{indentExpr info.prog}"
   let some rule ← (tryMkBackwardRuleFromSpec specThm info).run
     | throwError "frame: failed to build rule for{indentExpr info.prog}"
   let .goals subgoals ← rule.applyChecked goal m!"frame rule for{indentExpr info.prog}"
@@ -516,7 +532,7 @@ public def solve (scope : VCGen.Scope) (goal : MVarId) : VCGenM SolveResult := g
     let f := info.prog.getAppFn
     if f.isConst || f.isFVar then
       VCGen.burnOne
-      match ← applyFrame scope goal info with
+      match ← applyFrame scope goal pre info with
       | .framed scope subgoals => return .goals scope subgoals
       | .notFramed goal info => return ← applySpec scope goal info
     throwError "Failed to decompose weakest precondition for {info.prog}. This should not happen."

@@ -403,37 +403,34 @@ example : ⦃ (⊤ : Nat → Prop) ⦄ tick ⦃ fun _ => (⊤ : Nat → Prop) �
 /-! ## Part 6: a loop over a list, framed automatically across calls -/
 
 /-- Tick once per list element. -/
-def tickList {α : Type} : List α → TickM Unit
-  | [] => pure ()
-  | _ :: xs => do tick; tickList xs
+def tickList {α : Type} (xs : List α) : TickM Unit := do
+  for _ in xs do
+    tick
 
 /-- A *stopwatch* spec: from zero accumulated cost, `prog` ends at cost `n`. -/
 local syntax:60 term:61 " ⏱ " term:61 : term
 local macro_rules
   | `($prog:term ⏱ $n:term) => `(⦃ (· = 0) ⦄ $prog ⦃ fun _ m => m = $n ⦄)
 
-/-- Schematic cost lemma for `tickList`, threading the offset, proved by induction with `Triple.bind`.
-Kept off `@[spec]` (a schematic post would always autoframe); the stopwatch spec below is registered. -/
-theorem tickList_wp {α : Type} (xs : List α) (post : Unit → Nat → Prop) :
-    ⦃ fun n => post () (n + xs.length) ⦄ tickList xs ⦃ post ⦄ := by
-  induction xs with
-  | nil => exact Triple.pure () (by intro n hn; simpa using hn)
-  | cons x xs ih =>
-    refine Triple.bind tick (fun _ => tickList xs) (fun _ n => post () (n + xs.length)) ?_ (fun _ => ih)
-    constructor
-    intro n hn
-    show TickM.wp tick (fun _ n => post () (n + xs.length)) _ n
-    rw [TickM.wp_tick_apply_eq,
-      show n + 1 + xs.length = n + (x :: xs).length from by simp only [List.length_cons]; omega]
-    exact hn
-
 /-- The stopwatch spec for `tickList`: timed from zero, it costs exactly `xs.length`. Concrete (not
 schematic in the post), so `vcgen` only frames it where the start cost is not zero. -/
-@[spec] theorem tickList_spec {α : Type} (xs : List α) : tickList xs ⏱ xs.length :=
-  ⟨PartialOrder.rel_trans (by intro n hn; omega) (tickList_wp xs (fun _ m => m = xs.length)).le_wp⟩
+@[spec] theorem tickList_spec {α : Type} (xs : List α) : tickList xs ⏱ xs.length := by
+  unfold tickList
+  vcgen invariants
+  | inv1 => fun cursor _ n => n = cursor.pos
+  with finish
 
 /-- Two loops in sequence, timed from zero: plain `vcgen` frames the second call by the cost the first
 accrued (the first starts at zero, so it is not framed), with no `frames` annotation. -/
 example {α : Type} (xs ys : List α) :
     (do tickList xs; tickList ys : TickM Unit) ⏱ (xs.length + ys.length) := by
   vcgen with finish
+
+/-- The same goal, framed **explicitly**: the `frames` clause names the cost frame for each call. The
+registered `@[frameproc]` supplies the `costConj` operator, so these are `costConj` frames, not meet. -/
+example {α : Type} (xs ys : List α) :
+    (do tickList xs; tickList ys : TickM Unit) ⏱ (xs.length + ys.length) := by
+  vcgen frames
+  | tickList xs => (· = 0)
+  | tickList ys => (· = xs.length)
+  with finish

@@ -6,7 +6,7 @@ Authors: Vladimir Gladshtein, Sebastian Graf
 module
 
 prelude
-public import Std.Internal.Do.Order.Residuated
+public import Std.Internal.Do.Order.SupPreserving
 
 public section
 
@@ -16,7 +16,7 @@ universe u
 
 variable {α : Type u} [CompleteLattice α]
 
-instance : Residuated Prop Prop (· ⊓ ·) where
+instance : SupPreserving Prop Prop (· ⊓ ·) where
   op_sup a s := by
     show a ⊓ CompleteLattice.sup s = CompleteLattice.sup (fun y => ∃ x, s x ∧ y = a ⊓ x)
     have sup_eq_propSup (c : Prop → Prop) : CompleteLattice.sup c = propSup c := by
@@ -36,11 +36,11 @@ instance : Residuated Prop Prop (· ⊓ ·) where
       exact ⟨hp.1, x, hsx, hp.2⟩
 
 instance {σ : Type v} {β : σ → Type u} [∀ s, CompleteLattice (β s)]
-    [∀ s, Residuated (β s) (β s) (· ⊓ ·)] : Residuated (∀ s, β s) (∀ s, β s) (· ⊓ ·) where
+    [∀ s, SupPreserving (β s) (β s) (· ⊓ ·)] : SupPreserving (∀ s, β s) (∀ s, β s) (· ⊓ ·) where
   op_sup a s := by
     show a ⊓ CompleteLattice.sup s = CompleteLattice.sup (fun y => ∃ x, s x ∧ y = a ⊓ x)
     funext t
-    rw [meet_apply, sup_apply, sup_apply, Residuated.op_sup (op := (· ⊓ ·))]
+    rw [meet_apply, sup_apply, sup_apply, SupPreserving.op_sup (op := (· ⊓ ·))]
     congr 1
     funext w
     apply propext
@@ -50,15 +50,18 @@ instance {σ : Type v} {β : σ → Type u} [∀ s, CompleteLattice (β s)]
     · rintro ⟨g, ⟨x, hx, rfl⟩, hgt⟩
       exact ⟨x t, ⟨x, hx, rfl⟩, by rw [← hgt, meet_apply]⟩
 
-/-- Heyting implication in a frame: the implication of the meet operator. -/
-scoped infixr:60 " ⇨ " => Residuated.imp (· ⊓ ·)
+/-- Heyting implication: the upper adjoint of the lattice meet. For `Prop` it is `→`. -/
+noncomputable abbrev himp {α : Type u} [CompleteLattice α] (a b : α) : α :=
+  SupPreserving.upperAdjoint (· ⊓ ·) a b
+
+@[inherit_doc himp] scoped infixr:60 " ⇨ " => himp
 
 @[simp] theorem himp_prop_eq_imp (a b : Prop) : ((a ⇨ b : Prop) = (a → b)) := by
   apply propext
   constructor
   · intro hab
     have hs : (a ⇨ b : Prop) ⊑ (a → b) := by
-      unfold Residuated.imp
+      unfold himp SupPreserving.upperAdjoint
       apply sup_le
       intro x hx hxTrue haTrue
       have hax : a ⊓ x := by
@@ -71,7 +74,7 @@ scoped infixr:60 " ⇨ " => Residuated.imp (· ⊓ ·)
       have hax' : a ∧ (a → b) := by
         simpa [meet_prop_eq_and] using hax
       exact hax'.right hax'.left
-    exact (Residuated.le_imp (· ⊓ ·) (r := a) (b := b) (x := (a → b)) hx) hab
+    exact (SupPreserving.le_upperAdjoint (· ⊓ ·) (r := a) (b := b) (x := (a → b)) hx) hab
 
 /-- Pointwise characterization of Heyting implication on function lattices. -/
 @[simp] theorem himp_apply
@@ -79,7 +82,7 @@ scoped infixr:60 " ⇨ " => Residuated.imp (· ⊓ ·)
     (a b : σ → β) (s : σ) :
     (a ⇨ b) s = (a s ⇨ b s) := by
   classical
-  unfold Residuated.imp
+  unfold himp SupPreserving.upperAdjoint
   rw [sup_apply]
   apply PartialOrder.rel_antisymm
   · apply sup_le

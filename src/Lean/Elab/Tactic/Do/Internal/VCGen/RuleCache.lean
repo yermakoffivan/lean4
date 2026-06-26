@@ -74,7 +74,7 @@ public def mkBackwardRuleForLatticeCached (c : LatticeSplit) (params as excessAr
     (resultType? : Option Expr := none) : VCGenM BackwardRule := do
   let s := (← get).latticeBackwardRuleCache
   let asTypes ← (as.mapM Sym.inferType : SymM (Array Expr))
-  -- `params` (e.g. the frame operator of `Residuated.imp`) is functionally determined by `asTypes`,
+  -- `params` (e.g. the frame operator of `SupPreserving.upperAdjoint`) is functionally determined by `asTypes`,
   -- so it need not enter the cache key.
   let key := (c.relLemma, asTypes.map ExprPtr.mk, excessArgs.size)
   if let some rule := s[key]? then return rule

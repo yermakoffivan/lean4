@@ -176,7 +176,7 @@ public structure VCGen.LatticeSplit where
   for a split that applies `relLemma` directly without pointwise distribution. -/
   applyLemma : Option Name := none
   /-- Rebuild the connective from its fixed parameters `params` (e.g. the frame operator of
-  `Residuated.imp`), its operands `as`, and the optional lattice carrier type. Unused when
+  `SupPreserving.upperAdjoint`), its operands `as`, and the optional lattice carrier type. Unused when
   `applyLemma` is `none`. -/
   mkLattice : Array Expr → Array Expr → Option Expr → MetaM Expr := fun _ _ _ =>
     throwError "LatticeSplit.mkLattice is unavailable for a direct split (applyLemma := none)"
@@ -188,13 +188,13 @@ public structure VCGen.LatticeSplit where
   (`(⌜p⌝ : σ→β) s = (⌜p⌝ : β)`, `(⊤ : σ→β) s = (⊤ : β)`), so it must not be applied to `s`. -/
   needApplyArgs : Bool := false
   /-- The number of fixed parameters before the lattice operands: `1` for the frame operator of
-  `Residuated.imp`, `0` for `⊓`/`⌜·⌝`/`⊤`. -/
+  `SupPreserving.upperAdjoint`, `0` for `⊓`/`⌜·⌝`/`⊤`. -/
   numParams : Nat := 0
   /-- The number of explicit lattice operands the connective takes after its carrier type,
   instance, and parameters: `2` for `⊓`/`⇨`, `1` for `⌜·⌝`, `0` for `⊤`. -/
   numOperands : Nat := 0
   /-- The number of leading carrier/instance arguments before the connective's parameters: `2` for
-  `⊓`/`⌜·⌝`/`⊤` (carrier and `CompleteLattice` instance), `3` for `Residuated.imp` (resource type,
+  `⊓`/`⌜·⌝`/`⊤` (carrier and `CompleteLattice` instance), `3` for `SupPreserving.upperAdjoint` (resource type,
   carrier, and instance). -/
   leadingArgs : Nat := 2
 
@@ -208,7 +208,7 @@ public structure VCGen.Context where
   `splitLatticeOp?` before the built-in connectives, so a custom frame proc can decompose
   `pre ⊑ conj F rest` for its own `conj`. -/
   customLatticeSplits : Std.HashMap Name VCGen.LatticeSplit := {}
-  /-- Lattice splits for the residual wands `Residuated.imp conj F rest` of custom frame operators,
+  /-- Lattice splits for the residual wands `SupPreserving.upperAdjoint conj F rest` of custom frame operators,
   keyed by the `conj` head constant. Consulted by `splitLatticeOp?` (dispatching on the inner
   operator) so a custom frame's magic wand decomposes instead of surfacing in a VC. -/
   customImpSplits : Std.HashMap Name VCGen.LatticeSplit := {}

@@ -37,7 +37,7 @@ structure FrameProc where
   op : WPInfo → MetaM Expr
   /-- The lattice split decomposing `conj F R` on the RHS of an entailment. -/
   split : LatticeSplit
-  /-- The lattice split decomposing the residual `Residuated.imp conj F R` (the frame's magic wand)
+  /-- The lattice split decomposing the residual `SupPreserving.upperAdjoint conj F R` (the frame's magic wand)
   on the RHS of an entailment, so the wand never surfaces in a VC. -/
   impSplit : LatticeSplit
 
@@ -60,7 +60,7 @@ structure FrameProcs where
   procs : Std.HashMap Name FrameProc := {}
   /-- Splits for the frame operators `conj F R`, keyed by `conj` head. -/
   splits : Std.HashMap Name LatticeSplit := {}
-  /-- Splits for the residual wands `Residuated.imp conj F R`, keyed by `conj` head. -/
+  /-- Splits for the residual wands `SupPreserving.upperAdjoint conj F R`, keyed by `conj` head. -/
   impSplits : Std.HashMap Name LatticeSplit := {}
 
 instance : Inhabited FrameProcs := ⟨{}⟩

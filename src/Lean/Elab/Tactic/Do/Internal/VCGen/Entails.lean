@@ -78,12 +78,12 @@ public def splitLatticeOp? (goal : MVarId) (rhs : Expr) :
   rhs.withApp fun head args => do
     let some headName := head.constName? | return none
     let ctx ← read
-    -- For a residual `Residuated.imp conj a b`, dispatch on the inner operator `conj` (its head): a
+    -- For a residual `SupPreserving.upperAdjoint conj a b`, dispatch on the inner operator `conj` (its head): a
     -- custom frame's magic wand goes to its own `impSplit`, while the meet `⇨` (whose `conj` is a
     -- lambda with no head constant) falls through to the built-in residual split.
     let custom? :=
-      if headName == ``Lean.Order.Residuated.imp then
-        -- `@Residuated.imp R α inst op r b`: the inner operator `op` is at index 3.
+      if headName == ``Lean.Order.SupPreserving.upperAdjoint then
+        -- `@SupPreserving.upperAdjoint R α inst op r b`: the inner operator `op` is at index 3.
         (args[3]?.bind (·.getAppFn.constName?)).bind (ctx.customImpSplits[·]?)
       else
         ctx.customLatticeSplits[headName]?

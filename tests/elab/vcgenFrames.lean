@@ -77,7 +77,7 @@ theorem frames_mkFreshNat_Id [Assertion Pred] [Assertion EPred]
 /-- The frame recovers `s.2`, which the lossy spec dropped. The `fail_if_success` confirms the frame
 is doing the work: without it, `grind` cannot close the lost `s.2 = 7`. -/
 theorem recovers_snd [Assertion Pred] [Assertion EPred] [WPMonad Id Pred EPred]
-    [∀ β, WPConjunctive (Id β) β Pred EPred] [Residuated Pred Pred (· ⊓ ·)] :
+    [∀ β, WPConjunctive (Id β) β Pred EPred] [SupPreserving Pred Pred (· ⊓ ·)] :
     ⦃ fun s => ⌜s.1 = 0 ∧ s.2 = 7⌝ ⦄ (mkFreshNat : StateT AppState Id Nat)
     ⦃ fun r s => ⌜r = 0 ∧ s.2 = 7⌝ ⦄ := by
   fail_if_success (vcgen <;> grind)
@@ -85,7 +85,7 @@ theorem recovers_snd [Assertion Pred] [Assertion EPred] [WPMonad Id Pred EPred]
 
 /-- Two calls, two alternatives: consume-once frames each `mkFreshNat` exactly once. -/
 theorem recovers_snd_pair [Assertion Pred] [Assertion EPred] [WPMonad Id Pred EPred]
-    [∀ β, WPConjunctive (Id β) β Pred EPred] [Residuated Pred Pred (· ⊓ ·)] :
+    [∀ β, WPConjunctive (Id β) β Pred EPred] [SupPreserving Pred Pred (· ⊓ ·)] :
     ⦃ fun s => ⌜s.1 = 0 ∧ s.2 = 7⌝ ⦄ (mkFreshPair : StateT AppState Id (Nat × Nat))
     ⦃ fun p s => ⌜p.1 = 0 ∧ s.2 = 7⌝ ⦄ := by
   vcgen [mkFreshPair] frames
@@ -134,7 +134,7 @@ theorem frames_mkFreshSnd_Id [Assertion Pred] [Assertion EPred]
 
 /-- Mirror of `recovers_snd`: frame the complementary (`fst`) footprint. -/
 theorem recovers_fst [Assertion Pred] [Assertion EPred] [WPMonad Id Pred EPred]
-    [∀ β, WPConjunctive (Id β) β Pred EPred] [Residuated Pred Pred (· ⊓ ·)] :
+    [∀ β, WPConjunctive (Id β) β Pred EPred] [SupPreserving Pred Pred (· ⊓ ·)] :
     ⦃ fun s => ⌜s.1 = 5 ∧ s.2 = 0⌝ ⦄ (mkFreshSnd : StateT AppState Id Nat)
     ⦃ fun r s => ⌜r = 0 ∧ s.1 = 5⌝ ⦄ := by
   fail_if_success (vcgen <;> grind)
@@ -150,7 +150,7 @@ def mkFreshMixed [Monad m] [MonadStateOf AppState m] : m (Nat × Nat) := do
 /-- `mkFreshNat` (writes `fst`) and `mkFreshSnd` (writes `snd`) are framed by different alternatives:
 each recovers the component the other op's lossy spec would drop. -/
 theorem recovers_both [Assertion Pred] [Assertion EPred] [WPMonad Id Pred EPred]
-    [∀ β, WPConjunctive (Id β) β Pred EPred] [Residuated Pred Pred (· ⊓ ·)] :
+    [∀ β, WPConjunctive (Id β) β Pred EPred] [SupPreserving Pred Pred (· ⊓ ·)] :
     ⦃ fun s => ⌜s.1 = 0 ∧ s.2 = 7⌝ ⦄ (mkFreshMixed : StateT AppState Id (Nat × Nat))
     ⦃ fun p s => ⌜s.1 = 1 ∧ s.2 = 8⌝ ⦄ := by
   vcgen [mkFreshMixed] frames
@@ -201,7 +201,7 @@ theorem frames_addFst_Id [Assertion Pred] [Assertion EPred]
 /-- The frame `fun s => ⌜s.2 = j⌝` references the matched argument `j`, so `elabFrame` introduces
 `let j := k` and the assignment is recovered in the postcondition. -/
 theorem recovers_with_arg [Assertion Pred] [Assertion EPred] [WPMonad Id Pred EPred]
-    [∀ β, WPConjunctive (Id β) β Pred EPred] [Residuated Pred Pred (· ⊓ ·)] :
+    [∀ β, WPConjunctive (Id β) β Pred EPred] [SupPreserving Pred Pred (· ⊓ ·)] :
     ⦃ fun s => ⌜s.1 = 0 ∧ s.2 = k⌝ ⦄ (addFst k : StateT AppState Id Nat)
     ⦃ fun r s => ⌜r = 0 ∧ s.2 = k⌝ ⦄ := by
   fail_if_success (vcgen <;> grind)
@@ -251,7 +251,7 @@ theorem frames_bumpSnd_Id {σ : Type} [Assertion Pred] [Assertion EPred]
 
 /-- The frame recovers `s.1 = a` for an abstract `a : σ`, which the lossy spec dropped. -/
 theorem recovers_fst_poly {σ : Type} [Assertion Pred] [Assertion EPred]
-    [WPMonad Id Pred EPred] [∀ β, WPConjunctive (Id β) β Pred EPred] [Residuated Pred Pred (· ⊓ ·)] {a : σ} :
+    [WPMonad Id Pred EPred] [∀ β, WPConjunctive (Id β) β Pred EPred] [SupPreserving Pred Pred (· ⊓ ·)] {a : σ} :
     ⦃ fun s => ⌜s.1 = a ∧ s.2 = 0⌝ ⦄ (bumpSnd : StateT (σ × Nat) Id Nat)
     ⦃ fun r s => ⌜r = 0 ∧ s.1 = a⌝ ⦄ := by
   fail_if_success (vcgen <;> grind)
@@ -266,7 +266,7 @@ error: `frames` alternative matched no program in the goal
 -/
 #guard_msgs in
 example [Monad m] [Assertion Pred] [Assertion EPred] [WPMonad m Pred EPred]
-    [∀ β, WPConjunctive (m β) β Pred EPred] [Residuated Pred Pred (· ⊓ ·)] :
+    [∀ β, WPConjunctive (m β) β Pred EPred] [SupPreserving Pred Pred (· ⊓ ·)] :
     ⦃ fun s => ⌜s.1 = 0 ∧ s.2 = 7⌝ ⦄ (mkFreshNat : StateT AppState m Nat)
     ⦃ fun r s => ⌜r = 0 ∧ s.2 = 7⌝ ⦄ := by
   vcgen frames | mkFreshSnd => fun s => ⌜s.2 = 7⌝

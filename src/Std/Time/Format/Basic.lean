@@ -388,8 +388,8 @@ private def formatWith (dateformat : DateFormat) (modifier : Modifier) (data : T
     pad format.padding data.val
   | .a format =>
     match format with
-    | .short  => formatMarkerShort dateformat.symbols data
-    | .full   => formatMarkerLong dateformat.symbols data
+    | .short => formatMarkerShort dateformat.symbols data
+    | .full => formatMarkerShort dateformat.symbols data
     | .narrow => formatMarkerNarrow dateformat.symbols data
     | .twoLetterShort => formatMarkerShort dateformat.symbols data
   | .b format =>

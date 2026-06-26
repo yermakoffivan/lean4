@@ -270,11 +270,11 @@ def jpTZ : TimeZone := timezone("Asia/Tokyo +09:00")
 -- ──────────────────────────────────────────────────────────────────────────────
 
 -- 23:13:12 → PM
-/-- info: "PM PM PM post meridiem p" -/
+/-- info: "PM PM PM PM p" -/
 #guard_msgs in #eval zoned₄.format "a aa aaa aaaa aaaaa"
-/-- info: "PM PM PM post meridiem p" -/
+/-- info: "PM PM PM PM p" -/
 #guard_msgs in #eval datetime₄.format "a aa aaa aaaa aaaaa"
-/-- info: "PM PM PM post meridiem p" -/
+/-- info: "PM PM PM PM p" -/
 #guard_msgs in #eval time₄.format "a aa aaa aaaa aaaaa"
 
 -- ──────────────────────────────────────────────────────────────────────────────

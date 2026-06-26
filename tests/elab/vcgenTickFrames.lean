@@ -241,10 +241,10 @@ definition. -/
 theorem TickM.wp_eq_frameClosure {α : Type} (x : TickM α) (Q : α → Nat → Prop) (E : EPost.Nil) :
     TickM.wp x Q E = Residuated.frameClosure costConj (WP.wp x.run · E) Q := rfl
 
-/-- The `WP` interpretation of `TickM` is the frame-internalizing `TickM.wp`. `TickM` being a `def`
-keeps this from clashing with the `StateM` interpretation `TickM.wp` is built from (which `TickM.run`
-selects). -/
-instance TickM.instWP {α : Type} : WP (TickM α) α (Nat → Prop) EPost.Nil where
+/-- The `WP` interpretation of `TickM` is the frame-internalizing `TickM.wp`. Kept a `def` (the `WP`
+instance is derived from the `WPMonad` instance below) so there is a single `WP (TickM α)`, letting
+the generic `bind`/`pure` specs unify against `TickM` goals. -/
+@[reducible] def TickM.instWP {α : Type} : WP (TickM α) α (Nat → Prop) EPost.Nil where
   wpTrans x := ⟨fun Q E => TickM.wp x Q E⟩
   wp_trans_monotone x post post' epost epost' _ hpost := by
     intro n hn
@@ -381,3 +381,31 @@ def costSplit : LatticeSplit := { relLemma := ``le_costConj_point_apply }
 the registered `costSplit`, and the meet machinery closes the residual. -/
 example : ⦃ (⊤ : Nat → Prop) ⦄ tick ⦃ fun _ => (⊤ : Nat → Prop) ⦄ := by
   vcgen with finish [top_apply]
+
+/-! ## Part 6: a loop over a list, framed automatically across calls -/
+
+/-- Tick once per list element. -/
+def tickList {α : Type} : List α → TickM Unit
+  | [] => pure ()
+  | _ :: xs => do tick; tickList xs
+
+/-- Exact spec for `tickList`: the cost increases by the list length. Proved by induction, composing
+`tick`'s spec and the induction hypothesis with `Triple.bind`. -/
+@[spec] theorem tickList_spec {α : Type} (xs : List α) (post : Unit → Nat → Prop) :
+    ⦃ fun n => post () (n + xs.length) ⦄ tickList xs ⦃ post ⦄ := by
+  induction xs with
+  | nil => exact Triple.pure () (by intro n hn; simpa using hn)
+  | cons x xs ih =>
+    refine Triple.bind tick (fun _ => tickList xs) (fun _ n => post () (n + xs.length)) ?_ (fun _ => ih)
+    constructor
+    intro n hn
+    show TickM.wp tick (fun _ n => post () (n + xs.length)) _ n
+    rw [TickM.wp_tick_apply_eq,
+      show n + 1 + xs.length = n + (x :: xs).length from by simp only [List.length_cons]; omega]
+    exact hn
+
+/-- A loop verified end-to-end: plain `vcgen` infers and applies the cost frame for the `tickList`
+call automatically, with no `frames` annotation. -/
+example {α : Type} (xs : List α) :
+    ⦃ fun n => n = 0 ⦄ (tickList xs : TickM Unit) ⦃ fun _ n => n = xs.length ⦄ := by
+  vcgen with finish

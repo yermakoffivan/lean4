@@ -427,6 +427,12 @@ private def applyFrame (scope : VCGen.Scope) (goal : MVarId) (pre : Expr) (info 
     let strippedProg := info.prog.appArg!
     let goal ← replaceProgDefEq goal info strippedProg
     return .notFramed goal { info with args := info.args.set! 7 strippedProg }
+  -- Do not frame the monad's structural combinators: let them decompose through their specs first,
+  -- so frame inference applies to the leaf calls rather than to a `bind`/`map`/`seq` node.
+  if let some head := info.prog.getAppFn.constName? then
+    if [``Bind.bind, ``Pure.pure, ``Functor.map, ``Seq.seq, ``SeqRight.seqRight,
+        ``SeqLeft.seqLeft].contains head then
+      return .notFramed goal info
   let some (F, opOf) ← matchFrameProc? pre info
     | return .notFramed goal info
   -- `info.args.take 7` are the program's own `wp` arguments (program type, value, assertions, `WP`

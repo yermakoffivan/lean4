@@ -193,6 +193,10 @@ public structure VCGen.LatticeSplit where
   /-- The number of explicit lattice operands the connective takes after its carrier type,
   instance, and parameters: `2` for `⊓`/`⇨`, `1` for `⌜·⌝`, `0` for `⊤`. -/
   numOperands : Nat := 0
+  /-- The number of leading carrier/instance arguments before the connective's parameters: `2` for
+  `⊓`/`⌜·⌝`/`⊤` (carrier and `CompleteLattice` instance), `3` for `Residuated.imp` (resource type,
+  carrier, and instance). -/
+  leadingArgs : Nat := 2
 
 public structure VCGen.Context where
   /-- Pre-built backward rules used by `solve`. -/
@@ -319,11 +323,12 @@ public structure VCGen.State where
 
 public abbrev VCGenM := ReaderT VCGen.Context (StateRefT VCGen.State Grind.GrindM)
 
-/-- A frame-inference procedure: given the goal's precondition and the `wp` metadata of a
-spec-ready program, optionally produce a frame `F` to apply. -/
-public abbrev VCGen.FrameInferenceProc := Expr → VCGen.WPInfo → VCGenM (Option Expr)
+/-- A frame-inference procedure: given the resource type `R` of the applicable frame operator
+`op : R → Pred → Pred`, the goal's precondition, and the `wp` metadata of a spec-ready program,
+optionally produce a frame `F : R` to apply. -/
+public abbrev VCGen.FrameInferenceProc := Expr → Expr → VCGen.WPInfo → VCGenM (Option Expr)
 
-instance : Nonempty VCGen.FrameInferenceProc := ⟨fun _ _ => pure none⟩
+instance : Nonempty VCGen.FrameInferenceProc := ⟨fun _ _ _ => pure none⟩
 
 unsafe abbrev VCGen.FrameInferenceProc.toRefImpl (p : VCGen.FrameInferenceProc) :
     VCGen.FrameInferenceProcRef := unsafeCast p

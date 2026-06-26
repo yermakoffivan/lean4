@@ -52,10 +52,11 @@ public def LatticeSplit.imp : LatticeSplit where
   -- Pointwise distribution is the meet-specific precise-framing lemma; the `⊑`-split is the general
   -- residual adjunction, with `op` unified from the goal.
   applyLemma := some ``himp_apply
-  relLemma := ``Residuated.le_imp  -- le_imp (op) {a b x} (h : op a x ⊑ b) : x ⊑ Residuated.imp op a b
+  relLemma := ``Residuated.le_imp  -- le_imp (op) {r b x} (h : op r x ⊑ b) : x ⊑ Residuated.imp op r b
   needApplyArgs := true
   numParams := 1
   numOperands := 2
+  leadingArgs := 3
 
 /-- The pure assertion embedding `⌜·⌝`. The `⊤`-fixed split lemma makes the rule apply only when the
 precondition is `⊤`, where turning `pre ⊑ ⌜p⌝` into the subgoal `p` is sound. -/

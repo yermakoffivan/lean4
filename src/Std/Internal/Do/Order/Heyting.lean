@@ -16,7 +16,7 @@ universe u
 
 variable {α : Type u} [CompleteLattice α]
 
-instance : Residuated Prop (· ⊓ ·) where
+instance : Residuated Prop Prop (· ⊓ ·) where
   op_sup a s := by
     show a ⊓ CompleteLattice.sup s = CompleteLattice.sup (fun y => ∃ x, s x ∧ y = a ⊓ x)
     have sup_eq_propSup (c : Prop → Prop) : CompleteLattice.sup c = propSup c := by
@@ -36,7 +36,7 @@ instance : Residuated Prop (· ⊓ ·) where
       exact ⟨hp.1, x, hsx, hp.2⟩
 
 instance {σ : Type v} {β : σ → Type u} [∀ s, CompleteLattice (β s)]
-    [∀ s, Residuated (β s) (· ⊓ ·)] : Residuated (∀ s, β s) (· ⊓ ·) where
+    [∀ s, Residuated (β s) (β s) (· ⊓ ·)] : Residuated (∀ s, β s) (∀ s, β s) (· ⊓ ·) where
   op_sup a s := by
     show a ⊓ CompleteLattice.sup s = CompleteLattice.sup (fun y => ∃ x, s x ∧ y = a ⊓ x)
     funext t
@@ -71,7 +71,7 @@ scoped infixr:60 " ⇨ " => Residuated.imp (· ⊓ ·)
       have hax' : a ∧ (a → b) := by
         simpa [meet_prop_eq_and] using hax
       exact hax'.right hax'.left
-    exact (Residuated.le_imp (· ⊓ ·) (a := a) (b := b) (x := (a → b)) hx) hab
+    exact (Residuated.le_imp (· ⊓ ·) (r := a) (b := b) (x := (a → b)) hx) hab
 
 /-- Pointwise characterization of Heyting implication on function lattices. -/
 @[simp] theorem himp_apply

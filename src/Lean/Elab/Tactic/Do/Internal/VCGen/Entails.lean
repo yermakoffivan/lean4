@@ -83,16 +83,18 @@ public def splitLatticeOp? (goal : MVarId) (rhs : Expr) :
     -- lambda with no head constant) falls through to the built-in residual split.
     let custom? :=
       if headName == ``Lean.Order.Residuated.imp then
-        (args[2]?.bind (·.getAppFn.constName?)).bind (ctx.customImpSplits[·]?)
+        -- `@Residuated.imp R α inst op r b`: the inner operator `op` is at index 3.
+        (args[3]?.bind (·.getAppFn.constName?)).bind (ctx.customImpSplits[·]?)
       else
         ctx.customLatticeSplits[headName]?
     let some c := custom? <|> latticeSplits[headName]? | return none
     let rule ← match c.applyLemma with
       | none => mkBackwardRuleForLatticeDirectCached c
       | some _ =>
-        let params := args.extract 2 (2 + c.numParams)
-        let as := args.extract (2 + c.numParams) (2 + c.numParams + c.numOperands)
-        let excessArgs := args.drop (2 + c.numParams + c.numOperands)
+        let lead := c.leadingArgs
+        let params := args.extract lead (lead + c.numParams)
+        let as := args.extract (lead + c.numParams) (lead + c.numParams + c.numOperands)
+        let excessArgs := args.drop (lead + c.numParams + c.numOperands)
         let resultType? := if c.needApplyArgs then none else args[0]?
         mkBackwardRuleForLatticeCached c params as excessArgs resultType?
     match ← rule.applyChecked goal with

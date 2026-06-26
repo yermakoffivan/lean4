@@ -20,14 +20,14 @@ cost.
 
 The frame operator takes a plain **cost** as its resource: `costConj r b = fun n => r ≤ n ∧ b (n - r)`
 holds the budget `r` aside and runs `b` on the remaining cost `n - r`. This is the separation-logic
-`⋆` for the resource type `R = Nat`, and its residual `Residuated.imp costConj r b = fun m => b (m + r)`
+`⋆` for the resource type `R = Nat`, and its residual `SupPreserving.upperAdjoint costConj r b = fun m => b (m + r)`
 is the corresponding magic wand `-⋆`, a plain cost shift.
 
-Part 1 is the reusable core, `instance : Residuated Nat (Nat → Prop) costConj`, together with the
+Part 1 is the reusable core, `instance : SupPreserving Nat (Nat → Prop) costConj`, together with the
 additive action law `costConj_add` that composes two budgets.
 
 Part 2 builds the cost monad `TickM := StateM Nat` and the frame-internalizing wp `TickM.wp` as the
-`Residuated.frameClosure` of `costConj`. Its point characterization is
+`SupPreserving.frameClosure` of `costConj`. Its point characterization is
 `TickM.wp x Q n ↔ ∀ r, WP.wp x.run (fun a m => r ≤ m ∧ Q a (m - r)) (n + r)`: every program must
 thread the held budget `r` through untouched, so `TickM.wp tick Q n = Q () (n + 1)` while a
 cost-discarding program has `TickM.wp _ Q n = False` for every postcondition.
@@ -42,7 +42,7 @@ accrued.
 
 open Lean Order Meta Elab Tactic Sym Std Internal.Do
 
-/-! ## Part 1: the cost `Residuated` instance (reusable core) -/
+/-! ## Part 1: the cost `SupPreserving` instance (reusable core) -/
 
 /-- `⨆` over a `Prop`-valued predicate is the existential `∃ p, c p ∧ p`. -/
 theorem sup_prop_eq (c : Prop → Prop) : ((CompleteLattice.sup c) : Prop) = ∃ p, c p ∧ p :=
@@ -65,9 +65,9 @@ def costConj (r : Nat) (b : Nat → Prop) : Nat → Prop := fun n => r ≤ n ∧
 @[inherit_doc costConj] local infixr:67 " ⋆ " => costConj
 
 /-- The cost magic wand: the residual of `costConj`, a plain shift `r -⋆ b = fun m => b (m + r)`. -/
-local infixr:60 " -⋆ " => Lean.Order.Residuated.imp costConj
+local infixr:60 " -⋆ " => Lean.Order.SupPreserving.upperAdjoint costConj
 
-instance : Residuated Nat (Nat → Prop) costConj where
+instance : SupPreserving Nat (Nat → Prop) costConj where
   op_sup r s := by
     funext n
     apply propext
@@ -91,13 +91,13 @@ theorem costConj_imp (r : Nat) (b : Nat → Prop) :
     r -⋆ b = (fun m => b (m + r)) := by
   apply PartialOrder.rel_antisymm
   · -- `imp ⊑ shift`: every `x` with `costConj r x ⊑ b` is below the shift.
-    unfold Residuated.imp
+    unfold SupPreserving.upperAdjoint
     apply sup_le
     intro x hx m hxm
     refine hx (m + r) ?_
     exact ⟨by omega, by simpa using hxm⟩
   · -- `shift ⊑ imp`: the shift is in the set `{x | costConj r x ⊑ b}`.
-    refine Residuated.le_imp costConj (r := r) (b := b) (x := fun m => b (m + r)) ?_
+    refine SupPreserving.le_upperAdjoint costConj (r := r) (b := b) (x := fun m => b (m + r)) ?_
     intro n
     rintro ⟨hle, hb⟩
     simpa [show n - r + r = n by omega] using hb
@@ -129,17 +129,17 @@ instance : Monad TickM := inferInstanceAs (Monad (StateM Nat))
 /-- The cost primitive: incur one unit of cost by incrementing the counter. -/
 def tick : TickM Unit := show StateM Nat Unit from modify (· + 1)
 
-/-- The **frame-internalizing** cost weakest precondition: the `Residuated.frameClosure` of `costConj`
+/-- The **frame-internalizing** cost weakest precondition: the `SupPreserving.frameClosure` of `costConj`
 over the base `StateM` wp `WP.wp x.run · E`. The frame rule is internal by construction (`tickFrames`).
 The point characterization is `TickM.wp_eq_forall`. -/
 def TickM.wp {α : Type} (x : TickM α) (Q : α → Nat → Prop) (E : EPost.Nil) : Nat → Prop :=
-  Residuated.frameClosure costConj (WP.wp x.run · E) Q
+  SupPreserving.frameClosure costConj (WP.wp x.run · E) Q
 
 /-- The point characterization: the meet over *all* budgets collapses to running the base wp under the
 held-budget postcondition `r ≤ m ∧ Q a (m - r)`, offset by `r`. -/
 theorem TickM.wp_eq_forall {α : Type} (x : TickM α) (Q : α → Nat → Prop) (E : EPost.Nil) (n : Nat) :
     TickM.wp x Q E n ↔ ∀ r, WP.wp x.run (fun a m => r ≤ m ∧ Q a (m - r)) E (n + r) := by
-  simp only [TickM.wp, Residuated.frameClosure, iInf_apply, iInf_prop_eq_forall, costConj_imp]
+  simp only [TickM.wp, SupPreserving.frameClosure, iInf_apply, iInf_prop_eq_forall, costConj_imp]
   rfl
 
 /-- Point evaluation of the base wp on `tick`: `tick` scores the post on the incremented counter. -/
@@ -231,7 +231,7 @@ instance TickM.instWPMonad : WPMonad TickM (Nat → Prop) EPost.Nil where
     rwa [show m - r + r = m by omega] at this
 
 /-- **The frame rule, internalized**, as a corollary of `WP.Frames.of_frameClosure`: since `TickM.wp`
-is a `Residuated.frameClosure`, *every* program `x` frames *every* budget `F` with respect to
+is a `SupPreserving.frameClosure`, *every* program `x` frames *every* budget `F` with respect to
 `costConj`. No cost-additivity hypothesis is required. -/
 @[grind .]
 theorem frames_costConj {α : Type} (x : TickM α) (F : Nat) : WP.Frames costConj x F :=
@@ -249,7 +249,7 @@ theorem tickFrames_imp {α : Type} (x : TickM α) (F : Nat) (Q : α → Nat → 
   refine PartialOrder.rel_trans (tickFrames x F _) ?_
   intro n hn
   refine TickM.wp_consequence x EPost.Nil.mk n (fun a n' => ?_) hn
-  exact Residuated.imp_le costConj F (Q a) n'
+  exact SupPreserving.upperAdjoint_le costConj F (Q a) n'
 
 /-- A *lossy* cost spec for `tick`: from any input it only asserts the post at the incremented
 counter, dropping the bound relating the output cost to the input. -/
@@ -304,7 +304,7 @@ prove `pre ⊑ (c -⋆ R) n`, prove `pre ⊑ R (n + c)`. The framed continuation
 added back. -/
 theorem le_imp_costConj_point_apply {pre : Prop} (c n : Nat) (R : Nat → Prop)
     (h : pre ⊑ R (n + c)) :
-    pre ⊑ Residuated.imp costConj c R n := by
+    pre ⊑ SupPreserving.upperAdjoint costConj c R n := by
   intro hpre
   rw [costConj_imp]
   exact h hpre
@@ -329,7 +329,7 @@ def tickFrameProc : FrameInferenceProc := fun _R _pre info => do
 def costSplit : LatticeSplit := { relLemma := ``le_costConj_point_apply }
 
 /-- The direct lattice split for the `costConj` residual wand, decomposing
-`pre ⊑ Residuated.imp costConj c R n` via `le_imp_costConj_point_apply`. -/
+`pre ⊑ SupPreserving.upperAdjoint costConj c R n` via `le_imp_costConj_point_apply`. -/
 def costImpSplit : LatticeSplit := { relLemma := ``le_imp_costConj_point_apply }
 
 /-- Register the cost frame inference procedure for `vcgen`, indexed by the `TickM` program type. -/

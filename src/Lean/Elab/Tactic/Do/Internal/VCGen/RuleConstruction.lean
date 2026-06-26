@@ -44,19 +44,32 @@ public def LatticeSplit.meet : LatticeSplit where
   numParams := 0
   numOperands := 2
 
-/-- The residual `Residuated.imp op` (with `⇨ = Residuated.imp (· ⊓ ·)` the meet case). The frame
+/-- The residual `SupPreserving.upperAdjoint op` (with `⇨ = SupPreserving.upperAdjoint (· ⊓ ·)` the meet case). The frame
 operator `op` is a fixed parameter; the apply/split lemmas are the meet-specific `himp_apply`/
 `le_himp`, since precise framing in `vcgen` is the meet special case. -/
 public def LatticeSplit.imp : LatticeSplit where
-  mkLattice params as _ := mkAppM ``Residuated.imp (params ++ as)
+  mkLattice params as _ := mkAppM ``SupPreserving.upperAdjoint (params ++ as)
   -- Pointwise distribution is the meet-specific precise-framing lemma; the `⊑`-split is the general
   -- residual adjunction, with `op` unified from the goal.
   applyLemma := some ``himp_apply
-  relLemma := ``Residuated.le_imp  -- le_imp (op) {r b x} (h : op r x ⊑ b) : x ⊑ Residuated.imp op r b
+  -- le_upperAdjoint (op) {r b x} (h : op r x ⊑ b) : x ⊑ SupPreserving.upperAdjoint op r b
+  relLemma := ``SupPreserving.le_upperAdjoint
   needApplyArgs := true
   numParams := 1
   numOperands := 2
   leadingArgs := 3
+
+/-- Heyting implication `⇨ = himp`, the meet upper adjoint. A specialization of `LatticeSplit.imp`
+to the meet operator: `himp` bakes in `(· ⊓ ·)`, so it has no operator parameter and the standard
+two leading carrier/instance arguments. -/
+public def LatticeSplit.himp : LatticeSplit where
+  mkLattice _ as _ := mkAppM ``Lean.Order.himp as
+  applyLemma := some ``himp_apply
+  -- le_upperAdjoint (op) {r b x} (h : op r x ⊑ b) : x ⊑ SupPreserving.upperAdjoint op r b ≡ x ⊑ himp r b
+  relLemma := ``SupPreserving.le_upperAdjoint
+  needApplyArgs := true
+  numParams := 0
+  numOperands := 2
 
 /-- The pure assertion embedding `⌜·⌝`. The `⊤`-fixed split lemma makes the rule apply only when the
 precondition is `⊤`, where turning `pre ⊑ ⌜p⌝` into the subgoal `p` is sound. -/
@@ -82,7 +95,8 @@ public def LatticeSplit.top : LatticeSplit where
 public def latticeSplits : Std.HashMap Name LatticeSplit :=
   .ofList [
     (``meet, .meet),
-    (``Residuated.imp, .imp),
+    (``Lean.Order.himp, .himp),
+    (``SupPreserving.upperAdjoint, .imp),
     (``Lean.Order.CompleteLattice.ofProp, .ofProp),
     (``Lean.Order.top, .top)]
 

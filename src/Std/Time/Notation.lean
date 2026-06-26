@@ -143,7 +143,7 @@ private meta def convertPlainTime (d : Std.Time.PlainTime) : MacroM (TSyntax `te
 private meta def convertPlainDateTime (d : Std.Time.PlainDateTime) : MacroM (TSyntax `term) := do
  `(Std.Time.PlainDateTime.mk $(← convertPlainDate d.date) $(← convertPlainTime d.time))
 
-private meta def convertZonedDateTime (d : Std.Time.DateTime) (identifier := false) : MacroM (TSyntax `term) := do
+private meta def convertDateTime (d : Std.Time.DateTime) (identifier := false) : MacroM (TSyntax `term) := do
   let plain ← convertPlainDateTime d.toPlainDateTime
 
   if identifier then
@@ -216,10 +216,10 @@ syntax "timezone(" str ")" : term
 macro_rules
   | `(zoned( $date:str )) => do
       match DateTime.fromLeanDateTimeWithZoneString date.getString with
-      | .ok res => do return ← convertZonedDateTime res
+      | .ok res => do return ← convertDateTime res
       | .error _ =>
         match DateTime.fromLeanDateTimeWithIdentifierString date.getString with
-        | .ok res => do return ← convertZonedDateTime res (identifier := true)
+        | .ok res => do return ← convertDateTime res (identifier := true)
         | .error res => Macro.throwErrorAt date s!"error: {res}"
 
   | `(zoned( $date:str, $timezone )) => do

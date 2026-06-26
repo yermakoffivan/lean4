@@ -118,6 +118,32 @@ structure TransitionRule where
 deriving Repr
 
 /--
+Recurring DST details for a zone that observes daylight saving time.
+-/
+structure DaylightSavingRule where
+
+  /--
+  DST abbreviation.
+  -/
+  name : String
+
+  /--
+  DST UTC offset (east-positive).
+  -/
+  offset : TimeZone.Offset
+
+  /--
+  Rule for the start of DST, if any.
+  -/
+  start : Option TransitionRule := none
+
+  /--
+  Rule for the end of DST, if any.
+  -/
+  end_ : Option TransitionRule := none
+deriving Repr
+
+/--
 Recurring rule describing standard and DST zones, as found in a POSIX TZ string or TZif footer.
 -/
 structure RecurringRule where
@@ -133,24 +159,9 @@ structure RecurringRule where
   stdOffset : TimeZone.Offset
 
   /--
-  DST abbreviation (empty when no DST).
+  DST details, if this zone observes DST.
   -/
-  dstName : String := ""
-
-  /--
-  DST UTC offset (east-positive).
-  -/
-  dstOffset : TimeZone.Offset
-
-  /--
-  Rule for the start of DST, if any.
-  -/
-  start : Option TransitionRule := none
-
-  /--
-  Rule for the end of DST, if any.
-  -/
-  end_ : Option TransitionRule := none
+  dst : Option DaylightSavingRule := none
 deriving Repr
 
 end Std.Time.TimeZone

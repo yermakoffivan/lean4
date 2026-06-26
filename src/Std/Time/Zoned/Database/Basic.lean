@@ -119,10 +119,12 @@ def convertTZifV2 (tz : TZif.TZifV2) (id : String) : Except String ZoneRules := 
   -- TZif v3 files allow extended hour ranges (±0–167) in transition times (RFC 8536 §3.3).
   let extended := tz.header.version == '3'.toUInt8
 
-  let some transitionRule := parsePosixTz footer extended
-    | throw "failed to parse tzif footer"
+  if footer == "" then
+    return rules
 
-  return { rules with transitionRule := some transitionRule }
+  match parsePosixTz footer extended with
+  | .ok transitionRule => return { rules with transitionRule := some transitionRule }
+  | .error err => throw s!"failed to parse tzif footer: {err}"
 
 /--
 Converts a `TZif.TZif` structure to a `ZoneRules` structure.

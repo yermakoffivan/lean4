@@ -20,7 +20,7 @@ open Internal
 Represents a date and time with timezone information.
 -/
 structure DateTime where
-  private mk::
+  private mk ::
 
   /--
   The plain datetime component, evaluated lazily.

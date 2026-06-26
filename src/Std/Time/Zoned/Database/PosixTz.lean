@@ -1,5 +1,5 @@
 /-
-Copyright (c) 2024 Lean FRO, LLC. All rights reserved.
+Copyright (c) 2026 Lean FRO, LLC. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Sofia Rodrigues
 -/
@@ -137,32 +137,40 @@ private def parsePosixTzP (extended : Bool := false) : Parser RecurringRule := d
   let stdOffset ← posixParseOffset
 
   if (← isEof) then
-    return { stdName, stdOffset, dstOffset := stdOffset }
+    return { stdName, stdOffset }
 
   let dstName ← posixParseName
 
   if dstName.isEmpty then
-    return { stdName, stdOffset, dstOffset := stdOffset }
+    return { stdName, stdOffset }
 
   let dstOffset ← posixParseDstOffset stdOffset
 
   if (← peek?) != some ',' then
-    return { stdName, stdOffset, dstName, dstOffset }
+    return { stdName, stdOffset, dst := some { name := dstName, offset := dstOffset } }
 
   let startRule ← skip *> posixParseRule extended
   let endRule ← skipChar ',' *> posixParseRule extended
 
-  return { stdName, stdOffset, dstName, dstOffset, start := some startRule, end_ := some endRule }
+  return {
+    stdName,
+    stdOffset,
+    dst := some {
+      name := dstName,
+      offset := dstOffset,
+      start := some startRule,
+      end_ := some endRule
+    }
+  }
 
 /--
-Parse a POSIX TZ footer string into a `RecurringRule`, returning `none` on failure.
+Parse a POSIX TZ footer string into a `RecurringRule`, returning an error on failure.
 
 When `extended` is `true`, transition times accept signed hours in the range
 -`167` to `167` instead of the POSIX-required 0 to `24` (TZif version 3+).
 -/
-def parsePosixTz (s : String) (extended : Bool := false) : Option RecurringRule :=
+def parsePosixTz (s : String) (extended : Bool := false) : Except String RecurringRule :=
   parsePosixTzP extended
   |>.run s
-  |>.toOption
 
 end Std.Time.TimeZone

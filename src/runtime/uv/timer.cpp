@@ -11,28 +11,30 @@ namespace lean {
 
 using namespace std;
 
-// The finalizer of the `Timer`.
 void lean_uv_timer_finalizer(void* ptr) {
-    lean_uv_timer_object * timer = (lean_uv_timer_object*) ptr;
+    lean_uv_timer_object* timer = (lean_uv_timer_object*) ptr;
 
-    /// The timer can be null in two states, it has not started and it got cancelled.
+    // The timer can be null in two states: it has not started and it got cancelled.
     if (timer->m_promise != NULL) {
         lean_dec(timer->m_promise);
     }
 
     if (!event_loop_lock(&global_ev)) {
-        // After libuv finalization the handle has already been closed and freed and the pointer
-        // cleared, so we only release the remaining struct.
-        if (lean_uv_timer_handle(timer) != nullptr) {
-            free(lean_uv_timer_handle(timer));
+        if (global_ev.state == EVENT_LOOP_FINALIZED) {
+            if (lean_uv_timer_handle(timer) != nullptr) {
+                free(lean_uv_timer_handle(timer));
+            }
         }
+
         free(timer);
         return;
     }
 
-    uv_close((uv_handle_t*)lean_uv_timer_handle(timer), [](uv_handle_t* handle) {
-        free(handle);
-    });
+    if (lean_uv_timer_handle(timer) != nullptr) {
+        uv_close((uv_handle_t*) lean_uv_timer_handle(timer), [](uv_handle_t* handle) {
+            free(handle);
+        });
+    }
 
     event_loop_unlock(&global_ev);
 

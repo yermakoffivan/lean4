@@ -57,7 +57,6 @@ extern "C" void finalize_libuv() {
         }
 
         if (uv_handle_get_type(handle) == UV_ASYNC) {
-            uv_close(handle, nullptr);
             return;
         }
 
@@ -107,8 +106,9 @@ extern "C" void finalize_libuv() {
         }
     }
 
-    uv_loop_close(global_ev.loop);
+    lean_assert(uv_loop_close(...) == 0);
     event_loop_mark_finalized(&global_ev);
+    // uv_close(handle, nullptr); ?
 
     event_loop_unlock(&global_ev);
 }

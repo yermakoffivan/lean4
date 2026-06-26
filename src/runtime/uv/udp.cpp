@@ -26,24 +26,31 @@ void lean_uv_udp_socket_finalizer(void* ptr) {
     lean_always_assert(udp_socket->m_byte_array == nullptr);
 
     if (!event_loop_lock(&global_ev)) {
-        // After libuv finalization the handle has already been closed and freed and the pointer
-        // cleared, so we only release the remaining struct.
-        if (lean_uv_udp_socket_handle(udp_socket) != nullptr) {
-            free(lean_uv_udp_socket_handle(udp_socket));
+        if (global_ev.state == EVENT_LOOP_FINALIZED) {
+            if (lean_uv_udp_socket_handle(udp_socket) != nullptr) {
+                free(lean_uv_udp_socket_handle(udp_socket));
+            }
         }
+
         free(udp_socket);
         return;
     }
 
-    /// It's changing here because the object is being freed in the finalizer, and we need the data
-    /// inside of it.
-    lean_uv_udp_socket_handle(udp_socket)->data = ptr;
+    if (lean_uv_udp_socket_handle(udp_socket) != nullptr) {
+        /*
+        It's changing here because the object is being freed in the finalizer,
+        and we need the data inside of it in the close callback.
+        */
+        lean_uv_udp_socket_handle(udp_socket)->data = ptr;
 
-    uv_close((uv_handle_t*)lean_uv_udp_socket_handle(udp_socket), [](uv_handle_t* handle) {
-        lean_uv_udp_socket_object* udp_socket = (lean_uv_udp_socket_object*)handle->data;
-        free(lean_uv_udp_socket_handle(udp_socket));
+        uv_close((uv_handle_t*)lean_uv_udp_socket_handle(udp_socket), [](uv_handle_t* handle) {
+            lean_uv_udp_socket_object* udp_socket = (lean_uv_udp_socket_object*)handle->data;
+            free(lean_uv_udp_socket_handle(udp_socket));
+            free(udp_socket);
+        });
+    } else {
         free(udp_socket);
-    });
+    }
 
     event_loop_unlock(&global_ev);
 }

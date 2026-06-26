@@ -37,8 +37,6 @@ void lean_uv_tcp_socket_finalizer(void* ptr) {
     lean_always_assert(tcp_socket->m_byte_array == nullptr);
 
     if (!event_loop_lock(&global_ev)) {
-        // After libuv finalization the handle has already been closed and freed and the pointer
-        // cleared, so we only release the remaining struct.
         if (lean_uv_tcp_socket_handle(tcp_socket) != nullptr) {
             free(lean_uv_tcp_socket_handle(tcp_socket));
         }

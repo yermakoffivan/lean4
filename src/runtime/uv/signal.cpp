@@ -12,25 +12,28 @@ using namespace std;
 
 // The finalizer of the `Signal`.
 void lean_uv_signal_finalizer(void* ptr) {
-    lean_uv_signal_object * signal = (lean_uv_signal_object*) ptr;
+    lean_uv_signal_object* signal = (lean_uv_signal_object*) ptr;
 
     if (signal->m_promise != NULL) {
         lean_dec(signal->m_promise);
     }
 
     if (!event_loop_lock(&global_ev)) {
-        // After libuv finalization the handle has already been closed and freed and the pointer
-        // cleared, so we only release the remaining struct.
-        if (lean_uv_signal_handle(signal) != nullptr) {
-            free(lean_uv_signal_handle(signal));
+        if (global_ev.state == EVENT_LOOP_FINALIZED) {
+            if (lean_uv_signal_handle(signal) != nullptr) {
+                free(lean_uv_signal_handle(signal));
+            }
         }
+
         free(signal);
         return;
     }
 
-    uv_close((uv_handle_t*)lean_uv_signal_handle(signal), [](uv_handle_t* handle) {
-        free(handle);
-    });
+    if (lean_uv_signal_handle(signal) != nullptr) {
+        uv_close((uv_handle_t*)lean_uv_signal_handle(signal), [](uv_handle_t* handle) {
+            free(handle);
+        });
+    }
 
     event_loop_unlock(&global_ev);
 

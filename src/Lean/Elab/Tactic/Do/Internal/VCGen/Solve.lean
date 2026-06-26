@@ -397,18 +397,24 @@ inductive FrameResult where
   The caller applies the program's own spec to `goal` with the (possibly updated) `info`. -/
   | notFramed (goal : MVarId) (info : WPInfo)
 
-/-- Find a frame for `info.prog` together with its frame operator. The `frames` clause (the Context's
-default proc) frames with the lattice meet; otherwise the `@[frameproc]` registered for the program's
-type (the monad), if any, frames with its own operator. -/
+/-- Find a frame for `info.prog` together with its frame operator. The operator is the one of the
+`@[frameproc]` registered for the program's type (the monad), or the lattice meet if none is
+registered; it is used regardless of whether the frame `F` comes from an explicit `frames` clause or
+from the registered procedure. The frame `F` is taken from the `frames` clause first, then from the
+registered procedure. -/
 private def matchFrameProc? (pre : Expr) (info : WPInfo) :
     VCGenM (Option (Expr × (WPInfo → MetaM Expr))) := do
+  let procs ← getFrameProcs
+  let fp? := (info.m.getAppFn.constName?).bind (procs.procs[·]?)
+  let opOf : WPInfo → MetaM Expr := match fp? with
+    | some fp => fp.op
+    | none => fun info => Meta.mkAppOptM ``Lean.Order.meet #[info.Pred, none]
   if let some F ← (← read).frameInferenceProc.toProc pre info then
-    return some (F, fun info => Meta.mkAppOptM ``Lean.Order.meet #[info.Pred, none])
-  let some progHead := info.m.getAppFn.constName? | return none
-  let some fp := (← getFrameProcs).procs[progHead]? | return none
+    return some (F, opOf)
+  let some fp := fp? | return none
   let some F ← fp.proc pre info | return none
   trace[Elab.Tactic.Do.vcgen] "`@[frameproc]` matched {info.prog}; frame:{indentExpr F}"
-  return some (F, fp.op)
+  return some (F, opOf)
 
 /--
 Frame dispatcher for a spec-ready program `info.prog`:

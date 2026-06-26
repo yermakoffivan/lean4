@@ -92,8 +92,11 @@ extern "C" void finalize_libuv() {
     }, &pending_releases);
 
     // Run the loop once more so the close callbacks above fire and free the handle memory, and any
-    // in-flight requests (connect/write/shutdown) are cancelled and release their references. The
-    // loop thread is gone, so this runs synchronously on the current thread.
+    // in-flight requests (connect/write/shutdown) are cancelled and release their references. This
+    // also drains outstanding threadpool requests that `uv_walk` does not see because they are not
+    // handles (DNS getaddrinfo/getnameinfo, uv_random): their callbacks resolve the promise and free
+    // the request here, so a slow lookup can delay shutdown but cannot leak. The loop thread is gone,
+    // so this runs synchronously on the current thread.
     uv_run(global_ev.loop, UV_RUN_DEFAULT);
 
     // Drop the references the loop held on the wrapping objects. This may run their finalizers, which

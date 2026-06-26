@@ -31,6 +31,9 @@ void initialize_runtime_module() {
     lean_initialize_runtime_module();
 }
 void finalize_runtime_module() {
+    // Must run before the modules below: it joins the libuv loop thread and runs handle finalizers
+    // that call `lean_dec`, so `object` and `thread` must still be initialized.
+    finalize_libuv();
     finalize_stack_overflow();
     finalize_process();
     finalize_mutex();

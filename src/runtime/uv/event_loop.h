@@ -43,7 +43,6 @@ extern event_loop_t global_ev;
 // =======================================
 // Event loop manipulation functions.
 void event_loop_init(event_loop_t *event_loop);
-void event_loop_cleanup(event_loop_t *event_loop);
 bool event_loop_lock(event_loop_t *event_loop);
 void event_loop_lock_internal(event_loop_t *event_loop);
 void event_loop_unlock(event_loop_t *event_loop);

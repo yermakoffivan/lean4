@@ -204,6 +204,10 @@ public structure VCGen.Context where
   `splitLatticeOp?` before the built-in connectives, so a custom frame proc can decompose
   `pre ⊑ conj F rest` for its own `conj`. -/
   customLatticeSplits : Std.HashMap Name VCGen.LatticeSplit := {}
+  /-- Lattice splits for the residual wands `Residuated.imp conj F rest` of custom frame operators,
+  keyed by the `conj` head constant. Consulted by `splitLatticeOp?` (dispatching on the inner
+  operator) so a custom frame's magic wand decomposes instead of surfacing in a VC. -/
+  customImpSplits : Std.HashMap Name VCGen.LatticeSplit := {}
   /-- User-customizable simp methods used to pre-simplify hypotheses. -/
   hypSimpMethods : Option Sym.Simp.Methods := none
   /-- The `trivial` config option: when `true` (default), `Driver.emitVC` runs

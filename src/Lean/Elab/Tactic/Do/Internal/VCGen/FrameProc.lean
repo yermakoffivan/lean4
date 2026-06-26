@@ -31,12 +31,15 @@ structure FrameProc where
   prog : Name
   /-- The frame inference metaprogram. -/
   proc : FrameInferenceProc
-  /-- Head constant of the frame operator framed with; keys `split` for `splitLatticeOp?`. -/
+  /-- Head constant of the frame operator framed with; keys `split`/`impSplit` for `splitLatticeOp?`. -/
   conj : Name
   /-- Builds the frame operator (head constant `conj`) for the goal's assertion type. -/
   op : WPInfo → MetaM Expr
-  /-- The lattice split decomposing `conj` on the RHS of an entailment. -/
+  /-- The lattice split decomposing `conj F R` on the RHS of an entailment. -/
   split : LatticeSplit
+  /-- The lattice split decomposing the residual `Residuated.imp conj F R` (the frame's magic wand)
+  on the RHS of an entailment, so the wand never surfaces in a VC. -/
+  impSplit : LatticeSplit
 
 unsafe def getFrameProcFromDeclImpl (declName : Name) : ImportM FrameProc := do
   let ctx ← read
@@ -55,13 +58,17 @@ opaque getFrameProcFromDecl (declName : Name) : ImportM FrameProc
 frame, and their splits keyed by frame-operator head constant. -/
 structure FrameProcs where
   procs : Std.HashMap Name FrameProc := {}
+  /-- Splits for the frame operators `conj F R`, keyed by `conj` head. -/
   splits : Std.HashMap Name LatticeSplit := {}
+  /-- Splits for the residual wands `Residuated.imp conj F R`, keyed by `conj` head. -/
+  impSplits : Std.HashMap Name LatticeSplit := {}
 
 instance : Inhabited FrameProcs := ⟨{}⟩
 
 def FrameProcs.insert (s : FrameProcs) (_declName : Name) (fp : FrameProc) : FrameProcs :=
   { procs := s.procs.insert fp.prog fp
-    splits := s.splits.insert fp.conj fp.split }
+    splits := s.splits.insert fp.conj fp.split
+    impSplits := s.impSplits.insert fp.conj fp.impSplit }
 
 abbrev FrameProcExtension := ScopedEnvExtension Name (Name × FrameProc) FrameProcs
 

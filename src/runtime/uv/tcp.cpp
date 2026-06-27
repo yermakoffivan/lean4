@@ -37,10 +37,8 @@ void lean_uv_tcp_socket_finalizer(void* ptr) {
     lean_always_assert(tcp_socket->m_byte_array == nullptr);
 
     if (!event_loop_lock(&global_ev)) {
-        if (lean_uv_tcp_socket_handle(tcp_socket) != nullptr) {
-            free(lean_uv_tcp_socket_handle(tcp_socket));
-        }
-        free(tcp_socket);
+        event_loop_wait_finalized(&global_ev);
+        lean_uv_handle_free_detached(&tcp_socket->m_uv, tcp_socket);
         return;
     }
 
@@ -97,10 +95,7 @@ size_t lean_uv_tcp_socket_shutdown(lean_uv_tcp_socket_object * tcp_socket) {
             tcp_socket->m_byte_array = nullptr;
         }
 
-        if (tcp_socket->m_uv.m_uv_ref_count > 0) {
-            lean_uv_handle_release(&tcp_socket->m_uv);
-            release_refs++;
-        }
+        release_refs += lean_uv_handle_release_one(&tcp_socket->m_uv);
     }
 
     if (tcp_socket->m_promise_accept != nullptr) {
@@ -126,10 +121,7 @@ size_t lean_uv_tcp_socket_shutdown(lean_uv_tcp_socket_object * tcp_socket) {
             tcp_socket->m_client = nullptr;
         }
 
-        if (tcp_socket->m_uv.m_uv_ref_count > 0) {
-            lean_uv_handle_release(&tcp_socket->m_uv);
-            release_refs++;
-        }
+        release_refs += lean_uv_handle_release_one(&tcp_socket->m_uv);
     }
 
     if (tcp_socket->m_promise_shutdown != nullptr) {
@@ -591,6 +583,13 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_tcp_listen(b_obj_arg socket, int32_t
             lean_promise_resolve_with_code(status, promise);
             lean_dec(promise);
             tcp_socket->m_promise_accept = nullptr;
+
+            // The pending client allocated by `accept` is never handed out on this error path.
+            if (tcp_socket->m_client != nullptr) {
+                lean_dec(tcp_socket->m_client);
+                tcp_socket->m_client = nullptr;
+            }
+
             lean_uv_handle_release(&tcp_socket->m_uv);
             lean_dec((lean_object*)stream->data);
             return;

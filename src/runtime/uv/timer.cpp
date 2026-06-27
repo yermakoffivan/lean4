@@ -20,13 +20,8 @@ void lean_uv_timer_finalizer(void* ptr) {
     }
 
     if (!event_loop_lock(&global_ev)) {
-        if (global_ev.state == EVENT_LOOP_FINALIZED) {
-            if (lean_uv_timer_handle(timer) != nullptr) {
-                free(lean_uv_timer_handle(timer));
-            }
-        }
-
-        free(timer);
+        event_loop_wait_finalized(&global_ev);
+        lean_uv_handle_free_detached(&timer->m_uv, timer);
         return;
     }
 
@@ -92,10 +87,7 @@ size_t lean_uv_timer_shutdown(lean_uv_timer_object * timer) {
         uv_timer_stop(lean_uv_timer_handle(timer));
         timer->m_state = TIMER_STATE_FINISHED;
 
-        if (timer->m_uv.m_uv_ref_count > 0) {
-            lean_uv_handle_release(&timer->m_uv);
-            release_refs++;
-        }
+        release_refs += lean_uv_handle_release_one(&timer->m_uv);
     }
 
     if (timer->m_promise != NULL) {

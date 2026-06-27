@@ -29,12 +29,14 @@ enum event_loop_state {
 
 // Event loop structure for managing asynchronous events and synchronization across multiple threads.
 typedef struct {
-    uv_loop_t  * loop;      // The libuv event loop.
-    uv_mutex_t   mutex;     // Mutex for protecting `loop`.
-    uv_cond_t    cond_var;  // Condition variable for signaling that `loop` is free.
-    uv_async_t   async;     // Async handle to interrupt `loop`.
-    _Atomic(int) n_waiters; // Atomic counter for managing waiters for `loop`.
-    _Atomic(int) state;     // Current event_loop_state.
+    uv_loop_t  * loop;          // The libuv event loop.
+    uv_mutex_t   mutex;         // Mutex for protecting `loop`.
+    uv_cond_t    cond_var;      // Condition variable for signaling that `loop` is free.
+    uv_cond_t    finalize_cond; // Condition variable broadcast once the loop has been finalized.
+    uv_async_t   async;         // Async handle to interrupt `loop`.
+    _Atomic(int) n_waiters;     // Atomic counter for managing waiters for `loop`.
+    _Atomic(int) n_active;      // Requesters currently in `event_loop_lock` that may interrupt `async`.
+    _Atomic(int) state;         // Current event_loop_state.
 } event_loop_t;
 
 // The multithreaded event loop object for all tasks in the task manager.
@@ -47,7 +49,9 @@ bool event_loop_lock(event_loop_t *event_loop);
 void event_loop_lock_internal(event_loop_t *event_loop);
 void event_loop_unlock(event_loop_t *event_loop);
 void event_loop_request_stop(event_loop_t *event_loop);
+void event_loop_drain_active(event_loop_t *event_loop);
 void event_loop_mark_finalized(event_loop_t *event_loop);
+void event_loop_wait_finalized(event_loop_t *event_loop);
 lean_obj_res lean_uv_loop_unavailable_error();
 void event_loop_run_loop(event_loop_t *event_loop);
 

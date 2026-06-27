@@ -43,12 +43,9 @@ extern "C" void finalize_libuv() {
     g_libuv_thread->join();
     g_libuv_thread = nullptr;
 
-    // The loop thread has exited, so we now own the loop exclusively and can tear down every
-    // remaining handle.
+    event_loop_drain_active(&global_ev);
     event_loop_lock_internal(&global_ev);
 
-    // Each entry records an object together with the number of references the loop still held on it.
-    // The drops are deferred until after the walk so a finalizer cannot free a handle mid-iteration.
     std::vector<std::pair<lean_object *, size_t>> pending_releases;
 
     uv_walk(global_ev.loop, [](uv_handle_t * handle, void * arg) {
@@ -57,6 +54,7 @@ extern "C" void finalize_libuv() {
         }
 
         if (uv_handle_get_type(handle) == UV_ASYNC) {
+            uv_close(handle, nullptr);
             return;
         }
 
@@ -91,25 +89,19 @@ extern "C" void finalize_libuv() {
         uv_close(handle, [](uv_handle_t * handle) { free(handle); });
     }, &pending_releases);
 
-    // Run the loop once more so the close callbacks above fire and free the handle memory, and any
-    // in-flight requests (connect/write/shutdown) are cancelled and release their references. This
-    // also drains outstanding threadpool requests that `uv_walk` does not see because they are not
-    // handles (DNS getaddrinfo/getnameinfo, uv_random): their callbacks resolve the promise and free
-    // the request here, so a slow lookup can delay shutdown but cannot leak. The loop thread is gone,
-    // so this runs synchronously on the current thread.
     uv_run(global_ev.loop, UV_RUN_DEFAULT);
 
-    // Drop the references the loop held on the wrapping objects. This may run their finalizers, which
-    // now only free the Lean-side struct since their handles were already freed above.
+    int close_result = uv_loop_close(global_ev.loop);
+    lean_assert(close_result == 0);
+    (void)close_result;
+
+    event_loop_mark_finalized(&global_ev);
+
     for (auto & release : pending_releases) {
         for (size_t i = 0; i < release.second; i++) {
             lean_dec(release.first);
         }
     }
-
-    lean_assert(uv_loop_close(...) == 0);
-    event_loop_mark_finalized(&global_ev);
-    // uv_close(handle, nullptr); ?
 
     event_loop_unlock(&global_ev);
 }

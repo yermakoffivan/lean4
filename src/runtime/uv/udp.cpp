@@ -26,13 +26,10 @@ void lean_uv_udp_socket_finalizer(void* ptr) {
     lean_always_assert(udp_socket->m_byte_array == nullptr);
 
     if (!event_loop_lock(&global_ev)) {
-        if (global_ev.state == EVENT_LOOP_FINALIZED) {
-            if (lean_uv_udp_socket_handle(udp_socket) != nullptr) {
-                free(lean_uv_udp_socket_handle(udp_socket));
-            }
-        }
-
-        free(udp_socket);
+        // The loop is being torn down. Wait for finalization to free and detach our handle, then
+        // release only the struct.
+        event_loop_wait_finalized(&global_ev);
+        lean_uv_handle_free_detached(&udp_socket->m_uv, udp_socket);
         return;
     }
 
@@ -85,10 +82,7 @@ size_t lean_uv_udp_socket_shutdown(lean_uv_udp_socket_object * udp_socket) {
             udp_socket->m_byte_array = nullptr;
         }
 
-        if (udp_socket->m_uv.m_uv_ref_count > 0) {
-            lean_uv_handle_release(&udp_socket->m_uv);
-            release_refs++;
-        }
+        release_refs += lean_uv_handle_release_one(&udp_socket->m_uv);
     }
 
     udp_socket->m_uv.m_uv_handle = nullptr;

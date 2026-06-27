@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Author: Sofia Rodrigues
 */
 #pragma once
+#include <stdlib.h>
 #include <lean/lean.h>
 
 #ifndef LEAN_EMSCRIPTEN
@@ -31,6 +32,24 @@ static inline void lean_uv_handle_acquire(lean_uv_handle_object * handle) {
 static inline void lean_uv_handle_release(lean_uv_handle_object * handle) {
     lean_assert(handle->m_uv_ref_count > 0);
     handle->m_uv_ref_count--;
+}
+
+static inline size_t lean_uv_handle_release_one(lean_uv_handle_object * handle) {
+    if (handle->m_uv_ref_count > 0) {
+        lean_uv_handle_release(handle);
+        return 1;
+    }
+    return 0;
+}
+
+// Frees a handle wrapper once the loop has been finalized. Callers must first synchronize with
+// `event_loop_wait_finalized`, after which the teardown walk has already freed and cleared the
+// `uv_handle_t`; the null check stays defensive in case the handle was never registered.
+static inline void lean_uv_handle_free_detached(lean_uv_handle_object * handle, void * struct_ptr) {
+    if (handle->m_uv_handle != nullptr) {
+        free(handle->m_uv_handle);
+    }
+    free(struct_ptr);
 }
 
 #endif

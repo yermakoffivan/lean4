@@ -23,27 +23,15 @@ variable {Prog : Type u} {Value : Type v} {Pred : Type w} {EPred : Type z}
 Stripped by `vcgen` before the real spec applies. -/
 def skipFrame {α : Sort u} (a : α) : α := a
 
-/-- `meet_wp_imp_le_wp` with the program wrapped in `skipFrame`, the per-call spec `vcgen`
-applies for a framed program. The frame `F` is the first explicit argument so that `vcgen` can
-partially apply it (pinning `F`) and feed the result through the ordinary spec machinery, leaving
-`x`, `epost`, `Q`, and `hframe` schematic. -/
-theorem meet_wp_imp_le_wp_skipFrame [∀ a : Pred, PreservesSup (meet a)] (F : Pred) (x : Prog)
-  (E : EPred) (Q : Value → Pred)
-    (hframes : WP.Frames meet x F) :
-    F ⊓ wp (skipFrame x) (fun a => F ⇨ Q a) E ⊑ wp x Q E := by
-  refine PartialOrder.rel_trans (hframes.conj_wp_le_wp_conj (fun a => F ⇨ Q a) E) ?_
-  apply WP.wp_consequence
-  intro a
-  exact meet_himp_le
-
-/-- `meet_wp_imp_le_wp_skipFrame` for an arbitrary frame operator `conj` whose slices preserve `Sup`,
-the per-call spec `vcgen` applies for a program framed with a non-meet operator. `conj` is the first
-explicit argument so that `vcgen` can pin it (to the inferred frame operator) while leaving `F`, `x`,
-`E`, `Q`, and `hframes` schematic. -/
-theorem wp_imp_le_wp_skipFrame {R : Type r} (conj : R → Pred → Pred) [∀ r, PreservesSup (conj r)]
-  (F : R) (x : Prog) (E : EPred) (Q : Value → Pred)
+/-- The per-call spec `vcgen` applies for a framed program: for a frame operator `conj` whose slices
+preserve `Sup`, framing by `F` runs the program under the upper adjoint of `conj F` and re-applies
+`conj F`. `conj` is the first explicit argument so that `vcgen` can pin it (to the inferred frame
+operator) while leaving `F`, `x`, `E`, `Q`, and `hframes` schematic. The lattice meet is the instance
+`conj := (· ⊓ ·)`, whose residual `vcgen` folds to Heyting `⇨`. -/
+theorem op_wp_upperAdjoint_le_wp_skipFrame {R : Type r} (conj : R → Pred → Pred)
+  [∀ r, PreservesSup (conj r)] (F : R) (x : Prog) (E : EPred) (Q : Value → Pred)
     (hframes : WP.Frames conj x F) :
     conj F (wp (skipFrame x) (fun a => PreservesSup.upperAdjoint (conj F) (Q a)) E) ⊑ wp x Q E :=
-  hframes.conj_wp_imp_le_wp _ _ _
+  hframes.op_wp_upperAdjoint_le_wp _ _ _
 
 end Std.Internal.Do.Gadget

@@ -27,20 +27,23 @@ def skipFrame {α : Sort u} (a : α) : α := a
 applies for a framed program. The frame `F` is the first explicit argument so that `vcgen` can
 partially apply it (pinning `F`) and feed the result through the ordinary spec machinery, leaving
 `x`, `epost`, `Q`, and `hframe` schematic. -/
-theorem meet_wp_imp_le_wp_skipFrame [SupPreserving Pred Pred (· ⊓ ·)] (F : Pred) (x : Prog)
+theorem meet_wp_imp_le_wp_skipFrame [∀ a : Pred, PreservesSup (meet a)] (F : Pred) (x : Prog)
   (E : EPred) (Q : Value → Pred)
-    (hframes : WP.Frames (· ⊓ ·) x F) :
-    F ⊓ wp (skipFrame x) (fun a => F ⇨ Q a) E ⊑ wp x Q E :=
-  hframes.conj_wp_imp_le_wp _ _ _
+    (hframes : WP.Frames meet x F) :
+    F ⊓ wp (skipFrame x) (fun a => F ⇨ Q a) E ⊑ wp x Q E := by
+  refine PartialOrder.rel_trans (hframes.conj_wp_le_wp_conj (fun a => F ⇨ Q a) E) ?_
+  apply WP.wp_consequence
+  intro a
+  exact meet_himp_le
 
-/-- `meet_wp_imp_le_wp_skipFrame` for an arbitrary residuated frame operator `conj`, the per-call spec
-`vcgen` applies for a program framed with a non-meet operator. `conj` is the first explicit argument
-so that `vcgen` can pin it (to the inferred frame operator) while leaving `F`, `x`, `E`, `Q`, and
-`hframes` schematic. -/
-theorem wp_imp_le_wp_skipFrame {R : Type r} (conj : R → Pred → Pred) [SupPreserving R Pred conj]
+/-- `meet_wp_imp_le_wp_skipFrame` for an arbitrary frame operator `conj` whose slices preserve `Sup`,
+the per-call spec `vcgen` applies for a program framed with a non-meet operator. `conj` is the first
+explicit argument so that `vcgen` can pin it (to the inferred frame operator) while leaving `F`, `x`,
+`E`, `Q`, and `hframes` schematic. -/
+theorem wp_imp_le_wp_skipFrame {R : Type r} (conj : R → Pred → Pred) [∀ r, PreservesSup (conj r)]
   (F : R) (x : Prog) (E : EPred) (Q : Value → Pred)
     (hframes : WP.Frames conj x F) :
-    conj F (wp (skipFrame x) (fun a => SupPreserving.upperAdjoint conj F (Q a)) E) ⊑ wp x Q E :=
+    conj F (wp (skipFrame x) (fun a => PreservesSup.upperAdjoint (conj F) (Q a)) E) ⊑ wp x Q E :=
   hframes.conj_wp_imp_le_wp _ _ _
 
 end Std.Internal.Do.Gadget

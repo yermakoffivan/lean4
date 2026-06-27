@@ -6,7 +6,7 @@ Authors: Vladimir Gladshtein, Sebastian Graf
 module
 
 prelude
-public import Std.Internal.Do.Order.SupPreserving
+public import Std.Internal.Do.Order.PreservesSup
 
 public section
 
@@ -16,8 +16,8 @@ universe u
 
 variable {α : Type u} [CompleteLattice α]
 
-instance : SupPreserving Prop Prop (· ⊓ ·) where
-  op_sup a s := by
+instance (a : Prop) : PreservesSup (meet a) where
+  map_sup s := by
     show a ⊓ CompleteLattice.sup s = CompleteLattice.sup (fun y => ∃ x, s x ∧ y = a ⊓ x)
     have sup_eq_propSup (c : Prop → Prop) : CompleteLattice.sup c = propSup c := by
       apply propext
@@ -36,11 +36,11 @@ instance : SupPreserving Prop Prop (· ⊓ ·) where
       exact ⟨hp.1, x, hsx, hp.2⟩
 
 instance {σ : Type v} {β : σ → Type u} [∀ s, CompleteLattice (β s)]
-    [∀ s, SupPreserving (β s) (β s) (· ⊓ ·)] : SupPreserving (∀ s, β s) (∀ s, β s) (· ⊓ ·) where
-  op_sup a s := by
+    [∀ s, ∀ c : β s, PreservesSup (meet c)] (a : ∀ s, β s) : PreservesSup (meet a) where
+  map_sup s := by
     show a ⊓ CompleteLattice.sup s = CompleteLattice.sup (fun y => ∃ x, s x ∧ y = a ⊓ x)
     funext t
-    rw [meet_apply, sup_apply, sup_apply, SupPreserving.op_sup (op := (· ⊓ ·))]
+    rw [meet_apply, sup_apply, sup_apply, PreservesSup.map_sup (f := meet (a t))]
     congr 1
     funext w
     apply propext
@@ -51,17 +51,25 @@ instance {σ : Type v} {β : σ → Type u} [∀ s, CompleteLattice (β s)]
       exact ⟨x t, ⟨x, hx, rfl⟩, by rw [← hgt, meet_apply]⟩
 
 /-- Heyting implication: the upper adjoint of the lattice meet. For `Prop` it is `→`. -/
-noncomputable abbrev himp {α : Type u} [CompleteLattice α] (a b : α) : α :=
-  SupPreserving.upperAdjoint (· ⊓ ·) a b
+noncomputable def himp {α : Type u} [CompleteLattice α] (a b : α) : α :=
+  PreservesSup.upperAdjoint (meet a) b
 
 @[inherit_doc himp] scoped infixr:60 " ⇨ " => himp
+
+/-- Unit for `⇨`, the meet specialization of `PreservesSup.le_upperAdjoint`: `a ⊓ x ⊑ b → x ⊑ a ⇨ b`. -/
+theorem le_himp {a b x : α} (h : a ⊓ x ⊑ b) : x ⊑ a ⇨ b := by
+  unfold himp; exact PreservesSup.le_upperAdjoint (meet a) h
+
+/-- Counit for `⇨`, the meet specialization of `PreservesSup.upperAdjoint_le`: `a ⊓ (a ⇨ b) ⊑ b`. -/
+theorem meet_himp_le {a b : α} [PreservesSup (meet a)] : a ⊓ (a ⇨ b) ⊑ b := by
+  unfold himp; exact PreservesSup.upperAdjoint_le (meet a) b
 
 @[simp] theorem himp_prop_eq_imp (a b : Prop) : ((a ⇨ b : Prop) = (a → b)) := by
   apply propext
   constructor
   · intro hab
     have hs : (a ⇨ b : Prop) ⊑ (a → b) := by
-      unfold himp SupPreserving.upperAdjoint
+      unfold himp PreservesSup.upperAdjoint
       apply sup_le
       intro x hx hxTrue haTrue
       have hax : a ⊓ x := by
@@ -74,7 +82,7 @@ noncomputable abbrev himp {α : Type u} [CompleteLattice α] (a b : α) : α :=
       have hax' : a ∧ (a → b) := by
         simpa [meet_prop_eq_and] using hax
       exact hax'.right hax'.left
-    exact (SupPreserving.le_upperAdjoint (· ⊓ ·) (r := a) (b := b) (x := (a → b)) hx) hab
+    exact (PreservesSup.le_upperAdjoint (meet a) (b := b) (x := (a → b)) hx) hab
 
 /-- Pointwise characterization of Heyting implication on function lattices. -/
 @[simp] theorem himp_apply
@@ -82,7 +90,7 @@ noncomputable abbrev himp {α : Type u} [CompleteLattice α] (a b : α) : α :=
     (a b : σ → β) (s : σ) :
     (a ⇨ b) s = (a s ⇨ b s) := by
   classical
-  unfold himp SupPreserving.upperAdjoint
+  unfold himp PreservesSup.upperAdjoint
   rw [sup_apply]
   apply PartialOrder.rel_antisymm
   · apply sup_le

@@ -102,13 +102,11 @@ def mk (ctx : @& Context.Client) : IO Session.Client :=
 end Client
 
 /--
-Sets the server name for client-side TLS handshakes.
-
-This sets both the SNI extension sent and enables post-handshake hostname verification against the
-certificate CN/SAN. Must be called before the handshake.
+Backing primitive for `Session.Client.setServerName`. Kept private so the SNI / hostname-verification
+setting can only be applied to a client session, never a server one (see `Session.Client.setServerName`).
 -/
 @[extern "lean_ssl_set_server_name"]
-opaque setServerName (ssl : @& Session) (host : @& String) : IO Unit
+private opaque setServerNameImpl (ssl : @& Session) (host : @& String) : IO Unit
 
 /--
 Gets the X.509 verification result code after the handshake (`0` is `X509_V_OK`).
@@ -133,10 +131,14 @@ needs socket I/O of kind `w` before the handshake can proceed.
 opaque handshake (ssl : @& Session) : IO (Option IOWant)
 
 /--
-Attempts to write plaintext application data into SSL. Returns `none` when the data was accepted and
-encrypted output is ready to drain. Returns `some w` when OpenSSL needs socket I/O of kind `w`
-before the write can complete; in that case the data has been queued internally and **must not** be
-submitted again.
+Attempts to write plaintext application data into SSL. Returns `none` when all queued plaintext
+(including `data`) has been accepted; encrypted output is then ready to drain with `drainEncrypted`.
+Returns `some w` when OpenSSL needs socket I/O of kind `w` before the write can complete; in that
+case the data has been queued internally and **must not** be submitted again — call `write` again
+with an empty `data` once the I/O is satisfied to keep draining the queue.
+
+Passing an empty `data` does not enqueue anything: it only flushes any previously queued plaintext
+and reports whether the queue is now drained (`none`) or still blocked (`some w`).
 -/
 @[extern "lean_ssl_write"]
 opaque write (ssl : @& Session) (data : @& ByteArray) : IO (Option IOWant)
@@ -147,9 +149,10 @@ Attempts to read decrypted plaintext data.
 At most one TLS record's worth of plaintext (16 KiB, `SSL3_RT_MAX_PLAIN_LENGTH`) is returned per
 call, regardless of `maxBytes`; call again to read further data.
 
-When `maxBytes == 0`, performs a non-consuming peek: returns `.data ByteArray.empty` if any data is
-available (without consuming it), or `.wantIO` if not. Used by `waitReadable` to check readability
-without committing to a read.
+When `maxBytes == 0`, performs a non-consuming peek: returns `.data ByteArray.empty` if any
+plaintext is available (without consuming it), `.closed` if the peer has sent `close_notify`, or
+`.wantIO` if more socket I/O is needed first. This lets a caller test readability without committing
+to a read.
 -/
 @[extern "lean_ssl_read"]
 opaque read? (ssl : @& Session) (maxBytes : UInt64) : IO ReadResult
@@ -277,10 +280,14 @@ end Server
 namespace Client
 
 /--
-Sets the SNI host name on a client session.
+Sets the server name for the client TLS handshake.
+
+This sets both the SNI extension sent in the ClientHello and enables post-handshake hostname
+verification against the certificate CN/SAN. Without it, OpenSSL validates only the certificate
+chain — not that the certificate belongs to the host being connected to. Must be called before the
+handshake.
 -/
-@[inline]
-def setServerName (s : Session.Client) (host : @& String) : IO Unit := Session.setServerName s.toSession host
+def setServerName (s : Session.Client) (host : @& String) : IO Unit := Session.setServerNameImpl s.toSession host
 
 /--
 Runs one handshake step on a client session.

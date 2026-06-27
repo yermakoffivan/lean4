@@ -24,8 +24,8 @@ void initialize_openssl_session();
 
 #ifndef LEAN_EMSCRIPTEN
 
-/// This object is not thread safe. It requires a mutex if you're going to use the socket in a
-// multi-thread environment.
+// This object is not thread safe. Concurrent operations on the same session require external
+// synchronization (e.g. a mutex).
 struct lean_ssl_session_object {
     SSL * ssl;
     std::deque<std::vector<char>> * pending_writes;

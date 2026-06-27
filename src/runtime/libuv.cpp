@@ -79,6 +79,7 @@ extern "C" void finalize_libuv() {
                     releases = lean_uv_signal_shutdown(lean_to_uv_signal(obj));
                     break;
                 default:
+                    lean_assert(false);
                     break;
             }
 

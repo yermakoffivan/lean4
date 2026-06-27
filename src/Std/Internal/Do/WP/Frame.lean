@@ -35,8 +35,8 @@ structure WP.Frames {R : Type t} (op : R → Pred → Pred) (x : Prog) (F : R) :
 
 /-- The framed spec `vcgen` applies for `x`, when each `op r` preserves `Sup`: framing `x` by `F`
 makes `op F (wp x (fun a => PreservesSup.upperAdjoint (op F) (Q a)))` a precondition for `wp x Q`. -/
-theorem WP.Frames.conj_wp_imp_le_wp {R : Type t} (op : R → Pred → Pred) [∀ r, PreservesSup (op r)]
-    {x : Prog} {F : R} (hframes : WP.Frames op x F) :
+theorem WP.Frames.op_wp_upperAdjoint_le_wp {R : Type t} (op : R → Pred → Pred)
+    [∀ r, PreservesSup (op r)] {x : Prog} {F : R} (hframes : WP.Frames op x F) :
     ∀ Q E, op F (wp x (fun a => PreservesSup.upperAdjoint (op F) (Q a)) E) ⊑ wp x Q E := by
   intros
   apply PartialOrder.rel_trans

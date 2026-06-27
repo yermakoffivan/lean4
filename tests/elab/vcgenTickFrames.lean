@@ -243,7 +243,7 @@ theorem tickFrames {α : Type} (x : TickM α) (F : Nat) (Q : α → Nat → Prop
     F ⋆ TickM.wp x Q EPost.Nil.mk ⊑ TickM.wp x (fun a => F ⋆ Q a) EPost.Nil.mk :=
   (frames_costConj x F).conj_wp_le_wp_conj Q EPost.Nil.mk
 
-/-- The framed-spec corollary, mirroring `WP.Frames.conj_wp_imp_le_wp`: running `x` under the magic
+/-- The framed-spec corollary, mirroring `WP.Frames.op_wp_upperAdjoint_le_wp`: running `x` under the magic
 wand `F -⋆ Q` and re-conjoining the budget `F` is a precondition for running `x` under `Q`. -/
 theorem tickFrames_imp {α : Type} (x : TickM α) (F : Nat) (Q : α → Nat → Prop) :
     F ⋆ TickM.wp x (fun a => F -⋆ Q a) EPost.Nil.mk ⊑ TickM.wp x Q EPost.Nil.mk := by

@@ -447,14 +447,11 @@ private def applyFrame (scope : VCGen.Scope) (goal : MVarId) (pre : Expr) (info 
     | return .notFramed goal info
   -- `info.args.take 7` are the program's own `wp` arguments (program type, value, assertions, `WP`
   -- instance); `mkAppOptM` synthesizes the remaining instances against the assertion's own
-  -- `CompleteLattice` so the framing shares the structure the program's `wp` uses.
+  -- `CompleteLattice` so the framing shares the structure the program's `wp` uses. The lattice meet
+  -- is just the instance `op := (· ⊓ ·)`; its residual folds to `⇨` (see `foldUpperAdjointMeet?`).
   let specProof ←
-    if op.eta.getAppFn.isConstOf ``Lean.Order.meet then
-      Meta.mkAppOptM ``Std.Internal.Do.Gadget.meet_wp_imp_le_wp_skipFrame
-        ((info.args.take 7).map some ++ #[none, some F])
-    else
-      Meta.mkAppOptM ``Std.Internal.Do.Gadget.wp_imp_le_wp_skipFrame
-        ((info.args.take 7).map some ++ #[none, some op, none, some F])
+    Meta.mkAppOptM ``Std.Internal.Do.Gadget.op_wp_upperAdjoint_le_wp_skipFrame
+      ((info.args.take 7).map some ++ #[none, some op, none, some F])
   let some specThm ← mkSpecTheoremFromStx (← getRef) specProof
     | throwError "frame: could not build spec from the frame gadget for{indentExpr info.prog}"
   let some rule ← (tryMkBackwardRuleFromSpec specThm info).run
@@ -462,6 +459,21 @@ private def applyFrame (scope : VCGen.Scope) (goal : MVarId) (pre : Expr) (info 
   let .goals subgoals ← rule.applyChecked goal m!"frame rule for{indentExpr info.prog}"
     | throwError "frame: failed to apply rule for{indentExpr info.prog}"
   return .framed scope subgoals
+
+/-- Fold a frame residual `upperAdjoint (meet F) b` on the RHS to Heyting `F ⇨ b` (definitionally
+equal: `himp` *is* the meet upper adjoint), exposing the meet operand `F` so the `himp` split can
+decompose it. This lets the lattice meet be framed by the general gadget like any operator, with no
+meet-specific spec; a non-meet operator's residual is left for its registered `impSplit`. -/
+private def foldUpperAdjointMeet? (goal : MVarId) (target rhs : Expr) : VCGenM (Option MVarId) := do
+  unless rhs.isAppOf ``Lean.Order.PreservesSup.upperAdjoint do return none
+  let args := rhs.getAppArgs
+  let some slice := args[2]? | return none
+  unless slice.isAppOf ``Lean.Order.meet && slice.getAppNumArgs == 3 do return none
+  let himpExpr ← Meta.mkAppM ``Lean.Order.himp #[slice.appArg!, args[3]!]
+  let newRhs ← mkAppNS himpExpr (args.extract 4 args.size)
+  let relArgs := target.getAppArgs
+  let newTarget ← mkAppNS target.getAppFn (relArgs.set! (relArgs.size - 1) newRhs)
+  return some (← goal.replaceTargetDefEq newTarget)
 
 /--
 The main VC generation step. Operates on a plain `MVarId` with no knowledge of grind.
@@ -522,6 +534,7 @@ public def solve (scope : VCGen.Scope) (goal : MVarId) : VCGenM SolveResult := g
   -- Phase 3: shape the `rhs` (reduce an EPost projection, decompose a lattice connective), then
   -- discharge a residual entailment against the lifted hypothesis.
   if let some g ← reduceEPostHead? goal target α inst pre rhs then return .goals scope [g]
+  if let some g ← foldUpperAdjointMeet? goal target rhs then return .goals scope [g]
   if let some gs ← splitLatticeOp? goal rhs then return .goals scope gs
   if let some gs ← liftedHyp? scope goal α pre rhs then return .goals scope gs
 

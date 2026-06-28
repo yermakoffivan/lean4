@@ -14,7 +14,7 @@ using namespace std;
 void lean_uv_timer_finalizer(void* ptr) {
     lean_uv_timer_object* timer = (lean_uv_timer_object*) ptr;
 
-    // The timer can be null in two states: it has not started and it got cancelled.
+    // The promise can be null in two states: the timer has not started and it got cancelled.
     if (timer->m_promise != NULL) {
         lean_dec(timer->m_promise);
     }
@@ -123,17 +123,22 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_timer_mk(uint64_t timeout, uint8_t r
         return lean_uv_loop_unavailable_error();
     }
     int result = uv_timer_init(global_ev.loop, uv_timer);
-    event_loop_unlock(&global_ev);
 
     if (result != 0) {
+        event_loop_unlock(&global_ev);
         free(uv_timer);
         free(timer);
         return lean_io_result_mk_error(lean_decode_uv_error(result, NULL));
     }
 
+    // Set `data` before unlocking: once `uv_timer_init` registers the handle in the loop, a
+    // concurrent `finalize_libuv` walk (which runs under the same lock) could otherwise observe the
+    // handle with an uninitialized `data`.
     lean_object * obj = lean_uv_timer_new(timer);
     lean_mark_mt(obj);
     lean_uv_timer_handle(timer)->data = obj;
+
+    event_loop_unlock(&global_ev);
 
     return lean_io_result_mk_ok(obj);
 }

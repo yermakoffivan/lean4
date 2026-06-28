@@ -114,21 +114,26 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_new() {
         return lean_uv_loop_unavailable_error();
     }
     int result = uv_udp_init(global_ev.loop, uv_udp);
-    event_loop_unlock(&global_ev);
 
     if (result != 0) {
+        event_loop_unlock(&global_ev);
         free(uv_udp);
         free(udp_socket);
 
         return lean_io_result_mk_error(lean_decode_uv_error(result, nullptr));
     }
 
+    // Set `data` before unlocking: once `uv_udp_init` registers the handle in the loop, a concurrent
+    // `finalize_libuv` walk (which runs under the same lock) could otherwise observe the handle with
+    // an uninitialized `data`.
     lean_uv_handle_init(&udp_socket->m_uv, (uv_handle_t*)uv_udp);
 
     lean_object* obj = lean_uv_udp_socket_new(udp_socket);
     lean_mark_mt(obj);
 
     lean_uv_udp_socket_handle(udp_socket)->data = obj;
+
+    event_loop_unlock(&global_ev);
 
     return lean_io_result_mk_ok(obj);
 }

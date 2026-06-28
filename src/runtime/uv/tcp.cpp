@@ -153,21 +153,26 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_tcp_new() {
         return lean_uv_loop_unavailable_error();
     }
     int result = uv_tcp_init(global_ev.loop, uv_tcp);
-    event_loop_unlock(&global_ev);
 
     if (result != 0) {
+        event_loop_unlock(&global_ev);
         free(uv_tcp);
         free(tcp_socket);
 
         return lean_io_result_mk_error(lean_decode_uv_error(result, nullptr));
     }
 
+    // Set `data` before unlocking: once `uv_tcp_init` registers the handle in the loop, a concurrent
+    // `finalize_libuv` walk (which runs under the same lock) could otherwise observe the handle with
+    // an uninitialized `data`.
     lean_uv_handle_init(&tcp_socket->m_uv, (uv_handle_t*)uv_tcp);
 
     lean_object* obj = lean_uv_tcp_socket_new(tcp_socket);
     lean_mark_mt(obj);
 
     lean_uv_tcp_socket_handle(tcp_socket)->data = obj;
+
+    event_loop_unlock(&global_ev);
 
     return lean_io_result_mk_ok(obj);
 }

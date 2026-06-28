@@ -147,9 +147,9 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_mk(uint32_t signum_obj, uint8
         return lean_uv_loop_unavailable_error();
     }
     int result = uv_signal_init(global_ev.loop, uv_signal);
-    event_loop_unlock(&global_ev);
 
     if (result != 0) {
+        event_loop_unlock(&global_ev);
         free(uv_signal);
         free(signal);
         return lean_io_result_mk_error(lean_decode_uv_error(result, NULL));
@@ -158,6 +158,8 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_mk(uint32_t signum_obj, uint8
     lean_object * obj = lean_uv_signal_new(signal);
     lean_mark_mt(obj);
     lean_uv_signal_handle(signal)->data = obj;
+
+    event_loop_unlock(&global_ev);
 
     return lean_io_result_mk_ok(obj);
 }

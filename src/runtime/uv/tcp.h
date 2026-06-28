@@ -40,8 +40,10 @@ static inline uv_tcp_t* lean_uv_tcp_socket_handle(lean_uv_tcp_socket_object* soc
 
 // Detaches the socket from the event loop during shutdown: stops reads, drops the pending promises
 // and clears the handle pointer. Returns the number of references the loop held on the wrapping
-// object, which the caller must drop once the handle has been freed.
-size_t lean_uv_tcp_socket_shutdown(lean_uv_tcp_socket_object * socket);
+// object, which the caller must drop once the handle has been freed. A pending accept's client
+// socket is appended to `deferred` rather than released here, since its finalizer must not run
+// before the loop is marked finalized.
+size_t lean_uv_tcp_socket_shutdown(lean_uv_tcp_socket_object * socket, uv_deferred_releases & deferred);
 #endif
 
 // =======================================

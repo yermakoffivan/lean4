@@ -81,7 +81,7 @@ void initialize_libuv_tcp_socket() {
     });
 }
 
-size_t lean_uv_tcp_socket_shutdown(lean_uv_tcp_socket_object * tcp_socket) {
+size_t lean_uv_tcp_socket_shutdown(lean_uv_tcp_socket_object * tcp_socket, uv_deferred_releases & deferred) {
     size_t release_refs = 0;
 
     if (tcp_socket->m_promise_read != nullptr) {
@@ -104,20 +104,12 @@ size_t lean_uv_tcp_socket_shutdown(lean_uv_tcp_socket_object * tcp_socket) {
 
         if (tcp_socket->m_client != nullptr) {
             // The pending client is a freshly-initialized socket whose handle is registered in the
-            // loop but which the loop holds no reference to: `m_client` is its only owner. Since this
-            // runs during the loop teardown walk, dropping that reference could otherwise run the
-            // client's finalizer and free its handle while the loop is still being walked. Close and
-            // detach the client handle first so that the dropped reference's finalizer only frees the
-            // client struct.
-            lean_uv_tcp_socket_object* client = lean_to_uv_tcp_socket(tcp_socket->m_client);
-            if (lean_uv_tcp_socket_handle(client) != nullptr) {
-                uv_close((uv_handle_t*)lean_uv_tcp_socket_handle(client), [](uv_handle_t* handle) {
-                    free(handle);
-                });
-                client->m_uv.m_uv_handle = nullptr;
-            }
-
-            lean_dec(tcp_socket->m_client);
+            // loop but which the loop holds no reference to: `m_client` is its only owner. Its own
+            // handle is visited and closed by the teardown walk, so we only need to drop that single
+            // reference. That `lean_dec` is deferred to `finalize_libuv` (after the loop is marked
+            // finalized) because running the client finalizer now, mid-walk, would block in
+            // `event_loop_wait_finalized` and deadlock the teardown thread.
+            deferred.emplace_back(tcp_socket->m_client, 1);
             tcp_socket->m_client = nullptr;
         }
 

@@ -46,7 +46,7 @@ extern "C" void finalize_libuv() {
     event_loop_drain_active(&global_ev);
     event_loop_lock_internal(&global_ev);
 
-    std::vector<std::pair<lean_object *, size_t>> pending_releases;
+    uv_deferred_releases pending_releases;
 
     uv_walk(global_ev.loop, [](uv_handle_t * handle, void * arg) {
         if (uv_is_closing(handle)) {
@@ -58,6 +58,7 @@ extern "C" void finalize_libuv() {
             return;
         }
 
+        uv_deferred_releases * deferred = (uv_deferred_releases *)arg;
         lean_object * obj = (lean_object*)handle->data;
 
         if (obj != nullptr) {
@@ -68,7 +69,7 @@ extern "C" void finalize_libuv() {
                     releases = lean_uv_timer_shutdown(lean_to_uv_timer(obj));
                     break;
                 case UV_TCP:
-                    releases = lean_uv_tcp_socket_shutdown(lean_to_uv_tcp_socket(obj));
+                    releases = lean_uv_tcp_socket_shutdown(lean_to_uv_tcp_socket(obj), *deferred);
                     break;
                 case UV_UDP:
                     releases = lean_uv_udp_socket_shutdown(lean_to_uv_udp_socket(obj));
@@ -82,12 +83,21 @@ extern "C" void finalize_libuv() {
             }
 
             if (releases > 0) {
-                ((std::vector<std::pair<lean_object *, size_t>>*)arg)->emplace_back(obj, releases);
+                deferred->emplace_back(obj, releases);
             }
         }
 
         uv_close(handle, [](uv_handle_t * handle) { free(handle); });
     }, &pending_releases);
+
+    // Mark the loop finalized before draining it. The walk above detached every wrapper's handle and
+    // requested its close, which makes libuv cancel in-flight stream requests (connect/send/shutdown)
+    // and fire their callbacks during the `uv_run` below. Those callbacks may drop the last reference
+    // to a socket; marking finalized first ensures the resulting finalizer sees the loop gone and
+    // frees its already-detached wrapper immediately instead of blocking in
+    // `event_loop_wait_finalized`. We still hold the mutex, so finalizers on other threads waiting in
+    // `event_loop_wait_finalized` stay blocked until teardown fully completes.
+    event_loop_mark_finalized(&global_ev);
 
     uv_run(global_ev.loop, UV_RUN_DEFAULT);
 
@@ -95,8 +105,8 @@ extern "C" void finalize_libuv() {
     lean_assert(close_result == 0);
     (void)close_result;
 
-    event_loop_mark_finalized(&global_ev);
-
+    // Release the references the loop held on the surviving wrappers. Deferred until now because
+    // these `lean_dec`s can run wrapper finalizers, which must observe the finalized loop.
     for (auto & release : pending_releases) {
         for (size_t i = 0; i < release.second; i++) {
             lean_dec(release.first);

@@ -5,6 +5,8 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Author: Sofia Rodrigues
 */
 #pragma once
+#include <utility>
+#include <vector>
 #include <lean/lean.h>
 #include "runtime/io.h"
 #include "runtime/object.h"
@@ -26,6 +28,12 @@ enum event_loop_state {
     EVENT_LOOP_STOPPING,
     EVENT_LOOP_FINALIZED,
 };
+
+// Lean references whose `lean_dec`s are deferred by `finalize_libuv` until after the loop has been
+// marked finalized. Deferring is required for references whose finalizers call
+// `event_loop_wait_finalized`: running such a finalizer before the loop is marked finalized would
+// block the teardown thread forever. Each entry releases `second` references on `first`.
+typedef std::vector<std::pair<lean_object *, size_t>> uv_deferred_releases;
 
 // Event loop structure for managing asynchronous events and synchronization across multiple threads.
 typedef struct {

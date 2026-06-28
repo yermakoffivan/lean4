@@ -43,8 +43,9 @@ static inline size_t lean_uv_handle_release_one(lean_uv_handle_object * handle) 
 }
 
 // Frees a handle wrapper once the loop has been finalized. Callers must first synchronize with
-// `event_loop_wait_finalized`, after which the teardown walk has already freed and cleared the
-// `uv_handle_t`; the null check stays defensive in case the handle was never registered.
+// `event_loop_wait_finalized`, after which the teardown walk has already detached (nulled) and
+// closed the `uv_handle_t`, leaving it for libuv to free. The null check is therefore expected to
+// hold in the finalized case; it also stays defensive in case the handle was never registered.
 static inline void lean_uv_handle_free_detached(lean_uv_handle_object * handle, void * struct_ptr) {
     if (handle->m_uv_handle != nullptr) {
         free(handle->m_uv_handle);

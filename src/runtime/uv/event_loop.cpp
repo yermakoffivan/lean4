@@ -142,9 +142,11 @@ void event_loop_mark_finalized(event_loop_t * event_loop) {
     uv_cond_broadcast(&event_loop->finalize_cond);
 }
 
-// Blocks until `finalize_libuv` has finished tearing the loop down. Handle finalizers use this when
-// they find the loop gone so they wait for the teardown walk to free and detach their `uv_handle_t`
-// before they release the wrapping struct, instead of racing the walk.
+// Blocks until `finalize_libuv` has marked the loop finalized. Handle finalizers use this when they
+// find the loop gone: by the time the loop is finalized the teardown walk has already detached
+// (nulled) and closed their `uv_handle_t`, so they can free the wrapping struct without racing the
+// walk. Re-entrant calls from the teardown thread itself return immediately (the mutex is recursive
+// and the state is already finalized).
 void event_loop_wait_finalized(event_loop_t * event_loop) {
     uv_mutex_lock(&event_loop->mutex);
     while (event_loop->state != EVENT_LOOP_FINALIZED) {

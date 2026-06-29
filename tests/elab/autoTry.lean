@@ -631,3 +631,45 @@ set_option autoTry.onUnsolvedGoal true in
 set_option debug.autoTry.showEdits true in
 example : P := by
   skip
+
+/-! ### Empty-body insertion positions
+
+For an empty `tacticSeq1Indented` the body has no `getPos?`/`getTailPos?`, so
+`findTacticSeqBody` falls back to `range.stop` -- the stop position of the underlying
+`Tactic.unsolvedGoals` message. That's "just past the opener" (`by`, `·`, `=>`)
+*only because* `Term.reportUnsolvedGoals` happens to log the error at the surrounding
+`byTactic` / `cdot` / `case` syntax, whose total width equals the opener's width when
+the body is empty. The tests below pin those positions so any future change that widens
+the producer's `ref` (e.g. logging at an enclosing term ref) shows up as a test
+failure rather than as a silent off-by-many-characters insertion. -/
+
+-- Empty `· ` (cdot) inside an outer `by` block: insert just past `·`.
+/--
+error: unsolved goals
+⊢ P
+---
+info: autoTry edit: insert " exact Pintro" at +1:19
+---
+info: Try this:
+  [apply] exact Pintro
+-/
+#guard_msgs in
+set_option autoTry.onUnsolvedGoal true in
+set_option debug.autoTry.showEdits true in
+example : P := by ·
+
+-- Empty `by { }` (bracketed): insert just before `}` (uses `parent[2].getPos?`,
+-- not `range.stop`, so this exercises a separate code path).
+/--
+error: unsolved goals
+⊢ P
+---
+info: autoTry edit: insert " exact Pintro" at +1:20
+---
+info: Try this:
+  [apply] exact Pintro
+-/
+#guard_msgs in
+set_option autoTry.onUnsolvedGoal true in
+set_option debug.autoTry.showEdits true in
+example : P := by { }

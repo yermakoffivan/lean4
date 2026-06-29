@@ -316,7 +316,11 @@ def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree)
     unless onUnsolved || (onEmpty && isEmpty) do continue
     let ref := mkRangeStx msgRange
     let ctx := (findCtxFor msgRange).getD fallbackCtx
-    for (mctx, mvarId) in collectGoalsFromMessage msg.data do
+    let goals := collectGoalsFromMessage msg.data
+    if goals.isEmpty then
+      trace[autoTry] "Tactic.unsolvedGoals message yielded no (mctx, goal) pairs; \
+        producer not following the `withContext`-wrapped `ofGoal` contract?"
+    for (mctx, mvarId) in goals do
       acc := acc.push (.unsolvedGoal body insertPos msgRange.start, ctx, ref, mctx, mvarId)
   return acc
 

@@ -175,10 +175,31 @@ def mkRangeStx (range : Lean.Syntax.Range) : Syntax :=
 
 /--
 A trigger candidate: enough info for the hook to drive `try?` and emit a suggestion
-without re-walking the infotree. `ref` is the "Try this:" diagnostic anchor (for the
-`sorry` trigger it is also the syntax the suggestion replaces).
+without re-walking the infotree.
 -/
-abbrev Candidate := TriggerKind × ContextInfo × Syntax × MetavarContext × MVarId
+structure Candidate where
+  /-- Which kind of trigger fired here, plus any kind-specific positional data
+  (`insertPos` and `tacticSeq` for append-style suggestions, nothing for `sorry`
+  replacements). -/
+  kind : TriggerKind
+  /-- The `ContextInfo` whose subtree most tightly contains the trigger's source
+  range. Determines the environment, namespace, openDecls, and options passed to
+  the suggester in `runMetaMWithMessages`. See the per-message lookup in
+  `collectTriggerPoints` for how this is selected. -/
+  ctx : ContextInfo
+  /-- The "Try this:" diagnostic anchor. For unsolved-goal triggers this is a
+  synthetic atom whose source range matches the underlying message (so the hint
+  shows up exactly where the user sees the error); for `sorry` it's the `sorry`
+  tactic syntax itself, which the suggestion replaces. The runner also uses
+  `ref.getRange?` as the dedup key for the multi-state filter. -/
+  ref : Syntax
+  /-- The metavariable context the goal was last known in -- read off the
+  unsolved-goals message (for the `unsolvedGoal` kind) or off the tactic info node
+  (for `sorryTactic`). Note that `mctx` and `ctx` come from independent sources
+  but are correlated by the per-message ctx lookup. -/
+  mctx : MetavarContext
+  /-- The unsolved goal the suggester should try to close. -/
+  goal : MVarId
 
 /--
 Walk a `MessageData` tree, collecting each `MessageData.ofGoal mvarId` along with the
@@ -278,7 +299,9 @@ def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree)
       if let .ofTacticInfo tacInfo := info then
         if isSorryTactic tacInfo.stx then
           if let some goal := tacInfo.goalsBefore.head? then
-            return acc.push (.sorryTactic, ctx, tacInfo.stx, tacInfo.mctxBefore, goal)
+            return acc.push {
+              kind := .sorryTactic, ctx, ref := tacInfo.stx,
+              mctx := tacInfo.mctxBefore, goal }
       return acc
   -- Unsolved-goal triggers come from the message log.
   unless onUnsolved || onEmpty do return acc
@@ -332,7 +355,8 @@ def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree)
       trace[autoTry] "Tactic.unsolvedGoals message yielded no (mctx, goal) pairs; \
         producer not following the `withContext`-wrapped `ofGoal` contract?"
     for (mctx, mvarId) in goals do
-      acc := acc.push (.unsolvedGoal body insertPos, ctx, ref, mctx, mvarId)
+      acc := acc.push {
+        kind := .unsolvedGoal body insertPos, ctx, ref, mctx, goal := mvarId }
   return acc
 
 /--
@@ -469,19 +493,19 @@ def autoTryHook : Linter where run := withSetOptionIn fun stx => do
     let keyOf (ref : Syntax) : Option (String.Pos.Raw × String.Pos.Raw) :=
       ref.getRange?.map fun r => (r.start, r.stop)
     let mut counts : Std.HashMap (String.Pos.Raw × String.Pos.Raw) Nat := {}
-    for (_, _, ref, _, _) in candidates do
-      if let some key := keyOf ref then
+    for c in candidates do
+      if let some key := keyOf c.ref then
         counts := counts.alter key (fun n? => some (n?.getD 0 + 1))
     trace[autoTry] "trigger points: {candidates.size}"
-    for (k, ctx, ref, mctx, goal) in candidates do
-      let some key := keyOf ref | continue
+    for c in candidates do
+      let some key := keyOf c.ref | continue
       if counts.getD key 0 > 1 then continue
-      match k with
+      match c.kind with
       | .unsolvedGoal tacticSeq insertPos =>
-        let suggs ← collectSuggestionsForGoal ctx mctx goal
-        emitAppendSuggestions tacticSeq ref insertPos suggs cmdLine
+        let suggs ← collectSuggestionsForGoal c.ctx c.mctx c.goal
+        emitAppendSuggestions tacticSeq c.ref insertPos suggs cmdLine
       | .sorryTactic =>
-        runReplaceTryOnGoal ctx mctx goal ref
+        runReplaceTryOnGoal c.ctx c.mctx c.goal c.ref
 
 builtin_initialize addLinter autoTryHook
 

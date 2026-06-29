@@ -276,6 +276,107 @@ def testVerifyResultString (certFile keyFile : String) : IO Unit := do
     throw <| IO.userError "verifyResultString returned empty string"
 
 -- ---------------------------------------------------------------------------
+-- Test: negotiatedVersion reports a modern TLS version after handshake.
+-- ---------------------------------------------------------------------------
+
+def testNegotiatedVersion (certFile keyFile : String) : IO Unit := do
+  let serverCtx ← Context.Server.mk
+  serverCtx.configure certFile keyFile
+  let clientCtx ← Context.Client.mk
+  clientCtx.configure "" false
+
+  let serverSess ← Session.Server.mk serverCtx
+  let clientSess ← Session.Client.mk clientCtx
+  runHandshake clientSess serverSess
+
+  -- The Context layer pins a TLS 1.2 minimum, so both ends must negotiate TLSv1.2 or 1.3.
+  let v ← clientSess.negotiatedVersion
+  unless v == "TLSv1.3" || v == "TLSv1.2" do
+    throw <| IO.userError s!"unexpected negotiated version '{v}'"
+  -- Both peers must agree on the negotiated version.
+  let vs ← serverSess.negotiatedVersion
+  assertEqStr vs v
+
+-- ---------------------------------------------------------------------------
+-- Test: a full bidirectional close_notify exchange completes on both ends.
+-- ---------------------------------------------------------------------------
+
+-- Drive the close_notify exchange to completion, piping each side's alert to the
+-- other. `fuel` bounds the loop so a regression cannot hang the test.
+partial def runShutdown (fuel : Nat) (a b : Session) : IO Unit := do
+  if fuel == 0 then
+    throw <| IO.userError "close_notify exchange did not converge"
+  let ra ← a.closeNotify
+  pipeEncrypted a b
+  let rb ← b.closeNotify
+  pipeEncrypted b a
+  unless ra.isNone && rb.isNone do runShutdown (fuel - 1) a b
+
+def testCloseNotify (certFile keyFile : String) : IO Unit := do
+  let serverCtx ← Context.Server.mk
+  serverCtx.configure certFile keyFile
+  let clientCtx ← Context.Client.mk
+  clientCtx.configure "" false
+
+  let serverSess ← Session.Server.mk serverCtx
+  let clientSess ← Session.Client.mk clientCtx
+  runHandshake clientSess serverSess
+
+  -- A fresh client shutdown sends its close_notify but still awaits the peer's.
+  let first ← clientSess.closeNotify
+  match first with
+  | some .read => pure ()
+  | some .write => throw <| IO.userError "initial closeNotify should await peer read, not write"
+  | none => throw <| IO.userError "initial closeNotify completed before the peer responded"
+
+  -- Pipe the alert across and run both sides to a clean bidirectional shutdown.
+  pipeEncrypted clientSess serverSess
+  runShutdown 16 serverSess clientSess
+
+  -- After a clean shutdown, both report completion.
+  let cDone ← clientSess.closeNotify
+  let sDone ← serverSess.closeNotify
+  unless cDone.isNone && sDone.isNone do
+    throw <| IO.userError "closeNotify did not report a completed shutdown"
+
+-- ---------------------------------------------------------------------------
+-- Test: plaintext written before the handshake completes is queued and replayed.
+-- ---------------------------------------------------------------------------
+
+-- Calling `write` before the handshake forces SSL_write to drive the handshake, which blocks on
+-- WANT_READ. The plaintext must be queued (not dropped, not failed) and delivered once the
+-- handshake finishes — exercising the `pending_writes` blocked/flush path that is otherwise hard to
+-- reach with always-writable memory BIOs.
+def testWriteBeforeHandshake (certFile keyFile : String) : IO Unit := do
+  let serverCtx ← Context.Server.mk
+  serverCtx.configure certFile keyFile
+  let clientCtx ← Context.Client.mk
+  clientCtx.configure "" false
+
+  let serverSess ← Session.Server.mk serverCtx
+  let clientSess ← Session.Client.mk clientCtx
+
+  -- Write before handshaking: the data is queued, and OpenSSL asks for socket input.
+  let early ← clientSess.write "early".toUTF8
+  match early with
+  | some .read => pure ()
+  | some .write => throw <| IO.userError "write before handshake should block on read, not write"
+  | none => throw <| IO.userError "write before handshake should not complete immediately"
+
+  -- Complete the handshake; the queued plaintext stays pending throughout.
+  runHandshake clientSess serverSess
+
+  -- An empty write now flushes the queued plaintext into encrypted output.
+  let flushed ← clientSess.write ByteArray.empty
+  unless flushed.isNone do
+    throw <| IO.userError "queued plaintext should flush cleanly after the handshake"
+
+  pipeEncrypted clientSess serverSess
+  match ← serverSess.read? 1024 with
+  | .data b => assertEqStr (String.fromUTF8! b) "early"
+  | _ => throw <| IO.userError "queued plaintext was not delivered after the handshake"
+
+-- ---------------------------------------------------------------------------
 -- Run all tests
 -- ---------------------------------------------------------------------------
 
@@ -311,12 +412,45 @@ def testVerifyResultString (certFile keyFile : String) : IO Unit := do
   let (certFile, keyFile) ← setupTestCerts
   testVerifyResultString certFile keyFile
 
+#eval do
+  let (certFile, keyFile) ← setupTestCerts
+  testNegotiatedVersion certFile keyFile
+
+#eval do
+  let (certFile, keyFile) ← setupTestCerts
+  testCloseNotify certFile keyFile
+
+#eval do
+  let (certFile, keyFile) ← setupTestCerts
+  testWriteBeforeHandshake certFile keyFile
+
 /-- Returns `true` if `act` raised an `IO` exception. -/
 def threw (act : IO α) : IO Bool := do
   try
     discard act; return false
   catch _ =>
     return true
+
+-- A client that verifies the peer and pins the server's self-signed cert as its CA must still
+-- reject the handshake when the requested SNI host does not match the certificate's CN/SAN.
+-- This proves `setServerName` wires up hostname verification (SSL_set1_host), not just SNI.
+#eval do
+  let (certFile, keyFile) ← setupTestCerts
+  let serverCtx ← Context.Server.mk
+  serverCtx.configure certFile keyFile
+
+  let caPEM ← IO.FS.readFile certFile
+  let clientCtx ← Context.Client.mk
+  clientCtx.configureFromPEM caPEM true
+
+  let serverSess ← Session.Server.mk serverCtx
+  let clientSess ← Session.Client.mk clientCtx
+  -- Cert is for CN=localhost; ask for a different host.
+  clientSess.setServerName "wrong.example.com"
+
+  let threwMismatch ← threw (runHandshake clientSess serverSess)
+  unless threwMismatch do
+    throw <| IO.userError "handshake must fail when the SNI host does not match the certificate"
 
 #eval do
   let (certFile, keyFile) ← setupTestCerts

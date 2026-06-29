@@ -109,10 +109,8 @@ static ssl_write_step_ ssl_write_step(lean_ssl_session_object * obj, char const 
         return ssl_write_step_blocked;
     }
 
-    if (err == SSL_ERROR_ZERO_RETURN) {
-        return ssl_write_step_failed;
-    }
-
+    // Any other error (including SSL_ERROR_ZERO_RETURN) is fatal; the caller inspects
+    // `*out_err` to produce a more specific message.
     return ssl_write_step_failed;
 }
 
@@ -151,6 +149,7 @@ static ssl_pending_write_flush try_flush_pending_writes(lean_ssl_session_object 
 }
 
 static lean_obj_res mk_ssl_session(SSL_CTX * ctx, ssl_session_role role) {
+    ERR_clear_error();
     SSL * ssl = SSL_new(ctx);
 
     if (ssl == nullptr) {
@@ -275,8 +274,9 @@ extern "C" LEAN_EXPORT lean_obj_res lean_ssl_handshake(b_obj_arg ssl) {
         return mk_ssl_result_want_write();
     }
 
-    // SSL_ERROR_ZERO_RETURN means the peer sent a TLS close_notify during the
-    // handshake — this is a fatal protocol error, not a recoverable retry.
+    // Any other error is fatal for the handshake. In particular SSL_ERROR_ZERO_RETURN
+    // (the peer sent a TLS close_notify before the handshake finished) is a protocol
+    // error here, not a recoverable retry.
     return mk_openssl_io_error("SSL_do_handshake failed", err);
 }
 

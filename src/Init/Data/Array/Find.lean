@@ -411,7 +411,7 @@ grind_pattern findIdx_lt_size => xs.findIdx p, xs.size
 theorem not_of_lt_findIdx {p : α → Bool} {xs : Array α} {i : Nat} (h : i < xs.findIdx p) :
     p (xs[i]'(Nat.le_trans h findIdx_le_size)) = false := by
   rcases xs with ⟨xs⟩
-  simpa using List.not_of_lt_findIdx (by simpa using h)
+  simpa using! List.not_of_lt_findIdx (by simpa using h)
 
 grind_pattern not_of_lt_findIdx => xs.findIdx p, xs[i]
 
@@ -538,12 +538,12 @@ theorem findIdx?_eq_some_iff_getElem {xs : Array α} {p : α → Bool} {i : Nat}
 theorem of_findIdx?_eq_some {xs : Array α} {p : α → Bool} (w : xs.findIdx? p = some i) :
     match xs[i]? with | some a => p a | none => false := by
   rcases xs with ⟨xs⟩
-  simpa using List.of_findIdx?_eq_some (by simpa using w)
+  simpa using! List.of_findIdx?_eq_some (by simpa using w)
 
 theorem of_findIdx?_eq_none {xs : Array α} {p : α → Bool} (w : xs.findIdx? p = none) :
     ∀ i : Nat, match xs[i]? with | some a => ¬ p a | none => true := by
   rcases xs with ⟨xs⟩
-  simpa using List.of_findIdx?_eq_none (by simpa using w)
+  simpa using! List.of_findIdx?_eq_none (by simpa using w)
 
 @[simp, grind =] theorem findIdx?_map {f : β → α} {xs : Array β} {p : α → Bool} :
     findIdx? p (xs.map f) = xs.findIdx? (p ∘ f) := by
@@ -595,11 +595,12 @@ theorem findIdx?_eq_none_of_findIdx?_eq_none {xs : Array α} {p q : α → Bool}
   rcases xs with ⟨xs⟩
   simpa using List.findIdx?_eq_none_of_findIdx?_eq_none (by simpa using w)
 
-@[grind =]
 theorem findIdx_eq_getD_findIdx? {xs : Array α} {p : α → Bool} :
     xs.findIdx p = (xs.findIdx? p).getD xs.size := by
   rcases xs with ⟨xs⟩
   simp [List.findIdx_eq_getD_findIdx?]
+
+grind_pattern findIdx_eq_getD_findIdx? => xs.findIdx p, xs.findIdx? p
 
 theorem findIdx?_eq_some_le_of_findIdx?_eq_some {xs : Array α} {p q : α → Bool} (w : ∀ x ∈ xs, p x → q x) {i : Nat}
     (h : xs.findIdx? p = some i) : ∃ j, j ≤ i ∧ xs.findIdx? q = some j := by

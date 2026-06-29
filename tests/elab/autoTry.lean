@@ -478,6 +478,105 @@ example : P := by
   exact this_undefined_name
   sorry
 
+/-! ## Suggester picks the deepest enclosing `ContextInfo`
+
+The hook walks the InfoTree for the deepest `ContextInfo` whose info node's syntax
+range contains the unsolved-goals message, and runs the suggester with that context's
+`openDecls`, `options`, namespace, etc. Without this, every recovered goal would see
+only the outer `CommandContextInfo` captured at the top of the tree, missing any
+scope shift introduced deeper down (command-level `open … in <cmd>`, the macro-
+expanded inner command of `set_option … in <cmd>`, etc.).
+
+Caveat: term-level `open … in <term>` and `set_option … in <term>` change
+`Core.Context` via `withTheReader` but do *not* wrap their resulting info trees in a
+`PartialContextInfo.commandCtx`, so `foldInfo` never sees the inner `openDecls`. The
+`open … in <term>` test below still captures the buggy fully-qualified output for that
+reason; fixing it requires `elabOpen` / `elabSetOption` (term) to push a
+`commandCtx` node, which is out of scope here.
+
+The suggester below builds the witness as an `Expr` and delaborates it with
+`PrettyPrinter.delab`, so the rendered identifier goes through the real
+openDecls-aware delaborator -- the same path `exact?` uses to format its hits. -/
+
+namespace AutoTryCtxBugRepro
+
+opaque MyUniqueProp : Prop
+axiom myUniqueAxiom : MyUniqueProp
+
+end AutoTryCtxBugRepro
+
+@[try_suggestion]
+def autoTryDelabSuggester (goal : MVarId) (_ : Try.Info) :
+    MetaM (Array (TSyntax `tactic)) := goal.withContext do
+  let ty := (← instantiateMVars (← goal.getType)).consumeMData
+  unless ty.isConstOf ``AutoTryCtxBugRepro.MyUniqueProp do return #[]
+  let term ← PrettyPrinter.delab (mkConst ``AutoTryCtxBugRepro.myUniqueAxiom)
+  return #[← `(tactic| exact $term)]
+
+set_option autoTry.onEmptyProof true
+
+-- Control: no local `open`. Full name expected.
+/--
+error: unsolved goals
+⊢ AutoTryCtxBugRepro.MyUniqueProp
+---
+info: Try this:
+  [apply] exact AutoTryCtxBugRepro.myUniqueAxiom
+-/
+#guard_msgs in
+example : AutoTryCtxBugRepro.MyUniqueProp := by
+
+-- `open … in <term>` wraps the empty `by`. Term-level `open … in` doesn't push a
+-- `commandCtx` node into the InfoTree (only changes `Core.Context` via `withTheReader`),
+-- so the fix can't find an inner ctx to use here. Captures the buggy fully-qualified
+-- output; correctness would require `elabOpen` to wrap its trees in a `commandCtx`.
+/--
+error: unsolved goals
+⊢ MyUniqueProp
+---
+info: Try this:
+  [apply] exact AutoTryCtxBugRepro.myUniqueAxiom
+-/
+#guard_msgs in
+example : AutoTryCtxBugRepro.MyUniqueProp := open AutoTryCtxBugRepro in by
+
+-- `open … in <command>` form: the inner command's elaboration captures a fresh
+-- `commandCtx` with the open, which the deepest-enclosing-ctx walk picks up.
+/--
+error: unsolved goals
+⊢ MyUniqueProp
+---
+info: Try this:
+  [apply] exact myUniqueAxiom
+-/
+#guard_msgs in
+open AutoTryCtxBugRepro in
+example : AutoTryCtxBugRepro.MyUniqueProp := by
+
+-- `set_option … in <example>` (command-level in-form) expands to a `section` block
+-- whose inner command captures a fresh `commandCtx` with the override. The deepest-
+-- enclosing-ctx walk picks it up. With `open AutoTryCtxBugRepro` at section scope so
+-- the goal type's `MyUniqueProp` resolves, and `pp.fullNames true` flipped only inside
+-- the in-form, the goal display shows the fully-qualified type and the suggester also
+-- sees the override and renders the fully-qualified `AutoTryCtxBugRepro.myUniqueAxiom`.
+section
+open AutoTryCtxBugRepro
+
+/--
+error: unsolved goals
+⊢ AutoTryCtxBugRepro.MyUniqueProp
+---
+info: Try this:
+  [apply] exact AutoTryCtxBugRepro.myUniqueAxiom
+-/
+#guard_msgs in
+set_option pp.fullNames true in
+example : MyUniqueProp := by
+
+end
+
+set_option autoTry.onEmptyProof false
+
 /-! ## Edit-text verification
 
 The [apply] widget hides the separator characters that the edit inserts. Setting

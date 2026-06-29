@@ -475,6 +475,58 @@ private def foldUpperAdjointMeet? (goal : MVarId) (target rhs : Expr) : VCGenM (
   let newTarget ← mkAppNS target.getAppFn (relArgs.set! (relArgs.size - 1) newRhs)
   return some (← goal.replaceTargetDefEq newTarget)
 
+/-- `unfoldReducible`-normalize a goal's target, so a later `applyChecked` unifies past reducible state
+types (`StateM σ`, `Tick`, …) that sit behind reducible definitions — the normalization that
+`BackwardRule.applyChecked`'s `+debug` retry (`Util.lean`) diagnoses. When `betaRhs` is set, the RHS of
+the `pre ⊑ rhs` target is also beta-reduced first (the wand reduction leaves a `(fun m => …) s` redex
+whose inner `wp` head must be exposed). -/
+private def normalizeReducedGoal (goal : MVarId) (betaRhs : Bool := false) : VCGenM MVarId := do
+  let ty ← goal.getType
+  unless betaRhs do return ← goal.replaceTargetDefEq (← unfoldReducible ty)
+  let relArgs := ty.getAppArgs
+  let some rhs := relArgs[relArgs.size - 1]? | return goal
+  let newTarget ← mkAppNS ty.getAppFn (relArgs.set! (relArgs.size - 1) (← unfoldReducible rhs.headBeta))
+  goal.replaceTargetDefEq newTarget
+
+/-- Fallback for a registered frame `conj` that the direct `splitLatticeOp?` could not peel over a
+*nested-base* assertion lattice: `vcgen` introduced an extra inner state coordinate, so the goal is
+`conj c R n s` — one application deeper than the registered direct split lemma expects — and
+`splitLatticeOp?` returns `none`.
+
+Build a backward rule from the registered `conjReduce` equation (`conj c R = <built-in connective>`,
+e.g. a `meet`) via `mkReduceRule` and `applyChecked` it. The rule's conclusion has the same head as the
+goal, so it unifies directly (no defeq/normalization); its single premise `pre ⊑ <connective> n s` is the
+reduced subgoal. `unfoldReducible`-normalize it so the next iteration's `splitLatticeOp?` decomposes the
+exposed connective over *all* coordinates and the operand `wp` flows into the normal spec step.
+
+Keyed on `customConjReduces`, so only registered frame `conj` heads are touched, and run *after* the
+direct split and the wp phase — a flat lattice keeps its direct split, and only the nested case that
+would otherwise stall on `.noProgress` reaches here. Terminates: each firing exposes a non-`conj`
+connective head, so it never re-fires on its own output. -/
+private def reduceFrameConj? (goal : MVarId) (rhs : Expr) : VCGenM (Option MVarId) := do
+  let some headName := rhs.getAppFn.constName? | return none
+  let some eqName := (← read).customConjReduces[headName]? | return none
+  let some rule ← mkReduceRule eqName rhs | return none
+  let .goals [g] ← rule.applyChecked goal | return none
+  return some (← normalizeReducedGoal g)
+
+/-- Wand companion to `reduceFrameConj?`: reduce a residual frame wand `PreservesSup.upperAdjoint
+(conj c) R` that the direct `impSplit` couldn't peel over a nested-base lattice (the wand is applied to
+an extra inner state coordinate). Build a backward rule from the registered `impReduce` equation
+(`upperAdjoint (conj c) R = <closed form>`, e.g. a cost shift `fun m => R (m + c)`) via `mkReduceRule`
+and `applyChecked` it; the premise `pre ⊑ <closed form> n s` is the reduced subgoal. Beta-reduce and
+`unfoldReducible`-normalize it so the body `R` — and its inner `wp` — is exposed to the normal spec step
+instead of stranding in a VC. Run as a fallback, so a flat lattice keeps its direct `impSplit`. -/
+private def reduceFrameImp? (goal : MVarId) (rhs : Expr) : VCGenM (Option MVarId) := do
+  unless rhs.isAppOf ``Lean.Order.PreservesSup.upperAdjoint do return none
+  -- `@PreservesSup.upperAdjoint α inst (conj c) R …`: the slice `conj c` is at index 2; reduce keyed on
+  -- its head.
+  let some sliceHead := rhs.getAppArgs[2]?.bind (·.getAppFn.constName?) | return none
+  let some eqName := (← read).customImpReduces[sliceHead]? | return none
+  let some rule ← mkReduceRule eqName rhs | return none
+  let .goals [g] ← rule.applyChecked goal | return none
+  return some (← normalizeReducedGoal g (betaRhs := true))
+
 /--
 The main VC generation step. Operates on a plain `MVarId` with no knowledge of grind.
 Returns `.goals subgoals` when the goal was decomposed, or a classification result
@@ -564,6 +616,13 @@ public def solve (scope : VCGen.Scope) (goal : MVarId) : VCGenM SolveResult := g
       | .framed scope subgoals => return .goals scope subgoals
       | .notFramed goal info => return ← applySpec scope goal info
     throwError "Failed to decompose weakest precondition for {info.prog}. This should not happen."
+
+  -- Phase 5 (fallback): a registered frame `conj`/wand that the direct split couldn't peel over a
+  -- nested-base lattice. `reduceFrameConj?` exposes the `conj`'s `meet`-first connective; `reduceFrameImp?`
+  -- reduces the residual wand via its `impReduce` equation. Either way the next iteration's
+  -- `splitLatticeOp?`/spec step decomposes the result over all coordinates and specs the inner `wp`.
+  if let some g ← reduceFrameConj? goal rhs then return .goals scope [g]
+  if let some g ← reduceFrameImp? goal rhs then return .goals scope [g]
 
   return .stop (.noProgress pre rhs)
 

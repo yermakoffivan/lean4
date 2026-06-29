@@ -186,6 +186,44 @@ public def LatticeSplit.mkBackwardRuleForLattice
   let res ← abstractMVars prf
   mkBackwardRuleFromExpr res.expr res.paramNames.toList
 
+/--
+Creates a backward rule that *reduces* an operator-applied RHS via a registered equation
+`eqName : LHS = RHS`, where `LHS` is the operator applied to its arguments (e.g. `cCostConj c R`, or
+`PreservesSup.upperAdjoint (cCostConj c) R`). Unlike `mkBackwardRuleForLattice` it chains no `relLemma`:
+the single premise `pre ⊑ RHS s₁…sₙ` *is* the reduced subgoal. Produces
+
+```
+∀ … (pre), pre ⊑ RHS s₁…sₙ → pre ⊑ LHS s₁…sₙ
+```
+
+with the operator's own arguments and the excess coordinates `s₁…sₙ` (read off from `goalRhs` past the
+`LHS` arity) as fresh metavariables — so `applyChecked` unifies the rule's conclusion (same head as the
+goal) directly, with no defeq/normalization. Returns `none` if `eqName` is not an equation or `goalRhs`
+has fewer arguments than `LHS`. -/
+public def mkReduceRule (eqName : Name) (goalRhs : Expr) : MetaM (Option BackwardRule) := do
+  let eqConst ← mkConstWithFreshMVarLevels eqName
+  let (argMVars, _, eqBody) ← forallMetaTelescope (← Meta.inferType eqConst)
+  let some (_, lhs, _) := eqBody.eq? | return none
+  let numLhsArgs := lhs.getAppNumArgs
+  if goalRhs.getAppNumArgs < numLhsArgs then return none
+  -- Pin the operator's own arguments (carrier `Pred`, instance, resource …) to the goal by unifying
+  -- the equation's `LHS` with the goal RHS's operator prefix, so `LHS`'s carrier type is concrete and
+  -- the coordinates below apply.
+  unless ← isDefEq lhs (mkAppN goalRhs.getAppFn (goalRhs.getAppArgs.extract 0 numLhsArgs)) do
+    return none
+  -- The excess coordinates are the goal RHS arguments past the operator's own; freshen them so the
+  -- rule is a pattern (like `mkBackwardRuleForLattice`'s `ss`).
+  let ss ← (goalRhs.getAppArgs.extract numLhsArgs goalRhs.getAppNumArgs).mapM fun arg => do
+    mkFreshExprMVar (← Meta.inferType arg)
+  let eqDistributed ← liftEqByArgs (mkAppN eqConst argMVars) ss.toList  -- LHS s₁…sₙ = RHS s₁…sₙ
+  let some (_, goal, _) := (← Meta.inferType eqDistributed).eq? | return none
+  let pre ← mkFreshExprMVar (userName := `Pre) (← Meta.inferType goal)
+  let relEq ← mkCongrArg (← mkAppM ``PartialOrder.rel #[pre]) eqDistributed
+  -- eqMp : (pre ⊑ RHS s₁…sₙ) → (pre ⊑ LHS s₁…sₙ)
+  let eqMp ← mkAppM ``Eq.mp #[← mkEqSymm relEq]
+  let res ← abstractMVars eqMp
+  return some (← mkBackwardRuleFromExpr res.expr res.paramNames.toList)
+
 /-! ## Spec rules -/
 
 /-- Build the explicit pointwise implication premise used to weaken a concrete `post`.

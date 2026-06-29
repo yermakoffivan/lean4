@@ -208,6 +208,14 @@ public structure VCGen.Context where
   keyed by the `conj` head constant. Consulted by `splitLatticeOp?` (dispatching on the inner
   operator) so a custom frame's magic wand decomposes instead of surfacing in a VC. -/
   customImpSplits : Std.HashMap Name VCGen.LatticeSplit := {}
+  /-- Conj-reduction equations (`FrameProc.conjReduce`) for custom frame operators, keyed by the `conj`
+  head constant. Consulted by `reduceFrameConj?` to reduce `conj F rest` to its built-in connective over
+  a nested-base lattice. -/
+  customConjReduces : Std.HashMap Name Name := {}
+  /-- Wand-reduction equations (`FrameProc.impReduce`) for custom frame operators, keyed by the `conj`
+  head constant. Consulted by `reduceFrameImp?` to peel a residual
+  `PreservesSup.upperAdjoint conj F rest` over a nested-base lattice. -/
+  customImpReduces : Std.HashMap Name Name := {}
   /-- User-customizable simp methods used to pre-simplify hypotheses. -/
   hypSimpMethods : Option Sym.Simp.Methods := none
   /-- The `trivial` config option: when `true` (default), `Driver.emitVC` runs

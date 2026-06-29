@@ -121,7 +121,8 @@ public def mkContext (lemmas : Syntax) (goal : MVarId) (ignoreStarArg := false) 
   let frameProcs ← VCGen.getFrameProcs
   let ctx : VCGen.Context :=
     { backwardRules, frameInferenceProc := VCGen.matchFrame?.toRef,
-      customLatticeSplits := frameProcs.splits, customImpSplits := frameProcs.impSplits }
+      customLatticeSplits := frameProcs.splits, customImpSplits := frameProcs.impSplits,
+      customConjReduces := frameProcs.conjReduces, customImpReduces := frameProcs.impReduces }
   return (ctx, { specs := allSpecThms })
 
 end VCGen

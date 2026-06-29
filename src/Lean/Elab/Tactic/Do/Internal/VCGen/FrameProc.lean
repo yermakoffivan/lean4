@@ -40,6 +40,16 @@ structure FrameProc where
   /-- The lattice split decomposing the residual `PreservesSup.upperAdjoint conj F R` (the frame's magic wand)
   on the RHS of an entailment, so the wand never surfaces in a VC. -/
   impSplit : LatticeSplit
+  /-- Optional equation `conj r b = <built-in connective>` (e.g. a `meet`). A fallback to *reduce*
+  `conj r b` over a nested-base lattice, where the direct `split` cannot peel the extra state
+  coordinate; reducing it to the built-in connective lets the meet/ofProp splits decompose it over all
+  coordinates. `none` for frames whose flat `split` always suffices. -/
+  conjReduce : Option Name := none
+  /-- Optional equation `upperAdjoint (conj r) b = <closed form>` (e.g. a cost shift `fun m => b (m+r)`).
+  A fallback to *reduce* the residual wand over a nested-base lattice, where the direct `impSplit`
+  cannot peel the extra state coordinate; reducing it exposes the body `b` (with its inner `wp`) so the
+  normal spec step runs. `none` for frames whose flat `impSplit` always suffices. -/
+  impReduce : Option Name := none
 
 unsafe def getFrameProcFromDeclImpl (declName : Name) : ImportM FrameProc := do
   let ctx ← read
@@ -62,13 +72,23 @@ structure FrameProcs where
   splits : Std.HashMap Name LatticeSplit := {}
   /-- Splits for the residual wands `PreservesSup.upperAdjoint conj F R`, keyed by `conj` head. -/
   impSplits : Std.HashMap Name LatticeSplit := {}
+  /-- Optional conj-reduction equations (`FrameProc.conjReduce`), keyed by `conj` head. -/
+  conjReduces : Std.HashMap Name Name := {}
+  /-- Optional wand-reduction equations (`FrameProc.impReduce`), keyed by `conj` head. -/
+  impReduces : Std.HashMap Name Name := {}
 
 instance : Inhabited FrameProcs := ⟨{}⟩
 
 def FrameProcs.insert (s : FrameProcs) (_declName : Name) (fp : FrameProc) : FrameProcs :=
   { procs := s.procs.insert fp.prog fp
     splits := s.splits.insert fp.conj fp.split
-    impSplits := s.impSplits.insert fp.conj fp.impSplit }
+    impSplits := s.impSplits.insert fp.conj fp.impSplit
+    conjReduces := match fp.conjReduce with
+      | some eq => s.conjReduces.insert fp.conj eq
+      | none => s.conjReduces
+    impReduces := match fp.impReduce with
+      | some eq => s.impReduces.insert fp.conj eq
+      | none => s.impReduces }
 
 abbrev FrameProcExtension := ScopedEnvExtension Name (Name × FrameProc) FrameProcs
 

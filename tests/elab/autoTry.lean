@@ -547,12 +547,10 @@ info: Try this:
 open AutoTryCtxBugRepro in
 example : AutoTryCtxBugRepro.MyUniqueProp := by
 
--- `set_option … in <example>` (command-level in-form) expands to a `section` block
--- whose inner command captures a fresh `commandCtx` with the override. The deepest-
--- enclosing-ctx walk picks it up. With `open AutoTryCtxBugRepro` at section scope so
--- the goal type's `MyUniqueProp` resolves, and `pp.fullNames true` flipped only inside
--- the in-form, the goal display shows the fully-qualified type and the suggester also
--- sees the override and renders the fully-qualified `AutoTryCtxBugRepro.myUniqueAxiom`.
+-- `set_option … in <example>` flips `pp.fullNames true` only for the inner example.
+-- With `open AutoTryCtxBugRepro` at section scope so the goal type resolves, the
+-- suggester sees the option override (via the message's `withContext` wrapper) and
+-- renders the fully-qualified `AutoTryCtxBugRepro.myUniqueAxiom`.
 section
 open AutoTryCtxBugRepro
 

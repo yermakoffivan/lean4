@@ -99,11 +99,10 @@ register_builtin_option debug.autoTry.showEdits : Bool := {
 builtin_initialize registerTraceClass `autoTry
 
 /--
-Run a `MetaM` computation in the elaboration scope captured by `msgCtx` (env, mctx,
-options) and `namingCtx` (current namespace, openDecls), with the given `lctx`,
-propagating any messages and traces produced back into the surrounding `CommandElabM`
-state. The surrounding `CommandElabM` cancel token is forwarded so that long-running
-`try?` calls get cancelled when the linter snapshot is cancelled.
+Run a `MetaM` computation in the elaboration scope captured by `msgCtx` and
+`namingCtx`, with the given `lctx`, propagating any messages and traces back into the
+surrounding `CommandElabM` state. The surrounding cancel token is forwarded so that
+long-running `try?` calls get cancelled when the linter snapshot is cancelled.
 -/
 def runMetaMWithMessages (msgCtx : MessageDataContext) (namingCtx : NamingContext)
     (lctx : LocalContext) (x : MetaM α) : CommandElabM α := do
@@ -177,29 +176,23 @@ def mkRangeStx (range : Lean.Syntax.Range) : Syntax :=
 /--
 A trigger candidate: enough info for the hook to drive `try?` and emit a suggestion
 without re-walking the infotree.
+
+`msgCtx` and `namingCtx` carry the elaboration scope active when the trigger fired;
+for unsolved-goal triggers this is recovered from the `MessageData.withContext` /
+`MessageData.withNamingContext` wrappers the log machinery attaches, and so includes
+any `withTheReader Core.Context` overrides (e.g. from term-level `open … in <term>`).
+For `sorry` triggers it's derived from the surrounding `TacticInfo`'s `ContextInfo`.
+
+`ref` is the "Try this:" diagnostic anchor *and* the dedup key for the multi-state
+filter -- a synthetic atom matching the message range for unsolved-goal triggers, or
+the `sorry` tactic syntax itself for sorry triggers (which is also what the
+suggestion replaces).
 -/
 structure Candidate where
-  /-- Which kind of trigger fired here, plus any kind-specific positional data
-  (`insertPos` and `tacticSeq` for append-style suggestions, nothing for `sorry`
-  replacements). -/
   kind : TriggerKind
-  /-- The "Try this:" diagnostic anchor. For unsolved-goal triggers this is a
-  synthetic atom whose source range matches the underlying message (so the hint
-  shows up exactly where the user sees the error); for `sorry` it's the `sorry`
-  tactic syntax itself, which the suggestion replaces. The runner also uses
-  `ref.getRange?` as the dedup key for the multi-state filter. -/
   ref : Syntax
-  /-- Pretty-printing/elaboration context (env, mctx, lctx, opts) as it was when the
-  trigger fired. For unsolved-goal triggers, recovered from the
-  `MessageData.withContext` wrapper the log machinery attaches; for `sorry` triggers,
-  read off the surrounding `TacticInfo`'s `ContextInfo`. Includes any
-  `withTheReader Core.Context` overrides (e.g. from term-level `open … in <term>`). -/
   msgCtx : MessageDataContext
-  /-- Namespace + openDecls as they were when the trigger fired. Sourced the same way
-  as `msgCtx` (via `MessageData.withNamingContext` for unsolved-goal triggers, from
-  the `ContextInfo` for `sorry`). -/
   namingCtx : NamingContext
-  /-- The unsolved goal the suggester should try to close. -/
   goal : MVarId
 
 /--
@@ -293,11 +286,11 @@ where
 /--
 Collect candidate trigger points.
 
-* **Unsolved-goal triggers** are recovered from the command's message log. For each
-  `Tactic.unsolvedGoals` error, walk the `MessageData` to pull out each
-  `(mctx, mvarId)` pair, then locate the surrounding admit-emitting scope by finding
-  the *deepest* `TacticInfo` whose `goalsAfter` still contains `mvarId` and walking
-  the command syntax for the enclosing `by` / `{ … }` / `· ` / `case` scope.
+* **Unsolved-goal triggers** come from the command's message log. For each
+  `Tactic.unsolvedGoals` error, `collectGoalsAndCtxFromMessage` recovers each
+  `(msgCtx, namingCtx, goal)` tuple, and `findTacticSeqBody` locates the enclosing
+  `by` / `{ … }` / `· ` / `case` scope's body and insertion position from the
+  command syntax.
 * **Sorry triggers** are read directly off `sorry`-tactic info-tree nodes.
 -/
 def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree)
@@ -356,8 +349,8 @@ def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree)
   return acc
 
 /--
-Drive `try?` from CommandElabM, returning the suggestion array. Sets up TacticM/TermElabM
-around the saved infotree state and runs `Try.collectTryCoreSuggestions` on `goal`.
+Drive `try?` from `CommandElabM`, returning the suggestion array. Runs
+`Try.collectTryCoreSuggestions` on `goal` inside the captured elaboration scope.
 Returns `#[]` on error or interruption (control-flow exceptions are re-raised).
 -/
 def collectSuggestionsForGoal (msgCtx : MessageDataContext) (namingCtx : NamingContext)

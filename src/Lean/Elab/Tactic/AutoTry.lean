@@ -49,6 +49,20 @@ register_builtin_option autoTry.onEmptyProof : Bool := {
 }
 
 /--
+Former name of `autoTry.onEmptyProof`. Kept as an alias so that `set_option
+tactic.tryOnEmptyBy true` in code written against earlier releases continues to enable
+the empty-`by` suggestion. Use `autoTry.onEmptyProof` in new code.
+-/
+register_builtin_option tactic.tryOnEmptyBy : Bool := {
+  defValue := false
+  descr := "deprecated alias for `autoTry.onEmptyProof`"
+  deprecation? := some {
+    since := "2026-06-29"
+    text? := some "use `autoTry.onEmptyProof` instead"
+  }
+}
+
+/--
 Run `try?` on each proof or subproof that left a goal unsolved -- empty `by`, `by skip`,
 empty or unfinished `· `, empty or unfinished `case h => `, and so on -- and report any
 suggestions to insert. The suggestion is appended to the existing sequence
@@ -247,7 +261,7 @@ Collect candidate trigger points.
 -/
 def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree)
     (msgs : PersistentArray Message) : CommandElabM (Array Candidate) := do
-  let onEmpty := autoTry.onEmptyProof.get opts
+  let onEmpty := autoTry.onEmptyProof.get opts || tactic.tryOnEmptyBy.get opts
   let onUnsolved := autoTry.onUnsolvedGoal.get opts
   let onSorry := autoTry.onSorry.get opts
   let mut acc : Array Candidate := #[]
@@ -395,7 +409,7 @@ goals, `sorry`) all produce errors or warnings of their own.
 -/
 def autoTryHook : Linter where run := withSetOptionIn fun stx => do
   let opts ← getOptions
-  let onEmpty := autoTry.onEmptyProof.get opts
+  let onEmpty := autoTry.onEmptyProof.get opts || tactic.tryOnEmptyBy.get opts
   let onUnsolved := autoTry.onUnsolvedGoal.get opts
   let onSorry := autoTry.onSorry.get opts
   unless onEmpty || onUnsolved || onSorry do return

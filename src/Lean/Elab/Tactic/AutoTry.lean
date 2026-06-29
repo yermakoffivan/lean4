@@ -214,7 +214,13 @@ the case where the error is logged inside the body (`case h => skip`, `{ skip }`
 The only syntax-kind knowledge is `tacticSeq1Indented` vs `tacticSeqBracketed`,
 needed to read the tactics-container at child index 0 vs 1 and to know that the
 empty-body insertion point sits before `}` (for bracketed) or right after the
-opening token (for indented -- the message range's `stop` is a reliable proxy). -/
+opening token (for indented -- the message range's `stop` is a reliable proxy).
+
+These two kinds are the complete universe of tactic-sequence variants in the parser:
+`tacticSeq` (`def tacticSeq := tacticSeqBracketed <|> tacticSeq1Indented`) and
+`tacticSeqIndentGt` are pure wrappers that descend into one of the two real forms,
+and `walkAndFind` pierces them transparently via DFS. New seq variants would have
+to be added here; the silent-skip is reported via the call-site trace. -/
 partial def findTacticSeqBody (cmd : Syntax) (range : Lean.Syntax.Range) :
     Option (Syntax × String.Pos.Raw) :=
   walkAndFind cmd
@@ -311,7 +317,11 @@ def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree)
     unless cmdRange.includes msgRange do continue
     if seen.contains (msgRange.start, msgRange.stop) then continue
     seen := seen.insert (msgRange.start, msgRange.stop) ()
-    let some (body, insertPos) := findTacticSeqBody cmd msgRange | continue
+    let some (body, insertPos) := findTacticSeqBody cmd msgRange
+      | trace[autoTry] "no tacticSeq body found for unsolved-goals message at \
+          {msgRange.start.byteIdx}-{msgRange.stop.byteIdx}; \
+          unrecognised seq variant?"
+        continue
     let isEmpty := body.getPos?.isNone
     unless onUnsolved || (onEmpty && isEmpty) do continue
     let ref := mkRangeStx msgRange

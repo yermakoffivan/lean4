@@ -305,26 +305,6 @@ def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree)
       return acc
   -- Unsolved-goal triggers come from the message log.
   unless onUnsolved || onEmpty do return acc
-  -- Build a per-message lookup: the deepest `ContextInfo` whose info-node syntax range
-  -- contains the message range. This picks up scope shifts that land deeper than the
-  -- command's outer `CommandContextInfo` -- e.g. term-level `open Foo in by` or the
-  -- macro-expanded inner command of `set_option … in <cmd>` -- which otherwise leak
-  -- the pre-shift `openDecls` and `options` into the suggester's `runMetaMWithMessages`.
-  let allCtxs := tree.foldInfo (init := #[]) fun ctx info acc =>
-    if let some r := info.stx.getRange? then acc.push (r, ctx) else acc
-  let findCtxFor (range : Lean.Syntax.Range) : Option ContextInfo := Id.run do
-    let mut best : Option (Lean.Syntax.Range × ContextInfo) := none
-    for (r, c) in allCtxs do
-      unless r.includes range do continue
-      match best with
-      | none => best := some (r, c)
-      | some (br, _) =>
-        if r.stop.byteIdx - r.start.byteIdx < br.stop.byteIdx - br.start.byteIdx then
-          best := some (r, c)
-    return best.map (·.2)
-  -- Fallback for messages whose range no info node covers (defensive; unexpected
-  -- in practice since the error producer's ref is always inside some elab unit).
-  let some fallbackCtx := allCtxs[0]?.map (·.2) | return acc
   let fileMap ← getFileMap
   -- `runLintersAsync` accumulates diagnostics both in the command state's message
   -- log and in the snapshot tree it then merges back, so the same `Tactic.unsolvedGoals`
@@ -349,7 +329,14 @@ def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree)
     let isEmpty := body.getPos?.isNone
     unless onUnsolved || (onEmpty && isEmpty) do continue
     let ref := mkRangeStx msgRange
-    let ctx := (findCtxFor msgRange).getD fallbackCtx
+    -- The deepest InfoTree node whose syntax range contains the message range gives
+    -- the suggester the right `openDecls` / `options` / namespace -- in particular,
+    -- it picks up scope shifts (command-level `open … in <cmd>`, macro-expanded
+    -- `set_option … in`) that land deeper than the command's outer `CommandContextInfo`.
+    let some (ctx, _) := tree.smallestInfoContaining? msgRange
+      | trace[autoTry] "no InfoTree node contains message range \
+          {msgRange.start.byteIdx}-{msgRange.stop.byteIdx}; skipping"
+        continue
     let goals := collectGoalsFromMessage msg.data
     if goals.isEmpty then
       trace[autoTry] "Tactic.unsolvedGoals message yielded no (mctx, goal) pairs; \

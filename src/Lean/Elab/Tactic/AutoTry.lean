@@ -131,9 +131,10 @@ def isSorryTactic (stx : Syntax) : Bool :=
 inductive TriggerKind
   /-- A proof or subproof that left a goal unsolved (detected by walking the message
   log for `Tactic.unsolvedGoals` errors). `tacticSeq` is the body to append to,
-  `insertPos` is the position at which to insert the new tactic, `msgPos` is the
-  source position of the underlying error (used as the dedup key). -/
-  | unsolvedGoal (tacticSeq : Syntax) (insertPos msgPos : String.Pos.Raw)
+  `insertPos` is the position at which to insert the new tactic. The dedup key for
+  filtering multi-state replays (rhs of `<;>` etc.) is the source range of the
+  underlying message, which lives on the candidate's `ref` syntax. -/
+  | unsolvedGoal (tacticSeq : Syntax) (insertPos : String.Pos.Raw)
   /-- A `sorry` tactic. The suggestion *replaces* the `sorry`. -/
   | sorryTactic
 
@@ -331,7 +332,7 @@ def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree)
       trace[autoTry] "Tactic.unsolvedGoals message yielded no (mctx, goal) pairs; \
         producer not following the `withContext`-wrapped `ofGoal` contract?"
     for (mctx, mvarId) in goals do
-      acc := acc.push (.unsolvedGoal body insertPos msgRange.start, ctx, ref, mctx, mvarId)
+      acc := acc.push (.unsolvedGoal body insertPos, ctx, ref, mctx, mvarId)
   return acc
 
 /--
@@ -456,26 +457,27 @@ def autoTryHook : Linter where run := withSetOptionIn fun stx => do
   let trees ← getInfoTrees
   for tree in trees do
     let candidates ← collectTriggerPoints stx opts tree msgs
-    -- A source position carrying more than one candidate means either: the same scope
+    -- A source range carrying more than one candidate means either: the same scope
     -- was entered multiple times (e.g. the rhs of `<;>` runs once per subgoal), or the
     -- scope left more than one unsolved goal. In both cases a single "Try this"
-    -- suggestion can't be replayed there, so skip duplicates by source position.
-    -- Dedup key: for unsolved-goal triggers use the underlying message position
-     -- (catches the same scope reporting multiple times, e.g. rhs of `<;>`); for
-     -- `sorry` use the sorry token's position.
-    let keyOf (k : TriggerKind) (ref : Syntax) : Option String.Pos.Raw := match k with
-      | .unsolvedGoal _ _ p => some p
-      | .sorryTactic        => ref.getPos?
-    let mut counts : Std.HashMap String.Pos.Raw Nat := {}
-    for (k, _, ref, _, _) in candidates do
-      if let some p := keyOf k ref then
-        counts := counts.alter p (fun n? => some (n?.getD 0 + 1))
+    -- suggestion can't be replayed there, so skip duplicates by source range.
+    -- Using the full `(start, stop)` of the candidate's `ref` (which carries the
+    -- message range for unsolved-goal triggers and the sorry token's range for
+    -- sorry triggers) matches the collector's dedup key and prevents two distinct
+    -- messages that happen to share a start position but differ in stop from being
+    -- mistakenly collapsed.
+    let keyOf (ref : Syntax) : Option (String.Pos.Raw × String.Pos.Raw) :=
+      ref.getRange?.map fun r => (r.start, r.stop)
+    let mut counts : Std.HashMap (String.Pos.Raw × String.Pos.Raw) Nat := {}
+    for (_, _, ref, _, _) in candidates do
+      if let some key := keyOf ref then
+        counts := counts.alter key (fun n? => some (n?.getD 0 + 1))
     trace[autoTry] "trigger points: {candidates.size}"
     for (k, ctx, ref, mctx, goal) in candidates do
-      let some pos := keyOf k ref | continue
-      if counts.getD pos 0 > 1 then continue
+      let some key := keyOf ref | continue
+      if counts.getD key 0 > 1 then continue
       match k with
-      | .unsolvedGoal tacticSeq insertPos _ =>
+      | .unsolvedGoal tacticSeq insertPos =>
         let suggs ← collectSuggestionsForGoal ctx mctx goal
         emitAppendSuggestions tacticSeq ref insertPos suggs cmdLine
       | .sorryTactic =>

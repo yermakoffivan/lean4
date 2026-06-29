@@ -478,21 +478,16 @@ example : P := by
   exact this_undefined_name
   sorry
 
-/-! ## Suggester picks the deepest enclosing `ContextInfo`
+/-! ## Suggester context matches the elaboration scope at log time
 
-The hook walks the InfoTree for the deepest `ContextInfo` whose info node's syntax
-range contains the unsolved-goals message, and runs the suggester with that context's
-`openDecls`, `options`, namespace, etc. Without this, every recovered goal would see
-only the outer `CommandContextInfo` captured at the top of the tree, missing any
-scope shift introduced deeper down (command-level `open … in <cmd>`, the macro-
-expanded inner command of `set_option … in <cmd>`, etc.).
-
-Caveat: term-level `open … in <term>` and `set_option … in <term>` change
-`Core.Context` via `withTheReader` but do *not* wrap their resulting info trees in a
-`PartialContextInfo.commandCtx`, so `foldInfo` never sees the inner `openDecls`. The
-`open … in <term>` test below still captures the buggy fully-qualified output for that
-reason; fixing it requires `elabOpen` / `elabSetOption` (term) to push a
-`commandCtx` node, which is out of scope here.
+The hook recovers the suggester's elaboration context for unsolved-goal triggers from
+the `MessageData.withContext` (env, mctx, lctx, opts) and `MessageData.withNamingContext`
+(currNamespace, openDecls) wrappers that the standard log machinery attaches to every
+logged message. Those values come from the active `Core.Context` at log time, so every
+scope shift in effect when `Term.reportUnsolvedGoals` fired -- command-level
+`open … in <cmd>`, term-level `open … in <term>`, the macro-expanded inner command of
+`set_option … in`, plain `withTheReader Core.Context` overrides in custom elaborators
+-- is captured automatically with no InfoTree round-trip.
 
 The suggester below builds the witness as an `Expr` and delaborates it with
 `PrettyPrinter.delab`, so the rendered identifier goes through the real
@@ -526,22 +521,21 @@ info: Try this:
 #guard_msgs in
 example : AutoTryCtxBugRepro.MyUniqueProp := by
 
--- `open … in <term>` wraps the empty `by`. Term-level `open … in` doesn't push a
--- `commandCtx` node into the InfoTree (only changes `Core.Context` via `withTheReader`),
--- so the fix can't find an inner ctx to use here. Captures the buggy fully-qualified
--- output; correctness would require `elabOpen` to wrap its trees in a `commandCtx`.
+-- `open … in <term>` wraps the empty `by`. The term-level `elabOpen` uses
+-- `withTheReader Core.Context` to install the local open; the message's
+-- `withNamingContext` wrapper captures the resulting `openDecls`, so the suggester
+-- sees them and renders the short name.
 /--
 error: unsolved goals
 ⊢ MyUniqueProp
 ---
 info: Try this:
-  [apply] exact AutoTryCtxBugRepro.myUniqueAxiom
+  [apply] exact myUniqueAxiom
 -/
 #guard_msgs in
 example : AutoTryCtxBugRepro.MyUniqueProp := open AutoTryCtxBugRepro in by
 
--- `open … in <command>` form: the inner command's elaboration captures a fresh
--- `commandCtx` with the open, which the deepest-enclosing-ctx walk picks up.
+-- `open … in <command>` form: same shape, same recovery via the message wrappers.
 /--
 error: unsolved goals
 ⊢ MyUniqueProp

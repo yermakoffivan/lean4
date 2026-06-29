@@ -99,24 +99,25 @@ register_builtin_option debug.autoTry.showEdits : Bool := {
 builtin_initialize registerTraceClass `autoTry
 
 /--
-Run a `MetaM` computation in the context saved in `ctx`, with the given `lctx` and `mctx`,
-propagating any messages and traces produced back into the surrounding `CommandElabM` state.
-The surrounding `CommandElabM` cancel token is forwarded so that long-running `try?` calls
-get cancelled when the linter snapshot is cancelled.
+Run a `MetaM` computation in the elaboration scope captured by `msgCtx` (env, mctx,
+options) and `namingCtx` (current namespace, openDecls), with the given `lctx`,
+propagating any messages and traces produced back into the surrounding `CommandElabM`
+state. The surrounding `CommandElabM` cancel token is forwarded so that long-running
+`try?` calls get cancelled when the linter snapshot is cancelled.
 -/
-def runMetaMWithMessages (ctx : ContextInfo) (lctx : LocalContext)
-    (mctx : MetavarContext) (x : MetaM α) : CommandElabM α := do
+def runMetaMWithMessages (msgCtx : MessageDataContext) (namingCtx : NamingContext)
+    (lctx : LocalContext) (x : MetaM α) : CommandElabM α := do
   let cmdCtx ← read
   -- `try?` may create temporary auxiliary declarations during library search; running with
   -- a non-exporting environment keeps any such declarations from leaking out as exports.
-  let env := ctx.env.setExporting false
-  let core : CoreM α := Prod.fst <$> x.run { lctx } { mctx }
+  let env := msgCtx.env.setExporting false
+  let core : CoreM α := Prod.fst <$> x.run { lctx } { mctx := msgCtx.mctx }
   let (res, newCoreState) ←
-    (withOptions (fun _ => ctx.options) core).toIO
-      { currNamespace := ctx.currNamespace, openDecls := ctx.openDecls
+    (withOptions (fun _ => msgCtx.opts) core).toIO
+      { currNamespace := namingCtx.currNamespace, openDecls := namingCtx.openDecls
         fileName := cmdCtx.fileName, fileMap := cmdCtx.fileMap
         cancelTk? := cmdCtx.cancelTk? }
-      { env, ngen := ctx.ngen }
+      { env, ngen := {} }
   modify fun s => { s with
     messages := s.messages ++ newCoreState.messages
     traceState.traces := s.traceState.traces ++ newCoreState.traceState.traces }
@@ -182,43 +183,55 @@ structure Candidate where
   (`insertPos` and `tacticSeq` for append-style suggestions, nothing for `sorry`
   replacements). -/
   kind : TriggerKind
-  /-- The `ContextInfo` whose subtree most tightly contains the trigger's source
-  range. Determines the environment, namespace, openDecls, and options passed to
-  the suggester in `runMetaMWithMessages`. See the per-message lookup in
-  `collectTriggerPoints` for how this is selected. -/
-  ctx : ContextInfo
   /-- The "Try this:" diagnostic anchor. For unsolved-goal triggers this is a
   synthetic atom whose source range matches the underlying message (so the hint
   shows up exactly where the user sees the error); for `sorry` it's the `sorry`
   tactic syntax itself, which the suggestion replaces. The runner also uses
   `ref.getRange?` as the dedup key for the multi-state filter. -/
   ref : Syntax
-  /-- The metavariable context the goal was last known in -- read off the
-  unsolved-goals message (for the `unsolvedGoal` kind) or off the tactic info node
-  (for `sorryTactic`). Note that `mctx` and `ctx` come from independent sources
-  but are correlated by the per-message ctx lookup. -/
-  mctx : MetavarContext
+  /-- Pretty-printing/elaboration context (env, mctx, lctx, opts) as it was when the
+  trigger fired. For unsolved-goal triggers, recovered from the
+  `MessageData.withContext` wrapper the log machinery attaches; for `sorry` triggers,
+  read off the surrounding `TacticInfo`'s `ContextInfo`. Includes any
+  `withTheReader Core.Context` overrides (e.g. from term-level `open … in <term>`). -/
+  msgCtx : MessageDataContext
+  /-- Namespace + openDecls as they were when the trigger fired. Sourced the same way
+  as `msgCtx` (via `MessageData.withNamingContext` for unsolved-goal triggers, from
+  the `ContextInfo` for `sorry`). -/
+  namingCtx : NamingContext
   /-- The unsolved goal the suggester should try to close. -/
   goal : MVarId
 
 /--
-Walk a `MessageData` tree, collecting each `MessageData.ofGoal mvarId` along with the
-`MetavarContext` of the innermost enclosing `withContext`. Used to recover the
-`(mctx, mvarId)` pairs from a `Tactic.unsolvedGoals` error message without needing the
-producer to push them separately into the info tree. -/
-partial def collectGoalsFromMessage (msg : MessageData) :
-    Array (MetavarContext × MVarId) := go none msg #[]
+Walk a `MessageData` tree, collecting each `MessageData.ofGoal mvarId` together with the
+elaboration contexts wrapped around it: the innermost `MessageDataContext` (carrying
+`env`, `mctx`, `lctx`, `opts`) and the innermost `NamingContext` (carrying
+`currNamespace`, `openDecls`).
+
+These wrappers are unconditionally attached by the standard logging machinery
+(`Lean.Log.logAt` → `addMessageContextFull` for the data wrapper, `CoreM`'s
+`addMessage` for the naming wrapper), and the values they carry are read from the
+active `Core.Context` at log time -- including every `withTheReader Core.Context`
+override (e.g. from term-level `open … in <term>`). Recovering them from the message
+gives the suggester the exact elaboration scope the error was reported under, without
+any InfoTree round-trip. -/
+partial def collectGoalsAndCtxFromMessage (msg : MessageData) :
+    Array (MessageDataContext × NamingContext × MVarId) := go none none msg #[]
 where
-  go (ctx? : Option MessageDataContext) (msg : MessageData) (acc : Array _) := match msg with
-    | .withContext ctx msg       => go (some ctx) msg acc
-    | .withNamingContext _ msg   => go ctx? msg acc
-    | .nest _ msg | .group msg   => go ctx? msg acc
-    | .tagged _ msg              => go ctx? msg acc
-    | .compose a b               => go ctx? b (go ctx? a acc)
-    | .ofWidget _ alt            => go ctx? alt acc
-    | .trace _ msg children      => children.foldl (init := go ctx? msg acc) (fun acc m => go ctx? m acc)
+  go (mc? : Option MessageDataContext) (nc? : Option NamingContext)
+      (msg : MessageData) (acc : Array _) := match msg with
+    | .withContext c msg         => go (some c) nc? msg acc
+    | .withNamingContext n msg   => go mc? (some n) msg acc
+    | .nest _ msg | .group msg   => go mc? nc? msg acc
+    | .tagged _ msg              => go mc? nc? msg acc
+    | .compose a b               => go mc? nc? b (go mc? nc? a acc)
+    | .ofWidget _ alt            => go mc? nc? alt acc
+    | .trace _ msg children      =>
+      children.foldl (init := go mc? nc? msg acc) (fun acc m => go mc? nc? m acc)
     | .ofGoal mvarId             =>
-      if let some ctx := ctx? then acc.push (ctx.mctx, mvarId) else acc
+      match mc?, nc? with
+      | some mc, some nc => acc.push (mc, nc, mvarId)
+      | _, _             => acc
     | _                          => acc
 
 /--
@@ -299,9 +312,13 @@ def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree)
       if let .ofTacticInfo tacInfo := info then
         if isSorryTactic tacInfo.stx then
           if let some goal := tacInfo.goalsBefore.head? then
+            let lctx := (tacInfo.mctxBefore.decls.find? goal).map (·.lctx) |>.getD {}
+            let msgCtx : MessageDataContext :=
+              { env := ctx.env, mctx := tacInfo.mctxBefore, lctx, opts := ctx.options }
+            let namingCtx : NamingContext :=
+              { currNamespace := ctx.currNamespace, openDecls := ctx.openDecls }
             return acc.push {
-              kind := .sorryTactic, ctx, ref := tacInfo.stx,
-              mctx := tacInfo.mctxBefore, goal }
+              kind := .sorryTactic, ref := tacInfo.stx, msgCtx, namingCtx, goal }
       return acc
   -- Unsolved-goal triggers come from the message log.
   unless onUnsolved || onEmpty do return acc
@@ -329,21 +346,13 @@ def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree)
     let isEmpty := body.getPos?.isNone
     unless onUnsolved || (onEmpty && isEmpty) do continue
     let ref := mkRangeStx msgRange
-    -- The deepest InfoTree node whose syntax range contains the message range gives
-    -- the suggester the right `openDecls` / `options` / namespace -- in particular,
-    -- it picks up scope shifts (command-level `open … in <cmd>`, macro-expanded
-    -- `set_option … in`) that land deeper than the command's outer `CommandContextInfo`.
-    let some (ctx, _) := tree.smallestInfoContaining? msgRange
-      | trace[autoTry] "no InfoTree node contains message range \
-          {msgRange.start.byteIdx}-{msgRange.stop.byteIdx}; skipping"
-        continue
-    let goals := collectGoalsFromMessage msg.data
+    let goals := collectGoalsAndCtxFromMessage msg.data
     if goals.isEmpty then
-      trace[autoTry] "Tactic.unsolvedGoals message yielded no (mctx, goal) pairs; \
-        producer not following the `withContext`-wrapped `ofGoal` contract?"
-    for (mctx, mvarId) in goals do
+      trace[autoTry] "Tactic.unsolvedGoals message yielded no (msgCtx, namingCtx, goal) \
+        tuples; producer not following the `withContext`/`withNamingContext` contract?"
+    for (msgCtx, namingCtx, mvarId) in goals do
       acc := acc.push {
-        kind := .unsolvedGoal body insertPos, ctx, ref, mctx, goal := mvarId }
+        kind := .unsolvedGoal body insertPos, ref, msgCtx, namingCtx, goal := mvarId }
   return acc
 
 /--
@@ -351,10 +360,10 @@ Drive `try?` from CommandElabM, returning the suggestion array. Sets up TacticM/
 around the saved infotree state and runs `Try.collectTryCoreSuggestions` on `goal`.
 Returns `#[]` on error or interruption (control-flow exceptions are re-raised).
 -/
-def collectSuggestionsForGoal (ctx : ContextInfo) (mctx : MetavarContext) (goal : MVarId) :
-    CommandElabM (Array (TSyntax `tactic)) := do
-  let some decl := mctx.decls.find? goal | return #[]
-  runMetaMWithMessages ctx decl.lctx mctx do
+def collectSuggestionsForGoal (msgCtx : MessageDataContext) (namingCtx : NamingContext)
+    (goal : MVarId) : CommandElabM (Array (TSyntax `tactic)) := do
+  let some decl := msgCtx.mctx.decls.find? goal | return #[]
+  runMetaMWithMessages msgCtx namingCtx decl.lctx do
     let tacticAct : TacticM (Array (TSyntax `tactic)) := do
       try
         Try.collectTryCoreSuggestions {}
@@ -416,10 +425,10 @@ Run `try?` by elaborating its tactic syntax against `goal` and letting `try?` em
 own "Try this:" message anchored at `tk`. `try?`'s default emission replaces the syntax
 at the current ref, which is exactly what we want for the `sorry` trigger.
 -/
-def runReplaceTryOnGoal (ctx : ContextInfo) (mctx : MetavarContext)
+def runReplaceTryOnGoal (msgCtx : MessageDataContext) (namingCtx : NamingContext)
     (goal : MVarId) (tk : Syntax) : CommandElabM Unit := do
-  let some decl := mctx.decls.find? goal | return
-  runMetaMWithMessages ctx decl.lctx mctx do
+  let some decl := msgCtx.mctx.decls.find? goal | return
+  runMetaMWithMessages msgCtx namingCtx decl.lctx do
     try
       let tryStx ← `(tactic| try?)
       withRef tk do
@@ -489,10 +498,10 @@ def autoTryHook : Linter where run := withSetOptionIn fun stx => do
       if counts.getD key 0 > 1 then continue
       match c.kind with
       | .unsolvedGoal tacticSeq insertPos =>
-        let suggs ← collectSuggestionsForGoal c.ctx c.mctx c.goal
+        let suggs ← collectSuggestionsForGoal c.msgCtx c.namingCtx c.goal
         emitAppendSuggestions tacticSeq c.ref insertPos suggs cmdLine
       | .sorryTactic =>
-        runReplaceTryOnGoal c.ctx c.mctx c.goal c.ref
+        runReplaceTryOnGoal c.msgCtx c.namingCtx c.goal c.ref
 
 builtin_initialize addLinter autoTryHook
 

@@ -241,14 +241,6 @@ def InfoTree.smallestInfo? (p : Info → Bool) (t : InfoTree) : Option (ContextI
 
   infos.toArray.getMax? (fun a b => a.1 > b.1) |>.map fun (_, ci, i) => (ci, i)
 
-/-- The `(ContextInfo, Info)` of the smallest InfoTree node whose canonical syntax range
-contains `range`, or `none` if no node covers it. Useful for post-elab analyses (linters,
-code actions) that need "what was the elaboration context here?" for a source span
-rather than a single position (cf. `hoverableInfoAtM?` for the position-based query). -/
-def InfoTree.smallestInfoContaining? (t : InfoTree) (range : Lean.Syntax.Range) :
-    Option (ContextInfo × Info) :=
-  t.smallestInfo? (·.range?.any (·.includes range))
-
 structure HoverableInfoPrio where
   -- Prefer results directly *after* the hover position (only matters for `includeStop = true`; see #767)
   isHoverPosOnStop : Bool

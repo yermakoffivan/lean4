@@ -341,7 +341,7 @@ def focusAndDone (tactic : TacticM α) : TacticM α :=
     done
     pure a
 
-/-- Close the main goal using the given tactic. If it fails, log the error and `admit`. -/
+/-- Close the main goal using the given tactic. If it fails, log the error and `admit` -/
 def closeUsingOrAdmit (tac : TacticM Unit) : TacticM Unit := do
   /- Important: we must define `closeUsingOrAdmit` before we define
      the instance `MonadExcept` for `TacticM` since it backtracks the state including error messages. -/

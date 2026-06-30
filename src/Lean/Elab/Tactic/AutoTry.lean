@@ -40,8 +40,7 @@ namespace Lean.Elab.Tactic.AutoTry
 open Lean Elab Term Tactic Command Try Meta
 
 /--
-Run `try?` on empty proofs and empty subproofs — empty `by`, empty `· `, empty
-`case h => `, and so on — and report any suggestions to insert.
+Run `try?` on empty proofs (e.g. empty `by`, empty `· `, empty `case h => `).
 -/
 register_builtin_option autoTry.onEmptyProof : Bool := {
   defValue := false
@@ -63,10 +62,7 @@ register_builtin_option tactic.tryOnEmptyBy : Bool := {
 }
 
 /--
-Run `try?` on each proof or subproof that left a goal unsolved -- empty `by`, `by skip`,
-empty or unfinished `· `, empty or unfinished `case h => `, and so on -- and report any
-suggestions to insert. The suggestion is appended to the existing sequence
-(e.g. `by skip` → `by skip; <found>`).
+Run `try?` whenever there are unsolved goals (and not other errors).
 -/
 register_builtin_option autoTry.onUnsolvedGoal : Bool := {
   defValue := false
@@ -75,8 +71,7 @@ register_builtin_option autoTry.onUnsolvedGoal : Bool := {
 }
 
 /--
-Run `try?` on each `sorry` tactic and report any suggestions; the suggestion replaces
-the `sorry`.
+Run `try?` on each `sorry` tactic.
 -/
 register_builtin_option autoTry.onSorry : Bool := {
   defValue := false
@@ -99,20 +94,20 @@ register_builtin_option debug.autoTry.showEdits : Bool := {
 builtin_initialize registerTraceClass `autoTry
 
 /--
-Run a `MetaM` computation in the elaboration scope captured by `msgCtx` and
-`namingCtx`, with the given `lctx`, propagating any messages and traces back into the
+Run a `MetaM` computation in a saved elaboration scope (`env`, `mctx`, `lctx`, `opts`,
+`currNamespace`, `openDecls`), propagating any messages and traces back into the
 surrounding `CommandElabM` state. The surrounding cancel token is forwarded so that
 long-running `try?` calls get cancelled when the linter snapshot is cancelled.
 -/
-def runMetaMWithMessages (msgCtx : MessageDataContext) (namingCtx : NamingContext)
-    (lctx : LocalContext) (x : MetaM α) : CommandElabM α := do
+def runMetaMInScope (env : Environment) (mctx : MetavarContext) (lctx : LocalContext)
+    (opts : Options) (namingCtx : NamingContext) (x : MetaM α) : CommandElabM α := do
   let cmdCtx ← read
   -- `try?` may create temporary auxiliary declarations during library search; running with
   -- a non-exporting environment keeps any such declarations from leaking out as exports.
-  let env := msgCtx.env.setExporting false
-  let core : CoreM α := Prod.fst <$> x.run { lctx } { mctx := msgCtx.mctx }
+  let env := env.setExporting false
+  let core : CoreM α := Prod.fst <$> x.run { lctx } { mctx }
   let (res, newCoreState) ←
-    (withOptions (fun _ => msgCtx.opts) core).toIO
+    (withOptions (fun _ => opts) core).toIO
       { currNamespace := namingCtx.currNamespace, openDecls := namingCtx.openDecls
         fileName := cmdCtx.fileName, fileMap := cmdCtx.fileMap
         cancelTk? := cmdCtx.cancelTk? }
@@ -177,8 +172,8 @@ def mkRangeStx (range : Lean.Syntax.Range) : Syntax :=
 A trigger candidate: enough info for the hook to drive `try?` and emit a suggestion
 without re-walking the infotree.
 
-`msgCtx` and `namingCtx` carry the elaboration scope active when the trigger fired;
-for unsolved-goal triggers this is recovered from the `MessageData.withContext` /
+`env`, `mctx`, `opts`, `namingCtx` carry the elaboration scope active when the trigger
+fired; for unsolved-goal triggers this is recovered from the `MessageData.withContext` /
 `MessageData.withNamingContext` wrappers the log machinery attaches, and so includes
 any `withTheReader Core.Context` overrides (e.g. from term-level `open … in <term>`).
 For `sorry` triggers it's derived from the surrounding `TacticInfo`'s `ContextInfo`.
@@ -191,7 +186,9 @@ suggestion replaces).
 structure Candidate where
   kind : TriggerKind
   ref : Syntax
-  msgCtx : MessageDataContext
+  env : Environment
+  mctx : MetavarContext
+  opts : Options
   namingCtx : NamingContext
   goal : MVarId
 
@@ -199,15 +196,7 @@ structure Candidate where
 Walk a `MessageData` tree, collecting each `MessageData.ofGoal mvarId` together with the
 elaboration contexts wrapped around it: the innermost `MessageDataContext` (carrying
 `env`, `mctx`, `lctx`, `opts`) and the innermost `NamingContext` (carrying
-`currNamespace`, `openDecls`).
-
-These wrappers are unconditionally attached by the standard logging machinery
-(`Lean.Log.logAt` → `addMessageContextFull` for the data wrapper, `CoreM`'s
-`addMessage` for the naming wrapper), and the values they carry are read from the
-active `Core.Context` at log time -- including every `withTheReader Core.Context`
-override (e.g. from term-level `open … in <term>`). Recovering them from the message
-gives the suggester the exact elaboration scope the error was reported under, without
-any InfoTree round-trip. -/
+`currNamespace`, `openDecls`). -/
 partial def collectGoalsAndCtxFromMessage (msg : MessageData) :
     Array (MessageDataContext × NamingContext × MVarId) := go none none msg #[]
 where
@@ -253,23 +242,19 @@ partial def findTacticSeqBody (cmd : Syntax) (range : Lean.Syntax.Range) :
     Option (Syntax × String.Pos.Raw) :=
   walkAndFind cmd
 where
-  /- Returns the tactics-container null-node together with its parent seq-variant,
-     if `stx` is a seq-variant we recognise. -/
-  bodyAndKind (stx : Syntax) : Option (Syntax × SyntaxNodeKind) :=
+  /- If `stx` is a recognised seq-variant, returns the tactics-container null-node
+     together with the insertion position for appending a new tactic. For non-empty
+     bodies that's the body's tail; for empty bodies it's just before `}` (bracketed)
+     or the message range's `stop` (indented -- just past the wrapper's opening token). -/
+  seqBodyAndInsertPos? (stx : Syntax) : Option (Syntax × String.Pos.Raw) :=
     match stx.getKind with
-    | ``Lean.Parser.Tactic.tacticSeq1Indented => some (stx[0], stx.getKind)
-    | k@``Lean.Parser.Tactic.tacticSeqBracketed => some (stx[1], k)
+    | ``Lean.Parser.Tactic.tacticSeq1Indented =>
+      let body := stx[0]
+      some (body, body.getTailPos?.getD range.stop)
+    | ``Lean.Parser.Tactic.tacticSeqBracketed =>
+      let body := stx[1]
+      some (body, body.getTailPos?.getD (stx[2].getPos?.getD range.stop))
     | _ => none
-  /- Insertion position. For non-empty bodies it's the body's tail. For empty
-     bodies we fall back to a kind-specific position: just before `}` for a
-     bracketed body, or the message range's `stop` (just past the opening
-     token of the surrounding wrapper) for an indented body. -/
-  insertPosOf (body parent : Syntax) (kind : SyntaxNodeKind) : String.Pos.Raw :=
-    body.getTailPos?.getD <|
-      if kind == ``Lean.Parser.Tactic.tacticSeqBracketed then
-        parent[2].getPos?.getD range.stop
-      else
-        range.stop
   walkAndFind (stx : Syntax) : Option (Syntax × String.Pos.Raw) := Id.run do
     let some r := stx.getRange? | return none
     unless r.includes range do return none
@@ -277,8 +262,7 @@ where
       if let some result := walkAndFind child then return some result
     outermostSeqInSubtree stx
   outermostSeqInSubtree (stx : Syntax) : Option (Syntax × String.Pos.Raw) := Id.run do
-    if let some (body, kind) := bodyAndKind stx then
-      return some (body, insertPosOf body stx kind)
+    if let some result := seqBodyAndInsertPos? stx then return some result
     for child in stx.getArgs do
       if let some result := outermostSeqInSubtree child then return some result
     return none
@@ -287,8 +271,8 @@ where
 Collect candidate trigger points.
 
 * **Unsolved-goal triggers** come from the command's message log. For each
-  `Tactic.unsolvedGoals` error, `collectGoalsAndCtxFromMessage` recovers each
-  `(msgCtx, namingCtx, goal)` tuple, and `findTacticSeqBody` locates the enclosing
+  `Tactic.unsolvedGoals` error, `collectGoalsAndCtxFromMessage` recovers the
+  elaboration scope and goal mvarids, and `findTacticSeqBody` locates the enclosing
   `by` / `{ … }` / `· ` / `case` scope's body and insertion position from the
   command syntax.
 * **Sorry triggers** are read directly off `sorry`-tactic info-tree nodes.
@@ -305,47 +289,48 @@ def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree)
       if let .ofTacticInfo tacInfo := info then
         if isSorryTactic tacInfo.stx then
           if let some goal := tacInfo.goalsBefore.head? then
-            let lctx := (tacInfo.mctxBefore.decls.find? goal).map (·.lctx) |>.getD {}
-            let msgCtx : MessageDataContext :=
-              { env := ctx.env, mctx := tacInfo.mctxBefore, lctx, opts := ctx.options }
             let namingCtx : NamingContext :=
               { currNamespace := ctx.currNamespace, openDecls := ctx.openDecls }
             return acc.push {
-              kind := .sorryTactic, ref := tacInfo.stx, msgCtx, namingCtx, goal }
+              kind := .sorryTactic, ref := tacInfo.stx,
+              env := ctx.env, mctx := tacInfo.mctxBefore, opts := ctx.options,
+              namingCtx, goal }
       return acc
   -- Unsolved-goal triggers come from the message log.
-  unless onUnsolved || onEmpty do return acc
-  let fileMap ← getFileMap
-  -- `runLintersAsync` accumulates diagnostics both in the command state's message
-  -- log and in the snapshot tree it then merges back, so the same `Tactic.unsolvedGoals`
-  -- error commonly appears twice in `msgs`. Dedup by source range before processing
-  -- so the later `counts > 1` filter doesn't suppress a single legitimate trigger.
-  let some cmdRange := cmd.getRange? (canonicalOnly := true) | return acc
-  let mut seen : Std.HashMap (String.Pos.Raw × String.Pos.Raw) Unit := {}
-  for msg in msgs do
-    unless msg.severity matches .error do continue
-    unless msg.data.hasTag (· == `Tactic.unsolvedGoals) do continue
-    let some endPos := msg.endPos | continue
-    let msgRange : Lean.Syntax.Range :=
-      { start := fileMap.ofPosition msg.pos, stop := fileMap.ofPosition endPos }
-    unless cmdRange.includes msgRange do continue
-    if seen.contains (msgRange.start, msgRange.stop) then continue
-    seen := seen.insert (msgRange.start, msgRange.stop) ()
-    let some (body, insertPos) := findTacticSeqBody cmd msgRange
-      | trace[autoTry] "no tacticSeq body found for unsolved-goals message at \
-          {msgRange.start.byteIdx}-{msgRange.stop.byteIdx}; \
-          unrecognised seq variant?"
-        continue
-    let isEmpty := body.getPos?.isNone
-    unless onUnsolved || (onEmpty && isEmpty) do continue
-    let ref := mkRangeStx msgRange
-    let goals := collectGoalsAndCtxFromMessage msg.data
-    if goals.isEmpty then
-      trace[autoTry] "Tactic.unsolvedGoals message yielded no (msgCtx, namingCtx, goal) \
-        tuples; producer not following the `withContext`/`withNamingContext` contract?"
-    for (msgCtx, namingCtx, mvarId) in goals do
-      acc := acc.push {
-        kind := .unsolvedGoal body insertPos, ref, msgCtx, namingCtx, goal := mvarId }
+  if onUnsolved || onEmpty then
+    let fileMap ← getFileMap
+    -- `runLintersAsync` accumulates diagnostics both in the command state's message
+    -- log and in the snapshot tree it then merges back, so the same `Tactic.unsolvedGoals`
+    -- error commonly appears twice in `msgs`. Dedup by source range before processing
+    -- so the later `counts > 1` filter doesn't suppress a single legitimate trigger.
+    let some cmdRange := cmd.getRange? (canonicalOnly := true) | return acc
+    let mut seen : Std.HashSet Lean.Syntax.Range := {}
+    for msg in msgs do
+      unless msg.severity matches .error do continue
+      unless msg.data.hasTag (· == `Tactic.unsolvedGoals) do continue
+      let some endPos := msg.endPos | continue
+      let msgRange : Lean.Syntax.Range :=
+        { start := fileMap.ofPosition msg.pos, stop := fileMap.ofPosition endPos }
+      unless cmdRange.includes msgRange do continue
+      if seen.contains msgRange then continue
+      seen := seen.insert msgRange
+      let some (body, insertPos) := findTacticSeqBody cmd msgRange
+        | trace[autoTry] "no tacticSeq body found for unsolved-goals message at \
+            {msgRange.start.byteIdx}-{msgRange.stop.byteIdx}; \
+            unrecognised seq variant?"
+          continue
+      let isEmpty := body.getPos?.isNone
+      unless onUnsolved || (onEmpty && isEmpty) do continue
+      let ref := mkRangeStx msgRange
+      let goals := collectGoalsAndCtxFromMessage msg.data
+      if goals.isEmpty then
+        trace[autoTry] "Tactic.unsolvedGoals message yielded no (msgCtx, namingCtx, goal) \
+          tuples; producer not following the `withContext`/`withNamingContext` contract?"
+      for (msgCtx, namingCtx, mvarId) in goals do
+        acc := acc.push {
+          kind := .unsolvedGoal body insertPos, ref,
+          env := msgCtx.env, mctx := msgCtx.mctx, opts := msgCtx.opts,
+          namingCtx, goal := mvarId }
   return acc
 
 /--
@@ -353,10 +338,9 @@ Drive `try?` from `CommandElabM`, returning the suggestion array. Runs
 `Try.collectTryCoreSuggestions` on `goal` inside the captured elaboration scope.
 Returns `#[]` on error or interruption (control-flow exceptions are re-raised).
 -/
-def collectSuggestionsForGoal (msgCtx : MessageDataContext) (namingCtx : NamingContext)
-    (goal : MVarId) : CommandElabM (Array (TSyntax `tactic)) := do
-  let some decl := msgCtx.mctx.decls.find? goal | return #[]
-  runMetaMWithMessages msgCtx namingCtx decl.lctx do
+def collectSuggestionsForGoal (c : Candidate) : CommandElabM (Array (TSyntax `tactic)) := do
+  let some decl := c.mctx.decls.find? c.goal | return #[]
+  runMetaMInScope c.env c.mctx decl.lctx c.opts c.namingCtx do
     let tacticAct : TacticM (Array (TSyntax `tactic)) := do
       try
         Try.collectTryCoreSuggestions {}
@@ -368,8 +352,8 @@ def collectSuggestionsForGoal (msgCtx : MessageDataContext) (namingCtx : NamingC
     -- run `tacticAct` and recover its return value; `Tactic.run` would only let us
     -- get the leftover goals, not the `α`.
     let term : TermElabM (Array (TSyntax `tactic)) := withSynthesize do
-      goal.withContext <|
-        (tacticAct.run { elaborator := .anonymous }).run' { goals := [goal] }
+      c.goal.withContext <|
+        (tacticAct.run { elaborator := .anonymous }).run' { goals := [c.goal] }
     try Prod.fst <$> term.run {} {}
     catch e =>
       if e.isInterrupt || e.isMaxRecDepth then throw e
@@ -418,14 +402,13 @@ Run `try?` by elaborating its tactic syntax against `goal` and letting `try?` em
 own "Try this:" message anchored at `tk`. `try?`'s default emission replaces the syntax
 at the current ref, which is exactly what we want for the `sorry` trigger.
 -/
-def runReplaceTryOnGoal (msgCtx : MessageDataContext) (namingCtx : NamingContext)
-    (goal : MVarId) (tk : Syntax) : CommandElabM Unit := do
-  let some decl := msgCtx.mctx.decls.find? goal | return
-  runMetaMWithMessages msgCtx namingCtx decl.lctx do
+def runReplaceTryOnGoal (c : Candidate) : CommandElabM Unit := do
+  let some decl := c.mctx.decls.find? c.goal | return
+  runMetaMInScope c.env c.mctx decl.lctx c.opts c.namingCtx do
     try
       let tryStx ← `(tactic| try?)
-      withRef tk do
-        discard <| Lean.Elab.runTactic goal tryStx
+      withRef c.ref do
+        discard <| Lean.Elab.runTactic c.goal tryStx
     catch e =>
       if e.isInterrupt || e.isMaxRecDepth then throw e
       trace[autoTry] "try? raised: {e.toMessageData}"
@@ -473,28 +456,23 @@ def autoTryHook : Linter where run := withSetOptionIn fun stx => do
     -- A source range carrying more than one candidate means either: the same scope
     -- was entered multiple times (e.g. the rhs of `<;>` runs once per subgoal), or the
     -- scope left more than one unsolved goal. In both cases a single "Try this"
-    -- suggestion can't be replayed there, so skip duplicates by source range.
-    -- Using the full `(start, stop)` of the candidate's `ref` (which carries the
-    -- message range for unsolved-goal triggers and the sorry token's range for
-    -- sorry triggers) matches the collector's dedup key and prevents two distinct
-    -- messages that happen to share a start position but differ in stop from being
-    -- mistakenly collapsed.
-    let keyOf (ref : Syntax) : Option (String.Pos.Raw × String.Pos.Raw) :=
-      ref.getRange?.map fun r => (r.start, r.stop)
-    let mut counts : Std.HashMap (String.Pos.Raw × String.Pos.Raw) Nat := {}
+    -- suggestion can't be replayed there, so skip duplicates by source range. The
+    -- candidate's `ref` carries the message range for unsolved-goal triggers and the
+    -- sorry token's range for sorry triggers, matching the collector's dedup key.
+    let mut counts : Std.HashMap Lean.Syntax.Range Nat := {}
     for c in candidates do
-      if let some key := keyOf c.ref then
-        counts := counts.alter key (fun n? => some (n?.getD 0 + 1))
+      if let some r := c.ref.getRange? then
+        counts := counts.alter r (fun n? => some (n?.getD 0 + 1))
     trace[autoTry] "trigger points: {candidates.size}"
     for c in candidates do
-      let some key := keyOf c.ref | continue
-      if counts.getD key 0 > 1 then continue
+      let some r := c.ref.getRange? | continue
+      if counts.getD r 0 > 1 then continue
       match c.kind with
       | .unsolvedGoal tacticSeq insertPos =>
-        let suggs ← collectSuggestionsForGoal c.msgCtx c.namingCtx c.goal
+        let suggs ← collectSuggestionsForGoal c
         emitAppendSuggestions tacticSeq c.ref insertPos suggs cmdLine
       | .sorryTactic =>
-        runReplaceTryOnGoal c.msgCtx c.namingCtx c.goal c.ref
+        runReplaceTryOnGoal c
 
 builtin_initialize addLinter autoTryHook
 

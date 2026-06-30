@@ -19,6 +19,7 @@ namespace Std.Async.TCP.SSL
 open Std.Internal.SSL
 open Std.Internal.UV.TCP
 open Std Net Time
+open Internal
 
 namespace Client
 
@@ -65,7 +66,7 @@ timeout, a stalled or malicious peer can cause this function to block indefinite
 def handshake (s : Client) (chunkSize : UInt64 := ioChunkSize)
     (timeout : Option Std.Time.Millisecond.Offset := none) : Async Unit := do
   let deadline ← timeout.mapM Sleep.mk
-  runHandshake (Connection.native s) (Connection.ssl s) chunkSize deadline
+  runHandshake s.native s.ssl chunkSize deadline
 
 /--
 Connects the client socket to the given address and performs the TLS handshake.
@@ -77,7 +78,7 @@ initial TCP connect itself is not covered by this timeout.
 -/
 def connect (s : Client) (addr : SocketAddress) (chunkSize : UInt64 := ioChunkSize)
     (timeout : Option Std.Time.Millisecond.Offset := none) : Async Unit := do
-  Async.ofPromise <| (Connection.native s).connect addr
+  Async.ofPromise <| s.native.connect addr
   s.handshake chunkSize timeout
 
 end Client

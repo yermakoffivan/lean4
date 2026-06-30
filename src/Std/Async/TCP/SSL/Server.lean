@@ -19,6 +19,7 @@ namespace Std.Async.TCP.SSL
 open Std.Internal.SSL
 open Std.Internal.UV.TCP
 open Std Net Time
+open Internal
 
 namespace Server
 

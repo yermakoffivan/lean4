@@ -20,14 +20,17 @@ namespace Std.Async.TCP.SSL
 open Std.Internal.SSL
 open Std.Internal.UV.TCP
 open Std Net Time
+open Internal
 
 namespace Connection
 
 /--
 Flushes any internally-queued plaintext writes by calling `ssl.write` with an empty buffer, which
-does not queue additional data.
+does not queue additional data. If `deadline` is provided, each socket receive needed to make
+progress is raced against it and the function throws `"TLS operation timed out"` on expiry.
 -/
-private partial def drainPendingWrites (s : Connection role) : Async Unit := do
+private partial def drainPendingWrites (s : Connection role) (chunkSize : UInt64)
+    (deadline : Option Sleep) : Async Unit := do
   match ← s.ssl.write ByteArray.empty with
   | none =>
     -- The queue is drained; still flush any encrypted bytes the SSL engine
@@ -36,28 +39,33 @@ private partial def drainPendingWrites (s : Connection role) : Async Unit := do
 
   | some .write =>
     flushEncrypted s.native s.ssl
-    drainPendingWrites s
+    drainPendingWrites s chunkSize deadline
 
   | some .read =>
     flushEncrypted s.native s.ssl
-    let encrypted? ← Async.ofPromise <| s.native.recv? ioChunkSize
+    let encrypted? ← recvEncrypted s.native chunkSize deadline
 
     match encrypted? with
     | none =>
       throw <| IO.userError "connection closed while flushing TLS write"
     | some encrypted =>
       feedEncryptedChunk s.ssl encrypted
-      drainPendingWrites s
+      drainPendingWrites s chunkSize deadline
 
 /--
-Sends data through a TLS-enabled socket until accepted. When OpenSSL reports the write as ending
+Sends data through a TLS-enabled socket until accepted. When OpenSSL reports the write as needing
 additional I/O (e.g. during a renegotiation or before the handshake Finished round-trip completes),
 this function performs the required socket I/O and retries until the data is accepted rather than throwing.
+
+If `timeout` is provided, each socket round-trip needed to complete the write must finish within that
+duration or the function throws `"TLS operation timed out"`. Without a timeout, a stalled or malicious
+peer that withholds the I/O needed to complete a renegotiation can block this call indefinitely.
 
 Throws if the connection is in a broken state from a previous failed operation; in that case the
 `Connection` must be discarded.
 -/
-def send (s : Connection role) (data : ByteArray) : Async Unit := do
+def send (s : Connection role) (data : ByteArray) (chunkSize : UInt64 := ioChunkSize)
+    (timeout : Option Std.Time.Millisecond.Offset := none) : Async Unit := do
   if ← s.broken.get then throw <| IO.userError "TLS connection is in a broken state"
   try
     match ← s.ssl.write data with
@@ -65,16 +73,19 @@ def send (s : Connection role) (data : ByteArray) : Async Unit := do
     | some _ =>
       -- drainPendingWrites ends with flushEncrypted in its base case; no need
       -- to flush again afterwards.
-      drainPendingWrites s
+      let deadline ← timeout.mapM Sleep.mk
+      drainPendingWrites s chunkSize deadline
   catch e =>
     s.broken.set true
     throw e
 
 /--
-Sends multiple data buffers through the TLS-enabled socket.
+Sends multiple data buffers through the TLS-enabled socket. The `timeout`, if provided, applies to
+each individual buffer's send.
 -/
-@[inline] def sendAll (s : Connection role) (data : Array ByteArray) : Async Unit :=
-  data.forM (s.send ·)
+@[inline] def sendAll (s : Connection role) (data : Array ByteArray) (chunkSize : UInt64 := ioChunkSize)
+    (timeout : Option Std.Time.Millisecond.Offset := none) : Async Unit :=
+  data.forM (s.send · chunkSize timeout)
 
 private partial def recvLoop (s : Connection role) (size : UInt64) (chunkSize : UInt64) : Async (Option ByteArray) := do
   match ← s.ssl.read? size with
@@ -103,6 +114,9 @@ is closed.
 
 Returns `none` only on a clean TLS close (the peer sent a `close_notify` alert).
 
+This call blocks until plaintext arrives or the connection closes; it has no timeout of its own.
+To bound the wait, race `recvSelector` against a timer with `Selectable.one`.
+
 **Throws** if the underlying TCP connection closes without a `close_notify`; this
 distinguishes a truncation attack from a legitimate close. Also throws if the connection is
 in a broken state from a previous failed operation; in that case the `Connection` must be
@@ -124,40 +138,29 @@ Non-blocking receive of decrypted plaintext data.
 - Returns `none` if no plaintext is ready yet — the caller should wait and retry, not
   block. This is the non-blocking counterpart to `recv?`.
 
-Checks both the OpenSSL plaintext buffer (`SSL_pending`) and the input BIO
-(`BIO_pending`) via a non-consuming `ssl.read?`. Checking only `SSL_pending` would miss
-encrypted bytes already pulled from the socket into the BIO but not yet decrypted,
-causing `recvSelector` to incorrectly wait for new TCP data that will never arrive.
+A single `ssl.read?` drives the OpenSSL state machine without performing socket I/O, so it sees
+plaintext from both the decrypted buffer (`SSL_pending`) and any encrypted bytes already pulled into
+the input BIO (`BIO_pending`) but not yet decrypted. Checking only `SSL_pending` would miss the
+latter, causing `recvSelector` to wait for new TCP data that will never arrive. Any plaintext
+returned this way is consumed from the session, exactly as a successful `recv?` would consume it.
+
+Throws if the connection is in a broken state from a previous failed operation.
 -/
 def tryRecv (s : Connection role) (size : UInt64) : Async (Option (Option ByteArray)) := do
-  match ← s.ssl.read? size with
-  | .data plain =>
-    flushEncrypted s.native s.ssl
-    return some (some plain)
-  | .closed =>
-    return some none
-  | .wantIO _ =>
-    flushEncrypted s.native s.ssl
-    return none
-
-/--
-Feeds encrypted socket data into SSL until plaintext (or close) is pending.
-
-Uses `ssl.read? 0` as a non-consuming peek to check whether plaintext is already
-available before doing any I/O. `chunkSize` controls how many encrypted bytes are read
-from the socket per iteration; it defaults to `ioChunkSize` (16 KiB).
--/
-partial def waitReadable (s : Connection role) (chunkSize : UInt64 := ioChunkSize) : Async Unit := do
-  flushEncrypted s.native s.ssl
-  match ← s.ssl.read? 0 with
-  | .data _ | .closed => return ()
-  | .wantIO _ =>
-    let encrypted? ← Async.ofPromise <| s.native.recv? chunkSize
-    match encrypted? with
-    | none => return ()
-    | some encrypted =>
-      feedEncryptedChunk s.ssl encrypted
-      waitReadable s chunkSize
+  if ← s.broken.get then throw <| IO.userError "TLS connection is in a broken state"
+  try
+    match ← s.ssl.read? size with
+    | .data plain =>
+      flushEncrypted s.native s.ssl
+      return some (some plain)
+    | .closed =>
+      return some none
+    | .wantIO _ =>
+      flushEncrypted s.native s.ssl
+      return none
+  catch e =>
+    s.broken.set true
+    throw e
 
 /--
 Creates a `Selector` that resolves once `s` has plaintext data available.
@@ -217,11 +220,22 @@ If `timeout` is provided, each round-trip while waiting for the peer's
 `close_notify` must complete within that duration or the function throws
 `"TLS operation timed out"`. Without a timeout, a stalled or malicious peer
 can cause this function to block indefinitely.
+
+If the connection is already in a broken state, the TLS session cannot be trusted to produce a valid
+`close_notify`, so this falls back to a plain TCP half-close (`shutdown`) instead. If the shutdown
+sequence itself fails, the connection is marked broken and the error is re-thrown.
 -/
 def tlsShutdown (s : Connection role) (chunkSize : UInt64 := ioChunkSize)
     (timeout : Option Std.Time.Millisecond.Offset := none) : Async Unit := do
-  let deadline ← timeout.mapM Sleep.mk
-  tlsShutdownLoop s chunkSize deadline
+  if ← s.broken.get then
+    Async.ofPromise <| s.native.shutdown
+    return
+  try
+    let deadline ← timeout.mapM Sleep.mk
+    tlsShutdownLoop s chunkSize deadline
+  catch e =>
+    s.broken.set true
+    throw e
 
 /--
 Shuts down the write side of the socket at the TCP level only.
@@ -253,6 +267,9 @@ def getSockName (s : Connection role) : IO SocketAddress :=
 Returns the raw X.509 verification result code for this TLS session.
 The value `0` means success (`X509_V_OK`). Use `verifyResultString` for a human-readable
 description. These codes are OpenSSL-internal values defined in `<openssl/x509_vfy.h>`.
+
+OpenSSL also returns `X509_V_OK` when the peer presented no certificate at all, so a `0` result does
+not by itself prove an authenticated peer; confirm a certificate was received when that matters.
 -/
 @[inline]
 def verifyResult (s : Connection role) : IO UInt64 :=
@@ -268,7 +285,10 @@ def verifyResultString (s : Connection role) : IO String :=
 
 /--
 Returns the negotiated TLS protocol version string, e.g. `"TLSv1.3"` or `"TLSv1.2"`.
-Returns `"unknown"` if called before the handshake completes.
+
+Only authoritative after a successful handshake: before then OpenSSL reports the highest version the
+session is configured to offer rather than a negotiated value. `"unknown"` is returned only in the
+unexpected case that OpenSSL reports no version at all.
 -/
 @[inline]
 def negotiatedVersion (s : Connection role) : IO String :=

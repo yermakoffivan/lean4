@@ -14,14 +14,6 @@ def assertEqStr (actual expected : String) : IO Unit := do
   unless actual == expected do
     throw <| IO.userError s!"expected '{expected}', got '{actual}'"
 
-def assertGt (actual : UInt64) (bound : UInt64) (label : String) : IO Unit := do
-  unless actual > bound do
-    throw <| IO.userError s!"{label}: expected > {bound}, got {actual}"
-
-def assertEqN (actual expected : UInt64) (label : String) : IO Unit := do
-  unless actual == expected do
-    throw <| IO.userError s!"{label}: expected {expected}, got {actual}"
-
 def setupTestCerts : IO (String × String) := do
   let dir ← IO.FS.createTempDir
   let keyFile  := toString (dir / "key.pem")
@@ -384,6 +376,40 @@ def testManySmallMessages (addr : SocketAddress) (certFile keyFile : String) : I
   srvTask.block
   cliTask.block
 
+def testSendWithTimeout (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
+  let serverCtx ← Context.Server.mk
+  serverCtx.configure certFile keyFile
+  let clientCtx ← Context.Client.mk
+  clientCtx.configure "" false
+
+  let server ← Server.mk serverCtx
+  server.bind addr
+  server.listen 128
+
+  let srvTask ← (do
+    let conn ← server.accept
+    let msg ← conn.recv? 1024
+    -- Echo with a generous send timeout; the happy path must not time out.
+    conn.send (msg.getD ByteArray.empty) (timeout := some (.ofInt 5000))
+    Async.ofPromise conn.native.shutdown
+  : Async Unit).toIO
+
+  let cliTask ← (do
+    let client ← Client.mk clientCtx
+    client.setServerName "localhost"
+    client.connect addr
+    -- A send and a sendAll, both with a generous timeout that should never fire.
+    client.send "timed".toUTF8 (timeout := some (.ofInt 5000))
+    let resp ← client.recv? 1024
+    let got := String.fromUTF8! (resp.getD ByteArray.empty)
+    unless got == "timed" do
+      throw <| IO.userError s!"send-with-timeout mismatch: '{got}'"
+    Async.ofPromise client.native.shutdown
+  : Async Unit).toIO
+
+  srvTask.block
+  cliTask.block
+
 #eval do
   let (certFile, keyFile) ← setupTestCerts
   testTCPSSL (SocketAddressV4.mk (.ofParts 127 0 0 1) 18443) certFile keyFile
@@ -423,3 +449,7 @@ def testManySmallMessages (addr : SocketAddress) (certFile keyFile : String) : I
 #eval do
   let (certFile, keyFile) ← setupTestCerts
   testManySmallMessages (SocketAddressV4.mk (.ofParts 127 0 0 1) 18458) certFile keyFile
+
+#eval do
+  let (certFile, keyFile) ← setupTestCerts
+  testSendWithTimeout (SocketAddressV4.mk (.ofParts 127 0 0 1) 18473) certFile keyFile

@@ -10,18 +10,6 @@ open Std.Net
 open Std.Internal.SSL
 
 
-def assertEqStr (actual expected : String) : IO Unit := do
-  unless actual == expected do
-    throw <| IO.userError s!"expected '{expected}', got '{actual}'"
-
-def assertGt (actual : UInt64) (bound : UInt64) (label : String) : IO Unit := do
-  unless actual > bound do
-    throw <| IO.userError s!"{label}: expected > {bound}, got {actual}"
-
-def assertEqN (actual expected : UInt64) (label : String) : IO Unit := do
-  unless actual == expected do
-    throw <| IO.userError s!"{label}: expected {expected}, got {actual}"
-
 def setupTestCerts : IO (String × String) := do
   let dir ← IO.FS.createTempDir
   let keyFile  := toString (dir / "key.pem")

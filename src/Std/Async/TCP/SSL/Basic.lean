@@ -26,10 +26,14 @@ open Std.Internal.UV.TCP
 open Std Net Time
 
 /--
-Default chunk size for TLS encrypted I/O (16 KiB). Matches the maximum TLS record payload size
-RFC 8449 §4), so a single `recv` call always drains at least one complete TLS record from the socket.
+Default buffer size for TLS encrypted socket I/O (16 KiB), chosen to match the maximum TLS plaintext
+record size (`SSL3_RT_MAX_PLAIN_LENGTH`, RFC 8446 §5.1). A TLS *ciphertext* record can be slightly
+larger than this (it adds framing and AEAD expansion overhead), so a single `recv` is not guaranteed
+to capture a whole record; the I/O loops feed partial records back into OpenSSL and retry.
 -/
 def ioChunkSize : UInt64 := 16 * 1024
+
+namespace Internal
 
 /--
 Feeds an encrypted chunk into the SSL input BIO.
@@ -96,14 +100,15 @@ the loop throws `"TLS operation timed out"` if the deadline fires.
 -/
 partial def runHandshake (native : Socket) (ssl : Session) (chunkSize : UInt64) (deadline : Option Sleep := none) : Async Unit := do
   while true do
-    let pendingBefore ← ssl.pendingEncrypted
     let want ← ssl.handshake
-    let pendingAfter ← ssl.pendingEncrypted
+    -- Measured after the step but before `flushEncrypted` empties the output BIO; the previous
+    -- iteration always ends with a flush, so this counts exactly what this step produced.
+    let pending ← ssl.pendingEncrypted
     flushEncrypted native ssl
     match want with
     | none => return ()
     | some .write =>
-      if pendingAfter == 0 && pendingBefore == 0 then
+      if pending == 0 then
         throw <| IO.userError "TLS handshake stalled: WANT_WRITE but output BIO produced no bytes"
     | some .read =>
       let encrypted? ← recvEncrypted native chunkSize deadline
@@ -113,7 +118,9 @@ partial def runHandshake (native : Socket) (ssl : Session) (chunkSize : UInt64) 
       | some encrypted =>
         feedEncryptedChunk ssl encrypted
 
--- ## Types
+end Internal
+
+/-! ## Types -/
 
 /--
 Distinguishes server-accepted and client-initiated TLS connections at the type level.
@@ -143,6 +150,11 @@ structure Server where
 Represents a TLS-enabled TCP connection, parameterized by `role` to prevent
 mixing server and client connections after construction.
 Use `Client` for outgoing connections and `ServerConn` for server-accepted connections.
+
+A `Connection` wraps a single OpenSSL session, which is **not safe for concurrent use**: do not run
+two operations on the same `Connection` at once (e.g. a `send` racing a `recv?`, or two concurrent
+`recv?`s). If several tasks share one connection, serialize their access. Note that `recvSelector`
+drives a `recv?` on a background task, so registering it counts as an in-flight receive.
 -/
 structure Connection (role : ConnectionRole) where
   ofNative ::

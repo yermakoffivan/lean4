@@ -27,11 +27,9 @@ void lean_uv_signal_finalizer(void* ptr) {
         return;
     }
 
-    if (signal->m_uv_signal != nullptr) {
-        uv_close((uv_handle_t*)signal->m_uv_signal, [](uv_handle_t* handle) {
-            free(handle);
-        });
-    }
+    uv_close((uv_handle_t*)signal->m_uv_signal, [](uv_handle_t* handle) {
+        free(handle);
+    });
 
     event_loop_unlock(&global_ev);
 

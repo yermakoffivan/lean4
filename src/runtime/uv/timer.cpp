@@ -28,11 +28,9 @@ void lean_uv_timer_finalizer(void* ptr) {
         return;
     }
 
-    if (timer->m_uv_timer != nullptr) {
-        uv_close((uv_handle_t*) timer->m_uv_timer, [](uv_handle_t* handle) {
-            free(handle);
-        });
-    }
+    uv_close((uv_handle_t*) timer->m_uv_timer, [](uv_handle_t* handle) {
+        free(handle);
+    });
 
     event_loop_unlock(&global_ev);
 

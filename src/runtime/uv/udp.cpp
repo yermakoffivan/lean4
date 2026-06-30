@@ -36,21 +36,13 @@ void lean_uv_udp_socket_finalizer(void* ptr) {
         return;
     }
 
-    if (udp_socket->m_uv_udp != nullptr) {
-        /*
-        It's changing here because the object is being freed in the finalizer,
-        and we need the data inside of it in the close callback.
-        */
-        udp_socket->m_uv_udp->data = ptr;
+    udp_socket->m_uv_udp->data = ptr;
 
-        uv_close((uv_handle_t*)udp_socket->m_uv_udp, [](uv_handle_t* handle) {
-            lean_uv_udp_socket_object* udp_socket = (lean_uv_udp_socket_object*)handle->data;
-            free(udp_socket->m_uv_udp);
-            free(udp_socket);
-        });
-    } else {
+    uv_close((uv_handle_t*)udp_socket->m_uv_udp, [](uv_handle_t* handle) {
+        lean_uv_udp_socket_object* udp_socket = (lean_uv_udp_socket_object*)handle->data;
+        free(udp_socket->m_uv_udp);
         free(udp_socket);
-    }
+    });
 
     event_loop_unlock(&global_ev);
 }

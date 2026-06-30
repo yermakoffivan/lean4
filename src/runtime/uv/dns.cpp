@@ -72,6 +72,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_dns_get_info(b_obj_arg name, b_obj_a
         free(resolver);
         return lean_uv_loop_unavailable_error();
     }
+
     lean_inc(promise);
 
     int result = uv_getaddrinfo(global_ev.loop, resolver, [](uv_getaddrinfo_t* req, int status, struct addrinfo* res) {

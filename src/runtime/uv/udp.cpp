@@ -77,6 +77,7 @@ size_t lean_uv_udp_socket_shutdown(lean_uv_udp_socket_object * udp_socket) {
     if (udp_socket->m_promise_read != nullptr) {
         uv_udp_recv_stop(udp_socket->m_uv_udp);
 
+        lean_promise_resolve_with_code(UV_ECANCELED, udp_socket->m_promise_read);
         lean_dec(udp_socket->m_promise_read);
         udp_socket->m_promise_read = nullptr;
 

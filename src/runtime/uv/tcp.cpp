@@ -90,6 +90,7 @@ size_t lean_uv_tcp_socket_shutdown(lean_uv_tcp_socket_object * tcp_socket, uv_de
     if (tcp_socket->m_promise_read != nullptr) {
         uv_read_stop((uv_stream_t*)tcp_socket->m_uv_tcp);
 
+        lean_promise_resolve_with_code(UV_ECANCELED, tcp_socket->m_promise_read);
         lean_dec(tcp_socket->m_promise_read);
         tcp_socket->m_promise_read = nullptr;
 
@@ -102,6 +103,7 @@ size_t lean_uv_tcp_socket_shutdown(lean_uv_tcp_socket_object * tcp_socket, uv_de
     }
 
     if (tcp_socket->m_promise_accept != nullptr) {
+        lean_promise_resolve_with_code(UV_ECANCELED, tcp_socket->m_promise_accept);
         lean_dec(tcp_socket->m_promise_accept);
         tcp_socket->m_promise_accept = nullptr;
 
@@ -120,6 +122,7 @@ size_t lean_uv_tcp_socket_shutdown(lean_uv_tcp_socket_object * tcp_socket, uv_de
     }
 
     if (tcp_socket->m_promise_shutdown != nullptr) {
+        lean_promise_resolve_with_code(UV_ECANCELED, tcp_socket->m_promise_shutdown);
         lean_dec(tcp_socket->m_promise_shutdown);
         tcp_socket->m_promise_shutdown = nullptr;
     }

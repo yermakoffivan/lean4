@@ -562,18 +562,6 @@ namespace Awareness
 instance : Coe TimeZone Awareness where
   coe := .only
 
-set_option linter.missingDocs false in  -- TODO
-@[simp, expose /- for codegen -/]
-def type (x : Awareness) : Type :=
-  match x with
-  | .any => ZonedDateTime
-  | .only tz => DateTime tz
-
-private instance : Inhabited (type aw) where
-  default := by
-    simp [type]
-    split <;> exact Inhabited.default
-
 private def getD (x : Awareness) (default : TimeZone) : TimeZone :=
   match x with
   | .any => default
@@ -736,11 +724,11 @@ def TypeFormat : Modifier → Type
   | .MorL _ => Month.Ordinal
   | .d _ => Day.Ordinal
   | .Qorq _ => Month.Quarter
-  | .w _ => Week.Ordinal
-  | .W _ => Week.Ordinal.OfMonth
+  | .w _ => Week.OfYear.Ordinal
+  | .W _ => Week.Ordinal
   | .E _ => Weekday
   | .eorc _ => Weekday
-  | .F _ => Bounded.LE 1 5
+  | .F _ => Week.Aligned.Ordinal
   | .a _ => HourMarker
   | .h _ => Bounded.LE 1 12
   | .K _ => Bounded.LE 0 11
@@ -889,7 +877,8 @@ private def formatWith (dateformat : DateFormat) (modifier : Modifier) (data : T
         then "Z"
         else  toIsoString data true (data.second.val % 60 ≠ 0) true
 
-private def dateFromModifier (firstDay : Weekday) (date : DateTime tz) : TypeFormat modifier :=
+private def dateFromModifier (firstDay : Weekday) (date : DateTime) : TypeFormat modifier :=
+  let tz := date.timezone
   match modifier with
   | .G _ => date.era
   | .y _ => date.year
@@ -900,10 +889,10 @@ private def dateFromModifier (firstDay : Weekday) (date : DateTime tz) : TypeFor
   | .d _ => date.day
   | .Qorq _ => date.quarter
   | .w _ => date.weekOfYear firstDay
-  | .W _ => date.alignedWeekOfMonth firstDay
+  | .W _ => date.weekOfMonth firstDay
   | .E _ =>  date.weekday
   | .eorc _ => date.weekday
-  | .F _ => date.weekOfMonth
+  | .F _ => date.alignedWeekOfMonth
   | .a _ => HourMarker.ofOrdinal date.hour
   | .h _ => HourMarker.toRelative date.hour |>.fst
   | .K _ => date.hour.emod 12 (by decide)
@@ -1212,7 +1201,7 @@ private def parseWith (config : FormatConfig) : (mod : Modifier) → Parser (Typ
       (skipString "Z" *> pure Offset.zero)
       <|> (parseOffset .yes .optional true)
 
-private def formatPartWithDate (dateformat : DateFormat) (date : DateTime tz) (part : FormatPart) : String :=
+private def formatPartWithDate (dateformat : DateFormat) (date : DateTime) (part : FormatPart) : String :=
   match part with
   | .modifier mod => formatWith dateformat mod (dateFromModifier dateformat.firstDayOfWeek date)
   | .string s => s
@@ -1235,8 +1224,8 @@ private structure DateBuilder where
   MorL : Option Month.Ordinal := none
   d : Option Day.Ordinal := none
   Qorq : Option Month.Quarter := none
-  w : Option Week.Ordinal := none
-  W : Option Week.Ordinal.OfMonth := none
+  w : Option Week.OfYear.Ordinal := none
+  W : Option Week.Ordinal := none
   E : Option Weekday := none
   eorc : Option Weekday := none
   F : Option (Bounded.LE 1 5) := none
@@ -1299,7 +1288,7 @@ private def convertYearAndEra (year : Year.Offset) : Year.Era → Year.Offset
   | .ce => year
   | .bce => -(year + 1)
 
-private def build (builder : DateBuilder) (aw : Awareness) : Option aw.type :=
+private def build (builder : DateBuilder) (aw : Awareness) : Option DateTime :=
   let offset := builder.O <|> builder.X <|> builder.x <|> builder.Z |>.getD Offset.zero
 
   let tz : TimeZone := {
@@ -1349,9 +1338,12 @@ private def build (builder : DateBuilder) (aw : Awareness) : Option aw.type :=
     else
       none
 
-  match aw with
-    | .only newTz => (ofPlainDateTime · newTz) <$> datetime
-    | .any => (ZonedDateTime.ofPlainDateTime · (ZoneRules.ofTimeZone tz)) <$> datetime
+  let zoneTz :=
+    match aw with
+    | .only newTz => newTz
+    | .any => tz
+
+  (DateTime.ofPlainDateTime · (ZoneRules.ofTimeZone zoneTz)) <$> datetime
 
 end DateBuilder
 
@@ -1381,18 +1373,18 @@ def spec! (input : String) (config : FormatConfig := {}) : GenericFormat tz :=
 /--
 Formats a `DateTime` value into a string using the given `GenericFormat`.
 -/
-def format (format : GenericFormat aw) (date : DateTime tz) : String :=
+def format (format : GenericFormat aw) (date : DateTime) : String :=
   let dateformat := format.config.dateformat
   let mapper (part : FormatPart) :=
     match aw with
     | .any => formatPartWithDate dateformat date part
-    | .only tz => formatPartWithDate dateformat (date.convertTimeZone tz) part
+    | .only tz => formatPartWithDate dateformat (date.convertZoneRules (TimeZone.ZoneRules.ofTimeZone tz)) part
 
   format.string.map mapper
   |> String.join
 
-private def parser (format : FormatString) (config : FormatConfig) (aw : Awareness) : Parser (aw.type) :=
-  let rec go (builder : DateBuilder) (x : FormatString) : Parser aw.type :=
+private def parser (format : FormatString) (config : FormatConfig) (aw : Awareness) : Parser DateTime :=
+  let rec go (builder : DateBuilder) (x : FormatString) : Parser DateTime :=
     match x with
     | x :: xs => parseWithDate builder config x >>= (go · xs)
     | [] =>
@@ -1418,15 +1410,15 @@ def builderParser (format: FormatString) (config : FormatConfig) (func: FormatTy
   go format func
 
 /--
-Parses the input string into a `ZoneDateTime`.
+Parses the input string into a `DateTime`.
 -/
-def parse (format : GenericFormat aw) (input : String) : Except String aw.type :=
+def parse (format : GenericFormat aw) (input : String) : Except String DateTime :=
   (parser format.string format.config aw <* eof).run input
 
 /--
-Parses the input string into a `ZoneDateTime` and panics if its wrong.
+Parses the input string into a `DateTime` and panics if its wrong.
 -/
-def parse! (format : GenericFormat aw) (input : String) : aw.type :=
+def parse! (format : GenericFormat aw) (input : String) : DateTime :=
   match parse format input with
   | .ok res => res
   | .error err => panic! err

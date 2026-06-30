@@ -19,7 +19,8 @@ public section
 /-!
 # Path.Basic
 
-Core types for `Std.Path`: `Path.Component` and `Path`.
+The `Path.Component` type, the parsed building block of a `Std.Path`. The `Path` structure itself is
+defined in `Std.Path`.
 -/
 
 namespace Std
@@ -46,7 +47,7 @@ inductive Path.Component where
   Present as the first component of every absolute path. Relative paths never
   start with `root`.
   -/
-  | root (s : String)
+  | root (value : String)
 
   /--
   The special `.` segment, meaning "current directory".

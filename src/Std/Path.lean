@@ -6,7 +6,6 @@ Authors: Sofia Rodrigues
 module
 
 prelude
-public import Init.Grind
 public import Init.Data.String
 public import Init.Data.Repr
 public import Init.Data.BEq

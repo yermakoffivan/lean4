@@ -188,6 +188,11 @@ section Normalize
 #guard (win "C:\\..").normalize.toWindowsString = "C:\\"
 -- empty default path normalizes to "."
 #guard (default : Path).normalize.toPosixString = "."
+-- normalize is idempotent
+#guard (posix "a/b/c/../../d").normalize.normalize.toPosixString =
+       (posix "a/b/c/../../d").normalize.toPosixString
+#guard (posix "/a/../..").normalize.normalize.toPosixString =
+       (posix "/a/../..").normalize.toPosixString
 
 end Normalize
 
@@ -423,6 +428,18 @@ section RelativeTo
 -- Windows: different drive → none
 #guard (win "C:\\foo").relativeTo? (win "D:\\foo") = none
 
+-- documented invariant: `(base.join r).normalize = target.normalize`
+private def relInvariant (base target : Path) : Bool :=
+  match base.relativeTo? target with
+  | none => false
+  | some r => (base.join r).normalize == target.normalize
+#guard relInvariant (posix "/a/b") (posix "/a/c")
+#guard relInvariant (posix "/a") (posix "/a/b/c")
+#guard relInvariant (posix "/a/b/c") (posix "/a")
+#guard relInvariant (posix "/a/b") (posix "/c/d")
+#guard relInvariant (posix "/a/b") (posix "/a/b")
+#guard relInvariant (posix "a/b") (posix "a/c")
+
 end RelativeTo
 
 
@@ -471,6 +488,17 @@ section Glob
 #guard (posix "src/a.lean").matchGlob "src/[abc" = false
 -- ...including the empty path (regression: a parse failure must not match everything)
 #guard Path.empty.matchGlob "[abc" = false
+-- ...and even when the leftover after the unterminated class would otherwise match (the pattern
+-- must be rejected wholesale, not parsed up to the bad `[`).
+#guard (posix "a").matchGlob "a[bc" = false
+#guard (posix "abc").matchGlob "abc[x" = false
+#guard (posix "a/b").matchGlob "a/b[x" = false
+-- an unterminated class in a non-final segment is likewise rejected
+#guard (posix "a/b").matchGlob "a[/b" = false
+-- matchGlob operates on raw components and does not normalize: a literal "." segment is only matched
+-- by a pattern that also has a segment there.
+#guard (posix "a/./b").matchGlob "a/b" = false
+#guard (posix "a/./b").matchGlob "a/*/b" = true
 
 end Glob
 

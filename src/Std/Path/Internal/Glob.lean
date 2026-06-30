@@ -77,7 +77,11 @@ private def globSegment : Parser GlobSegment :=
 /-- Parse a full glob pattern into a `Glob`. -/
 private def globPatternParser : Parser Glob := do
   if ← isEof then return #[]
-  sepBy1 (pchar '/') globSegment
+  let g ← sepBy1 (pchar '/') globSegment
+  -- Require the whole pattern to be consumed; otherwise an unterminated `[...]` class (which leaves
+  -- the `[` and its tail unparsed) would silently succeed as a partial pattern instead of failing.
+  eof
+  return g
 
 /--
 Parse `pattern` into a `Glob`, or `none` if it is syntactically invalid (e.g. an unterminated

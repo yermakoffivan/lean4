@@ -79,6 +79,23 @@ info: Try this:
 #guard_msgs in
 example : P := by ·
 
+-- Empty `· ` on the rhs of `<;>`: each subgoal of `refine` re-enters the same `·`
+-- source range, producing one `unsolved goals` error per subgoal. Each error has its
+-- own (different) goal mvarid, so the collector pushes a Candidate per goal and the
+-- multi-state filter suppresses the lot. No "Try this" is offered.
+/--
+error: unsolved goals
+case refine_1
+⊢ P
+---
+error: unsolved goals
+case refine_2
+⊢ P
+-/
+#guard_msgs in
+example : P ∧ P := by
+  refine ⟨?_, ?_⟩ <;> ·
+
 set_option autoTry.onEmptyProof false
 
 /-! ## `autoTry.onUnsolvedGoal` -- empty `by` -/

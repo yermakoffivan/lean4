@@ -299,12 +299,14 @@ def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree)
   -- Unsolved-goal triggers come from the message log.
   if onUnsolved || onEmpty then
     let fileMap ← getFileMap
-    -- `runLintersAsync` accumulates diagnostics both in the command state's message
-    -- log and in the snapshot tree it then merges back, so the same `Tactic.unsolvedGoals`
-    -- error commonly appears twice in `msgs`. Dedup by source range before processing
-    -- so the later `counts > 1` filter doesn't suppress a single legitimate trigger.
     let some cmdRange := cmd.getRange? (canonicalOnly := true) | return acc
-    let mut seen : Std.HashSet Lean.Syntax.Range := {}
+    -- Dedup key is `(message range, goal mvarid)`: same range + same mvarid is a true
+    -- duplicate (`runLintersAsync` merges the snapshot tree's diagnostics into the
+    -- command state's message log, so the same `Tactic.unsolvedGoals` error may appear
+    -- twice in `msgs`); same range + different mvarids is the genuinely distinct case
+    -- that the downstream `<;>` filter needs to see (e.g. `tac <;> ·` re-enters the same
+    -- empty cdot once per subgoal, each with its own goal).
+    let mut seen : Std.HashSet (Lean.Syntax.Range × MVarId) := {}
     for msg in msgs do
       unless msg.severity matches .error do continue
       unless msg.data.hasTag (· == `Tactic.unsolvedGoals) do continue
@@ -312,8 +314,6 @@ def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree)
       let msgRange : Lean.Syntax.Range :=
         { start := fileMap.ofPosition msg.pos, stop := fileMap.ofPosition endPos }
       unless cmdRange.includes msgRange do continue
-      if seen.contains msgRange then continue
-      seen := seen.insert msgRange
       let some (body, insertPos) := findTacticSeqBody cmd msgRange
         | trace[autoTry] "no tacticSeq body found for unsolved-goals message at \
             {msgRange.start.byteIdx}-{msgRange.stop.byteIdx}; \
@@ -327,6 +327,8 @@ def collectTriggerPoints (cmd : Syntax) (opts : Options) (tree : InfoTree)
         trace[autoTry] "Tactic.unsolvedGoals message yielded no (msgCtx, namingCtx, goal) \
           tuples; producer not following the `withContext`/`withNamingContext` contract?"
       for (msgCtx, namingCtx, mvarId) in goals do
+        if seen.contains (msgRange, mvarId) then continue
+        seen := seen.insert (msgRange, mvarId)
         acc := acc.push {
           kind := .unsolvedGoal body insertPos, ref,
           env := msgCtx.env, mctx := msgCtx.mctx, opts := msgCtx.opts,

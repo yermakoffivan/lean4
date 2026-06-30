@@ -29,20 +29,23 @@ void lean_uv_udp_socket_finalizer(void* ptr) {
         // The loop is being torn down. Wait for finalization to free and detach our handle, then
         // release only the struct.
         event_loop_wait_finalized(&global_ev);
-        lean_uv_handle_free_detached(&udp_socket->m_uv, udp_socket);
+        if (udp_socket->m_uv_udp != nullptr) {
+            free(udp_socket->m_uv_udp);
+        }
+        free(udp_socket);
         return;
     }
 
-    if (lean_uv_udp_socket_handle(udp_socket) != nullptr) {
+    if (udp_socket->m_uv_udp != nullptr) {
         /*
         It's changing here because the object is being freed in the finalizer,
         and we need the data inside of it in the close callback.
         */
-        lean_uv_udp_socket_handle(udp_socket)->data = ptr;
+        udp_socket->m_uv_udp->data = ptr;
 
-        uv_close((uv_handle_t*)lean_uv_udp_socket_handle(udp_socket), [](uv_handle_t* handle) {
+        uv_close((uv_handle_t*)udp_socket->m_uv_udp, [](uv_handle_t* handle) {
             lean_uv_udp_socket_object* udp_socket = (lean_uv_udp_socket_object*)handle->data;
-            free(lean_uv_udp_socket_handle(udp_socket));
+            free(udp_socket->m_uv_udp);
             free(udp_socket);
         });
     } else {
@@ -72,7 +75,7 @@ size_t lean_uv_udp_socket_shutdown(lean_uv_udp_socket_object * udp_socket) {
     size_t release_refs = 0;
 
     if (udp_socket->m_promise_read != nullptr) {
-        uv_udp_recv_stop(lean_uv_udp_socket_handle(udp_socket));
+        uv_udp_recv_stop(udp_socket->m_uv_udp);
 
         lean_dec(udp_socket->m_promise_read);
         udp_socket->m_promise_read = nullptr;
@@ -82,10 +85,10 @@ size_t lean_uv_udp_socket_shutdown(lean_uv_udp_socket_object * udp_socket) {
             udp_socket->m_byte_array = nullptr;
         }
 
-        release_refs += lean_uv_handle_release_one(&udp_socket->m_uv);
+        release_refs += 1;
     }
 
-    udp_socket->m_uv.m_uv_handle = nullptr;
+    udp_socket->m_uv_udp = nullptr;
     return release_refs;
 }
 
@@ -126,12 +129,12 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_new() {
     // Set `data` before unlocking: once `uv_udp_init` registers the handle in the loop, a concurrent
     // `finalize_libuv` walk (which runs under the same lock) could otherwise observe the handle with
     // an uninitialized `data`.
-    lean_uv_handle_init(&udp_socket->m_uv, (uv_handle_t*)uv_udp);
+    udp_socket->m_uv_udp = uv_udp;
 
     lean_object* obj = lean_uv_udp_socket_new(udp_socket);
     lean_mark_mt(obj);
 
-    lean_uv_udp_socket_handle(udp_socket)->data = obj;
+    udp_socket->m_uv_udp->data = obj;
 
     event_loop_unlock(&global_ev);
 
@@ -148,7 +151,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_bind(b_obj_arg socket, b_obj_arg
     if (!event_loop_lock(&global_ev)) {
         return lean_uv_loop_unavailable_error();
     }
-    int result = uv_udp_bind(lean_uv_udp_socket_handle(udp_socket), (sockaddr*)&addr_ptr, UV_UDP_REUSEADDR);
+    int result = uv_udp_bind(udp_socket->m_uv_udp, (sockaddr*)&addr_ptr, UV_UDP_REUSEADDR);
     event_loop_unlock(&global_ev);
 
     if (result < 0) {
@@ -168,7 +171,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_connect(b_obj_arg socket, b_obj_
     if (!event_loop_lock(&global_ev)) {
         return lean_uv_loop_unavailable_error();
     }
-    int result = uv_udp_connect(lean_uv_udp_socket_handle(udp_socket), (sockaddr*)&addr_ptr);
+    int result = uv_udp_connect(udp_socket->m_uv_udp, (sockaddr*)&addr_ptr);
     event_loop_unlock(&global_ev);
 
     if (result < 0) {
@@ -237,7 +240,6 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_send(b_obj_arg socket, obj_arg d
     send_data->bufs = bufs;
 
     // These objects are going to enter the loop and be owned by it
-    lean_uv_handle_acquire(&udp_socket->m_uv);
     lean_inc(promise);
     lean_inc(socket);
 
@@ -249,7 +251,6 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_send(b_obj_arg socket, obj_arg d
         if (addr_ptr == nullptr) {
             lean_dec(promise);
             lean_dec(promise);
-            lean_uv_handle_release(&udp_socket->m_uv);
             lean_dec(socket);
             lean_dec(data_array);
             free(bufs);
@@ -266,7 +267,6 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_send(b_obj_arg socket, obj_arg d
         }
         lean_dec(promise);
         lean_dec(promise);
-        lean_uv_handle_release(&udp_socket->m_uv);
         lean_dec(socket);
         lean_dec(data_array);
         free(bufs);
@@ -275,12 +275,11 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_send(b_obj_arg socket, obj_arg d
         return lean_uv_loop_unavailable_error();
     }
 
-    int result = uv_udp_send(send_uv, lean_uv_udp_socket_handle(udp_socket), bufs, array_len, (sockaddr*)addr_ptr, [](uv_udp_send_t* req, int status) {
+    int result = uv_udp_send(send_uv, udp_socket->m_uv_udp, bufs, array_len, (sockaddr*)addr_ptr, [](uv_udp_send_t* req, int status) {
         udp_send_data* tup = (udp_send_data*) req->data;
         lean_promise_resolve_with_code(status, tup->promise);
 
         lean_dec(tup->promise);
-        lean_uv_handle_release(&lean_to_uv_udp_socket(tup->socket)->m_uv);
         lean_dec(tup->socket);
         lean_dec(tup->data);
 
@@ -298,7 +297,6 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_send(b_obj_arg socket, obj_arg d
     if (result < 0) {
         lean_dec(promise); // The structure does not own it.
         lean_dec(promise); // We are not going to return it.
-        lean_uv_handle_release(&udp_socket->m_uv);
         lean_dec(socket); // The loop does not own the object.
         lean_dec(data_array); // The data is owned.
         free(bufs);
@@ -334,11 +332,10 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_recv(b_obj_arg socket, uint64_t 
     udp_socket->m_promise_read = promise;
 
     // The event loop owns the socket.
-    lean_uv_handle_acquire(&udp_socket->m_uv);
     lean_inc(promise);
     lean_inc(socket);
 
-    int result = uv_udp_recv_start(lean_uv_udp_socket_handle(udp_socket), [](uv_handle_t *handle, size_t suggested_size, uv_buf_t *buf) {
+    int result = uv_udp_recv_start(udp_socket->m_uv_udp, [](uv_handle_t *handle, size_t suggested_size, uv_buf_t *buf) {
         lean_uv_udp_socket_object *udp_socket = lean_to_uv_udp_socket((lean_object*)handle->data);
 
         buf->base = (char*)lean_sarray_cptr(udp_socket->m_byte_array);
@@ -377,7 +374,6 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_recv(b_obj_arg socket, uint64_t 
         lean_dec(promise);
 
         // The event loop does not own the object anymore.
-        lean_uv_handle_release(&udp_socket->m_uv);
         lean_dec((lean_object*)handle->data);
     });
 
@@ -390,7 +386,6 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_recv(b_obj_arg socket, uint64_t 
         lean_dec(byte_array);
         lean_dec(promise); // The structure does not own it.
         lean_dec(promise); // We are not going to return it.
-        lean_uv_handle_release(&udp_socket->m_uv);
         lean_dec(socket);
 
         return lean_io_result_mk_error(lean_decode_uv_error(result, nullptr));
@@ -421,11 +416,10 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_wait_readable(b_obj_arg socket) 
     udp_socket->m_promise_read = promise;
 
     // The event loop owns the socket.
-    lean_uv_handle_acquire(&udp_socket->m_uv);
     lean_inc(promise);
     lean_inc(socket);
 
-    int result = uv_udp_recv_start(lean_uv_udp_socket_handle(udp_socket), [](uv_handle_t* handle, size_t suggested_size, uv_buf_t *buf) {
+    int result = uv_udp_recv_start(udp_socket->m_uv_udp, [](uv_handle_t* handle, size_t suggested_size, uv_buf_t *buf) {
         // According to libuv documentation if we do this we do not lose data and a UV_ENOBUFS will
         // be triggered in the read cb.
         buf->base = NULL;
@@ -450,7 +444,6 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_wait_readable(b_obj_arg socket) 
         lean_dec(promise);
 
         // The event loop does not own the object anymore.
-        lean_uv_handle_release(&udp_socket->m_uv);
         lean_dec((lean_object*)handle->data);
     });
 
@@ -461,7 +454,6 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_wait_readable(b_obj_arg socket) 
 
         lean_dec(promise); // The structure does not own it.
         lean_dec(promise); // We are not going to return it.
-        lean_uv_handle_release(&udp_socket->m_uv);
         lean_dec(socket);
 
         return lean_io_result_mk_error(lean_decode_uv_error(result, nullptr));
@@ -488,7 +480,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_cancel_recv(b_obj_arg socket) {
         return lean_io_result_mk_ok(lean_box(0));
     }
 
-    uv_udp_recv_stop(lean_uv_udp_socket_handle(udp_socket));
+    uv_udp_recv_stop(udp_socket->m_uv_udp);
 
     lean_object* promise = udp_socket->m_promise_read;
     lean_dec(promise);
@@ -502,7 +494,6 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_cancel_recv(b_obj_arg socket) {
     }
 
     event_loop_unlock(&global_ev);
-    lean_uv_handle_release(&udp_socket->m_uv);
     lean_dec(socket);
 
     return lean_io_result_mk_ok(lean_box(0));
@@ -522,7 +513,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_getpeername(b_obj_arg socket) {
     if (!event_loop_lock(&global_ev)) {
         return lean_uv_loop_unavailable_error();
     }
-    int result = uv_udp_getpeername(lean_uv_udp_socket_handle(udp_socket), (struct sockaddr*)&addr_storage, &addr_len);
+    int result = uv_udp_getpeername(udp_socket->m_uv_udp, (struct sockaddr*)&addr_storage, &addr_len);
     event_loop_unlock(&global_ev);
 
     if (result < 0) {
@@ -544,7 +535,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_getsockname(b_obj_arg socket) {
     if (!event_loop_lock(&global_ev)) {
         return lean_uv_loop_unavailable_error();
     }
-    int result = uv_udp_getsockname(lean_uv_udp_socket_handle(udp_socket), (struct sockaddr*)&addr_storage, &addr_len);
+    int result = uv_udp_getsockname(udp_socket->m_uv_udp, (struct sockaddr*)&addr_storage, &addr_len);
     event_loop_unlock(&global_ev);
 
     if (result < 0) {
@@ -562,7 +553,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_set_broadcast(b_obj_arg socket, 
     if (!event_loop_lock(&global_ev)) {
         return lean_uv_loop_unavailable_error();
     }
-    int result = uv_udp_set_broadcast(lean_uv_udp_socket_handle(udp_socket), enable);
+    int result = uv_udp_set_broadcast(udp_socket->m_uv_udp, enable);
     event_loop_unlock(&global_ev);
 
     if (result < 0) {
@@ -579,7 +570,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_set_multicast_loop(b_obj_arg soc
     if (!event_loop_lock(&global_ev)) {
         return lean_uv_loop_unavailable_error();
     }
-    int result = uv_udp_set_multicast_loop(lean_uv_udp_socket_handle(udp_socket), enable);
+    int result = uv_udp_set_multicast_loop(udp_socket->m_uv_udp, enable);
     event_loop_unlock(&global_ev);
 
     if (result < 0) {
@@ -596,7 +587,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_set_multicast_ttl(b_obj_arg sock
     if (!event_loop_lock(&global_ev)) {
         return lean_uv_loop_unavailable_error();
     }
-    int result = uv_udp_set_multicast_ttl(lean_uv_udp_socket_handle(udp_socket), ttl);
+    int result = uv_udp_set_multicast_ttl(udp_socket->m_uv_udp, ttl);
     event_loop_unlock(&global_ev);
 
     if (result < 0) {
@@ -624,7 +615,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_set_membership(b_obj_arg socket,
     if (!event_loop_lock(&global_ev)) {
         return lean_uv_loop_unavailable_error();
     }
-    int result = uv_udp_set_membership(lean_uv_udp_socket_handle(udp_socket), multicast_addr_str, is_interface_null ? nullptr : interface_addr_str, (uv_membership)membership);
+    int result = uv_udp_set_membership(udp_socket->m_uv_udp, multicast_addr_str, is_interface_null ? nullptr : interface_addr_str, (uv_membership)membership);
     event_loop_unlock(&global_ev);
 
     if (result < 0) {
@@ -644,7 +635,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_set_multicast_interface(b_obj_ar
     if (!event_loop_lock(&global_ev)) {
         return lean_uv_loop_unavailable_error();
     }
-    int result = uv_udp_set_multicast_interface(lean_uv_udp_socket_handle(udp_socket), interface_addr_str);
+    int result = uv_udp_set_multicast_interface(udp_socket->m_uv_udp, interface_addr_str);
     event_loop_unlock(&global_ev);
 
     if (result < 0) {
@@ -661,7 +652,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_set_ttl(b_obj_arg socket, uint32
     if (!event_loop_lock(&global_ev)) {
         return lean_uv_loop_unavailable_error();
     }
-    int result = uv_udp_set_ttl(lean_uv_udp_socket_handle(udp_socket), ttl);
+    int result = uv_udp_set_ttl(udp_socket->m_uv_udp, ttl);
     event_loop_unlock(&global_ev);
 
     if (result < 0) {

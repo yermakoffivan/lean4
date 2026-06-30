@@ -20,12 +20,15 @@ void lean_uv_signal_finalizer(void* ptr) {
 
     if (!event_loop_lock(&global_ev)) {
         event_loop_wait_finalized(&global_ev);
-        lean_uv_handle_free_detached(&signal->m_uv, signal);
+        if (signal->m_uv_signal != nullptr) {
+            free(signal->m_uv_signal);
+        }
+        free(signal);
         return;
     }
 
-    if (lean_uv_signal_handle(signal) != nullptr) {
-        uv_close((uv_handle_t*)lean_uv_signal_handle(signal), [](uv_handle_t* handle) {
+    if (signal->m_uv_signal != nullptr) {
+        uv_close((uv_handle_t*)signal->m_uv_signal, [](uv_handle_t* handle) {
             free(handle);
         });
     }
@@ -65,10 +68,9 @@ void handle_signal_event(uv_signal_t* handle, int signum) {
             lean_dec(res);
         }
 
-        uv_signal_stop(lean_uv_signal_handle(signal));
+        uv_signal_stop(signal->m_uv_signal);
         signal->m_state = SIGNAL_STATE_FINISHED;
 
-        lean_uv_handle_release(&signal->m_uv);
         lean_dec(obj);
     }
 }
@@ -77,10 +79,10 @@ size_t lean_uv_signal_shutdown(lean_uv_signal_object * signal) {
     size_t release_refs = 0;
 
     if (signal->m_state == SIGNAL_STATE_RUNNING) {
-        uv_signal_stop(lean_uv_signal_handle(signal));
+        uv_signal_stop(signal->m_uv_signal);
         signal->m_state = SIGNAL_STATE_FINISHED;
 
-        release_refs += lean_uv_handle_release_one(&signal->m_uv);
+        release_refs += 1;
     }
 
     if (signal->m_promise != NULL) {
@@ -88,7 +90,7 @@ size_t lean_uv_signal_shutdown(lean_uv_signal_object * signal) {
         signal->m_promise = NULL;
     }
 
-    signal->m_uv.m_uv_handle = nullptr;
+    signal->m_uv_signal = nullptr;
     return release_refs;
 }
 
@@ -135,7 +137,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_mk(uint32_t signum_obj, uint8
         return lean_io_result_mk_error(decode_io_error(ENOMEM, nullptr));
     }
 
-    lean_uv_handle_init(&signal->m_uv, (uv_handle_t*)uv_signal);
+    signal->m_uv_signal = uv_signal;
     signal->m_signum = signum;
     signal->m_repeating = repeating;
     signal->m_state = SIGNAL_STATE_INITIAL;
@@ -157,7 +159,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_mk(uint32_t signum_obj, uint8
 
     lean_object * obj = lean_uv_signal_new(signal);
     lean_mark_mt(obj);
-    lean_uv_signal_handle(signal)->data = obj;
+    signal->m_uv_signal->data = obj;
 
     event_loop_unlock(&global_ev);
 
@@ -176,27 +178,25 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_next(b_obj_arg obj) {
         signal->m_state = SIGNAL_STATE_RUNNING;
 
         // The event loop must keep the signal alive for the duration of the run time.
-        lean_uv_handle_acquire(&signal->m_uv);
         lean_inc(obj);
         lean_inc(promise);
 
         int result;
         if (signal->m_repeating) {
             result = uv_signal_start(
-                lean_uv_signal_handle(signal),
+                signal->m_uv_signal,
                 handle_signal_event,
                 signal->m_signum
             );
         } else {
             result = uv_signal_start_oneshot(
-                lean_uv_signal_handle(signal),
+                signal->m_uv_signal,
                 handle_signal_event,
                 signal->m_signum
             );
         }
 
         if (result != 0) {
-            lean_uv_handle_release(&signal->m_uv);
             lean_dec(obj);
             lean_dec(promise);
             event_loop_unlock(&global_ev);
@@ -267,7 +267,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_stop(b_obj_arg obj) {
         if (!event_loop_lock(&global_ev)) {
             return lean_uv_loop_unavailable_error();
         }
-        int result = uv_signal_stop(lean_uv_signal_handle(signal));
+        int result = uv_signal_stop(signal->m_uv_signal);
         event_loop_unlock(&global_ev);
 
         if (signal->m_promise != NULL) {
@@ -278,7 +278,6 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_stop(b_obj_arg obj) {
         signal->m_state = SIGNAL_STATE_FINISHED;
 
         // The loop does not need to keep the signal alive anymore.
-        lean_uv_handle_release(&signal->m_uv);
         lean_dec(obj);
 
         if (result != 0) {
@@ -305,11 +304,10 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_cancel(b_obj_arg obj) {
             lean_dec(signal->m_promise);
             signal->m_promise = NULL;
         } else {
-            uv_signal_stop(lean_uv_signal_handle(signal));
+            uv_signal_stop(signal->m_uv_signal);
             lean_dec(signal->m_promise);
             signal->m_promise = NULL;
             signal->m_state = SIGNAL_STATE_INITIAL;
-            lean_uv_handle_release(&signal->m_uv);
             lean_dec(obj);
         }
     }

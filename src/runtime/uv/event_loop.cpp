@@ -131,9 +131,11 @@ void event_loop_request_stop(event_loop_t * event_loop) {
 
 void event_loop_drain_active(event_loop_t * event_loop) {
     uv_mutex_lock(&event_loop->mutex);
+
     while (event_loop->n_active != 0) {
         uv_cond_wait(&event_loop->cond_var, &event_loop->mutex);
     }
+
     uv_mutex_unlock(&event_loop->mutex);
 }
 

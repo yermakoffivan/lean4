@@ -7,7 +7,6 @@ Author: Sofia Rodrigues
 #pragma once
 #include <lean/lean.h>
 #include "runtime/uv/event_loop.h"
-#include "runtime/uv/handle.h"
 
 #ifndef LEAN_EMSCRIPTEN
 #include <uv.h>
@@ -31,7 +30,7 @@ enum uv_signal_state {
 // repeating behavior. The repeating behavior exists to "set" a handler and avoid it not getting signals
 // between the creation of oneshot signal handlers.
 typedef struct {
-    lean_uv_handle_object m_uv;    // LibUV signal handle and pending callback count.
+    uv_signal_t *   m_uv_signal;   // LibUV signal handle.
     lean_object *   m_promise;     // The associated promise for asynchronous results.
     int             m_signum;      // Signal number to watch for.
     bool            m_repeating;   // Flag indicating if the signal handler is repeating.
@@ -44,7 +43,6 @@ typedef struct {
 // Signal object manipulation functions.
 static inline lean_object* lean_uv_signal_new(lean_uv_signal_object * s) { return lean_alloc_external(g_uv_signal_external_class, s); }
 static inline lean_uv_signal_object* lean_to_uv_signal(lean_object * o) { return (lean_uv_signal_object*)(lean_get_external_data(o)); }
-static inline uv_signal_t* lean_uv_signal_handle(lean_uv_signal_object * signal) { return (uv_signal_t*)signal->m_uv.m_uv_handle; }
 
 // Detaches the signal from the event loop during shutdown: stops it, drops the pending promise and
 // clears the handle pointer. Returns the number of references the loop held on the wrapping object,

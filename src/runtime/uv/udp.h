@@ -6,7 +6,6 @@ Author: Sofia Rodrigues
 #pragma once
 #include <lean/lean.h>
 #include "runtime/uv/event_loop.h"
-#include "runtime/uv/handle.h"
 #include "runtime/uv/net_addr.h"
 #include "runtime/object_ref.h"
 
@@ -24,7 +23,7 @@ void initialize_libuv_udp_socket();
 // Structure for managing a single UDP socket object, including promise handling,
 // connection state, and read/write buffers.
 typedef struct {
-    lean_uv_handle_object m_uv;         // LibUV UDP handle and pending callback count.
+    uv_udp_t *      m_uv_udp;           // LibUV UDP handle.
     lean_object *   m_promise_read;     // The associated promise for asynchronous results for reading from the socket.
     lean_object *   m_byte_array;       // The received data stored.
 } lean_uv_udp_socket_object;
@@ -33,7 +32,6 @@ typedef struct {
 // UDP socket object manipulation functions.
 static inline lean_object* lean_uv_udp_socket_new(lean_uv_udp_socket_object * s) { return lean_alloc_external(g_uv_udp_socket_external_class, s); }
 static inline lean_uv_udp_socket_object* lean_to_uv_udp_socket(lean_object * o) { return (lean_uv_udp_socket_object*)(lean_get_external_data(o)); }
-static inline uv_udp_t* lean_uv_udp_socket_handle(lean_uv_udp_socket_object * socket) { return (uv_udp_t*)socket->m_uv.m_uv_handle; }
 
 // Detaches the socket from the event loop during shutdown: stops reads, drops the pending promise
 // and clears the handle pointer. Returns the number of references the loop held on the wrapping

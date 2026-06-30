@@ -16,7 +16,6 @@ public import Init.System.IO
 public import Init.System.Platform
 public import Std.Path.Internal.Parser
 public import Std.Path.Internal.Glob
-public import Std.Async.Process
 public import Std.Internal.UV.System
 
 public section
@@ -43,23 +42,23 @@ wrapper, paths are stored as `Array Path.Component`.
 ```lean
 import Std.Path
 
-open Std.Path
+open Std
 
--- Pure construction from known-format strings
-def p : Path := Path.fromPosixString "/usr/local/bin/lean"
+-- Pure construction from known-format strings (`ofPosixString` returns `Option Path`)
+def p : Path := Path.ofPosixString "/usr/local/bin/lean" |>.get!
 
-#eval p.fileName    -- some "lean"
-#eval p.extension   -- none
-#eval p.parent      -- some (Path "/usr/local/bin")
+#eval p.fileName             -- some "lean"
+#eval p.extension            -- none
+#eval p.parent.map (·.toPosixString)  -- some "/usr/local/bin"
 
 -- Join with /
-def q := p / Path.fromPosixString "lib"
-#eval q.toPosixPath.raw  -- "/usr/local/bin/lean/lib"
+def q := p / (Path.ofPosixString "lib" |>.get!)
+#eval q.toPosixString        -- "/usr/local/bin/lean/lib"
 
 -- Platform-sensitive parsing (IO)
 def main : IO Unit := do
-  let home ← Path.fromString (← IO.getEnv "HOME" |>.map (·.getD ""))
-  let cfg := home / Path.fromPosixString ".config/lean"
+  let home ← Path.fromString ((← IO.getEnv "HOME").getD "")
+  let cfg := home / (Path.ofPosixString ".config/lean" |>.get!)
   IO.println (← cfg.toString)
 ```
 -/
@@ -73,7 +72,7 @@ All structural operations (`join`, `parent`, `normalize`, etc.) work directly on
 array, so they are pure and require no OS calls. Platform-specific behaviour is limited to parsing
 (`fromString`) and rendering (`toString`), which are `IO` actions.
 
-Use `Path.fromPosixString` or `Path.fromWindowsString` for pure construction from string literals
+Use `Path.ofPosixString` or `Path.ofWindowsString` for pure construction from string literals
 when the platform format is known at compile time.
 -/
 structure Path where
@@ -122,6 +121,11 @@ def isEmpty (p : Path) : Bool :=
 
 /--
 True if the first component of `p` is `root` (or `drivePrefix` followed by `root`).
+
+This is purely component-based and does not depend on the host platform. Note this differs from
+Python and Rust on Windows: a rooted path with no drive letter (e.g. `\foo`) is treated as absolute
+here, whereas they treat it as drive-relative (resolved against the current drive). Consequently
+`join` replaces the left side when the right side is such a path, rather than keeping the left drive.
 -/
 def isAbsolute (p : Path) : Bool :=
   match p.get 0, p.get 1 with
@@ -198,8 +202,11 @@ def normalize (p : Path) : Path where
         match acc.back? with
         | some (.normal _) => acc.pop
         | some .parent => acc.push .parent
+        -- A drive prefix with no root is drive-relative, so a leading ".." is kept like in any
+        -- other relative path.
+        | some (.drivePrefix _) => acc.push .parent
         | none => acc.push .parent -- relative path: preserve leading ".."
-        | _ => acc -- root or drivePrefix: drop ".."
+        | _ => acc -- root: drop ".."
       | other => acc.push other
     ) #[]
 
@@ -210,8 +217,8 @@ def normalize (p : Path) : Path where
 Drop the last component, returning the parent directory path.
 
 Returns `none` for root paths and empty paths. For a relative path whose parent would be empty
-(e.g. `"a"`), returns `some (Path ".")`. `"."` is its own parent. Does not normalize the path first
-call `normalize` beforehand if needed.
+(e.g. `"a"`), returns `some "."`. `"."` is its own parent. Does not normalize the path first; call
+`normalize` beforehand if needed.
 -/
 def parent (path : Path) : Option Path :=
   match path.components.back? with
@@ -287,9 +294,9 @@ The last file extension, without the leading `.`.
 Returns `none` when the filename has no extension or when there is no file name.
 
 Examples:
-- `Path.fromPosixString "Main.lean" |>.extension = some "lean"`
-- `Path.fromPosixString "archive.tar.gz" |>.extension = some "gz"`
-- `Path.fromPosixString "Makefile" |>.extension = none`
+- `(ofPosixString "Main.lean" |>.get!).extension = some "lean"`
+- `(ofPosixString "archive.tar.gz" |>.get!).extension = some "gz"`
+- `(ofPosixString "Makefile" |>.get!).extension = none`
 -/
 def extension (p : Path) : Option String :=
   p.fileName.bind fun name =>
@@ -307,12 +314,12 @@ def hasExtension (p : Path) : Bool :=
   p.extension.isSome
 
 /--
-Replace the last path component with `fname`.
+Unchecked primitive: replace the last `normal` component with `fname`, leaving the rest unchanged.
 
-If `p` has no parent (e.g. it is a root or empty), `fname` is returned as a bare path preserving any
-prefix components.
+If the last component is not a `normal` file name (i.e. `p` is empty, a root, or ends in `.` or
+`..`), `p` is returned unchanged. `fname` is not validated; public callers should use `withFileName`.
 -/
-def setFileName (p : Path) (fname : String) : Path :=
+private def setFileName (p : Path) (fname : String) : Path :=
   match p.components.back? with
   | some (.normal _) => { p with components := p.components.pop.push (.normal fname) }
   | _ => p
@@ -320,7 +327,8 @@ def setFileName (p : Path) (fname : String) : Path :=
 /--
 Replace the last path component with `fname`.
 
-If `p` has no filename component (e.g. it ends with root), `p` is returned unchanged.
+If `p` has no `normal` file name (i.e. it is empty, a root, or ends in `.` or `..`), `p` is returned
+unchanged.
 -/
 def withFileName (p : Path) (fname : String) (_ : ValidFileName fname := by decide) : Path :=
   p.setFileName fname
@@ -328,8 +336,9 @@ def withFileName (p : Path) (fname : String) (_ : ValidFileName fname := by deci
 /--
 Replace the last file extension with `ext` (without leading `.`).
 
-If `ext` is empty, the extension is removed. If the filename currently has no extension, `ext` is
-appended.
+If the filename currently has no extension, `ext` is appended. If the path has no file name (e.g. it
+is a root or empty), `p` is returned unchanged. `ext` is validated to be a non-empty extension; use
+`removeExtension` to strip an extension instead.
 -/
 def withExtension (p : Path) (ext : String) (_ : ValidExtension ext := by decide) : Path :=
   match p.fileStem with
@@ -345,11 +354,22 @@ def addExtension (p : Path) (ext : String) (_ : ValidExtension ext := by decide)
   | some name => p.setFileName (name ++ "." ++ ext)
 
 /--
+Remove the last file extension from the file name, keeping any earlier extensions.
+
+If the file name has no extension, or the path has no file name (e.g. it is a root or empty), `p` is
+returned unchanged.
+-/
+def removeExtension (p : Path) : Path :=
+  match p.extension, p.fileStem with
+  | some _, some stem => p.setFileName stem
+  | _, _ => p
+
+/--
 All file extensions of the last component, in order, without leading `.`.
 
 Examples:
-- `Path.fromPosixString "archive.tar.gz" |>.suffixes = #["tar", "gz"]`
-- `Path.fromPosixString "Makefile" |>.suffixes = #[]`
+- `(ofPosixString "archive.tar.gz" |>.get!).suffixes = #["tar", "gz"]`
+- `(ofPosixString "Makefile" |>.get!).suffixes = #[]`
 -/
 def suffixes (p : Path) : Array String :=
   p.fileName.elim #[] fun name =>
@@ -423,8 +443,8 @@ end ParentsIterator
 /--
 All ancestors of `p`, from the immediate parent up to (and including) the root, in order.
 
-For `Path.fromPosixString "/a/b/c"` this yields an iterator over
-`[Path.fromPosixString "/a/b", Path.fromPosixString "/a", Path.fromPosixString "/"]`.
+For `ofPosixString "/a/b/c"` this yields an iterator over the paths
+`["/a/b", "/a", "/"]`.
 -/
 def parents (p : Path) : Iter (α := ParentsIterator) Path :=
   (IterM.mk (m := Id) (β := Path) ⟨p, p.components.size⟩).toIter
@@ -432,23 +452,22 @@ def parents (p : Path) : Iter (α := ParentsIterator) Path :=
 /--
 True if `p` starts with `prefix` (component-wise, not as a raw string prefix).
 
-`Path.fromPosixString "/usr/local"` starts with
-`Path.fromPosixString "/usr"` but not with `Path.fromPosixString "/us"`.
+`ofPosixString "/usr/local"` starts with `ofPosixString "/usr"` but not with `ofPosixString "/us"`.
 -/
 def startsWith (p prefx : Path) : Bool :=
   p.components.extract 0 prefx.components.size == prefx.components
 
 /--
-True if `p` ends with `suffix` (component-wise).
+True if `p` ends with `suffix` (component-wise), matching Rust's `Path::ends_with`.
 
-`suffix` must be a relative path or a single filename.
+Matching is on whole components from the back, so `"/usr/bin".endsWith "bin"` and
+`"/usr/bin".endsWith "usr/bin"` are both `true`, but `"/usr/bin".endsWith "sr/bin"` is `false`. A root
+or drive in `suffix` must line up with `p`'s: `"/usr/bin".endsWith "/usr/bin"` is `true` while
+`"/usr/bin".endsWith "/bin"` is `false`.
 -/
 def endsWith (p suffix : Path) : Bool :=
-  let n := suffix.components.size
-  let prefixSize := p.components.size - n
-  let anchorCount := (if p.drive?.isSome then 1 else 0) + (if p.root?.isSome then 1 else 0)
-  p.components.extract prefixSize p.components.size == suffix.components &&
-  (suffix.isAbsolute || prefixSize > anchorCount)
+  let prefixSize := p.components.size - suffix.components.size
+  p.components.extract prefixSize p.components.size == suffix.components
 
 /--
 Remove `prefix` from the beginning of `p` (component-wise).
@@ -462,7 +481,12 @@ def dropPrefix? (p prefx : Path) : Option Path :=
     none
 
 /--
-Compute a path from `base` to `target` such that `base.join (base.relativeTo? target) = target`.
+Compute a relative path from `base` to `target` using `..` components to walk up out of `base`, so
+that `(base.join r).normalize = target.normalize` where `r` is the returned path.
+
+The result is purely syntactic: it does not consult the file system and treats every leading
+component of `base` as a directory to ascend from (so `base` should usually be `normalize`d first if
+it contains `.` or `..`).
 
 Returns `none` if `base` and `target` have different roots (e.g. different drive letters on Windows,
 or one absolute and one relative).
@@ -527,31 +551,41 @@ instance : HDiv Path Path Path where
 /--
 Test `p` against a glob pattern.
 
+The pattern always uses `/` to separate segments, regardless of platform. Drive prefixes are
+ignored and an absolute root matches an empty leading segment (so use a leading `**/` or `/` to match
+absolute paths).
+
 Supported wildcards:
 - `*` — matches any sequence of characters within a single component (not `/`)
-- `**` — matches zero or more components (path segments)
+- `**` — matches zero or more components (path segments); only recognized as a whole segment
 - `?` — matches any single character (not `/`)
-- `[abc]` / `[a-z]` — character class, matches one character in the set
+- `[abc]` / `[a-z]` — character class, matches one character in the set or range
+- `[!abc]` / `[!a-z]` — negated character class, matches one character not in the set or range
 
-Returns `true` if the pattern matches the full path.
+Returns `true` if the pattern matches the full path. A syntactically invalid pattern (e.g. an
+unterminated `[...]` class) matches nothing.
 -/
 def matchGlob (p : Path) (pattern : String) : Bool :=
-  let glob := Internal.parseGlob pattern
+  match Internal.parseGlob pattern with
+  | none => false
+  | some glob =>
+    let comps : Array String := p.components.filterMap fun
+      | .drivePrefix _ => none
+      | .root _ => some ""
+      | .current => some "."
+      | .parent => some ".."
+      | .normal v => some v
 
-  let comps : Array String := p.components.filterMap fun
-    | .drivePrefix _ => none
-    | .root _ => some ""
-    | .current => some "."
-    | .parent => some ".."
-    | .normal v => some v
-
-  Internal.matchSegments glob comps 0 0
+    Internal.matchSegments glob comps 0 0
 
 /--
 Parse a POSIX-formatted string into a `Path`. Pure; uses `/` as the only separator.
+
+Returns `none` for the empty string or input containing a null byte (`\x00`), which no platform
+permits in a path and which would otherwise be silently truncated when rendered to a native string.
 -/
 def ofPosixString (s : String) : Option Path :=
-  if s.isEmpty then none
+  if s.isEmpty || s.contains '\x00' then none
   else match Internal.posixPathParser.run s with
   | .ok cs => some { components := cs }
   | .error _ => none
@@ -559,9 +593,14 @@ def ofPosixString (s : String) : Option Path :=
 /--
 Parse a Windows-formatted string into a `Path`. Pure; accepts both `\` and `/`,
 and an optional drive-letter prefix such as `"C:"`.
+
+Returns `none` for the empty string or input containing a null byte (`\x00`). UNC paths
+(`\\server\share`) are not specially recognized: a leading `\\` collapses to a single `root`, so the
+server and share become ordinary components.
 -/
 def ofWindowsString (s : String) : Option Path :=
-  match Internal.windowsPathParser.run s with
+  if s.isEmpty || s.contains '\x00' then none
+  else match Internal.windowsPathParser.run s with
   | .ok cs => some { components := cs }
   | .error _ => none
 
@@ -598,13 +637,17 @@ def toString (p : Path) : IO String :=
 /--
 Resolve `p` against the process's current working directory if it is relative.
 
-If `p` is already absolute, it is returned unchanged. No symlinks are resolved;
-use `resolve` for that.
+If `p` is already absolute, it is returned unchanged. A drive-relative Windows path (e.g. `C:foo`) is
+resolved against the current directory with its drive prefix dropped, since the per-drive working
+directory is not available. No symlinks are resolved; use `resolve` for that.
 -/
 def toAbsoluteCwd (p : Path) : IO Path := do
   if p.isAbsolute then return p
-  let cwdPath ← fromString (← IO.Process.getCwd).toString
-  return cwdPath.join p |>.normalize
+  let cwdPath ← fromString (← Internal.UV.System.cwd)
+  let rel := match p.get 0 with
+    | some (.drivePrefix _) => { p with components := p.components.extract 1 p.components.size }
+    | _ => p
+  return cwdPath.join rel |>.normalize
 
 /--
 Make `p` absolute and resolve all symlinks, returning the canonical path.

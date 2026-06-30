@@ -79,10 +79,14 @@ private def globPatternParser : Parser Glob := do
   if ← isEof then return #[]
   sepBy1 (pchar '/') globSegment
 
-def parseGlob (pattern : String) : Glob :=
+/--
+Parse `pattern` into a `Glob`, or `none` if it is syntactically invalid (e.g. an unterminated
+`[...]` character class).
+-/
+def parseGlob (pattern : String) : Option Glob :=
   match Parser.run globPatternParser pattern with
-  | .ok g => g
-  | .error _ => #[]
+  | .ok g => some g
+  | .error _ => none
 
 private partial def starThenParser (p : Parser Unit) : Parser Unit :=
   attempt p <|> (any *> starThenParser p)

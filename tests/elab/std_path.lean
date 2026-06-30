@@ -40,6 +40,8 @@ section PosixRoundtrip
 #guard (posix "a/../b").toPosixString = "a/../b"
 -- empty string → none
 #guard Path.ofPosixString "" = none
+-- null byte → none (invalid on every platform)
+#guard Path.ofPosixString "a\x00b" = none
 
 end PosixRoundtrip
 
@@ -66,6 +68,20 @@ section WindowsRoundtrip
 #guard (win "/foo/bar").toWindowsString = "\\foo\\bar"
 -- toPosixString on a Windows path silently drops the drive prefix
 #guard (win "C:\\foo").toPosixString = "/foo"
+-- trailing separator not preserved (parity with the POSIX parser)
+#guard (win "C:\\Users\\foo\\").toWindowsString = "C:\\Users\\foo"
+#guard (win "a\\b\\").toWindowsString = "a\\b"
+-- repeated separators collapsed (no silent truncation of later segments)
+#guard (win "C:\\\\Users\\\\foo").toWindowsString = "C:\\Users\\foo"
+#guard (win "a//b").toWindowsString = "a\\b"
+-- root-only with trailing slashes
+#guard (win "\\\\").toWindowsString = "\\"
+-- empty string → none (parity with ofPosixString)
+#guard Path.ofWindowsString "" = none
+-- null byte → none (parity with ofPosixString)
+#guard Path.ofWindowsString "a\x00b" = none
+-- UNC paths are not specially recognized: a leading "\\" collapses to a single root
+#guard (win "\\\\server\\share").toWindowsString = "\\server\\share"
 
 end WindowsRoundtrip
 
@@ -165,6 +181,11 @@ section Normalize
 #guard (posix "a/b/.").normalize.toPosixString = "a/b"
 -- Windows: normalize resolves .. across drive-rooted path
 #guard (win "C:\\a\\..\\b").normalize.toWindowsString = "C:\\b"
+-- Windows drive-relative: a leading ".." is preserved (the path is relative to the drive's cwd)
+#guard (win "C:..").normalize.toWindowsString = "C:.."
+#guard (win "C:..\\a").normalize.toWindowsString = "C:..\\a"
+-- Windows drive-rooted: ".." above the root is dropped
+#guard (win "C:\\..").normalize.toWindowsString = "C:\\"
 -- empty default path normalizes to "."
 #guard (default : Path).normalize.toPosixString = "."
 
@@ -291,15 +312,12 @@ end Suffixes
 
 section Modification
 
--- setFileName
-#guard ((posix "a/b/c").setFileName "d").toPosixString = "a/b/d"
-#guard ((posix "/").setFileName "d").toPosixString = "/"  -- no-op on root
-#guard ((posix "a/..").setFileName "d").toPosixString = "a/.."  -- no-op on parent component
--- single-segment relative path: result has no parent prefix
-#guard ((posix "foo").setFileName "bar").toPosixString = "bar"
-
 -- withFileName
 #guard ((posix "a/b/c").withFileName "d").toPosixString = "a/b/d"
+#guard ((posix "/").withFileName "d").toPosixString = "/"  -- no-op on root
+#guard ((posix "a/..").withFileName "d").toPosixString = "a/.."  -- no-op on parent component
+-- single-segment relative path: result has no parent prefix
+#guard ((posix "foo").withFileName "bar").toPosixString = "bar"
 
 -- withExtension
 #guard ((posix "a/b.tar.gz").withExtension "xz").toPosixString = "a/b.tar.xz"
@@ -311,6 +329,16 @@ section Modification
 #guard ((posix "a/b.tar.gz").addExtension "bak").toPosixString = "a/b.tar.gz.bak"
 #guard ((posix "a/Makefile").addExtension "bak").toPosixString = "a/Makefile.bak"
 #guard ((posix "/").addExtension "bak").toPosixString = "/"  -- no-op
+
+-- removeExtension
+#guard ((posix "a/b.tar.gz").removeExtension).toPosixString = "a/b.tar"  -- only the last extension
+#guard ((posix "a/b.txt").removeExtension).toPosixString = "a/b"
+#guard ((posix "a/Makefile").removeExtension).toPosixString = "a/Makefile"  -- no extension: no-op
+#guard ((posix ".gitignore").removeExtension).toPosixString = ".gitignore"  -- dotfile: no-op
+#guard ((posix ".hidden.lean").removeExtension).toPosixString = ".hidden"
+#guard ((posix "/").removeExtension).toPosixString = "/"  -- no file name: no-op
+-- inverse of addExtension
+#guard ((posix "a/b.txt").addExtension "bak" |>.removeExtension).toPosixString = "a/b.txt"
 
 end Modification
 
@@ -334,11 +362,22 @@ section StartEnd
 #guard (posix "/usr/local/bin").endsWith (posix "local/bin") = true
 #guard (posix "/usr/local/bin").endsWith (posix "bin") = true
 #guard (posix "/usr/local/bin").endsWith (posix "/usr/local/bin") = true
-#guard (posix "/usr/local/bin").endsWith (posix "usr/local/bin") = false  -- root missing
+-- a relative suffix matches whole components from the back, even just behind the root (matches Rust)
+#guard (posix "/usr/local/bin").endsWith (posix "usr/local/bin") = true
+#guard (posix "/a").endsWith (posix "a") = true
+-- but the match is component-wise, not a substring
+#guard (posix "/usr/local/bin").endsWith (posix "sr/bin") = false
+-- an absolute suffix must line up with the root
+#guard (posix "/usr/local/bin").endsWith (posix "/bin") = false
 #guard (posix "a/b/c").endsWith (posix "b/c") = true
 #guard (posix "a/b/c").endsWith (posix "a") = false
--- anchor blocks matching a relative suffix against a single-segment absolute path
-#guard (posix "/a").endsWith (posix "a") = false
+-- a path ends with itself
+#guard (posix "a/b/c").endsWith (posix "a/b/c") = true
+#guard (posix "a").endsWith (posix "a") = true
+#guard (posix "/a").endsWith (posix "/a") = true
+#guard (win "C:\\a").endsWith (win "C:\\a") = true
+-- a suffix longer than the path never matches
+#guard (posix "bin").endsWith (posix "local/bin") = false
 
 end StartEnd
 
@@ -428,6 +467,10 @@ section Glob
 #guard (posix "a/d").matchGlob "a/**/d" = true
 -- ** on absolute path with single non-root segment (must skip the "" root component)
 #guard (posix "/foo.lean").matchGlob "**/foo.lean" = true
+-- a syntactically invalid pattern (unterminated character class) matches nothing...
+#guard (posix "src/a.lean").matchGlob "src/[abc" = false
+-- ...including the empty path (regression: a parse failure must not match everything)
+#guard Path.empty.matchGlob "[abc" = false
 
 end Glob
 
@@ -532,3 +575,56 @@ section FilePrefix
 #guard (posix "a.b.c").fileStem    = some "a.b"
 
 end FilePrefix
+
+
+-- ---------------------------------------------------------------------------
+-- Section: IO boundary (pathSeparator / fromString / toString / toAbsoluteCwd /
+-- resolve). These exercise the platform-native rendering path and the
+-- `lean_uv_realpath` FFI binding. Assertions are written to hold on both POSIX
+-- and Windows hosts.
+-- ---------------------------------------------------------------------------
+
+section IOOps
+
+-- `pathSeparators` always contains the primary `pathSeparator`.
+#eval do
+  let sep ← Path.pathSeparator
+  let seps ← Path.pathSeparators
+  unless seps.contains sep do
+    throw (IO.userError "pathSeparators must contain pathSeparator")
+
+-- `fromString` / `toString` round-trip a path built from the native separator.
+#eval do
+  let sep ← Path.pathSeparator
+  let raw := s!"{sep}usr{sep}local{sep}bin"
+  let rendered ← (← Path.fromString raw).toString
+  unless rendered == raw do
+    throw (IO.userError s!"fromString/toString round-trip failed: {rendered}")
+
+-- `toAbsoluteCwd` turns a relative path into an absolute one, keeping the tail.
+#eval do
+  let abs ← Path.toAbsoluteCwd (posix "a/b")
+  unless abs.isAbsolute do
+    throw (IO.userError "toAbsoluteCwd should produce an absolute path")
+  unless abs.endsWith (posix "a/b") do
+    throw (IO.userError s!"toAbsoluteCwd dropped the relative tail: {← abs.toString}")
+
+-- `toAbsoluteCwd` is a no-op on an already-absolute path.
+#eval do
+  let p := posix "/usr/local"
+  unless (← Path.toAbsoluteCwd p) == p do
+    throw (IO.userError "toAbsoluteCwd should leave absolute paths unchanged")
+
+-- `resolve` of an existing path yields an absolute, canonical path.
+#eval do
+  let abs ← Path.resolve (posix ".")
+  unless abs.isAbsolute do
+    throw (IO.userError s!"resolve '.' should be absolute: {← abs.toString}")
+
+-- `resolve` of a nonexistent path fails (realpath errors on a missing component).
+#eval (do
+  match ← (Path.resolve (posix "/no/such/path/for/std-path-test")).toBaseIO with
+  | .ok _ => throw (IO.userError "resolve should have failed on a nonexistent path")
+  | .error _ => pure () : IO Unit)
+
+end IOOps

@@ -57,9 +57,18 @@ def posixPathParser : Parser (Array Path.Component) := do
 
 def windowsPathParser : Parser (Array Path.Component) := do
   let drive ← parseDrive
-  let init := drive.elim #[] (#[.drivePrefix ·])
+  let driveInit := drive.elim #[] (#[.drivePrefix ·])
   let hasRoot ← flag (satisfy isWinSep)
-  let init := if hasRoot then init.push (.root "\\") else init
-  return init ++ (← sepBy (many1Chars (satisfy isWinSep)) winSeg)
+  discard <| manyChars (attempt (satisfy isWinSep))
+
+  let init := if hasRoot then driveInit.push (.root "\\") else driveInit
+
+  match ← optional winSeg with
+  | none =>
+    return init
+  | some first =>
+    let rest ← many (attempt (many1Chars (satisfy isWinSep) *> winSeg))
+    discard <| manyChars (satisfy isWinSep)
+    return init ++ #[first] ++ rest
 
 end Std.Path.Internal

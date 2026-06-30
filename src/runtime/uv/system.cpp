@@ -554,7 +554,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_get_available_memory() {
 #endif
 }
 
-// Std.Path.resolve : @& String → IO String
+// Std.Internal.UV.System.realPath : @& String → IO String
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_realpath(b_obj_arg path) {
     const char* path_str = lean_string_cstr(path);
     if (strlen(path_str) != lean_string_size(path) - 1) {
@@ -769,7 +769,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_get_available_memory() {
     );
 }
 
-// Std.Path.resolve : @& String → IO String
+// Std.Internal.UV.System.realPath : @& String → IO String
 extern "C" LEAN_EXPORT lean_obj_res lean_uv_realpath(b_obj_arg path) {
     lean_always_assert(
         false && ("Please build a version of Lean4 with libuv to invoke this.")

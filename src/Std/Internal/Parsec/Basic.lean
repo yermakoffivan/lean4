@@ -174,14 +174,6 @@ def sepBy1 (sep : Parsec ι α) (p : Parsec ι β) : Parsec ι (Array β) := do
   return #[← p] ++ (← many (sep *> p))
 
 /--
-Parse `p` zero or more times separated by `sep`, returning the results as an array.
--/
-@[inline]
-def sepBy (sep : Parsec ι α) (p : Parsec ι β) : Parsec ι (Array β) := do
-  let some first ← optional p | return #[]
-  return #[first] ++ (← many (sep *> p))
-
-/--
 Gets the next input element.
 -/
 @[inline]

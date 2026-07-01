@@ -462,6 +462,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_cancel_recv(b_obj_arg socket) {
     lean_uv_udp_socket_object* udp_socket = lean_to_uv_udp_socket(socket);
 
     lean_inc(socket);
+
     if (!event_loop_lock(&global_ev)) {
         lean_dec(socket);
         return lean_uv_loop_unavailable_error();
@@ -485,6 +486,10 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_cancel_recv(b_obj_arg socket) {
         lean_dec(byte_array);
         udp_socket->m_byte_array = nullptr;
     }
+
+    // The event loop does not own the object anymore. `uv_udp_recv_stop` prevents the recv callback
+    // from firing, so we must release the reference `lean_uv_udp_recv` handed to the loop here.
+    lean_dec(socket);
 
     event_loop_unlock(&global_ev);
     lean_dec(socket);

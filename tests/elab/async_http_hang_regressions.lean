@@ -1,6 +1,12 @@
+module
+
 import Std.Http
 import Std.Async
 import Std.Async.Timer
+
+/-!
+Regression tests for HTTP server connection hangs and error handling.
+-/
 
 open Std.Async
 open Std Http Internal Test
@@ -349,3 +355,24 @@ def stressResponseHandler (n : Nat) : TestHandler := fun _ => do
     assertContains later "bbb"
 
     client.close
+
+-- 23: An already-failed response stream must be reported without escaping the connection loop.
+#eval runWithTimeout "23_eager_response_body_error_is_caught" 2000 do
+  Async.block do
+    let (client, server) ← Mock.new
+    let failure ← IO.mkRef (none : Option String)
+    let handler := Server.Handler.ofFns
+      (fun _ => do
+        let outgoing ← Body.mkStream
+        outgoing.closeWithError (IO.userError "eager response failure")
+        return Response.ok |>.body outgoing)
+      (fun err => failure.set (some (toString err)))
+
+    client.send "GET /failed-stream HTTP/1.1\x0d\nHost: example.com\x0d\nConnection: close\x0d\n\x0d\n".toUTF8
+    Std.Http.Server.serveConnection server handler {
+      lingeringTimeout := 500
+      generateDate := false
+    } |>.run
+
+    unless (← failure.get) == some "eager response failure" do
+      throw <| IO.userError "response body error was not reported to Handler.onFailure"

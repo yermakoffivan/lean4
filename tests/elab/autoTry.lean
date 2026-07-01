@@ -80,9 +80,8 @@ info: Try this:
 example : P := by ·
 
 -- Empty `· ` on the rhs of `<;>`: each subgoal of `refine` re-enters the same `·`
--- source range, producing one `unsolved goals` error per subgoal. Each error has its
--- own (different) goal mvarid, so the collector pushes a Candidate per goal and the
--- multi-state filter suppresses the lot. No "Try this" is offered.
+-- source range, producing one `unsolved goals` error per subgoal. The multi-state
+-- filter must suppress: no "Try this" is offered.
 /--
 error: unsolved goals
 case refine_1
@@ -95,6 +94,21 @@ case refine_2
 #guard_msgs in
 example : P ∧ P := by
   refine ⟨?_, ?_⟩ <;> ·
+
+-- `<;>` rhs where an upstream tactic in the same body solved one subgoal but not the
+-- other. The cdot is invoked once per subgoal of `constructor`: Q's invocation reaches
+-- the end of `skip` with 0 goals (Q solved by `try`), P's with 1 open goal. `goalsAt?`
+-- returns two runtime instances -- inserting `exact Pintro` would break Q's branch
+-- (`exact` throws on 0 goals). Suppress.
+/--
+error: unsolved goals
+case right
+⊢ P
+-/
+#guard_msgs in
+set_option autoTry.onUnsolvedGoal true in
+example : Q ∧ P := by
+  constructor <;> (· try (exact Qintro); skip)
 
 set_option autoTry.onEmptyProof false
 

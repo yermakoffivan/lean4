@@ -432,6 +432,35 @@ def hasNonUnsolvedGoalError (stx : Syntax) : CommandElabM Bool := do
     inRange && isError && !isUnsolved
 
 /--
+Returns `true` iff a suggestion may safely be inserted at the candidate's insertion
+point -- i.e., iff a tactic typed there would run on exactly one clearly-identified
+goal. Uses `InfoTree.goalsAt?`, the same runtime-state query the LSP
+`getInteractiveGoals` request drives:
+
+* Exactly one `TacticInfo` runtime instance covers the insertion point. If two
+  instances reach the same position (`<;>` re-entered its rhs against different
+  goal states, etc.), suppress -- the appended tactic would run for each of them.
+* Reading off that instance the state the newly-inserted tactic would actually
+  run against: `goalsBefore` for `sorry` (the suggestion replaces the `sorry`)
+  and for empty bodies (the suggestion is the first thing to run in the body);
+  `goalsAfter` for non-empty bodies (the suggestion runs after the existing
+  tactics). That state must have exactly one goal.
+-/
+def singleGoalAtInsertPos (tree : InfoTree) (fileMap : FileMap) (c : Candidate) : Bool :=
+  let hoverPos := match c.kind with
+    | .unsolvedGoal _ insertPos => insertPos
+    | .sorryTactic              => c.ref.getPos?.getD 0
+  match tree.goalsAt? fileMap hoverPos with
+  | [r] =>
+    let targetGoals := match c.kind with
+      | .unsolvedGoal tacticSeq _ =>
+        if tacticSeq.getPos?.isSome then r.tacticInfo.goalsAfter
+        else r.tacticInfo.goalsBefore
+      | .sorryTactic => r.tacticInfo.goalsBefore
+    targetGoals.length == 1
+  | _ => false
+
+/--
 The auto-`try?` post-elaboration hook.
 
 Plugged into the linter machinery (`addLinter`) because that's a convenient post-command-
@@ -455,20 +484,12 @@ def autoTryHook : Linter where run := withSetOptionIn fun stx => do
   let trees ← getInfoTrees
   for tree in trees do
     let candidates ← collectTriggerPoints stx opts tree msgs
-    -- A source range carrying more than one candidate means either: the same scope
-    -- was entered multiple times (e.g. the rhs of `<;>` runs once per subgoal), or the
-    -- scope left more than one unsolved goal. In both cases a single "Try this"
-    -- suggestion can't be replayed there, so skip duplicates by source range. The
-    -- candidate's `ref` carries the message range for unsolved-goal triggers and the
-    -- sorry token's range for sorry triggers, matching the collector's dedup key.
-    let mut counts : Std.HashMap Lean.Syntax.Range Nat := {}
-    for c in candidates do
-      if let some r := c.ref.getRange? then
-        counts := counts.alter r (fun n? => some (n?.getD 0 + 1))
     trace[autoTry] "trigger points: {candidates.size}"
     for c in candidates do
-      let some r := c.ref.getRange? | continue
-      if counts.getD r 0 > 1 then continue
+      unless singleGoalAtInsertPos tree fileMap c do
+        trace[autoTry] "suppressed: InfoView at insert point does not show exactly one \
+          goal state with one goal"
+        continue
       match c.kind with
       | .unsolvedGoal tacticSeq insertPos =>
         let suggs ← collectSuggestionsForGoal c

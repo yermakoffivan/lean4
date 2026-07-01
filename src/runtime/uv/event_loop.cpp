@@ -76,7 +76,11 @@ static void event_loop_active_release(event_loop_t * event_loop) {
     }
 }
 
-static void event_loop_lock_core(event_loop_t * event_loop) {
+// Acquires the loop mutex, interrupting the loop if another thread is running it. Unlike
+// `event_loop_lock`, does not consult `state`, so it locks even while finalizing; used by
+// `finalize_libuv` itself.
+void event_loop_lock_internal(event_loop_t * event_loop) {
+    lean_assert(event_loop->state != EVENT_LOOP_UNINITIALIZED);
     if (uv_mutex_trylock(&event_loop->mutex) != 0) {
         event_loop->n_waiters++;
         event_loop_interrupt(event_loop);
@@ -89,8 +93,8 @@ static void event_loop_lock_core(event_loop_t * event_loop) {
 //
 // Registers in `n_active` before reading `state` so that a concurrent `finalize_libuv` cannot close
 // the interrupt `async` (in `event_loop_drain_active`) between our `state` check and the
-// `uv_async_send` inside `event_loop_lock_core`: it waits for `n_active` to drain first. Requesters
-// arriving after the loop has left `RUNNING` bail out before they would ever interrupt.
+// `uv_async_send` inside `event_loop_lock_internal`: it waits for `n_active` to drain first.
+// Requesters arriving after the loop has left `RUNNING` bail out before they would ever interrupt.
 bool event_loop_lock(event_loop_t * event_loop) {
     event_loop->n_active++;
 
@@ -99,7 +103,7 @@ bool event_loop_lock(event_loop_t * event_loop) {
         return false;
     }
 
-    event_loop_lock_core(event_loop);
+    event_loop_lock_internal(event_loop);
     event_loop_active_release(event_loop);
 
     if (event_loop->state != EVENT_LOOP_RUNNING) {
@@ -108,11 +112,6 @@ bool event_loop_lock(event_loop_t * event_loop) {
     }
 
     return true;
-}
-
-void event_loop_lock_internal(event_loop_t * event_loop) {
-    lean_assert(event_loop->state != EVENT_LOOP_UNINITIALIZED);
-    event_loop_lock_core(event_loop);
 }
 
 // Unlock event loop

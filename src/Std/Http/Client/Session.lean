@@ -50,6 +50,13 @@ structure Session where
   config : Config
 
   /--
+  Cancellation context driving the background connection loop. Cancelling it aborts any in-flight
+  exchange (the loop treats cancellation as a shutdown), which is how `close` interrupts a request
+  that is blocked waiting on the socket rather than parked on the request channel.
+  -/
+  context : CancellationContext
+
+  /--
   Unique identifier assigned by the pool when this session is registered.
   Zero for sessions created outside a pool.
   -/
@@ -89,9 +96,11 @@ def waitShutdown (session : Session) : Async Unit :=
   .mk <| pure (MaybeTask.ofTask res)
 
 /--
-Close the session's request channel.
+Close the session: cancels the background loop's context (aborting any in-flight exchange) and
+closes the request channel so queued and future sends fail promptly.
 -/
 def close (session : Session) : Async Unit := do
+  session.context.cancel .shutdown
   discard <| EIO.toBaseIO session.requestChannel.close
 
 /--
@@ -111,6 +120,6 @@ def new [Transport t] (client : t) (config : Config := {}) : Async Session := do
     finally
       discard <| shutdown.resolve ()
 
-  pure { requestChannel, shutdown, config }
+  pure { requestChannel, shutdown, config, context }
 
 end Std.Http.Client.Session

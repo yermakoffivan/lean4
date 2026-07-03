@@ -138,23 +138,40 @@ Returns the pool's single session for `origin`.
 
 If the current session has the same origin, it is checked out again; HTTP/1.1 requests
 queue on the session. If the origin differs, the current session is retired and replaced.
+
+A new session is opened *outside* the state mutex: DNS resolution and the TCP connect can block,
+and holding the lock across them would serialize every other pool operation (including the
+background completion handler's `retireSession`). The lock is taken only for the brief fast-path
+check and to install the freshly opened session.
 -/
 def getOrCreateSession (pool : Agent.Pool) (origin : URI.Origin) : Async Session := do
-  pool.state.atomically do
+  -- Fast path: reuse an existing same-origin session without opening anything.
+  let existing ← pool.state.atomically do
+    match ← get with
+    | some slot => pure (if slot.origin == origin then some slot.session else none)
+    | none => pure none
+  if let some session := existing then
+    return session
+
+  -- Slow path: open a new session with the lock released.
+  let session ← pool.openSession origin
+
+  -- Install it, retiring whatever is parked. If another task installed a same-origin session while
+  -- we were connecting, keep theirs and discard ours so the pool never holds two live sessions.
+  let (chosen, evicted) ← pool.state.atomically do
     match ← get with
     | some slot =>
       if slot.origin == origin then
-        return slot.session
+        pure (slot.session, some session)
       else
-        set (none : Option Agent.Pool.Slot)
-        discard <| slot.session.close
-        let session ← pool.openSession origin
         set (some ({ origin, session } : Agent.Pool.Slot))
-        return session
+        pure (session, some slot.session)
     | none =>
-      let session ← pool.openSession origin
       set (some ({ origin, session } : Agent.Pool.Slot))
-      return session
+      pure (session, none)
+  if let some evictedSession := evicted then
+    discard <| evictedSession.close
+  return chosen
 
 /--
 Removes a session from the pool and closes its request channel.

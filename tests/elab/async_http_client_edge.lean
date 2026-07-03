@@ -443,6 +443,62 @@ private def sendInBackground {β : Type} [Coe β Body.Any]
       throw <| IO.userError
         s!"expected 302 (cycle stop), got {resp.line.status.toCode}"
 
+-- Cycle that passes through a cross-origin hop before self-looping. The redirected request lands on
+-- the new origin in absolute-form, then the origin redirects to itself in origin-form. Cycle
+-- detection must normalize both forms to the same key, otherwise the self-loop is missed and the
+-- agent keeps requesting the same target until `maxRedirects` (or, here, until it blocks waiting for
+-- a response that never comes and the test times out).
+#eval show IO _ from runWithTimeout "cross-origin then same-origin self-redirect is detected as a cycle" 4000 <| Async.block do
+  let (mockClient1, mockServer1) ← Mock.new
+  let (mockClient2, mockServer2) ← Mock.new
+  let session1 ← Client.Session.new mockServer1 (config := {})
+  let some domain := URI.DomainName.ofString? "example.com"
+    | throw (IO.userError "DomainName parse failed")
+  let agent : Client.Agent := {
+    session := session1
+    origin := { scheme := URI.Scheme.ofString! "http", host := .name domain, port := 80 }
+    sessionRouter := some {
+      acquire        := fun _ => Client.Session.new mockServer2 (config := {})
+      release        := fun s _ => discard <| s.close
+      releaseSwapped := fun s _ => discard <| s.close
+    }
+  }
+
+  let request ← Request.new
+    |>.method .get
+    |>.uri! "/start"
+    |>.header! "Host" "example.com"
+    |>.empty
+
+  let resultPromise ← sendInBackground agent request
+
+  -- Hop 1 on origin A: redirect cross-origin to B in absolute-form.
+  let _ ← drainRequest mockClient1
+  mockClient1.send (rawResp "302 Found"
+    #[("Location", "http://other.com/loop"),
+      ("Content-Length", "0"),
+      ("Connection", "close")] "")
+
+  -- Hop 2 on origin B: redirect to itself in origin-form. The agent must stop here.
+  let _ ← drainRequest mockClient2
+  mockClient2.send (rawResp "302 Found"
+    #[("Location", "/loop"),
+      ("Content-Length", "0"),
+      ("Connection", "keep-alive")] "")
+
+  -- If the cycle were missed, the agent would send a second request to B; drain it so the test fails
+  -- with a clear message instead of hanging.
+  background do
+    let _ ← mockClient2.recv?
+    pure ()
+
+  match ← await resultPromise.result! with
+  | Except.error e => throw (IO.userError s!"agent error: {e}")
+  | Except.ok resp =>
+    unless resp.line.status == .found do
+      throw <| IO.userError
+        s!"expected 302 (cross-origin→same-origin cycle stop), got {resp.line.status.toCode}"
+
 -- ============================================================
 -- Section 4 — Expect: 100-continue
 -- ============================================================
@@ -1694,3 +1750,66 @@ private def sendInBackground {β : Type} [Coe β Body.Any]
 
   unless (← calls.get) == 1 do
     throw (IO.userError "expected exactly one connection with clamped maxConnectionsPerHost")
+
+-- ============================================================
+-- Section 12 — Request deadline and session close
+-- ============================================================
+
+-- The absolute `requestTimeout` deadline must abort a response whose body stalls after the headers
+-- arrive, surfacing the error to a caller blocked reading the body (rather than hanging until the
+-- much larger per-read idle timeout).
+#eval show IO _ from runWithTimeout "request deadline aborts a stalled response body" 4000 <| Async.block do
+  let (mockClient, mockServer) ← Mock.new
+  let agent ← mkAgent mockServer (config := { requestTimeout := ⟨300, by decide⟩ })
+
+  let request ← Request.new
+    |>.method .get
+    |>.uri! "/slow"
+    |>.header! "Host" "example.com"
+    |>.empty
+
+  let resultPromise ← sendInBackground agent request
+
+  let _ ← drainRequest mockClient
+  -- Promise a 10-byte body but never send it: the exchange must hit the request deadline.
+  mockClient.send (rawResp "200 OK"
+    #[("Content-Length", "10"), ("Connection", "close")] "")
+
+  match ← await resultPromise.result! with
+  | Except.error _ =>
+    -- Deadline surfaced before the headers were returned — still a valid enforcement.
+    pure ()
+  | Except.ok resp =>
+    let got : Except String String ← try
+        let s ← resp.body.readAll (α := String)
+        pure (Except.ok s)
+      catch e => pure (Except.error (toString e))
+    match got with
+    | Except.error _ => pure ()
+    | Except.ok s =>
+      throw (IO.userError s!"expected request-timeout error on stalled body, read {s.quote}")
+
+-- `Session.close` must abort an in-flight exchange promptly (via the connection's cancellation
+-- context), not leave the caller blocked until the request timeout. The request timeout below is set
+-- far beyond the test budget so that only `close` can end the request; without the context wiring the
+-- background loop stays parked on the socket and this test times out.
+#eval show IO _ from runWithTimeout "session close aborts an in-flight request" 4000 <| Async.block do
+  let (mockClient, mockServer) ← Mock.new
+  let agent ← mkAgent mockServer (config := { requestTimeout := ⟨60000, by decide⟩ })
+
+  let request ← Request.new
+    |>.method .get
+    |>.uri! "/never-answered"
+    |>.header! "Host" "example.com"
+    |>.empty
+
+  let resultPromise ← sendInBackground agent request
+
+  -- Server receives the request but never responds; only close should end it.
+  let _ ← drainRequest mockClient
+  agent.session.close
+
+  match ← await resultPromise.result! with
+  | Except.error _ => pure ()
+  | Except.ok _ =>
+    throw (IO.userError "expected in-flight request to abort when the session is closed")

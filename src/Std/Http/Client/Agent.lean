@@ -204,6 +204,18 @@ private inductive RedirectStep where
   | stop
   | follow (plan : RedirectPlan)
 
+/--
+Canonical string key for a request target used by cycle detection. The origin is tracked
+separately in the history tuple, so this drops the authority and keys only on the path and query.
+Both origin-form and absolute-form targets normalize to the same string so that a redirect chain
+that alternates between direct (origin-form) and cross-origin (absolute-form) hops is still detected
+as a cycle.
+-/
+private def targetKey : RequestTarget → String
+  | .absoluteForm af =>
+    toString (RequestTarget.originForm af.path (if af.query.isEmpty then none else some af.query))
+  | t => toString t
+
 private def evaluateRedirect
     (agent : Agent) (request : Request Body.Any)
     (response : Response Body.Stream) (remaining : Nat)
@@ -222,7 +234,7 @@ private def evaluateRedirect
     | .follow plan =>
 
       -- Gate 1: cycle detection.
-      let nextKey := (plan.origin, toString plan.target)
+      let nextKey := (plan.origin, targetKey plan.target)
 
       if history.contains nextKey then
         return .stop
@@ -253,7 +265,7 @@ private partial def sendWithRedirects
     (remaining : Nat)
     (history : Array (URI.Origin × String) := #[]) : Async Agent.Exchange := do
 
-  let history := history.push (agent.origin, toString request.line.uri)
+  let history := history.push (agent.origin, targetKey request.line.uri)
   let request := rewriteForProxy agent request
   let tracked ← dispatchHop agent request
 

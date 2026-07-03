@@ -158,7 +158,7 @@ end Builder
 /--
 Returns a `Builder` with default configuration.
 -/
-def builder : Builder := { config := {}, maxPerHost := 4, connect := ConnectFn.tcp, maxRetries := 1 }
+def builder : Builder := {}
 
 /--
 A request builder bound to a `Client`. Build up headers and query parameters,

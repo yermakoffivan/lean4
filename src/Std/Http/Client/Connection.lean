@@ -567,7 +567,7 @@ private def handleRecvEvent (config : Config) (state : ConnectionState) : Recv �
     return (← abortState state (.userError "request timeout"), true)
 
   | .shutdown => do
-    return (← abortState state (.userError "connection shutdown"), false)
+    return (← abortState state (.userError "connection shutdown"), true)
 
 /--
 Runs the main request/response processing loop for a single connection.

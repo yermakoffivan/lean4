@@ -53,70 +53,179 @@ def flushEncrypted (native : Socket) (ssl : Session) : Async Unit := do
     Async.ofPromise <| native.send #[out]
 
 /--
-Creates a `Selector` that resolves with the next bytes received from a raw TCP socket,
-or `none` on EOF. Used internally to race socket receives against a deadline.
+Builds a selector from a promise-producing event source and the asynchronous continuation that
+consumes a winning value. The continuation is started only after this selector wins the race.
 -/
-private def socketRecvSelector (native : Socket) (chunkSize : UInt64) : Selector (Option ByteArray) where
-  tryFn := pure none
+def selectorFromWaiter (tryFn : Async (Option β))
+    (acquire : IO (IO.Promise (Except IO.Error α))) (cont : α → Async β)
+    (cancel : IO Unit) : Selector β where
+
+  tryFn := tryFn
 
   registerFn waiter := do
-    let readableWaiter ← native.waitReadable
-    discard <| IO.mapTask (t := readableWaiter.result?) fun res => do
-      match res with
+    let source ← acquire
+
+    -- A cancelled source drops its promise, so its `result?` resolves to `none`.
+    discard <| IO.mapTask (t := source.result?) fun
       | none => return ()
       | some res =>
         let lose := return ()
         let win promise := do
           try
-            discard <| IO.ofExcept res
-            let task ← (Async.ofPromise <| native.recv? chunkSize).asTask
-            IO.chainTask task (fun x => promise.resolve x)
+            let value ← IO.ofExcept res
+            let task ← (cont value).asTask
+            IO.chainTask task (fun result => promise.resolve result)
           catch e =>
             promise.resolve (.error e)
         waiter.race lose win
 
-  unregisterFn := native.cancelRecv
+  unregisterFn := cancel
 
 /--
-Receives one encrypted chunk from the TCP socket, racing against `deadline` if present. Throws
-`"TLS operation timed out"` if the deadline fires before data arrives.
+Creates a `Selector` that resolves with the next bytes received from a raw TCP socket,
+or `none` on EOF. Used internally to race socket receives against a timeout.
 -/
-def recvEncrypted (native : Socket) (chunkSize : UInt64) (deadline : Option Sleep) : Async (Option ByteArray) := do
-  match deadline with
-  | none => Async.ofPromise <| native.recv? chunkSize
-  | some timer =>
-    let result ← Selectable.one #[
-      .case (selector := socketRecvSelector native chunkSize) (cont := fun v => return some v),
-      .case (selector := timer.selector) (cont := fun _ => return none)
+private def socketRecvSelector (native : Socket) (chunkSize : UInt64) : Selector (Option ByteArray) :=
+  selectorFromWaiter
+    (pure none)
+    native.waitReadable
+    (fun _ => Async.ofPromise <| native.recv? chunkSize)
+    native.cancelRecv
+
+/--
+The result of waiting for encrypted socket input while driving a TLS operation.
+-/
+inductive EncryptedRecvResult where
+
+  /--
+  Encrypted input was received.
+  -/
+  | data (bytes : ByteArray)
+
+  /--
+  The underlying TCP socket reached EOF.
+  -/
+  | eof
+
+  /--
+  The configured per-receive timeout elapsed.
+  -/
+  | timedOut
+
+/--
+Receives one encrypted chunk from the TCP socket, racing against a fresh `timeout` deadline if
+present. Timeout and EOF are returned explicitly so callers can apply operation-specific failure
+policy without inspecting exception strings.
+-/
+def recvEncrypted (native : Socket) (chunkSize : UInt64) (timeout : Option Millisecond.Offset) : Async EncryptedRecvResult := do
+  match timeout with
+  | none =>
+    match ← Async.ofPromise <| native.recv? chunkSize with
+    | some bytes => return .data bytes
+    | none => return .eof
+  | some duration =>
+    Selectable.one #[
+      .case (← Selector.sleep duration) fun _ =>
+        return .timedOut,
+
+      .case (socketRecvSelector native chunkSize) fun
+        | some bytes => return .data bytes
+        | none => return .eof,
     ]
-    match result with
-    | none => throw <| IO.userError "TLS operation timed out"
-    | some v => pure v
+
+/--
+One step produced by a TLS state-machine operation.
+-/
+inductive PumpStep (α : Type) where
+
+  /--
+  The operation completed with a value.
+  -/
+  | done (value : α)
+
+  /--
+  The operation needs the indicated socket I/O before it can continue.
+  -/
+  | want (io : IOWant)
+
+/--
+The result of driving a TLS state-machine operation through all required socket I/O.
+-/
+inductive PumpResult (α : Type) where
+
+  /--
+  The operation completed with a value.
+  -/
+  | done (value : α)
+
+  /--
+  A socket receive timed out before the TLS operation completed.
+  -/
+  | timedOut
+
+/--
+Drives a TLS state-machine operation through its `WANT_READ`/`WANT_WRITE` transitions. Every step
+uses the same output flush ordering and detects `WANT_WRITE` steps that produce no output.
+
+`emptyWriteNeedsRead` selects the recovery for a `WANT_WRITE` step that produced no output. With
+in-memory BIOs this state is not expected in practice (`SSL_ERROR_WANT_WRITE` requires a failed BIO
+write, and a memory output BIO cannot fill up), but should it occur, operations driven by `SSL_read`
+can still be unblocked by feeding more peer input, so they pass `true` to wait for input; write-like
+operations pass `false` to fail fast with `stallError` instead of blocking forever.
+
+`initial?` lets callers continue from a step they already performed, as required by
+`Session.write`'s queued-write protocol.
+-/
+partial def pumpIO (native : Socket) (ssl : Session) (step : IO (PumpStep α))
+    (chunkSize : UInt64) (timeout : Option Millisecond.Offset)
+    (stallError : String) (onDone : α → Async β) (onEof : Async β)
+    (initial? : Option (PumpStep α) := none) (emptyWriteNeedsRead := false) : Async (PumpResult β) := do
+
+  let current ← match initial? with
+    | some current => pure current
+    | none => step
+
+  let pending ← ssl.pendingEncrypted
+  flushEncrypted native ssl
+
+  let receive : Async (PumpResult β) := do
+    match ← recvEncrypted native chunkSize timeout with
+    | .data encrypted =>
+      feedEncryptedChunk ssl encrypted
+      pumpIO native ssl step chunkSize timeout stallError onDone onEof (emptyWriteNeedsRead := emptyWriteNeedsRead)
+    | .eof => return .done (← onEof)
+    | .timedOut => return .timedOut
+
+  match current with
+  | .done value =>
+    return .done (← onDone value)
+  | .want .write =>
+    if pending > 0 then
+      pumpIO native ssl step chunkSize timeout stallError onDone onEof (emptyWriteNeedsRead := emptyWriteNeedsRead)
+    else if !emptyWriteNeedsRead then
+      throw <| IO.userError stallError
+    else
+      receive
+  | .want .read => receive
 
 /--
 Runs the TLS handshake loop to completion, interleaving SSL state machine steps
-with TCP I/O. If `deadline` is provided, each TCP receive is raced against it and
-the loop throws `"TLS operation timed out"` if the deadline fires.
+with TCP I/O. If `timeout` is provided, each TCP receive must complete within
+that duration or the loop throws `"TLS operation timed out"`.
 -/
-partial def runHandshake (native : Socket) (ssl : Session) (chunkSize : UInt64) (deadline : Option Sleep := none) : Async Unit := do
-  while true do
-    let want ← ssl.handshake
-    -- Measured after the step but before `flushEncrypted` empties the output BIO; the previous
-    -- iteration always ends with a flush, so this counts exactly what this step produced.
-    let pending ← ssl.pendingEncrypted
-    flushEncrypted native ssl
-    match want with
-    | none => return ()
-    | some .write =>
-      if pending == 0 then
-        throw <| IO.userError "TLS handshake stalled: WANT_WRITE but output BIO produced no bytes"
-    | some .read =>
-      let encrypted? ← recvEncrypted native chunkSize deadline
-      match encrypted? with
-      | none =>
-        throw <| IO.userError "connection closed during TLS handshake"
-      | some encrypted =>
-        feedEncryptedChunk ssl encrypted
+partial def runHandshake (native : Socket) (ssl : Session) (chunkSize : UInt64) (timeout : Option Millisecond.Offset := none) : Async Unit := do
+  let step := do
+    match ← ssl.handshake with
+    | none => return .done ()
+    | some want => return .want want
+
+  let result ← pumpIO native ssl step chunkSize timeout
+    "TLS handshake stalled: WANT_WRITE but output BIO produced no bytes"
+    pure (throw <| IO.userError "connection closed during TLS handshake")
+
+  match result with
+  | .done () => return ()
+  | .timedOut => throw <| IO.userError "TLS operation timed out"
 
 end Internal
 
@@ -138,13 +247,41 @@ inductive ConnectionRole where
   | client
 
 /--
+A role-indexed SSL session. Keeping the role wrapper here prevents client-only operations such as
+setting SNI from being applied to server sessions after a connection is constructed.
+-/
+inductive ConnectionSession : ConnectionRole → Type where
+
+  /--
+  A server-side SSL session.
+  -/
+  | server (ssl : Session.Server) : ConnectionSession .server
+
+  /--
+  A client-side SSL session.
+  -/
+  | client (ssl : Session.Client) : ConnectionSession .client
+
+namespace ConnectionSession
+
+/--
+Erases the statically known session role for role-independent TLS operations.
+-/
+def toSession (ssl : ConnectionSession role) : Session :=
+  match ssl with
+  | .server ssl => ssl.toSession
+  | .client ssl => ssl.toSession
+
+end ConnectionSession
+
+/--
 Represents a TLS-enabled TCP server socket. Carries its own server context so
 that each accepted connection gets a session configured from the same context.
 -/
 structure Server where
   ofNative ::
-    native : Socket
-    serverCtx : Context.Server
+  native : Socket
+  serverCtx : Context.Server
 
 /--
 Represents a TLS-enabled TCP connection, parameterized by `role` to prevent
@@ -158,9 +295,9 @@ drives a `recv?` on a background task, so registering it counts as an in-flight 
 -/
 structure Connection (role : ConnectionRole) where
   ofNative ::
-    native : Socket
-    ssl : Session
-    broken : IO.Ref Bool
+  native : Socket
+  ssl : ConnectionSession role
+  broken : IO.Ref Bool
 
 /--
 An outgoing TLS client connection.
@@ -172,6 +309,23 @@ An incoming TLS connection accepted by a `Server`.
 -/
 abbrev ServerConn := Connection .server
 
-end Std.Async.TCP.SSL
+namespace Internal
 
+/--
+Runs an operation only while the TLS connection is healthy and marks the connection broken if the
+operation throws. Operations that return a retryable condition should do so as a value and translate
+it to an exception only after this wrapper returns.
+-/
+def withConnection (s : Connection role) (action : Async α) : Async α := do
+  if ← s.broken.get then
+    throw <| IO.userError "TLS connection is in a broken state"
+
+  try
+    action
+  catch e =>
+    s.broken.set true
+    throw e
+
+end Internal
+end Std.Async.TCP.SSL
 end

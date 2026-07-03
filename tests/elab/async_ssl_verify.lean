@@ -98,23 +98,29 @@ def testHostnameMismatchFails (addr : SocketAddress) (certFile keyFile : String)
     catch _ => pure ()
   : Async Unit).toIO
 
-  let connectSucceeded ← IO.mkRef false
-
   let cliTask ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "evil.example.com"   -- does NOT match CN=localhost
-    client.connect addr
-    connectSucceeded.set true
-    client.tlsShutdown
+    let client ← Client.mk clientCtx (some "evil.example.com")
+    let handshakeFailed ← try
+      client.connect addr
+      pure false
+    catch _ =>
+      pure true
+    unless handshakeFailed do
+      throw <| IO.userError
+        "testHostnameMismatchFails: handshake succeeded for a mismatched hostname"
+
+    let rejectedAsBroken ← try
+      client.send "must-not-send".toUTF8
+      pure false
+    catch e =>
+      pure (toString e == "TLS connection is in a broken state")
+    unless rejectedAsBroken do
+      throw <| IO.userError
+        "testHostnameMismatchFails: failed handshake did not mark the connection broken"
   : Async Unit).toIO
 
-  try cliTask.block catch _ => pure ()
+  cliTask.block
   try srvTask.block catch _ => pure ()
-
-  if ← connectSucceeded.get then
-    throw <| IO.userError
-      "testHostnameMismatchFails: handshake succeeded with SNI='evil.example.com' \
-       but server cert CN=localhost — hostname check did not fire"
 
 def testDefaultVerifiesPeer (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
   let serverCtx ← Context.Server.mk
@@ -137,8 +143,7 @@ def testDefaultVerifiesPeer (addr : SocketAddress) (certFile keyFile : String) :
   let connectSucceeded ← IO.mkRef false
 
   let cliTask ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "localhost"
+    let client ← Client.mk clientCtx (some "localhost")
     client.connect addr
     connectSucceeded.set true
     client.tlsShutdown
@@ -172,8 +177,7 @@ def testVerifyResultValues (addrFail addrOk : SocketAddress) (certFile keyFile :
     : Async Unit).toIO
 
     let cliTask ← (do
-      let client ← Client.mk clientCtx
-      client.setServerName "localhost"
+      let client ← Client.mk clientCtx (some "localhost")
       try client.connect addrFail catch _ => pure ()
       let code ← client.verifyResult
       let msg  ← client.verifyResultString
@@ -209,8 +213,7 @@ def testVerifyResultValues (addrFail addrOk : SocketAddress) (certFile keyFile :
     : Async Unit).toIO
 
     let cliTask ← (do
-      let client ← Client.mk clientCtx
-      client.setServerName "localhost"
+      let client ← Client.mk clientCtx (some "localhost")
       client.connect addrOk
       let code ← client.verifyResult
       let msg  ← client.verifyResultString
@@ -244,8 +247,7 @@ def testWildcardSAN (addrOk addrFail : SocketAddress) (wildcardCert keyFile : St
 
   let srvA ← (do discard <| serverA.accept : Async Unit).toIO
   let cliA ← (do
-    let client ← Client.mk clientCtxOk
-    client.setServerName "sub.test.local"
+    let client ← Client.mk clientCtxOk (some "sub.test.local")
     client.connect addrOk
   : Async Unit).toIO
   srvA.block
@@ -261,8 +263,7 @@ def testWildcardSAN (addrOk addrFail : SocketAddress) (wildcardCert keyFile : St
     catch _ => pure ()
   : Async Unit).toIO
   let cliB ← (do
-    let client ← Client.mk clientCtxFail
-    client.setServerName "sub.other.local"
+    let client ← Client.mk clientCtxFail (some "sub.other.local")
     let threw ← try
       client.connect addrFail
       pure false
@@ -291,8 +292,7 @@ def testMultiSAN (addrAlpha addrBeta addrGamma : SocketAddress)
   serverAlpha.listen 128
   let srvAlpha ← (do discard <| serverAlpha.accept : Async Unit).toIO
   let cliAlpha ← (do
-    let client ← Client.mk (← mkClient)
-    client.setServerName "alpha.test.local"
+    let client ← Client.mk (← mkClient) (some "alpha.test.local")
     client.connect addrAlpha
   : Async Unit).toIO
   srvAlpha.block
@@ -304,8 +304,7 @@ def testMultiSAN (addrAlpha addrBeta addrGamma : SocketAddress)
   serverBeta.listen 128
   let srvBeta ← (do discard <| serverBeta.accept : Async Unit).toIO
   let cliBeta ← (do
-    let client ← Client.mk (← mkClient)
-    client.setServerName "beta.test.local"
+    let client ← Client.mk (← mkClient) (some "beta.test.local")
     client.connect addrBeta
   : Async Unit).toIO
   srvBeta.block
@@ -320,8 +319,7 @@ def testMultiSAN (addrAlpha addrBeta addrGamma : SocketAddress)
     catch _ => pure ()
   : Async Unit).toIO
   let cliGamma ← (do
-    let client ← Client.mk (← mkClient)
-    client.setServerName "gamma.test.local"
+    let client ← Client.mk (← mkClient) (some "gamma.test.local")
     let threw ← try
       client.connect addrGamma
       pure false
@@ -354,20 +352,17 @@ def testConcurrentContextReuse (addr : SocketAddress) (certFile keyFile : String
   -- Start all three client tasks before blocking on any, so the handshakes
   -- race concurrently and share the same SSL_CTX.
   let cli1 ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "localhost"
+    let client ← Client.mk clientCtx (some "localhost")
     client.connect addr
     discard <| client.recv? 1024
   : Async Unit).toIO
   let cli2 ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "localhost"
+    let client ← Client.mk clientCtx (some "localhost")
     client.connect addr
     discard <| client.recv? 1024
   : Async Unit).toIO
   let cli3 ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "localhost"
+    let client ← Client.mk clientCtx (some "localhost")
     client.connect addr
     discard <| client.recv? 1024
   : Async Unit).toIO
@@ -396,8 +391,7 @@ def testExpiredCertRejected (addr : SocketAddress) (expiredCert keyFile : String
   : Async Unit).toIO
 
   let cliTask ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "localhost"
+    let client ← Client.mk clientCtx (some "localhost")
     let threw ← try
       client.connect addr
       pure false

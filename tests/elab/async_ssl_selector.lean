@@ -54,8 +54,7 @@ def testAcceptSelector (addr : SocketAddress) (certFile keyFile : String) : IO U
   : Async Unit).toIO
 
   let cliTask ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "localhost"
+    let client ← Client.mk clientCtx (some "localhost")
     client.connect addr
     client.send "via selector".toUTF8
     let resp ← client.recv? 1024
@@ -89,8 +88,7 @@ def testRecvSelector (addr : SocketAddress) (certFile keyFile : String) : IO Uni
   : Async Unit).toIO
 
   let cliTask ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "localhost"
+    let client ← Client.mk clientCtx (some "localhost")
     client.connect addr
     -- Block until the server's push arrives, using recvSelector.
     let result ← Selectable.one #[
@@ -123,8 +121,7 @@ def testRecvSelectorWithTimeout (addr : SocketAddress) (certFile keyFile : Strin
   : Async Unit).toIO
 
   let cliTask ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "localhost"
+    let client ← Client.mk clientCtx (some "localhost")
     client.connect addr
 
     let timeout ← Sleep.mk (Std.Time.Millisecond.Offset.ofInt 2000)
@@ -145,6 +142,51 @@ def testRecvSelectorWithTimeout (addr : SocketAddress) (certFile keyFile : Strin
   srvTask.block
   cliTask.block
 
+def testRecvTimeout (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
+  let serverCtx ← Context.Server.mk
+  serverCtx.configure certFile keyFile
+  let clientCtx ← Context.Client.mk
+  clientCtx.configure "" false
+
+  let server ← Server.mk serverCtx
+  server.bind addr
+  server.listen 128
+
+  let srvTask ← (do
+    let conn ← server.accept
+    -- Let the client's first receive time out, then prove that the same TLS
+    -- session can still receive application data. The wide margin over the
+    -- client's 500ms timeout keeps the test stable on loaded CI machines.
+    Async.sleep 2000
+    conn.send "after-timeout".toUTF8
+    conn.tlsShutdown
+  : Async Unit).toIO
+
+  let cliTask ← (do
+    let client ← Client.mk clientCtx (some "localhost")
+    client.connect addr
+
+    let mut timedOut := false
+    try
+      discard <| client.recv? 1024 (timeout := some (Std.Time.Millisecond.Offset.ofInt 500))
+    catch e =>
+      timedOut := true
+      let msg := toString e
+      unless msg == "TLS operation timed out" do
+        throw <| IO.userError s!"recvTimeout: expected timeout error, got '{msg}'"
+    unless timedOut do
+      throw <| IO.userError "recvTimeout: recv? did not time out"
+
+    let response ← client.recv? 1024
+    let got := String.fromUTF8! (response.getD ByteArray.empty)
+    unless got == "after-timeout" do
+      throw <| IO.userError s!"recvTimeout: expected reusable connection, got '{got}'"
+    client.tlsShutdown
+  : Async Unit).toIO
+
+  cliTask.block
+  srvTask.block
+
 #eval do
   let (certFile, keyFile) ← setupTestCerts
   testAcceptSelector (SocketAddressV4.mk (.ofParts 127 0 0 1) 18448) certFile keyFile
@@ -156,3 +198,7 @@ def testRecvSelectorWithTimeout (addr : SocketAddress) (certFile keyFile : Strin
 #eval do
   let (certFile, keyFile) ← setupTestCerts
   testRecvSelectorWithTimeout (SocketAddressV4.mk (.ofParts 127 0 0 1) 18460) certFile keyFile
+
+#eval do
+  let (certFile, keyFile) ← setupTestCerts
+  testRecvTimeout (SocketAddressV4.mk (.ofParts 127 0 0 1) 18470) certFile keyFile

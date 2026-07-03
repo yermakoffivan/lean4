@@ -45,8 +45,7 @@ def serverTask (server : TCP.SSL.Server) : Async Unit := do
   Async.ofPromise client.native.shutdown
 
 def clientTask (addr : SocketAddress) (clientCtx : Context.Client) : Async Unit := do
-  let client ← Client.mk clientCtx
-  client.setServerName "localhost"
+  let client ← Client.mk clientCtx (some "localhost")
   client.connect addr
   client.noDelay
   client.send "hello over tls".toUTF8
@@ -97,8 +96,7 @@ def testMultipleRoundTrips (addr : SocketAddress) (certFile keyFile : String) : 
   : Async Unit).toIO
 
   let cliTask ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "localhost"
+    let client ← Client.mk clientCtx (some "localhost")
     client.connect addr
     for i in List.range 5 do
       let payload := s!"msg{i}".toUTF8
@@ -119,8 +117,11 @@ def testLargePayload (addr : SocketAddress) (certFile keyFile : String) : IO Uni
   let clientCtx ← Context.Client.mk
   clientCtx.configure "" false
 
-  let payloadSize := 64 * 1024  -- 64 KB: spans multiple TLS records
-  let payload := ByteArray.mk (List.replicate payloadSize 0x42).toArray
+  -- 64 KB + 1: spans multiple TLS records and multiple `send` chunks, with a final partial
+  -- chunk. The position-dependent pattern catches dropped, duplicated, or reordered chunks
+  -- that a constant fill would miss.
+  let payloadSize := 64 * 1024 + 1
+  let payload := ByteArray.mk ((Array.range payloadSize).map (·.toUInt8))
 
   let server ← Server.mk serverCtx
   server.bind addr
@@ -138,8 +139,7 @@ def testLargePayload (addr : SocketAddress) (certFile keyFile : String) : IO Uni
   : Async Unit).toIO
 
   let cliTask ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "localhost"
+    let client ← Client.mk clientCtx (some "localhost")
     client.connect addr
     client.send payload
     let mut buf := ByteArray.empty
@@ -148,6 +148,8 @@ def testLargePayload (addr : SocketAddress) (certFile keyFile : String) : IO Uni
       buf := buf ++ chunk.getD ByteArray.empty
     unless buf.size == payloadSize do
       throw <| IO.userError s!"large payload size mismatch: {buf.size}"
+    unless buf == payload do
+      throw <| IO.userError "large payload content mismatch"
     Async.ofPromise client.native.shutdown
   : Async Unit).toIO
 
@@ -180,8 +182,7 @@ def testSendAll (addr : SocketAddress) (certFile keyFile : String) : IO Unit := 
   : Async Unit).toIO
 
   let cliTask ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "localhost"
+    let client ← Client.mk clientCtx (some "localhost")
     client.connect addr
     client.sendAll chunks
     let mut buf := ByteArray.empty
@@ -214,8 +215,7 @@ def testSequentialConnections (addr : SocketAddress) (certFile keyFile : String)
     : Async Unit).toIO
 
     let cliTask ← (do
-      let client ← Client.mk clientCtx
-      client.setServerName "localhost"
+      let client ← Client.mk clientCtx (some "localhost")
       client.connect addr
       let payload := s!"conn-{i}".toUTF8
       client.send payload
@@ -250,8 +250,7 @@ def testBidirectional (addr : SocketAddress) (certFile keyFile : String) : IO Un
   : Async Unit).toIO
 
   let cliTask ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "localhost"
+    let client ← Client.mk clientCtx (some "localhost")
     client.connect addr
     client.send "from-client".toUTF8      -- send without waiting for server first
     let msg ← client.recv? 1024
@@ -284,8 +283,7 @@ def testZeroByteSend (addr : SocketAddress) (certFile keyFile : String) : IO Uni
   : Async Unit).toIO
 
   let cliTask ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "localhost"
+    let client ← Client.mk clientCtx (some "localhost")
     client.connect addr
     -- The real message must still arrive intact.
     let resp ← client.recv? 1024
@@ -316,8 +314,7 @@ def testSendAllEmpty (addr : SocketAddress) (certFile keyFile : String) : IO Uni
   : Async Unit).toIO
 
   let cliTask ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "localhost"
+    let client ← Client.mk clientCtx (some "localhost")
     client.connect addr
     client.sendAll #[]          -- empty array: should be a no-op
     client.send "after-empty".toUTF8
@@ -354,8 +351,7 @@ def testManySmallMessages (addr : SocketAddress) (certFile keyFile : String) : I
   : Async Unit).toIO
 
   let cliTask ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "localhost"
+    let client ← Client.mk clientCtx (some "localhost")
     client.connect addr
     -- Send n individual one-byte messages.
     for i in List.range n do
@@ -395,8 +391,7 @@ def testSendWithTimeout (addr : SocketAddress) (certFile keyFile : String) : IO 
   : Async Unit).toIO
 
   let cliTask ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "localhost"
+    let client ← Client.mk clientCtx (some "localhost")
     client.connect addr
     -- A send and a sendAll, both with a generous timeout that should never fire.
     client.send "timed".toUTF8 (timeout := some (.ofInt 5000))

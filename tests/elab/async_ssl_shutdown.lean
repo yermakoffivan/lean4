@@ -52,8 +52,7 @@ def testRecvAfterShutdown (addr : SocketAddress) (certFile keyFile : String) : I
   : Async Unit).toIO
 
   let cliTask ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "localhost"
+    let client ← Client.mk clientCtx (some "localhost")
     client.connect addr
     client.send "ping".toUTF8
     -- Receive the echo
@@ -94,8 +93,7 @@ def testTLSShutdown (addr : SocketAddress) (certFile keyFile : String) : IO Unit
   : Async Unit).toIO
 
   let cliTask ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "localhost"
+    let client ← Client.mk clientCtx (some "localhost")
     client.connect addr
     client.send "shutdown-test".toUTF8
     let resp ← client.recv? 1024
@@ -124,8 +122,7 @@ def testRecvAfterTCPClose (addr : SocketAddress) (certFile keyFile : String) : I
   : Async Unit).toIO
 
   let cliTask ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "localhost"
+    let client ← Client.mk clientCtx (some "localhost")
     client.connect addr
     -- recv? must throw a truncation error (not silently return none) when the
     -- peer closes TCP without sending a close_notify alert.
@@ -159,8 +156,7 @@ def testRecvAfterTLSShutdown (addr : SocketAddress) (certFile keyFile : String) 
   : Async Unit).toIO
 
   let cliTask ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "localhost"
+    let client ← Client.mk clientCtx (some "localhost")
     client.connect addr
     -- Consume the message sent before shutdown.
     let msg ← client.recv? 1024
@@ -194,8 +190,7 @@ def testTCPTruncationDetection (addr : SocketAddress) (certFile keyFile : String
   : Async Unit).toIO
 
   let cliTask ← (do
-    let client ← Client.mk clientCtx
-    client.setServerName "localhost"
+    let client ← Client.mk clientCtx (some "localhost")
     client.connect addr
     let _ ← client.recv? 1024
     -- Second recv? must throw (truncation), not silently return none.

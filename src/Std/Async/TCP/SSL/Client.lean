@@ -24,14 +24,18 @@ open Internal
 namespace Client
 
 /--
-Creates a new outgoing TLS client connection using the given client context.
+Creates a new outgoing TLS client connection using the given client context. `serverName` is set on
+the role-typed client session before any handshake can run: pass `some host` to enable SNI and
+certificate hostname verification, or pass `none` explicitly for connections that do not use a DNS
+name.
 -/
-@[inline]
-def mk (ctx : Context.Client) : IO Client := do
+def mk (ctx : Context.Client) (serverName : Option String) : IO Client := do
   let native ← Socket.new
   let ssl ← Session.Client.mk ctx
+  if let some host := serverName then
+    ssl.setServerName host
   let broken ← IO.mkRef false
-  return ⟨native, ssl.toSession, broken⟩
+  return ⟨native, .client ssl, broken⟩
 
 /--
 Binds the client socket to the specified address.
@@ -39,22 +43,6 @@ Binds the client socket to the specified address.
 @[inline]
 def bind (s : Client) (addr : SocketAddress) : IO Unit :=
   s.native.bind addr
-
-/--
-Sets the server name for the TLS connection.
-
-**Must be called before `connect`** to take effect. Calling it after `connect`
-is a no-op with respect to both the SNI extension and hostname verification —
-the handshake will have already completed without them.
-
-This sets both the SNI extension in the ClientHello and enables post-handshake
-hostname verification against the certificate CN/SAN. Without this call,
-OpenSSL will verify the certificate chain but will not check that the
-certificate belongs to the host you connected to.
--/
-@[inline]
-def setServerName (s : Client) (host : String) : IO Unit :=
-  s.ssl.setServerName host
 
 /--
 Performs the TLS handshake on an established TCP connection.
@@ -65,12 +53,11 @@ timeout, a stalled or malicious peer can cause this function to block indefinite
 -/
 def handshake (s : Client) (chunkSize : UInt64 := ioChunkSize)
     (timeout : Option Std.Time.Millisecond.Offset := none) : Async Unit := do
-  let deadline ← timeout.mapM Sleep.mk
-  runHandshake s.native s.ssl chunkSize deadline
+  withConnection s <| runHandshake s.native s.ssl.toSession chunkSize timeout
 
 /--
 Connects the client socket to the given address and performs the TLS handshake.
-Call `setServerName` before this function if SNI is required.
+The server name, including the explicit choice to omit one, is configured by `Client.mk`.
 
 If `timeout` is provided, each TCP round-trip of the TLS handshake must complete
 within that duration or the function throws `"TLS operation timed out"`. Note: the
@@ -78,11 +65,11 @@ initial TCP connect itself is not covered by this timeout.
 -/
 def connect (s : Client) (addr : SocketAddress) (chunkSize : UInt64 := ioChunkSize)
     (timeout : Option Std.Time.Millisecond.Offset := none) : Async Unit := do
-  Async.ofPromise <| s.native.connect addr
-  s.handshake chunkSize timeout
+
+  withConnection s do
+    Async.ofPromise <| s.native.connect addr
+    runHandshake s.native s.ssl.toSession chunkSize timeout
 
 end Client
-
 end Std.Async.TCP.SSL
-
 end

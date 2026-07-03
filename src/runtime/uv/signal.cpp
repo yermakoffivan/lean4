@@ -57,12 +57,12 @@ void handle_signal_event(uv_signal_t* handle, int signum) {
 
     if (signal->m_repeating) {
         if (!signal_promise_is_finished(signal)) {
-            lean_object* res = lean_io_promise_resolve(lean_box(signum), signal->m_promise);
+            lean_object* res = lean_io_promise_resolve(mk_except_ok(lean_box(signum)), signal->m_promise);
             lean_dec(res);
         }
     } else {
         if (signal->m_promise != NULL) {
-            lean_object* res = lean_io_promise_resolve(lean_box(signum), signal->m_promise);
+            lean_object* res = lean_io_promise_resolve(mk_except_ok(lean_box(signum)), signal->m_promise);
             lean_dec(res);
         }
 
@@ -84,6 +84,10 @@ size_t lean_uv_signal_shutdown(lean_uv_signal_object * signal) {
     }
 
     if (signal->m_promise != NULL) {
+        if (!signal_promise_is_finished(signal)) {
+            lean_promise_resolve_with_code(UV_ECANCELED, signal->m_promise);
+        }
+
         lean_dec(signal->m_promise);
         signal->m_promise = NULL;
     }
@@ -263,7 +267,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_stop(b_obj_arg obj) {
 
     if (signal->m_state == SIGNAL_STATE_RUNNING) {
         if (!event_loop_lock(&global_ev)) {
-            return lean_uv_loop_unavailable_error();
+            return lean_io_result_mk_ok(lean_box(0));
         }
         int result = uv_signal_stop(signal->m_uv_signal);
         event_loop_unlock(&global_ev);
@@ -294,7 +298,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_signal_cancel(b_obj_arg obj) {
 
     // It's locking here to avoid changing the state during other operations.
     if (!event_loop_lock(&global_ev)) {
-        return lean_uv_loop_unavailable_error();
+        return lean_io_result_mk_ok(lean_box(0));
     }
 
     if (signal->m_state == SIGNAL_STATE_RUNNING && signal->m_promise != NULL) {

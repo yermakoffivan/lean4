@@ -157,7 +157,11 @@ void event_loop_wait_finalized(event_loop_t * event_loop) {
 }
 
 lean_obj_res lean_uv_loop_unavailable_error() {
-    return lean_io_result_mk_error(lean_decode_uv_error(UV_ECANCELED, lean_mk_string("libuv event loop is not available")));
+    // `lean_decode_uv_error` borrows the message.
+    lean_object * msg = lean_mk_string("libuv event loop is not available");
+    lean_obj_res res = lean_io_result_mk_error(lean_decode_uv_error(UV_ECANCELED, msg));
+    lean_dec_ref(msg);
+    return res;
 }
 
 // Runs the loop and stops when it needs to register new requests.

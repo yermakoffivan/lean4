@@ -465,7 +465,7 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_udp_cancel_recv(b_obj_arg socket) {
 
     if (!event_loop_lock(&global_ev)) {
         lean_dec(socket);
-        return lean_uv_loop_unavailable_error();
+        return lean_io_result_mk_ok(lean_box(0));
     }
 
     if (udp_socket->m_promise_read == nullptr) {

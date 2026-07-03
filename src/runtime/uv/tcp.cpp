@@ -504,7 +504,8 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_tcp_cancel_recv(b_obj_arg socket) {
     lean_uv_tcp_socket_object* tcp_socket = lean_to_uv_tcp_socket(socket);
 
     if (!event_loop_lock(&global_ev)) {
-        return lean_uv_loop_unavailable_error();
+        // Noop for cleanup paths like `Selectable.one`.
+        return lean_io_result_mk_ok(lean_box(0));
     }
 
     if (tcp_socket->m_promise_read == nullptr) {
@@ -698,7 +699,8 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_tcp_cancel_accept(b_obj_arg socket) 
     lean_uv_tcp_socket_object* tcp_socket = lean_to_uv_tcp_socket(socket);
 
     if (!event_loop_lock(&global_ev)) {
-        return lean_uv_loop_unavailable_error();
+        // The loop is being finalized, which cancels every pending accept; see lean_uv_tcp_cancel_recv`.
+        return lean_io_result_mk_ok(lean_box(0));
     }
 
     if (tcp_socket->m_promise_accept == nullptr) {

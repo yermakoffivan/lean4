@@ -61,14 +61,14 @@ void handle_timer_event(uv_timer_t* handle) {
    if (timer->m_repeating) {
         // For repeating timers, only resolves if the promise exists and is not finished
         if (timer->m_promise != NULL && !timer_promise_is_finished(timer)) {
-            lean_object* res = lean_io_promise_resolve(lean_box(0), timer->m_promise);
+            lean_object* res = lean_io_promise_resolve(mk_except_ok(lean_box(0)), timer->m_promise);
             lean_dec(res);
         }
     } else {
         // For non-repeating timers, resolves if the promise exists
         if (timer->m_promise != NULL) {
             lean_assert(!timer_promise_is_finished(timer));
-            lean_object* res = lean_io_promise_resolve(lean_box(0), timer->m_promise);
+            lean_object* res = lean_io_promise_resolve(mk_except_ok(lean_box(0)), timer->m_promise);
             lean_dec(res);
         }
 
@@ -91,6 +91,10 @@ size_t lean_uv_timer_shutdown(lean_uv_timer_object * timer) {
     }
 
     if (timer->m_promise != NULL) {
+        if (!timer_promise_is_finished(timer)) {
+            lean_promise_resolve_with_code(UV_ECANCELED, timer->m_promise);
+        }
+
         lean_dec(timer->m_promise);
         timer->m_promise = NULL;
     }
@@ -276,7 +280,9 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_timer_stop(b_obj_arg obj) {
 
     // Locking to access the state in order to avoid data-race
     if (!event_loop_lock(&global_ev)) {
-        return lean_uv_loop_unavailable_error();
+        // The loop is being finalized, which stops every timer; treat stopping again as a no-op so
+        // cleanup paths (e.g. `Selectable.one` unregistration) don't abort on a spurious error.
+        return lean_io_result_mk_ok(lean_box(0));
     }
 
     if (timer->m_promise != NULL) {
@@ -306,7 +312,8 @@ extern "C" LEAN_EXPORT lean_obj_res lean_uv_timer_cancel(b_obj_arg obj) {
 
     // It's locking here to avoid changing the state during other operations.
     if (!event_loop_lock(&global_ev)) {
-        return lean_uv_loop_unavailable_error();
+        // The loop is being finalized, which cancels every timer; see `lean_uv_timer_stop`.
+        return lean_io_result_mk_ok(lean_box(0));
     }
 
     if (timer->m_state == TIMER_STATE_RUNNING && timer->m_promise != NULL) {

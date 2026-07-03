@@ -430,8 +430,6 @@ private def handleRecvEvent
 
       return ({ state with machine := drainedMachine, handlerDispatched := false, respStream := drainedRespStream }, shouldClose)
 
-      return ({ state with machine := drainedMachine, handlerDispatched := false, respStream := drainedRespStream }, false)
-
 /--
 Computes the active `PollSources` for the current connection state.
 Determines which IO sources need attention and whether to include the socket.

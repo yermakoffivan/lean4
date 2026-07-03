@@ -211,7 +211,7 @@ The protocol for this is as follows:
 -/
 def Selectable.tryOne (selectables : Array (Selectable α)) : Async (Option α) := do
   if selectables.isEmpty then
-    throw <| .userError "Selectable.one requires at least one Selectable"
+    throw <| .userError "Selectable.tryOne requires at least one Selectable"
 
   let gen ← IO.stdGenRef.get
   let (selectables, gen) := shuffleIt selectables gen

@@ -176,17 +176,23 @@ theorem fastAppend_eq {a b : ByteArray} : a.fastAppend b = a ++ b := by
   simp [← append_eq_fastAppend]
 
 /--
-Appends the slice of {name}`a` with byte indices in `[start, start + len)` to the end of {name}`a`,
-ignoring any indices that are at or beyond the end of {name}`a`.
+Copies the slice at `[srcOff, srcOff + len)` in {name}`a` to `[destOff, destOff + len)` in
+{name}`a`, growing {name}`a` if necessary. If {name}`exact` is {name}`false`, the capacity will be
+doubled when grown.
 
-When {name}`a` is not shared, this is done in place with a single allocation and a single copy, which
-is significantly faster than first extracting the slice and then appending it. The argument {name}`a`
-is owned rather than borrowed so that this in-place case is possible; this is the ByteArray analogue
-of Rust's Vec::extend_from_within.
+This is equivalent to {lean}`a.copySlice srcOff a destOff len exact`, but when {name}`a` is not
+shared the copy is performed in place, even when the source and destination ranges overlap or the
+array is grown; the source range is read as it was before the copy. The argument {name}`a` is
+owned rather than borrowed to make this possible, whereas passing the same array as both source
+and destination of {name}`ByteArray.copySlice` always copies the whole array.
+
+With {lean}`destOff = a.size` this appends the slice at `[srcOff, srcOff + len)` to the end of
+{name}`a`, the analogue of Rust's {lit}`Vec::extend_from_within`; as with
+{name}`ByteArray.copySlice`, pass {lit}`exact := false` when growing the array repeatedly.
 -/
 @[extern "lean_byte_array_copy_within"]
-def copyWithin (a : ByteArray) (start len : Nat) : ByteArray :=
-  a ++ a.extract start (start + len)
+def copyWithin (a : ByteArray) (srcOff destOff len : Nat) (exact : Bool := true) : ByteArray :=
+  a.copySlice srcOff a destOff len exact
 
 /--
 Converts a packed array of bytes to a linked list.

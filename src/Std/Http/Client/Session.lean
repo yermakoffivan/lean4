@@ -89,6 +89,14 @@ def send {β : Type} [Body β] (session : Session) (request : Request β) : Asyn
   return (← session.sendTracked request).1
 
 /--
+`true` once the session can no longer accept requests: its request channel was closed, either by
+`close` or by the background connection loop shutting down (server EOF, idle timeout, protocol
+error). Any subsequent `send` fails immediately.
+-/
+def isClosed (session : Session) : BaseIO Bool :=
+  session.requestChannel.isClosed
+
+/--
 Wait for the background loop to exit.
 -/
 def waitShutdown (session : Session) : Async Unit :=

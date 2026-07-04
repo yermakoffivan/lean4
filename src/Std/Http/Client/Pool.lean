@@ -138,10 +138,22 @@ background completion handler's `retireSession`). The lock is taken only for the
 check and to install the freshly opened session.
 -/
 def getOrCreateSession (pool : Agent.Pool) (origin : URI.Origin) : Async Session := do
-  -- Fast path: reuse an existing same-origin session without opening anything.
+  -- Fast path: reuse an existing same-origin session without opening anything. A parked session
+  -- whose background loop has already shut down (server EOF, idle keep-alive timeout) is evicted
+  -- instead of returned: handing it out would fail the request even though nothing was ever
+  -- written to the wire for it. A session can still die between this check and the actual send;
+  -- that residual race surfaces as a connection error handled by the retry policy in `send`.
   let existing ← pool.state.atomically do
     match ← get with
-    | some slot => pure (if slot.origin == origin then some slot.session else none)
+    | some slot =>
+      if slot.origin == origin then
+        if ← slot.session.isClosed then
+          set (none : Option Agent.Pool.Slot)
+          pure none
+        else
+          pure (some slot.session)
+      else
+        pure none
     | none => pure none
   if let some session := existing then
     return session
@@ -186,10 +198,13 @@ Cross-origin redirect swaps retire the outgoing session before acquiring the nex
 the pool to one live origin at a time.
 -/
 def send {β : Type} [Coe β Body.Any] (pool : Agent.Pool) (origin : URI.Origin) (request : Request β) : Async (Response Body.Stream) := do
-
   -- Non-idempotent methods (POST, PATCH, …) must never be retried; a connection
   -- failure after partial delivery could cause duplicate side-effects.
-  let retries := if request.line.method.isIdempotent then pool.maxRetries else 0
+  -- The body must also be replayable (`reset?`): the failed attempt may have consumed a
+  -- streaming body, and retrying would silently send an empty or truncated body. The erased
+  -- wrapper shares the underlying body state, so resetting through it resets the request body.
+  let reset? := (request.body : Body.Any).reset?
+  let retries := if request.line.method.isIdempotent && reset?.isSome then pool.maxRetries else 0
 
   let attempts := retries + 1
 
@@ -223,6 +238,10 @@ def send {β : Type} [Coe β Body.Any] (pool : Agent.Pool) (origin : URI.Origin)
 
   for attempt in 0...attempts do
     try
+      -- A prior attempt may have consumed (part of) the body; rewind it before resending.
+      if attempt > 0 then
+        if let some reset := reset? then
+          reset
       return (← attemptOnce)
     catch err =>
       -- Re-raise on the final attempt; earlier failures fall through to the next retry.

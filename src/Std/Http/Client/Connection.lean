@@ -187,11 +187,6 @@ structure ConnectionState where
   keepAliveTimeout : Option Millisecond.Offset
 
   /--
-  Set when the H1 machine has requested more socket input.
-  -/
-  requiresData : Bool
-
-  /--
   Preferred socket recv size from the most recent `.needMoreData` event.
   -/
   expectData : Option Nat
@@ -299,13 +294,11 @@ private def pollNextEvent
       | none => none
     else none
 
-  let pollSocket :=
-    !state.machine.reader.noMoreInput ∧ (
-    state.requiresData ∨
-    state.machine.writer.sentMessage ∨
-    !state.waitingForRequest ∨
-    state.requestBody.isSome ∨
-    state.machine.canPullBody)
+  -- Poll the socket whenever the reader can still produce input. In particular an *idle*
+  -- (keep-alive parked) connection must keep watching the socket: a server-initiated close
+  -- must be observed promptly so the session shuts down and the pool retires it, instead of
+  -- the dead session accepting a request it can no longer deliver.
+  let pollSocket := !state.machine.reader.noMoreInput
 
   let expectedBytes := state.expectData
     |>.getD config.defaultRequestBufferSize
@@ -368,7 +361,7 @@ private def processH1Events
   for event in events do
     match event with
     | .needMoreData expect =>
-      st := { st with requiresData := true, expectData := expect }
+      st := { st with expectData := expect }
 
     | .needAnswer =>
       pure ()
@@ -586,12 +579,16 @@ protected def handle
     machine := machine
     currentTimeout := config.keepAliveTimeout.val
     keepAliveTimeout := some config.keepAliveTimeout.val
-    requiresData := false
     expectData := none
     inFlight := none
   }
 
-  while ¬state.machine.halted do
+  -- The loop body runs user-supplied `Body` implementations (body pumps, `getKnownSize`,
+  -- `close`); an exception escaping the loop must not skip the cleanup below, which fails the
+  -- in-flight request and closes the request channel and socket — otherwise callers awaiting
+  -- the response would hang forever.
+  try
+   while ¬state.machine.halted do
 
     -- Phase 1: close any reader that the user has signalled is done.
     if let some body := state.requestBody then
@@ -637,7 +634,6 @@ protected def handle
     if state.machine.halted || (state.machine.reader.noMoreInput && !state.machine.canPullBodyNow) then
       break
 
-    state := { state with requiresData := false }
     let event ← pollNextEvent config socket requestChannel connectionContext state
     let (newState, shouldClose) ← handleRecvEvent config state event
     state := newState
@@ -646,8 +642,12 @@ protected def handle
     if state.machine.halted || (state.machine.reader.noMoreInput && !state.machine.canPullBodyNow) then
       break
 
+  catch _ =>
+    pure ()
+
   -- Clean up: notify any in-flight request and close all open streams.
-  discard <| abortState state (.userError "connection closed")
+  try discard <| abortState state (.userError "connection closed")
+  catch _ => pure ()
 
   discard <| EIO.toBaseIO requestChannel.close
 

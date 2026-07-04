@@ -716,3 +716,170 @@ open Test.ClientHelpers
   | Except.error _ => pure ()
   unless (← calls.get) == 1 do
     throw (IO.userError s!"POST was retried; expected one connection attempt, got {← calls.get}")
+
+-- ============================================================
+-- Section 14 — Retry body integrity and dead-session detection
+-- ============================================================
+
+-- An idempotent request whose streaming body was consumed by the failed attempt must NOT be
+-- retried: the body cannot be replayed, so a retry would silently send an empty body.
+#eval show IO _ from runWithTimeout "PUT with non-replayable stream body is not retried" 4000 <| Async.block do
+  let (mockClient1, mockServer1) ← Mock.new
+  let (mockClient2, mockServer2) ← Mock.new
+  let calls ← IO.mkRef 0
+  let connect : Client.ConnectFn := fun _ _ _ config => do
+    let callNo ← calls.get
+    calls.set (callNo + 1)
+    Client.Session.new (if callNo == 0 then mockServer1 else mockServer2) (config := config)
+  let pool ← Client.Agent.Pool.new {} connect (maxRetries := 3)
+  let some domain := URI.DomainName.ofString? "example.com"
+    | throw (IO.userError "DomainName parse failed")
+  let origin : URI.Origin := {
+    scheme := URI.Scheme.ofString! "http", host := .name domain, port := 80 }
+  let request ← Request.new |>.method .put |>.uri! "/upload"
+    |>.header! "Host" "example.com"
+    |>.stream (fun out => do
+        out.send (Chunk.ofByteArray "payload".toUTF8)
+        out.close)
+  let result : IO.Promise (Except String (Response Body.Stream)) ← IO.Promise.new
+
+  background do
+    let attempt ← try
+        pure (Except.ok (← pool.send origin request))
+      catch e => pure (Except.error (toString e))
+    discard <| result.resolve attempt
+
+  -- Drain the first request fully (chunked or Content-Length framing), then drop the connection
+  -- without responding, after the body has been consumed from the caller's stream.
+  let mut firstBytes := ByteArray.empty
+  repeat
+    let some chunk ← mockClient1.recv?
+      | throw (IO.userError "connection closed before first PUT arrived")
+    firstBytes := firstBytes ++ chunk
+    let t := String.fromUTF8! firstBytes
+    if t.endsWith "0\r\n\r\n" || t.endsWith "payload" then break
+  mockClient1.close
+
+  -- If the client (incorrectly) retries, answer the second connection so the test fails fast on
+  -- the `calls` assertion instead of timing out.
+  background do
+    if (← mockClient2.recv?).isSome then
+      mockClient2.send (rawResp "200 OK"
+        #[("Content-Length", "2"), ("Connection", "close")] "ok")
+
+  match ← await result.result! with
+  | Except.ok _ =>
+    throw (IO.userError "PUT with a consumed stream body unexpectedly succeeded via retry")
+  | Except.error _ => pure ()
+  unless (← calls.get) == 1 do
+    throw (IO.userError
+      s!"PUT with non-replayable body was retried; expected 1 connection attempt, got {← calls.get}")
+
+-- A replayable (`Body.Full`) request body must be reset before a retry so the second attempt
+-- sends the complete payload again, not the consumed remainder.
+#eval show IO _ from runWithTimeout "retried PUT resends the full replayable body" 4000 <| Async.block do
+  let (mockClient1, mockServer1) ← Mock.new
+  let (mockClient2, mockServer2) ← Mock.new
+  let calls ← IO.mkRef 0
+  let connect : Client.ConnectFn := fun _ _ _ config => do
+    let callNo ← calls.get
+    calls.set (callNo + 1)
+    Client.Session.new (if callNo == 0 then mockServer1 else mockServer2) (config := config)
+  let pool ← Client.Agent.Pool.new {} connect (maxRetries := 1)
+  let some domain := URI.DomainName.ofString? "example.com"
+    | throw (IO.userError "DomainName parse failed")
+  let origin : URI.Origin := {
+    scheme := URI.Scheme.ofString! "http", host := .name domain, port := 80 }
+  let request ← Request.new |>.method .put |>.uri! "/upload"
+    |>.header! "Host" "example.com" |>.text "payload"
+  let result : IO.Promise (Except String (Response Body.Stream)) ← IO.Promise.new
+
+  background do
+    let attempt ← try
+        pure (Except.ok (← pool.send origin request))
+      catch e => pure (Except.error (toString e))
+    discard <| result.resolve attempt
+
+  -- First attempt: consume the whole request (headers + body), then drop without responding.
+  let _ ← drainRequest mockClient1
+  mockClient1.close
+
+  -- Second attempt: the retried request must carry the full body again.
+  let retryBytes ← drainRequest mockClient2
+  mockClient2.send (rawResp "200 OK"
+    #[("Content-Length", "2"), ("Connection", "close")] "ok")
+
+  match ← await result.result! with
+  | Except.error e => throw (IO.userError s!"retried PUT failed: {e}")
+  | Except.ok resp =>
+    let _ ← resp.body.readAll (α := String)
+  unless (← calls.get) == 2 do
+    throw (IO.userError s!"expected two connection attempts, got {← calls.get}")
+  let retryText := String.fromUTF8! retryBytes
+  unless retryText.contains "payload" do
+    throw <| IO.userError
+      s!"retried PUT did not resend the request body:\n{retryText.quote}"
+
+-- A pooled session whose connection has already shut down (idle timeout, server EOF) must not be
+-- handed to the next request: the request was never written to the wire, so the pool can safely
+-- open a fresh connection — even for non-idempotent methods and with retries disabled.
+#eval show IO _ from runWithTimeout "pool discards a dead session instead of failing the next request" 4000 <| Async.block do
+  let (mockClient1, mockServer1) ← Mock.new
+  let (mockClient2, mockServer2) ← Mock.new
+  let calls ← IO.mkRef 0
+  let connect : Client.ConnectFn := fun _ _ _ config => do
+    let callNo ← calls.get
+    calls.set (callNo + 1)
+    Client.Session.new (if callNo == 0 then mockServer1 else mockServer2) (config := config)
+  let pool ← Client.Agent.Pool.new {} connect (maxRetries := 0)
+  let some domain := URI.DomainName.ofString? "example.com"
+    | throw (IO.userError "DomainName parse failed")
+  let origin : URI.Origin := {
+    scheme := URI.Scheme.ofString! "http", host := .name domain, port := 80 }
+
+  -- First exchange completes cleanly; the session is parked in the pool.
+  let req1 ← Request.new |>.method .get |>.uri! "/one"
+    |>.header! "Host" "example.com" |>.empty
+  let p1 : IO.Promise (Except String (Response Body.Stream)) ← IO.Promise.new
+  background do
+    let attempt ← try
+        pure (Except.ok (← pool.send origin req1))
+      catch e => pure (Except.error (toString e))
+    discard <| p1.resolve attempt
+  let _ ← drainRequest mockClient1
+  mockClient1.send (rawResp "200 OK"
+    #[("Content-Length", "5"), ("Connection", "keep-alive")] "hello")
+  match ← await p1.result! with
+  | Except.error e => throw (IO.userError s!"first pooled request failed: {e}")
+  | Except.ok resp =>
+    let _ ← resp.body.readAll (α := String)
+
+  -- The server silently drops the parked connection; give the background loop
+  -- time to observe EOF and shut down.
+  mockClient1.close
+  IO.sleep 200
+
+  -- The next request (a POST: retries disabled and non-idempotent anyway) must transparently get
+  -- a fresh connection rather than an error from the dead parked session.
+  let req2 ← Request.new |>.method .post |>.uri! "/two"
+    |>.header! "Host" "example.com" |>.text "data"
+  let p2 : IO.Promise (Except String (Response Body.Stream)) ← IO.Promise.new
+  background do
+    let attempt ← try
+        pure (Except.ok (← pool.send origin req2))
+      catch e => pure (Except.error (toString e))
+    discard <| p2.resolve attempt
+
+  let secondBytes ← drainRequest mockClient2
+  mockClient2.send (rawResp "200 OK"
+    #[("Content-Length", "2"), ("Connection", "close")] "ok")
+
+  match ← await p2.result! with
+  | Except.error e => throw (IO.userError s!"POST after dead parked session failed: {e}")
+  | Except.ok resp =>
+    let _ ← resp.body.readAll (α := String)
+  unless (← calls.get) == 2 do
+    throw (IO.userError s!"expected a fresh second connection, got {← calls.get} attempts")
+  let secondText := String.fromUTF8! secondBytes
+  unless secondText.startsWith "POST /two" do
+    throw <| IO.userError s!"unexpected second request:\n{secondText.quote}"

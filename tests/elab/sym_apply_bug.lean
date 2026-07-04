@@ -1,3 +1,9 @@
+/-!
+Tests for `Lean.Meta.Sym.BackwardRule.apply`: a backward rule with an instance argument that
+cannot be synthesized must report the rule as inapplicable rather than leaving a loose instance
+metavariable in the proof term (which surfaces as a kernel unresolved-metavariable error).
+-/
+
 inductive PlainRel {α : Sort u} (lhs rhs : α) : Prop where
   | intro
 

@@ -532,7 +532,7 @@ noncomputable def filterMap (f : α → Option β) : List α → List β
 
 /--
 Folds a function over a list from the right, accumulating a value starting with `init`. The
-accumulated value is combined with the each element of the list in reverse order, using `f`.
+accumulated value is combined with each element of the list in reverse order, using `f`.
 
 `O(|l|)`. Replaced at runtime with `List.foldrTR`.
 
@@ -1593,9 +1593,9 @@ def eraseIdx : (l : List α) → (i : Nat) → List α
   | _::as, 0   => as
   | a::as, n+1 => a :: eraseIdx as n
 
-@[simp] theorem eraseIdx_nil : ([] : List α).eraseIdx i = [] := rfl
-@[simp] theorem eraseIdx_cons_zero : (a::as).eraseIdx 0 = as := rfl
-@[simp] theorem eraseIdx_cons_succ : (a::as).eraseIdx (i+1) = a :: as.eraseIdx i := rfl
+@[simp, grind =] theorem eraseIdx_nil : ([] : List α).eraseIdx i = [] := rfl
+@[simp, grind =] theorem eraseIdx_cons_zero : (a::as).eraseIdx 0 = as := rfl
+@[simp, grind =] theorem eraseIdx_cons_succ : (a::as).eraseIdx (i+1) = a :: as.eraseIdx i := rfl
 
 /-! Finding elements -/
 
@@ -1700,7 +1700,7 @@ Examples:
   | [], n => n
   | a :: l, n => bif p a then n else go l (n + 1)
 
-@[simp] theorem findIdx_nil {p : α → Bool} : [].findIdx p = 0 := rfl
+@[simp, grind =] theorem findIdx_nil {p : α → Bool} : [].findIdx p = 0 := rfl
 
 /-! ### idxOf -/
 

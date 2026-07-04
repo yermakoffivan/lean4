@@ -13,12 +13,11 @@ public import Lean.Meta.Sym.Grind
 
 open Lean Meta Elab Tactic Sym
 open Lean.Elab.Tactic.Do.SpecAttr
-open Std.Do
 
 namespace Lean.Elab.Tactic.Do.Internal
 
 /-!
-Worklist driver for `mvcgen'`. Wraps `solve` with a queue of pending goals
+Worklist driver for `vcgen`. Wraps `solve` with a queue of pending goals
 and emits VCs (or invariant holes) for those `solve` cannot decompose further.
 -/
 
@@ -84,13 +83,14 @@ Invariant subgoals are handled separately by `handleInvariantSubgoals` directly 
 so they never reach this path.
 -/
 public def emitVC (goal : Grind.Goal) : VCGenM Unit := do
-  let goal ← processHypotheses goal
+  let mut goal := { goal with mvarId := ← elimTopPre goal.mvarId }
+  goal ← processHypotheses goal
   if goal.inconsistent then return
-  -- `trivial`: when false, skip `repeatAndRfl` (which collapses And-chains via rfl);
+  -- `trivial`: when false, skip `solveTrivialConjuncts` (which collapses And-chains via rfl);
   -- emit the goal as-is.
   let mvarId ←
     if (← read).trivial then
-      let some mvarId ← repeatAndRfl goal.mvarId | return
+      let some mvarId ← solveTrivialConjuncts goal.mvarId | return
       pure mvarId
     else
       pure goal.mvarId
@@ -109,20 +109,8 @@ public def work (scope : Scope) (goal : Grind.Goal) : VCGenM Unit := do
     let goal := s.goal
     if goal.inconsistent then continue
     match ← solve s.scope goal.mvarId with
-    | .stop =>
+    | .stop _reason =>
       emitVC goal
-    | .noEntailment .. | .noProgramFoundInTarget .. =>
-      emitVC goal
-    | .noSpecFoundForProgram prog monad thms =>
-      if (← read).errorOnMissingSpec then goal.mvarId.withContext do
-        if thms.isEmpty then
-          throwError "No spec found for program {prog}."
-        else
-          throwError "No spec matching the monad {monad} found for program {prog}. Candidates were {thms.map (·.proof)}."
-      else
-        emitVC goal
-    | .noStrategyForProgram prog => goal.mvarId.withContext do
-      throwError "Did not know how to decompose weakest precondition for {prog}"
     | .goals scope subgoals =>
       -- Handle invariant subgoals eagerly here, so that VC subgoals popped
       -- from the worklist later see the invariant MVar already assigned.
@@ -148,27 +136,35 @@ public structure Result where
   avoid spurious "alt does not match any invariant" warnings for inline-consumed
   alts. -/
   inlineHandledInvariants : Std.HashSet Nat := {}
+  /-- Frame terms of `frames` alternatives whose program pattern matched no program. -/
+  unmatchedFrames : Array Syntax := #[]
 
 /--
-Generate verification conditions for a goal of the form `P ⊢ₛ wp⟦e⟧ Q s₁ ... sₙ` by repeatedly
+Generate verification conditions for a goal of the form `pre ⊑ wp e post epost s₁ ... sₙ` by repeatedly
 decomposing `e` using registered `@[spec]` theorems.
 Return the VCs and invariant goals.
 
 `stepLimit?`, when `some n`, seeds the fuel counter to `n`; when `none`, fuel is unlimited.
 -/
 public partial def run (goal : Grind.Goal) (ctx : Context) (scope : VCGen.Scope)
-    (stepLimit? : Option Nat := none) : Grind.GrindM Result := do
-  let initState : State := { fuel := match stepLimit? with | some n => .limited n | none => .unlimited }
+    (stepLimit? : Option Nat := none) (frameDB? : Option (Deferred FrameDB) := none) :
+    Grind.GrindM Result := do
+  let initState : State :=
+    { fuel := match stepLimit? with | some n => .limited n | none => .unlimited, frameDB? }
   let ((), state) ← StateRefT'.run (ReaderT.run (work scope goal) ctx) initState
   _ ← state.invariants.mapIdxM fun idx mv => do
     mv.setTag (Name.mkSimple ("inv" ++ toString (idx + 1)))
   _ ← state.vcs.mapIdxM fun idx g => do
     g.mvarId.setTag (Name.mkSimple ("vc" ++ toString (idx + 1)) ++ (← g.mvarId.getTag).eraseMacroScopes)
   let vcs ← state.vcs.filterM (not <$> ·.mvarId.isAssigned)
+  let unmatchedFrames := match state.frameDB? with
+    | some (.elaborated db) => db.entries.filterMap fun e => if e.retired then none else some e.frameStx
+    | _ => #[]
   return {
     invariants := state.invariants,
     vcs,
-    inlineHandledInvariants := state.inlineHandledInvariants }
+    inlineHandledInvariants := state.inlineHandledInvariants,
+    unmatchedFrames }
 
 end VCGen
 

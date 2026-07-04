@@ -380,7 +380,7 @@ Returns the last element of an array, or panics if the array is empty.
 Safer alternatives include `Array.back`, which requires a proof the array is non-empty, and
 `Array.back?`, which returns an `Option`.
 -/
-@[inline]
+@[inline, expose]
 def back! [Inhabited α] (xs : Array α) : α :=
   xs[xs.size - 1]!
 
@@ -390,7 +390,7 @@ Returns the last element of an array, given a proof that the array is not empty.
 See `Array.back!` for the version that panics if the array is empty, or `Array.back?` for the
 version that returns an option.
 -/
-@[inline]
+@[inline, expose]
 def back (xs : Array α) (h : 0 < xs.size := by get_elem_tactic) : α :=
   xs[xs.size - 1]'(Nat.sub_one_lt_of_lt h)
 
@@ -400,7 +400,7 @@ Returns the last element of an array, or `none` if the array is empty.
 See `Array.back!` for the version that panics if the array is empty, or `Array.back` for the version
 that requires a proof the array is non-empty.
 -/
-@[inline]
+@[inline, expose]
 def back? (xs : Array α) : Option α :=
   xs[xs.size - 1]?
 
@@ -763,11 +763,33 @@ def mapM {α : Type u} {β : Type v} {m : Type v → Type w} [Monad m] (f : α �
   decreasing_by simp_wf; decreasing_trivial_pre_omega
   map 0 (emptyWithCapacity as.size)
 
+/-- See comment at `forIn'Unsafe`. This mirrors `mapMUnsafe`, threading the index `i`
+    and supplying the in-bounds proof via `lcProof`. -/
+@[inline]
+unsafe def mapFinIdxMUnsafe {α : Type u} {β : Type v} {m : Type v → Type w} [Monad m]
+    (as : Array α) (f : (i : Nat) → α → (h : i < as.size) → m β) : m (Array β) :=
+  let sz := as.usize
+  let rec @[specialize] map (i : USize) (bs : Array NonScalar) : m (Array PNonScalar.{v}) := do
+    if i < sz then
+     let v    := bs.uget i lcProof
+     -- Replace bs[i] by `box(0)`.  This ensures that `v` remains unshared if possible.
+     -- Note: we assume that arrays have a uniform representation irrespective
+     -- of the element type, and that it is valid to store `box(0)` in any array.
+     let bs'    := bs.uset i default lcProof
+     let vNew ← f i.toNat (unsafeCast v) lcProof
+     map (i+1) (bs'.uset i (unsafeCast vNew) lcProof)
+    else
+     pure (unsafeCast bs)
+  unsafeCast <| map 0 (unsafeCast as)
+
 /--
 Applies the monadic action `f` to every element in the array, along with the element's index and a
 proof that the index is in bounds, from left to right. Returns the array of results.
 -/
-@[inline, expose]
+-- Reference implementation for `mapFinIdxM`.
+-- This must not be `@[inline]`: inlining the reference body at call sites would
+-- bypass `@[implemented_by]` and lose the in-place behaviour (cf. `mapM`).
+@[implemented_by mapFinIdxMUnsafe, expose]
 def mapFinIdxM {α : Type u} {β : Type v} {m : Type v → Type w} [Monad m]
     (as : Array α) (f : (i : Nat) → α → (h : i < as.size) → m β) : m (Array β) :=
   let rec @[specialize] map (i : Nat) (j : Nat) (inv : i + j = as.size) (bs : Array β) : m (Array β) := do

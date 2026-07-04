@@ -78,13 +78,11 @@ def pipeEncrypted (src dst : Session) : IO Unit := do
 -- Test: client configured from an in-memory PEM verifies the server cert.
 -- ---------------------------------------------------------------------------
 
-def testConfigureClientFromPEM (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
+def testMkClientFromPEM (certFile keyFile : String) : IO Unit := do
+  let serverCtx ← Context.Server.mk certFile keyFile
 
   let caPEM ← IO.FS.readFile certFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configureFromPEM caPEM true
+  let clientCtx ← Context.Client.mkFromPEM caPEM true
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -93,18 +91,16 @@ def testConfigureClientFromPEM (certFile keyFile : String) : IO Unit := do
   runHandshake clientSess serverSess
 
   let code ← clientSess.verifyResult
-  assertEqN code 0 "verifyResult after configureFromPEM"
+  assertEqN code 0 "verifyResult after mkFromPEM"
 
 -- ---------------------------------------------------------------------------
 -- Test: in-process TLS handshake between two memory-BIO sessions.
 -- ---------------------------------------------------------------------------
 
 def testInProcessHandshake (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
+  let serverCtx ← Context.Server.mk certFile keyFile
 
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false  -- skip peer verification
+  let clientCtx ← Context.Client.mk "" false  -- skip peer verification
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -123,11 +119,9 @@ def testInProcessHandshake (certFile keyFile : String) : IO Unit := do
 -- ---------------------------------------------------------------------------
 
 def testDataTransfer (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
+  let serverCtx ← Context.Server.mk certFile keyFile
 
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let clientCtx ← Context.Client.mk "" false
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -164,11 +158,9 @@ def testDataTransfer (certFile keyFile : String) : IO Unit := do
 -- ---------------------------------------------------------------------------
 
 def testPendingPlaintext (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
+  let serverCtx ← Context.Server.mk certFile keyFile
 
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let clientCtx ← Context.Client.mk "" false
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -189,10 +181,8 @@ def testPendingPlaintext (certFile keyFile : String) : IO Unit := do
 -- ---------------------------------------------------------------------------
 
 def testEmptyWrite (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -207,10 +197,8 @@ def testEmptyWrite (certFile keyFile : String) : IO Unit := do
 -- ---------------------------------------------------------------------------
 
 def testReadZero (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -228,10 +216,8 @@ def testReadZero (certFile keyFile : String) : IO Unit := do
 -- ---------------------------------------------------------------------------
 
 def testPendingWriteOrder (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -262,10 +248,8 @@ def testPendingWriteOrder (certFile keyFile : String) : IO Unit := do
 -- ---------------------------------------------------------------------------
 
 def testVerifyResultString (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -280,10 +264,8 @@ def testVerifyResultString (certFile keyFile : String) : IO Unit := do
 -- ---------------------------------------------------------------------------
 
 def testNegotiatedVersion (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -313,10 +295,8 @@ partial def runShutdown (fuel : Nat) (a b : Session) : IO Unit := do
   unless ra.isNone && rb.isNone do runShutdown (fuel - 1) a b
 
 def testCloseNotify (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -348,10 +328,8 @@ def testCloseNotify (certFile keyFile : String) : IO Unit := do
 -- handshake finishes — exercising the `pending_writes` blocked/flush path that is otherwise hard to
 -- reach with always-writable memory BIOs.
 def testWriteBeforeHandshake (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -382,7 +360,7 @@ def testWriteBeforeHandshake (certFile keyFile : String) : IO Unit := do
 
 #eval do
   let (certFile, keyFile) ← setupTestCerts
-  testConfigureClientFromPEM certFile keyFile
+  testMkClientFromPEM certFile keyFile
 
 #eval do
   let (certFile, keyFile) ← setupTestCerts
@@ -436,12 +414,10 @@ def threw (act : IO α) : IO Bool := do
 -- This proves `setServerName` wires up hostname verification (SSL_set1_host), not just SNI.
 #eval do
   let (certFile, keyFile) ← setupTestCerts
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
+  let serverCtx ← Context.Server.mk certFile keyFile
 
   let caPEM ← IO.FS.readFile certFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configureFromPEM caPEM true
+  let clientCtx ← Context.Client.mkFromPEM caPEM true
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -454,10 +430,8 @@ def threw (act : IO α) : IO Bool := do
 
 #eval do
   let (certFile, keyFile) ← setupTestCerts
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
   let s ← Session.Server.mk serverCtx
   let c ← Session.Client.mk clientCtx
   runHandshake s.toSession c.toSession
@@ -481,10 +455,8 @@ def threw (act : IO α) : IO Bool := do
 -- calls return the rest with no data loss (regression for the `read?` allocation cap).
 #eval do
   let (certFile, keyFile) ← setupTestCerts
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
   let s ← Session.Server.mk serverCtx
   let c ← Session.Client.mk clientCtx
   runHandshake s.toSession c.toSession
@@ -511,10 +483,8 @@ def threw (act : IO α) : IO Bool := do
 -- `read?` returns exactly the buffered remainder (regression for the `SSL_pending`-based sizing).
 #eval do
   let (certFile, keyFile) ← setupTestCerts
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
   let s ← Session.Server.mk serverCtx
   let c ← Session.Client.mk clientCtx
   runHandshake s.toSession c.toSession

@@ -427,6 +427,52 @@ public def renameInaccessibles (mvarId : MVarId) (hs : TSyntaxArray ``binderIden
     evalGrindTactic stx[3]
   setGoals goals
 
+/--
+Searches `goals` for one whose case tag matches `tag`, using the same heuristic as the
+standard `case` tactic: prefer an exact match, then a suffix match, then a prefix match.
+-/
+private def findGrindTag? (goals : List Goal) (tag : Name) : GrindTacticM (Option Goal) := do
+  let byName (p : Name → Name → Bool) : GrindTacticM (Option Goal) :=
+    goals.findM? fun g => return p tag (← g.mvarId.getDecl).userName.eraseMacroScopes
+  if let some g ← byName (· == ·) then return some g
+  if let some g ← byName (·.isSuffixOf ·) then return some g
+  byName (·.isPrefixOf ·)
+
+/--
+Returns the goal selected by the case tag `tag` together with the remaining goals.
+If `tag` is a hole (`_`), the main goal is selected.
+-/
+private def getCaseGoal (tag : TSyntax ``binderIdent) : GrindTacticM (Goal × List Goal) := do
+  let gs ← getUnsolvedGoals
+  if let `(binderIdent| $tagId:ident) := tag then
+    let tagId := tagId.getId.eraseMacroScopes
+    let some g ← findGrindTag? gs tagId | notFound gs tagId
+    return (g, gs.filter (·.mvarId != g.mvarId))
+  else
+    let g ← getMainGoal
+    return (g, gs.filter (·.mvarId != g.mvarId))
+where
+  notFound {α} (available : List Goal) (tag : Name) : GrindTacticM α := do
+    let names := (← available.mapM fun g => return (← g.mvarId.getDecl).userName)
+      |>.filter (· != .anonymous) |>.eraseDups
+    let hint := match names with
+      | []      => m!"There are no cases to select."
+      | [name]  => m!"The only available case tag is `{name}`."
+      | names   => m!"Available tags: {MessageData.joinSep (names.map (m!"`{·}`")) ", "}"
+    throwError "Case tag `{tag}` not found.\n{hint}"
+
+@[builtin_grind_tactic «case»] def evalCase : GrindTactic := fun stx => do
+  let `(grind| case%$caseTk $[$tags $hss*]|* =>%$arr $seq:grindSeq) := stx | throwUnsupportedSyntax
+  for tag in tags, hs in hss do
+    let (goal, goals) ← getCaseGoal tag
+    let mvarId ← renameInaccessibles goal.mvarId hs
+    let goal := { goal with mvarId }
+    setGoals [goal]
+    goal.mvarId.setTag Name.anonymous
+    withCaseRef arr seq <| closeUsingOrAdmit <| withTacticInfoContext (mkNullNode #[caseTk, arr]) <|
+      evalGrindTactic seq
+    setGoals goals
+
 @[builtin_grind_tactic nestedTacticCore] def evalNestedTactic : GrindTactic := fun stx => do
   let `(grind| tactic%$tacticTk =>%$arr $seq:tacticSeq) := stx | throwUnsupportedSyntax
   let goal ← getMainGoal

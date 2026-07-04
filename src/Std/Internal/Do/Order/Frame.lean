@@ -48,15 +48,6 @@ theorem himp_complete (x a b : α) : a ⊓ x ⊑ b → x ⊑ a ⇨ b := by
   exact le_sup (c := fun y : α => a ⊓ y ⊑ b) h
 
 /--
-`⊤`-specialized completeness direction: if `a ⊑ b`, then `⊤ ⊑ a ⇨ b`.
-
-This avoids the redundant `⊓ ⊤` that `himp_complete` would leave when the precondition is `⊤`.
--/
-theorem himp_complete_top (a b : α) : a ⊑ b → (⊤ : α) ⊑ a ⇨ b := by
-  intro h
-  exact himp_complete ⊤ a b (PartialOrder.rel_trans (meet_le_left a ⊤) h)
-
-/--
 Soundness direction (`a ⊓ (a ⇨ b) ⊑ b`) from the frame distributivity law.
 -/
 theorem himp_sound [Frame α] (a b : α) : a ⊓ (a ⇨ b) ⊑ b := by
@@ -104,6 +95,22 @@ instance : Frame Prop where
     · rintro ⟨p, ⟨x, hsx, hp_eq⟩, hp⟩
       subst p
       exact ⟨hp.1, x, hsx, hp.2⟩
+
+/-- A dependent function lattice into frames is a frame; the frame law holds pointwise. This makes the
+iterated function lattices `σ₁ → … → Prop` frames. -/
+instance instFramePi {σ : Type v} {β : σ → Type u} [∀ s, CompleteLattice (β s)] [∀ s, Frame (β s)] :
+    Frame (∀ s, β s) where
+  meet_sup a s := by
+    funext t
+    rw [meet_apply, sup_apply, sup_apply, Frame.meet_sup (a := a t)]
+    congr 1
+    funext w
+    apply propext
+    constructor
+    · rintro ⟨v, ⟨f, hf, hft⟩, rfl⟩
+      exact ⟨a ⊓ f, ⟨f, hf, rfl⟩, by rw [meet_apply, hft]⟩
+    · rintro ⟨g, ⟨x, hx, rfl⟩, hgt⟩
+      exact ⟨x t, ⟨x, hx, rfl⟩, by rw [← hgt, meet_apply]⟩
 
 /-- Pointwise characterization of Heyting implication on function lattices. -/
 @[simp] theorem himp_apply

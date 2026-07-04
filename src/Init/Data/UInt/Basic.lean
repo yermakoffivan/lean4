@@ -372,7 +372,7 @@ Examples:
  * `(if (5 : UInt16) < 5 then "yes" else "no") = "no"`
  * `show ¬((7 : UInt16) < 7) by decide`
 -/
-@[extern "lean_uint16_dec_lt", implicit_reducible]
+@[extern "lean_uint16_dec_lt", instance_reducible]
 def UInt16.decLt (a b : UInt16) : Decidable (a < b) :=
   inferInstanceAs (Decidable (a.toBitVec < b.toBitVec))
 
@@ -389,7 +389,7 @@ Examples:
  * `(if (5 : UInt16) ≤ 15 then "yes" else "no") = "yes"`
  * `show (7 : UInt16) ≤ 7 by decide`
 -/
-@[extern "lean_uint16_dec_le", implicit_reducible]
+@[extern "lean_uint16_dec_le", instance_reducible]
 def UInt16.decLe (a b : UInt16) : Decidable (a ≤ b) :=
   inferInstanceAs (Decidable (a.toBitVec ≤ b.toBitVec))
 
@@ -736,7 +736,7 @@ Examples:
  * `(if (5 : UInt64) < 5 then "yes" else "no") = "no"`
  * `show ¬((7 : UInt64) < 7) by decide`
 -/
-@[extern "lean_uint64_dec_lt", implicit_reducible]
+@[extern "lean_uint64_dec_lt", instance_reducible]
 def UInt64.decLt (a b : UInt64) : Decidable (a < b) :=
   inferInstanceAs (Decidable (a.toBitVec < b.toBitVec))
 
@@ -752,7 +752,7 @@ Examples:
  * `(if (5 : UInt64) ≤ 15 then "yes" else "no") = "yes"`
  * `show (7 : UInt64) ≤ 7 by decide`
 -/
-@[extern "lean_uint64_dec_le", implicit_reducible]
+@[extern "lean_uint64_dec_le", instance_reducible]
 def UInt64.decLe (a b : UInt64) : Decidable (a ≤ b) :=
   inferInstanceAs (Decidable (a.toBitVec ≤ b.toBitVec))
 
@@ -933,6 +933,22 @@ This function is overridden at runtime with an efficient implementation.
 @[extern "lean_usize_to_uint64"]
 def USize.toUInt64 (a : USize) : UInt64 :=
   UInt64.ofNatLT a.toBitVec.toNat (Nat.lt_of_lt_of_le a.toBitVec.isLt USize.size_le)
+
+/--
+Convert a `USize` to `BitVec 32`, assuming that the system bit-width is 32.
+
+This operation is intended for proof purposes.
+-/
+def USize.toBitVec32 (a : USize) (h : System.Platform.numBits = 32) : BitVec 32 :=
+  a.toBitVec.cast h
+
+/--
+Convert a `USize` to `BitVec 64`, assuming that the system bit-width is 64.
+
+This operation is intended for proof purposes.
+-/
+def USize.toBitVec64 (a : USize) (h : System.Platform.numBits = 64) : BitVec 64 :=
+  a.toBitVec.cast h
 
 instance : Mul USize       := ⟨USize.mul⟩
 instance : Pow USize Nat   := ⟨USize.pow⟩

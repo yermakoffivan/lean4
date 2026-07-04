@@ -2548,7 +2548,9 @@ extern "C" LEAN_EXPORT obj_res lean_sarray_ensure_capacity(obj_arg a, size_t min
     if (min_cap <= cap) {
         return a;
     } else {
-        return lean_copy_sarray(a, exact ? min_cap : min_cap * 2);
+        // Fall back to the exact capacity when doubling would overflow `size_t`,
+        // which is only possible on 32-bit systems.
+        return lean_copy_sarray(a, exact || min_cap > SIZE_MAX / 2 ? min_cap : min_cap * 2);
     }
 }
 

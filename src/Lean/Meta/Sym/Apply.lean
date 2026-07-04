@@ -132,14 +132,10 @@ public def BackwardRule.apply (mvarId : MVarId) (rule : BackwardRule) : SymM App
   let decl ← mvarId.getDecl
   if let some result ← rule.pattern.unify? decl.type then
     -- `mkResultPos` omits instance arguments from `resultPos`, assuming type class resolution
-    -- discharges them. If one was neither synthesized nor assigned by unification, the rule is
-    -- not applicable; assigning the goal anyway would leave a loose instance metavariable in the
-    -- proof term (surfacing later as a kernel unresolved-metavariable error).
-    if let some varInfos := rule.pattern.varInfos? then
-      for h : i in *...result.args.size do
-        if varInfos.argsInfo[i]!.isInstance then
-          if let .mvar m := result.args[i] then
-            unless (← m.isAssigned) do return .failed
+    -- discharges them. An instance that could not be resolved is not a subgoal, so assigning the
+    -- goal anyway would leave a loose instance metavariable in the proof term (surfacing later as a
+    -- kernel unresolved-metavariable error). Report the rule as inapplicable instead.
+    unless result.unresolvedInsts.isEmpty do return .failed
     mvarId.assign (mkValue rule.expr rule.pattern result)
     return .goals <| rule.resultPos.map fun i =>
       result.args[i]!.mvarId!

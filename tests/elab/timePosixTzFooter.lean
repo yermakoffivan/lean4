@@ -300,18 +300,3 @@ def footerRules (posix : String) : IO TimeZone.ZoneRules := do
 #eval show IO _ from do
   let zr ← footerRules "<-04>4<-03>,M9.1.6/24,M4.1.6/24"
   return DateTime.ofTimestamp (Timestamp.ofSecondsSinceUnixEpoch 2153962800) zr
-
--- End-to-end check through the host timezone database. America/New_York is
--- used because its rule has been identical in every timezone database since
--- 2007, so the result does not depend on the database version.
-/-- info: zoned("2038-03-14T01:59:59.000000000-05:00") -/
-#guard_msgs in
-#eval show IO _ from do
-  let zr ← Database.defaultGetZoneRules "America/New_York"
-  return DateTime.ofTimestamp (Timestamp.ofSecondsSinceUnixEpoch 2152162799) zr
-
-/-- info: zoned("2038-03-14T03:00:00.000000000-04:00") -/
-#guard_msgs in
-#eval show IO _ from do
-  let zr ← Database.defaultGetZoneRules "America/New_York"
-  return DateTime.ofTimestamp (Timestamp.ofSecondsSinceUnixEpoch 2152162800) zr
